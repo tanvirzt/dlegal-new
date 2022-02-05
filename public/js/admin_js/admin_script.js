@@ -1,5 +1,6 @@
 $(document).ready(function(){
     // check admin current password is match or not
+
     $('#current_password').keyup(function(){
         var current_password = $('#current_password').val();
         $.ajax({
@@ -95,5 +96,67 @@ $(document).ready(function(){
             }
         });
     });
+
+    $(".hide").hide();
+    $(".btn-success").click(function(){
+        var lsthmtl = $(".clone").html();
+        $(".increment").after(lsthmtl);
+    });
+    $("body").on("click",".btn-danger",function(){
+        $(this).parents(".hdtuto").remove();
+    });
+
+    // append district according to division
+
+    $('#division').on('change', function(e) {
+        var div_id = e.target.value;
+        // alert(div_id);
+        $.ajax({
+            url: "append-district",
+            type: "POST",
+            data: {
+                div_id: div_id
+            },
+            success: function(data) {
+                $('#district').empty();
+                $.each(data.district, function(index, district) {
+                    $('#district').append('<option selected>Select</option> <option value="' + district.id + '">' + district.district_name + '</option>');
+                })
+            }
+        })
+    });
+
+
+    $('#state').on('change', function() {
+        var stateID = $(this).val();
+        // alert(stateID);
+        if(stateID) {
+            $.ajax({
+                url: '/bclc-software/public/admin/find-district/'+stateID,
+                type: "GET",
+                data : {"_token":"{{ csrf_token() }}"},
+                dataType: "json",
+                success:function(data) {
+                    //console.log(data);
+                    if(data){
+                        $('#city').empty();
+                        $('#city').focus;
+                        $('#city').append('<option value="">Select</option>');
+                        $.each(data, function(key, value){
+                            $('select[name="district_id"]').append('<option value="'+ value.id +'">' + value.district_name+ '</option>');
+                        });
+                    }else{
+                        $('#city').empty();
+                    }
+                }
+            });
+        }else{
+            $('#city').empty();
+        }
+    });
+
+
+
+
 
 });

@@ -51,11 +51,14 @@
                                         <th>ID</th>
                                         <th>Case No</th>
                                         <th>Division</th>
-                                        <th>Subsequent Case Name</th>
-                                        <th>Name of Court</th>
+                                        <th>District</th>
+                                        <th>Case Status</th>
+                                        <th>Case Category Name</th>
+                                        <th>External Council</th>
                                         <th>Location</th>
                                         <th>Plaintiff Name</th>
                                         <th>Defendent Name</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -70,23 +73,33 @@
                                                 {{ $datum->case_no }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_category_nature_id }}
+                                                {{ $datum->division_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->subsequent_plaintiff_name }}
+                                                {{ $datum->district_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_no }}
+                                                {{ $datum->case_status_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_no }}
+                                                {{ $datum->case_category_name }}
                                             </td>
-                                            
+                                            <td>
+                                                {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->location }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->plaintiff_name }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->defendent_name }}
+                                            </td>
                                             <td>
                                                 @if($datum->delete_status == 0)
                                                     Active
                                                 @else
-
                                                     Inactive
                                                 @endif
                                             </td>

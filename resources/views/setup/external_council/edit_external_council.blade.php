@@ -51,7 +51,7 @@
                                 <h3 class="card-title" id="heading">Edit External Council</h3>
                             </div>
 
-                            <form action="{{ route('update-external-council',$data->id) }}" method="post">
+                            <form action="{{ route('update-external-council',$data->id) }}" method="post" enctype="multipart/form-data" >
                                 @csrf
                                 <div class="card-body">
 
@@ -116,22 +116,24 @@
                                                    id="emergency_contact" value="{{ $data->emergency_contact }}">
                                             @error('emergency_contact')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="document_upload">License/Document</label>
-                                                    <div class="input-group">
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" multiple name="document_upload"
-                                                                    id="profile-img">
-                                                            <label class="custom-file-label" for="exampleInputFile">Choose
-                                                                file</label>
-                                                        </div>
+                                        <div class="form-group">
+                                            <label for="case_notes"> Document Upload </label>
+                                            <div class="input-group hdtuto control-group lst increment">
+                                                <input type="file" name="uploaded_document[]" class="myfrm form-control">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>+</button>
+                                                </div>
+                                            </div>
+                                            <div class="clone hide">
+                                                <div class="hdtuto control-group lst input-group" style="margin-top:10px">
+                                                    <input type="file" name="uploaded_document[]" class="myfrm form-control">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> - </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="float-right">
+                                        <div class="float-right mt-4">
                                             <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update </button>
                                         </div>
                                     </div>

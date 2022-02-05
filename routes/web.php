@@ -145,6 +145,29 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-law-section/{id}','AdminSetupController@update_law_section')->name('update-law-section');
         Route::post('delete-law-section/{id}','AdminSetupController@delete_law_section')->name('delete-law-section');
 
+//        Route::post('append-district','CivilCasesController@append_district')->name('append-district');
+        Route::get('/find-district/{id}','CivilCasesController@find_district')->name('find_district');
+
+        Route::get('next-date-reason','AdminSetupController@next_date_reason')->name('next-date-reason');
+        Route::get('add-next-date-reason','AdminSetupController@add_next_date_reason')->name('add-next-date-reason');
+        Route::post('save-next-date-reason','AdminSetupController@save_next_date_reason')->name('save-next-date-reason');
+        Route::get('edit-next-date-reason/{id}','AdminSetupController@edit_next_date_reason')->name('edit-next-date-reason');
+        Route::post('update-next-date-reason/{id}','AdminSetupController@update_next_date_reason')->name('update-next-date-reason');
+        Route::post('delete-next-date-reason/{id}','AdminSetupController@delete_next_date_reason')->name('delete-next-date-reason');
+
+        Route::get('court-last-order','AdminSetupController@court_last_order')->name('court-last-order');
+        Route::get('add-court-last-order','AdminSetupController@add_court_last_order')->name('add-court-last-order');
+        Route::post('save-court-last-order','AdminSetupController@save_court_last_order')->name('save-court-last-order');
+        Route::get('edit-court-last-order/{id}','AdminSetupController@edit_court_last_order')->name('edit-court-last-order');
+        Route::post('update-court-last-order/{id}','AdminSetupController@update_court_last_order')->name('update-court-last-order');
+        Route::post('delete-court-last-order/{id}','AdminSetupController@delete_court_last_order')->name('delete-court-last-order');
+
+        Route::get('criminal-cases','CriminalCasesController@criminal_cases')->name('criminal-cases');
+        Route::get('add-criminal-cases','CriminalCasesController@add_criminal_cases')->name('add-criminal-cases');
+        Route::post('save-criminal-cases','CriminalCasesController@save_criminal_cases')->name('save-criminal-cases');
+        Route::get('edit-criminal-cases/{id}','CriminalCasesController@edit_criminal_cases')->name('edit-criminal-cases');
+        Route::post('update-criminal-cases/{id}','CriminalCasesController@update_criminal_cases')->name('update-criminal-cases');
+        Route::post('delete-criminal-cases/{id}','CriminalCasesController@delete_criminal_cases')->name('delete-criminal-cases');
 
     });
 

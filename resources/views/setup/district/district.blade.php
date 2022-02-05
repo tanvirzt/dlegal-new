@@ -49,6 +49,7 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Division</th>
                                         <th>District</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -60,6 +61,9 @@
                                         <tr>
                                             <td>
                                                 {{$datum->id}}
+                                            </td>
+                                            <td>
+                                                {{$datum->division_name}}
                                             </td>
                                             <td>
                                                 {{$datum->district_name}}

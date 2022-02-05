@@ -98,6 +98,19 @@
                             <p>Court Name</p>
                           </a>
                         </li>
+                        <li class="nav-item">
+                          <a href="{{ route('next-date-reason') }}" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Reason for Next Date</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="{{ route('court-last-order') }}" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Last order of the Court</p>
+                          </a>
+                        </li>
+
                       </ul>
                     </li>
                   </ul>
@@ -156,7 +169,6 @@
                         <p>Relevant Law/Section</p>
                       </a>
                     </li>
-
                     <li class="nav-item">
                       <a href="#" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -225,7 +237,7 @@
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a href="#" class="nav-link">
+                          <a href="{{ route('criminal-cases') }}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>Criminal</p>
                           </a>

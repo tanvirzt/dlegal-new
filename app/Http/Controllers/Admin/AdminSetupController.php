@@ -18,6 +18,11 @@ use App\Models\CivilCases;
 use App\Models\SetupDivision;
 use App\Models\SetupDistrict;
 use App\Models\SetupLawSection;
+use App\Models\SetupNextDateReason;
+use App\Models\SetupCourtLastOrder;
+use App\Models\SetupExternalCouncilFile;
+use Illuminate\Support\Facades\DB;
+
 
 class AdminSetupController extends Controller
 {
@@ -470,7 +475,7 @@ class AdminSetupController extends Controller
     }
 
 
-    
+
     //compliance type setup
 
     public function compliance_type()
@@ -638,59 +643,59 @@ class AdminSetupController extends Controller
         $data = SetupCourt::all();
         return view('setup.court.court',compact('data'));
     }
-   
+
     public function add_court()
     {
         return view('setup.court.add_court');
     }
-   
+
     public function save_court(Request $request)
     {
         $rules = [
             'court_name' => 'required'
         ];
-   
+
         $validMsg = [
             'court_name.required' => 'Court field is required'
         ];
-   
+
         $this->validate($request, $rules, $validMsg);
-   
+
         $data = new SetupCourt();
         $data->court_name = $request->court_name;
         $data->save();
-   
+
         session()->flash('success','Court Added Successfully');
         return redirect()->back();
-   
+
     }
-   
+
     public function edit_court($id)
     {
         $data = SetupCourt::find($id);
         return view('setup.court.edit_court',compact('data'));
     }
-   
+
     public function update_court(Request $request, $id)
     {
         $rules = [
             'court_name' => 'required'
         ];
-   
+
         $validMsg = [
             'court_name.required' => 'Court field is required'
         ];
-   
+
         $this->validate($request, $rules, $validMsg);
-   
+
         $data = SetupCourt::find($id);
         $data->court_name = $request->court_name;
         $data->save();
-   
+
         session()->flash('success','Court Updated');
         return redirect()->back();
     }
-   
+
     public function delete_court($id)
     {
         $data = SetupCourt::find($id);
@@ -701,7 +706,7 @@ class AdminSetupController extends Controller
         }
         $data->delete_status = $delete_status;
         $data->save();
-   
+
         session()->flash('success', 'Court Deleted');
         return redirect()->back();
     }
@@ -714,59 +719,59 @@ class AdminSetupController extends Controller
         $data = SetupLawSection::all();
         return view('setup.law_section.law_section',compact('data'));
     }
-   
+
     public function add_law_section()
     {
         return view('setup.law_section.add_law_section');
     }
-   
+
     public function save_law_section(Request $request)
     {
         $rules = [
             'law_section_name' => 'required'
         ];
-   
+
         $validMsg = [
             'law_section_name.required' => 'Law Section field is required'
         ];
-   
+
         $this->validate($request, $rules, $validMsg);
-   
+
         $data = new SetupLawSection();
         $data->law_section_name = $request->law_section_name;
         $data->save();
-   
+
         session()->flash('success','Law Section Added Successfully');
         return redirect()->back();
-   
+
     }
-   
+
     public function edit_law_section($id)
     {
         $data = SetupLawSection::find($id);
         return view('setup.law_section.edit_law_section',compact('data'));
     }
-   
+
     public function update_law_section(Request $request, $id)
     {
         $rules = [
             'law_section_name' => 'required'
         ];
-   
+
         $validMsg = [
             'law_section_name.required' => 'Law Section field is required'
         ];
-   
+
         $this->validate($request, $rules, $validMsg);
-   
+
         $data = SetupLawSection::find($id);
         $data->law_section_name = $request->law_section_name;
         $data->save();
-   
+
         session()->flash('success','Law Section Updated');
         return redirect()->back();
     }
-   
+
     public function delete_law_section($id)
     {
         $data = SetupLawSection::find($id);
@@ -777,7 +782,7 @@ class AdminSetupController extends Controller
         }
         $data->delete_status = $delete_status;
         $data->save();
-   
+
         session()->flash('success', 'Law Section Deleted');
         return redirect()->back();
     }
@@ -790,59 +795,59 @@ class AdminSetupController extends Controller
         $data = SetupDivision::all();
         return view('setup.division.division',compact('data'));
     }
-   
+
     public function add_division()
     {
         return view('setup.division.add_division');
     }
-   
+
     public function save_division(Request $request)
     {
         $rules = [
             'division_name' => 'required'
         ];
-   
+
         $validMsg = [
             'division_name.required' => 'Division field is required'
         ];
-   
+
         $this->validate($request, $rules, $validMsg);
-   
+
         $data = new SetupDivision();
         $data->division_name = $request->division_name;
         $data->save();
-   
+
         session()->flash('success','Division Added Successfully');
         return redirect()->back();
-   
+
     }
-   
+
     public function edit_division($id)
     {
         $data = SetupDivision::find($id);
         return view('setup.division.edit_division',compact('data'));
     }
-   
+
     public function update_division(Request $request, $id)
     {
         $rules = [
             'division_name' => 'required'
         ];
-   
+
         $validMsg = [
             'division_name.required' => 'Division field is required'
         ];
-   
+
         $this->validate($request, $rules, $validMsg);
-   
+
         $data = SetupDivision::find($id);
         $data->division_name = $request->division_name;
         $data->save();
-   
+
         session()->flash('success','Division Updated');
         return redirect()->back();
     }
-   
+
     public function delete_division($id)
     {
         $data = SetupDivision::find($id);
@@ -853,7 +858,7 @@ class AdminSetupController extends Controller
         }
         $data->delete_status = $delete_status;
         $data->save();
-   
+
         session()->flash('success', 'Division Deleted');
         return redirect()->back();
     }
@@ -863,66 +868,70 @@ class AdminSetupController extends Controller
 
     public function district()
     {
-        $data = SetupDistrict::all();
+//        $data = SetupDistrict::all();
+        $data = DB::table('setup_districts')
+                    ->join('setup_divisions','setup_districts.division_id', '=', 'setup_divisions.id')
+                    ->select('setup_districts.*','setup_divisions.division_name')
+                    ->get();
         return view('setup.district.district',compact('data'));
     }
-   
+
     public function add_district()
     {
         $division = SetupDivision::where('delete_status',0)->get();
         return view('setup.district.add_district',compact('division'));
     }
-   
+
     public function save_district(Request $request)
     {
         $rules = [
             'district_name' => 'required'
         ];
-   
+
         $validMsg = [
             'district_name.required' => 'District field is required'
         ];
-   
+
         $this->validate($request, $rules, $validMsg);
-   
+
         $data = new SetupDistrict();
         $data->division_id = $request->division_id;
         $data->district_name = $request->district_name;
         $data->save();
-   
+
         session()->flash('success','District Added Successfully');
         return redirect()->back();
-   
+
     }
-   
+
     public function edit_district($id)
     {
         $division = SetupDivision::where('delete_status',0)->get();
         $data = SetupDistrict::find($id);
         return view('setup.district.edit_district',compact('data','division'));
     }
-   
+
     public function update_district(Request $request, $id)
     {
         $rules = [
             'district_name' => 'required'
         ];
-   
+
         $validMsg = [
             'district_name.required' => 'District field is required'
         ];
-   
+
         $this->validate($request, $rules, $validMsg);
-   
+
         $data = SetupDistrict::find($id);
         $data->division_id = $request->division_id;
         $data->district_name = $request->district_name;
         $data->save();
-   
+
         session()->flash('success','District Updated');
         return redirect()->back();
     }
-   
+
     public function delete_district($id)
     {
         $data = SetupDistrict::find($id);
@@ -933,11 +942,164 @@ class AdminSetupController extends Controller
         }
         $data->delete_status = $delete_status;
         $data->save();
-   
+
         session()->flash('success', 'District Deleted');
         return redirect()->back();
     }
 
+
+ //court last order setup
+
+ public function court_last_order()
+ {
+     $data = SetupCourtLastOrder::all();
+     return view('setup.court_last_order.court_last_order',compact('data'));
+ }
+
+ public function add_court_last_order()
+ {
+     $division = SetupCourtLastOrder::where('delete_status',0)->get();
+     return view('setup.court_last_order.add_court_last_order',compact('division'));
+ }
+
+ public function save_court_last_order(Request $request)
+ {
+     $rules = [
+         'court_last_order_name' => 'required'
+     ];
+
+     $validMsg = [
+         'court_last_order_name.required' => 'Court Last Order field is required'
+     ];
+
+     $this->validate($request, $rules, $validMsg);
+
+     $data = new SetupCourtLastOrder();
+     $data->court_last_order_name = $request->court_last_order_name;
+     $data->save();
+
+     session()->flash('success','Court Last Order Added Successfully');
+     return redirect()->back();
+
+ }
+
+ public function edit_court_last_order($id)
+ {
+     $data = SetupCourtLastOrder::find($id);
+     return view('setup.court_last_order.edit_court_last_order',compact('data'));
+ }
+
+ public function update_court_last_order(Request $request, $id)
+ {
+     $rules = [
+         'court_last_order_name' => 'required'
+     ];
+
+     $validMsg = [
+         'court_last_order_name.required' => 'Court Last Order field is required'
+     ];
+
+     $this->validate($request, $rules, $validMsg);
+
+     $data = SetupCourtLastOrder::find($id);
+     $data->court_last_order_name = $request->court_last_order_name;
+     $data->save();
+
+     session()->flash('success','Court Last Order Updated');
+     return redirect()->back();
+ }
+
+ public function delete_court_last_order($id)
+ {
+     $data = SetupCourtLastOrder::find($id);
+     if ($data['delete_status'] == 1){
+         $delete_status = 0;
+     }else{
+         $delete_status = 1;
+     }
+     $data->delete_status = $delete_status;
+     $data->save();
+
+     session()->flash('success', 'Court Last Order Deleted');
+     return redirect()->back();
+ }
+
+
+        //next_date_reason setup
+
+        public function next_date_reason()
+        {
+            $data = DB::table('setup_next_date_reasons')
+                        ->get();
+            return view('setup.next_date_reason.next_date_reason',compact('data'));
+        }
+    
+        public function add_next_date_reason()
+        {
+            return view('setup.next_date_reason.add_next_date_reason');
+        }
+    
+        public function save_next_date_reason(Request $request)
+        {
+            $rules = [
+                'next_date_reason_name' => 'required'
+            ];
+    
+            $validMsg = [
+                'next_date_reason_name.required' => 'Next Date Reason field is required'
+            ];
+    
+            $this->validate($request, $rules, $validMsg);
+    
+            $data = new SetupNextDateReason();
+            $data->next_date_reason_name = $request->next_date_reason_name;
+            $data->save();
+    
+            session()->flash('success','Next Date Reason Added Successfully');
+            return redirect()->back();
+    
+        }
+    
+        public function edit_next_date_reason($id)
+        {
+            $data = SetupNextDateReason::find($id);
+            return view('setup.next_date_reason.edit_next_date_reason',compact('data'));
+        }
+    
+        public function update_next_date_reason(Request $request, $id)
+        {
+            $rules = [
+                'next_date_reason_name' => 'required'
+            ];
+    
+            $validMsg = [
+                'next_date_reason_name.required' => 'Next Date Reason field is required'
+            ];
+    
+            $this->validate($request, $rules, $validMsg);
+    
+            $data = SetupNextDateReason::find($id);
+            $data->next_date_reason_name = $request->next_date_reason_name;
+            $data->save();
+    
+            session()->flash('success','Next Date Reason Updated');
+            return redirect()->back();
+        }
+    
+        public function delete_next_date_reason($id)
+        {
+            $data = SetupNextDateReason::find($id);
+            if ($data['delete_status'] == 1){
+                $delete_status = 0;
+            }else{
+                $delete_status = 1;
+            }
+            $data->delete_status = $delete_status;
+            $data->save();
+    
+            session()->flash('success', 'Next Date Reason Deleted');
+            return redirect()->back();
+        }    
 
  //external council setup
 
@@ -975,17 +1137,8 @@ class AdminSetupController extends Controller
 
      $this->validate($request, $rules, $validMsg);
 
-     
+
      $data = new SetupExternalCouncil();
-
-     if ($files = $request->file('file')) {
-        $names = $files->getClientOriginalName();
-        $name = rand(111, 99999).$names;
-        $files->move('images/external_council/', $name);
-    } else {
-        $name = "";
-    }
-
      $data->title_id = $request->title_id;
      $data->first_name = $request->first_name;
      $data->middle_name = $request->middle_name;
@@ -995,8 +1148,22 @@ class AdminSetupController extends Controller
      $data->home_phone = $request->home_phone;
      $data->mobile_phone = $request->mobile_phone;
      $data->emergency_contact = $request->emergency_contact;
-     $data->document_upload = $name;
      $data->save();
+
+     if($request->hasfile('uploaded_document'))
+     {
+         foreach($request->file('uploaded_document') as $file)
+         {
+             $original_name = $file->getClientOriginalName();
+             $name = time().rand(1,100).$original_name;
+             $file->move(public_path('files/civil_cases'), $name);
+
+             $file= new SetupExternalCouncilFile();
+             $file->external_council_id = $data->id;
+             $file->uploaded_document = $name;
+             $file->save();
+         }
+     }
 
      session()->flash('success','External Council Added Successfully');
      return redirect()->back();
@@ -1043,6 +1210,21 @@ class AdminSetupController extends Controller
      $data->mobile_phone = $request->mobile_phone;
      $data->emergency_contact = $request->emergency_contact;
      $data->save();
+
+     if($request->hasfile('uploaded_document'))
+     {
+         foreach($request->file('uploaded_document') as $file)
+         {
+             $original_name = $file->getClientOriginalName();
+             $name = time().rand(1,100).$original_name;
+             $file->move(public_path('files/civil_cases'), $name);
+
+             $file= new SetupExternalCouncilFile();
+             $file->external_council_id = $data->id;
+             $file->uploaded_document = $name;
+             $file->save();
+         }
+     }
 
      session()->flash('success','External Council Updated Successfully');
      return redirect()->back();

@@ -51,21 +51,21 @@
                                 <h3 class="card-title" id="heading">Add External Council</h3>
                             </div>
 
-                            <form action="{{ route('save-external-council') }}" method="post">
+                            <form action="{{ route('save-external-council') }}" enctype="multipart/form-data" method="post">
                                 @csrf
                                 <div class="card-body">
 
                                     <div class="col-md-12">
 
-                                    <div class="form-group">
-                                        <label for="title_id"> Title </label>
-                                        <select name="title_id" class="form-control select2" id="title_id">
-                                                <option value="">Select</option>
-                                            @foreach($person_title as $item)
-                                                <option value="{{ $item->id }}">{{ $item->person_title_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="title_id"> Title </label>
+                                            <select name="title_id" class="form-control select2" id="title_id">
+                                                    <option value="">Select</option>
+                                                @foreach($person_title as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->person_title_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <div class="form-group">
                                             <label for="first_name"> First Name </label>
                                             <input type="text" class="form-control" name="first_name"
@@ -122,7 +122,24 @@
                                             @error('document_upload')<span class="text-danger">{{$message}}</span>@enderror
                                         </div> -->
 
-                                        <div class="row">
+                                        <div class="form-group">
+                                            <label for="case_notes"> Document Upload </label>
+                                            <div class="input-group hdtuto control-group lst increment">
+                                                <input type="file" name="uploaded_document[]" class="myfrm form-control">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>+</button>
+                                                </div>
+                                            </div>
+                                            <div class="clone hide">
+                                                <div class="hdtuto control-group lst input-group" style="margin-top:10px">
+                                                    <input type="file" name="uploaded_document[]" class="myfrm form-control">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> - </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="document_upload">License/Document</label>
@@ -136,8 +153,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="float-right">
+                                        </div> -->
+
+
+                                        <div class="float-right mt-4">
                                             <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save</button>
                                         </div>
                                     </div>
