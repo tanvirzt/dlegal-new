@@ -110,7 +110,13 @@
                             <p>Last order of the Court</p>
                           </a>
                         </li>
-
+                        <li class="nav-item">
+                          <a href="{{ route('region') }}" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Region</p>
+                          </a>
+                        </li>
+                        
                       </ul>
                     </li>
                   </ul>

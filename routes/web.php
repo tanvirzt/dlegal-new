@@ -169,6 +169,13 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-criminal-cases/{id}','CriminalCasesController@update_criminal_cases')->name('update-criminal-cases');
         Route::post('delete-criminal-cases/{id}','CriminalCasesController@delete_criminal_cases')->name('delete-criminal-cases');
 
+        Route::get('region','AdminSetupController@region')->name('region');
+        Route::get('add-region','AdminSetupController@add_region')->name('add-region');
+        Route::post('save-region','AdminSetupController@save_region')->name('save-region');
+        Route::get('edit-region/{id}','AdminSetupController@edit_region')->name('edit-region');
+        Route::post('update-region/{id}','AdminSetupController@update_region')->name('update-region');
+        Route::post('delete-region/{id}','AdminSetupController@delete_region')->name('delete-region');
+
     });
 
 });

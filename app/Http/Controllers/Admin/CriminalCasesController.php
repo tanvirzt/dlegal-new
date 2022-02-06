@@ -47,12 +47,6 @@ class CriminalCasesController extends Controller
 //       ]);
 //   }
 
-    public function find_district($id)
-    {
-        $district = SetupDistrict::where('id',$id)->get();
-        return response()->json($district);
-    }
-
   public function add_criminal_cases()
   {
      $law_section = SetupLawSection::where('delete_status',0)->get();
@@ -70,7 +64,7 @@ class CriminalCasesController extends Controller
      return view('litigation_management.cases.criminal_cases.add_criminal_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order'));
   }
 
-  public function save_civil_cases(Request $request)
+  public function save_criminal_cases(Request $request)
   {
      $rules = [
          'case_no' => 'required',

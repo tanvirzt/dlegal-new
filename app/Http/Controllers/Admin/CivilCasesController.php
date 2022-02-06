@@ -148,6 +148,7 @@ class CivilCasesController extends Controller
       $data->first_identification_person = $request->first_identification_person;
       $data->date_of_identification = $request->date_of_identification;
       $data->case_notes = $request->case_notes;
+      $data->power_of_attorny = $request->power_of_attorny;
       $data->save();
 
       if($request->hasfile('uploaded_document'))
@@ -265,6 +266,7 @@ class CivilCasesController extends Controller
           $data->first_identification_person = $request->first_identification_person;
           $data->date_of_identification = $request->date_of_identification;
           $data->case_notes = $request->case_notes;
+          $data->power_of_attorny = $request->power_of_attorny;
           $data->save();
     
           if($request->hasfile('uploaded_document'))

@@ -51,6 +51,7 @@ class CreateCivilCasesTable extends Migration
             $table->string('first_identification_person')->nullable();
             $table->string('date_of_identification')->nullable();
             $table->string('case_notes')->nullable();
+            $table->string('power_of_attorny')->nullable();
             $table->string('document_upload')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();

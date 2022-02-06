@@ -21,6 +21,7 @@ use App\Models\SetupLawSection;
 use App\Models\SetupNextDateReason;
 use App\Models\SetupCourtLastOrder;
 use App\Models\SetupExternalCouncilFile;
+use App\Models\SetupRegion;
 use Illuminate\Support\Facades\DB;
 
 
@@ -1025,6 +1026,83 @@ class AdminSetupController extends Controller
  }
 
 
+ //region order setup
+
+ public function region()
+ {
+     $data = SetupRegion::all();
+     return view('setup.region.region',compact('data'));
+ }
+
+ public function add_region()
+ {
+     $division = SetupRegion::where('delete_status',0)->get();
+     return view('setup.region.add_region',compact('division'));
+ }
+
+ public function save_region(Request $request)
+ {
+     $rules = [
+         'region_name' => 'required'
+     ];
+
+     $validMsg = [
+         'region_name.required' => 'Region field is required'
+     ];
+
+     $this->validate($request, $rules, $validMsg);
+
+     $data = new SetupRegion();
+     $data->region_name = $request->region_name;
+     $data->save();
+
+     session()->flash('success','Region Added Successfully');
+     return redirect()->back();
+
+ }
+
+ public function edit_region($id)
+ {
+     $data = SetupRegion::find($id);
+     return view('setup.region.edit_region',compact('data'));
+ }
+
+ public function update_region(Request $request, $id)
+ {
+     $rules = [
+         'region_name' => 'required'
+     ];
+
+     $validMsg = [
+         'region_name.required' => 'Region field is required'
+     ];
+
+     $this->validate($request, $rules, $validMsg);
+
+     $data = SetupRegion::find($id);
+     $data->region_name = $request->region_name;
+     $data->save();
+
+     session()->flash('success','Region Updated');
+     return redirect()->back();
+ }
+
+ public function delete_region($id)
+ {
+     $data = SetupRegion::find($id);
+     if ($data['delete_status'] == 1){
+         $delete_status = 0;
+     }else{
+         $delete_status = 1;
+     }
+     $data->delete_status = $delete_status;
+     $data->save();
+
+     session()->flash('success', 'Region Deleted');
+     return redirect()->back();
+ }
+
+
         //next_date_reason setup
 
         public function next_date_reason()
@@ -1100,6 +1178,7 @@ class AdminSetupController extends Controller
             session()->flash('success', 'Next Date Reason Deleted');
             return redirect()->back();
         }    
+
 
  //external council setup
 
