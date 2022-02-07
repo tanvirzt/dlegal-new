@@ -64,10 +64,10 @@
                                             @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="case_category_nature_id"> Case Category
+                                            <label for="case_category_id"> Case Category
                                             </label>
-                                            <select name="case_category_nature_id" class="form-control
-                                            select2" id="case_category_nature_id"
+                                            <select name="case_category_id" class="form-control
+                                            select2" id="case_category_id"
                                                     required="">
                                                 <option>Select</option>
                                                 @foreach($case_category as $item)
@@ -75,7 +75,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        @error('case_category_nature_id')<span class="text-danger">{{$message}}</span>@enderror
+                                        @error('case_category_id')<span class="text-danger">{{$message}}</span>@enderror
                                         <div class="form-group">
                                             <label for="subsequent_case_no"> Subsequent Case No. </label>
                                             <input type="text" class="form-control" name="subsequent_case_no"
@@ -89,7 +89,7 @@
                                             select2" id="region_id"
                                                     required="">
                                                 <option>Select</option>
-                                                @foreach($case_status as $item)
+                                                @foreach($region as $item)
                                                     <option value="{{ $item->id }}">{{ $item->case_status_name }}</option>
                                                 @endforeach
                                             </select>
@@ -100,7 +100,7 @@
                                             <select name="area_id" class="form-control select2" id="area_id"
                                                     required="">
                                                 <option>Select</option>
-                                                @foreach($last_court_order as $item)
+                                                @foreach($area as $item)
                                                     <option value="{{ $item->id }}">{{ $item->court_last_order_name }}</option>
                                                 @endforeach
                                             </select>
@@ -119,10 +119,10 @@
                                         </div>
                                         @error('branch_id')<span class="text-danger">{{$message}}</span>@enderror
                                         <div class="form-group">
-                                            <label for="date_of_cash_received"> Member No. </label>
-                                            <input type="date" class="form-control" name="date_of_cash_received"
-                                                   id="date_of_cash_received">
-                                            @error('date_of_cash_received')<span class="text-danger">{{$message}}</span>@enderror
+                                            <label for="member_no"> Member No. </label>
+                                            <input type="date" class="form-control" name="member_no"
+                                                   id="member_no">
+                                            @error('member_no')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="program_id"> Program 
@@ -131,7 +131,7 @@
                                             select2" id="program_id"
                                                     required="">
                                                 <option>Select</option>
-                                                @foreach($case_status as $item)
+                                                @foreach($program as $item)
                                                     <option value="{{ $item->id }}">{{ $item->case_status_name }}</option>
                                                 @endforeach
                                             </select>
@@ -157,7 +157,12 @@
                                             </select>
                                         </div>
                                         @error('name_of_the_court_id')<span class="text-danger">{{$message}}</span>@enderror
-                                        
+                                        <div class="form-group">
+                                            <label for="date_of_filing"> Date of Filing </label>
+                                            <input type="date" class="form-control" name="date_of_filing"
+                                                   id="date_of_filing">
+                                            @error('date_of_filing')<span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
                                         <div class="form-group {{ ($errors->has('roll'))?'has-error':'' }}">
                                             <label for="roll"> Division </label>
                                             <select name="division_id" class="form-control" id="state">
@@ -175,7 +180,20 @@
 
                                             </select>
                                         </div>
-                                        
+                                        <div class="form-group">
+                                            <label for="relevant_law_sections_id"> Laws Sections
+                                                
+                                            </label>
+                                            <select name="relevant_law_sections_id" class="form-control
+                                            select2" id="relevant_law_sections_id"
+                                                    required="">
+                                                <option>Select</option>
+                                                @foreach($law_section as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->law_section_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        @error('relevant_law_sections_id')<span class="text-danger">{{$message}}</span>@enderror
                                         <div class="form-group">
                                             <label for="alligation_id"> Alligation
                                             </label>
@@ -183,10 +201,16 @@
                                             select2" id="alligation_id"
                                                     required="">
                                                 <option>Select</option>
-                                                @foreach($case_status as $item)
+                                                @foreach($alligation as $item)
                                                     <option value="{{ $item->id }}">{{ $item->case_status_name }}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="amount"> Amount of Money </label>
+                                            <input type="text" class="form-control" name="amount"
+                                                   id="amount">
+                                            @error('amount')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="complainant_name"> Name of the Complainant </label>
@@ -213,16 +237,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        @error('complainant_designation_id')<span class="text-danger">{{$message}}</span>@enderror
-                                           
-                                        
-                                        <div class="form-group">
-                                            <label for="amount"> Amount </label>
-                                            <input type="text" class="form-control" name="amount"
-                                                   id="amount">
-                                            @error('amount')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-
+                                        @error('complainant_designation_id')<span class="text-danger">{{$message}}</span>@enderror                                        
                                         <div class="form-group">
                                             <label for="case_status_id"> Status of the Case
                                             </label>
@@ -276,8 +291,6 @@
                                                    id="plaintiff_contact_number" value="{{old('plaintiff_contact_number')}}">
                                             @error('plaintiff_contact_number')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
-                                        
-                                        
                                         <div class="form-group">
                                             <label for="last_order_court"> Last Order of the Court
                                             </label>
@@ -290,33 +303,13 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                         <div class="form-group">
+                                            <label for="date_of_case_received"> Date of Case Received </label>
+                                            <input type="date" class="form-control" name="date_of_case_received"
+                                                   id="date_of_case_received">
+                                            @error('date_of_case_received')<span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
                                         
-                                        <div class="form-group">
-                                            <label for="date_of_filing"> Date of Filing </label>
-                                            <input type="date" class="form-control" name="date_of_filing"
-                                                   id="date_of_filing">
-                                            @error('date_of_filing')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="date_of_cash_received"> Date of Case Received </label>
-                                            <input type="date" class="form-control" name="date_of_cash_received"
-                                                   id="date_of_cash_received">
-                                            @error('date_of_cash_received')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="relevant_law_sections_id"> Laws Sections
-                                                
-                                            </label>
-                                            <select name="relevant_law_sections_id" class="form-control
-                                            select2" id="relevant_law_sections_id"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($law_section as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->law_section_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('relevant_law_sections_id')<span class="text-danger">{{$message}}</span>@enderror
                                         
                                         <div class="form-group">
                                             <label for="next_date"> Next Date </label>
@@ -351,10 +344,10 @@
                                             @error('accused_contact_number')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="accused_contact_number"> Address of the Accused </label>
-                                            <input type="text" class="form-control" name="accused_contact_number"
-                                                   id="accused_contact_number">
-                                            @error('accused_contact_number')<span class="text-danger">{{$message}}</span>@enderror
+                                            <label for="accused_address"> Address of the Accused </label>
+                                            <input type="text" class="form-control" name="accused_address"
+                                                   id="accused_address">
+                                            @error('accused_address')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="case_notes"> Document Upload </label>

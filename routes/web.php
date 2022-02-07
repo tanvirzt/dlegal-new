@@ -176,6 +176,34 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-region/{id}','AdminSetupController@update_region')->name('update-region');
         Route::post('delete-region/{id}','AdminSetupController@delete_region')->name('delete-region');
 
+        Route::get('area','AdminSetupController@area')->name('area');
+        Route::get('add-area','AdminSetupController@add_area')->name('add-area');
+        Route::post('save-area','AdminSetupController@save_area')->name('save-area');
+        Route::get('edit-area/{id}','AdminSetupController@edit_area')->name('edit-area');
+        Route::post('update-area/{id}','AdminSetupController@update_area')->name('update-area');
+        Route::post('delete-area/{id}','AdminSetupController@delete_area')->name('delete-area');
+
+        Route::get('branch','AdminSetupController@branch')->name('branch');
+        Route::get('add-branch','AdminSetupController@add_branch')->name('add-branch');
+        Route::post('save-branch','AdminSetupController@save_branch')->name('save-branch');
+        Route::get('edit-branch/{id}','AdminSetupController@edit_branch')->name('edit-branch');
+        Route::post('update-branch/{id}','AdminSetupController@update_branch')->name('update-branch');
+        Route::post('delete-branch/{id}','AdminSetupController@delete_branch')->name('delete-branch');
+
+        Route::get('program','AdminSetupController@program')->name('program');
+        Route::get('add-program','AdminSetupController@add_program')->name('add-program');
+        Route::post('save-program','AdminSetupController@save_program')->name('save-program');
+        Route::get('edit-program/{id}','AdminSetupController@edit_program')->name('edit-program');
+        Route::post('update-program/{id}','AdminSetupController@update_program')->name('update-program');
+        Route::post('delete-program/{id}','AdminSetupController@delete_program')->name('delete-program');
+
+        Route::get('alligation','AdminSetupController@alligation')->name('alligation');
+        Route::get('add-alligation','AdminSetupController@add_alligation')->name('add-alligation');
+        Route::post('save-alligation','AdminSetupController@save_alligation')->name('save-alligation');
+        Route::get('edit-alligation/{id}','AdminSetupController@edit_alligation')->name('edit-alligation');
+        Route::post('update-alligation/{id}','AdminSetupController@update_alligation')->name('update-alligation');
+        Route::post('delete-alligation/{id}','AdminSetupController@delete_alligation')->name('delete-alligation');
+
     });
 
 });

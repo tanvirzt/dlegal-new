@@ -116,6 +116,30 @@
                             <p>Region</p>
                           </a>
                         </li>
+                        <li class="nav-item">
+                          <a href="{{ route('area') }}" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Area</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="{{ route('branch') }}" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Branch</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="{{ route('program') }}" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Program</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="{{ route('alligation') }}" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Alligation</p>
+                          </a>
+                        </li>
                         
                       </ul>
                     </li>

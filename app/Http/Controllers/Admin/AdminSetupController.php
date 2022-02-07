@@ -22,6 +22,10 @@ use App\Models\SetupNextDateReason;
 use App\Models\SetupCourtLastOrder;
 use App\Models\SetupExternalCouncilFile;
 use App\Models\SetupRegion;
+use App\Models\SetupArea;
+use App\Models\SetupBranch;
+use App\Models\SetupProgram;
+use App\Models\SetupAlligation;
 use Illuminate\Support\Facades\DB;
 
 
@@ -1101,6 +1105,311 @@ class AdminSetupController extends Controller
      session()->flash('success', 'Region Deleted');
      return redirect()->back();
  }
+
+
+//area order setup
+
+public function area()
+{
+    $data = SetupArea::all();
+    return view('setup.area.area',compact('data'));
+}
+
+public function add_area()
+{
+    $division = SetupArea::where('delete_status',0)->get();
+    return view('setup.area.add_area',compact('division'));
+}
+
+public function save_area(Request $request)
+{
+    $rules = [
+        'area_name' => 'required'
+    ];
+
+    $validMsg = [
+        'area_name.required' => 'Area field is required'
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = new SetupArea();
+    $data->area_name = $request->area_name;
+    $data->save();
+
+    session()->flash('success','Area Added Successfully');
+    return redirect()->back();
+
+}
+
+public function edit_area($id)
+{
+    $data = SetupArea::find($id);
+    return view('setup.area.edit_area',compact('data'));
+}
+
+public function update_area(Request $request, $id)
+{
+    $rules = [
+        'area_name' => 'required'
+    ];
+
+    $validMsg = [
+        'area_name.required' => 'Area field is required'
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = SetupArea::find($id);
+    $data->area_name = $request->area_name;
+    $data->save();
+
+    session()->flash('success','Area Updated');
+    return redirect()->back();
+}
+
+public function delete_area($id)
+{
+    $data = SetupArea::find($id);
+    if ($data['delete_status'] == 1){
+        $delete_status = 0;
+    }else{
+        $delete_status = 1;
+    }
+    $data->delete_status = $delete_status;
+    $data->save();
+
+    session()->flash('success', 'Area Deleted');
+    return redirect()->back();
+}
+
+
+//branch setup
+
+public function branch()
+{
+    $data = SetupBranch::all();
+    return view('setup.branch.branch',compact('data'));
+}
+
+public function add_branch()
+{
+    return view('setup.branch.add_branch');
+}
+
+public function save_branch(Request $request)
+{
+    $rules = [
+        'branch_name' => 'required'
+    ];
+
+    $validMsg = [
+        'branch_name.required' => 'Branch field is required'
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = new SetupBranch();
+    $data->branch_name = $request->branch_name;
+    $data->save();
+
+    session()->flash('success','Branch Added Successfully');
+    return redirect()->back();
+
+}
+
+public function edit_branch($id)
+{
+    $data = SetupBranch::find($id);
+    return view('setup.branch.edit_branch',compact('data'));
+}
+
+public function update_branch(Request $request, $id)
+{
+    $rules = [
+        'branch_name' => 'required'
+    ];
+
+    $validMsg = [
+        'branch_name.required' => 'Branch field is required'
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = SetupBranch::find($id);
+    $data->branch_name = $request->branch_name;
+    $data->save();
+
+    session()->flash('success','Branch Updated');
+    return redirect()->back();
+}
+
+public function delete_branch($id)
+{
+    $data = SetupBranch::find($id);
+    if ($data['delete_status'] == 1){
+        $delete_status = 0;
+    }else{
+        $delete_status = 1;
+    }
+    $data->delete_status = $delete_status;
+    $data->save();
+
+    session()->flash('success', 'Branch Deleted');
+    return redirect()->back();
+}
+
+
+//program setup
+
+public function program()
+{
+    $data = SetupProgram::all();
+    return view('setup.program.program',compact('data'));
+}
+
+public function add_program()
+{
+    return view('setup.program.add_program');
+}
+
+public function save_program(Request $request)
+{
+    $rules = [
+        'program_name' => 'required'
+    ];
+
+    $validMsg = [
+        'program_name.required' => 'Program field is required'
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = new SetupProgram();
+    $data->program_name = $request->program_name;
+    $data->save();
+
+    session()->flash('success','Program Added Successfully');
+    return redirect()->back();
+
+}
+
+public function edit_program($id)
+{
+    $data = SetupProgram::find($id);
+    return view('setup.program.edit_program',compact('data'));
+}
+
+public function update_program(Request $request, $id)
+{
+    $rules = [
+        'program_name' => 'required'
+    ];
+
+    $validMsg = [
+        'program_name.required' => 'Program field is required'
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = SetupProgram::find($id);
+    $data->program_name = $request->program_name;
+    $data->save();
+
+    session()->flash('success','Program Updated');
+    return redirect()->back();
+}
+
+public function delete_program($id)
+{
+    $data = SetupProgram::find($id);
+    if ($data['delete_status'] == 1){
+        $delete_status = 0;
+    }else{
+        $delete_status = 1;
+    }
+    $data->delete_status = $delete_status;
+    $data->save();
+
+    session()->flash('success', 'Program Deleted');
+    return redirect()->back();
+}
+
+
+//alligation setup
+
+public function alligation()
+{
+    $data = SetupAlligation::all();
+    return view('setup.alligation.alligation',compact('data'));
+}
+
+public function add_alligation()
+{
+    return view('setup.alligation.add_alligation');
+}
+
+public function save_alligation(Request $request)
+{
+    $rules = [
+        'alligation_name' => 'required'
+    ];
+
+    $validMsg = [
+        'alligation_name.required' => 'Alligation field is required'
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = new SetupAlligation();
+    $data->alligation_name = $request->alligation_name;
+    $data->save();
+
+    session()->flash('success','Alligation Added Successfully');
+    return redirect()->back();
+
+}
+
+public function edit_alligation($id)
+{
+    $data = SetupAlligation::find($id);
+    return view('setup.alligation.edit_alligation',compact('data'));
+}
+
+public function update_alligation(Request $request, $id)
+{
+    $rules = [
+        'alligation_name' => 'required'
+    ];
+
+    $validMsg = [
+        'alligation_name.required' => 'Alligation field is required'
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = SetupAlligation::find($id);
+    $data->alligation_name = $request->alligation_name;
+    $data->save();
+
+    session()->flash('success','Alligation Updated');
+    return redirect()->back();
+}
+
+public function delete_alligation($id)
+{
+    $data = SetupAlligation::find($id);
+    if ($data['delete_status'] == 1){
+        $delete_status = 0;
+    }else{
+        $delete_status = 1;
+    }
+    $data->delete_status = $delete_status;
+    $data->save();
+
+    session()->flash('success', 'Alligation Deleted');
+    return redirect()->back();
+}
 
 
         //next_date_reason setup

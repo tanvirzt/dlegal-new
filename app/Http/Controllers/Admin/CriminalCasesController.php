@@ -13,6 +13,11 @@ use App\Models\SetupCaseStatus;
 use App\Models\SetupPersonTitle;
 use App\Models\SetupNextDateReason;
 use App\Models\SetupCourtLastOrder;
+use App\Models\SetupRegion;
+use App\Models\SetupArea;
+use App\Models\SetupBranch;
+use App\Models\SetupProgram;
+use App\Models\SetupAlligation;
 use DB;
 use Illuminate\Http\Request;
 
@@ -55,13 +60,17 @@ class CriminalCasesController extends Controller
      $external_council = SetupExternalCouncil::where('delete_status',0)->get();
      $case_category = SetupCaseCategory::where('delete_status',0)->get();
      $case_status = SetupCaseStatus::where('delete_status',0)->get();
-//     $division = SetupDivision::where('delete_status',0)->get();
+     $region = SetupRegion::where('delete_status',0)->get();
      $division = DB::table("setup_divisions")->get();
      $person_title = SetupPersonTitle::where('delete_status',0)->get();
      $next_date_reason = SetupNextDateReason::where('delete_status',0)->get();
     //  $next_date_reason = DB::table('setup_next_date_reasons')->get();
      $last_court_order = SetupCourtLastOrder::where('delete_status',0)->get();
-     return view('litigation_management.cases.criminal_cases.add_criminal_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order'));
+     $area = SetupArea::where('delete_status',0)->get();
+     $branch = SetupBranch::where('delete_status',0)->get();
+     $program = SetupProgram::where('delete_status',0)->get();
+     $alligation = SetupAlligation::where('delete_status',0)->get();
+     return view('litigation_management.cases.criminal_cases.add_criminal_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','region','area','branch','program'));
   }
 
   public function save_criminal_cases(Request $request)
