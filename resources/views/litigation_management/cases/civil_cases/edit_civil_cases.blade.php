@@ -296,11 +296,25 @@
                                             @error('location')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                         <div class="form-group">
+                                            <label for="property_type"> Property Type
+                                            </label>
+                                            <select name="property_type" class="form-control
+                                            select2" id="property_type"
+                                                    required="">
+                                                <option>Select</option>
+                                                @foreach($property_type as $item)
+                                                    <option value="{{ $item->id }}" {{ $data->property_type == $item->id ? 'selected' : '' }}>{{ $item->property_type_name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('property_type')<span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+
+                                        <!-- <div class="form-group">
                                             <label for="property_type"> Property Type </label>
                                             <input type="text" class="form-control" name="property_type"
                                                    id="property_type" value="{{ $data->property_type }}" >
                                             @error('property_type')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-group">
                                             <label for="name_of_the_court_id"> Name of the Court

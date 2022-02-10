@@ -18,6 +18,7 @@ use App\Models\SetupArea;
 use App\Models\SetupBranch;
 use App\Models\SetupProgram;
 use App\Models\SetupAlligation;
+use App\Models\CriminalCasesFile;
 use DB;
 use Illuminate\Http\Request;
 
@@ -70,105 +71,92 @@ class CriminalCasesController extends Controller
      $branch = SetupBranch::where('delete_status',0)->get();
      $program = SetupProgram::where('delete_status',0)->get();
      $alligation = SetupAlligation::where('delete_status',0)->get();
-     return view('litigation_management.cases.criminal_cases.add_criminal_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','region','area','branch','program'));
+     return view('litigation_management.cases.criminal_cases.add_criminal_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','region','area','branch','program','alligation'));
   }
 
   public function save_criminal_cases(Request $request)
   {
+    //    dd($request->all());
      $rules = [
-         'case_no' => 'required',
-         'division_id' => 'required',
-         'district_id' => 'required',
-         'amount' => 'required',
-         'case_category_nature_id' => 'required',
-         'plaintiff_name' => 'required',
-         'plaintiff_contact_number' => 'required',
-         'subsequent_plaintiff_name' => 'required',
-         'last_order_court' => 'required',
-         'additional_order' => 'required',
-         'disbursement_date' => 'required',
-         'last_date_of_cash_receipt' => 'required',
-         'date_of_disposed' => 'required',
-         'date_of_filing' => 'required',
-         'defendent_name' => 'required',
-         'defendent_address' => 'required'
-     ];
+        'case_no' => 'required',
+        'case_category_id' => 'required',
+        'subsequent_case_no' => 'required',
+        'region_id' => 'required',
+        'area_id' => 'required',
+        'branch_id' => 'required',
+        'member_no' => 'required',
+        'program_id' => 'required',
+        'police_station' => 'required',
+        'name_of_the_court_id' => 'required'
+    ];
 
-     $validMsg = [
-         'case_no.required' => 'Case No. field is required',
-         'division_id.required' => 'Division field is required',
-         'district_id.required' => 'District field is required',
-         'amount.required' => 'Amount field is required',
-         'plaintiff_name.required' => 'Plaintiff Name field is required',
-         'plaintiff_contact_number.required' => 'Plaintiff Contact No. field is required',
-         'subsequent_plaintiff_name.required' => 'Subsequent Plaintiff Name field is required',
-         'last_order_court.required' => 'Last Order Court field is required',
-         'disbursement_date.required' => 'Disbursement Date field is required',
-         'last_date_of_cash_receipt.required' => 'Last date of cash receipt field is required',
-         'date_of_disposed.required' => 'Date of disposed field is required',
-         'date_of_filing.required' => 'Date of filing field is required',
-         'defendent_name.required' => 'Defendent Name field is required',
-         'defendent_address.required' => 'Defendent Address field is required',
-     ];
+    $validMsg = [
+        'case_no.required' => 'Case No. field is required',
+        'case_category_id.required' => 'Division field is required',
+        'subsequent_case_no.required' => 'District field is required',
+        'region_id.required' => 'Amount field is required',
+        'branch_id.required' => 'Plaintiff Name field is required',
+        'member_no.required' => 'Plaintiff Contact No. field is required',
+        'program_id.required' => 'Subsequent Plaintiff Name field is required',
+        'police_station.required' => 'Last Order Court field is required',
+        'name_of_the_court_id.required' => 'Disbursement Date field is required'
+    ];
 
-     $this->validate($request, $rules, $validMsg);
+    $this->validate($request, $rules, $validMsg);
 
-      $data = new CivilCases();
-      $data->case_no = $request->case_no;
-      $data->division_id = $request->division_id;
-      $data->district_id = $request->district_id;
-      $data->amount = $request->amount;
-      $data->case_status_id = $request->case_status_id;
-      $data->case_category_nature_id = $request->case_category_nature_id;
-      $data->external_council_name_id = $request->external_council_name_id;
-      $data->plaintiff_name = $request->plaintiff_name;
-      $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
-      $data->plaintiff_contact_number = $request->plaintiff_contact_number;
-      $data->subsequent_plaintiff_name = $request->subsequent_plaintiff_name;
-      $data->last_order_court = $request->last_order_court;
-      $data->additional_order = $request->additional_order;
-      $data->disbursement_date = $request->disbursement_date;
-      $data->last_date_of_cash_receipt = $request->last_date_of_cash_receipt;
-      $data->date_of_disposed = $request->date_of_disposed;
-      $data->date_of_filing = $request->date_of_filing;
-      $data->defendent_name = $request->defendent_name;
-      $data->defendent_address = $request->defendent_address;
-      $data->defendent_contact_no = $request->defendent_contact_no;
-      $data->date_of_cash_received = $request->date_of_cash_received;
-      $data->case_year = $request->case_year;
-      $data->ref_no = $request->ref_no;
-      $data->location = $request->location;
-      $data->property_type = $request->property_type;
-      $data->name_of_the_court_id = $request->name_of_the_court_id;
-      $data->relevant_law_sections_id = $request->relevant_law_sections_id;
-      $data->contact_no = $request->contact_no;
-      $data->next_date = $request->next_date;
-      $data->next_date_fixed_id = $request->next_date_fixed_id;
-      $data->name_of_suit = $request->name_of_suit;
-      $data->date_of_incident = $request->date_of_incident;
-      $data->date_of_incident_to = $request->date_of_incident_to;
-      $data->first_identification_person = $request->first_identification_person;
-      $data->date_of_identification = $request->date_of_identification;
-      $data->case_notes = $request->case_notes;
-      $data->save();
+     $data = new CriminalCase();
+     $data->case_no = $request->case_no;
+     $data->case_category_id = $request->case_category_id;
+     $data->subsequent_case_no = $request->subsequent_case_no;
+     $data->region_id = $request->region_id;
+     $data->area_id = $request->area_id;
+     $data->branch_id = $request->branch_id;
+     $data->member_no = $request->member_no;
+     $data->program_id = $request->program_id;
+     $data->police_station = $request->police_station;
+     $data->name_of_the_court_id = $request->name_of_the_court_id;
+     $data->date_of_filing = $request->date_of_filing;
+     $data->division_id = $request->division_id;
+     $data->district_id = $request->district_id;
+     $data->relevant_law_sections_id = $request->relevant_law_sections_id;
+     $data->alligation_id = $request->alligation_id;
+     $data->amount = $request->amount;
+     $data->complainant_name = $request->complainant_name;
+     $data->complainant_contact_number = $request->complainant_contact_number;
+     $data->complainant_designation_id = $request->complainant_designation_id;
+     $data->case_status_id = $request->case_status_id;
+     $data->external_council_name_id = $request->external_council_name_id;
+     $data->plaintiff_name = $request->plaintiff_name;
+     $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
+     $data->plaintiff_contact_number = $request->plaintiff_contact_number;
+     $data->last_order_court = $request->last_order_court;
+     $data->date_of_case_received = $request->date_of_case_received;
+     $data->next_date = $request->next_date;
+     $data->next_date_fixed_id = $request->next_date_fixed_id;
+     $data->next_date = $request->next_date;
+     $data->next_date_fixed_id = $request->next_date_fixed_id;
+     $data->accused_name = $request->accused_name;
+     $data->accused_contact_number = $request->accused_contact_number;
+     $data->accused_address = $request->accused_address;
+     $data->save();
 
-      if($request->hasfile('uploaded_document'))
-      {
-          foreach($request->file('uploaded_document') as $file)
-          {
-              $original_name = $file->getClientOriginalName();
-              $name = time().rand(1,100).$original_name;
-              $file->move(public_path('files/civil_cases'), $name);
+     if($request->hasfile('uploaded_document'))
+     {
+         foreach($request->file('uploaded_document') as $file)
+         {
+             $original_name = $file->getClientOriginalName();
+             $name = time().rand(1,100).$original_name;
+             $file->move(public_path('files/criminal_cases'), $name);
 
-              $file= new CivilCasesFile();
-              $file->case_id = $data->id;
-              $file->uploaded_document = $name;
-              $file->save();
-          }
-      }
+             $file= new CriminalCasesFile();
+             $file->case_id = $data->id;
+             $file->uploaded_document = $name;
+             $file->save();
+         }
+     }
 
-      session()->flash('success','Civil Cases Added Successfully');
-      return redirect()->back();
+     session()->flash('success','Criminal Cases Added Successfully');
+     return redirect()->back();
 
   }
 

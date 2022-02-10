@@ -54,68 +54,96 @@
                             <form action="{{ route('update-external-council',$data->id) }}" method="post" enctype="multipart/form-data" >
                                 @csrf
                                 <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="title_id" class="col-sm-4 col-form-label">Title</label>
+                                                <div class="col-sm-8">
+                                                    <select name="title_id" class="form-control select2" id="title_id">
+                                                        <option value="">Select</option>
+                                                            @foreach($person_title as $item)
+                                                                <option value="{{ $item->id }}" {{ $data->title_id == $item->id ? 'selected' : '' }}>{{ $item->person_title_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('title_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="first_name" class="col-sm-4 col-form-label">First Name</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ $data->first_name }}">
+                                                    @error('first_name')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                    <div class="col-md-12">
-
-                                    <div class="form-group">
-                                        <label for="title_id"> Title </label>
-                                        <select name="title_id" class="form-control select2" id="title_id">
-                                                <option value="">Select</option>
-                                            @foreach($person_title as $item)
-                                                <option value="{{ $item->id }}" {{ $data->title_id == $item->id ? 'selected' : '' }}>{{ $item->person_title_name
-                                                        }}</option>
-                                                @endforeach
-                                            
-                                        </select>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="middle_name" class="col-sm-4 col-form-label">Middle Name</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="middle_name" name="middle_name" value="{{ $data->middle_name }}">
+                                                    @error('middle_name')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="last_name" class="col-sm-4 col-form-label">Last Name</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ $data->last_name }}">
+                                                    @error('last_name')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="email" class="col-sm-4 col-form-label">Email</label>
+                                                <div class="col-sm-8">
+                                                    <input type="email" class="form-control" id="email" name="email" value="{{ $data->email }}">
+                                                    @error('email')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="work_phone" class="col-sm-4 col-form-label">Work Phone</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="work_phone" name="work_phone" value="{{ $data->work_phone }}">
+                                                    @error('work_phone')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="home_phone" class="col-sm-4 col-form-label">Home Phone</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="home_phone" name="home_phone" value="{{ $data->home_phone }}">
+                                                    @error('home_phone')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="mobile_phone" class="col-sm-4 col-form-label">Mobile No.</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="mobile_phone" name="mobile_phone" value="{{ $data->mobile_phone }}">
+                                                    @error('mobile_phone')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="emergency_contact" class="col-sm-4 col-form-label">Emergency Contact</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="emergency_contact" name="emergency_contact" value="{{ $data->emergency_contact }}">
+                                                    @error('emergency_contact')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                        <div class="form-group">
-                                            <label for="first_name"> First Name </label>
-                                            <input type="text" class="form-control" name="first_name"
-                                                   id="first_name" value="{{ $data->first_name }}">
-                                            @error('first_name')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="middle_name"> Middle Name</label>
-                                            <input type="text" class="form-control" name="middle_name"
-                                                   id="middle_name" value="{{ $data->middle_name }}">
-                                            @error('middle_name')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="last_name">Last Name</label>
-                                            <input type="text" class="form-control" name="last_name"
-                                                   id="last_name" value="{{ $data->last_name }}">
-                                            @error('last_name')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Email </label>
-                                            <input type="text" class="form-control" name="email"
-                                                   id="email" value="{{ $data->email }}">
-                                            @error('email')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="work_phone">Work Phone</label>
-                                            <input type="text" class="form-control" name="work_phone"
-                                                   id="work_phone" value="{{ $data->work_phone }}">
-                                            @error('work_phone')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="home_phone">Home Phone</label>
-                                            <input type="text" class="form-control" name="home_phone"
-                                                   id="home_phone" value="{{ $data->home_phone }}">
-                                            @error('home_phone')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="mobile_phone">Mobile No.</label>
-                                            <input type="text" class="form-control" name="mobile_phone"
-                                                   id="mobile_phone" value="{{ $data->mobile_phone }}">
-                                            @error('mobile_phone')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="emergency_contact">Emergency Contact</label>
-                                            <input type="text" class="form-control" name="emergency_contact"
-                                                   id="emergency_contact" value="{{ $data->emergency_contact }}">
-                                            @error('emergency_contact')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
+                                    <div class="">
                                         <div class="form-group">
                                             <label for="case_notes"> Document Upload </label>
                                             <div class="input-group hdtuto control-group lst increment">

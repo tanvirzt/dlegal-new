@@ -17,6 +17,7 @@ use App\Models\SetupCourt;
 use App\Models\SetupLawSection;
 use App\Models\SetupNextDateReason;
 use App\Models\SetupCourtLastOrder;
+use App\Models\SetupPropertyType;
 use DB;
 class CivilCasesController extends Controller
 {
@@ -62,17 +63,18 @@ class CivilCasesController extends Controller
      $external_council = SetupExternalCouncil::where('delete_status',0)->get();
      $case_category = SetupCaseCategory::where('delete_status',0)->get();
      $case_status = SetupCaseStatus::where('delete_status',0)->get();
-//     $division = SetupDivision::where('delete_status',0)->get();
+     $property_type = SetupPropertyType::where('delete_status',0)->get();
      $division = DB::table("setup_divisions")->get();
      $person_title = SetupPersonTitle::where('delete_status',0)->get();
      $next_date_reason = SetupNextDateReason::where('delete_status',0)->get();
     //  $next_date_reason = DB::table('setup_next_date_reasons')->get();
      $last_court_order = SetupCourtLastOrder::where('delete_status',0)->get();
-     return view('litigation_management.cases.civil_cases.add_civil_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order'));
+     return view('litigation_management.cases.civil_cases.add_civil_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','property_type'));
   }
 
   public function save_civil_cases(Request $request)
   {
+    //   dd($request->all());
      $rules = [
          'case_no' => 'required',
          'division_id' => 'required',
@@ -89,7 +91,12 @@ class CivilCasesController extends Controller
          'date_of_disposed' => 'required',
          'date_of_filing' => 'required',
          'defendent_name' => 'required',
-         'defendent_address' => 'required'
+         'defendent_address' => 'required',
+         'external_council_name_id' => 'required',
+         'plaintiff_designaiton_id' => 'required',
+         'name_of_the_court_id' => 'required',
+         'relevant_law_sections_id' => 'required',
+         'next_date_fixed_id' => 'required',
      ];
 
      $validMsg = [
@@ -107,6 +114,11 @@ class CivilCasesController extends Controller
          'date_of_filing.required' => 'Date of filing field is required',
          'defendent_name.required' => 'Defendent Name field is required',
          'defendent_address.required' => 'Defendent Address field is required',
+         'external_council_name_id.required' => 'External Council field is required',
+         'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
+         'name_of_the_court_id.required' => 'Court Name field is required',
+         'relevant_law_sections_id.required' => 'Relevant Law Section field is required',
+         'next_date_fixed_id.required' => 'Reason for Next date field is required',
      ];
 
      $this->validate($request, $rules, $validMsg);

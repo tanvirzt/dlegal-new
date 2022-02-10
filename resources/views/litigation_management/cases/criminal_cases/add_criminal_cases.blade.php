@@ -90,7 +90,7 @@
                                                     required="">
                                                 <option>Select</option>
                                                 @foreach($region as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->case_status_name }}</option>
+                                                    <option value="{{ $item->id }}">{{ $item->region_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -101,7 +101,7 @@
                                                     required="">
                                                 <option>Select</option>
                                                 @foreach($area as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->court_last_order_name }}</option>
+                                                    <option value="{{ $item->id }}">{{ $item->area_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -112,8 +112,8 @@
                                             select2" id="branch_id"
                                                     required="">
                                                 <option>Select</option>
-                                                @foreach($case_status as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->case_status_name }}</option>
+                                                @foreach($branch as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->branch_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -132,7 +132,7 @@
                                                     required="">
                                                 <option>Select</option>
                                                 @foreach($program as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->case_status_name }}</option>
+                                                    <option value="{{ $item->id }}">{{ $item->program_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -202,7 +202,7 @@
                                                     required="">
                                                 <option>Select</option>
                                                 @foreach($alligation as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->case_status_name }}</option>
+                                                    <option value="{{ $item->id }}">{{ $item->alligation_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -232,8 +232,8 @@
                                             select2" id="complainant_designation_id"
                                                     required="">
                                                 <option>Select</option>
-                                                @foreach($case_status as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->case_status_name }}</option>
+                                                @foreach($designation as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->designation_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
