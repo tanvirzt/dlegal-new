@@ -204,6 +204,29 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-alligation/{id}','AdminSetupController@update_alligation')->name('update-alligation');
         Route::post('delete-alligation/{id}','AdminSetupController@delete_alligation')->name('delete-alligation');
 
+        Route::get('company-type','AdminSetupController@company_type')->name('company-type');
+        Route::get('add-company-type','AdminSetupController@add_company_type')->name('add-company-type');
+        Route::post('save-company-type','AdminSetupController@save_company_type')->name('save-company-type');
+        Route::get('edit-company-type/{id}','AdminSetupController@edit_company_type')->name('edit-company-type');
+        Route::post('update-company-type/{id}','AdminSetupController@update_company_type')->name('update-company-type');
+        Route::post('delete-company-type/{id}','AdminSetupController@delete_company_type')->name('delete-company-type');
+
+        Route::get('company','AdminSetupController@company')->name('company');
+        Route::get('add-company','AdminSetupController@add_company')->name('add-company');
+        Route::post('save-company','AdminSetupController@save_company')->name('save-company');
+        Route::get('edit-company/{id}','AdminSetupController@edit_company')->name('edit-company');
+        Route::post('update-company/{id}','AdminSetupController@update_company')->name('update-company');
+        Route::post('delete-company/{id}','AdminSetupController@delete_company')->name('delete-company');
+
+        Route::get('internal-council','AdminSetupController@internal_council')->name('internal-council');
+        Route::get('add-internal-council','AdminSetupController@add_internal_council')->name('add-internal-council');
+        Route::post('save-internal-council','AdminSetupController@save_internal_council')->name('save-internal-council');
+        Route::get('edit-internal-council/{id}','AdminSetupController@edit_internal_council')->name('edit-internal-council');
+        Route::post('update-internal-council/{id}','AdminSetupController@update_internal_council')->name('update-internal-council');
+        Route::post('delete-internal-council/{id}','AdminSetupController@delete_internal_council')->name('delete-internal-council');
+
+
+
     });
 
 });

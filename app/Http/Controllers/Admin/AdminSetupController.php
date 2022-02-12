@@ -26,6 +26,10 @@ use App\Models\SetupArea;
 use App\Models\SetupBranch;
 use App\Models\SetupProgram;
 use App\Models\SetupAlligation;
+use App\Models\SetupCompanyType;
+use App\Models\SetupCompany;
+use App\Models\SetupInternalCouncil;
+use App\Models\SetupInternalCouncilFiles;
 use Illuminate\Support\Facades\DB;
 
 
@@ -1489,6 +1493,190 @@ public function delete_alligation($id)
         }    
 
 
+
+
+ //company setup
+
+public function company_type()
+{
+    $data = SetupCompanyType::all();
+    return view('setup.company_type.company_type',compact('data'));
+}
+
+public function add_company_type()
+{
+    return view('setup.company_type.add_company_type');
+}
+
+public function save_company_type(Request $request)
+{
+    $rules = [
+        'company_type_name' => 'required'
+    ];
+
+    $validMsg = [
+        'company_type_name.required' => 'Company Type field is required'
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = new SetupCompanyType();
+    $data->company_type_name = $request->company_type_name;
+    $data->save();
+
+    session()->flash('success','Company Type Added Successfully');
+    return redirect()->back();
+
+}
+
+public function edit_company_type($id)
+{
+    $data = SetupCompanyType::find($id);
+    return view('setup.company_type.edit_company_type',compact('data'));
+}
+
+public function update_company_type(Request $request, $id)
+{
+    $rules = [
+        'company_type_name' => 'required'
+    ];
+
+    $validMsg = [
+        'company_type_name.required' => 'Company Type field is required'
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = SetupCompanyType::find($id);
+    $data->company_type_name = $request->company_type_name;
+    $data->save();
+
+    session()->flash('success','Company Type Updated');
+    return redirect()->back();
+}
+
+public function delete_company_type($id)
+{
+    $data = SetupCompanyType::find($id);
+    if ($data['delete_status'] == 1){
+        $delete_status = 0;
+    }else{
+        $delete_status = 1;
+    }
+    $data->delete_status = $delete_status;
+    $data->save();
+
+    session()->flash('success', 'Company Type Deleted');
+    return redirect()->back();
+}
+
+
+
+ //company setup
+
+public function company()
+{
+    // $data = SetupCompany::all();
+    $data = DB::table('setup_companies')
+            ->leftJoin('setup_company_types','setup_companies.company_type_id','=','setup_company_types.id')
+            ->leftJoin('setup_designations','setup_companies.designation_id','=','setup_designations.id')
+            ->select('setup_companies.*','setup_company_types.company_type_name','setup_designations.designation_name')
+            ->get();
+            // dd($data);
+    return view('setup.company.company',compact('data'));
+}
+
+public function add_company()
+{
+    $designation = SetupDesignation::where('delete_status',0)->get();
+    $company_type = SetupCompanyType::where('delete_status',0)->get();
+    return view('setup.company.add_company',compact('company_type','designation'));
+}
+
+public function save_company(Request $request)
+{
+    $rules = [
+        'company_type_id' => 'required',
+        'company_name' => 'required',
+        'owner_name' => 'required',
+        'designation_id' => 'required',
+    ];
+
+    $validMsg = [
+        'company_type_id.required' => 'Company Type field is required',
+        'company_name.required' => 'Company Name field is required',
+        'owner_name.required' => 'Owner Name field is required',
+        'designation_id.required' => 'Owners Designation field is required',
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = new SetupCompany();
+    $data->company_type_id = $request->company_type_id;
+    $data->company_name = $request->company_name;
+    $data->owner_name = $request->owner_name;
+    $data->designation_id = $request->designation_id;
+    $data->save();
+
+    session()->flash('success','Company Added Successfully');
+    return redirect()->back();
+
+}
+
+public function edit_company($id)
+{
+    $designation = SetupDesignation::where('delete_status',0)->get();
+    $company_type = SetupCompanyType::where('delete_status',0)->get();
+    $data = SetupCompany::find($id);
+    return view('setup.company.edit_company',compact('data','designation','company_type'));
+}
+
+public function update_company(Request $request, $id)
+{
+    // dd($request->all());
+    $rules = [
+        'company_type_id' => 'required',
+        'company_name' => 'required',
+        'owner_name' => 'required',
+        'designation_id' => 'required',
+    ];
+
+    $validMsg = [
+        'company_type_id.required' => 'Company Type field is required',
+        'company_name.required' => 'Company Name field is required',
+        'owner_name.required' => 'Owner Name field is required',
+        'designation_id.required' => 'Owners Designation field is required',
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = SetupCompany::find($id);
+    $data->company_type_id = $request->company_type_id;
+    $data->company_name = $request->company_name;
+    $data->owner_name = $request->owner_name;
+    $data->designation_id = $request->designation_id;
+    $data->save();
+
+    session()->flash('success','Company Updated');
+    return redirect()->back();
+}
+
+public function delete_company($id)
+{
+    $data = SetupCompany::find($id);
+    if ($data['delete_status'] == 1){
+        $delete_status = 0;
+    }else{
+        $delete_status = 1;
+    }
+    $data->delete_status = $delete_status;
+    $data->save();
+
+    session()->flash('success', 'Company Deleted');
+    return redirect()->back();
+}
+       
+
  //external council setup
 
  public function external_council()
@@ -1632,5 +1820,154 @@ public function delete_alligation($id)
      session()->flash('success', 'External Council Deleted');
      return redirect()->back();
  }
+
+
+ //internal council setup
+
+ public function internal_council()
+ {
+     $data = SetupInternalCouncil::all();
+     return view('setup.internal_council.internal_council',compact('data'));
+ }
+
+ public function add_internal_council()
+ {
+    $person_title = SetupPersonTitle::where('delete_status',0)->get();
+    return view('setup.internal_council.add_internal_council',compact('person_title'));
+ }
+
+ public function save_internal_council(Request $request)
+ {
+    //  dd($request->all());
+     $rules = [
+         'title_id' => 'required',
+         'first_name' => 'required',
+         'middle_name' => 'required',
+         'last_name' => 'required',
+         'email' => 'required',
+         'work_phone' => 'required'
+     ];
+
+     $validMsg = [
+         'title_id.required' => 'Title field is required',
+         'first_name.required' => 'First Name field is required',
+         'middle_name.required' => 'Middle Name field is required',
+         'last_name.required' => 'Last Name field is required',
+         'email.required' => 'Email field is required',
+         'work_phone.required' => 'Work Phone field is required',
+     ];
+
+     $this->validate($request, $rules, $validMsg);
+
+
+     $data = new SetupInternalCouncil();
+     $data->title_id = $request->title_id;
+     $data->first_name = $request->first_name;
+     $data->middle_name = $request->middle_name;
+     $data->last_name = $request->last_name;
+     $data->email = $request->email;
+     $data->work_phone = $request->work_phone;
+     $data->home_phone = $request->home_phone;
+     $data->mobile_phone = $request->mobile_phone;
+     $data->emergency_contact = $request->emergency_contact;
+     $data->save();
+
+     if($request->hasfile('uploaded_document'))
+     {
+         foreach($request->file('uploaded_document') as $file)
+         {
+             $original_name = $file->getClientOriginalName();
+             $name = time().rand(1,100).$original_name;
+             $file->move(public_path('files/internal_council'), $name);
+
+             $file= new SetupInternalCouncilFiles();
+             $file->internal_council_id = $data->id;
+             $file->uploaded_document = $name;
+             $file->save();
+         }
+     }
+
+     session()->flash('success','Internal Council Added Successfully');
+     return redirect()->back();
+
+ }
+
+ public function edit_internal_council($id)
+ {
+     $person_title = SetupPersonTitle::where('delete_status',0)->get();
+     $data = SetupInternalCouncil::find($id);
+     return view('setup.internal_council.edit_internal_council',compact('data','person_title'));
+ }
+
+ public function update_internal_council(Request $request, $id)
+ {
+    $rules = [
+         'title_id' => 'required',
+         'first_name' => 'required',
+         'middle_name' => 'required',
+         'last_name' => 'required',
+         'email' => 'required',
+         'work_phone' => 'required'
+     ];
+
+     $validMsg = [
+         'title_id.required' => 'Title field is required',
+         'first_name.required' => 'First Name field is required',
+         'middle_name.required' => 'Middle Name field is required',
+         'last_name.required' => 'Last Name field is required',
+         'email.required' => 'Email field is required',
+         'work_phone.required' => 'Work Phone field is required',
+     ];
+
+     $this->validate($request, $rules, $validMsg);
+
+     $data = SetupInternalCouncil::find($id);
+     $data->title_id = $request->title_id;
+     $data->first_name = $request->first_name;
+     $data->middle_name = $request->middle_name;
+     $data->last_name = $request->last_name;
+     $data->email = $request->email;
+     $data->work_phone = $request->work_phone;
+     $data->home_phone = $request->home_phone;
+     $data->mobile_phone = $request->mobile_phone;
+     $data->emergency_contact = $request->emergency_contact;
+     $data->save();
+
+     if($request->hasfile('uploaded_document'))
+     {
+         foreach($request->file('uploaded_document') as $file)
+         {
+             $original_name = $file->getClientOriginalName();
+             $name = time().rand(1,100).$original_name;
+             $file->move(public_path('files/civil_cases'), $name);
+
+             $file= new SetupInternalCouncilFiles();
+             $file->internal_council_id = $data->id;
+             $file->uploaded_document = $name;
+             $file->save();
+         }
+     }
+
+     session()->flash('success','Internal Council Updated Successfully');
+     return redirect()->back();
+ }
+
+ public function delete_internal_council($id)
+ {
+     $data = SetupInternalCouncil::find($id);
+     if ($data['delete_status'] == 1){
+         $delete_status = 0;
+     }else{
+         $delete_status = 1;
+     }
+     $data->delete_status = $delete_status;
+     $data->save();
+
+     session()->flash('success', 'Internal Council Deleted');
+     return redirect()->back();
+ }
+
+
+
 
 }

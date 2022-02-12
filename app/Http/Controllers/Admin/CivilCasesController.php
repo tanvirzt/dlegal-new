@@ -18,6 +18,11 @@ use App\Models\SetupLawSection;
 use App\Models\SetupNextDateReason;
 use App\Models\SetupCourtLastOrder;
 use App\Models\SetupPropertyType;
+use App\Models\SetupCaseTypes;
+use App\Models\SetupCompany;
+use App\Models\SetupRegion;
+use App\Models\SetupArea;
+use App\Models\SetupInternalCouncil;
 use DB;
 class CivilCasesController extends Controller
 {
@@ -67,9 +72,14 @@ class CivilCasesController extends Controller
      $division = DB::table("setup_divisions")->get();
      $person_title = SetupPersonTitle::where('delete_status',0)->get();
      $next_date_reason = SetupNextDateReason::where('delete_status',0)->get();
+     $case_types = SetupCaseTypes::where('delete_status',0)->get();
     //  $next_date_reason = DB::table('setup_next_date_reasons')->get();
+     $company = SetupCompany::where('delete_status',0)->get();
+     $zone = SetupRegion::where('delete_status',0)->get();
      $last_court_order = SetupCourtLastOrder::where('delete_status',0)->get();
-     return view('litigation_management.cases.civil_cases.add_civil_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','property_type'));
+     $area = SetupArea::where('delete_status',0)->get();
+     $internal_council = SetupInternalCouncil::where('delete_status',0)->get();
+     return view('litigation_management.cases.civil_cases.add_civil_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','property_type','case_types','company','zone','area','internal_council'));
   }
 
   public function save_civil_cases(Request $request)
@@ -138,10 +148,8 @@ class CivilCasesController extends Controller
       $data->last_order_court = $request->last_order_court;
       $data->additional_order = $request->additional_order;
       $data->disbursement_date = $request->disbursement_date;
-      $data->last_date_of_cash_receipt = $request->last_date_of_cash_receipt;
       $data->date_of_disposed = $request->date_of_disposed;
       $data->date_of_filing = $request->date_of_filing;
-      $data->defendent_name = $request->defendent_name;
       $data->defendent_address = $request->defendent_address;
       $data->defendent_contact_no = $request->defendent_contact_no;
       $data->date_of_cash_received = $request->date_of_cash_received;
@@ -151,7 +159,6 @@ class CivilCasesController extends Controller
       $data->property_type = $request->property_type;
       $data->name_of_the_court_id = $request->name_of_the_court_id;
       $data->relevant_law_sections_id = $request->relevant_law_sections_id;
-      $data->contact_no = $request->contact_no;
       $data->next_date = $request->next_date;
       $data->next_date_fixed_id = $request->next_date_fixed_id;
       $data->name_of_suit = $request->name_of_suit;

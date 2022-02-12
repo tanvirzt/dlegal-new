@@ -69,6 +69,12 @@
                           </a>
                         </li>
                         <li class="nav-item">
+                          <a href="{{ route('internal-council') }}" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Internal Council</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
                           <a href="{{ route('designation') }}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>Designation</p>
@@ -168,7 +174,13 @@
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a href="#" class="nav-link">
+                          <a href="{{ route('company-type') }}" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Company Type</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="{{ route('company') }}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>Company</p>
                           </a>
