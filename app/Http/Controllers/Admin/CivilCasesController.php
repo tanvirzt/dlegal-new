@@ -33,12 +33,13 @@ class CivilCasesController extends Controller
     //   $data = CivilCases::all();
 
          $data = DB::table('civil_cases')
-                ->join('setup_divisions','civil_cases.division_id', '=', 'setup_divisions.id')
-                ->join('setup_districts','civil_cases.district_id','=','setup_districts.id')
-                ->join('setup_case_statuses','civil_cases.case_status_id','=','setup_case_statuses.id')
-                ->join('setup_case_categories','civil_cases.case_category_nature_id','=','setup_case_categories.id')
-                ->join('setup_external_councils','civil_cases.external_council_name_id','=','setup_external_councils.id')
-                ->select('civil_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name')
+                ->leftJoin('setup_divisions','civil_cases.division_id', '=', 'setup_divisions.id')
+                ->leftJoin('setup_districts','civil_cases.district_id','=','setup_districts.id')
+                ->leftJoin('setup_case_statuses','civil_cases.case_status_id','=','setup_case_statuses.id')
+                ->leftJoin('setup_case_categories','civil_cases.case_category_nature_id','=','setup_case_categories.id')
+                ->leftJoin('setup_courts','civil_cases.name_of_the_court_id','=','setup_courts.id')
+                ->leftJoin('setup_companies','civil_cases.company_id','=','setup_companies.id')
+                ->select('civil_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
                 ->get();
         // dd($data);
 
@@ -87,87 +88,104 @@ class CivilCasesController extends Controller
     //   dd($request->all());
      $rules = [
          'case_no' => 'required',
-         'division_id' => 'required',
-         'district_id' => 'required',
-         'amount' => 'required',
-         'case_category_nature_id' => 'required',
-         'plaintiff_name' => 'required',
-         'plaintiff_contact_number' => 'required',
-         'subsequent_plaintiff_name' => 'required',
-         'last_order_court' => 'required',
-         'additional_order' => 'required',
-         'disbursement_date' => 'required',
-         'last_date_of_cash_receipt' => 'required',
-         'date_of_disposed' => 'required',
          'date_of_filing' => 'required',
-         'defendent_name' => 'required',
-         'defendent_address' => 'required',
-         'external_council_name_id' => 'required',
-         'plaintiff_designaiton_id' => 'required',
+         'district_id' => 'required',
+         'case_year' => 'required',
+         'ref_no' => 'required',
+         'amount' => 'required',
+         'location' => 'required',
+         'case_status_id' => 'required',
+         'property_type_id' => 'required',
+         'case_category_nature_id' => 'required',
+         'case_type_id' => 'required',
          'name_of_the_court_id' => 'required',
+         'external_council_name_id' => 'required',
+         'external_council_associates_id' => 'required',
          'relevant_law_sections_id' => 'required',
+         'plaintiff_name' => 'required',
+         'contact_number' => 'required',
+         'plaintiff_designaiton_id' => 'required',
+         'next_date' => 'required',
+         'plaintiff_contact_number' => 'required',
          'next_date_fixed_id' => 'required',
      ];
 
      $validMsg = [
          'case_no.required' => 'Case No. field is required',
-         'division_id.required' => 'Division field is required',
+         'date_of_filing.required' => 'Date of Filing field is required',
          'district_id.required' => 'District field is required',
+         'case_year.required' => 'Case Year field is required',
+         'ref_no.required' => 'Ref No. Name field is required',
          'amount.required' => 'Amount field is required',
-         'plaintiff_name.required' => 'Plaintiff Name field is required',
-         'plaintiff_contact_number.required' => 'Plaintiff Contact No. field is required',
-         'subsequent_plaintiff_name.required' => 'Subsequent Plaintiff Name field is required',
-         'last_order_court.required' => 'Last Order Court field is required',
-         'disbursement_date.required' => 'Disbursement Date field is required',
-         'last_date_of_cash_receipt.required' => 'Last date of cash receipt field is required',
-         'date_of_disposed.required' => 'Date of disposed field is required',
-         'date_of_filing.required' => 'Date of filing field is required',
-         'defendent_name.required' => 'Defendent Name field is required',
+         'location.required' => 'Location field is required',
+         'case_status_id.required' => 'Case Status field is required',
+         'property_type_id.required' => 'Property Type field is required',
+         'case_category_nature_id.required' => 'Case Category Nature field is required',
+         'case_type_id.required' => 'Case Type field is required',
+         'name_of_the_court_id.required' => 'Name of the Court field is required',
+         'external_council_name_id.required' => 'External Council Name field is required',
          'defendent_address.required' => 'Defendent Address field is required',
-         'external_council_name_id.required' => 'External Council field is required',
+         'external_council_associates_id.required' => 'External Council Associates field is required',
+         'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
+         'plaintiff_name.required' => 'Plaintiff Name field is required',
+         'contact_number.required' => 'Contact Number field is required',
          'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
-         'name_of_the_court_id.required' => 'Court Name field is required',
-         'relevant_law_sections_id.required' => 'Relevant Law Section field is required',
-         'next_date_fixed_id.required' => 'Reason for Next date field is required',
+         'next_date.required' => 'Next Date field is required',
+         'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
+         'next_date_fixed_id.required' => 'Next Date Fixed field is required',
      ];
 
      $this->validate($request, $rules, $validMsg);
 
       $data = new CivilCases();
       $data->case_no = $request->case_no;
-      $data->division_id = $request->division_id;
-      $data->district_id = $request->district_id;
-      $data->amount = $request->amount;
-      $data->case_status_id = $request->case_status_id;
-      $data->case_category_nature_id = $request->case_category_nature_id;
-      $data->external_council_name_id = $request->external_council_name_id;
-      $data->plaintiff_name = $request->plaintiff_name;
-      $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
-      $data->plaintiff_contact_number = $request->plaintiff_contact_number;
-      $data->subsequent_plaintiff_name = $request->subsequent_plaintiff_name;
-      $data->last_order_court = $request->last_order_court;
-      $data->additional_order = $request->additional_order;
-      $data->disbursement_date = $request->disbursement_date;
-      $data->date_of_disposed = $request->date_of_disposed;
       $data->date_of_filing = $request->date_of_filing;
-      $data->defendent_address = $request->defendent_address;
-      $data->defendent_contact_no = $request->defendent_contact_no;
-      $data->date_of_cash_received = $request->date_of_cash_received;
+      $data->division_id = $request->division_id;
       $data->case_year = $request->case_year;
+      $data->district_id = $request->district_id;
       $data->ref_no = $request->ref_no;
+      $data->amount = $request->amount;
       $data->location = $request->location;
-      $data->property_type = $request->property_type;
+      $data->case_status_id = $request->case_status_id;
+      $data->property_type_id = $request->property_type_id;
+      $data->case_category_nature_id = $request->case_category_nature_id;
+      $data->case_type_id = $request->case_type_id;
       $data->name_of_the_court_id = $request->name_of_the_court_id;
+      $data->external_council_name_id = $request->external_council_name_id;
+      $data->external_council_associates_id = $request->external_council_associates_id;
       $data->relevant_law_sections_id = $request->relevant_law_sections_id;
+      $data->plaintiff_name = $request->plaintiff_name;
+      $data->contact_number = $request->contact_number;
+      $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
       $data->next_date = $request->next_date;
+      $data->plaintiff_contact_number = $request->plaintiff_contact_number;
       $data->next_date_fixed_id = $request->next_date_fixed_id;
+      $data->company_id = $request->company_id;
+      $data->zone_id = $request->zone_id;
+      $data->area_id = $request->area_id;
+      $data->subsequent_plaintiff_name = $request->subsequent_plaintiff_name;
       $data->name_of_suit = $request->name_of_suit;
-      $data->date_of_incident = $request->date_of_incident;
+      $data->defendent_name = $request->defendent_name;
+      $data->defendent_address = $request->defendent_address;
+      $data->defendent_company_id = $request->defendent_company_id;
+      $data->last_order_court_id = $request->last_order_court_id;
       $data->date_of_incident_to = $request->date_of_incident_to;
+      $data->additional_order = $request->additional_order;
       $data->first_identification_person = $request->first_identification_person;
+      $data->disbursement_date = $request->disbursement_date;
       $data->date_of_identification = $request->date_of_identification;
+      $data->date_of_cash_receipt = $request->date_of_cash_receipt;
       $data->case_notes = $request->case_notes;
+      $data->date_of_disposed = $request->date_of_disposed;
       $data->power_of_attorny = $request->power_of_attorny;
+      $data->total_legal_bill_amount_cost = $request->total_legal_bill_amount_cost;
+      $data->panel_lawyer_id = $request->panel_lawyer_id;
+      $data->assigned_lawyer_id = $request->assigned_lawyer_id;
+      $data->notes = $request->notes;
+      $data->other_claim = $request->other_claim;
+      $data->summary_facts_alligation = $request->summary_facts_alligation;
+      $data->missing_documents_evidence_information = $request->missing_documents_evidence_information;
+      $data->comments = $request->comments;
       $data->save();
 
       if($request->hasfile('uploaded_document'))
@@ -198,94 +216,125 @@ class CivilCasesController extends Controller
     $external_council = SetupExternalCouncil::where('delete_status',0)->get();
     $case_category = SetupCaseCategory::where('delete_status',0)->get();
     $case_status = SetupCaseStatus::where('delete_status',0)->get();
-    $division = SetupDivision::where('delete_status',0)->get();
+    $property_type = SetupPropertyType::where('delete_status',0)->get();
+    $division = DB::table("setup_divisions")->get();
     $person_title = SetupPersonTitle::where('delete_status',0)->get();
+    $next_date_reason = SetupNextDateReason::where('delete_status',0)->get();
+    $case_types = SetupCaseTypes::where('delete_status',0)->get();
+   //  $next_date_reason = DB::table('setup_next_date_reasons')->get();
+    $company = SetupCompany::where('delete_status',0)->get();
+    $zone = SetupRegion::where('delete_status',0)->get();
+    $last_court_order = SetupCourtLastOrder::where('delete_status',0)->get();
+    $area = SetupArea::where('delete_status',0)->get();
+    $internal_council = SetupInternalCouncil::where('delete_status',0)->get();
     $data = CivilCases::find($id);
-    $civil_cases_files = CivilCasesFile::where('case_id',$id)->get();
-    $existing_district = SetupDistrict::where('division_id',$data->division_id)->get();
-    $next_date_reason = DB::table('setup_next_date_reasons')->get();
     // dd($data);
-    return view('litigation_management.cases.civil_cases.edit_civil_cases',compact('data','person_title','division','case_status','case_category','external_council','designation','court','law_section','civil_cases_files','existing_district','next_date_reason'));
+    return view('litigation_management.cases.civil_cases.edit_civil_cases',compact('data','person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','property_type','case_types','company','zone','area','internal_council'));
   }
 
   public function update_civil_cases(Request $request, $id)
   {
     $rules = [
         'case_no' => 'required',
-        'division_id' => 'required',
-        'district_id' => 'required',
-        'amount' => 'required',
-        'case_category_nature_id' => 'required',
-        'plaintiff_name' => 'required',
-        'plaintiff_contact_number' => 'required',
-        'subsequent_plaintiff_name' => 'required',
-        'last_order_court' => 'required',
-        'additional_order' => 'required',
-        'disbursement_date' => 'required',
-        'last_date_of_cash_receipt' => 'required',
-        'date_of_disposed' => 'required',
         'date_of_filing' => 'required',
-        'defendent_name' => 'required',
-        'defendent_address' => 'required'
+        'district_id' => 'required',
+        'case_year' => 'required',
+        'ref_no' => 'required',
+        'amount' => 'required',
+        'location' => 'required',
+        'case_status_id' => 'required',
+        'property_type_id' => 'required',
+        'case_category_nature_id' => 'required',
+        'case_type_id' => 'required',
+        'name_of_the_court_id' => 'required',
+        'external_council_name_id' => 'required',
+        'external_council_associates_id' => 'required',
+        'relevant_law_sections_id' => 'required',
+        'plaintiff_name' => 'required',
+        'contact_number' => 'required',
+        'plaintiff_designaiton_id' => 'required',
+        'next_date' => 'required',
+        'plaintiff_contact_number' => 'required',
+        'next_date_fixed_id' => 'required',
     ];
 
     $validMsg = [
         'case_no.required' => 'Case No. field is required',
-        'division_id.required' => 'Division field is required',
+        'date_of_filing.required' => 'Date of Filing field is required',
         'district_id.required' => 'District field is required',
+        'case_year.required' => 'Case Year field is required',
+        'ref_no.required' => 'Ref No. Name field is required',
         'amount.required' => 'Amount field is required',
-        'plaintiff_name.required' => 'Plaintiff Name field is required',
-        'plaintiff_contact_number.required' => 'Plaintiff Contact No. field is required',
-        'subsequent_plaintiff_name.required' => 'Subsequent Plaintiff Name field is required',
-        'last_order_court.required' => 'Last Order Court field is required',
-        'disbursement_date.required' => 'Disbursement Date field is required',
-        'last_date_of_cash_receipt.required' => 'Last date of cash receipt field is required',
-        'date_of_disposed.required' => 'Date of disposed field is required',
-        'date_of_filing.required' => 'Date of filing field is required',
-        'defendent_name.required' => 'Defendent Name field is required',
+        'location.required' => 'Location field is required',
+        'case_status_id.required' => 'Case Status field is required',
+        'property_type_id.required' => 'Property Type field is required',
+        'case_category_nature_id.required' => 'Case Category Nature field is required',
+        'case_type_id.required' => 'Case Type field is required',
+        'name_of_the_court_id.required' => 'Name of the Court field is required',
+        'external_council_name_id.required' => 'External Council Name field is required',
         'defendent_address.required' => 'Defendent Address field is required',
+        'external_council_associates_id.required' => 'External Council Associates field is required',
+        'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
+        'plaintiff_name.required' => 'Plaintiff Name field is required',
+        'contact_number.required' => 'Contact Number field is required',
+        'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
+        'next_date.required' => 'Next Date field is required',
+        'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
+        'next_date_fixed_id.required' => 'Next Date Fixed field is required',
     ];
 
     $this->validate($request, $rules, $validMsg);
+
     
           $data = CivilCases::find($id);
           $data->case_no = $request->case_no;
-          $data->division_id = $request->division_id;
-          $data->district_id = $request->district_id;
-          $data->amount = $request->amount;
-          $data->case_status_id = $request->case_status_id;
-          $data->case_category_nature_id = $request->case_category_nature_id;
-          $data->external_council_name_id = $request->external_council_name_id;
-          $data->plaintiff_name = $request->plaintiff_name;
-          $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
-          $data->plaintiff_contact_number = $request->plaintiff_contact_number;
-          $data->subsequent_plaintiff_name = $request->subsequent_plaintiff_name;
-          $data->last_order_court = $request->last_order_court;
-          $data->additional_order = $request->additional_order;
-          $data->disbursement_date = $request->disbursement_date;
-          $data->last_date_of_cash_receipt = $request->last_date_of_cash_receipt;
-          $data->date_of_disposed = $request->date_of_disposed;
-          $data->date_of_filing = $request->date_of_filing;
-          $data->defendent_name = $request->defendent_name;
-          $data->defendent_address = $request->defendent_address;
-          $data->defendent_contact_no = $request->defendent_contact_no;
-          $data->date_of_cash_received = $request->date_of_cash_received;
-          $data->case_year = $request->case_year;
-          $data->ref_no = $request->ref_no;
-          $data->location = $request->location;
-          $data->property_type = $request->property_type;
-          $data->name_of_the_court_id = $request->name_of_the_court_id;
-          $data->relevant_law_sections_id = $request->relevant_law_sections_id;
-          $data->contact_no = $request->contact_no;
-          $data->next_date = $request->next_date;
-          $data->next_date_fixed_id = $request->next_date_fixed_id;
-          $data->name_of_suit = $request->name_of_suit;
-          $data->date_of_incident = $request->date_of_incident;
-          $data->date_of_incident_to = $request->date_of_incident_to;
-          $data->first_identification_person = $request->first_identification_person;
-          $data->date_of_identification = $request->date_of_identification;
-          $data->case_notes = $request->case_notes;
-          $data->power_of_attorny = $request->power_of_attorny;
+        $data->date_of_filing = $request->date_of_filing;
+        $data->division_id = $request->division_id;
+        $data->case_year = $request->case_year;
+        $data->district_id = $request->district_id;
+        $data->ref_no = $request->ref_no;
+        $data->amount = $request->amount;
+        $data->location = $request->location;
+        $data->case_status_id = $request->case_status_id;
+        $data->property_type_id = $request->property_type_id;
+        $data->case_category_nature_id = $request->case_category_nature_id;
+        $data->case_type_id = $request->case_type_id;
+        $data->name_of_the_court_id = $request->name_of_the_court_id;
+        $data->external_council_name_id = $request->external_council_name_id;
+        $data->external_council_associates_id = $request->external_council_associates_id;
+        $data->relevant_law_sections_id = $request->relevant_law_sections_id;
+        $data->plaintiff_name = $request->plaintiff_name;
+        $data->contact_number = $request->contact_number;
+        $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
+        $data->next_date = $request->next_date;
+        $data->plaintiff_contact_number = $request->plaintiff_contact_number;
+        $data->next_date_fixed_id = $request->next_date_fixed_id;
+        $data->company_id = $request->company_id;
+        $data->zone_id = $request->zone_id;
+        $data->area_id = $request->area_id;
+        $data->subsequent_plaintiff_name = $request->subsequent_plaintiff_name;
+        $data->name_of_suit = $request->name_of_suit;
+        $data->defendent_name = $request->defendent_name;
+        $data->defendent_address = $request->defendent_address;
+        $data->defendent_company_id = $request->defendent_company_id;
+        $data->last_order_court_id = $request->last_order_court_id;
+        $data->date_of_incident_to = $request->date_of_incident_to;
+        $data->additional_order = $request->additional_order;
+        $data->first_identification_person = $request->first_identification_person;
+        $data->disbursement_date = $request->disbursement_date;
+        $data->date_of_identification = $request->date_of_identification;
+        $data->date_of_cash_receipt = $request->date_of_cash_receipt;
+        $data->case_notes = $request->case_notes;
+        $data->date_of_disposed = $request->date_of_disposed;
+        $data->power_of_attorny = $request->power_of_attorny;
+        $data->total_legal_bill_amount_cost = $request->total_legal_bill_amount_cost;
+        $data->panel_lawyer_id = $request->panel_lawyer_id;
+        $data->assigned_lawyer_id = $request->assigned_lawyer_id;
+        $data->notes = $request->notes;
+        $data->other_claim = $request->other_claim;
+        $data->summary_facts_alligation = $request->summary_facts_alligation;
+        $data->missing_documents_evidence_information = $request->missing_documents_evidence_information;
+        $data->comments = $request->comments;
           $data->save();
     
           if($request->hasfile('uploaded_document'))

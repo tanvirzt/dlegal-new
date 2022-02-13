@@ -30,6 +30,8 @@ use App\Models\SetupCompanyType;
 use App\Models\SetupCompany;
 use App\Models\SetupInternalCouncil;
 use App\Models\SetupInternalCouncilFiles;
+use App\Models\SetupExternalCouncilAssociate;
+use App\Models\SetupExternalCouncilAssociatesFile;
 use Illuminate\Support\Facades\DB;
 
 
@@ -1968,6 +1970,166 @@ public function delete_company($id)
  }
 
 
+ //external council associates setup
+
+ public function external_council_associates()
+ {
+    //  $data = SetupExternalCouncilAssociate::all();
+     $data = DB::table('setup_external_council_associates')
+                ->leftJoin('setup_external_councils','setup_external_council_associates.external_council_id','=','setup_external_councils.id')
+                ->leftJoin('setup_person_titles','setup_external_council_associates.title_id','=','setup_person_titles.id')
+                ->select('setup_external_council_associates.*','setup_external_councils.first_name as ec_first_name','setup_external_councils.middle_name as ec_middle_name','setup_external_councils.last_name as ec_last_name','setup_person_titles.person_title_name')
+                ->get();
+                // dd($data);
+     return view('setup.external_council_associates.external_council_associates',compact('data'));
+ }
+
+ public function add_external_council_associates()
+ {
+    $external_council = SetupExternalCouncil::where('delete_status',0)->get();
+    $person_title = SetupPersonTitle::where('delete_status',0)->get();
+    return view('setup.external_council_associates.add_external_council_associates',compact('person_title','external_council'));
+ }
+
+ public function save_external_council_associates(Request $request)
+ {
+    //  dd($request->all());
+     $rules = [
+         'external_council_id' => 'required',
+         'title_id' => 'required',
+         'title_id' => 'required',
+         'first_name' => 'required',
+         'middle_name' => 'required',
+         'last_name' => 'required',
+         'email' => 'required',
+         'work_phone' => 'required'
+     ];
+
+     $validMsg = [
+         'external_council_id.required' => 'External Council field is required',
+         'title_id.required' => 'Title field is required',
+         'title_id.required' => 'Title field is required',
+         'first_name.required' => 'First Name field is required',
+         'middle_name.required' => 'Middle Name field is required',
+         'last_name.required' => 'Last Name field is required',
+         'email.required' => 'Email field is required',
+         'work_phone.required' => 'Work Phone field is required',
+     ];
+
+     $this->validate($request, $rules, $validMsg);
+
+
+     $data = new SetupExternalCouncilAssociate();
+     $data->external_council_id = $request->external_council_id;
+     $data->title_id = $request->title_id;
+     $data->first_name = $request->first_name;
+     $data->middle_name = $request->middle_name;
+     $data->last_name = $request->last_name;
+     $data->email = $request->email;
+     $data->work_phone = $request->work_phone;
+     $data->home_phone = $request->home_phone;
+     $data->mobile_phone = $request->mobile_phone;
+     $data->emergency_contact = $request->emergency_contact;
+     $data->save();
+
+     if($request->hasfile('uploaded_document'))
+     {
+         foreach($request->file('uploaded_document') as $file)
+         {
+             $original_name = $file->getClientOriginalName();
+             $name = time().rand(1,100).$original_name;
+             $file->move(public_path('files/external_council_associates_file'), $name);
+
+             $file= new SetupExternalCouncilAssociatesFile();
+             $file->external_council_associates_id = $data->id;
+             $file->uploaded_document = $name;
+             $file->save();
+         }
+     }
+
+     session()->flash('success','External Council Associates Added Successfully');
+     return redirect()->back();
+
+ }
+
+ public function edit_external_council_associates($id)
+ {
+     $external_council = SetupExternalCouncil::where('delete_status',0)->get();
+     $person_title = SetupPersonTitle::where('delete_status',0)->get();
+     $data = SetupExternalCouncilAssociate::find($id);
+     return view('setup.external_council_associates.edit_external_council_associates',compact('data','person_title','external_council'));
+ }
+
+ public function update_external_council_associates(Request $request, $id)
+ {
+    $rules = [
+         'external_council_id' => 'required',
+         'title_id' => 'required',
+         'first_name' => 'required',
+         'middle_name' => 'required',
+         'last_name' => 'required',
+         'email' => 'required',
+         'work_phone' => 'required'
+     ];
+
+     $validMsg = [
+         'external_council_id.required' => 'External Council field is required',
+         'title_id.required' => 'Title field is required',
+         'first_name.required' => 'First Name field is required',
+         'middle_name.required' => 'Middle Name field is required',
+         'last_name.required' => 'Last Name field is required',
+         'email.required' => 'Email field is required',
+         'work_phone.required' => 'Work Phone field is required',
+     ];
+
+     $this->validate($request, $rules, $validMsg);
+
+     $data = SetupExternalCouncilAssociate::find($id);
+     $data->external_council_id = $request->external_council_id;
+     $data->title_id = $request->title_id;
+     $data->first_name = $request->first_name;
+     $data->middle_name = $request->middle_name;
+     $data->last_name = $request->last_name;
+     $data->email = $request->email;
+     $data->work_phone = $request->work_phone;
+     $data->home_phone = $request->home_phone;
+     $data->mobile_phone = $request->mobile_phone;
+     $data->emergency_contact = $request->emergency_contact;
+     $data->save();
+
+     if($request->hasfile('uploaded_document'))
+     {
+         foreach($request->file('uploaded_document') as $file)
+         {
+             $original_name = $file->getClientOriginalName();
+             $name = time().rand(1,100).$original_name;
+             $file->move(public_path('files/civil_cases'), $name);
+
+             $file= new SetupExternalCouncilAssociatesFile();
+             $file->external_council_associates_id = $data->id;
+             $file->uploaded_document = $name;
+             $file->save();
+         }
+     }
+
+     session()->flash('success','External Council Associates Updated Successfully');
+     return redirect()->back();
+ }
+
+ public function delete_external_council_associates($id)
+ {
+     $data = SetupExternalCouncilAssociate::find($id);
+     if ($data['delete_status'] == 1){
+         $delete_status = 0;
+     }else{
+         $delete_status = 1;
+     }
+     $data->delete_status = $delete_status;
+     $data->save();
+
+     session()->flash('success', 'External Council Associates Deleted');
+     return redirect()->back();
+ }
 
 
 }

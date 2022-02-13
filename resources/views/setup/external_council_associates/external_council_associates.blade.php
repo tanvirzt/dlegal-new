@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Civil Cases </h1>
+                        <h1> External Council Associates </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Civil Cases </li>
+                            <li class="breadcrumb-item active"> External Council Associates </li>
                         </ol>
                     </div>
                 </div>
@@ -38,8 +38,8 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-civil-cases') }}"><button class="btn btn-sm
-                                    btn-success"><i class="fas fa-plus"></i> Add Civil Cases </button></a>
+                                    <a href="{{ route('add-external-council-associates') }}"><button class="btn btn-sm
+                                    btn-success"><i class="fas fa-plus"></i> Add External Council Associates </button></a>
                                 </div>
 
                             </div>
@@ -49,16 +49,11 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Case No</th>
-                                        <th>Division</th>
-                                        <th>Name of Court</th>
-                                        <th>District</th>
-                                        <th>Case Status</th>
-                                        <th>Company</th>
-                                        <th>Case Category Name</th>
-                                        <th>Location</th>
-                                        <th>Plaintiff Name</th>
-                                        <th>Defendent Name</th>
+                                        <th> External Council </th>
+                                        <th> Name </th>
+                                        <th> Email </th>
+                                        <th> Work Phone </th>
+                                        <th> Mobile No. </th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -71,48 +66,33 @@
                                                 {{ $datum->id }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_no }}
+                                                {{ $datum->ec_first_name }} {{ $datum->ec_middle_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->division_name }}
+                                                {{ $datum->first_name }} {{ $datum->middle_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->court_name }}
+                                                {{ $datum->email }}
                                             </td>
                                             <td>
-                                                {{ $datum->district_name }}
+                                                {{ $datum->work_phone }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_status_name }}
-                                            </td>
-                                            <td>
-                                                {{ $datum->company_name }}
-                                            </td>
-                                            <td>
-                                                {{ $datum->case_category_name }}
-                                            </td>
-                                            
-                                            <td>
-                                                {{ $datum->location }}
-                                            </td>
-                                            <td>
-                                                {{ $datum->plaintiff_name }}
-                                            </td>
-                                            <td>
-                                                {{ $datum->defendent_name }}
+                                                {{ $datum->mobile_phone }}
                                             </td>
                                             <td>
                                                 @if($datum->delete_status == 0)
                                                     Active
                                                 @else
+
                                                     Inactive
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('edit-civil-cases',$datum->id) }}"><button class="badge badge-info btn-sm"
+                                                <a href="{{ route('edit-external-council-associates',$datum->id) }}"><button class="badge badge-info btn-sm"
                                                     >Edit</button></a>
                                                 <span class="badge badge-danger btn-sm">
-                                                <form method="POST" action="{{ route('delete-civil-cases',$datum->id) }}">
+                                                <form method="POST" action="{{ route('delete-external-council-associates',$datum->id) }}">
                                                     @csrf
                                                         <input type="submit" class="delete-user"
                                                                value="Delete">

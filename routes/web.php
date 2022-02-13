@@ -225,6 +225,12 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-internal-council/{id}','AdminSetupController@update_internal_council')->name('update-internal-council');
         Route::post('delete-internal-council/{id}','AdminSetupController@delete_internal_council')->name('delete-internal-council');
 
+        Route::get('external-council-associates','AdminSetupController@external_council_associates')->name('external-council-associates');
+        Route::get('add-external-council-associates','AdminSetupController@add_external_council_associates')->name('add-external-council-associates');
+        Route::post('save-external-council-associates','AdminSetupController@save_external_council_associates')->name('save-external-council-associates');
+        Route::get('edit-external-council-associates/{id}','AdminSetupController@edit_external_council_associates')->name('edit-external-council-associates');
+        Route::post('update-external-council-associates/{id}','AdminSetupController@update_external_council_associates')->name('update-external-council-associates');
+        Route::post('delete-external-council-associates/{id}','AdminSetupController@delete_external_council_associates')->name('delete-external-council-associates');
 
 
     });
