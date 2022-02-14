@@ -106,30 +106,10 @@ $(document).ready(function(){
         $(this).parents(".hdtuto").remove();
     });
 
-    // append district according to division
-
-    $('#division').on('change', function(e) {
-        var div_id = e.target.value;
-        // alert(div_id);
-        $.ajax({
-            url: "append-district",
-            type: "POST",
-            data: {
-                div_id: div_id
-            },
-            success: function(data) {
-                $('#district').empty();
-                $.each(data.district, function(index, district) {
-                    $('#district').append('<option selected>Select</option> <option value="' + district.id + '">' + district.district_name + '</option>');
-                })
-            }
-        })
-    });
-
 
     $('#state').on('change', function() {
         var stateID = $(this).val();
-        // alert(stateID);
+        alert(stateID);
         if(stateID) {
             $.ajax({
                 url: '/bclc-software/public/admin/find-district/'+stateID,
@@ -152,6 +132,35 @@ $(document).ready(function(){
             });
         }else{
             $('#city').empty();
+        }
+    });
+
+
+    $('#external_council_name_id').on('change', function() {
+        var stateID = $(this).val();
+        // alert(stateID);
+        if(stateID) {
+            $.ajax({
+                url: '/bclc-software/public/admin/find-associates/'+stateID,
+                type: "GET",
+                data : {"_token":"{{ csrf_token() }}"},
+                dataType: "json",
+                success:function(data) {
+                    console.log(data);
+                    if(data){
+                        $('#external_council_associates_id').empty();
+                        $('#external_council_associates_id').focus;
+                        $('#external_council_associates_id').append('<option value="">Select</option>');
+                        $.each(data, function(key, value){
+                            $('select[name="external_council_associates_id"]').append('<option value="'+ value.id +'">' + value.first_name + '</option>');
+                        });
+                    }else{
+                        $('#external_council_associates_id').empty();
+                    }
+                }
+            });
+        }else{
+            $('#external_council_associates_id').empty();
         }
     });
 

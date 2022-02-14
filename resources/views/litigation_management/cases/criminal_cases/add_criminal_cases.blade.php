@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Criminal Cases</h1>
+                        <h1 class="m-0 text-dark">Civil Cases</h1>
 
                     </div><!-- /.col -->
 
@@ -20,7 +20,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('criminal-cases') }}" aria-disabled="false" role="link" tabindex="-1">Cancel</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('civil-cases') }}" aria-disabled="false" role="link" tabindex="-1">Cancel</a>
                             </li>
                         </ol>
                     </div>
@@ -32,11 +32,8 @@
         <!-- /.content-header -->
         <!-- Main content -->
         <section class="content">
-            <div class="row im-flex">
-                <div class="col-md-2">
-{{--                    @include('fixed-asset.dashboard-sidebar')--}}
-                </div>
-                <div class="col-md-10">
+            <div class="container-fluid py-2">
+                <div class="col-md-12">
                     @if(Session::has('success'))
                         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                             {{Session::get('success')}}
@@ -55,322 +52,424 @@
                                 @csrf
                                 <div class="card-body">
 
-                                    <div class="col-md-12">
-
-                                        <div class="form-group">
-                                            <label for="case_no"> Case No. </label>
-                                            <input type="text" class="form-control" name="case_no"
-                                                   id="case_no">
-                                            @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="case_category_id"> Case Category
-                                            </label>
-                                            <select name="case_category_id" class="form-control
-                                            select2" id="case_category_id"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($case_category as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->case_category_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('case_category_id')<span class="text-danger">{{$message}}</span>@enderror
-                                        <div class="form-group">
-                                            <label for="subsequent_case_no"> Subsequent Case No. </label>
-                                            <input type="text" class="form-control" name="subsequent_case_no"
-                                                   id="subsequent_case_no" value="{{old('subsequent_case_no')}}">
-                                            @error('subsequent_case_no')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="region_id"> Region
-                                            </label>
-                                            <select name="region_id" class="form-control
-                                            select2" id="region_id"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($region as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->region_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="area_id"> Area
-                                            </label>
-                                            <select name="area_id" class="form-control select2" id="area_id"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($area as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->area_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="branch_id"> Branch
-                                            </label>
-                                            <select name="branch_id" class="form-control
-                                            select2" id="branch_id"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($branch as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->branch_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('branch_id')<span class="text-danger">{{$message}}</span>@enderror
-                                        <div class="form-group">
-                                            <label for="member_no"> Member No. </label>
-                                            <input type="date" class="form-control" name="member_no"
-                                                   id="member_no">
-                                            @error('member_no')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="program_id"> Program 
-                                            </label>
-                                            <select name="program_id" class="form-control
-                                            select2" id="program_id"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($program as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->program_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('branch_id')<span class="text-danger">{{$message}}</span>@enderror     
-                                        <div class="form-group">
-                                            <label for="police_station"> Police Station </label>
-                                            <input type="text" class="form-control" name="police_station"
-                                                   id="police_station">
-                                            @error('police_station')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name_of_the_court_id"> Name of the Court
-                                                
-                                            </label>
-                                            <select name="name_of_the_court_id" class="form-control
-                                            select2" id="name_of_the_court_id"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($court as $item)
-                                                    <option value="{{ $item->id }}" {{(old('name_of_the_court_id') == $item->id?'selected':'')}}>{{ $item->court_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('name_of_the_court_id')<span class="text-danger">{{$message}}</span>@enderror
-                                        <div class="form-group">
-                                            <label for="date_of_filing"> Date of Filing </label>
-                                            <input type="date" class="form-control" name="date_of_filing"
-                                                   id="date_of_filing">
-                                            @error('date_of_filing')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group {{ ($errors->has('roll'))?'has-error':'' }}">
-                                            <label for="roll"> Division </label>
-                                            <select name="division_id" class="form-control" id="state">
-                                                <option value=""> Select </option>
-                                                @foreach ($division as $item)
-                                                    <option value="{{ $item->id }}">{{ ucfirst($item->division_name) }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('division_id')<span class="text-danger">{{$message}}</span>@enderror
-                                        <div class="form-group {{ ($errors->has('name'))?'has-error':'' }}">
-                                            <label for="roll"> District </label>
-                                            <select name="district_id" class="form-control" id="city">
-                                                <option value=""> Select </option>
-
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="relevant_law_sections_id"> Laws Sections
-                                                
-                                            </label>
-                                            <select name="relevant_law_sections_id" class="form-control
-                                            select2" id="relevant_law_sections_id"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($law_section as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->law_section_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('relevant_law_sections_id')<span class="text-danger">{{$message}}</span>@enderror
-                                        <div class="form-group">
-                                            <label for="alligation_id"> Alligation
-                                            </label>
-                                            <select name="alligation_id" class="form-control
-                                            select2" id="alligation_id"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($alligation as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->alligation_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="amount"> Amount of Money </label>
-                                            <input type="text" class="form-control" name="amount"
-                                                   id="amount">
-                                            @error('amount')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="complainant_name"> Name of the Complainant </label>
-                                            <input type="text" class="form-control" name="complainant_name"
-                                                   id="complainant_name" value="{{old('complainant_name')}}">
-                                            @error('complainant_name')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="complainant_contact_number"> Complainant Contact Number </label>
-                                            <input type="text" class="form-control" name="complainant_contact_number"
-                                                   id="complainant_contact_number" value="{{old('complainant_contact_number')}}">
-                                            @error('complainant_contact_number')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="complainant_designation_id"> Designation of the Complainant
-                                            </label>
-                                            <select name="complainant_designation_id" class="form-control
-                                            select2" id="complainant_designation_id"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($designation as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->designation_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('complainant_designation_id')<span class="text-danger">{{$message}}</span>@enderror                                        
-                                        <div class="form-group">
-                                            <label for="case_status_id"> Status of the Case
-                                            </label>
-                                            <select name="case_status_id" class="form-control
-                                            select2" id="case_status_id"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($case_status as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->case_status_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('case_status_id')<span class="text-danger">{{$message}}</span>@enderror
-                                        <div class="form-group">
-                                            <label for="external_council_name_id"> External Council Name
-                                            </label>
-                                            <select name="external_council_name_id" class="form-control
-                                            select2" id="external_council_name_id"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($external_council as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('division_id')<span class="text-danger">{{$message}}</span>@enderror
-                                        
-                                        
-                                        <div class="form-group">
-                                            <label for="plaintiff_name"> Plaintiff Name </label>
-                                            <input type="text" class="form-control" name="plaintiff_name"
-                                                   id="plaintiff_name" value="{{old('plaintiff_name')}}">
-                                            @error('plaintiff_name')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="plaintiff_designaiton_id"> Plaintiff Designation
-                                            </label>
-                                            <select name="plaintiff_designaiton_id" class="form-control
-                                            select2" id="plaintiff_designaiton_id"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($designation as $item)
-                                                    <option value="{{ $item->id }}" {{(old('plaintiff_designaiton_id') == $item->id?'selected':'')}}>{{ $item->designation_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('division_id')<span class="text-danger">{{$message}}</span>@enderror
-                                        <div class="form-group">
-                                            <label for="plaintiff_contact_number"> Plaintiff Contact No </label>
-                                            <input type="text" class="form-control" name="plaintiff_contact_number"
-                                                   id="plaintiff_contact_number" value="{{old('plaintiff_contact_number')}}">
-                                            @error('plaintiff_contact_number')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="last_order_court"> Last Order of the Court
-                                            </label>
-                                            <select name="last_order_court" class="form-control
-                                            select2" id="last_order_court"
-                                                    required="">
-                                                <option>Select</option>
-                                                @foreach($last_court_order as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->court_last_order_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                         <div class="form-group">
-                                            <label for="date_of_case_received"> Date of Case Received </label>
-                                            <input type="date" class="form-control" name="date_of_case_received"
-                                                   id="date_of_case_received">
-                                            @error('date_of_case_received')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        
-                                        
-                                        <div class="form-group">
-                                            <label for="next_date"> Next Date </label>
-                                            <input type="date" class="form-control" name="next_date"
-                                                   id="next_date">
-                                            @error('next_date')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="next_date_fixed_id"> Next date fixed for
-                                            </label>
-                                            <select name="next_date_fixed_id" class="form-control
-                                            select2" id="next_date_fixed_id"
-                                                    required="">
-                                                <option>Select</option>
-
-                                                @foreach($next_date_reason as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->next_date_reason_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        @error('next_date_fixed_id')<span class="text-danger">{{$message}}</span>@enderror
-                                        <div class="form-group">
-                                            <label for="accused_name"> Name of the Accused </label>
-                                            <input type="text" class="form-control" name="accused_name"
-                                                   id="accused_name">
-                                            @error('accused_name')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="accused_contact_number"> Accused Contact Number </label>
-                                            <input type="text" class="form-control" name="accused_contact_number"
-                                                   id="accused_contact_number">
-                                            @error('accused_contact_number')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="accused_address"> Address of the Accused </label>
-                                            <input type="text" class="form-control" name="accused_address"
-                                                   id="accused_address">
-                                            @error('accused_address')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="case_notes"> Document Upload </label>
-                                            <div class="input-group hdtuto control-group lst increment">
-                                                <input type="file" name="uploaded_document[]" class="myfrm form-control">
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>+</button>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="case_no" class="col-sm-4 col-form-label">Case No.</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="case_no" name="case_no" value="{{old('case_no')}}">
+                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                            <div class="clone hide">
-                                                <div class="hdtuto control-group lst input-group" style="margin-top:10px">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="date_of_filing" class="col-sm-4 col-form-label"> Date of Case Received </label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" class="form-control" id="date_of_filing" name="date_of_filing" value="{{old('date_of_filing')}}">
+                                                    @error('date_of_filing')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="case_category_nature_id" class="col-sm-4 col-form-label"> Case Category </label>
+                                                <div class="col-sm-8">
+
+                                                        <select name="case_category_nature_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($case_category as $item)
+                                                                <option value="{{ $item->id }}" {{(old('case_category_nature_id') == $item->id ? 'selected':'')}}>{{ $item->case_category_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('case_category_nature_id')<span class="text-danger">{{$message}}</span>@enderror
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="subsequent_case_no" class="col-sm-4 col-form-label">Subsequent Case No.</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="subsequent_case_no" name="subsequent_case_no" value="{{old('subsequent_case_no')}}">
+                                                    @error('subsequent_case_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="zone_id" class="col-sm-4 col-form-label"> Zone </label>
+                                                <div class="col-sm-8">
+                                                        <select name="zone_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($zone as $item)
+                                                                <option value="{{ $item->id }}" {{(old('zone_id') == $item->id ? 'selected':'')}}>{{ $item->region_name }}</option>
+                                                            @endforeach                                                         
+                                                        </select>
+                                                        @error('zone_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="area_id" class="col-sm-4 col-form-label"> Area </label>
+                                                <div class="col-sm-8">
+                                                        <select name="area_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($area as $item)
+                                                                <option value="{{ $item->id }}" {{(old('area_id') == $item->id ? 'selected':'')}}>{{ $item->area_name }}</option>
+                                                            @endforeach                                                         
+                                                        </select>
+                                                        @error('area_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="branch_id" class="col-sm-4 col-form-label"> Branch </label>
+                                                <div class="col-sm-8">
+                                                        <select name="branch_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($branch as $item)
+                                                                <option value="{{ $item->id }}" {{(old('branch_id') == $item->id ? 'selected':'')}}>{{ $item->area_name }}</option>
+                                                            @endforeach                                                         
+                                                        </select>
+                                                        @error('branch_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="member_no" class="col-sm-4 col-form-label">Member No.</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="member_no" name="member_no" value="{{old('member_no')}}">
+                                                    @error('member_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="program_id" class="col-sm-4 col-form-label"> Program </label>
+                                                <div class="col-sm-8">
+                                                        <select name="program_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($program as $item)
+                                                                <option value="{{ $item->id }}" {{(old('program_id') == $item->id ? 'selected':'')}}>{{ $item->area_name }}</option>
+                                                            @endforeach                                                         
+                                                        </select>
+                                                        @error('program_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="police_station" class="col-sm-4 col-form-label">Police Station</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="police_station" name="police_station" value="{{old('police_station')}}">
+                                                    @error('police_station')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="name_of_the_court_id" class="col-sm-4 col-form-label"> Name of the Court </label>
+                                                <div class="col-sm-8">
+                                                        <select name="name_of_the_court_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($court as $item)
+                                                                <option value="{{ $item->id }}" {{(old('name_of_the_court_id') == $item->id ? 'selected':'')}}>{{ $item->court_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('name_of_the_court_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="date_of_filing" class="col-sm-4 col-form-label">Date of filing</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="date_of_filing" name="date_of_filing" value="{{old('date_of_filing')}}">
+                                                    @error('date_of_filing')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="division_id" class="col-sm-4 col-form-label">Division</label>
+                                                <div class="col-sm-8">
+                                                        <select name="division_id" class="form-control select2" id="state">
+                                                            <option value="">Select</option>
+                                                            @foreach ($division as $item)
+                                                                <option value="{{ $item->id }}" {{(old('division_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->division_name) }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('division_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="district_id" class="col-sm-4 col-form-label">District</label>
+                                                <div class="col-sm-8">
+                                                    <select name="district_id" class="form-control" id="city">
+                                                        <option value=""> Select </option>
+
+                                                    </select>       
+                                                    @error('district_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="relevant_law_sections_id" class="col-sm-4 col-form-label"> Relevant Laws/Sections </label>
+                                                <div class="col-sm-8">
+                                                        <select name="relevant_law_sections_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($law_section as $item)
+                                                                <option value="{{ $item->id }}" {{(old('relevant_law_sections_id') == $item->id ? 'selected':'')}}>{{ $item->law_section_name }}</option>
+                                                            @endforeach                                                         
+                                                        </select>
+                                                        @error('relevant_law_sections_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="alligation_id" class="col-sm-4 col-form-label"> Alligation </label>
+                                                <div class="col-sm-8">
+                                                        <select name="alligation_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($alligation as $item)
+                                                                <option value="{{ $item->id }}" {{(old('alligation_id') == $item->id ? 'selected':'')}}>{{ $item->law_section_name }}</option>
+                                                            @endforeach                                                         
+                                                        </select>
+                                                        @error('alligation_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="amount" class="col-sm-4 col-form-label">Amount of Money</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="amount" name="amount" value="{{old('amount')}}">
+                                                    @error('amount')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="amount" class="col-sm-4 col-form-label">Name of the Complainant</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="amount" name="amount" value="{{old('amount')}}">
+                                                    @error('amount')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="complainant_contact_no" class="col-sm-4 col-form-label"> Complainant Contact No. </label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="complainant_contact_no" name="complainant_contact_no" value="{{old('complainant_contact_no')}}">
+                                                    @error('complainant_contact_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="plaintiff_designaiton_id" class="col-sm-4 col-form-label">Designation of the Complainant</label>
+                                                <div class="col-sm-8">
+
+                                                        <select name="plaintiff_designaiton_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($designation as $item)
+                                                                <option value="{{ $item->id }}" {{(old('plaintiff_designaiton_id') == $item->id ? 'selected':'')}}>{{ $item->designation_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('plaintiff_designaiton_id')<span class="text-danger">{{$message}}</span>@enderror
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="external_council_name_id" class="col-sm-4 col-form-label">External Council</label>
+                                                <div class="col-sm-8">
+
+                                                        <select name="external_council_name_id" class="form-control select2" id="external_council_name_id">
+                                                            <option value="">Select</option>
+                                                            @foreach($external_council as $item)
+                                                                <option value="{{ $item->id }}" {{(old('external_council_name_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('external_council_name_id')<span class="text-danger">{{$message}}</span>@enderror
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="external_council_associates_id" class="col-sm-4 col-form-label">External Council Associates</label>
+                                                <div class="col-sm-8">
+                                                        <select name="external_council_associates_id" class="form-control select2" id="external_council_associates_id">
+                                                            <option value="">Select</option>
+                                                            
+                                                        </select>
+                                                        @error('external_council_associates_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="case_status_id" class="col-sm-4 col-form-label">Status of the Cases</label>
+                                                <div class="col-sm-8">
+                                                        <select name="case_status_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($case_status as $item)
+                                                                <option value="{{ $item->id }}" {{(old('case_status_id') == $item->id ? 'selected':'')}}>{{ $item->case_status_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('case_status_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="last_order_court_id" class="col-sm-4 col-form-label">Last Order of the Court</label>
+                                                <div class="col-sm-8">
+
+                                                        <select name="last_order_court_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($last_court_order as $item)
+                                                                <option value="{{ $item->id }}" {{(old('last_order_court_id') == $item->id ? 'selected':'')}}>{{ $item->court_last_order_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('last_order_court_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="accused_name" class="col-sm-4 col-form-label">Name of the Accused</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="accused_name" name="accused_name" value="{{old('accused_name')}}">
+                                                    @error('accused_name')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="next_date" class="col-sm-4 col-form-label"> Next Date </label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" class="form-control" id="next_date" name="next_date" value="{{old('next_date')}}">
+                                                    @error('next_date')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="accused_address" class="col-sm-4 col-form-label"> Address of the Accused </label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="accused_address" name="accused_address" value="{{old('accused_address')}}">
+                                                    @error('accused_address')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="accused_contact_no" class="col-sm-4 col-form-label"> Accused Contact No. </label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="accused_contact_no" name="accused_contact_no" value="{{old('accused_contact_no')}}">
+                                                    @error('accused_contact_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="next_date_fixed_id" class="col-sm-4 col-form-label"> Next date fixed for </label>
+                                                <div class="col-sm-8">
+                                                        <select name="next_date_fixed_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($next_date_reason as $item)
+                                                                <option value="{{ $item->id }}" {{(old('next_date_fixed_id') == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
+                                                            @endforeach                                                         
+                                                        </select>
+                                                        @error('next_date_fixed_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>                                                                             
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="plaintiff_name" class="col-sm-4 col-form-label">Plaintiff Name</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="plaintiff_name" name="plaintiff_name" value="{{old('plaintiff_name')}}">
+                                                    @error('plaintiff_name')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="plaintiff_designaiton_id" class="col-sm-4 col-form-label">Plaintiff Designation</label>
+                                                <div class="col-sm-8">
+
+                                                        <select name="plaintiff_designaiton_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($designation as $item)
+                                                                <option value="{{ $item->id }}" {{(old('plaintiff_designaiton_id') == $item->id ? 'selected':'')}}>{{ $item->designation_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('plaintiff_designaiton_id')<span class="text-danger">{{$message}}</span>@enderror
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="plaintiff_contact_number" class="col-sm-4 col-form-label">Plaintiff Contact No</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="plaintiff_contact_number" name="plaintiff_contact_number" value="{{old('plaintiff_contact_number')}}">
+                                                    @error('plaintiff_contact_number')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="company_id" class="col-sm-4 col-form-label"> Company </label>
+                                                <div class="col-sm-8">
+                                                        <select name="company_id" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($company as $item)
+                                                                <option value="{{ $item->id }}" {{(old('company_id') == $item->id ? 'selected':'')}}>{{ $item->company_name }}</option>
+                                                            @endforeach                                                         
+                                                        </select>
+                                                        @error('company_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="case_notes"> Document Upload </label>
+                                                <div class="input-group hdtuto control-group lst increment">
                                                     <input type="file" name="uploaded_document[]" class="myfrm form-control">
                                                     <div class="input-group-btn">
-                                                        <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> - </button>
+                                                        <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>+</button>
+                                                    </div>
+                                                </div>
+                                                <div class="clone hide">
+                                                    <div class="hdtuto control-group lst input-group" style="margin-top:10px">
+                                                        <input type="file" name="uploaded_document[]" class="myfrm form-control">
+                                                        <div class="input-group-btn">
+                                                            <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> - </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="float-right mt-4">
-                                            <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save</button>
-                                        </div>
                                     </div>
+                                    <div class="float-right mt-4">
+                                        <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save</button>
+                                    </div>
+                                 
 
                                 </div>
                             </form>

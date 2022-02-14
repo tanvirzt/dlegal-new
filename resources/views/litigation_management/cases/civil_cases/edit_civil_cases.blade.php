@@ -103,7 +103,9 @@
                                                 <div class="col-sm-8">
                                                     <select name="district_id" class="form-control" id="city">
                                                         <option value=""> Select </option>
-
+                                                            @foreach ($existing_district as $item)
+                                                                <option value="{{ $item->id }}" {{ $data->district_id == $item->id ? 'selected' : '' }}>{{ $item->district_name }}</option>
+                                                            @endforeach
                                                     </select>       
                                                     @error('district_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
@@ -216,7 +218,6 @@
                                             <div class="form-group row">
                                                 <label for="external_council_name_id" class="col-sm-4 col-form-label">External Council</label>
                                                 <div class="col-sm-8">
-
                                                         <select name="external_council_name_id" class="form-control select2">
                                                             <option value="">Select</option>
                                                             @foreach($external_council as $item)
@@ -224,7 +225,6 @@
                                                             @endforeach
                                                         </select>
                                                         @error('external_council_name_id')<span class="text-danger">{{$message}}</span>@enderror
-
                                                 </div>
                                             </div>
                                         </div>
@@ -232,7 +232,6 @@
                                             <div class="form-group row">
                                                 <label for="external_council_associates_id" class="col-sm-4 col-form-label">External Council Associates</label>
                                                 <div class="col-sm-8">
-
                                                         <select name="external_council_associates_id" class="form-control select2">
                                                             <option value="">Select</option>
                                                             @foreach($external_council as $item)
@@ -240,7 +239,6 @@
                                                             @endforeach
                                                         </select>
                                                         @error('external_council_associates_id')<span class="text-danger">{{$message}}</span>@enderror
-
                                                 </div>
                                             </div>
                                         </div>
@@ -630,11 +628,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+            
                                         <div class="float-right mt-4">
                                             <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update </button>
                                         </div>
-                                    </div>
+                                    
 
                                 </div>
                             </form>

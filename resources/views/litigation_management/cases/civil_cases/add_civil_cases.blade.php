@@ -214,7 +214,7 @@
                                                 <label for="external_council_name_id" class="col-sm-4 col-form-label">External Council</label>
                                                 <div class="col-sm-8">
 
-                                                        <select name="external_council_name_id" class="form-control select2">
+                                                        <select name="external_council_name_id" class="form-control select2" id="external_council_name_id">
                                                             <option value="">Select</option>
                                                             @foreach($external_council as $item)
                                                                 <option value="{{ $item->id }}" {{(old('external_council_name_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
@@ -229,15 +229,11 @@
                                             <div class="form-group row">
                                                 <label for="external_council_associates_id" class="col-sm-4 col-form-label">External Council Associates</label>
                                                 <div class="col-sm-8">
-
-                                                        <select name="external_council_associates_id" class="form-control select2">
+                                                        <select name="external_council_associates_id" class="form-control select2" id="external_council_associates_id">
                                                             <option value="">Select</option>
-                                                            @foreach($external_council as $item)
-                                                                <option value="{{ $item->id }}" {{(old('external_council_associates_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
-                                                            @endforeach
+                                                            
                                                         </select>
                                                         @error('external_council_associates_id')<span class="text-danger">{{$message}}</span>@enderror
-
                                                 </div>
                                             </div>
                                         </div>
@@ -627,11 +623,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
                                         <div class="float-right mt-4">
                                             <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save</button>
                                         </div>
-                                    </div>
+
 
                                 </div>
                             </form>

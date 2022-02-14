@@ -50,13 +50,13 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Case No</th>
+                                        <th>Suit Value</th>
                                         <th>Division</th>
                                         <th>Name of Court</th>
                                         <th>District</th>
                                         <th>Case Status</th>
                                         <th>Company</th>
                                         <th>Case Category Name</th>
-                                        <th>Location</th>
                                         <th>Plaintiff Name</th>
                                         <th>Defendent Name</th>
                                         <th>Status</th>
@@ -72,6 +72,9 @@
                                             </td>
                                             <td>
                                                 {{ $datum->case_no }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->name_of_suit }}
                                             </td>
                                             <td>
                                                 {{ $datum->division_name }}
@@ -90,10 +93,6 @@
                                             </td>
                                             <td>
                                                 {{ $datum->case_category_name }}
-                                            </td>
-                                            
-                                            <td>
-                                                {{ $datum->location }}
                                             </td>
                                             <td>
                                                 {{ $datum->plaintiff_name }}

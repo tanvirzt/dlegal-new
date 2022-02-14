@@ -57,8 +57,14 @@ class CivilCasesController extends Controller
 
     public function find_district($id)
     {
-        $district = SetupDistrict::where('id',$id)->get();
+        $district = SetupDistrict::where('division_id',$id)->get();
         return response()->json($district);
+    }
+    
+    public function find_associates($id)
+    {
+        $associates = SetupExternalCouncilAssociate::where('external_council_id',$id)->get();
+        return response()->json($associates);
     }
 
   public function add_civil_cases()
@@ -221,15 +227,15 @@ class CivilCasesController extends Controller
     $person_title = SetupPersonTitle::where('delete_status',0)->get();
     $next_date_reason = SetupNextDateReason::where('delete_status',0)->get();
     $case_types = SetupCaseTypes::where('delete_status',0)->get();
-   //  $next_date_reason = DB::table('setup_next_date_reasons')->get();
     $company = SetupCompany::where('delete_status',0)->get();
     $zone = SetupRegion::where('delete_status',0)->get();
     $last_court_order = SetupCourtLastOrder::where('delete_status',0)->get();
     $area = SetupArea::where('delete_status',0)->get();
     $internal_council = SetupInternalCouncil::where('delete_status',0)->get();
     $data = CivilCases::find($id);
-    // dd($data);
-    return view('litigation_management.cases.civil_cases.edit_civil_cases',compact('data','person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','property_type','case_types','company','zone','area','internal_council'));
+    $existing_district = SetupDistrict::where('division_id', $data->division_id)->get();
+    // dd($existing_district);
+    return view('litigation_management.cases.civil_cases.edit_civil_cases',compact('data','person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','property_type','case_types','company','zone','area','internal_council','existing_district'));
   }
 
   public function update_civil_cases(Request $request, $id)
