@@ -23,6 +23,7 @@ use App\Models\SetupCompany;
 use App\Models\SetupRegion;
 use App\Models\SetupArea;
 use App\Models\SetupInternalCouncil;
+use App\Models\SetupExternalCouncilAssociate;
 use DB;
 class CivilCasesController extends Controller
 {
@@ -55,15 +56,15 @@ class CivilCasesController extends Controller
 //       ]);
 //   }
 
-    public function find_district($id)
+    public function find_district(Request $request)
     {
-        $district = SetupDistrict::where('division_id',$id)->get();
+        $district = SetupDistrict::where('division_id',$request->div_id)->get();
         return response()->json($district);
     }
     
-    public function find_associates($id)
+    public function find_associates(Request $request)
     {
-        $associates = SetupExternalCouncilAssociate::where('external_council_id',$id)->get();
+        $associates = SetupExternalCouncilAssociate::where('external_council_id',$request->external_council_name_id)->get();
         return response()->json($associates);
     }
 
@@ -175,6 +176,7 @@ class CivilCasesController extends Controller
       $data->defendent_address = $request->defendent_address;
       $data->defendent_company_id = $request->defendent_company_id;
       $data->last_order_court_id = $request->last_order_court_id;
+      $data->date_of_incident = $request->date_of_incident;
       $data->date_of_incident_to = $request->date_of_incident_to;
       $data->additional_order = $request->additional_order;
       $data->first_identification_person = $request->first_identification_person;
@@ -234,8 +236,9 @@ class CivilCasesController extends Controller
     $internal_council = SetupInternalCouncil::where('delete_status',0)->get();
     $data = CivilCases::find($id);
     $existing_district = SetupDistrict::where('division_id', $data->division_id)->get();
+    $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('id', $data->external_council_associates_id)->get();
     // dd($existing_district);
-    return view('litigation_management.cases.civil_cases.edit_civil_cases',compact('data','person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','property_type','case_types','company','zone','area','internal_council','existing_district'));
+    return view('litigation_management.cases.civil_cases.edit_civil_cases',compact('data','person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','property_type','case_types','company','zone','area','internal_council','existing_district','existing_ext_coun_associates'));
   }
 
   public function update_civil_cases(Request $request, $id)
@@ -324,6 +327,7 @@ class CivilCasesController extends Controller
         $data->defendent_address = $request->defendent_address;
         $data->defendent_company_id = $request->defendent_company_id;
         $data->last_order_court_id = $request->last_order_court_id;
+        $data->date_of_incident = $request->date_of_incident;
         $data->date_of_incident_to = $request->date_of_incident_to;
         $data->additional_order = $request->additional_order;
         $data->first_identification_person = $request->first_identification_person;

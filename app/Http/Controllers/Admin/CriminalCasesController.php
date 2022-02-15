@@ -77,7 +77,7 @@ class CriminalCasesController extends Controller
 
   public function save_criminal_cases(Request $request)
   {
-    //    dd($request->all());
+       dd($request->all());
      $rules = [
         'case_no' => 'required',
         'case_category_id' => 'required',

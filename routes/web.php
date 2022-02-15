@@ -145,8 +145,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-law-section/{id}','AdminSetupController@update_law_section')->name('update-law-section');
         Route::post('delete-law-section/{id}','AdminSetupController@delete_law_section')->name('delete-law-section');
 
-       Route::post('/find-associates/{id}','CivilCasesController@find_associates')->name('find-associates');
-        Route::get('/find-district/{id}','CivilCasesController@find_district')->name('find_district');
+        Route::get('/find-associates','CivilCasesController@find_associates')->name('find-associates');
+        Route::get('/find-district','CivilCasesController@find_district')->name('find_district');
 
         Route::get('next-date-reason','AdminSetupController@next_date_reason')->name('next-date-reason');
         Route::get('add-next-date-reason','AdminSetupController@add_next_date_reason')->name('add-next-date-reason');

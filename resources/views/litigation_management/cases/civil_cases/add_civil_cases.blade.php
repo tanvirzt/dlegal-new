@@ -61,8 +61,6 @@
                                                     @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="date_of_filing" class="col-sm-4 col-form-label"> Date of Filing </label>
                                                 <div class="col-sm-8">
@@ -70,12 +68,10 @@
                                                     @error('date_of_filing')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="division_id" class="col-sm-4 col-form-label">Division</label>
                                                 <div class="col-sm-8">
-                                                        <select name="division_id" class="form-control select2" id="state">
+                                                        <select name="division_id" class="form-control select2" id="division_id" action="{{ route('find_district') }}">
                                                             <option value="">Select</option>
                                                             @foreach ($division as $item)
                                                                 <option value="{{ $item->id }}" {{(old('division_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->division_name) }}</option>
@@ -84,8 +80,6 @@
                                                         @error('division_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="case_year" class="col-sm-4 col-form-label">Case Year</label>
                                                 <div class="col-sm-8">
@@ -93,20 +87,16 @@
                                                     @error('case_year')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="district_id" class="col-sm-4 col-form-label">District</label>
                                                 <div class="col-sm-8">
-                                                    <select name="district_id" class="form-control" id="city">
+                                                    <select name="district_id" class="form-control" id="district_id">
                                                         <option value=""> Select </option>
 
                                                     </select>       
                                                     @error('district_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="ref_no" class="col-sm-4 col-form-label"> Ref No. </label>
                                                 <div class="col-sm-8">
@@ -114,9 +104,6 @@
                                                     @error('ref_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="amount" class="col-sm-4 col-form-label">Amount</label>
                                                 <div class="col-sm-8">
@@ -124,8 +111,6 @@
                                                     @error('amount')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="location" class="col-sm-4 col-form-label"> Location </label>
                                                 <div class="col-sm-8">
@@ -133,8 +118,6 @@
                                                     @error('location')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="case_status_id" class="col-sm-4 col-form-label">Case Status</label>
                                                 <div class="col-sm-8">
@@ -149,8 +132,6 @@
 
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="property_type_id" class="col-sm-4 col-form-label"> Property Type </label>
                                                 <div class="col-sm-8">
@@ -163,8 +144,6 @@
                                                         @error('property_type_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="case_category_nature_id" class="col-sm-4 col-form-label">Case Category Nature</label>
                                                 <div class="col-sm-8">
@@ -179,8 +158,6 @@
 
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="case_type_id" class="col-sm-4 col-form-label">Type of Cases</label>
                                                 <div class="col-sm-8">
@@ -194,8 +171,6 @@
                                                         @error('case_type_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="name_of_the_court_id" class="col-sm-4 col-form-label"> Name of the Court </label>
                                                 <div class="col-sm-8">
@@ -208,13 +183,11 @@
                                                         @error('name_of_the_court_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="external_council_name_id" class="col-sm-4 col-form-label">External Council</label>
                                                 <div class="col-sm-8">
 
-                                                        <select name="external_council_name_id" class="form-control select2" id="external_council_name_id">
+                                                        <select name="external_council_name_id" class="form-control select2" id="external_council_name_id" action="{{ route('find-associates') }}">
                                                             <option value="">Select</option>
                                                             @foreach($external_council as $item)
                                                                 <option value="{{ $item->id }}" {{(old('external_council_name_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
@@ -224,20 +197,16 @@
 
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="external_council_associates_id" class="col-sm-4 col-form-label">External Council Associates</label>
                                                 <div class="col-sm-8">
                                                         <select name="external_council_associates_id" class="form-control select2" id="external_council_associates_id">
                                                             <option value="">Select</option>
-                                                            
+
                                                         </select>
                                                         @error('external_council_associates_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="relevant_law_sections_id" class="col-sm-4 col-form-label"> Relevant Laws/Sections </label>
                                                 <div class="col-sm-8">
@@ -250,8 +219,6 @@
                                                         @error('relevant_law_sections_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="plaintiff_name" class="col-sm-4 col-form-label">Plaintiff Name</label>
                                                 <div class="col-sm-8">
@@ -259,8 +226,6 @@
                                                     @error('plaintiff_name')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="contact_number" class="col-sm-4 col-form-label">Contact No</label>
                                                 <div class="col-sm-8">
@@ -268,8 +233,6 @@
                                                     @error('contact_number')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="plaintiff_designaiton_id" class="col-sm-4 col-form-label">Plaintiff Designation</label>
                                                 <div class="col-sm-8">
@@ -284,8 +247,6 @@
 
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="next_date" class="col-sm-4 col-form-label"> Next Date </label>
                                                 <div class="col-sm-8">
@@ -293,8 +254,6 @@
                                                     @error('next_date')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="plaintiff_contact_number" class="col-sm-4 col-form-label">Plaintiff Contact No</label>
                                                 <div class="col-sm-8">
@@ -302,8 +261,6 @@
                                                     @error('plaintiff_contact_number')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="next_date_fixed_id" class="col-sm-4 col-form-label"> Next date fixed for </label>
                                                 <div class="col-sm-8">
@@ -316,8 +273,6 @@
                                                         @error('next_date_fixed_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="company_id" class="col-sm-4 col-form-label"> Company </label>
                                                 <div class="col-sm-8">
@@ -330,8 +285,6 @@
                                                         @error('company_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="zone_id" class="col-sm-4 col-form-label"> Zone </label>
                                                 <div class="col-sm-8">
@@ -344,8 +297,6 @@
                                                         @error('zone_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="area_id" class="col-sm-4 col-form-label"> Area </label>
                                                 <div class="col-sm-8">
@@ -358,8 +309,6 @@
                                                         @error('area_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="subsequent_plaintiff_name" class="col-sm-4 col-form-label">Subsequent Plaintiff Name</label>
                                                 <div class="col-sm-8">
@@ -367,9 +316,6 @@
                                                     @error('subsequent_plaintiff_name')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="name_of_suit" class="col-sm-4 col-form-label"> Name of the Suit </label>
                                                 <div class="col-sm-8">
@@ -386,8 +332,6 @@
                                                     @error('defendent_name')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="defendent_address" class="col-sm-4 col-form-label"> Defendent Address </label>
                                                 <div class="col-sm-8">
@@ -395,8 +339,6 @@
                                                     @error('defendent_address')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="defendent_company_id" class="col-sm-4 col-form-label"> Name of Defendent Company </label>
                                                 <div class="col-sm-8">
@@ -409,8 +351,6 @@
                                                         @error('defendent_company_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="date_of_incident" class="col-sm-4 col-form-label"> Date of incident </label>
                                                 <div class="col-sm-8">
@@ -418,8 +358,6 @@
                                                     @error('date_of_incident')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="last_order_court_id" class="col-sm-4 col-form-label">Last Order of the Court</label>
                                                 <div class="col-sm-8">
@@ -433,9 +371,6 @@
                                                         @error('last_order_court_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="date_of_incident_to" class="col-sm-4 col-form-label"> Date of Incident To </label>
                                                 <div class="col-sm-8">
@@ -443,8 +378,6 @@
                                                     @error('date_of_incident_to')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="additional_order" class="col-sm-4 col-form-label">Additional Order</label>
                                                 <div class="col-sm-8">
@@ -452,8 +385,6 @@
                                                     @error('additional_order')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="first_identification_person" class="col-sm-4 col-form-label"> Who identified the Incident First ? </label>
                                                 <div class="col-sm-8">
@@ -461,8 +392,6 @@
                                                     @error('first_identification_person')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="disbursement_date" class="col-sm-4 col-form-label">Disbursement Date</label>
                                                 <div class="col-sm-8">
@@ -470,8 +399,6 @@
                                                     @error('disbursement_date')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="date_of_identification" class="col-sm-4 col-form-label"> Date of Identification </label>
                                                 <div class="col-sm-8">
@@ -479,8 +406,6 @@
                                                     @error('date_of_identification')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="date_of_cash_receipt" class="col-sm-4 col-form-label"> Last date of Cash Receipt </label>
                                                 <div class="col-sm-8">
@@ -488,8 +413,6 @@
                                                     @error('date_of_cash_receipt')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="case_notes" class="col-sm-4 col-form-label"> Case Notes </label>
                                                 <div class="col-sm-8">
@@ -497,8 +420,6 @@
                                                     @error('case_notes')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="date_of_disposed" class="col-sm-4 col-form-label">Date of Disposed</label>
                                                 <div class="col-sm-8">
@@ -506,9 +427,6 @@
                                                     @error('date_of_disposed')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="power_of_attorny" class="col-sm-4 col-form-label"> Power of Attorny </label>
                                                 <div class="col-sm-8">
@@ -516,8 +434,6 @@
                                                     @error('power_of_attorny')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="total_legal_bill_amount_cost" class="col-sm-4 col-form-label"> Total Legal Bill Amount & Cost </label>
                                                 <div class="col-sm-8">
@@ -525,8 +441,6 @@
                                                     @error('total_legal_bill_amount_cost')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="panel_lawyer_id" class="col-sm-4 col-form-label">Panel Lawyer</label>
                                                 <div class="col-sm-8">
@@ -540,8 +454,6 @@
                                                         @error('panel_lawyer_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Assigned Lawyer</label>
                                                 <div class="col-sm-8">
@@ -554,8 +466,6 @@
                                                         @error('assigned_lawyer_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="notes" class="col-sm-4 col-form-label"> Notes </label>
                                                 <div class="col-sm-8">
@@ -563,9 +473,6 @@
                                                     @error('notes')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="other_claim" class="col-sm-4 col-form-label"> Other Claim(if any) </label>
                                                 <div class="col-sm-8">
@@ -573,8 +480,6 @@
                                                     @error('other_claim')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="summary_facts_alligation" class="col-sm-4 col-form-label"> Summary of Facts & Alligation </label>
                                                 <div class="col-sm-8">
@@ -582,9 +487,6 @@
                                                     @error('summary_facts_alligation')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="missing_documents_evidence_information" class="col-sm-4 col-form-label"> Missing Documents/Evidence/Information </label>
                                                 <div class="col-sm-8">
@@ -592,8 +494,6 @@
                                                     @error('missing_documents_evidence_information')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="comments" class="col-sm-4 col-form-label"> Comments </label>
                                                 <div class="col-sm-8">

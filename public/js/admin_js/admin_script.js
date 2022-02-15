@@ -107,52 +107,55 @@ $(document).ready(function(){
     });
 
 
-    $('#state').on('change', function() {
-        var stateID = $(this).val();
-        alert(stateID);
-        if(stateID) {
+    $('#division_id').on('change', function() {
+        var div_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if(div_id) {
             $.ajax({
-                url: '/bclc-software/public/admin/find-district/'+stateID,
+                url: route,
                 type: "GET",
-                data : {"_token":"{{ csrf_token() }}"},
+                data : {"_token":"{{ csrf_token() }}",div_id:div_id},
                 dataType: "json",
                 success:function(data) {
-                    //console.log(data);
+                    // console.log(data);
                     if(data){
-                        $('#city').empty();
-                        $('#city').focus;
-                        $('#city').append('<option value="">Select</option>');
+                        $('#district_id').empty();
+                        $('#district_id').focus;
+                        $('#district_id').append('<option value="">Select</option>');
                         $.each(data, function(key, value){
                             $('select[name="district_id"]').append('<option value="'+ value.id +'">' + value.district_name+ '</option>');
                         });
                     }else{
-                        $('#city').empty();
+                        $('#district_id').empty();
                     }
                 }
             });
         }else{
-            $('#city').empty();
+            $('#district_id').empty();
         }
     });
 
 
+
     $('#external_council_name_id').on('change', function() {
-        var stateID = $(this).val();
-        // alert(stateID);
-        if(stateID) {
+        var external_council_name_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if(external_council_name_id) {
             $.ajax({
-                url: '/bclc-software/public/admin/find-associates/'+stateID,
+                url: route,
                 type: "GET",
-                data : {"_token":"{{ csrf_token() }}"},
+                data : {"_token":"{{ csrf_token() }}",external_council_name_id:external_council_name_id},
                 dataType: "json",
                 success:function(data) {
-                    console.log(data);
+                    // console.log(data);
                     if(data){
                         $('#external_council_associates_id').empty();
                         $('#external_council_associates_id').focus;
                         $('#external_council_associates_id').append('<option value="">Select</option>');
                         $.each(data, function(key, value){
-                            $('select[name="external_council_associates_id"]').append('<option value="'+ value.id +'">' + value.first_name + '</option>');
+                            $('select[name="external_council_associates_id"]').append('<option value="'+ value.id +'">' + value.first_name +' '+ value.middle_name +' '+value.middle_name + '</option>');
                         });
                     }else{
                         $('#external_council_associates_id').empty();
@@ -163,6 +166,7 @@ $(document).ready(function(){
             $('#external_council_associates_id').empty();
         }
     });
+
 
 
 
