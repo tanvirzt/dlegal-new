@@ -291,9 +291,9 @@
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a href="#" class="nav-link">
+                          <a href="{{ route('labour-cases') }}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
-                            <p>Labour Court</p>
+                            <p>Labour Cases</p>
                           </a>
                         </li>
                         <li class="nav-item">

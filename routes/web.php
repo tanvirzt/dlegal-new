@@ -169,6 +169,13 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-criminal-cases/{id}','CriminalCasesController@update_criminal_cases')->name('update-criminal-cases');
         Route::post('delete-criminal-cases/{id}','CriminalCasesController@delete_criminal_cases')->name('delete-criminal-cases');
 
+        Route::get('labour-cases','LabourCasesController@labour_cases')->name('labour-cases');
+        Route::get('add-labour-cases','LabourCasesController@add_labour_cases')->name('add-labour-cases');
+        Route::post('save-labour-cases','LabourCasesController@save_labour_cases')->name('save-labour-cases');
+        Route::get('edit-labour-cases/{id}','LabourCasesController@edit_labour_cases')->name('edit-labour-cases');
+        Route::post('update-labour-cases/{id}','LabourCasesController@update_labour_cases')->name('update-labour-cases');
+        Route::post('delete-labour-cases/{id}','LabourCasesController@delete_labour_cases')->name('delete-labour-cases');
+
         Route::get('region','AdminSetupController@region')->name('region');
         Route::get('add-region','AdminSetupController@add_region')->name('add-region');
         Route::post('save-region','AdminSetupController@save_region')->name('save-region');

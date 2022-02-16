@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Criminal Cases</h1>
+                        <h1 class="m-0 text-dark">Labour Cases</h1>
 
                     </div><!-- /.col -->
 
@@ -20,7 +20,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('criminal-cases') }}" aria-disabled="false" role="link" tabindex="-1">Cancel</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('labour-cases') }}" aria-disabled="false" role="link" tabindex="-1">Cancel</a>
                             </li>
                         </ol>
                     </div>
@@ -45,10 +45,10 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Add Criminal Cases</h3>
+                                <h3 class="card-title" id="heading">Add Labour Cases</h3>
                             </div>
 
-                            <form action="{{ route('save-criminal-cases') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('save-labour-cases') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
 
@@ -79,7 +79,6 @@
                                                             @endforeach
                                                         </select>
                                                         @error('case_category_nature_id')<span class="text-danger">{{$message}}</span>@enderror
-
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -289,6 +288,20 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
+                                                <label for="opposite_party_name" class="col-sm-4 col-form-label"> Name of the Opposite Party </label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="opposite_party_name" name="opposite_party_name" value="{{old('opposite_party_name')}}">
+                                                    @error('opposite_party_name')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="opposite_party_address" class="col-sm-4 col-form-label"> Address of Opposite Party </label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="opposite_party_address" name="opposite_party_address" value="{{old('opposite_party_address')}}">
+                                                    @error('opposite_party_address')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
                                                 <label for="case_status_id" class="col-sm-4 col-form-label">Status of the Cases</label>
                                                 <div class="col-sm-8">
                                                         <select name="case_status_id" class="form-control select2">
@@ -300,6 +313,7 @@
                                                         @error('case_status_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
@@ -454,7 +468,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="    " class="col-sm-4 col-form-label"> Summary of Facts & Alligation </label>
+                                                <label for="summary_facts_alligation" class="col-sm-4 col-form-label"> Summary of Facts & Alligation </label>
                                                 <div class="col-sm-8">
                                                     <textarea name="summary_facts_alligation" class="form-control" rows="3" placeholder="">{{old('summary_facts_alligation')}}</textarea>
                                                     @error('summary_facts_alligation')<span class="text-danger">{{$message}}</span>@enderror
@@ -481,6 +495,7 @@
                                                     @error('comments')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">

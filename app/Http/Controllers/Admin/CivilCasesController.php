@@ -236,7 +236,7 @@ class CivilCasesController extends Controller
     $internal_council = SetupInternalCouncil::where('delete_status',0)->get();
     $data = CivilCases::find($id);
     $existing_district = SetupDistrict::where('division_id', $data->division_id)->get();
-    $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('id', $data->external_council_associates_id)->get();
+    $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_associates_id)->get();
     // dd($existing_district);
     return view('litigation_management.cases.civil_cases.edit_civil_cases',compact('data','person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','property_type','case_types','company','zone','area','internal_council','existing_district','existing_ext_coun_associates'));
   }
@@ -378,7 +378,7 @@ class CivilCasesController extends Controller
       $data->delete_status = $delete_status;
       $data->save();
 
-      session()->flash('success', 'External Council Deleted');
+      session()->flash('success', 'Civil Cases Deleted');
       return redirect()->back();
   }
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\LabourCase;
 use App\Models\CriminalCase;
 use App\Models\SetupLawSection;
 use App\Models\SetupCourt;
@@ -10,76 +12,68 @@ use App\Models\SetupDesignation;
 use App\Models\SetupExternalCouncil;
 use App\Models\SetupCaseCategory;
 use App\Models\SetupCaseStatus;
+use App\Models\SetupPropertyType;
 use App\Models\SetupPersonTitle;
 use App\Models\SetupNextDateReason;
-use App\Models\SetupCourtLastOrder;
+use App\Models\SetupCaseTypes;
+use App\Models\SetupCompany;
 use App\Models\SetupRegion;
+use App\Models\SetupCourtLastOrder;
 use App\Models\SetupArea;
+use App\Models\SetupInternalCouncil;
 use App\Models\SetupBranch;
 use App\Models\SetupProgram;
 use App\Models\SetupAlligation;
-use App\Models\CriminalCasesFile;
-use App\Models\SetupPropertyType;
-use App\Models\SetupCaseTypes;
-use App\Models\SetupCompany;
-use App\Models\SetupInternalCouncil;
-use App\Models\SetupDivision;
-use App\Models\SetupDistrict;
-use App\Models\SetupExternalCouncilAssociate;
+use App\Models\LabourCasesFile;
 use DB;
-use Illuminate\Http\Request;
-
-class CriminalCasesController extends Controller
+class LabourCasesController extends Controller
 {
     //
 
-
-  public function criminal_cases()
+  public function labour_cases()
   {
-    //   $data = CriminalCase::all();
+      // $data = LabourCase::all();
 // dd($data);
-         $data = DB::table('criminal_cases')
-                ->leftJoin('setup_divisions','criminal_cases.division_id', '=', 'setup_divisions.id')
-                ->leftJoin('setup_districts','criminal_cases.district_id','=','setup_districts.id')
-                ->leftJoin('setup_case_statuses','criminal_cases.case_status_id','=','setup_case_statuses.id')
-                ->leftJoin('setup_case_categories','criminal_cases.case_category_nature_id','=','setup_case_categories.id')
-                ->leftJoin('setup_courts','criminal_cases.name_of_the_court_id','=','setup_courts.id')
-                ->leftJoin('setup_companies','criminal_cases.company_id','=','setup_companies.id')
-                ->select('criminal_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
+         $data = DB::table('labour_cases')
+                ->leftJoin('setup_divisions','labour_cases.division_id', '=', 'setup_divisions.id')
+                ->leftJoin('setup_districts','labour_cases.district_id','=','setup_districts.id')
+                ->leftJoin('setup_case_statuses','labour_cases.case_status_id','=','setup_case_statuses.id')
+                ->leftJoin('setup_case_categories','labour_cases.case_category_nature_id','=','setup_case_categories.id')
+                ->leftJoin('setup_courts','labour_cases.name_of_the_court_id','=','setup_courts.id')
+                ->leftJoin('setup_companies','labour_cases.company_id','=','setup_companies.id')
+                ->select('labour_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
                 ->get();
         // dd($data);
 
-      return view('litigation_management.cases.criminal_cases.criminal_cases',compact('data'));
+      return view('litigation_management.cases.labour_cases.labour_cases',compact('data'));
   }
 
-  public function add_criminal_cases()
+  public function add_labour_cases()
   {
 
-    $law_section = SetupLawSection::where('delete_status',0)->get();
-    $court = SetupCourt::where('delete_status',0)->get();
-    $designation = SetupDesignation::where('delete_status',0)->get();
-    $external_council = SetupExternalCouncil::where('delete_status',0)->get();
-    $case_category = SetupCaseCategory::where('delete_status',0)->get();
-    $case_status = SetupCaseStatus::where('delete_status',0)->get();
-    $property_type = SetupPropertyType::where('delete_status',0)->get();
-    $division = DB::table("setup_divisions")->get();
-    $person_title = SetupPersonTitle::where('delete_status',0)->get();
-    $next_date_reason = SetupNextDateReason::where('delete_status',0)->get();
-    $case_types = SetupCaseTypes::where('delete_status',0)->get();
-   //  $next_date_reason = DB::table('setup_next_date_reasons')->get();
-    $company = SetupCompany::where('delete_status',0)->get();
-    $zone = SetupRegion::where('delete_status',0)->get();
-    $last_court_order = SetupCourtLastOrder::where('delete_status',0)->get();
-    $area = SetupArea::where('delete_status',0)->get();
-    $internal_council = SetupInternalCouncil::where('delete_status',0)->get();
-
+     $law_section = SetupLawSection::where('delete_status',0)->get();
+     $court = SetupCourt::where('delete_status',0)->get();
+     $designation = SetupDesignation::where('delete_status',0)->get();
+     $external_council = SetupExternalCouncil::where('delete_status',0)->get();
+     $case_category = SetupCaseCategory::where('delete_status',0)->get();
+     $case_status = SetupCaseStatus::where('delete_status',0)->get();
+     $property_type = SetupPropertyType::where('delete_status',0)->get();
+     $division = DB::table("setup_divisions")->get();
+     $person_title = SetupPersonTitle::where('delete_status',0)->get();
+     $next_date_reason = SetupNextDateReason::where('delete_status',0)->get();
+     $case_types = SetupCaseTypes::where('delete_status',0)->get();
+     $company = SetupCompany::where('delete_status',0)->get();
+     $zone = SetupRegion::where('delete_status',0)->get();
+     $last_court_order = SetupCourtLastOrder::where('delete_status',0)->get();
+     $area = SetupArea::where('delete_status',0)->get();
+     $internal_council = SetupInternalCouncil::where('delete_status',0)->get();
      $branch = SetupBranch::where('delete_status',0)->get();
      $program = SetupProgram::where('delete_status',0)->get();
      $alligation = SetupAlligation::where('delete_status',0)->get();
-     return view('litigation_management.cases.criminal_cases.add_criminal_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','alligation','property_type','case_types','company','internal_council'));
+     return view('litigation_management.cases.labour_cases.add_labour_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','alligation','property_type','case_types','company','internal_council'));
   }
 
-  public function save_criminal_cases(Request $request)
+  public function save_labour_cases(Request $request)
   {
     //    dd($request->all());
        $rules = [
@@ -121,7 +115,7 @@ class CriminalCasesController extends Controller
 
     $this->validate($request, $rules, $validMsg);
 
-     $data = new CriminalCase();
+     $data = new LabourCase();
      $data->case_no = $request->case_no;
      $data->date_of_case_received = $request->date_of_case_received;
      $data->case_category_nature_id = $request->case_category_nature_id;
@@ -145,6 +139,8 @@ class CriminalCasesController extends Controller
      $data->complainant_designation_id = $request->complainant_designation_id;
      $data->external_council_name_id = $request->external_council_name_id;
      $data->external_council_associates_id = $request->external_council_associates_id;
+     $data->opposite_party_name = $request->opposite_party_name;
+     $data->opposite_party_address = $request->opposite_party_address;
      $data->case_status_id = $request->case_status_id;
      $data->last_order_court_id = $request->last_order_court_id;
      $data->accused_name = $request->accused_name;
@@ -174,21 +170,21 @@ class CriminalCasesController extends Controller
          {
              $original_name = $file->getClientOriginalName();
              $name = time().rand(1,100).$original_name;
-             $file->move(public_path('files/criminal_cases'), $name);
+             $file->move(public_path('files/labour_cases'), $name);
 
-             $file= new CriminalCasesFile();
+             $file= new LabourCasesFile();
              $file->case_id = $data->id;
              $file->uploaded_document = $name;
              $file->save();
          }
      }
 
-     session()->flash('success','Criminal Cases Added Successfully');
+     session()->flash('success','Labour Cases Added Successfully');
      return redirect()->back();
 
   }
 
-  public function edit_criminal_cases($id)
+  public function edit_labour_cases($id)
   {
     $law_section = SetupLawSection::where('delete_status',0)->get();
     $court = SetupCourt::where('delete_status',0)->get();
@@ -209,14 +205,14 @@ class CriminalCasesController extends Controller
     $branch = SetupBranch::where('delete_status',0)->get();
     $program = SetupProgram::where('delete_status',0)->get();
     $alligation = SetupAlligation::where('delete_status',0)->get();
-    $data = CriminalCase::find($id);
+    $data = LabourCase::find($id);
     $existing_district = SetupDistrict::where('division_id',$data->division_id)->get();
     $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_name_id)->get();
 
-    return view('litigation_management.cases.criminal_cases.edit_criminal_cases',compact('data','existing_district','person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','alligation','property_type','case_types','company','internal_council','existing_ext_coun_associates'));
+    return view('litigation_management.cases.labour_cases.edit_labour_cases',compact('data','existing_district','person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','alligation','property_type','case_types','company','internal_council','existing_ext_coun_associates'));
   }
 
-  public function update_criminal_cases(Request $request, $id)
+  public function update_labour_cases(Request $request, $id)
     {
         $rules = [
             'case_no' => 'required',
@@ -258,7 +254,7 @@ class CriminalCasesController extends Controller
         $this->validate($request, $rules, $validMsg);
 
     
-          $data = CriminalCase::find($id);
+          $data = LabourCase::find($id);
           $data->case_no = $request->case_no;
         $data->date_of_case_received = $request->date_of_case_received;
         $data->case_category_nature_id = $request->case_category_nature_id;
@@ -313,21 +309,21 @@ class CriminalCasesController extends Controller
                   $name = time().rand(1,100).$original_name;
                   $file->move(public_path('files/civil_cases'), $name);
     
-                  $file= new CriminalCasesFile();
+                  $file= new LabourCasesFile();
                   $file->case_id = $data->id;
                   $file->uploaded_document = $name;
                   $file->save();
               }
           }
     
-          session()->flash('success','Criminal Cases Updated Successfully');
+          session()->flash('success','Labour Cases Updated Successfully');
           return redirect()->back();
     
     }
 
-  public function delete_criminal_cases($id)
+  public function delete_labour_cases($id)
   {
-      $data = CriminalCase::find($id);
+      $data = LabourCase::find($id);
       if ($data['delete_status'] == 1){
           $delete_status = 0;
       }else{
@@ -336,7 +332,7 @@ class CriminalCasesController extends Controller
       $data->delete_status = $delete_status;
       $data->save();
 
-      session()->flash('success', 'Criminal Cases Deleted');
+      session()->flash('success', 'Labour Cases Deleted');
       return redirect()->back();
   }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCriminalCasesTable extends Migration
+class CreateLabourCasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCriminalCasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('criminal_cases', function (Blueprint $table) {
+        Schema::create('labour_cases', function (Blueprint $table) {
             $table->id();
             $table->string('case_no')->nullable();
             $table->string('date_of_case_received')->nullable();
@@ -38,6 +38,8 @@ class CreateCriminalCasesTable extends Migration
             $table->integer('complainant_designation_id')->nullable();
             $table->integer('external_council_name_id')->nullable();
             $table->integer('external_council_associates_id')->nullable();
+            $table->string('opposite_party_name')->nullable();
+            $table->string('opposite_party_address')->nullable();
             $table->integer('case_status_id')->nullable();
             $table->integer('last_order_court_id')->nullable();
             $table->string('accused_name')->nullable();
@@ -73,6 +75,6 @@ class CreateCriminalCasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('criminal_cases');
+        Schema::dropIfExists('labour_cases');
     }
 }

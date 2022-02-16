@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Criminal Cases </h1>
+                        <h1> Labour Cases </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Criminal Cases </li>
+                            <li class="breadcrumb-item active"> Labour Cases </li>
                         </ol>
                     </div>
                 </div>
@@ -38,8 +38,8 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-criminal-cases') }}"><button class="btn btn-sm
-                                    btn-success"><i class="fas fa-plus"></i> Add Criminal Cases </button></a>
+                                    <a href="{{ route('add-labour-cases') }}"><button class="btn btn-sm
+                                    btn-success"><i class="fas fa-plus"></i> Add Labour Cases </button></a>
                                 </div>
 
                             </div>
@@ -105,10 +105,10 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('edit-criminal-cases',$datum->id) }}"><button class="badge badge-info btn-sm"
+                                                <a href="{{ route('edit-labour-cases',$datum->id) }}"><button class="badge badge-info btn-sm"
                                                     >Edit</button></a>
                                                 <span class="badge badge-danger btn-sm">
-                                                <form method="POST" action="{{ route('delete-criminal-cases',$datum->id) }}">
+                                                <form method="POST" action="{{ route('delete-labour-cases',$datum->id) }}">
                                                     @csrf
                                                         <input type="submit" class="delete-user"
                                                                value="Delete">
