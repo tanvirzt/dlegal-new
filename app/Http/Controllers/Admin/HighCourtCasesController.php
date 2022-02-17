@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\LabourCase;
+
+use App\Models\HighCourtCase;
 use App\Models\CriminalCase;
 use App\Models\SetupLawSection;
 use App\Models\SetupCourt;
@@ -24,33 +25,34 @@ use App\Models\SetupInternalCouncil;
 use App\Models\SetupBranch;
 use App\Models\SetupProgram;
 use App\Models\SetupAlligation;
-use App\Models\LabourCasesFile;
+use App\Models\HighCourtCasesFile;
 use App\Models\SetupDistrict;
 use App\Models\SetupExternalCouncilAssociate;
 use DB;
-class LabourCasesController extends Controller
-{
-    //
 
-  public function labour_cases()
-  {
-      // $data = LabourCase::all();
+
+class HighCourtCasesController extends Controller
+{
+    public function high_court_cases()
+  {  
+    //   dd('asdfsadf');
+    //   $data = HighCourtCase::all();
 // dd($data);
-         $data = DB::table('labour_cases')
-                ->leftJoin('setup_divisions','labour_cases.division_id', '=', 'setup_divisions.id')
-                ->leftJoin('setup_districts','labour_cases.district_id','=','setup_districts.id')
-                ->leftJoin('setup_case_statuses','labour_cases.case_status_id','=','setup_case_statuses.id')
-                ->leftJoin('setup_case_categories','labour_cases.case_category_nature_id','=','setup_case_categories.id')
-                ->leftJoin('setup_courts','labour_cases.name_of_the_court_id','=','setup_courts.id')
-                ->leftJoin('setup_companies','labour_cases.company_id','=','setup_companies.id')
-                ->select('labour_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
+         $data = DB::table('high_court_cases')
+                ->leftJoin('setup_divisions','high_court_cases.division_id', '=', 'setup_divisions.id')
+                ->leftJoin('setup_districts','high_court_cases.district_id','=','setup_districts.id')
+                ->leftJoin('setup_case_statuses','high_court_cases.case_status_id','=','setup_case_statuses.id')
+                ->leftJoin('setup_case_categories','high_court_cases.case_category_nature_id','=','setup_case_categories.id')
+                ->leftJoin('setup_courts','high_court_cases.name_of_the_court_id','=','setup_courts.id')
+                ->leftJoin('setup_companies','high_court_cases.company_id','=','setup_companies.id')
+                ->select('high_court_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
                 ->get();
         // dd($data);
 
-      return view('litigation_management.cases.labour_cases.labour_cases',compact('data'));
+      return view('litigation_management.cases.high_court_cases.high_court_cases',compact('data'));
   }
 
-  public function add_labour_cases()
+  public function add_high_court_cases()
   {
 
      $law_section = SetupLawSection::where('delete_status',0)->get();
@@ -72,10 +74,10 @@ class LabourCasesController extends Controller
      $branch = SetupBranch::where('delete_status',0)->get();
      $program = SetupProgram::where('delete_status',0)->get();
      $alligation = SetupAlligation::where('delete_status',0)->get();
-     return view('litigation_management.cases.labour_cases.add_labour_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','alligation','property_type','case_types','company','internal_council'));
+     return view('litigation_management.cases.high_court_cases.add_high_court_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','alligation','property_type','case_types','company','internal_council'));
   }
 
-  public function save_labour_cases(Request $request)
+  public function save_high_court_cases(Request $request)
   {
     //    dd($request->all());
        $rules = [
@@ -117,7 +119,7 @@ class LabourCasesController extends Controller
 
     $this->validate($request, $rules, $validMsg);
 
-     $data = new LabourCase();
+     $data = new HighCourtCase();
      $data->case_no = $request->case_no;
      $data->date_of_case_received = $request->date_of_case_received;
      $data->case_category_nature_id = $request->case_category_nature_id;
@@ -172,21 +174,21 @@ class LabourCasesController extends Controller
          {
              $original_name = $file->getClientOriginalName();
              $name = time().rand(1,100).$original_name;
-             $file->move(public_path('files/labour_cases'), $name);
+             $file->move(public_path('files/high_court_cases'), $name);
 
-             $file= new LabourCasesFile();
+             $file= new HighCourtCasesFile();
              $file->case_id = $data->id;
              $file->uploaded_document = $name;
              $file->save();
          }
      }
 
-     session()->flash('success','Labour Cases Added Successfully');
+     session()->flash('success','High Court Cases Added Successfully');
      return redirect()->back();
 
   }
 
-  public function edit_labour_cases($id)
+  public function edit_high_court_cases($id)
   {
     $law_section = SetupLawSection::where('delete_status',0)->get();
     $court = SetupCourt::where('delete_status',0)->get();
@@ -207,14 +209,14 @@ class LabourCasesController extends Controller
     $branch = SetupBranch::where('delete_status',0)->get();
     $program = SetupProgram::where('delete_status',0)->get();
     $alligation = SetupAlligation::where('delete_status',0)->get();
-    $data = LabourCase::find($id);
+    $data = HighCourtCase::find($id);
     $existing_district = SetupDistrict::where('division_id',$data->division_id)->get();
     $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_name_id)->get();
 
-    return view('litigation_management.cases.labour_cases.edit_labour_cases',compact('data','existing_district','person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','alligation','property_type','case_types','company','internal_council','existing_ext_coun_associates'));
+    return view('litigation_management.cases.high_court_cases.edit_high_court_cases',compact('data','existing_district','person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','alligation','property_type','case_types','company','internal_council','existing_ext_coun_associates'));
   }
 
-  public function update_labour_cases(Request $request, $id)
+  public function update_high_court_cases(Request $request, $id)
     {
         //    dd($request->all());
        $rules = [
@@ -256,7 +258,7 @@ class LabourCasesController extends Controller
 
     $this->validate($request, $rules, $validMsg);
 
-     $data = LabourCase::find($id);
+     $data = HighCourtCase::find($id);
      $data->case_no = $request->case_no;
      $data->date_of_case_received = $request->date_of_case_received;
      $data->case_category_nature_id = $request->case_category_nature_id;
@@ -311,23 +313,23 @@ class LabourCasesController extends Controller
               {
                   $original_name = $file->getClientOriginalName();
                   $name = time().rand(1,100).$original_name;
-                  $file->move(public_path('files/civil_cases'), $name);
+                  $file->move(public_path('files/high_court_cases'), $name);
     
-                  $file= new LabourCasesFile();
+                  $file= new HighCourtCasesFile();
                   $file->case_id = $data->id;
                   $file->uploaded_document = $name;
                   $file->save();
               }
           }
     
-          session()->flash('success','Labour Cases Updated Successfully');
+          session()->flash('success','High Court Cases Updated Successfully');
           return redirect()->back();
     
     }
 
-  public function delete_labour_cases($id)
+  public function delete_high_court_cases($id)
   {
-      $data = LabourCase::find($id);
+      $data = HighCourtCase::find($id);
       if ($data['delete_status'] == 1){
           $delete_status = 0;
       }else{
@@ -336,11 +338,8 @@ class LabourCasesController extends Controller
       $data->delete_status = $delete_status;
       $data->save();
 
-      session()->flash('success', 'Labour Cases Deleted');
+      session()->flash('success', 'High Court Cases Deleted');
       return redirect()->back();
   }
-
-
-
 
 }

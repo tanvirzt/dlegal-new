@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Labour Cases</h1>
+                        <h1 class="m-0 text-dark">High Court of Bangladesh</h1>
 
                     </div><!-- /.col -->
 
@@ -20,7 +20,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('labour-cases') }}" aria-disabled="false" role="link" tabindex="-1">Cancel</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('high-court-cases') }}" aria-disabled="false" role="link" tabindex="-1">Cancel</a>
                             </li>
                         </ol>
                     </div>
@@ -45,10 +45,10 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Edit Labour Cases</h3>
+                                <h3 class="card-title" id="heading">Edit High Court of Bangladesh</h3>
                             </div>
 
-                            <form action="{{ route('update-labour-cases', $data->id ) }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('update-high-court-cases', $data->id ) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
 

@@ -447,7 +447,7 @@
 
                                                         <select name="panel_lawyer_id" class="form-control select2">
                                                             <option value="">Select</option>
-                                                            @foreach($internal_council as $item)
+                                                            @foreach($external_council as $item)
                                                                 <option value="{{ $item->id }}" {{(old('panel_lawyer_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
                                                             @endforeach
                                                         </select>
@@ -459,7 +459,7 @@
                                                 <div class="col-sm-8">
                                                         <select name="assigned_lawyer_id" class="form-control select2">
                                                             <option value="">Select</option>
-                                                            @foreach($external_council as $item)
+                                                            @foreach($internal_council as $item)
                                                                 <option value="{{ $item->id }}" {{(old('assigned_lawyer_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
                                                             @endforeach
                                                         </select>

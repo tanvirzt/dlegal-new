@@ -176,6 +176,34 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-labour-cases/{id}','LabourCasesController@update_labour_cases')->name('update-labour-cases');
         Route::post('delete-labour-cases/{id}','LabourCasesController@delete_labour_cases')->name('delete-labour-cases');
 
+        Route::get('quassi-judicial-cases','QuassiJudicialCasesController@quassi_judicial_cases')->name('quassi-judicial-cases');
+        Route::get('add-quassi-judicial-cases','QuassiJudicialCasesController@add_quassi_judicial_cases')->name('add-quassi-judicial-cases');
+        Route::post('save-quassi-judicial-cases','QuassiJudicialCasesController@save_quassi_judicial_cases')->name('save-quassi-judicial-cases');
+        Route::get('edit-quassi-judicial-cases/{id}','QuassiJudicialCasesController@edit_quassi_judicial_cases')->name('edit-quassi-judicial-cases');
+        Route::post('update-quassi-judicial-cases/{id}','QuassiJudicialCasesController@update_quassi_judicial_cases')->name('update-quassi-judicial-cases');
+        Route::post('delete-quassi-judicial-cases/{id}','QuassiJudicialCasesController@delete_quassi_judicial_cases')->name('delete-quassi-judicial-cases');
+
+        Route::get('supreme-court-cases','SupremeCourtCasesController@supreme_court_cases')->name('supreme-court-cases');
+        Route::get('add-supreme-court-cases','SupremeCourtCasesController@add_supreme_court_cases')->name('add-supreme-court-cases');
+        Route::post('save-supreme-court-cases','SupremeCourtCasesController@save_supreme_court_cases')->name('save-supreme-court-cases');
+        Route::get('edit-supreme-court-cases/{id}','SupremeCourtCasesController@edit_supreme_court_cases')->name('edit-supreme-court-cases');
+        Route::post('update-supreme-court-cases/{id}','SupremeCourtCasesController@update_supreme_court_cases')->name('update-supreme-court-cases');
+        Route::post('delete-supreme-court-cases/{id}','SupremeCourtCasesController@delete_supreme_court_cases')->name('delete-supreme-court-cases');
+
+        Route::get('high-court-cases','HighCourtCasesController@high_court_cases')->name('high-court-cases');
+        Route::get('add-high-court-cases','HighCourtCasesController@add_high_court_cases')->name('add-high-court-cases');
+        Route::post('save-high-court-cases','HighCourtCasesController@save_high_court_cases')->name('save-high-court-cases');
+        Route::get('edit-high-court-cases/{id}','HighCourtCasesController@edit_high_court_cases')->name('edit-high-court-cases');
+        Route::post('update-high-court-cases/{id}','HighCourtCasesController@update_high_court_cases')->name('update-high-court-cases');
+        Route::post('delete-high-court-cases/{id}','HighCourtCasesController@delete_high_court_cases')->name('delete-high-court-cases');
+
+        Route::get('appellate-court-cases','AppellateCourtCasesController@appellate_court_cases')->name('appellate-court-cases');
+        Route::get('add-appellate-court-cases','AppellateCourtCasesController@add_appellate_court_cases')->name('add-appellate-court-cases');
+        Route::post('save-appellate-court-cases','AppellateCourtCasesController@save_appellate_court_cases')->name('save-appellate-court-cases');
+        Route::get('edit-appellate-court-cases/{id}','AppellateCourtCasesController@edit_appellate_court_cases')->name('edit-appellate-court-cases');
+        Route::post('update-appellate-court-cases/{id}','AppellateCourtCasesController@update_appellate_court_cases')->name('update-appellate-court-cases');
+        Route::post('delete-appellate-court-cases/{id}','AppellateCourtCasesController@delete_appellate_court_cases')->name('delete-appellate-court-cases');
+
         Route::get('region','AdminSetupController@region')->name('region');
         Route::get('add-region','AdminSetupController@add_region')->name('add-region');
         Route::post('save-region','AdminSetupController@save_region')->name('save-region');

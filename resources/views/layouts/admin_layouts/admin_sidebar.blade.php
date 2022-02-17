@@ -297,25 +297,25 @@
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a href="#" class="nav-link">
+                          <a href="{{ route('quassi-judicial-cases') }}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
-                            <p>Special / Quassi Judicial Court </p>
+                            <p>Special / Quassi-Judicial Cases </p>
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a href="#" class="nav-link">
+                          <a href="{{ route('supreme-court-cases') }}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>Supreme Court of Bangladesh</p>
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a href="#" class="nav-link">
+                          <a href="{{ route('high-court-cases') }}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
-                            <p>High Court of Division</p>
+                            <p>High Court Division</p>
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a href="#" class="nav-link">
+                          <a href="{{ route('appellate-court-cases') }}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>Appellate Court Division</p>
                           </a>
