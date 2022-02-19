@@ -49,12 +49,15 @@
                         <div class="">
                             <div class="card-header">
                                 <h3 class="card-title" id="heading">Edit Civil Cases</h3>
+                                <div class="float-right">
+                                    <a class="btn btn-success text-uppercase" href="{{ route('view-civil-cases', $data->id ) }}"> Preview </a>
+                                </div>
                             </div>
 
                             <form action="{{ route('update-civil-cases', $data->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
-
+                                
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">

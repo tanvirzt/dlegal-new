@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Civil Cases </h1>
+                        <h1> Appellate Court of Bangladesh </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Civil Cases </li>
+                            <li class="breadcrumb-item active"> Appellate Court of Bangladesh </li>
                         </ol>
                     </div>
                 </div>
@@ -38,8 +38,8 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-civil-cases') }}"><button class="btn btn-sm
-                                    btn-success"><i class="fas fa-plus"></i> Add Civil Cases </button></a>
+                                    <a href="{{ route('add-appellate-court-cases') }}"><button class="btn btn-sm
+                                    btn-success"><i class="fas fa-plus"></i> Add Appellate Court of Bangladesh </button></a>
                                 </div>
 
                             </div>
@@ -50,7 +50,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Case No</th>
-                                        <th>Suit Value</th>
+                                        <th>Subsequent Case No</th>
                                         <th>Division</th>
                                         <th>Name of Court</th>
                                         <th>District</th>
@@ -58,7 +58,6 @@
                                         <th>Company</th>
                                         <th>Case Category Name</th>
                                         <th>Plaintiff Name</th>
-                                        <th>Defendent Name</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -71,10 +70,10 @@
                                                 {{ $datum->id }}
                                             </td>
                                             <td>
-                                                 <a href="{{ route('view-civil-cases', $datum->id ) }}"> {{ $datum->case_no }} </a>
+                                                {{ $datum->case_no }}
                                             </td>
                                             <td>
-                                                {{ $datum->name_of_suit }}
+                                                {{ $datum->subsequent_case_no }}
                                             </td>
                                             <td>
                                                 {{ $datum->division_name }}
@@ -97,9 +96,7 @@
                                             <td>
                                                 {{ $datum->plaintiff_name }}
                                             </td>
-                                            <td>
-                                                {{ $datum->defendent_name }}
-                                            </td>
+                                            
                                             <td>
                                                 @if($datum->delete_status == 0)
                                                     Active
@@ -108,12 +105,10 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('view-civil-cases',$datum->id) }}"><button class="badge badge-primary btn-sm"
-                                                    >Preview</button></a>
-                                                <a href="{{ route('edit-civil-cases',$datum->id) }}"><button class="badge badge-info btn-sm"
+                                                <a href="{{ route('edit-appellate-court-cases',$datum->id) }}"><button class="badge badge-info btn-sm"
                                                     >Edit</button></a>
                                                 <span class="badge badge-danger btn-sm">
-                                                <form method="POST" action="{{ route('delete-civil-cases',$datum->id) }}">
+                                                <form method="POST" action="{{ route('delete-appellate-court-cases',$datum->id) }}">
                                                     @csrf
                                                         <input type="submit" class="delete-user"
                                                                value="Delete">

@@ -123,7 +123,11 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('edit-civil-cases/{id}','CivilCasesController@edit_civil_cases')->name('edit-civil-cases');
         Route::post('update-civil-cases/{id}','CivilCasesController@update_civil_cases')->name('update-civil-cases');
         Route::post('delete-civil-cases/{id}','CivilCasesController@delete_civil_cases')->name('delete-civil-cases');
-
+        Route::get('view-civil-cases/{id}','CivilCasesController@view_civil_cases')->name('view-civil-cases');
+        Route::post('delete-civil-cases-files/{id}','CivilCasesController@delete_civil_cases_files')->name('delete-civil-cases-files');
+        Route::get('download-civil-cases-files/{id}','CivilCasesController@download_civil_cases_file')->name('download-civil-cases-files');
+        
+        
         Route::get('division','AdminSetupController@division')->name('division');
         Route::get('add-division','AdminSetupController@add_division')->name('add-division');
         Route::post('save-division','AdminSetupController@save_division')->name('save-division');

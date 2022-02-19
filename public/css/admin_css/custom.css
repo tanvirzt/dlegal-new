@@ -166,3 +166,10 @@ div#v-pills-tab a.nav-link.active::before{
 }
 
 
+
+/* bclc design */
+
+.table_text_center{
+    text-align:center; 
+    width: 50%;
+}
