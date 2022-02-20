@@ -4,6 +4,10 @@
 <style>
     th {
         text-align: right;
+        width:25%;
+    }
+    td{
+        width:25%;
     }
 </style>
 
@@ -53,8 +57,185 @@
                         <div class="">
                             <div class="card-header">
                                 <h3 class="card-title" id="heading">Civil Cases Details</h3>
+                                
+                                
                             </div>
                                 <div class="card-body">
+                                    <table class="table table-hover table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th>Case No.</th>
+                                                <td>{{ $data->case_no }}</td>
+                                                <th>Zone</th>
+                                                <td>{{ $data->date_of_filing }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Date of Filing</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Area</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Division</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Subsequent Plaintiff Name</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>>Case Year</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Name of the Suit</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>District</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Defendent Name</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ref No.</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Defendent Address</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Amount</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Name of Defendent Company</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Location</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Date of incident</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Case Status</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Last Order of the Court</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Property Type</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Date of Incident To</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Case Category Nature</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Additional Order</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Type of Cases</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Date of Incident To</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Name of the Court</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Additional Order</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>External Council</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Who identified the Incident First ?</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>External Council Associates</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Disbursement Date</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Relevant Laws/Sections</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Date of Identification</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Plaintiff Name</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Last date of Cash Receipt</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Contact No.</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Case Notes</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Plaintiff Designation</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Date of Disposed</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Next Date</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Power of Attorny</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Plaintiff Contact No</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Total Legal Bill Amount & Cost</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Next date fixed for</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Total Legal Bill Amount & Cost</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Company</th>
+                                                <td>{{ $data->division_name }}</td>
+                                                <th>Total Legal Bill Amount & Cost</th>
+                                                <td>{{ $data->case_year }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                         <table class="table table-bordered table-responsive table-hover">
                                             <tr>
                                                 <th> Case No. </th>
@@ -224,9 +405,10 @@
                                                 <th>Total Legal Bill Amount & Cost</th>
                                                 <td>{{ $data->total_legal_bill_amount_cost }}</td>
                                             </tr>
+                                            
                                             <tr>
                                                 <th>Panel Lawyer</th>
-                                                <td>{{ $data->pl_first_name }} {{ $data->pl_middle_name }} {{ $data->pl_last_name }}</td>
+                                                <td>{{ $data->pl_first_name }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Assigned Lawyer</th>
@@ -248,8 +430,13 @@
                                                 <th> Missing Documents/Evidence/Information </th>
                                                 <td>{{ $data->missing_documents_evidence_information }}</td>
                                             </tr>
-                                    </table>                    
+                                        </table>                    
                                 </div>
+
+
+
+
+                                
                                 <div class="card-header">
                                     <h3 class="card-title" id="heading">Civil Cases Files</h3>
                                 </div>
@@ -282,22 +469,12 @@
                                         @endforeach
                                         </tbody>
                                     </table>
-
-</div>
-                                
+                            </div>
                         </div>
                     </div>
 
                 </div>
         </section>
-
-
-
-
-
-        
-        <!-- /.content -->
-
     </div>
     <!-- /.content-wrapper -->
 

@@ -48,7 +48,6 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Case No</th>
                                         <th>Suit Value</th>
                                         <th>Division</th>
@@ -60,16 +59,12 @@
                                         <th>Plaintiff Name</th>
                                         <th>Defendent Name</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th width="20%">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($data as $datum)
-
                                         <tr>
-                                            <td>
-                                                {{ $datum->id }}
-                                            </td>
                                             <td>
                                                  <a href="{{ route('view-civil-cases', $datum->id ) }}"> {{ $datum->case_no }} </a>
                                             </td>

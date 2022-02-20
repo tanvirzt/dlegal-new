@@ -48,7 +48,6 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Case No</th>
                                         <th>Subsequent Case No</th>
                                         <th>Division</th>
@@ -59,7 +58,7 @@
                                         <th>Case Category Name</th>
                                         <th>Plaintiff Name</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th width="20%">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -67,10 +66,7 @@
 
                                         <tr>
                                             <td>
-                                                {{ $datum->id }}
-                                            </td>
-                                            <td>
-                                                {{ $datum->case_no }}
+                                               <a href="{{ route('view-labour-cases', $datum->id) }}"> {{ $datum->case_no }} </a>
                                             </td>
                                             <td>
                                                 {{ $datum->subsequent_case_no }}
