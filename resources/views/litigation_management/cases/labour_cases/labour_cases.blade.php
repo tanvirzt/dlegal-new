@@ -101,7 +101,9 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('edit-labour-cases',$datum->id) }}"><button class="badge badge-info btn-sm"
+                                            <a href="{{ route('view-labour-cases',$datum->id) }}"><button class="badge badge-primary btn-sm"
+                                                    >Preview</button></a>    
+                                            <a href="{{ route('edit-labour-cases',$datum->id) }}"><button class="badge badge-info btn-sm"
                                                     >Edit</button></a>
                                                 <span class="badge badge-danger btn-sm">
                                                 <form method="POST" action="{{ route('delete-labour-cases',$datum->id) }}">

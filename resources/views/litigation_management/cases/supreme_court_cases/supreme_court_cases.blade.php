@@ -66,7 +66,7 @@
 
                                         <tr>
                                             <td>
-                                                {{ $datum->case_no }}
+                                                <a href="{{ route('view-supreme-court-cases', $datum->id) }}">{{ $datum->case_no }} </a>
                                             </td>
                                             <td>
                                                 {{ $datum->subsequent_case_no }}

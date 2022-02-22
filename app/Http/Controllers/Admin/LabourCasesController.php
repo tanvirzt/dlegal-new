@@ -311,7 +311,7 @@ class LabourCasesController extends Controller
               {
                   $original_name = $file->getClientOriginalName();
                   $name = time().rand(1,100).$original_name;
-                  $file->move(public_path('files/civil_cases'), $name);
+                  $file->move(public_path('files/labour_cases'), $name);
     
                   $file= new LabourCasesFile();
                   $file->case_id = $data->id;
@@ -375,5 +375,11 @@ class LabourCasesController extends Controller
       
   }
 
+  public function download_labour_cases_file($id)
+  {
+      $files = LabourCasesFile::where('id',$id)->firstOrFail();
+      $file_path = public_path('/files/labour_cases/'.$files->uploaded_document);
+      return response()->download($file_path);
+  }
 
 }

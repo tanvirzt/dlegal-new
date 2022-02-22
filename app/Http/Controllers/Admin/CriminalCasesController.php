@@ -368,25 +368,10 @@ class CriminalCasesController extends Controller
               ->select('criminal_cases.*','setup_case_categories.case_category_name','setup_case_types.case_types_name','setup_regions.region_name','setup_areas.area_name','setup_branches.branch_name','setup_programs.program_name','setup_divisions.division_name','setup_districts.district_name','setup_law_sections.law_section_name','setup_alligations.alligation_name','setup_designations.designation_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_external_council_associates.first_name as as_first_name','setup_external_council_associates.middle_name as as_middle_name','setup_external_council_associates.middle_name as as_last_name','accused_company.company_name as accused_company_name','setup_case_statuses.case_status_name','setup_court_last_orders.court_last_order_name','setup_companies.company_name','setup_next_date_reasons.next_date_reason_name','plaintiff_designations.designation_name as plaintiff_designation_name','panel_lawyer.first_name as pl_first_name','panel_lawyer.middle_name as pl_middle_name','panel_lawyer.last_name as pl_last_name','assigned_lawyer.first_name as assigned_first_name','assigned_lawyer.middle_name as assigned_middle_name','assigned_lawyer.last_name as assigned_last_name','setup_courts.court_name')
               ->where('criminal_cases.id',$id)
               ->first();
-      // dd($data);
+    //   dd($data);
       $criminal_cases_files = CriminalCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
-      // dd($criminal_cases_files);
+    //   dd($criminal_cases_files);
       return view('litigation_management.cases.criminal_cases.view_criminal_cases',compact('data','criminal_cases_files'));
-  }
-
-  public function delete_criminal_cases_files($id)
-  {
-      $data = CriminalCasesFile::find($id);
-      if ($data['delete_status'] == 1){
-          $delete_status = 0;
-      }else{
-          $delete_status = 1;
-      }
-      $data->delete_status = $delete_status;
-      $data->save();
-
-      session()->flash('success', 'Criminal Cases File Deleted');
-      return redirect()->back();
   }
 
   public function download_criminal_cases_file($id)

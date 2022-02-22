@@ -418,20 +418,6 @@ class CivilCasesController extends Controller
 
   }
 
-  public function delete_civil_cases_files($id)
-  {
-    $data = CivilCasesFile::find($id);
-    if ($data['delete_status'] == 1){
-        $delete_status = 0;
-    }else{
-        $delete_status = 1;
-    }
-    $data->delete_status = $delete_status;
-    $data->save();
-
-    session()->flash('success', 'Civil Cases Files Deleted');
-    return redirect()->back();
-  }
   public function download_civil_cases_file($id)
   {
       $files = CivilCasesFile::where('id', $id)->firstOrFail();

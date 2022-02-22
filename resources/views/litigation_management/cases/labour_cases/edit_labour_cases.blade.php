@@ -46,6 +46,9 @@
                         <div class="">
                             <div class="card-header">
                                 <h3 class="card-title" id="heading">Edit Labour Cases</h3>
+                                <div class="float-right">
+                                    <a class="btn btn-success text-uppercase" href="{{ route('view-labour-cases', $data->id ) }}"> Preview </a>
+                                </div>
                             </div>
 
                             <form action="{{ route('update-labour-cases', $data->id ) }}" method="post" enctype="multipart/form-data">

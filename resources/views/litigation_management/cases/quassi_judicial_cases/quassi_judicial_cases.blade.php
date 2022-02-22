@@ -66,7 +66,7 @@
 
                                         <tr>
                                             <td>
-                                                {{ $datum->case_no }}
+                                                <a href="{{ route('view-quassi-judicial-cases', $datum->id) }}"> {{ $datum->case_no }} </a>
                                             </td>
                                             <td>
                                                 {{ $datum->subsequent_case_no }}
@@ -101,6 +101,8 @@
                                                 @endif
                                             </td>
                                             <td>
+                                                <a href="{{ route('view-quassi-judicial-cases',$datum->id) }}"><button class="badge badge-primary btn-sm"
+                                                    >Preview</button></a>
                                                 <a href="{{ route('edit-quassi-judicial-cases',$datum->id) }}"><button class="badge badge-info btn-sm"
                                                     >Edit</button></a>
                                                 <span class="badge badge-danger btn-sm">
