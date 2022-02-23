@@ -343,4 +343,51 @@ class AppellateCourtCasesController extends Controller
       return redirect()->back();
   }
 
+  public function view_appellate_court_cases($id)
+    {
+      //   dd($id);
+      $data = DB::table('appellate_court_cases')
+                ->leftJoin('setup_case_categories','appellate_court_cases.case_category_nature_id','=','setup_case_categories.id')
+                ->leftJoin('setup_case_types','appellate_court_cases.case_type_id','=','setup_case_types.id')
+                ->leftJoin('setup_regions','appellate_court_cases.zone_id','=','setup_regions.id')
+                ->leftJoin('setup_areas','appellate_court_cases.area_id','=','setup_areas.id')
+                ->leftJoin('setup_branches','appellate_court_cases.branch_id','=','setup_branches.id')
+                ->leftJoin('setup_programs','appellate_court_cases.program_id','=','setup_programs.id')
+                ->leftJoin('setup_divisions','appellate_court_cases.division_id','=','setup_divisions.id')
+                ->leftJoin('setup_districts','appellate_court_cases.district_id','=','setup_districts.id')
+                ->leftJoin('setup_law_sections','appellate_court_cases.relevant_law_sections_id','=','setup_law_sections.id')
+                ->leftJoin('setup_alligations','appellate_court_cases.alligation_id','=','setup_alligations.id')
+                ->leftJoin('setup_designations','appellate_court_cases.complainant_designation_id','=','setup_designations.id')
+                ->leftJoin('setup_external_councils','appellate_court_cases.external_council_name_id','=','setup_external_councils.id')
+                ->leftJoin('setup_external_council_associates','appellate_court_cases.external_council_associates_id','=','setup_external_council_associates.id')
+                ->leftJoin('setup_case_statuses','appellate_court_cases.case_status_id','=','setup_case_statuses.id')
+                ->leftJoin('setup_court_last_orders','appellate_court_cases.last_order_court_id','=','setup_court_last_orders.id')
+                ->leftJoin('setup_companies as accused_company','appellate_court_cases.accused_company_id','=','accused_company.id')
+                ->leftJoin('setup_next_date_reasons','appellate_court_cases.next_date_fixed_id','=','setup_next_date_reasons.id')
+                ->leftJoin('setup_designations as plaintiff_designations','appellate_court_cases.plaintiff_designaiton_id','=','plaintiff_designations.id')
+                ->leftJoin('setup_companies','appellate_court_cases.company_id','=','setup_companies.id')
+                ->leftJoin('setup_external_councils as panel_lawyer','appellate_court_cases.panel_lawyer_id','=','panel_lawyer.id')
+                ->leftJoin('setup_internal_councils as assigned_lawyer','appellate_court_cases.assigned_lawyer_id','=','assigned_lawyer.id')
+                ->leftJoin('setup_courts','appellate_court_cases.name_of_the_court_id','=','setup_courts.id')
+                ->select('appellate_court_cases.*','setup_case_categories.case_category_name','setup_case_types.case_types_name','setup_regions.region_name','setup_areas.area_name','setup_branches.branch_name','setup_programs.program_name','setup_divisions.division_name','setup_districts.district_name','setup_law_sections.law_section_name','setup_alligations.alligation_name','setup_designations.designation_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_external_council_associates.first_name as as_first_name','setup_external_council_associates.middle_name as as_middle_name','setup_external_council_associates.middle_name as as_last_name','accused_company.company_name as accused_company_name','setup_case_statuses.case_status_name','setup_court_last_orders.court_last_order_name','setup_companies.company_name','setup_next_date_reasons.next_date_reason_name','plaintiff_designations.designation_name as plaintiff_designation_name','panel_lawyer.first_name as pl_first_name','panel_lawyer.middle_name as pl_middle_name','panel_lawyer.last_name as pl_last_name','assigned_lawyer.first_name as assigned_first_name','assigned_lawyer.middle_name as assigned_middle_name','assigned_lawyer.last_name as assigned_last_name','setup_courts.court_name')
+                ->where('appellate_court_cases.id',$id)
+                ->first();
+  
+    //   dd($data);
+      $appellate_court_cases_files = AppellateCourtCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
+    //   dd($appellate_court_cases_files);
+  
+      return view('litigation_management.cases.appellate_court_cases.view_appellate_court_cases',compact('data','appellate_court_cases_files'));
+  
+      
+    }
+  
+  
+    public function download_appellate_court_cases_file($id)
+    {
+        $files = AppellateCourtCasesFile::where(['id' => $id, 'delete_status' => 0])->firstOrFail();
+        $file_path = public_path('/files/appellate_court_cases/'.$files->uploaded_document);
+        return response()->download($file_path);
+    }
+
 }

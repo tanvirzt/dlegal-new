@@ -47,7 +47,27 @@
                     @endif
                     <div class="card">
                         <div class="">
-                            <div class="card-header">
+
+
+
+
+                        <section class="panel">
+                            <header class="panel-heading tab-bg-dark-navy-blue">
+                                <ul class="nav nav-tabs" style="padding-bottom:10px;">
+                                    <li class="">
+                                        <a data-toggle="tab" href="#home" class="active">Edit Civil Cases</a>
+                                    </li>
+                                    <li class="">
+                                        <a data-toggle="tab" href="#about">Update Status</a>
+                                    </li>
+                                    
+                                </ul>
+                            </header>
+                            <div class="panel-body">
+                                <div class="tab-content">
+                                    <div id="home" class="tab-pane active">
+                                        
+                                    <div class="card-header">
                                 <h3 class="card-title" id="heading">Edit Civil Cases</h3>
                                 <div class="float-right">
                                     <a class="btn btn-success text-uppercase" href="{{ route('view-civil-cases', $data->id ) }}"> Preview </a>
@@ -540,6 +560,155 @@
 
                                 </div>
                             </form>
+
+                                    </div>
+                                    <div id="about" class="tab-pane">
+                                    <div class="panel-body">
+                                <div class="tab-content">
+                                    <div id="home" class="tab-pane active">
+                                        
+                                    <div class="card-header">
+                                    <h3 class="card-title" id="heading">Update Civil Case Status</h3>
+                                <div class="float-right">
+                                    <a class="btn btn-success text-uppercase" href="{{ route('view-civil-cases', $data->id ) }}"> Preview </a>
+                                </div>
+                            </div>
+
+                                <form action="{{ route('update-civil-cases-status', $data->id) }}" method="post">
+                                    @csrf
+                                    <div class="card-body">
+                                    
+                                            <div class="row">
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group row">
+                                                        <label for="updated_court_id" class="col-sm-4 col-form-label"> Name of the Court </label>
+                                                        <div class="col-sm-8">
+                                                                <select name="updated_court_id" class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($court as $item)
+                                                                        <option value="{{ $item->id }}" {{ $data->updated_court_id == $item->id ? 'selected' : '' }}>{{ $item->court_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('updated_court_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="updated_next_date" class="col-sm-4 col-form-label"> Next Date </label>
+                                                        <div class="col-sm-8">
+                                                            <input type="date" class="form-control" id="updated_next_date" name="updated_next_date" value="{{ $data->updated_next_date }}">
+                                                            @error('updated_next_date')<span class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="updated_next_date_fixed_id" class="col-sm-4 col-form-label"> Next date fixed for </label>
+                                                        <div class="col-sm-8">
+                                                                <select name="updated_next_date_fixed_id" class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($next_date_reason as $item)
+                                                                        <option value="{{ $item->id }}" {{ $data->updated_next_date_fixed_id == $item->id ? 'selected' : '' }}>{{ $item->next_date_reason_name }}</option>
+                                                                    @endforeach                                                         
+                                                                </select>
+                                                                @error('updated_next_date_fixed_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="updated_panel_lawyer_id" class="col-sm-4 col-form-label">Panel Lawyer</label>
+                                                        <div class="col-sm-8">
+
+                                                                <select name="updated_panel_lawyer_id" class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($external_council as $item)
+                                                                        <option value="{{ $item->id }}" {{ $data->updated_panel_lawyer_id == $item->id ? 'selected' : '' }}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('updated_panel_lawyer_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="order_date" class="col-sm-4 col-form-label"> Order Date </label>
+                                                        <div class="col-sm-8">
+                                                            <input type="date" class="form-control" id="order_date" name="order_date">
+                                                            @error('order_date')<span class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="updated_case_status_id" class="col-sm-4 col-form-label">Case Status</label>
+                                                        <div class="col-sm-8">
+
+                                                                <select name="updated_case_status_id" class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($case_status as $item)
+                                                                        <option value="{{ $item->id }}" {{ $data->updated_case_status_id == $item->id ? 'selected' : '' }}>{{ $item->case_status_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('updated_case_status_id')<span class="text-danger">{{$message}}</span>@enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="update_description" class="col-sm-4 col-form-label"> Update Description </label>
+                                                        <div class="col-sm-8">
+                                                        <textarea name="update_description" class="form-control" rows="3" placeholder=""></textarea>
+                                                            @error('update_description')<span class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group row">
+                                                        <label for="case_proceedings" class="col-sm-4 col-form-label"> Case Proceedings </label>
+                                                        <div class="col-sm-8">
+                                                        <textarea name="case_proceedings" class="form-control" rows="3" placeholder=""></textarea>
+                                                            @error('case_proceedings')<span class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="case_notes" class="col-sm-4 col-form-label"> Case Notes </label>
+                                                        <div class="col-sm-8">
+                                                        <textarea name="case_notes" class="form-control" rows="3" placeholder=""></textarea>
+                                                            @error('case_notes')<span class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check">
+
+                                                            <input class="form-check-input primary_meter3" type="radio" name="next_date_fixed_reason" id="primary_meter" value="Next Date">
+                                                            <label class="form-check-label primary_meter" for="primary_meter">
+                                                            Next Date
+                                                            </label>
+
+                                                            <input class="form-check-input primary_meter3" type="radio" name="next_date_fixed_reason" id="asdf" value="No Next Date">
+                                                            <label class="form-check-label primary_meter" for="asdf">
+                                                            No Next Date
+                                                            </label>
+
+                                                            <input class="form-check-input primary_meter3" type="radio" name="next_date_fixed_reason" id="aaaaaa" value="Disposed">
+                                                            <label class="form-check-label primary_meter" for="aaaaaa">
+                                                            Disposed
+                                                            </label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                
+                                            <div class="float-right mt-4">
+                                                <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update </button>
+                                            </div>
+                                        
+
+                                    </div>
+                                </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+
+                            
 
                         </div>
                     </div>

@@ -66,7 +66,7 @@
 
                                         <tr>
                                             <td>
-                                                {{ $datum->case_no }}
+                                                <a href="{{ route('view-appellate-court-cases', $datum->id) }}"> {{ $datum->case_no }} </a>
                                             </td>
                                             <td>
                                                 {{ $datum->subsequent_case_no }}
@@ -101,6 +101,8 @@
                                                 @endif
                                             </td>
                                             <td>
+                                                <a href="{{ route('view-appellate-court-cases',$datum->id) }}"><button class="badge badge-primary btn-sm"
+                                                    >Preview</button></a>
                                                 <a href="{{ route('edit-appellate-court-cases',$datum->id) }}"><button class="badge badge-info btn-sm"
                                                     >Edit</button></a>
                                                 <span class="badge badge-danger btn-sm">

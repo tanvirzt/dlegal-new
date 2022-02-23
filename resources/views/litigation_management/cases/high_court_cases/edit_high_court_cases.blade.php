@@ -46,6 +46,9 @@
                         <div class="">
                             <div class="card-header">
                                 <h3 class="card-title" id="heading">Edit High Court of Bangladesh</h3>
+                                <div class="float-right">
+                                    <a class="btn btn-success text-uppercase" href="{{ route('view-high-court-cases', $data->id ) }}"> Preview </a>
+                                </div>
                             </div>
 
                             <form action="{{ route('update-high-court-cases', $data->id ) }}" method="post" enctype="multipart/form-data">

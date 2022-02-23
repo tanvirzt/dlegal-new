@@ -24,6 +24,7 @@ use App\Models\SetupRegion;
 use App\Models\SetupArea;
 use App\Models\SetupInternalCouncil;
 use App\Models\SetupExternalCouncilAssociate;
+use App\Models\CivilCaseStatusLog;
 use DB;
 class CivilCasesController extends Controller
 {
@@ -423,6 +424,33 @@ class CivilCasesController extends Controller
       $files = CivilCasesFile::where('id', $id)->firstOrFail();
       $pathToFile = public_path('/files/civil_cases/'.$files->uploaded_document);
       return response()->download($pathToFile);
+  }
+
+  public function update_civil_cases_status(Request $request, $id)
+  {
+    //   dd($request->all());
+
+        $status = CivilCases::find($id);
+        $status->case_status_id = $request->updated_case_status_id;
+        $status->save();
+
+        $data = new CivilCaseStatusLog();
+        $data->case_id = $id;
+        $data->updated_court_id = $request->updated_court_id;
+        $data->updated_next_date = $request->updated_next_date;
+        $data->updated_next_date_fixed_id = $request->updated_next_date_fixed_id;
+        $data->updated_panel_lawyer_id = $request->updated_panel_lawyer_id;
+        $data->order_date = $request->order_date;
+        $data->updated_case_status_id = $request->updated_case_status_id;
+        $data->update_description = $request->update_description;
+        $data->case_proceedings = $request->case_proceedings;
+        $data->case_notes = $request->case_notes;
+        $data->next_date_fixed_reason = $request->next_date_fixed_reason;
+        $data->save();
+
+        session()->flash('success','Case Status Updated Successfully');
+        return redirect()->back();
+
   }
 
 }

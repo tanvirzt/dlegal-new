@@ -174,3 +174,29 @@ div#v-pills-tab a.nav-link.active::before{
     width: 50%;
 }
 
+
+
+.panel .nav .active {
+    --text-opacity: 1;
+    color: rgba(0, 108, 184, var(--text-opacity));
+    /* box-shadow: inset 3px 0 0 #006cb8; */
+    border-bottom: 2px solid #006cb8;
+    padding-bottom: 3px;
+}
+
+.panel .nav li{
+    padding: 5px 15px 5px 12px;
+}
+
+.panel .nav li a{
+    font-size: 15px;
+    color: #4a5056;
+}
+
+.primary_meter3{
+    margin-top: 2px;
+}
+
+.primary_meter{
+    padding-right: 40px;
+}

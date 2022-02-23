@@ -125,7 +125,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('delete-civil-cases/{id}','CivilCasesController@delete_civil_cases')->name('delete-civil-cases');
         Route::get('view-civil-cases/{id}','CivilCasesController@view_civil_cases')->name('view-civil-cases');
         Route::get('download-civil-cases-files/{id}','CivilCasesController@download_civil_cases_file')->name('download-civil-cases-files');
-        
+        Route::post('update-civil-cases-status/{id}','CivilCasesController@update_civil_cases_status')->name('update-civil-cases-status');
         
         Route::get('division','AdminSetupController@division')->name('division');
         Route::get('add-division','AdminSetupController@add_division')->name('add-division');
@@ -207,6 +207,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('edit-high-court-cases/{id}','HighCourtCasesController@edit_high_court_cases')->name('edit-high-court-cases');
         Route::post('update-high-court-cases/{id}','HighCourtCasesController@update_high_court_cases')->name('update-high-court-cases');
         Route::post('delete-high-court-cases/{id}','HighCourtCasesController@delete_high_court_cases')->name('delete-high-court-cases');
+        Route::get('view-high-court-cases/{id}','HighCourtCasesController@view_high_court_cases')->name('view-high-court-cases');
+        Route::get('download-high-court-cases-files/{id}','HighCourtCasesController@download_high_court_cases_file')->name('download-high-court-cases-files');
 
         Route::get('appellate-court-cases','AppellateCourtCasesController@appellate_court_cases')->name('appellate-court-cases');
         Route::get('add-appellate-court-cases','AppellateCourtCasesController@add_appellate_court_cases')->name('add-appellate-court-cases');
@@ -214,6 +216,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('edit-appellate-court-cases/{id}','AppellateCourtCasesController@edit_appellate_court_cases')->name('edit-appellate-court-cases');
         Route::post('update-appellate-court-cases/{id}','AppellateCourtCasesController@update_appellate_court_cases')->name('update-appellate-court-cases');
         Route::post('delete-appellate-court-cases/{id}','AppellateCourtCasesController@delete_appellate_court_cases')->name('delete-appellate-court-cases');
+        Route::get('view-appellate-court-cases/{id}','AppellateCourtCasesController@view_appellate_court_cases')->name('view-appellate-court-cases');
+        Route::get('download-appellate-court-cases-files/{id}','AppellateCourtCasesController@download_appellate_court_cases_file')->name('download-appellate-court-cases-files');
 
         Route::get('region','AdminSetupController@region')->name('region');
         Route::get('add-region','AdminSetupController@add_region')->name('add-region');
