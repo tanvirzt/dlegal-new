@@ -413,9 +413,19 @@ class CivilCasesController extends Controller
         // dd($data);
 
         $civil_cases_files = CivilCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
-        // dd($civil_cases_files);
 
-            return view('litigation_management.cases.civil_cases.view_civil_cases',compact('data','civil_cases_files'));
+        $case_logs = DB::table('civil_case_status_logs')
+                        ->leftJoin('civil_cases','civil_case_status_logs.case_id','=','civil_cases.id')
+                        ->leftJoin('setup_courts','civil_case_status_logs.updated_court_id','=','setup_courts.id')
+                        ->leftJoin('setup_next_date_reasons','civil_case_status_logs.updated_next_date_fixed_id','=','setup_next_date_reasons.id')
+                        ->leftJoin('setup_external_councils','civil_case_status_logs.updated_panel_lawyer_id','=','setup_external_councils.id')
+                        ->leftJoin('setup_case_statuses','civil_case_status_logs.updated_case_status_id','=','setup_case_statuses.id')
+                        ->select('civil_case_status_logs.*','civil_cases.case_no','setup_courts.court_name','setup_next_date_reasons.next_date_reason_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_case_statuses.case_status_name')
+                        ->where('civil_case_status_logs.case_id',$id)
+                        ->get();
+        // dd($case_logs);
+
+        return view('litigation_management.cases.civil_cases.view_civil_cases',compact('data','civil_cases_files','case_logs'));
 
   }
 
@@ -452,5 +462,7 @@ class CivilCasesController extends Controller
         return redirect()->back();
 
   }
+
+
 
 }

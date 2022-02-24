@@ -56,8 +56,11 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Criminal Cases Details</h3>
-                                
+                                <h3 class="card-title custom_h3" id="heading">Criminal Cases Details</h3>
+                                <div class="float-right">
+                                    <a class="btn btn-info"
+                                        href="{{ route('edit-criminal-cases', $data->id) }}"> Edit </a>
+                                </div>
                                 
                             </div>
                                 <div class="card-body">
@@ -200,7 +203,7 @@
                                     </table>               
                                 </div>
                                 <div class="card-header">
-                                    <h3 class="card-title" id="heading">Criminal Cases Files</h3>
+                                    <h3 class="card-title custom_h3" id="heading">Criminal Cases Files</h3>
                                 </div>
                                 <div class="card-body">
                                     <table id="data_table" class="table dataTable no-footer dtr-inline">
@@ -224,6 +227,50 @@
                                         @endforeach
                                         </tbody>
                                     </table>
+                            </div>
+
+                            <div class="card-header">
+                                <h3 class="card-title custom_h3" id="heading">View Log of this Case</h3>
+                            </div>
+                            <div class="card-body">
+                                <table id="table_logs_text_center" class="table table-responsive no-footer dtr-inline">
+                                    <thead>
+                                        <tr>
+                                            <th class="table_logs_text_center">Case No</th>
+                                            <th class="table_logs_text_center">Accused Name</th>
+                                            <th class="table_logs_text_center">Case Status</th>
+                                            <th class="table_logs_text_center">Court Name</th>
+                                            <th class="table_logs_text_center">Next Date</th>
+                                            <th class="table_logs_text_center">Date Reason</th>
+                                            <th class="table_logs_text_center">Update Description</th>
+                                            <th class="table_logs_text_center">Case Proceedings</th>
+                                            <th class="table_logs_text_center">Case Notes</th>
+                                            <th class="table_logs_text_center">Panel Lawyer</th>
+                                            <th class="table_logs_text_center">Order Date</th>
+                                            <th class="table_logs_text_center">Final Status</th>
+                                            <th class="table_logs_text_center">Update Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($case_logs as $logs)
+                                        <tr>
+                                            <td class="table_logs_text_center"> {{ $logs->case_no }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->updated_accused_name }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->case_status_name }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->court_name }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->updated_next_date }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->next_date_reason_name }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->update_description }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->case_proceedings }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->case_notes }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->first_name }} {{ $logs->middle_name }} {{ $logs->last_name }} </td> 
+                                            <td class="table_logs_text_center"> {{ $logs->order_date }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->next_date_fixed_reason }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->created_at }} </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

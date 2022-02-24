@@ -141,11 +141,11 @@ span{
 .btn-xs {
     padding: 0.280rem .25rem;
 }
-.btn-info {
+/* .btn-info {
     border-radius: 5px;
     padding: 1px 1px 3px 1px;
     margin-top: 1px;
-}
+} */
 .btn-outline-info{
     border-radius: 5px;
     padding: 1px 1px 3px 1px;
@@ -173,9 +173,12 @@ div#v-pills-tab a.nav-link.active::before{
     text-align:center; 
     width: 50%;
 }
-
-
-
+.table_logs_text_center{
+    text-align:center; 
+}
+h3{
+    font-size: 1.36rem !important;
+}
 .panel .nav .active {
     --text-opacity: 1;
     color: rgba(0, 108, 184, var(--text-opacity));
@@ -199,4 +202,5 @@ div#v-pills-tab a.nav-link.active::before{
 
 .primary_meter{
     padding-right: 40px;
+    padding-left: 5px;
 }

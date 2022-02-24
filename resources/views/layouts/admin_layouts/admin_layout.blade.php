@@ -105,6 +105,13 @@
                 "autoWidth": false,
                 "orderFixed": [0, 'desc'],
             });
+
+            $("#table_logs_text_center").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "orderFixed": [0, 'desc'],
+            });
+
          });
     </script>
 
