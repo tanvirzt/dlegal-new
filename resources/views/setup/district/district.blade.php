@@ -77,13 +77,12 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                    <a href="{{ route('edit-district',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
-                                                    ><i class="fas fa-edit"></i></button></a>
-                                                    <form method="POST" action="{{ route('delete-district',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
-                                                    </form>
-
+                                                <a href="{{ route('edit-district',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                ><i class="fas fa-edit"></i></button></a>
+                                                <form method="POST" action="{{ route('delete-district',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
