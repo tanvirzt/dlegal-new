@@ -26,6 +26,7 @@ use App\Models\SupremeCourtCasesFile;
 use App\Models\SetupDistrict;
 use App\Models\SetupExternalCouncilAssociate;
 use App\Models\SupremeCourtCase;
+use App\Models\SupremeCourtCaseStatusLog;
 use DB;
 
 class SupremeCourtCasesController extends Controller
@@ -180,7 +181,7 @@ class SupremeCourtCasesController extends Controller
            }
        }
   
-       session()->flash('success','Special Quassi-Judicial Cases Added Successfully');
+       session()->flash('success','Supreme Court Cases Added Successfully');
        return redirect()->back();
   
     }
@@ -319,7 +320,7 @@ class SupremeCourtCasesController extends Controller
                 }
             }
       
-            session()->flash('success','Special Quassi-Judicial Cases Updated Successfully');
+            session()->flash('success','Supreme Court Cases Updated Successfully');
             return redirect()->back();
       
       }
@@ -335,7 +336,7 @@ class SupremeCourtCasesController extends Controller
         $data->delete_status = $delete_status;
         $data->save();
   
-        session()->flash('success', 'Special Quassi-Judicial Cases Deleted');
+        session()->flash('success', 'Supreme Court Cases Deleted');
         return redirect()->back();
     }
 
@@ -372,8 +373,17 @@ class SupremeCourtCasesController extends Controller
     //   dd($data);
       $supreme_court_cases_files = SupremeCourtCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
       // dd($supreme_court_cases_files);
-  
-      return view('litigation_management.cases.supreme_court_cases.view_supreme_court_cases',compact('data','supreme_court_cases_files'));
+      $case_logs = DB::table('supreme_court_case_status_logs')
+                    ->leftJoin('supreme_court_cases','supreme_court_case_status_logs.case_id','=','supreme_court_cases.id')
+                    ->leftJoin('setup_courts','supreme_court_case_status_logs.updated_court_id','=','setup_courts.id')
+                    ->leftJoin('setup_next_date_reasons','supreme_court_case_status_logs.updated_next_date_fixed_id','=','setup_next_date_reasons.id')
+                    ->leftJoin('setup_external_councils','supreme_court_case_status_logs.updated_panel_lawyer_id','=','setup_external_councils.id')
+                    ->leftJoin('setup_case_statuses','supreme_court_case_status_logs.updated_case_status_id','=','setup_case_statuses.id')
+                    ->select('supreme_court_case_status_logs.*','supreme_court_cases.case_no','setup_courts.court_name','setup_next_date_reasons.next_date_reason_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_case_statuses.case_status_name')
+                    ->where('supreme_court_case_status_logs.case_id',$id)
+                    ->get();
+// dd($case_logs);
+      return view('litigation_management.cases.supreme_court_cases.view_supreme_court_cases',compact('data','supreme_court_cases_files','case_logs'));
   
       
     }
@@ -386,5 +396,32 @@ class SupremeCourtCasesController extends Controller
         return response()->download($file_path);
     }
   
+    public function update_supreme_court_cases_status(Request $request, $id)
+    {
+            // dd($request->all());
+            $status = SupremeCourtCase::find($id);
+            $status->case_status_id = $request->updated_case_status_id;
+            $status->save();
+
+            $data = new SupremeCourtCaseStatusLog();
+            $data->case_id = $id;
+            $data->updated_court_id = $request->updated_court_id;
+            $data->updated_next_date = $request->updated_next_date;
+            $data->updated_next_date_fixed_id = $request->updated_next_date_fixed_id;
+            $data->updated_panel_lawyer_id = $request->updated_panel_lawyer_id;
+            $data->order_date = $request->order_date;
+            $data->updated_case_status_id = $request->updated_case_status_id;
+            $data->updated_accused_name = $request->updated_accused_name;
+            $data->update_description = $request->update_description;
+            $data->case_proceedings = $request->case_proceedings;
+            $data->case_notes = $request->case_notes;
+            $data->next_date_fixed_reason = $request->next_date_fixed_reason;
+            $data->save();
+
+            session()->flash('success','Case Status Updated Successfully');
+            return redirect()->back();
+
+    }
+
 
 }

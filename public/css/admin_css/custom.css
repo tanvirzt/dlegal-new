@@ -45,17 +45,21 @@
     border-bottom: 0px solid #dee2e6;
     font-weight: 400;
 }
-button.badge.badge-info.btn-sm, button.badge.badge-info.btn-sm:hover, button.btn.btn-sm.btn-info, button.btn.btn-sm.btn-info:hover, button.btn-primary, button.btn-primary:hover {
-    background-color: #0060a4 !important;
-    padding: 4px 6px 6px 5px;
-    border: 0px;
-}
-.delete-user {
+
+/* .delete-user {
     background: #dc3545;
     border: 2px;
     color: #fff;
     padding: 2px 0px 4px 0px !important;
+} */
+
+.delete-user{
+    padding: 0 0 0 0;
 }
+.delete-user button{
+    padding: 2px 6px 2px 6px;
+}
+
 a.nav-link.active::before {
     content: "";
     position: absolute;
@@ -84,30 +88,7 @@ html, body {
 tr:hover{
     background-color: #f6f7f7 !important;
 }
-.float-right button{
-    font-size: 12px !important;
-    padding: 7px !important;
-}
-button.badge.badge-info.btn-sm, button.badge.badge-info.btn-sm:hover, button.btn.btn-sm.btn-info, button.btn.btn-sm.btn-info:hover, button.btn-primary, button.btn-primary:hover {
-    background-color: #0060a4 !important;
-}
-.btn-success {
-    color: #fff;
-    background-color: #0fb860 !important;
-    border-color: transparent;
-}
-.btn-success:hover {
-    color: #fff;
-    background-color: #218838;
-    border: 1px solid transparent;
-}
-.btn-group-sm > .btn, .btn-sm {
-    border-radius: 0.4rem;
-}
-.btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:hover, .open > .btn-success.dropdown-toggle {
 
-    background-color: #0da556 !important;
-}
 .spark-button-focus:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(164,202,254,.45);
@@ -138,9 +119,11 @@ span{
 .pr-4, .px-4 {
     padding-right: 0.5rem !important;
 }
-.btn-xs {
+
+/* .btn-xs {
     padding: 0.280rem .25rem;
-}
+} */
+
 /* .btn-info {
     border-radius: 5px;
     padding: 1px 1px 3px 1px;
@@ -204,3 +187,70 @@ h3{
     padding-right: 40px;
     padding-left: 5px;
 }
+
+
+
+
+.add_btn{
+    font-size: 12px !important;
+    padding: 7px !important;
+    color: #fff;
+    background-color: #0fb860 !important;
+    border-color: transparent;
+    border-radius: 0.4rem;
+}
+
+.add_btn:hover{
+    color: #fff;
+    background-color: #218838;
+    border: 1px solid transparent;
+}
+
+.add_btn.active, .add_btn.focus, .add_btn:active, .add_btn:focus, .add_btn:hover, .open > .add_btn.dropdown-toggle {
+    background-color: #0da556 !important;
+}
+
+
+.fontpassword {
+    position: relative;
+}
+  
+.fontpassword i{
+    position: absolute;
+    left: 15px;
+    top: 40px;
+    color: gray;
+}
+
+
+
+
+/* button.badge.badge-info.btn-sm, button.badge.badge-info.btn-sm:hover, button.btn.btn-sm.btn-info, button.btn.btn-sm.btn-info:hover, button.btn-primary, button.btn-primary:hover {
+    background-color: #0060a4 !important;
+    padding: 4px 6px 6px 5px;
+    border: 0px;
+}
+.float-right button{
+    font-size: 12px !important;
+    padding: 7px !important;
+}
+button.badge.badge-info.btn-sm, button.badge.badge-info.btn-sm:hover, button.btn.btn-sm.btn-info, button.btn.btn-sm.btn-info:hover, button.btn-primary, button.btn-primary:hover {
+    background-color: #0060a4 !important;
+}
+.btn-success {
+    color: #fff;
+    background-color: #0fb860 !important;
+    border-color: transparent;
+}
+.btn-success:hover {
+    color: #fff;
+    background-color: #218838;
+    border: 1px solid transparent;
+}
+.btn-group-sm > .btn, .btn-sm {
+    border-radius: 0.4rem;
+}
+.btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:hover, .open > .btn-success.dropdown-toggle {
+
+    background-color: #0da556 !important;
+} */

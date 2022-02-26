@@ -39,7 +39,7 @@
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
                                     <a href="{{ route('add-appellate-court-cases') }}"><button class="btn btn-sm
-                                    btn-success"><i class="fas fa-plus"></i> Add Appellate Court of Bangladesh </button></a>
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Appellate Court of Bangladesh </button></a>
                                 </div>
 
                             </div>
@@ -51,14 +51,14 @@
                                         <th>Case No</th>
                                         <th>Subsequent Case No</th>
                                         <th>Division</th>
-                                        <th>Name of Court</th>
+                                        <th>Court Name</th>
                                         <th>District</th>
                                         <th>Case Status</th>
                                         <th>Company</th>
-                                        <th>Case Category Name</th>
+                                        <th>Case Category</th>
                                         <th>Plaintiff Name</th>
                                         <th>Status</th>
-                                        <th width="20%">Action</th>
+                                        <th width="13%">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -101,17 +101,14 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('view-appellate-court-cases',$datum->id) }}"><button class="badge badge-primary btn-sm"
-                                                    >Preview</button></a>
-                                                <a href="{{ route('edit-appellate-court-cases',$datum->id) }}"><button class="badge badge-info btn-sm"
-                                                    >Edit</button></a>
-                                                <span class="badge badge-danger btn-sm">
-                                                <form method="POST" action="{{ route('delete-appellate-court-cases',$datum->id) }}">
+                                                <a href="{{ route('view-appellate-court-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                                    ><i class="fas fa-eye"></i></button></a>
+                                                <a href="{{ route('edit-appellate-court-cases',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                    ><i class="fas fa-edit"></i></button></a>
+                                                <form method="POST" action="{{ route('delete-appellate-court-cases',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
-                                                        <input type="submit" class="delete-user"
-                                                               value="Delete">
+                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
                                                 </form>
-                                                </span>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -39,7 +39,7 @@
                                 <h3 class="card-title">List</h3>
                                 <div class="float-right">
                                     <a href="{{ route('add-division') }}"><button class="btn btn-sm
-                                    btn-success"><i class="fas fa-plus"></i> Add Division </button></a>
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Division </button></a>
                                 </div>
 
                             </div>
@@ -73,15 +73,15 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('edit-division',$datum->id) }}"><button class="badge badge-info btn-sm"
-                                                    >Edit</button></a>
-                                                <span class="badge badge-danger btn-sm">
-                                                <form method="POST" action="{{ route('delete-division',$datum->id) }}">
-                                                    @csrf
-                                                        <input type="submit" class="delete-user"
-                                                               value="Delete">
-                                                </form>
-                                                </span>
+
+
+                                                    <a href="{{ route('edit-division',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                    ><i class="fas fa-edit"></i></button></a>
+                                                    <form method="POST" action="{{ route('delete-division',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                                    </form>
+
                                             </td>
                                         </tr>
                                     @endforeach

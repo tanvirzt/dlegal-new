@@ -27,6 +27,7 @@ use App\Models\SetupAlligation;
 use App\Models\QuassiJudicialCasesFile;
 use App\Models\SetupDistrict;
 use App\Models\SetupExternalCouncilAssociate;
+use App\Models\QuassiJudicialCaseStatusLog;
 
 class QuassiJudicialCasesController extends Controller
 {
@@ -372,8 +373,17 @@ class QuassiJudicialCasesController extends Controller
     // dd($data);
     $quassi_judicial_cases_files = QuassiJudicialCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
     // dd($quassi_judicial_cases_files);
-
-    return view('litigation_management.cases.quassi_judicial_cases.view_quassi_judicial_cases',compact('data','quassi_judicial_cases_files'));
+    $case_logs = DB::table('quassi_judicial_case_status_logs')
+                ->leftJoin('quassi_judicial_cases','quassi_judicial_case_status_logs.case_id','=','quassi_judicial_cases.id')
+                ->leftJoin('setup_courts','quassi_judicial_case_status_logs.updated_court_id','=','setup_courts.id')
+                ->leftJoin('setup_next_date_reasons','quassi_judicial_case_status_logs.updated_next_date_fixed_id','=','setup_next_date_reasons.id')
+                ->leftJoin('setup_external_councils','quassi_judicial_case_status_logs.updated_panel_lawyer_id','=','setup_external_councils.id')
+                ->leftJoin('setup_case_statuses','quassi_judicial_case_status_logs.updated_case_status_id','=','setup_case_statuses.id')
+                ->select('quassi_judicial_case_status_logs.*','quassi_judicial_cases.case_no','setup_courts.court_name','setup_next_date_reasons.next_date_reason_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_case_statuses.case_status_name')
+                ->where('quassi_judicial_case_status_logs.case_id',$id)
+                ->get();
+// dd($case_logs);
+    return view('litigation_management.cases.quassi_judicial_cases.view_quassi_judicial_cases',compact('data','quassi_judicial_cases_files','case_logs'));
 
     
   }
@@ -384,6 +394,33 @@ class QuassiJudicialCasesController extends Controller
       $files = QuassiJudicialCasesFile::where(['id' => $id, 'delete_status' => 0])->firstOrFail();
       $file_path = public_path('/files/quassi_judicial_cases/'.$files->uploaded_document);
       return response()->download($file_path);
+  }
+
+  public function update_quassi_judicial_cases_status(Request $request, $id)
+  {
+        // dd($request->all());
+        $status = QuassiJudicialCase::find($id);
+        $status->case_status_id = $request->updated_case_status_id;
+        $status->save();
+
+        $data = new QuassiJudicialCaseStatusLog();
+        $data->case_id = $id;
+        $data->updated_court_id = $request->updated_court_id;
+        $data->updated_next_date = $request->updated_next_date;
+        $data->updated_next_date_fixed_id = $request->updated_next_date_fixed_id;
+        $data->updated_panel_lawyer_id = $request->updated_panel_lawyer_id;
+        $data->order_date = $request->order_date;
+        $data->updated_case_status_id = $request->updated_case_status_id;
+        $data->updated_accused_name = $request->updated_accused_name;
+        $data->update_description = $request->update_description;
+        $data->case_proceedings = $request->case_proceedings;
+        $data->case_notes = $request->case_notes;
+        $data->next_date_fixed_reason = $request->next_date_fixed_reason;
+        $data->save();
+
+        session()->flash('success','Case Status Updated Successfully');
+        return redirect()->back();
+
   }
 
 

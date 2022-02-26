@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Special Quassi-Judicial Cases</h1>
+                        <h1 class="m-0 text-dark">Special / Quassi-Judicial Cases</h1>
 
                     </div><!-- /.col -->
 
@@ -45,7 +45,7 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Add Special Quassi-Judicial Cases</h3>
+                                <h3 class="card-title" id="heading">Add Special / Quassi-Judicial Cases</h3>
                             </div>
 
                             <form action="{{ route('save-quassi-judicial-cases') }}" method="post" enctype="multipart/form-data">

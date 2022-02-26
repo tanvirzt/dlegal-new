@@ -57,8 +57,10 @@
                         <div class="">
                             <div class="card-header">
                                 <h3 class="card-title" id="heading">Labour Cases Details</h3>
-                                
-                                
+                                <div class="float-right">
+                                    <a class="btn btn-info"
+                                        href="{{ route('edit-labour-cases', $data->id) }}"> Edit </a>
+                                </div>
                             </div>
                                 <div class="card-body">
                                     <table class="table table-responsive table-hover table-bordered">

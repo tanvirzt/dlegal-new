@@ -28,6 +28,7 @@ use App\Models\SetupAlligation;
 use App\Models\AppellateCourtCasesFile;
 use App\Models\SetupDistrict;
 use App\Models\SetupExternalCouncilAssociate;
+use App\Models\AppellateCourtCaseStatusLog;
 use DB;
 
 
@@ -376,8 +377,17 @@ class AppellateCourtCasesController extends Controller
     //   dd($data);
       $appellate_court_cases_files = AppellateCourtCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
     //   dd($appellate_court_cases_files);
-  
-      return view('litigation_management.cases.appellate_court_cases.view_appellate_court_cases',compact('data','appellate_court_cases_files'));
+      $case_logs = DB::table('appellate_court_case_status_logs')
+                  ->leftJoin('appellate_court_cases','appellate_court_case_status_logs.case_id','=','appellate_court_cases.id')
+                  ->leftJoin('setup_courts','appellate_court_case_status_logs.updated_court_id','=','setup_courts.id')
+                  ->leftJoin('setup_next_date_reasons','appellate_court_case_status_logs.updated_next_date_fixed_id','=','setup_next_date_reasons.id')
+                  ->leftJoin('setup_external_councils','appellate_court_case_status_logs.updated_panel_lawyer_id','=','setup_external_councils.id')
+                  ->leftJoin('setup_case_statuses','appellate_court_case_status_logs.updated_case_status_id','=','setup_case_statuses.id')
+                  ->select('appellate_court_case_status_logs.*','appellate_court_cases.case_no','setup_courts.court_name','setup_next_date_reasons.next_date_reason_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_case_statuses.case_status_name')
+                  ->where('appellate_court_case_status_logs.case_id',$id)
+                  ->get();
+              // dd($case_logs);
+      return view('litigation_management.cases.appellate_court_cases.view_appellate_court_cases',compact('data','appellate_court_cases_files','case_logs'));
   
       
     }
@@ -389,5 +399,33 @@ class AppellateCourtCasesController extends Controller
         $file_path = public_path('/files/appellate_court_cases/'.$files->uploaded_document);
         return response()->download($file_path);
     }
+
+    public function update_appellate_court_cases_status(Request $request, $id)
+    {
+            // dd($request->all());
+            $status = AppellateCourtCase::find($id);
+            $status->case_status_id = $request->updated_case_status_id;
+            $status->save();
+
+            $data = new AppellateCourtCaseStatusLog();
+            $data->case_id = $id;
+            $data->updated_court_id = $request->updated_court_id;
+            $data->updated_next_date = $request->updated_next_date;
+            $data->updated_next_date_fixed_id = $request->updated_next_date_fixed_id;
+            $data->updated_panel_lawyer_id = $request->updated_panel_lawyer_id;
+            $data->order_date = $request->order_date;
+            $data->updated_case_status_id = $request->updated_case_status_id;
+            $data->updated_accused_name = $request->updated_accused_name;
+            $data->update_description = $request->update_description;
+            $data->case_proceedings = $request->case_proceedings;
+            $data->case_notes = $request->case_notes;
+            $data->next_date_fixed_reason = $request->next_date_fixed_reason;
+            $data->save();
+
+            session()->flash('success','Case Status Updated Successfully');
+            return redirect()->back();
+
+    }
+
 
 }
