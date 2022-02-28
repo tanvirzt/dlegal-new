@@ -256,6 +256,8 @@
                     </ul>
                 </li>
 
+
+
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle"></i>
@@ -264,7 +266,7 @@
                       <i class="right fas fa-angle-left"></i>
                     </p>
                   </a>
-                  <ul class="nav nav-treeview" style="display: none;">
+                  <ul class="nav nav-treeview">
                     <li class="nav-item">
                       <a href="#" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -273,7 +275,7 @@
                           <i class="right fas fa-angle-left"></i>
                         </p>
                       </a>
-                      <ul class="nav nav-treeview" style="display: none;">
+                      <ul class="nav nav-treeview">
                         <li class="nav-item">
                           <a href="{{ route('civil-cases') }}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
@@ -295,7 +297,7 @@
                         <li class="nav-item">
                           <a href="{{ route('quassi-judicial-cases') }}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
-                            <p>Special / Quassi-Judicial Cases </p>
+                            <p>Special / Quassi-Judicial Cases</p>
                           </a>
                         </li>
                         <li class="nav-item">
@@ -318,8 +320,23 @@
                         </li>
                       </ul>
                     </li>
-                  </ul>
-                  <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>
+                          Billing
+                          <i class="right fas fa-angle-left"></i>
+                        </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="{{ route('billing') }}" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Billing</p>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
                     <li class="nav-item">
                       <a href="#" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -328,12 +345,24 @@
                           <i class="right fas fa-angle-left"></i>
                         </p>
                       </a>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="#" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Report 1</p>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Others</p>
+                      </a>
                     </li>
                   </ul>
                 </li>
-
-
-
 
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">

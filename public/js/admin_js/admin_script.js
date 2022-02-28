@@ -169,7 +169,159 @@ $(document).ready(function(){
 
 
 
+    $('#form-data').submit(function(e){
+        // alert('hello');
+        $('#submit').html('<i class="fas fa-search"></i> Searching');
+
+        // $(".progress-bar").animate({
+        //     width: "100%"
+        // }, 800);
+
+        e.preventDefault();
+        var form_data = new FormData(this);
+        var action = $(this).attr('action');
+        var view_case = $(this).attr('view_case');
+
+// var progress = $('.progress');
+    // var bar = $(".progress > .progress-bar");
+
+        // alert(form_data);
+        $.ajax({
+            type:'post',
+            beforeSend: function() {
+                        // progress.show();
+                        // bar.css("width", "0%");
+            $(".progress-bar").animate({
+                width: "100%"
+            }, 800);
+                        //$('body').addClass("blur");
+            $(".progress-bar").fadeIn(100);
+
+                    },
+            complete: function(data) {
+
+                $(".progress-bar").fadeOut(800);
+                //$('body').removeClass("blur");
+
+            },
+            url: action,
+            data: form_data,
+            cache:false,
+            contentType:false,
+            processData:false,
+            success:(res) =>{
+                $('#submit').html('<i class="fas fa-search"></i> Search');
+// console.log(res);
+                // $(".progress-bar").hide();
+                $('#search_data').empty();
+                $.each(res, function(key, value){
+
+                    $('#search_data').append(`
+
+                            <tr>
+                                <td>
+                                     <a href="view-civil-cases/${value.id}"> ${value.case_no} </a>
+                                </td>
+                                <td>
+                                    ${value.name_of_suit}
+                                </td>
+                                <td>
+                                    ${value.division_name}
+                                    
+                                </td>
+                                <td>
+                                    ${value.court_name}
+                                </td>
+                                <td>
+                                    ${value.district_name}
+
+                                </td>
+                                <td>
+                                    ${value.case_status_name}
+
+                                </td>
+                                <td>
+                                    ${value.company_name}
+
+                                </td>
+                                <td>
+                                    ${value.case_category_name}
+
+                                </td>
+                                <td>
+                                    ${value.plaintiff_name}
+
+                                </td>
+                                <td>
+                                    ${value.defendent_name}
+
+                                </td>
+                                <td> 
+                                   ${value.delete_status===0 ? 'Active': 'Inactive'}
+                                </td>
+                                
+                                <td>
+                                    <a href="view-civil-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                        ><i class="fas fa-eye"></i></button></a>
+                                    <a href="edit-civil-cases/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                        ><i class="fas fa-edit"></i></button></a>
+                                        
+                                    <button onclick='delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                        
+                                </td>
+
+
+                            </tr>
+
+
+                    `);
+                });
+                // console.log(res);
+            },
+            error:function(res){
+                console.log(res);
+            }
+
+        })
+
+
+    })
+
+
+
+
+
 
 
 
 });
+
+
+
+
+  function delete_after_search(id){
+// alert(id);
+        Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type:'post',
+                    url: 'delete-civil-cases/'+id,
+                    success:function(res){
+                        // console.log(res);
+                    location.reload();
+
+                    }
+                });
+
+            }
+        })
+
+  }

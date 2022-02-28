@@ -222,6 +222,10 @@ h3{
     color: gray;
 }
 
+.progress-striped{
+    height: 6px;
+}
+
 
 
 
@@ -254,3 +258,8 @@ button.badge.badge-info.btn-sm, button.badge.badge-info.btn-sm:hover, button.btn
 
     background-color: #0da556 !important;
 } */
+
+
+
+
+

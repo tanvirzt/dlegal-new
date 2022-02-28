@@ -40,7 +40,10 @@
 
 
         @include('layouts.admin_layouts.admin_sidebar')
-
+        <div class="progress progress-striped active">
+          <div class="progress-bar progress-bar-success" style="width:0%;height: 6px;">
+          </div>
+      </div>
         @yield('content')
 
         @include('layouts.admin_layouts.admin_footer')
@@ -89,6 +92,7 @@
   <script src="{{ asset('js/admin_js/demo.js')}}"></script>
   {{-- Custom admin js --}}
   <script src="{{ asset('js/admin_js/admin_script.js')}}"></script>
+  <script src="{{ asset('js/admin_js/custom_script.js')}}"></script>
 
     <!-- DataTables -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>

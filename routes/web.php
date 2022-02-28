@@ -126,7 +126,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('view-civil-cases/{id}','CivilCasesController@view_civil_cases')->name('view-civil-cases');
         Route::get('download-civil-cases-files/{id}','CivilCasesController@download_civil_cases_file')->name('download-civil-cases-files');
         Route::post('update-civil-cases-status/{id}','CivilCasesController@update_civil_cases_status')->name('update-civil-cases-status');
-        
+        Route::post('search-civil-cases','CivilCasesController@search_civil_cases')->name('search_civil_cases');
+
         Route::get('division','AdminSetupController@division')->name('division');
         Route::get('add-division','AdminSetupController@add_division')->name('add-division');
         Route::post('save-division','AdminSetupController@save_division')->name('save-division');
@@ -288,6 +289,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-external-council-associates/{id}','AdminSetupController@update_external_council_associates')->name('update-external-council-associates');
         Route::post('delete-external-council-associates/{id}','AdminSetupController@delete_external_council_associates')->name('delete-external-council-associates');
 
+        Route::get('billing','BillingsController@billing')->name('billing');
 
     });
 
