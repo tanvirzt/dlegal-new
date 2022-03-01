@@ -289,7 +289,38 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-external-council-associates/{id}','AdminSetupController@update_external_council_associates')->name('update-external-council-associates');
         Route::post('delete-external-council-associates/{id}','AdminSetupController@delete_external_council_associates')->name('delete-external-council-associates');
 
+        Route::get('bill-type','AdminSetupController@bill_type')->name('bill-type');
+        Route::get('add-bill-type','AdminSetupController@add_bill_type')->name('add-bill-type');
+        Route::post('save-bill-type','AdminSetupController@save_bill_type')->name('save-bill-type');
+        Route::get('edit-bill-type/{id}','AdminSetupController@edit_bill_type')->name('edit-bill-type');
+        Route::post('update-bill-type/{id}','AdminSetupController@update_bill_type')->name('update-bill-type');
+        Route::post('delete-bill-type/{id}','AdminSetupController@delete_bill_type')->name('delete-bill-type');
+
+        Route::get('bank','AdminSetupController@bank')->name('bank');
+        Route::get('add-bank','AdminSetupController@add_bank')->name('add-bank');
+        Route::post('save-bank','AdminSetupController@save_bank')->name('save-bank');
+        Route::get('edit-bank/{id}','AdminSetupController@edit_bank')->name('edit-bank');
+        Route::post('update-bank/{id}','AdminSetupController@update_bank')->name('update-bank');
+        Route::post('delete-bank/{id}','AdminSetupController@delete_bank')->name('delete-bank');
+
+        Route::get('bank-branch','AdminSetupController@bank_branch')->name('bank-branch');
+        Route::get('add-bank-branch','AdminSetupController@add_bank_branch')->name('add-bank-branch');
+        Route::post('save-bank-branch','AdminSetupController@save_bank_branch')->name('save-bank-branch');
+        Route::get('edit-bank-branch/{id}','AdminSetupController@edit_bank_branch')->name('edit-bank-branch');
+        Route::post('update-bank-branch/{id}','AdminSetupController@update_bank_branch')->name('update-bank-branch');
+        Route::post('delete-bank-branch/{id}','AdminSetupController@delete_bank_branch')->name('delete-bank-branch');
+
+        Route::get('digital-payment-type','AdminSetupController@digital_payment_type')->name('digital-payment-type');
+        Route::get('add-digital-payment-type','AdminSetupController@add_digital_payment_type')->name('add-digital-payment-type');
+        Route::post('save-digital-payment-type','AdminSetupController@save_digital_payment_type')->name('save-digital-payment-type');
+        Route::get('edit-digital-payment-type/{id}','AdminSetupController@edit_digital_payment_type')->name('edit-digital-payment-type');
+        Route::post('update-digital-payment-type/{id}','AdminSetupController@update_digital_payment_type')->name('update-digital-payment-type');
+        Route::post('delete-digital-payment-type/{id}','AdminSetupController@delete_digital_payment_type')->name('delete-digital-payment-type');
+
         Route::get('billing','BillingsController@billing')->name('billing');
+        Route::get('add-billing','BillingsController@add_billing')->name('add-billing');
+        Route::get('/find-bank-branch','BillingsController@find_bank_branch')->name('find-bank-branch');
+        Route::get('/find-case-no','BillingsController@find_case_no')->name('find-case-no');
 
     });
 

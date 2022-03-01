@@ -32,6 +32,10 @@ use App\Models\SetupInternalCouncil;
 use App\Models\SetupInternalCouncilFiles;
 use App\Models\SetupExternalCouncilAssociate;
 use App\Models\SetupExternalCouncilAssociatesFile;
+use App\Models\SetupBillType;
+use App\Models\SetupBank;
+use App\Models\SetupBankBranch;
+use App\Models\SetupDigitalPayment;
 use Illuminate\Support\Facades\DB;
 
 
@@ -2130,6 +2134,326 @@ public function delete_company($id)
      session()->flash('success', 'External Council Associates Deleted');
      return redirect()->back();
  }
+
+
+ //bill setup
+
+    public function bill_type()
+    {
+        $data = SetupBillType::all();
+        return view('setup.bill_type.bill_type',compact('data'));
+    }
+
+    public function add_bill_type()
+    {
+        return view('setup.bill_type.add_bill_type');
+    }
+
+    public function save_bill_type(Request $request)
+    {
+        // dd($request->all());
+        $rules = [
+            'bill_type_name' => 'required'
+        ];
+
+        $validMsg = [
+            'bill_type_name.required' => 'Bill Type field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = new SetupBillType();
+        $data->bill_type_name = $request->bill_type_name;
+        $data->save();
+
+        session()->flash('success','Bill Type Added Successfully');
+        return redirect()->back();
+
+    }
+
+    public function edit_bill_type($id)
+    {
+        $data = SetupBillType::find($id);
+        return view('setup.bill_type.edit_bill_type',compact('data'));
+    }
+
+    public function update_bill_type(Request $request, $id)
+    {
+        $rules = [
+            'bill_type_name' => 'required'
+        ];
+
+        $validMsg = [
+            'bill_type_name.required' => 'Bill Type field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = SetupBillType::find($id);
+        $data->bill_type_name = $request->bill_type_name;
+        $data->save();
+
+        session()->flash('success','Bill Type Updated');
+        return redirect()->back();
+    }
+
+    public function delete_bill_type($id)
+    {
+        $data = SetupBillType::find($id);
+        if ($data['delete_status'] == 1){
+            $delete_status = 0;
+        }else{
+            $delete_status = 1;
+        }
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success', 'Bill Type Deleted');
+        return redirect()->back();
+    }
+
+
+    //bill setup
+
+    public function bank()
+    {
+        $data = SetupBank::all();
+        return view('setup.bank.bank',compact('data'));
+    }
+
+    public function add_bank()
+    {
+        return view('setup.bank.add_bank');
+    }
+
+    public function save_bank(Request $request)
+    {
+        // dd($request->all());
+        $rules = [
+            'bank_name' => 'required'
+        ];
+
+        $validMsg = [
+            'bank_name.required' => 'Bank field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = new SetupBank();
+        $data->bank_name = $request->bank_name;
+        $data->save();
+
+        session()->flash('success','Bank Added Successfully');
+        return redirect()->back();
+
+    }
+
+    public function edit_bank($id)
+    {
+        $data = SetupBank::find($id);
+        return view('setup.bank.edit_bank',compact('data'));
+    }
+
+    public function update_bank(Request $request, $id)
+    {
+        $rules = [
+            'bank_name' => 'required'
+        ];
+
+        $validMsg = [
+            'bank_name.required' => 'Bank field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = SetupBank::find($id);
+        $data->bank_name = $request->bank_name;
+        $data->save();
+
+        session()->flash('success','Bank Updated');
+        return redirect()->back();
+    }
+
+    public function delete_bank($id)
+    {
+        $data = SetupBank::find($id);
+        if ($data['delete_status'] == 1){
+            $delete_status = 0;
+        }else{
+            $delete_status = 1;
+        }
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success', 'Bank Deleted');
+        return redirect()->back();
+    }
+
+    
+    //bank branch setup
+
+    public function bank_branch()
+    {
+    //    $data = SetupBankBranch::all();
+        $data = DB::table('setup_bank_branches')
+                    ->leftJoin('setup_banks','setup_bank_branches.bank_id', '=', 'setup_banks.id')
+                    ->select('setup_bank_branches.*','setup_banks.bank_name')
+                    ->get();
+                    // dd($data);
+        return view('setup.bank_branch.bank_branch',compact('data'));
+    }
+
+    public function add_bank_branch()
+    {
+        $bank = SetupBank::where('delete_status',0)->get();
+        return view('setup.bank_branch.add_bank_branch',compact('bank'));
+    }
+
+    public function save_bank_branch(Request $request)
+    {
+        $rules = [
+            'bank_branch_name' => 'required'
+        ];
+
+        $validMsg = [
+            'bank_branch_name.required' => 'Bank Branch field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = new SetupBankBranch();
+        $data->bank_id = $request->bank_id;
+        $data->bank_branch_name = $request->bank_branch_name;
+        $data->save();
+
+        session()->flash('success','Bank Branch Added Successfully');
+        return redirect()->back();
+
+    }
+
+    public function edit_bank_branch($id)
+    {
+        $bank = SetupBank::where('delete_status',0)->get();
+
+        $data = SetupBankBranch::find($id);
+        return view('setup.bank_branch.edit_bank_branch',compact('data','bank'));
+    }
+
+    public function update_bank_branch(Request $request, $id)
+    {
+        $rules = [
+            'bank_branch_name' => 'required'
+        ];
+
+        $validMsg = [
+            'bank_branch_name.required' => 'Bank Branch field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = SetupBankBranch::find($id);
+        $data->bank_id = $request->bank_id;
+        $data->bank_branch_name = $request->bank_branch_name;
+        $data->save();
+
+        session()->flash('success','Bank Branch Updated');
+        return redirect()->back();
+    }
+
+    public function delete_bank_branch($id)
+    {
+        $data = SetupBankBranch::find($id);
+        if ($data['delete_status'] == 1){
+            $delete_status = 0;
+        }else{
+            $delete_status = 1;
+        }
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success', 'Bank Branch Deleted');
+        return redirect()->back();
+    }
+
+    //property type setup
+
+    public function digital_payment_type()
+    {
+        $data = SetupDigitalPayment::all();
+        return view('setup.digital_payment_type.digital_payment_type',compact('data'));
+    }
+
+    public function add_digital_payment_type()
+    {
+        return view('setup.digital_payment_type.add_digital_payment_type');
+    }
+
+    public function save_digital_payment_type(Request $request)
+    {
+        $rules = [
+            'digital_payment_type_name' => 'required'
+        ];
+
+        $validMsg = [
+            'digital_payment_type_name.required' => 'Digital Payment Type field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = new SetupDigitalPayment();
+        $data->digital_payment_type_name = $request->digital_payment_type_name;
+        $data->save();
+
+        session()->flash('success','Digital Payment Type Added Successfully');
+        return redirect()->back();
+
+    }
+
+    public function edit_digital_payment_type($id)
+    {
+        $data = SetupDigitalPayment::find($id);
+        return view('setup.digital_payment_type.edit_digital_payment_type',compact('data'));
+    }
+
+    public function update_digital_payment_type(Request $request, $id)
+    {
+        $rules = [
+            'digital_payment_type_name' => 'required'
+        ];
+
+        $validMsg = [
+            'digital_payment_type_name.required' => 'Digital Payment Type field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = SetupDigitalPayment::find($id);
+        $data->digital_payment_type_name = $request->digital_payment_type_name;
+        $data->save();
+
+        session()->flash('success','Digital Payment Type Updated');
+        return redirect()->back();
+    }
+
+    public function delete_digital_payment_type($id)
+    {
+        $data = SetupDigitalPayment::find($id);
+        if ($data['delete_status'] == 1){
+            $delete_status = 0;
+        }else{
+            $delete_status = 1;
+        }
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success', 'Digital Payment Type Deleted');
+        return redirect()->back();
+    }
+
+
+
+
+
 
 
 }

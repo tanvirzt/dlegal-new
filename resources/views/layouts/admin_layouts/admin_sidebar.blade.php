@@ -151,6 +151,30 @@
                       <p>Alligation</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="{{ route('bill-type') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Bill Type</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('bank') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Bank</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('bank-branch') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Bank Branch</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('digital-payment-type') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Payment Type</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
               <li class="nav-item">

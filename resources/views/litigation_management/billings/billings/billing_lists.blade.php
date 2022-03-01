@@ -109,7 +109,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title"> Billings </h3>
                                     <div class="float-right">
-                                        <a href="{{ route('add-civil-cases') }}"><button
+                                        <a href="{{ route('add-billing') }}"><button
                                                 class="btn btn-sm
                                         btn-success add_btn"><i
                                                     class="fas fa-plus"></i> Add Billings </button></a>
@@ -222,9 +222,7 @@
                                                         <p class="text-muted text-sm"><b>Checque No: </b> Web Designer  </p>
                                                         <p class="text-muted text-sm"><b>Name of Bank: </b> Web Designer  </p>                                                        
                                                     </div>
-                
                                                 </div>
-                
                                         </div>
                                     </div>
                 

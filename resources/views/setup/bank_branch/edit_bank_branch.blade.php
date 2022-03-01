@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Admin Setup</h1>
+                        <h1 class="m-0 text-dark">Edit Bank Branch</h1>
 
                     </div><!-- /.col -->
 
@@ -20,7 +20,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('area') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('bank-branch') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
                             </li>
                         </ol>
                     </div>
@@ -48,24 +48,33 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Add Area</h3>
+                                <h3 class="card-title" id="heading">Edit Bank Branch</h3>
                             </div>
 
-                            <form action="{{ route('save-area') }}" method="post">
+                            <form action="{{ route('update-bank-branch',$data->id) }}" method="post">
                                 @csrf
                                 <div class="card-body">
 
                                     <div class="col-md-12">
-
                                         <div class="form-group">
-                                            <label for="area_name">Area</label>
-                                            <input type="text" class="form-control" name="area_name"
-                                                   id="area_name">
-                                            @error('area_name')<span class="text-danger">{{$message}}</span>@enderror
+                                            <label for="bank_id"> Bank </label>
+                                            <select name="bank_id" class="form-control select2" id="bank_id">
+                                                    <option value="">Select</option>
+                                                @foreach($bank as $item)
+                                                    <option value="{{ $item->id }}" {{ $data->division_id == $item->id ? 'selected': '' }}>{{ $item->bank_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="bank_branch_name"> Bank Branch </label>
+                                            <input type="text" class="form-control" name="bank_branch_name"
+                                                   id="bank_branch_name" value="{{ $data->bank_branch_name }}">
+                                            @error('bank_branch_name')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
 
                                         <div class="float-right">
-                                            <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save</button>
+                                        <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update </button>
+
                                         </div>
                                     </div>
 

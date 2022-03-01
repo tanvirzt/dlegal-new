@@ -27,7 +27,9 @@
     <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
   <!-- custom css  -->
   <link rel="stylesheet" href="{{ asset('css/admin_css/custom.css')}}">
   <!-- Google Font: Source Sans Pro -->
@@ -94,6 +96,8 @@
   <script src="{{ asset('js/admin_js/admin_script.js')}}"></script>
   <script src="{{ asset('js/admin_js/custom_script.js')}}"></script>
 
+  <!-- Select2 -->
+<script src="{{ asset('plugins/select2/js/select2.full.min.js')}}"></script>
     <!-- DataTables -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -115,6 +119,8 @@
                 "autoWidth": false,
                 "orderFixed": [0, 'desc'],
             });
+
+            $('.select2').select2()
 
          });
     </script>

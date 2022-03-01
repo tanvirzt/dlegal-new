@@ -167,6 +167,64 @@ $(document).ready(function(){
         }
     });
 
+    $('#bank_id').on('change', function() {
+        var bank_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(bank_id);
+        if(bank_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data : {"_token":"{{ csrf_token() }}",bank_id:bank_id},
+                dataType: "json",
+                success:function(data) {
+                    // console.log(data);
+                    if(data){
+                        $('#branch_id').empty();
+                        $('#branch_id').focus;
+                        $('#branch_id').append('<option value="">Select</option>');
+                        $.each(data, function(key, value){
+                            $('select[name="branch_id"]').append('<option value="'+ value.id +'">' + value.bank_branch_name+ '</option>');
+                        });
+                    }else{
+                        $('#branch_id').empty();
+                    }
+                }
+            });
+        }else{
+            $('#branch_id').empty();
+        }
+    });
+
+    $('#case_type').on('change', function() {
+        var case_type = $(this).val();
+        var route = $(this).attr('action');
+        $('#case_id').empty();
+        $('#case_id').append('<option value="">Select</option>');
+
+        // alert(route);
+        if(case_type) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data : {"_token":"{{ csrf_token() }}",case_type:case_type},
+                dataType: "json",
+                success:function(data) {
+                    // console.log(data);
+                    if(data){
+                        $('#case_id').focus;
+                        $.each(data, function(key, value){
+                            $('select[name="case_id"]').append('<option value="'+ value.id +'">' + value.case_no+ '</option>');
+                        });
+                    }else{
+                        $('#case_id').empty();
+                    }
+                }
+            });
+        }else{
+            $('#case_id').empty();
+        }
+    });
 
 
     $('#form-data').submit(function(e){
