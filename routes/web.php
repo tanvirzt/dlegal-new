@@ -321,6 +321,12 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('add-billing','BillingsController@add_billing')->name('add-billing');
         Route::get('/find-bank-branch','BillingsController@find_bank_branch')->name('find-bank-branch');
         Route::get('/find-case-no','BillingsController@find_case_no')->name('find-case-no');
+        Route::post('/save-billing','BillingsController@save_billing')->name('save-billing');
+        Route::get('/edit-billing/{id}','BillingsController@edit_billing')->name('edit-billing');
+        Route::post('/update-billing/{id}','BillingsController@update_billing')->name('update-billing');
+        Route::get('add-billing-civil-cases/{id}','BillingsController@add_billing_civil_cases')->name('add-billing-civil-cases');
+        Route::get('add-billing-criminal-cases/{id}','BillingsController@add_billing_criminal_cases')->name('add-billing-criminal-cases');
+        Route::post('delete-billing/{id}','BillingsController@delete_billing')->name('delete-billing');
 
     });
 

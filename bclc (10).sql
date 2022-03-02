@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2022 at 01:44 PM
+-- Generation Time: Mar 02, 2022 at 01:32 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -191,6 +191,52 @@ INSERT INTO `appellate_court_case_status_logs` (`id`, `case_id`, `updated_court_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `case_billings`
+--
+
+CREATE TABLE `case_billings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `bill_type_id` int(11) DEFAULT NULL,
+  `payment_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `district_id` int(11) DEFAULT NULL,
+  `case_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `panel_lawyer_id` int(11) DEFAULT NULL,
+  `bill_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_of_billing` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bank_id` int(11) DEFAULT NULL,
+  `branch_id` int(11) DEFAULT NULL,
+  `cheque_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payment_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `digital_payment_type_id` int(11) DEFAULT NULL,
+  `is_approved` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `case_billings`
+--
+
+INSERT INTO `case_billings` (`id`, `bill_type_id`, `payment_type`, `district_id`, `case_type`, `case_no`, `panel_lawyer_id`, `bill_amount`, `date_of_billing`, `bank_id`, `branch_id`, `cheque_no`, `payment_amount`, `digital_payment_type_id`, `is_approved`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Digital Payment', 1, 'Civil Cases', '65464321', 2, '87000', '2022-03-18', NULL, NULL, '', '74000', 2, 'Approved', 0, NULL, NULL, '2022-03-02 01:34:07', '2022-03-02 03:59:52'),
+(2, 2, 'Cash Payment', 1, 'Criminal Cases', '6546', 2, '250000', '2022-03-03', NULL, NULL, NULL, '100000', NULL, NULL, 0, NULL, NULL, '2022-03-02 01:34:28', '2022-03-02 01:34:28'),
+(3, 1, 'Digital Payment', 1, 'Labour Cases', '65464321313', 2, '780000', '2022-03-17', NULL, NULL, NULL, '33000', 2, NULL, 0, NULL, NULL, '2022-03-02 01:49:03', '2022-03-02 04:02:09'),
+(4, 2, 'Digital Payment', 4, 'Special Quassi - Judicial Cases', '6546', 2, '780000', '2022-03-11', NULL, NULL, NULL, '780000', 2, NULL, 1, NULL, NULL, '2022-03-02 01:49:50', '2022-03-02 05:41:57'),
+(5, 2, 'Digital Payment', 4, 'Supreme Court of Bangladesh', '6985', 2, '69000', '2022-03-25', NULL, NULL, NULL, '37000', 2, NULL, 0, NULL, NULL, '2022-03-02 01:50:14', '2022-03-02 01:50:14'),
+(6, 2, 'Digital Payment', 2, 'High Court Division', '544', 2, '7500', '2022-03-18', NULL, NULL, NULL, '145000', 2, 'Approved', 0, NULL, NULL, '2022-03-02 01:50:43', '2022-03-02 01:50:43'),
+(7, 2, 'Bank Payment', 5, 'Appellate Court Division', '6546', 2, '54000', '2022-03-25', 1, 3, '6946546874', '368888', NULL, NULL, 0, NULL, NULL, '2022-03-02 01:51:42', '2022-03-02 03:57:33'),
+(8, 1, 'Bank Payment', 1, 'Civil Cases', '65464321', 2, '780000', '2022-03-26', 1, 3, '6946546874', '100000', NULL, NULL, 0, NULL, NULL, '2022-03-02 04:42:52', '2022-03-02 04:42:52'),
+(9, 1, 'Digital Payment', 4, 'Criminal Cases', '6399887745', 2, NULL, '2022-03-10', NULL, NULL, NULL, '639000', 3, NULL, 1, NULL, NULL, '2022-03-02 05:19:56', '2022-03-02 05:42:11'),
+(10, 1, 'Bank Payment', 5, 'Criminal Cases', '6399887745', 2, '2654000', '2022-04-02', 2, 2, '875574', '98000', NULL, NULL, 1, NULL, NULL, '2022-03-02 05:21:34', '2022-03-02 05:40:57'),
+(11, 2, 'Digital Payment', 2, 'Labour Cases', '65464321313', 2, '85700', '2022-03-11', NULL, NULL, NULL, '960000', 3, NULL, 0, NULL, NULL, '2022-03-02 05:44:56', '2022-03-02 05:44:56');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `civil_cases`
 --
 
@@ -258,7 +304,8 @@ CREATE TABLE `civil_cases` (
 
 INSERT INTO `civil_cases` (`id`, `case_no`, `date_of_filing`, `division_id`, `case_year`, `district_id`, `ref_no`, `amount`, `location`, `case_status_id`, `property_type_id`, `case_category_nature_id`, `case_type_id`, `name_of_the_court_id`, `external_council_name_id`, `external_council_associates_id`, `relevant_law_sections_id`, `plaintiff_name`, `contact_number`, `plaintiff_designaiton_id`, `next_date`, `plaintiff_contact_number`, `next_date_fixed_id`, `company_id`, `zone_id`, `area_id`, `subsequent_plaintiff_name`, `name_of_suit`, `defendent_name`, `defendent_address`, `defendent_company_id`, `date_of_incident`, `last_order_court_id`, `date_of_incident_to`, `additional_order`, `first_identification_person`, `disbursement_date`, `date_of_identification`, `date_of_cash_receipt`, `case_notes`, `date_of_disposed`, `power_of_attorny`, `total_legal_bill_amount_cost`, `panel_lawyer_id`, `assigned_lawyer_id`, `notes`, `other_claim`, `summary_facts_alligation`, `missing_documents_evidence_information`, `comments`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, '65464321', '2022-02-24', 1, '2026', 1, '35465464815245', '60000', 'Dhaka', 3, 2, 2, 1, 1, 1, 1, 2, 'test1 asdf', '01771045019', 1, '2022-02-24', '01456698785', 2, 2, 2, 2, 'test test test asdfasdfdsaf', '5465456', 'test10', '43 Phillip St, Sydney NSW 2000, Australia', 1, '2022-02-09', 1, '2022-02-25', 'test5', 'test test', '2022-03-03', '2022-02-17', '2022-02-25', 'test21', '2022-02-24', 'sdfsdfdsf', '810000', 1, 1, 'test test test test', 'test test test', 'test test 65641564', 'test test test 65465461', 'test required', 0, NULL, NULL, '2022-02-15 05:32:57', '2022-02-26 04:21:58'),
-(2, '4546151', '2022-02-18', 2, '2026', 3, 'test15 asdf', '35000', 'Dhaka', 3, 2, 2, 1, 1, 2, 4, 2, 'd test test', '01771045019', 2, '2022-02-13', '01456698785', 2, 2, 2, 2, 'test test test', 'Aminur Rahman Smith Aminur', 'test10', '43 Phillip St, Sydney NSW 2000, Australia', 2, '2022-02-19', 1, '2022-02-18', 'test5', 'Jhon', '2022-02-17', '2022-03-10', '2022-02-19', 'test24', '2022-03-03', 'none test', '810000', 2, 1, 'teststest', 'test test 465465', 'test test test test', 'qqqqqqq eeeeeee rrrrrrrr ttttttty      yyyyyyyyyyyy', 'test test sdfsadfsd', 0, NULL, NULL, '2022-02-15 21:53:20', '2022-02-26 04:21:11');
+(2, '4546151', '2022-02-18', 2, '2026', 3, 'test15 asdf', '35000', 'Dhaka', 3, 2, 2, 1, 1, 2, 4, 2, 'd test test', '01771045019', 2, '2022-02-13', '01456698785', 2, 2, 2, 2, 'test test test', 'Aminur Rahman Smith Aminur', 'test10', '43 Phillip St, Sydney NSW 2000, Australia', 2, '2022-02-19', 1, '2022-02-18', 'test5', 'Jhon', '2022-02-17', '2022-03-10', '2022-02-19', 'test24', '2022-03-03', 'none test', '810000', 2, 1, 'teststest', 'test test 465465', 'test test test test', 'qqqqqqq eeeeeee rrrrrrrr ttttttty      yyyyyyyyyyyy', 'test test sdfsadfsd', 0, NULL, NULL, '2022-02-15 21:53:20', '2022-03-01 05:57:34'),
+(3, '654663', '2022-02-18', 3, '2026', 5, '5465', '36000', 'Dhaka', 3, 3, 2, 2, 1, 2, 4, 3, 'test 2', '01771045012', 2, '2022-03-11', '01456698782', 3, 2, 2, 2, 'test3', 'Aminur Rahman Smith Aminur', 'test10', '43 Phillip St, Sydney NSW 2000, Australia', 2, '2022-02-09', 1, '2022-02-17', 'test5', 'tesa', '2022-02-08', '2022-02-16', '2022-03-12', 'test21', '2022-02-24', 'sdfsdfdsf', '890000', NULL, 0, 'test 6', 'test 9', 'test 10', 'test 3', 'test 2', 1, NULL, NULL, '2022-02-27 23:05:12', '2022-02-28 00:44:10');
 
 -- --------------------------------------------------------
 
@@ -288,7 +335,9 @@ INSERT INTO `civil_cases_files` (`id`, `case_id`, `uploaded_document`, `delete_s
 (4, 2, '164498360026asdfasdf.pdf', 0, NULL, NULL, '2022-02-15 21:53:20', '2022-02-15 21:53:20'),
 (5, 2, '164498360033byden.jpg', 0, NULL, NULL, '2022-02-15 21:53:20', '2022-02-15 21:53:20'),
 (6, 2, '164498360011Ethnicity.png', 1, NULL, NULL, '2022-02-15 21:53:20', '2022-02-19 04:07:09'),
-(7, 2, '164498360060Integra_Logo.png', 0, NULL, NULL, '2022-02-15 21:53:20', '2022-02-15 21:53:20');
+(7, 2, '164498360060Integra_Logo.png', 0, NULL, NULL, '2022-02-15 21:53:20', '2022-02-15 21:53:20'),
+(8, 3, '164602471210asdfasdf.pdf', 0, NULL, NULL, '2022-02-27 23:05:12', '2022-02-27 23:05:12'),
+(9, 3, '164602471251byden.jpg', 0, NULL, NULL, '2022-02-27 23:05:12', '2022-02-27 23:05:12');
 
 -- --------------------------------------------------------
 
@@ -407,10 +456,10 @@ CREATE TABLE `criminal_cases` (
 --
 
 INSERT INTO `criminal_cases` (`id`, `case_no`, `date_of_case_received`, `case_category_nature_id`, `case_type_id`, `subsequent_case_no`, `zone_id`, `area_id`, `branch_id`, `member_no`, `program_id`, `police_station`, `name_of_the_court_id`, `date_of_filing`, `division_id`, `district_id`, `relevant_law_sections_id`, `alligation_id`, `amount`, `name_of_the_complainant`, `complainant_contact_no`, `complainant_designation_id`, `external_council_name_id`, `external_council_associates_id`, `case_status_id`, `last_order_court_id`, `accused_name`, `accused_company_id`, `next_date`, `accused_address`, `accused_contact_no`, `next_date_fixed_id`, `plaintiff_name`, `plaintiff_designaiton_id`, `plaintiff_contact_number`, `company_id`, `case_notes`, `panel_lawyer_id`, `assigned_lawyer_id`, `other_claim`, `summary_facts_alligation`, `prayer_claims_by_psg`, `total_legal_bill_amount`, `missing_documents_evidence`, `comments`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '6546', '2022-02-18', '2', 2, 'tewt', 2, '2', 2, '546464', 2, 'Lalbagh', 1, '2022-03-03', 3, 5, 3, 2, '56000', 'Aminur Rahman Smith Aminur', '01998744563', 2, 1, 2, 3, 1, 'Aminur Rahman Smith Aminur', NULL, '2022-02-06', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 3, 'test1', 2, '01456698785', 2, 'test21', 2, 2, 'no claim', 'all of summary', 'test and no claims by psg', '25600', 'all documents area available', 'test documents', 0, NULL, NULL, '2022-02-15 23:48:56', '2022-02-26 04:58:10'),
+(1, '6546', '2022-02-18', '2', 2, 'tewt', 2, '2', 2, '546464', 2, 'Lalbagh', 1, '2022-03-03', 3, 5, 3, 2, '56000', 'Aminur Rahman Smith Aminur', '01998744563', 2, 1, 2, 3, 1, 'Aminur Rahman Smith Aminur', NULL, '2022-02-06', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 3, 'test1', 2, '01456698785', 2, 'test21', 2, 2, 'no claim', 'all of summary', 'test and no claims by psg', '25600', 'all documents area available', 'test documents', 0, NULL, NULL, '2022-02-15 23:48:56', '2022-02-28 01:30:45'),
 (2, '654643', '2022-02-03', '2', 1, '7788965', 2, '1', 2, '546464', 2, 'Lalbagh', 1, '2022-02-25', 2, 3, 3, 2, '68000', 'Aminur Rahman Smith Aminur', '01998744563', 1, 1, 2, 3, 1, 'Aminur Rahman Smith Aminur', 2, '2022-02-17', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 2, 'test plaintiff', 2, '01456698785', 2, 'no cases available', 2, 2, 'other claim', 'all facts', 'psg claims', '77600', 'case files 1, case files 2', 'case two updated with new value', 0, NULL, NULL, '2022-02-15 23:56:59', '2022-02-16 01:25:55'),
 (3, '6399887745', '2022-02-01', '2', 2, '7788965', 2, '1', 2, '546464', 2, 'Lalbagh', 1, '2022-02-07', 2, 3, 1, 1, '2454545', 'Aminur Rahman Smith Aminur', '01998744563', 2, 2, 3, 3, 1, 'Aminur Rahman Smith Aminur', 2, '2022-02-17', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 3, 'test cases', 2, '01456698785', 2, 'no cases', 2, 2, 'test cases', 'no facts and summary available', 'claims by psg test', '78600', 'files 1, files 2, files 3', 'criminal case no 3 updated', 0, NULL, NULL, '2022-02-16 00:01:50', '2022-02-24 03:51:32'),
-(4, '4546151', '2022-02-07', '2', 2, '77', 2, '2', 2, '546464', 2, 'Lalbagh', 1, '2022-03-02', 2, 3, 2, 2, '49000', 'Aminur Rahman Smith Aminur', '01998744563', 2, 2, 4, 3, 1, 'Aminur Rahman Smith Aminur', 1, '2022-02-01', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 1, 'test1', 2, '01456698785', 2, 'test21', 2, 2, 'test cases', 'test summary facts and alligations', 'claims by psg', '29600', 'test files 1, test files 2, test files 3', 'test with no comments.', 0, NULL, NULL, '2022-02-20 01:15:27', '2022-02-20 01:15:27');
+(4, '4546151', '2022-02-07', '2', 2, '77', 2, '2', 2, '546464', 2, 'Lalbagh', 1, '2022-03-02', 2, 3, 2, 2, '49000', 'Aminur Rahman Smith Aminur', '01998744563', 2, 2, 4, 3, 1, 'Aminur Rahman Smith Aminur', 1, '2022-02-01', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 1, 'test1', 2, '01456698785', 2, 'test21', 2, 2, 'test cases', 'test summary facts and alligations', 'claims by psg', '29600', 'test files 1, test files 2, test files 3', 'test with no comments.', 1, NULL, NULL, '2022-02-20 01:15:27', '2022-03-01 06:06:44');
 
 -- --------------------------------------------------------
 
@@ -691,7 +740,7 @@ CREATE TABLE `labour_cases` (
 --
 
 INSERT INTO `labour_cases` (`id`, `case_no`, `date_of_case_received`, `case_category_nature_id`, `case_type_id`, `subsequent_case_no`, `zone_id`, `area_id`, `branch_id`, `member_no`, `program_id`, `police_station`, `name_of_the_court_id`, `date_of_filing`, `division_id`, `district_id`, `relevant_law_sections_id`, `alligation_id`, `amount`, `name_of_the_complainant`, `complainant_contact_no`, `complainant_designation_id`, `external_council_name_id`, `external_council_associates_id`, `opposite_party_name`, `opposite_party_address`, `case_status_id`, `last_order_court_id`, `accused_name`, `accused_company_id`, `next_date`, `accused_address`, `accused_contact_no`, `next_date_fixed_id`, `plaintiff_name`, `plaintiff_designaiton_id`, `plaintiff_contact_number`, `company_id`, `case_notes`, `panel_lawyer_id`, `assigned_lawyer_id`, `other_claim`, `summary_facts_alligation`, `prayer_claims_by_psg`, `total_legal_bill_amount`, `missing_documents_evidence`, `comments`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-02-16 06:05:59', '2022-02-24 07:01:04'),
+(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-02-16 06:05:59', '2022-03-01 06:10:57'),
 (2, '6546', '2022-01-30', '1', 2, '7788965', 1, '2', 1, '6546', 2, 'Lalbagh', 1, '2022-02-08', 2, 3, 3, 1, '60000', 'Aminur Rahman Smith Aminur', '01998744563', 1, 2, 4, 'Aminur Rahman Smith Aminur', '43 Phillip St, Sydney NSW 2000, Australia', 3, 1, 'Aminur Rahman Smith Aminur', 1, '2022-02-07', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 1, 'test1', 2, '01456698785', 2, 'test21', 2, 2, 'no claim update', 'test summary facts update', 'claims by psg update', '25600', 'files 1, files 2, files 3 test update', 'test test test test test user update', 0, NULL, NULL, '2022-02-16 06:33:20', '2022-02-24 05:31:42'),
 (3, '65464321313', '2022-02-18', '1', 2, '7788965', 1, '2', 1, '65464321313', 2, 'Lalbagh', 1, '2022-01-30', 3, 4, 1, 1, '65000', 'Aminur Rahman Smith Aminur', '01998744563', 1, 1, 2, 'Aminur Rahman Smith Aminur', '43 Phillip St, Sydney NSW 2000, Australia', 3, 1, 'Aminur Rahman Smith Aminur', 2, '2022-01-30', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 1, 'test1', 2, '01456698785', 2, 'test21', 1, 1, 'test claim updates', 'no alligation updates', 'all psg updates', '256008978746', 'file 1, file 2, file 3 updates', 'test all the labour cases updates', 0, NULL, NULL, '2022-02-16 06:40:17', '2022-02-24 06:07:26');
 
@@ -830,7 +879,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (172, '2022_02_26_050811_create_quassi_judicial_case_status_logs_table', 29),
 (173, '2022_02_26_075141_create_supreme_court_case_status_logs_table', 30),
 (174, '2022_02_26_092935_create_high_court_case_status_logs_table', 31),
-(175, '2022_02_26_103647_create_appellate_court_case_status_logs_table', 32);
+(175, '2022_02_26_103647_create_appellate_court_case_status_logs_table', 32),
+(176, '2022_03_01_061808_create_setup_bill_types_table', 33),
+(177, '2022_03_01_063826_create_setup_banks_table', 34),
+(178, '2022_03_01_072242_create_setup_bank_branches_table', 35),
+(181, '2022_03_01_093042_create_setup_digital_payments_table', 36),
+(183, '2022_03_02_041449_create_case_billings_table', 37);
 
 -- --------------------------------------------------------
 
@@ -1017,7 +1071,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('PWF86QtxohqShfu37rfewbIIe30hWdXzEAWc57sY', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUlZzYUdva3U3TkNjbnlNSnhDRWFrNUVjY1E3bkdCS2hEUmFvZFcySCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly9sb2NhbGhvc3QvYmNsYy1zb2Z0d2FyZS9wdWJsaWMvYWRtaW4vYXBwZWxsYXRlLWNvdXJ0LWNhc2VzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO30=', 1645879134);
+('G96qwbrJeACHwa7m39Vu9xQMQ3qPQyVqdFNTBeqU', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVG5Eb21ZejN0VDdLam93ekZMY0pzY3Z2UXgzNjU3OXJVNkRxTE9lcyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njc6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9hcHBlbGxhdGUtY291cnQtY2FzZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJwYWdlIjtzOjk6ImRhc2hib2FyZCI7fQ==', 1646224333);
 
 -- --------------------------------------------------------
 
@@ -1066,6 +1120,80 @@ CREATE TABLE `setup_areas` (
 INSERT INTO `setup_areas` (`id`, `area_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'Shantibag', 0, NULL, NULL, '2022-02-15 05:25:34', '2022-02-26 05:47:00'),
 (2, 'Malibag', 0, NULL, NULL, '2022-02-15 05:25:41', '2022-02-15 05:25:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_banks`
+--
+
+CREATE TABLE `setup_banks` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `bank_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_banks`
+--
+
+INSERT INTO `setup_banks` (`id`, `bank_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Sonali Bank', 0, NULL, NULL, '2022-03-01 00:46:56', '2022-03-01 00:47:40'),
+(2, 'Rupali Bank', 0, NULL, NULL, '2022-03-01 00:47:02', '2022-03-01 00:47:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_bank_branches`
+--
+
+CREATE TABLE `setup_bank_branches` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `bank_id` int(11) DEFAULT NULL,
+  `bank_branch_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_bank_branches`
+--
+
+INSERT INTO `setup_bank_branches` (`id`, `bank_id`, `bank_branch_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Lalbag', 0, NULL, NULL, '2022-03-01 05:27:32', '2022-03-01 05:28:25'),
+(2, 2, 'Posta', 0, NULL, NULL, '2022-03-01 05:27:45', '2022-03-01 05:27:45'),
+(3, 1, 'Shahjahanpur', 0, NULL, NULL, '2022-03-01 05:28:08', '2022-03-01 05:28:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_bill_types`
+--
+
+CREATE TABLE `setup_bill_types` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `bill_type_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_bill_types`
+--
+
+INSERT INTO `setup_bill_types` (`id`, `bill_type_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Panel Layer Payment', 0, NULL, NULL, '2022-03-01 00:28:41', '2022-03-01 00:31:21'),
+(2, 'Miscellaneous', 0, NULL, NULL, '2022-03-01 00:29:04', '2022-03-01 00:29:04');
 
 -- --------------------------------------------------------
 
@@ -1161,8 +1289,13 @@ CREATE TABLE `setup_case_types` (
 --
 
 INSERT INTO `setup_case_types` (`id`, `case_types_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Business Cases', 0, NULL, NULL, '2022-02-15 05:22:22', '2022-02-26 05:39:36'),
-(2, 'Personal Cases', 0, NULL, NULL, '2022-02-15 05:22:34', '2022-02-15 05:22:34');
+(1, 'Criminal Cases', 0, NULL, NULL, '2022-02-15 05:22:22', '2022-02-28 04:25:28'),
+(2, 'Civil Cases', 0, NULL, NULL, '2022-02-15 05:22:34', '2022-02-28 04:25:20'),
+(3, 'Labour Cases', 0, NULL, NULL, '2022-02-28 04:25:37', '2022-02-28 04:25:37'),
+(4, 'Special / Quassi-Judicial Cases', 0, NULL, NULL, '2022-02-28 04:26:50', '2022-02-28 04:26:50'),
+(5, 'Supreme Court of Bangladesh', 0, NULL, NULL, '2022-02-28 04:27:14', '2022-02-28 04:27:14'),
+(6, 'High Court Division', 0, NULL, NULL, '2022-02-28 04:27:34', '2022-02-28 04:27:34'),
+(7, 'Appellate Court Division', 0, NULL, NULL, '2022-02-28 04:27:49', '2022-02-28 04:27:49');
 
 -- --------------------------------------------------------
 
@@ -1213,7 +1346,8 @@ CREATE TABLE `setup_company_types` (
 
 INSERT INTO `setup_company_types` (`id`, `company_type_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'Owened', 0, NULL, NULL, '2022-02-15 05:11:10', '2022-02-26 05:52:38'),
-(2, 'Private', 0, NULL, NULL, '2022-02-15 05:11:12', '2022-02-15 05:11:12');
+(2, 'Private', 0, NULL, NULL, '2022-02-15 05:11:12', '2022-02-15 05:11:12'),
+(3, 'Business Company', 0, NULL, NULL, '2022-03-02 05:54:02', '2022-03-02 05:54:02');
 
 -- --------------------------------------------------------
 
@@ -1331,6 +1465,31 @@ CREATE TABLE `setup_designations` (
 INSERT INTO `setup_designations` (`id`, `designation_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'Professor', 1, NULL, NULL, '2022-02-15 05:11:40', '2022-02-26 05:35:27'),
 (2, 'Lawyer', 0, NULL, NULL, '2022-02-15 05:11:44', '2022-02-15 05:11:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_digital_payments`
+--
+
+CREATE TABLE `setup_digital_payments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `digital_payment_type_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_digital_payments`
+--
+
+INSERT INTO `setup_digital_payments` (`id`, `digital_payment_type_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Bkash', 0, NULL, NULL, '2022-03-01 03:47:40', '2022-03-01 03:49:42'),
+(2, 'Nagad', 0, NULL, NULL, '2022-03-01 03:47:48', '2022-03-01 03:47:48'),
+(3, 'Rockets', 0, NULL, NULL, '2022-03-01 03:47:53', '2022-03-01 03:48:27');
 
 -- --------------------------------------------------------
 
@@ -1874,6 +2033,12 @@ ALTER TABLE `appellate_court_case_status_logs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `case_billings`
+--
+ALTER TABLE `case_billings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `civil_cases`
 --
 ALTER TABLE `civil_cases`
@@ -2017,6 +2182,24 @@ ALTER TABLE `setup_areas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `setup_banks`
+--
+ALTER TABLE `setup_banks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setup_bank_branches`
+--
+ALTER TABLE `setup_bank_branches`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setup_bill_types`
+--
+ALTER TABLE `setup_bill_types`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `setup_branches`
 --
 ALTER TABLE `setup_branches`
@@ -2080,6 +2263,12 @@ ALTER TABLE `setup_court_last_orders`
 -- Indexes for table `setup_designations`
 --
 ALTER TABLE `setup_designations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setup_digital_payments`
+--
+ALTER TABLE `setup_digital_payments`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2220,16 +2409,22 @@ ALTER TABLE `appellate_court_case_status_logs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `case_billings`
+--
+ALTER TABLE `case_billings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `civil_cases`
 --
 ALTER TABLE `civil_cases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `civil_cases_files`
 --
 ALTER TABLE `civil_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `civil_case_status_logs`
@@ -2307,7 +2502,7 @@ ALTER TABLE `labour_case_status_logs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -2346,6 +2541,24 @@ ALTER TABLE `setup_areas`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `setup_banks`
+--
+ALTER TABLE `setup_banks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `setup_bank_branches`
+--
+ALTER TABLE `setup_bank_branches`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `setup_bill_types`
+--
+ALTER TABLE `setup_bill_types`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `setup_branches`
 --
 ALTER TABLE `setup_branches`
@@ -2367,7 +2580,7 @@ ALTER TABLE `setup_case_statuses`
 -- AUTO_INCREMENT for table `setup_case_types`
 --
 ALTER TABLE `setup_case_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `setup_companies`
@@ -2379,7 +2592,7 @@ ALTER TABLE `setup_companies`
 -- AUTO_INCREMENT for table `setup_company_types`
 --
 ALTER TABLE `setup_company_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setup_compliance_categories`
@@ -2412,6 +2625,12 @@ ALTER TABLE `setup_designations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `setup_digital_payments`
+--
+ALTER TABLE `setup_digital_payments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `setup_districts`
 --
 ALTER TABLE `setup_districts`
@@ -2427,7 +2646,7 @@ ALTER TABLE `setup_divisions`
 -- AUTO_INCREMENT for table `setup_external_councils`
 --
 ALTER TABLE `setup_external_councils`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setup_external_council_associates`

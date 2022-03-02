@@ -48,7 +48,7 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Add Bill Type</h3>
+                                <h3 class="card-title" id="heading">Add Bank Type</h3>
                             </div>
 
                             <form action="{{ route('save-bank') }}" method="post">
@@ -58,7 +58,7 @@
                                     <div class="col-md-12">
 
                                         <div class="form-group">
-                                            <label for="bank_name">Bill Type</label>
+                                            <label for="bank_name">Bank Type</label>
                                             <input type="text" class="form-control" name="bank_name"
                                                    id="bank_name">
                                             @error('bank_name')<span class="text-danger">{{$message}}</span>@enderror

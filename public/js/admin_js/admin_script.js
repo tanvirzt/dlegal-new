@@ -199,8 +199,8 @@ $(document).ready(function(){
     $('#case_type').on('change', function() {
         var case_type = $(this).val();
         var route = $(this).attr('action');
-        $('#case_id').empty();
-        $('#case_id').append('<option value="">Select</option>');
+        $('#case_no').empty();
+        $('#case_no').append('<option value="">Select</option>');
 
         // alert(route);
         if(case_type) {
@@ -212,55 +212,39 @@ $(document).ready(function(){
                 success:function(data) {
                     // console.log(data);
                     if(data){
-                        $('#case_id').focus;
+                        $('#case_no').focus;
                         $.each(data, function(key, value){
-                            $('select[name="case_id"]').append('<option value="'+ value.id +'">' + value.case_no+ '</option>');
+                            $('select[name="case_no"]').append('<option value="'+ value.case_no +'">' + value.case_no+ '</option>');
                         });
                     }else{
-                        $('#case_id').empty();
+                        $('#case_no').empty();
                     }
                 }
             });
         }else{
-            $('#case_id').empty();
+            $('#case_no').empty();
         }
     });
 
 
     $('#form-data').submit(function(e){
-        // alert('hello');
         $('#submit').html('<i class="fas fa-search"></i> Searching');
-
-        // $(".progress-bar").animate({
-        //     width: "100%"
-        // }, 800);
 
         e.preventDefault();
         var form_data = new FormData(this);
         var action = $(this).attr('action');
         var view_case = $(this).attr('view_case');
 
-// var progress = $('.progress');
-    // var bar = $(".progress > .progress-bar");
-
-        // alert(form_data);
         $.ajax({
             type:'post',
             beforeSend: function() {
-                        // progress.show();
-                        // bar.css("width", "0%");
             $(".progress-bar").animate({
                 width: "100%"
             }, 800);
-                        //$('body').addClass("blur");
             $(".progress-bar").fadeIn(100);
-
                     },
             complete: function(data) {
-
                 $(".progress-bar").fadeOut(800);
-                //$('body').removeClass("blur");
-
             },
             url: action,
             data: form_data,
@@ -270,7 +254,6 @@ $(document).ready(function(){
             success:(res) =>{
                 $('#submit').html('<i class="fas fa-search"></i> Search');
 // console.log(res);
-                // $(".progress-bar").hide();
                 $('#search_data').empty();
                 $.each(res, function(key, value){
 
@@ -321,6 +304,9 @@ $(document).ready(function(){
                                 <td>
                                     <a href="view-civil-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                         ><i class="fas fa-eye"></i></button></a>
+                                    <a href="add-billing-civil-cases/${value.id}"><button
+                                                        class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                                        data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
                                     <a href="edit-civil-cases/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                         ><i class="fas fa-edit"></i></button></a>
                                         
@@ -346,6 +332,36 @@ $(document).ready(function(){
     })
 
 
+
+
+    $("#payment_type").change(function(){
+        
+        var payment_type = $(this).val();
+
+        if (payment_type == "Cash Payment") {
+
+            $("#bank").hide();
+            $("#branch").hide();
+            $("#cheque").hide();
+            $("#digital_payment_type").hide();
+
+        } else if (payment_type == "Bank Payment"){
+
+            $("#bank").show();
+            $("#branch").show();
+            $("#cheque").show();
+            $("#digital_payment_type").hide();
+            
+        }else if (payment_type == "Digital Payment"){
+
+            $("#bank").hide();
+            $("#branch").hide();
+            $("#cheque").hide();
+            $("#digital_payment_type").show();
+
+        }
+
+    });
 
 
 

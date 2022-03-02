@@ -196,6 +196,9 @@
                                                             class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Details"><i
                                                                 class="fas fa-eye"></i></button></a>
+                                                    <a href="{{ route('add-billing-civil-cases', $datum->id) }}"><button
+                                                        class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                                        data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
                                                     <a href="{{ route('edit-civil-cases', $datum->id) }}"><button
                                                             class="btn btn-info btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"><i

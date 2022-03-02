@@ -139,7 +139,7 @@
                                                                 <label for="district_id"
                                                                     class="col-sm-4 col-form-label">District</label>
                                                                 <div class="col-sm-8">
-                                                                    <select name="district_id" class="form-control"
+                                                                    <select name="district_id" class="form-control select2"
                                                                         id="district_id">
                                                                         <option value=""> Select </option>
                                                                         @foreach ($existing_district as $item)

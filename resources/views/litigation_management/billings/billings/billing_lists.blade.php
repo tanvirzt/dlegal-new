@@ -23,8 +23,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
-                    @if (Session::has('success'))
+                @if (Session::has('success'))
                         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                             {{ Session::get('success') }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -32,6 +31,7 @@
                             </button>
                         </div>
                     @endif
+                <div class="row">
                     <div class="col-md-8">
                         <div class="card">
                             <div id="accordion">
@@ -119,158 +119,49 @@
 
 
                             <div class="row p-3">
-                                <div class="col-md-4">
+                                @foreach ($data as $datum)
+                                <div class="col-md-3">
                                     <div class="card">
-                                        <div class="">
+                                        <div class="">  
+                                            <div class="float-right">
+                                                @if ($datum->is_approved == null)                                                    
+                                                    <a href="{{ route('edit-billing',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                    ><i class="fas fa-edit"></i></button></a>
+                                                    <form method="POST"
+                                                        action="{{ route('delete-billing', $datum->id) }}"
+                                                        class="delete-user btn btn-danger btn-xs">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                            data-toggle="tooltip" data-placement="top" title="Delete"><i
+                                                                class="fas fa-trash"></i> </button>
+                                                    </form>
+                                                @endif
+
+                                                </div>
                                                 <div class="card-body">
-                
                                                     <div class="col-md-12">
-                                                        <p class="text-muted text-sm"><b>Case Type: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Case no: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>District: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Panel Lawyer: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Bill Amount: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Date of the Bill: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Checque No: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Name of Bank: </b> Web Designer  </p>                                                        
+                                                        <p class="text-muted text-sm"><b>Bill Type: </b> {{ $datum->bill_type_name }}  </p>
+                                                        <p class="text-muted text-sm"><b>Payment Type: </b> {{ $datum->payment_type }}  </p>
+                                                        <p class="text-muted text-sm"><b>District: </b> {{ $datum->district_name }}  </p>
+                                                        <p class="text-muted text-sm"><b>Case Type: </b> {{  $datum->case_type }}  </p>
+                                                        <p class="text-muted text-sm"><b>Case No: </b> {{ $datum->case_no }}  </p>
+                                                        <p class="text-muted text-sm"><b>Panel Lawyer: </b> {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }} </p>
+                                                        <p class="text-muted text-sm"><b>Bill Amount: </b> {{ $datum->bill_amount }}  </p>
+                                                        <p class="text-muted text-sm"><b>Date of Billing: </b> {{ $datum->date_of_billing }}  </p>                                                        
+                                                        <p class="text-muted text-sm"><b>Bank: </b> {{ $datum->bank_name }} </p>                                                        
+                                                        <p class="text-muted text-sm"><b>Branch: </b> {{ $datum->bank_branch_name }} </p>                                                        
+                                                        <p class="text-muted text-sm"><b>Cheque No: </b> {{ $datum->cheque_no }}  </p>                                                        
+                                                        <p class="text-muted text-sm"><b>Payment Amount: </b> {{ $datum->payment_amount }}  </p>                                                        
+                                                        <p class="text-muted text-sm"><b>Digital Payment Type: </b> {{ $datum->digital_payment_type_name }}  </p>                                                        
+                                                        <p class="text-muted text-sm"><b>Approval: </b> {{ $datum->is_approved }} </p>                                         
                                                     </div>
                 
                                                 </div>
                 
                                         </div>
                                     </div>
-                
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="">
-                                                <div class="card-body">
-                
-                                                    <div class="col-md-12">
-                                                        <p class="text-muted text-sm"><b>Case Type: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Case no: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>District: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Panel Lawyer: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Bill Amount: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Date of the Bill: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Checque No: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Name of Bank: </b> Web Designer  </p>                                                        
-                                                    </div>
-                
-                                                </div>
-                
-                                        </div>
-                                    </div>
-                
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="">
-                                                <div class="card-body">
-                
-                                                    <div class="col-md-12">
-                                                        <p class="text-muted text-sm"><b>Case Type: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Case no: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>District: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Panel Lawyer: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Bill Amount: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Date of the Bill: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Checque No: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Name of Bank: </b> Web Designer  </p>                                                        
-                                                    </div>
-                
-                                                </div>
-                
-                                        </div>
-                                    </div>
-                
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="">
-                                                <div class="card-body">
-                
-                                                    <div class="col-md-12">
-                                                        <p class="text-muted text-sm"><b>Case Type: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Case no: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>District: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Panel Lawyer: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Bill Amount: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Date of the Bill: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Checque No: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Name of Bank: </b> Web Designer  </p>                                                        
-                                                    </div>
-                
-                                                </div>
-                
-                                        </div>
-                                    </div>
-                
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="">
-                                                <div class="card-body">
-                
-                                                    <div class="col-md-12">
-                                                        <p class="text-muted text-sm"><b>Case Type: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Case no: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>District: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Panel Lawyer: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Bill Amount: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Date of the Bill: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Checque No: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Name of Bank: </b> Web Designer  </p>                                                        
-                                                    </div>
-                                                </div>
-                                        </div>
-                                    </div>
-                
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="">
-                                                <div class="card-body">
-                
-                                                    <div class="col-md-12">
-                                                        <p class="text-muted text-sm"><b>Case Type: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Case no: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>District: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Panel Lawyer: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Bill Amount: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Date of the Bill: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Checque No: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Name of Bank: </b> Web Designer  </p>                                                        
-                                                    </div>
-                
-                                                </div>
-                
-                                        </div>
-                                    </div>
-                
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="">
-                                                <div class="card-body">
-                
-                                                    <div class="col-md-12">
-                                                        <p class="text-muted text-sm"><b>Case Type: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Case no: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>District: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Panel Lawyer: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Bill Amount: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Date of the Bill: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Checque No: </b> Web Designer  </p>
-                                                        <p class="text-muted text-sm"><b>Name of Bank: </b> Web Designer  </p>                                                        
-                                                    </div>
-                
-                                                </div>
-                
-                                        </div>
-                                    </div>
-                
-                                </div>
+                                @endforeach
 
                             </div>
 
@@ -284,7 +175,7 @@
 
 
                                 <!-- /.card-body -->
-                                <div class="card-footer">
+                                {{-- <div class="card-footer">
                                     <nav aria-label="Contacts Page Navigation">
                                         <ul class="pagination justify-content-center m-0">
                                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -297,7 +188,7 @@
                                             <li class="page-item"><a class="page-link" href="#">8</a></li>
                                         </ul>
                                     </nav>
-                                </div>
+                                </div> --}}
                                 <!-- /.card-footer -->
                             </div>
                             <!-- /.card -->
