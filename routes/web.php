@@ -317,6 +317,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-digital-payment-type/{id}','AdminSetupController@update_digital_payment_type')->name('update-digital-payment-type');
         Route::post('delete-digital-payment-type/{id}','AdminSetupController@delete_digital_payment_type')->name('delete-digital-payment-type');
 
+// billing 
+
         Route::get('billing','BillingsController@billing')->name('billing');
         Route::get('add-billing','BillingsController@add_billing')->name('add-billing');
         Route::get('/find-bank-branch','BillingsController@find_bank_branch')->name('find-bank-branch');
@@ -327,6 +329,33 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('add-billing-civil-cases/{id}','BillingsController@add_billing_civil_cases')->name('add-billing-civil-cases');
         Route::get('add-billing-criminal-cases/{id}','BillingsController@add_billing_criminal_cases')->name('add-billing-criminal-cases');
         Route::post('delete-billing/{id}','BillingsController@delete_billing')->name('delete-billing');
+        Route::get('add-billing-labour-cases/{id}','BillingsController@add_billing_labour_cases')->name('add-billing-labour-cases');
+        Route::get('add-billing-quassi-judicial-cases/{id}','BillingsController@add_billing_quassi_judicial_cases')->name('add-billing-quassi-judicial-cases');
+        Route::get('add-billing-supreme-court-cases/{id}','BillingsController@add_billing_supreme_court_cases')->name('add-billing-supreme-court-cases');
+        Route::get('add-billing-high-court-cases/{id}','BillingsController@add_billing_high_court_cases')->name('add-billing-high-court-cases');
+        Route::get('add-billing-appellate-court-cases/{id}','BillingsController@add_billing_appellate_court_cases')->name('add-billing-appellate-court-cases');
+        Route::post('search-case-billings','BillingsController@search_case_billings')->name('search-case-billings');
+
+// thana setup
+
+        Route::get('thana','AdminSetupController@thana')->name('thana');
+        Route::get('add-thana','AdminSetupController@add_thana')->name('add-thana');
+        Route::post('save-thana','AdminSetupController@save_thana')->name('save-thana');
+        Route::get('edit-thana/{id}','AdminSetupController@edit_thana')->name('edit-thana');
+        Route::post('update-thana/{id}','AdminSetupController@update_thana')->name('update-thana');
+        Route::post('delete-thana/{id}','AdminSetupController@delete_thana')->name('delete-thana');
+
+// seller buyer setup
+        Route::get('seller-buyer','AdminSetupController@seller_buyer')->name('seller-buyer');
+        Route::get('add-seller-buyer','AdminSetupController@add_seller_buyer')->name('add-seller-buyer');
+        Route::post('save-seller-buyer','AdminSetupController@save_seller_buyer')->name('save-seller-buyer');
+        Route::get('edit-seller-buyer/{id}','AdminSetupController@edit_seller_buyer')->name('edit-seller-buyer');
+        Route::post('update-seller-buyer/{id}','AdminSetupController@update_seller_buyer')->name('update-seller-buyer');
+        Route::post('delete-seller-buyer/{id}','AdminSetupController@delete_seller_buyer')->name('delete-seller-buyer');
+
+        Route::get('land-information','LandInfoController@land_information')->name('land-information');
+        Route::get('add-land-information','LandInfoController@add_land_information')->name('add-land-information');
+
 
     });
 

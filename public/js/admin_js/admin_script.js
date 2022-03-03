@@ -227,13 +227,12 @@ $(document).ready(function(){
     });
 
 
-    $('#form-data').submit(function(e){
+    $('#form_data').submit(function(e){
         $('#submit').html('<i class="fas fa-search"></i> Searching');
 
         e.preventDefault();
         var form_data = new FormData(this);
         var action = $(this).attr('action');
-        var view_case = $(this).attr('view_case');
 
         $.ajax({
             type:'post',
@@ -254,6 +253,54 @@ $(document).ready(function(){
             success:(res) =>{
                 $('#submit').html('<i class="fas fa-search"></i> Search');
 // console.log(res);
+
+if (res.result == "billing") {
+console.log(res.data);
+
+    $('#search_data').empty();
+    $.each(res.data, function(key, value){
+
+        $('#search_data').append(`
+
+        <div class="col-md-3">
+            <div class="card">
+                <div class="">  
+                    <div class="float-right">
+                                                                        
+                            <a href="edit-billing/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                            ><i class="fas fa-edit"></i></button></a>
+                            <button onclick='billing_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                        
+                        </div>
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <p class="text-muted text-sm"><b>Bill Type: </b>  ${value.bill_type_name} </p>
+                                <p class="text-muted text-sm"><b>Payment Type: </b>  ${value.payment_type} </p>
+                                <p class="text-muted text-sm"><b>District: </b> ${value.district_name} </p>
+                                <p class="text-muted text-sm"><b>Case Type: </b> ${value.case_type} </p>
+                                <p class="text-muted text-sm"><b>Case No: </b> ${value.case_no} </p>
+                                <p class="text-muted text-sm"><b>Panel Lawyer: </b> ${value.first_name} ${value.middle_name} ${value.last_name} </p>
+                                <p class="text-muted text-sm"><b>Bill Amount: </b> ${value.bill_amount} </p>
+                                <p class="text-muted text-sm"><b>Date of Billing: </b> ${value.date_of_billing} </p>                                                        
+                                <p class="text-muted text-sm"><b>Bank: </b> ${value.bank_name} </p>                                                        
+                                <p class="text-muted text-sm"><b>Branch: </b> ${value.bank_branch_name} </p>                                                        
+                                <p class="text-muted text-sm"><b>Cheque No: </b> ${value.cheque_no} </p>                                                        
+                                <p class="text-muted text-sm"><b>Payment Amount: </b> ${value.payment_amount} </p>                                                        
+                                <p class="text-muted text-sm"><b>Digital Payment Type: </b> ${value.digital_payment_type_name} </p>                                                        
+                                <p class="text-muted text-sm"><b>Approval: </b> ${value.is_approved} </p>                                         
+                            </div>
+
+                        </div>
+
+                </div>
+            </div>
+        </div>
+
+        `);
+    });
+
+
+} else {
                 $('#search_data').empty();
                 $.each(res, function(key, value){
 
@@ -320,6 +367,8 @@ $(document).ready(function(){
 
                     `);
                 });
+}
+
                 // console.log(res);
             },
             error:function(res){
@@ -370,32 +419,3 @@ $(document).ready(function(){
 
 });
 
-
-
-
-  function delete_after_search(id){
-// alert(id);
-        Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    type:'post',
-                    url: 'delete-civil-cases/'+id,
-                    success:function(res){
-                        // console.log(res);
-                    location.reload();
-
-                    }
-                });
-
-            }
-        })
-
-  }

@@ -103,6 +103,9 @@
                                             <td>
                                                 <a href="{{ route('view-supreme-court-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                                     ><i class="fas fa-eye"></i></button></a>
+                                                <a href="{{ route('add-billing-supreme-court-cases', $datum->id) }}"><button
+                                                    class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                                    data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
                                                 <a href="{{ route('edit-supreme-court-cases',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
                                                 <form method="POST" action="{{ route('delete-supreme-court-cases',$datum->id) }}" class="delete-user btn btn-danger btn-xs">

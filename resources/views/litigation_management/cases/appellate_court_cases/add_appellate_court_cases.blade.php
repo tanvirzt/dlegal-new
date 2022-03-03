@@ -252,7 +252,6 @@
                                             <div class="form-group row">
                                                 <label for="complainant_designation_id" class="col-sm-4 col-form-label">Designation of the Complainant</label>
                                                 <div class="col-sm-8">
-
                                                         <select name="complainant_designation_id" class="form-control select2">
                                                             <option value="">Select</option>
                                                             @foreach($designation as $item)
@@ -260,7 +259,6 @@
                                                             @endforeach
                                                         </select>
                                                         @error('complainant_designation_id')<span class="text-danger">{{$message}}</span>@enderror
-
                                                 </div>
                                             </div>
                                             <div class="form-group row">

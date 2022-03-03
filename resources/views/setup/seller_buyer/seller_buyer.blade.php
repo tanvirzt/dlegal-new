@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Labour Cases </h1>
+                        <h1> Seller / Buyer </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Labour Cases </li>
+                            <li class="breadcrumb-item active"> Seller / Buyer </li>
                         </ol>
                     </div>
                 </div>
@@ -38,8 +38,8 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-labour-cases') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Labour Cases </button></a>
+                                    <a href="{{ route('add-seller-buyer') }}"><button class="btn btn-sm
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Seller / Buyer </button></a>
                                 </div>
 
                             </div>
@@ -48,17 +48,13 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th>Case No</th>
-                                        <th>Subsequent Case No</th>
-                                        <th>Division</th>
-                                        <th>Court Name</th>
-                                        <th>District</th>
-                                        <th>Case Status</th>
-                                        <th>Company</th>
-                                        <th>Case Category</th>
-                                        <th>Plaintiff Name</th>
+                                        <th>ID</th>
+                                        <th> Name </th>
+                                        <th> Email </th>
+                                        <th> Work Phone </th>
+                                        <th> Mobile No. </th>
                                         <th>Status</th>
-                                        <th width="13%">Action</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -66,54 +62,38 @@
 
                                         <tr>
                                             <td>
-                                               <a href="{{ route('view-labour-cases', $datum->id) }}"> {{ $datum->case_no }} </a>
+                                                {{ $datum->id }}
                                             </td>
                                             <td>
-                                                {{ $datum->subsequent_case_no }}
+                                                {{ $datum->first_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->division_name }}
+                                                {{ $datum->email }}
                                             </td>
                                             <td>
-                                                {{ $datum->court_name }}
+                                                {{ $datum->work_phone }}
                                             </td>
                                             <td>
-                                                {{ $datum->district_name }}
+                                                {{ $datum->mobile_number }}
                                             </td>
-                                            <td>
-                                                {{ $datum->case_status_name }}
-                                            </td>
-                                            <td>
-                                                {{ $datum->company_name }}
-                                            </td>
-                                            <td>
-                                                {{ $datum->case_category_name }}
-                                            </td>
-                                            <td>
-                                                {{ $datum->plaintiff_name }}
-                                            </td>
-                                            
                                             <td>
                                                 @if($datum->delete_status == 0)
                                                     Active
                                                 @else
+
                                                     Inactive
                                                 @endif
                                             </td>
                                             <td>
-                                            <a href="{{ route('view-labour-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
-                                                ><i class="fas fa-eye"></i></button></a>    
-                                            <a href="{{ route('add-billing-labour-cases', $datum->id) }}"><button
-                                                class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                                data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
-                                            <a href="{{ route('edit-labour-cases',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
-                                                ><i class="fas fa-edit"></i></button></a>
                                                 
-                                                <form method="POST" action="{{ route('delete-labour-cases',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                <a href="{{ route('edit-seller-buyer',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                    ><i class="fas fa-edit"></i></button></a>
+                                                <form method="POST" action="{{ route('delete-seller-buyer',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
                                                 </form>
-                                                
+
+
                                             </td>
                                         </tr>
                                     @endforeach

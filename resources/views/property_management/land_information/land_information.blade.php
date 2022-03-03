@@ -7,13 +7,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Civil Cases </h1>
+                        <h1> Land Information </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Civil Cases </li>
+                            <li class="breadcrumb-item active"> Land Information </li>
                         </ol>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                             <div id="accordion">
 
                                 <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> Civil Cases :: Search </h3>
+                                    <h3 class="card-title"> Land Information :: Search </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -85,23 +85,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="name_of_the_court_id" class="col-sm-4 col-form-label">
-                                                            Name of the Court </label>
-                                                        <div class="col-sm-8">
-                                                            <select name="name_of_the_court_id"
-                                                                class="form-control select2">
-                                                                <option value="">Select</option>
-                                                                @foreach ($court as $item)
-                                                                    <option value="{{ $item->id }}">
-                                                                        {{ $item->court_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('name_of_the_court_id')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
+                                                    
                                                     
                                                 </div>
                                             </div>
@@ -125,10 +109,10 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-civil-cases') }}"><button
+                                    <a href="{{ route('add-land-information') }}"><button
                                             class="btn btn-sm
                                     btn-success add_btn"><i
-                                                class="fas fa-plus"></i> Add Civil Cases </button></a>
+                                                class="fas fa-plus"></i> Add Land Information </button></a>
                                 </div>
 
                             </div>
@@ -137,16 +121,14 @@
                                 <table id="data_table" class="table table-responsive no-footer dtr-inline">
                                     <thead>
                                         <tr>
-                                            <th>Case No</th>
-                                            <th>Suit Value</th>
-                                            <th>Division</th>
-                                            <th>Court Name</th>
+                                            <th>Property Type</th>
                                             <th>District</th>
+                                            <th>Thana</th>
+                                            <th>Seller Name</th>
+                                            <th>Buyer Name</th>
                                             <th>Case Status</th>
-                                            <th>Company</th>
-                                            <th>Case Category</th>
-                                            <th>Plaintiff Name</th>
-                                            <th>Defendent Name</th>
+                                            <th>Deed No.</th>
+                                            <th>Date of Deed</th>
                                             <th>Status</th>
                                             <th width="13%">Action</th>
                                         </tr>
@@ -178,12 +160,6 @@
                                                 </td>
                                                 <td>
                                                     {{ $datum->case_category_name }}
-                                                </td>
-                                                <td>
-                                                    {{ $datum->plaintiff_name }}
-                                                </td>
-                                                <td>
-                                                    {{ $datum->defendent_name }}
                                                 </td>
                                                 <td>
                                                     @if ($datum->delete_status == 0)

@@ -36,6 +36,8 @@ use App\Models\SetupBillType;
 use App\Models\SetupBank;
 use App\Models\SetupBankBranch;
 use App\Models\SetupDigitalPayment;
+use App\Models\SetupThana;
+use App\Models\SetupSellerBuyer;
 use Illuminate\Support\Facades\DB;
 
 
@@ -2450,8 +2452,202 @@ public function delete_company($id)
         return redirect()->back();
     }
 
+    //thana setup
 
+    public function thana()
+    {
+    //    $data = SetupThana::all();
+        $data = DB::table('setup_thanas')
+                    ->join('setup_districts','setup_thanas.district_id', '=', 'setup_districts.id')
+                    ->select('setup_thanas.*','setup_districts.district_name')
+                    ->get();
+        return view('setup.thana.thana',compact('data'));
+    }
 
+    public function add_thana()
+    {
+        $district = SetupDistrict::where('delete_status',0)->get();
+        return view('setup.thana.add_thana',compact('district'));
+    }
+
+    public function save_thana(Request $request)
+    {
+        $rules = [
+            'thana_name' => 'required'
+        ];
+
+        $validMsg = [
+            'thana_name.required' => 'Thana field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = new SetupThana();
+        $data->district_id = $request->district_id;
+        $data->thana_name = $request->thana_name;
+        $data->save();
+
+        session()->flash('success','Thana Added Successfully');
+        return redirect()->back();
+
+    }
+
+    public function edit_thana($id)
+    {
+        $district = SetupDistrict::where('delete_status',0)->get();
+        $data = SetupThana::find($id);
+        return view('setup.thana.edit_thana',compact('data','district'));
+    }
+
+    public function update_thana(Request $request, $id)
+    {
+        $rules = [
+            'thana_name' => 'required'
+        ];
+
+        $validMsg = [
+            'thana_name.required' => 'Thana field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = SetupThana::find($id);
+        $data->district_id = $request->district_id;
+        $data->thana_name = $request->thana_name;
+        $data->save();
+
+        session()->flash('success','Thana Updated');
+        return redirect()->back();
+    }
+
+    public function delete_thana($id)
+    {
+        $data = SetupThana::find($id);
+        if ($data['delete_status'] == 1){
+            $delete_status = 0;
+        }else{
+            $delete_status = 1;
+        }
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success', 'Thana Deleted');
+        return redirect()->back();
+    }
+
+ //seller / buyer setup
+
+ public function seller_buyer()
+ {
+     $data = SetupSellerBuyer::all();
+     return view('setup.seller_buyer.seller_buyer',compact('data'));
+ }
+
+ public function add_seller_buyer()
+ {
+    $person_title = SetupPersonTitle::where('delete_status',0)->get();
+    return view('setup.seller_buyer.add_seller_buyer',compact('person_title'));
+ }
+
+ public function save_seller_buyer(Request $request)
+ {
+    //  dd($request->all());
+     $rules = [
+         'title_id' => 'required',
+         'seller_or_buyer' => 'required',
+         'seller_buyer_name' => 'required',
+         'email' => 'required',
+         'work_phone' => 'required',
+         'home_phone' => 'required'
+     ];
+
+     $validMsg = [
+         'title_id.required' => 'Title field is required',
+         'seller_or_buyer.required' => 'Select Seller or Buyer',
+         'seller_buyer_name.required' => 'Seller or Buyer Name field is required',
+         'email.required' => 'Last Name field is required',
+         'work_phone.required' => 'Email field is required',
+         'home_phone.required' => 'Work Phone field is required',
+     ];
+
+     $this->validate($request, $rules, $validMsg);
+
+     $data = new SetupSellerBuyer();
+     $data->title_id = $request->title_id;
+     $data->seller_or_buyer = $request->seller_or_buyer;
+     $data->seller_buyer_name = $request->seller_buyer_name;
+     $data->email = $request->email;
+     $data->work_phone = $request->work_phone;
+     $data->home_phone = $request->home_phone;
+     $data->mobile_phone = $request->mobile_phone;
+     $data->address1 = $request->address1;
+     $data->address2 = $request->address2;
+     $data->save();
+
+     session()->flash('success','Seller / Buyer Added Successfully');
+     return redirect()->back();
+
+ }
+
+ public function edit_seller_buyer($id)
+ {
+     $person_title = SetupPersonTitle::where('delete_status',0)->get();
+     $data = SetupSellerBuyer::find($id);
+     return view('setup.seller_buyer.edit_seller_buyer',compact('data','person_title'));
+ }
+
+ public function update_seller_buyer(Request $request, $id)
+ {
+    $rules = [
+         'title_id' => 'required',
+         'first_name' => 'required',
+         'middle_name' => 'required',
+         'last_name' => 'required',
+         'email' => 'required',
+         'work_phone' => 'required'
+     ];
+
+     $validMsg = [
+         'title_id.required' => 'Title field is required',
+         'first_name.required' => 'First Name field is required',
+         'middle_name.required' => 'Middle Name field is required',
+         'last_name.required' => 'Last Name field is required',
+         'email.required' => 'Email field is required',
+         'work_phone.required' => 'Work Phone field is required',
+     ];
+
+     $this->validate($request, $rules, $validMsg);
+
+     $data = SetupSellerBuyer::find($id);
+     $data->title_id = $request->title_id;
+     $data->first_name = $request->first_name;
+     $data->middle_name = $request->middle_name;
+     $data->last_name = $request->last_name;
+     $data->email = $request->email;
+     $data->work_phone = $request->work_phone;
+     $data->home_phone = $request->home_phone;
+     $data->mobile_phone = $request->mobile_phone;
+     $data->emergency_contact = $request->emergency_contact;
+     $data->save();
+
+     session()->flash('success','Seller / Buyer Updated Successfully');
+     return redirect()->back();
+ }
+
+ public function delete_seller_buyer($id)
+ {
+     $data = SetupSellerBuyer::find($id);
+     if ($data['delete_status'] == 1){
+         $delete_status = 0;
+     }else{
+         $delete_status = 1;
+     }
+     $data->delete_status = $delete_status;
+     $data->save();
+
+     session()->flash('success', 'Seller / Buyer Deleted');
+     return redirect()->back();
+ }
 
 
 

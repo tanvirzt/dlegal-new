@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2022 at 01:32 PM
+-- Generation Time: Mar 03, 2022 at 12:46 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -222,17 +222,25 @@ CREATE TABLE `case_billings` (
 --
 
 INSERT INTO `case_billings` (`id`, `bill_type_id`, `payment_type`, `district_id`, `case_type`, `case_no`, `panel_lawyer_id`, `bill_amount`, `date_of_billing`, `bank_id`, `branch_id`, `cheque_no`, `payment_amount`, `digital_payment_type_id`, `is_approved`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Digital Payment', 1, 'Civil Cases', '65464321', 2, '87000', '2022-03-18', NULL, NULL, '', '74000', 2, 'Approved', 0, NULL, NULL, '2022-03-02 01:34:07', '2022-03-02 03:59:52'),
+(1, 1, 'Digital Payment', 1, 'Civil Cases', '65464321', 2, '87000', '2022-03-18', NULL, NULL, '', '74000', 2, 'Approved', 1, NULL, NULL, '2022-03-02 01:34:07', '2022-03-03 00:35:16'),
 (2, 2, 'Cash Payment', 1, 'Criminal Cases', '6546', 2, '250000', '2022-03-03', NULL, NULL, NULL, '100000', NULL, NULL, 0, NULL, NULL, '2022-03-02 01:34:28', '2022-03-02 01:34:28'),
 (3, 1, 'Digital Payment', 1, 'Labour Cases', '65464321313', 2, '780000', '2022-03-17', NULL, NULL, NULL, '33000', 2, NULL, 0, NULL, NULL, '2022-03-02 01:49:03', '2022-03-02 04:02:09'),
 (4, 2, 'Digital Payment', 4, 'Special Quassi - Judicial Cases', '6546', 2, '780000', '2022-03-11', NULL, NULL, NULL, '780000', 2, NULL, 1, NULL, NULL, '2022-03-02 01:49:50', '2022-03-02 05:41:57'),
 (5, 2, 'Digital Payment', 4, 'Supreme Court of Bangladesh', '6985', 2, '69000', '2022-03-25', NULL, NULL, NULL, '37000', 2, NULL, 0, NULL, NULL, '2022-03-02 01:50:14', '2022-03-02 01:50:14'),
 (6, 2, 'Digital Payment', 2, 'High Court Division', '544', 2, '7500', '2022-03-18', NULL, NULL, NULL, '145000', 2, 'Approved', 0, NULL, NULL, '2022-03-02 01:50:43', '2022-03-02 01:50:43'),
 (7, 2, 'Bank Payment', 5, 'Appellate Court Division', '6546', 2, '54000', '2022-03-25', 1, 3, '6946546874', '368888', NULL, NULL, 0, NULL, NULL, '2022-03-02 01:51:42', '2022-03-02 03:57:33'),
-(8, 1, 'Bank Payment', 1, 'Civil Cases', '65464321', 2, '780000', '2022-03-26', 1, 3, '6946546874', '100000', NULL, NULL, 0, NULL, NULL, '2022-03-02 04:42:52', '2022-03-02 04:42:52'),
+(8, 1, 'Bank Payment', 1, 'Civil Cases', '65464321', 2, '780000', '2022-03-26', 1, 3, '6946546874', '100000', NULL, NULL, 1, NULL, NULL, '2022-03-02 04:42:52', '2022-03-03 00:34:14'),
 (9, 1, 'Digital Payment', 4, 'Criminal Cases', '6399887745', 2, NULL, '2022-03-10', NULL, NULL, NULL, '639000', 3, NULL, 1, NULL, NULL, '2022-03-02 05:19:56', '2022-03-02 05:42:11'),
 (10, 1, 'Bank Payment', 5, 'Criminal Cases', '6399887745', 2, '2654000', '2022-04-02', 2, 2, '875574', '98000', NULL, NULL, 1, NULL, NULL, '2022-03-02 05:21:34', '2022-03-02 05:40:57'),
-(11, 2, 'Digital Payment', 2, 'Labour Cases', '65464321313', 2, '85700', '2022-03-11', NULL, NULL, NULL, '960000', 3, NULL, 0, NULL, NULL, '2022-03-02 05:44:56', '2022-03-02 05:44:56');
+(11, 2, 'Digital Payment', 2, 'Labour Cases', '65464321313', 2, '85700', '2022-03-11', NULL, NULL, NULL, '960000', 3, NULL, 0, NULL, NULL, '2022-03-02 05:44:56', '2022-03-02 05:44:56'),
+(12, 1, 'Bank Payment', 3, 'Labour Cases', '65464321313', 2, '69000', '2022-03-05', 2, 2, '6946546874', '87600', NULL, NULL, 0, NULL, NULL, '2022-03-02 22:29:10', '2022-03-02 22:29:10'),
+(13, 2, 'Digital Payment', 5, 'Labour Cases', '65464321313', 2, '85600', '2022-03-23', NULL, NULL, NULL, '38000', 2, NULL, 0, NULL, NULL, '2022-03-02 22:30:40', '2022-03-02 22:30:40'),
+(14, 2, 'Digital Payment', 5, 'Labour Cases', '6546', 2, '780000', '2022-03-26', NULL, NULL, NULL, '38000', 3, NULL, 0, NULL, NULL, '2022-03-02 22:32:06', '2022-03-02 22:32:06'),
+(15, 1, 'Bank Payment', 5, 'Special Quassi - Judicial Cases', '6DSD55', 2, '962000', '2022-04-02', 1, 3, '6946546874', '798000', NULL, NULL, 0, NULL, NULL, '2022-03-02 22:48:18', '2022-03-02 22:48:18'),
+(16, 2, 'Bank Payment', 5, 'Supreme Court of Bangladesh', '321313', 2, '986000', '2022-03-24', 2, 2, '7584574', '8796000', NULL, NULL, 0, NULL, NULL, '2022-03-02 23:08:18', '2022-03-02 23:08:18'),
+(17, 2, 'Digital Payment', 5, 'High Court Division', '544', 2, '690000', '2022-03-18', NULL, NULL, NULL, '38000', 3, NULL, 0, NULL, NULL, '2022-03-02 23:17:47', '2022-03-02 23:17:47'),
+(18, 2, 'Bank Payment', 2, 'Appellate Court Division', '65464321313', 2, '87000', '2022-03-17', 2, 2, '879874', '875000', NULL, NULL, 0, NULL, NULL, '2022-03-02 23:26:58', '2022-03-02 23:26:58'),
+(19, 2, 'Digital Payment', 1, 'Labour Cases', '65464321313', 2, '870100', '2022-03-18', NULL, NULL, NULL, '36000', 2, NULL, 0, NULL, NULL, '2022-03-03 00:50:40', '2022-03-03 00:50:40');
 
 -- --------------------------------------------------------
 
@@ -884,7 +892,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (177, '2022_03_01_063826_create_setup_banks_table', 34),
 (178, '2022_03_01_072242_create_setup_bank_branches_table', 35),
 (181, '2022_03_01_093042_create_setup_digital_payments_table', 36),
-(183, '2022_03_02_041449_create_case_billings_table', 37);
+(183, '2022_03_02_041449_create_case_billings_table', 37),
+(184, '2022_03_03_100737_create_setup_thanas_table', 38),
+(185, '2022_03_03_110811_create_setup_seller_buyers_table', 39);
 
 -- --------------------------------------------------------
 
@@ -1071,7 +1081,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('G96qwbrJeACHwa7m39Vu9xQMQ3qPQyVqdFNTBeqU', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVG5Eb21ZejN0VDdLam93ekZMY0pzY3Z2UXgzNjU3OXJVNkRxTE9lcyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njc6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9hcHBlbGxhdGUtY291cnQtY2FzZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJwYWdlIjtzOjk6ImRhc2hib2FyZCI7fQ==', 1646224333);
+('87Y1zo3nPpu71JrlY3kckd5nj0sZk5gTtwHsYCOF', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiYnFvSEs3Sm5kbXFYUkU0YnpRMmw1Ym9IaU5RMFBudjBRQ1JPTTBydiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjI6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9hZGQtc2VsbGVyLWJ1eWVyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO30=', 1646307939);
 
 -- --------------------------------------------------------
 
@@ -1848,6 +1858,66 @@ INSERT INTO `setup_regions` (`id`, `region_name`, `delete_status`, `created_by`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `setup_seller_buyers`
+--
+
+CREATE TABLE `setup_seller_buyers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title_id` int(11) DEFAULT NULL,
+  `seller_or_buyer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seller_buyer_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `work_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `home_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mobile_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `emergency_contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `document_upload` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_seller_buyers`
+--
+
+INSERT INTO `setup_seller_buyers` (`id`, `title_id`, `seller_or_buyer`, `seller_buyer_name`, `email`, `work_phone`, `home_phone`, `mobile_phone`, `emergency_contact`, `address1`, `address2`, `document_upload`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Seller', 'Aminur Rahman Smith Aminur', 'asdf@adf', '01996325478', '01996321542', '01996321542', NULL, '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', NULL, 0, NULL, NULL, '2022-03-03 05:45:31', '2022-03-03 05:45:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_thanas`
+--
+
+CREATE TABLE `setup_thanas` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `district_id` int(11) DEFAULT NULL,
+  `thana_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_thanas`
+--
+
+INSERT INTO `setup_thanas` (`id`, `district_id`, `thana_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Ashulia', 0, NULL, NULL, '2022-03-03 04:23:33', '2022-03-03 04:23:33'),
+(2, 4, 'Kawkhali', 0, NULL, NULL, '2022-03-03 04:23:43', '2022-03-03 04:23:43'),
+(3, 4, 'Bhandaria', 0, NULL, NULL, '2022-03-03 04:23:52', '2022-03-03 04:23:52'),
+(4, 2, 'Zirabo', 0, NULL, NULL, '2022-03-03 04:24:16', '2022-03-03 04:24:16');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `supreme_court_cases`
 --
 
@@ -2356,6 +2426,18 @@ ALTER TABLE `setup_regions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `setup_seller_buyers`
+--
+ALTER TABLE `setup_seller_buyers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setup_thanas`
+--
+ALTER TABLE `setup_thanas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `supreme_court_cases`
 --
 ALTER TABLE `supreme_court_cases`
@@ -2412,7 +2494,7 @@ ALTER TABLE `appellate_court_case_status_logs`
 -- AUTO_INCREMENT for table `case_billings`
 --
 ALTER TABLE `case_billings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `civil_cases`
@@ -2502,7 +2584,7 @@ ALTER TABLE `labour_case_status_logs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -2713,6 +2795,18 @@ ALTER TABLE `setup_property_types`
 --
 ALTER TABLE `setup_regions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `setup_seller_buyers`
+--
+ALTER TABLE `setup_seller_buyers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `setup_thanas`
+--
+ALTER TABLE `setup_thanas`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `supreme_court_cases`

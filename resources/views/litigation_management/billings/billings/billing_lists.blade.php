@@ -55,32 +55,57 @@
                                     <div class="card-body">
 
 
-                                        <form id="form-data" method="post" action="{{ route('search_civil_cases') }}">
+                                        <form id="form_data" method="post" action="{{ route('search-case-billings') }}">
                                             @csrf
 
 
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label for="case_no" class="col-sm-4 col-form-label">Case
-                                                            No.</label>
+                                                        <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" id="case_no"
-                                                                name="case_no" value="{{ old('case_no') }}">
-                                                            @error('case_no')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
+                                                            <select name="case_type" class="form-control select2" id="case_type" action="{{ route('find-case-no') }}">
+                                                                <option value=""> Select </option>
+                                                                <option value="Civil Cases"> Civil Cases </option>
+                                                                <option value="Criminal Cases"> Criminal Cases </option>
+                                                                <option value="Labour Cases"> Labour Cases </option>
+                                                                <option value="Special Quassi - Judicial Cases"> Special Quassi - Judicial Cases </option>
+                                                                <option value="Supreme Court of Bangladesh"> Supreme Court of Bangladesh </option>
+                                                                <option value="High Court Division"> High Court Division </option>
+                                                                <option value="Appellate Court Division"> Appellate Court Division </option>
+                                                            </select>       
+                                                            @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="date_of_filing" class="col-sm-4 col-form-label"> Date of
-                                                            Filing </label>
+                                                        <label for="case_id" class="col-sm-4 col-form-label"> Case No </label>
                                                         <div class="col-sm-8">
-                                                            <input type="date" class="form-control" id="date_of_filing"
-                                                                name="date_of_filing" value="{{ old('date_of_filing') }}">
-                                                            @error('date_of_filing')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
+                                                            <select name="case_no" class="form-control select2" id="case_no">
+                                                                <option value=""> Select </option>
+    
+                                                            </select>       
+                                                            @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="panel_lawyer_id" class="col-sm-4 col-form-label">Panel Lawyer</label>
+                                                        <div class="col-sm-8">
+                                                                <select name="panel_lawyer_id" class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($external_council as $item)
+                                                                        <option value="{{ $item->id }}" {{(old('panel_lawyer_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('panel_lawyer_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>                                                    
+                                                    <div class="form-group row">
+                                                        <label for="date_of_billing" class="col-sm-4 col-form-label">Date of the Billing</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="date" class="form-control" id="date_of_billing" name="date_of_billing" value="{{old('date_of_billing')}}">
+                                                            @error('date_of_billing')<span class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -118,7 +143,7 @@
 
 
 
-                            <div class="row p-3">
+                            <div class="row p-3" id="search_data">
                                 @foreach ($data as $datum)
                                 <div class="col-md-3">
                                     <div class="card">

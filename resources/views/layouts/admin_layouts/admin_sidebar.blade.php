@@ -175,6 +175,12 @@
                       <p>Payment Type</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="{{ route('seller-buyer') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Seller/Buyer</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
               <li class="nav-item">
@@ -255,6 +261,12 @@
                     <a href="{{ route('district') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>District</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('thana') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Thana</p>
                     </a>
                   </li>
                 </ul>
@@ -392,13 +404,13 @@
                     <a href="#" class="nav-link">
                         <i class="fas fa-couch nav-icon"></i>
                         <p>
-                            Land Management
+                            Property Management
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('land-information') }}" class="nav-link">
                                 <i class="ml-left"></i>
                                 <p>Land Information</p>
                             </a>
