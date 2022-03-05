@@ -53,6 +53,7 @@
                                         <th> Email </th>
                                         <th> Work Phone </th>
                                         <th> Mobile No. </th>
+                                        <th> Image </th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -65,7 +66,7 @@
                                                 {{ $datum->id }}
                                             </td>
                                             <td>
-                                                {{ $datum->first_name }}
+                                                {{ $datum->seller_buyer_name }}
                                             </td>
                                             <td>
                                                 {{ $datum->email }}
@@ -74,7 +75,15 @@
                                                 {{ $datum->work_phone }}
                                             </td>
                                             <td>
-                                                {{ $datum->mobile_number }}
+                                                {{ $datum->home_phone }}
+                                            </td>
+                                            <td>
+                                                @if ($datum->image)
+                                                    <img src="{{ asset('files/seller_buyer/'.$datum->image) }}" style="max-height: 50px; max-width:50px;">
+                                                @else
+                                                    
+                                                @endif
+
                                             </td>
                                             <td>
                                                 @if($datum->delete_status == 0)

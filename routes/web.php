@@ -355,7 +355,12 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 
         Route::get('land-information','LandInfoController@land_information')->name('land-information');
         Route::get('add-land-information','LandInfoController@add_land_information')->name('add-land-information');
+        Route::post('save-land-information','LandInfoController@save_land_information')->name('save-land-information');
+        Route::post('delete-land-information/{id}','LandInfoController@delete_land_information')->name('delete-land-information');
 
+        Route::get('/find-thana','LandInfoController@find_thana')->name('find-thana');
+        Route::get('/find-seller-details','LandInfoController@find_seller_details')->name('find-seller-details');
+        Route::get('/find-buyer-details','LandInfoController@find_buyer_details')->name('find-buyer-details');
 
     });
 

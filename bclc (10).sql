@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2022 at 12:46 PM
+-- Generation Time: Mar 05, 2022 at 01:03 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -817,6 +817,92 @@ INSERT INTO `labour_case_status_logs` (`id`, `case_id`, `updated_court_id`, `upd
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `land_information`
+--
+
+CREATE TABLE `land_information` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `property_type_id` int(11) DEFAULT NULL,
+  `district_id` int(11) DEFAULT NULL,
+  `thana_id` int(11) DEFAULT NULL,
+  `seller_id` int(11) DEFAULT NULL,
+  `buyer_id` int(11) DEFAULT NULL,
+  `cs_khatian` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cs_dag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sa_khatian` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sa_dag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rs_khatian` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rs_dag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bs_khatian` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bs_dag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `khatian_dag_city_jorip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `land_area` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deed_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_of_deed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deed_value` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `possession` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `boundary_wall` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `any_dispute` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `any_suit_case` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `property_owner` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mouza_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mutation_khatian_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mutation_case_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mutation_khatian_owner` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dcr_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dcr_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `register_office_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `land_compliance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `electricity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gas` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sewerage` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `water` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `expires` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `renew` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `land_information`
+--
+
+INSERT INTO `land_information` (`id`, `property_type_id`, `district_id`, `thana_id`, `seller_id`, `buyer_id`, `cs_khatian`, `cs_dag`, `sa_khatian`, `sa_dag`, `rs_khatian`, `rs_dag`, `bs_khatian`, `bs_dag`, `khatian_dag_city_jorip`, `land_area`, `deed_no`, `date_of_deed`, `deed_value`, `possession`, `boundary_wall`, `any_dispute`, `any_suit_case`, `property_owner`, `mouza_name`, `mutation_khatian_no`, `mutation_case_no`, `mutation_khatian_owner`, `dcr_number`, `dcr_date`, `register_office_name`, `land_compliance`, `electricity`, `gas`, `sewerage`, `water`, `expires`, `renew`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 2, 2, 1, 3, 3, '1 test', '2 test', '3 test', '4 test', '5 test', '6 test', '7 test', '8 test', '9 test', '10 test', '11 test', '12 test', '13 test', '14 test', '15 test', '16 test', '17 test', '18 test', '19 test', '20 test', '21 test', '22 test', '23 test', '2022-03-29', '24 test', 'on', '25 test', '26 test', '27 test', '28 test', '2022-03-08', '2022-03-25', 0, NULL, NULL, '2022-03-05 05:47:49', '2022-03-05 06:02:47'),
+(2, 3, 4, 3, 2, 3, '1 test', '2 test', '3 test', '4 test', '5 test', '6 test', '7 test', '8 test', '9 test', '10 test', '11 test', '12 test', '13 test', '14 test', '15 test', '16 test', '17 test', '18 test', '19 test', '20 test', '21 test', '22 test', '23 test', NULL, '24 test', 'off', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-03-05 05:51:55', '2022-03-05 06:03:07');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `land_information_files`
+--
+
+CREATE TABLE `land_information_files` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `land_information_id` int(11) DEFAULT NULL,
+  `uploaded_document` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `land_information_files`
+--
+
+INSERT INTO `land_information_files` (`id`, `land_information_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 1, '164648086970Ethnicity.png', 0, NULL, NULL, '2022-03-05 05:47:49', '2022-03-05 05:47:49'),
+(2, 1, '16464808692asdfasdf.pdf', 0, NULL, NULL, '2022-03-05 05:47:49', '2022-03-05 05:47:49'),
+(3, 1, '164648086988john.jpg', 0, NULL, NULL, '2022-03-05 05:47:49', '2022-03-05 05:47:49');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -894,7 +980,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (181, '2022_03_01_093042_create_setup_digital_payments_table', 36),
 (183, '2022_03_02_041449_create_case_billings_table', 37),
 (184, '2022_03_03_100737_create_setup_thanas_table', 38),
-(185, '2022_03_03_110811_create_setup_seller_buyers_table', 39);
+(187, '2022_03_03_110811_create_setup_seller_buyers_table', 39),
+(190, '2022_03_05_094634_create_land_information_table', 40),
+(191, '2022_03_05_100641_create_land_information_files_table', 40);
 
 -- --------------------------------------------------------
 
@@ -1081,7 +1169,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('87Y1zo3nPpu71JrlY3kckd5nj0sZk5gTtwHsYCOF', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiYnFvSEs3Sm5kbXFYUkU0YnpRMmw1Ym9IaU5RMFBudjBRQ1JPTTBydiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjI6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9hZGQtc2VsbGVyLWJ1eWVyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO30=', 1646307939);
+('YVTS1uejzr6MC5p6kMv1oy62metCDNuEFCkieHeQ', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoidzRWb3pZb3BaT2hlTEI1WHhlcnRFWDhyN2lkVzFUMWtZa0hnZDBQVyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjI6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9sYW5kLWluZm9ybWF0aW9uIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO30=', 1646481790);
 
 -- --------------------------------------------------------
 
@@ -1871,9 +1959,9 @@ CREATE TABLE `setup_seller_buyers` (
   `home_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mobile_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `emergency_contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `document_upload` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `present_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `permanent_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delete_status` int(11) NOT NULL DEFAULT 0,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1885,8 +1973,10 @@ CREATE TABLE `setup_seller_buyers` (
 -- Dumping data for table `setup_seller_buyers`
 --
 
-INSERT INTO `setup_seller_buyers` (`id`, `title_id`, `seller_or_buyer`, `seller_buyer_name`, `email`, `work_phone`, `home_phone`, `mobile_phone`, `emergency_contact`, `address1`, `address2`, `document_upload`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Seller', 'Aminur Rahman Smith Aminur', 'asdf@adf', '01996325478', '01996321542', '01996321542', NULL, '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', NULL, 0, NULL, NULL, '2022-03-03 05:45:31', '2022-03-03 05:45:31');
+INSERT INTO `setup_seller_buyers` (`id`, `title_id`, `seller_or_buyer`, `seller_buyer_name`, `email`, `work_phone`, `home_phone`, `mobile_phone`, `emergency_contact`, `present_address`, `permanent_address`, `image`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Seller', 'Aminur Rahman Smith Aminur', 'asdf@adf', '01996325478', '01698774123', '01996321542', NULL, '43 Phillip St, Sydney NSW 2000, Australia', 'adsf', '16464571030no_images.png', 1, NULL, NULL, '2022-03-04 23:08:06', '2022-03-04 23:46:34'),
+(2, 2, 'Buyer', 'Stefen Hokings', 'asdf@adf', '234151', '01996321542', '01998876465', NULL, '43 Phillip St, Sydney NSW 2000, Australia', 'terte', '16464571140Ethnicity.png', 0, NULL, NULL, '2022-03-04 23:08:25', '2022-03-05 03:01:15'),
+(3, 2, 'Buyer', 'Jack Smith', 'asdf@adf', '01996325478', '01996321542', '01996321542', NULL, '43 Phillip St, Sydney NSW 2000, Australia', 'test updated', '16464571480Integra_Logo.png', 0, NULL, NULL, '2022-03-04 23:12:28', '2022-03-05 03:01:00');
 
 -- --------------------------------------------------------
 
@@ -2191,6 +2281,18 @@ ALTER TABLE `labour_cases_files`
 -- Indexes for table `labour_case_status_logs`
 --
 ALTER TABLE `labour_case_status_logs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `land_information`
+--
+ALTER TABLE `land_information`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `land_information_files`
+--
+ALTER TABLE `land_information_files`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2581,10 +2683,22 @@ ALTER TABLE `labour_case_status_logs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `land_information`
+--
+ALTER TABLE `land_information`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `land_information_files`
+--
+ALTER TABLE `land_information_files`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -2800,7 +2914,7 @@ ALTER TABLE `setup_regions`
 -- AUTO_INCREMENT for table `setup_seller_buyers`
 --
 ALTER TABLE `setup_seller_buyers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setup_thanas`

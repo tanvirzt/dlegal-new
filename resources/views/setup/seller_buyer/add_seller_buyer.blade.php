@@ -99,6 +99,17 @@
                                                     @error('work_phone')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
+                                            <div class="form-group row">
+                                                <label for="image" class="col-sm-4 col-form-label">Photo</label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" class="form-control" id="image" name="image">
+                                                    @error('photo')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="preview-image" class="col-sm-4 col-form-label"></label>
+                                                <img id="preview-image" style="max-height: 250px;max-width:200px;">
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
@@ -116,20 +127,19 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="address1" class="col-sm-4 col-form-label">Emergency Contact</label>
+                                                <label for="present_address" class="col-sm-4 col-form-label">Present Address</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="address1" name="address1" value="{{old('address1')}}">
-                                                    @error('address1')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <textarea name="present_address" class="form-control" rows="3" placeholder="">{{old('present_address')}}</textarea>
+                                                    @error('present_address')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="address2" class="col-sm-4 col-form-label">Emergency Contact</label>
+                                                <label for="permanent_address" class="col-sm-4 col-form-label">Permanent Address</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="address2" name="address2" value="{{old('address2')}}">
-                                                    @error('address2')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <textarea name="permanent_address" class="form-control" rows="3" placeholder="">{{old('permanent_address')}}</textarea>
+                                                    @error('permanent_address')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
-                                            </div>
-
+                                            </div>                                            
                                         </div>
                                     </div>
                                     <div class="">

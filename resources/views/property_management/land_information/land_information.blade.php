@@ -19,19 +19,19 @@
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                @if (Session::has('success'))
+                    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                        {{ Session::get('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="row">
-                    @if (Session::has('success'))
-                        <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-                            {{ Session::get('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
+                    
                     <div class="col-md-8">
                         <div class="card">
                             <div id="accordion">
@@ -126,9 +126,10 @@
                                             <th>Thana</th>
                                             <th>Seller Name</th>
                                             <th>Buyer Name</th>
-                                            <th>Case Status</th>
-                                            <th>Deed No.</th>
-                                            <th>Date of Deed</th>
+                                            <th>CS Khatian</th>
+                                            <th>CS Dag</th>
+                                            <th>SA Khatian</th>
+                                            <th>SA Dag</th>
                                             <th>Status</th>
                                             <th width="13%">Action</th>
                                         </tr>
@@ -137,29 +138,31 @@
                                         @foreach ($data as $datum)
                                             <tr>
                                                 <td>
-                                                    <a href="{{ route('view-civil-cases', $datum->id) }}">
-                                                        {{ $datum->case_no }} </a>
-                                                </td>
-                                                <td>
-                                                    {{ $datum->name_of_suit }}
-                                                </td>
-                                                <td>
-                                                    {{ $datum->division_name }}
-                                                </td>
-                                                <td>
-                                                    {{ $datum->court_name }}
+                                                    {{ $datum->property_type_name }} 
                                                 </td>
                                                 <td>
                                                     {{ $datum->district_name }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->case_status_name }}
+                                                    {{ $datum->thana_name }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->company_name }}
+                                                    {{ $datum->seller_name }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->case_category_name }}
+                                                    {{ $datum->buyer_name }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->cs_khatian }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->cs_dag }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->sa_khatian }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->sa_dag }}
                                                 </td>
                                                 <td>
                                                     @if ($datum->delete_status == 0)
@@ -173,15 +176,12 @@
                                                             class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Details"><i
                                                                 class="fas fa-eye"></i></button></a>
-                                                    <a href="{{ route('add-billing-civil-cases', $datum->id) }}"><button
-                                                        class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                                        data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
                                                     <a href="{{ route('edit-civil-cases', $datum->id) }}"><button
                                                             class="btn btn-info btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"><i
                                                                 class="fas fa-edit"></i></button></a>
                                                     <form method="POST"
-                                                        action="{{ route('delete-civil-cases', $datum->id) }}"
+                                                        action="{{ route('delete-land-information', $datum->id) }}"
                                                         class="delete-user btn btn-danger btn-xs">
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger btn-sm"

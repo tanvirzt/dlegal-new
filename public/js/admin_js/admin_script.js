@@ -137,6 +137,35 @@ $(document).ready(function(){
     });
 
 
+    $('#district_id').on('change', function() {
+        var district_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if(district_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data : {"_token":"{{ csrf_token() }}",district_id:district_id},
+                dataType: "json",
+                success:function(data) {
+                    // console.log(data);
+                    if(data){
+                        $('#thana_id').empty();
+                        $('#thana_id').focus;
+                        $('#thana_id').append('<option value="">Select</option>');
+                        $.each(data, function(key, value){
+                            $('select[name="thana_id"]').append('<option value="'+ value.id +'">' + value.thana_name+ '</option>');
+                        });
+                    }else{
+                        $('#thana_id').empty();
+                    }
+                }
+            });
+        }else{
+            $('#thana_id').empty();
+        }
+    });
+
 
     $('#external_council_name_id').on('change', function() {
         var external_council_name_id = $(this).val();
@@ -411,6 +440,137 @@ console.log(res.data);
         }
 
     });
+
+
+    $('#image').change(function(){
+           
+        let reader = new FileReader();
+        reader.onload = (e) => { 
+            $('#preview-image').attr('src', e.target.result); 
+        }
+        reader.readAsDataURL(this.files[0]); 
+    
+    });
+
+
+    $('#seller_id').on('change', function() {
+        var seller_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if(seller_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data : {"_token":"{{ csrf_token() }}",seller_id:seller_id},
+                dataType: "json",
+                success:function(data) {
+                    console.log(data);
+                    if(data){
+                        $('#seller_details').empty();
+                        // $('#seller_details').focus;
+                        $('#seller_details').append(`
+                            
+                            <div class="form-group row">
+                                <label for="deed_no" class="col-sm-4 col-form-label">Seller Email</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="deed_no" name="deed_no" value="${data.email}" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="deed_no" class="col-sm-4 col-form-label">Seller Work Phone</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="deed_no" name="deed_no" value="${data.work_phone}" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="deed_no" class="col-sm-4 col-form-label">Seller Home Phone</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="deed_no" name="deed_no" value="${data.home_phone}" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="deed_no" class="col-sm-4 col-form-label">Seller Mobile Phone</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="deed_no" name="deed_no" value="${data.mobile_phone}" disabled>
+                                </div>
+                            </div>
+                        `);
+                        
+                    }else{
+                        $('#seller_details').empty();
+                    }
+                }
+            });
+        }else{
+            $('#seller_details').empty();
+        }
+    });
+
+
+    $('#buyer_id').on('change', function() {
+        var buyer_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if(buyer_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data : {"_token":"{{ csrf_token() }}",buyer_id:buyer_id},
+                dataType: "json",
+                success:function(data) {
+                    console.log(data);
+                    if(data){
+                        $('#buyer_details').empty();
+                        // $('#buyer_details').focus;
+                        $('#buyer_details').append(`
+                            
+                            <div class="form-group row">
+                                <label for="deed_no" class="col-sm-4 col-form-label">Buyer Email</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="deed_no" name="deed_no" value="${data.email}" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="deed_no" class="col-sm-4 col-form-label">Buyer Work Phone</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="deed_no" name="deed_no" value="${data.work_phone}" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="deed_no" class="col-sm-4 col-form-label">Buyer Home Phone</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="deed_no" name="deed_no" value="${data.home_phone}" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="deed_no" class="col-sm-4 col-form-label">Buyer Mobile Phone</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="deed_no" name="deed_no" value="${data.mobile_phone}" disabled>
+                                </div>
+                            </div>
+                        `);
+                        
+                    }else{
+                        $('#buyer_details').empty();
+                    }
+                }
+            });
+        }else{
+            $('#buyer_details').empty();
+        }
+    });
+
+
+    $("#land_compliance").on('click',function(){
+
+        $("#compliance_input").toggle();
+
+    });
+
+
+
+
+
 
 
 

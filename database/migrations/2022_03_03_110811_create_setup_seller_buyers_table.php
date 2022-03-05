@@ -23,9 +23,9 @@ class CreateSetupSellerBuyersTable extends Migration
             $table->string('home_phone')->nullable();
             $table->string('mobile_phone')->nullable();
             $table->string('emergency_contact')->nullable();
-            $table->string('address1')->nullable();
-            $table->string('address2')->nullable();
-            $table->string('document_upload')->nullable();
+            $table->string('present_address')->nullable();
+            $table->string('permanent_address')->nullable();
+            $table->text('image')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

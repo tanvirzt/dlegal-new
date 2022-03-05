@@ -2580,8 +2580,17 @@ public function delete_company($id)
      $data->work_phone = $request->work_phone;
      $data->home_phone = $request->home_phone;
      $data->mobile_phone = $request->mobile_phone;
-     $data->address1 = $request->address1;
-     $data->address2 = $request->address2;
+     $data->present_address = $request->present_address;
+     $data->permanent_address = $request->permanent_address;
+
+     if ($request->hasfile('image')) {
+        $file = $request->file('image');
+        $original_name = $file->getClientOriginalName();
+        $file_name = time().rand(1,0).$original_name;
+        $file->move(public_path('files/seller_buyer'),$file_name);
+        $data->image = $file_name;        
+     }
+
      $data->save();
 
      session()->flash('success','Seller / Buyer Added Successfully');
@@ -2593,41 +2602,51 @@ public function delete_company($id)
  {
      $person_title = SetupPersonTitle::where('delete_status',0)->get();
      $data = SetupSellerBuyer::find($id);
+    //  dd($data);
      return view('setup.seller_buyer.edit_seller_buyer',compact('data','person_title'));
  }
 
  public function update_seller_buyer(Request $request, $id)
  {
     $rules = [
-         'title_id' => 'required',
-         'first_name' => 'required',
-         'middle_name' => 'required',
-         'last_name' => 'required',
-         'email' => 'required',
-         'work_phone' => 'required'
-     ];
+        'title_id' => 'required',
+        'seller_or_buyer' => 'required',
+        'seller_buyer_name' => 'required',
+        'email' => 'required',
+        'work_phone' => 'required',
+        'home_phone' => 'required'
+    ];
 
-     $validMsg = [
-         'title_id.required' => 'Title field is required',
-         'first_name.required' => 'First Name field is required',
-         'middle_name.required' => 'Middle Name field is required',
-         'last_name.required' => 'Last Name field is required',
-         'email.required' => 'Email field is required',
-         'work_phone.required' => 'Work Phone field is required',
-     ];
+    $validMsg = [
+        'title_id.required' => 'Title field is required',
+        'seller_or_buyer.required' => 'Select Seller or Buyer',
+        'seller_buyer_name.required' => 'Seller or Buyer Name field is required',
+        'email.required' => 'Last Name field is required',
+        'work_phone.required' => 'Email field is required',
+        'home_phone.required' => 'Work Phone field is required',
+    ];
 
      $this->validate($request, $rules, $validMsg);
 
      $data = SetupSellerBuyer::find($id);
      $data->title_id = $request->title_id;
-     $data->first_name = $request->first_name;
-     $data->middle_name = $request->middle_name;
-     $data->last_name = $request->last_name;
+     $data->seller_or_buyer = $request->seller_or_buyer;
+     $data->seller_buyer_name = $request->seller_buyer_name;
      $data->email = $request->email;
      $data->work_phone = $request->work_phone;
      $data->home_phone = $request->home_phone;
      $data->mobile_phone = $request->mobile_phone;
-     $data->emergency_contact = $request->emergency_contact;
+     $data->present_address = $request->present_address;
+     $data->permanent_address = $request->permanent_address;
+
+     if ($request->hasfile('image')) {
+        $file = $request->file('image');
+        $original_name = $file->getClientOriginalName();
+        $file_name = time().rand(1,0).$original_name;
+        $file->move(public_path('files/seller_buyer'),$file_name);
+        $data->image = $file_name;        
+     }
+
      $data->save();
 
      session()->flash('success','Seller / Buyer Updated Successfully');

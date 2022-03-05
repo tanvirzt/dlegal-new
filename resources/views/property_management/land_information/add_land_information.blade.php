@@ -48,243 +48,315 @@
                                 <h3 class="card-title" id="heading">Add Land Information</h3>
                             </div>
 
-                            <form action="{{ route('save-civil-cases') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('save-land-information') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">Property Type</label>
+                                                <label for="property_type_id" class="col-sm-4 col-form-label">Property Type</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="case_no" name="case_no" value="{{old('case_no')}}">
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <select class="form-control select2" id="property_type_id" name="property_type_id">
+                                                        <option value="">Select</option>
+                                                        @foreach ($property_type as $item)
+                                                            <option value="{{ $item->id }}" {{ (old('property_type_id') == $item->id ? 'selected' : '' ) }}>{{ $item->property_type_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('property_type_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="date_of_filing" class="col-sm-4 col-form-label"> District </label>
+                                                <label for="district_id" class="col-sm-4 col-form-label"> District </label>
                                                 <div class="col-sm-8">
-                                                    <input type="date" class="form-control" id="date_of_filing" name="date_of_filing" value="{{old('date_of_filing')}}">
-                                                    @error('date_of_filing')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="form-group row">
-                                                <label for="case_year" class="col-sm-4 col-form-label">Thana</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="case_year" name="case_year" value="{{old('case_year')}}">
-                                                    @error('case_year')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="district_id" class="col-sm-4 col-form-label">CS Khatian</label>
-                                                <div class="col-sm-8">
-                                                    <select name="district_id" class="form-control select2" id="district_id">
-                                                        <option value=""> Select </option>
-
-                                                    </select>       
+                                                    <select name="district_id" class="form-control select2" id="district_id" action="{{ route('find-thana') }}">
+                                                        <option value="">Select</option>
+                                                        @foreach($district as $item)
+                                                            <option value="{{ $item->id }}" {{(old('district_id') == $item->id ? 'selected' : '')}}>{{ $item->district_name }}</option>
+                                                        @endforeach
+                                                    </select>
                                                     @error('district_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="district_id" class="col-sm-4 col-form-label"> CS Dag</label>
+                                                <label for="thana_id" class="col-sm-4 col-form-label">Thana</label>
                                                 <div class="col-sm-8">
-                                                    <select name="district_id" class="form-control select2" id="district_id">
+                                                    <select name="thana_id" class="form-control select2" id="thana_id">
                                                         <option value=""> Select </option>
 
-                                                    </select>       
-                                                    @error('district_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                    </select>  
+                                                    @error('thana_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="ref_no" class="col-sm-4 col-form-label">SA Khatian </label>
+                                                <label for="seller_id" class="col-sm-4 col-form-label">Seller Name</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="ref_no" name="ref_no" value="{{old('ref_no')}}">
-                                                    @error('ref_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <select name="seller_id" class="form-control select2" id="seller_id" action="{{ route('find-seller-details') }}">
+                                                        <option value="">Select</option>
+                                                        @foreach($seller as $item)
+                                                            <option value="{{ $item->id }}" {{(old('seller_id') == $item->id ? 'selected' : '')}}>{{ $item->seller_buyer_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('seller_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="ref_no" class="col-sm-4 col-form-label"> SA Dag  </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="ref_no" name="ref_no" value="{{old('ref_no')}}">
-                                                    @error('ref_no')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="amount" class="col-sm-4 col-form-label">RS Khatian</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="amount" name="amount" value="{{old('amount')}}">
-                                                    @error('amount')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="amount" class="col-sm-4 col-form-label"> RS Dag </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="amount" name="amount" value="{{old('amount')}}">
-                                                    @error('amount')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="location" class="col-sm-4 col-form-label"> BS Khatian </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="location" name="location" value="{{old('location')}}">
-                                                    @error('location')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="location" class="col-sm-4 col-form-label"> BS Dag  </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="location" name="location" value="{{old('location')}}">
-                                                    @error('location')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="external_council_associates_id" class="col-sm-4 col-form-label">Khatian & Dag City Jorip</label>
-                                                <div class="col-sm-8">
-                                                        <select name="external_council_associates_id" class="form-control select2" id="external_council_associates_id">
-                                                            <option value="">Select</option>
 
-                                                        </select>
-                                                        @error('external_council_associates_id')<span class="text-danger">{{$message}}</span>@enderror
+                                            <div id="seller_details"></div>
+
+                                            <div class="form-group row">
+                                                <label for="buyer_id" class="col-sm-4 col-form-label"> Buyer Name </label>
+                                                <div class="col-sm-8">
+                                                    <select name="buyer_id" class="form-control select2" id="buyer_id" action="{{ route('find-buyer-details') }}">
+                                                        <option value="">Select</option>
+                                                        @foreach($buyer as $item)
+                                                            <option value="{{ $item->id }}" {{(old('buyer_id') == $item->id ? 'selected' : '')}}>{{ $item->seller_buyer_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('buyer_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+
+                                            <div id="buyer_details"></div>
+                                            <div class="form-group row">
+                                                <label for="cs_khatian" class="col-sm-4 col-form-label">CS Khatian</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="cs_khatian" name="cs_khatian" value="{{old('cs_khatian')}}">
+                                                    @error('cs_khatian')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="plaintiff_name" class="col-sm-4 col-form-label">Land Area (in Decimal)</label>
+                                                <label for="cs_dag" class="col-sm-4 col-form-label"> CS Dag</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="plaintiff_name" name="plaintiff_name" value="{{old('plaintiff_name')}}">
-                                                    @error('plaintiff_name')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="cs_dag" name="cs_dag" value="{{old('cs_dag')}}">   
+                                                    @error('cs_dag')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="contact_number" class="col-sm-4 col-form-label">Seller Name</label>
+                                                <label for="sa_khatian" class="col-sm-4 col-form-label">SA Khatian </label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="contact_number" name="contact_number" value="{{old('contact_number')}}">
-                                                    @error('contact_number')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="sa_khatian" name="sa_khatian" value="{{old('sa_khatian')}}">
+                                                    @error('sa_khatian')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="next_date" class="col-sm-4 col-form-label"> Buyer Name </label>
+                                                <label for="sa_dag" class="col-sm-4 col-form-label"> SA Dag  </label>
                                                 <div class="col-sm-8">
-                                                    <input type="date" class="form-control" id="next_date" name="next_date" value="{{old('next_date')}}">
-                                                    @error('next_date')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="sa_dag" name="sa_dag" value="{{old('sa_dag')}}">
+                                                    @error('sa_dag')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
+                                            <div class="form-group row">
+                                                <label for="rs_khatian" class="col-sm-4 col-form-label">RS Khatian</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="rs_khatian" name="rs_khatian" value="{{old('rs_khatian')}}">
+                                                    @error('rs_khatian')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="rs_dag" class="col-sm-4 col-form-label"> RS Dag </label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="rs_dag" name="rs_dag" value="{{old('rs_dag')}}">
+                                                    @error('rs_dag')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="bs_khatian" class="col-sm-4 col-form-label"> BS Khatian </label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="bs_khatian" name="bs_khatian" value="{{old('bs_khatian')}}">
+                                                    @error('bs_khatian')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="bs_dag" class="col-sm-4 col-form-label"> BS Dag  </label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="bs_dag" name="bs_dag" value="{{old('bs_dag')}}">
+                                                    @error('bs_dag')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="khatian_dag_city_jorip" class="col-sm-4 col-form-label">Khatian & Dag City Jorip</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="khatian_dag_city_jorip" name="khatian_dag_city_jorip" value="{{old('khatian_dag_city_jorip')}}">
+
+                                                    @error('khatian_dag_city_jorip')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="land_area" class="col-sm-4 col-form-label">Land Area (in Decimal)</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="land_area" name="land_area" value="{{old('land_area')}}">
+                                                    @error('land_area')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="deed_no" class="col-sm-4 col-form-label">Deed No.</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="deed_no" name="deed_no" value="{{old('deed_no')}}">
+                                                    @error('deed_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="date_of_deed" class="col-sm-4 col-form-label">Date of Deed</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="date_of_deed" name="date_of_deed" value="{{old('date_of_deed')}}">
+                                                    @error('date_of_deed')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="deed_value" class="col-sm-4 col-form-label"> Deed Value </label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="deed_value" name="deed_value" value="{{old('deed_value')}}">
+                                                    @error('deed_value')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <div class="col-md-6">
                                             
-                                            <div class="form-group row">
-                                                <label for="plaintiff_contact_number" class="col-sm-4 col-form-label">Deed No.</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="plaintiff_contact_number" name="plaintiff_contact_number" value="{{old('plaintiff_contact_number')}}">
-                                                    @error('plaintiff_contact_number')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="subsequent_plaintiff_name" class="col-sm-4 col-form-label">Date of Deed</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="subsequent_plaintiff_name" name="subsequent_plaintiff_name" value="{{old('subsequent_plaintiff_name')}}">
-                                                    @error('subsequent_plaintiff_name')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="name_of_suit" class="col-sm-4 col-form-label"> Deed Value </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="name_of_suit" name="name_of_suit" value="{{old('name_of_suit')}}">
-                                                    @error('name_of_suit')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="defendent_name" class="col-sm-4 col-form-label"> Possession </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="defendent_name" name="defendent_name" value="{{old('defendent_name')}}">
-                                                    @error('defendent_name')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="defendent_address" class="col-sm-4 col-form-label"> Boundary Wall </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="defendent_address" name="defendent_address" value="{{old('defendent_address')}}">
-                                                    @error('defendent_address')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
                                             
                                             <div class="form-group row">
-                                                <label for="date_of_incident" class="col-sm-4 col-form-label"> Any Dispute </label>
+                                                <label for="possession" class="col-sm-4 col-form-label"> Possession </label>
                                                 <div class="col-sm-8">
-                                                    <input type="date" class="form-control" id="date_of_incident" name="date_of_incident" value="{{old('date_of_incident')}}">
-                                                    @error('date_of_incident')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="form-group row">
-                                                <label for="date_of_incident_to" class="col-sm-4 col-form-label"> Any Suit/Case </label>
-                                                <div class="col-sm-8">
-                                                    <input type="date" class="form-control" id="date_of_incident_to" name="date_of_incident_to" value="{{old('date_of_incident_to')}}">
-                                                    @error('date_of_incident_to')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="possession" name="possession" value="{{old('possession')}}">
+                                                    @error('possession')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">Name of Owner of the Property</label>
+                                                <label for="boundary_wall" class="col-sm-4 col-form-label"> Boundary Wall </label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="case_no" name="case_no" value="{{old('case_no')}}">
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="boundary_wall" name="boundary_wall" value="{{old('boundary_wall')}}">
+                                                    @error('boundary_wall')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">Mouza Name</label>
+                                                <label for="any_dispute" class="col-sm-4 col-form-label"> Any Dispute </label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="case_no" name="case_no" value="{{old('case_no')}}">
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="any_dispute" name="any_dispute" value="{{old('any_dispute')}}">
+                                                    @error('any_dispute')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">Mutation Khatian No.</label>
+                                                <label for="any_suit_case" class="col-sm-4 col-form-label"> Any Suit/Case </label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="case_no" name="case_no" value="{{old('case_no')}}">
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="any_suit_case" name="any_suit_case" value="{{old('any_suit_case')}}">
+                                                    @error('any_suit_case')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">Mutation Case No.</label>
+                                                <label for="property_owner" class="col-sm-4 col-form-label">Name of Owner of the Property</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="case_no" name="case_no" value="{{old('case_no')}}">
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="property_owner" name="property_owner" value="{{old('property_owner')}}">
+                                                    @error('property_owner')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">Mutation Khatian Owner(Previous Owner)</label>
+                                                <label for="mouza_name" class="col-sm-4 col-form-label">Mouza Name</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="case_no" name="case_no" value="{{old('case_no')}}">
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="mouza_name" name="mouza_name" value="{{old('mouza_name')}}">
+                                                    @error('mouza_name')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">DCR Number</label>
+                                                <label for="mutation_khatian_no" class="col-sm-4 col-form-label">Mutation Khatian No.</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="case_no" name="case_no" value="{{old('case_no')}}">
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="mutation_khatian_no" name="mutation_khatian_no" value="{{old('mutation_khatian_no')}}">
+                                                    @error('mutation_khatian_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">Name of Register Office</label>
+                                                <label for="mutation_case_no" class="col-sm-4 col-form-label">Mutation Case No.</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="case_no" name="case_no" value="{{old('case_no')}}">
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="mutation_case_no" name="mutation_case_no" value="{{old('mutation_case_no')}}">
+                                                    @error('mutation_case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
+                                            <div class="form-group row">
+                                                <label for="mutation_khatian_owner" class="col-sm-4 col-form-label">Mutation Khatian Owner(Previous Owner)</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="mutation_khatian_owner" name="mutation_khatian_owner" value="{{old('mutation_khatian_owner')}}">
+                                                    @error('mutation_khatian_owner')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="dcr_number" class="col-sm-4 col-form-label">DCR Number</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="dcr_number" name="dcr_number" value="{{old('dcr_number')}}">
+                                                    @error('dcr_number')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="dcr_date" class="col-sm-4 col-form-label">DCR Date</label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" class="form-control" id="dcr_date" name="dcr_date" value="{{old('dcr_date')}}">
+                                                    @error('dcr_date')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="register_office_name" class="col-sm-4 col-form-label">Name of Register Office</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="register_office_name" name="register_office_name" value="{{old('register_office_name')}}">
+                                                    @error('register_office_name')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="land_compliance" class="col-sm-4 col-form-label"> Land Compliance </label>
+                                                <div class="col-sm-8">
+                                                    <input type="checkbox" class="mt-2" id="land_compliance" name="land_compliance" value="compliance">
+                                                </div>
+                                            </div>
+
+                                            <div id="compliance_input" style="display: none;">                                          
+                                                <div class="form-group row">
+                                                    <label for="electricity" class="col-sm-4 col-form-label"> Electricity </label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="electricity" name="electricity" value="{{old('electricity')}}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="gas" class="col-sm-4 col-form-label"> Gas </label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="gas" name="gas" value="{{old('gas')}}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="sewerage" class="col-sm-4 col-form-label"> Sewerage </label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="sewerage" name="sewerage" value="{{old('sewerage')}}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="water" class="col-sm-4 col-form-label"> Water </label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="water" name="water" value="{{old('water')}}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="expires" class="col-sm-4 col-form-label"> Expires </label>
+                                                    <div class="col-sm-8">
+                                                        <input type="date" class="form-control" id="expires" name="expires" value="{{old('expires')}}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="renew" class="col-sm-4 col-form-label"> Renew </label>
+                                                    <div class="col-sm-8">
+                                                        <input type="date" class="form-control" id="renew" name="renew" value="{{old('renew')}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="case_notes"> Document Upload </label>
+                                                <label for="uploaded_document"> Document Upload </label>
                                                 <div class="input-group hdtuto control-group lst increment">
                                                     <input type="file" name="uploaded_document[]" class="myfrm form-control">
                                                     <div class="input-group-btn">
                                                         <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>+</button>
                                                     </div>
                                                 </div>
-                                                <div class="clone hide">
-                                                    <div class="hdtuto control-group lst input-group" style="margin-top:10px">
+                                                <div class="clone hide" style="display: none;">
+                                                    <div class="hdtuto control-group lst input-group" style="margin-top:10px;">
                                                         <input type="file" name="uploaded_document[]" class="myfrm form-control">
                                                         <div class="input-group-btn">
                                                             <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> - </button>

@@ -59,45 +59,33 @@
                                             <div class="form-group row">
                                                 <label for="title_id" class="col-sm-4 col-form-label">Title</label>
                                                 <div class="col-sm-8">
-                                                    <select name="title_id" class="form-control select2" id="title_id">
-                                                        <option value="">Select</option>
+                                                        <select name="title_id" class="form-control select2" id="title_id">
+                                                            <option value="">Select</option>
                                                             @foreach($person_title as $item)
-                                                                <option value="{{ $item->id }}" {{ $data->title_id == $item->id ? 'selected' : '' }}>{{ $item->person_title_name }}</option>
+                                                                <option value="{{ $item->id }}" {{($data->title_id == $item->id?'selected':'')}}>{{ $item->person_title_name }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('title_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label for="first_name" class="col-sm-4 col-form-label">First Name</label>
+                                                <label for="seller_or_buyer" class="col-sm-4 col-form-label">Seller / Buyer</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ $data->first_name }}">
-                                                    @error('first_name')<span class="text-danger">{{$message}}</span>@enderror
+                                                        <select name="seller_or_buyer" class="form-control select2" id="seller_or_buyer">
+                                                            <option value="">Select</option>
+                                                            <option @if ($data->seller_or_buyer == "Seller") selected @endif value="Seller">Seller</option>
+                                                            <option @if ($data->seller_or_buyer == "Buyer") selected @endif value="Buyer">Buyer</option>
+                                                        </select>
+                                                        @error('seller_or_buyer')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label for="middle_name" class="col-sm-4 col-form-label">Middle Name</label>
+                                                <label for="seller_buyer_name" class="col-sm-4 col-form-label"> Name </label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="middle_name" name="middle_name" value="{{ $data->middle_name }}">
-                                                    @error('middle_name')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="seller_buyer_name" name="seller_buyer_name" value="{{ $data->seller_buyer_name }}">
+                                                    @error('seller_buyer_name')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label for="last_name" class="col-sm-4 col-form-label">Last Name</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ $data->last_name }}">
-                                                    @error('last_name')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="email" class="col-sm-4 col-form-label">Email</label>
                                                 <div class="col-sm-8">
@@ -105,14 +93,23 @@
                                                     @error('email')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="work_phone" class="col-sm-4 col-form-label">Work Phone</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="work_phone" name="work_phone" value="{{ $data->work_phone }}">
                                                     @error('work_phone')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="image" class="col-sm-4 col-form-label">Photo</label>
+                                                <div class="col-sm-8">
+                                                    <input type="file" class="form-control" id="image" name="image">
+                                                    @error('photo')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="preview-image" class="col-sm-4 col-form-label"></label>
+                                                <img @if ($data->image) src="{{ asset('files/seller_buyer/'.$data->image) }}" @endif id="preview-image" style="max-height: 250px;max-width:200px;">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -123,8 +120,6 @@
                                                     @error('home_phone')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="mobile_phone" class="col-sm-4 col-form-label">Mobile No.</label>
                                                 <div class="col-sm-8">
@@ -132,35 +127,24 @@
                                                     @error('mobile_phone')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label for="emergency_contact" class="col-sm-4 col-form-label">Emergency Contact</label>
+                                                <label for="present_address" class="col-sm-4 col-form-label">Present Address</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="emergency_contact" name="emergency_contact" value="{{ $data->emergency_contact }}">
-                                                    @error('emergency_contact')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <textarea name="present_address" class="form-control" rows="3" placeholder="">{{ $data->present_address }}</textarea>
+                                                    @error('present_address')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="permanent_address" class="col-sm-4 col-form-label">Permanent Address</label>
+                                                <div class="col-sm-8">
+                                                    <textarea name="permanent_address" class="form-control" rows="3" placeholder="">{{ $data->permanent_address }}</textarea>
+                                                    @error('permanent_address')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="">
-                                        <div class="form-group">
-                                            <label for="case_notes"> Document Upload </label>
-                                            <div class="input-group hdtuto control-group lst increment">
-                                                <input type="file" name="uploaded_document[]" class="myfrm form-control">
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>+</button>
-                                                </div>
-                                            </div>
-                                            <div class="clone hide">
-                                                <div class="hdtuto control-group lst input-group" style="margin-top:10px">
-                                                    <input type="file" name="uploaded_document[]" class="myfrm form-control">
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> - </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="float-right mt-4">
                                             <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update </button>
                                         </div>
