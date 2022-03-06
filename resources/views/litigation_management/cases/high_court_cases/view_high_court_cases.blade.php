@@ -217,8 +217,10 @@
                                                     {{ $files->uploaded_document }}
                                                 </td>
                                                 <td class="table_text_center">
-                                                        <a href="{{ route('download-high-court-cases-files', $files->id) }}"><button class="badge badge-info btn-sm"
-                                                        > Download </button></a>
+                                                        
+                                                        <a href="{{ route('download-high-court-cases-files', $files->id) }}"><button
+                                                            class="btn btn-outline-success btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Download"><i class="fas fa-download"></i></button></a>
                                                 </td>
                                             </tr>
                                         @endforeach

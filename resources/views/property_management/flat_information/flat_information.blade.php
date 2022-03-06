@@ -7,13 +7,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Land Information </h1>
+                        <h1> Flat Information </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Land Information </li>
+                            <li class="breadcrumb-item active"> Flat Information </li>
                         </ol>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                             <div id="accordion">
 
                                 <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> Land Information :: Search </h3>
+                                    <h3 class="card-title"> Flat Information :: Search </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -55,7 +55,7 @@
                                     <div class="card-body">
 
 
-                                        <form id="form_data" method="post" action="{{ route('search-land-information') }}">
+                                        <form id="form_data" method="post" action="{{ route('search-flat-information') }}">
                                             @csrf
 
 
@@ -146,10 +146,10 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-land-information') }}"><button
+                                    <a href="{{ route('add-flat-information') }}"><button
                                             class="btn btn-sm
                                     btn-success add_btn"><i
-                                                class="fas fa-plus"></i> Add Land Information </button></a>
+                                                class="fas fa-plus"></i> Add Flat Information </button></a>
                                 </div>
 
                             </div>
@@ -209,16 +209,16 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('view-land-information', $datum->id) }}"><button
+                                                    <a href="{{ route('view-flat-information', $datum->id) }}"><button
                                                             class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Details"><i
                                                                 class="fas fa-eye"></i></button></a>
-                                                    <a href="{{ route('edit-land-information', $datum->id) }}"><button
+                                                    <a href="{{ route('edit-flat-information', $datum->id) }}"><button
                                                             class="btn btn-info btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"><i
                                                                 class="fas fa-edit"></i></button></a>
                                                     <form method="POST"
-                                                        action="{{ route('delete-land-information', $datum->id) }}"
+                                                        action="{{ route('delete-flat-information', $datum->id) }}"
                                                         class="delete-user btn btn-danger btn-xs">
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger btn-sm"

@@ -74,7 +74,7 @@
                                                 {{ $datum->work_phone }}
                                             </td>
                                             <td>
-                                                {{ $datum->mobile_number }}
+                                                {{ $datum->mobile_phone }}
                                             </td>
                                             <td>
                                                 @if($datum->delete_status == 0)

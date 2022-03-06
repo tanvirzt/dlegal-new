@@ -2640,6 +2640,14 @@ public function delete_company($id)
      $data->permanent_address = $request->permanent_address;
 
      if ($request->hasfile('image')) {
+
+        if($data->image != null){
+            $file_path = 'files/seller_buyer/'.$data->image;
+            if(file_exists($file_path)){
+                unlink($file_path);
+            }
+        }
+
         $file = $request->file('image');
         $original_name = $file->getClientOriginalName();
         $file_name = time().rand(1,0).$original_name;

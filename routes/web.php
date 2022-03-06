@@ -356,8 +356,23 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('land-information','LandInfoController@land_information')->name('land-information');
         Route::get('add-land-information','LandInfoController@add_land_information')->name('add-land-information');
         Route::post('save-land-information','LandInfoController@save_land_information')->name('save-land-information');
+        Route::get('edit-land-information/{id}','LandInfoController@edit_land_information')->name('edit-land-information');
         Route::post('delete-land-information/{id}','LandInfoController@delete_land_information')->name('delete-land-information');
+        Route::post('update-land-information/{id}','LandInfoController@update_land_information')->name('update-land-information');
+        Route::get('view-land-information/{id}','LandInfoController@view_land_information')->name('view-land-information');
+        Route::get('download-land-information-files/{id}','LandInfoController@download_land_information_files')->name('download-land-information-files');
+        Route::post('search-land-information','LandInfoController@search_land_information')->name('search-land-information');
 
+        Route::get('flat-information','FlatInfoController@flat_information')->name('flat-information');
+        Route::get('add-flat-information','FlatInfoController@add_flat_information')->name('add-flat-information');
+        Route::post('save-flat-information','FlatInfoController@save_flat_information')->name('save-flat-information');
+        Route::get('edit-flat-information/{id}','FlatInfoController@edit_flat_information')->name('edit-flat-information');
+        Route::post('delete-flat-information/{id}','FlatInfoController@delete_flat_information')->name('delete-flat-information');
+        Route::post('update-flat-information/{id}','FlatInfoController@update_flat_information')->name('update-flat-information');
+        Route::get('view-flat-information/{id}','FlatInfoController@view_flat_information')->name('view-flat-information');
+        Route::get('download-flat-information-files/{id}','FlatInfoController@download_flat_information_files')->name('download-flat-information-files');
+        Route::post('search-flat-information','FlatInfoController@search_flat_information')->name('search-flat-information');
+        
         Route::get('/find-thana','LandInfoController@find_thana')->name('find-thana');
         Route::get('/find-seller-details','LandInfoController@find_seller_details')->name('find-seller-details');
         Route::get('/find-buyer-details','LandInfoController@find_buyer_details')->name('find-buyer-details');

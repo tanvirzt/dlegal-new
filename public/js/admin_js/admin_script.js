@@ -284,7 +284,7 @@ $(document).ready(function(){
 // console.log(res);
 
 if (res.result == "billing") {
-console.log(res.data);
+// console.log(res.data);
 
     $('#search_data').empty();
     $.each(res.data, function(key, value){
@@ -329,7 +329,43 @@ console.log(res.data);
     });
 
 
-} else {
+}else if (res.result == "land_information") {
+    // console.log(res.data);
+    
+    $('#search_data').empty();
+    $.each(res.data, function(key, value){
+
+        $('#search_data').append(`
+
+                        <tr>
+                            <td> ${value.property_type_name} </td>
+                            <td> ${value.district_name} </td>
+                            <td> ${value.thana_name} </td>
+                            <td> ${value.seller_name} </td>
+                            <td> ${value.buyer_name} </td>
+                            <td> ${value.cs_khatian} </td>
+                            <td> ${value.cs_dag} </td>
+                            <td> ${value.sa_khatian} </td>
+                            <td> ${value.sa_dag} </td>
+                            <td> ${value.delete_status === 0 ? 'Active' : 'Inactive'} </td>
+                            <td>
+                                <a href="view-land-information/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                    ><i class="fas fa-eye"></i></button></a>
+                                
+                                <a href="edit-land-information/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                    ><i class="fas fa-edit"></i></button></a>
+                                    
+                                <button onclick='land_information_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                    
+                            </td>
+                        </tr>
+
+
+        `);
+    });
+    
+    
+    } else {
                 $('#search_data').empty();
                 $.each(res, function(key, value){
 

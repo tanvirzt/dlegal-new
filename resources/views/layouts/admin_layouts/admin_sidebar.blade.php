@@ -415,6 +415,12 @@
                                 <p>Land Information</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('flat-information') }}" class="nav-link">
+                                <i class="ml-left"></i>
+                                <p>Flat Information</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">
