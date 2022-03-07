@@ -181,6 +181,18 @@
                       <p>Seller/Buyer</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="{{ route('floor') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Floor</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('flat-number') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Flat Number</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
               <li class="nav-item">

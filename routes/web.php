@@ -345,6 +345,23 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-thana/{id}','AdminSetupController@update_thana')->name('update-thana');
         Route::post('delete-thana/{id}','AdminSetupController@delete_thana')->name('delete-thana');
 
+// floor setup
+
+        Route::get('floor','AdminSetupController@floor')->name('floor');
+        Route::get('add-floor','AdminSetupController@add_floor')->name('add-floor');
+        Route::post('save-floor','AdminSetupController@save_floor')->name('save-floor');
+        Route::get('edit-floor/{id}','AdminSetupController@edit_floor')->name('edit-floor');
+        Route::post('update-floor/{id}','AdminSetupController@update_floor')->name('update-floor');
+        Route::post('delete-floor/{id}','AdminSetupController@delete_floor')->name('delete-floor');
+// flat-number setup
+
+        Route::get('flat-number','AdminSetupController@flat_number')->name('flat-number');
+        Route::get('add-flat-number','AdminSetupController@add_flat_number')->name('add-flat-number');
+        Route::post('save-flat-number','AdminSetupController@save_flat_number')->name('save-flat-number');
+        Route::get('edit-flat-number/{id}','AdminSetupController@edit_flat_number')->name('edit-flat-number');
+        Route::post('update-flat-number/{id}','AdminSetupController@update_flat_number')->name('update-flat-number');
+        Route::post('delete-flat-number/{id}','AdminSetupController@delete_flat_number')->name('delete-flat-number');
+
 // seller buyer setup
         Route::get('seller-buyer','AdminSetupController@seller_buyer')->name('seller-buyer');
         Route::get('add-seller-buyer','AdminSetupController@add_seller_buyer')->name('add-seller-buyer');
@@ -376,7 +393,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('/find-thana','LandInfoController@find_thana')->name('find-thana');
         Route::get('/find-seller-details','LandInfoController@find_seller_details')->name('find-seller-details');
         Route::get('/find-buyer-details','LandInfoController@find_buyer_details')->name('find-buyer-details');
-
+        Route::get('/find-flat-number','FlatInfoController@find_flat_number')->name('find-flat-number');
+        
     });
 
 });

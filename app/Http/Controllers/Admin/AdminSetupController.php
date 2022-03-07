@@ -38,6 +38,8 @@ use App\Models\SetupBankBranch;
 use App\Models\SetupDigitalPayment;
 use App\Models\SetupThana;
 use App\Models\SetupSellerBuyer;
+use App\Models\SetupFloor;
+use App\Models\SetupFlatNumber;
 use Illuminate\Support\Facades\DB;
 
 
@@ -2675,6 +2677,161 @@ public function delete_company($id)
      session()->flash('success', 'Seller / Buyer Deleted');
      return redirect()->back();
  }
+
+//floor setup
+
+public function floor()
+{
+    $data = SetupFloor::all();
+    return view('setup.floor.floor',compact('data'));
+}
+
+public function add_floor()
+{
+   return view('setup.floor.add_floor');
+}
+
+public function save_floor(Request $request)
+{
+   //  dd($request->all());
+
+    $this->validate($request, [
+        'floor_name' => 'required',
+    ]);
+
+    $data = new SetupFloor();
+    $data->floor_name = $request->floor_name;
+    $data->save();
+
+    session()->flash('success', 'Floor Added Successfully');
+    return redirect()->back();
+
+}
+
+public function edit_floor($id)
+{
+    $data = SetupFloor::find($id);
+    return view('setup.floor.edit_floor',compact('data'));
+}
+
+public function update_floor(Request $request, $id)
+{
+   $this->validate($request, [
+       'floor_name' => 'required',
+   ]);
+
+   $data = SetupFloor::find($id);
+   $data->floor_name = $request->floor_name;
+   $data->save();
+
+   session()->flash('success','Floor Updated Successfully');
+   return redirect()->back();
+}
+
+public function delete_floor($id)
+{
+    $data = SetupFloor::find($id);
+    if ($data['delete_status'] == 1){
+        $delete_status = 0;
+    }else{
+        $delete_status = 1;
+    }
+    $data->delete_status = $delete_status;
+    $data->save();
+
+    session()->flash('success', 'Floor Deleted');
+    return redirect()->back();
+}
+
+
+//flat_number setup
+
+public function flat_number()
+{
+    //    $data = SetupFlatNumber::all();
+    $data = DB::table('setup_flat_numbers')
+                ->leftJoin('setup_floors','setup_flat_numbers.floor_id','=','setup_floors.id')
+                ->select('setup_flat_numbers.*','setup_floors.floor_name')
+                ->get();
+                // dd($data);
+    return view('setup.flat_number.flat_number',compact('data'));
+}
+
+public function add_flat_number()
+{
+    $floor = SetupFloor::where('delete_status',0)->get();
+    return view('setup.flat_number.add_flat_number',compact('floor'));
+}
+
+public function save_flat_number(Request $request)
+{
+    $rules = [
+        'floor_id' => 'required',
+        'flat_number' => 'required',
+    ];
+
+    $validMsg = [
+        'floor_id.required' => 'Floor field is required',
+        'flat_number.required' => 'Flat Number field is required',
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = new SetupFlatNumber();
+    $data->floor_id = $request->floor_id;
+    $data->flat_number = $request->flat_number;
+    $data->save();
+
+    session()->flash('success','Flat Number Added Successfully');
+    return redirect()->back();
+
+}
+
+public function edit_flat_number($id)
+{
+    $floor = SetupFloor::where('delete_status',0)->get();
+    $data = SetupFlatNumber::find($id);
+    return view('setup.flat_number.edit_flat_number',compact('data','floor'));
+}
+
+public function update_flat_number(Request $request, $id)
+{
+    $rules = [
+        'floor_id' => 'required',
+        'flat_number' => 'required',
+    ];
+
+    $validMsg = [
+        'floor_id.required' => 'Floor field is required',
+        'flat_number.required' => 'Flat Number field is required',
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = SetupFlatNumber::find($id);
+    $data->floor_id = $request->floor_id;
+    $data->flat_number = $request->flat_number;
+    $data->save();
+
+    session()->flash('success','Flat Number Updated');
+    return redirect()->back();
+}
+
+public function delete_flat_number($id)
+{
+    $data = SetupFlatNumber::find($id);
+    if ($data['delete_status'] == 1){
+        $delete_status = 0;
+    }else{
+        $delete_status = 1;
+    }
+    $data->delete_status = $delete_status;
+    $data->save();
+
+    session()->flash('success', 'Flat Number Deleted');
+    return redirect()->back();
+}
+
 
 
 

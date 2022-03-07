@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2022 at 01:10 PM
+-- Generation Time: Mar 07, 2022 at 12:34 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -550,6 +550,96 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `flat_information`
+--
+
+CREATE TABLE `flat_information` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `property_type_id` int(11) DEFAULT NULL,
+  `district_id` int(11) DEFAULT NULL,
+  `thana_id` int(11) DEFAULT NULL,
+  `seller_id` int(11) DEFAULT NULL,
+  `buyer_id` int(11) DEFAULT NULL,
+  `cs_khatian` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cs_dag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sa_khatian` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sa_dag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rs_khatian` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rs_dag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bs_khatian` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bs_dag` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `khatian_dag_city_jorip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flat_area` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deed_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_of_deed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deed_value` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `possession` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `boundary_wall` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `any_dispute` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `any_suit_case` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flat_owner` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mouza_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mutation_khatian_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mutation_case_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mutation_khatian_owner` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dcr_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dcr_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `register_office_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `floor_id` int(11) DEFAULT NULL,
+  `flat_number_id` int(11) DEFAULT NULL,
+  `flat_size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flat_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flat_compliance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `electricity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gas` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sewerage` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `water` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `expires` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `renew` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `flat_information`
+--
+
+INSERT INTO `flat_information` (`id`, `property_type_id`, `district_id`, `thana_id`, `seller_id`, `buyer_id`, `cs_khatian`, `cs_dag`, `sa_khatian`, `sa_dag`, `rs_khatian`, `rs_dag`, `bs_khatian`, `bs_dag`, `khatian_dag_city_jorip`, `flat_area`, `deed_no`, `date_of_deed`, `deed_value`, `possession`, `boundary_wall`, `any_dispute`, `any_suit_case`, `flat_owner`, `mouza_name`, `mutation_khatian_no`, `mutation_case_no`, `mutation_khatian_owner`, `dcr_number`, `dcr_date`, `register_office_name`, `floor_id`, `flat_number_id`, `flat_size`, `flat_number`, `flat_compliance`, `electricity`, `gas`, `sewerage`, `water`, `expires`, `renew`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 2, 4, 2, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  14', '1000 sft', 'deed no 11', '2022-03-09', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Aminur Rahman Smith Aminur', '17 sadf', 'test mutation', 'm case no', '20 ertre', '23 test', '2022-03-16', 'Aminur Rahman Smith Aminur', 3, 3, '25000 sft', NULL, 'No', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-03-07 04:44:02', '2022-03-07 05:08:37'),
+(2, 3, 2, 4, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  12', '1000 sft', 'deed no 11', '2022-03-17', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Aminur Rahman Smith Aminur', '17 sadf', 'test mutation', 'm case no', '20 ertre', '23 test', '2022-03-02', 'Aminur Rahman Smith Aminur', 3, 3, '25000 sft', NULL, 'Yes', 'elect 2', 'test gas', 'test sewerage', 'test warter', '2022-03-17', NULL, 0, NULL, NULL, '2022-03-07 05:05:32', '2022-03-07 05:30:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `flat_information_files`
+--
+
+CREATE TABLE `flat_information_files` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `flat_information_id` int(11) DEFAULT NULL,
+  `uploaded_document` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `flat_information_files`
+--
+
+INSERT INTO `flat_information_files` (`id`, `flat_information_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 1, '164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-07 04:44:02', '2022-03-07 04:44:02'),
+(2, 1, '164664984298Ethnicity.png', 0, NULL, NULL, '2022-03-07 04:44:02', '2022-03-07 04:44:02'),
+(3, 1, '164664984260john.jpg', 0, NULL, NULL, '2022-03-07 04:44:02', '2022-03-07 04:44:02');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `high_court_cases`
 --
 
@@ -985,7 +1075,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (184, '2022_03_03_100737_create_setup_thanas_table', 38),
 (187, '2022_03_03_110811_create_setup_seller_buyers_table', 39),
 (190, '2022_03_05_094634_create_land_information_table', 40),
-(191, '2022_03_05_100641_create_land_information_files_table', 40);
+(191, '2022_03_05_100641_create_land_information_files_table', 40),
+(200, '2022_03_07_044224_create_flat_information_table', 41),
+(201, '2022_03_07_051253_create_flat_information_files_table', 41),
+(202, '2022_03_07_052042_create_setup_floors_table', 41),
+(203, '2022_03_07_055414_create_setup_flat_numbers_table', 41);
 
 -- --------------------------------------------------------
 
@@ -1172,8 +1266,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('DoRZL9zwdqeFNQVVtJpZrk9mAL8foaEbJtWY6oD5', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoieWxacHR1OEtibmZQT2psMVpjYlc0a21SQk9MNnM5NHJqWmVvS3VGSiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjYyOiJodHRwOi8vbG9jYWxob3N0L2RsZWdhbC1zb2Z0d2FyZS9wdWJsaWMvYWRtaW4vbGFuZC1pbmZvcm1hdGlvbiI7fX0=', 1646568499),
-('jwfeEdYIXqfAavI6vTeOLKInaP5Q1LZEIv6XOVQn', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoicVFXQm5DZHowWnJWMWZoRnp0MFJGeFRUc3l3Tm5yUm0yWUlST3c1QiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjI6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9sYW5kLWluZm9ybWF0aW9uIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO30=', 1646562366);
+('d4bvYszMWRXE0aZpj2YabhkjdVTmTVD65YN7jUZZ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUzBpVkk4dmFpekdnbXZGaEptYWt1UWEzVEhwbzV5dmVESmVwTngxaCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjI6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9mbGF0LWluZm9ybWF0aW9uIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1646650128),
+('dNwcxcYlGkmoudf98IjTeTEeW5ORptcz8TzlFwY9', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZUtMWndZZFFBbU9FeUZDS2JlOExNQVd3MW9NRnFoREhNV1FZT1lFMCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjI6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9mbGF0LWluZm9ybWF0aW9uIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO30=', 1646651610),
+('uMTLmzjd6LglJnYL8yfvOrrdiUq9L9JPWIn7ln4u', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiWnluTFVNV2ZjMnpqbk05WmQ4OHpXWU5FSGFxRkVjNmJhdHRUTFNjTiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjI6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9mbGF0LWluZm9ybWF0aW9uIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO30=', 1646652826);
 
 -- --------------------------------------------------------
 
@@ -1753,6 +1848,63 @@ CREATE TABLE `setup_external_council_files` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `setup_flat_numbers`
+--
+
+CREATE TABLE `setup_flat_numbers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `floor_id` int(11) DEFAULT NULL,
+  `flat_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_flat_numbers`
+--
+
+INSERT INTO `setup_flat_numbers` (`id`, `floor_id`, `flat_number`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'A1', 0, NULL, NULL, '2022-03-07 02:42:10', '2022-03-07 02:42:10'),
+(2, 2, 'B1', 0, NULL, NULL, '2022-03-07 02:42:15', '2022-03-07 02:42:15'),
+(3, 3, 'C1', 0, NULL, NULL, '2022-03-07 02:42:20', '2022-03-07 02:42:20'),
+(4, 4, 'D1', 0, NULL, NULL, '2022-03-07 02:42:24', '2022-03-07 02:42:24'),
+(5, 5, 'adsf', 0, NULL, NULL, '2022-03-07 02:42:28', '2022-03-07 02:42:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_floors`
+--
+
+CREATE TABLE `setup_floors` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `floor_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_floors`
+--
+
+INSERT INTO `setup_floors` (`id`, `floor_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, '1st', 0, NULL, NULL, '2022-03-07 02:41:38', '2022-03-07 02:41:38'),
+(2, '2nd', 0, NULL, NULL, '2022-03-07 02:41:41', '2022-03-07 02:41:41'),
+(3, '3rd', 0, NULL, NULL, '2022-03-07 02:41:44', '2022-03-07 02:41:44'),
+(4, '4th', 0, NULL, NULL, '2022-03-07 02:41:47', '2022-03-07 02:41:47'),
+(5, '5th', 0, NULL, NULL, '2022-03-07 02:41:51', '2022-03-07 02:41:51'),
+(6, '6th', 0, NULL, NULL, '2022-03-07 02:41:54', '2022-03-07 02:41:54'),
+(7, '7th', 0, NULL, NULL, '2022-03-07 02:41:57', '2022-03-07 02:41:57');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `setup_internal_councils`
 --
 
@@ -2252,6 +2404,18 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `flat_information`
+--
+ALTER TABLE `flat_information`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `flat_information_files`
+--
+ALTER TABLE `flat_information_files`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `high_court_cases`
 --
 ALTER TABLE `high_court_cases`
@@ -2484,6 +2648,18 @@ ALTER TABLE `setup_external_council_files`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `setup_flat_numbers`
+--
+ALTER TABLE `setup_flat_numbers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setup_floors`
+--
+ALTER TABLE `setup_floors`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `setup_internal_councils`
 --
 ALTER TABLE `setup_internal_councils`
@@ -2651,6 +2827,18 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `flat_information`
+--
+ALTER TABLE `flat_information`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `flat_information_files`
+--
+ALTER TABLE `flat_information_files`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `high_court_cases`
 --
 ALTER TABLE `high_court_cases`
@@ -2702,7 +2890,7 @@ ALTER TABLE `land_information_files`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -2865,6 +3053,18 @@ ALTER TABLE `setup_external_council_associates_files`
 --
 ALTER TABLE `setup_external_council_files`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `setup_flat_numbers`
+--
+ALTER TABLE `setup_flat_numbers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `setup_floors`
+--
+ALTER TABLE `setup_floors`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `setup_internal_councils`

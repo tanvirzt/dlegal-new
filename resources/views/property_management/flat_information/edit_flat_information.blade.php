@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Land Information</h1>
+                        <h1 class="m-0 text-dark">Flat Information</h1>
 
                     </div><!-- /.col -->
 
@@ -20,7 +20,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('land-information') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('flat-information') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
                             </li>
                         </ol>
                     </div>
@@ -45,16 +45,10 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Edit Land Information</h3>
-                                <div class="float-right">
-                                    <a href="{{ route('view-land-information', $data->id) }}"><button
-                                        class="btn btn-primary btn-sm" data-toggle="tooltip"
-                                        data-placement="top" title="Details"><i
-                                            class="fas fa-eye"></i></button></a>
-                                </div>
+                                <h3 class="card-title" id="heading">Edit Flat Information</h3>
                             </div>
 
-                            <form action="{{ route('update-land-information',$data->id) }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('update-flat-information', $data->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
 
@@ -66,7 +60,7 @@
                                                     <select class="form-control select2" id="property_type_id" name="property_type_id">
                                                         <option value="">Select</option>
                                                         @foreach ($property_type as $item)
-                                                            <option value="{{ $item->id }}" {{ ($data->property_type_id == $item->id ? 'selected' : '') }}>{{ $item->property_type_name }}</option>
+                                                            <option value="{{ $item->id }}" {{ $data->property_type_id == $item->id ? 'selected' : '' }}>{{ $item->property_type_name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('property_type_id')<span class="text-danger">{{$message}}</span>@enderror
@@ -78,7 +72,7 @@
                                                     <select name="district_id" class="form-control select2" id="district_id" action="{{ route('find-thana') }}">
                                                         <option value="">Select</option>
                                                         @foreach($district as $item)
-                                                            <option value="{{ $item->id }}" {{ $data->district_id == $item->id ? 'selected' : '' }} >{{ $item->district_name }}</option>
+                                                            <option value="{{ $item->id }}" {{ $data->district_id == $item->id ? 'selected' : '' }}>{{ $item->district_name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('district_id')<span class="text-danger">{{$message}}</span>@enderror
@@ -92,8 +86,6 @@
                                                         @foreach ($existing_thana as $item)
                                                             <option value="{{ $item->id }}" {{ $data->thana_id == $item->id ? 'selected' : '' }}>{{ $item->thana_name }}</option>
                                                         @endforeach
-
-
                                                     </select>  
                                                     @error('thana_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
@@ -104,7 +96,7 @@
                                                     <select name="seller_id" class="form-control select2" id="seller_id" action="{{ route('find-seller-details') }}">
                                                         <option value="">Select</option>
                                                         @foreach($seller as $item)
-                                                            <option value="{{ $item->id }}" {{ $data->seller_id == $item->id ? 'selected' : '' }}>{{ $item->seller_buyer_name }}</option>
+                                                            <option value="{{ $item->id }}" {{ $data->seller_id == $item->id ? 'selected' : '' }} >{{ $item->seller_buyer_name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('seller_id')<span class="text-danger">{{$message}}</span>@enderror
@@ -119,7 +111,7 @@
                                                     <select name="buyer_id" class="form-control select2" id="buyer_id" action="{{ route('find-buyer-details') }}">
                                                         <option value="">Select</option>
                                                         @foreach($buyer as $item)
-                                                            <option value="{{ $item->id }}" {{ $data->buyer_id == $item->id ? 'selected' : '' }} >{{ $item->seller_buyer_name }}</option>
+                                                            <option value="{{ $item->id }}" {{ $data->buyer_id == $item->id ? 'selected' : '' }}>{{ $item->seller_buyer_name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('buyer_id')<span class="text-danger">{{$message}}</span>@enderror
@@ -192,10 +184,10 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="land_area" class="col-sm-4 col-form-label">Land Area (in Decimal)</label>
+                                                <label for="flat_area" class="col-sm-4 col-form-label">Flat Area (in Decimal)</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="land_area" name="land_area" value="{{ $data->land_area }}">
-                                                    @error('land_area')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="flat_area" name="flat_area" value="{{ $data->flat_area }}">
+                                                    @error('flat_area')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -208,7 +200,7 @@
                                             <div class="form-group row">
                                                 <label for="date_of_deed" class="col-sm-4 col-form-label">Date of Deed</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="date_of_deed" name="date_of_deed" value="{{ $data->date_of_deed }}">
+                                                    <input type="date" class="form-control" id="date_of_deed" name="date_of_deed" value="{{ $data->date_of_deed }}">
                                                     @error('date_of_deed')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -222,8 +214,6 @@
 
                                         </div>
                                         <div class="col-md-6">
-                                            
-                                            
                                             <div class="form-group row">
                                                 <label for="possession" class="col-sm-4 col-form-label"> Possession </label>
                                                 <div class="col-sm-8">
@@ -253,10 +243,10 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="property_owner" class="col-sm-4 col-form-label">Name of Owner of the Property</label>
+                                                <label for="flat_owner" class="col-sm-4 col-form-label">Name of Owner of the Flat</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="property_owner" name="property_owner" value="{{ $data->property_owner }}">
-                                                    @error('property_owner')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <input type="text" class="form-control" id="flat_owner" name="flat_owner" value="{{ $data->flat_owner }}">
+                                                    @error('flat_owner')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -309,13 +299,47 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="land_compliance" class="col-sm-4 col-form-label"> Land Compliance </label>
+                                                <label for="floor_id" class="col-sm-4 col-form-label"> Floor Number </label>
                                                 <div class="col-sm-8">
-                                                    <input type="checkbox" class="mt-2" id="land_compliance" name="land_compliance" value="compliance" {{ $data->land_compliance == 'Yes' ? 'checked' : '' }}>
+                                                    <select class="form-control select2" name="floor_id" id="floor_id" action="{{ route('find-flat-number') }}">
+                                                        <option value="">Select</option>
+                                                        @foreach ($floor as $item)
+                                                            <option value="{{ $item->id }}" {{ $data->floor_id == $item->id ? 'selected' : '' }}>{{ $item->floor_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('floor_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="flat_number_id" class="col-sm-4 col-form-label"> Flat Number </label>
+                                                <div class="col-sm-8">
+                                                    <select class="form-control select2" name="flat_number_id" id="flat_number_id">
+                                                        <option value="">Select</option>
+                                                        @foreach ($existing_flat_number as $item)
+                                                            <option value="{{ $item->id }}" {{ $data->flat_number_id == $item->id ? 'selected' : '' }}>{{ $item->flat_number }}</option>
+                                                        @endforeach
+                                                       
+                                                    </select>
+                                                    @error('flat_number_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="flat_size" class="col-sm-4 col-form-label"> Flat Size (in Square Feet) </label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="flat_size" name="flat_size" value="{{ $data->flat_size }}">
+                                                    @error('flat_size')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="flat_compliance" class="col-sm-4 col-form-label"> Flat Compliance </label>
+                                                <div class="col-sm-8">
+                                                    <input type="checkbox" class="mt-2" id="land_compliance" name="flat_compliance" value="compliance" @if ($data->flat_compliance == 'Yes')
+                                                        checked
+                                                    @endif>
                                                 </div>
                                             </div>
 
-                                            <div id="compliance_input" @if ($data->land_compliance == "No") style="display: none;" @endif>                                          
+                                            <div id="compliance_input" @if ($data->flat_compliance == "No") style="display: none;" @endif >                                          
                                                 <div class="form-group row">
                                                     <label for="electricity" class="col-sm-4 col-form-label"> Electricity </label>
                                                     <div class="col-sm-8">

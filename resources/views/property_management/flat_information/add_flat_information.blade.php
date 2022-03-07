@@ -198,7 +198,7 @@
                                             <div class="form-group row">
                                                 <label for="date_of_deed" class="col-sm-4 col-form-label">Date of Deed</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="date_of_deed" name="date_of_deed" value="{{old('date_of_deed')}}">
+                                                    <input type="date" class="form-control" id="date_of_deed" name="date_of_deed" value="{{old('date_of_deed')}}">
                                                     @error('date_of_deed')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -212,8 +212,6 @@
 
                                         </div>
                                         <div class="col-md-6">
-                                            
-                                            
                                             <div class="form-group row">
                                                 <label for="possession" class="col-sm-4 col-form-label"> Possession </label>
                                                 <div class="col-sm-8">
@@ -299,10 +297,25 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="register_office_name" class="col-sm-4 col-form-label"> Number of Floor / Flat </label>
+                                                <label for="floor_id" class="col-sm-4 col-form-label"> Floor Number </label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="register_office_name" name="register_office_name" value="{{old('register_office_name')}}">
-                                                    @error('register_office_name')<span class="text-danger">{{$message}}</span>@enderror
+                                                    <select class="form-control select2" name="floor_id" id="floor_id" action="{{ route('find-flat-number') }}">
+                                                        <option value="">Select</option>
+                                                        @foreach ($floor as $item)
+                                                            <option value="{{ $item->id }}" {{ (old('floor_id') == $item->id ? 'selected' : '') }}>{{ $item->floor_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('floor_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="flat_number_id" class="col-sm-4 col-form-label"> Flat Number </label>
+                                                <div class="col-sm-8">
+                                                    <select class="form-control select2" name="flat_number_id" id="flat_number_id">
+                                                        <option value="">Select</option>
+                                                       
+                                                    </select>
+                                                    @error('flat_number_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -310,13 +323,6 @@
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="flat_size" name="flat_size" value="{{old('flat_size')}}">
                                                     @error('flat_size')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="flat_number" class="col-sm-4 col-form-label"> Flat Number </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="flat_number" name="flat_number" value="{{old('flat_number')}}">
-                                                    @error('flat_number')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">

@@ -198,7 +198,7 @@
                                             <div class="form-group row">
                                                 <label for="date_of_deed" class="col-sm-4 col-form-label">Date of Deed</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="date_of_deed" name="date_of_deed" value="{{old('date_of_deed')}}">
+                                                    <input type="date" class="form-control" id="date_of_deed" name="date_of_deed" value="{{old('date_of_deed')}}">
                                                     @error('date_of_deed')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>

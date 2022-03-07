@@ -365,7 +365,43 @@ if (res.result == "billing") {
     });
     
     
-    } else {
+    }else if (res.result == "flat_information") {
+        console.log(res.result);
+        
+        $('#search_data').empty();
+        $.each(res.data, function(key, value){
+    
+            $('#search_data').append(`
+    
+                            <tr>
+                                <td> ${value.property_type_name} </td>
+                                <td> ${value.district_name} </td>
+                                <td> ${value.thana_name} </td>
+                                <td> ${value.seller_name} </td>
+                                <td> ${value.buyer_name} </td>
+                                <td> ${value.cs_khatian} </td>
+                                <td> ${value.cs_dag} </td>
+                                <td> ${value.sa_khatian} </td>
+                                <td> ${value.sa_dag} </td>
+                                <td> ${value.delete_status === 0 ? 'Active' : 'Inactive'} </td>
+                                <td>
+                                    <a href="view-flat-information/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                        ><i class="fas fa-eye"></i></button></a>
+                                    
+                                    <a href="edit-flat-information/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                        ><i class="fas fa-edit"></i></button></a>
+                                        
+                                    <button onclick='flat_information_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                        
+                                </td>
+                            </tr>
+    
+    
+            `);
+        });
+        
+        
+        } else {
                 $('#search_data').empty();
                 $.each(res, function(key, value){
 
@@ -605,6 +641,34 @@ if (res.result == "billing") {
 
 
 
+    $('#floor_id').on('change', function() {
+        var floor_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if(floor_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data : {"_token":"{{ csrf_token() }}",floor_id:floor_id},
+                dataType: "json",
+                success:function(data) {
+                    // console.log(data);
+                    if(data){
+                        $('#flat_number_id').empty();
+                        $('#flat_number_id').focus;
+                        $('#flat_number_id').append('<option value="">Select</option>');
+                        $.each(data, function(key, value){
+                            $('select[name="flat_number_id"]').append('<option value="'+ value.id +'">' + value.flat_number+ '</option>');
+                        });
+                    }else{
+                        $('#flat_number_id').empty();
+                    }
+                }
+            });
+        }else{
+            $('#flat_number_id').empty();
+        }
+    });
 
 
 
