@@ -25,6 +25,7 @@ use App\Models\SetupArea;
 use App\Models\SetupInternalCouncil;
 use App\Models\SetupExternalCouncilAssociate;
 use App\Models\CivilCaseStatusLog;
+use App\Models\CaseBilling;
 use DB;
 class CivilCasesController extends Controller
 {
@@ -420,7 +421,19 @@ class CivilCasesController extends Controller
                         ->get();
         // dd($case_logs);
 
-        return view('litigation_management.cases.civil_cases.view_civil_cases',compact('data','civil_cases_files','case_logs'));
+        $bill_history = DB::table('case_billings')
+                        ->leftJoin('setup_bill_types','case_billings.bill_type_id','=','setup_bill_types.id')
+                        ->leftJoin('setup_districts','case_billings.district_id','=','setup_districts.id')
+                        ->leftJoin('setup_external_councils','case_billings.panel_lawyer_id','=','setup_external_councils.id')
+                        ->leftJoin('setup_banks','case_billings.bank_id','=','setup_banks.id')
+                        ->leftJoin('setup_bank_branches','case_billings.branch_id','=','setup_bank_branches.id')
+                        ->leftJoin('setup_digital_payments','case_billings.digital_payment_type_id','=','setup_digital_payments.id')
+                        ->where(['case_billings.case_type' => "Civil Cases", 'case_billings.case_no' => $data->case_no, 'case_billings.delete_status' => 0])
+                        ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
+                        ->get();
+
+        // dd($bill_history);
+        return view('litigation_management.cases.civil_cases.view_civil_cases',compact('data','civil_cases_files','case_logs','bill_history'));
 
   }
 
@@ -460,109 +473,71 @@ class CivilCasesController extends Controller
 
   public function search_civil_cases(Request $request)
   {
-    // return 'asdfasdf';
-    // dd($request->all());
-    if ($request->case_no && $request->date_of_filing && $request->name_of_the_court_id) {
-// dd('case no, dof, court name ');
-            $data = DB::table('civil_cases')
+
+    $query = DB::table('civil_cases')
             ->leftJoin('setup_divisions','civil_cases.division_id', '=', 'setup_divisions.id')
             ->leftJoin('setup_districts','civil_cases.district_id','=','setup_districts.id')
             ->leftJoin('setup_case_statuses','civil_cases.case_status_id','=','setup_case_statuses.id')
             ->leftJoin('setup_case_categories','civil_cases.case_category_nature_id','=','setup_case_categories.id')
             ->leftJoin('setup_courts','civil_cases.name_of_the_court_id','=','setup_courts.id')
-            ->leftJoin('setup_companies','civil_cases.company_id','=','setup_companies.id')
-            ->where(['civil_cases.case_no' => $request->case_no, 'civil_cases.date_of_filing' => $request->date_of_filing, 'civil_cases.name_of_the_court_id' => $request->name_of_the_court_id])
+            ->leftJoin('setup_companies','civil_cases.company_id','=','setup_companies.id');
+
+    if ($request->case_no && $request->date_of_filing && $request->name_of_the_court_id) {
+// dd('case no, dof, court name ');
+
+        $data = $query->where(['civil_cases.case_no' => $request->case_no, 'civil_cases.date_of_filing' => $request->date_of_filing, 'civil_cases.name_of_the_court_id' => $request->name_of_the_court_id])
             ->select('civil_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
             ->get(); 
 
     }else if($request->case_no && $request->date_of_filing && $request->name_of_the_court_id == null) {
 // dd('case no, dof');
     
-            $data = DB::table('civil_cases')
-            ->leftJoin('setup_divisions','civil_cases.division_id', '=', 'setup_divisions.id')
-            ->leftJoin('setup_districts','civil_cases.district_id','=','setup_districts.id')
-            ->leftJoin('setup_case_statuses','civil_cases.case_status_id','=','setup_case_statuses.id')
-            ->leftJoin('setup_case_categories','civil_cases.case_category_nature_id','=','setup_case_categories.id')
-            ->leftJoin('setup_courts','civil_cases.name_of_the_court_id','=','setup_courts.id')
-            ->leftJoin('setup_companies','civil_cases.company_id','=','setup_companies.id')
-            ->where(['civil_cases.case_no' => $request->case_no, 'civil_cases.date_of_filing' => $request->date_of_filing])
+
+        $data = $query->where(['civil_cases.case_no' => $request->case_no, 'civil_cases.date_of_filing' => $request->date_of_filing])
             ->select('civil_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
             ->get(); 
 
     }else if($request->case_no && $request->date_of_filing == null &&  $request->name_of_the_court_id) {
         // dd('case no, court name ');
 
-            $data = DB::table('civil_cases')
-            ->leftJoin('setup_divisions','civil_cases.division_id', '=', 'setup_divisions.id')
-            ->leftJoin('setup_districts','civil_cases.district_id','=','setup_districts.id')
-            ->leftJoin('setup_case_statuses','civil_cases.case_status_id','=','setup_case_statuses.id')
-            ->leftJoin('setup_case_categories','civil_cases.case_category_nature_id','=','setup_case_categories.id')
-            ->leftJoin('setup_courts','civil_cases.name_of_the_court_id','=','setup_courts.id')
-            ->leftJoin('setup_companies','civil_cases.company_id','=','setup_companies.id')
-            ->where(['civil_cases.case_no' => $request->case_no, 'civil_cases.name_of_the_court_id' => $request->name_of_the_court_id])
+        $data = $query->where(['civil_cases.case_no' => $request->case_no, 'civil_cases.name_of_the_court_id' => $request->name_of_the_court_id])
             ->select('civil_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
             ->get(); 
 
     }else if($request->case_no == null && $request->date_of_filing && $request->name_of_the_court_id) {
         // dd('dof, court name');
-            $data = DB::table('civil_cases')
-            ->leftJoin('setup_divisions','civil_cases.division_id', '=', 'setup_divisions.id')
-            ->leftJoin('setup_districts','civil_cases.district_id','=','setup_districts.id')
-            ->leftJoin('setup_case_statuses','civil_cases.case_status_id','=','setup_case_statuses.id')
-            ->leftJoin('setup_case_categories','civil_cases.case_category_nature_id','=','setup_case_categories.id')
-            ->leftJoin('setup_courts','civil_cases.name_of_the_court_id','=','setup_courts.id')
-            ->leftJoin('setup_companies','civil_cases.company_id','=','setup_companies.id')
-            ->where(['civil_cases.date_of_filing' => $request->date_of_filing, 'civil_cases.name_of_the_court_id' => $request->name_of_the_court_id])
+            
+        $data = $query->where(['civil_cases.date_of_filing' => $request->date_of_filing, 'civil_cases.name_of_the_court_id' => $request->name_of_the_court_id])
             ->select('civil_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
             ->get(); 
 
     }else if($request->case_no && $request->date_of_filing == null && $request->name_of_the_court_id == null) {
         // dd('case no');
 
-
-            $data = DB::table('civil_cases')
-            ->leftJoin('setup_divisions','civil_cases.division_id', '=', 'setup_divisions.id')
-            ->leftJoin('setup_districts','civil_cases.district_id','=','setup_districts.id')
-            ->leftJoin('setup_case_statuses','civil_cases.case_status_id','=','setup_case_statuses.id')
-            ->leftJoin('setup_case_categories','civil_cases.case_category_nature_id','=','setup_case_categories.id')
-            ->leftJoin('setup_courts','civil_cases.name_of_the_court_id','=','setup_courts.id')
-            ->leftJoin('setup_companies','civil_cases.company_id','=','setup_companies.id')
-            ->where(['civil_cases.case_no' => $request->case_no])
+        $data = $query->where(['civil_cases.case_no' => $request->case_no])
             ->select('civil_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
             ->get(); 
 
     } else if ($request->case_no == null  && $request->date_of_filing && $request->name_of_the_court_id == null){
         // dd('dof');
 
-            $data = DB::table('civil_cases')
-            ->leftJoin('setup_divisions','civil_cases.division_id', '=', 'setup_divisions.id')
-            ->leftJoin('setup_districts','civil_cases.district_id','=','setup_districts.id')
-            ->leftJoin('setup_case_statuses','civil_cases.case_status_id','=','setup_case_statuses.id')
-            ->leftJoin('setup_case_categories','civil_cases.case_category_nature_id','=','setup_case_categories.id')
-            ->leftJoin('setup_courts','civil_cases.name_of_the_court_id','=','setup_courts.id')
-            ->leftJoin('setup_companies','civil_cases.company_id','=','setup_companies.id')
-            ->where('civil_cases.date_of_filing',$request->date_of_filing)
+        $data = $query->where('civil_cases.date_of_filing',$request->date_of_filing)
             ->select('civil_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
             ->get();    
 
    }else if ($request->case_no == null  && $request->date_of_filing == null && $request->name_of_the_court_id){
 
         // dd('court name');
-
-            $data = DB::table('civil_cases')
-            ->leftJoin('setup_divisions','civil_cases.division_id', '=', 'setup_divisions.id')
-            ->leftJoin('setup_districts','civil_cases.district_id','=','setup_districts.id')
-            ->leftJoin('setup_case_statuses','civil_cases.case_status_id','=','setup_case_statuses.id')
-            ->leftJoin('setup_case_categories','civil_cases.case_category_nature_id','=','setup_case_categories.id')
-            ->leftJoin('setup_courts','civil_cases.name_of_the_court_id','=','setup_courts.id')
-            ->leftJoin('setup_companies','civil_cases.company_id','=','setup_companies.id')
-            ->where('civil_cases.name_of_the_court_id',$request->name_of_the_court_id)
+        $data = $query->where('civil_cases.name_of_the_court_id',$request->name_of_the_court_id)
             ->select('civil_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
             ->get();    
 
+    }else{
+        $data = $query->select('civil_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
+        ->get();    
+
     }
    
-
     // dd($data);
                 return response($data);
 

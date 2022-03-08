@@ -193,6 +193,7 @@
                       <p>Flat Number</p>
                     </a>
                   </li>
+                
                 </ul>
               </li>
               <li class="nav-item">
@@ -445,7 +446,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('regulatory-compliance') }}" class="nav-link">
                                 <i class="ml-left"></i>
                                 <p> Regulatory Compliance Info </p>
                             </a>

@@ -366,77 +366,47 @@ class FlatInfoController extends Controller
     public function search_flat_information(Request $request)
     {
         // dd($request->all());
-
+        $query = DB::table('flat_information')
+                ->leftJoin('setup_property_types','flat_information.property_type_id','=','setup_property_types.id')
+                ->leftJoin('setup_districts','flat_information.district_id','=','setup_districts.id')
+                ->leftJoin('setup_thanas','flat_information.thana_id','=','setup_thanas.id')
+                ->leftJoin('setup_seller_buyers as seller','flat_information.seller_id','=','seller.id')
+                ->leftJoin('setup_seller_buyers as buyer','flat_information.buyer_id','=','buyer.id')
+                ->leftJoin('setup_floors','flat_information.floor_id','=','setup_floors.id')
+                ->leftJoin('setup_flat_numbers','flat_information.flat_number_id','=','setup_flat_numbers.id')
+                ->select('flat_information.*','setup_property_types.property_type_name','setup_districts.district_name','setup_thanas.thana_name','seller.seller_buyer_name as seller_name','buyer.seller_buyer_name as buyer_name','setup_floors.floor_name','setup_flat_numbers.flat_number');
         if ($request->district_id && $request->thana_id) {
             // dd('district and thana');
-            $data = DB::table('flat_information')
-                    ->leftJoin('setup_property_types','flat_information.property_type_id','=','setup_property_types.id')
-                    ->leftJoin('setup_districts','flat_information.district_id','=','setup_districts.id')
-                    ->leftJoin('setup_thanas','flat_information.thana_id','=','setup_thanas.id')
-                    ->leftJoin('setup_seller_buyers as seller','flat_information.seller_id','=','seller.id')
-                    ->leftJoin('setup_seller_buyers as buyer','flat_information.buyer_id','=','buyer.id')
-                    ->leftJoin('setup_floors','flat_information.floor_id','=','setup_floors.id')
-                    ->leftJoin('setup_flat_numbers','flat_information.flat_number_id','=','setup_flat_numbers.id')
-                    ->select('flat_information.*','setup_property_types.property_type_name','setup_districts.district_name','setup_thanas.thana_name','seller.seller_buyer_name as seller_name','buyer.seller_buyer_name as buyer_name','setup_floors.floor_name','setup_flat_numbers.flat_number')
-                    ->where(['flat_information.district_id' => $request->district_id, 'flat_information.thana_id' => $request->thana_id])
+
+           $data = $query->where(['flat_information.district_id' => $request->district_id, 'flat_information.thana_id' => $request->thana_id])
                     ->get();
 
         } else if($request->district_id){
             // dd('district');
-            $data = DB::table('flat_information')
-                    ->leftJoin('setup_property_types','flat_information.property_type_id','=','setup_property_types.id')
-                    ->leftJoin('setup_districts','flat_information.district_id','=','setup_districts.id')
-                    ->leftJoin('setup_thanas','flat_information.thana_id','=','setup_thanas.id')
-                    ->leftJoin('setup_seller_buyers as seller','flat_information.seller_id','=','seller.id')
-                    ->leftJoin('setup_seller_buyers as buyer','flat_information.buyer_id','=','buyer.id')
-                    ->leftJoin('setup_floors','flat_information.floor_id','=','setup_floors.id')
-                    ->leftJoin('setup_flat_numbers','flat_information.flat_number_id','=','setup_flat_numbers.id')
-                    ->select('flat_information.*','setup_property_types.property_type_name','setup_districts.district_name','setup_thanas.thana_name','seller.seller_buyer_name as seller_name','buyer.seller_buyer_name as buyer_name','setup_floors.floor_name','setup_flat_numbers.flat_number')
-                    ->where(['flat_information.district_id' => $request->district_id])
+            
+           $data = $query->where(['flat_information.district_id' => $request->district_id])
                     ->get();
 
         } else if($request->property_type_id){
             // dd('property type');
-            $data = DB::table('flat_information')
-                    ->leftJoin('setup_property_types','flat_information.property_type_id','=','setup_property_types.id')
-                    ->leftJoin('setup_districts','flat_information.district_id','=','setup_districts.id')
-                    ->leftJoin('setup_thanas','flat_information.thana_id','=','setup_thanas.id')
-                    ->leftJoin('setup_seller_buyers as seller','flat_information.seller_id','=','seller.id')
-                    ->leftJoin('setup_seller_buyers as buyer','flat_information.buyer_id','=','buyer.id')
-                    ->leftJoin('setup_floors','flat_information.floor_id','=','setup_floors.id')
-                    ->leftJoin('setup_flat_numbers','flat_information.flat_number_id','=','setup_flat_numbers.id')
-                    ->select('flat_information.*','setup_property_types.property_type_name','setup_districts.district_name','setup_thanas.thana_name','seller.seller_buyer_name as seller_name','buyer.seller_buyer_name as buyer_name','setup_floors.floor_name','setup_flat_numbers.flat_number')
-                    ->where(['flat_information.property_type_id' => $request->property_type_id])
+            
+            $data = $query->where(['flat_information.property_type_id' => $request->property_type_id])
                     ->get();
 
         } else if($request->seller_id){
             // dd('seller');
-            $data = DB::table('flat_information')
-                    ->leftJoin('setup_property_types','flat_information.property_type_id','=','setup_property_types.id')
-                    ->leftJoin('setup_districts','flat_information.district_id','=','setup_districts.id')
-                    ->leftJoin('setup_thanas','flat_information.thana_id','=','setup_thanas.id')
-                    ->leftJoin('setup_seller_buyers as seller','flat_information.seller_id','=','seller.id')
-                    ->leftJoin('setup_seller_buyers as buyer','flat_information.buyer_id','=','buyer.id')
-                    ->leftJoin('setup_floors','flat_information.floor_id','=','setup_floors.id')
-                    ->leftJoin('setup_flat_numbers','flat_information.flat_number_id','=','setup_flat_numbers.id')
-                    ->select('flat_information.*','setup_property_types.property_type_name','setup_districts.district_name','setup_thanas.thana_name','seller.seller_buyer_name as seller_name','buyer.seller_buyer_name as buyer_name','setup_floors.floor_name','setup_flat_numbers.flat_number')
-                    ->where(['flat_information.seller_id' => $request->seller_id])
+            
+            $data = $query->where(['flat_information.seller_id' => $request->seller_id])
                     ->get();
 
         }else if($request->buyer_id){
             // dd('buyer');
-            $data = DB::table('flat_information')
-                    ->leftJoin('setup_property_types','flat_information.property_type_id','=','setup_property_types.id')
-                    ->leftJoin('setup_districts','flat_information.district_id','=','setup_districts.id')
-                    ->leftJoin('setup_thanas','flat_information.thana_id','=','setup_thanas.id')
-                    ->leftJoin('setup_seller_buyers as seller','flat_information.seller_id','=','seller.id')
-                    ->leftJoin('setup_seller_buyers as buyer','flat_information.buyer_id','=','buyer.id')
-                    ->leftJoin('setup_floors','flat_information.floor_id','=','setup_floors.id')
-                    ->leftJoin('setup_flat_numbers','flat_information.flat_number_id','=','setup_flat_numbers.id')
-                    ->select('flat_information.*','setup_property_types.property_type_name','setup_districts.district_name','setup_thanas.thana_name','seller.seller_buyer_name as seller_name','buyer.seller_buyer_name as buyer_name','setup_floors.floor_name','setup_flat_numbers.flat_number')
-                    ->where(['flat_information.buyer_id' => $request->buyer_id])
+            
+            $data = $query->where(['flat_information.buyer_id' => $request->buyer_id])
                     ->get();
 
+        }else{
+            $data = $query->get();
         }
 
         return response()->json([

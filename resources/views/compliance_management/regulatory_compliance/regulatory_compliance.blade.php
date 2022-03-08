@@ -7,13 +7,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Civil Cases </h1>
+                        <h1> Regulatory Compliance </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Civil Cases </li>
+                            <li class="breadcrumb-item active"> Regulatory Compliance </li>
                         </ol>
                     </div>
                 </div>
@@ -34,13 +34,10 @@
                     
                     <div class="col-md-8">
                         <div class="card">
-
-
-
                             <div id="accordion">
 
                                 <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> Civil Cases :: Search </h3>
+                                    <h3 class="card-title"> Regulatory Compliance :: Search </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -58,54 +55,28 @@
                                     <div class="card-body">
 
 
-                                        <form id="form_data" method="post" action="{{ route('search_civil_cases') }}">
+                                        <form id="form_data" method="post" action="{{ route('search-regulatory-compliance') }}">
                                             @csrf
 
 
                                             <div class="row">
                                                 <div class="col-md-6">
+                                                    
                                                     <div class="form-group row">
-                                                        <label for="case_no" class="col-sm-4 col-form-label">Case
-                                                            No.</label>
+                                                        <label for="thana_id" class="col-sm-4 col-form-label">Thana</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" id="case_no"
-                                                                name="case_no" value="{{ old('case_no') }}">
-                                                            @error('case_no')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="date_of_filing" class="col-sm-4 col-form-label"> Date of
-                                                            Filing </label>
-                                                        <div class="col-sm-8">
-                                                            <input type="date" class="form-control" id="date_of_filing"
-                                                                name="date_of_filing" value="{{ old('date_of_filing') }}">
-                                                            @error('date_of_filing')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
+                                                            <select name="thana_id" class="form-control select2" id="thana_id">
+                                                                <option value=""> Select </option>
+        
+                                                            </select>  
+                                                            @error('thana_id')<span class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="name_of_the_court_id" class="col-sm-4 col-form-label">
-                                                            Name of the Court </label>
-                                                        <div class="col-sm-8">
-                                                            <select name="name_of_the_court_id"
-                                                                class="form-control select2">
-                                                                <option value="">Select</option>
-                                                                @foreach ($court as $item)
-                                                                    <option value="{{ $item->id }}">
-                                                                        {{ $item->court_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('name_of_the_court_id')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
                                                     
+                                                    
+
                                                 </div>
                                             </div>
 
@@ -128,10 +99,10 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-civil-cases') }}"><button
+                                    <a href="{{ route('add-regulatory-compliance') }}"><button
                                             class="btn btn-sm
                                     btn-success add_btn"><i
-                                                class="fas fa-plus"></i> Add Civil Cases </button></a>
+                                                class="fas fa-plus"></i> Add Regulatory Compliance </button></a>
                                 </div>
 
                             </div>
@@ -140,16 +111,15 @@
                                 <table id="data_table" class="table table-responsive no-footer dtr-inline">
                                     <thead>
                                         <tr>
-                                            <th>Case No</th>
-                                            <th>Suit Value</th>
-                                            <th>Division</th>
-                                            <th>Court Name</th>
+                                            <th>Property Type</th>
                                             <th>District</th>
-                                            <th>Case Status</th>
-                                            <th>Company</th>
-                                            <th>Case Category</th>
-                                            <th>Plaintiff Name</th>
-                                            <th>Defendent Name</th>
+                                            <th>Thana</th>
+                                            <th>Seller Name</th>
+                                            <th>Buyer Name</th>
+                                            <th>CS Khatian</th>
+                                            <th>CS Dag</th>
+                                            <th>SA Khatian</th>
+                                            <th>SA Dag</th>
                                             <th>Status</th>
                                             <th width="13%">Action</th>
                                         </tr>
@@ -158,35 +128,31 @@
                                         @foreach ($data as $datum)
                                             <tr>
                                                 <td>
-                                                    <a href="{{ route('view-civil-cases', $datum->id) }}">
-                                                        {{ $datum->case_no }} </a>
-                                                </td>
-                                                <td>
-                                                    {{ $datum->name_of_suit }}
-                                                </td>
-                                                <td>
-                                                    {{ $datum->division_name }}
-                                                </td>
-                                                <td>
-                                                    {{ $datum->court_name }}
+                                                    {{ $datum->property_type_name }} 
                                                 </td>
                                                 <td>
                                                     {{ $datum->district_name }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->case_status_name }}
+                                                    {{ $datum->thana_name }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->company_name }}
+                                                    {{ $datum->seller_name }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->case_category_name }}
+                                                    {{ $datum->buyer_name }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->plaintiff_name }}
+                                                    {{ $datum->cs_khatian }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->defendent_name }}
+                                                    {{ $datum->cs_dag }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->sa_khatian }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->sa_dag }}
                                                 </td>
                                                 <td>
                                                     @if ($datum->delete_status == 0)
@@ -196,19 +162,16 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('view-civil-cases', $datum->id) }}"><button
+                                                    <a href="{{ route('view-regulatory-compliance', $datum->id) }}"><button
                                                             class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Details"><i
                                                                 class="fas fa-eye"></i></button></a>
-                                                    <a href="{{ route('add-billing-civil-cases', $datum->id) }}"><button
-                                                        class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                                        data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
-                                                    <a href="{{ route('edit-civil-cases', $datum->id) }}"><button
+                                                    <a href="{{ route('edit-regulatory-compliance', $datum->id) }}"><button
                                                             class="btn btn-info btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"><i
                                                                 class="fas fa-edit"></i></button></a>
                                                     <form method="POST"
-                                                        action="{{ route('delete-civil-cases', $datum->id) }}"
+                                                        action="{{ route('delete-regulatory-compliance', $datum->id) }}"
                                                         class="delete-user btn btn-danger btn-xs">
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger btn-sm"

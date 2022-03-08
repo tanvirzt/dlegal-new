@@ -366,66 +366,46 @@ class LandInfoController extends Controller
     public function search_land_information(Request $request)
     {
         // dd($request->all());
-
+        $query = DB::table('land_information')
+                ->leftJoin('setup_property_types','land_information.property_type_id','=','setup_property_types.id')
+                ->leftJoin('setup_districts','land_information.district_id','=','setup_districts.id')
+                ->leftJoin('setup_thanas','land_information.thana_id','=','setup_thanas.id')
+                ->leftJoin('setup_seller_buyers','land_information.seller_id','=','setup_seller_buyers.id')
+                ->leftJoin('setup_seller_buyers as buyers','land_information.buyer_id','=','buyers.id')
+                ->select('land_information.*','setup_property_types.property_type_name','setup_districts.district_name','setup_thanas.thana_name','setup_seller_buyers.seller_buyer_name as seller_name','buyers.seller_buyer_name as buyer_name');
         if ($request->district_id && $request->thana_id) {
             // dd('district and thana');
-            $data = DB::table('land_information')
-                    ->leftJoin('setup_property_types','land_information.property_type_id','=','setup_property_types.id')
-                    ->leftJoin('setup_districts','land_information.district_id','=','setup_districts.id')
-                    ->leftJoin('setup_thanas','land_information.thana_id','=','setup_thanas.id')
-                    ->leftJoin('setup_seller_buyers','land_information.seller_id','=','setup_seller_buyers.id')
-                    ->leftJoin('setup_seller_buyers as buyers','land_information.buyer_id','=','buyers.id')
-                    ->select('land_information.*','setup_property_types.property_type_name','setup_districts.district_name','setup_thanas.thana_name','setup_seller_buyers.seller_buyer_name as seller_name','buyers.seller_buyer_name as buyer_name')
-                    ->where(['land_information.district_id' => $request->district_id, 'land_information.thana_id' => $request->thana_id])
+            
+            $data = $query->where(['land_information.district_id' => $request->district_id, 'land_information.thana_id' => $request->thana_id])
                     ->get();
 
         } else if($request->district_id){
             // dd('district');
-            $data = DB::table('land_information')
-                    ->leftJoin('setup_property_types','land_information.property_type_id','=','setup_property_types.id')
-                    ->leftJoin('setup_districts','land_information.district_id','=','setup_districts.id')
-                    ->leftJoin('setup_thanas','land_information.thana_id','=','setup_thanas.id')
-                    ->leftJoin('setup_seller_buyers','land_information.seller_id','=','setup_seller_buyers.id')
-                    ->leftJoin('setup_seller_buyers as buyers','land_information.buyer_id','=','buyers.id')
-                    ->select('land_information.*','setup_property_types.property_type_name','setup_districts.district_name','setup_thanas.thana_name','setup_seller_buyers.seller_buyer_name as seller_name','buyers.seller_buyer_name as buyer_name')
-                    ->where('land_information.district_id',$request->district_id)
+            
+            $data = $query->where('land_information.district_id',$request->district_id)
                     ->get();
 
         } else if($request->property_type_id){
             // dd('property type');
-            $data = DB::table('land_information')
-                    ->leftJoin('setup_property_types','land_information.property_type_id','=','setup_property_types.id')
-                    ->leftJoin('setup_districts','land_information.district_id','=','setup_districts.id')
-                    ->leftJoin('setup_thanas','land_information.thana_id','=','setup_thanas.id')
-                    ->leftJoin('setup_seller_buyers','land_information.seller_id','=','setup_seller_buyers.id')
-                    ->leftJoin('setup_seller_buyers as buyers','land_information.buyer_id','=','buyers.id')
-                    ->select('land_information.*','setup_property_types.property_type_name','setup_districts.district_name','setup_thanas.thana_name','setup_seller_buyers.seller_buyer_name as seller_name','buyers.seller_buyer_name as buyer_name')
-                    ->where('land_information.property_type_id',$request->property_type_id)
+            
+            $data = $query->where('land_information.property_type_id',$request->property_type_id)
                     ->get();
 
         } else if($request->seller_id){
             // dd('seller');
-            $data = DB::table('land_information')
-                    ->leftJoin('setup_property_types','land_information.property_type_id','=','setup_property_types.id')
-                    ->leftJoin('setup_districts','land_information.district_id','=','setup_districts.id')
-                    ->leftJoin('setup_thanas','land_information.thana_id','=','setup_thanas.id')
-                    ->leftJoin('setup_seller_buyers','land_information.seller_id','=','setup_seller_buyers.id')
-                    ->leftJoin('setup_seller_buyers as buyers','land_information.buyer_id','=','buyers.id')
-                    ->select('land_information.*','setup_property_types.property_type_name','setup_districts.district_name','setup_thanas.thana_name','setup_seller_buyers.seller_buyer_name as seller_name','buyers.seller_buyer_name as buyer_name')
-                    ->where('land_information.seller_id',$request->seller_id)
+            
+            $data = $query->where('land_information.seller_id',$request->seller_id)
                     ->get();
 
         }else if($request->buyer_id){
             // dd('buyer');
-            $data = DB::table('land_information')
-                    ->leftJoin('setup_property_types','land_information.property_type_id','=','setup_property_types.id')
-                    ->leftJoin('setup_districts','land_information.district_id','=','setup_districts.id')
-                    ->leftJoin('setup_thanas','land_information.thana_id','=','setup_thanas.id')
-                    ->leftJoin('setup_seller_buyers','land_information.seller_id','=','setup_seller_buyers.id')
-                    ->leftJoin('setup_seller_buyers as buyers','land_information.buyer_id','=','buyers.id')
-                    ->select('land_information.*','setup_property_types.property_type_name','setup_districts.district_name','setup_thanas.thana_name','setup_seller_buyers.seller_buyer_name as seller_name','buyers.seller_buyer_name as buyer_name')
-                    ->where('land_information.buyer_id',$request->buyer_id)
+            
+            $data = $query->where('land_information.buyer_id',$request->buyer_id)
                     ->get();
+
+        }else{
+
+            $data = $query->get();
 
         }
 

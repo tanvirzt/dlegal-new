@@ -203,7 +203,7 @@
                                     </table>               
                                 </div>
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3" id="heading">Criminal Cases Files</h3>
+                                    <h3 class="card-title custom_h3" id="heading">View Docuemnts of this Case</h3>
                                 </div>
                                 <div class="card-body">
                                     <table id="data_table" class="table dataTable no-footer dtr-inline">
@@ -274,6 +274,52 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="card-header">
+                                <h3 class="card-title custom_h3" id="heading">View Billings of this Case</h3>
+                            </div>
+                            <div class="card-body">
+                                <table id="table_bill_logs_text_center" class="table table-responsive no-footer dtr-inline">
+                                    <thead>
+                                        <tr>
+                                            <th class="table_logs_text_center">Bill Type</th>
+                                            <th class="table_logs_text_center">Payment Type</th>
+                                            <th class="table_logs_text_center">District Name</th>
+                                            <th class="table_logs_text_center">Panel Lawyer</th>
+                                            <th class="table_logs_text_center">Bill Amount</th>
+                                            <th class="table_logs_text_center">Billing Date</th>
+                                            <th class="table_logs_text_center">Bank Name</th>
+                                            <th class="table_logs_text_center">Bank Branch</th>
+                                            <th class="table_logs_text_center">Cheque No.</th>
+                                            <th class="table_logs_text_center">Payment Amount</th>
+                                            <th class="table_logs_text_center">Digital Payment</th>
+                                            <th class="table_logs_text_center">Approval</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($bill_history as $bill_logs)
+                                        <tr>
+                                            <td class="table_logs_text_center"> {{ $bill_logs->bill_type_name }} </td>
+                                            <td class="table_logs_text_center"> {{ $bill_logs->payment_type }} </td>
+                                            <td class="table_logs_text_center"> {{ $bill_logs->district_name }} </td>
+                                            <td class="table_logs_text_center"> {{ $bill_logs->first_name }} </td>
+                                            <td class="table_logs_text_center"> {{ $bill_logs->bill_amount }} </td>
+                                            <td class="table_logs_text_center"> {{ $bill_logs->date_of_billing }} </td>
+                                            <td class="table_logs_text_center"> {{ $bill_logs->bank_name }} </td> 
+                                            <td class="table_logs_text_center"> {{ $bill_logs->bank_branch_name }} </td>
+                                            <td class="table_logs_text_center"> {{ $bill_logs->cheque_no }} </td>
+                                            <td class="table_logs_text_center"> {{ $bill_logs->payment_amount }} </td>
+                                            <td class="table_logs_text_center"> {{ $bill_logs->digital_payment_type_name }} </td>
+                                            <td class="table_logs_text_center"> {{ $bill_logs->is_approved }} </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+
+
                         </div>
                     </div>
 

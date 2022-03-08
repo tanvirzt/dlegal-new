@@ -228,10 +228,8 @@ $(document).ready(function(){
     $('#case_type').on('change', function() {
         var case_type = $(this).val();
         var route = $(this).attr('action');
-        $('#case_no').empty();
-        $('#case_no').append('<option value="">Select</option>');
-
         // alert(route);
+        // $('#case_no').append('<option value="">Select</option>');
         if(case_type) {
             $.ajax({
                 url: route,
@@ -241,6 +239,8 @@ $(document).ready(function(){
                 success:function(data) {
                     // console.log(data);
                     if(data){
+                        $('#case_no').empty();
+                        $('#case_no').append('<option value="">Select</option>');
                         $('#case_no').focus;
                         $.each(data, function(key, value){
                             $('select[name="case_no"]').append('<option value="'+ value.case_no +'">' + value.case_no+ '</option>');
@@ -303,20 +303,20 @@ if (res.result == "billing") {
                         </div>
                         <div class="card-body">
                             <div class="col-md-12">
-                                <p class="text-muted text-sm"><b>Bill Type: </b>  ${value.bill_type_name} </p>
-                                <p class="text-muted text-sm"><b>Payment Type: </b>  ${value.payment_type} </p>
-                                <p class="text-muted text-sm"><b>District: </b> ${value.district_name} </p>
-                                <p class="text-muted text-sm"><b>Case Type: </b> ${value.case_type} </p>
-                                <p class="text-muted text-sm"><b>Case No: </b> ${value.case_no} </p>
-                                <p class="text-muted text-sm"><b>Panel Lawyer: </b> ${value.first_name} ${value.middle_name} ${value.last_name} </p>
-                                <p class="text-muted text-sm"><b>Bill Amount: </b> ${value.bill_amount} </p>
-                                <p class="text-muted text-sm"><b>Date of Billing: </b> ${value.date_of_billing} </p>                                                        
-                                <p class="text-muted text-sm"><b>Bank: </b> ${value.bank_name} </p>                                                        
-                                <p class="text-muted text-sm"><b>Branch: </b> ${value.bank_branch_name} </p>                                                        
-                                <p class="text-muted text-sm"><b>Cheque No: </b> ${value.cheque_no} </p>                                                        
-                                <p class="text-muted text-sm"><b>Payment Amount: </b> ${value.payment_amount} </p>                                                        
-                                <p class="text-muted text-sm"><b>Digital Payment Type: </b> ${value.digital_payment_type_name} </p>                                                        
-                                <p class="text-muted text-sm"><b>Approval: </b> ${value.is_approved} </p>                                         
+                                <p class="text-muted text-sm"><b>Bill Type: </b>  ${value.bill_type_name === null ? '' : value.bill_type_name } </p>
+                                <p class="text-muted text-sm"><b>Payment Type: </b>  ${value.payment_type === null ? '' : value.payment_type} </p>
+                                <p class="text-muted text-sm"><b>District: </b> ${value.district_name === null ? '' : value.district_name} </p>
+                                <p class="text-muted text-sm"><b>Case Type: </b> ${value.case_type === null ? '' : value.case_type} </p>
+                                <p class="text-muted text-sm"><b>Case No: </b> ${value.case_no === null ? '' : value.case_no} </p>
+                                <p class="text-muted text-sm"><b>Panel Lawyer: </b> ${value.first_name === null ? '' : value.first_name} ${value.middle_name === null ? '' : value.middle_name} ${value.last_name === null ? '' : value.last_name} </p>
+                                <p class="text-muted text-sm"><b>Bill Amount: </b> ${value.bill_amount === null ? '' : value.bill_amount} </p>
+                                <p class="text-muted text-sm"><b>Date of Billing: </b> ${value.date_of_billing === null ? '' : value.date_of_billing} </p>                                                        
+                                <p class="text-muted text-sm"><b>Bank: </b> ${value.bank_name === null ? '' : value.bank_name} </p>                                                        
+                                <p class="text-muted text-sm"><b>Branch: </b> ${value.bank_branch_name === null ? '' : value.bank_branch_name} </p>                                                        
+                                <p class="text-muted text-sm"><b>Cheque No: </b> ${value.cheque_no === null ? '' : value.cheque_no} </p>                                                        
+                                <p class="text-muted text-sm"><b>Payment Amount: </b> ${value.payment_amount === null ? '' : value.payment_amount} </p>                                                        
+                                <p class="text-muted text-sm"><b>Digital Payment Type: </b> ${value.digital_payment_type_name === null ? '' : value.digital_payment_type_name} </p>                                                        
+                                <p class="text-muted text-sm"><b>Approval: </b> ${value.is_approved === null ? '' : value.is_approved} </p>                                         
                             </div>
 
                         </div>
@@ -338,15 +338,15 @@ if (res.result == "billing") {
         $('#search_data').append(`
 
                         <tr>
-                            <td> ${value.property_type_name} </td>
-                            <td> ${value.district_name} </td>
-                            <td> ${value.thana_name} </td>
-                            <td> ${value.seller_name} </td>
-                            <td> ${value.buyer_name} </td>
-                            <td> ${value.cs_khatian} </td>
-                            <td> ${value.cs_dag} </td>
-                            <td> ${value.sa_khatian} </td>
-                            <td> ${value.sa_dag} </td>
+                            <td> ${value.property_type_name === null ? '':value.property_type_name} </td>
+                            <td> ${value.district_name === null ? '':value.district_name} </td>
+                            <td> ${value.thana_name === null ? '':value.thana_name} </td>
+                            <td> ${value.seller_name === null ? '':value.seller_name} </td>
+                            <td> ${value.buyer_name === null ? '':value.buyer_name} </td>
+                            <td> ${value.cs_khatian === null ? '':value.cs_khatian} </td>
+                            <td> ${value.cs_dag === null ? '':value.cs_dag} </td>
+                            <td> ${value.sa_khatian === null ? '':value.sa_khatian} </td>
+                            <td> ${value.sa_dag === null ? '':value.sa_dag} </td>
                             <td> ${value.delete_status === 0 ? 'Active' : 'Inactive'} </td>
                             <td>
                                 <a href="view-land-information/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
@@ -374,15 +374,15 @@ if (res.result == "billing") {
             $('#search_data').append(`
     
                             <tr>
-                                <td> ${value.property_type_name} </td>
-                                <td> ${value.district_name} </td>
-                                <td> ${value.thana_name} </td>
-                                <td> ${value.seller_name} </td>
-                                <td> ${value.buyer_name} </td>
-                                <td> ${value.cs_khatian} </td>
-                                <td> ${value.cs_dag} </td>
-                                <td> ${value.sa_khatian} </td>
-                                <td> ${value.sa_dag} </td>
+                                <td> ${value.property_type_name === null ? '':value.property_type_name} </td>
+                                <td> ${value.district_name === null ? '':value.district_name} </td>
+                                <td> ${value.thana_name === null ? '':value.thana_name} </td>
+                                <td> ${value.seller_name === null ? '':value.seller_name} </td>
+                                <td> ${value.buyer_name === null ? '':value.buyer_name} </td>
+                                <td> ${value.cs_khatian === null ? '':value.cs_khatian} </td>
+                                <td> ${value.cs_dag === null ? '':value.cs_dag} </td>
+                                <td> ${value.sa_khatian === null ? '':value.sa_khatian} </td>
+                                <td> ${value.sa_dag === null ? '':value.sa_dag} </td>
                                 <td> ${value.delete_status === 0 ? 'Active' : 'Inactive'} </td>
                                 <td>
                                     <a href="view-flat-information/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
@@ -412,37 +412,37 @@ if (res.result == "billing") {
                                      <a href="view-civil-cases/${value.id}"> ${value.case_no} </a>
                                 </td>
                                 <td>
-                                    ${value.name_of_suit}
+                                    ${value.name_of_suit === null ? '':value.name_of_suit}
                                 </td>
                                 <td>
-                                    ${value.division_name}
+                                    ${value.division_name === null ? '':value.division_name}
                                     
                                 </td>
                                 <td>
-                                    ${value.court_name}
+                                    ${value.court_name === null ? '':value.court_name}
                                 </td>
                                 <td>
-                                    ${value.district_name}
+                                    ${value.district_name === null ? '':value.district_name}
 
                                 </td>
                                 <td>
-                                    ${value.case_status_name}
+                                    ${value.case_status_name === null ? '':value.case_status_name}
 
                                 </td>
                                 <td>
-                                    ${value.company_name}
+                                    ${value.company_name === null ? '':value.company_name}
 
                                 </td>
                                 <td>
-                                    ${value.case_category_name}
+                                    ${value.case_category_name === null ? '':value.case_category_name}
 
                                 </td>
                                 <td>
-                                    ${value.plaintiff_name}
+                                    ${value.plaintiff_name === null ? '':value.plaintiff_name}
 
                                 </td>
                                 <td>
-                                    ${value.defendent_name}
+                                    ${value.defendent_name === null ? '':value.defendent_name}
 
                                 </td>
                                 <td> 

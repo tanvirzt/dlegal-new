@@ -394,7 +394,20 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('/find-seller-details','LandInfoController@find_seller_details')->name('find-seller-details');
         Route::get('/find-buyer-details','LandInfoController@find_buyer_details')->name('find-buyer-details');
         Route::get('/find-flat-number','FlatInfoController@find_flat_number')->name('find-flat-number');
-        
+
+// regulatory compliance
+
+        Route::get('regulatory-compliance','RegulatoryComplianceController@regulatory_compliance')->name('regulatory-compliance');
+        Route::get('add-regulatory-compliance','RegulatoryComplianceController@add_regulatory_compliance')->name('add-regulatory-compliance');
+        Route::post('save-regulatory-compliance','RegulatoryComplianceController@save_regulatory_compliance')->name('save-regulatory-compliance');
+        Route::get('edit-regulatory-compliance/{id}','RegulatoryComplianceController@edit_regulatory_compliance')->name('edit-regulatory-compliance');
+        Route::post('delete-regulatory-compliance/{id}','RegulatoryComplianceController@delete_regulatory_compliance')->name('delete-regulatory-compliance');
+        Route::post('update-regulatory-compliance/{id}','RegulatoryComplianceController@update_regulatory_compliance')->name('update-regulatory-compliance');
+        Route::get('view-regulatory-compliance/{id}','RegulatoryComplianceController@view_regulatory_compliance')->name('view-regulatory-compliance');
+        Route::get('download-regulatory-compliance-files/{id}','RegulatoryComplianceController@download_regulatory_compliance_files')->name('download-regulatory-compliance-files');
+        Route::post('search-regulatory-compliance','RegulatoryComplianceController@search_regulatory_compliance')->name('search-regulatory-compliance');
+
+
     });
 
 });
