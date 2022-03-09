@@ -1,8 +1,5 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
-
-
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -10,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Land Information</h1>
+                        <h1 class="m-0 text-dark">Regulatory Compliance</h1>
 
                     </div><!-- /.col -->
 
@@ -20,7 +17,9 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('land-information') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md"
+                                    type="button" href="{{ route('regulatory-compliance') }}" aria-disabled="false"
+                                    role="link" tabindex="-1">Back</a>
                             </li>
                         </ol>
                     </div>
@@ -34,9 +33,9 @@
         <section class="content">
             <div class="container-fluid py-2">
                 <div class="col-md-12">
-                    @if(Session::has('success'))
+                    @if (Session::has('success'))
                         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-                            {{Session::get('success')}}
+                            {{ Session::get('success') }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -44,346 +43,470 @@
                     @endif
                     <div class="card">
                         <div class="">
-                            <div class="card-header">
-                                <h3 class="card-title" id="heading">Edit Land Information</h3>
-                                <div class="float-right">
-                                    <a href="{{ route('view-land-information', $data->id) }}"><button
-                                        class="btn btn-primary btn-sm" data-toggle="tooltip"
-                                        data-placement="top" title="Details"><i
-                                            class="fas fa-eye"></i></button></a>
-                                </div>
-                            </div>
+                            <form action="{{ route('update-regulatory-compliance', $data->id) }}" method="post" enctype="multipart/form-data">
 
-                            <form action="{{ route('update-land-information',$data->id) }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="card-body">
+                                <section class="panel">
+                                    <header class="panel-heading tab-bg-dark-navy-blue">
+                                        <ul class="nav nav-tabs" style="padding-bottom:10px;">
+                                            <li class="">
+                                                <a data-toggle="tab" href="#home"
+                                                    class="active">Certificate/License</a>
+                                            </li>
+                                            <li class="">
+                                                <a data-toggle="tab" href="#about">Local Govt./License</a>
+                                            </li>
+                                            <li class="">
+                                                <a data-toggle="tab" href="#buyer_investor">Utility Management</a>
+                                            </li>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label for="property_type_id" class="col-sm-4 col-form-label">Property Type</label>
-                                                <div class="col-sm-8">
-                                                    <select class="form-control select2" id="property_type_id" name="property_type_id">
-                                                        <option value="">Select</option>
-                                                        @foreach ($property_type as $item)
-                                                            <option value="{{ $item->id }}" {{ ($data->property_type_id == $item->id ? 'selected' : '') }}>{{ $item->property_type_name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('property_type_id')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="district_id" class="col-sm-4 col-form-label"> District </label>
-                                                <div class="col-sm-8">
-                                                    <select name="district_id" class="form-control select2" id="district_id" action="{{ route('find-thana') }}">
-                                                        <option value="">Select</option>
-                                                        @foreach($district as $item)
-                                                            <option value="{{ $item->id }}" {{ $data->district_id == $item->id ? 'selected' : '' }} >{{ $item->district_name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('district_id')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="thana_id" class="col-sm-4 col-form-label">Thana</label>
-                                                <div class="col-sm-8">
-                                                    <select name="thana_id" class="form-control select2" id="thana_id">
-                                                        <option value=""> Select </option>
-                                                        @foreach ($existing_thana as $item)
-                                                            <option value="{{ $item->id }}" {{ $data->thana_id == $item->id ? 'selected' : '' }}>{{ $item->thana_name }}</option>
-                                                        @endforeach
+                                        </ul>
+                                    </header>
+                                    <div class="panel-body">
+                                        <div class="tab-content">
+                                            <div id="home" class="tab-pane active">
 
-
-                                                    </select>  
-                                                    @error('thana_id')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="seller_id" class="col-sm-4 col-form-label">Seller Name</label>
-                                                <div class="col-sm-8">
-                                                    <select name="seller_id" class="form-control select2" id="seller_id" action="{{ route('find-seller-details') }}">
-                                                        <option value="">Select</option>
-                                                        @foreach($seller as $item)
-                                                            <option value="{{ $item->id }}" {{ $data->seller_id == $item->id ? 'selected' : '' }}>{{ $item->seller_buyer_name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('seller_id')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-
-                                            <div id="seller_details"></div>
-
-                                            <div class="form-group row">
-                                                <label for="buyer_id" class="col-sm-4 col-form-label"> Buyer Name </label>
-                                                <div class="col-sm-8">
-                                                    <select name="buyer_id" class="form-control select2" id="buyer_id" action="{{ route('find-buyer-details') }}">
-                                                        <option value="">Select</option>
-                                                        @foreach($buyer as $item)
-                                                            <option value="{{ $item->id }}" {{ $data->buyer_id == $item->id ? 'selected' : '' }} >{{ $item->seller_buyer_name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('buyer_id')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-
-                                            <div id="buyer_details"></div>
-                                            <div class="form-group row">
-                                                <label for="cs_khatian" class="col-sm-4 col-form-label">CS Khatian</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="cs_khatian" name="cs_khatian" value="{{ $data->cs_khatian }}">
-                                                    @error('cs_khatian')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="cs_dag" class="col-sm-4 col-form-label"> CS Dag</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="cs_dag" name="cs_dag" value="{{ $data->cs_dag }}">   
-                                                    @error('cs_dag')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="sa_khatian" class="col-sm-4 col-form-label">SA Khatian </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="sa_khatian" name="sa_khatian" value="{{ $data->sa_khatian }}">
-                                                    @error('sa_khatian')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="sa_dag" class="col-sm-4 col-form-label"> SA Dag  </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="sa_dag" name="sa_dag" value="{{ $data->sa_dag }}">
-                                                    @error('sa_dag')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="rs_khatian" class="col-sm-4 col-form-label">RS Khatian</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="rs_khatian" name="rs_khatian" value="{{ $data->rs_khatian }}">
-                                                    @error('rs_khatian')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="rs_dag" class="col-sm-4 col-form-label"> RS Dag </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="rs_dag" name="rs_dag" value="{{ $data->rs_dag }}">
-                                                    @error('rs_dag')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="bs_khatian" class="col-sm-4 col-form-label"> BS Khatian </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="bs_khatian" name="bs_khatian" value="{{ $data->bs_khatian }}">
-                                                    @error('bs_khatian')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="bs_dag" class="col-sm-4 col-form-label"> BS Dag  </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="bs_dag" name="bs_dag" value="{{ $data->bs_dag }}">
-                                                    @error('bs_dag')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="khatian_dag_city_jorip" class="col-sm-4 col-form-label">Khatian & Dag City Jorip</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="khatian_dag_city_jorip" name="khatian_dag_city_jorip" value="{{ $data->khatian_dag_city_jorip }}">
-
-                                                    @error('khatian_dag_city_jorip')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="land_area" class="col-sm-4 col-form-label">Land Area (in Decimal)</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="land_area" name="land_area" value="{{ $data->land_area }}">
-                                                    @error('land_area')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="deed_no" class="col-sm-4 col-form-label">Deed No.</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="deed_no" name="deed_no" value="{{ $data->deed_no }}">
-                                                    @error('deed_no')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="date_of_deed" class="col-sm-4 col-form-label">Date of Deed</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="date_of_deed" name="date_of_deed" value="{{ $data->date_of_deed }}">
-                                                    @error('date_of_deed')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="deed_value" class="col-sm-4 col-form-label"> Deed Value </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="deed_value" name="deed_value" value="{{ $data->deed_value }}">
-                                                    @error('deed_value')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-6">
-                                            
-                                            
-                                            <div class="form-group row">
-                                                <label for="possession" class="col-sm-4 col-form-label"> Possession </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="possession" name="possession" value="{{ $data->possession }}">
-                                                    @error('possession')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="boundary_wall" class="col-sm-4 col-form-label"> Boundary Wall </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="boundary_wall" name="boundary_wall" value="{{ $data->boundary_wall }}">
-                                                    @error('boundary_wall')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="any_dispute" class="col-sm-4 col-form-label"> Any Dispute </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="any_dispute" name="any_dispute" value="{{ $data->any_dispute }}">
-                                                    @error('any_dispute')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="any_suit_case" class="col-sm-4 col-form-label"> Any Suit/Case </label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="any_suit_case" name="any_suit_case" value="{{ $data->any_suit_case }}">
-                                                    @error('any_suit_case')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="property_owner" class="col-sm-4 col-form-label">Name of Owner of the Property</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="property_owner" name="property_owner" value="{{ $data->property_owner }}">
-                                                    @error('property_owner')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="mouza_name" class="col-sm-4 col-form-label">Mouza Name</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="mouza_name" name="mouza_name" value="{{ $data->mouza_name }}">
-                                                    @error('mouza_name')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="mutation_khatian_no" class="col-sm-4 col-form-label">Mutation Khatian No.</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="mutation_khatian_no" name="mutation_khatian_no" value="{{ $data->mutation_khatian_no }}">
-                                                    @error('mutation_khatian_no')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="mutation_case_no" class="col-sm-4 col-form-label">Mutation Case No.</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="mutation_case_no" name="mutation_case_no" value="{{ $data->mutation_case_no }}">
-                                                    @error('mutation_case_no')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="mutation_khatian_owner" class="col-sm-4 col-form-label">Mutation Khatian Owner(Previous Owner)</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="mutation_khatian_owner" name="mutation_khatian_owner" value="{{ $data->mutation_khatian_owner }}">
-                                                    @error('mutation_khatian_owner')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="dcr_number" class="col-sm-4 col-form-label">DCR Number</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="dcr_number" name="dcr_number" value="{{ $data->dcr_number }}">
-                                                    @error('dcr_number')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="dcr_date" class="col-sm-4 col-form-label">DCR Date</label>
-                                                <div class="col-sm-8">
-                                                    <input type="date" class="form-control" id="dcr_date" name="dcr_date" value="{{ $data->dcr_date }}">
-                                                    @error('dcr_date')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="register_office_name" class="col-sm-4 col-form-label">Name of Register Office</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="register_office_name" name="register_office_name" value="{{ $data->register_office_name }}">
-                                                    @error('register_office_name')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="land_compliance" class="col-sm-4 col-form-label"> Land Compliance </label>
-                                                <div class="col-sm-8">
-                                                    <input type="checkbox" class="mt-2" id="land_compliance" name="land_compliance" value="compliance" {{ $data->land_compliance == 'Yes' ? 'checked' : '' }}>
-                                                </div>
-                                            </div>
-
-                                            <div id="compliance_input" @if ($data->land_compliance == "No") style="display: none;" @endif>                                          
-                                                <div class="form-group row">
-                                                    <label for="electricity" class="col-sm-4 col-form-label"> Electricity </label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="electricity" name="electricity" value="{{ $data->electricity }}">
+                                                <div class="card-header">
+                                                    <h3 class="card-title" id="heading">Certificate/License</h3>
+                                                    <div class="float-right">
+                                                        <a class="btn btn-success" href="#"> Preview </a>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label for="gas" class="col-sm-4 col-form-label"> Gas </label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="gas" name="gas" value="{{ $data->gas }}">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="sewerage" class="col-sm-4 col-form-label"> Sewerage </label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="sewerage" name="sewerage" value="{{ $data->sewerage }}">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="water" class="col-sm-4 col-form-label"> Water </label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="water" name="water" value="{{ $data->water }}">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="expires" class="col-sm-4 col-form-label"> Expires </label>
-                                                    <div class="col-sm-8">
-                                                        <input type="date" class="form-control" id="expires" name="expires" value="{{ $data->expires }}">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="renew" class="col-sm-4 col-form-label"> Renew </label>
-                                                    <div class="col-sm-8">
-                                                        <input type="date" class="form-control" id="renew" name="renew" value="{{ $data->renew }}">
-                                                    </div>
-                                                </div>
-                                            </div>
 
-                                        </div>
-                                        
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="uploaded_document"> Document Upload </label>
-                                                <div class="input-group hdtuto control-group lst increment">
-                                                    <input type="file" name="uploaded_document[]" class="myfrm form-control">
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>+</button>
+                                                @csrf
+                                                <div class="card-body">
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label for="certificates_name"
+                                                                    class="col-sm-4 col-form-label">Name of
+                                                                    Certificates/License</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control"
+                                                                        id="certificates_name" name="certificates_name"
+                                                                        value="{{ $data->certificates_name }}">
+                                                                    @error('certificates_name')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="compliance_category_id"
+                                                                    class="col-sm-4 col-form-label">Category </label>
+                                                                <div class="col-sm-8">
+                                                                    <select class="form-control select2"
+                                                                        name="compliance_category_id"
+                                                                        id="compliance_category_id">
+                                                                        <option value="">Select</option>
+                                                                        @foreach ($compliance_category as $item)
+                                                                            <option value="{{ $item->id }}" {{ ($data->compliance_category_id == $item->id ? 'selected' : '') }}>
+                                                                                {{ $item->compliance_category_name }}
+                                                                            </option>
+                                                                        @endforeach
+
+                                                                    </select>
+                                                                    @error('compliance_category_id')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="certificates_authority"
+                                                                    class="col-sm-4 col-form-label">Name of
+                                                                    Authority</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control"
+                                                                        id="certificates_authority"
+                                                                        name="certificates_authority"
+                                                                        value="{{ $data->certificates_authority }}">
+                                                                    @error('certificates_authority')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="certificates_ministry"
+                                                                    class="col-sm-4 col-form-label">Ministry/Dept.</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control"
+                                                                        id="certificates_ministry" name="certificates_ministry"
+                                                                        value="{{ $data->certificates_ministry }}">
+                                                                    @error('certificates_ministry')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="certificates_getting_cl_first_date"
+                                                                    class="col-sm-4 col-form-label">First Date of Getting
+                                                                    C/L</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="date" class="form-control"
+                                                                        id="certificates_getting_cl_first_date"
+                                                                        name="certificates_getting_cl_first_date"
+                                                                        value="{{ $data->certificates_getting_cl_first_date }}">
+                                                                    @error('certificates_getting_cl_first_date')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label for="certificates_expires"
+                                                                    class="col-sm-4 col-form-label"> Expires
+                                                                </label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="date" class="form-control"
+                                                                        id="certificates_expires"
+                                                                        name="certificates_expires"
+                                                                        value="{{ $data->certificates_expires }}">
+                                                                    @error('certificates_expires')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="certificates_renew"
+                                                                    class="col-sm-4 col-form-label"> Renew
+                                                                </label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="date" class="form-control"
+                                                                        id="certificates_renew" name="certificates_renew"
+                                                                        value="{{ $data->certificates_renew }}">
+                                                                    @error('certificates_renew')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="certificates_special_provision"
+                                                                    class="col-sm-4 col-form-label"> Special Provision
+                                                                </label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control"
+                                                                        id="certificates_special_provision"
+                                                                        name="certificates_special_provision"
+                                                                        value="{{ $data->certificates_special_provision }}">
+                                                                    @error('certificates_special_provision')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="certificates_special_remarks"
+                                                                    class="col-sm-4 col-form-label"> Special Remarks
+                                                                </label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control"
+                                                                        id="certificates_special_remarks"
+                                                                        name="certificates_special_remarks"
+                                                                        value="{{ $data->certificates_special_remarks }}">
+                                                                    @error('certificates_special_remarks')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
                                                     </div>
+
+                                                    <div class="float-right mt-4">
+                                                        <button type="submit" class="btn btn-primary text-uppercase"><i
+                                                                class="fas fa-save"></i> Update </button>
+                                                    </div>
+
+
                                                 </div>
-                                                <div class="clone hide" style="display: none;">
-                                                    <div class="hdtuto control-group lst input-group" style="margin-top:10px;">
-                                                        <input type="file" name="uploaded_document[]" class="myfrm form-control">
-                                                        <div class="input-group-btn">
-                                                            <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> - </button>
+
+
+                                            </div>
+                                            <div id="about" class="tab-pane">
+                                                <div class="panel-body">
+                                                    <div class="tab-content">
+                                                        <div id="home" class="tab-pane active">
+
+                                                            <div class="card-header">
+                                                                <h3 class="card-title" id="heading">Local Govt./License
+                                                                </h3>
+                                                                <div class="float-right">
+                                                                    <a class="btn btn-success" href="#">
+                                                                        Preview </a>
+                                                                </div>
+                                                            </div>
+
+                                                                <div class="card-body">
+
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6">
+
+                                                                            <div class="form-group row">
+                                                                                <label for="govt_authority"
+                                                                                    class="col-sm-4 col-form-label">
+                                                                                    Name of
+                                                                                    Authority
+                                                                                </label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="govt_authority"
+                                                                                        name="govt_authority"
+                                                                                        value="{{ $data->govt_authority }}">
+                                                                                    @error('govt_authority')
+                                                                                        <span
+                                                                                            class="text-danger">{{ $message }}</span>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="govt_ministry_dept"
+                                                                                    class="col-sm-4 col-form-label">
+                                                                                    Ministry/Dept.
+                                                                                </label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="govt_ministry_dept"
+                                                                                        name="govt_ministry_dept"
+                                                                                        value="{{ $data->govt_ministry_dept }}">
+                                                                                    @error('govt_ministry_dept')
+                                                                                        <span
+                                                                                            class="text-danger">{{ $message }}</span>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="govt_getting_cl_first_date"
+                                                                                    class="col-sm-4 col-form-label"> First
+                                                                                    Date
+                                                                                    of getting C/L
+                                                                                </label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="date"
+                                                                                        class="form-control"
+                                                                                        id="govt_getting_cl_first_date"
+                                                                                        name="govt_getting_cl_first_date"
+                                                                                        value="{{ $data->govt_getting_cl_first_date }}">
+                                                                                    @error('govt_getting_cl_first_date')
+                                                                                        <span
+                                                                                            class="text-danger">{{ $message }}</span>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="govt_expires"
+                                                                                    class="col-sm-4 col-form-label">
+                                                                                    Expires
+                                                                                </label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="date"
+                                                                                        class="form-control"
+                                                                                        id="govt_expires"
+                                                                                        name="govt_expires"
+                                                                                        value="{{ $data->govt_expires }}">
+                                                                                    @error('govt_expires')
+                                                                                        <span
+                                                                                            class="text-danger">{{ $message }}</span>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+
+                                                                            <div class="form-group row">
+                                                                                <label for="govt_renew"
+                                                                                    class="col-sm-4 col-form-label"> Renew
+                                                                                </label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="date"
+                                                                                        class="form-control"
+                                                                                        id="govt_renew" name="govt_renew"
+                                                                                        value="{{ $data->govt_renew }}">
+                                                                                    @error('govt_renew')
+                                                                                        <span
+                                                                                            class="text-danger">{{ $message }}</span>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="govt_special_provision"
+                                                                                    class="col-sm-4 col-form-label">
+                                                                                    Special
+                                                                                    Provision
+                                                                                </label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="govt_special_provision"
+                                                                                        name="govt_special_provision"
+                                                                                        value="{{ $data->govt_special_provision }}">
+                                                                                    @error('govt_special_provision')
+                                                                                        <span
+                                                                                            class="text-danger">{{ $message }}</span>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="govt_special_remarks"
+                                                                                    class="col-sm-4 col-form-label">
+                                                                                    Special
+                                                                                    Remarks
+                                                                                </label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="govt_special_remarks"
+                                                                                        name="govt_special_remarks"
+                                                                                        value="{{ $data->govt_special_remarks }}">
+                                                                                    @error('govt_special_remarks')
+                                                                                        <span
+                                                                                            class="text-danger">{{ $message }}</span>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="float-right mt-4">
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary text-uppercase"><i
+                                                                                class="fas fa-save"></i> Update </button>
+                                                                    </div>
+
+
+                                                                </div>
+
+
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                        <div class="float-right mt-4">
-                                            <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update </button>
-                                        </div>
+                                            <div id="buyer_investor" class="tab-pane">
+
+                                                <div class="card-header">
+                                                    <h3 class="card-title" id="heading">Utility Management</h3>
+                                                    <div class="float-right">
+                                                        <a class="btn btn-success" href="#"> Preview </a>
+                                                    </div>
+                                                </div>
+
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group row">
+                                                                    <label for="utility_electricity"
+                                                                        class="col-sm-4 col-form-label">Electricity
+                                                                    </label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="text" class="form-control"
+                                                                            id="utility_electricity"
+                                                                            name="utility_electricity"
+                                                                            value="{{ $data->utility_electricity }}">
+                                                                        @error('utility_electricity')
+                                                                            <span
+                                                                                class="text-danger">{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label for="utility_gas"
+                                                                        class="col-sm-4 col-form-label">Gas </label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="text" class="form-control"
+                                                                            id="utility_gas" name="utility_gas"
+                                                                            value="{{ $data->utility_gas }}">
+                                                                        @error('utility_gas')
+                                                                            <span
+                                                                                class="text-danger">{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label for="utility_sewerage"
+                                                                        class="col-sm-4 col-form-label">Sewerage
+                                                                    </label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="text" class="form-control"
+                                                                            id="utility_sewerage" name="utility_sewerage"
+                                                                            value="{{ $data->utility_sewerage }}">
+                                                                        @error('utility_sewerage')
+                                                                            <span
+                                                                                class="text-danger">{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <div class="form-group row">
+                                                                    <label for="utility_water"
+                                                                        class="col-sm-4 col-form-label">
+                                                                        Water
+                                                                    </label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="text" class="form-control"
+                                                                            id="utility_water" name="utility_water"
+                                                                            value="{{ $data->utility_water }}">
+                                                                        @error('utility_water')
+                                                                            <span
+                                                                                class="text-danger">{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label for="utility_expires"
+                                                                        class="col-sm-4 col-form-label"> Expires
+                                                                    </label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="date" class="form-control"
+                                                                            id="utility_expires" name="utility_expires"
+                                                                            value="{{ $data->utility_expires }}">
+                                                                        @error('utility_expires')
+                                                                            <span
+                                                                                class="text-danger">{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label for="utility_renew"
+                                                                        class="col-sm-4 col-form-label">
+                                                                        Renew
+                                                                    </label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="date" class="form-control"
+                                                                            id="utility_renew" name="utility_renew"
+                                                                            value="{{ $data->utility_renew }}">
+                                                                        @error('utility_renew')
+                                                                            <span
+                                                                                class="text-danger">{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="float-right mt-4">
+                                                            <button type="submit" class="btn btn-primary text-uppercase"><i
+                                                                    class="fas fa-save"></i> Update </button>
+                                                        </div>
 
 
-                                </div>
+                                                    </div>
+
+
+                                            </div>
+                                </section>
                             </form>
-
                         </div>
                     </div>
 
@@ -393,12 +516,4 @@
 
     </div>
     <!-- /.content-wrapper -->
-
-
-
-
 @endsection
-
-
-
-

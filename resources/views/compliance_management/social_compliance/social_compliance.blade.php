@@ -7,13 +7,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Regulatory Compliance </h1>
+                        <h1> Social Compliance </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Regulatory Compliance </li>
+                            <li class="breadcrumb-item active"> Social Compliance </li>
                         </ol>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                             <div id="accordion">
 
                                 <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> Regulatory Compliance :: Search </h3>
+                                    <h3 class="card-title"> Social Compliance :: Search </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -55,33 +55,12 @@
                                     <div class="card-body">
 
 
-                                        <form id="form_data" method="post" action="{{ route('search-regulatory-compliance') }}">
+                                        <form id="form_data" method="post" action="{{ route('search-social-compliance') }}">
                                             @csrf
 
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    
-                                                    <div class="form-group row">
-                                                        <label for="compliance_category_id"
-                                                            class="col-sm-4 col-form-label">Category </label>
-                                                        <div class="col-sm-8">
-                                                            <select class="form-control select2"
-                                                                name="compliance_category_id"
-                                                                id="compliance_category_id">
-                                                                <option value="">Select</option>
-                                                                @foreach ($compliance_category as $item)
-                                                                    <option value="{{ $item->id }}" {{ (old('compliance_category_id') == $item->id ? 'selected' : '') }}>
-                                                                        {{ $item->compliance_category_name }}
-                                                                    </option>
-                                                                @endforeach
-
-                                                            </select>
-                                                            @error('compliance_category_id')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
                                                     <div class="form-group row">
                                                         <label for="certificates_name"
                                                             class="col-sm-4 col-form-label">Certificates/ License</label>
@@ -95,6 +74,7 @@
                                                             @enderror
                                                         </div>
                                                     </div>
+
 
                                                 </div>
                                                 <div class="col-md-6">
@@ -135,58 +115,53 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-regulatory-compliance') }}"><button class="btn btn-sm btn-success add_btn"><i
-                                                class="fas fa-plus"></i> Add Regulatory Compliance </button></a>
+                                    <a href="{{ route('add-social-compliance') }}"><button class="btn btn-sm btn-success add_btn"><i
+                                                class="fas fa-plus"></i> Add Social Compliance </button></a>
                                 </div>
-
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="data_table" class="table table-responsive no-footer dtr-inline">
                                     <thead>
                                         <tr>
-                                            <th>Certificates/ License</th>
-                                            <th>Category</th>
-                                            <th>Certificates Authority</th>
-                                            <th>Ministry/Dept.</th>
-                                            <th>CL Date</th>
-                                            <th>Expires</th>
-                                            <th>Renew</th>
-                                            <th>Special Provision</th>
-                                            <th>Special Remarks</th>
-                                            <th>Status</th>
-                                            <th width="13%">Action</th>
+                                            <th >Employment Condition</th>
+                                            <th >Working Hr & Leave</th>
+                                            <th >Compensation & Benefit</th>
+                                            <th >Hygine and Safety</th>
+                                            <th >Welfare & Security</th>
+                                            <th >Industrial Relation</th>
+                                            <th >Labour Law Safety</th>
+                                            <th >BNBC Safety</th>
+                                            <th >Status</th>
+                                            <th width="10%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="search_data">
                                         @foreach ($data as $datum)
                                             <tr>
                                                 <td>
-                                                    {{ $datum->certificates_name }} 
+                                                    {{ $datum->employment_condition }} 
                                                 </td>
                                                 <td>
-                                                    {{ $datum->compliance_category_name }}
+                                                    {{ $datum->working_hour_leave }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->certificates_authority }}
+                                                    {{ $datum->compensation_benefit }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->certificates_ministry }}
+                                                    {{ $datum->hygine_safety }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->certificates_getting_cl_first_date }}
+                                                    {{ $datum->welfare_security }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->certificates_expires }}
+                                                    {{ $datum->industrial_relation }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->certificates_renew }}
+                                                    {{ $datum->labour_law_safety }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->certificates_special_provision }}
-                                                </td>
-                                                <td>
-                                                    {{ $datum->certificates_special_remarks }}
+                                                    {{ $datum->bnbc_safety }}
                                                 </td>
                                                 <td>
                                                     @if ($datum->delete_status == 0)
@@ -196,16 +171,16 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('view-regulatory-compliance', $datum->id) }}"><button
+                                                    <a href="{{ route('view-social-compliance', $datum->id) }}"><button
                                                             class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Details"><i
                                                                 class="fas fa-eye"></i></button></a>
-                                                    <a href="{{ route('edit-regulatory-compliance', $datum->id) }}"><button
+                                                    <a href="{{ route('edit-social-compliance', $datum->id) }}"><button
                                                             class="btn btn-info btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"><i
                                                                 class="fas fa-edit"></i></button></a>
                                                     <form method="POST"
-                                                        action="{{ route('delete-regulatory-compliance', $datum->id) }}"
+                                                        action="{{ route('delete-social-compliance', $datum->id) }}"
                                                         class="delete-user btn btn-danger btn-xs">
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger btn-sm"

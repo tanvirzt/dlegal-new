@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2022 at 01:09 PM
+-- Generation Time: Mar 09, 2022 at 01:28 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -965,7 +965,7 @@ CREATE TABLE `land_information` (
 --
 
 INSERT INTO `land_information` (`id`, `property_type_id`, `district_id`, `thana_id`, `seller_id`, `buyer_id`, `cs_khatian`, `cs_dag`, `sa_khatian`, `sa_dag`, `rs_khatian`, `rs_dag`, `bs_khatian`, `bs_dag`, `khatian_dag_city_jorip`, `land_area`, `deed_no`, `date_of_deed`, `deed_value`, `possession`, `boundary_wall`, `any_dispute`, `any_suit_case`, `property_owner`, `mouza_name`, `mutation_khatian_no`, `mutation_case_no`, `mutation_khatian_owner`, `dcr_number`, `dcr_date`, `register_office_name`, `land_compliance`, `electricity`, `gas`, `sewerage`, `water`, `expires`, `renew`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 2, 2, 4, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  9', 'land area 10', 'deed no 11', 'dod 12', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Jack Smith', '17 sadf', 'test mutation', 'm case no', 'test khatian', '4654654DCR', '2022-03-17', 'Main office', 'No', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-03-06 00:24:05', '2022-03-06 04:25:06'),
+(1, 2, 2, 4, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  9', 'land area 10', 'deed no 11', 'dod 12', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Jack Smith', '17 sadf', 'test mutation', 'm case no', 'test khatian', '4654654DCR', '2022-03-17', 'Main office', 'No', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-03-06 00:24:05', '2022-03-08 23:23:20'),
 (2, 3, 4, 3, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'aaaa', 'land area 10', 'deed no 11', '12 test', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Stefen', '17 sadf', 'test mutation', 'm case no', '20 ertre', '23 test', '2022-03-15', 'test offfice', 'Yes', 'elect 98', 'test gas', 'test sewerage', 'test warter', '2022-03-31', '2022-03-30', 0, NULL, NULL, '2022-03-06 00:25:45', '2022-03-07 06:05:50');
 
 -- --------------------------------------------------------
@@ -1083,7 +1083,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (201, '2022_03_07_051253_create_flat_information_files_table', 41),
 (202, '2022_03_07_052042_create_setup_floors_table', 41),
 (203, '2022_03_07_055414_create_setup_flat_numbers_table', 41),
-(205, '2022_03_08_110826_create_regulatory_compliances_table', 42);
+(206, '2022_03_08_110826_create_regulatory_compliances_table', 42),
+(209, '2022_03_09_070843_create_social_compliances_table', 43);
 
 -- --------------------------------------------------------
 
@@ -1280,6 +1281,9 @@ CREATE TABLE `regulatory_compliances` (
   `utility_water` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `utility_expires` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `utility_renew` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1288,8 +1292,10 @@ CREATE TABLE `regulatory_compliances` (
 -- Dumping data for table `regulatory_compliances`
 --
 
-INSERT INTO `regulatory_compliances` (`id`, `certificates_name`, `compliance_category_id`, `certificates_authority`, `certificates_ministry`, `certificates_getting_cl_first_date`, `certificates_expires`, `certificates_renew`, `certificates_special_provision`, `certificates_special_remarks`, `govt_authority`, `govt_ministry_dept`, `govt_getting_cl_first_date`, `govt_expires`, `govt_renew`, `govt_special_provision`, `govt_special_remarks`, `utility_electricity`, `utility_gas`, `utility_sewerage`, `utility_water`, `utility_expires`, `utility_renew`, `created_at`, `updated_at`) VALUES
-(1, 'Aminur Rahman Smith Aminur', 2, 'Aminur Rahman Smith Aminur', 'asdf', '2022-03-17', '2022-03-15', '2022-03-25', 'asdf', 'adsf', 'Aminur Rahman Smith Aminur', 'asdf', '2022-03-11', '2022-03-26', '2022-03-29', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', '2022-03-24', '2022-03-24', '2022-03-08 06:06:35', '2022-03-08 06:06:35');
+INSERT INTO `regulatory_compliances` (`id`, `certificates_name`, `compliance_category_id`, `certificates_authority`, `certificates_ministry`, `certificates_getting_cl_first_date`, `certificates_expires`, `certificates_renew`, `certificates_special_provision`, `certificates_special_remarks`, `govt_authority`, `govt_ministry_dept`, `govt_getting_cl_first_date`, `govt_expires`, `govt_renew`, `govt_special_provision`, `govt_special_remarks`, `utility_electricity`, `utility_gas`, `utility_sewerage`, `utility_water`, `utility_expires`, `utility_renew`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Bsc Certificates', 2, 'test Authority', 'asdf updated', '2022-03-04', '2022-03-11', '2022-03-12', 'asdf updated', 'adsf updated', 'Aminur Rahman Smith Aminur', 'asdf updaetd', '2022-03-14', '2022-03-25', '2022-03-11', 'asdf updated', 'asdf updated', 'elects test', 'asdf test updated', 'asdf test', 'test water test', '2022-03-02', '2022-03-24', 0, NULL, NULL, '2022-03-08 22:25:38', '2022-03-09 03:20:19'),
+(2, 'Aminur Rahman Smith Aminur', 2, 'Aminur Rahman Smith Aminur', 'asdf', '2022-04-01', '2022-03-18', '2022-03-26', 'asdf', 'adsf', 'Aminur Rahman Smith Aminur', 'asdf', '2022-03-31', '2022-03-26', '2022-03-12', 'asdf', 'asdf', 'edq', 'gas', 'asdf', 'test water', '2022-03-17', '2022-03-25', 0, NULL, NULL, '2022-03-08 22:26:31', '2022-03-08 23:25:17'),
+(3, 'Aminur Rahman Smith Aminur', 1, 'Aminur Rahman Smith Aminur', 'asdf updated', '2022-03-18', '2022-03-17', '2022-03-19', 'asd', 'adsf', 'Aminur Rahman Smith Aminur', 'asdf', '2022-03-11', '2022-03-03', '2022-03-17', 'asdf', 'asdf', 'test', 'asdf', 'sewerage', 'asdf', '2022-03-02', '2022-03-04', 1, NULL, NULL, '2022-03-08 23:40:31', '2022-03-09 01:07:50');
 
 -- --------------------------------------------------------
 
@@ -1311,7 +1317,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('lzxjGBJIp3cd0RXxKqQNfIcfvehbM1w2qyBlLkSa', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUG5IZHlkc2NPMWNJeHVnd1REMW1jemdyaDZrVWM3SVR0WWw0amJLQSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzE6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9hZGQtcmVndWxhdG9yeS1jb21wbGlhbmNlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO30=', 1646741214);
+('UUl6bVU0Vs2NmbP62uVaZaCq63cfPUrEqNN8ciCj', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQzVVdWtkTm9OT3FUT3VjNklPRW9vYjFiMTJ0S0VSbHd1aGhuNTI4RCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjM6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9zb2NpYWwtY29tcGxpYW5jZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTI6ImxvZ2luX2FkbWluXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjQ6InBhZ2UiO3M6OToiZGFzaGJvYXJkIjt9', 1646828871);
 
 -- --------------------------------------------------------
 
@@ -1610,7 +1616,7 @@ CREATE TABLE `setup_compliance_categories` (
 --
 
 INSERT INTO `setup_compliance_categories` (`id`, `compliance_category_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'test', 1, NULL, NULL, '2022-02-26 06:11:36', '2022-03-08 04:52:25'),
+(1, 'test', 0, NULL, NULL, '2022-02-26 06:11:36', '2022-03-08 23:36:39'),
 (2, 'test 2 compliance', 0, NULL, NULL, '2022-03-08 04:51:15', '2022-03-08 04:51:15');
 
 -- --------------------------------------------------------
@@ -2208,6 +2214,42 @@ INSERT INTO `setup_thanas` (`id`, `district_id`, `thana_name`, `delete_status`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `social_compliances`
+--
+
+CREATE TABLE `social_compliances` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `employment_condition` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `working_hour_leave` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `compensation_benefit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hygine_safety` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `welfare_security` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `industrial_relation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `labour_law_safety` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bnbc_safety` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fire_safety` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `electrical_safety` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `natural_disaster` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code_of_conduct` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `international_standard` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `social_compliances`
+--
+
+INSERT INTO `social_compliances` (`id`, `employment_condition`, `working_hour_leave`, `compensation_benefit`, `hygine_safety`, `welfare_security`, `industrial_relation`, `labour_law_safety`, `bnbc_safety`, `fire_safety`, `electrical_safety`, `natural_disaster`, `code_of_conduct`, `international_standard`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'test updated', 'test updated', 'test updated', 'asdf', 'asdf', 'asdf', 'test updated', 'test updated', 'asdf', 'asdf', 'asdf', 'asdf updated', 'werwer', 0, NULL, NULL, '2022-03-09 03:51:00', '2022-03-09 05:00:50'),
+(2, 'test 2', 'test 2', 'test 2', '2022-03-14', '2022-03-17', '2022-03-08', 'test a', 'test g', '2022-03-02', '2022-03-17', '2022-03-08', 'asdf we', 'asdf d', 0, NULL, NULL, '2022-03-09 03:52:55', '2022-03-09 06:27:49');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `supreme_court_cases`
 --
 
@@ -2770,6 +2812,12 @@ ALTER TABLE `setup_thanas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `social_compliances`
+--
+ALTER TABLE `social_compliances`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `supreme_court_cases`
 --
 ALTER TABLE `supreme_court_cases`
@@ -2940,7 +2988,7 @@ ALTER TABLE `land_information_files`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -2970,7 +3018,7 @@ ALTER TABLE `quassi_judicial_case_status_logs`
 -- AUTO_INCREMENT for table `regulatory_compliances`
 --
 ALTER TABLE `regulatory_compliances`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setup_alligations`
@@ -3181,6 +3229,12 @@ ALTER TABLE `setup_seller_buyers`
 --
 ALTER TABLE `setup_thanas`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `social_compliances`
+--
+ALTER TABLE `social_compliances`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `supreme_court_cases`

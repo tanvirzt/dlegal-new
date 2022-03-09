@@ -401,7 +401,42 @@ if (res.result == "billing") {
         });
         
         
-        } else {
+        } else if (res.result == "regulatory_compliance") {
+            // console.log(res.data);
+            
+            $('#search_data').empty();
+            $.each(res.data, function(key, value){
+        
+                $('#search_data').append(`
+        
+                                <tr>
+                                    <td> ${value.certificates_name === null ? '':value.certificates_name} </td>
+                                    <td> ${value.compliance_category_name === null ? '':value.compliance_category_name} </td>
+                                    <td> ${value.certificates_authority === null ? '':value.certificates_authority} </td>
+                                    <td> ${value.certificates_ministry === null ? '':value.certificates_ministry} </td>
+                                    <td> ${value.certificates_getting_cl_first_date === null ? '':value.certificates_getting_cl_first_date} </td>
+                                    <td> ${value.certificates_expires === null ? '':value.certificates_expires} </td>
+                                    <td> ${value.certificates_renew === null ? '':value.certificates_renew} </td>
+                                    <td> ${value.certificates_special_provision === null ? '':value.certificates_special_provision} </td>
+                                    <td> ${value.certificates_special_remarks === null ? '':value.certificates_special_remarks} </td>
+                                    <td> ${value.delete_status === 0 ? 'Active' : 'Inactive'} </td>
+                                    <td>
+                                        <a href="view-regulatory-compliance/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                            ><i class="fas fa-eye"></i></button></a>
+                                        
+                                        <a href="edit-regulatory-compliance/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                            ><i class="fas fa-edit"></i></button></a>
+                                            
+                                        <button onclick='regulatory_compliance_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                            
+                                    </td>
+                                </tr>
+        
+                `);
+            });
+            
+            
+            } else {
                 $('#search_data').empty();
                 $.each(res, function(key, value){
 

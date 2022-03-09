@@ -404,8 +404,18 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('delete-regulatory-compliance/{id}','RegulatoryComplianceController@delete_regulatory_compliance')->name('delete-regulatory-compliance');
         Route::post('update-regulatory-compliance/{id}','RegulatoryComplianceController@update_regulatory_compliance')->name('update-regulatory-compliance');
         Route::get('view-regulatory-compliance/{id}','RegulatoryComplianceController@view_regulatory_compliance')->name('view-regulatory-compliance');
-        Route::get('download-regulatory-compliance-files/{id}','RegulatoryComplianceController@download_regulatory_compliance_files')->name('download-regulatory-compliance-files');
         Route::post('search-regulatory-compliance','RegulatoryComplianceController@search_regulatory_compliance')->name('search-regulatory-compliance');
+
+// regulatory compliance
+
+        Route::get('social-compliance','SocialComplianceController@social_compliance')->name('social-compliance');
+        Route::get('add-social-compliance','SocialComplianceController@add_social_compliance')->name('add-social-compliance');
+        Route::post('save-social-compliance','SocialComplianceController@save_social_compliance')->name('save-social-compliance');
+        Route::get('edit-social-compliance/{id}','SocialComplianceController@edit_social_compliance')->name('edit-social-compliance');
+        Route::post('delete-social-compliance/{id}','SocialComplianceController@delete_social_compliance')->name('delete-social-compliance');
+        Route::post('update-social-compliance/{id}','SocialComplianceController@update_social_compliance')->name('update-social-compliance');
+        Route::get('view-social-compliance/{id}','SocialComplianceController@view_social_compliance')->name('view-social-compliance');
+        Route::post('search-social-compliance','SocialComplianceController@search_social_compliance')->name('search-social-compliance');
 
 
     });

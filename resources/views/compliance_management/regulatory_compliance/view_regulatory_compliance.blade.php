@@ -18,7 +18,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"> Land Information </h1>
+                        <h1 class="m-0 text-dark"> Regulatory Compliance </h1>
 
                     </div><!-- /.col -->
 
@@ -28,7 +28,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('land-information') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('regulatory-compliance') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
                             </li>
                         </ol>
                     </div>
@@ -56,16 +56,16 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title custom_h3" id="heading">Land Information Details</h3>
+                                <h3 class="card-title custom_h3" id="heading">Regulatory Compliance Details</h3>
                                 <div class="float-right">
-                                    <a href="{{ route('edit-land-information', $data->id) }}"><button
+                                    <a href="{{ route('edit-regulatory-compliance', $data->id) }}"><button
                                         class="btn btn-info btn-sm" data-toggle="tooltip"
                                         data-placement="top" title="Edit"><i
                                             class="fas fa-edit"></i></button></a>
 
 
                                     {{-- <a class="btn btn-info"
-                                        href="{{ route('edit-land-information', $data->id) }}"> Edit </a> --}}
+                                        href="{{ route('edit-regulatory-compliance', $data->id) }}"> Edit </a> --}}
                                 </div>
                             </div>
                                 <div class="card-body">
@@ -73,151 +73,73 @@
                                         <tbody>
                                             <tr>
                                                 <th>Property Type</th>
-                                                <td>{{ $data->property_type_name }}</td>
+                                                <td>{{ $data->certificates_name }}</td>
                                                 <th>Boundary Wall</th>
-                                                <td>{{ $data->boundary_wall }}</td>
+                                                <td>{{ $data->govt_getting_cl_first_date }}</td>
                                             </tr>
                                             <tr>
                                                 <th>District</th>
-                                                <td>{{ $data->district_name }}</td>
+                                                <td>{{ $data->compliance_category_name }}</td>
                                                 <th>Any Dispute</th>
-                                                <td>{{ $data->any_dispute }}</td>
+                                                <td>{{ $data->govt_getting_cl_first_date }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Thana</th>
-                                                <td>{{ $data->thana_name }}</td>
+                                                <td>{{ $data->certificates_authority }}</td>
                                                 <th>Any Suit/Case</th>
-                                                <td>{{ $data->any_suit_case }}</td>
+                                                <td>{{ $data->govt_renew }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Seller Name</th>
-                                                <td>{{ $data->seller_name }}</td>
+                                                <td>{{ $data->certificates_ministry }}</td>
                                                 <th>Name of Owner of the Property</th>
-                                                <td>{{ $data->property_owner }}</td>
+                                                <td>{{ $data->govt_special_provision }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Buyer Name</th>
-                                                <td>{{ $data->buyer_name }}</td>
+                                                <td>{{ $data->certificates_getting_cl_first_date }}</td>
                                                 <th>Mouza Name</th>
-                                                <td>{{ $data->mouza_name }}</td>
+                                                <td>{{ $data->govt_special_remarks }}</td>
                                             </tr>
                                             <tr>
                                                 <th>CS Khatian</th>
-                                                <td>{{ $data->cs_khatian }}</td>
+                                                <td>{{ $data->certificates_expires }}</td>
                                                 <th>Mutation Khatian No.</th>
-                                                <td>{{ $data->mutation_khatian_no }}</td>
+                                                <td>{{ $data->utility_electricity }}</td>
                                             </tr>
                                             <tr>
                                                 <th>CS Dag</th>
-                                                <td>{{ $data->cs_dag }}</td>
+                                                <td>{{ $data->certificates_renew }}</td>
                                                 <th>Mutation Case No.</th>
-                                                <td>{{ $data->mutation_case_no }}</td>
+                                                <td>{{ $data->utility_gas }}</td>
                                             </tr>
                                             <tr>
                                                 <th>SA Khatian</th>
-                                                <td>{{ $data->sa_khatian }}</td>
+                                                <td>{{ $data->certificates_special_provision }}</td>
                                                 <th>Mutation Khatian Owner(Previous Owner) </th>
-                                                <td>{{ $data->mutation_khatian_owner }}</td>
+                                                <td>{{ $data->utility_sewerage }}</td>
                                             </tr>
                                             <tr>
                                                 <th>SA Dag</th>
-                                                <td>{{ $data->sa_dag }}</td>
+                                                <td>{{ $data->certificates_special_remarks }}</td>
                                                 <th>DCR Number</th>
-                                                <td>{{ $data->dcr_number }}</td>
+                                                <td>{{ $data->utility_water }}</td>
                                             </tr>
                                             <tr>
                                                 <th>RS Khatian</th>
-                                                <td>{{ $data->rs_khatian }}</td>
+                                                <td>{{ $data->govt_authority }}</td>
                                                 <th>DCR Date</th>
-                                                <td>{{ $data->dcr_date }}</td>
+                                                <td>{{ $data->utility_expires }}</td>
                                             </tr>
                                             <tr>
                                                 <th>RS Dag</th>
-                                                <td>{{ $data->rs_dag }}</td>
+                                                <td>{{ $data->govt_ministry_dept }}</td>
                                                 <th>Name of Register Office</th>
-                                                <td>{{ $data->register_office_name }}</td>
+                                                <td>{{ $data->utility_renew }}</td>
                                             </tr>
-                                            <tr>
-                                                <th>BS Khatian</th>
-                                                <td>{{ $data->bs_khatian }}</td>
-                                                <th>Land Compliance</th>
-                                                <td>{{ $data->land_compliance }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>BS Dag</th>
-                                                <td>{{ $data->bs_dag }}</td>
-                                                <th>Electricity</th>
-                                                <td>{{ $data->electricity }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Khatian & Dag City Jorip</th>
-                                                <td>{{ $data->khatian_dag_city_jorip }}</td>
-                                                <th>Gas</th>
-                                                <td>{{ $data->gas }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Land Area (in Decimal)</th>
-                                                <td>{{ $data->land_area }}</td>
-                                                <th>Sewerage</th>
-                                                <td>{{ $data->sewerage }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Deed No. </th>
-                                                <td>{{ $data->deed_no }}</td>
-                                                <th>Water</th>
-                                                <td>{{ $data->water }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Date of Deed</th>
-                                                <td>{{ $data->date_of_deed }}</td>
-                                                <th>Expires</th>
-                                                <td>{{ $data->expires }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Deed Value</th>
-                                                <td>{{ $data->deed_value }}</td>
-                                                <th>Renew</th>
-                                                <td>{{ $data->renew }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Possession</th>
-                                                <td>{{ $data->possession }}</td>
-                                                
-                                            </tr>
-                                            
-                                            
                                         </tbody>
                                     </table>               
                                 </div>
-                                <div class="card-header">
-                                    <h3 class="card-title custom_h3" id="heading">Land Information Files</h3>
-                                </div>
-                                <div class="card-body">
-                                    <table id="data_table" class="table dataTable no-footer dtr-inline">
-                                        <thead>
-                                            <tr>
-                                                <th class="table_text_center">Uploaded Document</th>
-                                                <th class="table_text_center">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($land_information_files as $files)
-                                            <tr>
-                                                <td class="table_text_center">
-                                                    {{ $files->uploaded_document }}
-                                                </td>
-                                                <td class="table_text_center">
-                                                        <a href="{{ route('download-land-information-files', $files->id) }}"><button
-                                                            class="btn btn-outline-success btn-sm" data-toggle="tooltip"
-                                                            data-placement="top" title="Download"><i class="fas fa-download"></i></button></a>
-
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-
 
                         </div>
                     </div>

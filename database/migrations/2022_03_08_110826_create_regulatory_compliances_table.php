@@ -37,6 +37,9 @@ class CreateRegulatoryCompliancesTable extends Migration
             $table->string('utility_water')->nullable();
             $table->string('utility_expires')->nullable();
             $table->string('utility_renew')->nullable();
+            $table->integer('delete_status')->default(0);
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

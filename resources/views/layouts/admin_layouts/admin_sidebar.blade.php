@@ -452,7 +452,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('social-compliance') }}" class="nav-link">
                                 <i class="ml-left"></i>
                                 <p>Social Compliance</p>
                             </a>

@@ -43,7 +43,8 @@
                     @endif
                     <div class="card">
                         <div class="">
-                            <form action="{{ route('save-regulatory-compliance') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('save-regulatory-compliance') }}" method="post"
+                                enctype="multipart/form-data">
 
                                 <section class="panel">
                                     <header class="panel-heading tab-bg-dark-navy-blue">
@@ -67,9 +68,7 @@
 
                                                 <div class="card-header">
                                                     <h3 class="card-title" id="heading">Certificate/License</h3>
-                                                    <div class="float-right">
-                                                        <a class="btn btn-success" href="#"> Preview </a>
-                                                    </div>
+                                                    
                                                 </div>
 
                                                 @csrf
@@ -99,7 +98,8 @@
                                                                         id="compliance_category_id">
                                                                         <option value="">Select</option>
                                                                         @foreach ($compliance_category as $item)
-                                                                            <option value="{{ $item->id }}" {{ (old('compliance_category_id') == $item->id ? 'selected' : '') }}>
+                                                                            <option value="{{ $item->id }}"
+                                                                                {{ old('compliance_category_id') == $item->id ? 'selected' : '' }}>
                                                                                 {{ $item->compliance_category_name }}
                                                                             </option>
                                                                         @endforeach
@@ -129,7 +129,8 @@
                                                                     class="col-sm-4 col-form-label">Ministry/Dept.</label>
                                                                 <div class="col-sm-8">
                                                                     <input type="text" class="form-control"
-                                                                        id="certificates_ministry" name="certificates_ministry"
+                                                                        id="certificates_ministry"
+                                                                        name="certificates_ministry"
                                                                         value="{{ old('certificates_ministry') }}">
                                                                     @error('certificates_ministry')
                                                                         <span class="text-danger">{{ $message }}</span>
@@ -233,157 +234,144 @@
                                                             <div class="card-header">
                                                                 <h3 class="card-title" id="heading">Local Govt./License
                                                                 </h3>
-                                                                <div class="float-right">
-                                                                    <a class="btn btn-success" href="#">
-                                                                        Preview </a>
-                                                                </div>
+                                                                
                                                             </div>
 
-                                                            <form action="#" method="post">
-                                                                @csrf
-                                                                <div class="card-body">
+                                                            <div class="card-body">
 
-                                                                    <div class="row">
+                                                                <div class="row">
 
-                                                                        <div class="col-md-6">
+                                                                    <div class="col-md-6">
 
-                                                                            <div class="form-group row">
-                                                                                <label for="govt_authority"
-                                                                                    class="col-sm-4 col-form-label">
-                                                                                    Name of
-                                                                                    Authority
-                                                                                </label>
-                                                                                <div class="col-sm-8">
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="govt_authority"
-                                                                                        name="govt_authority"
-                                                                                        value="{{ old('govt_authority') }}">
-                                                                                    @error('govt_authority')
-                                                                                        <span
-                                                                                            class="text-danger">{{ $message }}</span>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="govt_ministry_dept"
-                                                                                    class="col-sm-4 col-form-label">
-                                                                                    Ministry/Dept.
-                                                                                </label>
-                                                                                <div class="col-sm-8">
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="govt_ministry_dept"
-                                                                                        name="govt_ministry_dept"
-                                                                                        value="{{ old('govt_ministry_dept') }}">
-                                                                                    @error('govt_ministry_dept')
-                                                                                        <span
-                                                                                            class="text-danger">{{ $message }}</span>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="govt_getting_cl_first_date"
-                                                                                    class="col-sm-4 col-form-label"> First
-                                                                                    Date
-                                                                                    of getting C/L
-                                                                                </label>
-                                                                                <div class="col-sm-8">
-                                                                                    <input type="date"
-                                                                                        class="form-control"
-                                                                                        id="govt_getting_cl_first_date"
-                                                                                        name="govt_getting_cl_first_date"
-                                                                                        value="{{ old('govt_getting_cl_first_date') }}">
-                                                                                    @error('govt_getting_cl_first_date')
-                                                                                        <span
-                                                                                            class="text-danger">{{ $message }}</span>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="govt_expires"
-                                                                                    class="col-sm-4 col-form-label">
-                                                                                    Expires
-                                                                                </label>
-                                                                                <div class="col-sm-8">
-                                                                                    <input type="date"
-                                                                                        class="form-control"
-                                                                                        id="govt_expires"
-                                                                                        name="govt_expires"
-                                                                                        value="{{ old('govt_expires') }}">
-                                                                                    @error('govt_expires')
-                                                                                        <span
-                                                                                            class="text-danger">{{ $message }}</span>
-                                                                                    @enderror
-                                                                                </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="govt_authority"
+                                                                                class="col-sm-4 col-form-label">
+                                                                                Name of
+                                                                                Authority
+                                                                            </label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control"
+                                                                                    id="govt_authority"
+                                                                                    name="govt_authority"
+                                                                                    value="{{ old('govt_authority') }}">
+                                                                                @error('govt_authority')
+                                                                                    <span
+                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                @enderror
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-6">
+                                                                        <div class="form-group row">
+                                                                            <label for="govt_ministry_dept"
+                                                                                class="col-sm-4 col-form-label">
+                                                                                Ministry/Dept.
+                                                                            </label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control"
+                                                                                    id="govt_ministry_dept"
+                                                                                    name="govt_ministry_dept"
+                                                                                    value="{{ old('govt_ministry_dept') }}">
+                                                                                @error('govt_ministry_dept')
+                                                                                    <span
+                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="govt_getting_cl_first_date"
+                                                                                class="col-sm-4 col-form-label"> First
+                                                                                Date
+                                                                                of getting C/L
+                                                                            </label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="date" class="form-control"
+                                                                                    id="govt_getting_cl_first_date"
+                                                                                    name="govt_getting_cl_first_date"
+                                                                                    value="{{ old('govt_getting_cl_first_date') }}">
+                                                                                @error('govt_getting_cl_first_date')
+                                                                                    <span
+                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="govt_expires"
+                                                                                class="col-sm-4 col-form-label">
+                                                                                Expires
+                                                                            </label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="date" class="form-control"
+                                                                                    id="govt_expires" name="govt_expires"
+                                                                                    value="{{ old('govt_expires') }}">
+                                                                                @error('govt_expires')
+                                                                                    <span
+                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
 
-                                                                            <div class="form-group row">
-                                                                                <label for="govt_renew"
-                                                                                    class="col-sm-4 col-form-label"> Renew
-                                                                                </label>
-                                                                                <div class="col-sm-8">
-                                                                                    <input type="date"
-                                                                                        class="form-control"
-                                                                                        id="govt_renew" name="govt_renew"
-                                                                                        value="{{ old('govt_renew') }}">
-                                                                                    @error('govt_renew')
-                                                                                        <span
-                                                                                            class="text-danger">{{ $message }}</span>
-                                                                                    @enderror
-                                                                                </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="govt_renew"
+                                                                                class="col-sm-4 col-form-label"> Renew
+                                                                            </label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="date" class="form-control"
+                                                                                    id="govt_renew" name="govt_renew"
+                                                                                    value="{{ old('govt_renew') }}">
+                                                                                @error('govt_renew')
+                                                                                    <span
+                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                @enderror
                                                                             </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="govt_special_provision"
-                                                                                    class="col-sm-4 col-form-label">
-                                                                                    Special
-                                                                                    Provision
-                                                                                </label>
-                                                                                <div class="col-sm-8">
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="govt_special_provision"
-                                                                                        name="govt_special_provision"
-                                                                                        value="{{ old('govt_special_provision') }}">
-                                                                                    @error('govt_special_provision')
-                                                                                        <span
-                                                                                            class="text-danger">{{ $message }}</span>
-                                                                                    @enderror
-                                                                                </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="govt_special_provision"
+                                                                                class="col-sm-4 col-form-label">
+                                                                                Special
+                                                                                Provision
+                                                                            </label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control"
+                                                                                    id="govt_special_provision"
+                                                                                    name="govt_special_provision"
+                                                                                    value="{{ old('govt_special_provision') }}">
+                                                                                @error('govt_special_provision')
+                                                                                    <span
+                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                @enderror
                                                                             </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="govt_special_remarks"
-                                                                                    class="col-sm-4 col-form-label">
-                                                                                    Special
-                                                                                    Remarks
-                                                                                </label>
-                                                                                <div class="col-sm-8">
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="govt_special_remarks"
-                                                                                        name="govt_special_remarks"
-                                                                                        value="{{ old('govt_special_remarks') }}">
-                                                                                    @error('govt_special_remarks')
-                                                                                        <span
-                                                                                            class="text-danger">{{ $message }}</span>
-                                                                                    @enderror
-                                                                                </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="govt_special_remarks"
+                                                                                class="col-sm-4 col-form-label">
+                                                                                Special
+                                                                                Remarks
+                                                                            </label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control"
+                                                                                    id="govt_special_remarks"
+                                                                                    name="govt_special_remarks"
+                                                                                    value="{{ old('govt_special_remarks') }}">
+                                                                                @error('govt_special_remarks')
+                                                                                    <span
+                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                @enderror
                                                                             </div>
-
                                                                         </div>
 
                                                                     </div>
-
-                                                                    <div class="float-right mt-4">
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary text-uppercase"><i
-                                                                                class="fas fa-save"></i> Save </button>
-                                                                    </div>
-
 
                                                                 </div>
+
+                                                                <div class="float-right mt-4">
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary text-uppercase"><i
+                                                                            class="fas fa-save"></i> Save </button>
+                                                                </div>
+
+
+                                                            </div>
 
 
                                                         </div>
@@ -394,118 +382,111 @@
 
                                                 <div class="card-header">
                                                     <h3 class="card-title" id="heading">Utility Management</h3>
-                                                    <div class="float-right">
-                                                        <a class="btn btn-success" href="#"> Preview </a>
-                                                    </div>
+                                                    
                                                 </div>
 
-                                                <form action="#" method="post" enctype="multipart/form-data">
-                                                    @csrf
-                                                    <div class="card-body">
+                                                <div class="card-body">
 
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group row">
-                                                                    <label for="utility_electricity"
-                                                                        class="col-sm-4 col-form-label">Electricity
-                                                                    </label>
-                                                                    <div class="col-sm-8">
-                                                                        <input type="text" class="form-control"
-                                                                            id="utility_electricity"
-                                                                            name="utility_electricity"
-                                                                            value="{{ old('utility_electricity') }}">
-                                                                        @error('utility_electricity')
-                                                                            <span
-                                                                                class="text-danger">{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label for="utility_electricity"
+                                                                    class="col-sm-4 col-form-label">Electricity
+                                                                </label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control"
+                                                                        id="utility_electricity" name="utility_electricity"
+                                                                        value="{{ old('utility_electricity') }}">
+                                                                    @error('utility_electricity')
+                                                                        <span
+                                                                            class="text-danger">{{ $message }}</span>
+                                                                    @enderror
                                                                 </div>
-                                                                <div class="form-group row">
-                                                                    <label for="utility_gas"
-                                                                        class="col-sm-4 col-form-label">Gas </label>
-                                                                    <div class="col-sm-8">
-                                                                        <input type="text" class="form-control"
-                                                                            id="utility_gas" name="utility_gas"
-                                                                            value="{{ old('utility_gas') }}">
-                                                                        @error('utility_gas')
-                                                                            <span
-                                                                                class="text-danger">{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <label for="utility_sewerage"
-                                                                        class="col-sm-4 col-form-label">Sewerage
-                                                                    </label>
-                                                                    <div class="col-sm-8">
-                                                                        <input type="text" class="form-control"
-                                                                            id="utility_sewerage" name="utility_sewerage"
-                                                                            value="{{ old('utility_sewerage') }}">
-                                                                        @error('utility_sewerage')
-                                                                            <span
-                                                                                class="text-danger">{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-
                                                             </div>
-
-                                                            <div class="col-md-6">
-                                                                <div class="form-group row">
-                                                                    <label for="utility_water"
-                                                                        class="col-sm-4 col-form-label">
-                                                                        Water
-                                                                    </label>
-                                                                    <div class="col-sm-8">
-                                                                        <input type="text" class="form-control"
-                                                                            id="utility_water" name="utility_water"
-                                                                            value="{{ old('utility_water') }}">
-                                                                        @error('utility_water')
-                                                                            <span
-                                                                                class="text-danger">{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
+                                                            <div class="form-group row">
+                                                                <label for="utility_gas"
+                                                                    class="col-sm-4 col-form-label">Gas </label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control"
+                                                                        id="utility_gas" name="utility_gas"
+                                                                        value="{{ old('utility_gas') }}">
+                                                                    @error('utility_gas')
+                                                                        <span
+                                                                            class="text-danger">{{ $message }}</span>
+                                                                    @enderror
                                                                 </div>
-                                                                <div class="form-group row">
-                                                                    <label for="utility_expires"
-                                                                        class="col-sm-4 col-form-label"> Expires
-                                                                    </label>
-                                                                    <div class="col-sm-8">
-                                                                        <input type="date" class="form-control"
-                                                                            id="utility_expires" name="utility_expires"
-                                                                            value="{{ old('utility_expires') }}">
-                                                                        @error('utility_expires')
-                                                                            <span
-                                                                                class="text-danger">{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <label for="utility_renew"
-                                                                        class="col-sm-4 col-form-label">
-                                                                        Renew
-                                                                    </label>
-                                                                    <div class="col-sm-8">
-                                                                        <input type="date" class="form-control"
-                                                                            id="utility_renew" name="utility_renew"
-                                                                            value="{{ old('utility_renew') }}">
-                                                                        @error('utility_renew')
-                                                                            <span
-                                                                                class="text-danger">{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="utility_sewerage"
+                                                                    class="col-sm-4 col-form-label">Sewerage
+                                                                </label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control"
+                                                                        id="utility_sewerage" name="utility_sewerage"
+                                                                        value="{{ old('utility_sewerage') }}">
+                                                                    @error('utility_sewerage')
+                                                                        <span
+                                                                            class="text-danger">{{ $message }}</span>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
 
                                                         </div>
 
-                                                        <div class="float-right mt-4">
-                                                            <button type="submit" class="btn btn-primary text-uppercase"><i
-                                                                    class="fas fa-save"></i> Save </button>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label for="utility_water" class="col-sm-4 col-form-label">
+                                                                    Water
+                                                                </label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control"
+                                                                        id="utility_water" name="utility_water"
+                                                                        value="{{ old('utility_water') }}">
+                                                                    @error('utility_water')
+                                                                        <span
+                                                                            class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="utility_expires"
+                                                                    class="col-sm-4 col-form-label"> Expires
+                                                                </label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="date" class="form-control"
+                                                                        id="utility_expires" name="utility_expires"
+                                                                        value="{{ old('utility_expires') }}">
+                                                                    @error('utility_expires')
+                                                                        <span
+                                                                            class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="utility_renew" class="col-sm-4 col-form-label">
+                                                                    Renew
+                                                                </label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="date" class="form-control"
+                                                                        id="utility_renew" name="utility_renew"
+                                                                        value="{{ old('utility_renew') }}">
+                                                                    @error('utility_renew')
+                                                                        <span
+                                                                            class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
                                                         </div>
-
 
                                                     </div>
+
+                                                    <div class="float-right mt-4">
+                                                        <button type="submit" class="btn btn-primary text-uppercase"><i
+                                                                class="fas fa-save"></i> Save </button>
+                                                    </div>
+
+
+                                                </div>
 
 
                                             </div>
