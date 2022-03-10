@@ -61,38 +61,53 @@
 
                                             <div class="row">
                                                 <div class="col-md-6">
+                                                    
                                                     <div class="form-group row">
-                                                        <label for="certificates_name"
-                                                            class="col-sm-4 col-form-label">Certificates/ License</label>
+                                                        <label for="employment_condition"
+                                                            class="col-sm-4 col-form-label">Employment
+                                                            Condition</label>
                                                         <div class="col-sm-8">
                                                             <input type="text" class="form-control"
-                                                                id="certificates_name"
-                                                                name="certificates_name"
-                                                                value="{{ old('certificates_name') }}">
-                                                            @error('certificates_name')
+                                                                id="employment_condition"
+                                                                name="employment_condition"
+                                                                value="{{ old('employment_condition') }}">
+                                                            @error('employment_condition')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
-
-
+                                                    <div class="form-group row">
+                                                        <label for="code_of_conduct"
+                                                            class="col-sm-4 col-form-label">Code of Conduct
+                                                        </label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control"
+                                                                id="code_of_conduct" name="code_of_conduct"
+                                                                value="{{ old('code_of_conduct') }}">
+                                                            @error('code_of_conduct')
+                                                                <span
+                                                                    class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
+                                                                                                       
                                                     <div class="form-group row">
-                                                        <label for="certificates_authority"
-                                                            class="col-sm-4 col-form-label">Certificates Authority</label>
+                                                        <label for="international_standard"
+                                                            class="col-sm-4 col-form-label">International Standard
+                                                        </label>
                                                         <div class="col-sm-8">
                                                             <input type="text" class="form-control"
-                                                                id="certificates_authority"
-                                                                name="certificates_authority"
-                                                                value="{{ old('certificates_authority') }}">
-                                                            @error('certificates_authority')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                                id="international_standard"
+                                                                name="international_standard"
+                                                                value="{{ old('international_standard') }}">
+                                                            @error('international_standard')
+                                                                <span
+                                                                    class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                    
-
                                                 </div>
                                             </div>
 

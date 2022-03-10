@@ -436,7 +436,42 @@ if (res.result == "billing") {
             });
             
             
-            } else {
+        }else if (res.result == "social_compliance") {
+            
+            console.log(res.data);
+
+            $('#search_data').empty();
+            $.each(res.data, function(key, value){
+        
+                $('#search_data').append(`
+
+                                <tr>
+                                    <td> ${value.employment_condition === null ? '':value.employment_condition} </td>
+                                    <td> ${value.working_hour_leave === null ? '':value.working_hour_leave} </td>
+                                    <td> ${value.compensation_benefit === null ? '':value.compensation_benefit} </td>
+                                    <td> ${value.hygine_safety === null ? '':value.hygine_safety} </td>
+                                    <td> ${value.welfare_security === null ? '':value.welfare_security} </td>
+                                    <td> ${value.industrial_relation === null ? '':value.industrial_relation} </td>
+                                    <td> ${value.labour_law_safety === null ? '':value.labour_law_safety} </td>
+                                    <td> ${value.bnbc_safety === null ? '':value.bnbc_safety} </td>
+                                    <td> ${value.delete_status === 0 ? 'Active' : 'Inactive'} </td>
+                                    <td>
+                                        <a href="view-social-compliance/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                            ><i class="fas fa-eye"></i></button></a>
+                                        
+                                        <a href="edit-social-compliance/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                            ><i class="fas fa-edit"></i></button></a>
+                                            
+                                        <button onclick='social_compliance_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                            
+                                    </td>
+                                </tr>
+        
+                `);
+            });
+            
+            
+        } else {
                 $('#search_data').empty();
                 $.each(res, function(key, value){
 

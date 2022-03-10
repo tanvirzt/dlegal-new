@@ -34,6 +34,14 @@
   <link rel="stylesheet" href="{{ asset('css/admin_css/custom.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+{{-- new  --}}
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('new/plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- Theme style -->
+  {{-- <link rel="stylesheet" href="{{ asset('new/dist/css/adminlte.min.css') }}"> --}}
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -105,6 +113,11 @@
     <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+{{-- new  --}}
+
+
 
     <script>
         $(function () {

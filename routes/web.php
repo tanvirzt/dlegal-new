@@ -417,6 +417,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('view-social-compliance/{id}','SocialComplianceController@view_social_compliance')->name('view-social-compliance');
         Route::post('search-social-compliance','SocialComplianceController@search_social_compliance')->name('search-social-compliance');
 
+        Route::get('document-management','DocManagementController@document_management')->name('document-management');
 
     });
 

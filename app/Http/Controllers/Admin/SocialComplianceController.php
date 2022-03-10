@@ -146,27 +146,29 @@ class SocialComplianceController extends Controller
 
     public function search_social_compliance(Request $request)
     {
+// dd($request->all());
+        $query = DB::table('social_compliances');
 
-        $query = DB::table('social_compliances')
-                ->leftJoin('setup_compliance_categories','social_compliances.compliance_category_id','=','setup_compliance_categories.id');        
-        
-        if ($request->compliance_category_id) {
+        if ($request->employment_condition) {
 
-            $query2 = $query->where('social_compliances.compliance_category_id',$request->compliance_category_id);
+            $query2 = $query->where('social_compliances.employment_condition',$request->employment_condition);
                     
 
-        }else if ($request->certificates_name) {
+        }else if ($request->code_of_conduct) {
 
-            $query2 = $query->where('social_compliances.certificates_name',$request->certificates_name);
+            $query2 = $query->where('social_compliances.code_of_conduct',$request->code_of_conduct);
 
-        }else if ($request->certificates_authority) {
+        }else if ($request->international_standard) {
 
-            $query2 = $query->where('social_compliances.certificates_authority',$request->certificates_authority);
+            $query2 = $query->where('social_compliances.international_standard',$request->international_standard);
 
-        } 
+        }else{
 
-        $data = $query2->select('social_compliances.*','setup_compliance_categories.compliance_category_name')
-                    ->get();
+            $query2 = $query;
+            
+        }
+
+            $data = $query2->get();
         
         return response()->json([
             'result' => 'social_compliance',

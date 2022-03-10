@@ -478,14 +478,12 @@
                     </a>
                 </li> -->
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('document-management') }}" class="nav-link">
                         <i class="fas fa-chart-line nav-icon"></i>
                         <p>
                             Documentation Management
-                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-
                 </li>
 
                 <li class="nav-item has-treeview">
