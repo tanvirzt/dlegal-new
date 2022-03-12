@@ -40,6 +40,7 @@ use App\Models\SetupThana;
 use App\Models\SetupSellerBuyer;
 use App\Models\SetupFloor;
 use App\Models\SetupFlatNumber;
+use App\Models\CivilCasesFile;
 use Illuminate\Support\Facades\DB;
 
 
@@ -1742,7 +1743,7 @@ public function delete_company($id)
          {
              $original_name = $file->getClientOriginalName();
              $name = time().rand(1,100).$original_name;
-             $file->move(public_path('files/civil_cases'), $name);
+             $file->move(public_path('files/external_council'), $name);
 
              $file= new SetupExternalCouncilFile();
              $file->external_council_id = $data->id;
@@ -1803,7 +1804,7 @@ public function delete_company($id)
          {
              $original_name = $file->getClientOriginalName();
              $name = time().rand(1,100).$original_name;
-             $file->move(public_path('files/civil_cases'), $name);
+             $file->move(public_path('files/external_council'), $name);
 
              $file= new SetupExternalCouncilFile();
              $file->external_council_id = $data->id;
@@ -1949,7 +1950,7 @@ public function delete_company($id)
          {
              $original_name = $file->getClientOriginalName();
              $name = time().rand(1,100).$original_name;
-             $file->move(public_path('files/civil_cases'), $name);
+             $file->move(public_path('files/internal_council'), $name);
 
              $file= new SetupInternalCouncilFiles();
              $file->internal_council_id = $data->id;
@@ -2111,7 +2112,7 @@ public function delete_company($id)
          {
              $original_name = $file->getClientOriginalName();
              $name = time().rand(1,100).$original_name;
-             $file->move(public_path('files/civil_cases'), $name);
+             $file->move(public_path('files/external_council_associates_file'), $name);
 
              $file= new SetupExternalCouncilAssociatesFile();
              $file->external_council_associates_id = $data->id;
@@ -2830,6 +2831,27 @@ public function delete_flat_number($id)
 
     session()->flash('success', 'Flat Number Deleted');
     return redirect()->back();
+}
+
+public function download_external_council_files($id)
+{
+    $files = SetupExternalCouncilFile::where('id', $id)->firstOrFail();
+    $pathToFile = public_path('/files/external_council/'.$files->uploaded_document);
+    return response()->download($pathToFile);
+}
+
+public function download_internal_council_files($id)
+{
+    $files = SetupInternalCouncilFiles::where('id', $id)->firstOrFail();
+    $pathToFile = public_path('/files/internal_council/'.$files->uploaded_document);
+    return response()->download($pathToFile);
+}
+
+public function download_external_council_associates_files($id)
+{
+    $files = SetupExternalCouncilAssociatesFile::where('id', $id)->firstOrFail();
+    $pathToFile = public_path('/files/external_council_associates_file/'.$files->uploaded_document);
+    return response()->download($pathToFile);
 }
 
 

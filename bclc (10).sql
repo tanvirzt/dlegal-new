@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2022 at 01:28 PM
+-- Generation Time: Mar 12, 2022 at 12:38 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -315,9 +315,9 @@ CREATE TABLE `civil_cases` (
 --
 
 INSERT INTO `civil_cases` (`id`, `case_no`, `date_of_filing`, `division_id`, `case_year`, `district_id`, `ref_no`, `amount`, `location`, `case_status_id`, `property_type_id`, `case_category_nature_id`, `case_type_id`, `name_of_the_court_id`, `external_council_name_id`, `external_council_associates_id`, `relevant_law_sections_id`, `plaintiff_name`, `contact_number`, `plaintiff_designaiton_id`, `next_date`, `plaintiff_contact_number`, `next_date_fixed_id`, `company_id`, `zone_id`, `area_id`, `subsequent_plaintiff_name`, `name_of_suit`, `defendent_name`, `defendent_address`, `defendent_company_id`, `date_of_incident`, `last_order_court_id`, `date_of_incident_to`, `additional_order`, `first_identification_person`, `disbursement_date`, `date_of_identification`, `date_of_cash_receipt`, `case_notes`, `date_of_disposed`, `power_of_attorny`, `total_legal_bill_amount_cost`, `panel_lawyer_id`, `assigned_lawyer_id`, `notes`, `other_claim`, `summary_facts_alligation`, `missing_documents_evidence_information`, `comments`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '65464321', '2022-02-24', 1, '2026', 1, '35465464815245', '60000', 'Dhaka', 3, 2, 2, 1, 1, 1, 1, 2, 'test1 asdf', '01771045019', 1, '2022-02-24', '01456698785', 2, 2, 2, 2, 'test test test asdfasdfdsaf', '5465456', 'test10', '43 Phillip St, Sydney NSW 2000, Australia', 1, '2022-02-09', 1, '2022-02-25', 'test5', 'test test', '2022-03-03', '2022-02-17', '2022-02-25', 'test21', '2022-02-24', 'sdfsdfdsf', '810000', 1, 1, 'test test test test', 'test test test', 'test test 65641564', 'test test test 65465461', 'test required', 1, NULL, NULL, '2022-02-15 05:32:57', '2022-03-07 06:05:59'),
-(2, '4546151', '2022-02-18', 2, '2026', 3, 'test15 asdf', '35000', 'Dhaka', 3, 2, 2, 1, 1, 2, 3, 2, 'd test test', '01771045019', 2, '2022-02-13', '01456698785', 2, 2, 2, 2, 'test test test', 'Aminur Rahman Smith Aminur', NULL, '43 Phillip St, Sydney NSW 2000, Australia', 2, '2022-02-19', 1, '2022-02-18', 'test5', 'Jhon', '2022-02-17', '2022-03-10', '2022-02-19', 'test24', '2022-03-03', 'none test', '810000', 2, 1, 'teststest', 'test test 465465', 'test test test test', 'qqqqqqq eeeeeee rrrrrrrr ttttttty      yyyyyyyyyyyy', 'test test sdfsadfsd', 1, NULL, NULL, '2022-02-15 21:53:20', '2022-03-07 22:00:17'),
-(3, '654663', '2022-02-18', 3, '2026', 5, '5465', '36000', 'Dhaka', 3, 3, 2, 2, 1, 2, 4, 3, 'test 2', '01771045012', 2, '2022-03-11', '01456698782', 3, 2, 2, 2, 'test3', 'Aminur Rahman Smith Aminur', 'test10', '43 Phillip St, Sydney NSW 2000, Australia', 2, '2022-02-09', 1, '2022-02-17', 'test5', 'tesa', '2022-02-08', '2022-02-16', '2022-03-12', 'test21', '2022-02-24', 'sdfsdfdsf', '890000', NULL, 0, 'test 6', 'test 9', 'test 10', 'test 3', 'test 2', 1, NULL, NULL, '2022-02-27 23:05:12', '2022-03-07 06:07:15');
+(1, '65464321', '2022-02-24', 1, '2026', 1, '35465464815245', '60000', 'Dhaka', 3, 2, 2, 1, 1, 1, 1, 2, 'test1 asdf', '01771045019', 1, '2022-02-24', '01456698785', 2, 2, 2, 2, 'test test test asdfasdfdsaf', '5465456', 'test10', '43 Phillip St, Sydney NSW 2000, Australia', 1, '2022-02-09', 1, '2022-02-25', 'test5', 'test test', '2022-03-03', '2022-02-17', '2022-02-25', 'test21', '2022-02-24', 'sdfsdfdsf', '810000', 1, 1, 'test test test test', 'test test test', 'test test 65641564', 'test test test 65465461', 'test required', 0, NULL, NULL, '2022-02-15 05:32:57', '2022-03-10 04:44:32'),
+(2, '4546151', '2022-02-18', 2, '2026', 3, 'test15 asdf', '35000', 'Dhaka', 3, 2, 2, 1, 1, 2, 3, 2, 'd test test', '01771045019', 2, '2022-02-13', '01456698785', 2, 2, 2, 2, 'test test test', 'Aminur Rahman Smith Aminur', NULL, '43 Phillip St, Sydney NSW 2000, Australia', 2, '2022-02-19', 1, '2022-02-18', 'test5', 'Jhon', '2022-02-17', '2022-03-10', '2022-02-19', 'test24', '2022-03-03', 'none test', '810000', 2, 1, 'teststest', 'test test 465465', 'test test test test', 'qqqqqqq eeeeeee rrrrrrrr ttttttty      yyyyyyyyyyyy', 'test test sdfsadfsd', 0, NULL, NULL, '2022-02-15 21:53:20', '2022-03-10 04:44:30'),
+(3, '654663', '2022-02-18', 3, '2026', 5, '5465', '36000', 'Dhaka', 3, 3, 2, 2, 1, 2, 4, 3, 'test 2', '01771045012', 2, '2022-03-11', '01456698782', 3, 2, 2, 2, 'test3', 'Aminur Rahman Smith Aminur', 'test10', '43 Phillip St, Sydney NSW 2000, Australia', 2, '2022-02-09', 1, '2022-02-17', 'test5', 'tesa', '2022-02-08', '2022-02-16', '2022-03-12', 'test21', '2022-02-24', 'sdfsdfdsf', '890000', NULL, 0, 'test 6', 'test 9', 'test 10', 'test 3', 'test 2', 0, NULL, NULL, '2022-02-27 23:05:12', '2022-03-10 04:44:34');
 
 -- --------------------------------------------------------
 
@@ -468,10 +468,10 @@ CREATE TABLE `criminal_cases` (
 --
 
 INSERT INTO `criminal_cases` (`id`, `case_no`, `date_of_case_received`, `case_category_nature_id`, `case_type_id`, `subsequent_case_no`, `zone_id`, `area_id`, `branch_id`, `member_no`, `program_id`, `police_station`, `name_of_the_court_id`, `date_of_filing`, `division_id`, `district_id`, `relevant_law_sections_id`, `alligation_id`, `amount`, `name_of_the_complainant`, `complainant_contact_no`, `complainant_designation_id`, `external_council_name_id`, `external_council_associates_id`, `case_status_id`, `last_order_court_id`, `accused_name`, `accused_company_id`, `next_date`, `accused_address`, `accused_contact_no`, `next_date_fixed_id`, `plaintiff_name`, `plaintiff_designaiton_id`, `plaintiff_contact_number`, `company_id`, `case_notes`, `panel_lawyer_id`, `assigned_lawyer_id`, `other_claim`, `summary_facts_alligation`, `prayer_claims_by_psg`, `total_legal_bill_amount`, `missing_documents_evidence`, `comments`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '6546', '2022-02-18', '2', 2, 'tewt', 2, '2', 2, '546464', 2, 'Lalbagh', 1, '2022-03-03', 3, 5, 3, 2, '56000', 'Aminur Rahman Smith Aminur', '01998744563', 2, 1, 2, 3, 1, 'Aminur Rahman Smith Aminur', NULL, '2022-02-06', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 3, 'test1', 2, '01456698785', 2, 'test21', 2, 2, 'no claim', 'all of summary', 'test and no claims by psg', '25600', 'all documents area available', 'test documents', 1, NULL, NULL, '2022-02-15 23:48:56', '2022-03-07 06:07:33'),
+(1, '6546', '2022-02-18', '2', 2, 'tewt', 2, '2', 2, '546464', 2, 'Lalbagh', 1, '2022-03-03', 3, 5, 3, 2, '56000', 'Aminur Rahman Smith Aminur', '01998744563', 2, 1, 2, 3, 1, 'Aminur Rahman Smith Aminur', NULL, '2022-02-06', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 3, 'test1', 2, '01456698785', 2, 'test21', 2, 2, 'no claim', 'all of summary', 'test and no claims by psg', '25600', 'all documents area available', 'test documents', 0, NULL, NULL, '2022-02-15 23:48:56', '2022-03-07 06:07:33'),
 (2, '654643', '2022-02-03', '2', 1, '7788965', 2, '1', 2, '546464', 2, 'Lalbagh', 1, '2022-02-25', 2, 3, 3, 2, '68000', 'Aminur Rahman Smith Aminur', '01998744563', 1, 1, 2, 3, 1, 'Aminur Rahman Smith Aminur', 2, '2022-02-17', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 2, 'test plaintiff', 2, '01456698785', 2, 'no cases available', 2, 2, 'other claim', 'all facts', 'psg claims', '77600', 'case files 1, case files 2', 'case two updated with new value', 0, NULL, NULL, '2022-02-15 23:56:59', '2022-02-16 01:25:55'),
 (3, '6399887745', '2022-02-01', '2', 2, '7788965', 2, '1', 2, '546464', 2, 'Lalbagh', 1, '2022-02-07', 2, 3, 1, 1, '2454545', 'Aminur Rahman Smith Aminur', '01998744563', 2, 2, 3, 3, 1, 'Aminur Rahman Smith Aminur', 2, '2022-02-17', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 3, 'test cases', 2, '01456698785', 2, 'no cases', 2, 2, 'test cases', 'no facts and summary available', 'claims by psg test', '78600', 'files 1, files 2, files 3', 'criminal case no 3 updated', 0, NULL, NULL, '2022-02-16 00:01:50', '2022-02-24 03:51:32'),
-(4, '4546151', '2022-02-07', '2', 2, '77', 2, '2', 2, '546464', 2, 'Lalbagh', 1, '2022-03-02', 2, 3, 2, 2, '49000', 'Aminur Rahman Smith Aminur', '01998744563', 2, 2, 4, 3, 1, 'Aminur Rahman Smith Aminur', 1, '2022-02-01', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 1, 'test1', 2, '01456698785', 2, 'test21', 2, 2, 'test cases', 'test summary facts and alligations', 'claims by psg', '29600', 'test files 1, test files 2, test files 3', 'test with no comments.', 1, NULL, NULL, '2022-02-20 01:15:27', '2022-03-01 06:06:44');
+(4, '4546151', '2022-02-07', '2', 2, '77', 2, '2', 2, '546464', 2, 'Lalbagh', 1, '2022-03-02', 2, 3, 2, 2, '49000', 'Aminur Rahman Smith Aminur', '01998744563', 2, 2, 4, 3, 1, 'Aminur Rahman Smith Aminur', 1, '2022-02-01', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 1, 'test1', 2, '01456698785', 2, 'test21', 2, 2, 'test cases', 'test summary facts and alligations', 'claims by psg', '29600', 'test files 1, test files 2, test files 3', 'test with no comments.', 0, NULL, NULL, '2022-02-20 01:15:27', '2022-03-01 06:06:44');
 
 -- --------------------------------------------------------
 
@@ -965,7 +965,7 @@ CREATE TABLE `land_information` (
 --
 
 INSERT INTO `land_information` (`id`, `property_type_id`, `district_id`, `thana_id`, `seller_id`, `buyer_id`, `cs_khatian`, `cs_dag`, `sa_khatian`, `sa_dag`, `rs_khatian`, `rs_dag`, `bs_khatian`, `bs_dag`, `khatian_dag_city_jorip`, `land_area`, `deed_no`, `date_of_deed`, `deed_value`, `possession`, `boundary_wall`, `any_dispute`, `any_suit_case`, `property_owner`, `mouza_name`, `mutation_khatian_no`, `mutation_case_no`, `mutation_khatian_owner`, `dcr_number`, `dcr_date`, `register_office_name`, `land_compliance`, `electricity`, `gas`, `sewerage`, `water`, `expires`, `renew`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 2, 2, 4, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  9', 'land area 10', 'deed no 11', 'dod 12', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Jack Smith', '17 sadf', 'test mutation', 'm case no', 'test khatian', '4654654DCR', '2022-03-17', 'Main office', 'No', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-03-06 00:24:05', '2022-03-08 23:23:20'),
+(1, 2, 2, 4, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  9', 'land area 10', 'deed no 11', 'dod 12', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Jack Smith', '17 sadf', 'test mutation', 'm case no', 'test khatian', '4654654DCR', '2022-03-17', 'Main office', 'No', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-03-06 00:24:05', '2022-03-12 00:42:09'),
 (2, 3, 4, 3, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'aaaa', 'land area 10', 'deed no 11', '12 test', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Stefen', '17 sadf', 'test mutation', 'm case no', '20 ertre', '23 test', '2022-03-15', 'test offfice', 'Yes', 'elect 98', 'test gas', 'test sewerage', 'test warter', '2022-03-31', '2022-03-30', 0, NULL, NULL, '2022-03-06 00:25:45', '2022-03-07 06:05:50');
 
 -- --------------------------------------------------------
@@ -1317,7 +1317,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('UUl6bVU0Vs2NmbP62uVaZaCq63cfPUrEqNN8ciCj', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQzVVdWtkTm9OT3FUT3VjNklPRW9vYjFiMTJ0S0VSbHd1aGhuNTI4RCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjM6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9zb2NpYWwtY29tcGxpYW5jZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTI6ImxvZ2luX2FkbWluXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjQ6InBhZ2UiO3M6OToiZGFzaGJvYXJkIjt9', 1646828871);
+('5aUgtxP3YyKGccD1f8opWHsQQBlBSNQRKFENL3lF', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoickFYaFplRXRmSFRkeWh3TFRlZnExUHE5YW1XTklXeHNJMzZvQ2hjeSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9kb2N1bWVudC1tYW5hZ2VtZW50Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO30=', 1647084944);
 
 -- --------------------------------------------------------
 
@@ -1710,7 +1710,7 @@ CREATE TABLE `setup_designations` (
 --
 
 INSERT INTO `setup_designations` (`id`, `designation_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Professor', 1, NULL, NULL, '2022-02-15 05:11:40', '2022-02-26 05:35:27'),
+(1, 'Professor', 0, NULL, NULL, '2022-02-15 05:11:40', '2022-03-12 03:54:41'),
 (2, 'Lawyer', 0, NULL, NULL, '2022-02-15 05:11:44', '2022-02-15 05:11:44');
 
 -- --------------------------------------------------------
@@ -1822,8 +1822,9 @@ CREATE TABLE `setup_external_councils` (
 --
 
 INSERT INTO `setup_external_councils` (`id`, `title_id`, `first_name`, `middle_name`, `last_name`, `email`, `work_phone`, `home_phone`, `mobile_phone`, `emergency_contact`, `document_upload`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Aminur Rahman', 'Smith', 'Aminur', 'asdf@adf', '01996325478', '01996321542', '01887669542', '01996321542', NULL, 1, NULL, NULL, '2022-02-15 04:49:55', '2022-03-06 05:42:49'),
-(2, 1, 'Jack', 'Smith', 'Khan', 'testtesteasdf@asdfasdf.com', '01996325478', '01996321542', '01996321542', '0156549875', NULL, 0, NULL, NULL, '2022-02-15 05:02:39', '2022-02-15 05:02:39');
+(1, 1, 'Aminur Rahman', 'Smith', 'Aminur', 'asdf@adf', '01996325478', '01996321542', '01887669542', '01996321542', NULL, 0, NULL, NULL, '2022-02-15 04:49:55', '2022-03-12 03:00:22'),
+(2, 1, 'Jack', 'Smith', 'Khan', 'testtesteasdf@asdfasdf.com', '01996325478', '01996321542', '01996321542', '0156549875', NULL, 0, NULL, NULL, '2022-02-15 05:02:39', '2022-02-15 05:02:39'),
+(4, 1, 'Smith', 'Khan', 'None', 'test@test.com', '01996325477', '01698774120', '01996321541', '01996321548', NULL, 0, NULL, NULL, '2022-03-12 03:37:08', '2022-03-12 03:37:08');
 
 -- --------------------------------------------------------
 
@@ -1878,6 +1879,14 @@ CREATE TABLE `setup_external_council_associates_files` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `setup_external_council_associates_files`
+--
+
+INSERT INTO `setup_external_council_associates_files` (`id`, `external_council_associates_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 4, '164708153424164492477745byden (4).jpg', 0, NULL, NULL, '2022-03-12 04:38:54', '2022-03-12 04:38:54'),
+(2, 4, '164708153467164707806045164654784592byden.jpg', 0, NULL, NULL, '2022-03-12 04:38:54', '2022-03-12 04:38:54');
+
 -- --------------------------------------------------------
 
 --
@@ -1894,6 +1903,14 @@ CREATE TABLE `setup_external_council_files` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_external_council_files`
+--
+
+INSERT INTO `setup_external_council_files` (`id`, `external_council_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 1, '164707806045164654784592byden.jpg', 0, NULL, NULL, '2022-03-12 03:41:00', '2022-03-12 03:41:00'),
+(2, 1, '164707806075164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-12 03:41:00', '2022-03-12 03:41:00');
 
 -- --------------------------------------------------------
 
@@ -2001,6 +2018,14 @@ CREATE TABLE `setup_internal_council_files` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_internal_council_files`
+--
+
+INSERT INTO `setup_internal_council_files` (`id`, `internal_council_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 2, '164707915393164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-12 03:59:13', '2022-03-12 03:59:13'),
+(2, 2, '164707915315164664984260john.jpg', 0, NULL, NULL, '2022-03-12 03:59:13', '2022-03-12 03:59:13');
 
 -- --------------------------------------------------------
 
@@ -2244,8 +2269,8 @@ CREATE TABLE `social_compliances` (
 --
 
 INSERT INTO `social_compliances` (`id`, `employment_condition`, `working_hour_leave`, `compensation_benefit`, `hygine_safety`, `welfare_security`, `industrial_relation`, `labour_law_safety`, `bnbc_safety`, `fire_safety`, `electrical_safety`, `natural_disaster`, `code_of_conduct`, `international_standard`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'test updated', 'test updated', 'test updated', 'asdf', 'asdf', 'asdf', 'test updated', 'test updated', 'asdf', 'asdf', 'asdf', 'asdf updated', 'werwer', 0, NULL, NULL, '2022-03-09 03:51:00', '2022-03-09 05:00:50'),
-(2, 'test 2', 'test 2', 'test 2', '2022-03-14', '2022-03-17', '2022-03-08', 'test a', 'test g', '2022-03-02', '2022-03-17', '2022-03-08', 'asdf we', 'asdf d', 0, NULL, NULL, '2022-03-09 03:52:55', '2022-03-09 06:27:49');
+(1, 'test updated', 'test updated', 'test updated', 'asdf', 'asdf', 'asdf', 'test updated', 'test updated', 'asdf', 'asdf', 'asdf', 'asdf updated', 'werwer', 1, NULL, NULL, '2022-03-09 03:51:00', '2022-03-09 22:32:28'),
+(2, 'test 2', 'test 2', 'test 2', '2022-03-14', '2022-03-17', '2022-03-08', 'test a', 'test g', '2022-03-02', '2022-03-17', '2022-03-08', 'asdf we', 'asdf d', 0, NULL, NULL, '2022-03-09 03:52:55', '2022-03-09 22:32:42');
 
 -- --------------------------------------------------------
 
@@ -3138,7 +3163,7 @@ ALTER TABLE `setup_divisions`
 -- AUTO_INCREMENT for table `setup_external_councils`
 --
 ALTER TABLE `setup_external_councils`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `setup_external_council_associates`
@@ -3150,13 +3175,13 @@ ALTER TABLE `setup_external_council_associates`
 -- AUTO_INCREMENT for table `setup_external_council_associates_files`
 --
 ALTER TABLE `setup_external_council_associates_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `setup_external_council_files`
 --
 ALTER TABLE `setup_external_council_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `setup_flat_numbers`
@@ -3180,7 +3205,7 @@ ALTER TABLE `setup_internal_councils`
 -- AUTO_INCREMENT for table `setup_internal_council_files`
 --
 ALTER TABLE `setup_internal_council_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `setup_law_sections`

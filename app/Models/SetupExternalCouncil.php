@@ -14,4 +14,9 @@ class SetupExternalCouncil extends Model
         return $this->belongsTo('App\Models\SetupPersonTitle','title_id')->select('id','setup_person_name');
     }
 
+    public function external_council_files()
+    {
+        return $this->hasMany(SetupExternalCouncilFile::class, 'external_council_id', 'id');
+    }
+
 }

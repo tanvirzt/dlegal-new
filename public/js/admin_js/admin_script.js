@@ -740,8 +740,51 @@ if (res.result == "billing") {
         }
     });
 
+    $('#document_type').on('change', function(){
 
+        var document_type = $(this).val();
 
+        if (document_type == "Internal Files") {
+            // alert('asdfasdfa');
+            $('.module').show();
+
+        } else {
+            // alert('files');
+            $('.module').hide();
+        }
+
+    });
+
+    $('#module').on('change', function(){
+        // alert('asdfasdf');
+
+        var module = $(this).val();
+        // alert(module);
+        if (module == "Admin Setup") {
+            $('.setup').show();
+            $('.cases').hide();   
+            $('.property_management').hide();   
+
+        } else if (module == "Litigation Mangement"){
+
+            $('.setup').hide();
+            $('.cases').show();   
+            $('.property_management').hide();   
+
+        }else{
+            $('.setup').hide();
+            $('.cases').hide();   
+            $('.property_management').show();   
+        }
+    });
+
+    $('#admin_setup').on('change', function(){
+        // alert('asdfasdf');
+
+        var admin_setup = $(this).val();
+        // alert(admin_setup);
+
+    });
 
 
 

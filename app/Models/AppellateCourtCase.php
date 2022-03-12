@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class AppellateCourtCase extends Model
 {
     use HasFactory;
+
+    public function appellate_court_cases_files()
+    {
+        return $this->hasMany(AppellateCourtCasesFile::class, 'case_id', 'id');
+    }
+
 }

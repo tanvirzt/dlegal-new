@@ -481,7 +481,7 @@
                     <a href="{{ route('document-management') }}" class="nav-link">
                         <i class="fas fa-chart-line nav-icon"></i>
                         <p>
-                            Documentation Management
+                            Document Management
                         </p>
                     </a>
                 </li>

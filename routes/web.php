@@ -88,6 +88,9 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('edit-external-council/{id}','AdminSetupController@edit_external_council')->name('edit-external-council');
         Route::post('update-external-council/{id}','AdminSetupController@update_external_council')->name('update-external-council');
         Route::post('delete-external-council/{id}','AdminSetupController@delete_external_council')->name('delete-external-council');
+        Route::get('download-external-council-files/{id}','AdminSetupController@download_external_council_files')->name('download-external-council-files');
+        Route::get('download-internal-council-files/{id}','AdminSetupController@download_internal_council_files')->name('download-internal-council-files');
+
 
         Route::get('person-title','AdminSetupController@person_title')->name('person-title');
         Route::get('add-person-title','AdminSetupController@add_person_title')->name('add-person-title');
@@ -288,6 +291,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('edit-external-council-associates/{id}','AdminSetupController@edit_external_council_associates')->name('edit-external-council-associates');
         Route::post('update-external-council-associates/{id}','AdminSetupController@update_external_council_associates')->name('update-external-council-associates');
         Route::post('delete-external-council-associates/{id}','AdminSetupController@delete_external_council_associates')->name('delete-external-council-associates');
+        Route::get('download-external-council-associates-files/{id}','AdminSetupController@download_external_council_associates_files')->name('download-external-council-associates-files');
 
         Route::get('bill-type','AdminSetupController@bill_type')->name('bill-type');
         Route::get('add-bill-type','AdminSetupController@add_bill_type')->name('add-bill-type');
@@ -418,6 +422,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('search-social-compliance','SocialComplianceController@search_social_compliance')->name('search-social-compliance');
 
         Route::get('document-management','DocManagementController@document_management')->name('document-management');
+        Route::get('add-documents','DocManagementController@add_documents')->name('add-documents');
 
     });
 
