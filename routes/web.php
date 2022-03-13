@@ -423,6 +423,11 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 
         Route::get('document-management','DocManagementController@document_management')->name('document-management');
         Route::get('add-documents','DocManagementController@add_documents')->name('add-documents');
+        Route::get('find-admin-setup','DocManagementController@find_admin_setup')->name('find-admin-setup');
+        Route::get('find-litigation-cases','DocManagementController@find_litigation_cases')->name('find-litigation-cases');
+        Route::get('find-property-management','DocManagementController@find_property_management')->name('find-property-management');
+        Route::post('save-document','DocManagementController@save_document')->name('save-document');
+        Route::get('download-external-files/{id}','DocManagementController@download_external_files')->name('download-external-files');
 
     });
 

@@ -74,7 +74,7 @@
 
                                     @foreach ($external_council as $council)
                                         <tr data-node-id="22.{{ $council->id }}" data-node-pid="81.2.1.1">
-                                            <td> Case No :{{ $council->case_no }}</td>
+                                            <td> Name :{{ $council->first_name }} {{ $council->middle_name }} {{ $council->last_name }}</td>
                                             <td></td>
                                         </tr>
                                         @foreach ($council->external_council_files as $files)
@@ -97,7 +97,7 @@
 
                                     @foreach ($external_council_associates as $council)
                                         <tr data-node-id="302.{{ $council->id }}" data-node-pid="802.2.1.1">
-                                            <td> Case No :{{ $council->case_no }}</td>
+                                            <td> Name :{{ $council->first_name }} {{ $council->middle_name }} {{ $council->last_name }}</td>
                                             <td></td>
                                         </tr>
                                         @foreach ($council->external_council_associates_files as $files)
@@ -121,7 +121,7 @@
 
                                     @foreach ($internal_council as $council)
                                         <tr data-node-id="32.{{ $council->id }}" data-node-pid="82.2.1.1">
-                                            <td> Case No :{{ $council->case_no }}</td>
+                                            <td> Name :{{ $council->first_name }} {{ $council->middle_name }} {{ $council->last_name }}</td>
                                             <td></td>
                                         </tr>
                                         @foreach ($council->internal_council_files as $files)
@@ -360,13 +360,22 @@
                                         @endforeach
                                     @endforeach
 
+                                    
 
+                                    <tr data-node-id="211.2" data-node-pid="1">
+                                        <td> External Document </td>
+                                        <td></td>
+                                    </tr>
 
-
-
-
-
-
+                                    @foreach ($external_document as $ext_doc)
+                                        <tr data-node-id="211.2.1" data-node-pid="211.2">
+                                            <td> File Name :{{ $ext_doc->file_name }} File : {{ $ext_doc->uploaded_document }} </td>
+                                            <td><a href="{{ route('download-external-files', $ext_doc->id) }}"><button
+                                                class="btn btn-outline-success btn-sm" data-toggle="tooltip"
+                                                data-placement="top" title="Download"><i
+                                                    class="fas fa-download"></i></button></a></td>
+                                        </tr>
+                                    @endforeach
 
 
                                 </table>

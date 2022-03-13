@@ -97,7 +97,6 @@ $(document).ready(function(){
         });
     });
 
-    $(".hide").hide();
     $(".btn-success").click(function(){
         var lsthmtl = $(".clone").html();
         $(".increment").after(lsthmtl);
@@ -747,10 +746,12 @@ if (res.result == "billing") {
         if (document_type == "Internal Files") {
             // alert('asdfasdfa');
             $('.module').show();
-
+            $('.external_file_name').hide();
         } else {
             // alert('files');
             $('.module').hide();
+            $('.external_file_name').show();
+
         }
 
     });
@@ -779,11 +780,114 @@ if (res.result == "billing") {
     });
 
     $('#admin_setup').on('change', function(){
-        // alert('asdfasdf');
 
         var admin_setup = $(this).val();
-        // alert(admin_setup);
+        var route = $(this).attr('action');
 
+        $('.p_management_d').hide();
+        $('.litigation_management_d').hide();
+        $('.admin_setup_d').show();
+
+        if (admin_setup) {
+            // alert('ic')
+            if(admin_setup) {
+                $.ajax({
+                    url: route,
+                    type: "GET",
+                    data : {"_token":"{{ csrf_token() }}",admin_setup:admin_setup},
+                    dataType: "json",
+                    success:function(data) {
+                        console.log(data);
+                        if(data){
+                            $('#admin_setup_data').empty();
+                            $('#admin_setup_data').focus;
+                            $('#admin_setup_data').append('<option value="">Select</option>');
+                            $.each(data, function(key, value){
+                                $('select[name="admin_setup_data"]').append('<option value="'+ value.id +'">' + value.first_name+ ' '+ value.middle_name+ ' '+ value.last_name+ '</option>');
+                            });
+                        }else{
+                            $('#admin_setup_data').empty();
+                        }
+                    }
+                });
+            }else{
+                $('#admin_setup_data').empty();
+            }
+        } 
+    });
+
+    $('#litigation_m').on('change', function(){
+
+        var litigation_cases = $(this).val();
+        var route = $(this).attr('action');
+
+        $('.p_management_d').hide();
+        $('.litigation_management_d').show();
+        $('.admin_setup_d').hide();
+
+        if (litigation_cases) {
+            // alert('ic')
+            if(litigation_cases) {
+                $.ajax({
+                    url: route,
+                    type: "GET",
+                    data : {"_token":"{{ csrf_token() }}",litigation_cases:litigation_cases},
+                    dataType: "json",
+                    success:function(data) {
+                        console.log(data);
+                        if(data){
+                            $('#litagation_cases').empty();
+                            $('#litagation_cases').focus;
+                            $('#litagation_cases').append('<option value="">Select</option>');
+                            $.each(data, function(key, value){
+                                $('select[name="litagation_cases"]').append('<option value="'+ value.id +'">' + value.case_no + '</option>');
+                            });
+                        }else{
+                            $('#litagation_cases').empty();
+                        }
+                    }
+                });
+            }else{
+                $('#litagation_cases').empty();
+            }
+        } 
+    });
+
+    $('#property_management').on('change', function(){
+
+        var property_management = $(this).val();
+        var route = $(this).attr('action');
+
+        $('.p_management_d').show();
+        $('.litigation_management_d').hide();
+        $('.admin_setup_d').hide();
+
+        if (property_management) {
+            // alert('ic')
+            if(property_management) {
+                $.ajax({
+                    url: route,
+                    type: "GET",
+                    data : {"_token":"{{ csrf_token() }}",property_management:property_management},
+                    dataType: "json",
+                    success:function(data) {
+                        console.log(data);
+                        if(data){
+                            $('#p_management').empty();
+                            $('#p_management').focus;
+                            $('#p_management').append('<option value="">Select</option>');
+                            $.each(data, function(key, value){
+                                $('select[name="p_management"]').append('<option value="'+ value.id +'">' + value.id + ' ' + value.cs_khatian + ' '+ value.cs_dag + '</option>');
+                            });
+                        }else{
+                            $('#p_management').empty();
+                        }
+                    }
+                });
+            }else{
+                $('#p_management').empty();
+            }
+        } 
     });
 
 

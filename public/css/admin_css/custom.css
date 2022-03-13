@@ -229,3 +229,7 @@ h3{
 .custom_top_tab{
     padding-bottom:10px; margin-left:-10px;
 }
+
+.hide{
+    display: none;
+}
