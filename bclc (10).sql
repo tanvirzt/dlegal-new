@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2022 at 12:38 PM
+-- Generation Time: Mar 13, 2022 at 01:14 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -47,11 +47,14 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `type`, `mobile`, `email`, `email_verified_at`, `password`, `image`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Md Imran Hossain', 'admin', '01687663654', 'mdimranhossain985@gmail.com', NULL, '$2y$10$6v9T2W4HwjWrWdYOUDyaM.Mqs8QXW0A6VywuKUxN.6F0G4If2bX4S', '43675.jpg', 1, NULL, NULL, '2020-11-18 02:26:30'),
-(2, 'Imran', 'subadmin', '01687663654', 'imrancsecity@gmail.com', NULL, '$2y$10$RUGGY.tiiM53AaLJwYTipeBU0qg8OheTB5NBs0/0KQ65M3rhxrTLu', '22748.jpg', 1, NULL, NULL, '2020-11-18 02:13:34'),
+(1, 'Md. Imran Hossain', 'admin', '01771045019', 'mdimranhossain985@gmail.com', NULL, '$2y$10$RUGGY.tiiM53AaLJwYTipeBU0qg8OheTB5NBs0/0KQ65M3rhxrTLu', '', 1, NULL, NULL, NULL),
+(2, 'Imran', 'subadmin', '01687663654', 'imrancsecity@gmail.com', NULL, '$2y$10$RUGGY.tiiM53AaLJwYTipeBU0qg8OheTB5NBs0/0KQ65M3rhxrTLu', '', 1, NULL, NULL, NULL),
 (3, 'Md. Imran', 'subadmin', '01771045019', 'admin@admin.com', NULL, '$2y$10$RUGGY.tiiM53AaLJwYTipeBU0qg8OheTB5NBs0/0KQ65M3rhxrTLu', '', 1, NULL, NULL, NULL),
-(4, 'test', '', '534654531', 'jabedakhter@gmail.com', NULL, '$2y$10$8dbajWp9YGEYqRPXTxWegeiF0N/CmijMt5Osugwq.J4sdWsmfum02', '', 0, NULL, NULL, NULL),
-(5, 'Md. Niamul Kabir', '', '878646545', 'nkzoha@gmail.com', NULL, '$2y$10$8dbajWp9YGEYqRPXTxWegeiF0N/CmijMt5Osugwq.J4sdWsmfum02', '', 0, NULL, NULL, NULL);
+(4, 'Md. Imran', 'subadmin', '01771045019', 'test@admin.com', NULL, '$2a$12$GYZx235ezFaYYa3Oxornx.6fa1p8nBm20t4eA9yD./orC2oH/eUcy', '', 1, NULL, NULL, NULL),
+(5, 'jislam', 'subadmin', '01771045019', 'jislam@admin.com', NULL, '$2a$12$RSDqi65XW57ZYf0JwGN9/eo4fNS.xqUdsfLiPPdqoY0SUW8ofoKeq', '', 1, NULL, NULL, NULL),
+(6, 'N K Joha', 'subadmin', '01771045019', 'nkzoha@gmail.com', NULL, '$2y$10$8dbajWp9YGEYqRPXTxWegeiF0N/CmijMt5Osugwq.J4sdWsmfum02', '', 1, NULL, NULL, NULL),
+(7, 'Jabed Akhter', 'subadmin', '01771045019', 'jabedakhter@gmail.com', NULL, '$2y$10$RUGGY.tiiM53AaLJwYTipeBU0qg8OheTB5NBs0/0KQ65M3rhxrTLu', '', 1, NULL, NULL, NULL),
+(8, 'Tamanna', 'subadmin', '01771045019', 'tamanna@gmail.com', NULL, '$2y$10$RUGGY.tiiM53AaLJwYTipeBU0qg8OheTB5NBs0/0KQ65M3rhxrTLu', '', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -150,7 +153,10 @@ INSERT INTO `appellate_court_cases_files` (`id`, `case_id`, `uploaded_document`,
 (4, 1, '16452458912Ethnicity.png', 0, NULL, NULL, '2022-02-18 22:44:51', '2022-02-18 22:44:51'),
 (5, 1, '164524589160john.jpg', 0, NULL, NULL, '2022-02-18 22:44:51', '2022-02-18 22:44:51'),
 (6, 2, '164524605669asdfasdf.pdf', 0, NULL, NULL, '2022-02-18 22:47:36', '2022-02-18 22:47:36'),
-(7, 2, '164524605664Ethnicity.png', 0, NULL, NULL, '2022-02-18 22:47:36', '2022-02-18 22:47:36');
+(7, 2, '164524605664Ethnicity.png', 0, NULL, NULL, '2022-02-18 22:47:36', '2022-02-18 22:47:36'),
+(8, 2, '164716738052asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 04:29:40', '2022-03-13 04:29:40'),
+(9, 2, '164716738034byden.jpg', 0, NULL, NULL, '2022-03-13 04:29:40', '2022-03-13 04:29:40'),
+(10, 1, '164716744591byden.jpg', 0, NULL, NULL, '2022-03-13 04:30:45', '2022-03-13 04:30:45');
 
 -- --------------------------------------------------------
 
@@ -349,7 +355,11 @@ INSERT INTO `civil_cases_files` (`id`, `case_id`, `uploaded_document`, `delete_s
 (6, 2, '164498360011Ethnicity.png', 1, NULL, NULL, '2022-02-15 21:53:20', '2022-02-19 04:07:09'),
 (7, 2, '164498360060Integra_Logo.png', 0, NULL, NULL, '2022-02-15 21:53:20', '2022-02-15 21:53:20'),
 (8, 3, '164602471210asdfasdf.pdf', 0, NULL, NULL, '2022-02-27 23:05:12', '2022-02-27 23:05:12'),
-(9, 3, '164602471251byden.jpg', 0, NULL, NULL, '2022-02-27 23:05:12', '2022-02-27 23:05:12');
+(9, 3, '164602471251byden.jpg', 0, NULL, NULL, '2022-02-27 23:05:12', '2022-02-27 23:05:12'),
+(10, NULL, '164716346558Ethnicity.png', 0, NULL, NULL, '2022-03-13 03:24:25', '2022-03-13 03:24:25'),
+(11, NULL, '164716346580asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 03:24:25', '2022-03-13 03:24:25'),
+(12, 1, '164716487243asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 03:47:52', '2022-03-13 03:47:52'),
+(13, 1, '164716487263byden.jpg', 0, NULL, NULL, '2022-03-13 03:47:52', '2022-03-13 03:47:52');
 
 -- --------------------------------------------------------
 
@@ -498,7 +508,9 @@ INSERT INTO `criminal_cases_files` (`id`, `case_id`, `uploaded_document`, `delet
 (1, 4, '164534132765asdfasdf.pdf', 0, NULL, NULL, '2022-02-20 01:15:27', '2022-02-20 01:15:27'),
 (2, 4, '164534132733byden.jpg', 0, NULL, NULL, '2022-02-20 01:15:27', '2022-02-20 01:15:27'),
 (3, 4, '164534132786john.jpg', 0, NULL, NULL, '2022-02-20 01:15:27', '2022-02-20 01:15:27'),
-(4, 4, '164534132711Integra_Logo.png', 0, NULL, NULL, '2022-02-20 01:15:27', '2022-02-20 01:15:27');
+(4, 4, '164534132711Integra_Logo.png', 0, NULL, NULL, '2022-02-20 01:15:27', '2022-02-20 01:15:27'),
+(5, NULL, '164716453247asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 03:42:12', '2022-03-13 03:42:12'),
+(6, NULL, '164716453241byden.jpg', 0, NULL, NULL, '2022-03-13 03:42:12', '2022-03-13 03:42:12');
 
 -- --------------------------------------------------------
 
@@ -533,6 +545,31 @@ CREATE TABLE `criminal_case_status_logs` (
 
 INSERT INTO `criminal_case_status_logs` (`id`, `case_id`, `updated_court_id`, `updated_next_date`, `updated_next_date_fixed_id`, `updated_panel_lawyer_id`, `order_date`, `updated_case_status_id`, `updated_accused_name`, `update_description`, `case_proceedings`, `case_notes`, `next_date_fixed_reason`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 3, 1, '2022-02-02', 2, 2, '2022-02-25', 3, 'test accused', 'test 36', 'test 96', 'test 65', 'Disposed', 0, NULL, NULL, '2022-02-24 05:51:19', '2022-02-24 05:51:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `external_files`
+--
+
+CREATE TABLE `external_files` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `file_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `uploaded_document` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `external_files`
+--
+
+INSERT INTO `external_files` (`id`, `file_name`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'new files', '164716896270asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 04:56:02', '2022-03-13 04:56:02'),
+(2, 'new files', '164716896248Ethnicity.png', 0, NULL, NULL, '2022-03-13 04:56:02', '2022-03-13 04:56:02');
 
 -- --------------------------------------------------------
 
@@ -612,7 +649,7 @@ CREATE TABLE `flat_information` (
 
 INSERT INTO `flat_information` (`id`, `property_type_id`, `district_id`, `thana_id`, `seller_id`, `buyer_id`, `cs_khatian`, `cs_dag`, `sa_khatian`, `sa_dag`, `rs_khatian`, `rs_dag`, `bs_khatian`, `bs_dag`, `khatian_dag_city_jorip`, `flat_area`, `deed_no`, `date_of_deed`, `deed_value`, `possession`, `boundary_wall`, `any_dispute`, `any_suit_case`, `flat_owner`, `mouza_name`, `mutation_khatian_no`, `mutation_case_no`, `mutation_khatian_owner`, `dcr_number`, `dcr_date`, `register_office_name`, `floor_id`, `flat_number_id`, `flat_size`, `flat_number`, `flat_compliance`, `electricity`, `gas`, `sewerage`, `water`, `expires`, `renew`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 2, 4, 2, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  14', '1000 sft', 'deed no 11', '2022-03-09', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Aminur Rahman Smith Aminur', '17 sadf', 'test mutation', 'm case no', '20 ertre', '23 test', '2022-03-16', 'Aminur Rahman Smith Aminur', 3, 3, '25000 sft', NULL, 'No', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-03-07 04:44:02', '2022-03-07 05:08:37'),
-(2, 3, 2, 4, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  12', '1000 sft', 'deed no 11', '2022-03-17', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Aminur Rahman Smith Aminur', '17 sadf', 'test mutation', 'm case no', '20 ertre', '23 test', '2022-03-02', 'Aminur Rahman Smith Aminur', 3, 3, '25000 sft', NULL, 'Yes', 'elect 2', 'test gas', 'test sewerage', 'test warter', '2022-03-17', NULL, 0, NULL, NULL, '2022-03-07 05:05:32', '2022-03-07 05:30:43');
+(2, 3, 2, 4, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  12', '1000 sft', 'deed no 11', '2022-03-17', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Aminur Rahman Smith Aminur', '17 sadf', 'test mutation', 'm case no', '20 ertre', '23 test', '2022-03-02', 'Aminur Rahman Smith Aminur', 3, 3, '25000 sft', NULL, 'Yes', 'elect 2', 'test gas', 'test sewerage', 'test warter', '2022-03-17', NULL, 0, NULL, NULL, '2022-03-07 05:05:32', '2022-03-12 23:32:29');
 
 -- --------------------------------------------------------
 
@@ -638,7 +675,9 @@ CREATE TABLE `flat_information_files` (
 INSERT INTO `flat_information_files` (`id`, `flat_information_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 1, '164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-07 04:44:02', '2022-03-07 04:44:02'),
 (2, 1, '164664984298Ethnicity.png', 0, NULL, NULL, '2022-03-07 04:44:02', '2022-03-07 04:44:02'),
-(3, 1, '164664984260john.jpg', 0, NULL, NULL, '2022-03-07 04:44:02', '2022-03-07 04:44:02');
+(3, 1, '164664984260john.jpg', 0, NULL, NULL, '2022-03-07 04:44:02', '2022-03-07 04:44:02'),
+(4, 2, '164716779184asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 04:36:31', '2022-03-13 04:36:31'),
+(5, 2, '164716779179byden.jpg', 0, NULL, NULL, '2022-03-13 04:36:31', '2022-03-13 04:36:31');
 
 -- --------------------------------------------------------
 
@@ -737,7 +776,10 @@ INSERT INTO `high_court_cases_files` (`id`, `case_id`, `uploaded_document`, `del
 (4, 2, '164509798992byden.jpg', 0, NULL, NULL, '2022-02-17 05:39:49', '2022-02-17 05:39:49'),
 (5, 1, '1645868205100byden.jpg', 0, NULL, NULL, '2022-02-26 03:36:45', '2022-02-26 03:36:45'),
 (6, 1, '164586820532Ethnicity.png', 0, NULL, NULL, '2022-02-26 03:36:45', '2022-02-26 03:36:45'),
-(7, 1, '164586820516asdfasdf.pdf', 0, NULL, NULL, '2022-02-26 03:36:45', '2022-02-26 03:36:45');
+(7, 1, '164586820516asdfasdf.pdf', 0, NULL, NULL, '2022-02-26 03:36:45', '2022-02-26 03:36:45'),
+(8, 2, '164716717988164553201672Ethnicity.png', 0, NULL, NULL, '2022-03-13 04:26:19', '2022-03-13 04:26:19'),
+(9, 2, '164716717951keyboard-shortcuts-windows.pdf', 0, NULL, NULL, '2022-03-13 04:26:19', '2022-03-13 04:26:19'),
+(10, 1, '164716740987byden.jpg', 0, NULL, NULL, '2022-03-13 04:30:09', '2022-03-13 04:30:09');
 
 -- --------------------------------------------------------
 
@@ -870,7 +912,11 @@ CREATE TABLE `labour_cases_files` (
 INSERT INTO `labour_cases_files` (`id`, `case_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 3, '164553201621byden.jpg', 0, NULL, NULL, '2022-02-22 06:13:36', '2022-02-22 06:13:36'),
 (2, 3, '164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-02-22 06:13:36', '2022-02-22 06:13:36'),
-(3, 3, '164553201672Ethnicity.png', 0, NULL, NULL, '2022-02-22 06:13:37', '2022-02-22 06:13:37');
+(3, 3, '164553201672Ethnicity.png', 0, NULL, NULL, '2022-02-22 06:13:37', '2022-02-22 06:13:37'),
+(4, 3, '16471650489asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 03:50:48', '2022-03-13 03:50:48'),
+(5, 3, '164716504836byden.jpg', 0, NULL, NULL, '2022-03-13 03:50:48', '2022-03-13 03:50:48'),
+(6, 2, '164716507857asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 03:51:18', '2022-03-13 03:51:18'),
+(7, 2, '164716507888byden.jpg', 0, NULL, NULL, '2022-03-13 03:51:18', '2022-03-13 03:51:18');
 
 -- --------------------------------------------------------
 
@@ -965,8 +1011,8 @@ CREATE TABLE `land_information` (
 --
 
 INSERT INTO `land_information` (`id`, `property_type_id`, `district_id`, `thana_id`, `seller_id`, `buyer_id`, `cs_khatian`, `cs_dag`, `sa_khatian`, `sa_dag`, `rs_khatian`, `rs_dag`, `bs_khatian`, `bs_dag`, `khatian_dag_city_jorip`, `land_area`, `deed_no`, `date_of_deed`, `deed_value`, `possession`, `boundary_wall`, `any_dispute`, `any_suit_case`, `property_owner`, `mouza_name`, `mutation_khatian_no`, `mutation_case_no`, `mutation_khatian_owner`, `dcr_number`, `dcr_date`, `register_office_name`, `land_compliance`, `electricity`, `gas`, `sewerage`, `water`, `expires`, `renew`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 2, 2, 4, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  9', 'land area 10', 'deed no 11', 'dod 12', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Jack Smith', '17 sadf', 'test mutation', 'm case no', 'test khatian', '4654654DCR', '2022-03-17', 'Main office', 'No', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-03-06 00:24:05', '2022-03-12 00:42:09'),
-(2, 3, 4, 3, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'aaaa', 'land area 10', 'deed no 11', '12 test', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Stefen', '17 sadf', 'test mutation', 'm case no', '20 ertre', '23 test', '2022-03-15', 'test offfice', 'Yes', 'elect 98', 'test gas', 'test sewerage', 'test warter', '2022-03-31', '2022-03-30', 0, NULL, NULL, '2022-03-06 00:25:45', '2022-03-07 06:05:50');
+(1, 2, 2, 4, 1, 3, 'CS khatian test', 'cs dag test', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  9', 'land area 10', 'deed no 11', 'dod 12', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Jack Smith', '17 sadf', 'test mutation', 'm case no', 'test khatian', '4654654DCR', '2022-03-17', 'Main office', 'No', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-03-06 00:24:05', '2022-03-12 23:31:28'),
+(2, 3, 4, 3, 1, 3, 'CS khatian test', 'cs dag test', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'aaaa', 'land area 10', 'deed no 11', '12 test', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Stefen', '17 sadf', 'test mutation', 'm case no', '20 ertre', '23 test', '2022-03-15', 'test offfice', 'Yes', 'elect 98', 'test gas', 'test sewerage', 'test warter', '2022-03-31', '2022-03-30', 0, NULL, NULL, '2022-03-06 00:25:45', '2022-03-12 23:31:41');
 
 -- --------------------------------------------------------
 
@@ -994,7 +1040,8 @@ INSERT INTO `land_information_files` (`id`, `land_information_id`, `uploaded_doc
 (2, 1, '164654784550asdfasdf.pdf', 0, NULL, NULL, '2022-03-06 00:24:05', '2022-03-06 00:24:05'),
 (3, 1, '164654784596Integra_Logo.png', 0, NULL, NULL, '2022-03-06 00:24:05', '2022-03-06 00:24:05'),
 (4, 1, '164654828555Ethnicity.png', 0, NULL, NULL, '2022-03-06 00:31:25', '2022-03-06 00:31:25'),
-(5, 1, '16465482851asdfasdf.pdf', 0, NULL, NULL, '2022-03-06 00:31:25', '2022-03-06 00:31:25');
+(5, 1, '16465482851asdfasdf.pdf', 0, NULL, NULL, '2022-03-06 00:31:25', '2022-03-06 00:31:25'),
+(6, 1, '164716765584Ethnicity.png', 0, NULL, NULL, '2022-03-13 04:34:15', '2022-03-13 04:34:15');
 
 -- --------------------------------------------------------
 
@@ -1084,7 +1131,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (202, '2022_03_07_052042_create_setup_floors_table', 41),
 (203, '2022_03_07_055414_create_setup_flat_numbers_table', 41),
 (206, '2022_03_08_110826_create_regulatory_compliances_table', 42),
-(209, '2022_03_09_070843_create_social_compliances_table', 43);
+(209, '2022_03_09_070843_create_social_compliances_table', 43),
+(210, '2022_03_13_104748_create_external_files_table', 44);
 
 -- --------------------------------------------------------
 
@@ -1213,7 +1261,9 @@ INSERT INTO `quassi_judicial_cases_files` (`id`, `case_id`, `uploaded_document`,
 (4, 2, '164508427179asdfasdf.pdf', 0, NULL, NULL, '2022-02-17 01:51:11', '2022-02-17 01:51:11'),
 (5, 2, '164508427111byden.jpg', 0, NULL, NULL, '2022-02-17 01:51:11', '2022-02-17 01:51:11'),
 (6, 1, '164553223132no_images.png', 0, NULL, NULL, '2022-02-22 06:17:11', '2022-02-22 06:17:11'),
-(7, 1, '164553223131john.jpg', 0, NULL, NULL, '2022-02-22 06:17:11', '2022-02-22 06:17:11');
+(7, 1, '164553223131john.jpg', 0, NULL, NULL, '2022-02-22 06:17:11', '2022-02-22 06:17:11'),
+(8, 1, '164716524347asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 03:54:03', '2022-03-13 03:54:03'),
+(9, 1, '164716524331byden.jpg', 0, NULL, NULL, '2022-03-13 03:54:03', '2022-03-13 03:54:03');
 
 -- --------------------------------------------------------
 
@@ -1317,7 +1367,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('5aUgtxP3YyKGccD1f8opWHsQQBlBSNQRKFENL3lF', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoickFYaFplRXRmSFRkeWh3TFRlZnExUHE5YW1XTklXeHNJMzZvQ2hjeSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9kb2N1bWVudC1tYW5hZ2VtZW50Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO30=', 1647084944);
+('BfVGUx1QJ5BNYGPc0WC4atR0QvCO00yEHw0QAgPp', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiY1h2WE12ZzJuYVJoZE9hYVJKQ1VLVUxIaVIya2hIRUFpY2pPTkYybSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTk6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9hZGQtZG9jdW1lbnRzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO30=', 1647173557),
+('TvQdju1RH76kKhezXUm9mHMP4WqnDHFqkKgPUEhE', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoieDZqcHU4OENwajlpRkswaTBvdldQQzZtUzA2NU90UENMdXJOTnBpRSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDU6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO30=', 1647166908);
 
 -- --------------------------------------------------------
 
@@ -1884,8 +1935,10 @@ CREATE TABLE `setup_external_council_associates_files` (
 --
 
 INSERT INTO `setup_external_council_associates_files` (`id`, `external_council_associates_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 4, '164708153424164492477745byden (4).jpg', 0, NULL, NULL, '2022-03-12 04:38:54', '2022-03-12 04:38:54'),
-(2, 4, '164708153467164707806045164654784592byden.jpg', 0, NULL, NULL, '2022-03-12 04:38:54', '2022-03-12 04:38:54');
+(1, 3, '164716287133asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 03:14:31', '2022-03-13 03:14:31'),
+(2, 3, '16471628713byden.jpg', 0, NULL, NULL, '2022-03-13 03:14:31', '2022-03-13 03:14:31'),
+(3, 4, '164716293137byden.jpg', 0, NULL, NULL, '2022-03-13 03:15:31', '2022-03-13 03:15:31'),
+(4, 4, '164716293157asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 03:15:31', '2022-03-13 03:15:31');
 
 -- --------------------------------------------------------
 
@@ -1910,7 +1963,11 @@ CREATE TABLE `setup_external_council_files` (
 
 INSERT INTO `setup_external_council_files` (`id`, `external_council_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 1, '164707806045164654784592byden.jpg', 0, NULL, NULL, '2022-03-12 03:41:00', '2022-03-12 03:41:00'),
-(2, 1, '164707806075164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-12 03:41:00', '2022-03-12 03:41:00');
+(2, 1, '164707806075164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-12 03:41:00', '2022-03-12 03:41:00'),
+(3, 1, '164716225844asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 03:04:18', '2022-03-13 03:04:18'),
+(4, 1, '164716225856byden.jpg', 0, NULL, NULL, '2022-03-13 03:04:18', '2022-03-13 03:04:18'),
+(5, 2, '164716229759asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 03:04:57', '2022-03-13 03:04:57'),
+(6, 2, '164716229745byden.jpg', 0, NULL, NULL, '2022-03-13 03:04:57', '2022-03-13 03:04:57');
 
 -- --------------------------------------------------------
 
@@ -2025,7 +2082,9 @@ CREATE TABLE `setup_internal_council_files` (
 
 INSERT INTO `setup_internal_council_files` (`id`, `internal_council_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 2, '164707915393164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-12 03:59:13', '2022-03-12 03:59:13'),
-(2, 2, '164707915315164664984260john.jpg', 0, NULL, NULL, '2022-03-12 03:59:13', '2022-03-12 03:59:13');
+(2, 2, '164707915315164664984260john.jpg', 0, NULL, NULL, '2022-03-12 03:59:13', '2022-03-12 03:59:13'),
+(3, 2, '164716316682asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 03:19:26', '2022-03-13 03:19:26'),
+(4, 2, '164716316615byden.jpg', 0, NULL, NULL, '2022-03-13 03:19:26', '2022-03-13 03:19:26');
 
 -- --------------------------------------------------------
 
@@ -2371,7 +2430,9 @@ INSERT INTO `supreme_court_cases_files` (`id`, `case_id`, `uploaded_document`, `
 (6, 1, '164509401627Ethnicity.png', 0, NULL, NULL, '2022-02-17 04:33:36', '2022-02-17 04:33:36'),
 (7, 2, '164586091045asdfasdf.pdf', 0, NULL, NULL, '2022-02-26 01:35:10', '2022-02-26 01:35:10'),
 (8, 2, '164586091072byden.jpg', 0, NULL, NULL, '2022-02-26 01:35:10', '2022-02-26 01:35:10'),
-(9, 2, '164586091037Ethnicity.png', 0, NULL, NULL, '2022-02-26 01:35:10', '2022-02-26 01:35:10');
+(9, 2, '164586091037Ethnicity.png', 0, NULL, NULL, '2022-02-26 01:35:10', '2022-02-26 01:35:10'),
+(10, 1, '164716555351byden.jpg', 0, NULL, NULL, '2022-03-13 03:59:13', '2022-03-13 03:59:13'),
+(11, 1, '164716555324asdfasdf.pdf', 0, NULL, NULL, '2022-03-13 03:59:13', '2022-03-13 03:59:13');
 
 -- --------------------------------------------------------
 
@@ -2505,6 +2566,12 @@ ALTER TABLE `criminal_cases_files`
 -- Indexes for table `criminal_case_status_logs`
 --
 ALTER TABLE `criminal_case_status_logs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `external_files`
+--
+ALTER TABLE `external_files`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2875,7 +2942,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `appellate_court_cases`
@@ -2887,7 +2954,7 @@ ALTER TABLE `appellate_court_cases`
 -- AUTO_INCREMENT for table `appellate_court_cases_files`
 --
 ALTER TABLE `appellate_court_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `appellate_court_case_status_logs`
@@ -2911,7 +2978,7 @@ ALTER TABLE `civil_cases`
 -- AUTO_INCREMENT for table `civil_cases_files`
 --
 ALTER TABLE `civil_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `civil_case_status_logs`
@@ -2935,13 +3002,19 @@ ALTER TABLE `criminal_cases`
 -- AUTO_INCREMENT for table `criminal_cases_files`
 --
 ALTER TABLE `criminal_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `criminal_case_status_logs`
 --
 ALTER TABLE `criminal_case_status_logs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `external_files`
+--
+ALTER TABLE `external_files`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -2959,7 +3032,7 @@ ALTER TABLE `flat_information`
 -- AUTO_INCREMENT for table `flat_information_files`
 --
 ALTER TABLE `flat_information_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `high_court_cases`
@@ -2971,7 +3044,7 @@ ALTER TABLE `high_court_cases`
 -- AUTO_INCREMENT for table `high_court_cases_files`
 --
 ALTER TABLE `high_court_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `high_court_case_status_logs`
@@ -2989,7 +3062,7 @@ ALTER TABLE `labour_cases`
 -- AUTO_INCREMENT for table `labour_cases_files`
 --
 ALTER TABLE `labour_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `labour_case_status_logs`
@@ -3007,13 +3080,13 @@ ALTER TABLE `land_information`
 -- AUTO_INCREMENT for table `land_information_files`
 --
 ALTER TABLE `land_information_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=211;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -3031,7 +3104,7 @@ ALTER TABLE `quassi_judicial_cases`
 -- AUTO_INCREMENT for table `quassi_judicial_cases_files`
 --
 ALTER TABLE `quassi_judicial_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `quassi_judicial_case_status_logs`
@@ -3175,13 +3248,13 @@ ALTER TABLE `setup_external_council_associates`
 -- AUTO_INCREMENT for table `setup_external_council_associates_files`
 --
 ALTER TABLE `setup_external_council_associates_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `setup_external_council_files`
 --
 ALTER TABLE `setup_external_council_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `setup_flat_numbers`
@@ -3205,7 +3278,7 @@ ALTER TABLE `setup_internal_councils`
 -- AUTO_INCREMENT for table `setup_internal_council_files`
 --
 ALTER TABLE `setup_internal_council_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `setup_law_sections`
@@ -3271,7 +3344,7 @@ ALTER TABLE `supreme_court_cases`
 -- AUTO_INCREMENT for table `supreme_court_cases_files`
 --
 ALTER TABLE `supreme_court_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `supreme_court_case_status_logs`
