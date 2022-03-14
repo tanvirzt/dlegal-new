@@ -31,7 +31,7 @@
                     </div>
                 @endif
                 <div class="row">
-                    
+
                     <div class="col-md-8">
                         <div class="card">
 
@@ -105,7 +105,7 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
 
@@ -140,17 +140,15 @@
                                 <table id="data_table" class="table table-responsive no-footer dtr-inline">
                                     <thead>
                                         <tr>
-                                            <th>Case No</th>
-                                            <th>Suit Value</th>
-                                            <th>Division</th>
-                                            <th>Court Name</th>
-                                            <th>District</th>
-                                            <th>Case Status</th>
-                                            <th>Company</th>
-                                            <th>Case Category</th>
-                                            <th>Plaintiff Name</th>
-                                            <th>Defendent Name</th>
-                                            <th>Status</th>
+                                            <th class="text-nowrap text-center">Case No</th>
+                                            <th class="text-center">Suit Value</th>
+                                            <th class="text-center">Division</th>
+                                            <th class="text-nowrap"> Court Name</th>
+                                            <th class="text-center">District</th>
+                                            <th class="text-center">Company</th>
+                                            <th class="text-nowrap">Plaintiff Name</th>
+                                            <th class="text-nowrap">Defendent Name</th>
+                                            <th class="text-center">Status</th>
                                             <th width="13%">Action</th>
                                         </tr>
                                     </thead>
@@ -173,14 +171,9 @@
                                                 <td>
                                                     {{ $datum->district_name }}
                                                 </td>
-                                                <td>
-                                                    {{ $datum->case_status_name }}
-                                                </td>
+
                                                 <td>
                                                     {{ $datum->company_name }}
-                                                </td>
-                                                <td>
-                                                    {{ $datum->case_category_name }}
                                                 </td>
                                                 <td>
                                                     {{ $datum->plaintiff_name }}
@@ -190,19 +183,25 @@
                                                 </td>
                                                 <td>
                                                     @if ($datum->delete_status == 0)
-                                                        Active
+                                                        <button type="button"
+                                                            class="btn-custom btn-success-custom text-uppercase"> Active
+                                                        </button>
                                                     @else
-                                                        Inactive
+                                                        <button type="button"
+                                                            class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                     @endif
+                                                    </span>
                                                 </td>
+                                                
                                                 <td>
                                                     <a href="{{ route('view-civil-cases', $datum->id) }}"><button
                                                             class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Details"><i
                                                                 class="fas fa-eye"></i></button></a>
                                                     <a href="{{ route('add-billing-civil-cases', $datum->id) }}"><button
-                                                        class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                                        data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
+                                                            class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Bill Entry"><i
+                                                                class="fas fa-money-bill"></i></button></a>
                                                     <a href="{{ route('edit-civil-cases', $datum->id) }}"><button
                                                             class="btn btn-info btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"><i

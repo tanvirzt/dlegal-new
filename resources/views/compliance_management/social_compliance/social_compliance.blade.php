@@ -139,53 +139,50 @@
                                 <table id="data_table" class="table table-responsive no-footer dtr-inline">
                                     <thead>
                                         <tr>
-                                            <th >Employment Condition</th>
-                                            <th >Working Hr & Leave</th>
-                                            <th >Compensation & Benefit</th>
-                                            <th >Hygine and Safety</th>
-                                            <th >Welfare & Security</th>
-                                            <th >Industrial Relation</th>
-                                            <th >Labour Law Safety</th>
-                                            <th >BNBC Safety</th>
-                                            <th >Status</th>
+                                            <th class="text-center text-nowrap">Employment Condition</th>
+                                            <th class="text-center text-nowrap">Working Hr & Leave</th>
+                                            <th class="text-center text-nowrap">Compensation</th>
+                                            <th class="text-center text-nowrap">Hygine and Safety</th>
+                                            <th class="text-center text-nowrap">Welfare & Security</th>
+                                            <th class="text-center text-nowrap">Industrial Relation</th>
+                                            <th class="text-center text-nowrap">Status</th>
                                             <th width="10%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="search_data">
                                         @foreach ($data as $datum)
                                             <tr>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $datum->employment_condition }} 
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $datum->working_hour_leave }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $datum->compensation_benefit }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $datum->hygine_safety }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $datum->welfare_security }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $datum->industrial_relation }}
                                                 </td>
-                                                <td>
-                                                    {{ $datum->labour_law_safety }}
-                                                </td>
-                                                <td>
-                                                    {{ $datum->bnbc_safety }}
-                                                </td>
-                                                <td>
+                                                
+                                                <td class="text-center">
                                                     @if ($datum->delete_status == 0)
-                                                        Active
+                                                        <button type="button"
+                                                            class="btn-custom btn-success-custom text-uppercase"> Active
+                                                        </button>
                                                     @else
-                                                        Inactive
+                                                        <button type="button"
+                                                            class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                     @endif
+                                                    </span>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <a href="{{ route('view-social-compliance', $datum->id) }}"><button
                                                             class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Details"><i

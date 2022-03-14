@@ -46,6 +46,12 @@
                         <div class="">
                             <div class="card-header">
                                 <h3 class="card-title" id="heading">Edit Flat Information</h3>
+                                <div class="float-right">
+                                    <a href="{{ route('view-flat-information', $data->id) }}"><button
+                                        class="btn btn-primary btn-sm" data-toggle="tooltip"
+                                        data-placement="top" title="Details"><i
+                                            class="fas fa-eye"></i></button></a>
+                                </div>
                             </div>
 
                             <form action="{{ route('update-flat-information', $data->id) }}" method="post" enctype="multipart/form-data">

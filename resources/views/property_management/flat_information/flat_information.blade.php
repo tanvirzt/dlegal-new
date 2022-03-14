@@ -158,16 +158,16 @@
                                 <table id="data_table" class="table table-responsive no-footer dtr-inline">
                                     <thead>
                                         <tr>
-                                            <th>Property Type</th>
-                                            <th>District</th>
-                                            <th>Thana</th>
-                                            <th>Seller Name</th>
-                                            <th>Buyer Name</th>
-                                            <th>CS Khatian</th>
-                                            <th>CS Dag</th>
-                                            <th>SA Khatian</th>
-                                            <th>SA Dag</th>
-                                            <th>Status</th>
+                                            <th class="text-center text-nowrap">Property Type</th>
+                                            <th class="text-center text-nowrap">District</th>
+                                            <th class="text-center text-nowrap">Thana</th>
+                                            <th class="text-center text-nowrap">Seller Name</th>
+                                            <th class="text-center text-nowrap">Buyer Name</th>
+                                            <th class="text-center text-nowrap">CS Khatian</th>
+                                            <th class="text-center text-nowrap">CS Dag</th>
+                                            <th class="text-center text-nowrap">SA Khatian</th>
+                                            <th class="text-center text-nowrap">SA Dag</th>
+                                            <th class="text-center text-nowrap">Status</th>
                                             <th width="13%">Action</th>
                                         </tr>
                                     </thead>
@@ -203,10 +203,14 @@
                                                 </td>
                                                 <td>
                                                     @if ($datum->delete_status == 0)
-                                                        Active
+                                                        <button type="button"
+                                                            class="btn-custom btn-success-custom text-uppercase"> Active
+                                                        </button>
                                                     @else
-                                                        Inactive
+                                                        <button type="button"
+                                                            class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                     @endif
+                                                    </span>
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('view-flat-information', $datum->id) }}"><button

@@ -346,7 +346,7 @@ if (res.result == "billing") {
                             <td> ${value.cs_dag === null ? '':value.cs_dag} </td>
                             <td> ${value.sa_khatian === null ? '':value.sa_khatian} </td>
                             <td> ${value.sa_dag === null ? '':value.sa_dag} </td>
-                            <td> ${value.delete_status === 0 ? 'Active' : 'Inactive'} </td>
+                            <td> ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                             <td>
                                 <a href="view-land-information/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                     ><i class="fas fa-eye"></i></button></a>
@@ -382,7 +382,7 @@ if (res.result == "billing") {
                                 <td> ${value.cs_dag === null ? '':value.cs_dag} </td>
                                 <td> ${value.sa_khatian === null ? '':value.sa_khatian} </td>
                                 <td> ${value.sa_dag === null ? '':value.sa_dag} </td>
-                                <td> ${value.delete_status === 0 ? 'Active' : 'Inactive'} </td>
+                                <td> ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                 <td>
                                     <a href="view-flat-information/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                         ><i class="fas fa-eye"></i></button></a>
@@ -418,7 +418,7 @@ if (res.result == "billing") {
                                     <td> ${value.certificates_renew === null ? '':value.certificates_renew} </td>
                                     <td> ${value.certificates_special_provision === null ? '':value.certificates_special_provision} </td>
                                     <td> ${value.certificates_special_remarks === null ? '':value.certificates_special_remarks} </td>
-                                    <td> ${value.delete_status === 0 ? 'Active' : 'Inactive'} </td>
+                                    <td> ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
                                         <a href="view-regulatory-compliance/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                             ><i class="fas fa-eye"></i></button></a>
@@ -453,7 +453,7 @@ if (res.result == "billing") {
                                     <td> ${value.industrial_relation === null ? '':value.industrial_relation} </td>
                                     <td> ${value.labour_law_safety === null ? '':value.labour_law_safety} </td>
                                     <td> ${value.bnbc_safety === null ? '':value.bnbc_safety} </td>
-                                    <td> ${value.delete_status === 0 ? 'Active' : 'Inactive'} </td>
+                                    <td> ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
                                         <a href="view-social-compliance/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                             ><i class="fas fa-eye"></i></button></a>
@@ -462,6 +462,42 @@ if (res.result == "billing") {
                                             ><i class="fas fa-edit"></i></button></a>
                                             
                                         <button onclick='social_compliance_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                            
+                                    </td>
+                                </tr>
+        
+                `);
+            });
+            
+            
+        }else if (res.result == "criminal_cases") {
+            
+            // console.log(res);
+
+            $('#search_data').empty();
+            $.each(res.data, function(key, value){
+        
+                $('#search_data').append(`
+
+                                <tr>
+                                    <td><a href="view-criminal-cases/${value.id}"> ${value.case_no} </a></td>
+                                    <td> ${value.subsequent_case_no === null ? '':value.subsequent_case_no} </td>
+                                    <td> ${value.division_name === null ? '':value.division_name} </td>
+                                    <td> ${value.court_name === null ? '':value.court_name} </td>
+                                    <td> ${value.district_name === null ? '':value.district_name} </td>
+                                    <td> ${value.company_name === null ? '':value.company_name} </td>
+                                    <td> ${value.plaintiff_name === null ? '':value.plaintiff_name} </td>
+                                    <td> ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
+                                    <td>
+                                        <a href="view-criminal-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                            ><i class="fas fa-eye"></i></button></a>
+                                        <a href="add-billing-criminal-cases/${value.id}"><button
+                                            class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                            data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
+                                        <a href="edit-criminal-cases/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                            ><i class="fas fa-edit"></i></button></a>
+                                            
+                                        <button onclick='criminal_cases_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
                                             
                                     </td>
                                 </tr>
@@ -494,18 +530,12 @@ if (res.result == "billing") {
                                     ${value.district_name === null ? '':value.district_name}
 
                                 </td>
-                                <td>
-                                    ${value.case_status_name === null ? '':value.case_status_name}
-
-                                </td>
+                                
                                 <td>
                                     ${value.company_name === null ? '':value.company_name}
 
                                 </td>
-                                <td>
-                                    ${value.case_category_name === null ? '':value.case_category_name}
-
-                                </td>
+                                
                                 <td>
                                     ${value.plaintiff_name === null ? '':value.plaintiff_name}
 
@@ -515,7 +545,7 @@ if (res.result == "billing") {
 
                                 </td>
                                 <td> 
-                                   ${value.delete_status===0 ? 'Active': 'Inactive'}
+                                   ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}
                                 </td>
                                 
                                 <td>

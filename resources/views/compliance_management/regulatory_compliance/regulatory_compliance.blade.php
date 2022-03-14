@@ -145,57 +145,55 @@
                                 <table id="data_table" class="table table-responsive no-footer dtr-inline">
                                     <thead>
                                         <tr>
-                                            <th>Certificates/ License</th>
-                                            <th>Category</th>
-                                            <th>Certificates Authority</th>
-                                            <th>Ministry/Dept.</th>
-                                            <th>CL Date</th>
-                                            <th>Expires</th>
-                                            <th>Renew</th>
-                                            <th>Special Provision</th>
-                                            <th>Special Remarks</th>
-                                            <th>Status</th>
+                                            <th class="text-center text-nowrap">Certificates/ License</th>
+                                            <th class="text-center text-nowrap">Category</th>
+                                            <th class="text-center text-nowrap">Certificates Authority</th>
+                                            <th class="text-center text-nowrap">Ministry/Dept.</th>
+                                            <th class="text-center text-nowrap">CL Date</th>
+                                            <th class="text-center text-nowrap">Expires</th>
+                                            <th class="text-center text-nowrap">Renew</th>
+                                            <th class="text-center text-nowrap">Status</th>
                                             <th width="13%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="search_data">
                                         @foreach ($data as $datum)
                                             <tr>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $datum->certificates_name }} 
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $datum->compliance_category_name }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $datum->certificates_authority }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $datum->certificates_ministry }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $datum->certificates_getting_cl_first_date }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $datum->certificates_expires }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $datum->certificates_renew }}
                                                 </td>
-                                                <td>
-                                                    {{ $datum->certificates_special_provision }}
-                                                </td>
-                                                <td>
-                                                    {{ $datum->certificates_special_remarks }}
-                                                </td>
-                                                <td>
+                                                
+                                                
+                                                <td class="text-center">
                                                     @if ($datum->delete_status == 0)
-                                                        Active
+                                                        <button type="button"
+                                                            class="btn-custom btn-success-custom text-uppercase"> Active
+                                                        </button>
                                                     @else
-                                                        Inactive
+                                                        <button type="button"
+                                                            class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                     @endif
+                                                    </span>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <a href="{{ route('view-regulatory-compliance', $datum->id) }}"><button
                                                             class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Details"><i

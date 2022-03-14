@@ -47,18 +47,26 @@
 
 
                             <section class="panel">
-                                <header class="panel-heading tab-bg-dark-navy-blue">
-                                    <ul class="nav nav-tabs" style="padding-bottom:10px;">
-                                        <li class="">
+
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <ul class="nav custom_top_tab">
+                                            <li class="">
                                             <a data-toggle="tab" href="#home" class="active">Edit High Court of
                                                 Bangladesh</a>
-                                        </li>
-                                        <li class="">
-                                            <a data-toggle="tab" href="#about">Update Status</a>
-                                        </li>
+                                            </li>
+                                            <li class="">
+                                                <a data-toggle="tab" href="#about">Update Status</a>
+                                            </li>
+                                        </ul>
+                                    </h3>
+                                    <div class="float-right">
+                                        <a href="{{ route('view-high-court-cases', $data->id) }}"><button
+                                                class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top"
+                                                title="Details"><i class="fas fa-eye"></i></button></a>
+                                    </div>
+                                </div>
 
-                                    </ul>
-                                </header>
                                 <div class="panel-body">
                                     <div class="tab-content">
                                         <div id="home" class="tab-pane active">
@@ -66,11 +74,7 @@
 
                                             <div class="card-header">
                                                 <h3 class="card-title" id="heading">Edit High Court of Bangladesh</h3>
-                                                <div class="float-right">
-                                                    <a class="btn btn-success text-uppercase"
-                                                        href="{{ route('view-high-court-cases', $data->id) }}"> Preview
-                                                    </a>
-                                                </div>
+                                               
                                             </div>
 
                                             <form action="{{ route('update-high-court-cases', $data->id) }}" method="post"
@@ -896,11 +900,7 @@
                                                             <h3 class="card-title" id="heading">Update High Court of
                                                                 Bangladesh
                                                                 Status</h3>
-                                                            <div class="float-right">
-                                                                <a class="btn btn-success"
-                                                                    href="{{ route('view-high-court-cases', $data->id) }}">
-                                                                    Preview </a>
-                                                            </div>
+                                                            
                                                         </div>
 
                                                         <form

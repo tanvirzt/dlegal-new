@@ -48,35 +48,38 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Division</th>
-                                        <th>District</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th class="text-center text-nowrap">ID</th>
+                                        <th class="text-center text-nowrap">Division</th>
+                                        <th class="text-center text-nowrap">District</th>
+                                        <th class="text-center text-nowrap">Status</th>
+                                        <th class="text-center text-nowrap">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($data as $datum)
 
                                         <tr>
-                                            <td>
+                                            <td class="text-center">
                                                 {{$datum->id}}
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 {{$datum->division_name}}
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 {{$datum->district_name}}
                                             </td>
-                                            <td>
-                                                @if($datum->delete_status == 0)
-                                                    Active
+                                            <td class="text-center">
+                                                @if ($datum->delete_status == 0)
+                                                    <button type="button"
+                                                        class="btn-custom btn-success-custom text-uppercase"> Active
+                                                    </button>
                                                 @else
-
-                                                    Inactive
+                                                    <button type="button"
+                                                        class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                 @endif
+                                                </span>
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="{{ route('edit-district',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                 ><i class="fas fa-edit"></i></button></a>
                                                 <form method="POST" action="{{ route('delete-district',$datum->id) }}" class="delete-user btn btn-danger btn-xs">

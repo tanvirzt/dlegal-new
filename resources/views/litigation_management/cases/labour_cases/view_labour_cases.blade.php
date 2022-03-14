@@ -58,8 +58,10 @@
                             <div class="card-header">
                                 <h3 class="card-title" id="heading">Labour Cases Details</h3>
                                 <div class="float-right">
-                                    <a class="btn btn-info"
-                                        href="{{ route('edit-labour-cases', $data->id) }}"> Edit </a>
+                                    <a href="{{ route('edit-labour-cases', $data->id) }}"><button
+                                        class="btn btn-info btn-sm" data-toggle="tooltip"
+                                        data-placement="top" title="Edit"><i
+                                            class="fas fa-edit"></i></button></a>
                                 </div>
                             </div>
                                 <div class="card-body">

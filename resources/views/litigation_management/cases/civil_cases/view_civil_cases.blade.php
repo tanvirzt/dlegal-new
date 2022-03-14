@@ -58,8 +58,12 @@
                             <div class="card-header">
                                 <h3 class="card-title custom_h3" id="heading">Civil Cases Details</h3>
                                 <div class="float-right">
-                                    <a class="btn btn-info"
-                                        href="{{ route('edit-civil-cases', $data->id) }}"> Edit </a>
+
+                                    <a href="{{ route('edit-civil-cases', $data->id) }}"><button
+                                        class="btn btn-info btn-sm" data-toggle="tooltip"
+                                        data-placement="top" title="Edit"><i
+                                            class="fas fa-edit"></i></button></a>
+                                    
                                 </div>
                             </div>
                                 <div class="card-body">
@@ -217,7 +221,7 @@
                                     </table>               
                                 </div>
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3" id="heading">View Docuemnts Of this Case</h3>
+                                    <h3 class="card-title custom_h3" id="heading">View Documents Of this Case</h3>
                                 </div>
                                 <div class="card-body">
                                     <table id="data_table" class="table dataTable no-footer dtr-inline">

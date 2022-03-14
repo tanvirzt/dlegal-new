@@ -48,31 +48,34 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Floor</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th class="text-center text-nowrap">ID</th>
+                                        <th class="text-center text-nowrap">Floor</th>
+                                        <th class="text-center text-nowrap">Status</th>
+                                        <th class="text-center text-nowrap">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($data as $datum)
 
                                         <tr>
-                                            <td>
+                                            <td class="text-center">
                                                 {{$datum->id}}
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 {{$datum->floor_name}}
                                             </td>
-                                            <td>
-                                                @if($datum->delete_status == 0)
-                                                    Active
+                                            <td class="text-center">
+                                                @if ($datum->delete_status == 0)
+                                                    <button type="button"
+                                                        class="btn-custom btn-success-custom text-uppercase"> Active
+                                                    </button>
                                                 @else
-
-                                                    Inactive
+                                                    <button type="button"
+                                                        class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                 @endif
+                                                </span>
                                             </td>
-                                            <td>
+                                            <td class="text-center">
 
                                                     <a href="{{ route('edit-floor',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>

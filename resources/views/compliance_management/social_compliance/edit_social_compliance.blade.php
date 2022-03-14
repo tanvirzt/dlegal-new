@@ -47,7 +47,6 @@
                             <section class="panel">
                                 <div class="card-header">
                                     <h3 class="card-title">
-
                                         <ul class="nav custom_top_tab">
                                             <li class="">
                                                 <a data-toggle="tab" href="#home" class="active">Labour Law
@@ -59,7 +58,7 @@
                                             <li class="">
                                                 <a data-toggle="tab" href="#buyer_investor">Buyer/Investor Compliance</a>
                                             </li>
-
+                                        </ul>
                                     </h3>
                                     <div class="float-right">
                                         <a href="{{ route('view-social-compliance', $data->id) }}"><button

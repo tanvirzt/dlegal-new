@@ -386,4 +386,15 @@ class DocManagementController extends Controller
         return response()->download($path);
     }
 
+
+    public function external_document()
+    {
+        // dd('adsf asdf ');
+
+        $external_document = ExternalFile::where('delete_status',0)->get();
+        // dd($external_document);
+        return view('document_management.document_management.view_external_documents',compact('external_document'));
+
+    }
+
 }

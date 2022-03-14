@@ -57,8 +57,13 @@
                         <div class="">
                             <div class="card-header">
                                 <h3 class="card-title" id="heading">High Court Division Details</h3>
-                                
-                                
+                                <div class="float-right">
+                                    <a href="{{ route('edit-high-court-cases', $data->id) }}"><button
+                                    class="btn btn-info btn-sm" data-toggle="tooltip"
+                                    data-placement="top" title="Edit"><i
+                                        class="fas fa-edit"></i></button></a>
+
+                                </div>
                             </div>
                                 <div class="card-body">
                                     <table class="table table-responsive table-hover table-bordered">

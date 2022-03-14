@@ -178,6 +178,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('view-criminal-cases/{id}','CriminalCasesController@view_criminal_cases')->name('view-criminal-cases');
         Route::get('download-criminal-cases-files/{id}','CriminalCasesController@download_criminal_cases_file')->name('download-criminal-cases-files');
         Route::post('update-criminal-cases-status/{id}','CriminalCasesController@update_criminal_cases_status')->name('update-criminal-cases-status');
+        Route::post('search-criminal-cases','CriminalCasesController@search_criminal_cases')->name('search-criminal-cases');
 
         Route::get('labour-cases','LabourCasesController@labour_cases')->name('labour-cases');
         Route::get('add-labour-cases','LabourCasesController@add_labour_cases')->name('add-labour-cases');
@@ -428,6 +429,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('find-property-management','DocManagementController@find_property_management')->name('find-property-management');
         Route::post('save-document','DocManagementController@save_document')->name('save-document');
         Route::get('download-external-files/{id}','DocManagementController@download_external_files')->name('download-external-files');
+        Route::get('external-document','DocManagementController@external_document')->name('external-document');
 
     });
 

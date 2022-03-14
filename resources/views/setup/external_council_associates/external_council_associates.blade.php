@@ -48,47 +48,50 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th> External Council </th>
-                                        <th> Name </th>
-                                        <th> Email </th>
-                                        <th> Work Phone </th>
-                                        <th> Mobile No. </th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th class="text-center text-nowrap">ID</th>
+                                        <th class="text-center text-nowrap"> External Council </th>
+                                        <th class="text-center text-nowrap"> Name </th>
+                                        <th class="text-center text-nowrap"> Email </th>
+                                        <th class="text-center text-nowrap"> Work Phone </th>
+                                        <th class="text-center text-nowrap"> Mobile No. </th>
+                                        <th class="text-center text-nowrap">Status</th>
+                                        <th class="text-center text-nowrap">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($data as $datum)
 
                                         <tr>
-                                            <td>
+                                            <td class="text-center">
                                                 {{ $datum->id }}
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 {{ $datum->ec_first_name }} {{ $datum->ec_middle_name }}
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 {{ $datum->first_name }} {{ $datum->middle_name }}
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 {{ $datum->email }}
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 {{ $datum->work_phone }}
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 {{ $datum->mobile_phone }}
                                             </td>
-                                            <td>
-                                                @if($datum->delete_status == 0)
-                                                    Active
+                                            <td class="text-center">
+                                                @if ($datum->delete_status == 0)
+                                                    <button type="button"
+                                                        class="btn-custom btn-success-custom text-uppercase"> Active
+                                                    </button>
                                                 @else
-
-                                                    Inactive
+                                                    <button type="button"
+                                                        class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                 @endif
+                                                </span>
                                             </td>
-                                            <td>
+                                            <td class="text-center">
 
                                                 <a href="{{ route('edit-external-council-associates',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>

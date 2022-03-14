@@ -48,16 +48,16 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th>Case No</th>
-                                        <th>Subsequent Case No</th>
-                                        <th>Division</th>
-                                        <th>Court Name</th>
-                                        <th>District</th>
-                                        <th>Case Status</th>
-                                        <th>Company</th>
-                                        <th>Case Category</th>
-                                        <th>Plaintiff Name</th>
-                                        <th>Status</th>
+                                        <th class="text-center">Case No</th>
+                                        <th class="text-center">Subsequent Case No</th>
+                                        <th class="text-center">Division</th>
+                                        <th class="text-center">Court Name</th>
+                                        <th class="text-center">District</th>
+                                        
+                                        <th class="text-center">Company</th>
+                                        
+                                        <th class="text-center">Plaintiff Name</th>
+                                        <th class="text-center">Status</th>
                                         <th width="13%">Action</th>
                                     </tr>
                                     </thead>
@@ -80,25 +80,25 @@
                                             <td>
                                                 {{ $datum->district_name }}
                                             </td>
-                                            <td>
-                                                {{ $datum->case_status_name }}
-                                            </td>
+                                            
                                             <td>
                                                 {{ $datum->company_name }}
                                             </td>
-                                            <td>
-                                                {{ $datum->case_category_name }}
-                                            </td>
+                                            
                                             <td>
                                                 {{ $datum->plaintiff_name }}
                                             </td>
                                             
                                             <td>
-                                                @if($datum->delete_status == 0)
-                                                    Active
+                                                @if ($datum->delete_status == 0)
+                                                    <button type="button"
+                                                        class="btn-custom btn-success-custom text-uppercase"> Active
+                                                    </button>
                                                 @else
-                                                    Inactive
+                                                    <button type="button"
+                                                        class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                 @endif
+                                                </span>
                                             </td>
                                             <td>
                                             <a href="{{ route('view-labour-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"

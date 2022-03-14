@@ -39,6 +39,10 @@ class CriminalCasesController extends Controller
   {
     //   $data = CriminalCase::all();
 // dd($data);
+        $division = DB::table("setup_divisions")->get();
+        $case_types = SetupCaseTypes::where('delete_status',0)->get();
+        $court = SetupCourt::where('delete_status',0)->get();
+
          $data = DB::table('criminal_cases')
                 ->leftJoin('setup_divisions','criminal_cases.division_id', '=', 'setup_divisions.id')
                 ->leftJoin('setup_districts','criminal_cases.district_id','=','setup_districts.id')
@@ -50,7 +54,7 @@ class CriminalCasesController extends Controller
                 ->get();
         // dd($data);
 
-      return view('litigation_management.cases.criminal_cases.criminal_cases',compact('data'));
+      return view('litigation_management.cases.criminal_cases.criminal_cases',compact('data','division','case_types','court'));
   }
 
   public function add_criminal_cases()
@@ -430,5 +434,64 @@ class CriminalCasesController extends Controller
         return redirect()->back();
 
   }
+
+  public function search_criminal_cases(Request $request)
+  {
+    // dd($request->all());
+    if ($request->case_no) {
+      // dd('case_no');
+
+      $data = DB::table('criminal_cases')
+            ->leftJoin('setup_divisions','criminal_cases.division_id', '=', 'setup_divisions.id')
+            ->leftJoin('setup_districts','criminal_cases.district_id','=','setup_districts.id')
+            ->leftJoin('setup_case_statuses','criminal_cases.case_status_id','=','setup_case_statuses.id')
+            ->leftJoin('setup_case_categories','criminal_cases.case_category_nature_id','=','setup_case_categories.id')
+            ->leftJoin('setup_courts','criminal_cases.name_of_the_court_id','=','setup_courts.id')
+            ->leftJoin('setup_companies','criminal_cases.company_id','=','setup_companies.id')
+            ->where('criminal_cases.case_no', $request->case_no)
+            ->select('criminal_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
+            ->get();
+
+
+    } else if ($request->date_of_filing){
+      // dd('date of filing');
+
+      $data = DB::table('criminal_cases')
+            ->leftJoin('setup_divisions','criminal_cases.division_id', '=', 'setup_divisions.id')
+            ->leftJoin('setup_districts','criminal_cases.district_id','=','setup_districts.id')
+            ->leftJoin('setup_case_statuses','criminal_cases.case_status_id','=','setup_case_statuses.id')
+            ->leftJoin('setup_case_categories','criminal_cases.case_category_nature_id','=','setup_case_categories.id')
+            ->leftJoin('setup_courts','criminal_cases.name_of_the_court_id','=','setup_courts.id')
+            ->leftJoin('setup_companies','criminal_cases.company_id','=','setup_companies.id')
+            ->where('criminal_cases.date_of_filing', $request->date_of_filing)
+            ->select('criminal_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
+            ->get();
+
+
+    }else if ($request->name_of_the_court_id){
+      // dd('name of the court');
+
+      $data = DB::table('criminal_cases')
+            ->leftJoin('setup_divisions','criminal_cases.division_id', '=', 'setup_divisions.id')
+            ->leftJoin('setup_districts','criminal_cases.district_id','=','setup_districts.id')
+            ->leftJoin('setup_case_statuses','criminal_cases.case_status_id','=','setup_case_statuses.id')
+            ->leftJoin('setup_case_categories','criminal_cases.case_category_nature_id','=','setup_case_categories.id')
+            ->leftJoin('setup_courts','criminal_cases.name_of_the_court_id','=','setup_courts.id')
+            ->leftJoin('setup_companies','criminal_cases.company_id','=','setup_companies.id')
+            ->where('criminal_cases.name_of_the_court_id', $request->name_of_the_court_id)
+            ->select('criminal_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
+            ->get();
+
+    }
+
+
+    return response()->json([
+      'result' => 'criminal_cases',
+      'data' => $data,
+    ]);
+
+    
+  }
+
 
 }

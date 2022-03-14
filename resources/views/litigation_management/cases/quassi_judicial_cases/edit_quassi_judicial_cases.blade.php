@@ -44,20 +44,41 @@
                     <div class="card">
                         <div class="">
 
+                            
+
+
+
+
+
+
+
+
+
+
+
+
 
                             <section class="panel">
-                                <header class="panel-heading tab-bg-dark-navy-blue">
-                                    <ul class="nav nav-tabs" style="padding-bottom:10px;">
-                                        <li class="">
-                                            <a data-toggle="tab" href="#home" class="active">Edit Special /
-                                                Quassi-Judicial Cases</a>
-                                        </li>
-                                        <li class="">
-                                            <a data-toggle="tab" href="#about">Update Status</a>
-                                        </li>
 
-                                    </ul>
-                                </header>
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <ul class="nav custom_top_tab">
+                                            <li class="">
+                                                <a data-toggle="tab" href="#home" class="active">Edit Special /
+                                                    Quassi-Judicial Cases</a>
+                                            </li>
+                                            <li class="">
+                                                <a data-toggle="tab" href="#about">Update Status</a>
+                                            </li>
+                                        </ul>
+                                    </h3>
+                                    <div class="float-right">
+                                        <a href="{{ route('view-quassi-judicial-cases', $data->id) }}"><button
+                                                class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top"
+                                                title="Details"><i class="fas fa-eye"></i></button></a>
+                                    </div>
+                                </div>
+
                                 <div class="panel-body">
                                     <div class="tab-content">
                                         <div id="home" class="tab-pane active">
@@ -65,11 +86,7 @@
                                             <div class="card-header">
                                                 <h3 class="card-title" id="heading">Edit Special / Quassi-Judicial Cases
                                                 </h3>
-                                                <div class="float-right">
-                                                    <a class="btn btn-success text-uppercase"
-                                                        href="{{ route('view-quassi-judicial-cases', $data->id) }}">
-                                                        Preview </a>
-                                                </div>
+                                                
                                             </div>
 
                                             <form action="{{ route('update-quassi-judicial-cases', $data->id) }}"
@@ -895,11 +912,7 @@
                                                             <h3 class="card-title" id="heading">Update Special /
                                                                 Quassi-Judicial Case
                                                                 Status</h3>
-                                                            <div class="float-right">
-                                                                <a class="btn btn-success"
-                                                                    href="{{ route('view-quassi-judicial-cases', $data->id) }}">
-                                                                    Preview </a>
-                                                            </div>
+                                                            
                                                         </div>
 
                                                         <form

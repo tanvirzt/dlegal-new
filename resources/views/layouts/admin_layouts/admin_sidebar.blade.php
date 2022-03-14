@@ -30,7 +30,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('dashboard') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -287,7 +287,7 @@
             </ul>
           </li>
 
-                <li class="nav-item has-treeview">
+                {{-- <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="fas fa-couch nav-icon"></i>
                         <p>
@@ -303,7 +303,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
 
 
@@ -386,7 +386,7 @@
                         </li>
                       </ul>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                       <a href="#" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>
@@ -402,14 +402,14 @@
                           </a>
                         </li>
                       </ul>
-                    </li>
+                    </li> --}}
                     
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                       <a href="#" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Others</p>
                       </a>
-                    </li>
+                    </li> --}}
                   </ul>
                 </li>
 
@@ -459,7 +459,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
+                {{-- <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="fas fa-hammer nav-icon"></i>
                         <p>
@@ -467,24 +467,42 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                </li>
-                <!-- <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-hammer nav-icon"></i>
-                        <p>
-                            Dispute Resolution Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                </li> -->
+                </li> --}}
+
                 <li class="nav-item has-treeview">
-                    <a href="{{ route('document-management') }}" class="nav-link">
-                        <i class="fas fa-chart-line nav-icon"></i>
-                        <p>
-                            Document Management
-                        </p>
-                    </a>
-                </li>
+                  <a href="#" class="nav-link">
+                      <i class="fas fa-print nav-icon"></i>
+                      <p>
+                          Document Management
+                          <i class="right fas fa-angle-left"></i>
+                      </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                          <a href="{{ route('document-management') }}" class="nav-link">
+                              <i class="ml-left"></i>
+                              <p> Document Management </p>
+                          </a>
+                      </li>
+
+                      <li class="nav-item">
+                          <a href="{{ route('external-document') }}" class="nav-link">
+                              <i class="ml-left"></i>
+                              <p>External Document</p>
+                          </a>
+                      </li>
+
+                  </ul>
+              </li>
+              {{-- <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                      <i class="fas fa-hammer nav-icon"></i>
+                      <p>
+                          Legal Services Management
+                          <i class="right fas fa-angle-left"></i>
+                      </p>
+                  </a>
+              </li>
 
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -513,7 +531,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                </li>
+                </li> --}}
 
             </ul>
         </nav>
