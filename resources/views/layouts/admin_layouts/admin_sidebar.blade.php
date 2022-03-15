@@ -124,7 +124,7 @@
                   <li class="nav-item">
                     <a href="{{ route('region') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
-                      <p>Region</p>
+                      <p>Zone</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -471,7 +471,7 @@
 
                 <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
-                      <i class="fas fa-print nav-icon"></i>
+                      <i class="fas fa-file-archive nav-icon"></i>
                       <p>
                           Document Management
                           <i class="right fas fa-angle-left"></i>

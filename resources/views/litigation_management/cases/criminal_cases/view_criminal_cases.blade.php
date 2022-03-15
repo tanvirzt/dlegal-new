@@ -205,7 +205,7 @@
                                     </table>               
                                 </div>
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3" id="heading">View Docuemnts of this Case</h3>
+                                    <h3 class="card-title custom_h3" id="heading">Documents Logs</h3>
                                 </div>
                                 <div class="card-body">
                                     <table id="data_table" class="table dataTable no-footer dtr-inline">
@@ -234,7 +234,7 @@
                             </div>
 
                             <div class="card-header">
-                                <h3 class="card-title custom_h3" id="heading">View Log of this Case</h3>
+                                <h3 class="card-title custom_h3" id="heading">Proceedings Logs</h3>
                             </div>
                             <div class="card-body">
                                 <table id="table_logs_text_center" class="table table-responsive no-footer dtr-inline">
@@ -277,7 +277,7 @@
                                 </table>
                             </div>
                             <div class="card-header">
-                                <h3 class="card-title custom_h3" id="heading">View Billings of this Case</h3>
+                                <h3 class="card-title custom_h3" id="heading">Billings Logs</h3>
                             </div>
                             <div class="card-body">
                                 <table id="table_bill_logs_text_center" class="table table-responsive no-footer dtr-inline">

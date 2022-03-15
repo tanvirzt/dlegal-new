@@ -106,7 +106,6 @@ class CivilCasesController extends Controller
          'external_council_associates_id' => 'required',
          'relevant_law_sections_id' => 'required',
          'plaintiff_name' => 'required',
-         'contact_number' => 'required',
          'plaintiff_designaiton_id' => 'required',
          'next_date' => 'required',
          'plaintiff_contact_number' => 'required',
@@ -131,7 +130,6 @@ class CivilCasesController extends Controller
          'external_council_associates_id.required' => 'External Council Associates field is required',
          'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
          'plaintiff_name.required' => 'Plaintiff Name field is required',
-         'contact_number.required' => 'Contact Number field is required',
          'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
          'next_date.required' => 'Next Date field is required',
          'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
@@ -158,7 +156,6 @@ class CivilCasesController extends Controller
       $data->external_council_associates_id = $request->external_council_associates_id;
       $data->relevant_law_sections_id = $request->relevant_law_sections_id;
       $data->plaintiff_name = $request->plaintiff_name;
-      $data->contact_number = $request->contact_number;
       $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
       $data->next_date = $request->next_date;
       $data->plaintiff_contact_number = $request->plaintiff_contact_number;
@@ -208,7 +205,8 @@ class CivilCasesController extends Controller
       }
 
       session()->flash('success','Civil Cases Added Successfully');
-      return redirect()->back();
+    //   return redirect()->back();
+      return redirect()->route('civil-cases');
 
   }
 
@@ -256,7 +254,6 @@ class CivilCasesController extends Controller
         'external_council_associates_id' => 'required',
         'relevant_law_sections_id' => 'required',
         'plaintiff_name' => 'required',
-        'contact_number' => 'required',
         'plaintiff_designaiton_id' => 'required',
         'next_date' => 'required',
         'plaintiff_contact_number' => 'required',
@@ -281,7 +278,6 @@ class CivilCasesController extends Controller
         'external_council_associates_id.required' => 'External Council Associates field is required',
         'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
         'plaintiff_name.required' => 'Plaintiff Name field is required',
-        'contact_number.required' => 'Contact Number field is required',
         'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
         'next_date.required' => 'Next Date field is required',
         'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
@@ -309,7 +305,6 @@ class CivilCasesController extends Controller
         $data->external_council_associates_id = $request->external_council_associates_id;
         $data->relevant_law_sections_id = $request->relevant_law_sections_id;
         $data->plaintiff_name = $request->plaintiff_name;
-        $data->contact_number = $request->contact_number;
         $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
         $data->next_date = $request->next_date;
         $data->plaintiff_contact_number = $request->plaintiff_contact_number;
@@ -359,7 +354,7 @@ class CivilCasesController extends Controller
           }
     
           session()->flash('success','Civil Cases Updated Successfully');
-          return redirect()->back();
+          return redirect()->route('civil-cases');
     
       }
 
@@ -467,7 +462,7 @@ class CivilCasesController extends Controller
         $data->save();
 
         session()->flash('success','Case Status Updated Successfully');
-        return redirect()->back();
+        return redirect()->route('civil-cases');
 
   }
 

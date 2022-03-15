@@ -149,6 +149,13 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
+                                                                <label for="trial_court" class="col-sm-4 col-form-label">Trial Court</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" id="trial_court" name="trial_court" value="{{ $data->trial_court }}">
+                                                                    @error('trial_court')<span class="text-danger">{{$message}}</span>@enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
                                                                 <label for="subsequent_case_no"
                                                                     class="col-sm-4 col-form-label">Subsequent Case
                                                                     No.</label>
@@ -254,7 +261,7 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="name_of_the_court_id"
-                                                                    class="col-sm-4 col-form-label"> Name of the Court
+                                                                    class="col-sm-4 col-form-label"> Name of the filling Court
                                                                 </label>
                                                                 <div class="col-sm-8">
                                                                     <select name="name_of_the_court_id"
@@ -475,6 +482,9 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
+                                                            
+                                                        </div>
+                                                        <div class="col-md-6">
                                                             <div class="form-group row">
                                                                 <label for="case_status_id"
                                                                     class="col-sm-4 col-form-label">Status of the
@@ -495,8 +505,6 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-6">
                                                             <div class="form-group row">
                                                                 <label for="last_order_court_id"
                                                                     class="col-sm-4 col-form-label">Last Order of the
@@ -610,56 +618,6 @@
                                                                         @endforeach
                                                                     </select>
                                                                     @error('next_date_fixed_id')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label for="plaintiff_name"
-                                                                    class="col-sm-4 col-form-label">Plaintiff Name</label>
-                                                                <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                        id="plaintiff_name" name="plaintiff_name"
-                                                                        value="{{ $data->plaintiff_name }}">
-                                                                    @error('plaintiff_name')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label for="plaintiff_designaiton_id"
-                                                                    class="col-sm-4 col-form-label">Plaintiff
-                                                                    Designation</label>
-                                                                <div class="col-sm-8">
-
-                                                                    <select name="plaintiff_designaiton_id"
-                                                                        class="form-control select2">
-                                                                        <option value="">Select</option>
-                                                                        @foreach ($designation as $item)
-                                                                            <option value="{{ $item->id }}"
-                                                                                {{ $data->plaintiff_designaiton_id == $item->id ? 'selected' : '' }}>
-                                                                                {{ $item->designation_name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    @error('plaintiff_designaiton_id')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label for="plaintiff_contact_number"
-                                                                    class="col-sm-4 col-form-label">Plaintiff Contact
-                                                                    No</label>
-                                                                <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                        id="plaintiff_contact_number"
-                                                                        name="plaintiff_contact_number"
-                                                                        value="{{ $data->plaintiff_contact_number }}">
-                                                                    @error('plaintiff_contact_number')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
                                                                     @enderror
@@ -782,7 +740,7 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="prayer_claims_by_psg"
-                                                                    class="col-sm-4 col-form-label"> Prayer/Claims by PSG
+                                                                    class="col-sm-4 col-form-label"> Prayer/Claims by
                                                                 </label>
                                                                 <div class="col-sm-8">
                                                                     <textarea name="prayer_claims_by_psg"
@@ -882,7 +840,7 @@
                                                                         <div class="form-group row">
                                                                             <label for="updated_court_id"
                                                                                 class="col-sm-4 col-form-label"> Name of
-                                                                                the Court </label>
+                                                                                the filling Court </label>
                                                                             <div class="col-sm-8">
                                                                                 <select name="updated_court_id"
                                                                                     class="form-control select2" required>

@@ -20,28 +20,22 @@
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-        @if(Session::has('success'))
-            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-                {{Session::get('success')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
+        
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                @if(Session::has('success'))
+                    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                        {{Session::get('success')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="row">
-
-
-
                     <div class="col-md-8">
                         <div class="card">
-
-
-
                             <div id="accordion">
-
                                 <div class="card-header" id="headingTwo">
                                     <h3 class="card-title"> Criminal Cases :: Search </h3>
                                     <div class="card-tools">
@@ -146,7 +140,7 @@
                                         <th class="text-center">Court Name</th>
                                         <th class="text-center">District</th>
                                         <th class="text-center">Company</th>
-                                        <th class="text-center">Plaintiff Name</th>
+                                        
                                         <th class="text-center">Status</th>
                                         <th class="text-center" width="13%">Action</th>
                                     </tr>
@@ -172,10 +166,6 @@
                                             </td>
                                             <td>
                                                 {{ $datum->company_name }}
-                                            </td>
-                                            
-                                            <td>
-                                                {{ $datum->plaintiff_name }}
                                             </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)

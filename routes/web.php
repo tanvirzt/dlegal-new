@@ -189,7 +189,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('view-labour-cases/{id}','LabourCasesController@view_labour_cases')->name('view-labour-cases');
         Route::get('download-labour-cases-files/{id}','LabourCasesController@download_labour_cases_file')->name('download-labour-cases-files');
         Route::post('update-labour-cases-status/{id}','LabourCasesController@update_labour_cases_status')->name('update-labour-cases-status');
-        
+        Route::post('search-labour-cases','LabourCasesController@search_labour_cases')->name('search-labour-cases');
+
         Route::get('quassi-judicial-cases','QuassiJudicialCasesController@quassi_judicial_cases')->name('quassi-judicial-cases');
         Route::get('add-quassi-judicial-cases','QuassiJudicialCasesController@add_quassi_judicial_cases')->name('add-quassi-judicial-cases');
         Route::post('save-quassi-judicial-cases','QuassiJudicialCasesController@save_quassi_judicial_cases')->name('save-quassi-judicial-cases');

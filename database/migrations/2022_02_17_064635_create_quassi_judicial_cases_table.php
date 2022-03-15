@@ -19,6 +19,7 @@ class CreateQuassiJudicialCasesTable extends Migration
             $table->string('date_of_case_received')->nullable();
             $table->string('case_category_nature_id')->nullable();
             $table->integer('case_type_id')->nullable();
+            $table->string('trial_court')->nullable();
             $table->string('subsequent_case_no')->nullable();
             $table->integer('zone_id')->nullable();
             $table->string('area_id')->nullable();

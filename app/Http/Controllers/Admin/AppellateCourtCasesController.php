@@ -126,6 +126,7 @@ class AppellateCourtCasesController extends Controller
      $data->date_of_case_received = $request->date_of_case_received;
      $data->case_category_nature_id = $request->case_category_nature_id;
      $data->case_type_id = $request->case_type_id;
+     $data->trial_court = $request->trial_court;
      $data->subsequent_case_no = $request->subsequent_case_no;
      $data->zone_id = $request->zone_id;
      $data->area_id = $request->area_id;
@@ -186,7 +187,7 @@ class AppellateCourtCasesController extends Controller
      }
 
      session()->flash('success','Appellate Court Cases Added Successfully');
-     return redirect()->back();
+     return redirect()->route('appellate-court-cases');
 
   }
 
@@ -265,6 +266,7 @@ class AppellateCourtCasesController extends Controller
      $data->date_of_case_received = $request->date_of_case_received;
      $data->case_category_nature_id = $request->case_category_nature_id;
      $data->case_type_id = $request->case_type_id;
+     $data->trial_court = $request->trial_court;
      $data->subsequent_case_no = $request->subsequent_case_no;
      $data->zone_id = $request->zone_id;
      $data->area_id = $request->area_id;
@@ -325,7 +327,7 @@ class AppellateCourtCasesController extends Controller
           }
     
           session()->flash('success','Appellate Court Cases Updated Successfully');
-          return redirect()->back();
+          return redirect()->route('appellate-court-cases');
     
     }
 
@@ -435,7 +437,7 @@ class AppellateCourtCasesController extends Controller
             $data->save();
 
             session()->flash('success','Case Status Updated Successfully');
-            return redirect()->back();
+            return redirect()->route('appellate-court-cases');
 
     }
 

@@ -24,16 +24,106 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                @if(Session::has('success'))
+                    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                        {{Session::get('success')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="row">
-                    <div class="col-12">
-                        @if(Session::has('success'))
-                            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-                                {{Session::get('success')}}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                    <div class="col-md-8">
+                        <div class="card">
+
+
+
+                            <div id="accordion">
+
+                                <div class="card-header" id="headingTwo">
+                                    <h3 class="card-title"> Labour Cases :: Search </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn collapsed" data-toggle="collapse"
+                                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+
+
+                                        <form id="form_data" method="post" action="{{ route('search-labour-cases') }}">
+                                            @csrf
+
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="case_no" class="col-sm-4 col-form-label">Case
+                                                            No.</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="case_no"
+                                                                name="case_no" value="{{ old('case_no') }}">
+                                                            @error('case_no')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="date_of_filing" class="col-sm-4 col-form-label"> Date of
+                                                            Filing </label>
+                                                        <div class="col-sm-8">
+                                                            <input type="date" class="form-control" id="date_of_filing"
+                                                                name="date_of_filing" value="{{ old('date_of_filing') }}">
+                                                            @error('date_of_filing')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="name_of_the_court_id" class="col-sm-4 col-form-label">
+                                                            Name of the Court </label>
+                                                        <div class="col-sm-8">
+                                                            <select name="name_of_the_court_id"
+                                                                class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach ($court as $item)
+                                                                    <option value="{{ $item->id }}">
+                                                                        {{ $item->court_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('name_of_the_court_id')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="float-right">
+                                                <button type="submit" id="submit" class="btn btn-primary text-uppercase"><i
+                                                        class="fas fa-search"></i> Search </button>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+                                </div>
                             </div>
-                        @endif
+                        </div>
+                    </div>
+
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
@@ -53,17 +143,14 @@
                                         <th class="text-center">Division</th>
                                         <th class="text-center">Court Name</th>
                                         <th class="text-center">District</th>
-                                        
                                         <th class="text-center">Company</th>
-                                        
                                         <th class="text-center">Plaintiff Name</th>
                                         <th class="text-center">Status</th>
                                         <th width="13%">Action</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="search_data">
                                     @foreach($data as $datum)
-
                                         <tr>
                                             <td>
                                                <a href="{{ route('view-labour-cases', $datum->id) }}"> {{ $datum->case_no }} </a>

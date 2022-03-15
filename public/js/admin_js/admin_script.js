@@ -486,7 +486,6 @@ if (res.result == "billing") {
                                     <td> ${value.court_name === null ? '':value.court_name} </td>
                                     <td> ${value.district_name === null ? '':value.district_name} </td>
                                     <td> ${value.company_name === null ? '':value.company_name} </td>
-                                    <td> ${value.plaintiff_name === null ? '':value.plaintiff_name} </td>
                                     <td> ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
                                         <a href="view-criminal-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
@@ -498,6 +497,42 @@ if (res.result == "billing") {
                                             ><i class="fas fa-edit"></i></button></a>
                                             
                                         <button onclick='criminal_cases_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                            
+                                    </td>
+                                </tr>
+        
+                `);
+            });
+            
+            
+        }else if (res.result == "labour_cases") {
+            
+            // console.log(res);
+
+            $('#search_data').empty();
+            $.each(res.data, function(key, value){
+        
+                $('#search_data').append(`
+
+                                <tr>
+                                    <td><a href="view-criminal-cases/${value.id}"> ${value.case_no} </a></td>
+                                    <td> ${value.subsequent_case_no === null ? '':value.subsequent_case_no} </td>
+                                    <td> ${value.division_name === null ? '':value.division_name} </td>
+                                    <td> ${value.court_name === null ? '':value.court_name} </td>
+                                    <td> ${value.district_name === null ? '':value.district_name} </td>
+                                    <td> ${value.company_name === null ? '':value.company_name} </td>
+                                    <td> ${value.plaintiff_name === null ? '':value.plaintiff_name} </td>
+                                    <td> ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
+                                    <td>
+                                        <a href="view-labour-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                            ><i class="fas fa-eye"></i></button></a>
+                                        <a href="add-billing-labour-cases/${value.id}"><button
+                                            class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                            data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
+                                        <a href="edit-labour-cases/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                            ><i class="fas fa-edit"></i></button></a>
+                                            
+                                        <button onclick='labour_cases_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
                                             
                                     </td>
                                 </tr>

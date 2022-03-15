@@ -37,6 +37,12 @@ class LabourCasesController extends Controller
   {
       // $data = LabourCase::all();
 // dd($data);
+
+        $division = DB::table("setup_divisions")->get();
+        $case_types = SetupCaseTypes::where('delete_status',0)->get();
+        $court = SetupCourt::where('delete_status',0)->get();
+
+
          $data = DB::table('labour_cases')
                 ->leftJoin('setup_divisions','labour_cases.division_id', '=', 'setup_divisions.id')
                 ->leftJoin('setup_districts','labour_cases.district_id','=','setup_districts.id')
@@ -48,7 +54,7 @@ class LabourCasesController extends Controller
                 ->get();
         // dd($data);
 
-      return view('litigation_management.cases.labour_cases.labour_cases',compact('data'));
+      return view('litigation_management.cases.labour_cases.labour_cases',compact('data','division','case_types','court'));
   }
 
   public function add_labour_cases()
@@ -123,6 +129,7 @@ class LabourCasesController extends Controller
      $data->date_of_case_received = $request->date_of_case_received;
      $data->case_category_nature_id = $request->case_category_nature_id;
      $data->case_type_id = $request->case_type_id;
+     $data->trial_court = $request->trial_court;
      $data->subsequent_case_no = $request->subsequent_case_no;
      $data->zone_id = $request->zone_id;
      $data->area_id = $request->area_id;
@@ -183,7 +190,7 @@ class LabourCasesController extends Controller
      }
 
      session()->flash('success','Labour Cases Added Successfully');
-     return redirect()->back();
+     return redirect()->route('labour-cases');
 
   }
 
@@ -262,6 +269,7 @@ class LabourCasesController extends Controller
      $data->date_of_case_received = $request->date_of_case_received;
      $data->case_category_nature_id = $request->case_category_nature_id;
      $data->case_type_id = $request->case_type_id;
+     $data->trial_court = $request->trial_court;
      $data->subsequent_case_no = $request->subsequent_case_no;
      $data->zone_id = $request->zone_id;
      $data->area_id = $request->area_id;
@@ -322,7 +330,7 @@ class LabourCasesController extends Controller
           }
     
           session()->flash('success','Labour Cases Updated Successfully');
-          return redirect()->back();
+          return redirect()->route('labour-cases');
     
     }
 
@@ -428,7 +436,49 @@ class LabourCasesController extends Controller
         $data->save();
 
         session()->flash('success','Case Status Updated Successfully');
-        return redirect()->back();
+        return redirect()->route('labour-cases');
+
+
+  }
+
+
+  public function search_labour_cases(Request $request)
+  {
+
+    $query = DB::table('labour_cases')
+            ->leftJoin('setup_divisions','labour_cases.division_id', '=', 'setup_divisions.id')
+            ->leftJoin('setup_districts','labour_cases.district_id','=','setup_districts.id')
+            ->leftJoin('setup_case_statuses','labour_cases.case_status_id','=','setup_case_statuses.id')
+            ->leftJoin('setup_case_categories','labour_cases.case_category_nature_id','=','setup_case_categories.id')
+            ->leftJoin('setup_courts','labour_cases.name_of_the_court_id','=','setup_courts.id')
+            ->leftJoin('setup_companies','labour_cases.company_id','=','setup_companies.id');
+
+    if ($request->case_no) {
+        
+        $query2 = $query->where('labour_cases.case_no', $request->case_no);
+
+    } else if ($request->date_of_filing){
+       
+        $query2 = $query->where('labour_cases.date_of_filing', $request->date_of_filing);
+
+    } else if ($request->name_of_the_court_id){
+       
+        $query2 = $query->where('labour_cases.name_of_the_court_id', $request->name_of_the_court_id);
+
+    } else {
+
+        $query2 = $query;
+
+    }
+
+    $data = $query2->select('labour_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
+            ->get();
+
+    return response()->json([
+        'result' => 'labour_cases',
+        'data' => $data,
+    ]);
+
 
   }
 

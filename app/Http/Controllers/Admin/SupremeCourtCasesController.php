@@ -122,6 +122,7 @@ class SupremeCourtCasesController extends Controller
        $data->date_of_case_received = $request->date_of_case_received;
        $data->case_category_nature_id = $request->case_category_nature_id;
        $data->case_type_id = $request->case_type_id;
+       $data->trial_court = $request->trial_court;
        $data->subsequent_case_no = $request->subsequent_case_no;
        $data->zone_id = $request->zone_id;
        $data->area_id = $request->area_id;
@@ -182,7 +183,7 @@ class SupremeCourtCasesController extends Controller
        }
   
        session()->flash('success','Supreme Court Cases Added Successfully');
-       return redirect()->back();
+       return redirect()->route('supreme-court-cases');
   
     }
   
@@ -261,6 +262,7 @@ class SupremeCourtCasesController extends Controller
        $data->date_of_case_received = $request->date_of_case_received;
        $data->case_category_nature_id = $request->case_category_nature_id;
        $data->case_type_id = $request->case_type_id;
+       $data->trial_court = $request->trial_court;
        $data->subsequent_case_no = $request->subsequent_case_no;
        $data->zone_id = $request->zone_id;
        $data->area_id = $request->area_id;
@@ -321,7 +323,7 @@ class SupremeCourtCasesController extends Controller
             }
       
             session()->flash('success','Supreme Court Cases Updated Successfully');
-            return redirect()->back();
+            return redirect()->route('supreme-court-cases');
       
       }
   
@@ -432,7 +434,8 @@ class SupremeCourtCasesController extends Controller
             $data->save();
 
             session()->flash('success','Case Status Updated Successfully');
-            return redirect()->back();
+            return redirect()->route('supreme-court-cases');
+
 
     }
 

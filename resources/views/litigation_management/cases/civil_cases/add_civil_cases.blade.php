@@ -172,7 +172,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="name_of_the_court_id" class="col-sm-4 col-form-label"> Name of the Court </label>
+                                                <label for="name_of_the_court_id" class="col-sm-4 col-form-label"> Name of the filling Court </label>
                                                 <div class="col-sm-8">
                                                         <select name="name_of_the_court_id" class="form-control select2">
                                                             <option value="">Select</option>
@@ -224,13 +224,6 @@
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="plaintiff_name" name="plaintiff_name" value="{{old('plaintiff_name')}}">
                                                     @error('plaintiff_name')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="contact_number" class="col-sm-4 col-form-label">Contact No</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="contact_number" name="contact_number" value="{{old('contact_number')}}">
-                                                    @error('contact_number')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">

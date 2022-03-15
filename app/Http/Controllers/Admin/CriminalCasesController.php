@@ -98,10 +98,7 @@ class CriminalCasesController extends Controller
         'name_of_the_court_id' => 'required',
         'external_council_name_id' => 'required',
         'relevant_law_sections_id' => 'required',
-        'plaintiff_name' => 'required',
-        'plaintiff_designaiton_id' => 'required',
         'next_date' => 'required',
-        'plaintiff_contact_number' => 'required',
         'next_date_fixed_id' => 'required',
     ];
 
@@ -117,10 +114,7 @@ class CriminalCasesController extends Controller
         'external_council_name_id.required' => 'External Council Name field is required',
         'defendent_address.required' => 'Defendent Address field is required',
         'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
-        'plaintiff_name.required' => 'Plaintiff Name field is required',
-        'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
         'next_date.required' => 'Next Date field is required',
-        'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
         'next_date_fixed_id.required' => 'Next Date Fixed field is required',
     ];
 
@@ -131,6 +125,7 @@ class CriminalCasesController extends Controller
      $data->date_of_case_received = $request->date_of_case_received;
      $data->case_category_nature_id = $request->case_category_nature_id;
      $data->case_type_id = $request->case_type_id;
+     $data->trial_court = $request->trial_court;
      $data->subsequent_case_no = $request->subsequent_case_no;
      $data->zone_id = $request->zone_id;
      $data->area_id = $request->area_id;
@@ -189,7 +184,7 @@ class CriminalCasesController extends Controller
      }
 
      session()->flash('success','Criminal Cases Added Successfully');
-     return redirect()->back();
+     return redirect()->route('criminal-cases');
 
   }
 
@@ -234,10 +229,7 @@ class CriminalCasesController extends Controller
             'name_of_the_court_id' => 'required',
             'external_council_name_id' => 'required',
             'relevant_law_sections_id' => 'required',
-            'plaintiff_name' => 'required',
-            'plaintiff_designaiton_id' => 'required',
             'next_date' => 'required',
-            'plaintiff_contact_number' => 'required',
             'next_date_fixed_id' => 'required',
         ];
 
@@ -253,10 +245,7 @@ class CriminalCasesController extends Controller
             'external_council_name_id.required' => 'External Council Name field is required',
             'defendent_address.required' => 'Defendent Address field is required',
             'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
-            'plaintiff_name.required' => 'Plaintiff Name field is required',
-            'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
             'next_date.required' => 'Next Date field is required',
-            'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
             'next_date_fixed_id.required' => 'Next Date Fixed field is required',
         ];
 
@@ -268,6 +257,7 @@ class CriminalCasesController extends Controller
         $data->date_of_case_received = $request->date_of_case_received;
         $data->case_category_nature_id = $request->case_category_nature_id;
         $data->case_type_id = $request->case_type_id;
+        $data->trial_court = $request->trial_court;
         $data->subsequent_case_no = $request->subsequent_case_no;
         $data->zone_id = $request->zone_id;
         $data->area_id = $request->area_id;
@@ -326,7 +316,8 @@ class CriminalCasesController extends Controller
           }
     
           session()->flash('success','Criminal Cases Updated Successfully');
-          return redirect()->back();
+          return redirect()->route('criminal-cases');
+
     
     }
 
@@ -431,65 +422,47 @@ class CriminalCasesController extends Controller
         $data->save();
 
         session()->flash('success','Case Status Updated Successfully');
-        return redirect()->back();
+        return redirect()->route('criminal-cases');
 
   }
 
   public function search_criminal_cases(Request $request)
   {
     // dd($request->all());
+    $query = DB::table('criminal_cases')
+          ->leftJoin('setup_divisions','criminal_cases.division_id', '=', 'setup_divisions.id')
+          ->leftJoin('setup_districts','criminal_cases.district_id','=','setup_districts.id')
+          ->leftJoin('setup_case_statuses','criminal_cases.case_status_id','=','setup_case_statuses.id')
+          ->leftJoin('setup_case_categories','criminal_cases.case_category_nature_id','=','setup_case_categories.id')
+          ->leftJoin('setup_courts','criminal_cases.name_of_the_court_id','=','setup_courts.id')
+          ->leftJoin('setup_companies','criminal_cases.company_id','=','setup_companies.id');
+
     if ($request->case_no) {
       // dd('case_no');
-
-      $data = DB::table('criminal_cases')
-            ->leftJoin('setup_divisions','criminal_cases.division_id', '=', 'setup_divisions.id')
-            ->leftJoin('setup_districts','criminal_cases.district_id','=','setup_districts.id')
-            ->leftJoin('setup_case_statuses','criminal_cases.case_status_id','=','setup_case_statuses.id')
-            ->leftJoin('setup_case_categories','criminal_cases.case_category_nature_id','=','setup_case_categories.id')
-            ->leftJoin('setup_courts','criminal_cases.name_of_the_court_id','=','setup_courts.id')
-            ->leftJoin('setup_companies','criminal_cases.company_id','=','setup_companies.id')
-            ->where('criminal_cases.case_no', $request->case_no)
-            ->select('criminal_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
-            ->get();
-
-
+     $query2 = $query->where('criminal_cases.case_no', $request->case_no);
+            
     } else if ($request->date_of_filing){
       // dd('date of filing');
 
-      $data = DB::table('criminal_cases')
-            ->leftJoin('setup_divisions','criminal_cases.division_id', '=', 'setup_divisions.id')
-            ->leftJoin('setup_districts','criminal_cases.district_id','=','setup_districts.id')
-            ->leftJoin('setup_case_statuses','criminal_cases.case_status_id','=','setup_case_statuses.id')
-            ->leftJoin('setup_case_categories','criminal_cases.case_category_nature_id','=','setup_case_categories.id')
-            ->leftJoin('setup_courts','criminal_cases.name_of_the_court_id','=','setup_courts.id')
-            ->leftJoin('setup_companies','criminal_cases.company_id','=','setup_companies.id')
-            ->where('criminal_cases.date_of_filing', $request->date_of_filing)
-            ->select('criminal_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
-            ->get();
-
-
+      $query2 = $query->where('criminal_cases.date_of_filing', $request->date_of_filing);
+          
     }else if ($request->name_of_the_court_id){
       // dd('name of the court');
 
-      $data = DB::table('criminal_cases')
-            ->leftJoin('setup_divisions','criminal_cases.division_id', '=', 'setup_divisions.id')
-            ->leftJoin('setup_districts','criminal_cases.district_id','=','setup_districts.id')
-            ->leftJoin('setup_case_statuses','criminal_cases.case_status_id','=','setup_case_statuses.id')
-            ->leftJoin('setup_case_categories','criminal_cases.case_category_nature_id','=','setup_case_categories.id')
-            ->leftJoin('setup_courts','criminal_cases.name_of_the_court_id','=','setup_courts.id')
-            ->leftJoin('setup_companies','criminal_cases.company_id','=','setup_companies.id')
-            ->where('criminal_cases.name_of_the_court_id', $request->name_of_the_court_id)
-            ->select('criminal_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
-            ->get();
+      $query2 = $query->where('criminal_cases.name_of_the_court_id', $request->name_of_the_court_id);
+            
+    }else{
+
+      $query2 = $query;
 
     }
 
+    $data = $query2->get();
 
     return response()->json([
       'result' => 'criminal_cases',
       'data' => $data,
     ]);
-
     
   }
 

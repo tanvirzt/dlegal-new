@@ -160,6 +160,13 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
+                                                                <label for="trial_court" class="col-sm-4 col-form-label">Trial Court</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control" id="trial_court" name="trial_court" value="{{ $data->trial_court }}">
+                                                                    @error('trial_court')<span class="text-danger">{{$message}}</span>@enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
                                                                 <label for="subsequent_case_no"
                                                                     class="col-sm-4 col-form-label">Subsequent Case
                                                                     No.</label>
@@ -265,7 +272,7 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="name_of_the_court_id"
-                                                                    class="col-sm-4 col-form-label"> Name of the Court
+                                                                    class="col-sm-4 col-form-label"> Name of the filling Court
                                                                 </label>
                                                                 <div class="col-sm-8">
                                                                     <select name="name_of_the_court_id"
@@ -515,6 +522,10 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
+                                                            
+
+                                                        </div>
+                                                        <div class="col-md-6">
                                                             <div class="form-group row">
                                                                 <label for="case_status_id"
                                                                     class="col-sm-4 col-form-label">Status of the
@@ -535,9 +546,6 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-
-                                                        </div>
-                                                        <div class="col-md-6">
                                                             <div class="form-group row">
                                                                 <label for="last_order_court_id"
                                                                     class="col-sm-4 col-form-label">Last Order of the
@@ -824,7 +832,7 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="prayer_claims_by_psg"
-                                                                    class="col-sm-4 col-form-label"> Prayer/Claims by PSG
+                                                                    class="col-sm-4 col-form-label"> Prayer/Claims by 
                                                                 </label>
                                                                 <div class="col-sm-8">
                                                                     <textarea name="prayer_claims_by_psg"
@@ -927,7 +935,7 @@
                                                                         <div class="form-group row">
                                                                             <label for="updated_court_id"
                                                                                 class="col-sm-4 col-form-label"> Name of
-                                                                                the Court </label>
+                                                                                the filling Court </label>
                                                                             <div class="col-sm-8">
                                                                                 <select name="updated_court_id"
                                                                                     class="form-control select2" required>

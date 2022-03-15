@@ -273,7 +273,7 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="name_of_the_court_id"
-                                                                    class="col-sm-4 col-form-label"> Name of the Court
+                                                                    class="col-sm-4 col-form-label"> Name of the filling Court
                                                                 </label>
                                                                 <div class="col-sm-8">
                                                                     <select name="name_of_the_court_id"
@@ -370,19 +370,7 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group row">
-                                                                <label for="contact_number"
-                                                                    class="col-sm-4 col-form-label">Contact No</label>
-                                                                <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                        id="contact_number" name="contact_number"
-                                                                        value="{{ $data->contact_number }}">
-                                                                    @error('contact_number')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
+                    
                                                             <div class="form-group row">
                                                                 <label for="plaintiff_designaiton_id"
                                                                     class="col-sm-4 col-form-label">Plaintiff
@@ -938,7 +926,7 @@
                                                                         <div class="form-group row">
                                                                             <label for="updated_court_id"
                                                                                 class="col-sm-4 col-form-label"> Name of
-                                                                                the Court </label>
+                                                                                the filling Court </label>
                                                                             <div class="col-sm-8">
                                                                                 <select name="updated_court_id"
                                                                                     class="form-control select2" required>

@@ -2705,7 +2705,8 @@ public function save_floor(Request $request)
     $data->save();
 
     session()->flash('success', 'Floor Added Successfully');
-    return redirect()->back();
+    // return redirect()->back();
+    return redirect()->route('floor');
 
 }
 
@@ -2726,7 +2727,8 @@ public function update_floor(Request $request, $id)
    $data->save();
 
    session()->flash('success','Floor Updated Successfully');
-   return redirect()->back();
+   return redirect()->route('floor');
+
 }
 
 public function delete_floor($id)
