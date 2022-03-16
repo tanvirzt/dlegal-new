@@ -417,27 +417,27 @@ class AppellateCourtCasesController extends Controller
     public function update_appellate_court_cases_status(Request $request, $id)
     {
             // dd($request->all());
-            $status = AppellateCourtCase::find($id);
-            $status->case_status_id = $request->updated_case_status_id;
-            $status->save();
+          $status = AppellateCourtCase::find($id);
+          $status->case_status_id = $request->updated_case_status_id;
+          $status->save();
 
-            $data = new AppellateCourtCaseStatusLog();
-            $data->case_id = $id;
-            $data->updated_court_id = $request->updated_court_id;
-            $data->updated_next_date = $request->updated_next_date;
-            $data->updated_next_date_fixed_id = $request->updated_next_date_fixed_id;
-            $data->updated_panel_lawyer_id = $request->updated_panel_lawyer_id;
-            $data->order_date = $request->order_date;
-            $data->updated_case_status_id = $request->updated_case_status_id;
-            $data->updated_accused_name = $request->updated_accused_name;
-            $data->update_description = $request->update_description;
-            $data->case_proceedings = $request->case_proceedings;
-            $data->case_notes = $request->case_notes;
-            $data->next_date_fixed_reason = $request->next_date_fixed_reason;
-            $data->save();
+          $data = new AppellateCourtCaseStatusLog();
+          $data->case_id = $id;
+          $data->updated_court_id = $request->updated_court_id;
+          $data->updated_next_date = $request->updated_next_date;
+          $data->updated_next_date_fixed_id = $request->updated_next_date_fixed_id;
+          $data->updated_panel_lawyer_id = $request->updated_panel_lawyer_id;
+          $data->order_date = $request->order_date;
+          $data->updated_case_status_id = $request->updated_case_status_id;
+          $data->updated_accused_name = $request->updated_accused_name;
+          $data->update_description = $request->update_description;
+          $data->case_proceedings = $request->case_proceedings;
+          $data->case_notes = $request->case_notes;
+          $data->next_date_fixed_reason = $request->next_date_fixed_reason;
+          $data->save();
 
-            session()->flash('success','Case Status Updated Successfully');
-            return redirect()->route('appellate-court-cases');
+          session()->flash('success','Case Status Updated Successfully');
+          return redirect()->route('appellate-court-cases');
 
     }
 

@@ -86,7 +86,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ route('case_category') }}" class="nav-link">
+                    <a href="{{ route('case-category') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Case Category</p>
                     </a>
@@ -191,6 +191,18 @@
                     <a href="{{ route('flat-number') }}" class="nav-link">
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Flat Number</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('supreme-court-category') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Supreme Court Category</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('supreme-court-subcategory') }}" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Supreme Court Subcategory</p>
                     </a>
                   </li>
                 
@@ -346,16 +358,47 @@
                         <li class="nav-item">
                           <a href="{{ route('quassi-judicial-cases') }}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
-                            <p>Special / Quassi-Judicial Cases</p>
+                            <p>Special/Quassi-Judicial Cases</p>
                           </a>
                         </li>
-                        <li class="nav-item">
+
+
+
+                        {{-- <li class="nav-item">
                           <a href="{{ route('supreme-court-cases') }}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>Supreme Court of Bangladesh</p>
                           </a>
-                        </li>
+                        </li> --}}
+
                         <li class="nav-item">
+                          <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                              Supreme Court
+                              <i class="right fas fa-angle-left"></i>
+                            </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                              <a href="{{ route('high-court-cases') }}" class="nav-link">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>High Court Division</p>
+                              </a>
+                            </li>
+                            <li class="nav-item">
+                              <a href="{{ route('appellate-court-cases') }}" class="nav-link">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Appellate Court Division</p>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+
+
+
+
+                        {{-- <li class="nav-item">
                           <a href="{{ route('high-court-cases') }}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>High Court Division</p>
@@ -366,7 +409,11 @@
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>Appellate Court Division</p>
                           </a>
-                        </li>
+                        </li> --}}
+
+
+
+
                       </ul>
                     </li>
                     <li class="nav-item">

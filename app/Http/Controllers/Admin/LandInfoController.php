@@ -180,7 +180,7 @@ class LandInfoController extends Controller
      }
 
      session()->flash('success','Land Information Added Successfully');
-     return redirect()->back();
+     return redirect()->route('land-information');
     }
 
     public function edit_land_information($id)
@@ -317,7 +317,7 @@ class LandInfoController extends Controller
          }
     
          session()->flash('success','Land Information Updated Successfully');
-         return redirect()->back();
+         return redirect()->route('land-information');
 
     }
 

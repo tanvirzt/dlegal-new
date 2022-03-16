@@ -65,7 +65,7 @@ class SocialComplianceController extends Controller
         $data->save();
 
         session()->flash('success','Social Compliance Added Successfully.');
-        return redirect()->back();
+        return redirect()->route('social-compliance');
 
     }
 
@@ -113,7 +113,7 @@ class SocialComplianceController extends Controller
         $data->save();
 
         session()->flash('success','Social Compliance Updated Successfully.');
-        return redirect()->back();
+        return redirect()->route('social-compliance');
       
     }
 

@@ -41,6 +41,8 @@ use App\Models\SetupSellerBuyer;
 use App\Models\SetupFloor;
 use App\Models\SetupFlatNumber;
 use App\Models\CivilCasesFile;
+use App\Models\SetupSupremeCourtCategory;
+use App\Models\SetupSupremeCourtSubcategory;
 use Illuminate\Support\Facades\DB;
 
 
@@ -75,7 +77,7 @@ class AdminSetupController extends Controller
         $designation->save();
 
         session()->flash('success','Designation Added Successfully.');
-        return redirect()->back();
+        return redirect()->route('designation');
     }
 
     public function edit_designation($id)
@@ -102,7 +104,7 @@ class AdminSetupController extends Controller
 
         session()->flash('success', 'Designation Updated Successfully.');
 
-        return redirect()->back();
+        return redirect()->route('designation');
     }
 
     public function delete_designation($id)
@@ -149,7 +151,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Case Category Added Successfully');
-        return redirect()->back();
+        return redirect()->route('case-category');
 
     }
 
@@ -176,7 +178,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Case Category Updated');
-        return redirect()->back();
+        return redirect()->route('case-category');
     }
 
     public function delete_case_category($id)
@@ -224,7 +226,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Case Status Added Successfully');
-        return redirect()->back();
+        return redirect()->route('case-status');
 
     }
 
@@ -251,7 +253,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Case Status Updated');
-        return redirect()->back();
+        return redirect()->route('case-status');
     }
 
     public function delete_case_status($id)
@@ -299,7 +301,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Case Types Added Successfully');
-        return redirect()->back();
+        return redirect()->route('case-types');
 
     }
 
@@ -326,7 +328,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Case Types Updated');
-        return redirect()->back();
+        return redirect()->route('case-types');
     }
 
     public function delete_case_types($id)
@@ -374,7 +376,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Property Type Added Successfully');
-        return redirect()->back();
+        return redirect()->route('property-type');
 
     }
 
@@ -401,7 +403,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Property Type Updated');
-        return redirect()->back();
+        return redirect()->route('property-type');
     }
 
     public function delete_property_type($id)
@@ -449,7 +451,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Compliance Category Added Successfully');
-        return redirect()->back();
+        return redirect()->route('compliance-category');
 
     }
 
@@ -476,7 +478,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Compliance Category Updated');
-        return redirect()->back();
+        return redirect()->route('compliance-category');
     }
 
     public function delete_compliance_category($id)
@@ -530,7 +532,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Compliance Type Added Successfully');
-        return redirect()->back();
+        return redirect()->route('compliance-type');
 
     }
 
@@ -561,7 +563,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Compliance Type Updated Successfully');
-        return redirect()->back();
+        return redirect()->route('compliance-type');
     }
 
     public function delete_compliance_type($id)
@@ -611,7 +613,7 @@ class AdminSetupController extends Controller
      $data->save();
 
      session()->flash('success','Title Added Successfully');
-     return redirect()->back();
+     return redirect()->route('person-title');
 
  }
 
@@ -638,7 +640,7 @@ class AdminSetupController extends Controller
      $data->save();
 
      session()->flash('success','Title Updated');
-     return redirect()->back();
+     return redirect()->route('person-title');
  }
 
  public function delete_person_title($id)
@@ -686,7 +688,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Court Added Successfully');
-        return redirect()->back();
+        return redirect()->route('court');
 
     }
 
@@ -713,7 +715,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Court Updated');
-        return redirect()->back();
+        return redirect()->route('court');
     }
 
     public function delete_court($id)
@@ -762,7 +764,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Law Section Added Successfully');
-        return redirect()->back();
+        return redirect()->route('law-section');
 
     }
 
@@ -789,7 +791,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Law Section Updated');
-        return redirect()->back();
+        return redirect()->route('law-section');
     }
 
     public function delete_law_section($id)
@@ -838,7 +840,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Division Added Successfully');
-        return redirect()->back();
+        return redirect()->route('division');
 
     }
 
@@ -865,7 +867,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','Division Updated');
-        return redirect()->back();
+        return redirect()->route('division');
     }
 
     public function delete_division($id)
@@ -920,7 +922,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','District Added Successfully');
-        return redirect()->back();
+        return redirect()->route('district');
 
     }
 
@@ -949,7 +951,7 @@ class AdminSetupController extends Controller
         $data->save();
 
         session()->flash('success','District Updated');
-        return redirect()->back();
+        return redirect()->route('district');
     }
 
     public function delete_district($id)
@@ -999,7 +1001,7 @@ class AdminSetupController extends Controller
      $data->save();
 
      session()->flash('success','Court Last Order Added Successfully');
-     return redirect()->back();
+     return redirect()->route('court-last-order');
 
  }
 
@@ -1026,7 +1028,7 @@ class AdminSetupController extends Controller
      $data->save();
 
      session()->flash('success','Court Last Order Updated');
-     return redirect()->back();
+     return redirect()->route('court-last-order');
  }
 
  public function delete_court_last_order($id)
@@ -1066,7 +1068,7 @@ class AdminSetupController extends Controller
      ];
 
      $validMsg = [
-         'region_name.required' => 'Region field is required'
+         'region_name.required' => 'Zone field is required'
      ];
 
      $this->validate($request, $rules, $validMsg);
@@ -1075,8 +1077,8 @@ class AdminSetupController extends Controller
      $data->region_name = $request->region_name;
      $data->save();
 
-     session()->flash('success','Region Added Successfully');
-     return redirect()->back();
+     session()->flash('success','Zone Added Successfully');
+     return redirect()->route('region');
 
  }
 
@@ -1093,7 +1095,7 @@ class AdminSetupController extends Controller
      ];
 
      $validMsg = [
-         'region_name.required' => 'Region field is required'
+         'region_name.required' => 'Zone field is required'
      ];
 
      $this->validate($request, $rules, $validMsg);
@@ -1102,8 +1104,8 @@ class AdminSetupController extends Controller
      $data->region_name = $request->region_name;
      $data->save();
 
-     session()->flash('success','Region Updated');
-     return redirect()->back();
+     session()->flash('success','Zone Updated');
+     return redirect()->route('region');
  }
 
  public function delete_region($id)
@@ -1117,7 +1119,7 @@ class AdminSetupController extends Controller
      $data->delete_status = $delete_status;
      $data->save();
 
-     session()->flash('success', 'Region Deleted');
+     session()->flash('success', 'Zone Deleted');
      return redirect()->back();
  }
 
@@ -1153,7 +1155,7 @@ public function save_area(Request $request)
     $data->save();
 
     session()->flash('success','Area Added Successfully');
-    return redirect()->back();
+    return redirect()->route('area');
 
 }
 
@@ -1180,7 +1182,7 @@ public function update_area(Request $request, $id)
     $data->save();
 
     session()->flash('success','Area Updated');
-    return redirect()->back();
+    return redirect()->route('area');
 }
 
 public function delete_area($id)
@@ -1229,7 +1231,7 @@ public function save_branch(Request $request)
     $data->save();
 
     session()->flash('success','Branch Added Successfully');
-    return redirect()->back();
+    return redirect()->route('branch');
 
 }
 
@@ -1256,7 +1258,7 @@ public function update_branch(Request $request, $id)
     $data->save();
 
     session()->flash('success','Branch Updated');
-    return redirect()->back();
+    return redirect()->route('branch');
 }
 
 public function delete_branch($id)
@@ -1305,7 +1307,7 @@ public function save_program(Request $request)
     $data->save();
 
     session()->flash('success','Program Added Successfully');
-    return redirect()->back();
+    return redirect()->route('program');
 
 }
 
@@ -1332,7 +1334,7 @@ public function update_program(Request $request, $id)
     $data->save();
 
     session()->flash('success','Program Updated');
-    return redirect()->back();
+    return redirect()->route('program');
 }
 
 public function delete_program($id)
@@ -1381,7 +1383,7 @@ public function save_alligation(Request $request)
     $data->save();
 
     session()->flash('success','Alligation Added Successfully');
-    return redirect()->back();
+    return redirect()->route('alligation');
 
 }
 
@@ -1408,7 +1410,7 @@ public function update_alligation(Request $request, $id)
     $data->save();
 
     session()->flash('success','Alligation Updated');
-    return redirect()->back();
+    return redirect()->route('alligation');
 }
 
 public function delete_alligation($id)
@@ -1458,7 +1460,7 @@ public function delete_alligation($id)
             $data->save();
     
             session()->flash('success','Next Date Reason Added Successfully');
-            return redirect()->back();
+            return redirect()->route('next-date-reason');
     
         }
     
@@ -1485,7 +1487,7 @@ public function delete_alligation($id)
             $data->save();
     
             session()->flash('success','Next Date Reason Updated');
-            return redirect()->back();
+            return redirect()->route('next-date-reason');
         }
     
         public function delete_next_date_reason($id)
@@ -1536,7 +1538,7 @@ public function save_company_type(Request $request)
     $data->save();
 
     session()->flash('success','Company Type Added Successfully');
-    return redirect()->back();
+    return redirect()->route('company-type');
 
 }
 
@@ -1563,7 +1565,7 @@ public function update_company_type(Request $request, $id)
     $data->save();
 
     session()->flash('success','Company Type Updated');
-    return redirect()->back();
+    return redirect()->route('company-type');
 }
 
 public function delete_company_type($id)
@@ -1630,7 +1632,7 @@ public function save_company(Request $request)
     $data->save();
 
     session()->flash('success','Company Added Successfully');
-    return redirect()->back();
+    return redirect()->route('company');
 
 }
 
@@ -1669,7 +1671,7 @@ public function update_company(Request $request, $id)
     $data->save();
 
     session()->flash('success','Company Updated');
-    return redirect()->back();
+    return redirect()->route('company');
 }
 
 public function delete_company($id)
@@ -1753,7 +1755,7 @@ public function delete_company($id)
      }
 
      session()->flash('success','External Council Added Successfully');
-     return redirect()->back();
+     return redirect()->route('external-council');
 
  }
 
@@ -1814,7 +1816,7 @@ public function delete_company($id)
      }
 
      session()->flash('success','External Council Updated Successfully');
-     return redirect()->back();
+     return redirect()->route('external-council');
  }
 
  public function delete_external_council($id)
@@ -1899,7 +1901,7 @@ public function delete_company($id)
      }
 
      session()->flash('success','Internal Council Added Successfully');
-     return redirect()->back();
+     return redirect()->route('internal-council');
 
  }
 
@@ -1960,7 +1962,7 @@ public function delete_company($id)
      }
 
      session()->flash('success','Internal Council Updated Successfully');
-     return redirect()->back();
+     return redirect()->route('internal-council');
  }
 
  public function delete_internal_council($id)
@@ -2057,7 +2059,7 @@ public function delete_company($id)
      }
 
      session()->flash('success','External Council Associates Added Successfully');
-     return redirect()->back();
+     return redirect()->route('external-council-associates');
 
  }
 
@@ -2122,7 +2124,7 @@ public function delete_company($id)
      }
 
      session()->flash('success','External Council Associates Updated Successfully');
-     return redirect()->back();
+     return redirect()->route('external-council-associates');
  }
 
  public function delete_external_council_associates($id)
@@ -2172,7 +2174,7 @@ public function delete_company($id)
         $data->save();
 
         session()->flash('success','Bill Type Added Successfully');
-        return redirect()->back();
+        return redirect()->route('bill-type');
 
     }
 
@@ -2199,7 +2201,7 @@ public function delete_company($id)
         $data->save();
 
         session()->flash('success','Bill Type Updated');
-        return redirect()->back();
+        return redirect()->route('bill-type');
     }
 
     public function delete_bill_type($id)
@@ -2249,7 +2251,7 @@ public function delete_company($id)
         $data->save();
 
         session()->flash('success','Bank Added Successfully');
-        return redirect()->back();
+        return redirect()->route('bank');
 
     }
 
@@ -2276,7 +2278,7 @@ public function delete_company($id)
         $data->save();
 
         session()->flash('success','Bank Updated');
-        return redirect()->back();
+        return redirect()->route('bank');
     }
 
     public function delete_bank($id)
@@ -2332,7 +2334,7 @@ public function delete_company($id)
         $data->save();
 
         session()->flash('success','Bank Branch Added Successfully');
-        return redirect()->back();
+        return redirect()->route('bank-branch');
 
     }
 
@@ -2362,7 +2364,7 @@ public function delete_company($id)
         $data->save();
 
         session()->flash('success','Bank Branch Updated');
-        return redirect()->back();
+        return redirect()->route('bank-branch');
     }
 
     public function delete_bank_branch($id)
@@ -2410,7 +2412,7 @@ public function delete_company($id)
         $data->save();
 
         session()->flash('success','Digital Payment Type Added Successfully');
-        return redirect()->back();
+        return redirect()->route('digital-payment-type');
 
     }
 
@@ -2437,7 +2439,7 @@ public function delete_company($id)
         $data->save();
 
         session()->flash('success','Digital Payment Type Updated');
-        return redirect()->back();
+        return redirect()->route('digital-payment-type');
     }
 
     public function delete_digital_payment_type($id)
@@ -2491,7 +2493,7 @@ public function delete_company($id)
         $data->save();
 
         session()->flash('success','Thana Added Successfully');
-        return redirect()->back();
+        return redirect()->route('thana');
 
     }
 
@@ -2520,7 +2522,7 @@ public function delete_company($id)
         $data->save();
 
         session()->flash('success','Thana Updated');
-        return redirect()->back();
+        return redirect()->route('thana');
     }
 
     public function delete_thana($id)
@@ -2597,7 +2599,7 @@ public function delete_company($id)
      $data->save();
 
      session()->flash('success','Seller / Buyer Added Successfully');
-     return redirect()->back();
+     return redirect()->route('seller-buyer');
 
  }
 
@@ -2661,7 +2663,7 @@ public function delete_company($id)
      $data->save();
 
      session()->flash('success','Seller / Buyer Updated Successfully');
-     return redirect()->back();
+     return redirect()->route('seller-buyer');
  }
 
  public function delete_seller_buyer($id)
@@ -2786,7 +2788,7 @@ public function save_flat_number(Request $request)
     $data->save();
 
     session()->flash('success','Flat Number Added Successfully');
-    return redirect()->back();
+    return redirect()->route('flat-number');
 
 }
 
@@ -2817,7 +2819,7 @@ public function update_flat_number(Request $request, $id)
     $data->save();
 
     session()->flash('success','Flat Number Updated');
-    return redirect()->back();
+    return redirect()->route('flat-number');
 }
 
 public function delete_flat_number($id)
@@ -2855,6 +2857,215 @@ public function download_external_council_associates_files($id)
     $pathToFile = public_path('/files/external_council_associates/'.$files->uploaded_document);
     return response()->download($pathToFile);
 }
+
+
+//supreme_court_category setup
+
+public function supreme_court_category()
+{
+    $data = SetupSupremeCourtCategory::all();
+
+                // dd($data);
+    return view('setup.supreme_court_category.supreme_court_category',compact('data'));
+}
+
+public function add_supreme_court_category()
+{
+    return view('setup.supreme_court_category.add_supreme_court_category');
+}
+
+public function save_supreme_court_category(Request $request)
+{
+    $rules = [
+        'supreme_court_type' => 'required',
+        'supreme_court_category' => 'required',
+    ];
+
+    $validMsg = [
+        'supreme_court_type.required' => 'Supreme Court Type field is required',
+        'supreme_court_category.required' => 'Supreme Court Category field is required',
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = new SetupSupremeCourtCategory();
+    $data->supreme_court_type = $request->supreme_court_type;
+    $data->supreme_court_category = $request->supreme_court_category;
+    $data->save();
+
+    session()->flash('success','Supreme Court Category Added Successfully');
+    return redirect()->route('supreme-court-category');
+
+}
+
+public function edit_supreme_court_category($id)
+{
+    $data = SetupSupremeCourtCategory::find($id);
+    return view('setup.supreme_court_category.edit_supreme_court_category',compact('data'));
+}
+
+public function update_supreme_court_category(Request $request, $id)
+{
+    $rules = [
+        'supreme_court_type' => 'required',
+        'supreme_court_category' => 'required',
+    ];
+
+    $validMsg = [
+        'supreme_court_type.required' => 'Supreme Court Type field is required',
+        'supreme_court_category.required' => 'Supreme Court Category field is required',
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = SetupSupremeCourtCategory::find($id);
+    $data->supreme_court_type = $request->supreme_court_type;
+    $data->supreme_court_category = $request->supreme_court_category;
+    $data->save();
+
+    session()->flash('success','Supreme Court Category Updated');
+    return redirect()->route('supreme-court-category');
+}
+
+public function delete_supreme_court_category($id)
+{
+    $data = SetupSupremeCourtCategory::find($id);
+    if ($data['delete_status'] == 1){
+        $delete_status = 0;
+    }else{
+        $delete_status = 1;
+    }
+    $data->delete_status = $delete_status;
+    $data->save();
+
+    session()->flash('success', 'Supreme Court Category Deleted');
+    return redirect()->back();
+}
+
+
+//supreme_court_subcategory setup
+
+public function supreme_court_subcategory()
+{
+    //    $data = SetupSupremeCourtSubcategory::orderBy('id','desc')->get();
+
+    $data = DB::table('setup_supreme_court_subcategories')
+            ->leftJoin('setup_supreme_court_categories','setup_supreme_court_subcategories.supreme_court_category_id','=','setup_supreme_court_categories.id')
+            ->select('setup_supreme_court_subcategories.*','setup_supreme_court_categories.supreme_court_category')
+            ->orderBy('setup_supreme_court_subcategories.id','desc')
+            ->get();
+
+    // $data = json_decode(json_encode($data));
+    // echo "<pre>";print_r($data);die;
+
+    return view('setup.supreme_court_subcategory.supreme_court_subcategory',compact('data'));
+}
+
+public function add_supreme_court_subcategory()
+{
+    // $data = json_decode(json_encode($supreme_court_category));
+    // echo "<pre>";print_r($data);
+    return view('setup.supreme_court_subcategory.add_supreme_court_subcategory');
+}
+
+public function save_supreme_court_subcategory(Request $request)
+{
+    // $data = json_decode(json_encode($request->all()));
+    // echo "<pre>";print_r($data);die;
+
+    $rules = [
+        'supreme_court_type' => 'required',
+        'supreme_court_category_id' => 'required',
+        'supreme_court_subcategory' => 'required',
+    ];
+
+    $validMsg = [
+        'supreme_court_type.required' => 'Supreme Court Type filed is required',
+        'supreme_court_category_id.required' => 'Supreme Court Category filed is required',
+        'supreme_court_subcategory.required' => 'Supreme Court Subcategory field is required',
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = new SetupSupremeCourtSubcategory();
+    $data->supreme_court_type = $request->supreme_court_type;
+    $data->supreme_court_category_id = $request->supreme_court_category_id;
+    $data->supreme_court_subcategory = $request->supreme_court_subcategory;
+    $data->save();
+
+    session()->flash('success','Supreme Court Subcategory Added Successfully');
+    return redirect()->route('supreme-court-subcategory');
+
+}
+
+public function edit_supreme_court_subcategory($id)
+{
+    $data = SetupSupremeCourtSubcategory::find($id);
+    $existing_supreme_court_category = SetupSupremeCourtCategory::where('supreme_court_type',$data->supreme_court_type)->get();
+    // $adsf = json_decode(json_encode($existing_supreme_court_category));
+    // echo "<pre>";print_r($adsf);die;
+    return view('setup.supreme_court_subcategory.edit_supreme_court_subcategory',compact('data','existing_supreme_court_category'));
+}
+
+public function update_supreme_court_subcategory(Request $request, $id)
+{
+    $rules = [
+        'supreme_court_type' => 'required',
+        'supreme_court_category_id' => 'required',
+        'supreme_court_subcategory' => 'required',
+    ];
+
+    $validMsg = [
+        'supreme_court_type.required' => 'Supreme Court Type filed is required',
+        'supreme_court_category_id.required' => 'Supreme Court Category filed is required',
+        'supreme_court_subcategory.required' => 'Supreme Court Subcategory field is required',
+    ];
+
+    $this->validate($request, $rules, $validMsg);
+
+    $data = SetupSupremeCourtSubcategory::find($id);
+    $data->supreme_court_type = $request->supreme_court_type;
+    $data->supreme_court_category_id = $request->supreme_court_category_id;
+    $data->supreme_court_subcategory = $request->supreme_court_subcategory;
+    $data->save();
+
+    session()->flash('success','Supreme Court Subcategory Updated');
+    return redirect()->route('supreme-court-subcategory');
+}
+
+public function delete_supreme_court_subcategory($id)
+{
+    $data = SetupSupremeCourtSubcategory::find($id);
+    if ($data['delete_status'] == 1){
+        $delete_status = 0;
+    }else{
+        $delete_status = 1;
+    }
+    $data->delete_status = $delete_status;
+    $data->save();
+
+    session()->flash('success', 'Supreme Court Subcategory Deleted');
+    return redirect()->back();
+}
+
+public function find_supreme_court_category(Request $request)
+{
+    // dd('aaaaaaaaeeeeeee');
+
+    if ($request->supreme_court_type == "High Court Division") {
+        
+        $data = SetupSupremeCourtCategory::where(['supreme_court_type' => 'High Court Division', 'delete_status' => 0])->get();
+       
+    } else {
+        
+        $data = SetupSupremeCourtCategory::where(['supreme_court_type' => 'Appellate Court Division','delete_status' => 0])->get();
+
+    }
+    
+    return response()->json($data);
+
+}
+
 
 
 }

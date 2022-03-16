@@ -16,6 +16,8 @@ class CreateHighCourtCasesTable extends Migration
         Schema::create('high_court_cases', function (Blueprint $table) {
             $table->id();
             $table->string('case_no')->nullable();
+            $table->integer('supreme_category_id')->nullable();
+            $table->integer('supreme_subcategory_id')->nullable();
             $table->string('date_of_case_received')->nullable();
             $table->string('case_category_nature_id')->nullable();
             $table->integer('case_type_id')->nullable();

@@ -47,7 +47,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-designation/{id}','AdminSetupController@update_designation')->name('update-designation');
         Route::post('delete-designation/{id}','AdminSetupController@delete_designation')->name('delete-designation');
 
-        Route::get('case-category','AdminSetupController@case_category')->name('case_category');
+        Route::get('case-category','AdminSetupController@case_category')->name('case-category');
         Route::get('add-case-category','AdminSetupController@add_case_category')->name('add-case-category');
         Route::post('save-case-category','AdminSetupController@save_case_category')->name('save-case-category');
         Route::get('edit-case-category/{id}','AdminSetupController@edit_case_category')->name('edit-case-category');
@@ -431,6 +431,25 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('save-document','DocManagementController@save_document')->name('save-document');
         Route::get('download-external-files/{id}','DocManagementController@download_external_files')->name('download-external-files');
         Route::get('external-document','DocManagementController@external_document')->name('external-document');
+
+// supreme-court-category setup
+
+        Route::get('supreme-court-category','AdminSetupController@supreme_court_category')->name('supreme-court-category');
+        Route::get('add-supreme-court-category','AdminSetupController@add_supreme_court_category')->name('add-supreme-court-category');
+        Route::post('save-supreme-court-category','AdminSetupController@save_supreme_court_category')->name('save-supreme-court-category');
+        Route::get('edit-supreme-court-category/{id}','AdminSetupController@edit_supreme_court_category')->name('edit-supreme-court-category');
+        Route::post('update-supreme-court-category/{id}','AdminSetupController@update_supreme_court_category')->name('update-supreme-court-category');
+        Route::post('delete-supreme-court-category/{id}','AdminSetupController@delete_supreme_court_category')->name('delete-supreme-court-category');
+// supreme-court-subcategory setup
+
+        Route::get('supreme-court-subcategory','AdminSetupController@supreme_court_subcategory')->name('supreme-court-subcategory');
+        Route::get('add-supreme-court-subcategory','AdminSetupController@add_supreme_court_subcategory')->name('add-supreme-court-subcategory');
+        Route::post('save-supreme-court-subcategory','AdminSetupController@save_supreme_court_subcategory')->name('save-supreme-court-subcategory');
+        Route::get('edit-supreme-court-subcategory/{id}','AdminSetupController@edit_supreme_court_subcategory')->name('edit-supreme-court-subcategory');
+        Route::post('update-supreme-court-subcategory/{id}','AdminSetupController@update_supreme_court_subcategory')->name('update-supreme-court-subcategory');
+        Route::post('delete-supreme-court-subcategory/{id}','AdminSetupController@delete_supreme_court_subcategory')->name('delete-supreme-court-subcategory');
+        Route::get('find-supreme-court-category','AdminSetupController@find_supreme_court_category')->name('find-supreme-court-category');
+
 
     });
 

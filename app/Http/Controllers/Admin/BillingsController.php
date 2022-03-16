@@ -96,7 +96,8 @@ class BillingsController extends Controller
 
     public function save_billing(Request $request)
     {
-
+        // dd($request->all());
+        
         $rules = [
             'bill_type_id' => 'required',
             'payment_type' => 'required',
@@ -133,8 +134,41 @@ class BillingsController extends Controller
         $data->save();
 
         session()->flash('success','Bill Added Successfully');
-        return redirect()->back();
 
+        if ($request->redirect_to == "Civil Cases") {
+
+            return redirect()->route('civil-cases');
+
+        } else if ($request->redirect_to == "Criminal Cases"){
+
+            return redirect()->route('criminal-cases');
+
+        }else if ($request->redirect_to == "Labour Cases"){
+
+            return redirect()->route('labour-cases');
+
+        }else if ($request->redirect_to == "Special Quassi - Judicial Cases"){
+
+            return redirect()->route('quassi-judicial-cases');
+
+        }else if ($request->redirect_to == "Supreme Court of Bangladesh"){
+
+            return redirect()->route('supreme-court-cases');
+
+        }else if ($request->redirect_to == "High Court Division"){
+
+            return redirect()->route('high-court-cases');
+
+        }else if ($request->redirect_to == "Appellate Court Division"){
+
+            return redirect()->route('appellate-court-cases');
+
+        }else {
+
+            return redirect()->route('billing');
+
+        }
+    
     }
 
     public function edit_billing($id)

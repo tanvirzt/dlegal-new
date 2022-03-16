@@ -48,7 +48,7 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Edit Region</h3>
+                                <h3 class="card-title" id="heading">Edit Zone</h3>
                             </div>
 
                             <form action="{{ route('update-region',$data->id) }}" method="post">
@@ -58,7 +58,7 @@
                                     <div class="col-md-12">
 
                                         <div class="form-group">
-                                            <label for="region_name"> Region </label>
+                                            <label for="region_name"> Zone </label>
                                             <input type="text" class="form-control" name="region_name"
                                                    id="region_name" value="{{ $data->region_name }}">
                                             @error('region_name')<span class="text-danger">{{$message}}</span>@enderror

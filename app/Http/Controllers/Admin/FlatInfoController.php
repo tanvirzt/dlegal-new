@@ -171,7 +171,7 @@ class FlatInfoController extends Controller
         }
    
         session()->flash('success','Flat Information Added Successfully.');
-        return redirect()->back();
+        return redirect()->route('flat-information');
 
     }
 
@@ -315,7 +315,7 @@ class FlatInfoController extends Controller
          }
     
          session()->flash('success','Flat Information Updated Successfully');
-         return redirect()->back();
+         return redirect()->route('flat-information');
 
     }
 

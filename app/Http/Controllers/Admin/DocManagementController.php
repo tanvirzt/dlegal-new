@@ -114,7 +114,7 @@ class DocManagementController extends Controller
 
         $rules = [
             'document_type' => 'required',
-            'uploaded_document' => 'required|mimes:png,jpg,jpeg,csv,txt,xlx,xls,pdf',
+            // 'uploaded_document' => 'required|mimes:png,jpg,jpeg,csv,txt,xlx,xls,pdf',
         ];
 
         $validMsg = [
@@ -374,7 +374,7 @@ class DocManagementController extends Controller
         }
         
         session()->flash('success','Files Added Successfully.');
-        return redirect()->back();
+        return redirect()->route('document-management');
 
     }
 

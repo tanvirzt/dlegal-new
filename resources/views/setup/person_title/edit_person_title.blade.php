@@ -65,7 +65,7 @@
                                         </div>
 
                                         <div class="float-right">
-                                        <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save</button>
+                                        <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update </button>
 
                                         </div>
                                     </div>

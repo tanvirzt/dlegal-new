@@ -115,6 +115,7 @@
                                                     <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
                                                     <div class="col-sm-8">
                                                         <input type="hidden" name="case_type" value="Civil Cases">
+                                                        <input type="hidden" name="redirect_to" value="Civil Cases">
                                                         <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                             <option value="Civil Cases"> Civil Cases </option>
                                                         </select>       
@@ -138,6 +139,7 @@
                                                 <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
                                                 <div class="col-sm-8">
                                                     <input type="hidden" name="case_type" value="Criminal Cases">
+                                                    <input type="hidden" name="redirect_to" value="Criminal Cases">
                                                     <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                         <option value="Criminal Cases"> Criminal Cases </option>
                                                     </select>       
@@ -161,6 +163,7 @@
                                                 <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
                                                 <div class="col-sm-8">
                                                     <input type="hidden" name="case_type" value="Labour Cases">
+                                                    <input type="hidden" name="redirect_to" value="Labour Cases">
                                                     <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                         <option value="Labour Cases"> Labour Cases </option>
                                                     </select>       
@@ -184,6 +187,7 @@
                                                 <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
                                                 <div class="col-sm-8">
                                                     <input type="hidden" name="case_type" value="Special Quassi - Judicial Cases">
+                                                    <input type="hidden" name="redirect_to" value="Special Quassi - Judicial Cases">
                                                     <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                         <option value="Special Quassi - Judicial Cases"> Special Quassi - Judicial Cases </option>
                                                     </select>       
@@ -207,6 +211,7 @@
                                                 <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
                                                 <div class="col-sm-8">
                                                     <input type="hidden" name="case_type" value="Supreme Court of Bangladesh">
+                                                    <input type="hidden" name="redirect_to" value="Supreme Court of Bangladesh">
                                                     <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                         <option value="Supreme Court of Bangladesh"> Supreme Court of Bangladesh </option>
                                                     </select>       
@@ -230,6 +235,7 @@
                                                 <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
                                                 <div class="col-sm-8">
                                                     <input type="hidden" name="case_type" value="High Court Division">
+                                                    <input type="hidden" name="redirect_to" value="High Court Division">
                                                     <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                         <option value="High Court Division"> High Court Division </option>
                                                     </select>       
@@ -253,6 +259,7 @@
                                                 <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
                                                 <div class="col-sm-8">
                                                     <input type="hidden" name="case_type" value="Appellate Court Division">
+                                                    <input type="hidden" name="redirect_to" value="Appellate Court Division">
                                                     <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                         <option value="Appellate Court Division"> Appellate Court Division </option>
                                                     </select>       

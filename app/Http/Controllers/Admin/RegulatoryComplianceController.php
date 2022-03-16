@@ -80,7 +80,7 @@ class RegulatoryComplianceController extends Controller
         $data->save();
 
         session()->flash('success','Regulatory Compliance Added Successfully.');
-        return redirect()->back();
+        return redirect()->route('regulatory-compliance');
 
     }
 
@@ -140,7 +140,7 @@ class RegulatoryComplianceController extends Controller
         $data->save();
 
         session()->flash('success','Regulatory Compliance Updated Successfully.');
-        return redirect()->back();
+        return redirect()->route('regulatory-compliance');
       
     }
 

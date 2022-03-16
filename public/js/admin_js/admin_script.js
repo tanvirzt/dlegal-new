@@ -955,9 +955,47 @@ if (res.result == "billing") {
         } 
     });
 
+    $("#supreme_court_type").on('change',function() {
+        // alert('adsf asdf');
+        var route = $(this).val();
+        // alert(route);
 
 
 
+    })
+
+
+
+
+
+    $('#supreme_court_type').on('change', function() {
+        var supreme_court_type = $(this).val();
+        var route = $(this).attr('action');
+        // alert(supreme_court_type);
+        if(supreme_court_type) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data : {"_token":"{{ csrf_token() }}",supreme_court_type:supreme_court_type},
+                dataType: "json",
+                success:function(data) {
+                    // console.log(data);
+                    if(data){
+                        $('#supreme_court_category_id').empty();
+                        $('#supreme_court_category_id').focus;
+                        $('#supreme_court_category_id').append('<option value="">Select</option>');
+                        $.each(data, function(key, value){
+                            $('select[name="supreme_court_category_id"]').append('<option value="'+ value.id +'">' + value.supreme_court_category+ '</option>');
+                        });
+                    }else{
+                        $('#supreme_court_category_id').empty();
+                    }
+                }
+            });
+        }else{
+            $('#supreme_court_category_id').empty();
+        }
+    });
 
 });
 
