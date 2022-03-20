@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Reason for Next Date/Step </h1>
+                        <h1> Section </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Reason for Next Date/Step </li>
+                            <li class="breadcrumb-item active"> Section </li>
                         </ol>
                     </div>
                 </div>
@@ -38,8 +38,8 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-next-date-reason') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Reason for Next Date/Step </button></a>
+                                    <a href="{{ route('add-section') }}"><button class="btn btn-sm
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Section </button></a>
                                 </div>
 
                             </div>
@@ -49,7 +49,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center text-nowrap">ID</th>
-                                        <th class="text-center text-nowrap">Reason for Next Date/Step</th>
+                                        <th class="text-center text-nowrap">Section</th>
                                         <th class="text-center text-nowrap">Status</th>
                                         <th class="text-center text-nowrap">Action</th>
                                     </tr>
@@ -62,7 +62,7 @@
                                                 {{ $datum->id }}
                                             </td>
                                             <td class="text-center">
-                                                {{ $datum->next_date_reason_name }}
+                                                {{ $datum->section_name }}
                                             </td>
                                             <td class="text-center">
                                                 @if ($datum->delete_status == 0)
@@ -77,9 +77,9 @@
                                             </td>
                                             <td class="text-center">
 
-                                                <a href="{{ route('edit-next-date-reason',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                    <a href="{{ route('edit-section',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
-                                                    <form method="POST" action="{{ route('delete-next-date-reason',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                    <form method="POST" action="{{ route('delete-section',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                     </form>

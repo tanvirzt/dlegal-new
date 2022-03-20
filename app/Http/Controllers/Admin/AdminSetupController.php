@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SetupCaseCategory;
+use App\Models\SetupCaseClass;
 use App\Models\SetupCaseStatus;
 use App\Models\SetupCaseTypes;
 use App\Models\SetupComplianceCategory;
+use App\Models\SetupCourtClass;
 use App\Models\SetupDesignation;
 use App\Models\SetupPropertyType;
+use App\Models\SetupSection;
 use Illuminate\Http\Request;
 use App\Models\SetupPersonTitle;
 use App\Models\SetupExternalCouncil;
@@ -1437,59 +1440,59 @@ public function delete_alligation($id)
                         ->get();
             return view('setup.next_date_reason.next_date_reason',compact('data'));
         }
-    
+
         public function add_next_date_reason()
         {
             return view('setup.next_date_reason.add_next_date_reason');
         }
-    
+
         public function save_next_date_reason(Request $request)
         {
             $rules = [
                 'next_date_reason_name' => 'required'
             ];
-    
+
             $validMsg = [
                 'next_date_reason_name.required' => 'Next Date Reason field is required'
             ];
-    
+
             $this->validate($request, $rules, $validMsg);
-    
+
             $data = new SetupNextDateReason();
             $data->next_date_reason_name = $request->next_date_reason_name;
             $data->save();
-    
+
             session()->flash('success','Next Date Reason Added Successfully');
             return redirect()->route('next-date-reason');
-    
+
         }
-    
+
         public function edit_next_date_reason($id)
         {
             $data = SetupNextDateReason::find($id);
             return view('setup.next_date_reason.edit_next_date_reason',compact('data'));
         }
-    
+
         public function update_next_date_reason(Request $request, $id)
         {
             $rules = [
                 'next_date_reason_name' => 'required'
             ];
-    
+
             $validMsg = [
                 'next_date_reason_name.required' => 'Next Date Reason field is required'
             ];
-    
+
             $this->validate($request, $rules, $validMsg);
-    
+
             $data = SetupNextDateReason::find($id);
             $data->next_date_reason_name = $request->next_date_reason_name;
             $data->save();
-    
+
             session()->flash('success','Next Date Reason Updated');
             return redirect()->route('next-date-reason');
         }
-    
+
         public function delete_next_date_reason($id)
         {
             $data = SetupNextDateReason::find($id);
@@ -1500,10 +1503,10 @@ public function delete_alligation($id)
             }
             $data->delete_status = $delete_status;
             $data->save();
-    
+
             session()->flash('success', 'Next Date Reason Deleted');
             return redirect()->back();
-        }    
+        }
 
 
 
@@ -1688,7 +1691,7 @@ public function delete_company($id)
     session()->flash('success', 'Company Deleted');
     return redirect()->back();
 }
-       
+
 
  //external council setup
 
@@ -2296,7 +2299,7 @@ public function delete_company($id)
         return redirect()->back();
     }
 
-    
+
     //bank branch setup
 
     public function bank_branch()
@@ -2593,7 +2596,7 @@ public function delete_company($id)
         $original_name = $file->getClientOriginalName();
         $file_name = time().rand(1,0).$original_name;
         $file->move(public_path('files/seller_buyer'),$file_name);
-        $data->image = $file_name;        
+        $data->image = $file_name;
      }
 
      $data->save();
@@ -2657,7 +2660,7 @@ public function delete_company($id)
         $original_name = $file->getClientOriginalName();
         $file_name = time().rand(1,0).$original_name;
         $file->move(public_path('files/seller_buyer'),$file_name);
-        $data->image = $file_name;        
+        $data->image = $file_name;
      }
 
      $data->save();
@@ -3053,18 +3056,173 @@ public function find_supreme_court_category(Request $request)
     // dd('aaaaaaaaeeeeeee');
 
     if ($request->supreme_court_type == "High Court Division") {
-        
+
         $data = SetupSupremeCourtCategory::where(['supreme_court_type' => 'High Court Division', 'delete_status' => 0])->get();
-       
+
     } else {
-        
+
         $data = SetupSupremeCourtCategory::where(['supreme_court_type' => 'Appellate Court Division','delete_status' => 0])->get();
 
     }
-    
+
     return response()->json($data);
 
 }
+
+
+
+    //case class setup
+
+    public function case_class()
+    {
+        $data = SetupCaseClass::all();
+        return view('setup.case_class.case_class',compact('data'));
+    }
+
+    public function add_case_class()
+    {
+        return view('setup.case_class.add_case_class');
+    }
+
+    public function save_case_class(Request $request)
+    {
+        $rules = [
+            'case_class_name' => 'required'
+        ];
+
+        $validMsg = [
+            'case_class_name.required' => 'Case Class field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = new SetupCaseClass();
+        $data->case_class_name = $request->case_class_name;
+        $data->save();
+
+        session()->flash('success','Case Class Added Successfully');
+        return redirect()->route('case-class');
+
+    }
+
+    public function edit_case_class($id)
+    {
+        $data = SetupCaseClass::find($id);
+        return view('setup.case_class.edit_case_class',compact('data'));
+    }
+
+    public function update_case_class(Request $request, $id)
+    {
+        $rules = [
+            'case_class_name' => 'required'
+        ];
+
+        $validMsg = [
+            'case_class_name.required' => 'Case Class field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = SetupCaseClass::find($id);
+        $data->case_class_name = $request->case_class_name;
+        $data->save();
+
+        session()->flash('success','Case Class Updated');
+        return redirect()->route('case-class');
+    }
+
+    public function delete_case_class($id)
+    {
+        $data = SetupCaseClass::find($id);
+        if ($data['delete_status'] == 1){
+            $delete_status = 0;
+        }else{
+            $delete_status = 1;
+        }
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success', 'Case Class Deleted');
+        return redirect()->back();
+    }
+
+
+    //section setup
+
+    public function section()
+    {
+        $data = SetupSection::all();
+        return view('setup.section.section',compact('data'));
+    }
+
+    public function add_section()
+    {
+        return view('setup.section.add_section');
+    }
+
+    public function save_section(Request $request)
+    {
+        $rules = [
+            'section_name' => 'required'
+        ];
+
+        $validMsg = [
+            'section_name.required' => 'Section field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = new SetupSection();
+        $data->section_name = $request->section_name;
+        $data->save();
+
+        session()->flash('success','Section Added Successfully');
+        return redirect()->route('section');
+
+    }
+
+    public function edit_section($id)
+    {
+        $data = SetupSection::find($id);
+        return view('setup.section.edit_section',compact('data'));
+    }
+
+    public function update_section(Request $request, $id)
+    {
+        $rules = [
+            'section_name' => 'required'
+        ];
+
+        $validMsg = [
+            'section_name.required' => 'Section field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = SetupSection::find($id);
+        $data->section_name = $request->section_name;
+        $data->save();
+
+        session()->flash('success','Section Updated');
+        return redirect()->route('section');
+    }
+
+    public function delete_section($id)
+    {
+        $data = SetupSection::find($id);
+        if ($data['delete_status'] == 1){
+            $delete_status = 0;
+        }else{
+            $delete_status = 1;
+        }
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success', 'Section Deleted');
+        return redirect()->back();
+    }
+
+
 
 
 

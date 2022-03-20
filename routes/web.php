@@ -323,7 +323,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-digital-payment-type/{id}','AdminSetupController@update_digital_payment_type')->name('update-digital-payment-type');
         Route::post('delete-digital-payment-type/{id}','AdminSetupController@delete_digital_payment_type')->name('delete-digital-payment-type');
 
-// billing 
+// billing
 
         Route::get('billing','BillingsController@billing')->name('billing');
         Route::get('add-billing','BillingsController@add_billing')->name('add-billing');
@@ -395,7 +395,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('view-flat-information/{id}','FlatInfoController@view_flat_information')->name('view-flat-information');
         Route::get('download-flat-information-files/{id}','FlatInfoController@download_flat_information_files')->name('download-flat-information-files');
         Route::post('search-flat-information','FlatInfoController@search_flat_information')->name('search-flat-information');
-        
+
         Route::get('/find-thana','LandInfoController@find_thana')->name('find-thana');
         Route::get('/find-seller-details','LandInfoController@find_seller_details')->name('find-seller-details');
         Route::get('/find-buyer-details','LandInfoController@find_buyer_details')->name('find-buyer-details');
@@ -450,6 +450,21 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('delete-supreme-court-subcategory/{id}','AdminSetupController@delete_supreme_court_subcategory')->name('delete-supreme-court-subcategory');
         Route::get('find-supreme-court-category','AdminSetupController@find_supreme_court_category')->name('find-supreme-court-category');
 
+        Route::get('case-class', 'AdminSetupController@case_class')->name('case-class');
+        Route::get('add-case-class','AdminSetupController@add_case_class')->name('add-case-class');
+        Route::post('save-case-class','AdminSetupController@save_case_class')->name('save-case-class');
+        Route::get('edit-case-class/{id}','AdminSetupController@edit_case_class')->name('edit-case-class');
+        Route::post('update-case-class/{id}','AdminSetupController@update_case_class')->name('update-case-class');
+        Route::post('delete-case-class/{id}','AdminSetupController@delete_case_class')->name('delete-case-class');
+
+        Route::get('section', 'AdminSetupController@section')->name('section');
+        Route::get('add-section','AdminSetupController@add_section')->name('add-section');
+        Route::post('save-section','AdminSetupController@save_section')->name('save-section');
+        Route::get('edit-section/{id}','AdminSetupController@edit_section')->name('edit-section');
+        Route::post('update-section/{id}','AdminSetupController@update_section')->name('update-section');
+        Route::post('delete-section/{id}','AdminSetupController@delete_section')->name('delete-section');
+
+        Route::get('find-supreme-court-subcategory','HighCourtCasesController@find_supreme_court_subcategory')->name('find-supreme-court-subcategory');
 
     });
 

@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Reason for Next Date/Step </h1>
+                        <h1>Class of Cases</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Reason for Next Date/Step </li>
+                            <li class="breadcrumb-item active">Class of Cases</li>
                         </ol>
                     </div>
                 </div>
@@ -36,10 +36,10 @@
                         @endif
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title"> List </h3>
+                                <h3 class="card-title">List</h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-next-date-reason') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Reason for Next Date/Step </button></a>
+                                    <a href="{{ route('add-case-class') }}"><button class="btn btn-sm
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Class of Cases </button></a>
                                 </div>
 
                             </div>
@@ -49,7 +49,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center text-nowrap">ID</th>
-                                        <th class="text-center text-nowrap">Reason for Next Date/Step</th>
+                                        <th class="text-center text-nowrap">Class of Cases</th>
                                         <th class="text-center text-nowrap">Status</th>
                                         <th class="text-center text-nowrap">Action</th>
                                     </tr>
@@ -59,10 +59,10 @@
 
                                         <tr>
                                             <td class="text-center">
-                                                {{ $datum->id }}
+                                                {{$datum->id}}
                                             </td>
                                             <td class="text-center">
-                                                {{ $datum->next_date_reason_name }}
+                                                {{$datum->case_class_name}}
                                             </td>
                                             <td class="text-center">
                                                 @if ($datum->delete_status == 0)
@@ -77,9 +77,9 @@
                                             </td>
                                             <td class="text-center">
 
-                                                <a href="{{ route('edit-next-date-reason',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                    <a href="{{ route('edit-case-class',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
-                                                    <form method="POST" action="{{ route('delete-next-date-reason',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                    <form method="POST" action="{{ route('delete-case-class',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                     </form>

@@ -1,20 +1,20 @@
-$(document).ready(function(){
+$(document).ready(function () {
     // check admin current password is match or not
 
-    $('#current_password').keyup(function(){
+    $('#current_password').keyup(function () {
         var current_password = $('#current_password').val();
         $.ajax({
-            type:'post',
-            url:'/admin/admin_update_password',
-            data:{current_password:current_password},
-            success:function(resp){
+            type: 'post',
+            url: '/admin/admin_update_password',
+            data: {current_password: current_password},
+            success: function (resp) {
                 // alert(resp);
-                if (resp=="false") {
+                if (resp == "false") {
                     $("#chkcurrent_password").html("<font color=red>Current password is incorrect!</font>")
-                }else if (resp=="true") {
+                } else if (resp == "true") {
                     $("#chkcurrent_password").html("<font color=green>Current password is correct!")
                 }
-            },error:function(){
+            }, error: function () {
                 alert("Error");
             }
         });
@@ -82,180 +82,188 @@ $(document).ready(function(){
     });
 
     // append
-    $("#division").change(function(){
+    $("#division").change(function () {
         var division = $(this).val();
         // alert(division);
         $.ajax({
-            type:'post',
-            url:'append-district',
-            data:{division:division},
-            success:function(resp){
+            type: 'post',
+            url: 'append-district',
+            data: {division: division},
+            success: function (resp) {
                 $("#district_id").html(resp);
-            },error:function(){
+            }, error: function () {
                 alert("Error");
             }
         });
     });
 
-    $(".btn-success").click(function(){
+    $(".btn-success").click(function () {
         var lsthmtl = $(".clone").html();
         $(".increment").after(lsthmtl);
     });
-    $("body").on("click",".btn-danger",function(){
+    $("body").on("click", ".btn-danger", function () {
         $(this).parents(".hdtuto").remove();
     });
 
 
-    $('#division_id').on('change', function() {
+    $('#division_id').on('change', function () {
         var div_id = $(this).val();
         var route = $(this).attr('action');
         // alert(route);
-        if(div_id) {
+        if (div_id) {
             $.ajax({
                 url: route,
                 type: "GET",
-                data : {"_token":"{{ csrf_token() }}",div_id:div_id},
+                data: {"_token": "{{ csrf_token() }}", div_id: div_id},
                 dataType: "json",
-                success:function(data) {
+                success: function (data) {
                     // console.log(data);
-                    if(data){
+                    if (data) {
                         $('#district_id').empty();
                         $('#district_id').focus;
                         $('#district_id').append('<option value="">Select</option>');
-                        $.each(data, function(key, value){
-                            $('select[name="district_id"]').append('<option value="'+ value.id +'">' + value.district_name+ '</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="district_id"]').append('<option value="' + value.id + '">' + value.district_name + '</option>');
                         });
-                    }else{
+                    } else {
                         $('#district_id').empty();
                     }
                 }
             });
-        }else{
+        } else {
             $('#district_id').empty();
+            $('#district_id').append('<option value="">Select</option>');
         }
     });
 
 
-    $('#district_id').on('change', function() {
+    $('#district_id').on('change', function () {
         var district_id = $(this).val();
         var route = $(this).attr('action');
         // alert(route);
-        if(district_id) {
+        if (district_id) {
             $.ajax({
                 url: route,
                 type: "GET",
-                data : {"_token":"{{ csrf_token() }}",district_id:district_id},
+                data: {"_token": "{{ csrf_token() }}", district_id: district_id},
                 dataType: "json",
-                success:function(data) {
+                success: function (data) {
                     // console.log(data);
-                    if(data){
+                    if (data) {
                         $('#thana_id').empty();
                         $('#thana_id').focus;
                         $('#thana_id').append('<option value="">Select</option>');
-                        $.each(data, function(key, value){
-                            $('select[name="thana_id"]').append('<option value="'+ value.id +'">' + value.thana_name+ '</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="thana_id"]').append('<option value="' + value.id + '">' + value.thana_name + '</option>');
                         });
-                    }else{
+                    } else {
                         $('#thana_id').empty();
                     }
                 }
             });
-        }else{
+        } else {
             $('#thana_id').empty();
+            $('#thana_id').append('<option value="">Select</option>');
+
         }
     });
 
 
-    $('#external_council_name_id').on('change', function() {
+    $('#external_council_name_id').on('change', function () {
         var external_council_name_id = $(this).val();
         var route = $(this).attr('action');
         // alert(route);
-        if(external_council_name_id) {
+        if (external_council_name_id) {
             $.ajax({
                 url: route,
                 type: "GET",
-                data : {"_token":"{{ csrf_token() }}",external_council_name_id:external_council_name_id},
+                data: {"_token": "{{ csrf_token() }}", external_council_name_id: external_council_name_id},
                 dataType: "json",
-                success:function(data) {
+                success: function (data) {
                     // console.log(data);
-                    if(data){
+                    if (data) {
                         $('#external_council_associates_id').empty();
                         $('#external_council_associates_id').focus;
                         $('#external_council_associates_id').append('<option value="">Select</option>');
-                        $.each(data, function(key, value){
-                            $('select[name="external_council_associates_id"]').append('<option value="'+ value.id +'">' + value.first_name +' '+ value.middle_name +' '+value.middle_name + '</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="external_council_associates_id"]').append('<option value="' + value.id + '">' + value.first_name + ' ' + value.middle_name + ' ' + value.middle_name + '</option>');
                         });
-                    }else{
+                    } else {
                         $('#external_council_associates_id').empty();
                     }
                 }
             });
-        }else{
+        } else {
             $('#external_council_associates_id').empty();
+            $('#external_council_associates_id').append('<option value="">Select</option>');
+
         }
     });
 
-    $('#bank_id').on('change', function() {
+    $('#bank_id').on('change', function () {
         var bank_id = $(this).val();
         var route = $(this).attr('action');
         // alert(bank_id);
-        if(bank_id) {
+        if (bank_id) {
             $.ajax({
                 url: route,
                 type: "GET",
-                data : {"_token":"{{ csrf_token() }}",bank_id:bank_id},
+                data: {"_token": "{{ csrf_token() }}", bank_id: bank_id},
                 dataType: "json",
-                success:function(data) {
+                success: function (data) {
                     // console.log(data);
-                    if(data){
+                    if (data) {
                         $('#branch_id').empty();
                         $('#branch_id').focus;
                         $('#branch_id').append('<option value="">Select</option>');
-                        $.each(data, function(key, value){
-                            $('select[name="branch_id"]').append('<option value="'+ value.id +'">' + value.bank_branch_name+ '</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="branch_id"]').append('<option value="' + value.id + '">' + value.bank_branch_name + '</option>');
                         });
-                    }else{
+                    } else {
                         $('#branch_id').empty();
                     }
                 }
             });
-        }else{
+        } else {
             $('#branch_id').empty();
+            $('#branch_id').append('<option value="">Select</option>');
         }
     });
 
-    $('#case_type').on('change', function() {
+    $('#case_type').on('change', function () {
         var case_type = $(this).val();
         var route = $(this).attr('action');
         // alert(route);
         // $('#case_no').append('<option value="">Select</option>');
-        if(case_type) {
+        if (case_type) {
             $.ajax({
                 url: route,
                 type: "GET",
-                data : {"_token":"{{ csrf_token() }}",case_type:case_type},
+                data: {"_token": "{{ csrf_token() }}", case_type: case_type},
                 dataType: "json",
-                success:function(data) {
+                success: function (data) {
                     // console.log(data);
-                    if(data){
+                    if (data) {
                         $('#case_no').empty();
                         $('#case_no').append('<option value="">Select</option>');
                         $('#case_no').focus;
-                        $.each(data, function(key, value){
-                            $('select[name="case_no"]').append('<option value="'+ value.case_no +'">' + value.case_no+ '</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="case_no"]').append('<option value="' + value.case_no + '">' + value.case_no + '</option>');
                         });
-                    }else{
+                    } else {
                         $('#case_no').empty();
                     }
                 }
             });
-        }else{
+        } else {
             $('#case_no').empty();
+            $('#case_no').append('<option value="">Select</option>');
+
         }
     });
 
 
-    $('#form_data').submit(function(e){
+    $('#form_data').submit(function (e) {
         $('#submit').html('<i class="fas fa-search"></i> Searching');
 
         e.preventDefault();
@@ -263,59 +271,59 @@ $(document).ready(function(){
         var action = $(this).attr('action');
 
         $.ajax({
-            type:'post',
-            beforeSend: function() {
-            $(".progress-bar").animate({
-                width: "100%"
-            }, 800);
-            $(".progress-bar").fadeIn(100);
-                    },
-            complete: function(data) {
+            type: 'post',
+            beforeSend: function () {
+                $(".progress-bar").animate({
+                    width: "100%"
+                }, 800);
+                $(".progress-bar").fadeIn(100);
+            },
+            complete: function (data) {
                 $(".progress-bar").fadeOut(800);
             },
             url: action,
             data: form_data,
-            cache:false,
-            contentType:false,
-            processData:false,
-            success:(res) =>{
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: (res) => {
                 $('#submit').html('<i class="fas fa-search"></i> Search');
 // console.log(res);
 
-if (res.result == "billing") {
+                if (res.result == "billing") {
 // console.log(res.data);
 
-    $('#search_data').empty();
-    $.each(res.data, function(key, value){
+                    $('#search_data').empty();
+                    $.each(res.data, function (key, value) {
 
-        $('#search_data').append(`
+                        $('#search_data').append(`
 
         <div class="col-md-3">
             <div class="card">
-                <div class="">  
+                <div class="">
                     <div class="float-right">
-                                                                        
+
                             <a href="edit-billing/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                             ><i class="fas fa-edit"></i></button></a>
-                            <button onclick='billing_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
-                        
+                            <button onclick='billing_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+
                         </div>
                         <div class="card-body">
                             <div class="col-md-12">
-                                <p class="text-muted text-sm"><b>Bill Type: </b>  ${value.bill_type_name === null ? '' : value.bill_type_name } </p>
+                                <p class="text-muted text-sm"><b>Bill Type: </b>  ${value.bill_type_name === null ? '' : value.bill_type_name} </p>
                                 <p class="text-muted text-sm"><b>Payment Type: </b>  ${value.payment_type === null ? '' : value.payment_type} </p>
                                 <p class="text-muted text-sm"><b>District: </b> ${value.district_name === null ? '' : value.district_name} </p>
                                 <p class="text-muted text-sm"><b>Case Type: </b> ${value.case_type === null ? '' : value.case_type} </p>
                                 <p class="text-muted text-sm"><b>Case No: </b> ${value.case_no === null ? '' : value.case_no} </p>
                                 <p class="text-muted text-sm"><b>Panel Lawyer: </b> ${value.first_name === null ? '' : value.first_name} ${value.middle_name === null ? '' : value.middle_name} ${value.last_name === null ? '' : value.last_name} </p>
                                 <p class="text-muted text-sm"><b>Bill Amount: </b> ${value.bill_amount === null ? '' : value.bill_amount} </p>
-                                <p class="text-muted text-sm"><b>Date of Billing: </b> ${value.date_of_billing === null ? '' : value.date_of_billing} </p>                                                        
-                                <p class="text-muted text-sm"><b>Bank: </b> ${value.bank_name === null ? '' : value.bank_name} </p>                                                        
-                                <p class="text-muted text-sm"><b>Branch: </b> ${value.bank_branch_name === null ? '' : value.bank_branch_name} </p>                                                        
-                                <p class="text-muted text-sm"><b>Cheque No: </b> ${value.cheque_no === null ? '' : value.cheque_no} </p>                                                        
-                                <p class="text-muted text-sm"><b>Payment Amount: </b> ${value.payment_amount === null ? '' : value.payment_amount} </p>                                                        
-                                <p class="text-muted text-sm"><b>Digital Payment Type: </b> ${value.digital_payment_type_name === null ? '' : value.digital_payment_type_name} </p>                                                        
-                                <p class="text-muted text-sm"><b>Approval: </b> ${value.is_approved === null ? '' : value.is_approved} </p>                                         
+                                <p class="text-muted text-sm"><b>Date of Billing: </b> ${value.date_of_billing === null ? '' : value.date_of_billing} </p>
+                                <p class="text-muted text-sm"><b>Bank: </b> ${value.bank_name === null ? '' : value.bank_name} </p>
+                                <p class="text-muted text-sm"><b>Branch: </b> ${value.bank_branch_name === null ? '' : value.bank_branch_name} </p>
+                                <p class="text-muted text-sm"><b>Cheque No: </b> ${value.cheque_no === null ? '' : value.cheque_no} </p>
+                                <p class="text-muted text-sm"><b>Payment Amount: </b> ${value.payment_amount === null ? '' : value.payment_amount} </p>
+                                <p class="text-muted text-sm"><b>Digital Payment Type: </b> ${value.digital_payment_type_name === null ? '' : value.digital_payment_type_name} </p>
+                                <p class="text-muted text-sm"><b>Approval: </b> ${value.is_approved === null ? '' : value.is_approved} </p>
                             </div>
 
                         </div>
@@ -325,168 +333,168 @@ if (res.result == "billing") {
         </div>
 
         `);
-    });
+                    });
 
 
-}else if (res.result == "land_information") {
-    // console.log(res.data);
-    
-    $('#search_data').empty();
-    $.each(res.data, function(key, value){
+                } else if (res.result == "land_information") {
+                    // console.log(res.data);
 
-        $('#search_data').append(`
+                    $('#search_data').empty();
+                    $.each(res.data, function (key, value) {
+
+                        $('#search_data').append(`
 
                         <tr>
-                            <td> ${value.property_type_name === null ? '':value.property_type_name} </td>
-                            <td> ${value.district_name === null ? '':value.district_name} </td>
-                            <td> ${value.thana_name === null ? '':value.thana_name} </td>
-                            <td> ${value.seller_name === null ? '':value.seller_name} </td>
-                            <td> ${value.buyer_name === null ? '':value.buyer_name} </td>
-                            <td> ${value.cs_khatian === null ? '':value.cs_khatian} </td>
-                            <td> ${value.cs_dag === null ? '':value.cs_dag} </td>
-                            <td> ${value.sa_khatian === null ? '':value.sa_khatian} </td>
-                            <td> ${value.sa_dag === null ? '':value.sa_dag} </td>
-                            <td> ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
+                            <td> ${value.property_type_name === null ? '' : value.property_type_name} </td>
+                            <td> ${value.district_name === null ? '' : value.district_name} </td>
+                            <td> ${value.thana_name === null ? '' : value.thana_name} </td>
+                            <td> ${value.seller_name === null ? '' : value.seller_name} </td>
+                            <td> ${value.buyer_name === null ? '' : value.buyer_name} </td>
+                            <td> ${value.cs_khatian === null ? '' : value.cs_khatian} </td>
+                            <td> ${value.cs_dag === null ? '' : value.cs_dag} </td>
+                            <td> ${value.sa_khatian === null ? '' : value.sa_khatian} </td>
+                            <td> ${value.sa_dag === null ? '' : value.sa_dag} </td>
+                            <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                             <td>
                                 <a href="view-land-information/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                     ><i class="fas fa-eye"></i></button></a>
-                                
+
                                 <a href="edit-land-information/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                     ><i class="fas fa-edit"></i></button></a>
-                                    
-                                <button onclick='land_information_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
-                                    
+
+                                <button onclick='land_information_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+
                             </td>
                         </tr>
 
 
         `);
-    });
-    
-    
-    }else if (res.result == "flat_information") {
-        console.log(res.result);
-        
-        $('#search_data').empty();
-        $.each(res.data, function(key, value){
-    
-            $('#search_data').append(`
-    
+                    });
+
+
+                } else if (res.result == "flat_information") {
+                    console.log(res.result);
+
+                    $('#search_data').empty();
+                    $.each(res.data, function (key, value) {
+
+                        $('#search_data').append(`
+
                             <tr>
-                                <td> ${value.property_type_name === null ? '':value.property_type_name} </td>
-                                <td> ${value.district_name === null ? '':value.district_name} </td>
-                                <td> ${value.thana_name === null ? '':value.thana_name} </td>
-                                <td> ${value.seller_name === null ? '':value.seller_name} </td>
-                                <td> ${value.buyer_name === null ? '':value.buyer_name} </td>
-                                <td> ${value.cs_khatian === null ? '':value.cs_khatian} </td>
-                                <td> ${value.cs_dag === null ? '':value.cs_dag} </td>
-                                <td> ${value.sa_khatian === null ? '':value.sa_khatian} </td>
-                                <td> ${value.sa_dag === null ? '':value.sa_dag} </td>
-                                <td> ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
+                                <td> ${value.property_type_name === null ? '' : value.property_type_name} </td>
+                                <td> ${value.district_name === null ? '' : value.district_name} </td>
+                                <td> ${value.thana_name === null ? '' : value.thana_name} </td>
+                                <td> ${value.seller_name === null ? '' : value.seller_name} </td>
+                                <td> ${value.buyer_name === null ? '' : value.buyer_name} </td>
+                                <td> ${value.cs_khatian === null ? '' : value.cs_khatian} </td>
+                                <td> ${value.cs_dag === null ? '' : value.cs_dag} </td>
+                                <td> ${value.sa_khatian === null ? '' : value.sa_khatian} </td>
+                                <td> ${value.sa_dag === null ? '' : value.sa_dag} </td>
+                                <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                 <td>
                                     <a href="view-flat-information/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                         ><i class="fas fa-eye"></i></button></a>
-                                    
+
                                     <a href="edit-flat-information/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                         ><i class="fas fa-edit"></i></button></a>
-                                        
-                                    <button onclick='flat_information_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
-                                        
+
+                                    <button onclick='flat_information_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+
                                 </td>
                             </tr>
-    
-    
+
+
             `);
-        });
-        
-        
-        } else if (res.result == "regulatory_compliance") {
-            // console.log(res.data);
-            
-            $('#search_data').empty();
-            $.each(res.data, function(key, value){
-        
-                $('#search_data').append(`
-        
+                    });
+
+
+                } else if (res.result == "regulatory_compliance") {
+                    // console.log(res.data);
+
+                    $('#search_data').empty();
+                    $.each(res.data, function (key, value) {
+
+                        $('#search_data').append(`
+
                                 <tr>
-                                    <td> ${value.certificates_name === null ? '':value.certificates_name} </td>
-                                    <td> ${value.compliance_category_name === null ? '':value.compliance_category_name} </td>
-                                    <td> ${value.certificates_authority === null ? '':value.certificates_authority} </td>
-                                    <td> ${value.certificates_ministry === null ? '':value.certificates_ministry} </td>
-                                    <td> ${value.certificates_getting_cl_first_date === null ? '':value.certificates_getting_cl_first_date} </td>
-                                    <td> ${value.certificates_expires === null ? '':value.certificates_expires} </td>
-                                    <td> ${value.certificates_renew === null ? '':value.certificates_renew} </td>
-                                    <td> ${value.certificates_special_provision === null ? '':value.certificates_special_provision} </td>
-                                    <td> ${value.certificates_special_remarks === null ? '':value.certificates_special_remarks} </td>
-                                    <td> ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
+                                    <td> ${value.certificates_name === null ? '' : value.certificates_name} </td>
+                                    <td> ${value.compliance_category_name === null ? '' : value.compliance_category_name} </td>
+                                    <td> ${value.certificates_authority === null ? '' : value.certificates_authority} </td>
+                                    <td> ${value.certificates_ministry === null ? '' : value.certificates_ministry} </td>
+                                    <td> ${value.certificates_getting_cl_first_date === null ? '' : value.certificates_getting_cl_first_date} </td>
+                                    <td> ${value.certificates_expires === null ? '' : value.certificates_expires} </td>
+                                    <td> ${value.certificates_renew === null ? '' : value.certificates_renew} </td>
+                                    <td> ${value.certificates_special_provision === null ? '' : value.certificates_special_provision} </td>
+                                    <td> ${value.certificates_special_remarks === null ? '' : value.certificates_special_remarks} </td>
+                                    <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
                                         <a href="view-regulatory-compliance/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                             ><i class="fas fa-eye"></i></button></a>
-                                        
+
                                         <a href="edit-regulatory-compliance/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                             ><i class="fas fa-edit"></i></button></a>
-                                            
-                                        <button onclick='regulatory_compliance_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
-                                            
+
+                                        <button onclick='regulatory_compliance_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+
                                     </td>
                                 </tr>
-        
-                `);
-            });
-            
-            
-        }else if (res.result == "social_compliance") {
-            
-            console.log(res.data);
 
-            $('#search_data').empty();
-            $.each(res.data, function(key, value){
-        
-                $('#search_data').append(`
+                `);
+                    });
+
+
+                } else if (res.result == "social_compliance") {
+
+                    console.log(res.data);
+
+                    $('#search_data').empty();
+                    $.each(res.data, function (key, value) {
+
+                        $('#search_data').append(`
 
                                 <tr>
-                                    <td> ${value.employment_condition === null ? '':value.employment_condition} </td>
-                                    <td> ${value.working_hour_leave === null ? '':value.working_hour_leave} </td>
-                                    <td> ${value.compensation_benefit === null ? '':value.compensation_benefit} </td>
-                                    <td> ${value.hygine_safety === null ? '':value.hygine_safety} </td>
-                                    <td> ${value.welfare_security === null ? '':value.welfare_security} </td>
-                                    <td> ${value.industrial_relation === null ? '':value.industrial_relation} </td>
-                                    <td> ${value.labour_law_safety === null ? '':value.labour_law_safety} </td>
-                                    <td> ${value.bnbc_safety === null ? '':value.bnbc_safety} </td>
-                                    <td> ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
+                                    <td> ${value.employment_condition === null ? '' : value.employment_condition} </td>
+                                    <td> ${value.working_hour_leave === null ? '' : value.working_hour_leave} </td>
+                                    <td> ${value.compensation_benefit === null ? '' : value.compensation_benefit} </td>
+                                    <td> ${value.hygine_safety === null ? '' : value.hygine_safety} </td>
+                                    <td> ${value.welfare_security === null ? '' : value.welfare_security} </td>
+                                    <td> ${value.industrial_relation === null ? '' : value.industrial_relation} </td>
+                                    <td> ${value.labour_law_safety === null ? '' : value.labour_law_safety} </td>
+                                    <td> ${value.bnbc_safety === null ? '' : value.bnbc_safety} </td>
+                                    <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
                                         <a href="view-social-compliance/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                             ><i class="fas fa-eye"></i></button></a>
-                                        
+
                                         <a href="edit-social-compliance/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                             ><i class="fas fa-edit"></i></button></a>
-                                            
-                                        <button onclick='social_compliance_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
-                                            
+
+                                        <button onclick='social_compliance_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+
                                     </td>
                                 </tr>
-        
-                `);
-            });
-            
-            
-        }else if (res.result == "criminal_cases") {
-            
-            // console.log(res);
 
-            $('#search_data').empty();
-            $.each(res.data, function(key, value){
-        
-                $('#search_data').append(`
+                `);
+                    });
+
+
+                } else if (res.result == "criminal_cases") {
+
+                    // console.log(res);
+
+                    $('#search_data').empty();
+                    $.each(res.data, function (key, value) {
+
+                        $('#search_data').append(`
 
                                 <tr>
                                     <td><a href="view-criminal-cases/${value.id}"> ${value.case_no} </a></td>
-                                    <td> ${value.subsequent_case_no === null ? '':value.subsequent_case_no} </td>
-                                    <td> ${value.division_name === null ? '':value.division_name} </td>
-                                    <td> ${value.court_name === null ? '':value.court_name} </td>
-                                    <td> ${value.district_name === null ? '':value.district_name} </td>
-                                    <td> ${value.company_name === null ? '':value.company_name} </td>
-                                    <td> ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
+                                    <td> ${value.subsequent_case_no === null ? '' : value.subsequent_case_no} </td>
+                                    <td> ${value.division_name === null ? '' : value.division_name} </td>
+                                    <td> ${value.court_name === null ? '' : value.court_name} </td>
+                                    <td> ${value.district_name === null ? '' : value.district_name} </td>
+                                    <td> ${value.company_name === null ? '' : value.company_name} </td>
+                                    <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
                                         <a href="view-criminal-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                             ><i class="fas fa-eye"></i></button></a>
@@ -495,34 +503,34 @@ if (res.result == "billing") {
                                             data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
                                         <a href="edit-criminal-cases/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                             ><i class="fas fa-edit"></i></button></a>
-                                            
-                                        <button onclick='criminal_cases_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
-                                            
+
+                                        <button onclick='criminal_cases_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+
                                     </td>
                                 </tr>
-        
-                `);
-            });
-            
-            
-        }else if (res.result == "labour_cases") {
-            
-            // console.log(res);
 
-            $('#search_data').empty();
-            $.each(res.data, function(key, value){
-        
-                $('#search_data').append(`
+                `);
+                    });
+
+
+                } else if (res.result == "labour_cases") {
+
+                    // console.log(res);
+
+                    $('#search_data').empty();
+                    $.each(res.data, function (key, value) {
+
+                        $('#search_data').append(`
 
                                 <tr>
                                     <td><a href="view-criminal-cases/${value.id}"> ${value.case_no} </a></td>
-                                    <td> ${value.subsequent_case_no === null ? '':value.subsequent_case_no} </td>
-                                    <td> ${value.division_name === null ? '':value.division_name} </td>
-                                    <td> ${value.court_name === null ? '':value.court_name} </td>
-                                    <td> ${value.district_name === null ? '':value.district_name} </td>
-                                    <td> ${value.company_name === null ? '':value.company_name} </td>
-                                    <td> ${value.plaintiff_name === null ? '':value.plaintiff_name} </td>
-                                    <td> ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
+                                    <td> ${value.subsequent_case_no === null ? '' : value.subsequent_case_no} </td>
+                                    <td> ${value.division_name === null ? '' : value.division_name} </td>
+                                    <td> ${value.court_name === null ? '' : value.court_name} </td>
+                                    <td> ${value.district_name === null ? '' : value.district_name} </td>
+                                    <td> ${value.company_name === null ? '' : value.company_name} </td>
+                                    <td> ${value.plaintiff_name === null ? '' : value.plaintiff_name} </td>
+                                    <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
                                         <a href="view-labour-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                             ><i class="fas fa-eye"></i></button></a>
@@ -531,58 +539,58 @@ if (res.result == "billing") {
                                             data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
                                         <a href="edit-labour-cases/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                             ><i class="fas fa-edit"></i></button></a>
-                                            
-                                        <button onclick='labour_cases_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
-                                            
+
+                                        <button onclick='labour_cases_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+
                                     </td>
                                 </tr>
-        
-                `);
-            });
-            
-            
-        } else {
-                $('#search_data').empty();
-                $.each(res, function(key, value){
 
-                    $('#search_data').append(`
+                `);
+                    });
+
+
+                } else {
+                    $('#search_data').empty();
+                    $.each(res, function (key, value) {
+
+                        $('#search_data').append(`
 
                             <tr>
                                 <td>
                                      <a href="view-civil-cases/${value.id}"> ${value.case_no} </a>
                                 </td>
                                 <td>
-                                    ${value.name_of_suit === null ? '':value.name_of_suit}
+                                    ${value.name_of_suit === null ? '' : value.name_of_suit}
                                 </td>
                                 <td>
-                                    ${value.division_name === null ? '':value.division_name}
-                                    
-                                </td>
-                                <td>
-                                    ${value.court_name === null ? '':value.court_name}
-                                </td>
-                                <td>
-                                    ${value.district_name === null ? '':value.district_name}
-
-                                </td>
-                                
-                                <td>
-                                    ${value.company_name === null ? '':value.company_name}
-
-                                </td>
-                                
-                                <td>
-                                    ${value.plaintiff_name === null ? '':value.plaintiff_name}
+                                    ${value.division_name === null ? '' : value.division_name}
 
                                 </td>
                                 <td>
-                                    ${value.defendent_name === null ? '':value.defendent_name}
+                                    ${value.court_name === null ? '' : value.court_name}
+                                </td>
+                                <td>
+                                    ${value.district_name === null ? '' : value.district_name}
 
                                 </td>
-                                <td> 
-                                   ${value.delete_status===0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>': '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}
+
+                                <td>
+                                    ${value.company_name === null ? '' : value.company_name}
+
                                 </td>
-                                
+
+                                <td>
+                                    ${value.plaintiff_name === null ? '' : value.plaintiff_name}
+
+                                </td>
+                                <td>
+                                    ${value.defendent_name === null ? '' : value.defendent_name}
+
+                                </td>
+                                <td>
+                                   ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}
+                                </td>
+
                                 <td>
                                     <a href="view-civil-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                         ><i class="fas fa-eye"></i></button></a>
@@ -591,9 +599,9 @@ if (res.result == "billing") {
                                                         data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
                                     <a href="edit-civil-cases/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                         ><i class="fas fa-edit"></i></button></a>
-                                        
-                                    <button onclick='delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
-                                        
+
+                                    <button onclick='delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+
                                 </td>
 
 
@@ -601,12 +609,12 @@ if (res.result == "billing") {
 
 
                     `);
-                });
-}
+                    });
+                }
 
                 // console.log(res);
             },
-            error:function(res){
+            error: function (res) {
                 console.log(res);
             }
 
@@ -616,10 +624,8 @@ if (res.result == "billing") {
     })
 
 
+    $("#payment_type").change(function () {
 
-
-    $("#payment_type").change(function(){
-        
         var payment_type = $(this).val();
 
         if (payment_type == "Cash Payment") {
@@ -629,14 +635,14 @@ if (res.result == "billing") {
             $("#cheque").hide();
             $("#digital_payment_type").hide();
 
-        } else if (payment_type == "Bank Payment"){
+        } else if (payment_type == "Bank Payment") {
 
             $("#bank").show();
             $("#branch").show();
             $("#cheque").show();
             $("#digital_payment_type").hide();
-            
-        }else if (payment_type == "Digital Payment"){
+
+        } else if (payment_type == "Digital Payment") {
 
             $("#bank").hide();
             $("#branch").hide();
@@ -648,34 +654,34 @@ if (res.result == "billing") {
     });
 
 
-    $('#image').change(function(){
-           
+    $('#image').change(function () {
+
         let reader = new FileReader();
-        reader.onload = (e) => { 
-            $('#preview-image').attr('src', e.target.result); 
+        reader.onload = (e) => {
+            $('#preview-image').attr('src', e.target.result);
         }
-        reader.readAsDataURL(this.files[0]); 
-    
+        reader.readAsDataURL(this.files[0]);
+
     });
 
 
-    $('#seller_id').on('change', function() {
+    $('#seller_id').on('change', function () {
         var seller_id = $(this).val();
         var route = $(this).attr('action');
         // alert(route);
-        if(seller_id) {
+        if (seller_id) {
             $.ajax({
                 url: route,
                 type: "GET",
-                data : {"_token":"{{ csrf_token() }}",seller_id:seller_id},
+                data: {"_token": "{{ csrf_token() }}", seller_id: seller_id},
                 dataType: "json",
-                success:function(data) {
+                success: function (data) {
                     console.log(data);
-                    if(data){
+                    if (data) {
                         $('#seller_details').empty();
                         // $('#seller_details').focus;
                         $('#seller_details').append(`
-                            
+
                             <div class="form-group row">
                                 <label for="deed_no" class="col-sm-4 col-form-label">Seller Email</label>
                                 <div class="col-sm-8">
@@ -701,35 +707,35 @@ if (res.result == "billing") {
                                 </div>
                             </div>
                         `);
-                        
-                    }else{
+
+                    } else {
                         $('#seller_details').empty();
                     }
                 }
             });
-        }else{
+        } else {
             $('#seller_details').empty();
         }
     });
 
 
-    $('#buyer_id').on('change', function() {
+    $('#buyer_id').on('change', function () {
         var buyer_id = $(this).val();
         var route = $(this).attr('action');
         // alert(route);
-        if(buyer_id) {
+        if (buyer_id) {
             $.ajax({
                 url: route,
                 type: "GET",
-                data : {"_token":"{{ csrf_token() }}",buyer_id:buyer_id},
+                data: {"_token": "{{ csrf_token() }}", buyer_id: buyer_id},
                 dataType: "json",
-                success:function(data) {
+                success: function (data) {
                     console.log(data);
-                    if(data){
+                    if (data) {
                         $('#buyer_details').empty();
                         // $('#buyer_details').focus;
                         $('#buyer_details').append(`
-                            
+
                             <div class="form-group row">
                                 <label for="deed_no" class="col-sm-4 col-form-label">Buyer Email</label>
                                 <div class="col-sm-8">
@@ -755,56 +761,57 @@ if (res.result == "billing") {
                                 </div>
                             </div>
                         `);
-                        
-                    }else{
+
+                    } else {
                         $('#buyer_details').empty();
                     }
                 }
             });
-        }else{
+        } else {
             $('#buyer_details').empty();
         }
     });
 
 
-    $("#land_compliance").on('click',function(){
+    $("#land_compliance").on('click', function () {
 
         $("#compliance_input").toggle();
 
     });
 
 
-
-    $('#floor_id').on('change', function() {
+    $('#floor_id').on('change', function () {
         var floor_id = $(this).val();
         var route = $(this).attr('action');
         // alert(route);
-        if(floor_id) {
+        if (floor_id) {
             $.ajax({
                 url: route,
                 type: "GET",
-                data : {"_token":"{{ csrf_token() }}",floor_id:floor_id},
+                data: {"_token": "{{ csrf_token() }}", floor_id: floor_id},
                 dataType: "json",
-                success:function(data) {
+                success: function (data) {
                     // console.log(data);
-                    if(data){
+                    if (data) {
                         $('#flat_number_id').empty();
                         $('#flat_number_id').focus;
                         $('#flat_number_id').append('<option value="">Select</option>');
-                        $.each(data, function(key, value){
-                            $('select[name="flat_number_id"]').append('<option value="'+ value.id +'">' + value.flat_number+ '</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="flat_number_id"]').append('<option value="' + value.id + '">' + value.flat_number + '</option>');
                         });
-                    }else{
+                    } else {
                         $('#flat_number_id').empty();
                     }
                 }
             });
-        }else{
+        } else {
             $('#flat_number_id').empty();
+            $('#flat_number_id').append('<option value="">Select</option>');
+
         }
     });
 
-    $('#document_type').on('change', function(){
+    $('#document_type').on('change', function () {
 
         var document_type = $(this).val();
 
@@ -821,30 +828,30 @@ if (res.result == "billing") {
 
     });
 
-    $('#module').on('change', function(){
+    $('#module').on('change', function () {
         // alert('asdfasdf');
 
         var module = $(this).val();
         // alert(module);
         if (module == "Admin Setup") {
             $('.setup').show();
-            $('.cases').hide();   
-            $('.property_management').hide();   
+            $('.cases').hide();
+            $('.property_management').hide();
 
-        } else if (module == "Litigation Mangement"){
+        } else if (module == "Litigation Mangement") {
 
             $('.setup').hide();
-            $('.cases').show();   
-            $('.property_management').hide();   
+            $('.cases').show();
+            $('.property_management').hide();
 
-        }else{
+        } else {
             $('.setup').hide();
-            $('.cases').hide();   
-            $('.property_management').show();   
+            $('.cases').hide();
+            $('.property_management').show();
         }
     });
 
-    $('#admin_setup').on('change', function(){
+    $('#admin_setup').on('change', function () {
 
         var admin_setup = $(this).val();
         var route = $(this).attr('action');
@@ -855,33 +862,34 @@ if (res.result == "billing") {
 
         if (admin_setup) {
             // alert('ic')
-            if(admin_setup) {
+            if (admin_setup) {
                 $.ajax({
                     url: route,
                     type: "GET",
-                    data : {"_token":"{{ csrf_token() }}",admin_setup:admin_setup},
+                    data: {"_token": "{{ csrf_token() }}", admin_setup: admin_setup},
                     dataType: "json",
-                    success:function(data) {
+                    success: function (data) {
                         console.log(data);
-                        if(data){
+                        if (data) {
                             $('#admin_setup_data').empty();
                             $('#admin_setup_data').focus;
                             $('#admin_setup_data').append('<option value="">Select</option>');
-                            $.each(data, function(key, value){
-                                $('select[name="admin_setup_data"]').append('<option value="'+ value.id +'">' + value.first_name+ ' '+ value.middle_name+ ' '+ value.last_name+ '</option>');
+                            $.each(data, function (key, value) {
+                                $('select[name="admin_setup_data"]').append('<option value="' + value.id + '">' + value.first_name + ' ' + value.middle_name + ' ' + value.last_name + '</option>');
                             });
-                        }else{
+                        } else {
                             $('#admin_setup_data').empty();
                         }
                     }
                 });
-            }else{
+            } else {
                 $('#admin_setup_data').empty();
+                $('#admin_setup_data').append('<option value="">Select</option>');
             }
-        } 
+        }
     });
 
-    $('#litigation_m').on('change', function(){
+    $('#litigation_m').on('change', function () {
 
         var litigation_cases = $(this).val();
         var route = $(this).attr('action');
@@ -892,33 +900,34 @@ if (res.result == "billing") {
 
         if (litigation_cases) {
             // alert('ic')
-            if(litigation_cases) {
+            if (litigation_cases) {
                 $.ajax({
                     url: route,
                     type: "GET",
-                    data : {"_token":"{{ csrf_token() }}",litigation_cases:litigation_cases},
+                    data: {"_token": "{{ csrf_token() }}", litigation_cases: litigation_cases},
                     dataType: "json",
-                    success:function(data) {
+                    success: function (data) {
                         console.log(data);
-                        if(data){
+                        if (data) {
                             $('#litagation_cases').empty();
                             $('#litagation_cases').focus;
                             $('#litagation_cases').append('<option value="">Select</option>');
-                            $.each(data, function(key, value){
-                                $('select[name="litagation_cases"]').append('<option value="'+ value.id +'">' + value.case_no + '</option>');
+                            $.each(data, function (key, value) {
+                                $('select[name="litagation_cases"]').append('<option value="' + value.id + '">' + value.case_no + '</option>');
                             });
-                        }else{
+                        } else {
                             $('#litagation_cases').empty();
                         }
                     }
                 });
-            }else{
+            } else {
                 $('#litagation_cases').empty();
+                $('#litagation_cases').append('<option value="">Select</option>');
             }
-        } 
+        }
     });
 
-    $('#property_management').on('change', function(){
+    $('#property_management').on('change', function () {
 
         var property_management = $(this).val();
         var route = $(this).attr('action');
@@ -929,73 +938,110 @@ if (res.result == "billing") {
 
         if (property_management) {
             // alert('ic')
-            if(property_management) {
+            if (property_management) {
                 $.ajax({
                     url: route,
                     type: "GET",
-                    data : {"_token":"{{ csrf_token() }}",property_management:property_management},
+                    data: {"_token": "{{ csrf_token() }}", property_management: property_management},
                     dataType: "json",
-                    success:function(data) {
+                    success: function (data) {
                         console.log(data);
-                        if(data){
+                        if (data) {
                             $('#p_management').empty();
                             $('#p_management').focus;
                             $('#p_management').append('<option value="">Select</option>');
-                            $.each(data, function(key, value){
-                                $('select[name="p_management"]').append('<option value="'+ value.id +'">' + value.id + ' ' + value.cs_khatian + ' '+ value.cs_dag + '</option>');
+                            $.each(data, function (key, value) {
+                                $('select[name="p_management"]').append('<option value="' + value.id + '">' + value.id + ' ' + value.cs_khatian + ' ' + value.cs_dag + '</option>');
                             });
-                        }else{
+                        } else {
                             $('#p_management').empty();
                         }
                     }
                 });
-            }else{
+            } else {
                 $('#p_management').empty();
+                $('#p_management').append('<option value="">Select</option>');
             }
-        } 
+        }
     });
 
-    $("#supreme_court_type").on('change',function() {
+    $("#supreme_court_type").on('change', function () {
         // alert('adsf asdf');
         var route = $(this).val();
         // alert(route);
 
 
-
     })
 
 
-
-
-
-    $('#supreme_court_type').on('change', function() {
+    $('#supreme_court_type').on('change', function () {
         var supreme_court_type = $(this).val();
         var route = $(this).attr('action');
         // alert(supreme_court_type);
-        if(supreme_court_type) {
+        if (supreme_court_type) {
             $.ajax({
                 url: route,
                 type: "GET",
-                data : {"_token":"{{ csrf_token() }}",supreme_court_type:supreme_court_type},
+                data: {"_token": "{{ csrf_token() }}", supreme_court_type: supreme_court_type},
                 dataType: "json",
-                success:function(data) {
+                success: function (data) {
                     // console.log(data);
-                    if(data){
+                    if (data) {
                         $('#supreme_court_category_id').empty();
                         $('#supreme_court_category_id').focus;
                         $('#supreme_court_category_id').append('<option value="">Select</option>');
-                        $.each(data, function(key, value){
-                            $('select[name="supreme_court_category_id"]').append('<option value="'+ value.id +'">' + value.supreme_court_category+ '</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="supreme_court_category_id"]').append('<option value="' + value.id + '">' + value.supreme_court_category + '</option>');
                         });
-                    }else{
+                    } else {
                         $('#supreme_court_category_id').empty();
                     }
                 }
             });
-        }else{
+        } else {
             $('#supreme_court_category_id').empty();
+            $('#supreme_court_category_id').append('<option value="">Select</option>');
         }
     });
+
+    $("#lower_court").on('click', function () {
+        // alert('asdfw wer asdf');
+
+        $("#lower_court_info").toggle();
+
+    });
+
+
+    $('#supreme_court_category_id').on('change', function () {
+        var supreme_court_category_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(supreme_court_category_id);
+        if (supreme_court_category_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", supreme_court_category_id: supreme_court_category_id},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#supreme_court_subcategory_id').empty();
+                        $('#supreme_court_subcategory_id').focus;
+                        $('#supreme_court_subcategory_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="supreme_court_subcategory_id"]').append('<option value="' + value.id + '">' + value.supreme_court_subcategory + '</option>');
+                        });
+                    } else {
+                        $('#supreme_court_subcategory_id').empty();
+                    }
+                }
+            });
+        } else {
+            $('#supreme_court_subcategory_id').empty();
+            $('#supreme_court_subcategory_id').append('<option value="">Select</option>');
+        }
+    });
+
 
 });
 

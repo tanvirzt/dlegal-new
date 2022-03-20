@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2022 at 01:37 PM
+-- Generation Time: Mar 20, 2022 at 01:53 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -1043,7 +1043,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (353, '2022_03_09_070843_create_social_compliances_table', 20),
 (354, '2022_03_13_104748_create_external_files_table', 20),
 (355, '2022_03_16_063902_create_setup_supreme_court_categories_table', 21),
-(357, '2022_03_16_085702_create_setup_supreme_court_subcategories_table', 22);
+(357, '2022_03_16_085702_create_setup_supreme_court_subcategories_table', 22),
+(358, '2022_03_20_090552_create_setup_court_classes_table', 23),
+(359, '2022_03_20_092651_create_setup_case_classes_table', 24),
+(360, '2022_03_20_093859_create_setup_sections_table', 25);
 
 -- --------------------------------------------------------
 
@@ -1260,7 +1263,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('jMrlZG8OPtMp2VluIrrGJ8Soev66zfwqV1TLvBsA', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRXFpUnlQR21hYWVPR3VmRm5qV0w5VWM3bzBiNkl5VTZVcVYyUmh0UyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjY6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9hZGQtaGlnaC1jb3VydC1jYXNlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTI6ImxvZ2luX2FkbWluXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjQ6InBhZ2UiO3M6OToiZGFzaGJvYXJkIjt9', 1647433970);
+('YYJtWzI1tzUTzydEQcKk0Qa5BaNZU1etw16AP2NB', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQTRLbGduQmZ0WnlCblNZUzVlb1JIdUNVWnFPMGJFbEU1Z0pHakFsbSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjY6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9hZGQtaGlnaC1jb3VydC1jYXNlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTI6ImxvZ2luX2FkbWluXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjQ6InBhZ2UiO3M6OToiZGFzaGJvYXJkIjt9', 1647780353);
 
 -- --------------------------------------------------------
 
@@ -1437,6 +1440,33 @@ INSERT INTO `setup_case_categories` (`id`, `case_category_name`, `delete_status`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `setup_case_classes`
+--
+
+CREATE TABLE `setup_case_classes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `case_class_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_case_classes`
+--
+
+INSERT INTO `setup_case_classes` (`id`, `case_class_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'test', 0, NULL, NULL, '2022-03-20 03:30:59', '2022-03-20 03:30:59'),
+(2, 'test 2', 0, NULL, NULL, '2022-03-20 03:31:03', '2022-03-20 03:31:03'),
+(3, 'test 3', 0, NULL, NULL, '2022-03-20 03:31:07', '2022-03-20 03:31:07'),
+(4, 'test 4', 0, NULL, NULL, '2022-03-20 03:31:11', '2022-03-20 03:31:11'),
+(5, 'test 5', 0, NULL, NULL, '2022-03-20 03:31:15', '2022-03-20 03:31:21');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `setup_case_statuses`
 --
 
@@ -1606,6 +1636,33 @@ CREATE TABLE `setup_courts` (
 INSERT INTO `setup_courts` (`id`, `court_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'Shadharghat', 0, NULL, NULL, '2022-03-15 23:43:12', '2022-03-15 23:43:29'),
 (2, 'Court Kachari', 0, NULL, NULL, '2022-03-15 23:43:17', '2022-03-15 23:43:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_court_classes`
+--
+
+CREATE TABLE `setup_court_classes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `case_class_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_court_classes`
+--
+
+INSERT INTO `setup_court_classes` (`id`, `case_class_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'test', 0, NULL, NULL, '2022-03-20 03:17:38', '2022-03-20 03:17:38'),
+(2, 'test 2', 0, NULL, NULL, '2022-03-20 03:18:38', '2022-03-20 03:18:38'),
+(3, 'test 3', 0, NULL, NULL, '2022-03-20 03:19:00', '2022-03-20 03:23:50'),
+(4, 'test 4', 0, NULL, NULL, '2022-03-20 03:23:22', '2022-03-20 03:24:03'),
+(5, 'test 5', 1, NULL, NULL, '2022-03-20 03:23:29', '2022-03-20 03:24:10');
 
 -- --------------------------------------------------------
 
@@ -2105,6 +2162,32 @@ INSERT INTO `setup_regions` (`id`, `region_name`, `delete_status`, `created_by`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `setup_sections`
+--
+
+CREATE TABLE `setup_sections` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `section_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_sections`
+--
+
+INSERT INTO `setup_sections` (`id`, `section_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'test', 0, NULL, NULL, '2022-03-20 03:45:48', '2022-03-20 03:46:12'),
+(2, '144', 0, NULL, NULL, '2022-03-20 03:45:53', '2022-03-20 03:46:06'),
+(3, '33', 0, NULL, NULL, '2022-03-20 03:45:57', '2022-03-20 03:45:57'),
+(4, '44', 0, NULL, NULL, '2022-03-20 03:46:00', '2022-03-20 03:46:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `setup_seller_buyers`
 --
 
@@ -2162,7 +2245,8 @@ INSERT INTO `setup_supreme_court_categories` (`id`, `supreme_court_type`, `supre
 (2, 'Appellate Court Division', 'Civil Cases', 0, NULL, NULL, '2022-03-16 00:53:19', '2022-03-16 02:40:20'),
 (3, 'Appellate Court Division', 'Contempt Case', 0, NULL, NULL, '2022-03-16 00:53:45', '2022-03-16 01:06:07'),
 (4, 'Appellate Court Division', 'Jail Cases', 0, NULL, NULL, '2022-03-16 00:53:56', '2022-03-16 00:53:56'),
-(5, 'Appellate Court Division', 'Criminal Cases (HD)', 0, NULL, NULL, '2022-03-16 01:04:43', '2022-03-16 01:05:34');
+(5, 'Appellate Court Division', 'Criminal Cases (HD)', 0, NULL, NULL, '2022-03-16 01:04:43', '2022-03-16 01:05:34'),
+(6, 'High Court Division', 'Contempt Cases', 0, NULL, NULL, '2022-03-20 05:55:15', '2022-03-20 05:55:15');
 
 -- --------------------------------------------------------
 
@@ -2189,7 +2273,8 @@ CREATE TABLE `setup_supreme_court_subcategories` (
 INSERT INTO `setup_supreme_court_subcategories` (`id`, `supreme_court_type`, `supreme_court_category_id`, `supreme_court_subcategory`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'High Court Division', 1, 'Divorce Suit', 0, NULL, NULL, '2022-03-16 03:50:51', '2022-03-16 04:10:45'),
 (2, 'Appellate Court Division', 2, 'Civil Appeal', 0, NULL, NULL, '2022-03-16 04:08:15', '2022-03-16 04:08:44'),
-(3, 'Appellate Court Division', 2, 'Civil Petition', 0, NULL, NULL, '2022-03-16 04:08:34', '2022-03-16 04:08:34');
+(3, 'Appellate Court Division', 2, 'Civil Petition', 0, NULL, NULL, '2022-03-16 04:08:34', '2022-03-16 04:08:34'),
+(4, 'High Court Division', 6, 'Civil Appeal', 0, NULL, NULL, '2022-03-20 05:55:35', '2022-03-20 05:55:35');
 
 -- --------------------------------------------------------
 
@@ -2638,6 +2723,12 @@ ALTER TABLE `setup_case_categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `setup_case_classes`
+--
+ALTER TABLE `setup_case_classes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `setup_case_statuses`
 --
 ALTER TABLE `setup_case_statuses`
@@ -2677,6 +2768,12 @@ ALTER TABLE `setup_compliance_types`
 -- Indexes for table `setup_courts`
 --
 ALTER TABLE `setup_courts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setup_court_classes`
+--
+ALTER TABLE `setup_court_classes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2791,6 +2888,12 @@ ALTER TABLE `setup_property_types`
 -- Indexes for table `setup_regions`
 --
 ALTER TABLE `setup_regions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setup_sections`
+--
+ALTER TABLE `setup_sections`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3000,7 +3103,7 @@ ALTER TABLE `land_information_files`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=358;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=361;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -3075,6 +3178,12 @@ ALTER TABLE `setup_case_categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `setup_case_classes`
+--
+ALTER TABLE `setup_case_classes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `setup_case_statuses`
 --
 ALTER TABLE `setup_case_statuses`
@@ -3115,6 +3224,12 @@ ALTER TABLE `setup_compliance_types`
 --
 ALTER TABLE `setup_courts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `setup_court_classes`
+--
+ALTER TABLE `setup_court_classes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `setup_court_last_orders`
@@ -3231,6 +3346,12 @@ ALTER TABLE `setup_regions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `setup_sections`
+--
+ALTER TABLE `setup_sections`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `setup_seller_buyers`
 --
 ALTER TABLE `setup_seller_buyers`
@@ -3240,13 +3361,13 @@ ALTER TABLE `setup_seller_buyers`
 -- AUTO_INCREMENT for table `setup_supreme_court_categories`
 --
 ALTER TABLE `setup_supreme_court_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `setup_supreme_court_subcategories`
 --
 ALTER TABLE `setup_supreme_court_subcategories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `setup_thanas`
