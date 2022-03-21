@@ -39,7 +39,7 @@
         </div>
         <!-- /.content-header -->
         <!-- Main content -->
-        
+
 
 
         <section class="content">
@@ -69,140 +69,201 @@
                                     <table class="table table-responsive table-hover table-bordered">
                                         <tbody>
                                             <tr>
-                                                <th>Case No.</th>
+                                                <th>Lower Court </th>
+                                                <td>{{ $data->lower_court }}</td>
+                                                <th>Case Received (From)</th>
+                                                <td>{{ $data->case_received_lawyer_first_name }} {{ $data->case_received_lawyer_middle_name }} {{ $data->case_received_lawyer_last_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Case No. (Lower Court) </th>
                                                 <td>{{ $data->case_no }}</td>
-                                                <th>External Council Associates</th>
-                                                <td>{{ $data->as_first_name }} {{ $data->as_middle_name }} {{ $data->as_last_name }}</td>
+                                                <th>Case Papers Received</th>
+                                                <td>{{ $data->case_papers_received }}</td>
                                             </tr>
                                             <tr>
-                                                <th>Date of Case Received</th>
-                                                <td>{{ $data->date_of_case_received }}</td>
-                                                <th>Status of the Cases</th>
-                                                <td>{{ $data->case_status_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Case Category</th>
-                                                <td>{{ $data->case_category_name }}</td>
-                                                <th>Last Order of the Court</th>
-                                                <td>{{ $data->court_last_order_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Type of Cases</th>
-                                                <td>{{ $data->case_types_name }}</td>
-                                                <th>Name of the Accused</th>
-                                                <td>{{ $data->accused_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Subsequent Case No.</th>
-                                                <td>{{ $data->subsequent_case_no }}</td>
-                                                <th>Name of the Accused Company</th>
-                                                <td>{{ $data->accused_company_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Zone</th>
-                                                <td>{{ $data->region_name }}</td>
-                                                <th>Next Date</th>
-                                                <td>{{ $data->next_date }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Area</th>
-                                                <td>{{ $data->area_name }}</td>
-                                                <th>Address of the Accused</th>
-                                                <td>{{ $data->court_last_order_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Branch</th>
-                                                <td>{{ $data->branch_name }}</td>
-                                                <th>Accused Contact No. </th>
-                                                <td> {{ $data->accused_contact_no }} </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Member No.</th>
-                                                <td>{{ $data->member_no }}</td>
-                                                <th>Next date fixed for</th>
-                                                <td> {{ $data->next_date_reason_name }} </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Program</th>
-                                                <td> {{ $data->program_name }} </td>
-                                                <th>Plaintiff Name</th>
-                                                <td> {{ $data->plaintiff_name }} </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Police Station</th>
-                                                <td>{{ $data->police_station }}</td>
-                                                <th>Plaintiff Designation</th>
-                                                <td>{{ $data->plaintiff_designation_name }} </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Name of the Court</th>
-                                                <td>{{ $data->court_name }}</td>
-                                                <th>Plaintiff Contact No</th>
-                                                <td>{{ $data->plaintiff_contact_number }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Date of filing</th>
-                                                <td>{{ $data->date_of_filing }}</td>
-                                                <th>Company</th>
-                                                <td> {{ $data->company_name }} </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Division</th>
+                                                <th>Division </th>
                                                 <td>{{ $data->division_name }}</td>
-                                                <th>Case Notes</th>
-                                                <td>{{ $data->case_notes }}</td>
+                                                <th>Tadbirkar Details</th>
+                                                <td>{{ $data->tadbirkar_details }}</td>
                                             </tr>
                                             <tr>
-                                                <th>District</th>
+                                                <th>District </th>
                                                 <td>{{ $data->district_name }}</td>
-                                                <th>Panel Lawyer</th>
-                                                <td> {{ $data->pl_first_name }} {{ $data->pl_middle_name }} {{ $data->pl_last_name }} </td>
+                                                <th>Tender No.</th>
+                                                <td>{{ $data->tender_no }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Police Station </th>
+                                                <td>{{ $data->thana_name }}</td>
+                                                <th>Tender No. Date</th>
+                                                <td>{{ $data->tender_no_date }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Case Category </th>
+                                                <td>{{ $data->case_category_name }}</td>
+                                                <th>Category of Supreme Court Case</th>
+                                                <td>{{ $data->supreme_court_category }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Class of Cases </th>
+                                                <td>{{ $data->case_class_name }}</td>
+                                                <th>Subcategory of Supreme Court Case</th>
+                                                <td>{{ $data->supreme_court_subcategory }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Type of Cases </th>
+                                                <td>{{ $data->case_types_name }}</td>
+                                                <th>Case No. (High Court Division)</th>
+                                                <td>{{ $data->case_no_hcd }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Relevant Laws/Sections</th>
+                                                <td>{{ $data->relevant_law_section_name }}</td>
+                                                <th>Date of filing(High Court Division)</th>
+                                                <td>{{ $data->date_of_filing_hcd }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Section</th>
+                                                <td>{{ $data->section_name }}</td>
+                                                <th>Court (High Court Divisoin)</th>
+                                                <td>{{ $data->hcd_court_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Date of filing </th>
+                                                <td>{{ $data->date_of_filing }}</td>
+                                                <th>Law & Sections</th>
                                                 <td>{{ $data->law_section_name }}</td>
-                                                <th>Assigned Lawyer</th>
-                                                <td> {{ $data->assigned_first_name }} {{ $data->assigned_middle_name }} {{ $data->assigned_last_name }} </td>
                                             </tr>
                                             <tr>
-                                                <th>Alligation</th>
-                                                <td>{{ $data->alligation_name }}</td>
-                                                <th>Total Legal Bill Amount and Cost</th>
-                                                <td>{{ $data->total_legal_bill_amount }}</td>
+                                                <th>Plaintiff Name</th>
+                                                <td>{{ $data->plaintiff_name }}</td>
+                                                <th>Order</th>
+                                                <td>{{ $data->order }}</td>
                                             </tr>
                                             <tr>
-                                                <th>Amount of Money</th>
-                                                <td> {{ $data->amount }} </td>
-                                                <th>Other Claim(if any)</th>
-                                                <td>{{ $data->pl_first_name }} {{ $data->pl_middle_name }} {{ $data->pl_last_name }}</td>
+                                                <th>Plaintiff Designation</th>
+                                                <td>{{ $data->designation_name }}</td>
+                                                <th>Order Date</th>
+                                                <td>{{ $data->order_date }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Plaintiff Contact No</th>
+                                                <td>{{ $data->plaintiff_contact_number }}</td>
+                                                <th>Order No. & Memo</th>
+                                                <td>{{ $data->order_no_memo }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Name of the Complainant</th>
                                                 <td>{{ $data->name_of_the_complainant }}</td>
+                                                <th>Name of the Appellant/Petitioner</th>
+                                                <td>{{ $data->appellant_petitioner_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Complainant Contact No. </th>
+                                                <td>{{ $data->complainant_contact_no }}</td>
+                                                <th>Designation of the Appellant/Petitioner</th>
+                                                <td>{{ $data->appellant_designation_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Designation of the Complainant </th>
+                                                <td>{{ $data->complainant_designation_name }}</td>
+                                                <th>Address of the Appellant/Petitioner</th>
+                                                <td>{{ $data->appellant_address }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Name of the Accused</th>
+                                                <td>{{ $data->accused_name }}</td>
+                                                <th>Name of the Respondent/Opposite Party</th>
+                                                <td>{{ $data->opposite_party_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Name of the Accused Company</th>
+                                                <td>{{ $data->company_name }}</td>
+                                                <th>Designation of the Respondent/Opposite Party</th>
+                                                <td>{{ $data->opposite_designation_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Address of the Accused</th>
+                                                <td>{{ $data->accused_address }}</td>
+                                                <th>Address of Respondent/Opposite Party</th>
+                                                <td>{{ $data->opposite_party_address }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Accused Contact No.</th>
+                                                <td>{{ $data->accused_contact_no }}</td>
+                                                <th>Step Taken by the Party</th>
+                                                <td>{{ $data->party_steps_taken_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Other Claim(if any)</th>
+                                                <td>{{ $data->other_claim }}</td>
+                                                <th>Status of the Cases</th>
+                                                <td>{{ $data->case_status_name }}</td>
+                                            </tr>
+                                            <tr>
                                                 <th>Summary of Facts & Alligation</th>
                                                 <td>{{ $data->summary_facts_alligation }}</td>
+                                                <th>Name of Court (Fixed for Hearing)</th>
+                                                <td>{{ $data->fixed_hearing_court_name }}</td>
                                             </tr>
                                             <tr>
-                                                <th>Complainant Contact No.</th>
-                                                <td>{{ $data->next_date }}</td>
-                                                <th>Prayer/Claims by PSG</th>
-                                                <td> {{ $data->prayer_claims_by_psg }} </td>
+                                                <th>Name of Trial / Impugned Court</th>
+                                                <td>{{ $data->trial_court_name }}</td>
+                                                <th>Next Step to be Taken in Court</th>
+                                                <td>{{ $data->court_steps_taken_name }}</td>
                                             </tr>
                                             <tr>
-                                                <th>Designation of the Complainant</th>
-                                                <td>{{ $data->plaintiff_contact_number }}</td>
+                                                <th>Date of Judgement/Order (Trial Court)</th>
+                                                <td>{{ $data->trial_court_judgement_date }}</td>
+                                                <th>Date for Next Step in Court</th>
+                                                <td>{{ $data->court_next_steps_date }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Judgment/Order with Grounds (Trial Court)</th>
+                                                <td>{{ $data->trial_grounds_judgement }}</td>
+                                                <th>Name of Lawyer</th>
+                                                <td>{{ $data->assigned_lawyer_first_name }} {{ $data->assigned_lawyer_middle_name }} {{ $data->assigned_lawyer_last_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Name of Appeal/Revision Court (District)</th>
+                                                <td>{{ $data->appeal_court_name }}</td>
+                                                <th>Documents(Lawyer's Appointment)</th>
+                                                <td>{{ $data->documents_lawyers_appointment }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Date of Judgement (Appeal/Revision Court)</th>
+                                                <td>{{ $data->appeal_court_judgement_date }}</td>
+                                                <th>Documents sent to Lawyer/Law Chamber</th>
+                                                <td>{{ $data->documents_sent_to_law_chamber }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Judgement of Appeal/Revision with Grounds (District Court)</th>
+                                                <td>{{ $data->appeal_grounds_judgement }}</td>
+                                                <th>Documents received from field office/programe</th>
+                                                <td>{{ $data->documents_received_field_programe }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Judgement/Order of Appeal/Revision Court (District)</th>
+                                                <td>{{ $data->appeal_court_judgement }}</td>
                                                 <th>Missing Documents/Evidence/Information</th>
                                                 <td>{{ $data->missing_documents_evidence }}</td>
                                             </tr>
                                             <tr>
-                                                <th>External Council </th>
-                                                <td>{{ $data->next_date_reason_name }}</td>
-                                                <th>Comments</th>
-                                                <td>{{ $data->comments }}</td>
+                                                <th>Panel Lawyer</th>
+                                                <td>{{ $data->panel_lawyer_first_name }} {{ $data->panel_lawyer_middle_name }} {{ $data->panel_lawyer_last_name }}</td>
+                                                <th>Ground of Appeal/Revision</th>
+                                                <td>{{ $data->ground_appeal_revision }}</td>
                                             </tr>
-                                            
+                                            <tr>
+                                                <th>Total Legal Bill Amount and Cost</th>
+                                                <td>{{ $data->total_legal_bill_amount }}</td>
+                                                <th>Recommendations</th>
+                                                <td>{{ $data->recommendations }}</td>
+                                            </tr>
+
+
                                         </tbody>
-                                    </table>               
+                                    </table>
                                 </div>
                                 <div class="card-header">
                                     <h3 class="card-title" id="heading">Documents Logs</h3>
@@ -222,7 +283,7 @@
                                                     {{ $files->uploaded_document }}
                                                 </td>
                                                 <td class="table_text_center">
-                                                        
+
                                                         <a href="{{ route('download-high-court-cases-files', $files->id) }}"><button
                                                             class="btn btn-outline-success btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Download"><i class="fas fa-download"></i></button></a>
@@ -267,7 +328,7 @@
                                             <td class="table_logs_text_center"> {{ $logs->update_description }} </td>
                                             <td class="table_logs_text_center"> {{ $logs->case_proceedings }} </td>
                                             <td class="table_logs_text_center"> {{ $logs->case_notes }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->first_name }} {{ $logs->middle_name }} {{ $logs->last_name }} </td> 
+                                            <td class="table_logs_text_center"> {{ $logs->first_name }} {{ $logs->middle_name }} {{ $logs->last_name }} </td>
                                             <td class="table_logs_text_center"> {{ $logs->order_date }} </td>
                                             <td class="table_logs_text_center"> {{ $logs->next_date_fixed_reason }} </td>
                                             <td class="table_logs_text_center"> {{ $logs->created_at }} </td>
@@ -306,7 +367,7 @@
                                             <td class="table_logs_text_center"> {{ $bill_logs->first_name }} </td>
                                             <td class="table_logs_text_center"> {{ $bill_logs->bill_amount }} </td>
                                             <td class="table_logs_text_center"> {{ $bill_logs->date_of_billing }} </td>
-                                            <td class="table_logs_text_center"> {{ $bill_logs->bank_name }} </td> 
+                                            <td class="table_logs_text_center"> {{ $bill_logs->bank_name }} </td>
                                             <td class="table_logs_text_center"> {{ $bill_logs->bank_branch_name }} </td>
                                             <td class="table_logs_text_center"> {{ $bill_logs->cheque_no }} </td>
                                             <td class="table_logs_text_center"> {{ $bill_logs->payment_amount }} </td>

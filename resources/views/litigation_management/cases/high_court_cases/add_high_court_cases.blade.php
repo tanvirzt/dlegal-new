@@ -114,8 +114,7 @@
                                                         Station</label>
                                                     <div class="col-sm-8">
                                                         <select name="thana_id" class="form-control select2"
-                                                                id="thana_id"
-                                                                action="{{ route('find-thana') }}">
+                                                                id="thana_id">
                                                             <option value=""> Select</option>
 
                                                         </select>
@@ -681,7 +680,7 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label for="hcd_court_id" class="col-sm-4 col-form-label">
-                                                    Court (HCD) </label>
+                                                    Court (High Court Division) </label>
                                                 <div class="col-sm-8">
                                                     <select name="hcd_court_id"
                                                             class="form-control select2">

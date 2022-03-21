@@ -14,7 +14,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> High Court of Bangladesh </li>
+                            <li class="breadcrumb-item active"> High Court of Bangladesh</li>
                         </ol>
                     </div>
                 </div>
@@ -38,8 +38,11 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-high-court-cases') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add High Court of Bangladesh </button></a>
+                                    <a href="{{ route('add-high-court-cases') }}">
+                                        <button class="btn btn-sm
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add High Court of Bangladesh
+                                        </button>
+                                    </a>
                                 </div>
 
                             </div>
@@ -48,13 +51,13 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
+                                        <th class="text-center">Case No. (Lower Court)</th>
+                                        <th class="text-center">Tender No.</th>
+                                        <th class="text-center">Tender No. Date</th>
+                                        <th class="text-center">Category</th>
+                                        <th class="text-center">Subcategory</th>
                                         <th class="text-center">Case No</th>
-                                        <th class="text-center">Subsequent Case No</th>
-                                        <th class="text-center">Division</th>
-                                        <th class="text-center">Court Name</th>
-                                        <th class="text-center">District</th>
-                                        <th class="text-center">Company</th>
-                                        <th class="text-center">Plaintiff Name</th>
+                                        <th class="text-center">Date of filing</th>
                                         <th class="text-center">Status</th>
                                         <th width="13%">Action</th>
                                     </tr>
@@ -67,48 +70,63 @@
                                                 <a href="{{ route('view-high-court-cases', $datum->id) }}"> {{ $datum->case_no }} </a>
                                             </td>
                                             <td>
-                                                {{ $datum->subsequent_case_no }}
+                                                {{ $datum->tender_no }}
                                             </td>
                                             <td>
-                                                {{ $datum->division_name }}
+                                                {{ $datum->tender_no_date }}
                                             </td>
                                             <td>
-                                                {{ $datum->court_name }}
+                                                {{ $datum->supreme_court_category_id }}
                                             </td>
                                             <td>
-                                                {{ $datum->district_name }}
+                                                {{ $datum->supreme_court_subcategory_id }}
                                             </td>
-                                            
+
                                             <td>
-                                                {{ $datum->company_name }}
+                                                {{ $datum->case_no_hcd }}
                                             </td>
-                                            
+
                                             <td>
-                                                {{ $datum->plaintiff_name }}
+                                                {{ $datum->date_of_filing_hcd }}
                                             </td>
-                                            
+
                                             <td>
                                                 @if ($datum->delete_status == 0)
                                                     <button type="button"
-                                                        class="btn-custom btn-success-custom text-uppercase"> Active
+                                                            class="btn-custom btn-success-custom text-uppercase"> Active
                                                     </button>
                                                 @else
                                                     <button type="button"
-                                                        class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
-                                                @endif
-                                                </span>
+                                                            class="btn-custom btn-warning-custom text-uppercase">
+                                                        Inactive
+                                                    </button>
+                                                    @endif
+                                                    </span>
                                             </td>
                                             <td>
-                                                <a href="{{ route('view-high-court-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
-                                                    ><i class="fas fa-eye"></i></button></a>
-                                                <a href="{{ route('add-billing-high-court-cases', $datum->id) }}"><button
-                                                    class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                                    data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
-                                                <a href="{{ route('edit-high-court-cases',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
-                                                    ><i class="fas fa-edit"></i></button></a>
-                                                <form method="POST" action="{{ route('delete-high-court-cases',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                <a href="{{ route('view-high-court-cases',$datum->id) }}">
+                                                    <button class="btn btn-primary btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Details"
+                                                    ><i class="fas fa-eye"></i></button>
+                                                </a>
+                                                <a href="{{ route('add-billing-high-court-cases', $datum->id) }}">
+                                                    <button
+                                                        class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                                        data-placement="top" title="Bill Entry"><i
+                                                            class="fas fa-money-bill"></i></button>
+                                                </a>
+                                                <a href="{{ route('edit-high-court-cases',$datum->id) }}">
+                                                    <button class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"
+                                                    ><i class="fas fa-edit"></i></button>
+                                                </a>
+                                                <form method="POST"
+                                                      action="{{ route('delete-high-court-cases',$datum->id) }}"
+                                                      class="delete-user btn btn-danger btn-xs">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                            data-toggle="tooltip" data-placement="top" title="Delete"><i
+                                                            class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
