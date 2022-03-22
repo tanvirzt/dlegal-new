@@ -65,7 +65,7 @@
                                                 class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top"
                                                 title="Details"><i class="fas fa-eye"></i></button></a>
                                     </div>
-                                </div>                                
+                                </div>
                                 <div class="panel-body">
                                     <div class="tab-content">
                                         <div id="home" class="tab-pane active">
@@ -73,13 +73,13 @@
 
                                             <div class="card-header">
                                                 <h3 class="card-title" id="heading">Edit Appellate Court of Bangladesh</h3>
-                                                
+
                                             </div>
 
                                             <form action="{{ route('update-appellate-court-cases', $data->id ) }}" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="card-body">
-                
+
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
@@ -99,7 +99,7 @@
                                                             <div class="form-group row">
                                                                 <label for="case_category_nature_id" class="col-sm-4 col-form-label"> Case Category </label>
                                                                 <div class="col-sm-8">
-                
+
                                                                         <select name="case_category_nature_id" class="form-control select2">
                                                                             <option value="">Select</option>
                                                                             @foreach($case_category as $item)
@@ -112,7 +112,7 @@
                                                             <div class="form-group row">
                                                                 <label for="case_type_id" class="col-sm-4 col-form-label">Type of Cases</label>
                                                                 <div class="col-sm-8">
-                
+
                                                                         <select name="case_type_id" class="form-control select2">
                                                                             <option value="">Select</option>
                                                                             @foreach($case_types as $item)
@@ -143,7 +143,7 @@
                                                                             <option value="">Select</option>
                                                                             @foreach($zone as $item)
                                                                                 <option value="{{ $item->id }}" {{($data->zone_id == $item->id ? 'selected':'')}}>{{ $item->region_name }}</option>
-                                                                            @endforeach                                                         
+                                                                            @endforeach
                                                                         </select>
                                                                         @error('zone_id')<span class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
@@ -155,7 +155,7 @@
                                                                             <option value="">Select</option>
                                                                             @foreach($area as $item)
                                                                                 <option value="{{ $item->id }}" {{($data->area_id == $item->id ? 'selected':'')}}>{{ $item->area_name }}</option>
-                                                                            @endforeach                                                         
+                                                                            @endforeach
                                                                         </select>
                                                                         @error('area_id')<span class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
@@ -167,7 +167,7 @@
                                                                             <option value="">Select</option>
                                                                             @foreach($branch as $item)
                                                                                 <option value="{{ $item->id }}" {{($data->branch_id == $item->id ? 'selected':'')}}>{{ $item->branch_name }}</option>
-                                                                            @endforeach                                                         
+                                                                            @endforeach
                                                                         </select>
                                                                         @error('branch_id')<span class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
@@ -186,7 +186,7 @@
                                                                             <option value="">Select</option>
                                                                             @foreach($program as $item)
                                                                                 <option value="{{ $item->id }}" {{($data->program_id == $item->id ? 'selected':'')}}>{{ $item->program_name }}</option>
-                                                                            @endforeach                                                         
+                                                                            @endforeach
                                                                         </select>
                                                                         @error('program_id')<span class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
@@ -237,7 +237,7 @@
                                                                             @foreach ($existing_district as $item)
                                                                                 <option value="{{ $item->id }}" {{ $data->district_id == $item->id ? 'selected' : '' }}>{{ $item->district_name }}</option>
                                                                             @endforeach
-                                                                    </select>       
+                                                                    </select>
                                                                     @error('district_id')<span class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
                                                             </div>
@@ -248,7 +248,7 @@
                                                                             <option value="">Select</option>
                                                                             @foreach($law_section as $item)
                                                                                 <option value="{{ $item->id }}" {{($data->relevant_law_sections_id == $item->id ? 'selected':'')}}>{{ $item->law_section_name }}</option>
-                                                                            @endforeach                                                         
+                                                                            @endforeach
                                                                         </select>
                                                                         @error('relevant_law_sections_id')<span class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
@@ -260,7 +260,7 @@
                                                                             <option value="">Select</option>
                                                                             @foreach($alligation as $item)
                                                                                 <option value="{{ $item->id }}" {{($data->alligation_id == $item->id ? 'selected':'')}}>{{ $item->alligation_name }}</option>
-                                                                            @endforeach                                                         
+                                                                            @endforeach
                                                                         </select>
                                                                         @error('alligation_id')<span class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
@@ -289,7 +289,7 @@
                                                             <div class="form-group row">
                                                                 <label for="complainant_designation_id" class="col-sm-4 col-form-label">Designation of the Complainant</label>
                                                                 <div class="col-sm-8">
-                
+
                                                                         <select name="complainant_designation_id" class="form-control select2">
                                                                             <option value="">Select</option>
                                                                             @foreach($designation as $item)
@@ -297,13 +297,13 @@
                                                                             @endforeach
                                                                         </select>
                                                                         @error('complainant_designation_id')<span class="text-danger">{{$message}}</span>@enderror
-                
+
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="external_council_name_id" class="col-sm-4 col-form-label">External Council</label>
                                                                 <div class="col-sm-8">
-                
+
                                                                         <select name="external_council_name_id" class="form-control select2" id="external_council_name_id" action="{{ route('find-associates') }}">
                                                                             <option value="">Select</option>
                                                                             @foreach($external_council as $item)
@@ -311,7 +311,7 @@
                                                                             @endforeach
                                                                         </select>
                                                                         @error('external_council_name_id')<span class="text-danger">{{$message}}</span>@enderror
-                
+
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -340,8 +340,8 @@
                                                                     @error('opposite_party_address')<span class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
                                                             </div>
-                                                            
-                                                            
+
+
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
@@ -357,9 +357,57 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
+                                                                <label for="supreme_court_category_id"
+                                                                       class="col-sm-4 col-form-label">Category of
+                                                                    Supreme Court
+                                                                    Case</label>
+                                                                <div class="col-sm-8">
+                                                                    <select name="supreme_court_category_id"
+                                                                            class="form-control select2"
+                                                                            id="supreme_court_category_id"
+                                                                            action="{{ route('find-supreme-court-subcategory') }}">
+                                                                        <option value="">Select</option>
+                                                                        @foreach ($supreme_court_category as $item)
+                                                                            <option value="{{ $item->id }}"
+                                                                                {{ $data->supreme_court_category_id == $item->id ? 'selected' : '' }}>
+                                                                                {{ $item->supreme_court_category }} </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('supreme_court_category_id')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="supreme_court_subcategory_id"
+                                                                       class="col-sm-4 col-form-label">Subcategory of
+                                                                    Supreme Court
+                                                                    Case</label>
+                                                                <div class="col-sm-8">
+
+                                                                    <select name="supreme_court_subcategory_id"
+                                                                            class="form-control select2"
+                                                                            id="supreme_court_subcategory_id">
+                                                                        <option value="">Select</option>
+
+                                                                        @foreach($existing_subcat as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{ $data->supreme_court_subcategory_id == $item->id ? 'selected' : '' }}>{{ $item->supreme_court_subcategory }}</option>
+                                                                        @endforeach
+
+
+                                                                    </select>
+                                                                    @error('supreme_court_subcategory_id')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
                                                                 <label for="last_order_court_id" class="col-sm-4 col-form-label">Last Order of the Court</label>
                                                                 <div class="col-sm-8">
-                
+
                                                                         <select name="last_order_court_id" class="form-control select2">
                                                                             <option value="">Select</option>
                                                                             @foreach($last_court_order as $item)
@@ -383,7 +431,7 @@
                                                                             <option value="">Select</option>
                                                                             @foreach($company as $item)
                                                                                 <option value="{{ $item->id }}" {{($data->accused_company_id == $item->id ? 'selected':'')}}>{{ $item->company_name }}</option>
-                                                                            @endforeach                                                         
+                                                                            @endforeach
                                                                         </select>
                                                                     @error('accused_company_id')<span class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
@@ -416,7 +464,7 @@
                                                                             <option value="">Select</option>
                                                                             @foreach($next_date_reason as $item)
                                                                                 <option value="{{ $item->id }}" {{($data->next_date_fixed_id == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
-                                                                            @endforeach                                                         
+                                                                            @endforeach
                                                                         </select>
                                                                         @error('next_date_fixed_id')<span class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
@@ -431,7 +479,7 @@
                                                             <div class="form-group row">
                                                                 <label for="plaintiff_designaiton_id" class="col-sm-4 col-form-label">Plaintiff Designation</label>
                                                                 <div class="col-sm-8">
-                
+
                                                                         <select name="plaintiff_designaiton_id" class="form-control select2">
                                                                             <option value="">Select</option>
                                                                             @foreach($designation as $item)
@@ -439,7 +487,7 @@
                                                                             @endforeach
                                                                         </select>
                                                                         @error('plaintiff_designaiton_id')<span class="text-danger">{{$message}}</span>@enderror
-                
+
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -456,7 +504,7 @@
                                                                             <option value="">Select</option>
                                                                             @foreach($company as $item)
                                                                                 <option value="{{ $item->id }}" {{($data->company_id == $item->id ? 'selected':'')}}>{{ $item->company_name }}</option>
-                                                                            @endforeach                                                         
+                                                                            @endforeach
                                                                         </select>
                                                                         @error('company_id')<span class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
@@ -471,7 +519,7 @@
                                                             <div class="form-group row">
                                                                 <label for="panel_lawyer_id" class="col-sm-4 col-form-label">Panel Lawyer</label>
                                                                 <div class="col-sm-8">
-                
+
                                                                         <select name="panel_lawyer_id" class="form-control select2">
                                                                             <option value="">Select</option>
                                                                             @foreach($external_council as $item)
@@ -535,7 +583,7 @@
                                                                     @error('comments')<span class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
                                                             </div>
-                                                            
+
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
@@ -560,11 +608,11 @@
                                                     <div class="float-right mt-4">
                                                         <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update </button>
                                                     </div>
-                                                 
-                
+
+
                                                 </div>
                                             </form>
-                
+
 
 
 
@@ -580,7 +628,7 @@
                                                             <h3 class="card-title" id="heading">Update Appellate Court of
                                                                 Bangladesh
                                                                 Status</h3>
-                                                            
+
                                                         </div>
 
                                                         <form

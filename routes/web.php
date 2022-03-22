@@ -200,6 +200,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('view-quassi-judicial-cases/{id}','QuassiJudicialCasesController@view_quassi_judicial_cases')->name('view-quassi-judicial-cases');
         Route::get('download-quassi-judicial-cases-files/{id}','QuassiJudicialCasesController@download_quassi_judicial_cases_file')->name('download-quassi-judicial-cases-files');
         Route::post('update-quassi-judicial-cases-status/{id}','QuassiJudicialCasesController@update_quassi_judicial_cases_status')->name('update-quassi-judicial-cases-status');
+        Route::post('search-quassi-judicial-cases','QuassiJudicialCasesController@search_quassi_judicial_cases')->name('search-quassi-judicial-cases');
 
         Route::get('supreme-court-cases','SupremeCourtCasesController@supreme_court_cases')->name('supreme-court-cases');
         Route::get('add-supreme-court-cases','SupremeCourtCasesController@add_supreme_court_cases')->name('add-supreme-court-cases');
@@ -220,6 +221,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('view-high-court-cases/{id}','HighCourtCasesController@view_high_court_cases')->name('view-high-court-cases');
         Route::get('download-high-court-cases-files/{id}','HighCourtCasesController@download_high_court_cases_file')->name('download-high-court-cases-files');
         Route::post('update-high-court-cases-status/{id}','HighCourtCasesController@update_high_court_cases_status')->name('update-high-court-cases-status');
+        Route::post('search-high-court-cases','HighCourtCasesController@search_high_court_cases')->name('search-high-court-cases');
 
         Route::get('appellate-court-cases','AppellateCourtCasesController@appellate_court_cases')->name('appellate-court-cases');
         Route::get('add-appellate-court-cases','AppellateCourtCasesController@add_appellate_court_cases')->name('add-appellate-court-cases');
@@ -341,7 +343,6 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('add-billing-high-court-cases/{id}','BillingsController@add_billing_high_court_cases')->name('add-billing-high-court-cases');
         Route::get('add-billing-appellate-court-cases/{id}','BillingsController@add_billing_appellate_court_cases')->name('add-billing-appellate-court-cases');
         Route::post('search-case-billings','BillingsController@search_case_billings')->name('search-case-billings');
-
 // thana setup
 
         Route::get('thana','AdminSetupController@thana')->name('thana');

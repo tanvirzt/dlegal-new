@@ -44,6 +44,8 @@ class CreateAppellateCourtCasesTable extends Migration
             $table->string('opposite_party_name')->nullable();
             $table->string('opposite_party_address')->nullable();
             $table->integer('case_status_id')->nullable();
+            $table->integer('supreme_court_category_id')->nullable();
+            $table->integer('supreme_court_subcategory_id')->nullable();
             $table->integer('last_order_court_id')->nullable();
             $table->string('accused_name')->nullable();
             $table->integer('accused_company_id')->nullable();

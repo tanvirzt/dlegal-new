@@ -1729,6 +1729,7 @@ public function delete_company($id)
 
      $this->validate($request, $rules, $validMsg);
 
+     DB::beginTransaction();
 
      $data = new SetupExternalCouncil();
      $data->title_id = $request->title_id;
@@ -1756,6 +1757,8 @@ public function delete_company($id)
              $file->save();
          }
      }
+
+     DB::commit();
 
      session()->flash('success','External Council Added Successfully');
      return redirect()->route('external-council');
@@ -1791,6 +1794,8 @@ public function delete_company($id)
 
      $this->validate($request, $rules, $validMsg);
 
+     DB::beginTransaction();
+
      $data = SetupExternalCouncil::find($id);
      $data->title_id = $request->title_id;
      $data->first_name = $request->first_name;
@@ -1817,6 +1822,8 @@ public function delete_company($id)
              $file->save();
          }
      }
+
+     DB::commit();
 
      session()->flash('success','External Council Updated Successfully');
      return redirect()->route('external-council');
@@ -1875,6 +1882,7 @@ public function delete_company($id)
 
      $this->validate($request, $rules, $validMsg);
 
+     DB::beginTransaction();
 
      $data = new SetupInternalCouncil();
      $data->title_id = $request->title_id;
@@ -1902,6 +1910,8 @@ public function delete_company($id)
              $file->save();
          }
      }
+
+     DB::commit();
 
      session()->flash('success','Internal Council Added Successfully');
      return redirect()->route('internal-council');
@@ -1937,6 +1947,8 @@ public function delete_company($id)
 
      $this->validate($request, $rules, $validMsg);
 
+     DB::beginTransaction();
+
      $data = SetupInternalCouncil::find($id);
      $data->title_id = $request->title_id;
      $data->first_name = $request->first_name;
@@ -1963,6 +1975,8 @@ public function delete_company($id)
              $file->save();
          }
      }
+
+     DB::commit();
 
      session()->flash('success','Internal Council Updated Successfully');
      return redirect()->route('internal-council');
@@ -2032,6 +2046,7 @@ public function delete_company($id)
 
      $this->validate($request, $rules, $validMsg);
 
+     DB::beginTransaction();
 
      $data = new SetupExternalCouncilAssociate();
      $data->external_council_id = $request->external_council_id;
@@ -2060,6 +2075,8 @@ public function delete_company($id)
              $file->save();
          }
      }
+
+     DB::commit();
 
      session()->flash('success','External Council Associates Added Successfully');
      return redirect()->route('external-council-associates');
@@ -2098,6 +2115,8 @@ public function delete_company($id)
 
      $this->validate($request, $rules, $validMsg);
 
+     DB::beginTransaction();
+
      $data = SetupExternalCouncilAssociate::find($id);
      $data->external_council_id = $request->external_council_id;
      $data->title_id = $request->title_id;
@@ -2125,6 +2144,8 @@ public function delete_company($id)
              $file->save();
          }
      }
+
+     DB::commit();
 
      session()->flash('success','External Council Associates Updated Successfully');
      return redirect()->route('external-council-associates');

@@ -34,31 +34,23 @@ use App\Models\HighCourtCasesFile;
 use App\Models\SetupDistrict;
 use App\Models\SetupExternalCouncilAssociate;
 use App\Models\HighCourtCaseStatusLog;
-use DB;
-
+//use DB;
+use Illuminate\Support\Facades\DB;
 
 class HighCourtCasesController extends Controller
 {
     public function high_court_cases()
     {
-        //   dd('asdfsadf');
-        $data = HighCourtCase::all();
+        $data = DB::table('high_court_cases')
+                ->leftJoin('setup_supreme_court_categories','high_court_cases.supreme_court_category_id','setup_supreme_court_categories.id')
+                ->leftJoin('setup_supreme_court_subcategories','high_court_cases.supreme_court_subcategory_id','setup_supreme_court_subcategories.id')
+                ->select('high_court_cases.*','setup_supreme_court_categories.supreme_court_category','setup_supreme_court_subcategories.supreme_court_subcategory')
+                ->get();
+        $court = SetupCourt::where('delete_status', 0)->get();
+        $supreme_court_category = SetupSupremeCourtCategory::where(['supreme_court_type' => 'High Court Division', 'delete_status' => 0])->get();
 
-// dd($data);
-
-//        $data = DB::table('high_court_cases')
-//            ->leftJoin('setup_divisions', 'high_court_cases.division_id', '=', 'setup_divisions.id')
-//            ->leftJoin('setup_districts', 'high_court_cases.district_id', '=', 'setup_districts.id')
-//            ->leftJoin('setup_case_statuses', 'high_court_cases.case_status_id', '=', 'setup_case_statuses.id')
-//            ->leftJoin('setup_case_categories', 'high_court_cases.case_category_nature_id', '=', 'setup_case_categories.id')
-//            ->leftJoin('setup_courts', 'high_court_cases.name_of_the_court_id', '=', 'setup_courts.id')
-//            ->leftJoin('setup_companies', 'high_court_cases.company_id', '=', 'setup_companies.id')
-//            ->select('high_court_cases.*', 'setup_divisions.division_name', 'setup_districts.district_name', 'setup_case_statuses.case_status_name', 'setup_case_categories.case_category_name', 'setup_courts.court_name', 'setup_companies.company_name')
-//            ->get();
-
-//         dd($data);
-
-        return view('litigation_management.cases.high_court_cases.high_court_cases', compact('data'));
+//dd($data);
+        return view('litigation_management.cases.high_court_cases.high_court_cases', compact('data','court','supreme_court_category'));
     }
 
     public function find_supreme_court_subcategory(Request $request)
@@ -142,6 +134,8 @@ class HighCourtCasesController extends Controller
         ];
 
         $this->validate($request, $rules, $validMsg);
+
+        DB::beginTransaction();
 
         $data = new HighCourtCase();
 
@@ -229,6 +223,8 @@ class HighCourtCasesController extends Controller
             }
         }
 
+        DB::commit();
+
         session()->flash('success', 'High Court Cases Added Successfully');
         return redirect()->route('high-court-cases');
 
@@ -308,6 +304,8 @@ class HighCourtCasesController extends Controller
         ];
 
         $this->validate($request, $rules, $validMsg);
+
+        DB::beginTransaction();
 
         $data = HighCourtCase::find($id);
 
@@ -429,6 +427,8 @@ class HighCourtCasesController extends Controller
                 $file->save();
             }
         }
+
+        DB::commit();
 
         session()->flash('success', 'High Court Cases Updated Successfully');
         return redirect()->route('high-court-cases');
@@ -583,6 +583,49 @@ class HighCourtCasesController extends Controller
 
         session()->flash('success', 'Case Status Updated Successfully');
         return redirect()->route('high-court-cases');
+
+    }
+
+    public function search_high_court_cases(Request $request)
+    {
+
+        $query = DB::table('high_court_cases')
+            ->leftJoin('setup_supreme_court_categories','high_court_cases.supreme_court_category_id','setup_supreme_court_categories.id')
+            ->leftJoin('setup_supreme_court_subcategories','high_court_cases.supreme_court_subcategory_id','setup_supreme_court_subcategories.id');
+
+        if ($request->case_no_hcd){
+
+           $query2 = $query->where('high_court_cases.case_no_hcd','like','%'.$request->case_no_hcd.'%');
+
+        }else if ($request->tender_no){
+
+            $query2 = $query->where('high_court_cases.tender_no', $request->tender_no);
+
+        }else if ($request->tender_no_date){
+
+            $query2 = $query->where('high_court_cases.tender_no_date', $request->tender_no_date);
+
+        }else if ($request->supreme_court_category_id && $request->supreme_court_subcategory_id){
+
+            $query2 = $query->where(['high_court_cases.supreme_court_category_id' => $request->supreme_court_category_id, 'high_court_cases.supreme_court_subcategory_id' => $request->supreme_court_subcategory_id]);
+
+        }else if ($request->supreme_court_category_id){
+
+            $query2 = $query->where('high_court_cases.supreme_court_category_id', $request->supreme_court_category_id);
+
+        } else {
+
+            $query2 = $query;
+
+        }
+
+        $data = $query2->select('high_court_cases.*','setup_supreme_court_categories.supreme_court_category','setup_supreme_court_subcategories.supreme_court_subcategory')
+        ->get();
+
+        return response()->json([
+            'result' => 'high_court_cases',
+            'data' => $data,
+        ]);
 
     }
 

@@ -48,6 +48,35 @@ $(document).ready(function () {
         // }
     });
 
+    $('.retrive-user').click(function (e) {
+        e.preventDefault() // Don't post the form, unless confirmed
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to retrive this data!",
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, retrive it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $(e.target).closest('form').submit()
+                // Swal.fire(
+                //     'Deleted!',
+                //     'Your file has been deleted.',
+                //     'success'
+                // )
+            }
+        })
+
+        // if (confirm('Are you sure you want to delete?')) {
+        //
+        // }
+    });
+
+
     $(function () {
         var url = window.location;
         // for single sidebar menu
@@ -288,7 +317,8 @@ $(document).ready(function () {
             processData: false,
             success: (res) => {
                 $('#submit').html('<i class="fas fa-search"></i> Search');
-// console.log(res);
+
+// console.log(res.data);
 
                 if (res.result == "billing") {
 // console.log(res.data);
@@ -373,7 +403,7 @@ $(document).ready(function () {
 
 
                 } else if (res.result == "flat_information") {
-                    console.log(res.result);
+                    // console.log(res.result);
 
                     $('#search_data').empty();
                     $.each(res.data, function (key, value) {
@@ -549,6 +579,79 @@ $(document).ready(function () {
                     });
 
 
+                }else if (res.result == "quassi_judicial_cases") {
+
+                    console.log(res.data);
+
+                    $('#search_data').empty();
+                    $.each(res.data, function (key, value) {
+
+                        $('#search_data').append(`
+
+                                <tr>
+                                    <td><a href="view-quassi-judicial-cases/${value.id}"> ${value.case_no} </a></td>
+                                    <td> ${value.subsequent_case_no === null ? '' : value.subsequent_case_no} </td>
+                                    <td> ${value.division_name === null ? '' : value.division_name} </td>
+                                    <td> ${value.court_name === null ? '' : value.court_name} </td>
+                                    <td> ${value.district_name === null ? '' : value.district_name} </td>
+                                    <td> ${value.company_name === null ? '' : value.company_name} </td>
+                                    <td> ${value.plaintiff_name === null ? '' : value.plaintiff_name} </td>
+                                    <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
+                                    <td>
+                                        <a href="view-quassi-judicial-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                            ><i class="fas fa-eye"></i></button></a>
+                                        <a href="add-billing-quassi-judicial-cases/${value.id}"><button
+                                            class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                            data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
+                                        <a href="edit-quassi-judicial-cases/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                            ><i class="fas fa-edit"></i></button></a>
+
+                                        <button onclick='quassi_judicial_cases_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+
+                                    </td>
+                                </tr>
+
+                `);
+                    });
+
+
+                }else if (res.result == "high_court_cases") {
+
+                    // console.log(res.data);
+
+                    $('#search_data').empty();
+                    $.each(res.data, function (key, value) {
+
+                        $('#search_data').append(`
+
+                                <tr>
+
+                                    <td><a href="view-high-court-cases/${value.id}"> ${value.case_no_hcd} </a></td>
+                                    <td> ${value.tender_no === null ? '' : value.tender_no} </td>
+                                    <td> ${value.tender_no_date === null ? '' : value.tender_no_date} </td>
+                                    <td> ${value.supreme_court_category === null ? '' : value.supreme_court_category} </td>
+                                    <td> ${value.supreme_court_subcategory === null ? '' : value.supreme_court_subcategory} </td>
+                                    <td> ${value.date_of_filing_hcd === null ? '' : value.date_of_filing_hcd} </td>
+                                    <td> ${value.order === null ? '' : value.order} </td>
+                                    <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
+                                    <td>
+                                        <a href="view-high-court-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                            ><i class="fas fa-eye"></i></button></a>
+                                        <a href="add-billing-high-court-cases/${value.id}"><button
+                                            class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                            data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
+                                        <a href="edit-high-court-cases/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                            ><i class="fas fa-edit"></i></button></a>
+
+                                        <button onclick='high_court_cases_delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+
+                                    </td>
+                                </tr>
+
+                `);
+                    });
+
+
                 } else {
                     $('#search_data').empty();
                     $.each(res, function (key, value) {
@@ -592,6 +695,7 @@ $(document).ready(function () {
                                 </td>
 
                                 <td>
+                                    ${value.delete_status === 0 ? `
                                     <a href="view-civil-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                         ><i class="fas fa-eye"></i></button></a>
                                     <a href="add-billing-civil-cases/${value.id}"><button
@@ -600,7 +704,7 @@ $(document).ready(function () {
                                     <a href="edit-civil-cases/${value.id}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                         ><i class="fas fa-edit"></i></button></a>
 
-                                    <button onclick='delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+                                    <button onclick='delete_after_search(${value.id})' type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>` : `<button onclick='retrive_after_search(${value.id})' type="submit" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Retrive"><i class="fas fa-recycle"></i></button>` }
 
                                 </td>
 

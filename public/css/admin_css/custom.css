@@ -144,11 +144,11 @@ div#v-pills-tab a.nav-link.active::before{
 /* bclc design */
 
 .table_text_center{
-    text-align:center; 
+    text-align:center;
     width: 50%;
 }
 .table_logs_text_center{
-    text-align:center; 
+    text-align:center;
 }
 h3{
     font-size: 1.36rem !important;
@@ -205,7 +205,7 @@ h3{
 .fontpassword {
     position: relative;
 }
-  
+
 .fontpassword i{
     position: absolute;
     left: 15px;
@@ -241,23 +241,23 @@ h3{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   } */
-  
+
   /* h1 {
     margin-top:80px;
     font-weight: bold;
   }
-  
+
   p {
     margin-top: 25px;
     margin-bottom: 25px;
   } */
-  
+
   /* .btn {
     margin-left: 10px;
     margin-right: 10px;
   } */
   /* Boostrap Buttons Styling */
-  
+
   .btn-default-custom {
     font-family: Raleway-SemiBold;
     font-size: 13px;
@@ -269,7 +269,7 @@ h3{
     background: transparent;
     transition: all 0.3s ease 0s;
   }
-  
+
     /* .btn-custom:focus-visible{
       border-radius: 2px solid grey;
     }    */
@@ -278,7 +278,7 @@ h3{
     background: rgba(108, 88, 179, 0.75);
     border: 2px solid rgba(108, 89, 179, 0.75);
   } */
-  
+
   .btn-primary-custom {
     font-family: Raleway-SemiBold;
     font-size: 13px;
@@ -290,7 +290,7 @@ h3{
     background: transparent;
     transition: all 0.3s ease 0s;
   }
-  
+
   /* .btn-primary:hover {
     color: #FFF;
     background: rgba(58, 133, 191, 0.75);
@@ -301,7 +301,7 @@ h3{
     outline: 1px dotted;
     outline: 0px auto -webkit-focus-ring-color;
    }
-  
+
   .btn-success-custom {
     font-family: Raleway-SemiBold;
     font-size: 12px;
@@ -314,13 +314,13 @@ h3{
     transition: all 0.3s ease 0s;
     padding: 2px 4px 0px 5px;
   }
-  
+
   /* .btn-success:hover {
     color: #FFF;
     background: rgb(103, 192, 103, 0.75);
     border: 2px solid rgb(103, 192, 103, 0.75);
   } */
-  
+
   .btn-info-custom {
     font-family: Raleway-SemiBold;
     font-size: 13px;
@@ -332,13 +332,13 @@ h3{
     background: transparent;
     transition: all 0.3s ease 0s;
   }
-  
+
   /* .btn-info:hover {
     color: #FFF;
     background: rgba(91, 192, 222, 0.75);
     border: 2px solid rgba(91, 192, 222, 0.75);
   } */
-  
+
   .btn-warning-custom {
     font-family: Raleway-SemiBold;
     font-size: 12px;
@@ -351,13 +351,13 @@ h3{
     transition: all 0.3s ease 0s;
     padding: 2px 4px 0px 5px;
   }
-  
+
   /* .btn-warning:hover {
     color: #FFF;
     background: rgb(240, 173, 78, 0.75);
     border: 2px solid rgba(240, 173, 78, 0.75);
   } */
-  
+
   .btn-danger-custom {
     font-family: Raleway-SemiBold;
     font-size: 13px;
@@ -369,9 +369,16 @@ h3{
     background: transparent;
     transition: all 0.3s ease 0s;
   }
-  
+
   /* .btn-danger:hover {
     color: #FFF;
     background: rgba(217, 83, 78, 0.75);
     border: 2px solid rgba(217, 83, 78, 0.75);
   } */
+
+.retrive-user{
+    padding: 0 0 0 0;
+}
+.retrive-user button{
+    padding: 2px 6px 2px 6px;
+}

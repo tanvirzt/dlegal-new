@@ -34,7 +34,6 @@ class CriminalCasesController extends Controller
 {
     //
 
-
   public function criminal_cases()
   {
     //   $data = CriminalCase::all();
@@ -120,6 +119,8 @@ class CriminalCasesController extends Controller
 
     $this->validate($request, $rules, $validMsg);
 
+    DB::beginTransaction();
+
      $data = new CriminalCase();
      $data->case_no = $request->case_no;
      $data->date_of_case_received = $request->date_of_case_received;
@@ -182,6 +183,8 @@ class CriminalCasesController extends Controller
              $file->save();
          }
      }
+
+     DB::commit();
 
      session()->flash('success','Criminal Cases Added Successfully');
      return redirect()->route('criminal-cases');
@@ -251,7 +254,8 @@ class CriminalCasesController extends Controller
 
         $this->validate($request, $rules, $validMsg);
 
-    
+        DB::beginTransaction();
+
           $data = CriminalCase::find($id);
           $data->case_no = $request->case_no;
         $data->date_of_case_received = $request->date_of_case_received;
@@ -299,7 +303,7 @@ class CriminalCasesController extends Controller
         $data->missing_documents_evidence = $request->missing_documents_evidence;
         $data->comments = $request->comments;
           $data->save();
-    
+
           if($request->hasfile('uploaded_document'))
           {
               foreach($request->file('uploaded_document') as $file)
@@ -307,18 +311,20 @@ class CriminalCasesController extends Controller
                   $original_name = $file->getClientOriginalName();
                   $name = time().rand(1,100).$original_name;
                   $file->move(public_path('files/criminal_cases'), $name);
-    
+
                   $file= new CriminalCasesFile();
                   $file->case_id = $data->id;
                   $file->uploaded_document = $name;
                   $file->save();
               }
           }
-    
+
+          DB::commit();
+
           session()->flash('success','Criminal Cases Updated Successfully');
           return redirect()->route('criminal-cases');
 
-    
+
     }
 
   public function delete_criminal_cases($id)
@@ -440,17 +446,17 @@ class CriminalCasesController extends Controller
     if ($request->case_no) {
       // dd('case_no');
      $query2 = $query->where('criminal_cases.case_no', $request->case_no);
-            
+
     } else if ($request->date_of_filing){
       // dd('date of filing');
 
       $query2 = $query->where('criminal_cases.date_of_filing', $request->date_of_filing);
-          
+
     }else if ($request->name_of_the_court_id){
       // dd('name of the court');
 
       $query2 = $query->where('criminal_cases.name_of_the_court_id', $request->name_of_the_court_id);
-            
+
     }else{
 
       $query2 = $query;
@@ -463,7 +469,7 @@ class CriminalCasesController extends Controller
       'result' => 'criminal_cases',
       'data' => $data,
     ]);
-    
+
   }
 
 

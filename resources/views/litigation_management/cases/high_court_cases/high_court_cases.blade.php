@@ -21,19 +21,148 @@
             </div><!-- /.container-fluid -->
         </section>
 
+
+
+
+
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                @if(Session::has('success'))
+                    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                        {{Session::get('success')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="row">
-                    <div class="col-12">
-                        @if(Session::has('success'))
-                            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-                                {{Session::get('success')}}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                    <div class="col-md-9">
+                        <div class="card">
+
+
+
+                            <div id="accordion">
+
+                                <div class="card-header" id="headingTwo">
+                                    <h3 class="card-title"> Civil Cases :: Search </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn collapsed" data-toggle="collapse"
+                                                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+
+
+                                        <form id="form_data" method="post" action="{{ route('search-high-court-cases') }}">
+                                            @csrf
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="case_no_hcd" class="col-sm-4 col-form-label">
+                                                            Case No. (High Court Division) </label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="case_no_hcd"
+                                                                   name="case_no_hcd"
+                                                                   value="{{ old('case_no_hcd') }}">
+                                                            @error('case_no_hcd')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="tender_no" class="col-sm-4 col-form-label">Tender
+                                                            No.</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="tender_no"
+                                                                   name="tender_no"
+                                                                   value="{{ old('tender_no') }}">
+                                                            @error('tender_no')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="tender_no_date" class="col-sm-4 col-form-label">Tender
+                                                            No. Date</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="date" class="form-control" id="tender_no_date"
+                                                                   name="tender_no_date"
+                                                                   value="{{ old('tender_no_date') }}">
+                                                            @error('tender_no_date')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="supreme_court_category_id"
+                                                               class="col-sm-4 col-form-label">Category of Supreme Court
+                                                            Case</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="supreme_court_category_id"
+                                                                    class="form-control select2"
+                                                                    id="supreme_court_category_id" action="{{ route('find-supreme-court-subcategory') }}">
+                                                                <option value="">Select</option>
+                                                                @foreach ($supreme_court_category as $item)
+                                                                    <option value="{{ $item->id }}"
+                                                                        {{ old('supreme_court_category_id') == $item->id ? 'selected' : '' }}>
+                                                                        {{ $item->supreme_court_category }} </option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('supreme_court_category_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="supreme_court_subcategory_id"
+                                                               class="col-sm-4 col-form-label">Subcategory of Supreme Court
+                                                            Case</label>
+                                                        <div class="col-sm-8">
+
+                                                            <select name="supreme_court_subcategory_id"
+                                                                    class="form-control select2"
+                                                                    id="supreme_court_subcategory_id">
+                                                                <option value="">Select</option>
+
+                                                            </select>
+                                                            @error('supreme_court_subcategory_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="float-right">
+                                                <button type="submit" id="submit" class="btn btn-primary text-uppercase"><i
+                                                        class="fas fa-search"></i> Search </button>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+                                </div>
                             </div>
-                        @endif
+                        </div>
+                    </div>
+                    <div class="col-12">
+
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
@@ -51,23 +180,23 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">Case No. (Lower Court)</th>
+                                        <th class="text-center">Case No</th>
                                         <th class="text-center">Tender No.</th>
                                         <th class="text-center">Tender No. Date</th>
                                         <th class="text-center">Category</th>
                                         <th class="text-center">Subcategory</th>
-                                        <th class="text-center">Case No</th>
                                         <th class="text-center">Date of filing</th>
+                                        <th class="text-center">Order</th>
                                         <th class="text-center">Status</th>
                                         <th width="13%">Action</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="search_data">
                                     @foreach($data as $datum)
 
                                         <tr>
                                             <td>
-                                                <a href="{{ route('view-high-court-cases', $datum->id) }}"> {{ $datum->case_no }} </a>
+                                                <a href="{{ route('view-high-court-cases', $datum->id) }}"> {{ $datum->case_no_hcd }} </a>
                                             </td>
                                             <td>
                                                 {{ $datum->tender_no }}
@@ -76,20 +205,18 @@
                                                 {{ $datum->tender_no_date }}
                                             </td>
                                             <td>
-                                                {{ $datum->supreme_court_category_id }}
+                                                {{ $datum->supreme_court_category }}
                                             </td>
                                             <td>
-                                                {{ $datum->supreme_court_subcategory_id }}
-                                            </td>
-
-                                            <td>
-                                                {{ $datum->case_no_hcd }}
+                                                {{ $datum->supreme_court_subcategory }}
                                             </td>
 
                                             <td>
                                                 {{ $datum->date_of_filing_hcd }}
                                             </td>
-
+                                            <td>
+                                                {{ $datum->order }}
+                                            </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)
                                                     <button type="button"

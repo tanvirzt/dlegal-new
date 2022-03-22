@@ -124,6 +124,8 @@ class LabourCasesController extends Controller
 
     $this->validate($request, $rules, $validMsg);
 
+    DB::beginTransaction();
+
      $data = new LabourCase();
      $data->case_no = $request->case_no;
      $data->date_of_case_received = $request->date_of_case_received;
@@ -188,6 +190,8 @@ class LabourCasesController extends Controller
              $file->save();
          }
      }
+
+     DB::commit();
 
      session()->flash('success','Labour Cases Added Successfully');
      return redirect()->route('labour-cases');
@@ -264,6 +268,8 @@ class LabourCasesController extends Controller
 
     $this->validate($request, $rules, $validMsg);
 
+    DB::beginTransaction();
+
      $data = LabourCase::find($id);
      $data->case_no = $request->case_no;
      $data->date_of_case_received = $request->date_of_case_received;
@@ -313,7 +319,7 @@ class LabourCasesController extends Controller
      $data->missing_documents_evidence = $request->missing_documents_evidence;
      $data->comments = $request->comments;
      $data->save();
-    
+
           if($request->hasfile('uploaded_document'))
           {
               foreach($request->file('uploaded_document') as $file)
@@ -321,17 +327,19 @@ class LabourCasesController extends Controller
                   $original_name = $file->getClientOriginalName();
                   $name = time().rand(1,100).$original_name;
                   $file->move(public_path('files/labour_cases'), $name);
-    
+
                   $file= new LabourCasesFile();
                   $file->case_id = $data->id;
                   $file->uploaded_document = $name;
                   $file->save();
               }
           }
-    
+
+          DB::commit();
+
           session()->flash('success','Labour Cases Updated Successfully');
           return redirect()->route('labour-cases');
-    
+
     }
 
   public function delete_labour_cases($id)
@@ -403,7 +411,7 @@ class LabourCasesController extends Controller
 
     // dd($bill_history);
       return view('litigation_management.cases.labour_cases.view_labour_cases',compact('data','labour_cases_files','case_logs','bill_history'));
-      
+
   }
 
   public function download_labour_cases_file($id)
@@ -454,15 +462,15 @@ class LabourCasesController extends Controller
             ->leftJoin('setup_companies','labour_cases.company_id','=','setup_companies.id');
 
     if ($request->case_no) {
-        
+
         $query2 = $query->where('labour_cases.case_no', $request->case_no);
 
     } else if ($request->date_of_filing){
-       
+
         $query2 = $query->where('labour_cases.date_of_filing', $request->date_of_filing);
 
     } else if ($request->name_of_the_court_id){
-       
+
         $query2 = $query->where('labour_cases.name_of_the_court_id', $request->name_of_the_court_id);
 
     } else {
