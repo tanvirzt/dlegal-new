@@ -59,7 +59,7 @@
 
                                         <tr>
                                             <td class="text-center">
-                                                {{$datum->id}}
+                                                {{ $sl++ }}
                                             </td>
                                             <td class="text-center">
                                                 {{$datum->person_title_name}}
@@ -80,7 +80,7 @@
                                                     ><i class="fas fa-edit"></i></button></a>
                                                 <form method="POST" action="{{ route('delete-person-title',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
                                             </td>
                                         </tr>

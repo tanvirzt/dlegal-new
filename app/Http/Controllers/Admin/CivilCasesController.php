@@ -91,7 +91,7 @@ class CivilCasesController extends Controller
     {
         //   dd($request->all());
         $rules = [
-            'case_no' => 'required',
+            'case_no' => 'required|unique:civil_cases',
             'date_of_filing' => 'required',
             'district_id' => 'required',
             'case_year' => 'required',
@@ -114,27 +114,27 @@ class CivilCasesController extends Controller
         ];
 
         $validMsg = [
-            'case_no.required' => 'Case No. field is required',
-            'date_of_filing.required' => 'Date of Filing field is required',
-            'district_id.required' => 'District field is required',
-            'case_year.required' => 'Case Year field is required',
-            'ref_no.required' => 'Ref No. Name field is required',
-            'amount.required' => 'Amount field is required',
-            'location.required' => 'Location field is required',
-            'case_status_id.required' => 'Case Status field is required',
-            'property_type_id.required' => 'Property Type field is required',
-            'case_category_nature_id.required' => 'Case Category Nature field is required',
-            'case_type_id.required' => 'Case Type field is required',
-            'name_of_the_court_id.required' => 'Name of the Court field is required',
-            'external_council_name_id.required' => 'External Council Name field is required',
-            'defendent_address.required' => 'Defendent Address field is required',
-            'external_council_associates_id.required' => 'External Council Associates field is required',
-            'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
-            'plaintiff_name.required' => 'Plaintiff Name field is required',
-            'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
-            'next_date.required' => 'Next Date field is required',
-            'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
-            'next_date_fixed_id.required' => 'Next Date Fixed field is required',
+            'case_no.required' => 'Case No. field is required.',
+            'date_of_filing.required' => 'Date of Filing field is required.',
+            'district_id.required' => 'District field is required.',
+            'case_year.required' => 'Case Year field is required.',
+            'ref_no.required' => 'Ref No. Name field is required.',
+            'amount.required' => 'Amount field is required.',
+            'location.required' => 'Location field is required.',
+            'case_status_id.required' => 'Case Status field is required.',
+            'property_type_id.required' => 'Property Type field is required.',
+            'case_category_nature_id.required' => 'Case Category Nature field is required.',
+            'case_type_id.required' => 'Case Type field is required.',
+            'name_of_the_court_id.required' => 'Name of the Court field is required.',
+            'external_council_name_id.required' => 'External Council Name field is required.',
+            'defendent_address.required' => 'Defendent Address field is required.',
+            'external_council_associates_id.required' => 'External Council Associates field is required.',
+            'relevant_law_sections_id.required' => 'Relevant Law Sections field is required.',
+            'plaintiff_name.required' => 'Plaintiff Name field is required.',
+            'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required.',
+            'next_date.required' => 'Next Date field is required.',
+            'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required.',
+            'next_date_fixed_id.required' => 'Next Date Fixed field is required.',
         ];
 
         $this->validate($request, $rules, $validMsg);
@@ -241,7 +241,7 @@ class CivilCasesController extends Controller
     public function update_civil_cases(Request $request, $id)
     {
         $rules = [
-            'case_no' => 'required',
+//            'case_no' => 'required|unique:civil_cases',
             'date_of_filing' => 'required',
             'district_id' => 'required',
             'case_year' => 'required',
@@ -264,27 +264,27 @@ class CivilCasesController extends Controller
         ];
 
         $validMsg = [
-            'case_no.required' => 'Case No. field is required',
-            'date_of_filing.required' => 'Date of Filing field is required',
-            'district_id.required' => 'District field is required',
-            'case_year.required' => 'Case Year field is required',
-            'ref_no.required' => 'Ref No. Name field is required',
-            'amount.required' => 'Amount field is required',
-            'location.required' => 'Location field is required',
-            'case_status_id.required' => 'Case Status field is required',
-            'property_type_id.required' => 'Property Type field is required',
-            'case_category_nature_id.required' => 'Case Category Nature field is required',
-            'case_type_id.required' => 'Case Type field is required',
-            'name_of_the_court_id.required' => 'Name of the Court field is required',
-            'external_council_name_id.required' => 'External Council Name field is required',
-            'defendent_address.required' => 'Defendent Address field is required',
-            'external_council_associates_id.required' => 'External Council Associates field is required',
-            'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
-            'plaintiff_name.required' => 'Plaintiff Name field is required',
-            'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
-            'next_date.required' => 'Next Date field is required',
-            'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
-            'next_date_fixed_id.required' => 'Next Date Fixed field is required',
+//            'case_no.required' => 'Case No. field is required.',
+            'date_of_filing.required' => 'Date of Filing field is required.',
+            'district_id.required' => 'District field is required.',
+            'case_year.required' => 'Case Year field is required.',
+            'ref_no.required' => 'Ref No. Name field is required.',
+            'amount.required' => 'Amount field is required.',
+            'location.required' => 'Location field is required.',
+            'case_status_id.required' => 'Case Status field is required.',
+            'property_type_id.required' => 'Property Type field is required.',
+            'case_category_nature_id.required' => 'Case Category Nature field is required.',
+            'case_type_id.required' => 'Case Type field is required.',
+            'name_of_the_court_id.required' => 'Name of the Court field is required.',
+            'external_council_name_id.required' => 'External Council Name field is required.',
+            'defendent_address.required' => 'Defendent Address field is required.',
+            'external_council_associates_id.required' => 'External Council Associates field is required.',
+            'relevant_law_sections_id.required' => 'Relevant Law Sections field is required.',
+            'plaintiff_name.required' => 'Plaintiff Name field is required.',
+            'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required.',
+            'next_date.required' => 'Next Date field is required.',
+            'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required.',
+            'next_date_fixed_id.required' => 'Next Date Fixed field is required.',
         ];
 
         $this->validate($request, $rules, $validMsg);
@@ -292,7 +292,7 @@ class CivilCasesController extends Controller
         DB::beginTransaction();
 
         $data = CivilCases::find($id);
-        $data->case_no = $request->case_no;
+//        $data->case_no = $request->case_no;
         $data->date_of_filing = $request->date_of_filing;
         $data->division_id = $request->division_id;
         $data->case_year = $request->case_year;

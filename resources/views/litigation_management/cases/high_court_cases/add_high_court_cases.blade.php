@@ -55,15 +55,15 @@
                                     <div class="row">
                                         <div class="col-md-6">
 
-                                            <div class="form-group row">
-                                                <label for="lower_court" class="col-sm-4 col-form-label"> Lower Court
-                                                </label>
-                                                <div class="col-sm-8">
-                                                    <input type="checkbox" class="mt-2" id="lower_court"
-                                                           name="lower_court" value="Lower Court">
-                                                </div>
-                                            </div>
-                                            <div id="lower_court_info" style="display: none;">
+{{--                                            <div class="form-group row">--}}
+{{--                                                <label for="lower_court" class="col-sm-4 col-form-label"> Lower Court--}}
+{{--                                                </label>--}}
+{{--                                                <div class="col-sm-8">--}}
+{{--                                                    <input type="checkbox" class="mt-2" id="lower_court"--}}
+{{--                                                           name="lower_court" value="Lower Court">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            <div id="lower_court_info">--}}
                                                 <div class="form-group row">
                                                     <label for="case_no" class="col-sm-4 col-form-label">Case
                                                         No. (Lower Court)</label>
@@ -525,7 +525,7 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                            </div>
+{{--                                            </div>--}}
                                             <div class="form-group row">
                                                 <label for="total_legal_bill_amount" class="col-sm-4 col-form-label">Total
                                                     Legal Bill Amount and Cost</label>

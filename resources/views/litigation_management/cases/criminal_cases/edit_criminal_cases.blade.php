@@ -74,7 +74,7 @@
 
                                             <div class="card-header">
                                                 <h3 class="card-title" id="heading">Edit Criminal Cases</h3>
-                                                
+
                                             </div>
 
                                             <form action="{{ route('update-criminal-cases', $data->id) }}" method="post"
@@ -89,7 +89,7 @@
                                                                     No.</label>
                                                                 <div class="col-sm-8">
                                                                     <input type="text" class="form-control" id="case_no"
-                                                                        name="case_no" value="{{ $data->case_no }}">
+                                                                        name="case_no" value="{{ $data->case_no }}" readonly>
                                                                     @error('case_no')
                                                                         <span class="text-danger">{{ $message }}</span>
                                                                     @enderror
@@ -482,7 +482,7 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                            
+
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group row">
@@ -825,7 +825,7 @@
                                                         <div class="card-header">
                                                             <h3 class="card-title" id="heading">Update Criminal Case
                                                                 Status</h3>
-                                                            
+
                                                         </div>
 
                                                         <form

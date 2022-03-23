@@ -86,7 +86,7 @@ class LabourCasesController extends Controller
   {
     //    dd($request->all());
        $rules = [
-        'case_no' => 'required',
+        'case_no' => 'required|unique:labour_cases',
         'date_of_filing' => 'required',
         'district_id' => 'required',
         'amount' => 'required',
@@ -104,22 +104,22 @@ class LabourCasesController extends Controller
     ];
 
     $validMsg = [
-        'case_no.required' => 'Case No. field is required',
-        'date_of_filing.required' => 'Date of Filing field is required',
-        'district_id.required' => 'District field is required',
-        'amount.required' => 'Amount field is required',
-        'case_status_id.required' => 'Case Status field is required',
-        'case_category_nature_id.required' => 'Case Category Nature field is required',
-        'case_type_id.required' => 'Case Type field is required',
-        'name_of_the_court_id.required' => 'Name of the Court field is required',
-        'external_council_name_id.required' => 'External Council Name field is required',
-        'defendent_address.required' => 'Defendent Address field is required',
-        'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
-        'plaintiff_name.required' => 'Plaintiff Name field is required',
-        'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
-        'next_date.required' => 'Next Date field is required',
-        'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
-        'next_date_fixed_id.required' => 'Next Date Fixed field is required',
+        'case_no.required' => 'Case No. field is required.',
+        'date_of_filing.required' => 'Date of Filing field is required.',
+        'district_id.required' => 'District field is required.',
+        'amount.required' => 'Amount field is required.',
+        'case_status_id.required' => 'Case Status field is required.',
+        'case_category_nature_id.required' => 'Case Category Nature field is required.',
+        'case_type_id.required' => 'Case Type field is required.',
+        'name_of_the_court_id.required' => 'Name of the Court field is required.',
+        'external_council_name_id.required' => 'External Council Name field is required.',
+        'defendent_address.required' => 'Defendent Address field is required.',
+        'relevant_law_sections_id.required' => 'Relevant Law Sections field is required.',
+        'plaintiff_name.required' => 'Plaintiff Name field is required.',
+        'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required.',
+        'next_date.required' => 'Next Date field is required.',
+        'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required.',
+        'next_date_fixed_id.required' => 'Next Date Fixed field is required.',
     ];
 
     $this->validate($request, $rules, $validMsg);
@@ -230,7 +230,7 @@ class LabourCasesController extends Controller
     {
         //    dd($request->all());
        $rules = [
-        'case_no' => 'required',
+//        'case_no' => 'required|unique:labour_cases',
         'date_of_filing' => 'required',
         'district_id' => 'required',
         'amount' => 'required',
@@ -248,22 +248,22 @@ class LabourCasesController extends Controller
     ];
 
     $validMsg = [
-        'case_no.required' => 'Case No. field is required',
-        'date_of_filing.required' => 'Date of Filing field is required',
-        'district_id.required' => 'District field is required',
-        'amount.required' => 'Amount field is required',
-        'case_status_id.required' => 'Case Status field is required',
-        'case_category_nature_id.required' => 'Case Category Nature field is required',
-        'case_type_id.required' => 'Case Type field is required',
-        'name_of_the_court_id.required' => 'Name of the Court field is required',
-        'external_council_name_id.required' => 'External Council Name field is required',
-        'defendent_address.required' => 'Defendent Address field is required',
-        'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
-        'plaintiff_name.required' => 'Plaintiff Name field is required',
-        'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
-        'next_date.required' => 'Next Date field is required',
-        'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
-        'next_date_fixed_id.required' => 'Next Date Fixed field is required',
+//        'case_no.required' => 'Case No. field is required.',
+        'date_of_filing.required' => 'Date of Filing field is required.',
+        'district_id.required' => 'District field is required.',
+        'amount.required' => 'Amount field is required.',
+        'case_status_id.required' => 'Case Status field is required.',
+        'case_category_nature_id.required' => 'Case Category Nature field is required.',
+        'case_type_id.required' => 'Case Type field is required.',
+        'name_of_the_court_id.required' => 'Name of the Court field is required.',
+        'external_council_name_id.required' => 'External Council Name field is required.',
+        'defendent_address.required' => 'Defendent Address field is required.',
+        'relevant_law_sections_id.required' => 'Relevant Law Sections field is required.',
+        'plaintiff_name.required' => 'Plaintiff Name field is required.',
+        'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required.',
+        'next_date.required' => 'Next Date field is required.',
+        'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required.',
+        'next_date_fixed_id.required' => 'Next Date Fixed field is required.',
     ];
 
     $this->validate($request, $rules, $validMsg);
@@ -271,7 +271,7 @@ class LabourCasesController extends Controller
     DB::beginTransaction();
 
      $data = LabourCase::find($id);
-     $data->case_no = $request->case_no;
+//     $data->case_no = $request->case_no;
      $data->date_of_case_received = $request->date_of_case_received;
      $data->case_category_nature_id = $request->case_category_nature_id;
      $data->case_type_id = $request->case_type_id;

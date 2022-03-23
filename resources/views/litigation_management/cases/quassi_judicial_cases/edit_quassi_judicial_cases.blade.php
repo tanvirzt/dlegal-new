@@ -44,7 +44,7 @@
                     <div class="card">
                         <div class="">
 
-                            
+
 
 
 
@@ -86,7 +86,7 @@
                                             <div class="card-header">
                                                 <h3 class="card-title" id="heading">Edit Special / Quassi-Judicial Cases
                                                 </h3>
-                                                
+
                                             </div>
 
                                             <form action="{{ route('update-quassi-judicial-cases', $data->id) }}"
@@ -101,7 +101,7 @@
                                                                     No.</label>
                                                                 <div class="col-sm-8">
                                                                     <input type="text" class="form-control" id="case_no"
-                                                                        name="case_no" value="{{ $data->case_no }}">
+                                                                        name="case_no" value="{{ $data->case_no }}" readonly>
                                                                     @error('case_no')
                                                                         <span class="text-danger">{{ $message }}</span>
                                                                     @enderror
@@ -522,7 +522,7 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                            
+
 
                                                         </div>
                                                         <div class="col-md-6">
@@ -832,7 +832,7 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="prayer_claims_by_psg"
-                                                                    class="col-sm-4 col-form-label"> Prayer/Claims by 
+                                                                    class="col-sm-4 col-form-label"> Prayer/Claims by
                                                                 </label>
                                                                 <div class="col-sm-8">
                                                                     <textarea name="prayer_claims_by_psg"
@@ -920,7 +920,7 @@
                                                             <h3 class="card-title" id="heading">Update Special /
                                                                 Quassi-Judicial Case
                                                                 Status</h3>
-                                                            
+
                                                         </div>
 
                                                         <form
@@ -1162,7 +1162,7 @@
                                                 </div>
                                             </div>
                             </section>
-                            
+
                         </div>
                     </div>
 

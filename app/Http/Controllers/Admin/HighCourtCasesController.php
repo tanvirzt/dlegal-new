@@ -98,11 +98,12 @@ class HighCourtCasesController extends Controller
 
         //    dd($request->all());
         $rules = [
+            'case_no' => 'unique|high_court_cases',
             'tender_no' => 'required',
             'tender_no_date' => 'required',
             'supreme_court_category_id' => 'required',
             'supreme_court_subcategory_id' => 'required',
-            'case_no_hcd' => 'required',
+            'case_no_hcd' => 'required|unique:high_court_cases',
             'date_of_filing_hcd' => 'required',
             'hcd_court_id' => 'required',
             'law_sections_id' => 'required',
@@ -268,11 +269,12 @@ class HighCourtCasesController extends Controller
     {
         //    dd($request->all());
         $rules = [
+            'case_no' => 'required',
             'tender_no' => 'required',
             'tender_no_date' => 'required',
             'supreme_court_category_id' => 'required',
             'supreme_court_subcategory_id' => 'required',
-            'case_no_hcd' => 'required',
+//            'case_no_hcd' => 'required|unique:high_court_cases',
             'date_of_filing_hcd' => 'required',
             'hcd_court_id' => 'required',
             'law_sections_id' => 'required',
@@ -290,7 +292,7 @@ class HighCourtCasesController extends Controller
             'tender_no_date.required' => 'Tender No. Date field is required.',
             'supreme_court_category_id.required' => 'Supreme Court Category field is required.',
             'supreme_court_subcategory_id.required' => 'Supreme Court Subcategory field is required.',
-            'case_no_hcd.required' => 'Case No field is required.',
+//            'case_no_hcd.required' => 'Case No field is required.',
             'date_of_filing_hcd.required' => 'Date of Filing Nature field is required.',
             'hcd_court_id.required' => 'Court field is required.',
             'law_sections_id.required' => 'Law Section field is required.',
@@ -388,7 +390,7 @@ class HighCourtCasesController extends Controller
         $data->tender_no_date = $request->tender_no_date;
         $data->supreme_court_category_id = $request->supreme_court_category_id;
         $data->supreme_court_subcategory_id = $request->supreme_court_subcategory_id;
-        $data->case_no_hcd = $request->case_no_hcd;
+//        $data->case_no_hcd = $request->case_no_hcd;
         $data->date_of_filing_hcd = $request->date_of_filing_hcd;
         $data->hcd_court_id = $request->hcd_court_id;
         $data->law_sections_id = $request->law_sections_id;

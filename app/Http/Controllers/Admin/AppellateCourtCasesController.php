@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SetupCaseClass;
+use App\Models\SetupSection;
 use App\Models\SetupSupremeCourtCategory;
 use App\Models\SetupSupremeCourtSubcategory;
 use Illuminate\Http\Request;
@@ -39,8 +41,9 @@ class AppellateCourtCasesController extends Controller
 
     public function appellate_court_cases()
     {
-        //   dd('asdfsadf');
-        //   $data = AppellateCourtCase::all();
+        $court = SetupCourt::where('delete_status', 0)->get();
+        $supreme_court_category = SetupSupremeCourtCategory::where(['supreme_court_type' => 'Appellate Court Division', 'delete_status' => 0])->get();
+
 // dd($data);
         $data = DB::table('appellate_court_cases')
             ->leftJoin('setup_divisions', 'appellate_court_cases.division_id', '=', 'setup_divisions.id')
@@ -49,11 +52,12 @@ class AppellateCourtCasesController extends Controller
             ->leftJoin('setup_case_categories', 'appellate_court_cases.case_category_nature_id', '=', 'setup_case_categories.id')
             ->leftJoin('setup_courts', 'appellate_court_cases.name_of_the_court_id', '=', 'setup_courts.id')
             ->leftJoin('setup_companies', 'appellate_court_cases.company_id', '=', 'setup_companies.id')
+            ->orderBy('id', 'desc')
             ->select('appellate_court_cases.*', 'setup_divisions.division_name', 'setup_districts.district_name', 'setup_case_statuses.case_status_name', 'setup_case_categories.case_category_name', 'setup_courts.court_name', 'setup_companies.company_name')
             ->get();
-        // dd($data);
+//         dd($data);
 
-        return view('litigation_management.cases.appellate_court_cases.appellate_court_cases', compact('data'));
+        return view('litigation_management.cases.appellate_court_cases.appellate_court_cases', compact('data', 'court', 'supreme_court_category'));
     }
 
     public function add_appellate_court_cases()
@@ -78,52 +82,27 @@ class AppellateCourtCasesController extends Controller
         $branch = SetupBranch::where('delete_status', 0)->get();
         $program = SetupProgram::where('delete_status', 0)->get();
         $alligation = SetupAlligation::where('delete_status', 0)->get();
-        $supreme_court_category = SetupSupremeCourtCategory::where(['supreme_court_type' => 'Appellate Court Division', 'delete_status' => 0])->get();
+        $case_class = SetupCaseClass::where('delete_status', 0)->get();
+        $section = SetupSection::where('delete_status', 0)->get();
+        $supreme_court_category = SetupSupremeCourtCategory::where(['supreme_court_type' => 'High Court Division', 'delete_status' => 0])->get();
 
 //     $supreme_court_category = json_decode(json_encode($supreme_court_category));
 //     echo "<pre>";print_r($supreme_court_category);die();
 
-        return view('litigation_management.cases.appellate_court_cases.add_appellate_court_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law_section', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'alligation', 'property_type', 'case_types', 'company', 'internal_council', 'supreme_court_category'));
+        return view('litigation_management.cases.appellate_court_cases.add_appellate_court_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law_section', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'alligation', 'property_type', 'case_types', 'company', 'internal_council', 'supreme_court_category','section','case_class'));
     }
 
     public function save_appellate_court_cases(Request $request)
     {
         //    dd($request->all());
         $rules = [
-            'case_no' => 'required',
-            'date_of_filing' => 'required',
-            'district_id' => 'required',
-            'amount' => 'required',
-            'case_status_id' => 'required',
-            'case_category_nature_id' => 'required',
-            'case_type_id' => 'required',
-            'name_of_the_court_id' => 'required',
-            'external_council_name_id' => 'required',
-            'relevant_law_sections_id' => 'required',
-            'plaintiff_name' => 'required',
-            'plaintiff_designaiton_id' => 'required',
-            'next_date' => 'required',
-            'plaintiff_contact_number' => 'required',
-            'next_date_fixed_id' => 'required',
+            'case_no' => 'required|unique:appellate_court_cases',
+
         ];
 
         $validMsg = [
-            'case_no.required' => 'Case No. field is required',
-            'date_of_filing.required' => 'Date of Filing field is required',
-            'district_id.required' => 'District field is required',
-            'amount.required' => 'Amount field is required',
-            'case_status_id.required' => 'Case Status field is required',
-            'case_category_nature_id.required' => 'Case Category Nature field is required',
-            'case_type_id.required' => 'Case Type field is required',
-            'name_of_the_court_id.required' => 'Name of the Court field is required',
-            'external_council_name_id.required' => 'External Council Name field is required',
-            'defendent_address.required' => 'Defendent Address field is required',
-            'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
-            'plaintiff_name.required' => 'Plaintiff Name field is required',
-            'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
-            'next_date.required' => 'Next Date field is required',
-            'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
-            'next_date_fixed_id.required' => 'Next Date Fixed field is required',
+            'case_no.required' => 'Case No. field is required.',
+
         ];
 
         $this->validate($request, $rules, $validMsg);
@@ -229,47 +208,18 @@ class AppellateCourtCasesController extends Controller
         $supreme_court_category = SetupSupremeCourtCategory::where(['supreme_court_type' => 'High Court Division', 'delete_status' => 0])->get();
         $existing_subcat = SetupSupremeCourtSubcategory::where('supreme_court_category_id', $data->supreme_court_category_id)->get();
 
-        return view('litigation_management.cases.appellate_court_cases.edit_appellate_court_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law_section', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'alligation', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates','supreme_court_category','existing_subcat'));
+        return view('litigation_management.cases.appellate_court_cases.edit_appellate_court_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law_section', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'alligation', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'supreme_court_category', 'existing_subcat'));
     }
 
     public function update_appellate_court_cases(Request $request, $id)
     {
         //    dd($request->all());
         $rules = [
-            'case_no' => 'required',
-            'date_of_filing' => 'required',
-            'district_id' => 'required',
-            'amount' => 'required',
-            'case_status_id' => 'required',
-            'case_category_nature_id' => 'required',
-            'case_type_id' => 'required',
-            'name_of_the_court_id' => 'required',
-            'external_council_name_id' => 'required',
-            'relevant_law_sections_id' => 'required',
-            'plaintiff_name' => 'required',
-            'plaintiff_designaiton_id' => 'required',
-            'next_date' => 'required',
-            'plaintiff_contact_number' => 'required',
-            'next_date_fixed_id' => 'required',
+            'case_no' => 'required|unique:appellate_court_cases',
         ];
 
         $validMsg = [
-            'case_no.required' => 'Case No. field is required',
-            'date_of_filing.required' => 'Date of Filing field is required',
-            'district_id.required' => 'District field is required',
-            'amount.required' => 'Amount field is required',
-            'case_status_id.required' => 'Case Status field is required',
-            'case_category_nature_id.required' => 'Case Category Nature field is required',
-            'case_type_id.required' => 'Case Type field is required',
-            'name_of_the_court_id.required' => 'Name of the Court field is required',
-            'external_council_name_id.required' => 'External Council Name field is required',
-            'defendent_address.required' => 'Defendent Address field is required',
-            'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
-            'plaintiff_name.required' => 'Plaintiff Name field is required',
-            'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
-            'next_date.required' => 'Next Date field is required',
-            'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
-            'next_date_fixed_id.required' => 'Next Date Fixed field is required',
+            'case_no.required' => 'Case No. field is required.',
         ];
 
         $this->validate($request, $rules, $validMsg);
@@ -455,6 +405,56 @@ class AppellateCourtCasesController extends Controller
 
         session()->flash('success', 'Case Status Updated Successfully');
         return redirect()->route('appellate-court-cases');
+
+    }
+
+    public function search_appellate_court_cases(Request $request)
+    {
+//        dd($request->all());
+        $query = DB::table('appellate_court_cases')
+            ->leftJoin('setup_divisions', 'appellate_court_cases.division_id', '=', 'setup_divisions.id')
+            ->leftJoin('setup_districts', 'appellate_court_cases.district_id', '=', 'setup_districts.id')
+            ->leftJoin('setup_case_statuses', 'appellate_court_cases.case_status_id', '=', 'setup_case_statuses.id')
+            ->leftJoin('setup_case_categories', 'appellate_court_cases.case_category_nature_id', '=', 'setup_case_categories.id')
+            ->leftJoin('setup_courts', 'appellate_court_cases.name_of_the_court_id', '=', 'setup_courts.id')
+            ->leftJoin('setup_companies', 'appellate_court_cases.company_id', '=', 'setup_companies.id');
+//         dd($data);
+
+        if ($request->case_no) {
+
+            $query2 = $query->where(['appellate_court_cases.case_no','like', '%'.$request->case_no.'%']);
+
+        } else if ($request->date_of_filing) {
+
+            $query2 = $query->where('appellate_court_cases.date_of_filing', $request->date_of_filing);
+
+        } else if ($request->name_of_the_court_id) {
+
+            $query2 = $query->where('appellate_court_cases.name_of_the_court_id', $request->name_of_the_court_id);
+
+        } else if ($request->subsequent_case_no) {
+
+            $query2 = $query->where('appellate_court_cases.subsequent_case_no', $request->subsequent_case_no);
+
+        } else if ($request->supreme_court_category_id && $request->supreme_court_subcategory_id) {
+
+            $query2 = $query->where(['appellate_court_cases.supreme_court_category_id' => $request->supreme_court_category_id, 'appellate_court_cases.supreme_court_subcategory_id' => $request->supreme_court_subcategory_id]);
+
+        } else if ($request->supreme_court_category_id) {
+
+            $query2 = $query->where('appellate_court_cases.supreme_court_category_id', $request->supreme_court_category_id);
+
+        }else {
+            $query2 = $query;
+        }
+        $data = $query2->orderBy('id', 'desc')
+            ->select('appellate_court_cases.*', 'setup_divisions.division_name', 'setup_districts.district_name', 'setup_case_statuses.case_status_name', 'setup_case_categories.case_category_name', 'setup_courts.court_name', 'setup_companies.company_name')
+            ->get();
+
+        return response()->json([
+            'result' => 'appellate_court_cases',
+            'data' => $data,
+        ]);
 
     }
 

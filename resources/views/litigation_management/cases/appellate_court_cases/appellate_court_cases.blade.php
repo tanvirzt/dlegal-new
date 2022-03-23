@@ -25,6 +25,146 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+
+
+                            <div id="accordion">
+
+                                <div class="card-header" id="headingTwo">
+                                    <h3 class="card-title"> Appellate Court of Bangladesh :: Search </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn collapsed" data-toggle="collapse"
+                                                data-target="#collapseTwo" aria-expanded="false"
+                                                aria-controls="collapseTwo">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                     data-parent="#accordion">
+                                    <div class="card-body">
+
+
+                                        <form id="form_data" method="post" action="{{ route('search-appellate-court-cases') }}">
+                                            @csrf
+
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="case_no" class="col-sm-4 col-form-label">Case
+                                                            No.</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="case_no"
+                                                                   name="case_no" value="{{ old('case_no') }}">
+                                                            @error('case_no')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="date_of_filing" class="col-sm-4 col-form-label">
+                                                            Date of
+                                                            Filing </label>
+                                                        <div class="col-sm-8">
+                                                            <input type="date" class="form-control" id="date_of_filing"
+                                                                   name="date_of_filing"
+                                                                   value="{{ old('date_of_filing') }}">
+                                                            @error('date_of_filing')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="name_of_the_court_id"
+                                                               class="col-sm-4 col-form-label">
+                                                            Name of the Court </label>
+                                                        <div class="col-sm-8">
+                                                            <select name="name_of_the_court_id"
+                                                                    class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach ($court as $item)
+                                                                    <option value="{{ $item->id }}">
+                                                                        {{ $item->court_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('name_of_the_court_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="subsequent_case_no" class="col-sm-4 col-form-label">Subsequent Case No.</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="subsequent_case_no" name="subsequent_case_no" value="{{old('subsequent_case_no')}}">
+                                                            @error('subsequent_case_no')<span class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="supreme_court_category_id"
+                                                               class="col-sm-4 col-form-label">Category of Supreme Court
+                                                            Case</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="supreme_court_category_id"
+                                                                    class="form-control select2"
+                                                                    id="supreme_court_category_id" action="{{ route('find-supreme-court-subcategory') }}">
+                                                                <option value="">Select</option>
+                                                                @foreach ($supreme_court_category as $item)
+                                                                    <option value="{{ $item->id }}"
+                                                                        {{ old('supreme_court_category_id') == $item->id ? 'selected' : '' }}>
+                                                                        {{ $item->supreme_court_category }} </option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('supreme_court_category_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="supreme_court_subcategory_id"
+                                                               class="col-sm-4 col-form-label">Subcategory of Supreme Court
+                                                            Case</label>
+                                                        <div class="col-sm-8">
+
+                                                            <select name="supreme_court_subcategory_id"
+                                                                    class="form-control select2"
+                                                                    id="supreme_court_subcategory_id">
+                                                                <option value="">Select</option>
+
+                                                            </select>
+                                                            @error('supreme_court_subcategory_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="float-right">
+                                                <button type="submit" id="submit"
+                                                        class="btn btn-primary text-uppercase"><i
+                                                        class="fas fa-search"></i> Search
+                                                </button>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-12">
                         @if(Session::has('success'))
                             <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
@@ -59,7 +199,7 @@
                                         <th width="13%">Action</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="search_data">
                                     @foreach($data as $datum)
 
                                         <tr>
@@ -78,15 +218,15 @@
                                             <td>
                                                 {{ $datum->district_name }}
                                             </td>
-                                            
+
                                             <td>
                                                 {{ $datum->company_name }}
                                             </td>
-                                            
+
                                             <td>
                                                 {{ $datum->plaintiff_name }}
                                             </td>
-                                            
+
                                             <td>
                                                 @if ($datum->delete_status == 0)
                                                     <button type="button"
@@ -96,7 +236,6 @@
                                                     <button type="button"
                                                         class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                 @endif
-                                                </span>
                                             </td>
                                             <td>
                                                 <a href="{{ route('view-appellate-court-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
@@ -108,7 +247,7 @@
                                                     ><i class="fas fa-edit"></i></button></a>
                                                 <form method="POST" action="{{ route('delete-appellate-court-cases',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
                                             </td>
                                         </tr>

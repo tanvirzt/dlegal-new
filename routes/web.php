@@ -232,6 +232,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('view-appellate-court-cases/{id}','AppellateCourtCasesController@view_appellate_court_cases')->name('view-appellate-court-cases');
         Route::get('download-appellate-court-cases-files/{id}','AppellateCourtCasesController@download_appellate_court_cases_file')->name('download-appellate-court-cases-files');
         Route::post('update-appellate-court-cases-status/{id}','AppellateCourtCasesController@update_appellate_court_cases_status')->name('update-appellate-court-cases-status');
+        Route::post('search-appellate-court-cases','AppellateCourtCasesController@search_appellate_court_cases')->name('search-appellate-court-cases');
 
         Route::get('region','AdminSetupController@region')->name('region');
         Route::get('add-region','AdminSetupController@add_region')->name('add-region');

@@ -59,7 +59,7 @@
 
                                         <tr>
                                             <td class="text-center">
-                                                {{$datum->id}}
+                                                {{ $sl++ }}
                                             </td>
                                             <td class="text-center">
                                                 {{$datum->case_class_name}}

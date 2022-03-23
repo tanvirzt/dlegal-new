@@ -31,7 +31,7 @@ use DB;
 
 class SupremeCourtCasesController extends Controller
 {
-    
+
     public function supreme_court_cases()
     {
       //   $data = SupremeCourtCase::all();
@@ -46,13 +46,13 @@ class SupremeCourtCasesController extends Controller
                   ->select('supreme_court_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
                   ->get();
           // dd($data);
-  
+
         return view('litigation_management.cases.supreme_court_cases.supreme_court_cases',compact('data'));
     }
-  
+
     public function add_supreme_court_cases()
     {
-  
+
        $law_section = SetupLawSection::where('delete_status',0)->get();
        $court = SetupCourt::where('delete_status',0)->get();
        $designation = SetupDesignation::where('delete_status',0)->get();
@@ -74,12 +74,12 @@ class SupremeCourtCasesController extends Controller
        $alligation = SetupAlligation::where('delete_status',0)->get();
        return view('litigation_management.cases.supreme_court_cases.add_supreme_court_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','alligation','property_type','case_types','company','internal_council'));
     }
-  
+
     public function save_supreme_court_cases(Request $request)
     {
         //  dd($request->all());
          $rules = [
-          'case_no' => 'required',
+          'case_no' => 'required|unique:supreme_court_cases',
           'date_of_filing' => 'required',
           'district_id' => 'required',
           'amount' => 'required',
@@ -95,28 +95,28 @@ class SupremeCourtCasesController extends Controller
           'plaintiff_contact_number' => 'required',
           'next_date_fixed_id' => 'required',
       ];
-  
+
       $validMsg = [
-          'case_no.required' => 'Case No. field is required',
-          'date_of_filing.required' => 'Date of Filing field is required',
-          'district_id.required' => 'District field is required',
-          'amount.required' => 'Amount field is required',
-          'case_status_id.required' => 'Case Status field is required',
-          'case_category_nature_id.required' => 'Case Category Nature field is required',
-          'case_type_id.required' => 'Case Type field is required',
-          'name_of_the_court_id.required' => 'Name of the Court field is required',
-          'external_council_name_id.required' => 'External Council Name field is required',
-          'defendent_address.required' => 'Defendent Address field is required',
-          'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
-          'plaintiff_name.required' => 'Plaintiff Name field is required',
-          'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
-          'next_date.required' => 'Next Date field is required',
-          'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
-          'next_date_fixed_id.required' => 'Next Date Fixed field is required',
+          'case_no.required' => 'Case No. field is required.',
+          'date_of_filing.required' => 'Date of Filing field is required.',
+          'district_id.required' => 'District field is required.',
+          'amount.required' => 'Amount field is required.',
+          'case_status_id.required' => 'Case Status field is required.',
+          'case_category_nature_id.required' => 'Case Category Nature field is required.',
+          'case_type_id.required' => 'Case Type field is required.',
+          'name_of_the_court_id.required' => 'Name of the Court field is required.',
+          'external_council_name_id.required' => 'External Council Name field is required.',
+          'defendent_address.required' => 'Defendent Address field is required.',
+          'relevant_law_sections_id.required' => 'Relevant Law Sections field is required.',
+          'plaintiff_name.required' => 'Plaintiff Name field is required.',
+          'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required.',
+          'next_date.required' => 'Next Date field is required.',
+          'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required.',
+          'next_date_fixed_id.required' => 'Next Date Fixed field is required.',
       ];
-  
+
       $this->validate($request, $rules, $validMsg);
-  
+
        $data = new SupremeCourtCase();
        $data->case_no = $request->case_no;
        $data->date_of_case_received = $request->date_of_case_received;
@@ -166,7 +166,7 @@ class SupremeCourtCasesController extends Controller
        $data->missing_documents_evidence = $request->missing_documents_evidence;
        $data->comments = $request->comments;
        $data->save();
-  
+
        if($request->hasfile('uploaded_document'))
        {
            foreach($request->file('uploaded_document') as $file)
@@ -174,19 +174,19 @@ class SupremeCourtCasesController extends Controller
                $original_name = $file->getClientOriginalName();
                $name = time().rand(1,100).$original_name;
                $file->move(public_path('files/supreme_court_cases'), $name);
-  
+
                $file= new SupremeCourtCasesFile();
                $file->case_id = $data->id;
                $file->uploaded_document = $name;
                $file->save();
            }
        }
-  
+
        session()->flash('success','Supreme Court Cases Added Successfully');
        return redirect()->route('supreme-court-cases');
-  
+
     }
-  
+
     public function edit_supreme_court_cases($id)
     {
       $law_section = SetupLawSection::where('delete_status',0)->get();
@@ -211,15 +211,15 @@ class SupremeCourtCasesController extends Controller
       $data = SupremeCourtCase::find($id);
       $existing_district = SetupDistrict::where('division_id',$data->division_id)->get();
       $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_name_id)->get();
-  
+
       return view('litigation_management.cases.supreme_court_cases.edit_supreme_court_cases',compact('data','existing_district','person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','alligation','property_type','case_types','company','internal_council','existing_ext_coun_associates'));
     }
-  
+
     public function update_supreme_court_cases(Request $request, $id)
       {
           //    dd($request->all());
          $rules = [
-          'case_no' => 'required',
+          'case_no' => 'required|unique:supreme_court_cases',
           'date_of_filing' => 'required',
           'district_id' => 'required',
           'amount' => 'required',
@@ -235,28 +235,28 @@ class SupremeCourtCasesController extends Controller
           'plaintiff_contact_number' => 'required',
           'next_date_fixed_id' => 'required',
       ];
-  
+
       $validMsg = [
-          'case_no.required' => 'Case No. field is required',
-          'date_of_filing.required' => 'Date of Filing field is required',
-          'district_id.required' => 'District field is required',
-          'amount.required' => 'Amount field is required',
-          'case_status_id.required' => 'Case Status field is required',
-          'case_category_nature_id.required' => 'Case Category Nature field is required',
-          'case_type_id.required' => 'Case Type field is required',
-          'name_of_the_court_id.required' => 'Name of the Court field is required',
-          'external_council_name_id.required' => 'External Council Name field is required',
-          'defendent_address.required' => 'Defendent Address field is required',
-          'relevant_law_sections_id.required' => 'Relevant Law Sections field is required',
-          'plaintiff_name.required' => 'Plaintiff Name field is required',
-          'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required',
-          'next_date.required' => 'Next Date field is required',
-          'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required',
-          'next_date_fixed_id.required' => 'Next Date Fixed field is required',
+          'case_no.required' => 'Case No. field is required.',
+          'date_of_filing.required' => 'Date of Filing field is required.',
+          'district_id.required' => 'District field is required.',
+          'amount.required' => 'Amount field is required.',
+          'case_status_id.required' => 'Case Status field is required.',
+          'case_category_nature_id.required' => 'Case Category Nature field is required.',
+          'case_type_id.required' => 'Case Type field is required.',
+          'name_of_the_court_id.required' => 'Name of the Court field is required.',
+          'external_council_name_id.required' => 'External Council Name field is required.',
+          'defendent_address.required' => 'Defendent Address field is required.',
+          'relevant_law_sections_id.required' => 'Relevant Law Sections field is required.',
+          'plaintiff_name.required' => 'Plaintiff Name field is required.',
+          'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required.',
+          'next_date.required' => 'Next Date field is required.',
+          'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required.',
+          'next_date_fixed_id.required' => 'Next Date Fixed field is required.',
       ];
-  
+
       $this->validate($request, $rules, $validMsg);
-  
+
        $data = SupremeCourtCase::find($id);
        $data->case_no = $request->case_no;
        $data->date_of_case_received = $request->date_of_case_received;
@@ -306,7 +306,7 @@ class SupremeCourtCasesController extends Controller
        $data->missing_documents_evidence = $request->missing_documents_evidence;
        $data->comments = $request->comments;
        $data->save();
-      
+
             if($request->hasfile('uploaded_document'))
             {
                 foreach($request->file('uploaded_document') as $file)
@@ -314,19 +314,19 @@ class SupremeCourtCasesController extends Controller
                     $original_name = $file->getClientOriginalName();
                     $name = time().rand(1,100).$original_name;
                     $file->move(public_path('files/supreme_court_cases'), $name);
-      
+
                     $file= new SupremeCourtCasesFile();
                     $file->case_id = $data->id;
                     $file->uploaded_document = $name;
                     $file->save();
                 }
             }
-      
+
             session()->flash('success','Supreme Court Cases Updated Successfully');
             return redirect()->route('supreme-court-cases');
-      
+
       }
-  
+
     public function delete_supreme_court_cases($id)
     {
         $data = SupremeCourtCase::find($id);
@@ -337,7 +337,7 @@ class SupremeCourtCasesController extends Controller
         }
         $data->delete_status = $delete_status;
         $data->save();
-  
+
         session()->flash('success', 'Supreme Court Cases Deleted');
         return redirect()->back();
     }
@@ -371,7 +371,7 @@ class SupremeCourtCasesController extends Controller
                 ->select('supreme_court_cases.*','setup_case_categories.case_category_name','setup_case_types.case_types_name','setup_regions.region_name','setup_areas.area_name','setup_branches.branch_name','setup_programs.program_name','setup_divisions.division_name','setup_districts.district_name','setup_law_sections.law_section_name','setup_alligations.alligation_name','setup_designations.designation_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_external_council_associates.first_name as as_first_name','setup_external_council_associates.middle_name as as_middle_name','setup_external_council_associates.middle_name as as_last_name','accused_company.company_name as accused_company_name','setup_case_statuses.case_status_name','setup_court_last_orders.court_last_order_name','setup_companies.company_name','setup_next_date_reasons.next_date_reason_name','plaintiff_designations.designation_name as plaintiff_designation_name','panel_lawyer.first_name as pl_first_name','panel_lawyer.middle_name as pl_middle_name','panel_lawyer.last_name as pl_last_name','assigned_lawyer.first_name as assigned_first_name','assigned_lawyer.middle_name as assigned_middle_name','assigned_lawyer.last_name as assigned_last_name','setup_courts.court_name')
                 ->where('supreme_court_cases.id',$id)
                 ->first();
-  
+
     //   dd($data);
       $supreme_court_cases_files = SupremeCourtCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
       // dd($supreme_court_cases_files);
@@ -395,22 +395,22 @@ class SupremeCourtCasesController extends Controller
                     ->where(['case_billings.case_type' => "Supreme Court of Bangladesh", 'case_billings.case_no' => $data->case_no, 'case_billings.delete_status' => 0])
                     ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
                     ->get();
-    
+
 
 // dd($bill_history);
       return view('litigation_management.cases.supreme_court_cases.view_supreme_court_cases',compact('data','supreme_court_cases_files','case_logs','bill_history'));
-  
-      
+
+
     }
-  
-  
+
+
     public function download_supreme_court_cases_file($id)
     {
         $files = SupremeCourtCasesFile::where(['id' => $id, 'delete_status' => 0])->firstOrFail();
         $file_path = public_path('/files/supreme_court_cases/'.$files->uploaded_document);
         return response()->download($file_path);
     }
-  
+
     public function update_supreme_court_cases_status(Request $request, $id)
     {
             // dd($request->all());

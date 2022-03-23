@@ -204,7 +204,7 @@
                                             </td>
 
                                             <td>
-                                                @if($datum->delete_status == 0)
+
                                                     <a href="{{ route('view-civil-cases', $datum->id) }}">
                                                         <button
                                                             class="btn btn-primary btn-sm" data-toggle="tooltip"
@@ -233,16 +233,7 @@
                                                                 title="Delete"><i
                                                                 class="fas fa-trash"></i></button>
                                                     </form>
-                                                @else
-                                                    <form method="POST"
-                                                          action="{{ route('delete-civil-cases', $datum->id) }}"
-                                                          class="retrive-user btn btn-success btn-xs">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-success btn-sm"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="Retrive"><i class="fas fa-recycle"></i></button>
-                                                    </form>
-                                                @endif
+
 
                                             </td>
                                         </tr>

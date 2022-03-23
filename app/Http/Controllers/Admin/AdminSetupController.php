@@ -591,7 +591,7 @@ class AdminSetupController extends Controller
  public function person_title()
  {
      $data = SetupPersonTitle::all();
-     return view('setup.person_title.person_title',compact('data'));
+     return view('setup.person_title.person_title',compact('data'))->with('sl',1);
  }
 
  public function add_person_title()
@@ -3096,8 +3096,8 @@ public function find_supreme_court_category(Request $request)
 
     public function case_class()
     {
-        $data = SetupCaseClass::all();
-        return view('setup.case_class.case_class',compact('data'));
+        $data = SetupCaseClass::orderBy('id','desc')->get();
+        return view('setup.case_class.case_class',compact('data'))->with('sl',1);
     }
 
     public function add_case_class()

@@ -68,14 +68,14 @@
                                                 title="Details"><i class="fas fa-eye"></i></button></a>
                                     </div>
                                 </div>
-                                
+
                                 <div class="panel-body">
                                     <div class="tab-content">
                                         <div id="home" class="tab-pane active">
 
                                             <div class="card-header">
                                                 <h3 class="card-title" id="heading">Edit Labour Cases</h3>
-                                                
+
                                             </div>
 
                                             <form action="{{ route('update-labour-cases', $data->id) }}" method="post"
@@ -90,7 +90,7 @@
                                                                     No.</label>
                                                                 <div class="col-sm-8">
                                                                     <input type="text" class="form-control" id="case_no"
-                                                                        name="case_no" value="{{ $data->case_no }}">
+                                                                        name="case_no" value="{{ $data->case_no }}" readonly>
                                                                     @error('case_no')
                                                                         <span class="text-danger">{{ $message }}</span>
                                                                     @enderror
@@ -511,7 +511,7 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                            
+
 
                                                         </div>
                                                         <div class="col-md-6">
@@ -821,7 +821,7 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="prayer_claims_by_psg"
-                                                                    class="col-sm-4 col-form-label"> Prayer/Claims by 
+                                                                    class="col-sm-4 col-form-label"> Prayer/Claims by
                                                                 </label>
                                                                 <div class="col-sm-8">
                                                                     <textarea name="prayer_claims_by_psg"
@@ -907,7 +907,7 @@
                                                         <div class="card-header">
                                                             <h3 class="card-title" id="heading">Update Labour Case
                                                                 Status</h3>
-                                                            
+
                                                         </div>
 
                                                         <form

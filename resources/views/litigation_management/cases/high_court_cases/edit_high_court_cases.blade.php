@@ -88,17 +88,17 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
 
-                                                            <div class="form-group row">
-                                                                <label for="lower_court"
-                                                                       class="col-sm-4 col-form-label"> Lower Court
-                                                                </label>
-                                                                <div class="col-sm-8">
-                                                                    <input type="checkbox" class="mt-2" id="lower_court"
-                                                                           name="lower_court"
-                                                                           value="Lower Court" {{ $data->lower_court == 'Yes' ? 'checked' : '' }}>
-                                                                </div>
-                                                            </div>
-                                                            <div id="lower_court_info" @if($data->lower_court == 'No') style="display: none;" @endif>
+{{--                                                            <div class="form-group row">--}}
+{{--                                                                <label for="lower_court"--}}
+{{--                                                                       class="col-sm-4 col-form-label"> Lower Court--}}
+{{--                                                                </label>--}}
+{{--                                                                <div class="col-sm-8">--}}
+{{--                                                                    <input type="checkbox" class="mt-2" id="lower_court"--}}
+{{--                                                                           name="lower_court"--}}
+{{--                                                                           value="Lower Court" {{ $data->lower_court == 'Yes' ? 'checked' : '' }}>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                            <div id="lower_court_info" @if($data->lower_court == 'No') style="display: none;" @endif>--}}
                                                                 <div class="form-group row">
                                                                     <label for="case_no"
                                                                            class="col-sm-4 col-form-label">Case
@@ -617,7 +617,7 @@
                                                                         @enderror
                                                                     </div>
                                                                 </div>
-                                                            </div>
+{{--                                                            </div>--}}
                                                             <div class="form-group row">
                                                                 <label for="total_legal_bill_amount"
                                                                        class="col-sm-4 col-form-label">Total
@@ -772,7 +772,7 @@
                                                                     <input type="text" class="form-control"
                                                                            id="case_no_hcd"
                                                                            name="case_no_hcd"
-                                                                           value="{{ $data->case_no_hcd }}">
+                                                                           value="{{ $data->case_no_hcd }}" readonly>
                                                                     @error('case_no_hcd')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                     @enderror
