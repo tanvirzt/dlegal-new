@@ -47,12 +47,12 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-designation/{id}','AdminSetupController@update_designation')->name('update-designation');
         Route::post('delete-designation/{id}','AdminSetupController@delete_designation')->name('delete-designation');
 
-        Route::get('case-category','AdminSetupController@case_category')->name('case-category');
-        Route::get('add-case-category','AdminSetupController@add_case_category')->name('add-case-category');
-        Route::post('save-case-category','AdminSetupController@save_case_category')->name('save-case-category');
-        Route::get('edit-case-category/{id}','AdminSetupController@edit_case_category')->name('edit-case-category');
-        Route::post('update-case-category/{id}','AdminSetupController@update_case_category')->name('update-case-category');
-        Route::post('delete-case-category/{id}','AdminSetupController@delete_case_category')->name('delete-case-category');
+//        Route::get('case-category','AdminSetupController@case_category')->name('case-category');
+//        Route::get('add-case-category','AdminSetupController@add_case_category')->name('add-case-category');
+//        Route::post('save-case-category','AdminSetupController@save_case_category')->name('save-case-category');
+//        Route::get('edit-case-category/{id}','AdminSetupController@edit_case_category')->name('edit-case-category');
+//        Route::post('update-case-category/{id}','AdminSetupController@update_case_category')->name('update-case-category');
+//        Route::post('delete-case-category/{id}','AdminSetupController@delete_case_category')->name('delete-case-category');
 
         Route::get('case-status','AdminSetupController@case_status')->name('case-status');
         Route::get('add-case-status','AdminSetupController@add_case_status')->name('add-case-status');
@@ -434,23 +434,23 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('download-external-files/{id}','DocManagementController@download_external_files')->name('download-external-files');
         Route::get('external-document','DocManagementController@external_document')->name('external-document');
 
-// supreme-court-category setup
+// supreme-case-category setup
 
-        Route::get('supreme-court-category','AdminSetupController@supreme_court_category')->name('supreme-court-category');
-        Route::get('add-supreme-court-category','AdminSetupController@add_supreme_court_category')->name('add-supreme-court-category');
-        Route::post('save-supreme-court-category','AdminSetupController@save_supreme_court_category')->name('save-supreme-court-category');
-        Route::get('edit-supreme-court-category/{id}','AdminSetupController@edit_supreme_court_category')->name('edit-supreme-court-category');
-        Route::post('update-supreme-court-category/{id}','AdminSetupController@update_supreme_court_category')->name('update-supreme-court-category');
-        Route::post('delete-supreme-court-category/{id}','AdminSetupController@delete_supreme_court_category')->name('delete-supreme-court-category');
-// supreme-court-subcategory setup
+        Route::get('case-category','AdminSetupController@case_category')->name('case-category');
+        Route::get('add-case-category','AdminSetupController@add_case_category')->name('add-case-category');
+        Route::post('save-case-category','AdminSetupController@save_case_category')->name('save-case-category');
+        Route::get('edit-case-category/{id}','AdminSetupController@edit_case_category')->name('edit-case-category');
+        Route::post('update-case-category/{id}','AdminSetupController@update_case_category')->name('update-case-category');
+        Route::post('delete-case-category/{id}','AdminSetupController@delete_case_category')->name('delete-case-category');
+// supreme-case-subcategory setup
 
-        Route::get('supreme-court-subcategory','AdminSetupController@supreme_court_subcategory')->name('supreme-court-subcategory');
-        Route::get('add-supreme-court-subcategory','AdminSetupController@add_supreme_court_subcategory')->name('add-supreme-court-subcategory');
-        Route::post('save-supreme-court-subcategory','AdminSetupController@save_supreme_court_subcategory')->name('save-supreme-court-subcategory');
-        Route::get('edit-supreme-court-subcategory/{id}','AdminSetupController@edit_supreme_court_subcategory')->name('edit-supreme-court-subcategory');
-        Route::post('update-supreme-court-subcategory/{id}','AdminSetupController@update_supreme_court_subcategory')->name('update-supreme-court-subcategory');
-        Route::post('delete-supreme-court-subcategory/{id}','AdminSetupController@delete_supreme_court_subcategory')->name('delete-supreme-court-subcategory');
-        Route::get('find-supreme-court-category','AdminSetupController@find_supreme_court_category')->name('find-supreme-court-category');
+        Route::get('case-subcategory','AdminSetupController@case_subcategory')->name('case-subcategory');
+        Route::get('add-case-subcategory','AdminSetupController@add_case_subcategory')->name('add-case-subcategory');
+        Route::post('save-case-subcategory','AdminSetupController@save_case_subcategory')->name('save-case-subcategory');
+        Route::get('edit-case-subcategory/{id}','AdminSetupController@edit_case_subcategory')->name('edit-case-subcategory');
+        Route::post('update-case-subcategory/{id}','AdminSetupController@update_case_subcategory')->name('update-case-subcategory');
+        Route::post('delete-case-subcategory/{id}','AdminSetupController@delete_case_subcategory')->name('delete-case-subcategory');
+        Route::get('find-case-category','AdminSetupController@find_case_category')->name('find-case-category');
 
         Route::get('case-class', 'AdminSetupController@case_class')->name('case-class');
         Route::get('add-case-class','AdminSetupController@add_case_class')->name('add-case-class');
@@ -467,6 +467,24 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('delete-section/{id}','AdminSetupController@delete_section')->name('delete-section');
 
         Route::get('find-supreme-court-subcategory','HighCourtCasesController@find_supreme_court_subcategory')->name('find-supreme-court-subcategory');
+
+        Route::get('client-category', 'AdminSetupController@client_category')->name('client-category');
+        Route::get('add-client-category','AdminSetupController@add_client_category')->name('add-client-category');
+        Route::post('save-client-category','AdminSetupController@save_client_category')->name('save-client-category');
+        Route::get('edit-client-category/{id}','AdminSetupController@edit_client_category')->name('edit-client-category');
+        Route::post('update-client-category/{id}','AdminSetupController@update_client_category')->name('update-client-category');
+        Route::post('delete-client-category/{id}','AdminSetupController@delete_client_category')->name('delete-client-category');
+
+        Route::get('client-subcategory', 'AdminSetupController@client_subcategory')->name('client-subcategory');
+        Route::get('add-client-subcategory','AdminSetupController@add_client_subcategory')->name('add-client-subcategory');
+        Route::post('save-client-subcategory','AdminSetupController@save_client_subcategory')->name('save-client-subcategory');
+        Route::get('edit-client-subcategory/{id}','AdminSetupController@edit_client_subcategory')->name('edit-client-subcategory');
+        Route::post('update-client-subcategory/{id}','AdminSetupController@update_client_subcategory')->name('update-client-subcategory');
+        Route::post('delete-client-subcategory/{id}','AdminSetupController@delete_client_subcategory')->name('delete-client-subcategory');
+
+        Route::get('find-client-subcategory','AdminSetupController@find_client_subcategory')->name('find-client-subcategory');
+
+
 
     });
 

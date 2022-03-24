@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSetupSupremeCourtCategoriesTable extends Migration
+class CreateSetupCaseCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateSetupSupremeCourtCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('setup_supreme_court_categories', function (Blueprint $table) {
+        Schema::create('setup_case_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('supreme_court_type')->nullable();
-            $table->string('supreme_court_category')->nullable();
+            $table->string('case_type')->nullable();
+            $table->string('case_category')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
@@ -31,6 +31,6 @@ class CreateSetupSupremeCourtCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('setup_supreme_court_categories');
+        Schema::dropIfExists('setup_case_categories');
     }
 }

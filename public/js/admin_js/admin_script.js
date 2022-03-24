@@ -626,7 +626,7 @@ $(document).ready(function () {
 
                                 <tr>
 
-                                    <td><a href="view-high-court-cases/${value.id}"> ${value.case_no_hcd} </a></td>
+                                    <td><a href="view-high-court-cases/${value.id}"> ${value.case_no === null ? '' : value.case_no} </a></td>
                                     <td> ${value.tender_no === null ? '' : value.tender_no} </td>
                                     <td> ${value.tender_no_date === null ? '' : value.tender_no_date} </td>
                                     <td> ${value.supreme_court_category === null ? '' : value.supreme_court_category} </td>
@@ -662,13 +662,14 @@ $(document).ready(function () {
                         $('#search_data').append(`
 
                                 <tr>
-                                    <td><a href="view-appellate-court-cases/${value.id}"> ${value.case_no} </a></td>
-                                    <td> ${value.subsequent_case_no === null ? '' : value.subsequent_case_no} </td>
-                                    <td> ${value.division_name === null ? '' : value.division_name} </td>
-                                    <td> ${value.court_name === null ? '' : value.court_name} </td>
-                                    <td> ${value.district_name === null ? '' : value.district_name} </td>
-                                    <td> ${value.company_name === null ? '' : value.company_name} </td>
-                                    <td> ${value.plaintiff_name === null ? '' : value.plaintiff_name} </td>
+
+                                    <td><a href="view-appellate-court-cases/${value.id}"> ${value.case_no === null ? '' : value.case_no} </a></td>
+                                    <td> ${value.tender_no === null ? '' : value.tender_no} </td>
+                                    <td> ${value.tender_no_date === null ? '' : value.tender_no_date} </td>
+                                    <td> ${value.supreme_court_category === null ? '' : value.supreme_court_category} </td>
+                                    <td> ${value.supreme_court_subcategory === null ? '' : value.supreme_court_subcategory} </td>
+                                    <td> ${value.date_of_filing_hcd === null ? '' : value.date_of_filing_hcd} </td>
+                                    <td> ${value.order === null ? '' : value.order} </td>
                                     <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
                                         <a href="view-appellate-court-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
@@ -1114,33 +1115,33 @@ $(document).ready(function () {
     })
 
 
-    $('#supreme_court_type').on('change', function () {
-        var supreme_court_type = $(this).val();
+    $('#case_type').on('change', function () {
+        var case_type = $(this).val();
         var route = $(this).attr('action');
-        // alert(supreme_court_type);
-        if (supreme_court_type) {
+        // alert(case_type);
+        if (case_type) {
             $.ajax({
                 url: route,
                 type: "GET",
-                data: {"_token": "{{ csrf_token() }}", supreme_court_type: supreme_court_type},
+                data: {"_token": "{{ csrf_token() }}", case_type: case_type},
                 dataType: "json",
                 success: function (data) {
                     // console.log(data);
                     if (data) {
-                        $('#supreme_court_category_id').empty();
-                        $('#supreme_court_category_id').focus;
-                        $('#supreme_court_category_id').append('<option value="">Select</option>');
+                        $('#case_category_id').empty();
+                        $('#case_category_id').focus;
+                        $('#case_category_id').append('<option value="">Select</option>');
                         $.each(data, function (key, value) {
-                            $('select[name="supreme_court_category_id"]').append('<option value="' + value.id + '">' + value.supreme_court_category + '</option>');
+                            $('select[name="case_category_id"]').append('<option value="' + value.id + '">' + value.case_category + '</option>');
                         });
                     } else {
-                        $('#supreme_court_category_id').empty();
+                        $('#case_category_id').empty();
                     }
                 }
             });
         } else {
-            $('#supreme_court_category_id').empty();
-            $('#supreme_court_category_id').append('<option value="">Select</option>');
+            $('#case_category_id').empty();
+            $('#case_category_id').append('<option value="">Select</option>');
         }
     });
 
@@ -1181,6 +1182,37 @@ $(document).ready(function () {
             $('#supreme_court_subcategory_id').append('<option value="">Select</option>');
         }
     });
+
+    $('#client_category_id').on('change', function () {
+        var client_category_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if (client_category_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", client_category_id: client_category_id},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#client_subcategory_id').empty();
+                        $('#client_subcategory_id').focus;
+                        $('#client_subcategory_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="client_subcategory_id"]').append('<option value="' + value.id + '">' + value.client_subcategory_name + '</option>');
+                        });
+                    } else {
+                        $('#client_subcategory_id').empty();
+                    }
+                }
+            });
+        } else {
+            $('#client_subcategory_id').empty();
+            $('#client_subcategory_id').append('<option value="">Select</option>');
+        }
+    });
+
 
 
 });

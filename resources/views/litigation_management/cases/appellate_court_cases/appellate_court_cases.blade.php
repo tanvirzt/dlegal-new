@@ -14,7 +14,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Appellate Court of Bangladesh </li>
+                            <li class="breadcrumb-item active"> Appellate Court of Bangladesh</li>
                         </ol>
                     </div>
                 </div>
@@ -24,6 +24,14 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                @if(Session::has('success'))
+                    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                        {{Session::get('success')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-8">
                         <div class="card">
@@ -51,59 +59,46 @@
                                     <div class="card-body">
 
 
-                                        <form id="form_data" method="post" action="{{ route('search-appellate-court-cases') }}">
+                                        <form id="form_data" method="post"
+                                              action="{{ route('search-appellate-court-cases') }}">
                                             @csrf
-
 
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label for="case_no" class="col-sm-4 col-form-label">Case
-                                                            No.</label>
+                                                        <label for="case_no" class="col-sm-4 col-form-label">
+                                                            Case No. </label>
                                                         <div class="col-sm-8">
                                                             <input type="text" class="form-control" id="case_no"
-                                                                   name="case_no" value="{{ old('case_no') }}">
+                                                                   name="case_no"
+                                                                   value="{{ old('case_no') }}">
                                                             @error('case_no')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="date_of_filing" class="col-sm-4 col-form-label">
-                                                            Date of
-                                                            Filing </label>
+                                                        <label for="tender_no" class="col-sm-4 col-form-label">Tender
+                                                            No.</label>
                                                         <div class="col-sm-8">
-                                                            <input type="date" class="form-control" id="date_of_filing"
-                                                                   name="date_of_filing"
-                                                                   value="{{ old('date_of_filing') }}">
-                                                            @error('date_of_filing')
+                                                            <input type="text" class="form-control" id="tender_no"
+                                                                   name="tender_no"
+                                                                   value="{{ old('tender_no') }}">
+                                                            @error('tender_no')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="name_of_the_court_id"
-                                                               class="col-sm-4 col-form-label">
-                                                            Name of the Court </label>
+                                                        <label for="tender_no_date" class="col-sm-4 col-form-label">Tender
+                                                            No. Date</label>
                                                         <div class="col-sm-8">
-                                                            <select name="name_of_the_court_id"
-                                                                    class="form-control select2">
-                                                                <option value="">Select</option>
-                                                                @foreach ($court as $item)
-                                                                    <option value="{{ $item->id }}">
-                                                                        {{ $item->court_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('name_of_the_court_id')
+                                                            <input type="date" class="form-control" id="tender_no_date"
+                                                                   name="tender_no_date"
+                                                                   value="{{ old('tender_no_date') }}">
+                                                            @error('tender_no_date')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="subsequent_case_no" class="col-sm-4 col-form-label">Subsequent Case No.</label>
-                                                        <div class="col-sm-8">
-                                                            <input type="text" class="form-control" id="subsequent_case_no" name="subsequent_case_no" value="{{old('subsequent_case_no')}}">
-                                                            @error('subsequent_case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -115,7 +110,8 @@
                                                         <div class="col-sm-8">
                                                             <select name="supreme_court_category_id"
                                                                     class="form-control select2"
-                                                                    id="supreme_court_category_id" action="{{ route('find-supreme-court-subcategory') }}">
+                                                                    id="supreme_court_category_id"
+                                                                    action="{{ route('find-supreme-court-subcategory') }}">
                                                                 <option value="">Select</option>
                                                                 @foreach ($supreme_court_category as $item)
                                                                     <option value="{{ $item->id }}"
@@ -131,7 +127,8 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="supreme_court_subcategory_id"
-                                                               class="col-sm-4 col-form-label">Subcategory of Supreme Court
+                                                               class="col-sm-4 col-form-label">Subcategory of Supreme
+                                                            Court
                                                             Case</label>
                                                         <div class="col-sm-8">
 
@@ -147,6 +144,7 @@
 
                                                         </div>
                                                     </div>
+
                                                 </div>
                                             </div>
 
@@ -158,7 +156,6 @@
                                             </div>
 
                                         </form>
-
                                     </div>
                                 </div>
                             </div>
@@ -166,20 +163,16 @@
                     </div>
 
                     <div class="col-12">
-                        @if(Session::has('success'))
-                            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-                                {{Session::get('success')}}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        @endif
+
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-appellate-court-cases') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Appellate Court of Bangladesh </button></a>
+                                    <a href="{{ route('add-appellate-court-cases') }}">
+                                        <button class="btn btn-sm
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Appellate Court of Bangladesh
+                                        </button>
+                                    </a>
                                 </div>
 
                             </div>
@@ -188,14 +181,14 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th>Case No</th>
-                                        <th>Subsequent Case No</th>
-                                        <th>Division</th>
-                                        <th>Court Name</th>
-                                        <th>District</th>
-                                        <th>Company</th>
-                                        <th>Plaintiff Name</th>
-                                        <th>Status</th>
+                                        <th class="text-center">Case No</th>
+                                        <th class="text-center">Tender No.</th>
+                                        <th class="text-center">Tender No. Date</th>
+                                        <th class="text-center">Category</th>
+                                        <th class="text-center">Subcategory</th>
+                                        <th class="text-center">Date of filing</th>
+                                        <th class="text-center">Order</th>
+                                        <th class="text-center">Status</th>
                                         <th width="13%">Action</th>
                                     </tr>
                                     </thead>
@@ -207,47 +200,60 @@
                                                 <a href="{{ route('view-appellate-court-cases', $datum->id) }}"> {{ $datum->case_no }} </a>
                                             </td>
                                             <td>
-                                                {{ $datum->subsequent_case_no }}
+                                                {{ $datum->tender_no }}
                                             </td>
                                             <td>
-                                                {{ $datum->division_name }}
+                                                {{ $datum->tender_no_date }}
                                             </td>
                                             <td>
-                                                {{ $datum->court_name }}
+                                                {{ $datum->supreme_court_category }}
                                             </td>
                                             <td>
-                                                {{ $datum->district_name }}
+                                                {{ $datum->supreme_court_subcategory }}
                                             </td>
 
                                             <td>
-                                                {{ $datum->company_name }}
+                                                {{ $datum->date_of_filing_hcd }}
                                             </td>
-
                                             <td>
-                                                {{ $datum->plaintiff_name }}
+                                                {{ $datum->order }}
                                             </td>
-
                                             <td>
                                                 @if ($datum->delete_status == 0)
                                                     <button type="button"
-                                                        class="btn-custom btn-success-custom text-uppercase"> Active
+                                                            class="btn-custom btn-success-custom text-uppercase"> Active
                                                     </button>
                                                 @else
                                                     <button type="button"
-                                                        class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
+                                                            class="btn-custom btn-warning-custom text-uppercase">
+                                                        Inactive
+                                                    </button>
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('view-appellate-court-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
-                                                    ><i class="fas fa-eye"></i></button></a>
-                                                <a href="{{ route('add-billing-appellate-court-cases', $datum->id) }}"><button
-                                                    class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                                    data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
-                                                <a href="{{ route('edit-appellate-court-cases',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
-                                                    ><i class="fas fa-edit"></i></button></a>
-                                                <form method="POST" action="{{ route('delete-appellate-court-cases',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                <a href="{{ route('view-appellate-court-cases',$datum->id) }}">
+                                                    <button class="btn btn-primary btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Details"
+                                                    ><i class="fas fa-eye"></i></button>
+                                                </a>
+                                                <a href="{{ route('add-billing-appellate-court-cases', $datum->id) }}">
+                                                    <button
+                                                        class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                                        data-placement="top" title="Bill Entry"><i
+                                                            class="fas fa-money-bill"></i></button>
+                                                </a>
+                                                <a href="{{ route('edit-appellate-court-cases',$datum->id) }}">
+                                                    <button class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"
+                                                    ><i class="fas fa-edit"></i></button>
+                                                </a>
+                                                <form method="POST"
+                                                      action="{{ route('delete-appellate-court-cases',$datum->id) }}"
+                                                      class="delete-user btn btn-danger btn-xs">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                            data-toggle="tooltip" data-placement="top" title="Delete"><i
+                                                            class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

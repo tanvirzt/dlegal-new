@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Add Case Category</h1>
+                        <h1 class="m-0 text-dark">Edit Client Subcategory</h1>
 
                     </div><!-- /.col -->
 
@@ -20,7 +20,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('case-category') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('client-subcategory') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
                             </li>
                         </ol>
                     </div>
@@ -48,37 +48,32 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Add Case Category</h3>
+                                <h3 class="card-title" id="heading">Edit Client Subcategory</h3>
                             </div>
 
-                            <form action="{{ route('save-case-category') }}" method="post">
+                            <form action="{{ route('update-client-subcategory',$data->id) }}" method="post">
                                 @csrf
                                 <div class="card-body">
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="case_type"> Case Type </label>
-                                            <select name="case_type" class="form-control select2" id="case_type">
-                                                <option value="">Select</option>
-                                                <option value="Civil Cases"> Civil Cases </option>
-                                                <option value="Criminal Cases"> Criminal Cases </option>
-                                                <option value="Labour Cases"> Labour Cases </option>
-                                                <option value="Special Quassi - Judicial Cases"> Special Quassi - Judicial Cases </option>
-                                                <option value="High Court Division"> High Court Division </option>
-                                                <option value="Appellate Court Division"> Appellate Court Division </option>
+                                            <label for="client_category_id"> Client Category </label>
+                                            <select name="client_category_id" class="form-control select2" id="client_category_id">
+                                                    <option value="">Select</option>
+                                                @foreach($client_category as $item)
+                                                    <option value="{{ $item->id }}" {{ $data->client_category_id == $item->id ? 'selected': '' }}>{{ $item->client_category_name }}</option>
+                                                @endforeach
                                             </select>
-                                            @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
-
                                         </div>
                                         <div class="form-group">
-                                            <label for="case_category">Case Category</label>
-                                            <input type="text" class="form-control" name="case_category"
-                                                   id="case_category">
-                                            @error('case_category')<span class="text-danger">{{$message}}</span>@enderror
+                                            <label for="client_subcategory_name"> Client Subcategory </label>
+                                            <input type="text" class="form-control" name="client_subcategory_name"
+                                                   id="client_subcategory_name" value="{{ $data->client_subcategory_name }}">
+                                            @error('client_subcategory_name')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
 
                                         <div class="float-right">
-                                        <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save</button>
+                                        <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update </button>
 
                                         </div>
                                     </div>

@@ -85,12 +85,12 @@
                                         <p>Designation</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('case-category') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Case Category</p>
-                                    </a>
-                                </li>
+{{--                                <li class="nav-item">--}}
+{{--                                    <a href="{{ route('case-category') }}" class="nav-link">--}}
+{{--                                        <i class="far fa-dot-circle nav-icon"></i>--}}
+{{--                                        <p>Case Category</p>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
                                 <li class="nav-item">
                                     <a href="{{ route('case-status') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -194,15 +194,15 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('supreme-court-category') }}" class="nav-link">
+                                    <a href="{{ route('case-category') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Supreme Court Category</p>
+                                        <p>Case Category</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('supreme-court-subcategory') }}" class="nav-link">
+                                    <a href="{{ route('case-subcategory') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Supreme Court Subcategory</p>
+                                        <p>Case Subcategory</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -217,6 +217,19 @@
                                         <p>Section</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('client-category') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Client Category</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('client-subcategory') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Client Subcategory</p>
+                                    </a>
+                                </li>
+
 
                             </ul>
                         </li>

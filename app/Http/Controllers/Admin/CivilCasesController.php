@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CivilCasesFile;
+use App\Models\SetupClientCategory;
 use App\Models\SetupDistrict;
 use Illuminate\Http\Request;
 use App\Models\CivilCases;
@@ -84,7 +85,9 @@ class CivilCasesController extends Controller
         $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->get();
         $area = SetupArea::where('delete_status', 0)->get();
         $internal_council = SetupInternalCouncil::where('delete_status', 0)->get();
-        return view('litigation_management.cases.civil_cases.add_civil_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law_section', 'next_date_reason', 'next_date_reason', 'last_court_order', 'property_type', 'case_types', 'company', 'zone', 'area', 'internal_council'));
+        $client_category = SetupClientCategory::where('delete_status', 0)->get();
+
+        return view('litigation_management.cases.civil_cases.add_civil_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law_section', 'next_date_reason', 'next_date_reason', 'last_court_order', 'property_type', 'case_types', 'company', 'zone', 'area', 'internal_council','client_category'));
     }
 
     public function save_civil_cases(Request $request)

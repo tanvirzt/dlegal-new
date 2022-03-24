@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Admin Setup</h1>
+                        <h1 class="m-0 text-dark">Edit Case Category</h1>
 
                     </div><!-- /.col -->
 
@@ -56,17 +56,28 @@
                                 <div class="card-body">
 
                                     <div class="col-md-12">
-
                                         <div class="form-group">
-                                            <label for="case_category_name"> Case Category </label>
-                                            <input type="text" class="form-control" name="case_category_name"
-                                                   id="case_category_name" value="{{ $data->case_category_name }}">
-                                            @error('case_category_name')<span class="text-danger">{{$message}}</span>@enderror
+                                            <label for="case_type"> Case Type </label>
+                                            <select name="case_type" class="form-control select2" id="case_type">
+                                                <option value="">Select</option>
+                                                <option value="Civil Cases" {{ $data->case_type == "Civil Cases" ? 'selected' : '' }}> Civil Cases </option>
+                                                <option value="Criminal Cases" {{ $data->case_type == "Criminal Cases" ? 'selected' : '' }}> Criminal Cases </option>
+                                                <option value="Labour Cases" {{ $data->case_type == "Labour Cases" ? 'selected' : '' }}> Labour Cases </option>
+                                                <option value="Special Quassi - Judicial Cases" {{ $data->case_type == "Special Quassi - Judicial Cases" ? 'selected' : '' }}> Special Quassi - Judicial Cases </option>
+                                                <option value="High Court Division" {{ $data->case_type == "High Court Division" ? 'selected' : '' }}> High Court Division </option>
+                                                <option value="Appellate Court Division" {{ $data->case_type == "Appellate Court Division" ? 'selected' : '' }}> Appellate Court Division </option>
+                                            </select>
+                                            @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="case_category"> Case Category </label>
+                                            <input type="text" class="form-control" name="case_category"
+                                                   id="case_category" value="{{ $data->case_category }}">
+                                            @error('case_category')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
 
                                         <div class="float-right">
-                                        <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update </button>
-
+                                            <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update </button>
                                         </div>
                                     </div>
 

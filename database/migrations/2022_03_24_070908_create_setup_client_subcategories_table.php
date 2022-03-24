@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSetupAlligationsTable extends Migration
+class CreateSetupClientSubcategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateSetupAlligationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('setup_alligations', function (Blueprint $table) {
+        Schema::create('setup_client_subcategories', function (Blueprint $table) {
             $table->id();
-            $table->string('alligation_name')->nullable();
+            $table->integer('client_category_id')->nullable();
+            $table->string('client_subcategory_name')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
@@ -30,6 +31,6 @@ class CreateSetupAlligationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('setup_alligations');
+        Schema::dropIfExists('setup_client_subcategories');
     }
 }

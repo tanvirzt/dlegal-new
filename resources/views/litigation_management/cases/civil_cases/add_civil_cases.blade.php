@@ -62,6 +62,28 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
+                                                <label for="client_category_id" class="col-sm-4 col-form-label">Client Category</label>
+                                                <div class="col-sm-8">
+                                                    <select name="client_category_id" class="form-control select2" id="client_category_id" action="{{ route('find-client-subcategory') }}">
+                                                        <option value="">Select</option>
+                                                        @foreach ($client_category as $item)
+                                                            <option value="{{ $item->id }}" {{(old('client_category_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->client_category_name) }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('client_category_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="client_subcategory_id" class="col-sm-4 col-form-label">Client Subcategory</label>
+                                                <div class="col-sm-8">
+                                                    <select name="client_subcategory_id" class="form-control select2" id="client_subcategory_id">
+                                                        <option value="">Select</option>
+
+                                                    </select>
+                                                    @error('client_subcategory_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
                                                 <label for="date_of_filing" class="col-sm-4 col-form-label"> Date of Filing </label>
                                                 <div class="col-sm-8">
                                                     <input type="date" class="form-control" id="date_of_filing" name="date_of_filing" value="{{old('date_of_filing')}}">
@@ -93,7 +115,7 @@
                                                     <select name="district_id" class="form-control select2" id="district_id">
                                                         <option value=""> Select </option>
 
-                                                    </select>       
+                                                    </select>
                                                     @error('district_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -214,7 +236,7 @@
                                                             <option value="">Select</option>
                                                             @foreach($law_section as $item)
                                                                 <option value="{{ $item->id }}" {{(old('relevant_law_sections_id') == $item->id ? 'selected':'')}}>{{ $item->law_section_name }}</option>
-                                                            @endforeach                                                         
+                                                            @endforeach
                                                         </select>
                                                         @error('relevant_law_sections_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
@@ -261,7 +283,7 @@
                                                             <option value="">Select</option>
                                                             @foreach($next_date_reason as $item)
                                                                 <option value="{{ $item->id }}" {{(old('next_date_fixed_id') == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
-                                                            @endforeach                                                         
+                                                            @endforeach
                                                         </select>
                                                         @error('next_date_fixed_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
@@ -273,7 +295,7 @@
                                                             <option value="">Select</option>
                                                             @foreach($company as $item)
                                                                 <option value="{{ $item->id }}" {{(old('company_id') == $item->id ? 'selected':'')}}>{{ $item->company_name }}</option>
-                                                            @endforeach                                                         
+                                                            @endforeach
                                                         </select>
                                                         @error('company_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
@@ -285,7 +307,7 @@
                                                             <option value="">Select</option>
                                                             @foreach($zone as $item)
                                                                 <option value="{{ $item->id }}" {{(old('zone_id') == $item->id ? 'selected':'')}}>{{ $item->region_name }}</option>
-                                                            @endforeach                                                         
+                                                            @endforeach
                                                         </select>
                                                         @error('zone_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
@@ -297,7 +319,7 @@
                                                             <option value="">Select</option>
                                                             @foreach($area as $item)
                                                                 <option value="{{ $item->id }}" {{(old('area_id') == $item->id ? 'selected':'')}}>{{ $item->area_name }}</option>
-                                                            @endforeach                                                         
+                                                            @endforeach
                                                         </select>
                                                         @error('area_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
@@ -495,7 +517,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="case_notes"> Document Upload </label>

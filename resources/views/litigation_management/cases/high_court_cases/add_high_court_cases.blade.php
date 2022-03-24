@@ -123,26 +123,7 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label for="case_category_id"
-                                                           class="col-sm-4 col-form-label"> Case
-                                                        Category </label>
-                                                    <div class="col-sm-8">
 
-                                                        <select name="case_category_id"
-                                                                class="form-control select2">
-                                                            <option value="">Select</option>
-                                                            @foreach ($case_category as $item)
-                                                                <option value="{{ $item->id }}"
-                                                                    {{ old('case_category_id') == $item->id ? 'selected' : '' }}>
-                                                                    {{ $item->case_category_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('case_category_id')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
                                                 <div class="form-group row">
                                                     <label for="case_class_id"
                                                            class="col-sm-4 col-form-label"> Class of Cases </label>
@@ -617,12 +598,12 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label for="supreme_court_category_id"
-                                                       class="col-sm-4 col-form-label">Category of Supreme Court
-                                                    Case</label>
+                                                       class="col-sm-4 col-form-label">Category of
+                                                    Cases</label>
                                                 <div class="col-sm-8">
                                                     <select name="supreme_court_category_id"
                                                             class="form-control select2"
-                                                            id="supreme_court_category_id" action="{{ route('find-supreme-court-subcategory') }}">
+                                                            id="supreme_court_category_id" action="{{ route('find-case-subcategory') }}">
                                                         <option value="">Select</option>
                                                         @foreach ($supreme_court_category as $item)
                                                             <option value="{{ $item->id }}"
@@ -638,8 +619,8 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label for="supreme_court_subcategory_id"
-                                                       class="col-sm-4 col-form-label">Subcategory of Supreme Court
-                                                    Case</label>
+                                                       class="col-sm-4 col-form-label">Subcategory of
+                                                    Cases</label>
                                                 <div class="col-sm-8">
 
                                                     <select name="supreme_court_subcategory_id"

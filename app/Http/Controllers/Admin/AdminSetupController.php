@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\SetupCaseCategory;
 use App\Models\SetupCaseClass;
 use App\Models\SetupCaseStatus;
+use App\Models\SetupCaseSubcategory;
 use App\Models\SetupCaseTypes;
+use App\Models\SetupClientCategory;
+use App\Models\SetupClientSubcategory;
 use App\Models\SetupComplianceCategory;
 use App\Models\SetupCourtClass;
 use App\Models\SetupDesignation;
@@ -126,78 +129,78 @@ class AdminSetupController extends Controller
         return redirect()->back();
     }
 
-    public function case_category()
-    {
-        $data = SetupCaseCategory::all();
-        return view('setup.case_category.case_category',compact('data'));
-    }
-
-    public function add_case_category()
-    {
-        return view('setup.case_category.add_case_category');
-    }
-
-    public function save_case_category(Request $request)
-    {
-        $rules = [
-              'case_category_name' => 'required'
-        ];
-
-        $validMsg = [
-            'case_category_name.required' => 'Case Category name field is required'
-        ];
-
-        $this->validate($request, $rules, $validMsg);
-
-        $data = new SetupCaseCategory();
-        $data->case_category_name = $request->case_category_name;
-        $data->save();
-
-        session()->flash('success','Case Category Added Successfully');
-        return redirect()->route('case-category');
-
-    }
-
-    public function edit_case_category($id)
-    {
-        $data = SetupCaseCategory::find($id);
-        return view('setup.case_category.edit_case_category',compact('data'));
-    }
-
-    public function update_case_category(Request $request, $id)
-    {
-        $rules = [
-              'case_category_name' => 'required'
-        ];
-
-        $validMsg = [
-              'case_category_name.required' => 'Case Category Name field is required'
-        ];
-
-        $this->validate($request, $rules, $validMsg);
-
-        $data = SetupCaseCategory::find($id);
-        $data->case_category_name = $request->case_category_name;
-        $data->save();
-
-        session()->flash('success','Case Category Updated');
-        return redirect()->route('case-category');
-    }
-
-    public function delete_case_category($id)
-    {
-        $data = SetupCaseCategory::find($id);
-        if ($data['delete_status'] == 1){
-            $delete_status = 0;
-        }else{
-            $delete_status = 1;
-        }
-        $data->delete_status = $delete_status;
-        $data->save();
-
-        session()->flash('success', 'Case Category Deleted');
-        return redirect()->back();
-    }
+//    public function case_category()
+//    {
+//        $data = SetupCaseCategory::all();
+//        return view('setup.case_category.case_category',compact('data'));
+//    }
+//
+//    public function add_case_category()
+//    {
+//        return view('setup.case_category.add_case_category');
+//    }
+//
+//    public function save_case_category(Request $request)
+//    {
+//        $rules = [
+//              'case_category_name' => 'required'
+//        ];
+//
+//        $validMsg = [
+//            'case_category_name.required' => 'Case Category name field is required'
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
+//
+//        $data = new SetupCaseCategory();
+//        $data->case_category_name = $request->case_category_name;
+//        $data->save();
+//
+//        session()->flash('success','Case Category Added Successfully');
+//        return redirect()->route('case-category');
+//
+//    }
+//
+//    public function edit_case_category($id)
+//    {
+//        $data = SetupCaseCategory::find($id);
+//        return view('setup.case_category.edit_case_category',compact('data'));
+//    }
+//
+//    public function update_case_category(Request $request, $id)
+//    {
+//        $rules = [
+//              'case_category_name' => 'required'
+//        ];
+//
+//        $validMsg = [
+//              'case_category_name.required' => 'Case Category Name field is required'
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
+//
+//        $data = SetupCaseCategory::find($id);
+//        $data->case_category_name = $request->case_category_name;
+//        $data->save();
+//
+//        session()->flash('success','Case Category Updated');
+//        return redirect()->route('case-category');
+//    }
+//
+//    public function delete_case_category($id)
+//    {
+//        $data = SetupCaseCategory::find($id);
+//        if ($data['delete_status'] == 1){
+//            $delete_status = 0;
+//        }else{
+//            $delete_status = 1;
+//        }
+//        $data->delete_status = $delete_status;
+//        $data->save();
+//
+//        session()->flash('success', 'Case Category Deleted');
+//        return redirect()->back();
+//    }
 
 //case status setup
 
@@ -2885,75 +2888,75 @@ public function download_external_council_associates_files($id)
 
 //supreme_court_category setup
 
-public function supreme_court_category()
+public function case_category()
 {
-    $data = SetupSupremeCourtCategory::all();
+    $data = SetupCaseCategory::all();
 
                 // dd($data);
-    return view('setup.supreme_court_category.supreme_court_category',compact('data'));
+    return view('setup.case_category.case_category',compact('data'));
 }
 
-public function add_supreme_court_category()
+public function add_case_category()
 {
-    return view('setup.supreme_court_category.add_supreme_court_category');
+    return view('setup.case_category.add_case_category');
 }
 
-public function save_supreme_court_category(Request $request)
+public function save_case_category(Request $request)
 {
     $rules = [
-        'supreme_court_type' => 'required',
-        'supreme_court_category' => 'required',
+        'case_type' => 'required',
+        'case_category' => 'required',
     ];
 
     $validMsg = [
-        'supreme_court_type.required' => 'Supreme Court Type field is required',
-        'supreme_court_category.required' => 'Supreme Court Category field is required',
+        'case_type.required' => 'Case Type field is required.',
+        'case_category.required' => 'Case Category field is required.',
     ];
 
     $this->validate($request, $rules, $validMsg);
 
-    $data = new SetupSupremeCourtCategory();
-    $data->supreme_court_type = $request->supreme_court_type;
-    $data->supreme_court_category = $request->supreme_court_category;
+    $data = new SetupCaseCategory();
+    $data->case_type = $request->case_type;
+    $data->case_category = $request->case_category;
     $data->save();
 
-    session()->flash('success','Supreme Court Category Added Successfully');
-    return redirect()->route('supreme-court-category');
+    session()->flash('success','Case Category Added Successfully');
+    return redirect()->route('case-category');
 
 }
 
-public function edit_supreme_court_category($id)
+public function edit_case_category($id)
 {
-    $data = SetupSupremeCourtCategory::find($id);
-    return view('setup.supreme_court_category.edit_supreme_court_category',compact('data'));
+    $data = SetupCaseCategory::find($id);
+    return view('setup.case_category.edit_case_category',compact('data'));
 }
 
-public function update_supreme_court_category(Request $request, $id)
+public function update_case_category(Request $request, $id)
 {
     $rules = [
-        'supreme_court_type' => 'required',
-        'supreme_court_category' => 'required',
+        'case_type' => 'required',
+        'case_category' => 'required',
     ];
 
     $validMsg = [
-        'supreme_court_type.required' => 'Supreme Court Type field is required',
-        'supreme_court_category.required' => 'Supreme Court Category field is required',
+        'case_type.required' => 'Case Type field is required.',
+        'case_category.required' => 'Case Category field is required.',
     ];
 
     $this->validate($request, $rules, $validMsg);
 
-    $data = SetupSupremeCourtCategory::find($id);
-    $data->supreme_court_type = $request->supreme_court_type;
-    $data->supreme_court_category = $request->supreme_court_category;
+    $data = SetupCaseCategory::find($id);
+    $data->case_type = $request->case_type;
+    $data->case_category = $request->case_category;
     $data->save();
 
-    session()->flash('success','Supreme Court Category Updated');
-    return redirect()->route('supreme-court-category');
+    session()->flash('success','Case Category Updated');
+    return redirect()->route('case-category');
 }
 
-public function delete_supreme_court_category($id)
+public function delete_case_category($id)
 {
-    $data = SetupSupremeCourtCategory::find($id);
+    $data = SetupCaseCategory::find($id);
     if ($data['delete_status'] == 1){
         $delete_status = 0;
     }else{
@@ -2962,104 +2965,104 @@ public function delete_supreme_court_category($id)
     $data->delete_status = $delete_status;
     $data->save();
 
-    session()->flash('success', 'Supreme Court Category Deleted');
+    session()->flash('success', 'Case Category Deleted');
     return redirect()->back();
 }
 
 
-//supreme_court_subcategory setup
+//case_subcategory setup
 
-public function supreme_court_subcategory()
+public function case_subcategory()
 {
     //    $data = SetupSupremeCourtSubcategory::orderBy('id','desc')->get();
 
-    $data = DB::table('setup_supreme_court_subcategories')
-            ->leftJoin('setup_supreme_court_categories','setup_supreme_court_subcategories.supreme_court_category_id','=','setup_supreme_court_categories.id')
-            ->select('setup_supreme_court_subcategories.*','setup_supreme_court_categories.supreme_court_category')
-            ->orderBy('setup_supreme_court_subcategories.id','desc')
+    $data = DB::table('setup_case_subcategories')
+            ->leftJoin('setup_case_categories','setup_case_subcategories.case_category_id','=','setup_case_categories.id')
+            ->select('setup_case_subcategories.*','setup_case_categories.case_category')
+            ->orderBy('setup_case_subcategories.id','desc')
             ->get();
 
     // $data = json_decode(json_encode($data));
     // echo "<pre>";print_r($data);die;
 
-    return view('setup.supreme_court_subcategory.supreme_court_subcategory',compact('data'));
+    return view('setup.case_subcategory.case_subcategory',compact('data'));
 }
 
-public function add_supreme_court_subcategory()
+public function add_case_subcategory()
 {
     // $data = json_decode(json_encode($supreme_court_category));
     // echo "<pre>";print_r($data);
-    return view('setup.supreme_court_subcategory.add_supreme_court_subcategory');
+    return view('setup.case_subcategory.add_case_subcategory');
 }
 
-public function save_supreme_court_subcategory(Request $request)
+public function save_case_subcategory(Request $request)
 {
     // $data = json_decode(json_encode($request->all()));
     // echo "<pre>";print_r($data);die;
 
     $rules = [
-        'supreme_court_type' => 'required',
-        'supreme_court_category_id' => 'required',
-        'supreme_court_subcategory' => 'required',
+        'case_type' => 'required',
+        'case_category_id' => 'required',
+        'case_subcategory' => 'required',
     ];
 
     $validMsg = [
-        'supreme_court_type.required' => 'Supreme Court Type filed is required',
-        'supreme_court_category_id.required' => 'Supreme Court Category filed is required',
-        'supreme_court_subcategory.required' => 'Supreme Court Subcategory field is required',
+        'case_type.required' => 'Case Type filed is required',
+        'case_category_id.required' => 'Case Category filed is required',
+        'case_subcategory.required' => 'Case Subcategory field is required',
     ];
 
     $this->validate($request, $rules, $validMsg);
 
-    $data = new SetupSupremeCourtSubcategory();
-    $data->supreme_court_type = $request->supreme_court_type;
-    $data->supreme_court_category_id = $request->supreme_court_category_id;
-    $data->supreme_court_subcategory = $request->supreme_court_subcategory;
+    $data = new SetupCaseSubcategory();
+    $data->case_type = $request->case_type;
+    $data->case_category_id = $request->case_category_id;
+    $data->case_subcategory = $request->case_subcategory;
     $data->save();
 
-    session()->flash('success','Supreme Court Subcategory Added Successfully');
-    return redirect()->route('supreme-court-subcategory');
+    session()->flash('success','Case Subcategory Added Successfully');
+    return redirect()->route('case-subcategory');
 
 }
 
-public function edit_supreme_court_subcategory($id)
+public function edit_case_subcategory($id)
 {
-    $data = SetupSupremeCourtSubcategory::find($id);
-    $existing_supreme_court_category = SetupSupremeCourtCategory::where('supreme_court_type',$data->supreme_court_type)->get();
-    // $adsf = json_decode(json_encode($existing_supreme_court_category));
+    $data = SetupCaseSubcategory::find($id);
+    $existing_case_category = SetupCaseCategory::where('case_type',$data->case_type)->get();
+    // $adsf = json_decode(json_encode($existing_case_category));
     // echo "<pre>";print_r($adsf);die;
-    return view('setup.supreme_court_subcategory.edit_supreme_court_subcategory',compact('data','existing_supreme_court_category'));
+    return view('setup.case_subcategory.edit_case_subcategory',compact('data','existing_case_category'));
 }
 
-public function update_supreme_court_subcategory(Request $request, $id)
+public function update_case_subcategory(Request $request, $id)
 {
     $rules = [
-        'supreme_court_type' => 'required',
-        'supreme_court_category_id' => 'required',
-        'supreme_court_subcategory' => 'required',
+        'case_type' => 'required',
+        'case_category_id' => 'required',
+        'case_subcategory' => 'required',
     ];
 
     $validMsg = [
-        'supreme_court_type.required' => 'Supreme Court Type filed is required',
-        'supreme_court_category_id.required' => 'Supreme Court Category filed is required',
-        'supreme_court_subcategory.required' => 'Supreme Court Subcategory field is required',
+        'case_type.required' => 'Case Type filed is required',
+        'case_category_id.required' => 'Case Category filed is required',
+        'case_subcategory.required' => 'Case Subcategory field is required',
     ];
 
     $this->validate($request, $rules, $validMsg);
 
-    $data = SetupSupremeCourtSubcategory::find($id);
-    $data->supreme_court_type = $request->supreme_court_type;
-    $data->supreme_court_category_id = $request->supreme_court_category_id;
-    $data->supreme_court_subcategory = $request->supreme_court_subcategory;
+    $data = SetupCaseSubcategory::find($id);
+    $data->case_type = $request->case_type;
+    $data->case_category_id = $request->case_category_id;
+    $data->case_subcategory = $request->case_subcategory;
     $data->save();
 
-    session()->flash('success','Supreme Court Subcategory Updated');
-    return redirect()->route('supreme-court-subcategory');
+    session()->flash('success','Case Subcategory Updated');
+    return redirect()->route('case-subcategory');
 }
 
-public function delete_supreme_court_subcategory($id)
+public function delete_case_subcategory($id)
 {
-    $data = SetupSupremeCourtSubcategory::find($id);
+    $data = SetupCaseSubcategory::find($id);
     if ($data['delete_status'] == 1){
         $delete_status = 0;
     }else{
@@ -3068,21 +3071,36 @@ public function delete_supreme_court_subcategory($id)
     $data->delete_status = $delete_status;
     $data->save();
 
-    session()->flash('success', 'Supreme Court Subcategory Deleted');
+    session()->flash('success', 'Case Subcategory Deleted');
     return redirect()->back();
 }
 
-public function find_supreme_court_category(Request $request)
+public function find_case_category(Request $request)
 {
-    // dd('aaaaaaaaeeeeeee');
 
-    if ($request->supreme_court_type == "High Court Division") {
+    if ($request->case_type == "Civil Cases") {
 
-        $data = SetupSupremeCourtCategory::where(['supreme_court_type' => 'High Court Division', 'delete_status' => 0])->get();
+        $data = SetupCaseCategory::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->get();
 
-    } else {
+    } else if($request->case_type == "Criminal Cases"){
 
-        $data = SetupSupremeCourtCategory::where(['supreme_court_type' => 'Appellate Court Division','delete_status' => 0])->get();
+        $data = SetupCaseCategory::where(['case_type' => 'Criminal Cases','delete_status' => 0])->get();
+
+    }else if($request->case_type == "Labour Cases"){
+
+        $data = SetupCaseCategory::where(['case_type' => 'Labour Cases','delete_status' => 0])->get();
+
+    }else if($request->case_type == "Special Quassi - Judicial Cases"){
+
+        $data = SetupCaseCategory::where(['case_type' => 'Special Quassi - Judicial Cases','delete_status' => 0])->get();
+
+    }else if($request->case_type == "High Court Division"){
+
+        $data = SetupCaseCategory::where(['case_type' => 'High Court Division','delete_status' => 0])->get();
+
+    }else if($request->case_type == "Appellate Court Division"){
+
+        $data = SetupCaseCategory::where(['case_type' => 'Appellate Court Division','delete_status' => 0])->get();
 
     }
 
@@ -3244,7 +3262,172 @@ public function find_supreme_court_category(Request $request)
     }
 
 
+    //section setup
 
+    public function client_category()
+    {
+        $data = SetupClientCategory::all();
+        return view('setup.client_category.client_category',compact('data'));
+    }
+
+    public function add_client_category()
+    {
+        return view('setup.client_category.add_client_category');
+    }
+
+    public function save_client_category(Request $request)
+    {
+        $rules = [
+            'client_category_name' => 'required'
+        ];
+
+        $validMsg = [
+            'client_category_name.required' => 'Client Category field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = new SetupClientCategory();
+        $data->client_category_name = $request->client_category_name;
+        $data->save();
+
+        session()->flash('success','Section Added Successfully');
+        return redirect()->route('client-category');
+
+    }
+
+    public function edit_client_category($id)
+    {
+        $data = SetupClientCategory::find($id);
+        return view('setup.client_category.edit_client_category',compact('data'));
+    }
+
+    public function update_client_category(Request $request, $id)
+    {
+        $rules = [
+            'client_category_name' => 'required'
+        ];
+
+        $validMsg = [
+            'client_category_name.required' => 'Client Category field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = SetupClientCategory::find($id);
+        $data->client_category_name = $request->client_category_name;
+        $data->save();
+
+        session()->flash('success','Section Updated');
+        return redirect()->route('client-category');
+    }
+
+    public function delete_client_category($id)
+    {
+        $data = SetupClientCategory::find($id);
+        if ($data['delete_status'] == 1){
+            $delete_status = 0;
+        }else{
+            $delete_status = 1;
+        }
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success', 'Client Category Deleted');
+        return redirect()->back();
+    }
+
+
+    //client subcategory setup
+
+    public function client_subcategory()
+    {
+        //    $data = SetupBankBranch::all();
+        $data = DB::table('setup_client_subcategories')
+            ->leftJoin('setup_client_categories','setup_client_subcategories.client_category_id', '=', 'setup_client_categories.id')
+            ->select('setup_client_subcategories.*','setup_client_categories.client_category_name')
+            ->get();
+        // dd($data);
+        return view('setup.client_subcategory.client_subcategory',compact('data'));
+    }
+
+    public function add_client_subcategory()
+    {
+        $client_category = SetupClientCategory::where('delete_status',0)->get();
+        return view('setup.client_subcategory.add_client_subcategory',compact('client_category'));
+    }
+
+    public function save_client_subcategory(Request $request)
+    {
+        $rules = [
+            'client_subcategory_name' => 'required'
+        ];
+
+        $validMsg = [
+            'client_subcategory_name.required' => 'Client Subcategory field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = new SetupClientSubcategory();
+        $data->client_category_id = $request->client_category_id;
+        $data->client_subcategory_name = $request->client_subcategory_name;
+        $data->save();
+
+        session()->flash('success','Client Subcategory Added Successfully');
+        return redirect()->route('client-subcategory');
+
+    }
+
+    public function edit_client_subcategory($id)
+    {
+        $client_category = SetupClientCategory::where('delete_status',0)->get();
+
+        $data = SetupClientSubcategory::find($id);
+        return view('setup.client_subcategory.edit_client_subcategory',compact('data','client_category'));
+    }
+
+    public function update_client_subcategory(Request $request, $id)
+    {
+        $rules = [
+            'client_subcategory_name' => 'required'
+        ];
+
+        $validMsg = [
+            'client_subcategory_name.required' => 'Client Subcategory field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = SetupClientSubcategory::find($id);
+        $data->client_category_id = $request->client_category_id;
+        $data->client_subcategory_name = $request->client_subcategory_name;
+        $data->save();
+
+        session()->flash('success','Client Subcategory Updated');
+        return redirect()->route('client-subcategory');
+    }
+
+    public function delete_client_subcategory($id)
+    {
+        $data = SetupClientSubcategory::find($id);
+        if ($data['delete_status'] == 1){
+            $delete_status = 0;
+        }else{
+            $delete_status = 1;
+        }
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success', 'Client Subcategory Deleted');
+        return redirect()->back();
+    }
+
+    public function find_client_subcategory(Request $request)
+    {
+        $data = SetupClientSubcategory::where(['client_category_id' => $request->client_category_id, 'delete_status' => 0 ])->get();
+        return response()->json($data);
+    }
 
 
 }

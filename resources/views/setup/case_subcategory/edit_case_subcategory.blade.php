@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Edit Supreme Court Subcategory</h1>
+                        <h1 class="m-0 text-dark">Edit Case Subcategory</h1>
 
                     </div><!-- /.col -->
 
@@ -20,7 +20,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('supreme-court-subcategory') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('case-subcategory') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
                             </li>
                         </ol>
                     </div>
@@ -48,42 +48,46 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Edit Supreme Court Subcategory</h3>
+                                <h3 class="card-title" id="heading">Edit Case Subcategory</h3>
                             </div>
 
-                            <form action="{{ route('update-supreme-court-subcategory',$data->id) }}" method="post">
+                            <form action="{{ route('update-case-subcategory',$data->id) }}" method="post">
                                 @csrf
                                 <div class="card-body">
 
                                     <div class="col-md-12">
 
                                         <div class="form-group">
-                                            <label for="supreme_court_type"> Supreme Court Type </label>
-                                            <select name="supreme_court_type" class="form-control select2" id="supreme_court_type" action="{{ route('find-supreme-court-category') }}">
+                                            <label for="case_type"> Case Type </label>
+                                            <select name="case_type" class="form-control select2" id="case_type" action="{{ route('find-case-category') }}">
                                                 <option value="">Select</option>
-                                                <option {{ $data->supreme_court_type == "High Court Division" ? 'selected' : '' }} >High Court Division</option>
-                                                <option {{ $data->supreme_court_type == "Appellate Court Division" ? 'selected' : '' }} >Appellate Court Division</option>
+                                                <option value="Civil Cases" {{ $data->case_type == "Civil Cases" ? 'selected' : '' }}> Civil Cases </option>
+                                                <option value="Criminal Cases" {{ $data->case_type == "Criminal Cases" ? 'selected' : '' }}> Criminal Cases </option>
+                                                <option value="Labour Cases" {{ $data->case_type == "Labour Cases" ? 'selected' : '' }}> Labour Cases </option>
+                                                <option value="Special Quassi - Judicial Cases" {{ $data->case_type == "Special Quassi - Judicial Cases" ? 'selected' : '' }}> Special Quassi - Judicial Cases </option>
+                                                <option value="High Court Division" {{ $data->case_type == "High Court Division" ? 'selected' : '' }}> High Court Division </option>
+                                                <option value="Appellate Court Division" {{ $data->case_type == "Appellate Court Division" ? 'selected' : '' }}> Appellate Court Division </option>
                                             </select>
-                                            @error('supreme_court_type')<span class="text-danger">{{$message}}</span>@enderror
+                                            @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="supreme_court_category_id"> Supreme Court Category </label>
-                                            <select name="supreme_court_category_id" class="form-control select2" id="supreme_court_category_id">
+                                            <label for="case_category_id"> Case Category </label>
+                                            <select name="case_category_id" class="form-control select2" id="case_category_id">
                                                 <option value="">Select</option>
-                                                
-                                                @foreach ($existing_supreme_court_category as $item)
-                                                    <option {{ $data->supreme_court_category_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->supreme_court_category }}</option>
-                                                @endforeach
-                                                
-                                            </select>
-                                            @error('supreme_court_category_id')<span class="text-danger">{{$message}}</span>@enderror
 
-                                        </div>                                        
+                                                @foreach ($existing_case_category as $item)
+                                                    <option {{ $data->case_category_id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->case_category }}</option>
+                                                @endforeach
+
+                                            </select>
+                                            @error('case_category_id')<span class="text-danger">{{$message}}</span>@enderror
+
+                                        </div>
                                         <div class="form-group">
-                                            <label for="supreme_court_subcategory"> Supreme Court Subcategory </label>
-                                            <input type="text" class="form-control" name="supreme_court_subcategory"
-                                                   id="supreme_court_subcategory" value="{{ $data->supreme_court_subcategory }}">
-                                            @error('supreme_court_subcategory')<span class="text-danger">{{$message}}</span>@enderror
+                                            <label for="case_subcategory"> Case Subcategory </label>
+                                            <input type="text" class="form-control" name="case_subcategory"
+                                                   id="case_subcategory" value="{{ $data->case_subcategory }}">
+                                            @error('case_subcategory')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
 
                                         <div class="float-right">
