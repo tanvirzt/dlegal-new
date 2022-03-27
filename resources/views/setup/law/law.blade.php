@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Relevant Law/Section </h1>
+                        <h1> Law </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Relevant Law/Section </li>
+                            <li class="breadcrumb-item active"> Law </li>
                         </ol>
                     </div>
                 </div>
@@ -38,8 +38,8 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-law-section') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Relevant Law/Section </button></a>
+                                    <a href="{{ route('add-law') }}"><button class="btn btn-sm
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Law </button></a>
                                 </div>
 
                             </div>
@@ -49,7 +49,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center text-nowrap">ID</th>
-                                        <th class="text-center text-nowrap">Relevant Law/Section</th>
+                                        <th class="text-center text-nowrap">Law</th>
                                         <th class="text-center text-nowrap">Status</th>
                                         <th class="text-center text-nowrap">Action</th>
                                     </tr>
@@ -62,7 +62,7 @@
                                                 {{ $datum->id }}
                                             </td>
                                             <td class="text-center">
-                                                {{ $datum->law_section_name }}
+                                                {{ $datum->law_name }}
                                             </td>
                                             <td class="text-center">
                                                 @if ($datum->delete_status == 0)
@@ -77,11 +77,11 @@
                                             </td>
                                             <td class="text-center">
 
-                                                    <a href="{{ route('edit-law-section',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                    <a href="{{ route('edit-law',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
-                                                    <form method="POST" action="{{ route('delete-law-section',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                    <form method="POST" action="{{ route('delete-law',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                     </form>
 
                                             </td>

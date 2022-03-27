@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SetupCaseClass;
+use App\Models\SetupCaseSubcategory;
 use App\Models\SetupSection;
 use App\Models\SetupSupremeCourtCategory;
 use App\Models\SetupSupremeCourtSubcategory;
@@ -54,9 +55,9 @@ class HighCourtCasesController extends Controller
         return view('litigation_management.cases.high_court_cases.high_court_cases', compact('data', 'court', 'supreme_court_category'));
     }
 
-    public function find_supreme_court_subcategory(Request $request)
+    public function find_case_subcategory(Request $request)
     {
-        $data = SetupSupremeCourtSubcategory::where(['supreme_court_category_id' => $request->supreme_court_category_id, 'delete_status' => 0])->get();
+        $data = SetupCaseSubcategory::where(['case_category_id' => $request->case_category_id, 'delete_status' => 0])->get();
         return response()->json($data);
     }
 

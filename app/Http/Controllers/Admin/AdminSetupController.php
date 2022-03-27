@@ -23,7 +23,7 @@ use App\Models\SetupComplianceType;
 use App\Models\CivilCases;
 use App\Models\SetupDivision;
 use App\Models\SetupDistrict;
-use App\Models\SetupLawSection;
+use App\Models\SetupLaw;
 use App\Models\SetupNextDateReason;
 use App\Models\SetupCourtLastOrder;
 use App\Models\SetupExternalCouncilFile;
@@ -742,67 +742,67 @@ class AdminSetupController extends Controller
 
     //law section setup
 
-    public function law_section()
+    public function law()
     {
-        $data = SetupLawSection::all();
-        return view('setup.law_section.law_section',compact('data'));
+        $data = SetupLaw::all();
+        return view('setup.law.law',compact('data'));
     }
 
-    public function add_law_section()
+    public function add_law()
     {
-        return view('setup.law_section.add_law_section');
+        return view('setup.law.add_law');
     }
 
-    public function save_law_section(Request $request)
+    public function save_law(Request $request)
     {
         $rules = [
-            'law_section_name' => 'required'
+            'law_name' => 'required'
         ];
 
         $validMsg = [
-            'law_section_name.required' => 'Law Section field is required'
+            'law_name.required' => 'Law field is required'
         ];
 
         $this->validate($request, $rules, $validMsg);
 
-        $data = new SetupLawSection();
-        $data->law_section_name = $request->law_section_name;
+        $data = new SetupLaw();
+        $data->law_name = $request->law_name;
         $data->save();
 
-        session()->flash('success','Law Section Added Successfully');
-        return redirect()->route('law-section');
+        session()->flash('success','Law Added Successfully');
+        return redirect()->route('law');
 
     }
 
-    public function edit_law_section($id)
+    public function edit_law($id)
     {
-        $data = SetupLawSection::find($id);
-        return view('setup.law_section.edit_law_section',compact('data'));
+        $data = SetupLaw::find($id);
+        return view('setup.law.edit_law',compact('data'));
     }
 
-    public function update_law_section(Request $request, $id)
+    public function update_law(Request $request, $id)
     {
         $rules = [
-            'law_section_name' => 'required'
+            'law_name' => 'required'
         ];
 
         $validMsg = [
-            'law_section_name.required' => 'Law Section field is required'
+            'law_name.required' => 'Law field is required'
         ];
 
         $this->validate($request, $rules, $validMsg);
 
-        $data = SetupLawSection::find($id);
-        $data->law_section_name = $request->law_section_name;
+        $data = SetupLaw::find($id);
+        $data->law_name = $request->law_name;
         $data->save();
 
-        session()->flash('success','Law Section Updated');
-        return redirect()->route('law-section');
+        session()->flash('success','Law Updated');
+        return redirect()->route('law');
     }
 
-    public function delete_law_section($id)
+    public function delete_law($id)
     {
-        $data = SetupLawSection::find($id);
+        $data = SetupLaw::find($id);
         if ($data['delete_status'] == 1){
             $delete_status = 0;
         }else{

@@ -145,12 +145,12 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-district/{id}','AdminSetupController@update_district')->name('update-district');
         Route::post('delete-district/{id}','AdminSetupController@delete_district')->name('delete-district');
 
-        Route::get('law-section','AdminSetupController@law_section')->name('law-section');
-        Route::get('add-law-section','AdminSetupController@add_law_section')->name('add-law-section');
-        Route::post('save-law-section','AdminSetupController@save_law_section')->name('save-law-section');
-        Route::get('edit-law-section/{id}','AdminSetupController@edit_law_section')->name('edit-law-section');
-        Route::post('update-law-section/{id}','AdminSetupController@update_law_section')->name('update-law-section');
-        Route::post('delete-law-section/{id}','AdminSetupController@delete_law_section')->name('delete-law-section');
+        Route::get('law','AdminSetupController@law')->name('law');
+        Route::get('add-law','AdminSetupController@add_law')->name('add-law');
+        Route::post('save-law','AdminSetupController@save_law')->name('save-law');
+        Route::get('edit-law/{id}','AdminSetupController@edit_law')->name('edit-law');
+        Route::post('update-law/{id}','AdminSetupController@update_law')->name('update-law');
+        Route::post('delete-law/{id}','AdminSetupController@delete_law')->name('delete-law');
 
         Route::get('/find-associates','CivilCasesController@find_associates')->name('find-associates');
         Route::get('/find-district','CivilCasesController@find_district')->name('find_district');
@@ -466,7 +466,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-section/{id}','AdminSetupController@update_section')->name('update-section');
         Route::post('delete-section/{id}','AdminSetupController@delete_section')->name('delete-section');
 
-        Route::get('find-supreme-court-subcategory','HighCourtCasesController@find_supreme_court_subcategory')->name('find-supreme-court-subcategory');
+        Route::get('find-case-subcategory','HighCourtCasesController@find_case_subcategory')->name('find-case-subcategory');
 
         Route::get('client-category', 'AdminSetupController@client_category')->name('client-category');
         Route::get('add-client-category','AdminSetupController@add_client_category')->name('add-client-category');

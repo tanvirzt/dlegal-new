@@ -20,7 +20,7 @@
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-        
+
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
@@ -83,14 +83,12 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
                                                     <div class="form-group row">
                                                         <label for="name_of_the_court_id" class="col-sm-4 col-form-label">
                                                             Name of the Court </label>
                                                         <div class="col-sm-8">
                                                             <select name="name_of_the_court_id"
-                                                                class="form-control select2">
+                                                                    class="form-control select2">
                                                                 <option value="">Select</option>
                                                                 @foreach ($court as $item)
                                                                     <option value="{{ $item->id }}">
@@ -98,8 +96,37 @@
                                                                 @endforeach
                                                             </select>
                                                             @error('name_of_the_court_id')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                            <span class="text-danger">{{ $message }}</span>
                                                             @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group row">
+                                                        <label for="case_category_id" class="col-sm-4 col-form-label">Suit Category</label>
+                                                        <div class="col-sm-8">
+
+                                                            <select name="case_category_id" id="case_category_id" class="form-control select2" action="{{ route('find-case-subcategory') }}">
+                                                                <option value="">Select</option>
+                                                                @foreach($case_category as $item)
+                                                                    <option value="{{ $item->id }}" {{(old('case_category_id') == $item->id ? 'selected':'')}}>{{ $item->case_category }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('case_category_id')<span class="text-danger">{{$message}}</span>@enderror
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="case_subcategory_id" class="col-sm-4 col-form-label">Suit Subcategory</label>
+                                                        <div class="col-sm-8">
+
+                                                            <select name="case_subcategory_id" id="case_subcategory_id" class="form-control select2">
+                                                                <option value="">Select</option>
+
+                                                            </select>
+                                                            @error('case_subcategory_id')<span class="text-danger">{{$message}}</span>@enderror
+
                                                         </div>
                                                     </div>
 
@@ -119,7 +146,7 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        
+
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
@@ -140,7 +167,7 @@
                                         <th class="text-center">Court Name</th>
                                         <th class="text-center">District</th>
                                         <th class="text-center">Company</th>
-                                        
+
                                         <th class="text-center">Status</th>
                                         <th class="text-center" width="13%">Action</th>
                                     </tr>
@@ -189,7 +216,7 @@
 
                                                 <form method="POST" action="{{ route('delete-criminal-cases',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
                                             </td>
                                         </tr>

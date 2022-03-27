@@ -20,7 +20,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('law-section') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('law') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
                             </li>
                         </ol>
                     </div>
@@ -48,20 +48,20 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Edit Law Section</h3>
+                                <h3 class="card-title" id="heading">Edit Law</h3>
                             </div>
 
-                            <form action="{{ route('update-law-section',$data->id) }}" method="post">
+                            <form action="{{ route('update-law',$data->id) }}" method="post">
                                 @csrf
                                 <div class="card-body">
 
                                     <div class="col-md-12">
 
                                         <div class="form-group">
-                                            <label for="law_section_name"> Law Section Name </label>
-                                            <input type="text" class="form-control" name="law_section_name"
-                                                   id="law_section_name" value="{{ $data->law_section_name }}">
-                                            @error('law_section_name')<span class="text-danger">{{$message}}</span>@enderror
+                                            <label for="law_name"> Law Name </label>
+                                            <input type="text" class="form-control" name="law_name"
+                                                   id="law_name" value="{{ $data->law_name }}">
+                                            @error('law_name')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
 
                                         <div class="float-right">

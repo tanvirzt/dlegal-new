@@ -88,8 +88,6 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
                                                     <div class="form-group row">
                                                         <label for="name_of_the_court_id"
                                                                class="col-sm-4 col-form-label">
@@ -108,7 +106,34 @@
                                                             @enderror
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="case_category_id" class="col-sm-4 col-form-label">Suit Category</label>
+                                                        <div class="col-sm-8">
 
+                                                            <select name="case_category_id" id="case_category_id" class="form-control select2" action="{{ route('find-case-subcategory') }}">
+                                                                <option value="">Select</option>
+                                                                @foreach($case_category as $item)
+                                                                    <option value="{{ $item->id }}" {{(old('case_category_id') == $item->id ? 'selected':'')}}>{{ $item->case_category }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('case_category_id')<span class="text-danger">{{$message}}</span>@enderror
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="case_subcategory_id" class="col-sm-4 col-form-label">Suit Subcategory</label>
+                                                        <div class="col-sm-8">
+
+                                                            <select name="case_subcategory_id" id="case_subcategory_id" class="form-control select2">
+                                                                <option value="">Select</option>
+
+                                                            </select>
+                                                            @error('case_subcategory_id')<span class="text-danger">{{$message}}</span>@enderror
+
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -149,11 +174,10 @@
                                     <thead>
                                     <tr>
                                         <th class="text-nowrap text-center">Case No</th>
-                                        <th class="text-center">Suit Value</th>
-                                        <th class="text-center">Division</th>
-                                        <th class="text-nowrap"> Court Name</th>
-                                        <th class="text-center">District</th>
-                                        <th class="text-center">Company</th>
+                                        <th class="text-center">Case Year</th>
+                                        <th class="text-center">Ref No</th>
+                                        <th class="text-nowrap"> Amount </th>
+                                        <th class="text-center">Location</th>
                                         <th class="text-nowrap">Plaintiff Name</th>
                                         <th class="text-nowrap">Defendent Name</th>
                                         <th class="text-center">Status</th>
@@ -168,26 +192,22 @@
                                                     {{ $datum->case_no }} </a>
                                             </td>
                                             <td>
-                                                {{ $datum->name_of_suit }}
+                                                {{ $datum->case_year }}
                                             </td>
                                             <td>
-                                                {{ $datum->division_name }}
+                                                {{ $datum->ref_no }}
                                             </td>
                                             <td>
-                                                {{ $datum->court_name }}
+                                                {{ $datum->amount }}
                                             </td>
                                             <td>
-                                                {{ $datum->district_name }}
-                                            </td>
-
-                                            <td>
-                                                {{ $datum->company_name }}
+                                                {{ $datum->location }}
                                             </td>
                                             <td>
                                                 {{ $datum->plaintiff_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->defendent_name }}
+                                                {{ $datum->defendant_name }}
                                             </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)

@@ -287,9 +287,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('law-section') }}" class="nav-link">
+                            <a href="{{ route('law') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Relevant Law/Section</p>
+                                <p>Law</p>
                             </a>
                         </li>
                         <li class="nav-item">
