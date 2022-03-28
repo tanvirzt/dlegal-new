@@ -213,16 +213,6 @@ class CivilCasesController extends Controller
     {
 //        dd($request->all());
 
-//        $rules = [
-//            'case_no' => 'required|unique:civil_cases',
-//        ];
-//
-//        $validMsg = [
-//            'case_no.required' => 'Case No. field is required.',
-//        ];
-//
-//        $this->validate($request, $rules, $validMsg);
-
         DB::beginTransaction();
 
         $data = CivilCases::find($id);
@@ -407,7 +397,7 @@ class CivilCasesController extends Controller
 
     public function search_civil_cases(Request $request)
     {
-
+//dd($request->all());
         $query = DB::table('civil_cases');
 
         if ($request->case_no && $request->date_of_filing && $request->name_of_the_court_id) {

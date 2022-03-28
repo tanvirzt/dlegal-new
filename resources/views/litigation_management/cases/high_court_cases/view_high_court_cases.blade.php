@@ -69,12 +69,6 @@
                                     <table class="table table-responsive table-hover table-bordered">
                                         <tbody>
                                             <tr>
-                                                <th>Lower Court </th>
-                                                <td>{{ $data->lower_court }}</td>
-                                                <th>Case Received (From)</th>
-                                                <td>{{ $data->case_received_lawyer_first_name }} {{ $data->case_received_lawyer_middle_name }} {{ $data->case_received_lawyer_last_name }}</td>
-                                            </tr>
-                                            <tr>
                                                 <th>Case No. (Lower Court) </th>
                                                 <td>{{ $data->case_no }}</td>
                                                 <th>Case Papers Received</th>
@@ -99,40 +93,46 @@
                                                 <td>{{ $data->tender_no_date }}</td>
                                             </tr>
                                             <tr>
-                                                <th>Case Category </th>
-                                                <td>{{ $data->case_category_name }}</td>
-                                                <th>Category of Supreme Court Case</th>
-                                                <td>{{ $data->supreme_court_category }}</td>
-                                            </tr>
-                                            <tr>
                                                 <th>Class of Cases </th>
                                                 <td>{{ $data->case_class_name }}</td>
-                                                <th>Subcategory of Supreme Court Case</th>
-                                                <td>{{ $data->supreme_court_subcategory }}</td>
+                                                <th>Category of Cases</th>
+                                                <td>{{ $data->case_category }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Type of Cases </th>
                                                 <td>{{ $data->case_types_name }}</td>
+                                                <th>Subcategory of Cases</th>
+                                                <td>{{ $data->case_subcategory }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Laws </th>
+                                                <td>{{ $data->law_name }}</td>
                                                 <th>Case No. (High Court Division)</th>
                                                 <td>{{ $data->case_no_hcd }}</td>
                                             </tr>
                                             <tr>
-                                                <th>Relevant Laws/Sections</th>
-                                                <td>{{ $data->relevant_law_section_name }}</td>
+                                                <th>Relevant Laws </th>
+                                                <td>{{ $data->relevant_law_name }}</td>
                                                 <th>Date of filing(High Court Division)</th>
                                                 <td>{{ $data->date_of_filing_hcd }}</td>
                                             </tr>
                                             <tr>
+                                                <th>Relevant Sections</th>
+                                                <td>{{ $data->relevant_section_name }}</td>
+                                                <th>Court (High Court Division)</th>
+                                                <td>{{ $data->hcd_court_name }}</td>
+                                            </tr>
+                                            <tr>
                                                 <th>Section</th>
                                                 <td>{{ $data->section_name }}</td>
-                                                <th>Court (High Court Divisoin)</th>
-                                                <td>{{ $data->hcd_court_name }}</td>
+                                                <th>Laws</th>
+                                                <td>{{ $data->laws_law_name }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Date of filing </th>
                                                 <td>{{ $data->date_of_filing }}</td>
-                                                <th>Law & Sections</th>
-                                                <td>{{ $data->law_section_name }}</td>
+                                                <th>Sections</th>
+                                                <td>{{ $data->sections_section_name }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Plaintiff Name</th>
@@ -142,7 +142,7 @@
                                             </tr>
                                             <tr>
                                                 <th>Plaintiff Designation</th>
-                                                <td>{{ $data->designation_name }}</td>
+                                                <td>{{ $data->plaintiff_designation_name }}</td>
                                                 <th>Order Date</th>
                                                 <td>{{ $data->order_date }}</td>
                                             </tr>
@@ -259,6 +259,11 @@
                                                 <td>{{ $data->total_legal_bill_amount }}</td>
                                                 <th>Recommendations</th>
                                                 <td>{{ $data->recommendations }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Case Received (From)</th>
+                                                <td>{{ $data->case_received_lawyer_first_name }} {{ $data->case_received_lawyer_middle_name }} {{ $data->case_received_lawyer_last_name }}</td>
+
                                             </tr>
 
 

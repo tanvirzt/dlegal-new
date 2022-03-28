@@ -66,6 +66,13 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
+                                                <label for="case_year" class="col-sm-4 col-form-label">Case Year</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="case_year" name="case_year" value="{{old('case_year')}}">
+                                                    @error('case_year')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
                                                 <label for="client_category_id" class="col-sm-4 col-form-label">Client
                                                     Category</label>
                                                 <div class="col-sm-8">
@@ -138,13 +145,7 @@
 
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="case_year" class="col-sm-4 col-form-label">Case Year</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="case_year" name="case_year" value="{{old('case_year')}}">
-                                                    @error('case_year')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
+
                                             <div class="form-group row">
                                                 <label for="case_type_id" class="col-sm-4 col-form-label">Type of
                                                     Cases</label>

@@ -35,7 +35,7 @@ class LabourCasesController extends Controller
 
   public function labour_cases()
   {
-      // $data = LabourCase::all();
+       $data = LabourCase::all();
 // dd($data);
 
         $division = DB::table("setup_divisions")->get();
@@ -43,15 +43,15 @@ class LabourCasesController extends Controller
         $court = SetupCourt::where('delete_status',0)->get();
 
 
-         $data = DB::table('labour_cases')
-                ->leftJoin('setup_divisions','labour_cases.division_id', '=', 'setup_divisions.id')
-                ->leftJoin('setup_districts','labour_cases.district_id','=','setup_districts.id')
-                ->leftJoin('setup_case_statuses','labour_cases.case_status_id','=','setup_case_statuses.id')
-                ->leftJoin('setup_case_categories','labour_cases.case_category_nature_id','=','setup_case_categories.id')
-                ->leftJoin('setup_courts','labour_cases.name_of_the_court_id','=','setup_courts.id')
-                ->leftJoin('setup_companies','labour_cases.company_id','=','setup_companies.id')
-                ->select('labour_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
-                ->get();
+//         $data = DB::table('labour_cases')
+//                ->leftJoin('setup_divisions','labour_cases.division_id', '=', 'setup_divisions.id')
+//                ->leftJoin('setup_districts','labour_cases.district_id','=','setup_districts.id')
+//                ->leftJoin('setup_case_statuses','labour_cases.case_status_id','=','setup_case_statuses.id')
+//                ->leftJoin('setup_case_categories','labour_cases.case_category_nature_id','=','setup_case_categories.id')
+//                ->leftJoin('setup_courts','labour_cases.name_of_the_court_id','=','setup_courts.id')
+//                ->leftJoin('setup_companies','labour_cases.company_id','=','setup_companies.id')
+//                ->select('labour_cases.*','setup_divisions.division_name','setup_districts.district_name','setup_case_statuses.case_status_name','setup_case_categories.case_category_name','setup_courts.court_name','setup_companies.company_name')
+//                ->get();
         // dd($data);
 
       return view('litigation_management.cases.labour_cases.labour_cases',compact('data','division','case_types','court'));
@@ -78,8 +78,8 @@ class LabourCasesController extends Controller
      $internal_council = SetupInternalCouncil::where('delete_status',0)->get();
      $branch = SetupBranch::where('delete_status',0)->get();
      $program = SetupProgram::where('delete_status',0)->get();
-     $alligation = SetupAlligation::where('delete_status',0)->get();
-     return view('litigation_management.cases.labour_cases.add_labour_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','alligation','property_type','case_types','company','internal_council'));
+
+     return view('litigation_management.cases.labour_cases.add_labour_cases',compact('person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','property_type','case_types','company','internal_council'));
   }
 
   public function save_labour_cases(Request $request)
@@ -218,12 +218,11 @@ class LabourCasesController extends Controller
     $internal_council = SetupInternalCouncil::where('delete_status',0)->get();
     $branch = SetupBranch::where('delete_status',0)->get();
     $program = SetupProgram::where('delete_status',0)->get();
-    $alligation = SetupAlligation::where('delete_status',0)->get();
     $data = LabourCase::find($id);
     $existing_district = SetupDistrict::where('division_id',$data->division_id)->get();
     $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_name_id)->get();
 
-    return view('litigation_management.cases.labour_cases.edit_labour_cases',compact('data','existing_district','person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','alligation','property_type','case_types','company','internal_council','existing_ext_coun_associates'));
+    return view('litigation_management.cases.labour_cases.edit_labour_cases',compact('data','existing_district','person_title','division','case_status','case_category','external_council','designation','court','law_section','next_date_reason','next_date_reason','last_court_order','zone','area','branch','program','property_type','case_types','company','internal_council','existing_ext_coun_associates'));
   }
 
   public function update_labour_cases(Request $request, $id)

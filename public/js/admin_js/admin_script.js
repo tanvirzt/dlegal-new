@@ -519,11 +519,12 @@ $(document).ready(function () {
 
                                 <tr>
                                     <td><a href="view-criminal-cases/${value.id}"> ${value.case_no} </a></td>
-                                    <td> ${value.subsequent_case_no === null ? '' : value.subsequent_case_no} </td>
-                                    <td> ${value.division_name === null ? '' : value.division_name} </td>
-                                    <td> ${value.court_name === null ? '' : value.court_name} </td>
-                                    <td> ${value.district_name === null ? '' : value.district_name} </td>
-                                    <td> ${value.company_name === null ? '' : value.company_name} </td>
+                                    <td> ${value.case_year === null ? '' : value.case_year} </td>
+                                    <td> ${value.alligation === null ? '' : value.alligation} </td>
+                                    <td> ${value.amount === null ? '' : value.amount} </td>
+                                    <td> ${value.name_of_the_complainant === null ? '' : value.name_of_the_complainant} </td>
+                                    <td> ${value.accused_name === null ? '' : value.accused_name} </td>
+                                    <td> ${value.case_notes === null ? '' : value.case_notes} </td>
                                     <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
                                         <a href="view-criminal-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
@@ -553,7 +554,7 @@ $(document).ready(function () {
                         $('#search_data').append(`
 
                                 <tr>
-                                    <td><a href="view-criminal-cases/${value.id}"> ${value.case_no} </a></td>
+                                    <td><a href="view-labour-cases/${value.id}"> ${value.case_no} </a></td>
                                     <td> ${value.subsequent_case_no === null ? '' : value.subsequent_case_no} </td>
                                     <td> ${value.division_name === null ? '' : value.division_name} </td>
                                     <td> ${value.court_name === null ? '' : value.court_name} </td>
@@ -629,8 +630,8 @@ $(document).ready(function () {
                                     <td><a href="view-high-court-cases/${value.id}"> ${value.case_no === null ? '' : value.case_no} </a></td>
                                     <td> ${value.tender_no === null ? '' : value.tender_no} </td>
                                     <td> ${value.tender_no_date === null ? '' : value.tender_no_date} </td>
-                                    <td> ${value.supreme_court_category === null ? '' : value.supreme_court_category} </td>
-                                    <td> ${value.supreme_court_subcategory === null ? '' : value.supreme_court_subcategory} </td>
+                                    <td> ${value.case_category === null ? '' : value.case_category} </td>
+                                    <td> ${value.case_subcategory === null ? '' : value.case_subcategory} </td>
                                     <td> ${value.date_of_filing_hcd === null ? '' : value.date_of_filing_hcd} </td>
                                     <td> ${value.order === null ? '' : value.order} </td>
                                     <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>

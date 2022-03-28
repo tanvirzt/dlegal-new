@@ -97,6 +97,17 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
+                                                                <label for="case_year" class="col-sm-4 col-form-label">Case
+                                                                    Year</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" class="form-control"
+                                                                           id="case_year" name="case_year"
+                                                                           value="{{ $data->case_year }}">
+                                                                    @error('case_year')<span
+                                                                        class="text-danger">{{$message}}</span>@enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
                                                                 <label for="client_category_id"
                                                                        class="col-sm-4 col-form-label">Client
                                                                     Category</label>
@@ -183,17 +194,7 @@
                                                                         class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group row">
-                                                                <label for="case_year" class="col-sm-4 col-form-label">Case
-                                                                    Year</label>
-                                                                <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                           id="case_year" name="case_year"
-                                                                           value="{{ $data->case_year }}">
-                                                                    @error('case_year')<span
-                                                                        class="text-danger">{{$message}}</span>@enderror
-                                                                </div>
-                                                            </div>
+
 
                                                             <div class="form-group row">
                                                                 <label for="ref_no" class="col-sm-4 col-form-label"> Ref

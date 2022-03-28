@@ -161,13 +161,13 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">Case No</th>
-                                        <th class="text-center">Subsequent Case No</th>
-                                        <th class="text-center">Division</th>
-                                        <th class="text-center">Court Name</th>
-                                        <th class="text-center">District</th>
-                                        <th class="text-center">Company</th>
-
+                                        <th class="text-center"> Case No </th>
+                                        <th class="text-center"> Case Year </th>
+                                        <th class="text-center"> Alligation </th>
+                                        <th class="text-nowrap"> Amount </th>
+                                        <th class="text-center"> Complainant </th>
+                                        <th class="text-nowrap"> Accused Name </th>
+                                        <th class="text-nowrap"> Case Notes </th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center" width="13%">Action</th>
                                     </tr>
@@ -180,19 +180,22 @@
                                                 <a href="{{ route('view-criminal-cases',$datum->id) }}"> {{ $datum->case_no }} </a>
                                             </td>
                                             <td>
-                                                {{ $datum->subsequent_case_no }}
+                                                {{ $datum->case_year }}
                                             </td>
                                             <td>
-                                                {{ $datum->division_name }}
+                                                {{ $datum->alligation }}
                                             </td>
                                             <td>
-                                                {{ $datum->court_name }}
+                                                {{ $datum->amount }}
                                             </td>
                                             <td>
-                                                {{ $datum->district_name }}
+                                                {{ $datum->name_of_the_complainant }}
                                             </td>
                                             <td>
-                                                {{ $datum->company_name }}
+                                                {{ $datum->accused_name }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->case_notes }}
                                             </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)

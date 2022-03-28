@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CriminalCase;
+use App\Models\SetupCaseSubcategory;
 use App\Models\SetupClientCategory;
+use App\Models\SetupClientSubcategory;
 use App\Models\SetupLaw;
 use App\Models\SetupLawSection;
 use App\Models\SetupCourt;
@@ -30,6 +32,7 @@ use App\Models\SetupDistrict;
 use App\Models\SetupExternalCouncilAssociate;
 use App\Models\CriminalCaseStatusLog;
 use App\Models\SetupSection;
+use App\Models\SetupThana;
 use DB;
 use Illuminate\Http\Request;
 
@@ -74,7 +77,6 @@ class CriminalCasesController extends Controller
         $person_title = SetupPersonTitle::where('delete_status', 0)->get();
         $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
-        //  $next_date_reason = DB::table('setup_next_date_reasons')->get();
         $company = SetupCompany::where('delete_status', 0)->get();
         $zone = SetupRegion::where('delete_status', 0)->get();
         $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->get();
@@ -90,7 +92,7 @@ class CriminalCasesController extends Controller
 
     public function save_criminal_cases(Request $request)
     {
-        dd($request->all());
+//        dd($request->all());
         $rules = [
             'case_no' => 'required|unique:criminal_cases',
         ];
@@ -105,23 +107,27 @@ class CriminalCasesController extends Controller
 
         $data = new CriminalCase();
         $data->case_no = $request->case_no;
+        $data->client_category_id = $request->client_category_id;
+        $data->client_subcategory_id = $request->client_subcategory_id;
         $data->date_of_case_received = $request->date_of_case_received;
-        $data->case_category_nature_id = $request->case_category_nature_id;
+        $data->case_category_id = $request->case_category_id;
+        $data->case_subcategory_id = $request->case_subcategory_id;
+        $data->case_year = $request->case_year;
         $data->case_type_id = $request->case_type_id;
         $data->trial_court = $request->trial_court;
         $data->subsequent_case_no = $request->subsequent_case_no;
         $data->zone_id = $request->zone_id;
         $data->area_id = $request->area_id;
         $data->branch_id = $request->branch_id;
-        $data->member_no = $request->member_no;
-        $data->program_id = $request->program_id;
-        $data->police_station = $request->police_station;
+        $data->company_organization_id = $request->company_organization_id;
         $data->name_of_the_court_id = $request->name_of_the_court_id;
         $data->date_of_filing = $request->date_of_filing;
         $data->division_id = $request->division_id;
         $data->district_id = $request->district_id;
-        $data->relevant_law_sections_id = $request->relevant_law_sections_id;
-        $data->alligation_id = $request->alligation_id;
+        $data->thana_id = $request->thana_id;
+        $data->relevant_law_id = $request->relevant_law_id;
+        $data->relevant_sections_id = $request->relevant_sections_id;
+        $data->alligation = $request->alligation;
         $data->amount = $request->amount;
         $data->name_of_the_complainant = $request->name_of_the_complainant;
         $data->complainant_contact_no = $request->complainant_contact_no;
@@ -132,21 +138,16 @@ class CriminalCasesController extends Controller
         $data->last_order_court_id = $request->last_order_court_id;
         $data->accused_name = $request->accused_name;
         $data->accused_company_id = $request->accused_company_id;
-        $data->next_date = $request->next_date;
         $data->accused_address = $request->accused_address;
         $data->accused_contact_no = $request->accused_contact_no;
+        $data->next_date = $request->next_date;
         $data->next_date_fixed_id = $request->next_date_fixed_id;
-        $data->plaintiff_name = $request->plaintiff_name;
-        $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
-        $data->plaintiff_contact_number = $request->plaintiff_contact_number;
-        $data->company_id = $request->company_id;
         $data->case_notes = $request->case_notes;
-        $data->panel_lawyer_id = $request->panel_lawyer_id;
         $data->assigned_lawyer_id = $request->assigned_lawyer_id;
+        $data->total_legal_bill_amount = $request->total_legal_bill_amount;
         $data->other_claim = $request->other_claim;
         $data->summary_facts_alligation = $request->summary_facts_alligation;
         $data->prayer_claims_by_psg = $request->prayer_claims_by_psg;
-        $data->total_legal_bill_amount = $request->total_legal_bill_amount;
         $data->missing_documents_evidence = $request->missing_documents_evidence;
         $data->comments = $request->comments;
         $data->save();
@@ -191,71 +192,45 @@ class CriminalCasesController extends Controller
         $internal_council = SetupInternalCouncil::where('delete_status', 0)->get();
         $branch = SetupBranch::where('delete_status', 0)->get();
         $program = SetupProgram::where('delete_status', 0)->get();
-        $alligation = SetupAlligation::where('delete_status', 0)->get();
         $data = CriminalCase::find($id);
         $existing_district = SetupDistrict::where('division_id', $data->division_id)->get();
         $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_name_id)->get();
         $section = SetupSection::where('delete_status', 0)->get();
-
-        return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'alligation', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates','section'));
+        $client_category = SetupClientCategory::where('delete_status', 0)->get();
+        $existing_client_subcategory = SetupClientSubcategory::where(['client_category_id' => $data->client_category_id,'delete_status' => 0])->get();
+        $existing_case_subcategory = SetupCaseSubcategory::where(['case_category_id' => $data->case_category_id,'delete_status' => 0])->get();
+        $existing_thana = SetupThana::where(['district_id' => $data->district_id, 'delete_status' => 0])->get();
+//dd($existing_thana);
+        return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates','section','client_category','existing_client_subcategory','existing_case_subcategory','existing_district','existing_thana'));
     }
 
     public function update_criminal_cases(Request $request, $id)
     {
-        $rules = [
-//            'case_no' => 'required|unique:criminal_cases',
-            'date_of_filing' => 'required',
-            'district_id' => 'required',
-            'amount' => 'required',
-            'case_status_id' => 'required',
-            'case_category_nature_id' => 'required',
-            'case_type_id' => 'required',
-            'name_of_the_court_id' => 'required',
-            'external_council_name_id' => 'required',
-            'relevant_law_sections_id' => 'required',
-            'next_date' => 'required',
-            'next_date_fixed_id' => 'required',
-        ];
-
-        $validMsg = [
-//            'case_no.required' => 'Case No. field is required.',
-            'date_of_filing.required' => 'Date of Filing field is required.',
-            'district_id.required' => 'District field is required.',
-            'amount.required' => 'Amount field is required.',
-            'case_status_id.required' => 'Case Status field is required.',
-            'case_category_nature_id.required' => 'Case Category Nature field is required.',
-            'case_type_id.required' => 'Case Type field is required.',
-            'name_of_the_court_id.required' => 'Name of the Court field is required.',
-            'external_council_name_id.required' => 'External Council Name field is required.',
-            'defendent_address.required' => 'Defendent Address field is required.',
-            'relevant_law_sections_id.required' => 'Relevant Law Sections field is required.',
-            'next_date.required' => 'Next Date field is required.',
-            'next_date_fixed_id.required' => 'Next Date Fixed field is required.',
-        ];
-
-        $this->validate($request, $rules, $validMsg);
 
         DB::beginTransaction();
 
         $data = CriminalCase::find($id);
-//        $data->case_no = $request->case_no;
+        $data->client_category_id = $request->client_category_id;
+        $data->client_subcategory_id = $request->client_subcategory_id;
         $data->date_of_case_received = $request->date_of_case_received;
-        $data->case_category_nature_id = $request->case_category_nature_id;
+        $data->case_category_id = $request->case_category_id;
+        $data->case_subcategory_id = $request->case_subcategory_id;
+        $data->case_year = $request->case_year;
         $data->case_type_id = $request->case_type_id;
         $data->trial_court = $request->trial_court;
         $data->subsequent_case_no = $request->subsequent_case_no;
         $data->zone_id = $request->zone_id;
         $data->area_id = $request->area_id;
         $data->branch_id = $request->branch_id;
-        $data->member_no = $request->member_no;
-        $data->program_id = $request->program_id;
-        $data->police_station = $request->police_station;
+        $data->company_organization_id = $request->company_organization_id;
         $data->name_of_the_court_id = $request->name_of_the_court_id;
         $data->date_of_filing = $request->date_of_filing;
         $data->division_id = $request->division_id;
         $data->district_id = $request->district_id;
-        $data->relevant_law_sections_id = $request->relevant_law_sections_id;
-        $data->alligation_id = $request->alligation_id;
+        $data->thana_id = $request->thana_id;
+        $data->relevant_law_id = $request->relevant_law_id;
+        $data->relevant_sections_id = $request->relevant_sections_id;
+        $data->alligation = $request->alligation;
         $data->amount = $request->amount;
         $data->name_of_the_complainant = $request->name_of_the_complainant;
         $data->complainant_contact_no = $request->complainant_contact_no;
@@ -266,21 +241,16 @@ class CriminalCasesController extends Controller
         $data->last_order_court_id = $request->last_order_court_id;
         $data->accused_name = $request->accused_name;
         $data->accused_company_id = $request->accused_company_id;
-        $data->next_date = $request->next_date;
         $data->accused_address = $request->accused_address;
         $data->accused_contact_no = $request->accused_contact_no;
+        $data->next_date = $request->next_date;
         $data->next_date_fixed_id = $request->next_date_fixed_id;
-        $data->plaintiff_name = $request->plaintiff_name;
-        $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
-        $data->plaintiff_contact_number = $request->plaintiff_contact_number;
-        $data->company_id = $request->company_id;
         $data->case_notes = $request->case_notes;
-        $data->panel_lawyer_id = $request->panel_lawyer_id;
         $data->assigned_lawyer_id = $request->assigned_lawyer_id;
+        $data->total_legal_bill_amount = $request->total_legal_bill_amount;
         $data->other_claim = $request->other_claim;
         $data->summary_facts_alligation = $request->summary_facts_alligation;
         $data->prayer_claims_by_psg = $request->prayer_claims_by_psg;
-        $data->total_legal_bill_amount = $request->total_legal_bill_amount;
         $data->missing_documents_evidence = $request->missing_documents_evidence;
         $data->comments = $request->comments;
         $data->save();
@@ -413,34 +383,59 @@ class CriminalCasesController extends Controller
 
     public function search_criminal_cases(Request $request)
     {
-        // dd($request->all());
-        $query = DB::table('criminal_cases')
-            ->leftJoin('setup_divisions', 'criminal_cases.division_id', '=', 'setup_divisions.id')
-            ->leftJoin('setup_districts', 'criminal_cases.district_id', '=', 'setup_districts.id')
-            ->leftJoin('setup_case_statuses', 'criminal_cases.case_status_id', '=', 'setup_case_statuses.id')
-            ->leftJoin('setup_case_categories', 'criminal_cases.case_category_nature_id', '=', 'setup_case_categories.id')
-            ->leftJoin('setup_courts', 'criminal_cases.name_of_the_court_id', '=', 'setup_courts.id')
-            ->leftJoin('setup_companies', 'criminal_cases.company_id', '=', 'setup_companies.id');
+//         dd($request->all());
+        $query = DB::table('criminal_cases');
 
-        if ($request->case_no) {
-            // dd('case_no');
-            $query2 = $query->where('criminal_cases.case_no', $request->case_no);
+        if ($request->case_no && $request->date_of_filing && $request->name_of_the_court_id) {
+// dd('case no, dof, court name ');
 
-        } else if ($request->date_of_filing) {
-            // dd('date of filing');
+            $query2 = $query->where(['criminal_cases.case_no' => $request->case_no, 'criminal_cases.date_of_filing' => $request->date_of_filing, 'criminal_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
+
+        } else if ($request->case_no && $request->date_of_filing && $request->name_of_the_court_id == null) {
+// dd('case no, dof');
+
+            $query2 = $query->where(['criminal_cases.case_no' => $request->case_no, 'criminal_cases.date_of_filing' => $request->date_of_filing]);
+
+        } else if ($request->case_no && $request->date_of_filing == null && $request->name_of_the_court_id) {
+            // dd('case no, court name ');
+
+            $query2 = $query->where(['criminal_cases.case_no' => $request->case_no, 'criminal_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
+
+        } else if ($request->case_no == null && $request->date_of_filing && $request->name_of_the_court_id) {
+            // dd('dof, court name');
+
+            $query2 = $query->where(['criminal_cases.date_of_filing' => $request->date_of_filing, 'criminal_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
+
+        } else if ($request->case_no && $request->date_of_filing == null && $request->name_of_the_court_id == null) {
+            // dd('case no');
+
+            $query2 = $query->where(['criminal_cases.case_no' => $request->case_no]);
+
+        } else if ($request->case_no == null && $request->date_of_filing && $request->name_of_the_court_id == null) {
+            // dd('dof');
 
             $query2 = $query->where('criminal_cases.date_of_filing', $request->date_of_filing);
 
-        } else if ($request->name_of_the_court_id) {
-            // dd('name of the court');
+        } else if ($request->case_no == null && $request->date_of_filing == null && $request->name_of_the_court_id) {
 
+            // dd('court name');
             $query2 = $query->where('criminal_cases.name_of_the_court_id', $request->name_of_the_court_id);
 
-        } else {
+        }else if ($request->case_no == null && $request->date_of_filing == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id) {
 
+            // dd('court name');
+            $query2 = $query->where(['criminal_cases.case_category_id' => $request->case_category_id, 'criminal_cases.case_subcategory_id' => $request->case_subcategory_id]);
+
+        }else if ($request->case_no == null && $request->date_of_filing == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id == null) {
+
+            // dd('court name');
+            $query2 = $query->where('criminal_cases.case_category_id', $request->case_category_id);
+
+        } else {
             $query2 = $query;
 
         }
+
 
         $data = $query2->get();
 

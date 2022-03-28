@@ -62,6 +62,13 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
+                                                <label for="case_year" class="col-sm-4 col-form-label">Case Year</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="case_year" name="case_year" value="{{old('case_year')}}">
+                                                    @error('case_year')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
                                                 <label for="client_category_id" class="col-sm-4 col-form-label">Client Category</label>
                                                 <div class="col-sm-8">
                                                     <select name="client_category_id" class="form-control select2" id="client_category_id" action="{{ route('find-client-subcategory') }}">
@@ -110,13 +117,6 @@
 
                                                     </select>
                                                     @error('district_id')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="case_year" class="col-sm-4 col-form-label">Case Year</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="case_year" name="case_year" value="{{old('case_year')}}">
-                                                    @error('case_year')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
 

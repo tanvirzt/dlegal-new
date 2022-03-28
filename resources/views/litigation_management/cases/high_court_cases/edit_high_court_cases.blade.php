@@ -79,8 +79,7 @@
 
                                             </div>
 
-                                            <form action="{{ route('update-high-court-cases', $data->id) }}"
-                                                  method="post"
+                                            <form action="{{ route( 'update-high-court-cases', $data->id ) }}" method="post"
                                                   enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="card-body">
@@ -88,24 +87,20 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
 
-                                                            {{--                                                            <div class="form-group row">--}}
-                                                            {{--                                                                <label for="lower_court"--}}
-                                                            {{--                                                                       class="col-sm-4 col-form-label"> Lower Court--}}
-                                                            {{--                                                                </label>--}}
-                                                            {{--                                                                <div class="col-sm-8">--}}
-                                                            {{--                                                                    <input type="checkbox" class="mt-2" id="lower_court"--}}
-                                                            {{--                                                                           name="lower_court"--}}
-                                                            {{--                                                                           value="Lower Court" {{ $data->lower_court == 'Yes' ? 'checked' : '' }}>--}}
-                                                            {{--                                                                </div>--}}
-                                                            {{--                                                            </div>--}}
-                                                            {{--                                                            <div id="lower_court_info" @if($data->lower_court == 'No') style="display: none;" @endif>--}}
+                                                            {{--                                            <div class="form-group row">--}}
+                                                            {{--                                                <label for="lower_court" class="col-sm-4 col-form-label"> Lower Court--}}
+                                                            {{--                                                </label>--}}
+                                                            {{--                                                <div class="col-sm-8">--}}
+                                                            {{--                                                    <input type="checkbox" class="mt-2" id="lower_court"--}}
+                                                            {{--                                                           name="lower_court" value="Lower Court">--}}
+                                                            {{--                                                </div>--}}
+                                                            {{--                                            </div>--}}
+                                                            {{--                                            <div id="lower_court_info">--}}
                                                             <div class="form-group row">
-                                                                <label for="case_no"
-                                                                       class="col-sm-4 col-form-label">Case
+                                                                <label for="case_no" class="col-sm-4 col-form-label">Case
                                                                     No. (Lower Court)</label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                           id="case_no"
+                                                                    <input type="text" class="form-control" id="case_no"
                                                                            name="case_no"
                                                                            value="{{ $data->case_no }}" readonly>
                                                                     @error('case_no')
@@ -117,8 +112,7 @@
                                                                 <label for="division_id"
                                                                        class="col-sm-4 col-form-label">Division</label>
                                                                 <div class="col-sm-8">
-                                                                    <select name="division_id"
-                                                                            class="form-control select2"
+                                                                    <select name="division_id" class="form-control select2"
                                                                             id="division_id"
                                                                             action="{{ route('find_district') }}">
                                                                         <option value="">Select</option>
@@ -137,17 +131,14 @@
                                                                 <label for="district_id"
                                                                        class="col-sm-4 col-form-label">District</label>
                                                                 <div class="col-sm-8">
-                                                                    <select name="district_id"
-                                                                            class="form-control select2"
-                                                                            id="district_id"
-                                                                            action="{{ route('find-thana') }}">
+                                                                    <select name="district_id" class="form-control select2"
+                                                                            id="district_id" action="{{ route('find-thana') }}">
                                                                         <option value=""> Select</option>
-
-                                                                        @foreach($existing_district as $item)
-                                                                            <option
-                                                                                value="{{ $item->id }}" {{ $data->district_id == $item->id ? 'selected' : '' }}>{{ $item->district_name }}</option>
+                                                                        @foreach ($existing_district as $item)
+                                                                            <option value="{{ $item->id }}"
+                                                                                {{ $data->district_id == $item->id ? 'selected' : '' }}>
+                                                                                {{ ucfirst($item->district_name) }}</option>
                                                                         @endforeach
-
                                                                     </select>
                                                                     @error('district_id')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -155,30 +146,27 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="thana_id"
-                                                                       class="col-sm-4 col-form-label">Police
+                                                                <label for="thana_id" class="col-sm-4 col-form-label">Police
                                                                     Station</label>
                                                                 <div class="col-sm-8">
-                                                                    <select name="thana_id"
-                                                                            class="form-control select2"
+                                                                    <select name="thana_id" class="form-control select2"
                                                                             id="thana_id">
                                                                         <option value=""> Select</option>
-
-                                                                        @foreach($existing_thana as $item)
-                                                                            <option
-                                                                                value="{{ $item->id }}" {{ $data->thana_id == $item->id ? 'selected' : '' }}>{{ $item->thana_name }}</option>
+                                                                        @foreach ($existing_thana as $item)
+                                                                            <option value="{{ $item->id }}"
+                                                                                {{ $data->thana_id == $item->id ? 'selected' : '' }}>
+                                                                                {{ ucfirst($item->thana_name) }}</option>
                                                                         @endforeach
-
                                                                     </select>
                                                                     @error('thana_id')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
                                                             </div>
+
                                                             <div class="form-group row">
                                                                 <label for="case_class_id"
-                                                                       class="col-sm-4 col-form-label"> Class of
-                                                                    Cases </label>
+                                                                       class="col-sm-4 col-form-label"> Class of Cases </label>
                                                                 <div class="col-sm-8">
 
                                                                     <select name="case_class_id"
@@ -198,13 +186,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="case_type_id"
-                                                                       class="col-sm-4 col-form-label">Type of
+                                                                <label for="case_type_id" class="col-sm-4 col-form-label">Type of
                                                                     Cases</label>
                                                                 <div class="col-sm-8">
 
-                                                                    <select name="case_type_id"
-                                                                            class="form-control select2">
+                                                                    <select name="case_type_id" class="form-control select2">
                                                                         <option value="">Select</option>
                                                                         @foreach ($case_types as $item)
                                                                             <option value="{{ $item->id }}"
@@ -218,22 +204,48 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="relevant_law_sections_id"
-                                                                       class="col-sm-4 col-form-label">
-                                                                    Relevant Laws/Sections </label>
+                                                                <label for="law_id" class="col-sm-4 col-form-label"> Laws</label>
                                                                 <div class="col-sm-8">
-                                                                    <select name="relevant_law_sections_id"
-                                                                            class="form-control select2">
+                                                                    <select name="law_id" class="form-control select2">
                                                                         <option value="">Select</option>
-                                                                        @foreach ($law_section as $item)
-                                                                            <option value="{{ $item->id }}"
-                                                                                {{ $data->relevant_law_sections_id == $item->id ? 'selected' : '' }}>
-                                                                                {{ $item->law_section_name }}</option>
+                                                                        @foreach($law as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{($data->law_id == $item->id ? 'selected':'')}}>{{ $item->law_name }}</option>
                                                                         @endforeach
                                                                     </select>
-                                                                    @error('relevant_law_sections_id')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                    @enderror
+                                                                    @error('law_id')<span
+                                                                        class="text-danger">{{$message}}</span>@enderror
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label for="relevant_law_id" class="col-sm-4 col-form-label"> Relevant
+                                                                    Laws</label>
+                                                                <div class="col-sm-8">
+                                                                    <select name="relevant_law_id" class="form-control select2">
+                                                                        <option value="">Select</option>
+                                                                        @foreach($law as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{($data->relevant_law_id == $item->id ? 'selected':'')}}>{{ $item->law_name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('relevant_law_id')<span
+                                                                        class="text-danger">{{$message}}</span>@enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="relevant_sections_id" class="col-sm-4 col-form-label">
+                                                                    Relevant Sections </label>
+                                                                <div class="col-sm-8">
+                                                                    <select name="relevant_sections_id" class="form-control select2">
+                                                                        <option value="">Select</option>
+                                                                        @foreach($section as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{($data->relevant_sections_id == $item->id ? 'selected':'')}}>{{ $item->section_name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('relevant_sections_id')<span
+                                                                        class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -257,12 +269,10 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="date_of_filing"
-                                                                       class="col-sm-4 col-form-label">Date of
+                                                                <label for="date_of_filing" class="col-sm-4 col-form-label">Date of
                                                                     filing</label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="date" class="form-control"
-                                                                           id="date_of_filing"
+                                                                    <input type="date" class="form-control" id="date_of_filing"
                                                                            name="date_of_filing"
                                                                            value="{{ $data->date_of_filing }}">
                                                                     @error('date_of_filing')
@@ -271,12 +281,10 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="plaintiff_name"
-                                                                       class="col-sm-4 col-form-label">Plaintiff
+                                                                <label for="plaintiff_name" class="col-sm-4 col-form-label">Plaintiff
                                                                     Name</label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                           id="plaintiff_name"
+                                                                    <input type="text" class="form-control" id="plaintiff_name"
                                                                            name="plaintiff_name"
                                                                            value="{{ $data->plaintiff_name }}">
                                                                     @error('plaintiff_name')
@@ -286,8 +294,7 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="plaintiff_designaiton_id"
-                                                                       class="col-sm-4 col-form-label">Plaintiff
-                                                                    Designation</label>
+                                                                       class="col-sm-4 col-form-label">Plaintiff Designation</label>
                                                                 <div class="col-sm-8">
 
                                                                     <select name="plaintiff_designaiton_id"
@@ -307,8 +314,7 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="plaintiff_contact_number"
-                                                                       class="col-sm-4 col-form-label">Plaintiff
-                                                                    Contact No</label>
+                                                                       class="col-sm-4 col-form-label">Plaintiff Contact No</label>
                                                                 <div class="col-sm-8">
                                                                     <input type="text" class="form-control"
                                                                            id="plaintiff_contact_number"
@@ -335,8 +341,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="complainant_contact_no"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="complainant_contact_no" class="col-sm-4 col-form-label">
                                                                     Complainant Contact No. </label>
                                                                 <div class="col-sm-8">
                                                                     <input type="text" class="form-control"
@@ -350,8 +355,7 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="complainant_designation_id"
-                                                                       class="col-sm-4 col-form-label">Designation
-                                                                    of the
+                                                                       class="col-sm-4 col-form-label">Designation of the
                                                                     Complainant</label>
                                                                 <div class="col-sm-8">
 
@@ -371,29 +375,24 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="accused_name"
-                                                                       class="col-sm-4 col-form-label">Name of
+                                                                <label for="accused_name" class="col-sm-4 col-form-label">Name of
                                                                     the
                                                                     Accused</label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                           id="accused_name"
-                                                                           name="accused_name"
-                                                                           value="{{ $data->accused_name }}">
+                                                                    <input type="text" class="form-control" id="accused_name"
+                                                                           name="accused_name" value="{{ $data->accused_name }}">
                                                                     @error('accused_name')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="accused_company_id"
-                                                                       class="col-sm-4 col-form-label">Name
+                                                                <label for="accused_company_id" class="col-sm-4 col-form-label">Name
                                                                     of
                                                                     the
                                                                     Accused Company</label>
                                                                 <div class="col-sm-8">
-                                                                    <select name="accused_company_id"
-                                                                            class="form-control select2">
+                                                                    <select name="accused_company_id" class="form-control select2">
                                                                         <option value="">Select</option>
                                                                         @foreach ($company as $item)
                                                                             <option value="{{ $item->id }}"
@@ -407,13 +406,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="accused_address"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="accused_address" class="col-sm-4 col-form-label">
                                                                     Address of
                                                                     the Accused </label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                           id="accused_address"
+                                                                    <input type="text" class="form-control" id="accused_address"
                                                                            name="accused_address"
                                                                            value="{{ $data->accused_address }}">
                                                                     @error('accused_address')
@@ -422,13 +419,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="accused_contact_no"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="accused_contact_no" class="col-sm-4 col-form-label">
                                                                     Accused
                                                                     Contact No. </label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                           id="accused_contact_no"
+                                                                    <input type="text" class="form-control" id="accused_contact_no"
                                                                            name="accused_contact_no"
                                                                            value="{{ $data->accused_contact_no }}">
                                                                     @error('accused_contact_no')
@@ -437,8 +432,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="other_claim"
-                                                                       class="col-sm-4 col-form-label"> Other
+                                                                <label for="other_claim" class="col-sm-4 col-form-label"> Other
                                                                     Claim(if
                                                                     any) </label>
                                                                 <div class="col-sm-8">
@@ -463,8 +457,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="trial_court_id"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="trial_court_id" class="col-sm-4 col-form-label">
                                                                     Name of Trial / Impugned Court </label>
                                                                 <div class="col-sm-8">
                                                                     <select name="trial_court_id"
@@ -482,8 +475,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="trial_court_judgement_date"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="trial_court_judgement_date" class="col-sm-4 col-form-label">
                                                                     Date of Judgement/Order (Trial Court) </label>
                                                                 <div class="col-sm-8">
                                                                     <input type="date" class="form-control"
@@ -498,8 +490,7 @@
                                                             <div class="form-group row">
                                                                 <label for="trial_grounds_judgement"
                                                                        class="col-sm-4 col-form-label">
-                                                                    Judgment/Order with Grounds (Trial
-                                                                    Court) </label>
+                                                                    Judgment/Order with Grounds (Trial Court) </label>
                                                                 <div class="col-sm-8">
                                                     <textarea name="trial_grounds_judgement" class="form-control"
                                                               rows="3"
@@ -510,10 +501,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="appeal_court_id"
-                                                                       class="col-sm-4 col-form-label">
-                                                                    Name of Appeal/Revision Court
-                                                                    (District) </label>
+                                                                <label for="appeal_court_id" class="col-sm-4 col-form-label">
+                                                                    Name of Appeal/Revision Court (District) </label>
                                                                 <div class="col-sm-8">
                                                                     <select name="appeal_court_id"
                                                                             class="form-control select2">
@@ -532,8 +521,7 @@
                                                             <div class="form-group row">
                                                                 <label for="appeal_court_judgement_date"
                                                                        class="col-sm-4 col-form-label">
-                                                                    Date of Judgement (Appeal/Revision
-                                                                    Court) </label>
+                                                                    Date of Judgement (Appeal/Revision Court) </label>
                                                                 <div class="col-sm-8">
                                                                     <input type="date" class="form-control"
                                                                            id="appeal_court_judgement_date"
@@ -545,10 +533,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="appeal_grounds_judgement"
-                                                                       class="col-sm-4 col-form-label">
-                                                                    Judgement of Appeal/Revision with Grounds
-                                                                    (District
+                                                                <label for="appeal_grounds_judgement" class="col-sm-4 col-form-label">
+                                                                    Judgement of Appeal/Revision with Grounds (District
                                                                     Court) </label>
                                                                 <div class="col-sm-8">
                                                                     <input type="text" class="form-control"
@@ -562,13 +548,10 @@
                                                             </div>
 
                                                             <div class="form-group row">
-                                                                <label for="appeal_court_judgement"
-                                                                       class="col-sm-4 col-form-label">
-                                                                    Judgement/Order of Appeal/Revision Court
-                                                                    (District) </label>
+                                                                <label for="appeal_court_judgement" class="col-sm-4 col-form-label">
+                                                                    Judgement/Order of Appeal/Revision Court (District) </label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                           id="appeal_court_judgement"
+                                                                    <input type="text" class="form-control" id="appeal_court_judgement"
                                                                            name="appeal_court_judgement"
                                                                            value="{{ $data->appeal_court_judgement }}">
                                                                     @error('appeal_court_judgement')
@@ -577,13 +560,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="panel_lawyer_id"
-                                                                       class="col-sm-4 col-form-label">Panel
+                                                                <label for="panel_lawyer_id" class="col-sm-4 col-form-label">Panel
                                                                     Lawyer</label>
                                                                 <div class="col-sm-8">
 
-                                                                    <select name="panel_lawyer_id"
-                                                                            class="form-control select2">
+                                                                    <select name="panel_lawyer_id" class="form-control select2">
                                                                         <option value="">Select</option>
                                                                         @foreach ($external_council as $item)
                                                                             <option value="{{ $item->id }}"
@@ -597,14 +578,12 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                            {{--                                                            </div>--}}
+                                                            {{--                                            </div>--}}
                                                             <div class="form-group row">
-                                                                <label for="total_legal_bill_amount"
-                                                                       class="col-sm-4 col-form-label">Total
+                                                                <label for="total_legal_bill_amount" class="col-sm-4 col-form-label">Total
                                                                     Legal Bill Amount and Cost</label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                           id="total_legal_bill_amount"
+                                                                    <input type="text" class="form-control" id="total_legal_bill_amount"
                                                                            name="total_legal_bill_amount"
                                                                            value="{{ $data->total_legal_bill_amount }}">
                                                                     @error('total_legal_bill_amount')
@@ -614,8 +593,7 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="case_received_lawyer_id"
-                                                                       class="col-sm-4 col-form-label">Case Received
-                                                                    (From)</label>
+                                                                       class="col-sm-4 col-form-label">Case Received (From)</label>
                                                                 <div class="col-sm-8">
 
                                                                     <select name="case_received_lawyer_id"
@@ -637,12 +615,10 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="case_papers_received"
-                                                                       class="col-sm-4 col-form-label">Case
+                                                                <label for="case_papers_received" class="col-sm-4 col-form-label">Case
                                                                     Papers Received</label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="date" class="form-control"
-                                                                           id="case_papers_received"
+                                                                    <input type="date" class="form-control" id="case_papers_received"
                                                                            name="case_papers_received"
                                                                            value="{{ $data->case_papers_received }}">
                                                                     @error('case_papers_received')
@@ -651,8 +627,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="tadbirkar_details"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="tadbirkar_details" class="col-sm-4 col-form-label">
                                                                     Tadbirkar Details </label>
                                                                 <div class="col-sm-8">
                                                     <textarea name="tadbirkar_details" class="form-control"
@@ -663,12 +638,17 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
+
+
+                                                        </div>
+
+
+                                                        <div class="col-md-6">
                                                             <div class="form-group row">
                                                                 <label for="tender_no" class="col-sm-4 col-form-label">Tender
                                                                     No.</label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                           id="tender_no"
+                                                                    <input type="text" class="form-control" id="tender_no"
                                                                            name="tender_no"
                                                                            value="{{ $data->tender_no }}">
                                                                     @error('tender_no')
@@ -676,19 +656,11 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-
-                                                        </div>
-
-
-                                                        <div class="col-md-6">
-
                                                             <div class="form-group row">
-                                                                <label for="tender_no_date"
-                                                                       class="col-sm-4 col-form-label">Tender
+                                                                <label for="tender_no_date" class="col-sm-4 col-form-label">Tender
                                                                     No. Date</label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="date" class="form-control"
-                                                                           id="tender_no_date"
+                                                                    <input type="date" class="form-control" id="tender_no_date"
                                                                            name="tender_no_date"
                                                                            value="{{ $data->tender_no_date }}">
                                                                     @error('tender_no_date')
@@ -697,74 +669,64 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="supreme_court_category_id"
+                                                                <label for="case_category_id"
                                                                        class="col-sm-4 col-form-label">Category of
-
                                                                     Cases</label>
                                                                 <div class="col-sm-8">
-                                                                    <select name="supreme_court_category_id"
+                                                                    <select name="case_category_id"
                                                                             class="form-control select2"
-                                                                            id="supreme_court_category_id"
+                                                                            id="case_category_id"
                                                                             action="{{ route('find-case-subcategory') }}">
                                                                         <option value="">Select</option>
-                                                                        @foreach ($supreme_court_category as $item)
+                                                                        @foreach ($case_category as $item)
                                                                             <option value="{{ $item->id }}"
-                                                                                {{ $data->supreme_court_category_id == $item->id ? 'selected' : '' }}>
-                                                                                {{ $item->supreme_court_category }} </option>
+                                                                                {{ $data->case_category_id == $item->id ? 'selected' : '' }}>
+                                                                                {{ $item->case_category }} </option>
                                                                         @endforeach
                                                                     </select>
-                                                                    @error('supreme_court_category_id')
+                                                                    @error('case_category_id')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                     @enderror
 
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="supreme_court_subcategory_id"
+                                                                <label for="case_subcategory_id"
                                                                        class="col-sm-4 col-form-label">Subcategory of
-
                                                                     Cases</label>
                                                                 <div class="col-sm-8">
 
-                                                                    <select name="supreme_court_subcategory_id"
+                                                                    <select name="case_subcategory_id"
                                                                             class="form-control select2"
-                                                                            id="supreme_court_subcategory_id">
+                                                                            id="case_subcategory_id">
                                                                         <option value="">Select</option>
-
                                                                         @foreach($existing_subcat as $item)
-                                                                            <option
-                                                                                value="{{ $item->id }}" {{ $data->supreme_court_subcategory_id == $item->id ? 'selected' : '' }}>{{ $item->supreme_court_subcategory }}</option>
+                                                                            <option value="{{ $item->id }}" {{ $data->case_subcategory_id == $item->id ? 'selected' : '' }}>{{ $item->case_subcategory }}</option>
                                                                         @endforeach
-
-
                                                                     </select>
-                                                                    @error('supreme_court_subcategory_id')
+                                                                    @error('case_subcategory_id')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                     @enderror
 
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="case_no_hcd"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="case_no_hcd" class="col-sm-4 col-form-label">
                                                                     Case No. (High Court Division) </label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                           id="case_no_hcd"
+                                                                    <input type="text" class="form-control" id="case_no_hcd"
                                                                            name="case_no_hcd"
-                                                                           value="{{ $data->case_no_hcd }}" readonly>
+                                                                           value="{{ $data->case_no_hcd }}">
                                                                     @error('case_no_hcd')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="date_of_filing_hcd"
-                                                                       class="col-sm-4 col-form-label">Date of
+                                                                <label for="date_of_filing_hcd" class="col-sm-4 col-form-label">Date of
                                                                     filing(High Court Division)</label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="date" class="form-control"
-                                                                           id="date_of_filing_hcd"
+                                                                    <input type="date" class="form-control" id="date_of_filing_hcd"
                                                                            name="date_of_filing_hcd"
                                                                            value="{{ $data->date_of_filing_hcd }}">
                                                                     @error('date_of_filing_hcd')
@@ -773,8 +735,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="hcd_court_id"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="hcd_court_id" class="col-sm-4 col-form-label">
                                                                     Court (High Court Division) </label>
                                                                 <div class="col-sm-8">
                                                                     <select name="hcd_court_id"
@@ -792,22 +753,32 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="law_sections_id"
-                                                                       class="col-sm-4 col-form-label">
-                                                                    Law & Sections </label>
+                                                                <label for="law_id" class="col-sm-4 col-form-label"> Laws</label>
                                                                 <div class="col-sm-8">
-                                                                    <select name="law_sections_id"
-                                                                            class="form-control select2">
+                                                                    <select name="law_id" class="form-control select2">
                                                                         <option value="">Select</option>
-                                                                        @foreach ($law_section as $item)
-                                                                            <option value="{{ $item->id }}"
-                                                                                {{ $data->law_sections_id == $item->id ? 'selected' : '' }}>
-                                                                                {{ $item->law_section_name }}</option>
+                                                                        @foreach($law as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{($data->law_id == $item->id ? 'selected':'')}}>{{ $item->law_name }}</option>
                                                                         @endforeach
                                                                     </select>
-                                                                    @error('law_sections_id')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                    @enderror
+                                                                    @error('law_id')<span
+                                                                        class="text-danger">{{$message}}</span>@enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="sections_id" class="col-sm-4 col-form-label">
+                                                                    Sections </label>
+                                                                <div class="col-sm-8">
+                                                                    <select name="sections_id" class="form-control select2">
+                                                                        <option value="">Select</option>
+                                                                        @foreach($section as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{($data->sections_id == $item->id ? 'selected':'')}}>{{ $item->section_name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('sections_id')<span
+                                                                        class="text-danger">{{$message}}</span>@enderror
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -827,8 +798,8 @@
                                                                 <label for="order_date" class="col-sm-4 col-form-label">
                                                                     Order Date </label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="date" class="form-control"
-                                                                           name="order_date" id="order_date"
+                                                                    <input type="date" class="form-control" name="order_date"
+                                                                           id="order_date"
                                                                            name="order_date"
                                                                            value="{{ $data->order_date }}">
                                                                     @error('order_date')
@@ -837,12 +808,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="order_no_memo"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="order_no_memo" class="col-sm-4 col-form-label">
                                                                     Order No. & Memo </label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="date" class="form-control"
-                                                                           name="order_no_memo" id="order_no_memo"
+                                                                    <input type="date" class="form-control" name="order_no_memo"
+                                                                           id="order_no_memo"
                                                                            name="order_no_memo"
                                                                            value="{{ $data->order_no_memo }}">
                                                                     @error('order_no_memo')
@@ -851,22 +821,20 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="appellant_petitioner_name"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="appellant_petitioner_name" class="col-sm-4 col-form-label">
                                                                     Name of the Appellant/Petitioner </label>
                                                                 <div class="col-sm-8">
                                                                     <input type="text" class="form-control"
                                                                            id="appellant_petitioner_name"
                                                                            name="appellant_petitioner_name"
-                                                                           value="{{ $data->appellant_petitioner_name }}">
+                                                                           value="{{ $data->appellant_name }}">
                                                                     @error('appellant_petitioner_name')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="appellant_designation_id"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="appellant_designation_id" class="col-sm-4 col-form-label">
                                                                     Designation of the Appellant/Petitioner </label>
                                                                 <div class="col-sm-8">
                                                                     <select name="appellant_designation_id"
@@ -884,12 +852,10 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="appellant_address"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="appellant_address" class="col-sm-4 col-form-label">
                                                                     Address of the Appellant/Petitioner </label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                           id="appellant_address"
+                                                                    <input type="text" class="form-control" id="appellant_address"
                                                                            name="appellant_address"
                                                                            value="{{ $data->appellant_address }}">
                                                                     @error('appellant_address')
@@ -898,13 +864,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="opposite_party_name"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="opposite_party_name" class="col-sm-4 col-form-label">
                                                                     Name of
                                                                     the Respondent/Opposite Party </label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="text" class="form-control"
-                                                                           id="opposite_party_name"
+                                                                    <input type="text" class="form-control" id="opposite_party_name"
                                                                            name="opposite_party_name"
                                                                            value="{{ $data->opposite_party_name }}">
                                                                     @error('opposite_party_name')
@@ -914,8 +878,7 @@
                                                             </div>
                                                             <div class="form-group row">
                                                                 <label for="opposite_party_designation_id"
-                                                                       class="col-sm-4 col-form-label">Designation of
-                                                                    the
+                                                                       class="col-sm-4 col-form-label">Designation of the
                                                                     Respondent/Opposite Party</label>
                                                                 <div class="col-sm-8">
                                                                     <select name="opposite_party_designation_id"
@@ -933,8 +896,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="opposite_party_address"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="opposite_party_address" class="col-sm-4 col-form-label">
                                                                     Address of Respondent/Opposite Party </label>
                                                                 <div class="col-sm-8">
                                                                     <input type="text" class="form-control"
@@ -947,12 +909,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="party_steps_taken_id"
-                                                                       class="col-sm-4 col-form-label">Step Taken
+                                                                <label for="party_steps_taken_id" class="col-sm-4 col-form-label">Step
+                                                                    Taken
                                                                     by the Party</label>
                                                                 <div class="col-sm-8">
-                                                                    <select name="party_steps_taken_id"
-                                                                            class="form-control select2">
+                                                                    <select name="party_steps_taken_id" class="form-control select2">
                                                                         <option value="">Select</option>
                                                                         @foreach ($next_date_reason as $item)
                                                                             <option value="{{ $item->id }}"
@@ -966,13 +927,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="case_status_id"
-                                                                       class="col-sm-4 col-form-label">Status of
+                                                                <label for="case_status_id" class="col-sm-4 col-form-label">Status of
                                                                     the
                                                                     Cases</label>
                                                                 <div class="col-sm-8">
-                                                                    <select name="case_status_id"
-                                                                            class="form-control select2">
+                                                                    <select name="case_status_id" class="form-control select2">
                                                                         <option value="">Select</option>
                                                                         @foreach ($case_status as $item)
                                                                             <option value="{{ $item->id }}"
@@ -986,8 +945,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="fixed_hearing_court_id"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="fixed_hearing_court_id" class="col-sm-4 col-form-label">
                                                                     Name of Court (Fixed for Hearing) </label>
                                                                 <div class="col-sm-8">
                                                                     <select name="fixed_hearing_court_id"
@@ -1005,12 +963,10 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="court_steps_taken_id"
-                                                                       class="col-sm-4 col-form-label"> Next
+                                                                <label for="court_steps_taken_id" class="col-sm-4 col-form-label"> Next
                                                                     Step to be Taken in Court </label>
                                                                 <div class="col-sm-8">
-                                                                    <select name="court_steps_taken_id"
-                                                                            class="form-control select2">
+                                                                    <select name="court_steps_taken_id" class="form-control select2">
                                                                         <option value="">Select</option>
                                                                         @foreach ($next_date_reason as $item)
                                                                             <option value="{{ $item->id }}"
@@ -1024,12 +980,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="court_next_steps_date"
-                                                                       class="col-sm-4 col-form-label"> Date for Next
+                                                                <label for="court_next_steps_date" class="col-sm-4 col-form-label"> Date
+                                                                    for Next
                                                                     Step in Court </label>
                                                                 <div class="col-sm-8">
-                                                                    <input type="date" class="form-control"
-                                                                           id="court_next_steps_date"
+                                                                    <input type="date" class="form-control" id="court_next_steps_date"
                                                                            name="court_next_steps_date"
                                                                            value="{{ $data->court_next_steps_date }}">
                                                                     @error('court_next_steps_date')
@@ -1038,12 +993,10 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="assigned_lawyer_id"
-                                                                       class="col-sm-4 col-form-label">Name of
+                                                                <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Name of
                                                                     Lawyer</label>
                                                                 <div class="col-sm-8">
-                                                                    <select name="assigned_lawyer_id"
-                                                                            class="form-control select2">
+                                                                    <select name="assigned_lawyer_id" class="form-control select2">
                                                                         <option value="">Select</option>
                                                                         @foreach ($internal_council as $item)
                                                                             <option value="{{ $item->id }}"
@@ -1086,8 +1039,7 @@
                                                             <div class="form-group row">
                                                                 <label for="documents_received_field_programe"
                                                                        class="col-sm-4 col-form-label">
-                                                                    Documents received from field
-                                                                    office/programe </label>
+                                                                    Documents received from field office/programe </label>
                                                                 <div class="col-sm-8">
                                                     <textarea name="documents_received_field_programe"
                                                               class="form-control"
@@ -1099,8 +1051,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="missing_documents_evidence"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="missing_documents_evidence" class="col-sm-4 col-form-label">
                                                                     Missing Documents/Evidence/Information </label>
                                                                 <div class="col-sm-8">
                                                     <textarea name="missing_documents_evidence" class="form-control"
@@ -1112,8 +1063,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label for="ground_appeal_revision"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="ground_appeal_revision" class="col-sm-4 col-form-label">
                                                                     Ground of Appeal/Revision </label>
                                                                 <div class="col-sm-8">
                                                     <textarea name="ground_appeal_revision" class="form-control"
@@ -1126,8 +1076,7 @@
                                                             </div>
 
                                                             <div class="form-group row">
-                                                                <label for="recommendations"
-                                                                       class="col-sm-4 col-form-label">
+                                                                <label for="recommendations" class="col-sm-4 col-form-label">
                                                                     Recommendations </label>
                                                                 <div class="col-sm-8">
                                                     <textarea name="recommendations" class="form-control"
@@ -1143,8 +1092,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label for="uploaded_document"> Document Upload </label>
-                                                                <div
-                                                                    class="input-group hdtuto control-group lst increment">
+                                                                <div class="input-group hdtuto control-group lst increment">
                                                                     <input type="file" name="uploaded_document[]"
                                                                            class="myfrm form-control">
                                                                     <div class="input-group-btn">
@@ -1159,10 +1107,8 @@
                                                                         <input type="file" name="uploaded_document[]"
                                                                                class="myfrm form-control">
                                                                         <div class="input-group-btn">
-                                                                            <button class="btn btn-danger"
-                                                                                    type="button"><i
-                                                                                    class="fldemo glyphicon glyphicon-remove"></i>
-                                                                                -
+                                                                            <button class="btn btn-danger" type="button"><i
+                                                                                    class="fldemo glyphicon glyphicon-remove"></i> -
                                                                             </button>
                                                                         </div>
                                                                     </div>
@@ -1179,7 +1125,6 @@
 
                                                 </div>
                                             </form>
-
 
                                         </div>
                                         <div id="about" class="tab-pane">
