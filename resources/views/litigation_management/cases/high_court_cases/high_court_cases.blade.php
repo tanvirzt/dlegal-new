@@ -67,13 +67,13 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label for="case_no" class="col-sm-4 col-form-label">
-                                                            Case No. </label>
+                                                        <label for="case_no_hcd" class="col-sm-4 col-form-label">
+                                                            Case No. (High Court Division) </label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" id="case_no"
-                                                                   name="case_no"
-                                                                   value="{{ old('case_no') }}">
-                                                            @error('case_no')
+                                                            <input type="text" class="form-control" id="case_no_hcd"
+                                                                   name="case_no_hcd"
+                                                                   value="{{ old('case_no_hcd') }}">
+                                                            @error('case_no_hcd')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
@@ -196,7 +196,7 @@
 
                                         <tr>
                                             <td>
-                                                <a href="{{ route('view-high-court-cases', $datum->id) }}"> {{ $datum->case_no }} </a>
+                                                <a href="{{ route('view-high-court-cases', $datum->id) }}"> {{ $datum->case_no_hcd }} </a>
                                             </td>
                                             <td>
                                                 {{ $datum->tender_no }}

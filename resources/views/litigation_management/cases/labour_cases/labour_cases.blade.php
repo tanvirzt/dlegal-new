@@ -62,7 +62,6 @@
                                         <form id="form_data" method="post" action="{{ route('search-labour-cases') }}">
                                             @csrf
 
-
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
@@ -70,9 +69,9 @@
                                                             No.</label>
                                                         <div class="col-sm-8">
                                                             <input type="text" class="form-control" id="case_no"
-                                                                name="case_no" value="{{ old('case_no') }}">
+                                                                   name="case_no" value="{{ old('case_no') }}">
                                                             @error('case_no')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                            <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
@@ -81,20 +80,18 @@
                                                             Filing </label>
                                                         <div class="col-sm-8">
                                                             <input type="date" class="form-control" id="date_of_filing"
-                                                                name="date_of_filing" value="{{ old('date_of_filing') }}">
+                                                                   name="date_of_filing" value="{{ old('date_of_filing') }}">
                                                             @error('date_of_filing')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                            <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
                                                     <div class="form-group row">
                                                         <label for="name_of_the_court_id" class="col-sm-4 col-form-label">
                                                             Name of the Court </label>
                                                         <div class="col-sm-8">
                                                             <select name="name_of_the_court_id"
-                                                                class="form-control select2">
+                                                                    class="form-control select2">
                                                                 <option value="">Select</option>
                                                                 @foreach ($court as $item)
                                                                     <option value="{{ $item->id }}">
@@ -102,8 +99,37 @@
                                                                 @endforeach
                                                             </select>
                                                             @error('name_of_the_court_id')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                            <span class="text-danger">{{ $message }}</span>
                                                             @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group row">
+                                                        <label for="case_category_id" class="col-sm-4 col-form-label">Suit Category</label>
+                                                        <div class="col-sm-8">
+
+                                                            <select name="case_category_id" id="case_category_id" class="form-control select2" action="{{ route('find-case-subcategory') }}">
+                                                                <option value="">Select</option>
+                                                                @foreach($case_category as $item)
+                                                                    <option value="{{ $item->id }}" {{(old('case_category_id') == $item->id ? 'selected':'')}}>{{ $item->case_category }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('case_category_id')<span class="text-danger">{{$message}}</span>@enderror
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="case_subcategory_id" class="col-sm-4 col-form-label">Suit Subcategory</label>
+                                                        <div class="col-sm-8">
+
+                                                            <select name="case_subcategory_id" id="case_subcategory_id" class="form-control select2">
+                                                                <option value="">Select</option>
+
+                                                            </select>
+                                                            @error('case_subcategory_id')<span class="text-danger">{{$message}}</span>@enderror
+
                                                         </div>
                                                     </div>
 
@@ -138,13 +164,13 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">Case No</th>
-                                        <th class="text-center">Subsequent Case No</th>
-                                        <th class="text-center">Division</th>
-                                        <th class="text-center">Court Name</th>
-                                        <th class="text-center">District</th>
-                                        <th class="text-center">Company</th>
-                                        <th class="text-center">Plaintiff Name</th>
+                                        <th class="text-center"> Case No </th>
+                                        <th class="text-center"> Case Year </th>
+                                        <th class="text-center"> Alligation </th>
+                                        <th class="text-nowrap"> Amount </th>
+                                        <th class="text-center"> First Party </th>
+                                        <th class="text-nowrap"> Second Party </th>
+                                        <th class="text-nowrap"> Case Notes </th>
                                         <th class="text-center">Status</th>
                                         <th width="13%">Action</th>
                                     </tr>
@@ -156,26 +182,24 @@
                                                <a href="{{ route('view-labour-cases', $datum->id) }}"> {{ $datum->case_no }} </a>
                                             </td>
                                             <td>
-                                                {{ $datum->subsequent_case_no }}
+                                                {{ $datum->case_year }}
                                             </td>
                                             <td>
-                                                {{ $datum->division_name }}
+                                                {{ $datum->alligation }}
                                             </td>
                                             <td>
-                                                {{ $datum->court_name }}
+                                                {{ $datum->amount }}
                                             </td>
                                             <td>
-                                                {{ $datum->district_name }}
+                                                {{ $datum->name_of_the_first_party }}
                                             </td>
-                                            
                                             <td>
-                                                {{ $datum->company_name }}
+                                                {{ $datum->second_party_name }}
                                             </td>
-                                            
                                             <td>
-                                                {{ $datum->plaintiff_name }}
+                                                {{ $datum->case_notes }}
                                             </td>
-                                            
+
                                             <td>
                                                 @if ($datum->delete_status == 0)
                                                     <button type="button"
@@ -189,18 +213,18 @@
                                             </td>
                                             <td>
                                             <a href="{{ route('view-labour-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
-                                                ><i class="fas fa-eye"></i></button></a>    
+                                                ><i class="fas fa-eye"></i></button></a>
                                             <a href="{{ route('add-billing-labour-cases', $datum->id) }}"><button
                                                 class="btn btn-warning btn-sm" data-toggle="tooltip"
                                                 data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
                                             <a href="{{ route('edit-labour-cases',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                 ><i class="fas fa-edit"></i></button></a>
-                                                
+
                                                 <form method="POST" action="{{ route('delete-labour-cases',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
-                                                
+
                                             </td>
                                         </tr>
                                     @endforeach

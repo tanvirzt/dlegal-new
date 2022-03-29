@@ -15,6 +15,7 @@ class CreateHighCourtCasesTable extends Migration
     {
         Schema::create('high_court_cases', function (Blueprint $table) {
             $table->id();
+            $table->string('lower_court')->nullable();
             $table->string('case_no')->nullable();
             $table->integer('division_id')->nullable();
             $table->integer('district_id')->nullable();

@@ -8,7 +8,6 @@ use App\Models\SetupCaseSubcategory;
 use App\Models\SetupClientCategory;
 use App\Models\SetupClientSubcategory;
 use App\Models\SetupLaw;
-use App\Models\SetupLawSection;
 use App\Models\SetupCourt;
 use App\Models\SetupDesignation;
 use App\Models\SetupExternalCouncil;
@@ -47,7 +46,7 @@ class CriminalCasesController extends Controller
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
         $court = SetupCourt::where('delete_status', 0)->get();
-        $case_category = SetupCaseCategory::where('delete_status', 0)->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
 
 //        $data = DB::table('criminal_cases')
 //            ->leftJoin('setup_divisions', 'criminal_cases.division_id', '=', 'setup_divisions.id')
@@ -65,12 +64,11 @@ class CriminalCasesController extends Controller
 
     public function add_criminal_cases()
     {
-
         $law = SetupLaw::where('delete_status', 0)->get();
         $court = SetupCourt::where('delete_status', 0)->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
-        $case_category = SetupCaseCategory::where('delete_status', 0)->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->get();
         $property_type = SetupPropertyType::where('delete_status', 0)->get();
         $division = DB::table("setup_divisions")->get();
@@ -87,7 +85,7 @@ class CriminalCasesController extends Controller
         $program = SetupProgram::where('delete_status', 0)->get();
         $section = SetupSection::where('delete_status', 0)->get();
 
-        return view('litigation_management.cases.criminal_cases.add_criminal_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council','client_category','section'));
+        return view('litigation_management.cases.criminal_cases.add_criminal_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council','client_category','section','section'));
     }
 
     public function save_criminal_cases(Request $request)
@@ -178,7 +176,7 @@ class CriminalCasesController extends Controller
         $court = SetupCourt::where('delete_status', 0)->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
-        $case_category = SetupCaseCategory::where('delete_status', 0)->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->get();
         $property_type = SetupPropertyType::where('delete_status', 0)->get();
         $division = DB::table("setup_divisions")->get();

@@ -627,7 +627,7 @@ $(document).ready(function () {
 
                                 <tr>
 
-                                    <td><a href="view-high-court-cases/${value.id}"> ${value.case_no === null ? '' : value.case_no} </a></td>
+                                    <td><a href="view-high-court-cases/${value.id}"> ${value.case_no_hcd === null ? '' : value.case_no_hcd} </a></td>
                                     <td> ${value.tender_no === null ? '' : value.tender_no} </td>
                                     <td> ${value.tender_no_date === null ? '' : value.tender_no_date} </td>
                                     <td> ${value.case_category === null ? '' : value.case_category} </td>
@@ -1137,7 +1137,7 @@ $(document).ready(function () {
     $("#lower_court").on('click', function () {
         // alert('asdfw wer asdf');
 
-        $("#lower_court_info").toggle();
+        $(".lower_court_info").toggle();
 
     });
 

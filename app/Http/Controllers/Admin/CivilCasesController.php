@@ -45,7 +45,7 @@ class CivilCasesController extends Controller
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
         $court = SetupCourt::where('delete_status', 0)->get();
-        $case_category = SetupCaseCategory::where('delete_status', 0)->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->get();
 
         $data = DB::table('civil_cases')
             ->select('civil_cases.*')
@@ -75,7 +75,7 @@ class CivilCasesController extends Controller
         $court = SetupCourt::where('delete_status', 0)->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
-        $case_category = SetupCaseCategory::where('delete_status', 0)->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->get();
         $property_type = SetupPropertyType::where('delete_status', 0)->get();
         $division = DB::table("setup_divisions")->get();
@@ -185,7 +185,7 @@ class CivilCasesController extends Controller
         $court = SetupCourt::where('delete_status', 0)->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
-        $case_category = SetupCaseCategory::where('delete_status', 0)->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->get();
         $property_type = SetupPropertyType::where('delete_status', 0)->get();
         $division = DB::table("setup_divisions")->get();
