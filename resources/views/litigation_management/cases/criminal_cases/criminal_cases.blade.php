@@ -104,7 +104,7 @@
                                                 <div class="col-md-6">
 
                                                     <div class="form-group row">
-                                                        <label for="case_category_id" class="col-sm-4 col-form-label">Suit Category</label>
+                                                        <label for="case_category_id" class="col-sm-4 col-form-label">Case Category</label>
                                                         <div class="col-sm-8">
 
                                                             <select name="case_category_id" id="case_category_id" class="form-control select2" action="{{ route('find-case-subcategory') }}">
@@ -118,7 +118,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="case_subcategory_id" class="col-sm-4 col-form-label">Suit Subcategory</label>
+                                                        <label for="case_subcategory_id" class="col-sm-4 col-form-label">Case Subcategory</label>
                                                         <div class="col-sm-8">
 
                                                             <select name="case_subcategory_id" id="case_subcategory_id" class="form-control select2">

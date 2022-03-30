@@ -60,8 +60,9 @@
                                     <div class="card-body">
 
 
-                                        <form id="form_data" method="post"
-                                              action="{{ route('search-quassi-judicial-cases') }}">
+
+
+                                        <form id="form_data" method="post" action="{{ route('search-quassi-judicial-cases') }}">
                                             @csrf
 
 
@@ -79,23 +80,18 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="date_of_filing" class="col-sm-4 col-form-label">
-                                                            Date of
+                                                        <label for="date_of_filing" class="col-sm-4 col-form-label"> Date of
                                                             Filing </label>
                                                         <div class="col-sm-8">
                                                             <input type="date" class="form-control" id="date_of_filing"
-                                                                   name="date_of_filing"
-                                                                   value="{{ old('date_of_filing') }}">
+                                                                   name="date_of_filing" value="{{ old('date_of_filing') }}">
                                                             @error('date_of_filing')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label for="name_of_the_court_id"
-                                                               class="col-sm-4 col-form-label">
+                                                        <label for="name_of_the_court_id" class="col-sm-4 col-form-label">
                                                             Name of the Court </label>
                                                         <div class="col-sm-8">
                                                             <select name="name_of_the_court_id"
@@ -111,25 +107,42 @@
                                                             @enderror
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="col-md-6">
+
                                                     <div class="form-group row">
-                                                        <label for="subsequent_case_no" class="col-sm-4 col-form-label">Subsequent
-                                                            Case No.</label>
+                                                        <label for="case_category_id" class="col-sm-4 col-form-label">Case Category</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control"
-                                                                   id="subsequent_case_no" name="subsequent_case_no"
-                                                                   value="{{old('subsequent_case_no')}}">
-                                                            @error('subsequent_case_no')<span
-                                                                class="text-danger">{{$message}}</span>@enderror
+
+                                                            <select name="case_category_id" id="case_category_id" class="form-control select2" action="{{ route('find-case-subcategory') }}">
+                                                                <option value="">Select</option>
+                                                                @foreach($case_category as $item)
+                                                                    <option value="{{ $item->id }}" {{(old('case_category_id') == $item->id ? 'selected':'')}}>{{ $item->case_category }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('case_category_id')<span class="text-danger">{{$message}}</span>@enderror
+
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row">
+                                                        <label for="case_subcategory_id" class="col-sm-4 col-form-label">Case Subcategory</label>
+                                                        <div class="col-sm-8">
+
+                                                            <select name="case_subcategory_id" id="case_subcategory_id" class="form-control select2">
+                                                                <option value="">Select</option>
+
+                                                            </select>
+                                                            @error('case_subcategory_id')<span class="text-danger">{{$message}}</span>@enderror
+
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
 
                                             <div class="float-right">
-                                                <button type="submit" id="submit"
-                                                        class="btn btn-primary text-uppercase"><i
-                                                        class="fas fa-search"></i> Search
-                                                </button>
+                                                <button type="submit" id="submit" class="btn btn-primary text-uppercase"><i
+                                                        class="fas fa-search"></i> Search </button>
                                             </div>
 
                                         </form>
@@ -160,13 +173,13 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">Case No</th>
-                                        <th class="text-center">Subsequent Case No</th>
-                                        <th class="text-center">Division</th>
-                                        <th class="text-center">Court Name</th>
-                                        <th class="text-center">District</th>
-                                        <th class="text-center">Company</th>
-                                        <th class="text-center">Plaintiff Name</th>
+                                        <th class="text-center"> Case No </th>
+                                        <th class="text-center"> Case Year </th>
+                                        <th class="text-center"> Alligation </th>
+                                        <th class="text-nowrap"> Amount </th>
+                                        <th class="text-center"> Complainant </th>
+                                        <th class="text-nowrap"> Opposite Party </th>
+                                        <th class="text-nowrap"> Case Notes </th>
                                         <th class="text-center">Status</th>
                                         <th width="13%">Action</th>
                                     </tr>
@@ -179,24 +192,22 @@
                                                 <a href="{{ route('view-quassi-judicial-cases', $datum->id) }}"> {{ $datum->case_no }} </a>
                                             </td>
                                             <td>
-                                                {{ $datum->subsequent_case_no }}
+                                                {{ $datum->case_year }}
                                             </td>
                                             <td>
-                                                {{ $datum->division_name }}
+                                                {{ $datum->alligation }}
                                             </td>
                                             <td>
-                                                {{ $datum->court_name }}
+                                                {{ $datum->amount }}
                                             </td>
                                             <td>
-                                                {{ $datum->district_name }}
+                                                {{ $datum->name_of_the_complainant }}
                                             </td>
-
                                             <td>
-                                                {{ $datum->company_name }}
+                                                {{ $datum->opposite_party_name }}
                                             </td>
-
                                             <td>
-                                                {{ $datum->plaintiff_name }}
+                                                {{ $datum->case_notes }}
                                             </td>
 
                                             <td>

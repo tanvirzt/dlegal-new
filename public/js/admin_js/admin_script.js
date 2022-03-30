@@ -555,12 +555,12 @@ $(document).ready(function () {
 
                                 <tr>
                                     <td><a href="view-labour-cases/${value.id}"> ${value.case_no} </a></td>
-                                    <td> ${value.subsequent_case_no === null ? '' : value.subsequent_case_no} </td>
-                                    <td> ${value.division_name === null ? '' : value.division_name} </td>
-                                    <td> ${value.court_name === null ? '' : value.court_name} </td>
-                                    <td> ${value.district_name === null ? '' : value.district_name} </td>
-                                    <td> ${value.company_name === null ? '' : value.company_name} </td>
-                                    <td> ${value.plaintiff_name === null ? '' : value.plaintiff_name} </td>
+                                    <td> ${value.case_year === null ? '' : value.case_year} </td>
+                                    <td> ${value.alligation === null ? '' : value.alligation} </td>
+                                    <td> ${value.amount === null ? '' : value.amount} </td>
+                                    <td> ${value.name_of_the_first_party === null ? '' : value.name_of_the_first_party} </td>
+                                    <td> ${value.second_party_name === null ? '' : value.second_party_name} </td>
+                                    <td> ${value.case_notes === null ? '' : value.case_notes} </td>
                                     <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
                                         <a href="view-labour-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
@@ -582,7 +582,7 @@ $(document).ready(function () {
 
                 } else if (res.result == "quassi_judicial_cases") {
 
-                    console.log(res.data);
+                    // console.log(res.data);
 
                     $('#search_data').empty();
                     $.each(res.data, function (key, value) {
@@ -591,12 +591,12 @@ $(document).ready(function () {
 
                                 <tr>
                                     <td><a href="view-quassi-judicial-cases/${value.id}"> ${value.case_no} </a></td>
-                                    <td> ${value.subsequent_case_no === null ? '' : value.subsequent_case_no} </td>
-                                    <td> ${value.division_name === null ? '' : value.division_name} </td>
-                                    <td> ${value.court_name === null ? '' : value.court_name} </td>
-                                    <td> ${value.district_name === null ? '' : value.district_name} </td>
-                                    <td> ${value.company_name === null ? '' : value.company_name} </td>
-                                    <td> ${value.plaintiff_name === null ? '' : value.plaintiff_name} </td>
+                                    <td> ${value.case_year === null ? '' : value.case_year} </td>
+                                    <td> ${value.alligation === null ? '' : value.alligation} </td>
+                                    <td> ${value.amount === null ? '' : value.amount} </td>
+                                    <td> ${value.name_of_the_complainant === null ? '' : value.name_of_the_complainant} </td>
+                                    <td> ${value.opposite_party_name === null ? '' : value.opposite_party_name} </td>
+                                    <td> ${value.case_notes === null ? '' : value.case_notes} </td>
                                     <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
                                         <a href="view-quassi-judicial-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"

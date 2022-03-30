@@ -3,6 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SetupCaseSubcategory;
+use App\Models\SetupClientCategory;
+use App\Models\SetupClientSubcategory;
+use App\Models\SetupLaw;
+use App\Models\SetupSection;
+use App\Models\SetupThana;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\QuassiJudicialCase;
@@ -23,7 +29,6 @@ use App\Models\SetupArea;
 use App\Models\SetupInternalCouncil;
 use App\Models\SetupBranch;
 use App\Models\SetupProgram;
-use App\Models\SetupAlligation;
 use App\Models\QuassiJudicialCasesFile;
 use App\Models\SetupDistrict;
 use App\Models\SetupExternalCouncilAssociate;
@@ -34,31 +39,35 @@ class QuassiJudicialCasesController extends Controller
 
     public function quassi_judicial_cases()
     {
-        //   $data = QuassiJudicialCase::all();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Special Quassi - Judicial Cases', 'delete_status' => 0])->get();
+
+        $data = QuassiJudicialCase::all();
         $court = SetupCourt::where('delete_status', 0)->get();
 
-        $data = DB::table('quassi_judicial_cases')
-            ->leftJoin('setup_divisions', 'quassi_judicial_cases.division_id', '=', 'setup_divisions.id')
-            ->leftJoin('setup_districts', 'quassi_judicial_cases.district_id', '=', 'setup_districts.id')
-            ->leftJoin('setup_case_statuses', 'quassi_judicial_cases.case_status_id', '=', 'setup_case_statuses.id')
-            ->leftJoin('setup_case_categories', 'quassi_judicial_cases.case_category_nature_id', '=', 'setup_case_categories.id')
-            ->leftJoin('setup_courts', 'quassi_judicial_cases.name_of_the_court_id', '=', 'setup_courts.id')
-            ->leftJoin('setup_companies', 'quassi_judicial_cases.company_id', '=', 'setup_companies.id')
-            ->select('quassi_judicial_cases.*', 'setup_divisions.division_name', 'setup_districts.district_name', 'setup_case_statuses.case_status_name', 'setup_case_categories.case_category_name', 'setup_courts.court_name', 'setup_companies.company_name')
-            ->get();
-        // dd($data);
+//        $data = DB::table('quassi_judicial_cases')
+//            ->leftJoin('setup_divisions', 'quassi_judicial_cases.division_id', '=', 'setup_divisions.id')
+//            ->leftJoin('setup_districts', 'quassi_judicial_cases.district_id', '=', 'setup_districts.id')
+//            ->leftJoin('setup_case_statuses', 'quassi_judicial_cases.case_status_id', '=', 'setup_case_statuses.id')
+//            ->leftJoin('setup_case_categories', 'quassi_judicial_cases.case_category_nature_id', '=', 'setup_case_categories.id')
+//            ->leftJoin('setup_courts', 'quassi_judicial_cases.name_of_the_court_id', '=', 'setup_courts.id')
+//            ->leftJoin('setup_companies', 'quassi_judicial_cases.company_id', '=', 'setup_companies.id')
+//            ->select('quassi_judicial_cases.*', 'setup_divisions.division_name', 'setup_districts.district_name', 'setup_case_statuses.case_status_name', 'setup_case_categories.case_category_name', 'setup_courts.court_name', 'setup_companies.company_name')
+//            ->get();
 
-        return view('litigation_management.cases.quassi_judicial_cases.quassi_judicial_cases', compact('data','court'));
+//         dd($data);
+
+        return view('litigation_management.cases.quassi_judicial_cases.quassi_judicial_cases', compact('data','court','case_category'));
     }
 
     public function add_quassi_judicial_cases()
     {
-
-        $law_section = SetupLawSection::where('delete_status', 0)->get();
+        $client_category = SetupClientCategory::where('delete_status', 0)->get();
+        $law = SetupLaw::where('delete_status', 0)->get();
+        $section = SetupSection::where('delete_status', 0)->get();
         $court = SetupCourt::where('delete_status', 0)->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
-        $case_category = SetupCaseCategory::where('delete_status', 0)->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Special Quassi - Judicial Cases', 'delete_status' => 0])->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->get();
         $property_type = SetupPropertyType::where('delete_status', 0)->get();
         $division = DB::table("setup_divisions")->get();
@@ -72,48 +81,22 @@ class QuassiJudicialCasesController extends Controller
         $internal_council = SetupInternalCouncil::where('delete_status', 0)->get();
         $branch = SetupBranch::where('delete_status', 0)->get();
         $program = SetupProgram::where('delete_status', 0)->get();
-        $alligation = SetupAlligation::where('delete_status', 0)->get();
-        return view('litigation_management.cases.quassi_judicial_cases.add_quassi_judicial_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law_section', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'alligation', 'property_type', 'case_types', 'company', 'internal_council'));
+        return view('litigation_management.cases.quassi_judicial_cases.add_quassi_judicial_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'law', 'section','client_category'));
     }
 
     public function save_quassi_judicial_cases(Request $request)
     {
         //    dd($request->all());
+
+//        $data = json_decode(json_encode($request->all()));
+//        echo "<pre>";print_r($data);die();
+
         $rules = [
             'case_no' => 'required|unique:quassi_judicial_cases',
-            'date_of_filing' => 'required',
-            'district_id' => 'required',
-            'amount' => 'required',
-            'case_status_id' => 'required',
-            'case_category_nature_id' => 'required',
-            'case_type_id' => 'required',
-            'name_of_the_court_id' => 'required',
-            'external_council_name_id' => 'required',
-            'relevant_law_sections_id' => 'required',
-            'plaintiff_name' => 'required',
-            'plaintiff_designaiton_id' => 'required',
-            'next_date' => 'required',
-            'plaintiff_contact_number' => 'required',
-            'next_date_fixed_id' => 'required',
         ];
 
         $validMsg = [
             'case_no.required' => 'Case No. field is required.',
-            'date_of_filing.required' => 'Date of Filing field is required.',
-            'district_id.required' => 'District field is required.',
-            'amount.required' => 'Amount field is required.',
-            'case_status_id.required' => 'Case Status field is required.',
-            'case_category_nature_id.required' => 'Case Category Nature field is required.',
-            'case_type_id.required' => 'Case Type field is required.',
-            'name_of_the_court_id.required' => 'Name of the Court field is required.',
-            'external_council_name_id.required' => 'External Council Name field is required.',
-            'defendent_address.required' => 'Defendent Address field is required.',
-            'relevant_law_sections_id.required' => 'Relevant Law Sections field is required.',
-            'plaintiff_name.required' => 'Plaintiff Name field is required.',
-            'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required.',
-            'next_date.required' => 'Next Date field is required.',
-            'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required.',
-            'next_date_fixed_id.required' => 'Next Date Fixed field is required.',
         ];
 
         $this->validate($request, $rules, $validMsg);
@@ -122,8 +105,12 @@ class QuassiJudicialCasesController extends Controller
 
         $data = new QuassiJudicialCase();
         $data->case_no = $request->case_no;
+        $data->case_year = $request->case_year;
+        $data->client_category_id = $request->client_category_id;
+        $data->client_subcategory_id = $request->client_subcategory_id;
         $data->date_of_case_received = $request->date_of_case_received;
-        $data->case_category_nature_id = $request->case_category_nature_id;
+        $data->case_category_id = $request->case_category_id;
+        $data->case_subcategory_id = $request->case_subcategory_id;
         $data->case_type_id = $request->case_type_id;
         $data->trial_court = $request->trial_court;
         $data->subsequent_case_no = $request->subsequent_case_no;
@@ -132,13 +119,14 @@ class QuassiJudicialCasesController extends Controller
         $data->branch_id = $request->branch_id;
         $data->member_no = $request->member_no;
         $data->program_id = $request->program_id;
-        $data->police_station = $request->police_station;
         $data->name_of_the_court_id = $request->name_of_the_court_id;
         $data->date_of_filing = $request->date_of_filing;
         $data->division_id = $request->division_id;
         $data->district_id = $request->district_id;
-        $data->relevant_law_sections_id = $request->relevant_law_sections_id;
-        $data->alligation_id = $request->alligation_id;
+        $data->thana_id = $request->thana_id;
+        $data->relevant_laws_id = $request->relevant_laws_id;
+        $data->relevant_sections_id = $request->relevant_sections_id;
+        $data->alligation = $request->alligation;
         $data->amount = $request->amount;
         $data->name_of_the_complainant = $request->name_of_the_complainant;
         $data->complainant_contact_no = $request->complainant_contact_no;
@@ -162,10 +150,10 @@ class QuassiJudicialCasesController extends Controller
         $data->case_notes = $request->case_notes;
         $data->panel_lawyer_id = $request->panel_lawyer_id;
         $data->assigned_lawyer_id = $request->assigned_lawyer_id;
+        $data->total_legal_bill_amount = $request->total_legal_bill_amount;
         $data->other_claim = $request->other_claim;
         $data->summary_facts_alligation = $request->summary_facts_alligation;
         $data->prayer_claims_by_psg = $request->prayer_claims_by_psg;
-        $data->total_legal_bill_amount = $request->total_legal_bill_amount;
         $data->missing_documents_evidence = $request->missing_documents_evidence;
         $data->comments = $request->comments;
         $data->save();
@@ -192,11 +180,13 @@ class QuassiJudicialCasesController extends Controller
 
     public function edit_quassi_judicial_cases($id)
     {
-        $law_section = SetupLawSection::where('delete_status', 0)->get();
+        $client_category = SetupClientCategory::where('delete_status', 0)->get();
+        $law = SetupLaw::where('delete_status', 0)->get();
+        $section = SetupSection::where('delete_status', 0)->get();
         $court = SetupCourt::where('delete_status', 0)->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
-        $case_category = SetupCaseCategory::where('delete_status', 0)->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Special Quassi - Judicial Cases', 'delete_status' => 0])->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->get();
         $property_type = SetupPropertyType::where('delete_status', 0)->get();
         $division = DB::table("setup_divisions")->get();
@@ -210,62 +200,30 @@ class QuassiJudicialCasesController extends Controller
         $internal_council = SetupInternalCouncil::where('delete_status', 0)->get();
         $branch = SetupBranch::where('delete_status', 0)->get();
         $program = SetupProgram::where('delete_status', 0)->get();
-        $alligation = SetupAlligation::where('delete_status', 0)->get();
         $data = QuassiJudicialCase::find($id);
         $existing_district = SetupDistrict::where('division_id', $data->division_id)->get();
         $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_name_id)->get();
-
-        return view('litigation_management.cases.quassi_judicial_cases.edit_quassi_judicial_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law_section', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'alligation', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates'));
+        $existing_client_subcategory = SetupClientSubcategory::where(['client_category_id' => $data->client_category_id,'delete_status' => 0])->get();
+        $existing_case_subcategory = SetupCaseSubcategory::where(['case_category_id' => $data->case_category_id,'delete_status' => 0])->get();
+        $existing_thana = SetupThana::where(['district_id' => $data->district_id, 'delete_status' => 0])->get();
+//        dd($existing_case_subcategory);
+        return view('litigation_management.cases.quassi_judicial_cases.edit_quassi_judicial_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'law', 'section','client_category','existing_client_subcategory','existing_case_subcategory','existing_thana'));
     }
 
     public function update_quassi_judicial_cases(Request $request, $id)
     {
         //    dd($request->all());
-        $rules = [
-//            'case_no' => 'required|unique:quassi_judicial_cases',
-            'date_of_filing' => 'required',
-            'district_id' => 'required',
-            'amount' => 'required',
-            'case_status_id' => 'required',
-            'case_category_nature_id' => 'required',
-            'case_type_id' => 'required',
-            'name_of_the_court_id' => 'required',
-            'external_council_name_id' => 'required',
-            'relevant_law_sections_id' => 'required',
-            'plaintiff_name' => 'required',
-            'plaintiff_designaiton_id' => 'required',
-            'next_date' => 'required',
-            'plaintiff_contact_number' => 'required',
-            'next_date_fixed_id' => 'required',
-        ];
-
-        $validMsg = [
-//            'case_no.required' => 'Case No. field is required.',
-            'date_of_filing.required' => 'Date of Filing field is required.',
-            'district_id.required' => 'District field is required.',
-            'amount.required' => 'Amount field is required.',
-            'case_status_id.required' => 'Case Status field is required.',
-            'case_category_nature_id.required' => 'Case Category Nature field is required.',
-            'case_type_id.required' => 'Case Type field is required.',
-            'name_of_the_court_id.required' => 'Name of the Court field is required.',
-            'external_council_name_id.required' => 'External Council Name field is required.',
-            'defendent_address.required' => 'Defendent Address field is required.',
-            'relevant_law_sections_id.required' => 'Relevant Law Sections field is required.',
-            'plaintiff_name.required' => 'Plaintiff Name field is required.',
-            'plaintiff_designaiton_id.required' => 'Plaintiff Designation field is required.',
-            'next_date.required' => 'Next Date field is required.',
-            'plaintiff_contact_number.required' => 'Plaintiff Contact Number field is required.',
-            'next_date_fixed_id.required' => 'Next Date Fixed field is required.',
-        ];
-
-        $this->validate($request, $rules, $validMsg);
 
         DB::beginTransaction();
 
         $data = QuassiJudicialCase::find($id);
-//        $data->case_no = $request->case_no;
+        $data->case_no = $request->case_no;
+        $data->case_year = $request->case_year;
+        $data->client_category_id = $request->client_category_id;
+        $data->client_subcategory_id = $request->client_subcategory_id;
         $data->date_of_case_received = $request->date_of_case_received;
-        $data->case_category_nature_id = $request->case_category_nature_id;
+        $data->case_category_id = $request->case_category_id;
+        $data->case_subcategory_id = $request->case_subcategory_id;
         $data->case_type_id = $request->case_type_id;
         $data->trial_court = $request->trial_court;
         $data->subsequent_case_no = $request->subsequent_case_no;
@@ -274,13 +232,14 @@ class QuassiJudicialCasesController extends Controller
         $data->branch_id = $request->branch_id;
         $data->member_no = $request->member_no;
         $data->program_id = $request->program_id;
-        $data->police_station = $request->police_station;
         $data->name_of_the_court_id = $request->name_of_the_court_id;
         $data->date_of_filing = $request->date_of_filing;
         $data->division_id = $request->division_id;
         $data->district_id = $request->district_id;
-        $data->relevant_law_sections_id = $request->relevant_law_sections_id;
-        $data->alligation_id = $request->alligation_id;
+        $data->thana_id = $request->thana_id;
+        $data->relevant_laws_id = $request->relevant_laws_id;
+        $data->relevant_sections_id = $request->relevant_sections_id;
+        $data->alligation = $request->alligation;
         $data->amount = $request->amount;
         $data->name_of_the_complainant = $request->name_of_the_complainant;
         $data->complainant_contact_no = $request->complainant_contact_no;
@@ -304,10 +263,10 @@ class QuassiJudicialCasesController extends Controller
         $data->case_notes = $request->case_notes;
         $data->panel_lawyer_id = $request->panel_lawyer_id;
         $data->assigned_lawyer_id = $request->assigned_lawyer_id;
+        $data->total_legal_bill_amount = $request->total_legal_bill_amount;
         $data->other_claim = $request->other_claim;
         $data->summary_facts_alligation = $request->summary_facts_alligation;
         $data->prayer_claims_by_psg = $request->prayer_claims_by_psg;
-        $data->total_legal_bill_amount = $request->total_legal_bill_amount;
         $data->missing_documents_evidence = $request->missing_documents_evidence;
         $data->comments = $request->comments;
         $data->save();
@@ -447,38 +406,61 @@ class QuassiJudicialCasesController extends Controller
     public function search_quassi_judicial_cases(Request $request)
     {
 
-        $query = DB::table('quassi_judicial_cases')
-            ->leftJoin('setup_divisions', 'quassi_judicial_cases.division_id', '=', 'setup_divisions.id')
-            ->leftJoin('setup_districts', 'quassi_judicial_cases.district_id', '=', 'setup_districts.id')
-            ->leftJoin('setup_case_statuses', 'quassi_judicial_cases.case_status_id', '=', 'setup_case_statuses.id')
-            ->leftJoin('setup_case_categories', 'quassi_judicial_cases.case_category_nature_id', '=', 'setup_case_categories.id')
-            ->leftJoin('setup_courts', 'quassi_judicial_cases.name_of_the_court_id', '=', 'setup_courts.id')
-            ->leftJoin('setup_companies', 'quassi_judicial_cases.company_id', '=', 'setup_companies.id');
+        $query = DB::table('quassi_judicial_cases');
 
-        if ($request->case_no){
 
-            $query2 = $query->where('case_no','like','%'.$request->case_no.'%');
 
-        }else if ($request->date_of_filing){
+        if ($request->case_no && $request->date_of_filing && $request->name_of_the_court_id) {
+// dd('case no, dof, court name ');
 
-            $query2 = $query->where('date_of_filing',$request->date_of_filing);
+            $query2 = $query->where(['quassi_judicial_cases.case_no' => $request->case_no, 'quassi_judicial_cases.date_of_filing' => $request->date_of_filing, 'quassi_judicial_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
 
-        }else if ($request->name_of_the_court_id){
+        } else if ($request->case_no && $request->date_of_filing && $request->name_of_the_court_id == null) {
+// dd('case no, dof');
 
-            $query2 = $query->where('name_of_the_court_id',$request->name_of_the_court_id);
+            $query2 = $query->where(['quassi_judicial_cases.case_no' => $request->case_no, 'quassi_judicial_cases.date_of_filing' => $request->date_of_filing]);
 
-        }else if ($request->subsequent_case_no){
+        } else if ($request->case_no && $request->date_of_filing == null && $request->name_of_the_court_id) {
+            // dd('case no, court name ');
 
-            $query2 = $query->where('subsequent_case_no','like','%'.$request->subsequent_case_no.'%');
+            $query2 = $query->where(['quassi_judicial_cases.case_no' => $request->case_no, 'quassi_judicial_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
 
-        }else{
+        } else if ($request->case_no == null && $request->date_of_filing && $request->name_of_the_court_id) {
+            // dd('dof, court name');
 
+            $query2 = $query->where(['quassi_judicial_cases.date_of_filing' => $request->date_of_filing, 'quassi_judicial_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
+
+        } else if ($request->case_no && $request->date_of_filing == null && $request->name_of_the_court_id == null) {
+            // dd('case no');
+
+            $query2 = $query->where(['quassi_judicial_cases.case_no' => $request->case_no]);
+
+        } else if ($request->case_no == null && $request->date_of_filing && $request->name_of_the_court_id == null) {
+            // dd('dof');
+
+            $query2 = $query->where('quassi_judicial_cases.date_of_filing', $request->date_of_filing);
+
+        } else if ($request->case_no == null && $request->date_of_filing == null && $request->name_of_the_court_id) {
+
+            // dd('court name');
+            $query2 = $query->where('quassi_judicial_cases.name_of_the_court_id', $request->name_of_the_court_id);
+
+        }else if ($request->case_no == null && $request->date_of_filing == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id) {
+
+            // dd('court name');
+            $query2 = $query->where(['quassi_judicial_cases.case_category_id' => $request->case_category_id, 'quassi_judicial_cases.case_subcategory_id' => $request->case_subcategory_id]);
+
+        }else if ($request->case_no == null && $request->date_of_filing == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id == null) {
+
+            // dd('court name');
+            $query2 = $query->where('quassi_judicial_cases.case_category_id', $request->case_category_id);
+
+        } else {
             $query2 = $query;
 
         }
 
-        $data = $query2->select('quassi_judicial_cases.*', 'setup_divisions.division_name', 'setup_districts.district_name', 'setup_case_statuses.case_status_name', 'setup_case_categories.case_category_name', 'setup_courts.court_name', 'setup_companies.company_name')
-            ->get();
+        $data = $query2->get();
 
 
         return response()->json([

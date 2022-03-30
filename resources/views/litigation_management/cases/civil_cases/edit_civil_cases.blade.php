@@ -962,6 +962,22 @@
 
                                                                             </div>
                                                                         </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="updated_accused_name"
+                                                                                   class="col-sm-4 col-form-label">
+                                                                                Accused Name
+                                                                            </label>
+                                                                            <div class="col-sm-8">
+                                                                                <input type="text" class="form-control"
+                                                                                       id="updated_accused_name"
+                                                                                       name="updated_accused_name"
+                                                                                       required>
+                                                                                @error('updated_accused_name')
+                                                                                <span
+                                                                                    class="text-danger">{{ $message }}</span>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
 
                                                                     <div class="col-md-6">

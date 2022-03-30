@@ -303,17 +303,25 @@ class CivilCasesController extends Controller
     {
         //   dd($id);
 
+//        $data = CivilCases::find($id);
+//        $data = json_decode(json_encode($data));
+//        echo "<pre>";print_r($data);die();
+
         $data = DB::table('civil_cases')
+            ->leftJoin('setup_client_categories', 'civil_cases.client_category_id', '=', 'setup_client_categories.id')
+            ->leftJoin('setup_client_subcategories', 'civil_cases.client_subcategory_id', '=', 'setup_client_subcategories.id')
             ->leftJoin('setup_divisions', 'civil_cases.division_id', '=', 'setup_divisions.id')
             ->leftJoin('setup_districts', 'civil_cases.district_id', '=', 'setup_districts.id')
             ->leftJoin('setup_case_statuses', 'civil_cases.case_status_id', '=', 'setup_case_statuses.id')
             ->leftJoin('setup_property_types', 'civil_cases.property_type_id', '=', 'setup_property_types.id')
-            ->leftJoin('setup_case_categories', 'civil_cases.case_category_nature_id', '=', 'setup_case_categories.id')
+            ->leftJoin('setup_case_categories', 'civil_cases.case_category_id', '=', 'setup_case_categories.id')
+            ->leftJoin('setup_case_subcategories', 'civil_cases.case_subcategory_id', '=', 'setup_case_subcategories.id')
             ->leftJoin('setup_case_types', 'civil_cases.case_type_id', '=', 'setup_case_types.id')
             ->leftJoin('setup_courts', 'civil_cases.name_of_the_court_id', '=', 'setup_courts.id')
             ->leftJoin('setup_external_councils', 'civil_cases.external_council_name_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_external_council_associates', 'civil_cases.external_council_associates_id', '=', 'setup_external_council_associates.id')
-            ->leftJoin('setup_law_sections', 'civil_cases.relevant_law_sections_id', '=', 'setup_law_sections.id')
+            ->leftJoin('setup_laws', 'civil_cases.relevant_law_id', '=', 'setup_laws.id')
+            ->leftJoin('setup_sections', 'civil_cases.relevant_sections_id', '=', 'setup_sections.id')
             ->leftJoin('setup_designations', 'civil_cases.plaintiff_designaiton_id', '=', 'setup_designations.id')
             ->leftJoin('setup_next_date_reasons', 'civil_cases.next_date_fixed_id', '=', 'setup_next_date_reasons.id')
             ->leftJoin('setup_companies', 'civil_cases.company_id', '=', 'setup_companies.id')
@@ -321,12 +329,42 @@ class CivilCasesController extends Controller
             ->leftJoin('setup_areas', 'civil_cases.area_id', '=', 'setup_areas.id')
             ->leftJoin('setup_companies as def_company', 'civil_cases.defendant_company_id', '=', 'def_company.id')
             ->leftJoin('setup_court_last_orders', 'civil_cases.last_order_court_id', '=', 'setup_court_last_orders.id')
-            ->leftJoin('setup_external_councils as panel_lawyer', 'civil_cases.panel_lawyer_id', '=', 'panel_lawyer.id')
             ->leftJoin('setup_internal_councils', 'civil_cases.assigned_lawyer_id', '=', 'setup_internal_councils.id')
-            ->select('civil_cases.*', 'setup_divisions.division_name', 'setup_districts.district_name', 'setup_case_statuses.case_status_name', 'setup_property_types.property_type_name', 'setup_case_categories.case_category_name', 'setup_case_types.case_types_name', 'setup_courts.court_name', 'setup_external_councils.first_name', 'setup_external_councils.middle_name', 'setup_external_councils.last_name', 'setup_external_council_associates.first_name as as_first_name', 'setup_external_council_associates.middle_name as as_middle_name', 'setup_external_council_associates.last_name as as_last_name', 'setup_law_sections.law_section_name', 'setup_designations.designation_name', 'setup_next_date_reasons.next_date_reason_name', 'setup_companies.company_name', 'setup_regions.region_name', 'setup_areas.area_name', 'def_company.company_name as def_company_name', 'setup_court_last_orders.court_last_order_name', 'panel_lawyer.first_name as pl_first_name', 'panel_lawyer.middle_name as pl_middle_name', 'panel_lawyer.last_name as pl_last_name', 'setup_internal_councils.first_name as ic_first_name', 'setup_internal_councils.middle_name as ic_middle_name', 'setup_internal_councils.last_name as ic_last_name')
+            ->select('civil_cases.*',
+                'setup_client_categories.client_category_name',
+                'setup_client_subcategories.client_subcategory_name',
+                'setup_divisions.division_name',
+                'setup_districts.district_name',
+                'setup_case_statuses.case_status_name',
+                'setup_property_types.property_type_name',
+                'setup_case_categories.case_category',
+                'setup_case_subcategories.case_subcategory',
+                'setup_case_types.case_types_name',
+                'setup_courts.court_name',
+                'setup_external_councils.first_name',
+                'setup_external_councils.middle_name',
+                'setup_external_councils.last_name',
+                'setup_external_council_associates.first_name as as_first_name',
+                'setup_external_council_associates.middle_name as as_middle_name',
+                'setup_external_council_associates.last_name as as_last_name',
+                'setup_laws.law_name',
+                'setup_sections.section_name',
+                'setup_designations.designation_name',
+                'setup_next_date_reasons.next_date_reason_name',
+                'setup_companies.company_name',
+                'setup_regions.region_name',
+                'setup_areas.area_name',
+                'def_company.company_name as def_company_name',
+                'setup_court_last_orders.court_last_order_name',
+                'setup_internal_councils.first_name as ic_first_name',
+                'setup_internal_councils.middle_name as ic_middle_name',
+                'setup_internal_councils.last_name as ic_last_name')
             ->where('civil_cases.id', $id)
             ->first();
         // dd($data);
+
+//        $data = json_decode(json_encode($data));
+//        echo "<pre>";print_r($data);die();
 
         $civil_cases_files = CivilCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
 

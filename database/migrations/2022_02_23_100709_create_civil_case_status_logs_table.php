@@ -22,6 +22,7 @@ class CreateCivilCaseStatusLogsTable extends Migration
             $table->integer('updated_panel_lawyer_id')->nullable();
             $table->string('order_date')->nullable();
             $table->integer('updated_case_status_id')->nullable();
+            $table->string('updated_accused_name')->nullable();
             $table->string('update_description')->nullable();
             $table->string('case_proceedings')->nullable();
             $table->string('case_notes')->nullable();
