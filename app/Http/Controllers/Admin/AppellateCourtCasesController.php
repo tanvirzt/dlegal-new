@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SetupCaseClass;
+use App\Models\SetupCaseSubcategory;
+use App\Models\SetupLaw;
 use App\Models\SetupSection;
-use App\Models\SetupSupremeCourtCategory;
 use App\Models\SetupSupremeCourtSubcategory;
 use App\Models\SetupThana;
 use Illuminate\Http\Request;
 
 use App\Models\AppellateCourtCase;
-use App\Models\CriminalCase;
 use App\Models\SetupLawSection;
 use App\Models\SetupCourt;
 use App\Models\SetupDesignation;
@@ -43,18 +43,20 @@ class AppellateCourtCasesController extends Controller
     public function appellate_court_cases()
     {
         $court = SetupCourt::where('delete_status', 0)->get();
-        $supreme_court_category = SetupSupremeCourtCategory::where(['supreme_court_type' => 'Appellate Court Division', 'delete_status' => 0])->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Appellate Court Division', 'delete_status' => 0])->get();
 
-        $data = DB::table('appellate_court_cases')
-                    ->leftJoin('setup_supreme_court_categories','appellate_court_cases.supreme_court_category_id','setup_supreme_court_categories.id')
-                    ->leftJoin('setup_supreme_court_subcategories','appellate_court_cases.supreme_court_subcategory_id','setup_supreme_court_subcategories.id')
-                    ->select('appellate_court_cases.*','setup_supreme_court_categories.supreme_court_category','setup_supreme_court_subcategories.supreme_court_subcategory')
-                    ->get();
+//        $data = DB::table('appellate_court_cases')
+//                    ->leftJoin('setup_case_categories','appellate_court_cases.case_category_id','setup_case_categories.id')
+//                    ->leftJoin('setup_case_subcategories','appellate_court_cases.case_subcategory_id','setup_case_subcategories.id')
+//                    ->select('appellate_court_cases.*','setup_case_categories.case_category','setup_case_subcategories.case_subcategory')
+//                    ->get();
+
+        $data = AppellateCourtCase::all();
 
 //        $data = json_decode(json_encode($data));
 //        echo "<pre>";print_r($data);die();
 
-        return view('litigation_management.cases.appellate_court_cases.appellate_court_cases', compact('data', 'court', 'supreme_court_category'));
+        return view('litigation_management.cases.appellate_court_cases.appellate_court_cases', compact('data', 'court', 'case_category'));
     }
 
     public function add_appellate_court_cases()
@@ -78,26 +80,31 @@ class AppellateCourtCasesController extends Controller
         $internal_council = SetupInternalCouncil::where('delete_status', 0)->get();
         $branch = SetupBranch::where('delete_status', 0)->get();
         $program = SetupProgram::where('delete_status', 0)->get();
-        $alligation = SetupAlligation::where('delete_status', 0)->get();
         $case_class = SetupCaseClass::where('delete_status', 0)->get();
         $section = SetupSection::where('delete_status', 0)->get();
-        $supreme_court_category = SetupSupremeCourtCategory::where(['supreme_court_type' => 'High Court Division', 'delete_status' => 0])->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Appellate Court Division', 'delete_status' => 0])->get();
+        $law = SetupLaw::where('delete_status', 0)->get();
 
 //     $supreme_court_category = json_decode(json_encode($supreme_court_category));
 //     echo "<pre>";print_r($supreme_court_category);die();
 
-        return view('litigation_management.cases.appellate_court_cases.add_appellate_court_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law_section', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'alligation', 'property_type', 'case_types', 'company', 'internal_council', 'supreme_court_category','section','case_class'));
+        return view('litigation_management.cases.appellate_court_cases.add_appellate_court_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law_section', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'case_category','section','case_class','law'));
     }
 
     public function save_appellate_court_cases(Request $request)
     {
 //            dd($request->all());
+
+
+//        $data = json_decode(json_encode($request->all()));
+//        echo "<pre>";print_r($data);die();
+
         $rules = [
-            'case_no' => 'required|unique:appellate_court_cases',
+            'case_no_acd' => 'required|unique:appellate_court_cases',
         ];
 
         $validMsg = [
-            'case_no.required' => 'Case No. field is required.',
+            'case_no_acd.required' => 'Case No. field is required.',
         ];
 
         $this->validate($request, $rules, $validMsg);
@@ -106,75 +113,77 @@ class AppellateCourtCasesController extends Controller
 
         $data = new AppellateCourtCase();
 
-//        if ($request->lower_court == "Lower Court") {
-//            $data->lower_court = "Yes";
-//        } else {
-//            $data->lower_court = "No";
-//        }
+        if ($request->lower_court == "Lower Court") {
+            $data->lower_court = "Yes";
+        } else {
+            $data->lower_court = "No";
+        }
 
-        $data->case_no = $request->case_no;
-        $data->division_id = $request->division_id;
-        $data->district_id = $request->district_id;
-        $data->thana_id = $request->thana_id;
-        $data->case_category_id = $request->case_category_id;
-        $data->case_class_id = $request->case_class_id;
-        $data->case_type_id = $request->case_type_id;
-        $data->relevant_law_sections_id = $request->relevant_law_sections_id;
-        $data->section_id = $request->section_id;
-        $data->date_of_filing = $request->date_of_filing;
-        $data->plaintiff_name = $request->plaintiff_name;
-        $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
-        $data->plaintiff_contact_number = $request->plaintiff_contact_number;
-        $data->name_of_the_complainant = $request->name_of_the_complainant;
-        $data->complainant_contact_no = $request->complainant_contact_no;
-        $data->complainant_designation_id = $request->complainant_designation_id;
-        $data->accused_name = $request->accused_name;
-        $data->accused_name = $request->accused_name;
-        $data->accused_address = $request->accused_address;
-        $data->accused_contact_no = $request->accused_contact_no;
-        $data->other_claim = $request->other_claim;
-        $data->summary_facts_alligation = $request->summary_facts_alligation;
-        $data->trial_court_id = $request->trial_court_id;
-        $data->trial_court_judgement_date = $request->trial_court_judgement_date;
-        $data->trial_grounds_judgement = $request->trial_grounds_judgement;
-        $data->appeal_court_id = $request->appeal_court_id;
-        $data->appeal_court_judgement_date = $request->appeal_court_judgement_date;
-        $data->appeal_grounds_judgement = $request->appeal_grounds_judgement;
-        $data->appeal_court_judgement = $request->appeal_court_judgement;
-        $data->panel_lawyer_id = $request->panel_lawyer_id;
-        $data->total_legal_bill_amount = $request->total_legal_bill_amount;
-        $data->case_received_lawyer_id = $request->case_received_lawyer_id;
-        $data->case_papers_received = $request->case_papers_received;
-        $data->tadbirkar_details = $request->tadbirkar_details;
-        $data->tender_no = $request->tender_no;
-        $data->tender_no_date = $request->tender_no_date;
-        $data->supreme_court_category_id = $request->supreme_court_category_id;
-        $data->supreme_court_subcategory_id = $request->supreme_court_subcategory_id;
-        $data->case_no_hcd = $request->case_no_hcd;
-        $data->date_of_filing_hcd = $request->date_of_filing_hcd;
-        $data->hcd_court_id = $request->hcd_court_id;
-        $data->law_sections_id = $request->law_sections_id;
-        $data->order = $request->order;
-        $data->order_date = $request->order_date;
-        $data->order_no_memo = $request->order_no_memo;
-        $data->appellant_petitioner_name = $request->appellant_petitioner_name;
-        $data->appellant_designation_id = $request->appellant_designation_id;
-        $data->appellant_address = $request->appellant_address;
-        $data->opposite_party_name = $request->opposite_party_name;
-        $data->opposite_party_designation_id = $request->opposite_party_designation_id;
-        $data->opposite_party_address = $request->opposite_party_address;
-        $data->party_steps_taken_id = $request->party_steps_taken_id;
-        $data->case_status_id = $request->case_status_id;
-        $data->fixed_hearing_court_id = $request->fixed_hearing_court_id;
-        $data->court_steps_taken_id = $request->court_steps_taken_id;
-        $data->court_next_steps_date = $request->court_next_steps_date;
-        $data->assigned_lawyer_id = $request->assigned_lawyer_id;
-        $data->documents_lawyers_appointment = $request->documents_lawyers_appointment;
-        $data->documents_sent_to_law_chamber = $request->documents_sent_to_law_chamber;
-        $data->documents_received_field_programe = $request->documents_received_field_programe;
-        $data->missing_documents_evidence = $request->missing_documents_evidence;
-        $data->ground_appeal_revision = $request->ground_appeal_revision;
-        $data->recommendations = $request->recommendations;
+        $data->case_no =  $request->case_no;
+        $data->division_id =  $request->division_id;
+        $data->district_id =  $request->district_id;
+        $data->thana_id =  $request->thana_id;
+        $data->case_class_id =  $request->case_class_id;
+        $data->case_type_id =  $request->case_type_id;
+        $data->law_id =  $request->law_id;
+        $data->relevant_law_id =  $request->relevant_law_id;
+        $data->relevant_sections_id =  $request->relevant_sections_id;
+        $data->section_id =  $request->section_id;
+        $data->date_of_filing =  $request->date_of_filing;
+        $data->plaintiff_name =  $request->plaintiff_name;
+        $data->plaintiff_designaiton_id =  $request->plaintiff_designaiton_id;
+        $data->plaintiff_contact_number =  $request->plaintiff_contact_number;
+        $data->name_of_the_complainant =  $request->name_of_the_complainant;
+        $data->complainant_contact_no =  $request->complainant_contact_no;
+        $data->complainant_designation_id =  $request->complainant_designation_id;
+        $data->accused_name =  $request->accused_name;
+        $data->accused_company_id =  $request->accused_company_id;
+        $data->accused_address =  $request->accused_address;
+        $data->accused_contact_no =  $request->accused_contact_no;
+        $data->other_claim =  $request->other_claim;
+        $data->summary_facts_alligation =  $request->summary_facts_alligation;
+        $data->trial_court_id =  $request->trial_court_id;
+        $data->trial_court_judgement_date =  $request->trial_court_judgement_date;
+        $data->trial_grounds_judgement =  $request->trial_grounds_judgement;
+        $data->appeal_court_id =  $request->appeal_court_id;
+        $data->appeal_court_judgement_date =  $request->appeal_court_judgement_date;
+        $data->appeal_grounds_judgement =  $request->appeal_grounds_judgement;
+        $data->appeal_court_judgement =  $request->appeal_court_judgement;
+        $data->panel_lawyer_id =  $request->panel_lawyer_id;
+        $data->total_legal_bill_amount =  $request->total_legal_bill_amount;
+        $data->case_received_lawyer_id =  $request->case_received_lawyer_id;
+        $data->case_papers_received =  $request->case_papers_received;
+        $data->tadbirkar_details =  $request->tadbirkar_details;
+        $data->tender_no =  $request->tender_no;
+        $data->tender_no_date =  $request->tender_no_date;
+        $data->case_category_id =  $request->case_category_id;
+        $data->case_subcategory_id =  $request->case_subcategory_id;
+        $data->case_no_acd =  $request->case_no_acd;
+        $data->date_of_filing_acd =  $request->date_of_filing_acd;
+        $data->acd_court_id =  $request->acd_court_id;
+        $data->laws_id =  $request->laws_id;
+        $data->sections_id =  $request->sections_id;
+        $data->order =  $request->order;
+        $data->order_date =  $request->order_date;
+        $data->order_no_memo =  $request->order_no_memo;
+        $data->appellant_petitioner_name =  $request->appellant_petitioner_name;
+        $data->appellant_designation_id =  $request->appellant_designation_id;
+        $data->appellant_address =  $request->appellant_address;
+        $data->opposite_party_name =  $request->opposite_party_name;
+        $data->opposite_party_designation_id =  $request->opposite_party_designation_id;
+        $data->opposite_party_address =  $request->opposite_party_address;
+        $data->party_steps_taken_id =  $request->party_steps_taken_id;
+        $data->case_status_id =  $request->case_status_id;
+        $data->fixed_hearing_court_id =  $request->fixed_hearing_court_id;
+        $data->court_steps_taken_id =  $request->court_steps_taken_id;
+        $data->court_next_steps_date =  $request->court_next_steps_date;
+        $data->assigned_lawyer_id =  $request->assigned_lawyer_id;
+        $data->documents_lawyers_appointment =  $request->documents_lawyers_appointment;
+        $data->documents_sent_to_law_chamber =  $request->documents_sent_to_law_chamber;
+        $data->documents_received_field_programe =  $request->documents_received_field_programe;
+        $data->missing_documents_evidence =  $request->missing_documents_evidence;
+        $data->ground_appeal_revision =  $request->ground_appeal_revision;
+        $data->recommendations =  $request->recommendations;
         $data->save();
 
         if ($request->hasfile('uploaded_document')) {
@@ -199,11 +208,11 @@ class AppellateCourtCasesController extends Controller
 
     public function edit_appellate_court_cases($id)
     {
-        $law_section = SetupLawSection::where('delete_status', 0)->get();
+        $law = SetupLaw::where('delete_status', 0)->get();
         $court = SetupCourt::where('delete_status', 0)->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
-        $case_category = SetupCaseCategory::where('delete_status', 0)->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Appellate Court Division', 'delete_status' => 0])->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->get();
         $property_type = SetupPropertyType::where('delete_status', 0)->get();
         $division = DB::table("setup_divisions")->get();
@@ -217,17 +226,15 @@ class AppellateCourtCasesController extends Controller
         $internal_council = SetupInternalCouncil::where('delete_status', 0)->get();
         $branch = SetupBranch::where('delete_status', 0)->get();
         $program = SetupProgram::where('delete_status', 0)->get();
-        $alligation = SetupAlligation::where('delete_status', 0)->get();
         $data = AppellateCourtCase::find($id);
         $existing_district = SetupDistrict::where('division_id', $data->division_id)->get();
         $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_name_id)->get();
-        $supreme_court_category = SetupSupremeCourtCategory::where(['supreme_court_type' => 'High Court Division', 'delete_status' => 0])->get();
         $existing_thana = SetupThana::where('district_id', $data->district_id)->get();
-        $existing_subcat = SetupSupremeCourtSubcategory::where('supreme_court_category_id', $data->supreme_court_category_id)->get();
+        $existing_subcat = SetupCaseSubcategory::where('case_category_id', $data->case_category_id)->get();
         $case_class = SetupCaseClass::where('delete_status', 0)->get();
         $section = SetupSection::where('delete_status', 0)->get();
 
-        return view('litigation_management.cases.appellate_court_cases.edit_appellate_court_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law_section', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'alligation', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'supreme_court_category','existing_thana', 'existing_subcat','case_class','section'));
+        return view('litigation_management.cases.appellate_court_cases.edit_appellate_court_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'case_category','existing_thana', 'existing_subcat','case_class', 'law', 'section'));
     }
 
     public function update_appellate_court_cases(Request $request, $id)
@@ -238,110 +245,115 @@ class AppellateCourtCasesController extends Controller
 
         $data = AppellateCourtCase::find($id);
 
-//        if ($request->lower_court == "Lower Court") {
-
-//            $data->lower_court = "Yes";
-            $data->division_id = $request->division_id;
-            $data->district_id = $request->district_id;
-            $data->thana_id = $request->thana_id;
-            $data->case_category_id = $request->case_category_id;
-            $data->case_class_id = $request->case_class_id;
-            $data->case_type_id = $request->case_type_id;
-            $data->relevant_law_sections_id = $request->relevant_law_sections_id;
-            $data->section_id = $request->section_id;
-            $data->date_of_filing = $request->date_of_filing;
-            $data->plaintiff_name = $request->plaintiff_name;
-            $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
-            $data->plaintiff_contact_number = $request->plaintiff_contact_number;
-            $data->name_of_the_complainant = $request->name_of_the_complainant;
-            $data->complainant_contact_no = $request->complainant_contact_no;
-            $data->complainant_designation_id = $request->complainant_designation_id;
-            $data->accused_name = $request->accused_name;
-            $data->accused_name = $request->accused_name;
-            $data->accused_address = $request->accused_address;
-            $data->accused_contact_no = $request->accused_contact_no;
-            $data->other_claim = $request->other_claim;
-            $data->summary_facts_alligation = $request->summary_facts_alligation;
-            $data->trial_court_id = $request->trial_court_id;
-            $data->trial_court_judgement_date = $request->trial_court_judgement_date;
-            $data->trial_grounds_judgement = $request->trial_grounds_judgement;
-            $data->appeal_court_id = $request->appeal_court_id;
-            $data->appeal_court_judgement_date = $request->appeal_court_judgement_date;
-            $data->appeal_grounds_judgement = $request->appeal_grounds_judgement;
-            $data->appeal_court_judgement = $request->appeal_court_judgement;
-            $data->panel_lawyer_id = $request->panel_lawyer_id;
-
-//        } else {
-//
-//            $data->lower_court = "No";
-//            $data->case_no = null;
-//            $data->division_id = null;
-//            $data->district_id = null;
-//            $data->thana_id = null;
-//            $data->case_category_id = null;
-//            $data->case_class_id = null;
-//            $data->case_type_id = null;
-//            $data->relevant_law_sections_id = null;
-//            $data->section_id = null;
-//            $data->date_of_filing = null;
-//            $data->plaintiff_name = null;
-//            $data->plaintiff_designaiton_id = null;
-//            $data->plaintiff_contact_number = null;
-//            $data->name_of_the_complainant = null;
-//            $data->complainant_contact_no = null;
-//            $data->complainant_designation_id = null;
-//            $data->accused_name = null;
-//            $data->accused_name = null;
-//            $data->accused_address = null;
-//            $data->accused_contact_no = null;
-//            $data->other_claim = null;
-//            $data->summary_facts_alligation = null;
-//            $data->trial_court_id = null;
-//            $data->trial_court_judgement_date = null;
-//            $data->trial_grounds_judgement = null;
-//            $data->appeal_court_id = null;
-//            $data->appeal_court_judgement_date = null;
-//            $data->appeal_grounds_judgement = null;
-//            $data->appeal_court_judgement = null;
-//            $data->panel_lawyer_id = null;
-//
-//        }
 
 
-        $data->total_legal_bill_amount = $request->total_legal_bill_amount;
-        $data->case_received_lawyer_id = $request->case_received_lawyer_id;
-        $data->case_papers_received = $request->case_papers_received;
-        $data->tadbirkar_details = $request->tadbirkar_details;
-        $data->tender_no = $request->tender_no;
-        $data->tender_no_date = $request->tender_no_date;
-        $data->supreme_court_category_id = $request->supreme_court_category_id;
-        $data->supreme_court_subcategory_id = $request->supreme_court_subcategory_id;
-//        $data->case_no_hcd = $request->case_no_hcd;
-        $data->date_of_filing_hcd = $request->date_of_filing_hcd;
-        $data->hcd_court_id = $request->hcd_court_id;
-        $data->law_sections_id = $request->law_sections_id;
-        $data->order = $request->order;
-        $data->order_date = $request->order_date;
-        $data->order_no_memo = $request->order_no_memo;
-        $data->appellant_petitioner_name = $request->appellant_petitioner_name;
-        $data->appellant_designation_id = $request->appellant_designation_id;
-        $data->appellant_address = $request->appellant_address;
-        $data->opposite_party_name = $request->opposite_party_name;
-        $data->opposite_party_designation_id = $request->opposite_party_designation_id;
-        $data->opposite_party_address = $request->opposite_party_address;
-        $data->party_steps_taken_id = $request->party_steps_taken_id;
-        $data->case_status_id = $request->case_status_id;
-        $data->fixed_hearing_court_id = $request->fixed_hearing_court_id;
-        $data->court_steps_taken_id = $request->court_steps_taken_id;
-        $data->court_next_steps_date = $request->court_next_steps_date;
-        $data->assigned_lawyer_id = $request->assigned_lawyer_id;
-        $data->documents_lawyers_appointment = $request->documents_lawyers_appointment;
-        $data->documents_sent_to_law_chamber = $request->documents_sent_to_law_chamber;
-        $data->documents_received_field_programe = $request->documents_received_field_programe;
-        $data->missing_documents_evidence = $request->missing_documents_evidence;
-        $data->ground_appeal_revision = $request->ground_appeal_revision;
-        $data->recommendations = $request->recommendations;
+        if ($request->lower_court == "Lower Court") {
+            $data->lower_court = "Yes";
+
+            $data->division_id =  $request->division_id;
+            $data->district_id =  $request->district_id;
+            $data->thana_id =  $request->thana_id;
+            $data->case_class_id =  $request->case_class_id;
+            $data->case_type_id =  $request->case_type_id;
+            $data->law_id =  $request->law_id;
+            $data->relevant_law_id =  $request->relevant_law_id;
+            $data->relevant_sections_id =  $request->relevant_sections_id;
+            $data->section_id =  $request->section_id;
+            $data->date_of_filing =  $request->date_of_filing;
+            $data->plaintiff_name =  $request->plaintiff_name;
+            $data->plaintiff_designaiton_id =  $request->plaintiff_designaiton_id;
+            $data->plaintiff_contact_number =  $request->plaintiff_contact_number;
+            $data->name_of_the_complainant =  $request->name_of_the_complainant;
+            $data->complainant_contact_no =  $request->complainant_contact_no;
+            $data->complainant_designation_id =  $request->complainant_designation_id;
+            $data->accused_name =  $request->accused_name;
+            $data->accused_company_id =  $request->accused_company_id;
+            $data->accused_address =  $request->accused_address;
+            $data->accused_contact_no =  $request->accused_contact_no;
+            $data->other_claim =  $request->other_claim;
+            $data->summary_facts_alligation =  $request->summary_facts_alligation;
+            $data->trial_court_id =  $request->trial_court_id;
+            $data->trial_court_judgement_date =  $request->trial_court_judgement_date;
+            $data->trial_grounds_judgement =  $request->trial_grounds_judgement;
+            $data->appeal_court_id =  $request->appeal_court_id;
+            $data->appeal_court_judgement_date =  $request->appeal_court_judgement_date;
+            $data->appeal_grounds_judgement =  $request->appeal_grounds_judgement;
+            $data->appeal_court_judgement =  $request->appeal_court_judgement;
+            $data->panel_lawyer_id =  $request->panel_lawyer_id;
+            $data->total_legal_bill_amount =  $request->total_legal_bill_amount;
+
+        } else {
+            $data->lower_court = "No";
+            $data->division_id =  null;
+            $data->district_id =  null;
+            $data->thana_id =  null;
+            $data->case_class_id =  null;
+            $data->case_type_id =  null;
+            $data->law_id =  null;
+            $data->relevant_law_id =  null;
+            $data->relevant_sections_id =  null;
+            $data->section_id =  null;
+            $data->date_of_filing =  null;
+            $data->plaintiff_name = null;
+            $data->plaintiff_designaiton_id =  null;
+            $data->plaintiff_contact_number = null;
+            $data->name_of_the_complainant =  null;
+            $data->complainant_contact_no =  null;
+            $data->complainant_designation_id =  null;
+            $data->accused_name =  null;
+            $data->accused_company_id =  null;
+            $data->accused_address =  null;
+            $data->accused_contact_no =  null;
+            $data->other_claim =  null;
+            $data->summary_facts_alligation =  null;
+            $data->trial_court_id =  null;
+            $data->trial_court_judgement_date =  null;
+            $data->trial_grounds_judgement =  null;
+            $data->appeal_court_id =  null;
+            $data->appeal_court_judgement_date =  null;
+            $data->appeal_grounds_judgement =  null;
+            $data->appeal_court_judgement =  null;
+            $data->panel_lawyer_id =  null;
+            $data->total_legal_bill_amount =  null;
+        }
+
+        $data->case_received_lawyer_id =  $request->case_received_lawyer_id;
+        $data->case_papers_received =  $request->case_papers_received;
+        $data->tadbirkar_details =  $request->tadbirkar_details;
+        $data->tender_no =  $request->tender_no;
+        $data->tender_no_date =  $request->tender_no_date;
+        $data->case_category_id =  $request->case_category_id;
+        $data->case_subcategory_id =  $request->case_subcategory_id;
+        $data->case_no_acd =  $request->case_no_acd;
+        $data->date_of_filing_acd =  $request->date_of_filing_acd;
+        $data->acd_court_id =  $request->acd_court_id;
+        $data->laws_id =  $request->laws_id;
+        $data->sections_id =  $request->sections_id;
+        $data->order =  $request->order;
+        $data->order_date =  $request->order_date;
+        $data->order_no_memo =  $request->order_no_memo;
+        $data->appellant_petitioner_name =  $request->appellant_petitioner_name;
+        $data->appellant_designation_id =  $request->appellant_designation_id;
+        $data->appellant_address =  $request->appellant_address;
+        $data->opposite_party_name =  $request->opposite_party_name;
+        $data->opposite_party_designation_id =  $request->opposite_party_designation_id;
+        $data->opposite_party_address =  $request->opposite_party_address;
+        $data->party_steps_taken_id =  $request->party_steps_taken_id;
+        $data->case_status_id =  $request->case_status_id;
+        $data->fixed_hearing_court_id =  $request->fixed_hearing_court_id;
+        $data->court_steps_taken_id =  $request->court_steps_taken_id;
+        $data->court_next_steps_date =  $request->court_next_steps_date;
+        $data->assigned_lawyer_id =  $request->assigned_lawyer_id;
+        $data->documents_lawyers_appointment =  $request->documents_lawyers_appointment;
+        $data->documents_sent_to_law_chamber =  $request->documents_sent_to_law_chamber;
+        $data->documents_received_field_programe =  $request->documents_received_field_programe;
+        $data->missing_documents_evidence =  $request->missing_documents_evidence;
+        $data->ground_appeal_revision =  $request->ground_appeal_revision;
+        $data->recommendations =  $request->recommendations;
         $data->save();
+
+
+
 
         if ($request->hasfile('uploaded_document')) {
             foreach ($request->file('uploaded_document') as $file) {

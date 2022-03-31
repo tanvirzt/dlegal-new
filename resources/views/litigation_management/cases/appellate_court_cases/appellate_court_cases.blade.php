@@ -104,41 +104,41 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label for="supreme_court_category_id"
+                                                        <label for="case_category_id"
                                                                class="col-sm-4 col-form-label">Category of Supreme Court
                                                             Case</label>
                                                         <div class="col-sm-8">
-                                                            <select name="supreme_court_category_id"
+                                                            <select name="case_category_id"
                                                                     class="form-control select2"
-                                                                    id="supreme_court_category_id"
-                                                                    action="{{ route('find-supreme-court-subcategory') }}">
+                                                                    id="case_category_id"
+                                                                    action="{{ route('find-case-subcategory') }}">
                                                                 <option value="">Select</option>
-                                                                @foreach ($supreme_court_category as $item)
+                                                                @foreach ($case_category as $item)
                                                                     <option value="{{ $item->id }}"
-                                                                        {{ old('supreme_court_category_id') == $item->id ? 'selected' : '' }}>
-                                                                        {{ $item->supreme_court_category }} </option>
+                                                                        {{ old('case_category_id') == $item->id ? 'selected' : '' }}>
+                                                                        {{ $item->case_category }} </option>
                                                                 @endforeach
                                                             </select>
-                                                            @error('supreme_court_category_id')
+                                                            @error('case_category_id')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
 
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="supreme_court_subcategory_id"
+                                                        <label for="case_subcategory_id"
                                                                class="col-sm-4 col-form-label">Subcategory of Supreme
                                                             Court
                                                             Case</label>
                                                         <div class="col-sm-8">
 
-                                                            <select name="supreme_court_subcategory_id"
+                                                            <select name="case_subcategory_id"
                                                                     class="form-control select2"
-                                                                    id="supreme_court_subcategory_id">
+                                                                    id="case_subcategory_id">
                                                                 <option value="">Select</option>
 
                                                             </select>
-                                                            @error('supreme_court_subcategory_id')
+                                                            @error('case_subcategory_id')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
 
@@ -206,10 +206,10 @@
                                                 {{ $datum->tender_no_date }}
                                             </td>
                                             <td>
-                                                {{ $datum->supreme_court_category }}
+                                                {{ $datum->case_category }}
                                             </td>
                                             <td>
-                                                {{ $datum->supreme_court_subcategory }}
+                                                {{ $datum->case_subcategory }}
                                             </td>
 
                                             <td>

@@ -308,18 +308,29 @@ class QuassiJudicialCasesController extends Controller
 
     public function view_quassi_judicial_cases($id)
     {
+//        $data = QuassiJudicialCase::find($id);
+//        $data = json_decode(json_encode($data));
+//        echo "<pre>";print_r($data);die();
+
+
+
         //   dd($id);
         $data = DB::table('quassi_judicial_cases')
-            ->leftJoin('setup_case_categories', 'quassi_judicial_cases.case_category_nature_id', '=', 'setup_case_categories.id')
+            ->leftJoin('setup_client_categories', 'quassi_judicial_cases.client_category_id', '=', 'setup_client_categories.id')
+            ->leftJoin('setup_client_subcategories', 'quassi_judicial_cases.client_subcategory_id', '=', 'setup_client_subcategories.id')
+            ->leftJoin('setup_case_categories', 'quassi_judicial_cases.case_category_id', '=', 'setup_case_categories.id')
+            ->leftJoin('setup_case_subcategories', 'quassi_judicial_cases.case_subcategory_id', '=', 'setup_case_subcategories.id')
             ->leftJoin('setup_case_types', 'quassi_judicial_cases.case_type_id', '=', 'setup_case_types.id')
             ->leftJoin('setup_regions', 'quassi_judicial_cases.zone_id', '=', 'setup_regions.id')
             ->leftJoin('setup_areas', 'quassi_judicial_cases.area_id', '=', 'setup_areas.id')
             ->leftJoin('setup_branches', 'quassi_judicial_cases.branch_id', '=', 'setup_branches.id')
             ->leftJoin('setup_programs', 'quassi_judicial_cases.program_id', '=', 'setup_programs.id')
+            ->leftJoin('setup_courts', 'quassi_judicial_cases.name_of_the_court_id', '=', 'setup_courts.id')
             ->leftJoin('setup_divisions', 'quassi_judicial_cases.division_id', '=', 'setup_divisions.id')
             ->leftJoin('setup_districts', 'quassi_judicial_cases.district_id', '=', 'setup_districts.id')
-            ->leftJoin('setup_law_sections', 'quassi_judicial_cases.relevant_law_sections_id', '=', 'setup_law_sections.id')
-            ->leftJoin('setup_alligations', 'quassi_judicial_cases.alligation_id', '=', 'setup_alligations.id')
+            ->leftJoin('setup_thanas', 'quassi_judicial_cases.thana_id', '=', 'setup_thanas.id')
+            ->leftJoin('setup_laws', 'quassi_judicial_cases.relevant_laws_id', '=', 'setup_laws.id')
+            ->leftJoin('setup_sections', 'quassi_judicial_cases.relevant_sections_id', '=', 'setup_sections.id')
             ->leftJoin('setup_designations', 'quassi_judicial_cases.complainant_designation_id', '=', 'setup_designations.id')
             ->leftJoin('setup_external_councils', 'quassi_judicial_cases.external_council_name_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_external_council_associates', 'quassi_judicial_cases.external_council_associates_id', '=', 'setup_external_council_associates.id')
@@ -331,10 +342,47 @@ class QuassiJudicialCasesController extends Controller
             ->leftJoin('setup_companies', 'quassi_judicial_cases.company_id', '=', 'setup_companies.id')
             ->leftJoin('setup_external_councils as panel_lawyer', 'quassi_judicial_cases.panel_lawyer_id', '=', 'panel_lawyer.id')
             ->leftJoin('setup_internal_councils as assigned_lawyer', 'quassi_judicial_cases.assigned_lawyer_id', '=', 'assigned_lawyer.id')
-            ->leftJoin('setup_courts', 'quassi_judicial_cases.name_of_the_court_id', '=', 'setup_courts.id')
-            ->select('quassi_judicial_cases.*', 'setup_case_categories.case_category_name', 'setup_case_types.case_types_name', 'setup_regions.region_name', 'setup_areas.area_name', 'setup_branches.branch_name', 'setup_programs.program_name', 'setup_divisions.division_name', 'setup_districts.district_name', 'setup_law_sections.law_section_name', 'setup_alligations.alligation_name', 'setup_designations.designation_name', 'setup_external_councils.first_name', 'setup_external_councils.middle_name', 'setup_external_councils.last_name', 'setup_external_council_associates.first_name as as_first_name', 'setup_external_council_associates.middle_name as as_middle_name', 'setup_external_council_associates.middle_name as as_last_name', 'accused_company.company_name as accused_company_name', 'setup_case_statuses.case_status_name', 'setup_court_last_orders.court_last_order_name', 'setup_companies.company_name', 'setup_next_date_reasons.next_date_reason_name', 'plaintiff_designations.designation_name as plaintiff_designation_name', 'panel_lawyer.first_name as pl_first_name', 'panel_lawyer.middle_name as pl_middle_name', 'panel_lawyer.last_name as pl_last_name', 'assigned_lawyer.first_name as assigned_first_name', 'assigned_lawyer.middle_name as assigned_middle_name', 'assigned_lawyer.last_name as assigned_last_name', 'setup_courts.court_name')
+            ->select('quassi_judicial_cases.*',
+                'setup_client_categories.client_category_name',
+                'setup_client_subcategories.client_subcategory_name',
+                'setup_case_categories.case_category',
+                'setup_case_subcategories.case_subcategory',
+                'setup_case_types.case_types_name',
+                'setup_regions.region_name',
+                'setup_areas.area_name',
+                'setup_branches.branch_name',
+                'setup_programs.program_name',
+                'setup_courts.court_name',
+                'setup_divisions.division_name',
+                'setup_districts.district_name',
+                'setup_thanas.thana_name',
+                'setup_laws.law_name',
+                'setup_sections.section_name',
+                'setup_designations.designation_name',
+                'setup_external_councils.first_name',
+                'setup_external_councils.middle_name',
+                'setup_external_councils.last_name',
+                'setup_external_council_associates.first_name as as_first_name',
+                'setup_external_council_associates.middle_name as as_middle_name',
+                'setup_external_council_associates.middle_name as as_last_name',
+                'setup_case_statuses.case_status_name',
+                'setup_court_last_orders.court_last_order_name',
+                'accused_company.company_name as accused_company_name',
+                'setup_next_date_reasons.next_date_reason_name',
+                'plaintiff_designations.designation_name as plaintiff_designation_name',
+                'setup_companies.company_name',
+                'panel_lawyer.first_name as pl_first_name',
+                'panel_lawyer.middle_name as pl_middle_name',
+                'panel_lawyer.last_name as pl_last_name',
+                'assigned_lawyer.first_name as assigned_first_name',
+                'assigned_lawyer.middle_name as assigned_middle_name',
+                'assigned_lawyer.last_name as assigned_last_name')
             ->where('quassi_judicial_cases.id', $id)
             ->first();
+
+//        $data = json_decode(json_encode($data));
+//        echo "<pre>";print_r($data);die();
+
 
         // dd($data);
         $quassi_judicial_cases_files = QuassiJudicialCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();

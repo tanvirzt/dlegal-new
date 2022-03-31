@@ -7,13 +7,10 @@ use App\Models\SetupCaseClass;
 use App\Models\SetupCaseSubcategory;
 use App\Models\SetupLaw;
 use App\Models\SetupSection;
-use App\Models\SetupSupremeCourtSubcategory;
 use App\Models\SetupThana;
 use Illuminate\Http\Request;
 
 use App\Models\HighCourtCase;
-use App\Models\CriminalCase;
-use App\Models\SetupLawSection;
 use App\Models\SetupCourt;
 use App\Models\SetupDesignation;
 use App\Models\SetupExternalCouncil;
