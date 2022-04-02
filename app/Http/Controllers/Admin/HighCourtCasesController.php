@@ -46,8 +46,8 @@ class HighCourtCasesController extends Controller
             ->get();
 //        $data = HighCourtCase::all();
         $court = SetupCourt::where('delete_status', 0)->get();
-//        $supreme_court_category = SetupCaseCategory::where(['supreme_court_type' => 'High Court Division', 'delete_status' => 0])->get();
-        $case_category = SetupCaseCategory::where(['delete_status' => 0])->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'High Court Division', 'delete_status' => 0])->get();
+//        $case_category = SetupCaseCategory::where(['delete_status' => 0])->get();
 
 //dd($data);
         return view('litigation_management.cases.high_court_cases.high_court_cases', compact('data', 'court', 'case_category'));
@@ -95,15 +95,16 @@ class HighCourtCasesController extends Controller
 //        echo "<pre>";print_r($data);die();
 
 //            dd($request->all());
-        $rules = [
-            'case_no_hcd' => 'required|unique:high_court_cases',
-        ];
 
-        $validMsg = [
-            'case_no_hcd.required' => 'Case No. (High Court Division) field is required.',
-        ];
-
-        $this->validate($request, $rules, $validMsg);
+//        $rules = [
+//            'case_no_hcd' => 'required|unique:high_court_cases',
+//        ];
+//
+//        $validMsg = [
+//            'case_no_hcd.required' => 'Case No. (High Court Division) field is required.',
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
 
         DB::beginTransaction();
 

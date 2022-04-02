@@ -101,15 +101,15 @@ class LabourCasesController extends Controller
 //        die();
 
 
-        $rules = [
-            'case_no' => 'required|unique:labour_cases',
-        ];
-
-        $validMsg = [
-            'case_no.required' => 'Case No. field is required.',
-        ];
-
-        $this->validate($request, $rules, $validMsg);
+//        $rules = [
+//            'case_no' => 'required|unique:labour_cases',
+//        ];
+//
+//        $validMsg = [
+//            'case_no.required' => 'Case No. field is required.',
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
 
         DB::beginTransaction();
 
@@ -217,6 +217,7 @@ class LabourCasesController extends Controller
         DB::beginTransaction();
 
         $data = LabourCase::find($id);
+        $data->case_no = $request->case_no;
         $data->case_year = $request->case_year;
         $data->client_category_id = $request->client_category_id;
         $data->client_subcategory_id = $request->client_subcategory_id;

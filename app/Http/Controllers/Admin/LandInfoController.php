@@ -45,7 +45,7 @@ class LandInfoController extends Controller
         $district = SetupDistrict::where('delete_status',0)->get();
         $seller = SetupSellerBuyer::where(['seller_or_buyer' => 'Seller' ,'delete_status' => 0])->get();
         $buyer = SetupSellerBuyer::where(['seller_or_buyer' => 'Buyer' ,'delete_status' => 0])->get();
-       
+
         return view('property_management.land_information.add_land_information',compact('property_type','district','seller','buyer'));
     }
 
@@ -71,52 +71,52 @@ class LandInfoController extends Controller
     public function save_land_information(Request $request)
     {
         //   dd($request->all());
-     $rules = [
-        'property_type_id' => 'required',
-        'district_id' => 'required',
-        'thana_id' => 'required',
-        'seller_id' => 'required',
-        'buyer_id' => 'required',
-        'cs_khatian' => 'required',
-        'cs_dag' => 'required',
-        'sa_khatian' => 'required',
-        'sa_dag' => 'required',
-        'rs_khatian' => 'required',
-        'rs_dag' => 'required',
-        'bs_khatian' => 'required',
-        'bs_dag' => 'required',
-        'khatian_dag_city_jorip' => 'required',
-        'land_area' => 'required',
-        'deed_no' => 'required',
-        'date_of_deed' => 'required',
-        'deed_value' => 'required',
-        'possession' => 'required',
-    ];
-
-    $validMsg = [
-        'property_type_id.required' => 'Property Type field is required',
-        'district_id.required' => 'District field is required',
-        'thana_id.required' => 'Thana field is required',
-        'seller_id.required' => 'Seller field is required',
-        'buyer_id.required' => 'Buyer field is required',
-        'cs_khatian.required' => 'CS Khatian field is required',
-        'cs_dag.required' => 'CS Dag field is required',
-        'sa_khatian.required' => 'SA Khatian field is required',
-        'sa_dag.required' => 'SA Dag field is required',
-        'rs_khatian.required' => 'RS Khatian field is required',
-        'rs_dag.required' => 'RS Dag field is required',
-        'bs_khatian.required' => 'BS Khatian field is required',
-        'bs_dag.required' => 'BS Dag field is required',
-        'khatian_dag_city_jorip.required' => 'Khatian Dag & City Jorip field is required',
-        'land_area.required' => 'Land Area field is required',
-        'deed_no.required' => 'Deed No. field is required',
-        'date_of_deed.required' => 'Date of Deed field is required',
-        'deed_value.required' => 'Deed Value field is required',
-        'possession.required' => 'Possession field is required',
-        
-    ];
-
-    $this->validate($request, $rules, $validMsg);
+//     $rules = [
+//        'property_type_id' => 'required',
+//        'district_id' => 'required',
+//        'thana_id' => 'required',
+//        'seller_id' => 'required',
+//        'buyer_id' => 'required',
+//        'cs_khatian' => 'required',
+//        'cs_dag' => 'required',
+//        'sa_khatian' => 'required',
+//        'sa_dag' => 'required',
+//        'rs_khatian' => 'required',
+//        'rs_dag' => 'required',
+//        'bs_khatian' => 'required',
+//        'bs_dag' => 'required',
+//        'khatian_dag_city_jorip' => 'required',
+//        'land_area' => 'required',
+//        'deed_no' => 'required',
+//        'date_of_deed' => 'required',
+//        'deed_value' => 'required',
+//        'possession' => 'required',
+//    ];
+//
+//    $validMsg = [
+//        'property_type_id.required' => 'Property Type field is required',
+//        'district_id.required' => 'District field is required',
+//        'thana_id.required' => 'Thana field is required',
+//        'seller_id.required' => 'Seller field is required',
+//        'buyer_id.required' => 'Buyer field is required',
+//        'cs_khatian.required' => 'CS Khatian field is required',
+//        'cs_dag.required' => 'CS Dag field is required',
+//        'sa_khatian.required' => 'SA Khatian field is required',
+//        'sa_dag.required' => 'SA Dag field is required',
+//        'rs_khatian.required' => 'RS Khatian field is required',
+//        'rs_dag.required' => 'RS Dag field is required',
+//        'bs_khatian.required' => 'BS Khatian field is required',
+//        'bs_dag.required' => 'BS Dag field is required',
+//        'khatian_dag_city_jorip.required' => 'Khatian Dag & City Jorip field is required',
+//        'land_area.required' => 'Land Area field is required',
+//        'deed_no.required' => 'Deed No. field is required',
+//        'date_of_deed.required' => 'Date of Deed field is required',
+//        'deed_value.required' => 'Deed Value field is required',
+//        'possession.required' => 'Possession field is required',
+//
+//    ];
+//
+//    $this->validate($request, $rules, $validMsg);
 
      $data = new LandInformation();
      $data->property_type_id = $request->property_type_id;
@@ -191,7 +191,7 @@ class LandInfoController extends Controller
         $buyer = SetupSellerBuyer::where(['seller_or_buyer' => 'Buyer' ,'delete_status' => 0])->get();
 
         $data = LandInformation::find($id);
-        
+
         $existing_thana = SetupThana::where(['district_id' => $data->district_id, 'delete_status' => 0])->get();
 
     //   dd($data);
@@ -201,53 +201,53 @@ class LandInfoController extends Controller
     public function update_land_information(Request $request, $id)
     {
         // dd($id);
-        $rules = [
-            'property_type_id' => 'required',
-            'district_id' => 'required',
-            'thana_id' => 'required',
-            'seller_id' => 'required',
-            'buyer_id' => 'required',
-            'cs_khatian' => 'required',
-            'cs_dag' => 'required',
-            'sa_khatian' => 'required',
-            'sa_dag' => 'required',
-            'rs_khatian' => 'required',
-            'rs_dag' => 'required',
-            'bs_khatian' => 'required',
-            'bs_dag' => 'required',
-            'khatian_dag_city_jorip' => 'required',
-            'land_area' => 'required',
-            'deed_no' => 'required',
-            'date_of_deed' => 'required',
-            'deed_value' => 'required',
-            'possession' => 'required',
-        ];
-    
-        $validMsg = [
-            'property_type_id.required' => 'Property Type field is required',
-            'district_id.required' => 'District field is required',
-            'thana_id.required' => 'Thana field is required',
-            'seller_id.required' => 'Seller field is required',
-            'buyer_id.required' => 'Buyer field is required',
-            'cs_khatian.required' => 'CS Khatian field is required',
-            'cs_dag.required' => 'CS Dag field is required',
-            'sa_khatian.required' => 'SA Khatian field is required',
-            'sa_dag.required' => 'SA Dag field is required',
-            'rs_khatian.required' => 'RS Khatian field is required',
-            'rs_dag.required' => 'RS Dag field is required',
-            'bs_khatian.required' => 'BS Khatian field is required',
-            'bs_dag.required' => 'BS Dag field is required',
-            'khatian_dag_city_jorip.required' => 'Khatian Dag & City Jorip field is required',
-            'land_area.required' => 'Land Area field is required',
-            'deed_no.required' => 'Deed No. field is required',
-            'date_of_deed.required' => 'Date of Deed field is required',
-            'deed_value.required' => 'Deed Value field is required',
-            'possession.required' => 'Possession field is required',
-            
-        ];
-    
-        $this->validate($request, $rules, $validMsg);
-    
+//        $rules = [
+//            'property_type_id' => 'required',
+//            'district_id' => 'required',
+//            'thana_id' => 'required',
+//            'seller_id' => 'required',
+//            'buyer_id' => 'required',
+//            'cs_khatian' => 'required',
+//            'cs_dag' => 'required',
+//            'sa_khatian' => 'required',
+//            'sa_dag' => 'required',
+//            'rs_khatian' => 'required',
+//            'rs_dag' => 'required',
+//            'bs_khatian' => 'required',
+//            'bs_dag' => 'required',
+//            'khatian_dag_city_jorip' => 'required',
+//            'land_area' => 'required',
+//            'deed_no' => 'required',
+//            'date_of_deed' => 'required',
+//            'deed_value' => 'required',
+//            'possession' => 'required',
+//        ];
+//
+//        $validMsg = [
+//            'property_type_id.required' => 'Property Type field is required',
+//            'district_id.required' => 'District field is required',
+//            'thana_id.required' => 'Thana field is required',
+//            'seller_id.required' => 'Seller field is required',
+//            'buyer_id.required' => 'Buyer field is required',
+//            'cs_khatian.required' => 'CS Khatian field is required',
+//            'cs_dag.required' => 'CS Dag field is required',
+//            'sa_khatian.required' => 'SA Khatian field is required',
+//            'sa_dag.required' => 'SA Dag field is required',
+//            'rs_khatian.required' => 'RS Khatian field is required',
+//            'rs_dag.required' => 'RS Dag field is required',
+//            'bs_khatian.required' => 'BS Khatian field is required',
+//            'bs_dag.required' => 'BS Dag field is required',
+//            'khatian_dag_city_jorip.required' => 'Khatian Dag & City Jorip field is required',
+//            'land_area.required' => 'Land Area field is required',
+//            'deed_no.required' => 'Deed No. field is required',
+//            'date_of_deed.required' => 'Date of Deed field is required',
+//            'deed_value.required' => 'Deed Value field is required',
+//            'possession.required' => 'Possession field is required',
+//
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
+
          $data = LandInformation::find($id);
          $data->property_type_id = $request->property_type_id;
          $data->district_id = $request->district_id;
@@ -279,7 +279,7 @@ class LandInfoController extends Controller
          $data->dcr_number = $request->dcr_number;
          $data->dcr_date = $request->dcr_date;
          $data->register_office_name = $request->register_office_name;
-    
+
          if ($request->land_compliance == "compliance") {
             $data->land_compliance = "Yes";
             $data->electricity = $request->electricity;
@@ -300,7 +300,7 @@ class LandInfoController extends Controller
 
 
          $data->save();
-    
+
          if($request->hasfile('uploaded_document'))
          {
              foreach($request->file('uploaded_document') as $file)
@@ -308,14 +308,14 @@ class LandInfoController extends Controller
                  $original_name = $file->getClientOriginalName();
                  $name = time().rand(1,100).$original_name;
                  $file->move(public_path('files/land_information'), $name);
-    
+
                  $file= new LandInformationFile();
                  $file->land_information_id = $data->id;
                  $file->uploaded_document = $name;
                  $file->save();
              }
          }
-    
+
          session()->flash('success','Land Information Updated Successfully');
          return redirect()->route('land-information');
 
@@ -331,7 +331,7 @@ class LandInfoController extends Controller
         }
         $data->delete_status = $delete_status;
         $data->save();
-   
+
         session()->flash('success', 'Land Information Deleted');
         return redirect()->back();
     }
@@ -350,7 +350,7 @@ class LandInfoController extends Controller
                 ->where('land_information.id',$id)
                 ->first();
         $land_information_files = LandInformationFile::where('land_information_id',$id)->get();
-// dd($data);  
+// dd($data);
         return view('property_management.land_information.view_land_information',compact('data','land_information_files'));
 
     }
@@ -375,31 +375,31 @@ class LandInfoController extends Controller
                 ->select('land_information.*','setup_property_types.property_type_name','setup_districts.district_name','setup_thanas.thana_name','setup_seller_buyers.seller_buyer_name as seller_name','buyers.seller_buyer_name as buyer_name');
         if ($request->district_id && $request->thana_id) {
             // dd('district and thana');
-            
+
             $data = $query->where(['land_information.district_id' => $request->district_id, 'land_information.thana_id' => $request->thana_id])
                     ->get();
 
         } else if($request->district_id){
             // dd('district');
-            
+
             $data = $query->where('land_information.district_id',$request->district_id)
                     ->get();
 
         } else if($request->property_type_id){
             // dd('property type');
-            
+
             $data = $query->where('land_information.property_type_id',$request->property_type_id)
                     ->get();
 
         } else if($request->seller_id){
             // dd('seller');
-            
+
             $data = $query->where('land_information.seller_id',$request->seller_id)
                     ->get();
 
         }else if($request->buyer_id){
             // dd('buyer');
-            
+
             $data = $query->where('land_information.buyer_id',$request->buyer_id)
                     ->get();
 

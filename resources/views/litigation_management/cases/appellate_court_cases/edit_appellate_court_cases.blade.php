@@ -1181,7 +1181,7 @@
                                                                             <div class="col-sm-8">
                                                                                 <select name="updated_court_id"
                                                                                         class="form-control select2"
-                                                                                        required>
+                                                                                        >
                                                                                     <option value="">Select</option>
                                                                                     @foreach ($court as $item)
                                                                                         <option
@@ -1207,7 +1207,7 @@
                                                                                        id="updated_next_date"
                                                                                        name="updated_next_date"
                                                                                        value="{{ $data->updated_next_date }}"
-                                                                                       required>
+                                                                                       >
                                                                                 @error('updated_next_date')
                                                                                 <span
                                                                                     class="text-danger">{{ $message }}</span>
@@ -1223,7 +1223,7 @@
                                                                                 <select
                                                                                     name="updated_next_date_fixed_id"
                                                                                     class="form-control select2"
-                                                                                    required>
+                                                                                    >
                                                                                     <option value="">Select</option>
                                                                                     @foreach ($next_date_reason as $item)
                                                                                         <option
@@ -1247,7 +1247,7 @@
 
                                                                                 <select name="updated_panel_lawyer_id"
                                                                                         class="form-control select2"
-                                                                                        required>
+                                                                                        >
                                                                                     <option value="">Select</option>
                                                                                     @foreach ($external_council as $item)
                                                                                         <option
@@ -1274,7 +1274,7 @@
                                                                             <div class="col-sm-8">
                                                                                 <input type="date" class="form-control"
                                                                                        id="order_date" name="order_date"
-                                                                                       required>
+                                                                                       >
                                                                                 @error('order_date')
                                                                                 <span
                                                                                     class="text-danger">{{ $message }}</span>
@@ -1289,7 +1289,7 @@
 
                                                                                 <select name="updated_case_status_id"
                                                                                         class="form-control select2"
-                                                                                        required>
+                                                                                        >
                                                                                     <option value="">Select</option>
                                                                                     @foreach ($case_status as $item)
                                                                                         <option
@@ -1316,7 +1316,7 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="updated_accused_name"
                                                                                        name="updated_accused_name"
-                                                                                       required>
+                                                                                       >
                                                                                 @error('updated_accused_name')
                                                                                 <span
                                                                                     class="text-danger">{{ $message }}</span>

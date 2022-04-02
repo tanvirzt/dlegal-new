@@ -66,13 +66,13 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label for="case_no" class="col-sm-4 col-form-label">
+                                                        <label for="case_no_acd" class="col-sm-4 col-form-label">
                                                             Case No. </label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" id="case_no"
-                                                                   name="case_no"
-                                                                   value="{{ old('case_no') }}">
-                                                            @error('case_no')
+                                                            <input type="text" class="form-control" id="case_no_acd"
+                                                                   name="case_no_acd"
+                                                                   value="{{ old('case_no_acd') }}">
+                                                            @error('case_no_acd')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
@@ -186,7 +186,6 @@
                                         <th class="text-center">Tender No. Date</th>
                                         <th class="text-center">Category</th>
                                         <th class="text-center">Subcategory</th>
-                                        <th class="text-center">Date of filing</th>
                                         <th class="text-center">Order</th>
                                         <th class="text-center">Status</th>
                                         <th width="13%">Action</th>
@@ -197,7 +196,7 @@
 
                                         <tr>
                                             <td>
-                                                <a href="{{ route('view-appellate-court-cases', $datum->id) }}"> {{ $datum->case_no }} </a>
+                                                <a href="{{ route('view-appellate-court-cases', $datum->id) }}"> {{ $datum->case_no_acd }} </a>
                                             </td>
                                             <td>
                                                 {{ $datum->tender_no }}
@@ -210,10 +209,6 @@
                                             </td>
                                             <td>
                                                 {{ $datum->case_subcategory }}
-                                            </td>
-
-                                            <td>
-                                                {{ $datum->date_of_filing_hcd }}
                                             </td>
                                             <td>
                                                 {{ $datum->order }}

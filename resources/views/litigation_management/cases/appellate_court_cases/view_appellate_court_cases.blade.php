@@ -69,197 +69,217 @@
                                 <div class="card-body">
                                     <table class="table table-responsive table-hover table-bordered">
                                         <tbody>
+                                        <div class="form-group row">
+                                            <label for="lower_court" class="col-sm-1 col-form-label"> Lower Court
+                                            </label>
+                                            <div class="col-sm-11">
+                                                <input type="checkbox" class="mt-2" id="lower_court"
+                                                       name="lower_court" value="Lower Court">
+                                            </div>
+                                        </div>
                                         <tr>
-                                            <th>Lower Court </th>
-                                            <td>{{ $data->lower_court }}</td>
+                                            <th class="lower_court_info">Case No. (Lower Court)</th>
+                                            <td class="lower_court_info">{{ $data->case_no }}</td>
                                             <th>Case Received (From)</th>
                                             <td>{{ $data->case_received_lawyer_first_name }} {{ $data->case_received_lawyer_middle_name }} {{ $data->case_received_lawyer_last_name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Case No. (Lower Court) </th>
-                                            <td>{{ $data->case_no }}</td>
+                                            <th class="lower_court_info">Division</th>
+                                            <td class="lower_court_info">{{ $data->division_name }}</td>
                                             <th>Case Papers Received</th>
                                             <td>{{ $data->case_papers_received }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Division </th>
-                                            <td>{{ $data->division_name }}</td>
+                                            <th class="lower_court_info">District</th>
+                                            <td class="lower_court_info">{{ $data->district_name }}</td>
                                             <th>Tadbirkar Details</th>
                                             <td>{{ $data->tadbirkar_details }}</td>
                                         </tr>
                                         <tr>
-                                            <th>District </th>
-                                            <td>{{ $data->district_name }}</td>
+                                            <th class="lower_court_info">Police Station</th>
+                                            <td class="lower_court_info">{{ $data->thana_name }}</td>
                                             <th>Tender No.</th>
                                             <td>{{ $data->tender_no }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Police Station </th>
-                                            <td>{{ $data->thana_name }}</td>
+                                            <th class="lower_court_info">Class of Cases</th>
+                                            <td class="lower_court_info">{{ $data->case_class_name }}</td>
                                             <th>Tender No. Date</th>
                                             <td>{{ $data->tender_no_date }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Case Category </th>
-                                            <td>{{ $data->case_category_name }}</td>
-                                            <th>Category of Supreme Court Case</th>
-                                            <td>{{ $data->supreme_court_category }}</td>
+                                            <th class="lower_court_info">Type of Cases</th>
+                                            <td class="lower_court_info">{{ $data->case_types_name }}</td>
+                                            <th>Category of Cases</th>
+                                            <td>{{ $data->case_category }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Class of Cases </th>
-                                            <td>{{ $data->case_class_name }}</td>
-                                            <th>Subcategory of Supreme Court Case</th>
-                                            <td>{{ $data->supreme_court_subcategory }}</td>
+                                            <th class="lower_court_info">Laws</th>
+                                            <td class="lower_court_info">{{ $data->law_name }}</td>
+                                            <th>Subcategory of Cases</th>
+                                            <td>{{ $data->case_subcategory }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Type of Cases </th>
-                                            <td>{{ $data->case_types_name }}</td>
+                                            <th class="lower_court_info">Relevant Laws</th>
+                                            <td class="lower_court_info">{{ $data->relevant_law_name }}</td>
                                             <th>Case No. (High Court Division)</th>
-                                            <td>{{ $data->case_no_hcd }}</td>
+                                            <td>{{ $data->case_no_acd }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Relevant Laws/Sections</th>
-                                            <td>{{ $data->relevant_law_section_name }}</td>
+                                            <th class="lower_court_info">Relevant Sections</th>
+                                            <td class="lower_court_info">{{ $data->relevant_section_name }}</td>
                                             <th>Date of filing(High Court Division)</th>
-                                            <td>{{ $data->date_of_filing_hcd }}</td>
+                                            <td>{{ $data->date_of_filing_acd }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Section</th>
-                                            <td>{{ $data->section_name }}</td>
-                                            <th>Court (High Court Divisoin)</th>
-                                            <td>{{ $data->hcd_court_name }}</td>
+                                            <th class="lower_court_info">Section</th>
+                                            <td class="lower_court_info">{{ $data->section_name }}</td>
+                                            <th>Court (High Court Division)</th>
+                                            <td>{{ $data->acd_court_name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Date of filing </th>
-                                            <td>{{ $data->date_of_filing }}</td>
-                                            <th>Law & Sections</th>
-                                            <td>{{ $data->law_section_name }}</td>
+                                            <th class="lower_court_info">Date of filing</th>
+                                            <td class="lower_court_info">{{ $data->date_of_filing }}</td>
+                                            <th>Laws</th>
+                                            <td>{{ $data->laws_name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Plaintiff Name</th>
-                                            <td>{{ $data->plaintiff_name }}</td>
+                                            <th class="lower_court_info">Plaintiff Name</th>
+                                            <td class="lower_court_info">{{ $data->plaintiff_name }}</td>
+                                            <th>Sections</th>
+                                            <td>{{ $data->sections_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="lower_court_info">Plaintiff Designation</th>
+                                            <td class="lower_court_info">{{ $data->plaintiff_designation_name }}</td>
                                             <th>Order</th>
                                             <td>{{ $data->order }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Plaintiff Designation</th>
-                                            <td>{{ $data->designation_name }}</td>
+                                            <th class="lower_court_info">Plaintiff Contact No</th>
+                                            <td class="lower_court_info">{{ $data->plaintiff_contact_number }}</td>
                                             <th>Order Date</th>
                                             <td>{{ $data->order_date }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Plaintiff Contact No</th>
-                                            <td>{{ $data->plaintiff_contact_number }}</td>
+                                            <th class="lower_court_info">Name of the Complainant</th>
+                                            <td class="lower_court_info">{{ $data->name_of_the_complainant }}</td>
                                             <th>Order No. & Memo</th>
                                             <td>{{ $data->order_no_memo }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Name of the Complainant</th>
-                                            <td>{{ $data->name_of_the_complainant }}</td>
+                                            <th class="lower_court_info">Complainant Contact No.</th>
+                                            <td class="lower_court_info">{{ $data->complainant_contact_no }}</td>
                                             <th>Name of the Appellant/Petitioner</th>
                                             <td>{{ $data->appellant_petitioner_name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Complainant Contact No. </th>
-                                            <td>{{ $data->complainant_contact_no }}</td>
+                                            <th class="lower_court_info">Designation of the Complainant</th>
+                                            <td class="lower_court_info">{{ $data->complainant_designation_name }}</td>
                                             <th>Designation of the Appellant/Petitioner</th>
                                             <td>{{ $data->appellant_designation_name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Designation of the Complainant </th>
-                                            <td>{{ $data->complainant_designation_name }}</td>
+                                            <th class="lower_court_info">Name of the Accused</th>
+                                            <td class="lower_court_info">{{ $data->accused_name }}</td>
                                             <th>Address of the Appellant/Petitioner</th>
                                             <td>{{ $data->appellant_address }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Name of the Accused</th>
-                                            <td>{{ $data->accused_name }}</td>
+                                            <th class="lower_court_info">Name of the Accused Company</th>
+                                            <td class="lower_court_info">{{ $data->company_name }}</td>
                                             <th>Name of the Respondent/Opposite Party</th>
                                             <td>{{ $data->opposite_party_name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Name of the Accused Company</th>
-                                            <td>{{ $data->company_name }}</td>
+                                            <th class="lower_court_info">Address of the Accused</th>
+                                            <td class="lower_court_info">{{ $data->accused_address }}</td>
                                             <th>Designation of the Respondent/Opposite Party</th>
                                             <td>{{ $data->opposite_designation_name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Address of the Accused</th>
-                                            <td>{{ $data->accused_address }}</td>
+                                            <th class="lower_court_info">Accused Contact No.</th>
+                                            <td class="lower_court_info">{{ $data->accused_contact_no }}</td>
                                             <th>Address of Respondent/Opposite Party</th>
                                             <td>{{ $data->opposite_party_address }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Accused Contact No.</th>
-                                            <td>{{ $data->accused_contact_no }}</td>
+                                            <th class="lower_court_info">Other Claim(if any)</th>
+                                            <td class="lower_court_info">{{ $data->other_claim }}</td>
                                             <th>Step Taken by the Party</th>
                                             <td>{{ $data->party_steps_taken_name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Other Claim(if any)</th>
-                                            <td>{{ $data->other_claim }}</td>
+                                            <th class="lower_court_info">Summary of Facts & Alligation</th>
+                                            <td class="lower_court_info">{{ $data->summary_facts_alligation }}</td>
                                             <th>Status of the Cases</th>
                                             <td>{{ $data->case_status_name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Summary of Facts & Alligation</th>
-                                            <td>{{ $data->summary_facts_alligation }}</td>
+                                            <th class="lower_court_info">Name of Trial / Impugned Court</th>
+                                            <td class="lower_court_info">{{ $data->trial_court_name }}</td>
                                             <th>Name of Court (Fixed for Hearing)</th>
                                             <td>{{ $data->fixed_hearing_court_name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Name of Trial / Impugned Court</th>
-                                            <td>{{ $data->trial_court_name }}</td>
+                                            <th class="lower_court_info">Date of Judgement/Order (Trial Court)</th>
+                                            <td class="lower_court_info">{{ $data->trial_court_judgement_date }}</td>
                                             <th>Next Step to be Taken in Court</th>
                                             <td>{{ $data->court_steps_taken_name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Date of Judgement/Order (Trial Court)</th>
-                                            <td>{{ $data->trial_court_judgement_date }}</td>
+                                            <th class="lower_court_info">Judgment/Order with Grounds (Trial Court)</th>
+                                            <td class="lower_court_info">{{ $data->trial_grounds_judgement }}</td>
                                             <th>Date for Next Step in Court</th>
                                             <td>{{ $data->court_next_steps_date }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Judgment/Order with Grounds (Trial Court)</th>
-                                            <td>{{ $data->trial_grounds_judgement }}</td>
+                                            <th class="lower_court_info">Name of Appeal/Revision Court (District)</th>
+                                            <td class="lower_court_info">{{ $data->appeal_court_name }}</td>
                                             <th>Name of Lawyer</th>
                                             <td>{{ $data->assigned_lawyer_first_name }} {{ $data->assigned_lawyer_middle_name }} {{ $data->assigned_lawyer_last_name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Name of Appeal/Revision Court (District)</th>
-                                            <td>{{ $data->appeal_court_name }}</td>
+                                            <th class="lower_court_info">Date of Judgement (Appeal/Revision Court)</th>
+                                            <td class="lower_court_info">{{ $data->appeal_court_judgement_date }}</td>
                                             <th>Documents(Lawyer's Appointment)</th>
                                             <td>{{ $data->documents_lawyers_appointment }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Date of Judgement (Appeal/Revision Court)</th>
-                                            <td>{{ $data->appeal_court_judgement_date }}</td>
+                                            <th class="lower_court_info">Judgement of Appeal/Revision with Grounds (District
+                                                Court)
+                                            </th>
+                                            <td class="lower_court_info">{{ $data->appeal_grounds_judgement }}</td>
                                             <th>Documents sent to Lawyer/Law Chamber</th>
                                             <td>{{ $data->documents_sent_to_law_chamber }}</td>
+
                                         </tr>
                                         <tr>
-                                            <th>Judgement of Appeal/Revision with Grounds (District Court)</th>
-                                            <td>{{ $data->appeal_grounds_judgement }}</td>
+                                            <th class="lower_court_info">Judgement/Order of Appeal/Revision Court
+                                                (District)
+                                            </th>
+                                            <td class="lower_court_info">{{ $data->appeal_court_judgement }}</td>
                                             <th>Documents received from field office/programe</th>
                                             <td>{{ $data->documents_received_field_programe }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Judgement/Order of Appeal/Revision Court (District)</th>
-                                            <td>{{ $data->appeal_court_judgement }}</td>
+                                            <th class="lower_court_info">Panel Lawyer</th>
+                                            <td class="lower_court_info">{{ $data->panel_lawyer_first_name }} {{ $data->panel_lawyer_middle_name }} {{ $data->panel_lawyer_last_name }}</td>
                                             <th>Missing Documents/Evidence/Information</th>
                                             <td>{{ $data->missing_documents_evidence }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Panel Lawyer</th>
-                                            <td>{{ $data->panel_lawyer_first_name }} {{ $data->panel_lawyer_middle_name }} {{ $data->panel_lawyer_last_name }}</td>
+                                            <th class="lower_court_info">Total Legal Bill Amount and Cost</th>
+                                            <td class="lower_court_info">{{ $data->total_legal_bill_amount }}</td>
                                             <th>Ground of Appeal/Revision</th>
                                             <td>{{ $data->ground_appeal_revision }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Total Legal Bill Amount and Cost</th>
-                                            <td>{{ $data->total_legal_bill_amount }}</td>
+                                            <th class="lower_court_info"></th>
+                                            <td class="lower_court_info"></td>
                                             <th>Recommendations</th>
                                             <td>{{ $data->recommendations }}</td>
+
                                         </tr>
 
 
@@ -267,7 +287,16 @@
                                     </table>
                                 </div>
                                 <div class="card-header">
-                                    <h3 class="card-title" id="heading">Documents Logs</h3>
+                                    <h3 class="card-title" id="heading">Documents Logs
+                                        @php
+                                            $now = Carbon\Carbon::now();
+                                            $days_count = Carbon\Carbon::parse($data->created_at)->diffInDays($now);
+                                        @endphp
+
+                                        <span><b> (Total Elapsed Time:
+
+                                           {{ $days_count }} Days) </b></span>
+                                    </h3>
                                 </div>
                                 <div class="card-body">
                                     <table id="data_table" class="table dataTable no-footer dtr-inline">
@@ -296,43 +325,35 @@
                                     </table>
                             </div>
                             <div class="card-header">
-                                <h3 class="card-title custom_h3" id="heading">Proceedings Logs</h3>
+                                <h3 class="card-title custom_h3" id="heading">Proceedings Logs <span><b>(Case No: {{ $data->case_no_acd }}, Court Name: {{ $data->acd_court_name }})</b></span></h3>
                             </div>
                             <div class="card-body">
                                 <table id="table_logs_text_center" class="table table-responsive no-footer dtr-inline">
                                     <thead>
-                                        <tr>
-                                            <th class="table_logs_text_center">Case No</th>
-                                            <th class="table_logs_text_center">Accused Name</th>
-                                            <th class="table_logs_text_center">Case Status</th>
-                                            <th class="table_logs_text_center">Court Name</th>
-                                            <th class="table_logs_text_center">Next Date</th>
-                                            <th class="table_logs_text_center">Date Reason</th>
-                                            <th class="table_logs_text_center">Update Description</th>
-                                            <th class="table_logs_text_center">Case Proceedings</th>
-                                            <th class="table_logs_text_center">Case Notes</th>
-                                            <th class="table_logs_text_center">Panel Lawyer</th>
-                                            <th class="table_logs_text_center">Order Date</th>
-                                            <th class="table_logs_text_center">Final Status</th>
-                                            <th class="table_logs_text_center">Update Time</th>
-                                        </tr>
+                                    <tr>
+                                        <th class="table_logs_text_center">Order Date</th>
+                                        <th class="table_logs_text_center">Next Date</th>
+                                        <th class="table_logs_text_center">Next Date Reason</th>
+                                        <th class="table_logs_text_center">Accused Name</th>
+                                        <th class="table_logs_text_center">Case Proceedings</th>
+                                        <th class="table_logs_text_center">Update Description</th>
+                                        <th class="table_logs_text_center">Case Notes</th>
+                                        <th class="table_logs_text_center">Panel Lawyer</th>
+                                        <th class="table_logs_text_center">Final Status</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($case_logs as $logs)
                                         <tr>
-                                            <td class="table_logs_text_center"> {{ $logs->case_no }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->updated_accused_name }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->case_status_name }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->court_name }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->order_date }} </td>
                                             <td class="table_logs_text_center"> {{ $logs->updated_next_date }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->next_date_reason_name }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->update_description }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->next_date_fixed_reason }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->updated_accused_name }} </td>
                                             <td class="table_logs_text_center"> {{ $logs->case_proceedings }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->update_description }} </td>
                                             <td class="table_logs_text_center"> {{ $logs->case_notes }} </td>
                                             <td class="table_logs_text_center"> {{ $logs->first_name }} {{ $logs->middle_name }} {{ $logs->last_name }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->order_date }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->next_date_fixed_reason }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->created_at }} </td>
+                                            <td class="table_logs_text_center"> {{ $logs->case_status_name }} </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

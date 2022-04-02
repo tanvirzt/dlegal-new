@@ -91,15 +91,15 @@ class QuassiJudicialCasesController extends Controller
 //        $data = json_decode(json_encode($request->all()));
 //        echo "<pre>";print_r($data);die();
 
-        $rules = [
-            'case_no' => 'required|unique:quassi_judicial_cases',
-        ];
-
-        $validMsg = [
-            'case_no.required' => 'Case No. field is required.',
-        ];
-
-        $this->validate($request, $rules, $validMsg);
+//        $rules = [
+//            'case_no' => 'required|unique:quassi_judicial_cases',
+//        ];
+//
+//        $validMsg = [
+//            'case_no.required' => 'Case No. field is required.',
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
 
         DB::beginTransaction();
 

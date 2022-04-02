@@ -38,21 +38,21 @@ class RegulatoryComplianceController extends Controller
     {
         // dd($request->all());
 
-        $rules = [
-            'certificates_name' => 'required',
-            'compliance_category_id' => 'required',
-            'certificates_authority' => 'required',
-
-        ];
-
-        $validMsg = [
-            'certificates_name.required' => 'Cetificates Name field is required',
-            'compliance_category_id.required' => 'Compliance Category field is required',
-            'certificates_authority.required' => 'Cetificates Authority field is required',
-
-        ];
-
-        $this->validate($request, $rules, $validMsg);
+//        $rules = [
+//            'certificates_name' => 'required',
+//            'compliance_category_id' => 'required',
+//            'certificates_authority' => 'required',
+//
+//        ];
+//
+//        $validMsg = [
+//            'certificates_name.required' => 'Cetificates Name field is required',
+//            'compliance_category_id.required' => 'Compliance Category field is required',
+//            'certificates_authority.required' => 'Cetificates Authority field is required',
+//
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
 
         $data = new RegulatoryCompliance();
         $data->certificates_name = $request->certificates_name;
@@ -98,21 +98,21 @@ class RegulatoryComplianceController extends Controller
     {
         // dd($request->all());
 
-        $rules = [
-            'certificates_name' => 'required',
-            'compliance_category_id' => 'required',
-            'certificates_authority' => 'required',
-
-        ];
-
-        $validMsg = [
-            'certificates_name.required' => 'Cetificates Name field is required',
-            'compliance_category_id.required' => 'Compliance Category field is required',
-            'certificates_authority.required' => 'Cetificates Authority field is required',
-
-        ];
-
-        $this->validate($request, $rules, $validMsg);
+//        $rules = [
+//            'certificates_name' => 'required',
+//            'compliance_category_id' => 'required',
+//            'certificates_authority' => 'required',
+//
+//        ];
+//
+//        $validMsg = [
+//            'certificates_name.required' => 'Cetificates Name field is required',
+//            'compliance_category_id.required' => 'Compliance Category field is required',
+//            'certificates_authority.required' => 'Cetificates Authority field is required',
+//
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
 
         $data = RegulatoryCompliance::find($id);
         $data->certificates_name = $request->certificates_name;
@@ -141,7 +141,7 @@ class RegulatoryComplianceController extends Controller
 
         session()->flash('success','Regulatory Compliance Updated Successfully.');
         return redirect()->route('regulatory-compliance');
-      
+
     }
 
     public function delete_regulatory_compliance($id)
@@ -180,12 +180,12 @@ class RegulatoryComplianceController extends Controller
     {
 
         $query = DB::table('regulatory_compliances')
-                ->leftJoin('setup_compliance_categories','regulatory_compliances.compliance_category_id','=','setup_compliance_categories.id');        
-        
+                ->leftJoin('setup_compliance_categories','regulatory_compliances.compliance_category_id','=','setup_compliance_categories.id');
+
         if ($request->compliance_category_id) {
 
             $query2 = $query->where('regulatory_compliances.compliance_category_id',$request->compliance_category_id);
-                    
+
 
         }else if ($request->certificates_name) {
 
@@ -198,12 +198,12 @@ class RegulatoryComplianceController extends Controller
         } else {
 
             $query2 = $query;
-            
+
         }
 
         $data = $query2->select('regulatory_compliances.*','setup_compliance_categories.compliance_category_name')
                     ->get();
-        
+
         return response()->json([
             'result' => 'regulatory_compliance',
             'data' => $data,

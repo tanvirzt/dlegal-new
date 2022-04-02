@@ -7,7 +7,6 @@ use App\Models\SetupCaseClass;
 use App\Models\SetupCaseSubcategory;
 use App\Models\SetupLaw;
 use App\Models\SetupSection;
-use App\Models\SetupSupremeCourtSubcategory;
 use App\Models\SetupThana;
 use Illuminate\Http\Request;
 
@@ -45,13 +44,13 @@ class AppellateCourtCasesController extends Controller
         $court = SetupCourt::where('delete_status', 0)->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Appellate Court Division', 'delete_status' => 0])->get();
 
-//        $data = DB::table('appellate_court_cases')
-//                    ->leftJoin('setup_case_categories','appellate_court_cases.case_category_id','setup_case_categories.id')
-//                    ->leftJoin('setup_case_subcategories','appellate_court_cases.case_subcategory_id','setup_case_subcategories.id')
-//                    ->select('appellate_court_cases.*','setup_case_categories.case_category','setup_case_subcategories.case_subcategory')
-//                    ->get();
+        $data = DB::table('appellate_court_cases')
+                    ->leftJoin('setup_case_categories','appellate_court_cases.case_category_id','setup_case_categories.id')
+                    ->leftJoin('setup_case_subcategories','appellate_court_cases.case_subcategory_id','setup_case_subcategories.id')
+                    ->select('appellate_court_cases.*','setup_case_categories.case_category','setup_case_subcategories.case_subcategory')
+                    ->get();
 
-        $data = AppellateCourtCase::all();
+//        $data = AppellateCourtCase::all();
 
 //        $data = json_decode(json_encode($data));
 //        echo "<pre>";print_r($data);die();
@@ -66,7 +65,6 @@ class AppellateCourtCasesController extends Controller
         $court = SetupCourt::where('delete_status', 0)->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
-        $case_category = SetupCaseCategory::where('delete_status', 0)->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->get();
         $property_type = SetupPropertyType::where('delete_status', 0)->get();
         $division = DB::table("setup_divisions")->get();
@@ -99,15 +97,15 @@ class AppellateCourtCasesController extends Controller
 //        $data = json_decode(json_encode($request->all()));
 //        echo "<pre>";print_r($data);die();
 
-        $rules = [
-            'case_no_acd' => 'required|unique:appellate_court_cases',
-        ];
-
-        $validMsg = [
-            'case_no_acd.required' => 'Case No. field is required.',
-        ];
-
-        $this->validate($request, $rules, $validMsg);
+//        $rules = [
+//            'case_no_acd' => 'required|unique:appellate_court_cases',
+//        ];
+//
+//        $validMsg = [
+//            'case_no_acd.required' => 'Case No. field is required.',
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
 
         DB::beginTransaction();
 
@@ -249,7 +247,7 @@ class AppellateCourtCasesController extends Controller
 
         if ($request->lower_court == "Lower Court") {
             $data->lower_court = "Yes";
-
+            $data->case_no =  $request->case_no;
             $data->division_id =  $request->division_id;
             $data->district_id =  $request->district_id;
             $data->thana_id =  $request->thana_id;
@@ -392,15 +390,22 @@ class AppellateCourtCasesController extends Controller
 
     public function view_appellate_court_cases($id)
     {
-        //   dd($id);
+//           dd($id);
+
+//        $data = AppellateCourtCase::find($id);
+//        $data = json_decode(json_encode($data));
+//        echo "<pre>";print_r($data);die();
+
+
         $data = DB::table('appellate_court_cases')
             ->leftJoin('setup_divisions', 'appellate_court_cases.division_id', 'setup_divisions.id')
             ->leftJoin('setup_districts', 'appellate_court_cases.district_id', 'setup_districts.id')
             ->leftJoin('setup_thanas', 'appellate_court_cases.thana_id', 'setup_thanas.id')
-            ->leftJoin('setup_case_categories', 'appellate_court_cases.case_category_id', 'setup_case_categories.id')
             ->leftJoin('setup_case_classes', 'appellate_court_cases.case_class_id', 'setup_case_classes.id')
             ->leftJoin('setup_case_types', 'appellate_court_cases.case_type_id', 'setup_case_types.id')
-            ->leftJoin('setup_law_sections as relevant_law_sections', 'appellate_court_cases.relevant_law_sections_id', 'relevant_law_sections.id')
+            ->leftJoin('setup_laws', 'appellate_court_cases.law_id', 'setup_laws.id')
+            ->leftJoin('setup_laws as relevant_law', 'appellate_court_cases.relevant_law_id', 'relevant_law.id')
+            ->leftJoin('setup_sections as relevant_section', 'appellate_court_cases.relevant_sections_id', 'relevant_section.id')
             ->leftJoin('setup_sections', 'appellate_court_cases.section_id', 'setup_sections.id')
             ->leftJoin('setup_designations', 'appellate_court_cases.plaintiff_designaiton_id', 'setup_designations.id')
             ->leftJoin('setup_designations as complainant_designations', 'appellate_court_cases.complainant_designation_id', 'complainant_designations.id')
@@ -409,28 +414,31 @@ class AppellateCourtCasesController extends Controller
             ->leftJoin('setup_courts as appeal_court', 'appellate_court_cases.appeal_court_id', 'appeal_court.id')
             ->leftJoin('setup_external_councils as panel_lawyer', 'appellate_court_cases.panel_lawyer_id', 'panel_lawyer.id')
             ->leftJoin('setup_external_councils as case_received_lawyer', 'appellate_court_cases.case_received_lawyer_id', 'case_received_lawyer.id')
-            ->leftJoin('setup_supreme_court_categories', 'appellate_court_cases.supreme_court_category_id', 'setup_supreme_court_categories.id')
-            ->leftJoin('setup_supreme_court_subcategories', 'appellate_court_cases.supreme_court_subcategory_id', 'setup_supreme_court_subcategories.id')
-            ->leftJoin('setup_courts as hcd_court', 'appellate_court_cases.hcd_court_id', 'hcd_court.id')
-            ->leftJoin('setup_law_sections as law_section', 'appellate_court_cases.law_sections_id', 'law_section.id')
-            ->leftJoin('setup_designations as appellant_designations', 'appellate_court_cases.complainant_designation_id', 'appellant_designations.id')
+            ->leftJoin('setup_case_categories', 'appellate_court_cases.case_category_id', 'setup_case_categories.id')
+            ->leftJoin('setup_case_subcategories', 'appellate_court_cases.case_subcategory_id', 'setup_case_subcategories.id')
+            ->leftJoin('setup_courts as acd_court', 'appellate_court_cases.acd_court_id', 'acd_court.id')
+            ->leftJoin('setup_laws as law', 'appellate_court_cases.laws_id', 'law.id')
+            ->leftJoin('setup_sections as section', 'appellate_court_cases.sections_id', 'section.id')
+            ->leftJoin('setup_designations as appellant_designations', 'appellate_court_cases.appellant_designation_id', 'appellant_designations.id')
             ->leftJoin('setup_designations as opposite_designations', 'appellate_court_cases.opposite_party_designation_id', 'opposite_designations.id')
             ->leftJoin('setup_next_date_reasons as steps_taken', 'appellate_court_cases.party_steps_taken_id', 'steps_taken.id')
             ->leftJoin('setup_case_statuses', 'appellate_court_cases.case_status_id', 'setup_case_statuses.id')
             ->leftJoin('setup_courts as fixed_hearing_court', 'appellate_court_cases.fixed_hearing_court_id', 'fixed_hearing_court.id')
-            ->leftJoin('setup_next_date_reasons as court_steps_taken', 'appellate_court_cases.party_steps_taken_id', 'court_steps_taken.id')
+            ->leftJoin('setup_next_date_reasons as party_steps_taken', 'appellate_court_cases.party_steps_taken_id', 'party_steps_taken.id')
+            ->leftJoin('setup_next_date_reasons as court_steps_taken', 'appellate_court_cases.court_steps_taken_id', 'court_steps_taken.id')
             ->leftJoin('setup_internal_councils', 'appellate_court_cases.assigned_lawyer_id', 'setup_internal_councils.id')
             ->where('appellate_court_cases.id', $id)
             ->select('appellate_court_cases.*',
                 'setup_divisions.division_name',
                 'setup_districts.district_name',
                 'setup_thanas.thana_name',
-                'setup_case_categories.case_category_name',
                 'setup_case_classes.case_class_name',
                 'setup_case_types.case_types_name',
-                'relevant_law_sections.law_section_name as relevant_law_section_name',
-                'setup_sections.section_name',
-                'setup_designations.designation_name',
+                'setup_laws.law_name as laws_name',
+                'relevant_law.law_name as relevant_law_name',
+                'relevant_section.section_name as relevant_section_name',
+                'setup_sections.section_name as sections_name',
+                'setup_designations.designation_name as plaintiff_designation_name',
                 'complainant_designations.designation_name as complainant_designation_name',
                 'setup_companies.company_name',
                 'trial_court.court_name as trial_court_name',
@@ -441,21 +449,27 @@ class AppellateCourtCasesController extends Controller
                 'case_received_lawyer.first_name as case_received_lawyer_first_name',
                 'case_received_lawyer.middle_name as case_received_lawyer_middle_name',
                 'case_received_lawyer.last_name as case_received_lawyer_last_name',
-                'setup_supreme_court_categories.supreme_court_category',
-                'setup_supreme_court_subcategories.supreme_court_subcategory',
-                'hcd_court.court_name as hcd_court_name',
-                'law_section.law_section_name',
+                'setup_case_categories.case_category',
+                'setup_case_subcategories.case_subcategory',
+                'acd_court.court_name as acd_court_name',
+                'law.law_name',
+                'section.section_name',
                 'appellant_designations.designation_name as appellant_designation_name',
                 'opposite_designations.designation_name as opposite_designation_name',
                 'steps_taken.next_date_reason_name as party_steps_taken_name',
                 'setup_case_statuses.case_status_name',
                 'fixed_hearing_court.court_name as fixed_hearing_court_name',
+                'party_steps_taken.next_date_reason_name as party_steps_taken_name',
                 'court_steps_taken.next_date_reason_name as court_steps_taken_name',
                 'setup_internal_councils.first_name as assigned_lawyer_first_name',
                 'setup_internal_councils.middle_name as assigned_lawyer_middle_name',
-                'setup_internal_councils.last_name as assigned_lawyer_last_name',
+                'setup_internal_councils.last_name as assigned_lawyer_last_name'
             )
             ->first();
+
+//        $data = json_decode(json_encode($data));
+//        echo "<pre>";print_r($data);die();
+
 
         //   dd($data);
         $appellate_court_cases_files = AppellateCourtCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
@@ -525,29 +539,30 @@ class AppellateCourtCasesController extends Controller
     public function search_appellate_court_cases(Request $request)
     {
 
+//        dd($request->all());
         $query = DB::table('appellate_court_cases')
-            ->leftJoin('setup_supreme_court_categories', 'appellate_court_cases.supreme_court_category_id', 'setup_supreme_court_categories.id')
-            ->leftJoin('setup_supreme_court_subcategories', 'appellate_court_cases.supreme_court_subcategory_id', 'setup_supreme_court_subcategories.id');
+            ->leftJoin('setup_case_categories', 'appellate_court_cases.case_category_id', 'setup_case_categories.id')
+            ->leftJoin('setup_case_subcategories', 'appellate_court_cases.case_subcategory_id', 'setup_case_subcategories.id');
 
-        if ($request->case_no) {
+        if ($request->case_no_acd) {
 
-            $query2 = $query->where('appellate_court_cases.case_no', 'like', '%' . $request->case_no . '%');
+            $query2 = $query->where('appellate_court_cases.case_no_acd', 'like', '%' . $request->case_no_acd . '%');
 
         } else if ($request->tender_no) {
 
-            $query2 = $query->where('appellate_court_cases.tender_no', 'like', '%'.$request->tender_no.'%');
+            $query2 = $query->where('appellate_court_cases.tender_no', $request->tender_no);
 
         } else if ($request->tender_no_date) {
 
             $query2 = $query->where('appellate_court_cases.tender_no_date', $request->tender_no_date);
 
-        } else if ($request->supreme_court_category_id && $request->supreme_court_subcategory_id) {
+        } else if ($request->case_category_id && $request->case_subcategory_id) {
 
-            $query2 = $query->where(['appellate_court_cases.supreme_court_category_id' => $request->supreme_court_category_id, 'appellate_court_cases.supreme_court_subcategory_id' => $request->supreme_court_subcategory_id]);
+            $query2 = $query->where(['appellate_court_cases.case_category_id' => $request->case_category_id, 'appellate_court_cases.case_subcategory_id' => $request->case_subcategory_id]);
 
-        } else if ($request->supreme_court_category_id) {
+        } else if ($request->case_category_id) {
 
-            $query2 = $query->where('appellate_court_cases.supreme_court_category_id', $request->supreme_court_category_id);
+            $query2 = $query->where('appellate_court_cases.case_category_id', $request->case_category_id);
 
         } else {
 
@@ -555,7 +570,7 @@ class AppellateCourtCasesController extends Controller
 
         }
 
-        $data = $query2->select('appellate_court_cases.*', 'setup_supreme_court_categories.supreme_court_category', 'setup_supreme_court_subcategories.supreme_court_subcategory')
+        $data = $query2->select('appellate_court_cases.*', 'setup_case_categories.case_category', 'setup_case_subcategories.case_subcategory')
             ->get();
 
         return response()->json([

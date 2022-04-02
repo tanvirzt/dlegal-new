@@ -91,15 +91,16 @@ class CriminalCasesController extends Controller
     public function save_criminal_cases(Request $request)
     {
 //        dd($request->all());
-        $rules = [
-            'case_no' => 'required|unique:criminal_cases',
-        ];
 
-        $validMsg = [
-            'case_no.required' => 'Case No. field is required.',
-        ];
-
-        $this->validate($request, $rules, $validMsg);
+//        $rules = [
+//            'case_no' => 'required|unique:criminal_cases',
+//        ];
+//
+//        $validMsg = [
+//            'case_no.required' => 'Case No. field is required.',
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
 
         DB::beginTransaction();
 
@@ -208,6 +209,7 @@ class CriminalCasesController extends Controller
         DB::beginTransaction();
 
         $data = CriminalCase::find($id);
+        $data->case_no = $request->case_no;
         $data->client_category_id = $request->client_category_id;
         $data->client_subcategory_id = $request->client_subcategory_id;
         $data->date_of_case_received = $request->date_of_case_received;

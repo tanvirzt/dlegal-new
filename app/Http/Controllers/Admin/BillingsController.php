@@ -72,23 +72,23 @@ class BillingsController extends Controller
         }else if ($request->case_type == "Labour Cases"){
 
             $case = LabourCase::where('delete_status',0)->get();
-            
+
         }else if ($request->case_type == "Special Quassi - Judicial Cases"){
 
             $case = QuassiJudicialCase::where('delete_status',0)->get();
-            
+
         }else if ($request->case_type == "Supreme Court of Bangladesh"){
 
             $case = SupremeCourtCase::where('delete_status',0)->get();
-            
+
         }else if ($request->case_type == "High Court Division"){
 
             $case = HighCourtCase::where('delete_status',0)->get();
-            
+
         }else if ($request->case_type == "Appellate Court Division"){
 
             $case = AppellateCourtCase::where('delete_status',0)->get();
-            
+
         }
 
         return response()->json($case);
@@ -97,24 +97,24 @@ class BillingsController extends Controller
     public function save_billing(Request $request)
     {
         // dd($request->all());
-        
-        $rules = [
-            'bill_type_id' => 'required',
-            'payment_type' => 'required',
-            'district_id' => 'required',
-            'case_type' => 'required',
-            'case_no' => 'required',
-        ];
 
-        $validMsg = [
-            'bill_type_id.required' => 'Bill type field is required',
-            'payment_type.required' => 'Payment type field is required',
-            'district_id.required' => 'District field is required',
-            'case_type.required' => 'Case Type field is required',
-            'case_no.required' => 'Case No field is required',
-        ];
-
-        $this->validate($request, $rules, $validMsg);
+//        $rules = [
+//            'bill_type_id' => 'required',
+//            'payment_type' => 'required',
+//            'district_id' => 'required',
+//            'case_type' => 'required',
+//            'case_no' => 'required',
+//        ];
+//
+//        $validMsg = [
+//            'bill_type_id.required' => 'Bill type field is required',
+//            'payment_type.required' => 'Payment type field is required',
+//            'district_id.required' => 'District field is required',
+//            'case_type.required' => 'Case Type field is required',
+//            'case_no.required' => 'Case No field is required',
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
 
 
         $data = new CaseBilling();
@@ -168,7 +168,7 @@ class BillingsController extends Controller
             return redirect()->route('billing');
 
         }
-    
+
     }
 
     public function edit_billing($id)
@@ -211,30 +211,30 @@ class BillingsController extends Controller
             $case_no = AppellateCourtCase::where('delete_status',0)->get();
 
         }
-        
+
         return view('litigation_management.billings.billings.edit_billing',compact('data','external_council','bill_type','bank','digital_payment_type','district','case_no','bank_branch'));
     }
 
     public function update_billing(Request $request, $id)
     {
 
-        $rules = [
-            'bill_type_id' => 'required',
-            'payment_type' => 'required',
-            'district_id' => 'required',
-            'case_type' => 'required',
-            'case_no' => 'required',
-        ];
-
-        $validMsg = [
-            'bill_type_id.required' => 'Bill type field is required',
-            'payment_type.required' => 'Payment type field is required',
-            'district_id.required' => 'District field is required',
-            'case_type.required' => 'Case Type field is required',
-            'case_no.required' => 'Case No field is required',
-        ];
-
-        $this->validate($request, $rules, $validMsg);
+//        $rules = [
+//            'bill_type_id' => 'required',
+//            'payment_type' => 'required',
+//            'district_id' => 'required',
+//            'case_type' => 'required',
+//            'case_no' => 'required',
+//        ];
+//
+//        $validMsg = [
+//            'bill_type_id.required' => 'Bill type field is required',
+//            'payment_type.required' => 'Payment type field is required',
+//            'district_id.required' => 'District field is required',
+//            'case_type.required' => 'Case Type field is required',
+//            'case_no.required' => 'Case No field is required',
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
 
 
         $data = CaseBilling::find($id);
@@ -314,7 +314,7 @@ class BillingsController extends Controller
         }
         $data->delete_status = $delete_status;
         $data->save();
-  
+
         session()->flash('success', 'Billing Deleted');
         return redirect()->back();
     }
@@ -332,7 +332,7 @@ class BillingsController extends Controller
         return view('litigation_management.billings.billings.add_billing',compact('external_council','bill_type','bank','digital_payment_type','district','labour_case'));
 
     }
-  
+
     public function add_billing_quassi_judicial_cases($id)
     {
         $bill_type = SetupBillType::where('delete_status',0)->get();
@@ -395,31 +395,31 @@ class BillingsController extends Controller
                 ->leftJoin('setup_digital_payments','case_billings.digital_payment_type_id','=','setup_digital_payments.id');
 
         if($request->case_type && $request->case_no){
-            
+
             $data = $query->where(['case_billings.case_type' => $request->case_type,'case_billings.case_no' => $request->case_no, 'case_billings.delete_status' => 0])
                     ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
                     ->get();
 
         }elseif($request->case_type){
-            
+
             $data = $query->where(['case_billings.case_type' => $request->case_type, 'case_billings.delete_status' => 0])
                     ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
                     ->get();
-            
+
         }elseif($request->panel_lawyer_id){
-           
+
             $data = $query->where(['case_billings.panel_lawyer_id' => $request->panel_lawyer_id, 'case_billings.delete_status' => 0])
                     ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
                     ->get();
 
         }elseif($request->date_of_billing){
-           
+
             $data = $query->where(['case_billings.date_of_billing' => $request->date_of_billing, 'case_billings.delete_status' => 0])
                     ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
                     ->get();
 
         }else{
-            
+
             $data = $query->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
                     ->get();
 

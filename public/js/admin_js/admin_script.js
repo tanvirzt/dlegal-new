@@ -632,7 +632,6 @@ $(document).ready(function () {
                                     <td> ${value.tender_no_date === null ? '' : value.tender_no_date} </td>
                                     <td> ${value.case_category === null ? '' : value.case_category} </td>
                                     <td> ${value.case_subcategory === null ? '' : value.case_subcategory} </td>
-                                    <td> ${value.date_of_filing_hcd === null ? '' : value.date_of_filing_hcd} </td>
                                     <td> ${value.order === null ? '' : value.order} </td>
                                     <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
@@ -664,12 +663,11 @@ $(document).ready(function () {
 
                                 <tr>
 
-                                    <td><a href="view-appellate-court-cases/${value.id}"> ${value.case_no === null ? '' : value.case_no} </a></td>
+                                    <td><a href="view-appellate-court-cases/${value.id}"> ${value.case_no_acd === null ? '' : value.case_no_acd} </a></td>
                                     <td> ${value.tender_no === null ? '' : value.tender_no} </td>
                                     <td> ${value.tender_no_date === null ? '' : value.tender_no_date} </td>
-                                    <td> ${value.supreme_court_category === null ? '' : value.supreme_court_category} </td>
-                                    <td> ${value.supreme_court_subcategory === null ? '' : value.supreme_court_subcategory} </td>
-                                    <td> ${value.date_of_filing_hcd === null ? '' : value.date_of_filing_hcd} </td>
+                                    <td> ${value.case_category === null ? '' : value.case_category} </td>
+                                    <td> ${value.case_subcategory === null ? '' : value.case_subcategory} </td>
                                     <td> ${value.order === null ? '' : value.order} </td>
                                     <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>

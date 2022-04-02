@@ -185,7 +185,6 @@
                                         <th class="text-center">Tender No. Date</th>
                                         <th class="text-center">Category</th>
                                         <th class="text-center">Subcategory</th>
-                                        <th class="text-center">Date of filing</th>
                                         <th class="text-center">Order</th>
                                         <th class="text-center">Status</th>
                                         <th width="13%">Action</th>
@@ -211,9 +210,6 @@
                                                 {{ $datum->case_subcategory }}
                                             </td>
 
-                                            <td>
-                                                {{ $datum->date_of_filing_hcd }}
-                                            </td>
                                             <td>
                                                 {{ $datum->order }}
                                             </td>

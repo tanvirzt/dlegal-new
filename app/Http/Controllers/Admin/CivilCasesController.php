@@ -97,15 +97,15 @@ class CivilCasesController extends Controller
     public function save_civil_cases(Request $request)
     {
 //        dd($request->all());
-        $rules = [
-            'case_no' => 'required|unique:civil_cases',
-        ];
-
-        $validMsg = [
-            'case_no.required' => 'Case No. field is required.',
-        ];
-
-        $this->validate($request, $rules, $validMsg);
+//        $rules = [
+//            'case_no' => 'required|unique:civil_cases',
+//        ];
+//
+//        $validMsg = [
+//            'case_no.required' => 'Case No. field is required.',
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
 
         DB::beginTransaction();
 
@@ -216,6 +216,7 @@ class CivilCasesController extends Controller
         DB::beginTransaction();
 
         $data = CivilCases::find($id);
+        $data->case_no = $request->case_no;
         $data->client_category_id = $request->client_category_id;
         $data->client_subcategory_id = $request->client_subcategory_id;
         $data->date_of_filing = $request->date_of_filing;

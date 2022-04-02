@@ -31,22 +31,22 @@ class SocialComplianceController extends Controller
     public function save_social_compliance(Request $request)
     {
         // dd($request->all());
-        $rules = [
-            'employment_condition' => 'required',
-            'working_hour_leave' => 'required',
-            'compensation_benefit' => 'required',
-
-        ];
-
-        $validMsg = [
-
-            'employment_condition.required' => 'Employment Condition field is required',
-            'working_hour_leave.required' => 'Working Hour field is required',
-            'compensation_benefit.required' => 'Compensation Benefit field is required',
-
-        ];
-
-        $this->validate($request, $rules, $validMsg);
+//        $rules = [
+//            'employment_condition' => 'required',
+//            'working_hour_leave' => 'required',
+//            'compensation_benefit' => 'required',
+//
+//        ];
+//
+//        $validMsg = [
+//
+//            'employment_condition.required' => 'Employment Condition field is required',
+//            'working_hour_leave.required' => 'Working Hour field is required',
+//            'compensation_benefit.required' => 'Compensation Benefit field is required',
+//
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
 
         $data = new SocialCompliance();
         $data->employment_condition = $request->employment_condition;
@@ -79,22 +79,22 @@ class SocialComplianceController extends Controller
     public function update_social_compliance(Request $request, $id)
     {
         // dd($request->all());
-        $rules = [
-            'employment_condition' => 'required',
-            'working_hour_leave' => 'required',
-            'compensation_benefit' => 'required',
-
-        ];
-
-        $validMsg = [
-
-            'employment_condition.required' => 'Employment Condition field is required',
-            'working_hour_leave.required' => 'Working Hour field is required',
-            'compensation_benefit.required' => 'Compensation Benefit field is required',
-
-        ];
-
-        $this->validate($request, $rules, $validMsg);
+//        $rules = [
+//            'employment_condition' => 'required',
+//            'working_hour_leave' => 'required',
+//            'compensation_benefit' => 'required',
+//
+//        ];
+//
+//        $validMsg = [
+//
+//            'employment_condition.required' => 'Employment Condition field is required',
+//            'working_hour_leave.required' => 'Working Hour field is required',
+//            'compensation_benefit.required' => 'Compensation Benefit field is required',
+//
+//        ];
+//
+//        $this->validate($request, $rules, $validMsg);
 
         $data = SocialCompliance::find($id);
         $data->employment_condition = $request->employment_condition;
@@ -114,7 +114,7 @@ class SocialComplianceController extends Controller
 
         session()->flash('success','Social Compliance Updated Successfully.');
         return redirect()->route('social-compliance');
-      
+
     }
 
     public function delete_social_compliance($id)
@@ -152,7 +152,7 @@ class SocialComplianceController extends Controller
         if ($request->employment_condition) {
 
             $query2 = $query->where('social_compliances.employment_condition',$request->employment_condition);
-                    
+
 
         }else if ($request->code_of_conduct) {
 
@@ -165,11 +165,11 @@ class SocialComplianceController extends Controller
         }else{
 
             $query2 = $query;
-            
+
         }
 
             $data = $query2->get();
-        
+
         return response()->json([
             'result' => 'social_compliance',
             'data' => $data,

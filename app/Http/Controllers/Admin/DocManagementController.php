@@ -36,7 +36,7 @@ class DocManagementController extends Controller
 
     public function document_management()
     {
-// litigation management        
+// litigation management
         $civil_case = CivilCases::with('civil_cases_files')->where('delete_status',0)->get();
         $criminal_case = CriminalCase::with('criminal_cases_files')->where('delete_status',0)->get();
         $labour_case = LabourCase::with('labour_cases_files')->where('delete_status',0)->get();
@@ -44,8 +44,8 @@ class DocManagementController extends Controller
         $supreme_court_case = SupremeCourtCase::with('supreme_court_cases_files')->where('delete_status',0)->get();
         $high_court_case = HighCourtCase::with('high_court_cases_files')->where('delete_status',0)->get();
         $appellate_court_case = AppellateCourtCase::with('appellate_court_cases_files')->where('delete_status',0)->get();
-        
-// property management        
+
+// property management
         $land_information = LandInformation::with('land_information_files')->where('delete_status',0)->get();
         $flat_information = FlatInformation::with('flat_information_files')->where('delete_status',0)->get();
 
@@ -111,7 +111,7 @@ class DocManagementController extends Controller
     public function save_document(Request $request)
     {
         // dd($request->all());
-
+//
         $rules = [
             'document_type' => 'required',
             // 'uploaded_document' => 'required|mimes:png,jpg,jpeg,csv,txt,xlx,xls,pdf',
@@ -122,7 +122,7 @@ class DocManagementController extends Controller
         ];
 
         $this->validate($request, $rules, $validMsg);
-        
+
         if ($request->document_type == "Internal Files") {
             // dd('asdfasdfasdf');
 
@@ -183,7 +183,7 @@ class DocManagementController extends Controller
                     }
 
                 }
-                
+
 
 
             } else if ($request->module == "Litigation Mangement"){
@@ -308,7 +308,7 @@ class DocManagementController extends Controller
                     }
 
                 }
-                
+
 
 
 
@@ -331,7 +331,7 @@ class DocManagementController extends Controller
                         }
                     }
 
-                    
+
                 } else if ($request->property_management_menu == "Flat Information"){
                     // dd('flat');
 
@@ -350,13 +350,13 @@ class DocManagementController extends Controller
                     }
 
                 }
-                
+
             }
-            
+
 
         } else {
             // dd('others files');
-        
+
             if($request->hasfile('uploaded_document'))
             {
                 foreach($request->file('uploaded_document') as $file)
@@ -372,7 +372,7 @@ class DocManagementController extends Controller
             }
 
         }
-        
+
         session()->flash('success','Files Added Successfully.');
         return redirect()->route('document-management');
 
