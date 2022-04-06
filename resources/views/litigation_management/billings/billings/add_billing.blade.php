@@ -20,23 +20,23 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" 
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button"
                                 @if (!empty($civil_case))
-                                    href="{{ route('civil-cases') }}" 
+                                    href="{{ route('civil-cases') }}"
                                 @elseif (!empty($criminal_case))
-                                    href="{{ route('criminal-cases') }}" 
+                                    href="{{ route('criminal-cases') }}"
                                 @elseif (!empty($labour_case))
-                                    href="{{ route('labour-cases') }}" 
+                                    href="{{ route('labour-cases') }}"
                                 @elseif (!empty($quassi_judicial_case))
-                                    href="{{ route('quassi-judicial-cases') }}" 
+                                    href="{{ route('quassi-judicial-cases') }}"
                                 @elseif (!empty($supreme_court_case))
-                                    href="{{ route('supreme-court-cases') }}" 
+                                    href="{{ route('supreme-court-cases') }}"
                                 @elseif (!empty($high_court_case))
-                                    href="{{ route('high-court-cases') }}" 
+                                    href="{{ route('high-court-cases') }}"
                                 @elseif (!empty($appellate_court_case))
-                                    href="{{ route('appellate-court-cases') }}" 
+                                    href="{{ route('appellate-court-cases') }}"
                                 @else
-                                    href="{{ route('billing') }}" 
+                                    href="{{ route('billing') }}"
                                 @endif
                                 aria-disabled="false" role="link" tabindex="-1">Back</a>
                             </li>
@@ -80,7 +80,7 @@
                                                             @foreach($bill_type as $item)
                                                                 <option value="{{ $item->id }}" {{(old('bill_type_id') == $item->id ? 'selected':'')}}>{{ $item->bill_type_name }}</option>
                                                             @endforeach
-                                                    </select>       
+                                                    </select>
                                                     @error('bill_type_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -92,7 +92,7 @@
                                                         <option value="Cash Payment"> Cash Payment </option>
                                                         <option value="Bank Payment"> Bank Payment </option>
                                                         <option value="Digital Payment"> Digital Payment </option>
-                                                    </select>       
+                                                    </select>
                                                     @error('payment_type')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -104,7 +104,7 @@
                                                         @foreach($district as $item)
                                                             <option value="{{ $item->id }}" {{(old('district_id') == $item->id ? 'selected':'')}}>{{ $item->district_name }}</option>
                                                         @endforeach
-                                                    </select>       
+                                                    </select>
                                                     @error('district_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -118,7 +118,7 @@
                                                         <input type="hidden" name="redirect_to" value="Civil Cases">
                                                         <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                             <option value="Civil Cases"> Civil Cases </option>
-                                                        </select>       
+                                                        </select>
                                                         @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
@@ -128,7 +128,7 @@
                                                         <input type="hidden" name="case_no" value="{{  $civil_case->case_no }}">
                                                         <select name="case_no" class="form-control select2" id="case_no" disabled>
                                                             <option value="{{ $civil_case->case_no }}"> {{ $civil_case->case_no }} </option>
-                                                        </select>       
+                                                        </select>
                                                         @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
@@ -142,7 +142,7 @@
                                                     <input type="hidden" name="redirect_to" value="Criminal Cases">
                                                     <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                         <option value="Criminal Cases"> Criminal Cases </option>
-                                                    </select>       
+                                                    </select>
                                                     @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -152,7 +152,7 @@
                                                     <input type="hidden" name="case_no" value="{{  $criminal_case->case_no }}">
                                                     <select name="case_no" class="form-control select2" id="case_no" disabled>
                                                         <option value="{{ $criminal_case->case_no }}"> {{ $criminal_case->case_no }} </option>
-                                                    </select>       
+                                                    </select>
                                                     @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -166,7 +166,7 @@
                                                     <input type="hidden" name="redirect_to" value="Labour Cases">
                                                     <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                         <option value="Labour Cases"> Labour Cases </option>
-                                                    </select>       
+                                                    </select>
                                                     @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -176,7 +176,7 @@
                                                     <input type="hidden" name="case_no" value="{{  $labour_case->case_no }}">
                                                     <select name="case_no" class="form-control select2" id="case_no" disabled>
                                                         <option value="{{ $labour_case->case_no }}"> {{ $labour_case->case_no }} </option>
-                                                    </select>       
+                                                    </select>
                                                     @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -190,7 +190,7 @@
                                                     <input type="hidden" name="redirect_to" value="Special Quassi - Judicial Cases">
                                                     <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                         <option value="Special Quassi - Judicial Cases"> Special Quassi - Judicial Cases </option>
-                                                    </select>       
+                                                    </select>
                                                     @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -200,7 +200,7 @@
                                                     <input type="hidden" name="case_no" value="{{  $quassi_judicial_case->case_no }}">
                                                     <select name="case_no" class="form-control select2" id="case_no" disabled>
                                                         <option value="{{ $quassi_judicial_case->case_no }}"> {{ $quassi_judicial_case->case_no }} </option>
-                                                    </select>       
+                                                    </select>
                                                     @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -214,7 +214,7 @@
                                                     <input type="hidden" name="redirect_to" value="Supreme Court of Bangladesh">
                                                     <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                         <option value="Supreme Court of Bangladesh"> Supreme Court of Bangladesh </option>
-                                                    </select>       
+                                                    </select>
                                                     @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -224,7 +224,7 @@
                                                     <input type="hidden" name="case_no" value="{{  $supreme_court_case->case_no }}">
                                                     <select name="case_no" class="form-control select2" id="case_no" disabled>
                                                         <option value="{{ $supreme_court_case->case_no }}"> {{ $supreme_court_case->case_no }} </option>
-                                                    </select>       
+                                                    </select>
                                                     @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -238,7 +238,7 @@
                                                     <input type="hidden" name="redirect_to" value="High Court Division">
                                                     <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                         <option value="High Court Division"> High Court Division </option>
-                                                    </select>       
+                                                    </select>
                                                     @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -248,7 +248,7 @@
                                                     <input type="hidden" name="case_no" value="{{  $high_court_case->case_no }}">
                                                     <select name="case_no" class="form-control select2" id="case_no" disabled>
                                                         <option value="{{ $high_court_case->case_no }}"> {{ $high_court_case->case_no }} </option>
-                                                    </select>       
+                                                    </select>
                                                     @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -262,7 +262,7 @@
                                                     <input type="hidden" name="redirect_to" value="Appellate Court Division">
                                                     <select name="case_type" class="form-control select2" id="case_type" disabled>
                                                         <option value="Appellate Court Division"> Appellate Court Division </option>
-                                                    </select>       
+                                                    </select>
                                                     @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -272,7 +272,7 @@
                                                     <input type="hidden" name="case_no" value="{{  $appellate_court_case->case_no }}">
                                                     <select name="case_no" class="form-control select2" id="case_no" disabled>
                                                         <option value="{{ $appellate_court_case->case_no }}"> {{ $appellate_court_case->case_no }} </option>
-                                                    </select>       
+                                                    </select>
                                                     @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -291,7 +291,7 @@
                                                             <option value="Supreme Court of Bangladesh"> Supreme Court of Bangladesh </option>
                                                             <option value="High Court Division"> High Court Division </option>
                                                             <option value="Appellate Court Division"> Appellate Court Division </option>
-                                                        </select>       
+                                                        </select>
                                                         @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
@@ -301,13 +301,13 @@
                                                         <select name="case_no" class="form-control select2" id="case_no">
                                                             <option value=""> Select </option>
 
-                                                        </select>       
+                                                        </select>
                                                         @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
 
                                             @endif
-                                            
+
                                             <div class="form-group row">
                                                 <label for="panel_lawyer_id" class="col-sm-4 col-form-label">Panel Lawyer</label>
                                                 <div class="col-sm-8">
@@ -328,7 +328,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">  
+                                        <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="date_of_billing" class="col-sm-4 col-form-label">Date of the Billing</label>
                                                 <div class="col-sm-8">
@@ -344,7 +344,7 @@
                                                             @foreach($bank as $item)
                                                                 <option value="{{ $item->id }}" {{(old('bank_id') == $item->id ? 'selected':'')}}>{{ $item->bank_name }}</option>
                                                             @endforeach
-                                                    </select>       
+                                                    </select>
                                                     @error('bank_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -353,8 +353,8 @@
                                                 <div class="col-sm-8">
                                                     <select name="branch_id" class="form-control select2" id="branch_id">
                                                         <option value=""> Select </option>
-                                                        
-                                                    </select>       
+
+                                                    </select>
                                                     @error('branch_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -380,10 +380,10 @@
                                                             @foreach($digital_payment_type as $item)
                                                                 <option value="{{ $item->id }}" {{(old('payment_type') == $item->id ? 'selected':'')}}>{{ $item->digital_payment_type_name }}</option>
                                                             @endforeach
-                                                    </select>       
+                                                    </select>
                                                     @error('digital_payment_type_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
-                                            </div>                                            
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="float-right mt-4">

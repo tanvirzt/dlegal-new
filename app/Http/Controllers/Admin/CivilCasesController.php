@@ -10,6 +10,7 @@ use App\Models\SetupClientSubcategory;
 use App\Models\SetupDistrict;
 use App\Models\SetupLaw;
 use App\Models\SetupSection;
+use App\Models\SetupThana;
 use Illuminate\Http\Request;
 use App\Models\CivilCases;
 use App\Models\SetupDivision;
@@ -107,54 +108,60 @@ class CivilCasesController extends Controller
 //
 //        $this->validate($request, $rules, $validMsg);
 
+
+//        $data = json_decode(json_encode($request->all()));
+//        echo "<pre>";print_r($data);die();
+
+
         DB::beginTransaction();
 
         $data = new CivilCases();
+
+        $data->case = $request->case;
+        $data->client = $request->client;
         $data->case_no = $request->case_no;
+        $data->name_of_the_court_id = $request->name_of_the_court_id;
+        $data->next_date = $request->next_date;
+        $data->next_date_fixed_id = $request->next_date_fixed_id;
+        $data->in_favour_of = $request->in_favour_of;
+        $data->received_date = $request->received_date;
+        $data->received_from = $request->received_from;
+        $data->mode_of_receipt = $request->mode_of_receipt;
+        $data->receiver_contact_details = $request->receiver_contact_details;
+        $data->received_by = $request->received_by;
         $data->client_category_id = $request->client_category_id;
         $data->client_subcategory_id = $request->client_subcategory_id;
-        $data->date_of_filing = $request->date_of_filing;
-        $data->division_id = $request->division_id;
-        $data->case_year = $request->case_year;
-        $data->district_id = $request->district_id;
-        $data->ref_no = $request->ref_no;
-        $data->amount = $request->amount;
-        $data->location = $request->location;
-        $data->case_status_id = $request->case_status_id;
-        $data->property_type_id = $request->property_type_id;
+        $data->client_name = $request->client_name;
+        $data->client_address = $request->client_address;
+        $data->client_division_id = $request->client_division_id;
+        $data->client_district_id = $request->client_district_id;
+        $data->client_thana_id = $request->client_thana_id;
+        $data->received_documents = $request->received_documents;
+        $data->required_missing_documents = $request->required_missing_documents;
         $data->case_category_id = $request->case_category_id;
         $data->case_subcategory_id = $request->case_subcategory_id;
         $data->case_type_id = $request->case_type_id;
-        $data->name_of_the_court_id = $request->name_of_the_court_id;
-        $data->external_council_name_id = $request->external_council_name_id;
-        $data->external_council_associates_id = $request->external_council_associates_id;
-        $data->relevant_law_id = $request->relevant_law_id;
-        $data->relevant_sections_id = $request->relevant_sections_id;
-        $data->plaintiff_name = $request->plaintiff_name;
-        $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
-        $data->next_date = $request->next_date;
-        $data->plaintiff_contact_number = $request->plaintiff_contact_number;
-        $data->next_date_fixed_id = $request->next_date_fixed_id;
-        $data->company_id = $request->company_id;
-        $data->zone_id = $request->zone_id;
-        $data->area_id = $request->area_id;
-        $data->subsequent_plaintiff_name = $request->subsequent_plaintiff_name;
-        $data->nature_of_suit = $request->nature_of_suit;
-        $data->defendant_name = $request->defendant_name;
-        $data->defendant_address = $request->defendant_address;
-        $data->defendant_company_id = $request->defendant_company_id;
-        $data->last_order_court_id = $request->last_order_court_id;
-        $data->additional_order = $request->additional_order;
-        $data->disbursement_date = $request->disbursement_date;
-        $data->date_of_cash_receipt = $request->date_of_cash_receipt;
-        $data->case_notes = $request->case_notes;
-        $data->date_of_disposed = $request->date_of_disposed;
-        $data->total_legal_bill_amount_cost = $request->total_legal_bill_amount_cost;
-        $data->assigned_lawyer_id = $request->assigned_lawyer_id;
-        $data->notes = $request->notes;
-        $data->other_claim = $request->other_claim;
-        $data->summary_facts_demands = $request->summary_facts_demands;
-        $data->missing_documents_evidence_information = $request->missing_documents_evidence_information;
+        $data->case_infos_case_no = $request->case_infos_case_no;
+        $data->name_of_the_court = $request->name_of_the_court;
+        $data->date_of_filing = $request->date_of_filing;
+        $data->law = $request->law;
+        $data->section = $request->section;
+        $data->case_infos_division_id = $request->case_infos_division_id;
+        $data->case_infos_district_id = $request->case_infos_district_id;
+        $data->case_infos_thana_id = $request->case_infos_thana_id;
+        $data->allegation_claim = $request->allegation_claim;
+        $data->amount_of_money = $request->amount_of_money;
+        $data->another_claim = $request->another_claim;
+        $data->summary_facts = $request->summary_facts;
+        $data->complainant_name = $request->complainant_name;
+        $data->representative_name = $request->representative_name;
+        $data->representative_details = $request->representative_details;
+        $data->accused_name = $request->accused_name;
+        $data->advocate_name = $request->advocate_name;
+        $data->assigned_lawyer = $request->assigned_lawyer;
+        $data->case_status_id = $request->case_status_id;
+        $data->status_next_date = $request->status_next_date;
+        $data->status_next_date_fixed_id = $request->status_next_date_fixed_id;
         $data->comments = $request->comments;
         $data->save();
 
@@ -198,15 +205,20 @@ class CivilCasesController extends Controller
         $area = SetupArea::where('delete_status', 0)->get();
         $internal_council = SetupInternalCouncil::where('delete_status', 0)->get();
         $data = CivilCases::find($id);
-        $existing_district = SetupDistrict::where('division_id', $data->division_id)->get();
+        $existing_client_district = SetupDistrict::where('division_id', $data->client_division_id)->get();
+        $existing_client_thana = SetupThana::where('district_id', $data->client_district_id)->get();
         $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_associates_id)->get();
         $client_category = SetupClientCategory::where('delete_status', 0)->get();
         $existing_client_subcategory = SetupClientSubcategory::where(['client_category_id' => $data->client_category_id,'delete_status' => 0])->get();
         $existing_case_subcategory = SetupCaseSubcategory::where(['case_category_id' => $data->case_category_id,'delete_status' => 0])->get();
         $section = SetupSection::where('delete_status', 0)->get();
 
+        $existing_case_info_district = SetupDistrict::where('division_id', $data->case_infos_division_id)->get();
+        $existing_case_info_client_thana = SetupThana::where('district_id', $data->case_infos_district_id)->get();
+
 //         dd($existing_client_subcategory);
-        return view('litigation_management.cases.civil_cases.edit_civil_cases', compact('data', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'property_type', 'case_types', 'company', 'zone', 'area', 'internal_council', 'existing_district', 'existing_ext_coun_associates','client_category','existing_client_subcategory','existing_case_subcategory','section'));
+
+        return view('litigation_management.cases.civil_cases.edit_civil_cases', compact('data', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'property_type', 'case_types', 'company', 'zone', 'area', 'internal_council', 'existing_client_district', 'existing_ext_coun_associates','client_category','existing_client_subcategory','existing_case_subcategory','section','existing_client_thana','existing_case_info_district','existing_case_info_client_thana'));
     }
 
     public function update_civil_cases(Request $request, $id)
@@ -216,51 +228,51 @@ class CivilCasesController extends Controller
         DB::beginTransaction();
 
         $data = CivilCases::find($id);
+        $data->case = $request->case;
+        $data->client = $request->client;
         $data->case_no = $request->case_no;
+        $data->name_of_the_court_id = $request->name_of_the_court_id;
+        $data->next_date = $request->next_date;
+        $data->next_date_fixed_id = $request->next_date_fixed_id;
+        $data->in_favour_of = $request->in_favour_of;
+        $data->received_date = $request->received_date;
+        $data->received_from = $request->received_from;
+        $data->mode_of_receipt = $request->mode_of_receipt;
+        $data->receiver_contact_details = $request->receiver_contact_details;
+        $data->received_by = $request->received_by;
         $data->client_category_id = $request->client_category_id;
         $data->client_subcategory_id = $request->client_subcategory_id;
-        $data->date_of_filing = $request->date_of_filing;
-        $data->division_id = $request->division_id;
-        $data->case_year = $request->case_year;
-        $data->district_id = $request->district_id;
-        $data->ref_no = $request->ref_no;
-        $data->amount = $request->amount;
-        $data->location = $request->location;
-        $data->case_status_id = $request->case_status_id;
-        $data->property_type_id = $request->property_type_id;
+        $data->client_name = $request->client_name;
+        $data->client_address = $request->client_address;
+        $data->client_division_id = $request->client_division_id;
+        $data->client_district_id = $request->client_district_id;
+        $data->client_thana_id = $request->client_thana_id;
+        $data->received_documents = $request->received_documents;
+        $data->required_missing_documents = $request->required_missing_documents;
         $data->case_category_id = $request->case_category_id;
         $data->case_subcategory_id = $request->case_subcategory_id;
         $data->case_type_id = $request->case_type_id;
-        $data->name_of_the_court_id = $request->name_of_the_court_id;
-        $data->external_council_name_id = $request->external_council_name_id;
-        $data->external_council_associates_id = $request->external_council_associates_id;
-        $data->relevant_law_id = $request->relevant_law_id;
-        $data->relevant_sections_id = $request->relevant_sections_id;
-        $data->plaintiff_name = $request->plaintiff_name;
-        $data->plaintiff_designaiton_id = $request->plaintiff_designaiton_id;
-        $data->next_date = $request->next_date;
-        $data->plaintiff_contact_number = $request->plaintiff_contact_number;
-        $data->next_date_fixed_id = $request->next_date_fixed_id;
-        $data->company_id = $request->company_id;
-        $data->zone_id = $request->zone_id;
-        $data->area_id = $request->area_id;
-        $data->subsequent_plaintiff_name = $request->subsequent_plaintiff_name;
-        $data->nature_of_suit = $request->nature_of_suit;
-        $data->defendant_name = $request->defendant_name;
-        $data->defendant_address = $request->defendant_address;
-        $data->defendant_company_id = $request->defendant_company_id;
-        $data->last_order_court_id = $request->last_order_court_id;
-        $data->additional_order = $request->additional_order;
-        $data->disbursement_date = $request->disbursement_date;
-        $data->date_of_cash_receipt = $request->date_of_cash_receipt;
-        $data->case_notes = $request->case_notes;
-        $data->date_of_disposed = $request->date_of_disposed;
-        $data->total_legal_bill_amount_cost = $request->total_legal_bill_amount_cost;
-        $data->assigned_lawyer_id = $request->assigned_lawyer_id;
-        $data->notes = $request->notes;
-        $data->other_claim = $request->other_claim;
-        $data->summary_facts_demands = $request->summary_facts_demands;
-        $data->missing_documents_evidence_information = $request->missing_documents_evidence_information;
+        $data->case_infos_case_no = $request->case_infos_case_no;
+        $data->name_of_the_court = $request->name_of_the_court;
+        $data->date_of_filing = $request->date_of_filing;
+        $data->law = $request->law;
+        $data->section = $request->section;
+        $data->case_infos_division_id = $request->case_infos_division_id;
+        $data->case_infos_district_id = $request->case_infos_district_id;
+        $data->case_infos_thana_id = $request->case_infos_thana_id;
+        $data->allegation_claim = $request->allegation_claim;
+        $data->amount_of_money = $request->amount_of_money;
+        $data->another_claim = $request->another_claim;
+        $data->summary_facts = $request->summary_facts;
+        $data->complainant_name = $request->complainant_name;
+        $data->representative_name = $request->representative_name;
+        $data->representative_details = $request->representative_details;
+        $data->accused_name = $request->accused_name;
+        $data->advocate_name = $request->advocate_name;
+        $data->assigned_lawyer = $request->assigned_lawyer;
+        $data->case_status_id = $request->case_status_id;
+        $data->status_next_date = $request->status_next_date;
+        $data->status_next_date_fixed_id = $request->status_next_date_fixed_id;
         $data->comments = $request->comments;
         $data->save();
 
@@ -309,57 +321,41 @@ class CivilCasesController extends Controller
 //        echo "<pre>";print_r($data);die();
 
         $data = DB::table('civil_cases')
+            ->leftJoin('setup_courts', 'civil_cases.name_of_the_court_id', '=', 'setup_courts.id')
+            ->leftJoin('setup_next_date_reasons', 'civil_cases.next_date_fixed_id', '=', 'setup_next_date_reasons.id')
+            ->leftJoin('setup_internal_councils', 'civil_cases.in_favour_of', '=', 'setup_internal_councils.id')
             ->leftJoin('setup_client_categories', 'civil_cases.client_category_id', '=', 'setup_client_categories.id')
             ->leftJoin('setup_client_subcategories', 'civil_cases.client_subcategory_id', '=', 'setup_client_subcategories.id')
-            ->leftJoin('setup_divisions', 'civil_cases.division_id', '=', 'setup_divisions.id')
-            ->leftJoin('setup_districts', 'civil_cases.district_id', '=', 'setup_districts.id')
-            ->leftJoin('setup_case_statuses', 'civil_cases.case_status_id', '=', 'setup_case_statuses.id')
-            ->leftJoin('setup_property_types', 'civil_cases.property_type_id', '=', 'setup_property_types.id')
+            ->leftJoin('setup_divisions as client_division', 'civil_cases.client_division_id', '=', 'client_division.id')
+            ->leftJoin('setup_districts as client_district', 'civil_cases.client_district_id', '=', 'client_district.id')
+            ->leftJoin('setup_thanas as client_thana', 'civil_cases.client_thana_id', '=', 'client_thana.id')
             ->leftJoin('setup_case_categories', 'civil_cases.case_category_id', '=', 'setup_case_categories.id')
             ->leftJoin('setup_case_subcategories', 'civil_cases.case_subcategory_id', '=', 'setup_case_subcategories.id')
             ->leftJoin('setup_case_types', 'civil_cases.case_type_id', '=', 'setup_case_types.id')
-            ->leftJoin('setup_courts', 'civil_cases.name_of_the_court_id', '=', 'setup_courts.id')
-            ->leftJoin('setup_external_councils', 'civil_cases.external_council_name_id', '=', 'setup_external_councils.id')
-            ->leftJoin('setup_external_council_associates', 'civil_cases.external_council_associates_id', '=', 'setup_external_council_associates.id')
-            ->leftJoin('setup_laws', 'civil_cases.relevant_law_id', '=', 'setup_laws.id')
-            ->leftJoin('setup_sections', 'civil_cases.relevant_sections_id', '=', 'setup_sections.id')
-            ->leftJoin('setup_designations', 'civil_cases.plaintiff_designaiton_id', '=', 'setup_designations.id')
-            ->leftJoin('setup_next_date_reasons', 'civil_cases.next_date_fixed_id', '=', 'setup_next_date_reasons.id')
-            ->leftJoin('setup_companies', 'civil_cases.company_id', '=', 'setup_companies.id')
-            ->leftJoin('setup_regions', 'civil_cases.zone_id', '=', 'setup_regions.id')
-            ->leftJoin('setup_areas', 'civil_cases.area_id', '=', 'setup_areas.id')
-            ->leftJoin('setup_companies as def_company', 'civil_cases.defendant_company_id', '=', 'def_company.id')
-            ->leftJoin('setup_court_last_orders', 'civil_cases.last_order_court_id', '=', 'setup_court_last_orders.id')
-            ->leftJoin('setup_internal_councils', 'civil_cases.assigned_lawyer_id', '=', 'setup_internal_councils.id')
+            ->leftJoin('setup_divisions as case_infos_division', 'civil_cases.case_infos_division_id', '=', 'case_infos_division.id')
+            ->leftJoin('setup_districts as case_infos_district', 'civil_cases.case_infos_district_id', '=', 'case_infos_district.id')
+            ->leftJoin('setup_thanas as case_infos_thana', 'civil_cases.case_infos_thana_id', '=', 'case_infos_thana.id')
+            ->leftJoin('setup_case_statuses', 'civil_cases.case_status_id', '=', 'setup_case_statuses.id')
+            ->leftJoin('setup_next_date_reasons as status_next_date_reasons', 'civil_cases.status_next_date_fixed_id', '=', 'status_next_date_reasons.id')
             ->select('civil_cases.*',
+                'setup_courts.court_name',
+                'setup_next_date_reasons.next_date_reason_name',
+                'setup_internal_councils.first_name as ic_first_name',
+                'setup_internal_councils.middle_name as ic_middle_name',
+                'setup_internal_councils.last_name as ic_last_name',
                 'setup_client_categories.client_category_name',
                 'setup_client_subcategories.client_subcategory_name',
-                'setup_divisions.division_name',
-                'setup_districts.district_name',
-                'setup_case_statuses.case_status_name',
-                'setup_property_types.property_type_name',
+                'client_division.division_name as client_division_name',
+                'client_district.district_name as client_district_name',
+                'client_thana.thana_name as client_thana_name',
                 'setup_case_categories.case_category',
                 'setup_case_subcategories.case_subcategory',
                 'setup_case_types.case_types_name',
-                'setup_courts.court_name',
-                'setup_external_councils.first_name',
-                'setup_external_councils.middle_name',
-                'setup_external_councils.last_name',
-                'setup_external_council_associates.first_name as as_first_name',
-                'setup_external_council_associates.middle_name as as_middle_name',
-                'setup_external_council_associates.last_name as as_last_name',
-                'setup_laws.law_name',
-                'setup_sections.section_name',
-                'setup_designations.designation_name',
-                'setup_next_date_reasons.next_date_reason_name',
-                'setup_companies.company_name',
-                'setup_regions.region_name',
-                'setup_areas.area_name',
-                'def_company.company_name as def_company_name',
-                'setup_court_last_orders.court_last_order_name',
-                'setup_internal_councils.first_name as ic_first_name',
-                'setup_internal_councils.middle_name as ic_middle_name',
-                'setup_internal_councils.last_name as ic_last_name')
+                'case_infos_division.division_name as case_infos_division_name',
+                'case_infos_district.district_name as case_infos_district_name',
+                'case_infos_thana.thana_name as case_infos_thana_name',
+                'setup_case_statuses.case_status_name',
+                'status_next_date_reasons.next_date_reason_name as status_next_date_reason_name')
             ->where('civil_cases.id', $id)
             ->first();
         // dd($data);

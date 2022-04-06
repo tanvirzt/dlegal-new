@@ -174,12 +174,12 @@
                                     <thead>
                                     <tr>
                                         <th class="text-nowrap text-center">Case No</th>
-                                        <th class="text-center">Case Year</th>
-                                        <th class="text-center">Ref No</th>
+                                        <th class="text-center">Next Date</th>
+                                        <th class="text-center">Received Date</th>
                                         <th class="text-nowrap"> Amount </th>
-                                        <th class="text-center">Location</th>
-                                        <th class="text-nowrap">Plaintiff Name</th>
-                                        <th class="text-nowrap">Defendent Name</th>
+                                        <th class="text-center">Client</th>
+                                        <th class="text-nowrap">Client Address</th>
+                                        <th class="text-nowrap">Allegation Claim</th>
                                         <th class="text-center">Status</th>
                                         <th width="13%">Action</th>
                                     </tr>
@@ -192,22 +192,22 @@
                                                     {{ $datum->case_no }} </a>
                                             </td>
                                             <td>
-                                                {{ $datum->case_year }}
+                                                    {{ $datum->next_date }}
                                             </td>
                                             <td>
-                                                {{ $datum->ref_no }}
+                                                {{ $datum->received_date }}
                                             </td>
                                             <td>
-                                                {{ $datum->amount }}
+                                                {{ $datum->amount_of_money }}
                                             </td>
                                             <td>
-                                                {{ $datum->location }}
+                                                {{ $datum->client }}
                                             </td>
                                             <td>
-                                                {{ $datum->plaintiff_name }}
+                                                {{ $datum->client_address }}
                                             </td>
                                             <td>
-                                                {{ $datum->defendant_name }}
+                                                {{ $datum->allegation_claim }}
                                             </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)

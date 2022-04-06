@@ -148,7 +148,7 @@ class HighCourtCasesController extends Controller
         $data->appeal_court_judgement = $request->appeal_court_judgement;
         $data->panel_lawyer_id = $request->panel_lawyer_id;
         $data->total_legal_bill_amount = $request->total_legal_bill_amount;
-        $data->case_received_lawyer_id = $request->case_received_lawyer_id;
+        $data->case_received_lawyer = $request->case_received_lawyer;
         $data->case_papers_received = $request->case_papers_received;
         $data->tadbirkar_details = $request->tadbirkar_details;
         $data->tender_no = $request->tender_no;
@@ -159,22 +159,22 @@ class HighCourtCasesController extends Controller
         $data->date_of_filing_hcd = $request->date_of_filing_hcd;
         $data->hcd_court_id = $request->hcd_court_id;
         $data->laws_id = $request->laws_id;
-        $data->sections_id = $request->sections_id;
+        $data->sections = $request->sections;
         $data->order = $request->order;
         $data->order_date = $request->order_date;
         $data->order_no_memo = $request->order_no_memo;
         $data->appellant_petitioner_name = $request->appellant_petitioner_name;
-        $data->appellant_designation_id = $request->appellant_designation_id;
+        $data->appellant_designation = $request->appellant_designation;
         $data->appellant_address = $request->appellant_address;
         $data->opposite_party_name = $request->opposite_party_name;
-        $data->opposite_party_designation_id = $request->opposite_party_designation_id;
+        $data->opposite_party_designation = $request->opposite_party_designation;
         $data->opposite_party_address = $request->opposite_party_address;
-        $data->party_steps_taken_id = $request->party_steps_taken_id;
-        $data->case_status_id = $request->case_status_id;
-        $data->fixed_hearing_court_id = $request->fixed_hearing_court_id;
-        $data->court_steps_taken_id = $request->court_steps_taken_id;
+        $data->party_steps_taken = $request->party_steps_taken;
+        $data->case_status = $request->case_status;
+        $data->fixed_hearing_court = $request->fixed_hearing_court;
+        $data->court_steps_taken = $request->court_steps_taken;
         $data->court_next_steps_date = $request->court_next_steps_date;
-        $data->assigned_lawyer_id = $request->assigned_lawyer_id;
+        $data->assigned_lawyer = $request->assigned_lawyer;
         $data->documents_lawyers_appointment = $request->documents_lawyers_appointment;
         $data->documents_sent_to_law_chamber = $request->documents_sent_to_law_chamber;
         $data->documents_received_field_programe = $request->documents_received_field_programe;
@@ -314,7 +314,7 @@ class HighCourtCasesController extends Controller
             $data->total_legal_bill_amount = null;
         }
 
-        $data->case_received_lawyer_id = $request->case_received_lawyer_id;
+        $data->case_received_lawyer = $request->case_received_lawyer;
         $data->case_papers_received = $request->case_papers_received;
         $data->tadbirkar_details = $request->tadbirkar_details;
         $data->tender_no = $request->tender_no;
@@ -325,22 +325,22 @@ class HighCourtCasesController extends Controller
         $data->date_of_filing_hcd = $request->date_of_filing_hcd;
         $data->hcd_court_id = $request->hcd_court_id;
         $data->laws_id = $request->laws_id;
-        $data->sections_id = $request->sections_id;
+        $data->sections = $request->sections;
         $data->order = $request->order;
         $data->order_date = $request->order_date;
         $data->order_no_memo = $request->order_no_memo;
         $data->appellant_petitioner_name = $request->appellant_petitioner_name;
-        $data->appellant_designation_id = $request->appellant_designation_id;
+        $data->appellant_designation = $request->appellant_designation;
         $data->appellant_address = $request->appellant_address;
         $data->opposite_party_name = $request->opposite_party_name;
-        $data->opposite_party_designation_id = $request->opposite_party_designation_id;
+        $data->opposite_party_designation = $request->opposite_party_designation;
         $data->opposite_party_address = $request->opposite_party_address;
-        $data->party_steps_taken_id = $request->party_steps_taken_id;
-        $data->case_status_id = $request->case_status_id;
-        $data->fixed_hearing_court_id = $request->fixed_hearing_court_id;
-        $data->court_steps_taken_id = $request->court_steps_taken_id;
+        $data->party_steps_taken = $request->party_steps_taken;
+        $data->case_status = $request->case_status;
+        $data->fixed_hearing_court = $request->fixed_hearing_court;
+        $data->court_steps_taken = $request->court_steps_taken;
         $data->court_next_steps_date = $request->court_next_steps_date;
-        $data->assigned_lawyer_id = $request->assigned_lawyer_id;
+        $data->assigned_lawyer = $request->assigned_lawyer;
         $data->documents_lawyers_appointment = $request->documents_lawyers_appointment;
         $data->documents_sent_to_law_chamber = $request->documents_sent_to_law_chamber;
         $data->documents_received_field_programe = $request->documents_received_field_programe;
@@ -408,19 +408,11 @@ class HighCourtCasesController extends Controller
             ->leftJoin('setup_courts as trial_court', 'high_court_cases.trial_court_id', 'trial_court.id')
             ->leftJoin('setup_courts as appeal_court', 'high_court_cases.appeal_court_id', 'appeal_court.id')
             ->leftJoin('setup_external_councils as panel_lawyer', 'high_court_cases.panel_lawyer_id', 'panel_lawyer.id')
-            ->leftJoin('setup_external_councils as case_received_lawyer', 'high_court_cases.case_received_lawyer_id', 'case_received_lawyer.id')
             ->leftJoin('setup_case_categories', 'high_court_cases.case_category_id', 'setup_case_categories.id')
             ->leftJoin('setup_case_subcategories', 'high_court_cases.case_subcategory_id', 'setup_case_subcategories.id')
             ->leftJoin('setup_courts as hcd_court', 'high_court_cases.hcd_court_id', 'hcd_court.id')
             ->leftJoin('setup_designations as appellant_designations', 'high_court_cases.complainant_designation_id', 'appellant_designations.id')
-            ->leftJoin('setup_designations as opposite_designations', 'high_court_cases.opposite_party_designation_id', 'opposite_designations.id')
-            ->leftJoin('setup_next_date_reasons as steps_taken', 'high_court_cases.party_steps_taken_id', 'steps_taken.id')
-            ->leftJoin('setup_case_statuses', 'high_court_cases.case_status_id', 'setup_case_statuses.id')
-            ->leftJoin('setup_courts as fixed_hearing_court', 'high_court_cases.fixed_hearing_court_id', 'fixed_hearing_court.id')
-            ->leftJoin('setup_next_date_reasons as court_steps_taken', 'high_court_cases.party_steps_taken_id', 'court_steps_taken.id')
-            ->leftJoin('setup_internal_councils', 'high_court_cases.assigned_lawyer_id', 'setup_internal_councils.id')
             ->leftJoin('setup_laws as laws', 'high_court_cases.laws_id', 'laws.id')
-            ->leftJoin('setup_sections as sections', 'high_court_cases.sections_id', 'sections.id')
 
             ->where('high_court_cases.id', $id)
             ->select('high_court_cases.*',
@@ -442,23 +434,11 @@ class HighCourtCasesController extends Controller
                 'panel_lawyer.first_name as panel_lawyer_first_name',
                 'panel_lawyer.middle_name as panel_lawyer_middle_name',
                 'panel_lawyer.last_name as panel_lawyer_last_name',
-                'case_received_lawyer.first_name as case_received_lawyer_first_name',
-                'case_received_lawyer.middle_name as case_received_lawyer_middle_name',
-                'case_received_lawyer.last_name as case_received_lawyer_last_name',
                 'setup_case_categories.case_category',
                 'setup_case_subcategories.case_subcategory',
                 'hcd_court.court_name as hcd_court_name',
                 'appellant_designations.designation_name as appellant_designation_name',
-                'opposite_designations.designation_name as opposite_designation_name',
-                'steps_taken.next_date_reason_name as party_steps_taken_name',
-                'setup_case_statuses.case_status_name',
-                'fixed_hearing_court.court_name as fixed_hearing_court_name',
-                'court_steps_taken.next_date_reason_name as court_steps_taken_name',
-                'setup_internal_councils.first_name as assigned_lawyer_first_name',
-                'setup_internal_councils.middle_name as assigned_lawyer_middle_name',
-                'setup_internal_councils.last_name as assigned_lawyer_last_name',
-                'laws.law_name as laws_law_name',
-                'sections.section_name as sections_section_name',
+                'laws.law_name as laws_law_name'
             )
             ->first();
 

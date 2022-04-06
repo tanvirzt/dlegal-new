@@ -1201,6 +1201,154 @@ $(document).ready(function () {
     });
 
 
+    $("#appeal_case").on('click', function () {
+        // alert('asdfw wer asdf');
+
+        $(".appeal_case_info").show();
+        $(".revision_case_info").hide();
+
+    });
+
+    $("#revision_case").on('click', function () {
+        // alert('rev');
+
+        $(".appeal_case_info").hide();
+        $(".revision_case_info").show();
+
+    });
+
+
+    $('#client_division_id').on('change', function () {
+        var div_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if (div_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", div_id: div_id},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#client_district_id').empty();
+                        $('#client_district_id').focus;
+                        $('#client_district_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="client_district_id"]').append('<option value="' + value.id + '">' + value.district_name + '</option>');
+                        });
+                    } else {
+                        $('#client_district_id').empty();
+                    }
+                }
+            });
+        } else {
+            $('#client_district_id').empty();
+            $('#client_district_id').append('<option value="">Select</option>');
+        }
+    });
+
+    $('#client_district_id').on('change', function () {
+        var district_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if (district_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", district_id: district_id},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#client_thana_id').empty();
+                        $('#client_thana_id').focus;
+                        $('#client_thana_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="client_thana_id"]').append('<option value="' + value.id + '">' + value.thana_name + '</option>');
+                        });
+                    } else {
+                        $('#client_thana_id').empty();
+                    }
+                }
+            });
+        } else {
+            $('#client_thana_id').empty();
+            $('#client_thana_id').append('<option value="">Select</option>');
+
+        }
+    });
+
+
+    $('#case_infos_division_id').on('change', function () {
+        var div_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if (div_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", div_id: div_id},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#case_infos_district_id').empty();
+                        $('#case_infos_district_id').focus;
+                        $('#case_infos_district_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="case_infos_district_id"]').append('<option value="' + value.id + '">' + value.district_name + '</option>');
+                        });
+                    } else {
+                        $('#case_infos_district_id').empty();
+                    }
+                }
+            });
+        } else {
+            $('#case_infos_district_id').empty();
+            $('#case_infos_district_id').append('<option value="">Select</option>');
+        }
+    });
+
+    $('#case_infos_district_id').on('change', function () {
+        var district_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if (district_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", district_id: district_id},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#case_infos_thana_id').empty();
+                        $('#case_infos_thana_id').focus;
+                        $('#case_infos_thana_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="case_infos_thana_id"]').append('<option value="' + value.id + '">' + value.thana_name + '</option>');
+                        });
+                    } else {
+                        $('#case_infos_thana_id').empty();
+                    }
+                }
+            });
+        } else {
+            $('#case_infos_thana_id').empty();
+            $('#case_infos_thana_id').append('<option value="">Select</option>');
+
+        }
+    });
+
+
+
+
+
+
+
+
+
 
 });
 

@@ -83,7 +83,7 @@
                                         <th class="lower_court_info">Case No. (Lower Court)</th>
                                         <td class="lower_court_info">{{ $data->case_no }}</td>
                                         <th>Case Received (From)</th>
-                                        <td>{{ $data->case_received_lawyer_first_name }} {{ $data->case_received_lawyer_middle_name }} {{ $data->case_received_lawyer_last_name }}</td>
+{{--                                        <td>{{ $data->case_received_from }}</td>--}}
                                     </tr>
                                     <tr>
                                         <th class="lower_court_info">Division</th>
@@ -149,7 +149,7 @@
                                         <th class="lower_court_info">Plaintiff Name</th>
                                         <td class="lower_court_info">{{ $data->plaintiff_name }}</td>
                                         <th>Sections</th>
-                                        <td>{{ $data->sections_section_name }}</td>
+                                        <td>{{ $data->sections }}</td>
                                     </tr>
                                     <tr>
                                         <th class="lower_court_info">Plaintiff Designation</th>
@@ -197,7 +197,7 @@
                                         <th class="lower_court_info">Address of the Accused</th>
                                         <td class="lower_court_info">{{ $data->accused_address }}</td>
                                         <th>Designation of the Respondent/Opposite Party</th>
-                                        <td>{{ $data->opposite_designation_name }}</td>
+                                        <td>{{ $data->opposite_party_designation }}</td>
                                     </tr>
                                     <tr>
                                         <th class="lower_court_info">Accused Contact No.</th>
@@ -209,25 +209,25 @@
                                         <th class="lower_court_info">Other Claim(if any)</th>
                                         <td class="lower_court_info">{{ $data->other_claim }}</td>
                                         <th>Step Taken by the Party</th>
-                                        <td>{{ $data->party_steps_taken_name }}</td>
+                                        <td>{{ $data->party_steps_taken }}</td>
                                     </tr>
                                     <tr>
                                         <th class="lower_court_info">Summary of Facts & Alligation</th>
                                         <td class="lower_court_info">{{ $data->summary_facts_alligation }}</td>
                                         <th>Status of the Cases</th>
-                                        <td>{{ $data->case_status_name }}</td>
+                                        <td>{{ $data->case_status }}</td>
                                     </tr>
                                     <tr>
                                         <th class="lower_court_info">Name of Trial / Impugned Court</th>
                                         <td class="lower_court_info">{{ $data->trial_court_name }}</td>
                                         <th>Name of Court (Fixed for Hearing)</th>
-                                        <td>{{ $data->fixed_hearing_court_name }}</td>
+                                        <td>{{ $data->fixed_hearing_court }}</td>
                                     </tr>
                                     <tr>
                                         <th class="lower_court_info">Date of Judgement/Order (Trial Court)</th>
                                         <td class="lower_court_info">{{ $data->trial_court_judgement_date }}</td>
                                         <th>Next Step to be Taken in Court</th>
-                                        <td>{{ $data->court_steps_taken_name }}</td>
+                                        <td>{{ $data->court_steps_taken }}</td>
                                     </tr>
                                     <tr>
                                         <th class="lower_court_info">Judgment/Order with Grounds (Trial Court)</th>
@@ -239,7 +239,7 @@
                                         <th class="lower_court_info">Name of Appeal/Revision Court (District)</th>
                                         <td class="lower_court_info">{{ $data->appeal_court_name }}</td>
                                         <th>Name of Lawyer</th>
-                                        <td>{{ $data->assigned_lawyer_first_name }} {{ $data->assigned_lawyer_middle_name }} {{ $data->assigned_lawyer_last_name }}</td>
+                                        <td>{{ $data->assigned_lawyer}}</td>
                                     </tr>
                                     <tr>
                                         <th class="lower_court_info">Date of Judgement (Appeal/Revision Court)</th>
