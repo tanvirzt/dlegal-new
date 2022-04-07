@@ -85,12 +85,12 @@
                                         <p>Designation</p>
                                     </a>
                                 </li>
-{{--                                <li class="nav-item">--}}
-{{--                                    <a href="{{ route('case-category') }}" class="nav-link">--}}
-{{--                                        <i class="far fa-dot-circle nav-icon"></i>--}}
-{{--                                        <p>Case Category</p>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
+                                <li class="nav-item">
+                                    <a href="{{ route('next-day-presence') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Next Day Presence</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="{{ route('case-status') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>

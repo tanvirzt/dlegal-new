@@ -13,6 +13,7 @@ use App\Models\SetupClientSubcategory;
 use App\Models\SetupComplianceCategory;
 use App\Models\SetupCourtClass;
 use App\Models\SetupDesignation;
+use App\Models\SetupNextDayPresence;
 use App\Models\SetupPropertyType;
 use App\Models\SetupSection;
 use Illuminate\Http\Request;
@@ -46,9 +47,7 @@ use App\Models\SetupThana;
 use App\Models\SetupSellerBuyer;
 use App\Models\SetupFloor;
 use App\Models\SetupFlatNumber;
-use App\Models\CivilCasesFile;
 use App\Models\SetupSupremeCourtCategory;
-use App\Models\SetupSupremeCourtSubcategory;
 use Illuminate\Support\Facades\DB;
 
 
@@ -690,6 +689,7 @@ class AdminSetupController extends Controller
         $this->validate($request, $rules, $validMsg);
 
         $data = new SetupCourt();
+        $data->case_type = $request->case_type;
         $data->court_name = $request->court_name;
         $data->save();
 
@@ -717,6 +717,7 @@ class AdminSetupController extends Controller
         $this->validate($request, $rules, $validMsg);
 
         $data = SetupCourt::find($id);
+        $data->case_type = $request->case_type;
         $data->court_name = $request->court_name;
         $data->save();
 
@@ -766,6 +767,7 @@ class AdminSetupController extends Controller
         $this->validate($request, $rules, $validMsg);
 
         $data = new SetupLaw();
+        $data->case_type = $request->case_type;
         $data->law_name = $request->law_name;
         $data->save();
 
@@ -793,6 +795,7 @@ class AdminSetupController extends Controller
         $this->validate($request, $rules, $validMsg);
 
         $data = SetupLaw::find($id);
+        $data->case_type = $request->case_type;
         $data->law_name = $request->law_name;
         $data->save();
 
@@ -3427,6 +3430,82 @@ public function find_case_category(Request $request)
     {
         $data = SetupClientSubcategory::where(['client_category_id' => $request->client_category_id, 'delete_status' => 0 ])->get();
         return response()->json($data);
+    }
+
+//next_day_presence
+
+    public function next_day_presence()
+    {
+        $data = SetupNextDayPresence::all();
+        return view('setup.next_day_presence.next_day_presence',compact('data'));
+    }
+
+    public function add_next_day_presence()
+    {
+        return view('setup.next_day_presence.add_next_day_presence');
+    }
+
+    public function save_next_day_presence(Request $request)
+    {
+        $rules = [
+            'next_day_presence_name' => 'required'
+        ];
+
+        $validMsg = [
+            'next_day_presence_name.required' => 'Next Day Presence field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $next_day_presence = new SetupNextDayPresence();
+        $next_day_presence->next_day_presence_name = $request->next_day_presence_name;
+        $next_day_presence->save();
+
+        session()->flash('success','Next Day Presence Added Successfully.');
+        return redirect()->route('next-day-presence');
+    }
+
+    public function edit_next_day_presence($id)
+    {
+        $data = SetupNextDayPresence::find($id);
+        return view('setup.next_day_presence.edit_next_day_presence',compact('data'));
+    }
+
+    public function update_next_day_presence(Request $request, $id)
+    {
+        $rules = [
+            'next_day_presence_name' => 'required'
+        ];
+
+        $validMsg = [
+            'designaiton_name.required' => 'Next Day Presence field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $next_day_presence = SetupNextDayPresence::find($id);
+        $next_day_presence->next_day_presence_name = $request->next_day_presence_name;
+        $next_day_presence->save();
+
+        session()->flash('success', 'Next Day Presence Updated Successfully.');
+
+        return redirect()->route('next-day-presence');
+    }
+
+    public function delete_next_day_presence($id)
+    {
+        $data = SetupNextDayPresence::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Next Day Presence Deleted Successfully');
+        return redirect()->back();
     }
 
 

@@ -62,9 +62,9 @@ class QuassiJudicialCasesController extends Controller
     public function add_quassi_judicial_cases()
     {
         $client_category = SetupClientCategory::where('delete_status', 0)->get();
-        $law = SetupLaw::where('delete_status', 0)->get();
+        $law = SetupLaw::where(['case_type' => 'Special Quassi - Judicial Cases','delete_status' => 0])->get();
         $section = SetupSection::where('delete_status', 0)->get();
-        $court = SetupCourt::where('delete_status', 0)->get();
+        $court = SetupCourt::where(['case_type' => 'Special Quassi - Judicial Cases','delete_status' => 0])->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Special Quassi - Judicial Cases', 'delete_status' => 0])->get();
@@ -181,9 +181,9 @@ class QuassiJudicialCasesController extends Controller
     public function edit_quassi_judicial_cases($id)
     {
         $client_category = SetupClientCategory::where('delete_status', 0)->get();
-        $law = SetupLaw::where('delete_status', 0)->get();
+        $law = SetupLaw::where(['case_type' => 'Special Quassi - Judicial Cases','delete_status' => 0])->get();
         $section = SetupSection::where('delete_status', 0)->get();
-        $court = SetupCourt::where('delete_status', 0)->get();
+        $court = SetupCourt::where(['case_type' => 'Special Quassi - Judicial Cases','delete_status' => 0])->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Special Quassi - Judicial Cases', 'delete_status' => 0])->get();

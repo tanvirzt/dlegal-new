@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSetupLawsTable extends Migration
+class CreateSetupNextDayPresencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateSetupLawsTable extends Migration
      */
     public function up()
     {
-        Schema::create('setup_laws', function (Blueprint $table) {
+        Schema::create('setup_next_day_presences', function (Blueprint $table) {
             $table->id();
-            $table->string('case_type')->nullable();
-            $table->string('law_name')->nullable();
+            $table->string('next_day_presence_name')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
@@ -31,6 +30,6 @@ class CreateSetupLawsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('setup_laws');
+        Schema::dropIfExists('setup_next_day_presences');
     }
 }

@@ -484,6 +484,14 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 
         Route::get('find-client-subcategory','AdminSetupController@find_client_subcategory')->name('find-client-subcategory');
 
+        Route::get('next-day-presence', 'AdminSetupController@next_day_presence')->name('next-day-presence');
+        Route::get('add-next-day-presence','AdminSetupController@add_next_day_presence')->name('add-next-day-presence');
+        Route::post('save-next-day-presence','AdminSetupController@save_next_day_presence')->name('save-next-day-presence');
+        Route::get('edit-next-day-presence/{id}','AdminSetupController@edit_next_day_presence')->name('edit-next-day-presence');
+        Route::post('update-next-day-presence/{id}','AdminSetupController@update_next_day_presence')->name('update-next-day-presence');
+        Route::post('delete-next-day-presence/{id}','AdminSetupController@delete_next_day_presence')->name('delete-next-day-presence');
+
+
 
 
     });

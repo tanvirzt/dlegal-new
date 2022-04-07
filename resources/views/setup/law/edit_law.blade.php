@@ -56,7 +56,19 @@
                                 <div class="card-body">
 
                                     <div class="col-md-12">
-
+                                        <div class="form-group">
+                                            <label for="case_type"> Case Type </label>
+                                            <select name="case_type" class="form-control select2" id="case_type">
+                                                <option value="">Select</option>
+                                                <option value="Civil Cases" {{ $data->case_type == "Civil Cases" ? 'selected' : '' }}> Civil Cases </option>
+                                                <option value="Criminal Cases" {{ $data->case_type == "Criminal Cases" ? 'selected' : '' }}> Criminal Cases </option>
+                                                <option value="Labour Cases" {{ $data->case_type == "Labour Cases" ? 'selected' : '' }}> Labour Cases </option>
+                                                <option value="Special Quassi - Judicial Cases" {{ $data->case_type == "Special Quassi - Judicial Cases" ? 'selected' : '' }}> Special Quassi - Judicial Cases </option>
+                                                <option value="High Court Division" {{ $data->case_type == "High Court Division" ? 'selected' : '' }}> High Court Division </option>
+                                                <option value="Appellate Court Division" {{ $data->case_type == "Appellate Court Division" ? 'selected' : '' }}> Appellate Court Division </option>
+                                            </select>
+                                            @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
                                         <div class="form-group">
                                             <label for="law_name"> Law Name </label>
                                             <input type="text" class="form-control" name="law_name"

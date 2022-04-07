@@ -9,6 +9,7 @@ use App\Models\SetupClientCategory;
 use App\Models\SetupClientSubcategory;
 use App\Models\SetupDistrict;
 use App\Models\SetupLaw;
+use App\Models\SetupNextDayPresence;
 use App\Models\SetupSection;
 use App\Models\SetupThana;
 use Illuminate\Http\Request;
@@ -72,8 +73,8 @@ class CivilCasesController extends Controller
 
     public function add_civil_cases()
     {
-        $law = SetupLaw::where('delete_status', 0)->get();
-        $court = SetupCourt::where('delete_status', 0)->get();
+        $law = SetupLaw::where(['case_type' => 'Civil Cases','delete_status' => 0])->get();
+        $court = SetupCourt::where(['case_type' => 'Civil Cases','delete_status' => 0])->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->get();
@@ -91,8 +92,9 @@ class CivilCasesController extends Controller
         $internal_council = SetupInternalCouncil::where('delete_status', 0)->get();
         $client_category = SetupClientCategory::where('delete_status', 0)->get();
         $section = SetupSection::where('delete_status', 0)->get();
+        $next_day_presence = SetupNextDayPresence::where('delete_status',0)->get();
 
-        return view('litigation_management.cases.civil_cases.add_civil_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'property_type', 'case_types', 'company', 'zone', 'area', 'internal_council', 'client_category','section'));
+        return view('litigation_management.cases.civil_cases.add_civil_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'property_type', 'case_types', 'company', 'zone', 'area', 'internal_council', 'client_category','section','next_day_presence'));
     }
 
     public function save_civil_cases(Request $request)
@@ -138,6 +140,14 @@ class CivilCasesController extends Controller
         $data->client_thana_id = $request->client_thana_id;
         $data->received_documents = $request->received_documents;
         $data->required_missing_documents = $request->required_missing_documents;
+
+        $data->update_case_status_id = $request->update_case_status_id;
+        $data->update_next_date = $request->update_next_date;
+        $data->update_next_date_fixed_id = $request->update_next_date_fixed_id;
+        $data->case_proceedings = $request->case_proceedings;
+        $data->update_case_notes = $request->update_case_notes;
+        $data->next_day_presence_id = $request->next_day_presence_id;
+
         $data->case_category_id = $request->case_category_id;
         $data->case_subcategory_id = $request->case_subcategory_id;
         $data->case_type_id = $request->case_type_id;
@@ -188,8 +198,8 @@ class CivilCasesController extends Controller
 
     public function edit_civil_cases($id)
     {
-        $law = SetupLaw::where('delete_status', 0)->get();
-        $court = SetupCourt::where('delete_status', 0)->get();
+        $law = SetupLaw::where(['case_type' => 'Civil Cases','delete_status' => 0])->get();
+        $court = SetupCourt::where(['case_type' => 'Civil Cases','delete_status' => 0])->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->get();
@@ -215,10 +225,11 @@ class CivilCasesController extends Controller
 
         $existing_case_info_district = SetupDistrict::where('division_id', $data->case_infos_division_id)->get();
         $existing_case_info_client_thana = SetupThana::where('district_id', $data->case_infos_district_id)->get();
+        $next_day_presence = SetupNextDayPresence::where('delete_status',0)->get();
 
 //         dd($existing_client_subcategory);
 
-        return view('litigation_management.cases.civil_cases.edit_civil_cases', compact('data', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'property_type', 'case_types', 'company', 'zone', 'area', 'internal_council', 'existing_client_district', 'existing_ext_coun_associates','client_category','existing_client_subcategory','existing_case_subcategory','section','existing_client_thana','existing_case_info_district','existing_case_info_client_thana'));
+        return view('litigation_management.cases.civil_cases.edit_civil_cases', compact('data', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'property_type', 'case_types', 'company', 'zone', 'area', 'internal_council', 'existing_client_district', 'existing_ext_coun_associates','client_category','existing_client_subcategory','existing_case_subcategory','section','existing_client_thana','existing_case_info_district','existing_case_info_client_thana','next_day_presence'));
     }
 
     public function update_civil_cases(Request $request, $id)
@@ -249,6 +260,14 @@ class CivilCasesController extends Controller
         $data->client_thana_id = $request->client_thana_id;
         $data->received_documents = $request->received_documents;
         $data->required_missing_documents = $request->required_missing_documents;
+
+        $data->update_case_status_id = $request->update_case_status_id;
+        $data->update_next_date = $request->update_next_date;
+        $data->update_next_date_fixed_id = $request->update_next_date_fixed_id;
+        $data->case_proceedings = $request->case_proceedings;
+        $data->update_case_notes = $request->update_case_notes;
+        $data->next_day_presence_id = $request->next_day_presence_id;
+
         $data->case_category_id = $request->case_category_id;
         $data->case_subcategory_id = $request->case_subcategory_id;
         $data->case_type_id = $request->case_type_id;
@@ -337,6 +356,9 @@ class CivilCasesController extends Controller
             ->leftJoin('setup_thanas as case_infos_thana', 'civil_cases.case_infos_thana_id', '=', 'case_infos_thana.id')
             ->leftJoin('setup_case_statuses', 'civil_cases.case_status_id', '=', 'setup_case_statuses.id')
             ->leftJoin('setup_next_date_reasons as status_next_date_reasons', 'civil_cases.status_next_date_fixed_id', '=', 'status_next_date_reasons.id')
+            ->leftJoin('setup_case_statuses as update_case_status', 'civil_cases.update_case_status_id', '=', 'update_case_status.id')
+            ->leftJoin('setup_next_date_reasons as update_next_date_reasons', 'civil_cases.update_next_date_fixed_id', '=', 'update_next_date_reasons.id')
+            ->leftJoin('setup_next_day_presences', 'civil_cases.next_day_presence_id', '=', 'setup_next_day_presences.id')
             ->select('civil_cases.*',
                 'setup_courts.court_name',
                 'setup_next_date_reasons.next_date_reason_name',
@@ -355,7 +377,10 @@ class CivilCasesController extends Controller
                 'case_infos_district.district_name as case_infos_district_name',
                 'case_infos_thana.thana_name as case_infos_thana_name',
                 'setup_case_statuses.case_status_name',
-                'status_next_date_reasons.next_date_reason_name as status_next_date_reason_name')
+                'status_next_date_reasons.next_date_reason_name as status_next_date_reason_name',
+                'update_case_status.case_status_name as update_case_status_name',
+                'update_next_date_reasons.next_date_reason_name as update_next_date_reason_name',
+                'setup_next_day_presences.next_day_presence_name')
             ->where('civil_cases.id', $id)
             ->first();
         // dd($data);

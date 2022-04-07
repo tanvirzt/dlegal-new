@@ -93,7 +93,7 @@
 
                                         <div class="col-md-6">
 
-                                            <div class="appeal_case_info" style="display: none;">
+                                            <div class="appeal_case_info">
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h6 class="text-uppercase text-bold"><u> Basic Information </u>
@@ -117,35 +117,35 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Next Date</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->next_date }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Next date fixed for</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->next_date_reason_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>In favour of</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->ic_first_name }} {{ $data->ic_middle_name }} {{ $data->ic_last_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Received Date</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->received_date }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Received From</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->received_from }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Received By</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->received_by }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Receiver Contact Details</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->receiver_contact_details }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Received By</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->received_by }}</td>
                                                             </tr>
 
                                                             </tbody>
@@ -163,34 +163,32 @@
 
                                                             <tr>
                                                                 <td>Client Category</td>
-                                                                <td> {{ $data->client }} </td>
+                                                                <td> {{ $data->client_category_name }} </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Client Subcategory</td>
-                                                                <td>{{ $data->client_name }}</td>
+                                                                <td>{{ $data->client_subcategory_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Client Name</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->client_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Client Address</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->client_address }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Division</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->client_division_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>District</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->client_district_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Thana</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->client_thana_name }}</td>
                                                             </tr>
-
-
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -205,11 +203,48 @@
 
                                                             <tr>
                                                                 <td>Received Documents</td>
-                                                                <td> {{ $data->client }} </td>
+                                                                <td> {{ $data->received_documents }} </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Required/Missing Documents</td>
-                                                                <td>{{ $data->client_name }}</td>
+                                                                <td>{{ $data->required_missing_documents }}</td>
+                                                            </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="text-uppercase text-bold"><u> Update Case Status </u>
+                                                        </h6>
+                                                        <table class="table table-bordered">
+
+                                                            <tbody>
+
+                                                            <tr>
+                                                                <td>Status</td>
+                                                                <td> {{ $data->update_case_status_name }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Next Date</td>
+                                                                <td>{{ $data->update_next_date }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Next date fixed for</td>
+                                                                <td>{{ $data->update_next_date_reason_name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case Proceedings</td>
+                                                                <td>{{ $data->case_proceedings }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case Notes</td>
+                                                                <td>{{ $data->update_case_notes }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Next Day Presence</td>
+                                                                <td>{{ $data->next_day_presence_name }}</td>
                                                             </tr>
 
                                                             </tbody>
@@ -222,7 +257,7 @@
 
 
                                         <div class="col-md-6">
-                                            <div class="revision_case_info" style="display: none;">
+                                            <div class="revision_case_info">
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h6 class="text-uppercase text-bold"><u> Case Information </u>
@@ -233,82 +268,80 @@
 
                                                             <tr>
                                                                 <td>Case Category</td>
-                                                                <td> {{ $data->client }} </td>
+                                                                <td> {{ $data->case_category }} </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Case Subcategory</td>
-                                                                <td>{{ $data->client_name }}</td>
+                                                                <td>{{ $data->case_subcategory }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Type of Cases</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->case_types_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Case No.</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->case_infos_case_no }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Name of the filling Court</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->name_of_the_court }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Date of filing</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->date_of_filing }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Law</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->law }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Section</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->section }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Division</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->client_division_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>District</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->client_district_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Thana</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->client_thana_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Allegation/Claim</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->allegation_claim }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Amount of Money</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->amount_of_money }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Another Claim(if any)</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->another_claim }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Summary of Facts</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->summary_facts }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Name of the Complainant</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->complainant_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Name of the Representative</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->representative_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Details of the Representative</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->representative_details }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Name of the Accused</td>
-                                                                <td>{{ $data->court_name }}</td>
+                                                                <td>{{ $data->accused_name }}</td>
                                                             </tr>
-
-
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -317,20 +350,17 @@
                                                     <div class="card-body">
                                                         <h6 class="text-uppercase text-bold"><u> Lawyers
                                                                 Information </u></h6>
-
-
-
                                                         <table class="table table-bordered">
 
                                                             <tbody>
 
                                                             <tr>
                                                                 <td>Name of Advocate/Law Firm</td>
-                                                                <td> {{ $data->client }} </td>
+                                                                <td> {{ $data->advocate_name }} </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Name of Assigned Lawyer</td>
-                                                                <td>{{ $data->client_name }}</td>
+                                                                <td>{{ $data->assigned_lawyer }}</td>
                                                             </tr>
 
                                                             </tbody>
@@ -348,19 +378,19 @@
 
                                                             <tr>
                                                                 <td>Status</td>
-                                                                <td> {{ $data->client }} </td>
+                                                                <td> {{ $data->case_status_name }} </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Next Date</td>
-                                                                <td>{{ $data->client_name }}</td>
+                                                                <td>{{ $data->status_next_date }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Next date fixed for</td>
-                                                                <td>{{ $data->client_name }}</td>
+                                                                <td>{{ $data->status_next_date_reason_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Comments</td>
-                                                                <td>{{ $data->client_name }}</td>
+                                                                <td>{{ $data->comments }}</td>
                                                             </tr>
 
                                                             </tbody>
@@ -372,21 +402,21 @@
                                         </div>
 
                                     </div>
-                                    
+
                                 </div>
 
                             </div>
 
 
                             <div class="card-header">
-                                <h3 class="card-title custom_h3" id="heading">Documents Logs
+                                <h3 class="card-title custom_h3" id="heading">Documents Log
 
                                     @php
                                         $now = Carbon\Carbon::now();
                                         $days_count = Carbon\Carbon::parse($data->created_at)->diffInDays($now);
                                     @endphp
 
-                                    <span><b> (Total Elapsed Time:
+                                    <span class="display-5"><b> (Total Elapsed Time:
 
                                            {{ $days_count }} Days) </b></span>
 
@@ -423,7 +453,7 @@
 
 
                             <div class="card-header">
-                                <h3 class="card-title custom_h3" id="heading">Proceedings Logs <span><b>(Case No: {{ $data->case_no }}, Court Name: {{ $data->court_name }})</b></span>
+                                <h3 class="card-title custom_h3" id="heading">Case Proceedings Log <span><b>(Case No: {{ $data->case_no }}, Court Name: {{ $data->court_name }})</b></span>
                                 </h3>
                             </div>
                             <div class="card-body">
@@ -459,7 +489,7 @@
                                 </table>
                             </div>
                             <div class="card-header">
-                                <h3 class="card-title custom_h3" id="heading">Billings Logs</h3>
+                                <h3 class="card-title custom_h3" id="heading">Billings Log</h3>
                             </div>
                             <div class="card-body">
                                 <table id="table_bill_logs_text_center"

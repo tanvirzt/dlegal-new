@@ -64,8 +64,8 @@ class CriminalCasesController extends Controller
 
     public function add_criminal_cases()
     {
-        $law = SetupLaw::where('delete_status', 0)->get();
-        $court = SetupCourt::where('delete_status', 0)->get();
+        $law = SetupLaw::where(['case_type' => 'Criminal Cases','delete_status' => 0])->get();
+        $court = SetupCourt::where(['case_type' => 'Criminal Cases','delete_status' => 0])->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
@@ -173,8 +173,8 @@ class CriminalCasesController extends Controller
 
     public function edit_criminal_cases($id)
     {
-        $law = SetupLaw::where('delete_status', 0)->get();
-        $court = SetupCourt::where('delete_status', 0)->get();
+        $law = SetupLaw::where(['case_type' => 'Criminal Cases','delete_status' => 0])->get();
+        $court = SetupCourt::where(['case_type' => 'Criminal Cases','delete_status' => 0])->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();

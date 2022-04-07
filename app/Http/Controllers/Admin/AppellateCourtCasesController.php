@@ -62,7 +62,7 @@ class AppellateCourtCasesController extends Controller
     {
 
         $law_section = SetupLawSection::where('delete_status', 0)->get();
-        $court = SetupCourt::where('delete_status', 0)->get();
+        $court = SetupCourt::where(['case_type' => 'Appellate Court Division','delete_status' => 0])->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->get();
@@ -81,7 +81,7 @@ class AppellateCourtCasesController extends Controller
         $case_class = SetupCaseClass::where('delete_status', 0)->get();
         $section = SetupSection::where('delete_status', 0)->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Appellate Court Division', 'delete_status' => 0])->get();
-        $law = SetupLaw::where('delete_status', 0)->get();
+        $law = SetupLaw::where(['case_type' => 'Appellate Court Division','delete_status' => 0])->get();
 
 //     $supreme_court_category = json_decode(json_encode($supreme_court_category));
 //     echo "<pre>";print_r($supreme_court_category);die();
@@ -206,8 +206,8 @@ class AppellateCourtCasesController extends Controller
 
     public function edit_appellate_court_cases($id)
     {
-        $law = SetupLaw::where('delete_status', 0)->get();
-        $court = SetupCourt::where('delete_status', 0)->get();
+        $law = SetupLaw::where(['case_type' => 'Appellate Court Division', 'delete_status' => 0])->get();
+        $court = SetupCourt::where(['case_type' => 'Appellate Court Division', 'delete_status' => 0])->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Appellate Court Division', 'delete_status' => 0])->get();

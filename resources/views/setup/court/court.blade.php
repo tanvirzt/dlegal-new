@@ -49,6 +49,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center text-nowrap">ID</th>
+                                        <th class="text-center text-nowrap">Case Type</th>
                                         <th class="text-center text-nowrap">Court Name</th>
                                         <th class="text-center text-nowrap">Status</th>
                                         <th class="text-center text-nowrap">Action</th>
@@ -60,6 +61,9 @@
                                         <tr>
                                             <td class="text-center">
                                                 {{ $datum->id }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ $datum->case_type }}
                                             </td>
                                             <td class="text-center">
                                                 {{ $datum->court_name }}
@@ -76,12 +80,12 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
-                                                
+
                                                 <a href="{{ route('edit-court',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
                                                     <form method="POST" action="{{ route('delete-court',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                     </form>
 
                                             </td>

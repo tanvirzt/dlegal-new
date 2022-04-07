@@ -36,6 +36,12 @@ class CreateCivilCasesTable extends Migration
             $table->integer('client_thana_id')->nullable();
             $table->mediumText('received_documents')->nullable();
             $table->mediumText('required_missing_documents')->nullable();
+            $table->integer('update_case_status_id')->nullable();
+            $table->string('update_next_date')->nullable();
+            $table->integer('update_next_date_fixed_id')->nullable();
+            $table->string('case_proceedings')->nullable();
+            $table->mediumText('update_case_notes')->nullable();
+            $table->integer('next_day_presence_id')->nullable();
             $table->integer('case_category_id')->nullable();
             $table->integer('case_subcategory_id')->nullable();
             $table->integer('case_type_id')->nullable();

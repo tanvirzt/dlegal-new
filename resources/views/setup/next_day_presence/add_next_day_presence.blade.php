@@ -20,7 +20,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('law') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('next-day-presence') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
                             </li>
                         </ol>
                     </div>
@@ -48,32 +48,20 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Add Law</h3>
+                                <h3 class="card-title" id="heading">Add Next Day Presence</h3>
                             </div>
 
-                            <form action="{{ route('save-law') }}" method="post">
+                            <form action="{{ route('save-next-day-presence') }}" method="post">
                                 @csrf
                                 <div class="card-body">
 
                                     <div class="col-md-12">
+
                                         <div class="form-group">
-                                            <label for="case_type"> Case Type </label>
-                                            <select name="case_type" class="form-control select2" id="case_type">
-                                                <option value="">Select</option>
-                                                <option value="Civil Cases"> Civil Cases </option>
-                                                <option value="Criminal Cases"> Criminal Cases </option>
-                                                <option value="Labour Cases"> Labour Cases </option>
-                                                <option value="Special Quassi - Judicial Cases"> Special Quassi - Judicial Cases </option>
-                                                <option value="High Court Division"> High Court Division </option>
-                                                <option value="Appellate Court Division"> Appellate Court Division </option>
-                                            </select>
-                                            @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="law_name">Law Name</label>
-                                            <input type="text" class="form-control" name="law_name"
-                                                   id="law_name">
-                                            @error('law_name')<span class="text-danger">{{$message}}</span>@enderror
+                                            <label for="next_day_presence_name"> Next Day Presence </label>
+                                            <input type="text" class="form-control" name="next_day_presence_name"
+                                                   id="next_day_presence_name">
+                                            @error('next_day_presence_name')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
 
                                         <div class="float-right">

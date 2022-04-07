@@ -101,7 +101,7 @@
 
                                                             <div class="col-md-6">
 
-                                                                <div class="appeal_case_info" style="display: none;">
+                                                                <div class="appeal_case_info">
                                                                     <div class="card">
                                                                         <div class="card-body">
                                                                             <h6 class="text-uppercase text-bold"><u> Basic Information </u>
@@ -408,13 +408,100 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="card">
+                                                                        <div class="card-body">
+                                                                            <h6 class="text-uppercase text-bold"><u> Update Case Status </u></h6>
+                                                                            <div class="form-group row">
+                                                                                <label for="update_case_status_id"
+                                                                                       class="col-sm-4 col-form-label">
+                                                                                    Status </label>
+                                                                                <div class="col-sm-8">
+                                                                                    <select name="update_case_status_id"
+                                                                                            class="form-control select2">
+                                                                                        <option value="">Select</option>
+                                                                                        @foreach($case_status as $item)
+                                                                                            <option
+                                                                                                value="{{ $item->id }}" {{($data->update_case_status_id == $item->id ? 'selected':'')}}>{{ $item->case_status_name }}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                    @error('update_case_status_id')<span
+                                                                                        class="text-danger">{{$message}}</span>@enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="update_next_date"
+                                                                                       class="col-sm-4 col-form-label"> Next Date </label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="date" class="form-control" id="update_next_date"
+                                                                                           name="update_next_date" value="{{ $data->update_next_date }}">
+                                                                                    @error('update_next_date')<span
+                                                                                        class="text-danger">{{$message}}</span>@enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="update_next_date_fixed_id"
+                                                                                       class="col-sm-4 col-form-label">
+                                                                                    Next
+                                                                                    date fixed for </label>
+                                                                                <div class="col-sm-8">
+                                                                                    <select name="update_next_date_fixed_id"
+                                                                                            class="form-control select2">
+                                                                                        <option value="">Select</option>
+                                                                                        @foreach($next_date_reason as $item)
+                                                                                            <option
+                                                                                                value="{{ $item->id }}" {{( $data->update_next_date_fixed_id == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                    @error('update_next_date_fixed_id')<span
+                                                                                        class="text-danger">{{$message}}</span>@enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="case_proceedings"
+                                                                                       class="col-sm-4 col-form-label"> Case Proceedings </label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="date" class="form-control" id="case_proceedings"
+                                                                                           name="case_proceedings" value="{{ $data->case_proceedings }}">
+                                                                                    @error('case_proceedings')<span
+                                                                                        class="text-danger">{{$message}}</span>@enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="update_case_notes"
+                                                                                       class="col-sm-4 col-form-label"> Case Notes </label>
+                                                                                <div class="col-sm-8">
+                                                                <textarea name="update_case_notes" class="form-control" rows="3"
+                                                                          placeholder="">{{ $data->update_case_notes }}</textarea>
+                                                                                    @error('update_case_notes')<span
+                                                                                        class="text-danger">{{$message}}</span>@enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <label for="next_day_presence_id"
+                                                                                       class="col-sm-4 col-form-label">
+                                                                                    Next Day Presence</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <select name="next_day_presence_id"
+                                                                                            class="form-control select2">
+                                                                                        <option value="">Select</option>
+                                                                                        @foreach($next_day_presence as $item)
+                                                                                            <option
+                                                                                                value="{{ $item->id }}" {{($data->next_day_presence_id == $item->id ? 'selected':'')}}>{{ $item->next_day_presence_name }}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                    @error('next_day_presence_id')<span
+                                                                                        class="text-danger">{{$message}}</span>@enderror
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
 
                                                             </div>
 
 
                                                             <div class="col-md-6">
-                                                                <div class="revision_case_info" style="display: none;">
+                                                                <div class="revision_case_info">
                                                                     <div class="card">
                                                                         <div class="card-body">
                                                                             <h6 class="text-uppercase text-bold"><u> Case Information </u>

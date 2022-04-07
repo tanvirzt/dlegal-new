@@ -62,7 +62,7 @@ class HighCourtCasesController extends Controller
     public function add_high_court_cases()
     {
 
-        $court = SetupCourt::where('delete_status', 0)->get();
+        $court = SetupCourt::where(['case_type' => 'High Court Division','delete_status' => 0])->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'High Court Division', 'delete_status' => 0])->get();
@@ -81,7 +81,7 @@ class HighCourtCasesController extends Controller
         $program = SetupProgram::where('delete_status', 0)->get();
         $case_class = SetupCaseClass::where('delete_status', 0)->get();
         $section = SetupSection::where('delete_status', 0)->get();
-        $law = SetupLaw::where('delete_status', 0)->get();
+        $law = SetupLaw::where(['case_type' => 'High Court Division','delete_status' => 0])->get();
 
 //        $case_category = json_decode(json_encode($case_category));
 //        echo "<pre>";print_r($case_category);die();
@@ -205,7 +205,7 @@ class HighCourtCasesController extends Controller
 
     public function edit_high_court_cases($id)
     {
-        $court = SetupCourt::where('delete_status', 0)->get();
+        $court = SetupCourt::where(['case_type' => 'High Court Division','delete_status' => 0])->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->get();
@@ -229,7 +229,7 @@ class HighCourtCasesController extends Controller
         $case_category = SetupCaseCategory::where(['case_type' => 'High Court Division', 'delete_status' => 0])->get();
         $existing_thana = SetupThana::where('district_id', $data->district_id)->get();
         $existing_subcat = SetupCaseSubcategory::where('case_category_id', $data->case_category_id)->get();
-        $law = SetupLaw::where('delete_status', 0)->get();
+        $law = SetupLaw::where(['case_type' => 'High Court Division','delete_status' => 0])->get();
 
 //        $case_category = json_decode(json_encode($case_category));
 //echo "<pre>";print_r($case_category);

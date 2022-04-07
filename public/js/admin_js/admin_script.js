@@ -1204,16 +1204,14 @@ $(document).ready(function () {
     $("#appeal_case").on('click', function () {
         // alert('asdfw wer asdf');
 
-        $(".appeal_case_info").show();
-        $(".revision_case_info").hide();
+        $(".appeal_case_info").toggle();
 
     });
 
     $("#revision_case").on('click', function () {
         // alert('rev');
 
-        $(".appeal_case_info").hide();
-        $(".revision_case_info").show();
+        $(".revision_case_info").toggle();
 
     });
 
