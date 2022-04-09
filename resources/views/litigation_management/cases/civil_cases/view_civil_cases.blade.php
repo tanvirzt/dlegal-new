@@ -400,6 +400,111 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="text-uppercase text-bold"><u> Case Information </u>
+                                                    </h6>
+
+                                                    <table class="table table-bordered">
+
+                                                        <tbody>
+
+                                                        <tr>
+                                                            <td>Original Case No.</td>
+                                                            <td> {{ $data->case_status_name }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Subsequent Case No.</td>
+                                                            <td>{{ $data->status_next_date }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Date of Judgement & Order</td>
+                                                            <td>{{ $data->status_next_date_reason_name }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Summary of Judgement & Order</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Appeal Case Category</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Appeal Case Subcategory</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Appeal Case Type</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Appeal Case No.</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Name of the filing Court</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Date of filing</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Law</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Section</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Allegation/Claim</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amount of Money</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Another Claim (if any)</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Summary of Facts</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Name of the Appellant</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Name of the Representative</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Details of the Representative</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Name of the Respondent/Opposite Party</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Name of the Representative</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Details of the Representative</td>
+                                                            <td>{{ $data->comments }}</td>
+                                                        </tr>
+
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </div>
 
@@ -534,10 +639,11 @@
                     </div>
 
                 </div>
+            </div>
         </section>
     </div>
     <!-- /.content-wrapper -->
-
+</div>
 @endsection
 
 

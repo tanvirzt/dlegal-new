@@ -50,13 +50,18 @@
                                     <h3 class="card-title"> Add Civil Cases </h3>
                                     <div class="text-center mr-md-5">
                                         <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="original_case"
+                                                   name="original_case" value="Appeal Case">
+                                            <label class="custom-control-label" for="original_case">Original Case</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
                                             <input type="checkbox" class="custom-control-input" id="appeal_case"
-                                                   name="case" value="Appeal Case">
+                                                   name="appeal_case" value="Appeal Case">
                                             <label class="custom-control-label" for="appeal_case">Appeal Case</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline">
                                             <input type="checkbox" class="custom-control-input" id="revision_case"
-                                                   name="case" value="Revision Case">
+                                                   name="revision_case" value="Revision Case">
                                             <label class="custom-control-label" for="revision_case">Revision
                                                 Case</label>
                                         </div>
@@ -64,8 +69,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <div class="row">
-
+                                    <div class="row original_case">
                                         <div class="col-md-6">
 
                                             <div class="">
@@ -365,7 +369,8 @@
                                                 </div>
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h6 class="text-uppercase text-bold"><u> Update Case Status </u></h6>
+                                                        <h6 class="text-uppercase text-bold"><u> Update Case Status </u>
+                                                        </h6>
                                                         <div class="form-group row">
                                                             <label for="update_case_status_id"
                                                                    class="col-sm-4 col-form-label">
@@ -387,8 +392,10 @@
                                                             <label for="update_next_date"
                                                                    class="col-sm-4 col-form-label"> Next Date </label>
                                                             <div class="col-sm-8">
-                                                                <input type="date" class="form-control" id="update_next_date"
-                                                                       name="update_next_date" value="{{old('update_next_date')}}">
+                                                                <input type="date" class="form-control"
+                                                                       id="update_next_date"
+                                                                       name="update_next_date"
+                                                                       value="{{old('update_next_date')}}">
                                                                 @error('update_next_date')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
@@ -413,10 +420,13 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="case_proceedings"
-                                                                   class="col-sm-4 col-form-label"> Case Proceedings </label>
+                                                                   class="col-sm-4 col-form-label"> Case
+                                                                Proceedings </label>
                                                             <div class="col-sm-8">
-                                                                <input type="date" class="form-control" id="case_proceedings"
-                                                                       name="case_proceedings" value="{{old('case_proceedings')}}">
+                                                                <input type="date" class="form-control"
+                                                                       id="case_proceedings"
+                                                                       name="case_proceedings"
+                                                                       value="{{old('case_proceedings')}}">
                                                                 @error('case_proceedings')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
@@ -425,7 +435,8 @@
                                                             <label for="update_case_notes"
                                                                    class="col-sm-4 col-form-label"> Case Notes </label>
                                                             <div class="col-sm-8">
-                                                                <textarea name="update_case_notes" class="form-control" rows="3"
+                                                                <textarea name="update_case_notes" class="form-control"
+                                                                          rows="3"
                                                                           placeholder="">{{old('update_case_notes')}}</textarea>
                                                                 @error('update_case_notes')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -453,13 +464,12 @@
                                             </div>
 
                                         </div>
-
-
                                         <div class="col-md-6">
                                             <div class="">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h6 class="text-uppercase text-bold"><u> Case Information </u></h6>
+                                                        <h6 class="text-uppercase text-bold"><u> Case Information </u>
+                                                        </h6>
 
                                                         <div class="form-group row">
                                                             <label for="case_category_id"
@@ -668,15 +678,15 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="complainant_name"
+                                                            <label for="plaintiff_name"
                                                                    class="col-sm-4 col-form-label">Name
-                                                                of the Complainant</label>
+                                                                of the Plaintiff</label>
                                                             <div class="col-sm-8">
                                                                 <input type="text" class="form-control"
-                                                                       id="complainant_name"
-                                                                       name="complainant_name"
-                                                                       value="{{old('complainant_name')}}">
-                                                                @error('complainant_name')<span
+                                                                       id="plaintiff_name"
+                                                                       name="plaintiff_name"
+                                                                       value="{{old('plaintiff_name')}}">
+                                                                @error('plaintiff_name')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
@@ -704,15 +714,38 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="accused_name" class="col-sm-4 col-form-label">
+                                                            <label for="defendant_name" class="col-sm-4 col-form-label">
                                                                 Name of
-                                                                the Accused </label>
+                                                                the Defendant </label>
                                                             <div class="col-sm-8">
                                                                 <input type="text" class="form-control"
-                                                                       id="accused_name"
-                                                                       name="accused_name"
-                                                                       value="{{old('accused_name')}}">
-                                                                @error('accused_name')<span
+                                                                       id="defendant_name"
+                                                                       name="defendant_name"
+                                                                       value="{{old('defendant_name')}}">
+                                                                @error('defendant_name')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="defendant_representative_name"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Name of the Representative </label>
+                                                            <div class="col-sm-8">
+                                                    <textarea name="defendant_representative_name" class="form-control" rows="3"
+                                                              placeholder="">{{old('defendant_representative_name')}}</textarea>
+                                                                @error('defendant_representative_name')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="defendant_representative_details"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Details of the Representative </label>
+                                                            <div class="col-sm-8">
+                                                    <textarea name="defendant_representative_details" class="form-control"
+                                                              rows="3"
+                                                              placeholder="">{{old('defendant_representative_details')}}</textarea>
+                                                                @error('defendant_representative_details')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
@@ -817,65 +850,78 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="appeal_case_info" style="display: none;">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h6 class="text-uppercase text-bold"><u> Case Information </u></h6>
+                                                        <h6 class="text-uppercase text-bold"><u> Case Information </u>
+                                                        </h6>
                                                         <div class="form-group row">
-                                                            <label for="original_case_no" class="col-sm-4 col-form-label">Original Case No.</label>
+                                                            <label for="appeal_original_case_no"
+                                                                   class="col-sm-4 col-form-label">Original Case
+                                                                No.</label>
                                                             <div class="col-sm-8">
                                                                 <input type="text" class="form-control"
-                                                                       id="original_case_no"
-                                                                       name="original_case_no"
-                                                                       value="{{old('original_case_no')}}">
-                                                                @error('original_case_no')<span
+                                                                       id="appeal_original_case_no"
+                                                                       name="appeal_original_case_no"
+                                                                       value="{{old('appeal_original_case_no')}}">
+                                                                @error('appeal_original_case_no')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="subsequent_case_no" class="col-sm-4 col-form-label">
+                                                            <label for="appeal_subsequent_case_no"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Subsequent Case No. </label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control" id="subsequent_case_no"
-                                                                       name="subsequent_case_no" value="{{old('subsequent_case_no')}}">
-                                                                @error('subsequent_case_no')<span
+                                                                <input type="text" class="form-control"
+                                                                       id="appeal_subsequent_case_no"
+                                                                       name="appeal_subsequent_case_no"
+                                                                       value="{{old('appeal_subsequent_case_no')}}">
+                                                                @error('appeal_subsequent_case_no')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="date_of_judgement_order" class="col-sm-4 col-form-label">
+                                                            <label for="appeal_date_of_judgement_order"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Date of Judgement & Order </label>
                                                             <div class="col-sm-8">
-                                                                <input type="date" class="form-control" id="date_of_judgement_order"
-                                                                       name="date_of_judgement_order" value="{{old('date_of_judgement_order')}}">
-                                                                @error('date_of_judgement_order')<span
+                                                                <input type="date" class="form-control"
+                                                                       id="appeal_date_of_judgement_order"
+                                                                       name="appeal_date_of_judgement_order"
+                                                                       value="{{old('appeal_date_of_judgement_order')}}">
+                                                                @error('appeal_date_of_judgement_order')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="summary_of_judgement_order" class="col-sm-4 col-form-label">
+                                                            <label for="appeal_summary_of_judgement_order"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Summary of Judgement & Order </label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control" id="summary_of_judgement_order"
-                                                                       name="summary_of_judgement_order" value="{{old('summary_of_judgement_order')}}">
-                                                                @error('summary_of_judgement_order')<span
+                                                                <textarea name="appeal_summary_of_judgement_order"
+                                                                          class="form-control" rows="3"
+                                                                          placeholder="">{{old('appeal_summary_of_judgement_order')}}</textarea>
+                                                                @error('appeal_summary_of_judgement_order')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="appeal_case_category_id"
-                                                                   class="col-sm-4 col-form-label">Appeal Case Category</label>
+                                                                   class="col-sm-4 col-form-label">Appeal Case
+                                                                Category</label>
                                                             <div class="col-sm-8">
                                                                 <select name="appeal_case_category_id"
                                                                         class="form-control select2"
                                                                         id="appeal_case_category_id"
-                                                                        action="{{ route('find_district') }}">
+                                                                        action="{{ route('find-case-subcategory') }}">
                                                                     <option value="">Select</option>
-                                                                    @foreach ($division as $item)
+                                                                    @foreach ($case_category as $item)
                                                                         <option
-                                                                            value="{{ $item->id }}" {{(old('appeal_case_category_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->division_name) }}</option>
+                                                                            value="{{ $item->id }}" {{(old('appeal_case_category_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->case_category) }}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 @error('appeal_case_category_id')<span
@@ -884,17 +930,14 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="appeal_case_subcategory_id"
-                                                                   class="col-sm-4 col-form-label">Appeal Case Subcategory</label>
+                                                                   class="col-sm-4 col-form-label">Appeal Case
+                                                                Subcategory</label>
                                                             <div class="col-sm-8">
                                                                 <select name="appeal_case_subcategory_id"
                                                                         class="form-control select2"
-                                                                        id="appeal_case_subcategory_id"
-                                                                        action="{{ route('find_district') }}">
+                                                                        id="appeal_case_subcategory_id">
                                                                     <option value="">Select</option>
-                                                                    @foreach ($division as $item)
-                                                                        <option
-                                                                            value="{{ $item->id }}" {{(old('appeal_case_subcategory_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->division_name) }}</option>
-                                                                    @endforeach
+
                                                                 </select>
                                                                 @error('appeal_case_subcategory_id')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -902,14 +945,18 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="appeal_case_type_id"
-                                                                   class="col-sm-4 col-form-label">Appeal Case Type</label>
+                                                                   class="col-sm-4 col-form-label">Appeal Case
+                                                                Type</label>
                                                             <div class="col-sm-8">
                                                                 <select name="appeal_case_type_id"
                                                                         class="form-control select2"
                                                                         id="appeal_case_type_id"
                                                                         action="{{ route('find-thana') }}">
                                                                     <option value=""> Select</option>
-
+                                                                    @foreach($case_types as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('appeal_case_type_id')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -929,10 +976,12 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="appellate_filing_court" class="col-sm-4 col-form-label">
+                                                            <label for="appellate_filing_court"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Name of the filing Court </label>
                                                             <div class="col-sm-8">
-                                                    <textarea name="appellate_filing_court" class="form-control" rows="3"
+                                                    <textarea name="appellate_filing_court" class="form-control"
+                                                              rows="3"
                                                               placeholder="">{{old('appellate_filing_court')}}</textarea>
                                                                 @error('appellate_filing_court')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -943,7 +992,7 @@
                                                                    class="col-sm-4 col-form-label">
                                                                 Date of filing </label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control"
+                                                                <input type="date" class="form-control"
                                                                        id="appeal_date_of_filing"
                                                                        name="appeal_date_of_filing"
                                                                        value="{{old('appeal_date_of_filing')}}">
@@ -965,34 +1014,42 @@
                                                             <label for="appeal_section" class="col-sm-4 col-form-label">
                                                                 Section </label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control" id="appeal_section"
-                                                                       name="appeal_section" value="{{old('appeal_section')}}">
+                                                                <input type="text" class="form-control"
+                                                                       id="appeal_section"
+                                                                       name="appeal_section"
+                                                                       value="{{old('appeal_section')}}">
                                                                 @error('appeal_section')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="appeal_allegation_claim" class="col-sm-4 col-form-label">
+                                                            <label for="appeal_allegation_claim"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Allegation/Claim </label>
                                                             <div class="col-sm-8">
-                                                    <textarea name="appeal_allegation_claim" class="form-control" rows="3"
+                                                    <textarea name="appeal_allegation_claim" class="form-control"
+                                                              rows="3"
                                                               placeholder="">{{old('appeal_allegation_claim')}}</textarea>
                                                                 @error('appeal_allegation_claim')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="appeal_amount_of_money" class="col-sm-4 col-form-label">
+                                                            <label for="appeal_amount_of_money"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Amount of Money </label>
                                                             <div class="col-sm-8">
-                                                    <textarea name="appeal_amount_of_money" class="form-control" rows="3"
-                                                              placeholder="">{{old('appeal_amount_of_money')}}</textarea>
+                                                                <input type="text" class="form-control"
+                                                                       id="appeal_amount_of_money"
+                                                                       name="appeal_amount_of_money"
+                                                                       value="{{old('appeal_amount_of_money')}}">
                                                                 @error('appeal_amount_of_money')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="appeal_another_claim" class="col-sm-4 col-form-label">
+                                                            <label for="appeal_another_claim"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Another Claim (if any) </label>
                                                             <div class="col-sm-8">
                                                     <textarea name="appeal_another_claim" class="form-control" rows="3"
@@ -1002,7 +1059,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="appeal_summary_facts" class="col-sm-4 col-form-label">
+                                                            <label for="appeal_summary_facts"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Summary of Facts </label>
                                                             <div class="col-sm-8">
                                                     <textarea name="appeal_summary_facts" class="form-control" rows="3"
@@ -1012,73 +1070,384 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="name_of_the_appellant" class="col-sm-4 col-form-label">
+                                                            <label for="appeal_name_of_the_appellant"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Name of the Appellant </label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control" id="name_of_the_appellant"
-                                                                       name="name_of_the_appellant" value="{{old('name_of_the_appellant')}}">
-                                                                @error('name_of_the_appellant')<span
+                                                                <input type="text" class="form-control"
+                                                                       id="appeal_name_of_the_appellant"
+                                                                       name="appeal_name_of_the_appellant"
+                                                                       value="{{old('appeal_name_of_the_appellant')}}">
+                                                                @error('appeal_name_of_the_appellant')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="appeal_representative" class="col-sm-4 col-form-label">
+                                                            <label for="appeal_representative"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Name of the Representative </label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control" id="appeal_representative"
-                                                                       name="appeal_representative" value="{{old('appeal_representative')}}">
+                                                                <input type="text" class="form-control"
+                                                                       id="appeal_representative"
+                                                                       name="appeal_representative"
+                                                                       value="{{old('appeal_representative')}}">
                                                                 @error('appeal_representative')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="appeal_representative_details" class="col-sm-4 col-form-label">
+                                                            <label for="appeal_representative_details"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Details of the Representative </label>
                                                             <div class="col-sm-8">
-                                                    <textarea name="appeal_representative_details" class="form-control" rows="3"
+                                                    <textarea name="appeal_representative_details" class="form-control"
+                                                              rows="3"
                                                               placeholder="">{{old('appeal_representative_details')}}</textarea>
                                                                 @error('appeal_representative_details')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="appeal_respondent_opposite_party" class="col-sm-4 col-form-label">
+                                                            <label for="appeal_respondent_opposite_party"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Name of the Respondent/Opposite Party </label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control" id="appeal_respondent_opposite_party"
-                                                                       name="appeal_respondent_opposite_party" value="{{old('appeal_respondent_opposite_party')}}">
+                                                                <input type="text" class="form-control"
+                                                                       id="appeal_respondent_opposite_party"
+                                                                       name="appeal_respondent_opposite_party"
+                                                                       value="{{old('appeal_respondent_opposite_party')}}">
                                                                 @error('appeal_respondent_opposite_party')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="appeal_opposite_representative" class="col-sm-4 col-form-label">
+                                                            <label for="appeal_opposite_representative"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Name of the Representative </label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control" id="appeal_opposite_representative"
-                                                                       name="appeal_opposite_representative" value="{{old('appeal_opposite_representative')}}">
+                                                                <input type="text" class="form-control"
+                                                                       id="appeal_opposite_representative"
+                                                                       name="appeal_opposite_representative"
+                                                                       value="{{old('appeal_opposite_representative')}}">
                                                                 @error('appeal_opposite_representative')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label for="appeal_opposite_representative_details" class="col-sm-4 col-form-label">
+                                                            <label for="appeal_opposite_representative_details"
+                                                                   class="col-sm-4 col-form-label">
                                                                 Details of the Representative </label>
                                                             <div class="col-sm-8">
-                                                    <textarea name="appeal_opposite_representative_details" class="form-control" rows="3"
+                                                    <textarea name="appeal_opposite_representative_details"
+                                                              class="form-control" rows="3"
                                                               placeholder="">{{old('appeal_opposite_representative_details')}}</textarea>
                                                                 @error('appeal_opposite_representative_details')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
-
-
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="revision_case_info" style="display: none;">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="text-uppercase text-bold"><u> Case Information</u>
+                                                        </h6>
+                                                        <div class="form-group row">
+                                                            <label for="revision_original_case_no"
+                                                                   class="col-sm-4 col-form-label">Original Case
+                                                                No.</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control"
+                                                                       id="revision_original_case_no"
+                                                                       name="revision_original_case_no"
+                                                                       value="{{old('revision_original_case_no')}}">
+                                                                @error('revision_original_case_no')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_subsequent_case_no"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Subsequent Case No. </label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control"
+                                                                       id="revision_subsequent_case_no"
+                                                                       name="revision_subsequent_case_no"
+                                                                       value="{{old('revision_subsequent_case_no')}}">
+                                                                @error('revision_subsequent_case_no')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_date_of_judgement_order"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Date of Judgement & Order </label>
+                                                            <div class="col-sm-8">
+                                                                <input type="date" class="form-control"
+                                                                       id="revision_date_of_judgement_order"
+                                                                       name="revision_date_of_judgement_order"
+                                                                       value="{{old('revision_date_of_judgement_order')}}">
+                                                                @error('revision_date_of_judgement_order')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_summary_of_judgement_order"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Summary of Judgement & Order </label>
+                                                            <div class="col-sm-8">
+                                                                <textarea name="revision_summary_of_judgement_order"
+                                                                          class="form-control" rows="3"
+                                                                          placeholder="">{{old('revision_summary_of_judgement_order')}}</textarea>
+                                                                @error('revision_summary_of_judgement_order')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_appeal_case_category_id"
+                                                                   class="col-sm-4 col-form-label">Revision Case
+                                                                Category</label>
+                                                            <div class="col-sm-8">
+                                                                <select name="revision_appeal_case_category_id"
+                                                                        class="form-control select2"
+                                                                        id="revision_appeal_case_category_id"
+                                                                        action="{{ route('find-case-subcategory') }}">
+                                                                    <option value="">Select</option>
+                                                                    @foreach ($case_category as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{(old('revision_appeal_case_category_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->case_category) }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('revision_appeal_case_category_id')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_case_subcategory_id"
+                                                                   class="col-sm-4 col-form-label">Revision Case
+                                                                Subcategory</label>
+                                                            <div class="col-sm-8">
+                                                                <select name="revision_case_subcategory_id"
+                                                                        class="form-control select2"
+                                                                        id="revision_case_subcategory_id">
+                                                                    <option value="">Select</option>
 
+                                                                </select>
+                                                                @error('revision_case_subcategory_id')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_case_type_id"
+                                                                   class="col-sm-4 col-form-label">Revision Case
+                                                                Type</label>
+                                                            <div class="col-sm-8">
+                                                                <select name="revision_case_type_id"
+                                                                        class="form-control select2"
+                                                                        id="revision_case_type_id"
+                                                                        action="{{ route('find-thana') }}">
+                                                                    <option value=""> Select</option>
+                                                                    @foreach($case_types as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('revision_case_type_id')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_case_no"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Revision Case No. </label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control"
+                                                                       id="revision_case_no"
+                                                                       name="revision_case_no"
+                                                                       value="{{old('revision_case_no')}}">
+                                                                @error('revision_case_no')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_filing_court"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Name of the filing Court </label>
+                                                            <div class="col-sm-8">
+                                                    <textarea name="revision_filing_court" class="form-control"
+                                                              rows="3"
+                                                              placeholder="">{{old('revision_filing_court')}}</textarea>
+                                                                @error('revision_filing_court')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_date_of_filing"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Date of filing </label>
+                                                            <div class="col-sm-8">
+                                                                <input type="date" class="form-control"
+                                                                       id="revision_date_of_filing"
+                                                                       name="revision_date_of_filing"
+                                                                       value="{{old('revision_date_of_filing')}}">
+                                                                @error('revision_date_of_filing')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_law" class="col-sm-4 col-form-label">
+                                                                Law </label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control" id="revision_law"
+                                                                       name="revision_law" value="{{old('revision_law')}}">
+                                                                @error('revision_law')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_section" class="col-sm-4 col-form-label">
+                                                                Section </label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control"
+                                                                       id="revision_section"
+                                                                       name="revision_section"
+                                                                       value="{{old('revision_section')}}">
+                                                                @error('revision_section')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_allegation_claim"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Allegation/Claim </label>
+                                                            <div class="col-sm-8">
+                                                    <textarea name="revision_allegation_claim" class="form-control"
+                                                              rows="3"
+                                                              placeholder="">{{old('revision_allegation_claim')}}</textarea>
+                                                                @error('revision_allegation_claim')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_amount_of_money"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Amount of Money </label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control"
+                                                                       id="revision_amount_of_money"
+                                                                       name="revision_amount_of_money"
+                                                                       value="{{old('revision_amount_of_money')}}">
+                                                                @error('revision_amount_of_money')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_another_claim"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Another Claim (if any) </label>
+                                                            <div class="col-sm-8">
+                                                    <textarea name="revision_another_claim" class="form-control" rows="3"
+                                                              placeholder="">{{old('revision_another_claim')}}</textarea>
+                                                                @error('revision_another_claim')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_summary_facts"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Summary of Facts </label>
+                                                            <div class="col-sm-8">
+                                                    <textarea name="revision_summary_facts" class="form-control" rows="3"
+                                                              placeholder="">{{old('revision_summary_facts')}}</textarea>
+                                                                @error('revision_summary_facts')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_name_of_the_appellant"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Name of the Petitioner </label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control"
+                                                                       id="revision_name_of_the_appellant"
+                                                                       name="revision_name_of_the_appellant"
+                                                                       value="{{old('revision_name_of_the_appellant')}}">
+                                                                @error('revision_name_of_the_appellant')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_representative"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Name of the Representative </label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control"
+                                                                       id="revision_representative"
+                                                                       name="revision_representative"
+                                                                       value="{{old('revision_representative')}}">
+                                                                @error('revision_representative')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_representative_details"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Details of the Representative </label>
+                                                            <div class="col-sm-8">
+                                                    <textarea name="revision_representative_details" class="form-control"
+                                                              rows="3"
+                                                              placeholder="">{{old('revision_representative_details')}}</textarea>
+                                                                @error('revision_representative_details')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_respondent_opposite_party"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Name of the Respondent/Opposite Party </label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control"
+                                                                       id="revision_respondent_opposite_party"
+                                                                       name="revision_respondent_opposite_party"
+                                                                       value="{{old('revision_respondent_opposite_party')}}">
+                                                                @error('revision_respondent_opposite_party')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_opposite_representative"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Name of the Representative </label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control"
+                                                                       id="revision_opposite_representative"
+                                                                       name="revision_opposite_representative"
+                                                                       value="{{old('revision_opposite_representative')}}">
+                                                                @error('revision_opposite_representative')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="revision_opposite_representative_details"
+                                                                   class="col-sm-4 col-form-label">
+                                                                Details of the Representative </label>
+                                                            <div class="col-sm-8">
+                                                    <textarea name="revision_opposite_representative_details"
+                                                              class="form-control" rows="3"
+                                                              placeholder="">{{old('revision_opposite_representative_details')}}</textarea>
+                                                                @error('revision_opposite_representative_details')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="uploaded_document"> Document Upload </label>

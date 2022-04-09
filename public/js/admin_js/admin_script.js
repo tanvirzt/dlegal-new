@@ -1202,18 +1202,26 @@ $(document).ready(function () {
 
 
     $("#appeal_case").on('click', function () {
-        // alert('asdfw wer asdf');
 
         $(".appeal_case_info").toggle();
+        $(".original_case").hide();
 
     });
 
     $("#revision_case").on('click', function () {
-        // alert('rev');
 
         $(".revision_case_info").toggle();
+        $(".original_case").hide();
 
     });
+
+    $("#original_case").on('click', function (){
+        $(".original_case").show();
+        $(".appeal_case_info").hide();
+        $(".revision_case_info").hide();
+
+    });
+
 
 
     $('#client_division_id').on('change', function () {
@@ -1341,7 +1349,66 @@ $(document).ready(function () {
 
 
 
+    $('#appeal_case_category_id').on('change', function () {
+        var case_category_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(case_category_id);
+        if (case_category_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", case_category_id: case_category_id},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#appeal_case_subcategory_id').empty();
+                        $('#appeal_case_subcategory_id').focus;
+                        $('#appeal_case_subcategory_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="appeal_case_subcategory_id"]').append('<option value="' + value.id + '">' + value.case_subcategory + '</option>');
+                        });
+                    } else {
+                        $('#appeal_case_subcategory_id').empty();
+                    }
+                }
+            });
+        } else {
+            $('#appeal_case_subcategory_id').empty();
+            $('#appeal_case_subcategory_id').append('<option value="">Select</option>');
+        }
+    });
 
+
+    $('#revision_appeal_case_category_id').on('change', function () {
+        var case_category_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(case_category_id);
+        if (case_category_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", case_category_id: case_category_id},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#revision_case_subcategory_id').empty();
+                        $('#revision_case_subcategory_id').focus;
+                        $('#revision_case_subcategory_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="revision_case_subcategory_id"]').append('<option value="' + value.id + '">' + value.case_subcategory + '</option>');
+                        });
+                    } else {
+                        $('#revision_case_subcategory_id').empty();
+                    }
+                }
+            });
+        } else {
+            $('#revision_case_subcategory_id').empty();
+            $('#revision_case_subcategory_id').append('<option value="">Select</option>');
+        }
+    });
 
 
 

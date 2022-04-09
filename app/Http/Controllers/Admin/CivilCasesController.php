@@ -56,7 +56,7 @@ class CivilCasesController extends Controller
 //        $data = json_decode(json_encode($data));
 //        echo "<pre>";print_r($data);die();
 
-        return view('litigation_management.cases.civil_cases.civil_cases', compact('data', 'case_types', 'division', 'court','case_category'));
+        return view('litigation_management.cases.civil_cases.civil_cases', compact('data', 'case_types', 'division', 'court', 'case_category'));
     }
 
     public function find_district(Request $request)
@@ -73,8 +73,8 @@ class CivilCasesController extends Controller
 
     public function add_civil_cases()
     {
-        $law = SetupLaw::where(['case_type' => 'Civil Cases','delete_status' => 0])->get();
-        $court = SetupCourt::where(['case_type' => 'Civil Cases','delete_status' => 0])->get();
+        $law = SetupLaw::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->get();
+        $court = SetupCourt::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->get();
@@ -92,9 +92,9 @@ class CivilCasesController extends Controller
         $internal_council = SetupInternalCouncil::where('delete_status', 0)->get();
         $client_category = SetupClientCategory::where('delete_status', 0)->get();
         $section = SetupSection::where('delete_status', 0)->get();
-        $next_day_presence = SetupNextDayPresence::where('delete_status',0)->get();
+        $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->get();
 
-        return view('litigation_management.cases.civil_cases.add_civil_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'property_type', 'case_types', 'company', 'zone', 'area', 'internal_council', 'client_category','section','next_day_presence'));
+        return view('litigation_management.cases.civil_cases.add_civil_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'property_type', 'case_types', 'company', 'zone', 'area', 'internal_council', 'client_category', 'section', 'next_day_presence'));
     }
 
     public function save_civil_cases(Request $request)
@@ -119,7 +119,8 @@ class CivilCasesController extends Controller
 
         $data = new CivilCases();
 
-        $data->case = $request->case;
+        $data->appeal_case = $request->appeal_case;
+        $data->revision_case = $request->revision_case;
         $data->client = $request->client;
         $data->case_no = $request->case_no;
         $data->name_of_the_court_id = $request->name_of_the_court_id;
@@ -140,14 +141,12 @@ class CivilCasesController extends Controller
         $data->client_thana_id = $request->client_thana_id;
         $data->received_documents = $request->received_documents;
         $data->required_missing_documents = $request->required_missing_documents;
-
         $data->update_case_status_id = $request->update_case_status_id;
         $data->update_next_date = $request->update_next_date;
         $data->update_next_date_fixed_id = $request->update_next_date_fixed_id;
         $data->case_proceedings = $request->case_proceedings;
         $data->update_case_notes = $request->update_case_notes;
         $data->next_day_presence_id = $request->next_day_presence_id;
-
         $data->case_category_id = $request->case_category_id;
         $data->case_subcategory_id = $request->case_subcategory_id;
         $data->case_type_id = $request->case_type_id;
@@ -163,16 +162,63 @@ class CivilCasesController extends Controller
         $data->amount_of_money = $request->amount_of_money;
         $data->another_claim = $request->another_claim;
         $data->summary_facts = $request->summary_facts;
-        $data->complainant_name = $request->complainant_name;
+        $data->plaintiff_name = $request->plaintiff_name;
         $data->representative_name = $request->representative_name;
         $data->representative_details = $request->representative_details;
-        $data->accused_name = $request->accused_name;
+        $data->defendant_name = $request->defendant_name;
+        $data->defendant_representative_name = $request->defendant_representative_name;
+        $data->defendant_representative_details = $request->defendant_representative_details;
         $data->advocate_name = $request->advocate_name;
         $data->assigned_lawyer = $request->assigned_lawyer;
         $data->case_status_id = $request->case_status_id;
         $data->status_next_date = $request->status_next_date;
         $data->status_next_date_fixed_id = $request->status_next_date_fixed_id;
         $data->comments = $request->comments;
+        $data->appeal_original_case_no = $request->appeal_original_case_no;
+        $data->appeal_subsequent_case_no = $request->appeal_subsequent_case_no;
+        $data->appeal_date_of_judgement_order = $request->appeal_date_of_judgement_order;
+        $data->appeal_summary_of_judgement_order = $request->appeal_summary_of_judgement_order;
+        $data->appeal_case_category_id = $request->appeal_case_category_id;
+        $data->appeal_case_subcategory_id = $request->appeal_case_subcategory_id;
+        $data->appeal_case_type_id = $request->appeal_case_type_id;
+        $data->appeal_case_no = $request->appeal_case_no;
+        $data->appellate_filing_court = $request->appellate_filing_court;
+        $data->appeal_date_of_filing = $request->appeal_date_of_filing;
+        $data->appeal_law = $request->appeal_law;
+        $data->appeal_section = $request->appeal_section;
+        $data->appeal_allegation_claim = $request->appeal_allegation_claim;
+        $data->appeal_amount_of_money = $request->appeal_amount_of_money;
+        $data->appeal_another_claim = $request->appeal_another_claim;
+        $data->appeal_summary_facts = $request->appeal_summary_facts;
+        $data->appeal_name_of_the_appellant = $request->appeal_name_of_the_appellant;
+        $data->appeal_representative = $request->appeal_representative;
+        $data->appeal_representative_details = $request->appeal_representative_details;
+        $data->appeal_respondent_opposite_party = $request->appeal_respondent_opposite_party;
+        $data->appeal_opposite_representative = $request->appeal_opposite_representative;
+        $data->appeal_opposite_representative_details = $request->appeal_opposite_representative_details;
+        $data->revision_original_case_no = $request->revision_original_case_no;
+        $data->revision_subsequent_case_no = $request->revision_subsequent_case_no;
+        $data->revision_date_of_judgement_order = $request->revision_date_of_judgement_order;
+        $data->revision_summary_of_judgement_order = $request->revision_summary_of_judgement_order;
+        $data->revision_appeal_case_category_id = $request->revision_appeal_case_category_id;
+        $data->revision_case_subcategory_id = $request->revision_case_subcategory_id;
+        $data->revision_case_type_id = $request->revision_case_type_id;
+        $data->revision_case_no = $request->revision_case_no;
+        $data->revision_filing_court = $request->revision_filing_court;
+        $data->revision_date_of_filing = $request->revision_date_of_filing;
+        $data->revision_law = $request->revision_law;
+        $data->revision_section = $request->revision_section;
+        $data->revision_allegation_claim = $request->revision_allegation_claim;
+        $data->revision_amount_of_money = $request->revision_amount_of_money;
+        $data->revision_another_claim = $request->revision_another_claim;
+        $data->revision_summary_facts = $request->revision_summary_facts;
+        $data->revision_name_of_the_appellant = $request->revision_name_of_the_appellant;
+        $data->revision_representative = $request->revision_representative;
+        $data->revision_representative_details = $request->revision_representative_details;
+        $data->revision_respondent_opposite_party = $request->revision_respondent_opposite_party;
+        $data->revision_opposite_representative = $request->revision_opposite_representative;
+        $data->revision_opposite_representative_details = $request->revision_opposite_representative_details;
+
         $data->save();
 
         if ($request->hasfile('uploaded_document')) {
@@ -198,8 +244,8 @@ class CivilCasesController extends Controller
 
     public function edit_civil_cases($id)
     {
-        $law = SetupLaw::where(['case_type' => 'Civil Cases','delete_status' => 0])->get();
-        $court = SetupCourt::where(['case_type' => 'Civil Cases','delete_status' => 0])->get();
+        $law = SetupLaw::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->get();
+        $court = SetupCourt::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->get();
         $designation = SetupDesignation::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->get();
@@ -219,17 +265,19 @@ class CivilCasesController extends Controller
         $existing_client_thana = SetupThana::where('district_id', $data->client_district_id)->get();
         $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_associates_id)->get();
         $client_category = SetupClientCategory::where('delete_status', 0)->get();
-        $existing_client_subcategory = SetupClientSubcategory::where(['client_category_id' => $data->client_category_id,'delete_status' => 0])->get();
-        $existing_case_subcategory = SetupCaseSubcategory::where(['case_category_id' => $data->case_category_id,'delete_status' => 0])->get();
+        $existing_client_subcategory = SetupClientSubcategory::where(['client_category_id' => $data->client_category_id, 'delete_status' => 0])->get();
+        $existing_case_subcategory = SetupCaseSubcategory::where(['case_category_id' => $data->case_category_id, 'delete_status' => 0])->get();
         $section = SetupSection::where('delete_status', 0)->get();
 
         $existing_case_info_district = SetupDistrict::where('division_id', $data->case_infos_division_id)->get();
         $existing_case_info_client_thana = SetupThana::where('district_id', $data->case_infos_district_id)->get();
-        $next_day_presence = SetupNextDayPresence::where('delete_status',0)->get();
+        $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->get();
+        $existing_appeal_case_subcategory = SetupCaseSubcategory::where(['case_category_id' => $data->appeal_case_category_id, 'delete_status' => 0])->get();
+        $existing_revision_case_subcategory = SetupCaseSubcategory::where(['case_category_id' => $data->revision_appeal_case_category_id, 'delete_status' => 0])->get();
 
-//         dd($existing_client_subcategory);
+//         dd($data);
 
-        return view('litigation_management.cases.civil_cases.edit_civil_cases', compact('data', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'property_type', 'case_types', 'company', 'zone', 'area', 'internal_council', 'existing_client_district', 'existing_ext_coun_associates','client_category','existing_client_subcategory','existing_case_subcategory','section','existing_client_thana','existing_case_info_district','existing_case_info_client_thana','next_day_presence'));
+        return view('litigation_management.cases.civil_cases.edit_civil_cases', compact('data', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'property_type', 'case_types', 'company', 'zone', 'area', 'internal_council', 'existing_client_district', 'existing_ext_coun_associates', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'section', 'existing_client_thana', 'existing_case_info_district', 'existing_case_info_client_thana', 'next_day_presence', 'existing_appeal_case_subcategory','existing_revision_case_subcategory'));
     }
 
     public function update_civil_cases(Request $request, $id)
@@ -293,6 +341,59 @@ class CivilCasesController extends Controller
         $data->status_next_date = $request->status_next_date;
         $data->status_next_date_fixed_id = $request->status_next_date_fixed_id;
         $data->comments = $request->comments;
+
+        if ($request->case == "Appeal Case") {
+
+            $data->original_case_no = $request->original_case_no;
+            $data->subsequent_case_no = $request->subsequent_case_no;
+            $data->date_of_judgement_order = $request->date_of_judgement_order;
+            $data->summary_of_judgement_order = $request->summary_of_judgement_order;
+            $data->appeal_case_category_id = $request->appeal_case_category_id;
+            $data->appeal_case_subcategory_id = $request->appeal_case_subcategory_id;
+            $data->appeal_case_type_id = $request->appeal_case_type_id;
+            $data->appeal_case_no = $request->appeal_case_no;
+            $data->appellate_filing_court = $request->appellate_filing_court;
+            $data->appeal_date_of_filing = $request->appeal_date_of_filing;
+            $data->appeal_law = $request->appeal_law;
+            $data->appeal_section = $request->appeal_section;
+            $data->appeal_allegation_claim = $request->appeal_allegation_claim;
+            $data->appeal_amount_of_money = $request->appeal_amount_of_money;
+            $data->appeal_another_claim = $request->appeal_another_claim;
+            $data->appeal_summary_facts = $request->appeal_summary_facts;
+            $data->name_of_the_appellant = $request->name_of_the_appellant;
+            $data->appeal_representative = $request->appeal_representative;
+            $data->appeal_representative_details = $request->appeal_representative_details;
+            $data->appeal_respondent_opposite_party = $request->appeal_respondent_opposite_party;
+            $data->appeal_opposite_representative = $request->appeal_opposite_representative;
+            $data->appeal_opposite_representative_details = $request->appeal_opposite_representative_details;
+
+        }else{
+
+            $data->original_case_no = null;
+            $data->subsequent_case_no = null;
+            $data->date_of_judgement_order = null;
+            $data->summary_of_judgement_order = null;
+            $data->appeal_case_category_id = null;
+            $data->appeal_case_subcategory_id = null;
+            $data->appeal_case_type_id = null;
+            $data->appeal_case_no = null;
+            $data->appellate_filing_court = null;
+            $data->appeal_date_of_filing = null;
+            $data->appeal_law = null;
+            $data->appeal_section = null;
+            $data->appeal_allegation_claim = null;
+            $data->appeal_amount_of_money = null;
+            $data->appeal_another_claim = null;
+            $data->appeal_summary_facts = null;
+            $data->name_of_the_appellant = null;
+            $data->appeal_representative = null;
+            $data->appeal_representative_details = null;
+            $data->appeal_respondent_opposite_party = null;
+            $data->appeal_opposite_representative = null;
+            $data->appeal_opposite_representative_details = null;
+
+        }
+
         $data->save();
 
         if ($request->hasfile('uploaded_document')) {
@@ -495,12 +596,12 @@ class CivilCasesController extends Controller
             // dd('court name');
             $query2 = $query->where('civil_cases.name_of_the_court_id', $request->name_of_the_court_id);
 
-        }else if ($request->case_no == null && $request->date_of_filing == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id) {
+        } else if ($request->case_no == null && $request->date_of_filing == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id) {
 
             // dd('court name');
             $query2 = $query->where(['civil_cases.case_category_id' => $request->case_category_id, 'civil_cases.case_subcategory_id' => $request->case_subcategory_id]);
 
-        }else if ($request->case_no == null && $request->date_of_filing == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id == null) {
+        } else if ($request->case_no == null && $request->date_of_filing == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id == null) {
 
             // dd('court name');
             $query2 = $query->where('civil_cases.case_category_id', $request->case_category_id);
