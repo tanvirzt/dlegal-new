@@ -20,7 +20,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('alligation') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('legal-issue') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
                             </li>
                         </ol>
                     </div>
@@ -34,7 +34,6 @@
         <section class="content">
             <div class="row im-flex">
                 <div class="col-md-2">
-{{--                    @include('fixed-asset.dashboard-sidebar')--}}
                 </div>
                 <div class="col-md-10">
                     @if(Session::has('success'))
@@ -48,20 +47,20 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Add Alligation</h3>
+                                <h3 class="card-title" id="heading">Add Legal Issue</h3>
                             </div>
 
-                            <form action="{{ route('save-alligation') }}" method="post">
+                            <form action="{{ route('save-legal-issue') }}" method="post">
                                 @csrf
                                 <div class="card-body">
 
                                     <div class="col-md-12">
 
                                         <div class="form-group">
-                                            <label for="alligation_name">Alligation</label>
-                                            <input type="text" class="form-control" name="alligation_name"
-                                                   id="alligation_name">
-                                            @error('alligation_name')<span class="text-danger">{{$message}}</span>@enderror
+                                            <label for="legal_issue_name">Legal Issue</label>
+                                            <input type="text" class="form-control" name="legal_issue_name"
+                                                   id="legal_issue_name">
+                                            @error('legal_issue_name')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
 
                                         <div class="float-right">
@@ -77,6 +76,7 @@
                     </div>
 
                 </div>
+            </div>
         </section>
         <!-- /.content -->
 

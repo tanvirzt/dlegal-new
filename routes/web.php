@@ -262,12 +262,12 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-program/{id}','AdminSetupController@update_program')->name('update-program');
         Route::post('delete-program/{id}','AdminSetupController@delete_program')->name('delete-program');
 
-        Route::get('alligation','AdminSetupController@alligation')->name('alligation');
-        Route::get('add-alligation','AdminSetupController@add_alligation')->name('add-alligation');
-        Route::post('save-alligation','AdminSetupController@save_alligation')->name('save-alligation');
-        Route::get('edit-alligation/{id}','AdminSetupController@edit_alligation')->name('edit-alligation');
-        Route::post('update-alligation/{id}','AdminSetupController@update_alligation')->name('update-alligation');
-        Route::post('delete-alligation/{id}','AdminSetupController@delete_alligation')->name('delete-alligation');
+        Route::get('allegation','AdminSetupController@allegation')->name('allegation');
+        Route::get('add-allegation','AdminSetupController@add_allegation')->name('add-allegation');
+        Route::post('save-allegation','AdminSetupController@save_allegation')->name('save-allegation');
+        Route::get('edit-allegation/{id}','AdminSetupController@edit_allegation')->name('edit-allegation');
+        Route::post('update-allegation/{id}','AdminSetupController@update_allegation')->name('update-allegation');
+        Route::post('delete-allegation/{id}','AdminSetupController@delete_allegation')->name('delete-allegation');
 
         Route::get('company-type','AdminSetupController@company_type')->name('company-type');
         Route::get('add-company-type','AdminSetupController@add_company_type')->name('add-company-type');
@@ -490,6 +490,27 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('edit-next-day-presence/{id}','AdminSetupController@edit_next_day_presence')->name('edit-next-day-presence');
         Route::post('update-next-day-presence/{id}','AdminSetupController@update_next_day_presence')->name('update-next-day-presence');
         Route::post('delete-next-day-presence/{id}','AdminSetupController@delete_next_day_presence')->name('delete-next-day-presence');
+
+        Route::get('legal-issue', 'AdminSetupController@legal_issue')->name('legal-issue');
+        Route::get('add-legal-issue','AdminSetupController@add_legal_issue')->name('add-legal-issue');
+        Route::post('save-legal-issue','AdminSetupController@save_legal_issue')->name('save-legal-issue');
+        Route::get('edit-legal-issue/{id}','AdminSetupController@edit_legal_issue')->name('edit-legal-issue');
+        Route::post('update-legal-issue/{id}','AdminSetupController@update_legal_issue')->name('update-legal-issue');
+        Route::post('delete-legal-issue/{id}','AdminSetupController@delete_legal_issue')->name('delete-legal-issue');
+
+        Route::get('legal-service', 'AdminSetupController@legal_service')->name('legal-service');
+        Route::get('add-legal-service','AdminSetupController@add_legal_service')->name('add-legal-service');
+        Route::post('save-legal-service','AdminSetupController@save_legal_service')->name('save-legal-service');
+        Route::get('edit-legal-service/{id}','AdminSetupController@edit_legal_service')->name('edit-legal-service');
+        Route::post('update-legal-service/{id}','AdminSetupController@update_legal_service')->name('update-legal-service');
+        Route::post('delete-legal-service/{id}','AdminSetupController@delete_legal_service')->name('delete-legal-service');
+
+        Route::get('matter', 'AdminSetupController@matter')->name('matter');
+        Route::get('add-matter','AdminSetupController@add_matter')->name('add-matter');
+        Route::post('save-matter','AdminSetupController@save_matter')->name('save-matter');
+        Route::get('edit-matter/{id}','AdminSetupController@edit_matter')->name('edit-matter');
+        Route::post('update-matter/{id}','AdminSetupController@update_matter')->name('update-matter');
+        Route::post('delete-matter/{id}','AdminSetupController@delete_matter')->name('delete-matter');
 
 
 

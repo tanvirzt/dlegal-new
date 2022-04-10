@@ -13,6 +13,9 @@ use App\Models\SetupClientSubcategory;
 use App\Models\SetupComplianceCategory;
 use App\Models\SetupCourtClass;
 use App\Models\SetupDesignation;
+use App\Models\SetupLegalIssue;
+use App\Models\SetupLegalService;
+use App\Models\SetupMatter;
 use App\Models\SetupNextDayPresence;
 use App\Models\SetupPropertyType;
 use App\Models\SetupSection;
@@ -32,7 +35,7 @@ use App\Models\SetupRegion;
 use App\Models\SetupArea;
 use App\Models\SetupBranch;
 use App\Models\SetupProgram;
-use App\Models\SetupAlligation;
+use App\Models\SetupAllegation;
 use App\Models\SetupCompanyType;
 use App\Models\SetupCompany;
 use App\Models\SetupInternalCouncil;
@@ -1364,67 +1367,67 @@ public function delete_program($id)
 
 //alligation setup
 
-public function alligation()
+public function allegation()
 {
-    $data = SetupAlligation::all();
-    return view('setup.alligation.alligation',compact('data'));
+    $data = SetupAllegation::all();
+    return view('setup.allegation.allegation',compact('data'));
 }
 
-public function add_alligation()
+public function add_allegation()
 {
-    return view('setup.alligation.add_alligation');
+    return view('setup.allegation.add_allegation');
 }
 
-public function save_alligation(Request $request)
+public function save_allegation(Request $request)
 {
     $rules = [
-        'alligation_name' => 'required'
+        'allegation_name' => 'required'
     ];
 
     $validMsg = [
-        'alligation_name.required' => 'Alligation field is required'
+        'allegation_name.required' => 'Allegation field is required'
     ];
 
     $this->validate($request, $rules, $validMsg);
 
-    $data = new SetupAlligation();
-    $data->alligation_name = $request->alligation_name;
+    $data = new SetupAllegation();
+    $data->allegation_name = $request->allegation_name;
     $data->save();
 
-    session()->flash('success','Alligation Added Successfully');
-    return redirect()->route('alligation');
+    session()->flash('success','Allegation Added Successfully');
+    return redirect()->route('allegation');
 
 }
 
-public function edit_alligation($id)
+public function edit_allegation($id)
 {
-    $data = SetupAlligation::find($id);
-    return view('setup.alligation.edit_alligation',compact('data'));
+    $data = SetupAllegation::find($id);
+    return view('setup.allegation.edit_allegation',compact('data'));
 }
 
-public function update_alligation(Request $request, $id)
+public function update_allegation(Request $request, $id)
 {
     $rules = [
-        'alligation_name' => 'required'
+        'allegation_name' => 'required'
     ];
 
     $validMsg = [
-        'alligation_name.required' => 'Alligation field is required'
+        'allegation_name.required' => 'Allegation field is required'
     ];
 
     $this->validate($request, $rules, $validMsg);
 
-    $data = SetupAlligation::find($id);
-    $data->alligation_name = $request->alligation_name;
+    $data = SetupAllegation::find($id);
+    $data->allegation_name = $request->allegation_name;
     $data->save();
 
-    session()->flash('success','Alligation Updated');
-    return redirect()->route('alligation');
+    session()->flash('success','Allegation Updated');
+    return redirect()->route('allegation');
 }
 
-public function delete_alligation($id)
+public function delete_allegation($id)
 {
-    $data = SetupAlligation::find($id);
+    $data = SetupAllegation::find($id);
     if ($data['delete_status'] == 1){
         $delete_status = 0;
     }else{
@@ -1433,7 +1436,7 @@ public function delete_alligation($id)
     $data->delete_status = $delete_status;
     $data->save();
 
-    session()->flash('success', 'Alligation Deleted');
+    session()->flash('success', 'Allegation Deleted');
     return redirect()->back();
 }
 
@@ -3507,6 +3510,237 @@ public function find_case_category(Request $request)
         session()->flash('success','Next Day Presence Deleted Successfully');
         return redirect()->back();
     }
+
+
+    //next_day_presence
+
+    public function legal_issue()
+    {
+        $data = SetupLegalIssue::all();
+        return view('setup.legal_issue.legal_issue',compact('data'));
+    }
+
+    public function add_legal_issue()
+    {
+        return view('setup.legal_issue.add_legal_issue');
+    }
+
+    public function save_legal_issue(Request $request)
+    {
+        $rules = [
+            'legal_issue_name' => 'required'
+        ];
+
+        $validMsg = [
+            'legal_issue_name.required' => 'Legal Issue field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $legal_issue = new SetupLegalIssue();
+        $legal_issue->legal_issue_name = $request->legal_issue_name;
+        $legal_issue->save();
+
+        session()->flash('success','Legal Issue Added Successfully.');
+        return redirect()->route('legal-issue');
+    }
+
+    public function edit_legal_issue($id)
+    {
+        $data = SetupLegalIssue::find($id);
+        return view('setup.legal_issue.edit_legal_issue',compact('data'));
+    }
+
+    public function update_legal_issue(Request $request, $id)
+    {
+        $rules = [
+            'legal_issue_name' => 'required'
+        ];
+
+        $validMsg = [
+            'legal_issue_name.required' => 'Legal Issue field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $legal_issue = SetupLegalIssue::find($id);
+        $legal_issue->legal_issue_name = $request->legal_issue_name;
+        $legal_issue->save();
+
+        session()->flash('success', 'Legal Issue Updated Successfully.');
+
+        return redirect()->route('legal-issue');
+    }
+
+    public function delete_legal_issue($id)
+    {
+        $data = SetupLegalIssue::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Legal Issue Deleted Successfully');
+        return redirect()->back();
+    }
+
+
+    //next_day_presence
+
+    public function legal_service()
+    {
+        $data = SetupLegalService::all();
+        return view('setup.legal_service.legal_service',compact('data'));
+    }
+
+    public function add_legal_service()
+    {
+        return view('setup.legal_service.add_legal_service');
+    }
+
+    public function save_legal_service(Request $request)
+    {
+        $rules = [
+            'legal_service_name' => 'required'
+        ];
+
+        $validMsg = [
+            'legal_service_name.required' => 'Legal Service field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $legal_service = new SetupLegalService();
+        $legal_service->legal_service_name = $request->legal_service_name;
+        $legal_service->save();
+
+        session()->flash('success','Legal Service Added Successfully.');
+        return redirect()->route('legal-service');
+    }
+
+    public function edit_legal_service($id)
+    {
+        $data = SetupLegalService::find($id);
+        return view('setup.legal_service.edit_legal_service',compact('data'));
+    }
+
+    public function update_legal_service(Request $request, $id)
+    {
+        $rules = [
+            'legal_service_name' => 'required'
+        ];
+
+        $validMsg = [
+            'legal_service_name.required' => 'Legal Service field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $legal_service = SetupLegalService::find($id);
+        $legal_service->legal_service_name = $request->legal_service_name;
+        $legal_service->save();
+
+        session()->flash('success', 'Legal Service Updated Successfully.');
+
+        return redirect()->route('legal-service');
+    }
+
+    public function delete_legal_service($id)
+    {
+        $data = SetupLegalService::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Legal Service Deleted Successfully');
+        return redirect()->back();
+    }
+
+    //matter
+
+    public function matter()
+    {
+        $data = SetupMatter::all();
+        return view('setup.matter.matter',compact('data'));
+    }
+
+    public function add_matter()
+    {
+        return view('setup.matter.add_matter');
+    }
+
+    public function save_matter(Request $request)
+    {
+        $rules = [
+            'matter_name' => 'required'
+        ];
+
+        $validMsg = [
+            'matter_name.required' => 'Matter field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $matter = new SetupMatter();
+        $matter->matter_name = $request->matter_name;
+        $matter->save();
+
+        session()->flash('success','Matter Added Successfully.');
+        return redirect()->route('matter');
+    }
+
+    public function edit_matter($id)
+    {
+        $data = SetupMatter::find($id);
+        return view('setup.matter.edit_matter',compact('data'));
+    }
+
+    public function update_matter(Request $request, $id)
+    {
+        $rules = [
+            'matter_name' => 'required'
+        ];
+
+        $validMsg = [
+            'matter_name.required' => 'Matter field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $matter = SetupMatter::find($id);
+        $matter->matter_name = $request->matter_name;
+        $matter->save();
+
+        session()->flash('success', 'Matter Updated Successfully.');
+
+        return redirect()->route('matter');
+    }
+
+    public function delete_matter($id)
+    {
+        $data = SetupMatter::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Matter Deleted Successfully');
+        return redirect()->back();
+    }
+
 
 
 }

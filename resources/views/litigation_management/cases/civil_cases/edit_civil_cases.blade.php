@@ -92,7 +92,7 @@
                                                                 class="custom-control custom-radio custom-control-inline">
                                                                 <input type="checkbox" class="custom-control-input"
                                                                        id="appeal_case"
-                                                                       name="case" value="Appeal Case" @if($data->case == 'Appeal Case') checked @endif >
+                                                                       name="appeal_case" value="Appeal Case" @if($data->case == 'Appeal Case') checked @endif >
                                                                 <label class="custom-control-label" for="appeal_case">Appeal
                                                                     Case</label>
                                                             </div>
@@ -100,7 +100,7 @@
                                                                 class="custom-control custom-radio custom-control-inline">
                                                                 <input type="checkbox" class="custom-control-input"
                                                                        id="revision_case"
-                                                                       name="case" value="Revision Case" @if($data->case == 'Revision Case') checked @endif>
+                                                                       name="revision_case" value="Revision Case" @if($data->case == 'Revision Case') checked @endif>
                                                                 <label class="custom-control-label" for="revision_case">Revision
                                                                     Case</label>
                                                             </div>

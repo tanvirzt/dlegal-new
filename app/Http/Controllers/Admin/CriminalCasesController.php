@@ -13,6 +13,10 @@ use App\Models\SetupDesignation;
 use App\Models\SetupExternalCouncil;
 use App\Models\SetupCaseCategory;
 use App\Models\SetupCaseStatus;
+use App\Models\SetupLegalIssue;
+use App\Models\SetupLegalService;
+use App\Models\SetupMatter;
+use App\Models\SetupNextDayPresence;
 use App\Models\SetupPersonTitle;
 use App\Models\SetupNextDateReason;
 use App\Models\SetupCourtLastOrder;
@@ -84,8 +88,12 @@ class CriminalCasesController extends Controller
         $branch = SetupBranch::where('delete_status', 0)->get();
         $program = SetupProgram::where('delete_status', 0)->get();
         $section = SetupSection::where('delete_status', 0)->get();
+        $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->get();
+        $legal_issue = SetupLegalIssue::where('delete_status',0)->get();
+        $legal_service = SetupLegalService::where('delete_status',0)->get();
+        $matter = SetupMatter::where('delete_status',0)->get();
 
-        return view('litigation_management.cases.criminal_cases.add_criminal_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council','client_category','section','section'));
+        return view('litigation_management.cases.criminal_cases.add_criminal_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council','client_category','section','section','next_day_presence','legal_issue','legal_service','matter'));
     }
 
     public function save_criminal_cases(Request $request)
