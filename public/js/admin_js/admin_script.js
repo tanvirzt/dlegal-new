@@ -134,6 +134,86 @@ $(document).ready(function () {
         $(this).parents(".hdtuto").remove();
     });
 
+    $(".btn_success_court_name").click(function () {
+        var lsthmtl_court_name = $(".clone_court_name").html();
+        $(".increment_court_name").after(lsthmtl_court_name);
+    });
+    $("body").on("click", ".btn_danger_court_name", function () {
+        $(this).parents(".hdtuto_court_name").remove();
+    });
+
+    $(".btn_success_law").click(function () {
+        var lsthmtl_law = $(".clone_law").html();
+        $(".increment_law").after(lsthmtl_law);
+    });
+    $("body").on("click", ".btn_danger_law", function () {
+        $(this).parents(".hdtuto_law").remove();
+    });
+
+    $(".btn_success_files").click(function () {
+        var lsthmtl_files = $(".clone_files").html();
+        $(".increment_files").after(lsthmtl_files);
+    });
+    $("body").on("click", ".btn_danger_files", function () {
+        $(this).parents(".hdtuto_files").remove();
+    });
+
+    $(".btn_success_section").click(function () {
+        var lsthmtl_section = $(".clone_section").html();
+        $(".increment_section").after(lsthmtl_section);
+    });
+    $("body").on("click", ".btn_danger_section", function () {
+        $(this).parents(".hdtuto_section").remove();
+    });
+
+    $(".btn_success_complainant").click(function () {
+        var lsthmtl_complainant = $(".clone_complainant").html();
+        $(".increment_complainant").after(lsthmtl_complainant);
+    });
+    $("body").on("click", ".btn_danger_complainant", function () {
+        $(this).parents(".hdtuto_complainant").remove();
+    });
+
+    $(".btn_success_complainant_representative").click(function () {
+        var lsthmtl_complainant_representative = $(".clone_complainant_representative").html();
+        $(".increment_complainant_representative").after(lsthmtl_complainant_representative);
+    });
+    $("body").on("click", ".btn_danger_complainant_representative", function () {
+        $(this).parents(".hdtuto_complainant_representative").remove();
+    });
+
+    $(".btn_success_accused").click(function () {
+        var lsthmtl_accused = $(".clone_accused").html();
+        $(".increment_accused").after(lsthmtl_accused);
+    });
+    $("body").on("click", ".btn_danger_accused", function () {
+        $(this).parents(".hdtuto_accused").remove();
+    });
+
+    $(".btn_success_accused_representative").click(function () {
+        var lsthmtl_accused_representative = $(".clone_accused_representative").html();
+        $(".increment_accused_representative").after(lsthmtl_accused_representative);
+    });
+    $("body").on("click", ".btn_danger_accused_representative", function () {
+        $(this).parents(".hdtuto_accused_representative").remove();
+    });
+
+    $(".btn_success_case_infos_case_no").click(function () {
+        var lsthmtl_case_infos_case_no = $(".clone_case_infos_case_no").html();
+        $(".increment_case_infos_case_no").after(lsthmtl_case_infos_case_no);
+    });
+    $("body").on("click", ".btn_danger_case_infos_case_no", function () {
+        $(this).parents(".hdtuto_case_infos_case_no").remove();
+    });
+
+    $(".btn_success_assigned_lawyer").click(function () {
+        var lsthmtl_assigned_lawyer = $(".clone_assigned_lawyer").html();
+        $(".increment_assigned_lawyer").after(lsthmtl_assigned_lawyer);
+    });
+    $("body").on("click", ".btn_danger_assigned_lawyer", function () {
+        $(this).parents(".hdtuto_assigned_lawyer").remove();
+    });
+
 
     $('#division_id').on('change', function () {
         var div_id = $(this).val();

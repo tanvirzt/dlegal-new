@@ -11,6 +11,7 @@ use App\Models\SetupCaseTypes;
 use App\Models\SetupClientCategory;
 use App\Models\SetupClientSubcategory;
 use App\Models\SetupComplianceCategory;
+use App\Models\SetupCoordinator;
 use App\Models\SetupCourtClass;
 use App\Models\SetupDesignation;
 use App\Models\SetupLegalIssue;
@@ -3738,6 +3739,81 @@ public function find_case_category(Request $request)
         $data->save();
 
         session()->flash('success','Matter Deleted Successfully');
+        return redirect()->back();
+    }
+    //coordinator
+
+    public function coordinator()
+    {
+        $data = SetupCoordinator::all();
+        return view('setup.coordinator.coordinator',compact('data'));
+    }
+
+    public function add_coordinator()
+    {
+        return view('setup.coordinator.add_coordinator');
+    }
+
+    public function save_coordinator(Request $request)
+    {
+        $rules = [
+            'coordinator_name' => 'required'
+        ];
+
+        $validMsg = [
+            'coordinator_name.required' => 'Coordinator field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $coordinator = new SetupCoordinator();
+        $coordinator->coordinator_name = $request->coordinator_name;
+        $coordinator->save();
+
+        session()->flash('success','Coordinator Added Successfully.');
+        return redirect()->route('coordinator');
+    }
+
+    public function edit_coordinator($id)
+    {
+        $data = SetupCoordinator::find($id);
+        return view('setup.coordinator.edit_coordinator',compact('data'));
+    }
+
+    public function update_coordinator(Request $request, $id)
+    {
+        $rules = [
+            'coordinator_name' => 'required'
+        ];
+
+        $validMsg = [
+            'coordinator_name.required' => 'Coordinator field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $coordinator = SetupCoordinator::find($id);
+        $coordinator->coordinator_name = $request->coordinator_name;
+        $coordinator->save();
+
+        session()->flash('success', 'Coordinator Updated Successfully.');
+
+        return redirect()->route('coordinator');
+    }
+
+    public function delete_coordinator($id)
+    {
+        $data = SetupCoordinator::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Coordinator Deleted Successfully');
         return redirect()->back();
     }
 

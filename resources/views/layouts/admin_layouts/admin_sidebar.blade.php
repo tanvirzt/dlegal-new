@@ -247,6 +247,12 @@
                                         <p>Matter</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('coordinator') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Coordinator/Tadbirkar</p>
+                                    </a>
+                                </li>
 
 
                             </ul>

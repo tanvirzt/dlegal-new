@@ -161,15 +161,18 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
+                                        <th class="text-center"> Next Date </th>
+                                        <th class="text-center"> Fixed for </th>
                                         <th class="text-center"> Case No </th>
-                                        <th class="text-center"> Case Year </th>
-                                        <th class="text-center"> Alligation </th>
-                                        <th class="text-nowrap"> Amount </th>
+                                        <th class="text-center"> Court Name </th>
+                                        <th class="text-nowrap"> District </th>
                                         <th class="text-center"> Complainant </th>
                                         <th class="text-nowrap"> Accused Name </th>
-                                        <th class="text-nowrap"> Case Notes </th>
+                                        <th class="text-nowrap"> Case Type </th>
+                                        <th class="text-nowrap"> Claim </th>
+                                        <th class="text-nowrap"> Lawyer Name </th>
                                         <th class="text-center">Status</th>
-                                        <th class="text-center" width="13%">Action</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody id="search_data">
@@ -177,25 +180,35 @@
 
                                         <tr>
                                             <td>
+                                                 {{ $datum->next_date }} </a>
+                                            </td>
+                                            <td>
+                                                {{ $datum->next_date_fixed_id }}
+                                            </td>
+                                            <td>
                                                 <a href="{{ route('view-criminal-cases',$datum->id) }}"> {{ $datum->case_no }} </a>
                                             </td>
+
                                             <td>
-                                                {{ $datum->case_year }}
+                                                {{ $datum->name_of_the_court_id }}
                                             </td>
                                             <td>
-                                                {{ $datum->alligation }}
+                                                {{ $datum->case_infos_district_id }}
                                             </td>
                                             <td>
-                                                {{ $datum->amount }}
-                                            </td>
-                                            <td>
-                                                {{ $datum->name_of_the_complainant }}
+                                                {{ $datum->complainant_informant_name }}
                                             </td>
                                             <td>
                                                 {{ $datum->accused_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_notes }}
+                                                {{ $datum->case_type_id }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->another_claim }}
+                                            </td>
+                                            <td>
+                                                {{ rtrim($datum->assigned_lawyer, ', ') }}
                                             </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)

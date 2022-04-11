@@ -512,6 +512,13 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-matter/{id}','AdminSetupController@update_matter')->name('update-matter');
         Route::post('delete-matter/{id}','AdminSetupController@delete_matter')->name('delete-matter');
 
+        Route::get('coordinator', 'AdminSetupController@coordinator')->name('coordinator');
+        Route::get('add-coordinator','AdminSetupController@add_coordinator')->name('add-coordinator');
+        Route::post('save-coordinator','AdminSetupController@save_coordinator')->name('save-coordinator');
+        Route::get('edit-coordinator/{id}','AdminSetupController@edit_coordinator')->name('edit-coordinator');
+        Route::post('update-coordinator/{id}','AdminSetupController@update_coordinator')->name('update-coordinator');
+        Route::post('delete-coordinator/{id}','AdminSetupController@delete_coordinator')->name('delete-coordinator');
+
 
 
 
