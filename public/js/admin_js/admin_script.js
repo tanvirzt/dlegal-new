@@ -598,13 +598,18 @@ $(document).ready(function () {
                         $('#search_data').append(`
 
                                 <tr>
-                                    <td><a href="view-criminal-cases/${value.id}"> ${value.case_no} </a></td>
-                                    <td> ${value.case_year === null ? '' : value.case_year} </td>
-                                    <td> ${value.alligation === null ? '' : value.alligation} </td>
-                                    <td> ${value.amount === null ? '' : value.amount} </td>
-                                    <td> ${value.name_of_the_complainant === null ? '' : value.name_of_the_complainant} </td>
-                                    <td> ${value.accused_name === null ? '' : value.accused_name} </td>
-                                    <td> ${value.case_notes === null ? '' : value.case_notes} </td>
+
+                                            <td> ${value.next_date === null ? '' : value.next_date} </td>
+                                            <td> ${value.next_date_reason_name === null ? '' : value.next_date_reason_name} </td>
+                                            <td> <a href="view-criminal-cases/${value.id}"> ${value.case_no} </a> </td>
+                                            <td> ${value.court_name === null ? '' : value.court_name}</td>
+                                            <td> ${value.district_name === null ? '' : value.district_name} </td>
+                                            <td> ${value.complainant_informant_name ? '' : value.complainant_informant_name} </td>
+                                            <td> ${value.accused_name === null ? '' : value.accused_name} </td>
+                                            <td> ${value.case_types_name === null ? '' : value.case_types_name} </td>
+                                            <td> ${value.another_claim === null ? '' : value.another_claim} </td>
+
+
                                     <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
                                         <a href="view-criminal-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
@@ -732,7 +737,7 @@ $(document).ready(function () {
                     });
 
 
-                }else if (res.result == "appellate_court_cases") {
+                } else if (res.result == "appellate_court_cases") {
 
                     console.log(res.data);
 
@@ -1295,13 +1300,12 @@ $(document).ready(function () {
 
     });
 
-    $("#original_case").on('click', function (){
+    $("#original_case").on('click', function () {
         $(".original_case").show();
         $(".appeal_case_info").hide();
         $(".revision_case_info").hide();
 
     });
-
 
 
     $('#client_division_id').on('change', function () {
@@ -1428,7 +1432,6 @@ $(document).ready(function () {
     });
 
 
-
     $('#appeal_case_category_id').on('change', function () {
         var case_category_id = $(this).val();
         var route = $(this).attr('action');
@@ -1489,10 +1492,6 @@ $(document).ready(function () {
             $('#revision_case_subcategory_id').append('<option value="">Select</option>');
         }
     });
-
-
-
-
 
 
 });

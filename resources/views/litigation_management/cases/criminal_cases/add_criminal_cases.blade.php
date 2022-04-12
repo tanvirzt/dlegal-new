@@ -34,6 +34,7 @@
         <!-- Main content -->
 
         <section class="content">
+            <div class="container-fluid py-2">
             <form action="{{ route('save-criminal-cases') }}" method="post" enctype="multipart/form-data">
 
                 <!-- Default box -->
@@ -491,39 +492,21 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="assigned_lawyer"
-                                                       class="col-sm-4 col-form-label"> Name
-                                                    of Assigned Lawyer </label>
+                                                <label for="assigned_lawyer" class="col-sm-4 col-form-label">Name of Assigned
+                                                    Lawyer</label>
                                                 <div class="col-sm-8">
-                                                    <div class="input-group hdtuto_assigned_lawyer control-group increment_assigned_lawyer">
-                                                        <input type="text" name="assigned_lawyer[]"
-                                                               class="myfrm form-control">
-                                                        <div class="input-group-btn">
-                                                            <button class="btn btn-success btn_success_assigned_lawyer"
-                                                                    type="button"><i
-                                                                    class="fldemo glyphicon glyphicon-plus"></i>+
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="clone_assigned_lawyer hide">
-                                                        <div class="hdtuto_assigned_lawyer control-group lst input-group"
-                                                             style="margin-top:10px">
-                                                            <input type="text" name="assigned_lawyer[]"
-                                                                   class="myfrm form-control">
-                                                            <div class="input-group-btn">
-                                                                <button class="btn btn-danger btn_danger_assigned_lawyer"
-                                                                        type="button"><i
-                                                                        class="fldemo glyphicon glyphicon-remove"></i> -
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
+                                                    <select name="assigned_lawyer[]" class="form-control select2" multiple>
+                                                        <option value="">Select</option>
+                                                        @foreach($internal_council as $item)
+                                                            <option
+                                                                value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name }}" {{(old('assigned_lawyer') == $item->first_name.' '.$item->middle_name.' '.$item->last_name ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                        @endforeach
+                                                    </select>
                                                     @error('assigned_lawyer')<span
                                                         class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
+
                                             <div class="form-group row">
                                                 <label for="lawyers_remarks"
                                                        class="col-sm-4 col-form-label"> Remarks </label>
@@ -1899,7 +1882,7 @@
             </form>
 
             <!-- /.card -->
-
+            </div>
         </section>
 
 

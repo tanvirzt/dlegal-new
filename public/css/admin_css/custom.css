@@ -387,3 +387,11 @@ h3{
 .lower_court_info{
     display: none;
 }
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    color: #2c2626;
+}
+
+.custom_font{
+    font-size: 14px;
+}

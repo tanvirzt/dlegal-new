@@ -73,14 +73,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="date_of_filing" class="col-sm-4 col-form-label"> Date of
-                                                            Filing </label>
+                                                        <label for="received_date" class="col-sm-4 col-form-label">
+                                                            Received
+                                                            Date </label>
                                                         <div class="col-sm-8">
-                                                            <input type="date" class="form-control" id="date_of_filing"
-                                                                name="date_of_filing" value="{{ old('date_of_filing') }}">
-                                                            @error('date_of_filing')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
+                                                            <input type="date" class="form-control"
+                                                                   id="received_date"
+                                                                   name="received_date">
+                                                            @error('received_date')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -165,12 +166,11 @@
                                         <th class="text-center"> Fixed for </th>
                                         <th class="text-center"> Case No </th>
                                         <th class="text-center"> Court Name </th>
-                                        <th class="text-nowrap"> District </th>
+                                        <th class="text-center"> District </th>
                                         <th class="text-center"> Complainant </th>
-                                        <th class="text-nowrap"> Accused Name </th>
-                                        <th class="text-nowrap"> Case Type </th>
-                                        <th class="text-nowrap"> Claim </th>
-                                        <th class="text-nowrap"> Lawyer Name </th>
+                                        <th class="text-center"> Accused Name </th>
+                                        <th class="text-center"> Case Type </th>
+                                        <th class="text-center"> Claim </th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -183,17 +183,17 @@
                                                  {{ $datum->next_date }} </a>
                                             </td>
                                             <td>
-                                                {{ $datum->next_date_fixed_id }}
+                                                {{ $datum->next_date_reason_name }}
                                             </td>
                                             <td>
                                                 <a href="{{ route('view-criminal-cases',$datum->id) }}"> {{ $datum->case_no }} </a>
                                             </td>
 
                                             <td>
-                                                {{ $datum->name_of_the_court_id }}
+                                                {{ $datum->court_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_infos_district_id }}
+                                                {{ $datum->district_name }}
                                             </td>
                                             <td>
                                                 {{ $datum->complainant_informant_name }}
@@ -202,13 +202,10 @@
                                                 {{ $datum->accused_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_type_id }}
+                                                {{ $datum->case_types_name }}
                                             </td>
                                             <td>
                                                 {{ $datum->another_claim }}
-                                            </td>
-                                            <td>
-                                                {{ rtrim($datum->assigned_lawyer, ', ') }}
                                             </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)
@@ -219,7 +216,6 @@
                                                     <button type="button"
                                                         class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                 @endif
-                                                </span>
                                             </td>
                                             <td>
                                                 <a href="{{ route('view-criminal-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
