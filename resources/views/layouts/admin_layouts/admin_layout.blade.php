@@ -21,7 +21,7 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css')}}">
+{{--  <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css')}}">--}}
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css')}}">
     <!-- DataTables -->
@@ -86,8 +86,8 @@
   <!-- jQuery Knob Chart -->
   <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
   <!-- daterangepicker -->
-  <script src="{{ asset('plugins/moment/moment.min.js')}}"></script>
-  <script src="{{ asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
+{{--  <script src="{{ asset('plugins/moment/moment.min.js')}}"></script>--}}
+{{--  <script src="{{ asset('plugins/daterangepicker/daterangepicker.js')}}"></script>--}}
   <!-- Tempusdominus Bootstrap 4 -->
   <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
   <!-- Summernote -->
@@ -126,6 +126,13 @@
                 "autoWidth": false,
                 "orderFixed": [0, 'desc'],
             });
+
+            $(".data_table").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "orderFixed": [0, 'desc'],
+            });
+
 
             $("#table_logs_text_center").DataTable({
                 "responsive": true,

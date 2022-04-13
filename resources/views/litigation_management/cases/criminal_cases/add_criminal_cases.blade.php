@@ -42,6 +42,8 @@
 
                     <div class="card-header">
                         <h3 class="card-title"> Add Criminal Cases </h3>
+
+
                         {{--                        <div class="text-center mr-md-5">--}}
                         {{--                            <div class="custom-control custom-radio custom-control-inline">--}}
                         {{--                                <input type="checkbox" class="custom-control-input" id="original_case"--}}
@@ -479,15 +481,18 @@
                                             <h6 class="text-uppercase text-bold"><u> Lawyer
                                                     Information </u></h6>
                                             <div class="form-group row">
-                                                <label for="advocate_name" class="col-sm-4 col-form-label">Name
+                                                <label for="lawyer_advocate_id" class="col-sm-4 col-form-label">Name
                                                     of
                                                     Advocate/Law Firm</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control"
-                                                           id="advocate_name"
-                                                           name="advocate_name"
-                                                           value="{{old('advocate_name')}}">
-                                                    @error('advocate_name')<span
+                                                    <select name="lawyer_advocate_id" class="form-control select2">
+                                                        <option value="">Select</option>
+                                                        @foreach($external_council as $item)
+                                                            <option
+                                                                value="{{ $item->id }}" {{(old('assigned_lawyer') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('lawyer_advocate_id')<span
                                                         class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -1132,7 +1137,7 @@
                                                 <label for="date_of_cognizance"
                                                        class="col-sm-4 col-form-label"> Date of Cognizance </label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control"
+                                                    <input type="date" class="form-control"
                                                            id="date_of_cognizance"
                                                            name="date_of_cognizance"
                                                            value="{{old('date_of_cognizance')}}">

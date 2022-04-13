@@ -253,6 +253,24 @@
                                         <p>Coordinator/Tadbirkar</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('mode') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Mode</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('court-proceeding') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Court Proceeding</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('day-notes') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Day Notes</p>
+                                    </a>
+                                </li>
 
 
                             </ul>

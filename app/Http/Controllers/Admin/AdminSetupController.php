@@ -13,10 +13,13 @@ use App\Models\SetupClientSubcategory;
 use App\Models\SetupComplianceCategory;
 use App\Models\SetupCoordinator;
 use App\Models\SetupCourtClass;
+use App\Models\SetupCourtProceeding;
+use App\Models\SetupDayNote;
 use App\Models\SetupDesignation;
 use App\Models\SetupLegalIssue;
 use App\Models\SetupLegalService;
 use App\Models\SetupMatter;
+use App\Models\SetupMode;
 use App\Models\SetupNextDayPresence;
 use App\Models\SetupPropertyType;
 use App\Models\SetupSection;
@@ -3814,6 +3817,236 @@ public function find_case_category(Request $request)
         $data->save();
 
         session()->flash('success','Coordinator Deleted Successfully');
+        return redirect()->back();
+    }
+
+    //mode
+
+    public function mode()
+    {
+        $data = SetupMode::all();
+        return view('setup.mode.mode',compact('data'));
+    }
+
+    public function add_mode()
+    {
+        return view('setup.mode.add_mode');
+    }
+
+    public function save_mode(Request $request)
+    {
+        $rules = [
+            'mode_name' => 'required'
+        ];
+
+        $validMsg = [
+            'mode_name.required' => 'Mode field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $mode = new SetupMode();
+        $mode->mode_name = $request->mode_name;
+        $mode->save();
+
+        session()->flash('success','Mode Added Successfully.');
+        return redirect()->route('mode');
+    }
+
+    public function edit_mode($id)
+    {
+        $data = SetupMode::find($id);
+        return view('setup.mode.edit_mode',compact('data'));
+    }
+
+    public function update_mode(Request $request, $id)
+    {
+        $rules = [
+            'mode_name' => 'required'
+        ];
+
+        $validMsg = [
+            'mode_name.required' => 'Mode field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $mode = SetupMode::find($id);
+        $mode->mode_name = $request->mode_name;
+        $mode->save();
+
+        session()->flash('success', 'Mode Updated Successfully.');
+
+        return redirect()->route('mode');
+    }
+
+    public function delete_mode($id)
+    {
+        $data = SetupMode::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Mode Deleted Successfully');
+        return redirect()->back();
+    }
+
+
+    //court_proceeding
+
+    public function court_proceeding()
+    {
+        $data = SetupCourtProceeding::all();
+        return view('setup.court_proceeding.court_proceeding',compact('data'));
+    }
+
+    public function add_court_proceeding()
+    {
+        return view('setup.court_proceeding.add_court_proceeding');
+    }
+
+    public function save_court_proceeding(Request $request)
+    {
+        $rules = [
+            'court_proceeding_name' => 'required'
+        ];
+
+        $validMsg = [
+            'court_proceeding_name.required' => 'Court Proceeding field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $court_proceeding = new SetupCourtProceeding();
+        $court_proceeding->court_proceeding_name = $request->court_proceeding_name;
+        $court_proceeding->save();
+
+        session()->flash('success','Court Proceeding Added Successfully.');
+        return redirect()->route('court-proceeding');
+    }
+
+    public function edit_court_proceeding($id)
+    {
+        $data = SetupCourtProceeding::find($id);
+        return view('setup.court_proceeding.edit_court_proceeding',compact('data'));
+    }
+
+    public function update_court_proceeding(Request $request, $id)
+    {
+        $rules = [
+            'court_proceeding_name' => 'required'
+        ];
+
+        $validMsg = [
+            'court_proceeding_name.required' => 'Court Proceeding field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $court_proceeding = SetupCourtProceeding::find($id);
+        $court_proceeding->court_proceeding_name = $request->court_proceeding_name;
+        $court_proceeding->save();
+
+        session()->flash('success', 'Court Proceeding Updated Successfully.');
+
+        return redirect()->route('court-proceeding');
+    }
+
+    public function delete_court_proceeding($id)
+    {
+        $data = SetupCourtProceeding::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Court Proceeding Deleted Successfully');
+        return redirect()->back();
+    }
+
+
+    //day_notes
+
+    public function day_notes()
+    {
+        $data = SetupDayNote::all();
+        return view('setup.day_notes.day_notes',compact('data'));
+    }
+
+    public function add_day_notes()
+    {
+        return view('setup.day_notes.add_day_notes');
+    }
+
+    public function save_day_notes(Request $request)
+    {
+        $rules = [
+            'day_notes_name' => 'required'
+        ];
+
+        $validMsg = [
+            'day_notes_name.required' => 'Day Notes field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $day_notes = new SetupDayNote();
+        $day_notes->day_notes_name = $request->day_notes_name;
+        $day_notes->save();
+
+        session()->flash('success','Day Notes Added Successfully.');
+        return redirect()->route('day-notes');
+    }
+
+    public function edit_day_notes($id)
+    {
+        $data = SetupDayNote::find($id);
+        return view('setup.day_notes.edit_day_notes',compact('data'));
+    }
+
+    public function update_day_notes(Request $request, $id)
+    {
+        $rules = [
+            'day_notes_name' => 'required'
+        ];
+
+        $validMsg = [
+            'day_notes_name.required' => 'Day Notes field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $day_notes = SetupDayNote::find($id);
+        $day_notes->day_notes_name = $request->day_notes_name;
+        $day_notes->save();
+
+        session()->flash('success', 'Day Notes Updated Successfully.');
+
+        return redirect()->route('day-notes');
+    }
+
+    public function delete_day_notes($id)
+    {
+        $data = SetupDayNote::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Day Notes Deleted Successfully');
         return redirect()->back();
     }
 

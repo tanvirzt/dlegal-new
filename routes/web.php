@@ -178,6 +178,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('view-criminal-cases/{id}','CriminalCasesController@view_criminal_cases')->name('view-criminal-cases');
         Route::get('download-criminal-cases-files/{id}','CriminalCasesController@download_criminal_cases_file')->name('download-criminal-cases-files');
         Route::post('update-criminal-cases-status/{id}','CriminalCasesController@update_criminal_cases_status')->name('update-criminal-cases-status');
+        Route::post('update-criminal-cases-activity/{id}','CriminalCasesController@update_criminal_cases_activity')->name('update-criminal-cases-activity');
         Route::post('search-criminal-cases','CriminalCasesController@search_criminal_cases')->name('search-criminal-cases');
 
         Route::get('labour-cases','LabourCasesController@labour_cases')->name('labour-cases');
@@ -518,6 +519,27 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('edit-coordinator/{id}','AdminSetupController@edit_coordinator')->name('edit-coordinator');
         Route::post('update-coordinator/{id}','AdminSetupController@update_coordinator')->name('update-coordinator');
         Route::post('delete-coordinator/{id}','AdminSetupController@delete_coordinator')->name('delete-coordinator');
+
+        Route::get('mode', 'AdminSetupController@mode')->name('mode');
+        Route::get('add-mode','AdminSetupController@add_mode')->name('add-mode');
+        Route::post('save-mode','AdminSetupController@save_mode')->name('save-mode');
+        Route::get('edit-mode/{id}','AdminSetupController@edit_mode')->name('edit-mode');
+        Route::post('update-mode/{id}','AdminSetupController@update_mode')->name('update-mode');
+        Route::post('delete-mode/{id}','AdminSetupController@delete_mode')->name('delete-mode');
+
+        Route::get('court-proceeding', 'AdminSetupController@court_proceeding')->name('court-proceeding');
+        Route::get('add-court-proceeding','AdminSetupController@add_court_proceeding')->name('add-court-proceeding');
+        Route::post('save-court-proceeding','AdminSetupController@save_court_proceeding')->name('save-court-proceeding');
+        Route::get('edit-court-proceeding/{id}','AdminSetupController@edit_court_proceeding')->name('edit-court-proceeding');
+        Route::post('update-court-proceeding/{id}','AdminSetupController@update_court_proceeding')->name('update-court-proceeding');
+        Route::post('delete-court-proceeding/{id}','AdminSetupController@delete_court_proceeding')->name('delete-court-proceeding');
+
+        Route::get('day-notes', 'AdminSetupController@day_notes')->name('day-notes');
+        Route::get('add-day-notes','AdminSetupController@add_day_notes')->name('add-day-notes');
+        Route::post('save-day-notes','AdminSetupController@save_day_notes')->name('save-day-notes');
+        Route::get('edit-day-notes/{id}','AdminSetupController@edit_day_notes')->name('edit-day-notes');
+        Route::post('update-day-notes/{id}','AdminSetupController@update_day_notes')->name('update-day-notes');
+        Route::post('delete-day-notes/{id}','AdminSetupController@delete_day_notes')->name('delete-day-notes');
 
 
 

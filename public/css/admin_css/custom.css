@@ -395,3 +395,16 @@ h3{
 .custom_font{
     font-size: 14px;
 }
+
+.padding_right_th{
+    padding-right: 68px !important;
+}
+
+.padding_right_sss {
+    padding-right: 70px !important;
+}
+
+.daynotes{
+    padding-right: 80px;
+
+}

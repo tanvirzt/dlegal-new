@@ -44,7 +44,7 @@ class CreateCriminalCasesTable extends Migration
             $table->mediumText('coordinator_details')->nullable();
             $table->mediumText('received_documents')->nullable();
             $table->mediumText('required_wanting_documents')->nullable();
-            $table->string('advocate_name')->nullable();
+            $table->integer('lawyer_advocate_id')->nullable();
             $table->string('assigned_lawyer')->nullable();
             $table->mediumText('lawyers_remarks')->nullable();
             $table->string('case_status_id')->nullable();
