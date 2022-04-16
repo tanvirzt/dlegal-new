@@ -189,8 +189,12 @@
                                                 <label for="next_date" class="col-sm-4 col-form-label"> Next
                                                     Date </label>
                                                 <div class="col-sm-8">
-                                                    <input type="date" class="form-control" id="next_date"
-                                                           name="next_date" value="{{old('next_date')}}">
+                                                    <span style="position: relative;display: inline-block;border: 1px solid #a9a9a9;height: 24px;width: 318px">
+                                                        <input type="date" class="xDateContainer" onchange="setCorrect(this,'xTime');" style="position: absolute; opacity: 0.0;height: 100%;width: 100%;"><input type="text" id="xTime" name="xTime" value="dd/mm/yyyy" style="border: none;height: 90%;" tabindex="-1"><span style="display: inline-block;width: 20px;z-index: 2;float: right;padding-top: 3px;" tabindex="-1">&#9660;</span>
+                                                    </span>
+
+{{--                                                    <input type="date" class="form-control" id="next_date"--}}
+{{--                                                           name="next_date" value="{{old('next_date')}}">--}}
                                                     @error('next_date')<span
                                                         class="text-danger">{{$message}}</span>@enderror
                                                 </div>

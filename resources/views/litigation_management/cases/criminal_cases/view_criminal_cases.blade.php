@@ -468,17 +468,23 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th class="table_text_center">Uploaded Document</th>
-                                        <th class="table_text_center">Action</th>
+                                        <th class="text-nowrap text-left">Uploaded Document</th>
+                                        <th class="text-nowrap text-left">Uploaded By</th>
+                                        <th class="text-nowrap text-left">Date & Time</th>
+                                        <th class="text-nowrap text-left">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($criminal_cases_files as $files)
                                         <tr>
-                                            <td class="table_text_center">
-                                                {{ $files->uploaded_document }}
-                                            </td>
-                                            <td class="table_text_center">
+                                            <td class="text-nowrap">{{ $files->uploaded_document }} </td>
+                                            <td class="text-nowrap">{{ $files->created_by }} </td>
+                                            <td class="text-nowrap">{{ $files->created_at }} </td>
+                                            <td class="text-nowrap">
+                                                <form method="get" action="{{ route('delete-criminal-cases-files',$files->id) }}" class="delete-user btn btn-outline-danger btn-xs">
+                                                    @csrf
+                                                    <button type="submit" class="btn  btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+                                                </form>
 
                                                 <a href="{{ route('download-criminal-cases-files', $files->id) }}">
                                                     <button
@@ -531,7 +537,7 @@
                                 <h3 class="card-title custom_h3 text-uppercase" id="heading">Billings Logs</h3>
                             </div>
                             <div class="card-body">
-                                <table id="table_bill_logs_text_center" class="data_table table table-responsive no-footer dtr-inline">
+                                <table class="data_table table table-responsive no-footer dtr-inline">
                                     <thead>
                                     <tr>
                                         <th class="table_logs_text_center">Bill Type</th>

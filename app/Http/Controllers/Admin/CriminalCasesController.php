@@ -44,6 +44,7 @@ use App\Models\SetupSection;
 use App\Models\SetupThana;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CriminalCasesController extends Controller
 {
@@ -105,7 +106,7 @@ class CriminalCasesController extends Controller
 
     public function save_criminal_cases(Request $request)
     {
-//        dd($request->all());
+        dd($request->all());
 
 //        $data = json_decode(json_encode($request->all()));
 //        echo "<pre>";print_r($data);die();
@@ -211,6 +212,7 @@ class CriminalCasesController extends Controller
                 $file = new CriminalCasesFile();
                 $file->case_id = $data->id;
                 $file->uploaded_document = $name;
+                $file->created_by = Auth::guard('admin')->user()->email;
                 $file->save();
             }
         }
@@ -361,6 +363,7 @@ class CriminalCasesController extends Controller
                 $file = new CriminalCasesFile();
                 $file->case_id = $data->id;
                 $file->uploaded_document = $name;
+                $file->created_by = Auth::guard('admin')->user()->email;
                 $file->save();
             }
         }
@@ -618,6 +621,17 @@ class CriminalCasesController extends Controller
         session()->flash('success', 'Case Status Updated Successfully');
         return redirect()->route('criminal-cases');
 
+    }
+
+    public function delete_criminal_cases_file($id)
+    {
+        $file = CriminalCasesFile::findOrFail($id);
+
+        unlink(public_path('/files/criminal_cases/' . $file->uploaded_document));
+
+        $file->delete();
+
+        return redirect()->back();
     }
 
 }

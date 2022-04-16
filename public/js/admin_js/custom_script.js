@@ -322,3 +322,31 @@ function retrive_after_search(id){
 
 
 
+var matchEnterdDate=0;
+//function to set back date opacity for non supported browsers
+window.onload =function(){
+    var input = document.createElement('input');
+    input.setAttribute('type','date');
+    input.setAttribute('value', 'some text');
+    if(input.value === "some text"){
+        allDates = document.getElementsByClassName("xDateContainer");
+        matchEnterdDate=1;
+        for (var i = 0; i < allDates.length; i++) {
+            allDates[i].style.opacity = "1";
+        }
+    }
+}
+//function to convert enterd date to any format
+function setCorrect(xObj,xTraget){
+    var date = new Date(xObj.value);
+    var month = date.getMonth();
+    var day = date.getDate();
+    var year = date.getFullYear();
+    if(month!='NaN'){
+        document.getElementById(xTraget).value=day+"/"+month+"/"+year;
+    }else{
+        if(matchEnterdDate==1){document.getElementById(xTraget).value=xObj.value;}
+    }
+}
+
+
