@@ -542,6 +542,41 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-day-notes/{id}','AdminSetupController@update_day_notes')->name('update-day-notes');
         Route::post('delete-day-notes/{id}','AdminSetupController@delete_day_notes')->name('delete-day-notes');
 
+        Route::get('in-favour-of', 'AdminSetupController@in_favour_of')->name('in-favour-of');
+        Route::get('add-in-favour-of','AdminSetupController@add_in_favour_of')->name('add-in-favour-of');
+        Route::post('save-in-favour-of','AdminSetupController@save_in_favour_of')->name('save-in-favour-of');
+        Route::get('edit-in-favour-of/{id}','AdminSetupController@edit_in_favour_of')->name('edit-in-favour-of');
+        Route::post('update-in-favour-of/{id}','AdminSetupController@update_in_favour_of')->name('update-in-favour-of');
+        Route::post('delete-in-favour-of/{id}','AdminSetupController@delete_in_favour_of')->name('delete-in-favour-of');
+
+        Route::get('referrer', 'AdminSetupController@referrer')->name('referrer');
+        Route::get('add-referrer','AdminSetupController@add_referrer')->name('add-referrer');
+        Route::post('save-referrer','AdminSetupController@save_referrer')->name('save-referrer');
+        Route::get('edit-referrer/{id}','AdminSetupController@edit_referrer')->name('edit-referrer');
+        Route::post('update-referrer/{id}','AdminSetupController@update_referrer')->name('update-referrer');
+        Route::post('delete-referrer/{id}','AdminSetupController@delete_referrer')->name('delete-referrer');
+
+        Route::get('party', 'AdminSetupController@party')->name('party');
+        Route::get('add-party','AdminSetupController@add_party')->name('add-party');
+        Route::post('save-party','AdminSetupController@save_party')->name('save-party');
+        Route::get('edit-party/{id}','AdminSetupController@edit_party')->name('edit-party');
+        Route::post('update-party/{id}','AdminSetupController@update_party')->name('update-party');
+        Route::post('delete-party/{id}','AdminSetupController@delete_party')->name('delete-party');
+
+        Route::get('client', 'AdminSetupController@client')->name('client');
+        Route::get('add-client','AdminSetupController@add_client')->name('add-client');
+        Route::post('save-client','AdminSetupController@save_client')->name('save-client');
+        Route::get('edit-client/{id}','AdminSetupController@edit_client')->name('edit-client');
+        Route::post('update-client/{id}','AdminSetupController@update_client')->name('update-client');
+        Route::post('delete-client/{id}','AdminSetupController@delete_client')->name('delete-client');
+
+        Route::get('profession', 'AdminSetupController@profession')->name('profession');
+        Route::get('add-profession','AdminSetupController@add_profession')->name('add-profession');
+        Route::post('save-profession','AdminSetupController@save_profession')->name('save-profession');
+        Route::get('edit-profession/{id}','AdminSetupController@edit_profession')->name('edit-profession');
+        Route::post('update-profession/{id}','AdminSetupController@update_profession')->name('update-profession');
+        Route::post('delete-profession/{id}','AdminSetupController@delete_profession')->name('delete-profession');
+
 
 
 

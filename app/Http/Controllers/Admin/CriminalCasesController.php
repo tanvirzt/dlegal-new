@@ -7,11 +7,13 @@ use App\Models\CriminalCase;
 use App\Models\CriminalCaseActivityLog;
 use App\Models\SetupAllegation;
 use App\Models\SetupCaseSubcategory;
+use App\Models\SetupClient;
 use App\Models\SetupClientCategory;
 use App\Models\SetupClientSubcategory;
 use App\Models\SetupCoordinator;
 use App\Models\SetupCourtProceeding;
 use App\Models\SetupDayNote;
+use App\Models\SetupInFavourOf;
 use App\Models\SetupLaw;
 use App\Models\SetupCourt;
 use App\Models\SetupDesignation;
@@ -23,9 +25,12 @@ use App\Models\SetupLegalService;
 use App\Models\SetupMatter;
 use App\Models\SetupMode;
 use App\Models\SetupNextDayPresence;
+use App\Models\SetupParty;
 use App\Models\SetupPersonTitle;
 use App\Models\SetupNextDateReason;
 use App\Models\SetupCourtLastOrder;
+use App\Models\SetupProfession;
+use App\Models\SetupReferrer;
 use App\Models\SetupRegion;
 use App\Models\SetupArea;
 use App\Models\SetupBranch;
@@ -100,8 +105,14 @@ class CriminalCasesController extends Controller
         $matter = SetupMatter::where('delete_status',0)->get();
         $coordinator = SetupCoordinator::where('delete_status',0)->get();
         $allegation = SetupAllegation::where('delete_status',0)->get();
+        $in_favour_of = SetupInFavourOf::where('delete_status',0)->get();
+        $mode = SetupMode::where('delete_status',0)->get();
+        $referrer = SetupReferrer::where('delete_status',0)->get();
+        $party = SetupParty::where('delete_status',0)->get();
+        $client = SetupClient::where('delete_status',0)->get();
+        $profession = SetupProfession::where('delete_status',0)->get();
 
-        return view('litigation_management.cases.criminal_cases.add_criminal_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council','client_category','section','section','next_day_presence','legal_issue','legal_service','matter','coordinator','allegation'));
+        return view('litigation_management.cases.criminal_cases.add_criminal_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council','client_category','section','section','next_day_presence','legal_issue','legal_service','matter','coordinator','allegation','in_favour_of','mode','referrer','party','client','profession'));
     }
 
     public function save_criminal_cases(Request $request)

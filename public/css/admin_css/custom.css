@@ -406,5 +406,20 @@ h3{
 
 .daynotes{
     padding-right: 80px;
+}
 
+.date_span{
+    position: relative;display: inline-block;border: 1px solid #a9a9a9;height: 26px;width: 318px;border-radius: 4px;
+}
+
+.date_first_input{
+    position: absolute; opacity: 0.0;height: 100%;width: 100%;
+}
+
+.date_second_input{
+    border: none;height: 90%;padding-left: 9px;
+}
+
+.date_second_span{
+    display: inline-block;width: 16px;z-index: 2;float: right;padding-top: 3px;color: #55555ead;
 }

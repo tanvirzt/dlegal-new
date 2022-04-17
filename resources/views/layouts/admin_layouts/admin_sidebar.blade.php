@@ -260,6 +260,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('law') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Law</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('court-proceeding') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Court Proceeding</p>
@@ -269,6 +275,36 @@
                                     <a href="{{ route('day-notes') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Day Notes</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('in-favour-of') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>In favour of</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('referrer') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Referrer</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('party') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Party</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('client') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Client</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('profession') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Profession</p>
                                     </a>
                                 </li>
 
@@ -328,12 +364,7 @@
                                 <p>Compliance Type</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('law') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Law</p>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

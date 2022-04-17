@@ -205,8 +205,9 @@
                                                                             <label for="next_date" class="col-sm-4 col-form-label"> Next
                                                                                 Date </label>
                                                                             <div class="col-sm-8">
-                                                                                <input type="date" class="form-control" id="next_date"
-                                                                                       name="next_date" value="{{ $data->next_date }}">
+                                                                                <span class="date_span">
+                                                        <input type="date" class="xDateContainer date_first_input" onchange="setCorrect(this,'date_of_witness_to');"><input type="text" id="date_of_witness_to" name="date_of_witness_to" value="{{ $data->date_of_witness_to }}" class="date_second_input" tabindex="-1"><span class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
                                                                                 @error('next_date')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>

@@ -8,6 +8,7 @@ use App\Models\SetupCaseClass;
 use App\Models\SetupCaseStatus;
 use App\Models\SetupCaseSubcategory;
 use App\Models\SetupCaseTypes;
+use App\Models\SetupClient;
 use App\Models\SetupClientCategory;
 use App\Models\SetupClientSubcategory;
 use App\Models\SetupComplianceCategory;
@@ -16,12 +17,16 @@ use App\Models\SetupCourtClass;
 use App\Models\SetupCourtProceeding;
 use App\Models\SetupDayNote;
 use App\Models\SetupDesignation;
+use App\Models\SetupInFavourOf;
 use App\Models\SetupLegalIssue;
 use App\Models\SetupLegalService;
 use App\Models\SetupMatter;
 use App\Models\SetupMode;
 use App\Models\SetupNextDayPresence;
+use App\Models\SetupParty;
+use App\Models\SetupProfession;
 use App\Models\SetupPropertyType;
+use App\Models\SetupReferrer;
 use App\Models\SetupSection;
 use Illuminate\Http\Request;
 use App\Models\SetupPersonTitle;
@@ -4047,6 +4052,404 @@ public function find_case_category(Request $request)
         $data->save();
 
         session()->flash('success','Day Notes Deleted Successfully');
+        return redirect()->back();
+    }
+
+
+    //in_favour_of
+
+    public function in_favour_of()
+    {
+        $data = SetupInFavourOf::all();
+        return view('setup.in_favour_of.in_favour_of',compact('data'));
+    }
+
+    public function add_in_favour_of()
+    {
+        return view('setup.in_favour_of.add_in_favour_of');
+    }
+
+    public function save_in_favour_of(Request $request)
+    {
+        $rules = [
+            'in_favour_of_name' => 'required'
+        ];
+
+        $validMsg = [
+            'in_favour_of_name.required' => 'In favour of field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $in_favour_of = new SetupInFavourOf();
+        $in_favour_of->in_favour_of_name = $request->in_favour_of_name;
+        $in_favour_of->save();
+
+        session()->flash('success','In favour of Added Successfully.');
+        return redirect()->route('in-favour-of');
+    }
+
+    public function edit_in_favour_of($id)
+    {
+        $data = SetupInFavourOf::find($id);
+        return view('setup.in_favour_of.edit_in_favour_of',compact('data'));
+    }
+
+    public function update_in_favour_of(Request $request, $id)
+    {
+        $rules = [
+            'in_favour_of_name' => 'required'
+        ];
+
+        $validMsg = [
+            'in_favour_of_name.required' => 'In favour of field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $in_favour_of = SetupInFavourOf::find($id);
+        $in_favour_of->in_favour_of_name = $request->in_favour_of_name;
+        $in_favour_of->save();
+
+        session()->flash('success', 'In favour of Updated Successfully.');
+
+        return redirect()->route('in-favour-of');
+    }
+
+    public function delete_in_favour_of($id)
+    {
+        $data = SetupInFavourOf::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','In favour of Deleted Successfully');
+        return redirect()->back();
+    }
+
+
+    //referrer
+
+    public function referrer()
+    {
+        $data = SetupReferrer::all();
+        return view('setup.referrer.referrer',compact('data'));
+    }
+
+    public function add_referrer()
+    {
+        return view('setup.referrer.add_referrer');
+    }
+
+    public function save_referrer(Request $request)
+    {
+        $rules = [
+            'referrer_name' => 'required'
+        ];
+
+        $validMsg = [
+            'referrer_name.required' => 'Referrer field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $referrer = new SetupReferrer();
+        $referrer->referrer_name = $request->referrer_name;
+        $referrer->referrer_mobile = $request->referrer_mobile;
+        $referrer->referrer_email = $request->referrer_email;
+        $referrer->referrer_address = $request->referrer_address;
+        $referrer->save();
+
+        session()->flash('success','Referrer Added Successfully.');
+        return redirect()->route('referrer');
+    }
+
+    public function edit_referrer($id)
+    {
+        $data = SetupReferrer::find($id);
+        return view('setup.referrer.edit_referrer',compact('data'));
+    }
+
+    public function update_referrer(Request $request, $id)
+    {
+        $rules = [
+            'referrer_name' => 'required'
+        ];
+
+        $validMsg = [
+            'referrer_name.required' => 'Referrer field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $referrer = SetupReferrer::find($id);
+        $referrer->referrer_name = $request->referrer_name;
+        $referrer->referrer_mobile = $request->referrer_mobile;
+        $referrer->referrer_email = $request->referrer_email;
+        $referrer->referrer_address = $request->referrer_address;
+        $referrer->save();
+
+        session()->flash('success', 'Referrer Updated Successfully.');
+
+        return redirect()->route('referrer');
+    }
+
+    public function delete_referrer($id)
+    {
+        $data = SetupReferrer::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Referrer Deleted Successfully');
+        return redirect()->back();
+    }
+
+
+    //party
+
+    public function party()
+    {
+        $data = SetupParty::all();
+        return view('setup.parties.party',compact('data'));
+    }
+
+    public function add_party()
+    {
+        return view('setup.parties.add_party');
+    }
+
+    public function save_party(Request $request)
+    {
+        $rules = [
+            'party_name' => 'required'
+        ];
+
+        $validMsg = [
+            'party_name.required' => 'Party field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $party = new SetupParty();
+        $party->party_name = $request->party_name;
+        $party->save();
+
+        session()->flash('success','Party Added Successfully.');
+        return redirect()->route('party');
+    }
+
+    public function edit_party($id)
+    {
+        $data = SetupParty::find($id);
+        return view('setup.parties.edit_party',compact('data'));
+    }
+
+    public function update_party(Request $request, $id)
+    {
+        $rules = [
+            'party_name' => 'required'
+        ];
+
+        $validMsg = [
+            'party_name.required' => 'Party field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $party = SetupParty::find($id);
+        $party->party_name = $request->party_name;
+        $party->save();
+
+        session()->flash('success', 'Party Updated Successfully.');
+
+        return redirect()->route('party');
+    }
+
+    public function delete_party($id)
+    {
+        $data = SetupParty::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Party Deleted Successfully');
+        return redirect()->back();
+    }
+
+
+    //client
+
+    public function client()
+    {
+        $data = SetupClient::all();
+        return view('setup.client.client',compact('data'));
+    }
+
+    public function add_client()
+    {
+        return view('setup.client.add_client');
+    }
+
+    public function save_client(Request $request)
+    {
+        $rules = [
+            'client_name' => 'required'
+        ];
+
+        $validMsg = [
+            'client_name.required' => 'Client field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $client = new SetupClient();
+        $client->client_name = $request->client_name;
+        $client->client_mobile = $request->client_mobile;
+        $client->client_email = $request->client_email;
+        $client->client_address = $request->client_address;
+        $client->save();
+
+        session()->flash('success','Client Added Successfully.');
+        return redirect()->route('client');
+    }
+
+    public function edit_client($id)
+    {
+        $data = SetupClient::find($id);
+        return view('setup.client.edit_client',compact('data'));
+    }
+
+    public function update_client(Request $request, $id)
+    {
+        $rules = [
+            'client_name' => 'required'
+        ];
+
+        $validMsg = [
+            'client_name.required' => 'Client field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $client = SetupClient::find($id);
+        $client->client_name = $request->client_name;
+        $client->client_mobile = $request->client_mobile;
+        $client->client_email = $request->client_email;
+        $client->client_address = $request->client_address;
+        $client->save();
+
+        session()->flash('success', 'Client Updated Successfully.');
+
+        return redirect()->route('client');
+    }
+
+    public function delete_client($id)
+    {
+        $data = SetupClient::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Referrer Deleted Successfully');
+        return redirect()->back();
+    }
+
+
+
+    //profession
+
+    public function profession()
+    {
+        $data = SetupProfession::all();
+        return view('setup.profession.profession',compact('data'));
+    }
+
+    public function add_profession()
+    {
+        return view('setup.profession.add_profession');
+    }
+
+    public function save_profession(Request $request)
+    {
+        $rules = [
+            'profession_name' => 'required'
+        ];
+
+        $validMsg = [
+            'profession_name.required' => 'Profession field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $profession = new SetupProfession();
+        $profession->profession_name = $request->profession_name;
+        $profession->save();
+
+        session()->flash('success','Profession Added Successfully.');
+        return redirect()->route('profession');
+    }
+
+    public function edit_profession($id)
+    {
+        $data = SetupProfession::find($id);
+        return view('setup.profession.edit_profession',compact('data'));
+    }
+
+    public function update_profession(Request $request, $id)
+    {
+        $rules = [
+            'profession_name' => 'required'
+        ];
+
+        $validMsg = [
+            'profession_name.required' => 'Profession field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $profession = SetupProfession::find($id);
+        $profession->profession_name = $request->profession_name;
+        $profession->save();
+
+        session()->flash('success', 'Profession Updated Successfully.');
+
+        return redirect()->route('profession');
+    }
+
+    public function delete_profession($id)
+    {
+        $data = SetupProfession::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Profession Deleted Successfully');
         return redirect()->back();
     }
 

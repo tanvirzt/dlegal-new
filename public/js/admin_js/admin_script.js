@@ -214,6 +214,14 @@ $(document).ready(function () {
         $(this).parents(".hdtuto_assigned_lawyer").remove();
     });
 
+    $(".btn_success_client").click(function () {
+        var lsthmtl_client = $(".clone_client").html();
+        $(".increment_client").after(lsthmtl_client);
+    });
+    $("body").on("click", ".btn_danger_client", function () {
+        $(this).parents(".hdtuto_client").remove();
+    });
+
 
     $('#division_id').on('change', function () {
         var div_id = $(this).val();
