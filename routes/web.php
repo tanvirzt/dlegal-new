@@ -577,6 +577,26 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-profession/{id}','AdminSetupController@update_profession')->name('update-profession');
         Route::post('delete-profession/{id}','AdminSetupController@delete_profession')->name('delete-profession');
 
+        Route::get('documents-setup', 'AdminSetupController@documents')->name('documents-setup');
+        Route::get('add-documents-setup','AdminSetupController@add_documents')->name('add-documents-setup');
+        Route::post('save-documents-setup','AdminSetupController@save_documents')->name('save-documents-setup');
+        Route::get('edit-documents-setup/{id}','AdminSetupController@edit_documents')->name('edit-documents-setup');
+        Route::post('update-documents-setup/{id}','AdminSetupController@update_documents')->name('update-documents-setup');
+        Route::post('delete-documents-setup/{id}','AdminSetupController@delete_documents')->name('delete-documents-setup');
+
+        Route::get('case-title', 'AdminSetupController@case_title')->name('case-title');
+        Route::get('add-case-title','AdminSetupController@add_case_title')->name('add-case-title');
+        Route::post('save-case-title','AdminSetupController@save_case_title')->name('save-case-title');
+        Route::get('edit-case-title/{id}','AdminSetupController@edit_case_title')->name('edit-case-title');
+        Route::post('update-case-title/{id}','AdminSetupController@update_case_title')->name('update-case-title');
+        Route::post('delete-case-title/{id}','AdminSetupController@delete_case_title')->name('delete-case-title');
+
+        Route::get('opposition', 'AdminSetupController@opposition')->name('opposition');
+        Route::get('add-opposition','AdminSetupController@add_opposition')->name('add-opposition');
+        Route::post('save-opposition','AdminSetupController@save_opposition')->name('save-opposition');
+        Route::get('edit-opposition/{id}','AdminSetupController@edit_opposition')->name('edit-opposition');
+        Route::post('update-opposition/{id}','AdminSetupController@update_opposition')->name('update-opposition');
+        Route::post('delete-opposition/{id}','AdminSetupController@delete_opposition')->name('delete-opposition');
 
 
 

@@ -222,6 +222,22 @@ $(document).ready(function () {
         $(this).parents(".hdtuto_client").remove();
     });
 
+    $(".btn_success_opposition").click(function () {
+        var lsthmtl_opposition = $(".clone_opposition").html();
+        $(".increment_opposition").after(lsthmtl_opposition);
+    });
+    $("body").on("click", ".btn_danger_opposition", function () {
+        $(this).parents(".hdtuto_opposition").remove();
+    });
+
+    $(".btn_success_case_infos_sub_seq_case_no").click(function () {
+        var lsthmtl_case_infos_sub_seq_case_no = $(".clone_case_infos_sub_seq_case_no").html();
+        $(".increment_case_infos_sub_seq_case_no").after(lsthmtl_case_infos_sub_seq_case_no);
+    });
+    $("body").on("click", ".btn_danger_case_infos_sub_seq_case_no", function () {
+        $(this).parents(".hdtuto_case_infos_sub_seq_case_no").remove();
+    });
+
 
     $('#division_id').on('change', function () {
         var div_id = $(this).val();
@@ -1500,6 +1516,107 @@ $(document).ready(function () {
             $('#revision_case_subcategory_id').append('<option value="">Select</option>');
         }
     });
+
+
+
+    $('#opposition_division_id').on('change', function () {
+        var div_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if (div_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", div_id: div_id},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#opposition_district_id').empty();
+                        $('#opposition_district_id').focus;
+                        $('#opposition_district_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="opposition_district_id"]').append('<option value="' + value.id + '">' + value.district_name + '</option>');
+                        });
+                    } else {
+                        $('#opposition_district_id').empty();
+                    }
+                }
+            });
+        } else {
+            $('#opposition_district_id').empty();
+            $('#opposition_district_id').append('<option value="">Select</option>');
+        }
+    });
+
+    $('#opposition_district_id').on('change', function () {
+        var district_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if (district_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", district_id: district_id},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#opposition_thana_id').empty();
+                        $('#opposition_thana_id').focus;
+                        $('#opposition_thana_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="opposition_thana_id"]').append('<option value="' + value.id + '">' + value.thana_name + '</option>');
+                        });
+                    } else {
+                        $('#opposition_thana_id').empty();
+                    }
+                }
+            });
+        } else {
+            $('#opposition_thana_id').empty();
+            $('#opposition_thana_id').append('<option value="">Select</option>');
+
+        }
+    });
+
+
+
+
+    $('#opposition_category_id').on('change', function () {
+        var client_category_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if (client_category_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", client_category_id: client_category_id},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#opposition_subcategory_id').empty();
+                        $('#opposition_subcategory_id').focus;
+                        $('#opposition_subcategory_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="opposition_subcategory_id"]').append('<option value="' + value.id + '">' + value.client_subcategory_name + '</option>');
+                        });
+                    } else {
+                        $('#opposition_subcategory_id').empty();
+                    }
+                }
+            });
+        } else {
+            $('#opposition_subcategory_id').empty();
+            $('#opposition_subcategory_id').append('<option value="">Select</option>');
+        }
+    });
+
+
+
+
+
 
 
 });

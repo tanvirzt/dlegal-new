@@ -7,6 +7,7 @@ use App\Models\SetupCaseCategory;
 use App\Models\SetupCaseClass;
 use App\Models\SetupCaseStatus;
 use App\Models\SetupCaseSubcategory;
+use App\Models\SetupCaseTitle;
 use App\Models\SetupCaseTypes;
 use App\Models\SetupClient;
 use App\Models\SetupClientCategory;
@@ -17,12 +18,14 @@ use App\Models\SetupCourtClass;
 use App\Models\SetupCourtProceeding;
 use App\Models\SetupDayNote;
 use App\Models\SetupDesignation;
+use App\Models\SetupDocument;
 use App\Models\SetupInFavourOf;
 use App\Models\SetupLegalIssue;
 use App\Models\SetupLegalService;
 use App\Models\SetupMatter;
 use App\Models\SetupMode;
 use App\Models\SetupNextDayPresence;
+use App\Models\SetupOpposition;
 use App\Models\SetupParty;
 use App\Models\SetupProfession;
 use App\Models\SetupPropertyType;
@@ -4450,6 +4453,246 @@ public function find_case_category(Request $request)
         $data->save();
 
         session()->flash('success','Profession Deleted Successfully');
+        return redirect()->back();
+    }
+
+
+
+    //documents
+
+    public function documents()
+    {
+        $data = SetupDocument::all();
+        return view('setup.documents.documents',compact('data'));
+    }
+
+    public function add_documents()
+    {
+        return view('setup.documents.add_documents');
+    }
+
+    public function save_documents(Request $request)
+    {
+        $rules = [
+            'documents_name' => 'required'
+        ];
+
+        $validMsg = [
+            'documents_name.required' => 'Document field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $documents = new SetupDocument();
+        $documents->documents_name = $request->documents_name;
+        $documents->save();
+
+        session()->flash('success','Document Added Successfully.');
+        return redirect()->route('documents-setup');
+    }
+
+    public function edit_documents($id)
+    {
+        $data = SetupDocument::find($id);
+        return view('setup.documents.edit_documents',compact('data'));
+    }
+
+    public function update_documents(Request $request, $id)
+    {
+        $rules = [
+            'documents_name' => 'required'
+        ];
+
+        $validMsg = [
+            'documents_name.required' => 'Document field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $documents = SetupDocument::find($id);
+        $documents->documents_name = $request->documents_name;
+        $documents->save();
+
+        session()->flash('success', 'Document Updated Successfully.');
+
+        return redirect()->route('documents-setup');
+    }
+
+    public function delete_documents($id)
+    {
+        $data = SetupDocument::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Document Deleted Successfully');
+        return redirect()->back();
+    }
+
+
+    //case_title
+
+    public function case_title()
+    {
+        $data = SetupCaseTitle::all();
+        return view('setup.case_title.case_title',compact('data'));
+    }
+
+    public function add_case_title()
+    {
+        return view('setup.case_title.add_case_title');
+    }
+
+    public function save_case_title(Request $request)
+    {
+        $rules = [
+            'case_title_name' => 'required'
+        ];
+
+        $validMsg = [
+            'case_title_name.required' => 'Case Title field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $case_title = new SetupCaseTitle();
+        $case_title->case_title_name = $request->case_title_name;
+        $case_title->save();
+
+        session()->flash('success','Case Title Added Successfully.');
+        return redirect()->route('case-title');
+    }
+
+    public function edit_case_title($id)
+    {
+        $data = SetupCaseTitle::find($id);
+        return view('setup.case_title.edit_case_title',compact('data'));
+    }
+
+    public function update_case_title(Request $request, $id)
+    {
+        $rules = [
+            'case_title_name' => 'required'
+        ];
+
+        $validMsg = [
+            'case_title_name.required' => 'Case Title field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $case_title = SetupCaseTitle::find($id);
+        $case_title->case_title_name = $request->case_title_name;
+        $case_title->save();
+
+        session()->flash('success', 'Case Title Updated Successfully.');
+
+        return redirect()->route('case-title');
+    }
+
+    public function delete_case_title($id)
+    {
+        $data = SetupCaseTitle::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Case Title Deleted Successfully');
+        return redirect()->back();
+    }
+
+
+
+
+    //opposition
+
+    public function opposition()
+    {
+        $data = SetupOpposition::all();
+        return view('setup.opposition.opposition',compact('data'));
+    }
+
+    public function add_opposition()
+    {
+        return view('setup.opposition.add_opposition');
+    }
+
+    public function save_opposition(Request $request)
+    {
+        $rules = [
+            'opposition_name' => 'required'
+        ];
+
+        $validMsg = [
+            'opposition_name.required' => 'Opposition field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $opposition = new SetupOpposition();
+        $opposition->opposition_name = $request->opposition_name;
+        $opposition->opposition_mobile = $request->opposition_mobile;
+        $opposition->opposition_email = $request->opposition_email;
+        $opposition->opposition_address = $request->opposition_address;
+        $opposition->save();
+
+        session()->flash('success','Opposition Added Successfully.');
+        return redirect()->route('opposition');
+    }
+
+    public function edit_opposition($id)
+    {
+        $data = SetupOpposition::find($id);
+        return view('setup.opposition.edit_opposition',compact('data'));
+    }
+
+    public function update_opposition(Request $request, $id)
+    {
+        $rules = [
+            'opposition_name' => 'required'
+        ];
+
+        $validMsg = [
+            'opposition_name.required' => 'Opposition field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $opposition = SetupOpposition::find($id);
+        $opposition->opposition_name = $request->opposition_name;
+        $opposition->opposition_mobile = $request->opposition_mobile;
+        $opposition->opposition_email = $request->opposition_email;
+        $opposition->opposition_address = $request->opposition_address;
+        $opposition->save();
+
+        session()->flash('success', 'Opposition Updated Successfully.');
+
+        return redirect()->route('opposition');
+    }
+
+    public function delete_opposition($id)
+    {
+        $data = SetupOpposition::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Opposition Deleted Successfully');
         return redirect()->back();
     }
 

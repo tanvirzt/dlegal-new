@@ -307,6 +307,24 @@
                                         <p>Profession</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('documents-setup') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Documents</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('case-title') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Case Title</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('opposition') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Opposition</p>
+                                    </a>
+                                </li>
 
 
                             </ul>

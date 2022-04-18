@@ -43,25 +43,6 @@
                         <div class="card-header">
                             <h3 class="card-title"> Add Criminal Cases </h3>
 
-
-                            {{--                        <div class="text-center mr-md-5">--}}
-                            {{--                            <div class="custom-control custom-radio custom-control-inline">--}}
-                            {{--                                <input type="checkbox" class="custom-control-input" id="original_case"--}}
-                            {{--                                       name="original_case" value="Appeal Case">--}}
-                            {{--                                <label class="custom-control-label" for="original_case">Original Case</label>--}}
-                            {{--                            </div>--}}
-                            {{--                            <div class="custom-control custom-radio custom-control-inline">--}}
-                            {{--                                <input type="checkbox" class="custom-control-input" id="appeal_case"--}}
-                            {{--                                       name="appeal_case" value="Appeal Case">--}}
-                            {{--                                <label class="custom-control-label" for="appeal_case">Appeal Case</label>--}}
-                            {{--                            </div>--}}
-                            {{--                            <div class="custom-control custom-radio custom-control-inline">--}}
-                            {{--                                <input type="checkbox" class="custom-control-input" id="revision_case"--}}
-                            {{--                                       name="revision_case" value="Revision Case">--}}
-                            {{--                                <label class="custom-control-label" for="revision_case">Revision--}}
-                            {{--                                    Case</label>--}}
-                            {{--                            </div>--}}
-                            {{--                        </div>--}}
                         </div>
 
                         <div class="card-body">
@@ -102,10 +83,10 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <input type="text" class="form-control"
-                                                                       id="legal_issue"
-                                                                       name="legal_issue"
+                                                                       id="legal_issue_write"
+                                                                       name="legal_issue_write"
                                                                        placeholder="Legal Issue"
-                                                                       value="{{ old('legal_issue') }}">
+                                                                       value="{{ old('legal_issue_write') }}">
                                                             </div>
                                                         </div>
 
@@ -131,10 +112,10 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <input type="text" class="form-control"
-                                                                       id="legal_service"
-                                                                       name="legal_service"
+                                                                       id="legal_service_write"
+                                                                       name="legal_service_write"
                                                                        placeholder="Legal Service"
-                                                                       value="{{ old('legal_service') }}">
+                                                                       value="{{ old('legal_service_write') }}">
                                                             </div>
                                                         </div>
 
@@ -222,9 +203,6 @@
                                                                                                            tabindex="-1"><span
                                                             class="date_second_span" tabindex="-1">&#9660;</span>
                                                     </span>
-
-                                                        {{--                                                    <input type="date" class="form-control" id="next_date"--}}
-                                                        {{--                                                           name="next_date" value="{{old('next_date')}}">--}}
                                                         @error('next_date')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
@@ -301,10 +279,10 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <input type="text" class="form-control"
-                                                                       id="referrer"
-                                                                       name="referrer"
+                                                                       id="referrer_write"
+                                                                       name="referrer_write"
                                                                        placeholder="Referrer"
-                                                                       value="{{ old('referrer') }}">
+                                                                       value="{{ old('referrer_write') }}">
                                                             </div>
                                                         </div>
                                                         @error('contact_person_name')<span
@@ -411,7 +389,7 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="input-group hdtuto_client control-group increment_client">
-                                                                    <input type="text" name="client_name[]"
+                                                                    <input type="text" name="client_name_write[]"
                                                                            class="myfrm form-control col-12" placeholder="Client Name">
                                                                     <div class="input-group-btn">
                                                                         <button class="btn btn-success btn_success_client"
@@ -423,7 +401,7 @@
                                                                 <div class="clone_client hide">
                                                                     <div class="hdtuto_client control-group lst input-group"
                                                                          style="margin-top:10px">
-                                                                        <input type="text" name="client_name[]"
+                                                                        <input type="text" name="client_name_write[]"
                                                                                class="myfrm form-control col-12">
                                                                         <div class="input-group-btn">
                                                                             <button class="btn btn-danger btn_danger_client"
@@ -477,19 +455,32 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="profession_id"
+                                                    <label for="client_profession_id"
                                                            class="col-sm-4 col-form-label">Profession/Type</label>
                                                     <div class="col-sm-8">
-                                                        <select name="profession_id"
-                                                                class="form-control select2"
-                                                                id="profession_id">
-                                                            <option value="">Select</option>
-                                                            @foreach ($profession as $item)
-                                                                <option
-                                                                    value="{{ $item->id }}" {{(old('profession_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->profession_name) }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('profession_id')<span
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="client_profession_id"
+                                                                        class="form-control select2"
+                                                                        id="client_profession_id">
+                                                                    <option value="">Select</option>
+                                                                    @foreach ($profession as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{(old('client_profession_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->profession_name) }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="client_profession_write"
+                                                                       name="client_profession_write"
+                                                                       placeholder="Profession Name"
+                                                                       value="{{ old('client_profession_write') }}">
+                                                            </div>
+                                                        </div>
+
+                                                        @error('client_profession_id')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
@@ -511,10 +502,10 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <input type="text" class="form-control"
-                                                                       id="client_divisoin"
-                                                                       name="client_divisoin"
+                                                                       id="client_divisoin_write"
+                                                                       name="client_divisoin_write"
                                                                        placeholder="Client Division"
-                                                                       value="{{ old('client_divisoin') }}">
+                                                                       value="{{ old('client_divisoin_write') }}">
                                                             </div>
                                                         </div>
                                                         @error('client_division_id')<span
@@ -537,10 +528,10 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <input type="text" class="form-control"
-                                                                       id="client_district"
-                                                                       name="client_district"
+                                                                       id="client_district_write"
+                                                                       name="client_district_write"
                                                                        placeholder="Client District"
-                                                                       value="{{ old('client_district') }}">
+                                                                       value="{{ old('client_district_write') }}">
                                                             </div>
                                                         </div>
 
@@ -563,10 +554,10 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <input type="text" class="form-control"
-                                                                       id="client_thana"
-                                                                       name="client_thana"
+                                                                       id="client_thana_write"
+                                                                       name="client_thana_write"
                                                                        placeholder="Client Thana"
-                                                                       value="{{ old('client_thana') }}">
+                                                                       value="{{ old('client_thana_write') }}">
                                                             </div>
                                                         </div>
                                                         @error('client_thana_id')<span
@@ -574,62 +565,62 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="representative_name" class="col-sm-4 col-form-label">Representative Name</label>
+                                                    <label for="client_representative_name" class="col-sm-4 col-form-label">Representative Name</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="representative_name"
-                                                               name="representative_name"
-                                                               value="{{old('representative_name')}}">
-                                                        @error('representative_name')<span
+                                                        <input type="text" class="form-control" id="client_representative_name"
+                                                               name="client_representative_name"
+                                                               value="{{old('client_representative_name')}}">
+                                                        @error('client_representative_name')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="representative_details"
+                                                    <label for="client_representative_details"
                                                            class="col-sm-4 col-form-label"> Representative Details </label>
                                                     <div class="col-sm-8">
-                                                    <textarea name="representative_details" class="form-control"
+                                                    <textarea name="client_representative_details" class="form-control"
                                                               rows="3"
-                                                              placeholder="">{{old('representative_details')}}</textarea>
-                                                        @error('representative_details')<span
+                                                              placeholder="">{{old('client_representative_details')}}</textarea>
+                                                        @error('client_representative_details')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="coordinator_tadbirkar_id"
+                                                    <label for="client_coordinator_tadbirkar_id"
                                                            class="col-sm-4 col-form-label"> Coordinator/Tadbirkar </label>
                                                     <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <select name="coordinator_tadbirkar_id"
-                                                                        id="coordinator_tadbirkar_id"
+                                                                <select name="client_coordinator_tadbirkar_id"
+                                                                        id="client_coordinator_tadbirkar_id"
                                                                         class="form-control select2">
                                                                     <option value="">Select</option>
                                                                     @foreach($coordinator as $item)
                                                                         <option
-                                                                            value="{{ $item->id }}" {{ old('coordinator_tadbirkar_id') == $item->id ? 'selected' : '' }}>{{ $item->coordinator_name }}</option>
+                                                                            value="{{ $item->id }}" {{ old('client_coordinator_tadbirkar_id') == $item->id ? 'selected' : '' }}>{{ $item->coordinator_name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <input type="text" class="form-control"
-                                                                       id="coordinator_tadbirkar_name"
-                                                                       name="coordinator_tadbirkar_name"
+                                                                       id="coordinator_tadbirkar_write"
+                                                                       name="coordinator_tadbirkar_write"
                                                                        placeholder="Tadbirkar Name"
-                                                                       value="{{old('coordinator_tadbirkar_name')}}">
+                                                                       value="{{old('coordinator_tadbirkar_write')}}">
                                                             </div>
                                                         </div>
-                                                        @error('coordinator_tadbirkar_id')<span
+                                                        @error('coordinator_tadbirkar_write')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="coordinator_details"
+                                                    <label for="client_coordinator_details"
                                                            class="col-sm-4 col-form-label"> Coordinator Details </label>
                                                     <div class="col-sm-8">
-                                                    <textarea name="coordinator_details" class="form-control"
+                                                    <textarea name="client_coordinator_details" class="form-control"
                                                               rows="3"
-                                                              placeholder="">{{old('coordinator_details')}}</textarea>
-                                                        @error('coordinator_details')<span
+                                                              placeholder="">{{old('client_coordinator_details')}}</textarea>
+                                                        @error('client_coordinator_details')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
@@ -691,40 +682,40 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="client_id" class="col-sm-4 col-form-label">Opposition
+                                                    <label for="opposition_id" class="col-sm-4 col-form-label">Opposition
                                                         Name</label>
                                                     <div class="col-sm-8">
 
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <select name="client_id[]"
-                                                                        id="client_id"
+                                                                <select name="opposition_id[]"
+                                                                        id="opposition_id"
                                                                         class="form-control select2" multiple>
                                                                     <option value="">Select</option>
-                                                                    @foreach($client as $item)
+                                                                    @foreach($opposition as $item)
                                                                         <option
-                                                                            value="{{ $item->id }}" {{  old('client_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
+                                                                            value="{{ $item->id }}" {{  old('opposition_id') == $item->id ? 'selected' : '' }}>{{ $item->opposition_name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <div class="input-group hdtuto_client control-group increment_client">
-                                                                    <input type="text" name="client_name[]"
+                                                                <div class="input-group hdtuto_opposition control-group increment_opposition">
+                                                                    <input type="text" name="opposition_write[]"
                                                                            class="myfrm form-control col-12" placeholder="Client Name">
                                                                     <div class="input-group-btn">
-                                                                        <button class="btn btn-success btn_success_client"
+                                                                        <button class="btn btn-success btn_success_opposition"
                                                                                 type="button"><i
                                                                                 class="fldemo glyphicon glyphicon-plus"></i>+
                                                                         </button>
                                                                     </div>
                                                                 </div>
-                                                                <div class="clone_client hide">
-                                                                    <div class="hdtuto_client control-group lst input-group"
+                                                                <div class="clone_opposition hide">
+                                                                    <div class="hdtuto_opposition control-group lst input-group"
                                                                          style="margin-top:10px">
-                                                                        <input type="text" name="client_name[]"
+                                                                        <input type="text" name="opposition_write[]"
                                                                                class="myfrm form-control col-12">
                                                                         <div class="input-group-btn">
-                                                                            <button class="btn btn-danger btn_danger_client"
+                                                                            <button class="btn btn-danger btn_danger_opposition"
                                                                                     type="button"><i
                                                                                     class="fldemo glyphicon glyphicon-remove"></i> -
                                                                             </button>
@@ -741,41 +732,218 @@
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h6 class="text-uppercase text-bold"><u> Documents
-                                                        Information </u></h6>
                                                 <div class="form-group row">
-                                                    <label for="received_documents"
-                                                           class="col-sm-4 col-form-label">
-                                                        Received Documents </label>
+                                                    <label for="opposition_address" class="col-sm-4 col-form-label">
+                                                        Opposition
+                                                        Address </label>
                                                     <div class="col-sm-8">
-                                                    <textarea name="received_documents" class="form-control" rows="3"
-                                                              placeholder="">{{old('received_documents')}}</textarea>
-                                                        @error('received_documents')<span
+                                                    <textarea name="opposition_address" class="form-control" rows="3"
+                                                              placeholder="">{{old('opposition_address')}}</textarea>
+                                                        @error('opposition_address')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="required_wanting_documents"
-                                                           class="col-sm-4 col-form-label"> Required/Wanting
-                                                        Documents </label>
+                                                    <label for="opposition_mobile" class="col-sm-4 col-form-label">Opposition
+                                                        Mobile</label>
                                                     <div class="col-sm-8">
-                                                    <textarea name="required_wanting_documents" class="form-control"
+                                                        <input type="text" class="form-control" id="opposition_mobile"
+                                                               name="opposition_mobile"
+                                                               value="{{old('opposition_mobile')}}">
+                                                        @error('opposition_mobile')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="opposition_email" class="col-sm-4 col-form-label">Opposition
+                                                        Email</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="opposition_email"
+                                                               name="opposition_email"
+                                                               value="{{old('opposition_email')}}">
+                                                        @error('opposition_email')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="opposition_profession_id"
+                                                           class="col-sm-4 col-form-label">Profession/Type</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="opposition_profession_id"
+                                                                        class="form-control select2"
+                                                                        id="opposition_profession_id">
+                                                                    <option value="">Select</option>
+                                                                    @foreach ($profession as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{(old('opposition_profession_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->profession_name) }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="opposition_profession_write"
+                                                                       name="opposition_profession_write"
+                                                                       placeholder="Profession Name"
+                                                                       value="{{ old('opposition_profession_write') }}">
+                                                            </div>
+                                                        </div>
+                                                        @error('opposition_profession_write')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="opposition_division_id"
+                                                           class="col-sm-4 col-form-label">Zone/Division</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="opposition_division_id"
+                                                                        id="opposition_division_id"
+                                                                        class="form-control select2" action="{{ route('find_district') }}">
+                                                                    <option value="">Select</option>
+                                                                    @foreach ($division as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{(old('opposition_division_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->division_name) }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="opposition_divisoin_write"
+                                                                       name="opposition_divisoin_write"
+                                                                       placeholder="Opposition Division"
+                                                                       value="{{ old('opposition_divisoin_write') }}">
+                                                            </div>
+                                                        </div>
+                                                        @error('opposition_divisoin_write')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="opposition_district_id"
+                                                           class="col-sm-4 col-form-label">Area/District</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="opposition_district_id"
+                                                                        id="opposition_district_id"
+                                                                        class="form-control select2" action="{{ route('find-thana') }}">
+                                                                    <option value="">Select</option>
+
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="opposition_district_write"
+                                                                       name="opposition_district_write"
+                                                                       placeholder="Opposition District"
+                                                                       value="{{ old('opposition_district_write') }}">
+                                                            </div>
+                                                        </div>
+
+                                                        @error('opposition_district_write')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="opposition_thana_id"
+                                                           class="col-sm-4 col-form-label">Branch/Thana</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="opposition_thana_id"
+                                                                        id="opposition_thana_id"
+                                                                        class="form-control select2">
+                                                                    <option value="">Select</option>
+
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="opposition_thana_write"
+                                                                       name="opposition_thana_write"
+                                                                       placeholder="Opposition Thana"
+                                                                       value="{{ old('opposition_thana_write') }}">
+                                                            </div>
+                                                        </div>
+                                                        @error('opposition_thana_write')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="opposition_representative_name" class="col-sm-4 col-form-label">Representative Name</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="opposition_representative_name"
+                                                               name="opposition_representative_name"
+                                                               value="{{old('opposition_representative_name')}}">
+                                                        @error('opposition_representative_name')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="opposition_representative_details"
+                                                           class="col-sm-4 col-form-label"> Representative Details </label>
+                                                    <div class="col-sm-8">
+                                                    <textarea name="opposition_representative_details" class="form-control"
                                                               rows="3"
-                                                              placeholder="">{{old('required_wanting_documents')}}</textarea>
-                                                        @error('required_wanting_documents')<span
+                                                              placeholder="">{{old('opposition_representative_details')}}</textarea>
+                                                        @error('opposition_representative_details')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
+                                                <div class="form-group row">
+                                                    <label for="opposition_coordinator_tadbirkar_id"
+                                                           class="col-sm-4 col-form-label"> Coordinator/Tadbirkar </label>
+                                                    <div class="col-sm-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="opposition_coordinator_tadbirkar_id"
+                                                                        id="opposition_coordinator_tadbirkar_id"
+                                                                        class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($coordinator as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{ old('opposition_coordinator_tadbirkar_id') == $item->id ? 'selected' : '' }}>{{ $item->coordinator_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="opposition_coordinator_tadbirkar_write"
+                                                                       name="opposition_coordinator_tadbirkar_write"
+                                                                       placeholder="Tadbirkar Name"
+                                                                       value="{{old('opposition_coordinator_tadbirkar_write')}}">
+                                                            </div>
+                                                        </div>
+                                                        @error('coordinator_tadbirkar_id')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="opposition_coordinator_details"
+                                                           class="col-sm-4 col-form-label"> Coordinator Details </label>
+                                                    <div class="col-sm-8">
+                                                    <textarea name="opposition_coordinator_details" class="form-control"
+                                                              rows="3"
+                                                              placeholder="">{{old('opposition_coordinator_details')}}</textarea>
+                                                        @error('opposition_coordinator_details')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
 
 
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="">
                                         <div class="card">
                                             <div class="card-body">
                                                 <h6 class="text-uppercase text-bold"><u> Lawyer
@@ -789,7 +957,7 @@
                                                             <option value="">Select</option>
                                                             @foreach($external_council as $item)
                                                                 <option
-                                                                    value="{{ $item->id }}" {{(old('assigned_lawyer') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                                    value="{{ $item->id }}" {{(old('lawyer_advocate_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('lawyer_advocate_id')<span
@@ -797,17 +965,17 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="assigned_lawyer" class="col-sm-4 col-form-label">Name of Assigned
+                                                    <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Name of Assigned
                                                         Lawyer</label>
                                                     <div class="col-sm-8">
-                                                        <select name="assigned_lawyer[]" class="form-control select2" multiple>
+                                                        <select name="assigned_lawyer_id[]" class="form-control select2" multiple>
                                                             <option value="">Select</option>
                                                             @foreach($internal_council as $item)
                                                                 <option
-                                                                    value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name }}" {{(old('assigned_lawyer') == $item->first_name.' '.$item->middle_name.' '.$item->last_name ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                                    value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name }}" {{(old('assigned_lawyer_id') == $item->first_name.' '.$item->middle_name.' '.$item->last_name ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
                                                             @endforeach
                                                         </select>
-                                                        @error('assigned_lawyer')<span
+                                                        @error('assigned_lawyer_id')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
@@ -827,77 +995,69 @@
                                         </div>
                                         <div class="card">
                                             <div class="card-body">
-                                                <h6 class="text-uppercase text-bold"><u> Status of the Case </u>
-                                                </h6>
+                                                <h6 class="text-uppercase text-bold"><u> Documents
+                                                        Information </u></h6>
                                                 <div class="form-group row">
-                                                    <label for="case_status_id"
-                                                           class="col-sm-4 col-form-label">Status</label>
-                                                    <div class="col-sm-8">
-                                                        <select name="case_status_id"
-                                                                class="form-control select2">
-                                                            <option value="">Select</option>
-                                                            @foreach($case_status as $item)
-                                                                <option
-                                                                    value="{{ $item->id }}" {{(old('case_status_id') == $item->id ? 'selected':'')}}>{{ $item->case_status_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('case_status_id')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="status_next_date"
-                                                           class="col-sm-4 col-form-label"> Next
-                                                        Date </label>
-                                                    <div class="col-sm-8">
-                                                    <span class="date_span">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'xTime3');"><input type="text" id="xTime3"
-                                                                                                            name="status_next_date" value="dd/mm/yyyy"
-                                                                                                            class="date_second_input"
-                                                                                                            tabindex="-1"><span
-                                                            class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
-                                                        @error('status_next_date')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="status_next_date_fixed_id"
+                                                    <label for="received_documents_id"
                                                            class="col-sm-4 col-form-label">
-                                                        Next
-                                                        date fixed for </label>
+                                                        Received Documents </label>
                                                     <div class="col-sm-8">
-                                                        <select name="status_next_date_fixed_id"
-                                                                class="form-control select2">
-                                                            <option value="">Select</option>
-                                                            @foreach($next_date_reason as $item)
-                                                                <option
-                                                                    value="{{ $item->id }}" {{(old('status_next_date_fixed_id') == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('status_next_date_fixed_id')<span
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="received_documents_id"
+                                                                        id="received_documents_id"
+                                                                        class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($documents as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{ old('received_documents_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="received_documents_write"
+                                                                       name="received_documents_write"
+                                                                       placeholder="Received Documents"
+                                                                       value="{{old('received_documents_write')}}">
+                                                            </div>
+                                                        </div>
+                                                        @error('received_documents')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="status_remarks" class="col-sm-4 col-form-label">
-                                                        Remarks </label>
+                                                    <label for="required_wanting_documents_id"
+                                                           class="col-sm-4 col-form-label"> Required/Wanting
+                                                        Documents </label>
                                                     <div class="col-sm-8">
-                                                    <textarea name="status_remarks" class="form-control" rows="3"
-                                                              placeholder="">{{old('status_remarks')}}</textarea>
-                                                        @error('status_remarks')<span
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="required_wanting_documents_id"
+                                                                        id="required_wanting_documents_id"
+                                                                        class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($documents as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{ old('required_wanting_documents_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="required_wanting_documents_write"
+                                                                       name="required_wanting_documents_write"
+                                                                       placeholder="Required Documents"
+                                                                       value="{{old('required_wanting_documents_write')}}">
+                                                            </div>
+                                                        </div>
+                                                        @error('required_wanting_documents')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
-                                    </div>
 
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="">
                                         <div class="card">
                                             <div class="card-body">
                                                 <h6 class="text-uppercase text-bold"><u> Case Information </u>
@@ -950,23 +1110,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="name_of_the_court"
-                                                           class="col-sm-4 col-form-label"> Name
-                                                        of the Court </label>
-                                                    <div class="col-sm-8">
-                                                        <select name="name_of_the_court_id[]"
-                                                                class="form-control select2" multiple>
-                                                            <option value="">Select</option>
-                                                            @foreach($court as $item)
-                                                                <option
-                                                                    value="{{ $item->id }}" {{(old('name_of_the_court_id') == $item->id ? 'selected':'')}}>{{ $item->court_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('name_of_the_court')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
                                                     <label for="case_category_id"
                                                            class="col-sm-4 col-form-label">Case
                                                         Category </label>
@@ -1002,19 +1145,20 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="case_type_id" class="col-sm-4 col-form-label">Type
-                                                        of
-                                                        Cases </label>
+                                                    <label for="case_infos_case_title_id"
+                                                           class="col-sm-4 col-form-label">Case Title</label>
                                                     <div class="col-sm-8">
-                                                        <select name="case_type_id"
+                                                        <select name="case_infos_case_title_id"
+                                                                id="case_infos_case_title_id"
                                                                 class="form-control select2">
                                                             <option value="">Select</option>
-                                                            @foreach($case_types as $item)
+                                                            @foreach($case_title as $item)
                                                                 <option
-                                                                    value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                                                    value="{{ $item->id }}" {{(old('case_infos_case_title_id') == $item->id ? 'selected':'')}}>{{ $item->case_title_name }}</option>
                                                             @endforeach
+
                                                         </select>
-                                                        @error('case_type_id')<span
+                                                        @error('case_infos_case_title_id')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
@@ -1023,117 +1167,207 @@
                                                            class="col-sm-4 col-form-label">Case
                                                         No.</label>
                                                     <div class="col-sm-8">
-
-
-                                                        <div
-                                                            class="input-group hdtuto_case_infos_case_no control-group increment_case_infos_case_no ml-2">
-                                                            <div class="row" style="">
-                                                                <input type="text" class="form-control col-5"
-                                                                       id="case_infos_case_no"
-                                                                       name="case_infos_case_no[]" placeholder="Case No."
-                                                                       value="{{old('case_infos_case_no')}}">
-                                                                <input type="text" class="form-control col-5 ml-0"
-                                                                       id="case_infos_case_year"
-                                                                       name="case_infos_case_year[]" placeholder="Case Year"
-                                                                       value="{{old('case_infos_case_year')}}">
-                                                                <div class="input-group-btn col-2">
-
-                                                                    <button class="btn btn-success btn_success_case_infos_case_no ml-2"
+                                                        <div class="input-group hdtuto_case_infos_case_no control-group increment_case_infos_case_no">
+                                                            <input type="text" name="case_infos_case_no[]"
+                                                                   class="myfrm form-control">
+                                                            <div class="input-group-btn">
+                                                                <button class="btn btn-success btn_success_case_infos_case_no"
+                                                                        type="button"><i
+                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clone_case_infos_case_no hide">
+                                                            <div class="hdtuto_case_infos_case_no control-group lst input-group"
+                                                                 style="margin-top:10px">
+                                                                <input type="text" name="case_infos_case_no[]"
+                                                                       class="myfrm form-control">
+                                                                <div class="input-group-btn">
+                                                                    <button class="btn btn-danger btn_danger_case_infos_case_no"
                                                                             type="button"><i
-                                                                            class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
                                                                     </button>
                                                                 </div>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="clone_case_infos_case_no hide ">
-                                                            <div class="hdtuto_case_infos_case_no control-group lst input-group ml-2"
-                                                                 style="margin-top:10px">
-                                                                <div class="row" style="">
-                                                                    <input type="text" class="form-control col-5"
-                                                                           id="case_infos_case_no"
-                                                                           name="case_infos_case_no[]" placeholder="Case No."
-                                                                           value="{{old('case_infos_case_no')}}">
-                                                                    <input type="text" class="form-control col-5 ml-0"
-                                                                           id="case_infos_case_year"
-                                                                           name="case_infos_case_year[]" placeholder="Case Year"
-                                                                           value="{{old('case_infos_case_year')}}">
-                                                                    <div class="input-group-btn col-2">
-                                                                        <button class="btn btn-danger btn_danger_case_infos_case_no ml-2"
-                                                                                type="button"><i
-                                                                                class="fldemo glyphicon glyphicon-remove"></i> -
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-
                                                             </div>
                                                         </div>
                                                         @error('case_infos_case_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
-                                                    <label for="law" class="col-sm-4 col-form-label">
-                                                        Law </label>
+                                                    <label for="case_infos_court_id"
+                                                           class="col-sm-4 col-form-label"> Name
+                                                        of the Court </label>
                                                     <div class="col-sm-8">
-                                                        <div class="input-group hdtuto_law control-group increment_law">
-                                                            <input type="text" name="law[]"
+                                                        <select name="case_infos_court_id[]"
+                                                                class="form-control select2" multiple>
+                                                            <option value="">Select</option>
+                                                            @foreach($court as $item)
+                                                                <option
+                                                                    value="{{ $item->id }}" {{(old('case_infos_court_id') == $item->id ? 'selected':'')}}>{{ $item->court_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('case_infos_court_id')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_infos_sub_seq_case_title_id"
+                                                           class="col-sm-4 col-form-label">Sub Seq. Case Title</label>
+                                                    <div class="col-sm-8">
+                                                        <select name="case_infos_sub_seq_case_title_id"
+                                                                id="case_infos_sub_seq_case_title_id"
+                                                                class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($case_title as $item)
+                                                                <option
+                                                                    value="{{ $item->id }}" {{(old('case_infos_case_title_id') == $item->id ? 'selected':'')}}>{{ $item->case_title_name }}</option>
+                                                            @endforeach
+
+                                                        </select>
+                                                        @error('case_infos_sub_seq_case_title_id')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_infos_case_no"
+                                                           class="col-sm-4 col-form-label">Sub Seq. Case
+                                                        No.</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group hdtuto_case_infos_sub_seq_case_no control-group increment_case_infos_sub_seq_case_no">
+                                                            <input type="text" name="case_infos_sub_seq_case_no[]"
                                                                    class="myfrm form-control">
                                                             <div class="input-group-btn">
-                                                                <button class="btn btn-success btn_success_law"
+                                                                <button class="btn btn-success btn_success_case_infos_sub_seq_case_no"
                                                                         type="button"><i
                                                                         class="fldemo glyphicon glyphicon-plus"></i>+
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                        <div class="clone_law hide">
-                                                            <div class="hdtuto_law control-group lst input-group"
+                                                        <div class="clone_case_infos_sub_seq_case_no hide">
+                                                            <div class="hdtuto_case_infos_sub_seq_case_no control-group lst input-group"
                                                                  style="margin-top:10px">
-                                                                <input type="text" name="law[]"
+                                                                <input type="text" name="case_infos_sub_seq_case_no[]"
                                                                        class="myfrm form-control">
                                                                 <div class="input-group-btn">
-                                                                    <button class="btn btn-danger btn_danger_law"
+                                                                    <button class="btn btn-danger btn_danger_case_infos_sub_seq_case_no"
                                                                             type="button"><i
                                                                             class="fldemo glyphicon glyphicon-remove"></i> -
                                                                     </button>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @error('case_infos_sub_seq_case_no')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
 
+                                                <div class="form-group row">
+                                                    <label for="case_infos_sub_seq_court_id"
+                                                           class="col-sm-4 col-form-label"> Sub-Seq. Court </label>
+                                                    <div class="col-sm-8">
+                                                        <select name="case_infos_sub_seq_court_id[]"
+                                                                class="form-control select2" multiple>
+                                                            <option value="">Select</option>
+                                                            @foreach($court as $item)
+                                                                <option
+                                                                    value="{{ $item->id }}" {{(old('case_infos_sub_seq_court_id') == $item->id ? 'selected':'')}}>{{ $item->court_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('case_infos_sub_seq_court_id')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="law_id" class="col-sm-4 col-form-label">
+                                                        Law </label>
+                                                    <div class="col-sm-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="law_id[]"
+                                                                        id="law_id"
+                                                                        class="form-control select2" multiple>
+                                                                    <option value="">Select</option>
+                                                                    @foreach($client as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{  old('law_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="input-group hdtuto_law control-group increment_law">
+                                                                    <input type="text" name="law_write[]"
+                                                                           class="myfrm form-control col-12" placeholder="Law Name">
+                                                                    <div class="input-group-btn">
+                                                                        <button class="btn btn-success btn_success_law"
+                                                                                type="button"><i
+                                                                                class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="clone_law hide">
+                                                                    <div class="hdtuto_law control-group lst input-group"
+                                                                         style="margin-top:10px">
+                                                                        <input type="text" name="law_write[]"
+                                                                               class="myfrm form-control col-12">
+                                                                        <div class="input-group-btn">
+                                                                            <button class="btn btn-danger btn_danger_law"
+                                                                                    type="button"><i
+                                                                                    class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
                                                         @error('law')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="section" class="col-sm-4 col-form-label">
+                                                    <label for="section_id" class="col-sm-4 col-form-label">
                                                         Section </label>
                                                     <div class="col-sm-8">
-
-                                                        <div class="input-group hdtuto_section control-group increment_section">
-                                                            <input type="text" name="section[]"
-                                                                   class="myfrm form-control">
-                                                            <div class="input-group-btn">
-                                                                <button class="btn btn-success btn_success_section"
-                                                                        type="button"><i
-                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
-                                                                </button>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="section_id[]"
+                                                                        id="section_id"
+                                                                        class="form-control select2" multiple>
+                                                                    <option value="">Select</option>
+                                                                    @foreach($client as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{  old('section_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
-                                                        </div>
-                                                        <div class="clone_section hide">
-                                                            <div class="hdtuto_section control-group lst input-group"
-                                                                 style="margin-top:10px">
-                                                                <input type="text" name="section[]"
-                                                                       class="myfrm form-control">
-                                                                <div class="input-group-btn">
-                                                                    <button class="btn btn-danger btn_danger_section"
-                                                                            type="button"><i
-                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
-                                                                    </button>
+                                                            <div class="col-md-6">
+                                                                <div class="input-group hdtuto_section control-group increment_section">
+                                                                    <input type="text" name="section_write[]"
+                                                                           class="myfrm form-control col-12" placeholder="Section Name">
+                                                                    <div class="input-group-btn">
+                                                                        <button class="btn btn-success btn_success_section"
+                                                                                type="button"><i
+                                                                                class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="clone_section hide">
+                                                                    <div class="hdtuto_section control-group lst input-group"
+                                                                         style="margin-top:10px">
+                                                                        <input type="text" name="section_write[]"
+                                                                               class="myfrm form-control col-12">
+                                                                        <div class="input-group-btn">
+                                                                            <button class="btn btn-danger btn_danger_section"
+                                                                                    type="button"><i
+                                                                                    class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                         @error('section')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
@@ -1156,7 +1390,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="matter_id" class="col-sm-4 col-form-label">Matter</label>
+                                                    <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
                                                     <div class="col-sm-8">
                                                         <select name="matter_id"
                                                                 class="form-control select2">
@@ -1167,6 +1401,21 @@
                                                             @endforeach
                                                         </select>
                                                         @error('matter_id')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
+                                                    <div class="col-sm-8">
+                                                        <select name="case_type_id"
+                                                                class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($case_types as $item)
+                                                                <option
+                                                                    value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('case_type_id')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
@@ -1310,25 +1559,54 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
+                                                    <label for="prosecution_witness"
+                                                           class="col-sm-4 col-form-label">Prosecution Witnesses</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control"
+                                                               id="prosecution_witness"
+                                                               name="prosecution_witness"
+                                                               value="{{old('prosecution_witness')}}">
+                                                        @error('prosecution_witness')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="defense_witness"
+                                                           class="col-sm-4 col-form-label">Defense Witnesses</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control"
+                                                               id="defense_witness"
+                                                               name="defense_witness"
+                                                               value="{{old('defense_witness')}}">
+                                                        @error('defense_witness')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
                                                     <label for="case_infos_allegation_claim_id"
                                                            class="col-sm-4 col-form-label">
                                                         Allegation/Claim </label>
                                                     <div class="col-sm-8">
 
-                                                        <div class="row" style="padding: 0px 8px;">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
                                                             <select name="case_infos_allegation_claim_id"
-                                                                    class="form-control select2 col-6">
+                                                                    class="form-control select2">
                                                                 <option value="">Select</option>
                                                                 @foreach($allegation as $item)
                                                                     <option
                                                                         value="{{ $item->id }}" {{(old('case_infos_allegation_claim_id') == $item->id ? 'selected':'')}}>{{ $item->allegation_name }}</option>
                                                                 @endforeach
                                                             </select>
-                                                            <input type="text" class="form-control col-6"
-                                                                   id="case_infos_allegation_claim"
-                                                                   name="case_infos_allegation_claim"
+                                                            </div>
+                                                            <div class="col-md-6">
+
+                                                            <input type="text" class="form-control"
+                                                                   id="case_infos_allegation_claim_write"
+                                                                   name="case_infos_allegation_claim_write"
                                                                    placeholder="Allegation"
-                                                                   value="{{old('case_infos_allegation_claim')}}">
+                                                                   value="{{old('case_infos_allegation_claim_write')}}">
+                                                            </div>
                                                         </div>
 
                                                         @error('case_infos_allegation_claim_id')<span
@@ -1362,6 +1640,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
+                                                    <label for="recovery_seizure_articles" class="col-sm-4 col-form-label">
+                                                        Recovery/Seizure Articles </label>
+                                                    <div class="col-sm-8">
+                                                    <textarea name="recovery_seizure_articles" class="form-control" rows="3"
+                                                              placeholder="">{{old('recovery_seizure_articles')}}</textarea>
+                                                        @error('recovery_seizure_articles')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
                                                     <label for="summary_facts" class="col-sm-4 col-form-label">
                                                         Summary
                                                         of Facts </label>
@@ -1369,39 +1657,6 @@
                                                     <textarea name="summary_facts" class="form-control" rows="3"
                                                               placeholder="">{{old('summary_facts')}}</textarea>
                                                         @error('summary_facts')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="date_of_arrest"
-                                                           class="col-sm-4 col-form-label">Date of Arrest</label>
-                                                    <div class="col-sm-8">
-                                                    <span class="date_span">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'xTime5');"><input type="text" id="xTime5"
-                                                                                                            name="date_of_arrest" value="dd/mm/yyyy"
-                                                                                                            class="date_second_input"
-                                                                                                            tabindex="-1"><span
-                                                            class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
-                                                        @error('date_of_arrest')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="date_of_bill"
-                                                           class="col-sm-4 col-form-label">
-                                                        Date of Bill </label>
-                                                    <div class="col-sm-8">
-                                                    <span class="date_span">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'xTime6');"><input type="text" id="xTime6"
-                                                                                                            name="date_of_bill" value="dd/mm/yyyy"
-                                                                                                            class="date_second_input"
-                                                                                                            tabindex="-1"><span
-                                                            class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
-                                                        @error('date_of_bill')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
@@ -1420,781 +1675,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h6 class="text-uppercase text-bold"><u> Judgement Information </u>
-                                                </h6>
-                                                <div class="form-group row">
-                                                    <label for="judgement_date_of_filing"
-                                                           class="col-sm-4 col-form-label"> Date of Filing </label>
-                                                    <div class="col-sm-8">
-                                                    <span class="date_span">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'xTime7');"><input type="text" id="xTime7"
-                                                                                                            name="judgement_date_of_filing"
-                                                                                                            value="dd/mm/yyyy"
-                                                                                                            class="date_second_input"
-                                                                                                            tabindex="-1"><span
-                                                            class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
-                                                        @error('judgement_date_of_filing')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="date_of_cognizance"
-                                                           class="col-sm-4 col-form-label"> Date of Cognizance </label>
-                                                    <div class="col-sm-8">
-                                                    <span class="date_span">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'date_of_cognizance');"><input type="text"
-                                                                                                                        id="date_of_cognizance"
-                                                                                                                        name="date_of_cognizance"
-                                                                                                                        value="dd/mm/yyyy"
-                                                                                                                        class="date_second_input"
-                                                                                                                        tabindex="-1"><span
-                                                            class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
-                                                        @error('date_of_cognizance')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="date_of_court_transfer"
-                                                           class="col-sm-4 col-form-label"> Date of Court Transfer </label>
-                                                    <div class="col-sm-8">
-                                                    <span class="date_span">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'date_of_court_transfer');"><input type="text"
-                                                                                                                            id="date_of_court_transfer"
-                                                                                                                            name="date_of_court_transfer"
-                                                                                                                            value="dd/mm/yyyy"
-                                                                                                                            class="date_second_input"
-                                                                                                                            tabindex="-1"><span
-                                                            class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
-                                                        @error('date_of_court_transfer')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="date_of_charge_framed"
-                                                           class="col-sm-4 col-form-label"> Date of Charge Framed </label>
-                                                    <div class="col-sm-8">
-                                                    <span class="date_span">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'date_of_charge_framed');"><input type="text"
-                                                                                                                           id="date_of_charge_framed"
-                                                                                                                           name="date_of_charge_framed"
-                                                                                                                           value="dd/mm/yyyy"
-                                                                                                                           class="date_second_input"
-                                                                                                                           tabindex="-1"><span
-                                                            class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
-                                                        @error('date_of_charge_framed')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="date_of_witness_from"
-                                                           class="col-sm-4 col-form-label"> Date of Witness(From) </label>
-                                                    <div class="col-sm-8">
-                                                    <span class="date_span">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'date_of_witness_from');"><input type="text"
-                                                                                                                          id="date_of_witness_from"
-                                                                                                                          name="date_of_witness_from"
-                                                                                                                          value="dd/mm/yyyy"
-                                                                                                                          class="date_second_input"
-                                                                                                                          tabindex="-1"><span
-                                                            class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
 
-                                                        @error('date_of_witness_from')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="date_of_witness_to"
-                                                           class="col-sm-4 col-form-label"> Date of Witness(To) </label>
-                                                    <div class="col-sm-8">
-                                                    <span class="date_span">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'date_of_witness_to');"><input type="text"
-                                                                                                                        id="date_of_witness_to"
-                                                                                                                        name="date_of_witness_to"
-                                                                                                                        value="dd/mm/yyyy"
-                                                                                                                        class="date_second_input"
-                                                                                                                        tabindex="-1"><span
-                                                            class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
-                                                        @error('date_of_witness_to')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="date_of_argument"
-                                                           class="col-sm-4 col-form-label"> Date of Argument </label>
-                                                    <div class="col-sm-8">
-                                                    <span class="date_span">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'date_of_argument');"><input type="text"
-                                                                                                                      id="date_of_argument"
-                                                                                                                      name="date_of_bill"
-                                                                                                                      value="dd/mm/yyyy"
-                                                                                                                      class="date_second_input"
-                                                                                                                      tabindex="-1"><span
-                                                            class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
-
-                                                        @error('date_of_argument')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="date_of_judgement_order"
-                                                           class="col-sm-4 col-form-label"> Date of Judgement &
-                                                        Order </label>
-                                                    <div class="col-sm-8">
-                                                    <span class="date_span">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'date_of_judgement_order');"><input type="text"
-                                                                                                                             id="date_of_judgement_order"
-                                                                                                                             name="date_of_bill"
-                                                                                                                             value="dd/mm/yyyy"
-                                                                                                                             class="date_second_input"
-                                                                                                                             tabindex="-1"><span
-                                                            class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
-                                                        @error('date_of_judgement_order')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="summary_judgement_order" class="col-sm-4 col-form-label">
-                                                        Summary of Judgement & Order </label>
-                                                    <div class="col-sm-8">
-                                                    <textarea name="summary_judgement_order" class="form-control"
-                                                              rows="3"
-                                                              placeholder="">{{old('summary_judgement_order')}}</textarea>
-                                                        @error('summary_judgement_order')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="judgement_remarks" class="col-sm-4 col-form-label">
-                                                        Remarks </label>
-                                                    <div class="col-sm-8">
-                                                    <textarea name="judgement_remarks" class="form-control" rows="3"
-                                                              placeholder="">{{old('judgement_remarks')}}</textarea>
-                                                        @error('judgement_remarks')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-
-                            {{--                        <div class="row">--}}
-                            {{--                            <div class="col-md-6">--}}
-                            {{--                                <div class="appeal_case_info" style="display: none;">--}}
-                            {{--                                    <div class="card">--}}
-                            {{--                                        <div class="card-body">--}}
-                            {{--                                            <h6 class="text-uppercase text-bold"><u> Case Information </u>--}}
-                            {{--                                            </h6>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_original_case_no"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">Original Case--}}
-                            {{--                                                    No.</label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="appeal_original_case_no"--}}
-                            {{--                                                           name="appeal_original_case_no"--}}
-                            {{--                                                           value="{{old('appeal_original_case_no')}}">--}}
-                            {{--                                                    @error('appeal_original_case_no')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_subsequent_case_no"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Subsequent Case No. </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="appeal_subsequent_case_no"--}}
-                            {{--                                                           name="appeal_subsequent_case_no"--}}
-                            {{--                                                           value="{{old('appeal_subsequent_case_no')}}">--}}
-                            {{--                                                    @error('appeal_subsequent_case_no')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_date_of_judgement_order"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Date of Judgement & Order </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="date" class="form-control"--}}
-                            {{--                                                           id="appeal_date_of_judgement_order"--}}
-                            {{--                                                           name="appeal_date_of_judgement_order"--}}
-                            {{--                                                           value="{{old('appeal_date_of_judgement_order')}}">--}}
-                            {{--                                                    @error('appeal_date_of_judgement_order')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_summary_of_judgement_order"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Summary of Judgement & Order </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                                <textarea name="appeal_summary_of_judgement_order"--}}
-                            {{--                                                                          class="form-control" rows="3"--}}
-                            {{--                                                                          placeholder="">{{old('appeal_summary_of_judgement_order')}}</textarea>--}}
-                            {{--                                                    @error('appeal_summary_of_judgement_order')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_case_category_id"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">Appeal Case--}}
-                            {{--                                                    Category</label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <select name="appeal_case_category_id"--}}
-                            {{--                                                            class="form-control select2"--}}
-                            {{--                                                            id="appeal_case_category_id"--}}
-                            {{--                                                            action="{{ route('find-case-subcategory') }}">--}}
-                            {{--                                                        <option value="">Select</option>--}}
-                            {{--                                                        @foreach ($case_category as $item)--}}
-                            {{--                                                            <option--}}
-                            {{--                                                                value="{{ $item->id }}" {{(old('appeal_case_category_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->case_category) }}</option>--}}
-                            {{--                                                        @endforeach--}}
-                            {{--                                                    </select>--}}
-                            {{--                                                    @error('appeal_case_category_id')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_case_subcategory_id"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">Appeal Case--}}
-                            {{--                                                    Subcategory</label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <select name="appeal_case_subcategory_id"--}}
-                            {{--                                                            class="form-control select2"--}}
-                            {{--                                                            id="appeal_case_subcategory_id">--}}
-                            {{--                                                        <option value="">Select</option>--}}
-
-                            {{--                                                    </select>--}}
-                            {{--                                                    @error('appeal_case_subcategory_id')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_case_type_id"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">Appeal Case--}}
-                            {{--                                                    Type</label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <select name="appeal_case_type_id"--}}
-                            {{--                                                            class="form-control select2"--}}
-                            {{--                                                            id="appeal_case_type_id"--}}
-                            {{--                                                            action="{{ route('find-thana') }}">--}}
-                            {{--                                                        <option value=""> Select</option>--}}
-                            {{--                                                        @foreach($case_types as $item)--}}
-                            {{--                                                            <option--}}
-                            {{--                                                                value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>--}}
-                            {{--                                                        @endforeach--}}
-                            {{--                                                    </select>--}}
-                            {{--                                                    @error('appeal_case_type_id')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_case_no"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Appeal Case No. </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="appeal_case_no"--}}
-                            {{--                                                           name="appeal_case_no"--}}
-                            {{--                                                           value="{{old('appeal_case_no')}}">--}}
-                            {{--                                                    @error('appeal_case_no')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appellate_filing_court"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Name of the filing Court </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <textarea name="appellate_filing_court" class="form-control"--}}
-                            {{--                                                              rows="3"--}}
-                            {{--                                                              placeholder="">{{old('appellate_filing_court')}}</textarea>--}}
-                            {{--                                                    @error('appellate_filing_court')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_date_of_filing"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Date of filing </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="date" class="form-control"--}}
-                            {{--                                                           id="appeal_date_of_filing"--}}
-                            {{--                                                           name="appeal_date_of_filing"--}}
-                            {{--                                                           value="{{old('appeal_date_of_filing')}}">--}}
-                            {{--                                                    @error('appeal_date_of_filing')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_law" class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Law </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control" id="appeal_law"--}}
-                            {{--                                                           name="appeal_law" value="{{old('appeal_law')}}">--}}
-                            {{--                                                    @error('appeal_law')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_section" class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Section </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="appeal_section"--}}
-                            {{--                                                           name="appeal_section"--}}
-                            {{--                                                           value="{{old('appeal_section')}}">--}}
-                            {{--                                                    @error('appeal_section')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_allegation_claim"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Allegation/Claim </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <textarea name="appeal_allegation_claim" class="form-control"--}}
-                            {{--                                                              rows="3"--}}
-                            {{--                                                              placeholder="">{{old('appeal_allegation_claim')}}</textarea>--}}
-                            {{--                                                    @error('appeal_allegation_claim')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_amount_of_money"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Amount of Money </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="appeal_amount_of_money"--}}
-                            {{--                                                           name="appeal_amount_of_money"--}}
-                            {{--                                                           value="{{old('appeal_amount_of_money')}}">--}}
-                            {{--                                                    @error('appeal_amount_of_money')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_another_claim"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Another Claim (if any) </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <textarea name="appeal_another_claim" class="form-control" rows="3"--}}
-                            {{--                                                              placeholder="">{{old('appeal_another_claim')}}</textarea>--}}
-                            {{--                                                    @error('appeal_another_claim')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_summary_facts"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Summary of Facts </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <textarea name="appeal_summary_facts" class="form-control" rows="3"--}}
-                            {{--                                                              placeholder="">{{old('appeal_summary_facts')}}</textarea>--}}
-                            {{--                                                    @error('appeal_summary_facts')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_name_of_the_appellant"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Name of the Appellant </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="appeal_name_of_the_appellant"--}}
-                            {{--                                                           name="appeal_name_of_the_appellant"--}}
-                            {{--                                                           value="{{old('appeal_name_of_the_appellant')}}">--}}
-                            {{--                                                    @error('appeal_name_of_the_appellant')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_representative"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Name of the Representative </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="appeal_representative"--}}
-                            {{--                                                           name="appeal_representative"--}}
-                            {{--                                                           value="{{old('appeal_representative')}}">--}}
-                            {{--                                                    @error('appeal_representative')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_representative_details"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Details of the Representative </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <textarea name="appeal_representative_details" class="form-control"--}}
-                            {{--                                                              rows="3"--}}
-                            {{--                                                              placeholder="">{{old('appeal_representative_details')}}</textarea>--}}
-                            {{--                                                    @error('appeal_representative_details')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_respondent_opposite_party"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Name of the Respondent/Opposite Party </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="appeal_respondent_opposite_party"--}}
-                            {{--                                                           name="appeal_respondent_opposite_party"--}}
-                            {{--                                                           value="{{old('appeal_respondent_opposite_party')}}">--}}
-                            {{--                                                    @error('appeal_respondent_opposite_party')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_opposite_representative"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Name of the Representative </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="appeal_opposite_representative"--}}
-                            {{--                                                           name="appeal_opposite_representative"--}}
-                            {{--                                                           value="{{old('appeal_opposite_representative')}}">--}}
-                            {{--                                                    @error('appeal_opposite_representative')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="appeal_opposite_representative_details"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Details of the Representative </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <textarea name="appeal_opposite_representative_details"--}}
-                            {{--                                                              class="form-control" rows="3"--}}
-                            {{--                                                              placeholder="">{{old('appeal_opposite_representative_details')}}</textarea>--}}
-                            {{--                                                    @error('appeal_opposite_representative_details')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
-                            {{--                            <div class="col-md-6">--}}
-                            {{--                                <div class="revision_case_info" style="display: none;">--}}
-                            {{--                                    <div class="card">--}}
-                            {{--                                        <div class="card-body">--}}
-                            {{--                                            <h6 class="text-uppercase text-bold"><u> Case Information</u>--}}
-                            {{--                                            </h6>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_original_case_no"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">Original Case--}}
-                            {{--                                                    No.</label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="revision_original_case_no"--}}
-                            {{--                                                           name="revision_original_case_no"--}}
-                            {{--                                                           value="{{old('revision_original_case_no')}}">--}}
-                            {{--                                                    @error('revision_original_case_no')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_subsequent_case_no"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Subsequent Case No. </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="revision_subsequent_case_no"--}}
-                            {{--                                                           name="revision_subsequent_case_no"--}}
-                            {{--                                                           value="{{old('revision_subsequent_case_no')}}">--}}
-                            {{--                                                    @error('revision_subsequent_case_no')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_date_of_judgement_order"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Date of Judgement & Order </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="date" class="form-control"--}}
-                            {{--                                                           id="revision_date_of_judgement_order"--}}
-                            {{--                                                           name="revision_date_of_judgement_order"--}}
-                            {{--                                                           value="{{old('revision_date_of_judgement_order')}}">--}}
-                            {{--                                                    @error('revision_date_of_judgement_order')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_summary_of_judgement_order"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Summary of Judgement & Order </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                                <textarea name="revision_summary_of_judgement_order"--}}
-                            {{--                                                                          class="form-control" rows="3"--}}
-                            {{--                                                                          placeholder="">{{old('revision_summary_of_judgement_order')}}</textarea>--}}
-                            {{--                                                    @error('revision_summary_of_judgement_order')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_appeal_case_category_id"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">Revision Case--}}
-                            {{--                                                    Category</label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <select name="revision_appeal_case_category_id"--}}
-                            {{--                                                            class="form-control select2"--}}
-                            {{--                                                            id="revision_appeal_case_category_id"--}}
-                            {{--                                                            action="{{ route('find-case-subcategory') }}">--}}
-                            {{--                                                        <option value="">Select</option>--}}
-                            {{--                                                        @foreach ($case_category as $item)--}}
-                            {{--                                                            <option--}}
-                            {{--                                                                value="{{ $item->id }}" {{(old('revision_appeal_case_category_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->case_category) }}</option>--}}
-                            {{--                                                        @endforeach--}}
-                            {{--                                                    </select>--}}
-                            {{--                                                    @error('revision_appeal_case_category_id')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_case_subcategory_id"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">Revision Case--}}
-                            {{--                                                    Subcategory</label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <select name="revision_case_subcategory_id"--}}
-                            {{--                                                            class="form-control select2"--}}
-                            {{--                                                            id="revision_case_subcategory_id">--}}
-                            {{--                                                        <option value="">Select</option>--}}
-
-                            {{--                                                    </select>--}}
-                            {{--                                                    @error('revision_case_subcategory_id')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_case_type_id"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">Revision Case--}}
-                            {{--                                                    Type</label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <select name="revision_case_type_id"--}}
-                            {{--                                                            class="form-control select2"--}}
-                            {{--                                                            id="revision_case_type_id"--}}
-                            {{--                                                            action="{{ route('find-thana') }}">--}}
-                            {{--                                                        <option value=""> Select</option>--}}
-                            {{--                                                        @foreach($case_types as $item)--}}
-                            {{--                                                            <option--}}
-                            {{--                                                                value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>--}}
-                            {{--                                                        @endforeach--}}
-                            {{--                                                    </select>--}}
-                            {{--                                                    @error('revision_case_type_id')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_case_no"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Revision Case No. </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="revision_case_no"--}}
-                            {{--                                                           name="revision_case_no"--}}
-                            {{--                                                           value="{{old('revision_case_no')}}">--}}
-                            {{--                                                    @error('revision_case_no')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_filing_court"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Name of the filing Court </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <textarea name="revision_filing_court" class="form-control"--}}
-                            {{--                                                              rows="3"--}}
-                            {{--                                                              placeholder="">{{old('revision_filing_court')}}</textarea>--}}
-                            {{--                                                    @error('revision_filing_court')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_date_of_filing"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Date of filing </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="date" class="form-control"--}}
-                            {{--                                                           id="revision_date_of_filing"--}}
-                            {{--                                                           name="revision_date_of_filing"--}}
-                            {{--                                                           value="{{old('revision_date_of_filing')}}">--}}
-                            {{--                                                    @error('revision_date_of_filing')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_law" class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Law </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control" id="revision_law"--}}
-                            {{--                                                           name="revision_law" value="{{old('revision_law')}}">--}}
-                            {{--                                                    @error('revision_law')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_section" class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Section </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="revision_section"--}}
-                            {{--                                                           name="revision_section"--}}
-                            {{--                                                           value="{{old('revision_section')}}">--}}
-                            {{--                                                    @error('revision_section')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_allegation_claim"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Allegation/Claim </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <textarea name="revision_allegation_claim" class="form-control"--}}
-                            {{--                                                              rows="3"--}}
-                            {{--                                                              placeholder="">{{old('revision_allegation_claim')}}</textarea>--}}
-                            {{--                                                    @error('revision_allegation_claim')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_amount_of_money"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Amount of Money </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="revision_amount_of_money"--}}
-                            {{--                                                           name="revision_amount_of_money"--}}
-                            {{--                                                           value="{{old('revision_amount_of_money')}}">--}}
-                            {{--                                                    @error('revision_amount_of_money')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_another_claim"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Another Claim (if any) </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <textarea name="revision_another_claim" class="form-control" rows="3"--}}
-                            {{--                                                              placeholder="">{{old('revision_another_claim')}}</textarea>--}}
-                            {{--                                                    @error('revision_another_claim')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_summary_facts"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Summary of Facts </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <textarea name="revision_summary_facts" class="form-control" rows="3"--}}
-                            {{--                                                              placeholder="">{{old('revision_summary_facts')}}</textarea>--}}
-                            {{--                                                    @error('revision_summary_facts')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_name_of_the_appellant"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Name of the Petitioner </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="revision_name_of_the_appellant"--}}
-                            {{--                                                           name="revision_name_of_the_appellant"--}}
-                            {{--                                                           value="{{old('revision_name_of_the_appellant')}}">--}}
-                            {{--                                                    @error('revision_name_of_the_appellant')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_representative"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Name of the Representative </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="revision_representative"--}}
-                            {{--                                                           name="revision_representative"--}}
-                            {{--                                                           value="{{old('revision_representative')}}">--}}
-                            {{--                                                    @error('revision_representative')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_representative_details"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Details of the Representative </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <textarea name="revision_representative_details" class="form-control"--}}
-                            {{--                                                              rows="3"--}}
-                            {{--                                                              placeholder="">{{old('revision_representative_details')}}</textarea>--}}
-                            {{--                                                    @error('revision_representative_details')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_respondent_opposite_party"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Name of the Respondent/Opposite Party </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="revision_respondent_opposite_party"--}}
-                            {{--                                                           name="revision_respondent_opposite_party"--}}
-                            {{--                                                           value="{{old('revision_respondent_opposite_party')}}">--}}
-                            {{--                                                    @error('revision_respondent_opposite_party')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_opposite_representative"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Name of the Representative </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <input type="text" class="form-control"--}}
-                            {{--                                                           id="revision_opposite_representative"--}}
-                            {{--                                                           name="revision_opposite_representative"--}}
-                            {{--                                                           value="{{old('revision_opposite_representative')}}">--}}
-                            {{--                                                    @error('revision_opposite_representative')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                            <div class="form-group row">--}}
-                            {{--                                                <label for="revision_opposite_representative_details"--}}
-                            {{--                                                       class="col-sm-4 col-form-label">--}}
-                            {{--                                                    Details of the Representative </label>--}}
-                            {{--                                                <div class="col-sm-8">--}}
-                            {{--                                                    <textarea name="revision_opposite_representative_details"--}}
-                            {{--                                                              class="form-control" rows="3"--}}
-                            {{--                                                              placeholder="">{{old('revision_opposite_representative_details')}}</textarea>--}}
-                            {{--                                                    @error('revision_opposite_representative_details')<span--}}
-                            {{--                                                        class="text-danger">{{$message}}</span>@enderror--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
-                            {{--                        </div>--}}
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
