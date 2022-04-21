@@ -162,6 +162,7 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
+                                        <th class="text-center"> ID </th>
                                         <th class="text-center"> Next Date </th>
                                         <th class="text-center"> Fixed for </th>
                                         <th class="text-center"> Case No </th>
@@ -179,6 +180,9 @@
                                     @foreach($data as $datum)
 
                                         <tr>
+                                            <td>
+                                                 {{ $datum->id }} </a>
+                                            </td>
                                             <td>
                                                  {{ $datum->next_date }} </a>
                                             </td>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2022 at 01:53 PM
+-- Generation Time: Apr 20, 2022 at 11:32 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -506,76 +506,103 @@ CREATE TABLE `contact_infos` (
 CREATE TABLE `criminal_cases` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `client` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `legal_issue_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `legal_service_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `legal_issue_id` int(11) DEFAULT NULL,
+  `legal_issue_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `legal_service_id` int(11) DEFAULT NULL,
+  `legal_service_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `complainant_informant_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `accused_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `in_favour_of` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `in_favour_of_id` int(11) DEFAULT NULL,
   `case_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_of_the_court_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name_of_the_court_id` int(11) DEFAULT NULL,
   `next_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `next_date_fixed_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `next_date_fixed_id` int(11) DEFAULT NULL,
   `received_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mode_of_receipt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contact_person_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contact_person_details` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mode_of_receipt_id` int(11) DEFAULT NULL,
+  `referrer_id` int(11) DEFAULT NULL,
+  `referrer_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `referrer_details` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `received_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `client_category_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `client_subcategory_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `client_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_party_id` int(11) DEFAULT NULL,
+  `client_category_id` int(11) DEFAULT NULL,
+  `client_subcategory_id` int(11) DEFAULT NULL,
+  `client_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_name_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `client_address` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `client_mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `client_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `client_division_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `client_district_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `client_thana_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `coordinator_tadbirkar_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `coordinator_tadbirkar_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `coordinator_details` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `received_documents` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `required_wanting_documents` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_profession_id` int(11) DEFAULT NULL,
+  `client_profession_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_division_id` int(11) DEFAULT NULL,
+  `client_divisoin_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_district_id` int(11) DEFAULT NULL,
+  `client_district_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_thana_id` int(11) DEFAULT NULL,
+  `client_thana_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_representative_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_representative_details` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_coordinator_tadbirkar_id` int(11) DEFAULT NULL,
+  `coordinator_tadbirkar_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_coordinator_details` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_party_id` int(11) DEFAULT NULL,
+  `opposition_category_id` int(11) DEFAULT NULL,
+  `opposition_subcategory_id` int(11) DEFAULT NULL,
+  `opposition_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_address` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_profession_id` int(11) DEFAULT NULL,
+  `opposition_profession_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_division_id` int(11) DEFAULT NULL,
+  `opposition_divisoin_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_district_id` int(11) DEFAULT NULL,
+  `opposition_district_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_thana_id` int(11) DEFAULT NULL,
+  `opposition_thana_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_representative_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_representative_details` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_coordinator_tadbirkar_id` int(11) DEFAULT NULL,
+  `opposition_coordinator_tadbirkar_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_coordinator_details` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lawyer_advocate_id` int(11) DEFAULT NULL,
-  `assigned_lawyer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `assigned_lawyer_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lawyers_remarks` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `case_status_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status_next_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status_next_date_fixed_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status_remarks` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `case_infos_division_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `case_infos_district_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `case_infos_thana_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_of_the_court` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `case_category_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `case_subcategory_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `case_type_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `received_documents_id` int(11) DEFAULT NULL,
+  `received_documents_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `required_wanting_documents_id` int(11) DEFAULT NULL,
+  `required_wanting_documents_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_infos_division_id` int(11) DEFAULT NULL,
+  `case_infos_district_id` int(11) DEFAULT NULL,
+  `case_infos_thana_id` int(11) DEFAULT NULL,
+  `case_category_id` int(11) DEFAULT NULL,
+  `case_subcategory_id` int(11) DEFAULT NULL,
+  `case_infos_case_title_id` int(11) DEFAULT NULL,
   `case_infos_case_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `case_infos_case_year` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `law` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `section` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_infos_court_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_infos_sub_seq_case_title_id` int(11) DEFAULT NULL,
+  `case_infos_sub_seq_case_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_infos_sub_seq_court_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `law_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `law_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `section_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `section_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_of_filing` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `matter_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `matter_id` int(11) DEFAULT NULL,
+  `case_type_id` int(11) DEFAULT NULL,
   `case_infos_complainant_informant_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `complainant_informant_representative` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_infos_accused_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_infos_accused_representative` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `case_infos_allegation_claim_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `case_infos_allegation_claim` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `prosecution_witness` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `defense_witness` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_infos_allegation_claim_id` int(11) DEFAULT NULL,
+  `case_infos_allegation_claim_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `amount_of_money` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `another_claim` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `recovery_seizure_articles` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `summary_facts` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_of_arrest` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_of_bill` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_info_remarks` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `judgement_date_of_filing` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_of_cognizance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_of_court_transfer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_of_charge_framed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_of_witness_from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_of_witness_to` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_of_argument` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_of_judgement_order` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `summary_judgement_order` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `judgement_remarks` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delete_status` int(11) NOT NULL DEFAULT 0,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -587,8 +614,25 @@ CREATE TABLE `criminal_cases` (
 -- Dumping data for table `criminal_cases`
 --
 
-INSERT INTO `criminal_cases` (`id`, `client`, `legal_issue_id`, `legal_service_id`, `complainant_informant_name`, `accused_name`, `in_favour_of`, `case_no`, `name_of_the_court_id`, `next_date`, `next_date_fixed_id`, `received_date`, `mode_of_receipt`, `contact_person_name`, `contact_person_details`, `received_by`, `client_category_id`, `client_subcategory_id`, `client_name`, `client_address`, `client_mobile`, `client_email`, `client_division_id`, `client_district_id`, `client_thana_id`, `coordinator_tadbirkar_id`, `coordinator_tadbirkar_name`, `coordinator_details`, `received_documents`, `required_wanting_documents`, `lawyer_advocate_id`, `assigned_lawyer`, `lawyers_remarks`, `case_status_id`, `status_next_date`, `status_next_date_fixed_id`, `status_remarks`, `case_infos_division_id`, `case_infos_district_id`, `case_infos_thana_id`, `name_of_the_court`, `case_category_id`, `case_subcategory_id`, `case_type_id`, `case_infos_case_no`, `case_infos_case_year`, `law`, `section`, `date_of_filing`, `matter_id`, `case_infos_complainant_informant_name`, `complainant_informant_representative`, `case_infos_accused_name`, `case_infos_accused_representative`, `case_infos_allegation_claim_id`, `case_infos_allegation_claim`, `amount_of_money`, `another_claim`, `summary_facts`, `date_of_arrest`, `date_of_bill`, `case_info_remarks`, `judgement_date_of_filing`, `date_of_cognizance`, `date_of_court_transfer`, `date_of_charge_framed`, `date_of_witness_from`, `date_of_witness_to`, `date_of_argument`, `date_of_judgement_order`, `summary_judgement_order`, `judgement_remarks`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Jack', '1', '1', 'asdf', 'ertewr', '3', 'asdf', '2', '2022-04-07', '3', '2022-04-13', 'retret', 'dfg', 'asfew', 'mdimranhossain985@gmail.com', '3', '1', 'asdfdsa', 'asdfgfdg', 'tere', 'sdfgfdg', '3', '3', '2', '1', 'adsfds', 'sdaf', 'dfgdfg', 'sdfgfd', 2, 'Aminur Rahman Smith Aminur, Md. Imran Hossain', 'asdfasdf', '3', '2022-04-14', '1', 'ewrewr', '3', '3', '2', 'court 1, court 2, ', '6', '6', '1', '54554654, 54554654, ', '2022, 2023, ', 'law 3, law 1, ', 'section 3, section 56, ', '2022-04-27', '2', 'complainant 1, complainant 545, ', 'representative 545, representative 1, ', 'test accused 1, test accused 1212, ', 'accused representative 1, accused 121fasdf, ', '1', 'dsdaf', '5346543', 'asrewr dfgdf', 'asdfdsf', '2022-04-28', '2022-04-29', 'asdfds', '2022-04-20', '2022-04-30', '2022-04-30', '2022-04-29', '2022-04-30', '2022-04-29', '2022-05-03', '2022-05-04', 'asdf', 'werewr', 0, NULL, NULL, '2022-04-13 05:43:35', '2022-04-13 05:47:35');
+INSERT INTO `criminal_cases` (`id`, `client`, `legal_issue_id`, `legal_issue_write`, `legal_service_id`, `legal_service_write`, `complainant_informant_name`, `accused_name`, `in_favour_of_id`, `case_no`, `name_of_the_court_id`, `next_date`, `next_date_fixed_id`, `received_date`, `mode_of_receipt_id`, `referrer_id`, `referrer_write`, `referrer_details`, `received_by`, `client_party_id`, `client_category_id`, `client_subcategory_id`, `client_id`, `client_name_write`, `client_address`, `client_mobile`, `client_email`, `client_profession_id`, `client_profession_write`, `client_division_id`, `client_divisoin_write`, `client_district_id`, `client_district_write`, `client_thana_id`, `client_thana_write`, `client_representative_name`, `client_representative_details`, `client_coordinator_tadbirkar_id`, `coordinator_tadbirkar_write`, `client_coordinator_details`, `opposition_party_id`, `opposition_category_id`, `opposition_subcategory_id`, `opposition_id`, `opposition_write`, `opposition_address`, `opposition_mobile`, `opposition_email`, `opposition_profession_id`, `opposition_profession_write`, `opposition_division_id`, `opposition_divisoin_write`, `opposition_district_id`, `opposition_district_write`, `opposition_thana_id`, `opposition_thana_write`, `opposition_representative_name`, `opposition_representative_details`, `opposition_coordinator_tadbirkar_id`, `opposition_coordinator_tadbirkar_write`, `opposition_coordinator_details`, `lawyer_advocate_id`, `assigned_lawyer_id`, `lawyers_remarks`, `received_documents_id`, `received_documents_write`, `required_wanting_documents_id`, `required_wanting_documents_write`, `case_infos_division_id`, `case_infos_district_id`, `case_infos_thana_id`, `case_category_id`, `case_subcategory_id`, `case_infos_case_title_id`, `case_infos_case_no`, `case_infos_court_id`, `case_infos_sub_seq_case_title_id`, `case_infos_sub_seq_case_no`, `case_infos_sub_seq_court_id`, `law_id`, `law_write`, `section_id`, `section_write`, `date_of_filing`, `matter_id`, `case_type_id`, `case_infos_complainant_informant_name`, `complainant_informant_representative`, `case_infos_accused_name`, `case_infos_accused_representative`, `prosecution_witness`, `defense_witness`, `case_infos_allegation_claim_id`, `case_infos_allegation_claim_write`, `amount_of_money`, `another_claim`, `recovery_seizure_articles`, `summary_facts`, `case_info_remarks`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'dd/mm/yyyy', NULL, 'dd/mm/yyyy', NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, '', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', '', NULL, ', ', '', '', ', ', '', ', ', 'dd/mm/yyyy', NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-18 03:41:32', '2022-04-18 03:41:32'),
+(2, 'Jack', 1, 'rwer', 1, 'werwe', 'test', 'asfd', 1, '654643', 2, '29/3/2022', 1, '6/4/2022', 2, 1, 'tewdsaf', 'ewrewf', 'mdimranhossain985@gmail.com', 3, 2, 3, '1, 2', 'werew, c 2, ', 'test asdf', 'tes adf415', 'asdf@fasdfds', 2, 'werew', 3, '212', 3, 'fhgf 1', 2, 'fffff 3', 'wrewr', 'asdf', 2, 'rewr', 'asdf', 3, 4, 2, '1, 2', 'rewr, werwer, ', 'asdf', 'werrfasd', 'asdf', 1, 'erewr', 3, 'rwe', 3, 'asdf', 2, 'ghgfh', 'werew', 'asdf asdf', 2, 'werew', 'asdfdsf', 1, 'Kibria Smith Aminur, Md. Imran Hossain', 'ewradsf', 2, 'trretr', 3, 'werewr', 3, 3, 1, 7, 7, 1, '54554654, 545546545asdf, ', '2', 3, 'asdf21212, 5465, ', '2', '1, 2', 'asdf, hgfasf, ', '1, 2', 'test  2, sdfsd 9, ', '21/3/2022', 1, 2, 'asdf 5245, asdf 6556, ', 'fgfdg, werew, ', 'sdaf, fghgf, ', 'ertrgsdf, sdfg, ', 'rt', 'sdf', 2, 'sdfg dfg', '564665', 'sdfg', 'vcgf', 'ertgsdfg sdfgfd', 'szdfgdfgzs dfgdgfdg', 0, NULL, NULL, '2022-04-18 03:48:01', '2022-04-18 03:48:01'),
+(3, 'Jack', 1, 'legal issues', 2, 'legal services', 'complainat informant', 'test accused name', 1, '4654', 2, '4/4/2022', 1, '7/4/2022', 2, 1, 'test referrer', 'referrer details', 'mdimranhossain985@gmail.com', 3, 3, 1, 'Smith Aminu, Aminur Rahman Smith Aminur', 'test client, test client 2, ', '43 Phillip St, Sydney NSW 2000, Australia', '4645648522', 'asdf@adf', 1, 'profession 1', 3, 'division 1', 3, 'district 1', 2, 'thana 1', 'representative 1', 'representative 1', 2, 'coordinator 1', 'coordinator details', 3, 4, 4, 'Aminur, Smith Aminur', 'opposition 1, opposition 2, ', 'opposition address', 'opposition mobiles', 'oppositions email', 1, 'profession 1', 3, 'division 1', 3, 'district 1', 2, 'thana 1', 'representative 1', 'representative details', 2, 'coordinator oppositins', 'coordinator detials 1', 3, 'Kibria Smith Aminur, Md. Imran Hossain', 'asdf', 3, 'gfhgf', 2, 'etr sdfg', 3, 3, 2, 7, 7, 3, '54658798, 986654, ', 'Shadharghat', 1, '56456455, 5456, ', 'Shadharghat', 'Smith Aminu, Aminur Rahman Smith Aminur', 'terterst, dsfdsf, ', 'Smith Aminu, Aminur Rahman Smith Aminur', 'tadsf, ergdf, ', '22/3/2022', 2, 1, 'complainant 1, complainant 2, ', 'representative 1, representative 2, ', 'test accused 1, test accused 1212, ', 'accused representative 1, accused representative 2, ', 'prosecution witness 1', 'defense witness', 1, 'allegations', '55555', 'another claim', 'recovery seizures', 'summary facts', 'test remarks', 0, NULL, NULL, '2022-04-19 22:06:51', '2022-04-19 22:06:51'),
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'dd/mm/yyyy', NULL, 'dd/mm/yyyy', NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, '', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', '', NULL, ', ', '', '', ', ', '', ', ', 'dd/mm/yyyy', NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-19 22:10:15', '2022-04-19 22:10:15'),
+(5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'dd/mm/yyyy', NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, '', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', '', NULL, ', ', '', '', ', ', '', ', ', 'dd/mm/yyyy', NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-19 22:18:34', '2022-04-19 22:18:34'),
+(6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, '', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', '', NULL, ', ', '', '', ', ', '', ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-19 22:21:38', '2022-04-19 22:21:38'),
+(7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '7/3/2022', NULL, '29/3/2022', NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, '', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', '', NULL, ', ', '', '', ', ', '', ', ', '3/4/2022', NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-19 22:23:12', '2022-04-19 22:23:12'),
+(8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, ', ', NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-19 22:30:53', '2022-04-19 22:30:53'),
+(9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, ', ', NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-19 22:31:22', '2022-04-19 22:31:22'),
+(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, ', ', NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-19 22:45:32', '2022-04-19 22:45:32'),
+(11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, ', ', NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-19 22:50:45', '2022-04-19 22:50:45'),
+(12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, 'Smith Aminu, Aminur Rahman Smith Aminur', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Aminur, Smith Aminur', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kibria Smith Aminur, Md. Imran Hossain', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, ', ', NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-20 00:58:12', '2022-04-20 00:58:12'),
+(13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, 'Smith Aminu, Aminur Rahman Smith Aminur', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Aminur, Smith Aminur', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kibria Smith Aminur, Md. Imran Hossain', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, ', ', NULL, 'Criminal Laws', ', ', '33, 44', ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-20 01:01:51', '2022-04-20 01:01:51'),
+(14, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'dd/mm/yyyy', NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, ', ', NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-20 01:09:24', '2022-04-20 01:09:24'),
+(15, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '20/04/2022', NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, ', ', NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-20 01:10:38', '2022-04-20 01:10:38'),
+(16, 'Jack', 1, 'rwer', 1, 'were', 'werwer', 'werew', 2, '654643', 2, '22/3/2022', 1, '7/3/2022', 2, 1, 'rtesr', 'adfs', 'mdimranhossain985@gmail.com', 3, 3, 1, 'Smith Aminu, Aminur Rahman Smith Aminur', 'readsf, ewr, ', '43 Phillip St, Sydney NSW 2000, Australia', 'ewre asdf', 'asdf@adf', 1, 'ewrew', 3, 'adsf', 3, 'tewt', 1, 'asdf', 'representative 1', 'test repre details', 2, 'test', 'ewrew', 3, 4, 4, 'Aminur, Smith Aminur', 'rewr, ', 'ewrewf', 'asdf', 'ewrew', 2, 'ewrewf', 3, 'ewr', 3, 'asdf', 2, 'adf', 'representative 1', 'testafds', 2, 'tewt', 'asdf', 2, 'Aminur Rahman Smith Aminur, Md. Imran Hossain', 'asdf', 3, 'gfhgf', 3, 'etr sdfg', 3, 3, 2, 6, 6, 3, '224545asdf, asdf 41651, ', 'Shadharghat', 3, 'asdf21212, test asdf1564654, ', 'Shadharghat', 'Criminal Laws', 'asdf, ', '33, 44', 'test  2, ', '28/3/2022', 2, 2, 'test, test 5245, asdf, ', 'representative 2, representative 1, ', 'test accused 1, test accused 3, ', 'accused representative 9, accused representative 12, ', 'asdf fdgf asdf', 'test asdf asdf', 1, 'tretst', '54665', 'ewrewrfasdf asdf', 'recovery test', 'test facts', 'test remarks', 0, NULL, NULL, '2022-04-20 01:14:39', '2022-04-20 01:14:39'),
+(17, 'Jack', 2, 'legal issues', 1, 'werwe', 'werwer', 'test', 1, '5646871445asdf', 2, '29/3/2022', 1, '20/04/2022', 2, 1, 'test', 'test asdf', 'mdimranhossain985@gmail.com', 3, 4, 4, 'Smith Aminu, Aminur Rahman Smith Aminur', 'asdf aasdf, erwer, ', '43 Phillip St, Sydney NSW 2000, Australia', '4645648522', 'asdf@adf', 1, 'werew', 3, '44 asdf', 3, 'fhgf 1', 2, 'fffff 3', 'test asdf', 'test asdf', 2, 'coordinator 1', 'test asdf', 3, 4, 4, 'Aminur, Smith Aminur', 'test  2, asdf  1, ', 'test asdf', '545345', 'asdf@adf', 2, 'profession 1', 3, 'division 1', NULL, 'asdf', NULL, 'thana 1', 'werew', 'test asdf 2', 2, 'tes asdf2', 'tes asdf212', 2, 'Kibria Smith Aminur, Md. Imran Hossain', 'test remarks', 3, 'test', 3, 'test asdf', 3, 3, 2, 6, 6, 3, '35665, 5465154554, ', 'Shadharghat, Criminal Court 2', 3, ', ', 'Shadharghat, Criminal Court 2', 'Criminal Laws', 'asdf, law 2, ', 'test, 144', 'section 5, section 3, ', '22/3/2022', 2, 2, 'complainant 1, complainant 5464, ', 'representative 1, representative 545, ', 'test accused 1, test accused 1212, ', 'accused 121fasdf, accused 121fasdf, ', 'asdf fdgf', 'defense witness', 1, 'tretst', '10000000000', 'test 1', 'test 3', 'test 8', 'test 9', 0, NULL, NULL, '2022-04-20 01:19:48', '2022-04-20 01:27:27'),
+(18, 'Jack', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '20/04/2022', NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, 'Smith Aminu, Aminur Rahman Smith Aminur', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Smith Aminur', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Aminur Rahman Smith Aminur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', 'Criminal Court 2', NULL, ', ', NULL, NULL, ', ', '144, 44', ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-20 03:30:47', '2022-04-20 03:31:16');
 
 -- --------------------------------------------------------
 
@@ -618,8 +662,6 @@ INSERT INTO `criminal_cases_files` (`id`, `case_id`, `uploaded_document`, `delet
 (4, 1, '164844013544164792825535164509724711asdfasdf.pdf', 0, NULL, NULL, '2022-03-27 22:02:15', '2022-03-27 22:02:15'),
 (5, 2, '16484402645716480981926916474106851byden (1).jpg', 0, NULL, NULL, '2022-03-27 22:04:24', '2022-03-27 22:04:24'),
 (6, 2, '16484402648164809819213164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-27 22:04:24', '2022-03-27 22:04:24'),
-(7, 1, '164844430665164792106643164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-03-27 23:11:46', '2022-03-27 23:11:46'),
-(8, 1, '16484443065816480981926916474106851byden (1).jpg', 0, NULL, NULL, '2022-03-27 23:11:46', '2022-03-27 23:11:46'),
 (9, 2, '164844437379164792106681164553223132no_images.png', 0, NULL, NULL, '2022-03-27 23:12:53', '2022-03-27 23:12:53'),
 (10, 2, '164844437382164809819213164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-27 23:12:53', '2022-03-27 23:12:53'),
 (11, 3, '164965701545164509798992byden (1) (2).jpg', 0, NULL, NULL, '2022-04-11 00:03:35', '2022-04-11 00:03:35'),
@@ -628,8 +670,12 @@ INSERT INTO `criminal_cases_files` (`id`, `case_id`, `uploaded_document`, `delet
 (14, 4, '164966692156164524589178asdfasdf.pdf', 0, NULL, NULL, '2022-04-11 02:48:41', '2022-04-11 02:48:41'),
 (15, 5, '16497407897164524589178asdfasdf.pdf', 0, NULL, NULL, '2022-04-11 23:19:49', '2022-04-11 23:19:49'),
 (16, 5, '164974078910164853079328164847034157164792106681164553223132no_images.png', 0, NULL, NULL, '2022-04-11 23:19:49', '2022-04-11 23:19:49'),
-(17, 1, '164985045515164974078910164853079328164847034157164792106681164553223132no_images.png', 0, NULL, NULL, '2022-04-13 05:47:35', '2022-04-13 05:47:35'),
-(18, 1, '164985045587164524589178asdfasdf.pdf', 0, NULL, NULL, '2022-04-13 05:47:35', '2022-04-13 05:47:35');
+(22, 2, '16502752813616484401354816480981926916474106851byden (1).jpg', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-18 03:48:01', '2022-04-18 03:48:01'),
+(23, 2, '165027528196164741083064asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-18 03:48:01', '2022-04-18 03:48:01'),
+(24, 3, '165042761151164741083064asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-19 22:06:51', '2022-04-19 22:06:51'),
+(25, 3, '1650427611416484401354816480981926916474106851byden (1).jpg', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-19 22:06:51', '2022-04-19 22:06:51'),
+(26, 16, '16504388798816484401354816480981926916474106851byden (1).jpg', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-20 01:14:39', '2022-04-20 01:14:39'),
+(27, 16, '165043887956164741083064asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-20 01:14:39', '2022-04-20 01:14:39');
 
 -- --------------------------------------------------------
 
@@ -1334,7 +1380,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (411, '2022_04_13_093928_create_setup_court_proceedings_table', 56),
 (412, '2022_04_13_095131_create_setup_day_notes_table', 57),
 (413, '2022_02_24_092255_create_criminal_case_status_logs_table', 58),
-(414, '2022_02_05_123938_create_criminal_cases_table', 59);
+(417, '2022_04_17_043510_create_setup_in_favour_ofs_table', 60),
+(418, '2022_04_17_063359_create_setup_referrers_table', 61),
+(419, '2022_04_17_071308_create_setup_parties_table', 62),
+(420, '2022_04_17_082929_create_setup_clients_table', 63),
+(421, '2022_04_17_091253_create_setup_professions_table', 64),
+(422, '2022_04_18_045333_create_setup_documents_table', 65),
+(423, '2022_04_18_051710_create_setup_case_titles_table', 66),
+(424, '2022_04_18_070838_create_setup_oppositions_table', 67),
+(427, '2022_02_05_123938_create_criminal_cases_table', 68);
 
 -- --------------------------------------------------------
 
@@ -1582,9 +1636,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('0i4afD7gWLTghijkZYINuKCv4NjjNnyY2cGr7BAW', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaHhEVktXVHZlU21xZlZEd0xIMDJhUlU5enJ4aE1kSWdJU09pT1M3ZSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njc6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi92aWV3LWNyaW1pbmFsLWNhc2VzLzMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJwYWdlIjtzOjk6ImRhc2hib2FyZCI7fQ==', 1649848308),
-('9m6Ux64CT17nN14zEwGeUH24BM4LkkuKuNTqTrny', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoicTIzS2paQWFJTVJOYkw3TTVOU3Y3bWhvOW1XcDJYR2Y2OFl2S3hXRyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjA6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9jcmltaW5hbC1jYXNlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTI6ImxvZ2luX2FkbWluXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjQ6InBhZ2UiO3M6OToiZGFzaGJvYXJkIjt9', 1649850780),
-('jackGjtmqHwmnvNYjgB5kxt2Oocqqglg7OqJZCkH', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSUludmxPOTdwbVN2Y1RRQXg4OHpLZU5FQW5yUlpWOG9qSjFpRGt1TSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njc6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi92aWV3LWNyaW1pbmFsLWNhc2VzLzMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1649848236);
+('6ADTkSHkiOuAO057LsqJzK5lubqcn47WXkvr90cw', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSVJVSWZzUEtRN0xNSE9jcjFFVmVBVXFXNW42aW5jRDZpWHpQRWo3ciI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjA6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9jcmltaW5hbC1jYXNlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTI6ImxvZ2luX2FkbWluXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjQ6InBhZ2UiO3M6OToiZGFzaGJvYXJkIjt9', 1650447086);
 
 -- --------------------------------------------------------
 
@@ -1859,6 +1911,31 @@ INSERT INTO `setup_case_subcategories` (`id`, `case_type`, `case_category_id`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `setup_case_titles`
+--
+
+CREATE TABLE `setup_case_titles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `case_title_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_case_titles`
+--
+
+INSERT INTO `setup_case_titles` (`id`, `case_title_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'C.R.', 0, NULL, NULL, '2022-04-17 23:35:49', '2022-04-17 23:36:09'),
+(2, 'test', 1, NULL, NULL, '2022-04-17 23:35:53', '2022-04-17 23:36:23'),
+(3, 'P.R.', 0, NULL, NULL, '2022-04-17 23:35:59', '2022-04-17 23:36:18');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `setup_case_types`
 --
 
@@ -1879,6 +1956,33 @@ CREATE TABLE `setup_case_types` (
 INSERT INTO `setup_case_types` (`id`, `case_types_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'Civil Case', 0, NULL, NULL, '2022-03-15 23:42:31', '2022-03-15 23:43:02'),
 (2, 'Criminal Cases', 0, NULL, NULL, '2022-03-15 23:42:39', '2022-03-15 23:42:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_clients`
+--
+
+CREATE TABLE `setup_clients` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `client_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_address` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_clients`
+--
+
+INSERT INTO `setup_clients` (`id`, `client_name`, `client_mobile`, `client_email`, `client_address`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Smith Aminu', '4645648522', 'asdf@adf', '43 Phillip St, Sydney NSW 2000, Australia', 0, NULL, NULL, '2022-04-17 02:40:26', '2022-04-17 02:40:46'),
+(2, 'Aminur Rahman Smith Aminur', '4645648522', 'asdf@adf', '43 Phillip St, Sydney NSW 2000, Australia', 0, NULL, NULL, '2022-04-17 02:40:33', '2022-04-17 02:40:33');
 
 -- --------------------------------------------------------
 
@@ -2085,7 +2189,8 @@ INSERT INTO `setup_courts` (`id`, `case_type`, `court_name`, `delete_status`, `c
 (3, 'Labour Cases', 'Labour Court Shadharghat', 0, NULL, NULL, '2022-04-06 23:39:08', '2022-04-06 23:39:08'),
 (4, 'Special Quassi - Judicial Cases', 'Quassi Court', 0, NULL, NULL, '2022-04-06 23:39:21', '2022-04-06 23:39:21'),
 (5, 'High Court Division', 'High Court test courts', 0, NULL, NULL, '2022-04-06 23:39:38', '2022-04-06 23:57:54'),
-(6, 'Appellate Court Division', 'Appellate high courts', 0, NULL, NULL, '2022-04-06 23:40:36', '2022-04-06 23:40:45');
+(6, 'Appellate Court Division', 'Appellate high courts', 0, NULL, NULL, '2022-04-06 23:40:36', '2022-04-06 23:40:45'),
+(7, 'Criminal Cases', 'Criminal Court 2', 0, NULL, NULL, '2022-04-20 01:18:43', '2022-04-20 01:18:43');
 
 -- --------------------------------------------------------
 
@@ -2291,6 +2396,31 @@ INSERT INTO `setup_divisions` (`id`, `division_name`, `delete_status`, `created_
 (1, 'Sylhet', 0, NULL, NULL, '2022-03-15 23:57:46', '2022-03-15 23:57:46'),
 (2, 'Noakhali', 0, NULL, NULL, '2022-03-15 23:57:50', '2022-03-15 23:57:50'),
 (3, 'Barishal', 0, NULL, NULL, '2022-03-15 23:57:54', '2022-03-15 23:57:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_documents`
+--
+
+CREATE TABLE `setup_documents` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `documents_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_documents`
+--
+
+INSERT INTO `setup_documents` (`id`, `documents_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'test', 0, NULL, NULL, '2022-04-17 23:04:02', '2022-04-17 23:04:46'),
+(2, 'test', 0, NULL, NULL, '2022-04-17 23:04:18', '2022-04-17 23:04:18'),
+(3, 'test doc', 0, NULL, NULL, '2022-04-17 23:04:22', '2022-04-17 23:04:38');
 
 -- --------------------------------------------------------
 
@@ -2522,6 +2652,30 @@ INSERT INTO `setup_internal_council_files` (`id`, `internal_council_id`, `upload
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `setup_in_favour_ofs`
+--
+
+CREATE TABLE `setup_in_favour_ofs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `in_favour_of_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_in_favour_ofs`
+--
+
+INSERT INTO `setup_in_favour_ofs` (`id`, `in_favour_of_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Accused', 0, NULL, NULL, '2022-04-18 01:58:37', '2022-04-18 01:58:37'),
+(2, 'Opponents', 0, NULL, NULL, '2022-04-18 01:58:41', '2022-04-18 01:58:46');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `setup_laws`
 --
 
@@ -2722,6 +2876,59 @@ INSERT INTO `setup_next_day_presences` (`id`, `next_day_presence_name`, `delete_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `setup_oppositions`
+--
+
+CREATE TABLE `setup_oppositions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `opposition_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opposition_address` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_oppositions`
+--
+
+INSERT INTO `setup_oppositions` (`id`, `opposition_name`, `opposition_mobile`, `opposition_email`, `opposition_address`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Aminur', NULL, NULL, NULL, 0, NULL, NULL, '2022-04-18 01:36:12', '2022-04-18 01:37:48'),
+(2, 'Smith Aminur', '545345', 'asdf@adf', '43 Phillip St, Sydney NSW 2000, Australia', 0, NULL, NULL, '2022-04-18 01:37:37', '2022-04-18 01:37:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_parties`
+--
+
+CREATE TABLE `setup_parties` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `party_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_parties`
+--
+
+INSERT INTO `setup_parties` (`id`, `party_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'test', 0, NULL, NULL, '2022-04-17 01:19:15', '2022-04-17 01:19:15'),
+(2, 'Test', 0, NULL, NULL, '2022-04-17 01:44:47', '2022-04-17 01:47:05'),
+(3, 'Accused', 0, NULL, NULL, '2022-04-17 01:46:47', '2022-04-17 01:46:47'),
+(4, 'Opposites', 0, NULL, NULL, '2022-04-17 02:15:33', '2022-04-17 02:15:33');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `setup_person_titles`
 --
 
@@ -2744,6 +2951,30 @@ INSERT INTO `setup_person_titles` (`id`, `person_title_name`, `delete_status`, `
 (2, 'Dr.', 0, NULL, NULL, '2022-03-15 23:37:16', '2022-03-15 23:37:16'),
 (3, 'Mr.', 0, NULL, NULL, '2022-03-15 23:37:22', '2022-03-15 23:37:22'),
 (4, 'werewr asdf', 0, NULL, NULL, '2022-03-24 03:49:36', '2022-03-30 06:41:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_professions`
+--
+
+CREATE TABLE `setup_professions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `profession_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_professions`
+--
+
+INSERT INTO `setup_professions` (`id`, `profession_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Businessman', 0, NULL, NULL, '2022-04-17 03:19:07', '2022-04-17 03:19:31'),
+(2, 'Jobholder', 0, NULL, NULL, '2022-04-17 03:19:22', '2022-04-17 03:19:22');
 
 -- --------------------------------------------------------
 
@@ -2792,6 +3023,32 @@ CREATE TABLE `setup_property_types` (
 INSERT INTO `setup_property_types` (`id`, `property_type_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'Private Property', 0, NULL, NULL, '2022-03-15 23:56:07', '2022-03-15 23:56:19'),
 (2, 'Owened', 0, NULL, NULL, '2022-03-15 23:56:11', '2022-03-15 23:56:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_referrers`
+--
+
+CREATE TABLE `setup_referrers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `referrer_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `referrer_mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `referrer_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `referrer_address` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_referrers`
+--
+
+INSERT INTO `setup_referrers` (`id`, `referrer_name`, `referrer_mobile`, `referrer_email`, `referrer_address`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Aminur Rahman', '56464514', 'asdf@adf', '43 Phillip St, Sydney NSW 2000, Australia', 0, NULL, NULL, '2022-04-17 00:46:13', '2022-04-17 01:02:29');
 
 -- --------------------------------------------------------
 
@@ -3406,9 +3663,21 @@ ALTER TABLE `setup_case_subcategories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `setup_case_titles`
+--
+ALTER TABLE `setup_case_titles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `setup_case_types`
 --
 ALTER TABLE `setup_case_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setup_clients`
+--
+ALTER TABLE `setup_clients`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3508,6 +3777,12 @@ ALTER TABLE `setup_divisions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `setup_documents`
+--
+ALTER TABLE `setup_documents`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `setup_external_councils`
 --
 ALTER TABLE `setup_external_councils`
@@ -3553,6 +3828,12 @@ ALTER TABLE `setup_internal_councils`
 -- Indexes for table `setup_internal_council_files`
 --
 ALTER TABLE `setup_internal_council_files`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setup_in_favour_ofs`
+--
+ALTER TABLE `setup_in_favour_ofs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3604,9 +3885,27 @@ ALTER TABLE `setup_next_day_presences`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `setup_oppositions`
+--
+ALTER TABLE `setup_oppositions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setup_parties`
+--
+ALTER TABLE `setup_parties`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `setup_person_titles`
 --
 ALTER TABLE `setup_person_titles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setup_professions`
+--
+ALTER TABLE `setup_professions`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3619,6 +3918,12 @@ ALTER TABLE `setup_programs`
 -- Indexes for table `setup_property_types`
 --
 ALTER TABLE `setup_property_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setup_referrers`
+--
+ALTER TABLE `setup_referrers`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3750,13 +4055,13 @@ ALTER TABLE `contact_infos`
 -- AUTO_INCREMENT for table `criminal_cases`
 --
 ALTER TABLE `criminal_cases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `criminal_cases_files`
 --
 ALTER TABLE `criminal_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `criminal_case_activity_logs`
@@ -3846,7 +4151,7 @@ ALTER TABLE `land_information_files`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=415;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=428;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -3939,9 +4244,21 @@ ALTER TABLE `setup_case_subcategories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `setup_case_titles`
+--
+ALTER TABLE `setup_case_titles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `setup_case_types`
 --
 ALTER TABLE `setup_case_types`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `setup_clients`
+--
+ALTER TABLE `setup_clients`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -3990,7 +4307,7 @@ ALTER TABLE `setup_coordinators`
 -- AUTO_INCREMENT for table `setup_courts`
 --
 ALTER TABLE `setup_courts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `setup_court_classes`
@@ -4038,6 +4355,12 @@ ALTER TABLE `setup_districts`
 -- AUTO_INCREMENT for table `setup_divisions`
 --
 ALTER TABLE `setup_divisions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `setup_documents`
+--
+ALTER TABLE `setup_documents`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -4089,6 +4412,12 @@ ALTER TABLE `setup_internal_council_files`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `setup_in_favour_ofs`
+--
+ALTER TABLE `setup_in_favour_ofs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `setup_laws`
 --
 ALTER TABLE `setup_laws`
@@ -4137,10 +4466,28 @@ ALTER TABLE `setup_next_day_presences`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `setup_oppositions`
+--
+ALTER TABLE `setup_oppositions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `setup_parties`
+--
+ALTER TABLE `setup_parties`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `setup_person_titles`
 --
 ALTER TABLE `setup_person_titles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `setup_professions`
+--
+ALTER TABLE `setup_professions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `setup_programs`
@@ -4153,6 +4500,12 @@ ALTER TABLE `setup_programs`
 --
 ALTER TABLE `setup_property_types`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `setup_referrers`
+--
+ALTER TABLE `setup_referrers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `setup_regions`

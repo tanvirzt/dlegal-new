@@ -383,7 +383,7 @@
                                                                     <option value="">Select</option>
                                                                     @foreach($client as $item)
                                                                         <option
-                                                                            value="{{ $item->id }}" {{  old('client_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
+                                                                            value="{{ $item->client_name }}" {{  old('client_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
@@ -694,7 +694,7 @@
                                                                     <option value="">Select</option>
                                                                     @foreach($opposition as $item)
                                                                         <option
-                                                                            value="{{ $item->id }}" {{  old('opposition_id') == $item->id ? 'selected' : '' }}>{{ $item->opposition_name }}</option>
+                                                                            value="{{ $item->opposition_name }}" {{  old('opposition_id') == $item->id ? 'selected' : '' }}>{{ $item->opposition_name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
@@ -1205,7 +1205,7 @@
                                                             <option value="">Select</option>
                                                             @foreach($court as $item)
                                                                 <option
-                                                                    value="{{ $item->id }}" {{(old('case_infos_court_id') == $item->id ? 'selected':'')}}>{{ $item->court_name }}</option>
+                                                                    value="{{ $item->court_name }}" {{(old('case_infos_court_id') == $item->id ? 'selected':'')}}>{{ $item->court_name }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('case_infos_court_id')<span
@@ -1272,7 +1272,7 @@
                                                             <option value="">Select</option>
                                                             @foreach($court as $item)
                                                                 <option
-                                                                    value="{{ $item->id }}" {{(old('case_infos_sub_seq_court_id') == $item->id ? 'selected':'')}}>{{ $item->court_name }}</option>
+                                                                    value="{{ $item->court_name }}" {{(old('case_infos_sub_seq_court_id') == $item->id ? 'selected':'')}}>{{ $item->court_name }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('case_infos_sub_seq_court_id')<span
@@ -1289,9 +1289,9 @@
                                                                         id="law_id"
                                                                         class="form-control select2" multiple>
                                                                     <option value="">Select</option>
-                                                                    @foreach($client as $item)
+                                                                    @foreach($law as $item)
                                                                         <option
-                                                                            value="{{ $item->id }}" {{  old('law_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
+                                                                            value="{{ $item->law_name }}" {{  old('law_id') == $item->id ? 'selected' : '' }}>{{ $item->law_name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
@@ -1336,9 +1336,9 @@
                                                                         id="section_id"
                                                                         class="form-control select2" multiple>
                                                                     <option value="">Select</option>
-                                                                    @foreach($client as $item)
+                                                                    @foreach($section as $item)
                                                                         <option
-                                                                            value="{{ $item->id }}" {{  old('section_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
+                                                                            value="{{ $item->section_name }}" {{  old('section_id') == $item->id ? 'selected' : '' }}>{{ $item->section_name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>

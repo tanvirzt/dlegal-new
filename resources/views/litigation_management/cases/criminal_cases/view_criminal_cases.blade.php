@@ -57,7 +57,7 @@
                     <div class="card">
                         <div >
                             <div class="card-header">
-                                <h3 class="card-title custom_h3 text-uppercase" id="heading">Details</h3>
+                                <h3 class="card-title custom_h3 font-italic" id="heading">View Criminal Case Nos. {{ $data->case_no }}</h3>
                                 <div class="float-right">
                                     <a href="{{ route('edit-criminal-cases', $data->id) }}">
                                         <button
@@ -83,7 +83,10 @@
                                                     <table class="table table-bordered table-responsive">
 
                                                         <tbody>
-
+                                                        <tr>
+                                                            <td>ID</td>
+                                                            <td> {{ $data->id }} </td>
+                                                        </tr>
                                                         <tr>
                                                             <td>Client Name</td>
                                                             <td> {{ $data->client }} </td>
@@ -94,7 +97,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Legal Service</td>
-                                                            <td>{{ $data->legal_service_name }}</td>
+                                                            <td>{{ $data->legal_service_name }} {{ $data->legal_service_write }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Complainant/Informant Name</td>
@@ -106,7 +109,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>In favour of</td>
-                                                            <td> {{ $data->in_favour_of_first_name }} {{ $data->in_favour_of_middle_name }} {{ $data->in_favour_of_last_name }} </td>
+                                                            <td> {{ $data->in_favour_of_name }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Case No.</td>
@@ -130,15 +133,15 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Mode of Receipt</td>
-                                                            <td>{{ $data->mode_of_receipt }}</td>
+                                                            <td>{{ $data->mode_name }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Contact Person Name</td>
-                                                            <td>{{ $data->contact_person_name }}</td>
+                                                            <td>Referrer Name</td>
+                                                            <td>{{ $data->referrer_name }} {{ $data->referrer_write }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Contact Person Details</td>
-                                                            <td>{{ $data->contact_person_details }}</td>
+                                                            <td>Referrer Details</td>
+                                                            <td>{{ $data->referrer_details }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Received By</td>
@@ -157,7 +160,10 @@
                                                     <table class="table table-bordered table-responsive">
 
                                                         <tbody>
-
+                                                        <tr>
+                                                            <td>Client(Which Party)</td>
+                                                            <td> {{ $data->party_name }} </td>
+                                                        </tr>
                                                         <tr>
                                                             <td>Client Category</td>
                                                             <td> {{ $data->client_category_name }} </td>
@@ -168,7 +174,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Client Name</td>
-                                                            <td>{{ $data->client_name }}</td>
+                                                            <td>{{ $data->client_name }} {{ rtrim($data->client_name_write, ', ') }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Client Address</td>
@@ -183,51 +189,122 @@
                                                             <td>{{ $data->client_email }}</td>
                                                         </tr>
                                                         <tr>
+                                                            <td>Profession/Type</td>
+                                                            <td>{{ $data->profession_name }} {{ $data->client_profession_write }}</td>
+                                                        </tr>
+                                                        <tr>
                                                             <td>Zone/Division</td>
-                                                            <td>{{ $data->client_division_name }}</td>
+                                                            <td>{{ $data->client_division_name }} {{ $data->client_divisoin_write }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Area/District</td>
-                                                            <td>{{ $data->client_district_name }}</td>
+                                                            <td>{{ $data->client_district_name }} {{ $data->client_district_write }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Branch/Thana</td>
-                                                            <td>{{ $data->client_thana_name }}</td>
+                                                            <td>{{ $data->client_thana_name }} {{ $data->client_thana_write }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Representative Name</td>
+                                                            <td>{{ $data->client_representative_name }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Representative Details</td>
+                                                            <td>{{ $data->client_representative_details }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Coordinator/Tadbirkar</td>
-                                                            <td>{{ $data->coordinator_name }} {{ $data->coordinator_tadbirkar_name }}</td>
+                                                            <td>{{ $data->coordinator_name }} {{ $data->coordinator_tadbirkar_write }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Coordinator Details</td>
-                                                            <td>{{ $data->coordinator_details }}</td>
+                                                            <td>{{ $data->client_coordinator_details }}</td>
                                                         </tr>
-
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
+
+
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Documents
-                                                            Information </u></h6>
+                                                    <h6 class="text-uppercase text-bold"><u> OPPOSITE PARTY INFORMATION </u>
+                                                    </h6>
                                                     <table class="table table-bordered table-responsive">
 
                                                         <tbody>
-
                                                         <tr>
-                                                            <td>Received Documents</td>
-                                                            <td> {{ $data->received_documents }} </td>
+                                                            <td>Opposition(Which Party)</td>
+                                                            <td> {{ $data->oppsition_party_name }} </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Required/Wanting Documents</td>
-                                                            <td> {{ $data->required_wanting_documents }} </td>
+                                                            <td>Opposition Category</td>
+                                                            <td> {{ $data->opposition_category_name }} </td>
                                                         </tr>
-
+                                                        <tr>
+                                                            <td>Opposition Subcategory</td>
+                                                            <td>{{ $data->opposition_subcategory_name }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Opposition Name</td>
+                                                            <td>{{ $data->opposition_name }} {{ rtrim($data->opposition_write, ', ') }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Opposition Address</td>
+                                                            <td>{{ $data->opposition_address }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Opposition Mobile</td>
+                                                            <td>{{ $data->opposition_mobile }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Opposition Email</td>
+                                                            <td>{{ $data->opposition_email }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Profession/Type</td>
+                                                            <td>{{ $data->opposition_profession_name }} {{ $data->opposition_profession_write }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Zone/Division</td>
+                                                            <td>{{ $data->opposition_division_name }} {{ $data->opposition_divisoin_write }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Area/District</td>
+                                                            <td>{{ $data->opposition_district_name }} {{ $data->opposition_district_write }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Branch/Thana</td>
+                                                            <td>{{ $data->opposition_thana_name }} {{ $data->opposition_thana_write }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Representative Name</td>
+                                                            <td>{{ $data->opposition_representative_name }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Representative Details</td>
+                                                            <td>{{ $data->opposition_representative_details }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Coordinator/Tadbirkar</td>
+                                                            <td>{{ $data->opposition_coordinator_name }} {{ $data->opposition_coordinator_tadbirkar_write }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Coordinator Details</td>
+                                                            <td>{{ $data->opposition_coordinator_details }}</td>
+                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="revision_case_info">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h6 class="text-uppercase text-bold"><u> Lawyers Information </u>
@@ -242,7 +319,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Name of Assigned Lawyer</td>
-                                                            <td> {{ rtrim($data->assigned_lawyer, ', ') }} </td>
+                                                            <td> {{ $data->assigned_lawyer_id }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Remarks</td>
@@ -254,36 +331,26 @@
                                             </div>
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Status of the Case </u>
-                                                    </h6>
+                                                    <h6 class="text-uppercase text-bold"><u> Documents
+                                                            Information </u></h6>
                                                     <table class="table table-bordered table-responsive">
+
+                                                        <tbody>
+
                                                         <tr>
-                                                            <td>Status</td>
-                                                            <td> {{ $data->case_status_name }} </td>
+                                                            <td>Received Documents</td>
+                                                            <td> {{ $data->received_documents_name }} {{ $data->received_documents_write }} </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Next Date</td>
-                                                            <td> {{ $data->status_next_date }} </td>
+                                                            <td>Required/Wanting Documents</td>
+                                                            <td> {{ $data->required_documents_name }} {{ $data->required_wanting_documents_write }} </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>Next date fixed for</td>
-                                                            <td> {{ $data->status_next_date_reason_name }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Remarks</td>
-                                                            <td> {{ $data->status_remarks }} </td>
-                                                        </tr>
+
+                                                        </tbody>
                                                     </table>
                                                 </div>
                                             </div>
 
-
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-6">
-                                        <div class="revision_case_info">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h6 class="text-uppercase text-bold"><u> Case Information </u>
@@ -305,10 +372,6 @@
                                                             <td>{{ $data->case_infos_thana_name }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Name of the Court</td>
-                                                            <td>{{ rtrim($data->name_of_the_court, ', ') }}</td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>Case Category</td>
                                                             <td>{{ $data->case_category }}</td>
                                                         </tr>
@@ -317,130 +380,98 @@
                                                             <td>{{ $data->case_subcategory }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Type of Cases</td>
-                                                            <td>{{ $data->case_types_name }}</td>
+                                                            <td>Case Title</td>
+                                                            <td>{{ $data->case_infos_case_title_name }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Case No.</td>
                                                             <td>{{ rtrim($data->case_infos_case_no, ', ') }} </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Case Year</td>
-                                                            <td>{{ rtrim($data->case_infos_case_year, ', ') }}</td>
+                                                            <td>Name of the Court</td>
+                                                            <td>{{ $data->case_infos_court_id }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Sub Seq. Case Title</td>
+                                                            <td> {{ $data->sub_seq_case_infos_case_title_name }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Sub Seq. Case No.</td>
+                                                            <td> {{ rtrim($data->case_infos_sub_seq_case_no, ', ') }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Sub-Seq. Court</td>
+                                                            <td> {{ $data->case_infos_sub_seq_court_id }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Law</td>
-                                                            <td>{{ rtrim($data->law, ', ') }}</td>
+                                                            <td>{{ $data->law_id }} {{ rtrim($data->law_write, ', ') }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Section</td>
-                                                            <td>{{ rtrim($data->section, ', ') }}</td>
+                                                            <td> {{ $data->section_id }} {{ rtrim($data->section_write, ', ') }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Case Filing Date</td>
                                                             <td>{{ $data->date_of_filing }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Matter</td>
-                                                            <td> {{ $data->matter_name }} </td>
+                                                            <td>Case Matter</td>
+                                                            <td>{{ $data->matter_name }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Case Type</td>
+                                                            <td>{{ $data->case_types_name }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Complainant/Informant Name</td>
-                                                            <td>{{ rtrim($data->case_infos_complainant_informant_name, ', ') }}</td>
+                                                            <td> {{ rtrim($data->case_infos_complainant_informant_name, ', ') }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Complainant/Informant's Representative</td>
-                                                            <td>{{ rtrim($data->case_infos_complainant_informant_name, ', ') }}</td>
+                                                            <td> {{ rtrim($data->complainant_informant_representative, ', ') }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Accused Name</td>
-                                                            <td>{{ rtrim($data->case_infos_accused_name, ', ') }}</td>
+                                                            <td> {{ rtrim($data->case_infos_accused_name, ', ') }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Accused's Representative</td>
-                                                            <td> {{ rtrim($data->case_infos_accused_representative, ', ') }} </td>
+                                                            <td>{{ rtrim($data->case_infos_accused_representative, ', ') }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Prosecution Witnesses</td>
+                                                            <td>{{ $data->prosecution_witness }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Defense Witnesses</td>
+                                                            <td> {{ $data->defense_witness }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Allegation/Claim</td>
-                                                            <td> {{ $data->allegation_name }} </td>
+                                                            <td> {{ $data->allegation_name }} {{ $data->case_infos_allegation_claim_write }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Amount of Money</td>
-                                                            <td> {{ $data->amount_of_money }} </td>
+                                                            <td>{{ $data->amount_of_money }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Another Claim(if any)</td>
                                                             <td>{{ $data->another_claim }}</td>
                                                         </tr>
                                                         <tr>
+                                                            <td>Recovery/Seizure Articles</td>
+                                                            <td>{{ $data->recovery_seizure_articles }}</td>
+                                                        </tr>
+                                                        <tr>
                                                             <td>Summary of Facts</td>
                                                             <td>{{ $data->summary_facts }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Date of Arrest</td>
-                                                            <td>{{ $data->date_of_arrest }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Date of Bill</td>
-                                                            <td>{{ $data->date_of_bill }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Remarks</td>
                                                             <td>{{ $data->case_info_remarks }}</td>
                                                         </tr>
 
-
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Judgement Information </u></h6>
-                                                    <table class="table table-bordered table-responsive">
-
-                                                        <tbody>
-
-                                                        <tr>
-                                                            <td>Date of Filing</td>
-                                                            <td> {{ $data->judgement_date_of_filing }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Date of Cognizance</td>
-                                                            <td>{{ $data->date_of_cognizance }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Date of Court Transfer</td>
-                                                            <td>{{ $data->date_of_court_transfer }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Date of Charge Framed</td>
-                                                            <td>{{ $data->date_of_charge_framed }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Date of Witness(From)</td>
-                                                            <td>{{ $data->date_of_witness_from }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Date of Witness(To)</td>
-                                                            <td>{{ $data->date_of_witness_to }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Date of Argument</td>
-                                                            <td>{{ $data->date_of_argument }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Date of Judgement & Order</td>
-                                                            <td>{{ $data->date_of_judgement_order }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Summary of Judgement & Order</td>
-                                                            <td>{{ $data->summary_judgement_order }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Remarks</td>
-                                                            <td>{{ $data->judgement_remarks }}</td>
-                                                        </tr>
 
                                                         </tbody>
                                                     </table>
