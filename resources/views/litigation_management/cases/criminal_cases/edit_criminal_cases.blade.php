@@ -1312,7 +1312,7 @@
                                                                             <div class="col-sm-8">
                                                                                 <div class="input-group hdtuto_case_infos_sub_seq_case_no control-group increment_case_infos_sub_seq_case_no">
                                                                                     <input type="text" name="case_infos_sub_seq_case_no[]"
-                                                                                           class="myfrm form-control">
+                                                                                           class="myfrm form-control" value="{{ trim($data->case_infos_sub_seq_case_no, ', ') }}">
                                                                                     <div class="input-group-btn">
                                                                                         <button class="btn btn-success btn_success_case_infos_sub_seq_case_no"
                                                                                                 type="button"><i

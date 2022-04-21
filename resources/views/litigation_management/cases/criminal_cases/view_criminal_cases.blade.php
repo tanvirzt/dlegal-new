@@ -385,7 +385,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Case No.</td>
-                                                            <td>{{ rtrim($data->case_infos_case_no, ', ') }} </td>
+                                                            <td>{{ rtrim($data->case_infos_case_no, ', ') }} {{ rtrim($data->case_infos_case_year, ', ') }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Name of the Court</td>
