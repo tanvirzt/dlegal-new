@@ -339,7 +339,7 @@ window.onload =function(){
 //function to convert enterd date to any format
 function setCorrect(xObj,xTraget){
     var date = new Date(xObj.value);
-    var month = date.getMonth();
+    var month = date.getMonth() + 1;
     var day = date.getDate();
     var year = date.getFullYear();
     if(month!='NaN'){

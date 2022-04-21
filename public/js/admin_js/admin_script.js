@@ -1614,6 +1614,36 @@ $(document).ready(function () {
     });
 
 
+    $('#lawyer_advocate_id').on('change', function () {
+        var external_council_name_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if (external_council_name_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", external_council_name_id: external_council_name_id},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#assigned_lawyer_id').empty();
+                        $('#assigned_lawyer_id').focus;
+                        $('#assigned_lawyer_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="assigned_lawyer_id[]"]').append('<option value="'+value.first_name+' '+value.middle_name+' '+value.last_name+'">' + value.first_name + ' ' + value.middle_name + ' ' + value.last_name + '</option>');
+                        });
+                    } else {
+                        $('#assigned_lawyer_id').empty();
+                    }
+                }
+            });
+        } else {
+            $('#assigned_lawyer_id').empty();
+            $('#assigned_lawyer_id').append('<option value="">Select</option>');
+
+        }
+    });
 
 
 

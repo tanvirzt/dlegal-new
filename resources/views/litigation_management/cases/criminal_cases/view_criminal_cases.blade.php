@@ -57,7 +57,7 @@
                     <div class="card">
                         <div >
                             <div class="card-header">
-                                <h3 class="card-title custom_h3 font-italic" id="heading">View Criminal Case Nos. {{ $data->case_no }}</h3>
+                                <h3 class="card-title custom_h3 font-italic text-uppercase font_weight"  id="heading">View Criminal Case No. {{ $data->case_no }}</h3>
                                 <div class="float-right">
                                     <a href="{{ route('edit-criminal-cases', $data->id) }}">
                                         <button
@@ -162,7 +162,7 @@
                                                         <tbody>
                                                         <tr>
                                                             <td>Client(Which Party)</td>
-                                                            <td> {{ $data->party_name }} </td>
+                                                            <td> {{ $data->client_party_name }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Client Category</td>
@@ -477,169 +477,246 @@
                                                     </table>
                                                 </div>
                                             </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="text-uppercase text-bold"><u> Status of the Case </u>
+                                                    </h6>
+                                                    <table class="table table-bordered table-responsive">
+
+                                                        <tbody>
+
+                                                        <tr>
+                                                            <td>Status</td>
+                                                            <td> @if(!empty($latest)) {{ $latest->case_status_name }} @endif</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Next Date</td>
+                                                            <td> {{ $data->next_date }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Next Date Fixed For</td>
+                                                            <td> @if(!empty($latest))  {{ $latest->next_date_reason_name }} @endif </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Remarks</td>
+                                                            <td> @if(!empty($latest))  {{ $latest->updated_remarks }} @endif </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
 
-                            <div class="card-header">
-                                <h3 class="card-title custom_h3 text-uppercase" id="heading">Documents Logs
-                                    @php
-                                        $now = Carbon\Carbon::now();
-                                        $days_count = Carbon\Carbon::parse($data->created_at)->diffInDays($now);
-                                    @endphp
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Case Proceedings Logs <span
+                                            class="font-italic custom_font">(Case No: {{ $data->case_no }}, Court Name: {{ $data->court_name }})</span>
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
 
-                                    <span class="font-italic custom_font"> (Total Elapsed Time:
+                                <div class="card-body">
+                                    <table id="table_logs_text_center" class="table table-responsive no-footer dtr-inline">
+                                        <thead>
+                                        <tr>
+                                            <th class="table_logs_text_center">Status</th>
+                                            <th class="table_logs_text_center">Order Date</th>
+                                            <th class="table_logs_text_center">Fixed For</th>
+                                            <th class="table_logs_text_center">Court Proceeding </th>
+                                            <th class="table_logs_text_center text-nowrap">Court Order </th>
+                                            <th class="table_logs_text_center text-nowrap">Day Note</th>
+                                            <th class="table_logs_text_center text-nowrap">Engaged Advocates</th>
+                                            <th class="table_logs_text_center text-nowrap">Next Day Presence </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($case_logs as $logs)
+                                            <tr>
+                                                <td class="table_logs_text_center"> {{ $logs->case_status_name }} {{ $logs->updated_case_status_write }} </td>
+                                                <td class="table_logs_text_center"> {{ $logs->updated_order_date }} </td>
+                                                <td class="table_logs_text_center"> {{ $logs->next_date_reason_name }} {{ $logs->updated_fixed_for_write }} </td>
+                                                <td class="table_logs_text_center"> {{ $logs->court_proceeding_name }} {{ $logs->court_proceedings_write }} </td>
+                                                <td class="table_logs_text_center"> {{ $logs->court_last_order_name }} {{ $logs->updated_court_order_write }}</td>
+                                                <td class="table_logs_text_center"> {{ $logs->day_notes_name }} {{ $logs->updated_day_notes_write }} </td>
+                                                <td class="table_logs_text_center"> {{ $logs->first_name }} {{ $logs->middle_name }} {{ $logs->last_name }} {{ $logs->updated_engaged_advocate_write }} </td>
+                                                <td class="table_logs_text_center"> {{ $logs->next_day_presence_name }} </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Case Activities Logs</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="table table-responsive no-footer dtr-inline data_table">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-left text-nowrap">Date</th>
+                                            <th class="text-left text-nowrap">Activity/Action</th>
+                                            <th class="text-left text-nowrap">Progress</th>
+                                            <th class="text-left text-nowrap">Mode</th>
+                                            <th class="text-left text-nowrap">Time Spent</th>
+                                            <th class="text-left text-nowrap padding_right_th">Engaged</th>
+                                            <th class="text-left text-nowrap">Forwarded To</th>
+                                            <th class="text-left text-nowrap">Update</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($case_activity_log as $activity_log)
+                                            <tr>
+                                                <td > {{ $activity_log->activity_date }} </td>
+                                                <td > {{ $activity_log->activity_action }} </td>
+                                                <td > {{ $activity_log->activity_progress }} </td>
+                                                <td > {{ $activity_log->mode_name }} {{ $activity_log->activity_mode_write }} </td>
+                                                <td > {{ $activity_log->activity_time_spent }} </td>
+                                                <td > {{ $activity_log->first_name }} {{ $activity_log->middle_name }} {{ $activity_log->last_name }} {{ $activity_log->activity_engaged_write }} </td>
+                                                <td > {{ $activity_log->forwarded_first_name }} {{ $activity_log->forwarded_middle_name }} {{ $activity_log->forwarded_last_name }} {{ $activity_log->activity_forwarded_to_write }} </td>
+                                                <td > {{ $activity_log->created_at }} </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Documents Logs
+                                        @php
+                                            $now = Carbon\Carbon::now();
+                                            $days_count = Carbon\Carbon::parse($data->created_at)->diffInDays($now);
+                                        @endphp
+
+                                        <span class="font-italic custom_font"> (Total Elapsed Time:
 
                                            {{ $days_count }} Days) </span>
-                                </h3>
-                            </div>
-                            <div class="card-body">
-                                <table id="data_table" class="table dataTable no-footer dtr-inline">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-nowrap text-left">Uploaded Document</th>
-                                        <th class="text-nowrap text-left">Uploaded By</th>
-                                        <th class="text-nowrap text-left">Date & Time</th>
-                                        <th class="text-nowrap text-left">Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($criminal_cases_files as $files)
-                                        <tr>
-                                            <td class="text-nowrap">{{ $files->uploaded_document }} </td>
-                                            <td class="text-nowrap">{{ $files->created_by }} </td>
-                                            <td class="text-nowrap">{{ $files->created_at }} </td>
-                                            <td class="text-nowrap">
-                                                <form method="get" action="{{ route('delete-criminal-cases-files',$files->id) }}" class="delete-user btn btn-outline-danger btn-xs">
-                                                    @csrf
-                                                    <button type="submit" class="btn  btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
-                                                </form>
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
 
-                                                <a href="{{ route('download-criminal-cases-files', $files->id) }}">
-                                                    <button
-                                                        class="btn btn-outline-success btn-sm" data-toggle="tooltip"
-                                                        data-placement="top" title="Download"><i class="fas fa-download"></i></button>
-                                                </a>
-                                            </td>
+                                <div class="card-body">
+                                    <table id="data_table" class="table dataTable no-footer dtr-inline">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-nowrap text-left">Uploaded Document</th>
+                                            <th class="text-nowrap text-left">Uploaded By</th>
+                                            <th class="text-nowrap text-left">Date & Time</th>
+                                            <th class="text-nowrap text-left">Action</th>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($criminal_cases_files as $files)
+                                            <tr>
+                                                <td class="text-nowrap">{{ $files->uploaded_document }} </td>
+                                                <td class="text-nowrap">{{ $files->created_by }} </td>
+                                                <td class="text-nowrap">{{ $files->created_at }} </td>
+                                                <td class="text-nowrap">
+                                                    <form method="get" action="{{ route('delete-criminal-cases-files',$files->id) }}" class="delete-user btn btn-outline-danger btn-xs">
+                                                        @csrf
+                                                        <button type="submit" class="btn  btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+                                                    </form>
 
-                            <div class="card-header">
-                                <h3 class="card-title custom_h3 text-uppercase" id="heading">Case Proceedings Logs <span
-                                        class="font-italic custom_font">(Case No: {{ $data->case_no }}, Court Name: {{ $data->court_name }})</span>
-                                </h3>
-                            </div>
-                            <div class="card-body">
-                                <table id="table_logs_text_center" class="table table-responsive no-footer dtr-inline">
-                                    <thead>
-                                    <tr>
-                                        <th class="table_logs_text_center">Status</th>
-                                        <th class="table_logs_text_center">Order Date</th>
-                                        <th class="table_logs_text_center">Fixed For</th>
-                                        <th class="table_logs_text_center">Court Proceeding </th>
-                                        <th class="table_logs_text_center text-nowrap">Court Order </th>
-                                        <th class="table_logs_text_center text-nowrap">Day Note</th>
-                                        <th class="table_logs_text_center text-nowrap">Engaged Advocates</th>
-                                        <th class="table_logs_text_center text-nowrap">Next Day Presence </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($case_logs as $logs)
-                                        <tr>
-                                            <td class="table_logs_text_center"> {{ $logs->case_status_name }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->updated_order_date }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->updated_fixed_for }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->court_proceeding_name }} {{ $logs->court_proceedings }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->court_last_order_name }} {{ $logs->updated_court_order }}</td>
-                                            <td class="table_logs_text_center"> {{ $logs->updated_day_notes }} {{ $logs->updated_day_notes }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->first_name }} {{ $logs->middle_name }} {{ $logs->last_name }} </td>
-                                            <td class="table_logs_text_center"> {{ $logs->next_day_presence_name }} </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="card-header">
-                                <h3 class="card-title custom_h3 text-uppercase" id="heading">Billings Logs</h3>
-                            </div>
-                            <div class="card-body">
-                                <table class="data_table table table-responsive no-footer dtr-inline">
-                                    <thead>
-                                    <tr>
-                                        <th class="table_logs_text_center">Bill Type</th>
-                                        <th class="table_logs_text_center">Payment Type</th>
-                                        <th class="table_logs_text_center">District Name</th>
-                                        <th class="table_logs_text_center">Panel Lawyer</th>
-                                        <th class="table_logs_text_center">Bill Amount</th>
-                                        <th class="table_logs_text_center">Billing Date</th>
-                                        <th class="table_logs_text_center">Bank Name</th>
-                                        <th class="table_logs_text_center">Bank Branch</th>
-                                        <th class="table_logs_text_center">Cheque No.</th>
-                                        <th class="table_logs_text_center">Payment Amount</th>
-                                        <th class="table_logs_text_center">Digital Payment</th>
-                                        <th class="table_logs_text_center">Approval</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($bill_history as $bill_logs)
-                                        <tr>
-                                            <td class="table_logs_text_center"> {{ $bill_logs->bill_type_name }} </td>
-                                            <td class="table_logs_text_center"> {{ $bill_logs->payment_type }} </td>
-                                            <td class="table_logs_text_center"> {{ $bill_logs->district_name }} </td>
-                                            <td class="table_logs_text_center"> {{ $bill_logs->first_name }} </td>
-                                            <td class="table_logs_text_center"> {{ $bill_logs->bill_amount }} </td>
-                                            <td class="table_logs_text_center"> {{ $bill_logs->date_of_billing }} </td>
-                                            <td class="table_logs_text_center"> {{ $bill_logs->bank_name }} </td>
-                                            <td class="table_logs_text_center"> {{ $bill_logs->bank_branch_name }} </td>
-                                            <td class="table_logs_text_center"> {{ $bill_logs->cheque_no }} </td>
-                                            <td class="table_logs_text_center"> {{ $bill_logs->payment_amount }} </td>
-                                            <td class="table_logs_text_center"> {{ $bill_logs->digital_payment_type_name }} </td>
-                                            <td class="table_logs_text_center"> {{ $bill_logs->is_approved }} </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                                    <a href="{{ route('download-criminal-cases-files', $files->id) }}">
+                                                        <button
+                                                            class="btn btn-outline-success btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Download"><i class="fas fa-download"></i></button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
 
-                            <div class="card-header">
-                                <h3 class="card-title custom_h3 text-uppercase" id="heading">Case Activities Logs</h3>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Billings Logs</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="data_table table table-responsive no-footer dtr-inline">
+                                        <thead>
+                                        <tr>
+                                            <th class="table_logs_text_center">Bill Type</th>
+                                            <th class="table_logs_text_center">Payment Type</th>
+                                            <th class="table_logs_text_center">District Name</th>
+                                            <th class="table_logs_text_center">Panel Lawyer</th>
+                                            <th class="table_logs_text_center">Bill Amount</th>
+                                            <th class="table_logs_text_center">Billing Date</th>
+                                            <th class="table_logs_text_center">Bank Name</th>
+                                            <th class="table_logs_text_center">Bank Branch</th>
+                                            <th class="table_logs_text_center">Cheque No.</th>
+                                            <th class="table_logs_text_center">Payment Amount</th>
+                                            <th class="table_logs_text_center">Digital Payment</th>
+                                            <th class="table_logs_text_center">Approval</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($bill_history as $bill_logs)
+                                            <tr>
+                                                <td class="table_logs_text_center"> {{ $bill_logs->bill_type_name }} </td>
+                                                <td class="table_logs_text_center"> {{ $bill_logs->payment_type }} </td>
+                                                <td class="table_logs_text_center"> {{ $bill_logs->district_name }} </td>
+                                                <td class="table_logs_text_center"> {{ $bill_logs->first_name }} </td>
+                                                <td class="table_logs_text_center"> {{ $bill_logs->bill_amount }} </td>
+                                                <td class="table_logs_text_center"> {{ $bill_logs->date_of_billing }} </td>
+                                                <td class="table_logs_text_center"> {{ $bill_logs->bank_name }} </td>
+                                                <td class="table_logs_text_center"> {{ $bill_logs->bank_branch_name }} </td>
+                                                <td class="table_logs_text_center"> {{ $bill_logs->cheque_no }} </td>
+                                                <td class="table_logs_text_center"> {{ $bill_logs->payment_amount }} </td>
+                                                <td class="table_logs_text_center"> {{ $bill_logs->digital_payment_type_name }} </td>
+                                                <td class="table_logs_text_center"> {{ $bill_logs->is_approved }} </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
 
-                            <div class="card-body">
-                                <table class="table table-responsive no-footer dtr-inline data_table">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-left text-nowrap">Date</th>
-                                        <th class="text-left text-nowrap">Activity/Action</th>
-                                        <th class="text-left text-nowrap">Progress</th>
-                                        <th class="text-left text-nowrap">Mode</th>
-                                        <th class="text-left text-nowrap">Time Spent</th>
-                                        <th class="text-left text-nowrap padding_right_th">Engaged</th>
-                                        <th class="text-left text-nowrap">Forwarded To</th>
-                                        <th class="text-left text-nowrap">Update</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($case_activity_log as $activity_log)
-                                        <tr>
-                                            <td > {{ $activity_log->activity_date }} </td>
-                                            <td > {{ $activity_log->activity_action }} </td>
-                                            <td > {{ $activity_log->activity_progress }} </td>
-                                            <td > {{ $activity_log->activity_mode }} </td>
-                                            <td > {{ $activity_log->activity_time_spent }} </td>
-                                            <td > {{ $activity_log->activity_engaged }} </td>
-                                            <td > {{ $activity_log->first_name }} {{ $activity_log->middle_name }} {{ $activity_log->last_name }} </td>
-                                            <td > {{ $activity_log->created_at }} </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
 

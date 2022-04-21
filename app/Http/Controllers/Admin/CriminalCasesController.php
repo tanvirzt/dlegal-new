@@ -72,7 +72,8 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_courts', 'criminal_cases.name_of_the_court_id', '=', 'setup_courts.id')
             ->leftJoin('setup_districts', 'criminal_cases.case_infos_district_id', '=', 'setup_districts.id')
             ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
-            ->select('criminal_cases.*', 'setup_next_date_reasons.next_date_reason_name', 'setup_courts.court_name', 'setup_districts.district_name', 'setup_case_types.case_types_name')
+            ->leftJoin('setup_allegations', 'criminal_cases.case_infos_allegation_claim_id', '=', 'setup_allegations.id')
+            ->select('criminal_cases.*', 'setup_next_date_reasons.next_date_reason_name', 'setup_courts.court_name', 'setup_districts.district_name', 'setup_case_types.case_types_name','setup_allegations.allegation_name')
             ->get();
 
 //         dd($data);
@@ -215,6 +216,7 @@ class CriminalCasesController extends Controller
         $data->case_subcategory_id = $request->case_subcategory_id;
         $data->case_infos_case_title_id = $request->case_infos_case_title_id;
         $data->case_infos_case_no = $request->case_infos_case_no ? implode(', ', $request->case_infos_case_no) : null;
+        $data->case_infos_case_year = $request->case_infos_case_year ? implode(', ', $request->case_infos_case_year) : '';
         $data->case_infos_court_id = $request->case_infos_court_id ? implode(', ', $request->case_infos_court_id) : null;
         $data->case_infos_sub_seq_case_title_id = $request->case_infos_sub_seq_case_title_id;
         $data->case_infos_sub_seq_case_no = $request->case_infos_sub_seq_case_no ? implode(', ', $request->case_infos_sub_seq_case_no) : null;
@@ -312,14 +314,15 @@ class CriminalCasesController extends Controller
         $documents = SetupDocument::where('delete_status', 0)->get();
         $case_title = SetupCaseTitle::where('delete_status', 0)->get();
         $existing_opposition_subcategory = SetupClientSubcategory::where(['client_category_id' => $data->opposition_category_id, 'delete_status' => 0])->get();
+        $existing_assignend_external_council = SetupExternalCouncilAssociate::where('external_council_id',$data->lawyer_advocate_id)->get();
         $client_explode = explode(', ', $data->client_id);
         $court_explode = explode(', ', $data->case_infos_court_id);
         $law_explode = explode(', ', $data->law_id);
         $section_explode = explode(', ', $data->section_id);
         $opposition_explode = explode(', ', $data->opposition_id);
         $sub_seq_court_explode = explode(', ', $data->case_infos_sub_seq_court_id);
-//        dd($existing_case_subcategory);
-        return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode'));
+//        dd($assigned_lawyer_explode);
+        return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode'));
     }
 
     public function update_criminal_cases(Request $request, $id)
@@ -402,6 +405,7 @@ class CriminalCasesController extends Controller
         $data->case_subcategory_id = $request->case_subcategory_id;
         $data->case_infos_case_title_id = $request->case_infos_case_title_id;
         $data->case_infos_case_no = $request->case_infos_case_no ? implode(', ', $request->case_infos_case_no) : null;
+        $data->case_infos_case_year = $request->case_infos_case_year ? implode(', ', $request->case_infos_case_year) : '';
         $data->case_infos_court_id = $request->case_infos_court_id ? implode(', ', $request->case_infos_court_id) : null;
         $data->case_infos_sub_seq_case_title_id = $request->case_infos_sub_seq_case_title_id;
         $data->case_infos_sub_seq_case_no = $request->case_infos_sub_seq_case_no ? implode(', ', $request->case_infos_sub_seq_case_no) : null;
@@ -481,7 +485,7 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', '=', 'setup_next_date_reasons.id')
             ->leftJoin('setup_modes', 'criminal_cases.mode_of_receipt_id', '=', 'setup_modes.id')
             ->leftJoin('setup_referrers', 'criminal_cases.referrer_id', '=', 'setup_referrers.id')
-            ->leftJoin('setup_parties', 'criminal_cases.client_party_id', '=', 'setup_parties.id')
+            ->leftJoin('setup_in_favour_ofs as client_party', 'criminal_cases.client_party_id', '=', 'client_party.id')
             ->leftJoin('setup_client_categories', 'criminal_cases.client_category_id', '=', 'setup_client_categories.id')
             ->leftJoin('setup_client_subcategories', 'criminal_cases.client_subcategory_id', '=', 'setup_client_subcategories.id')
             ->leftJoin('setup_clients', 'criminal_cases.client_id', '=', 'setup_clients.id')
@@ -490,7 +494,7 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_districts as client_district', 'criminal_cases.client_district_id', '=', 'client_district.id')
             ->leftJoin('setup_thanas as client_thana', 'criminal_cases.client_thana_id', '=', 'client_thana.id')
             ->leftJoin('setup_coordinators', 'criminal_cases.client_coordinator_tadbirkar_id', '=', 'setup_coordinators.id')
-            ->leftJoin('setup_parties as opposition_party', 'criminal_cases.opposition_party_id', '=', 'opposition_party.id')
+            ->leftJoin('setup_in_favour_ofs as opposition_party', 'criminal_cases.opposition_party_id', '=', 'opposition_party.id')
             ->leftJoin('setup_client_categories as opposition_category', 'criminal_cases.opposition_category_id', '=', 'opposition_category.id')
             ->leftJoin('setup_client_subcategories as opposition_subcategory', 'criminal_cases.opposition_subcategory_id', '=', 'opposition_subcategory.id')
             ->leftJoin('setup_clients as opposition', 'criminal_cases.opposition_id', '=', 'opposition.id')
@@ -520,7 +524,7 @@ class CriminalCasesController extends Controller
                 'setup_next_date_reasons.next_date_reason_name',
                 'setup_modes.mode_name',
                 'setup_referrers.referrer_name',
-                'setup_parties.party_name',
+                'client_party.in_favour_of_name as client_party_name',
                 'setup_client_categories.client_category_name',
                 'setup_client_subcategories.client_subcategory_name',
                 'setup_clients.client_name',
@@ -529,7 +533,7 @@ class CriminalCasesController extends Controller
                 'client_district.district_name as client_district_name',
                 'client_thana.thana_name as client_thana_name',
                 'setup_coordinators.coordinator_name',
-                'opposition_party.party_name as oppsition_party_name',
+                'opposition_party.in_favour_of_name as oppsition_party_name',
                 'opposition_category.client_category_name as opposition_category_name',
                 'opposition_subcategory.client_subcategory_name as opposition_subcategory_name',
                 'opposition.client_name as opposition_name',
@@ -565,17 +569,28 @@ class CriminalCasesController extends Controller
 
         $case_logs = DB::table('criminal_case_status_logs')
             ->leftJoin('setup_case_statuses', 'criminal_case_status_logs.updated_case_status_id', '=', 'setup_case_statuses.id')
+            ->leftJoin('setup_next_date_reasons', 'criminal_case_status_logs.updated_fixed_for_id', '=', 'setup_next_date_reasons.id')
             ->leftJoin('setup_court_proceedings', 'criminal_case_status_logs.court_proceedings_id', '=', 'setup_court_proceedings.id')
             ->leftJoin('setup_court_last_orders', 'criminal_case_status_logs.updated_court_order_id', '=', 'setup_court_last_orders.id')
+            ->leftJoin('setup_day_notes', 'criminal_case_status_logs.updated_day_notes_id', '=', 'setup_day_notes.id')
             ->leftJoin('setup_external_councils', 'criminal_case_status_logs.updated_engaged_advocate_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_next_day_presences', 'criminal_case_status_logs.updated_next_day_presence_id', '=', 'setup_next_day_presences.id')
-            ->leftJoin('setup_day_notes', 'criminal_case_status_logs.updated_day_notes_id', '=', 'setup_day_notes.id')
-            ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_court_proceedings.court_proceeding_name', 'setup_court_last_orders.court_last_order_name', 'setup_external_councils.first_name', 'setup_external_councils.middle_name', 'setup_external_councils.last_name', 'setup_next_day_presences.next_day_presence_name', 'setup_day_notes.day_notes_name')
+            ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name', 'setup_court_proceedings.court_proceeding_name', 'setup_court_last_orders.court_last_order_name', 'setup_day_notes.day_notes_name', 'setup_external_councils.first_name', 'setup_external_councils.middle_name', 'setup_external_councils.last_name', 'setup_next_day_presences.next_day_presence_name')
             ->where('criminal_case_status_logs.case_id', $id)
             ->get();
 
-//        $case_logs = json_decode(json_encode($case_logs));
-//        echo "<pre>";print_r($case_logs);die();
+        $latest = DB::table('criminal_case_status_logs')
+            ->leftJoin('setup_case_statuses', 'criminal_case_status_logs.updated_case_status_id', '=', 'setup_case_statuses.id')
+            ->leftJoin('setup_next_date_reasons', 'criminal_case_status_logs.updated_fixed_for_id', '=', 'setup_next_date_reasons.id')
+//            ->orderBy('created_at','desc')
+            ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name')
+            ->where('criminal_case_status_logs.case_id', $id)
+            ->latest()->first();
+
+//        dd($latest);
+
+        //        $latest = json_decode(json_encode($latest));
+//        echo "<pre>";print_r($latest);die();
 
         $bill_history = DB::table('case_billings')
             ->leftJoin('setup_bill_types', 'case_billings.bill_type_id', '=', 'setup_bill_types.id')
@@ -589,13 +604,16 @@ class CriminalCasesController extends Controller
             ->get();
 
         $case_activity_log = DB::table('criminal_case_activity_logs')
-            ->leftJoin('setup_external_councils', 'criminal_case_activity_logs.activity_forwarded_to_id', 'setup_external_councils.id')
+            ->leftJoin('setup_modes', 'criminal_case_activity_logs.activity_mode_id', 'setup_modes.id')
+            ->leftJoin('setup_external_councils as activity_engaged', 'criminal_case_activity_logs.activity_engaged_id', 'activity_engaged.id')
+            ->leftJoin('setup_external_councils as activity_forwarded', 'criminal_case_activity_logs.activity_forwarded_to_id', 'activity_forwarded.id')
             ->where('criminal_case_activity_logs.case_id', $id)
-            ->select('criminal_case_activity_logs.*', 'setup_external_councils.first_name', 'setup_external_councils.middle_name', 'setup_external_councils.last_name')
+            ->select('criminal_case_activity_logs.*', 'setup_modes.mode_name', 'activity_engaged.first_name', 'activity_engaged.middle_name', 'activity_engaged.last_name', 'activity_forwarded.first_name as forwarded_first_name', 'activity_forwarded.middle_name as forwarded_middle_name', 'activity_forwarded.last_name as forwarded_last_name')
             ->get();
 
+
 //         dd($case_activity_log);
-        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log'));
+        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest'));
     }
 
     public function download_criminal_cases_file($id)
@@ -612,20 +630,29 @@ class CriminalCasesController extends Controller
 //        $data = json_decode(json_encode($request->all()));
 //        echo "<pre>";print_r($data);die();
 
+        $status = CriminalCase::find($id);
+        $status->next_date = $request->next_date == 'dd/mm/yyyy' ? null : $request->next_date;
+        $status->save();
+
+
         $data = new CriminalCaseStatusLog();
 
         $data->case_id = $id;
         $data->updated_case_status_id = $request->updated_case_status_id;
+        $data->updated_case_status_write = $request->updated_case_status_write;
         $data->updated_order_date = $request->updated_order_date;
-        $data->updated_fixed_for = $request->updated_fixed_for;
+        $data->updated_fixed_for_id = $request->updated_fixed_for_id;
+        $data->updated_fixed_for_write = $request->updated_fixed_for_write;
         $data->court_proceedings_id = $request->court_proceedings_id;
-        $data->court_proceedings = $request->court_proceedings;
+        $data->court_proceedings_write = $request->court_proceedings_write;
         $data->updated_court_order_id = $request->updated_court_order_id;
-        $data->updated_court_order = $request->updated_court_order;
+        $data->updated_court_order_write = $request->updated_court_order_write;
         $data->updated_day_notes_id = $request->updated_day_notes_id;
-        $data->updated_day_notes = $request->updated_day_notes;
+        $data->updated_day_notes_write = $request->updated_day_notes_write;
         $data->updated_engaged_advocate_id = $request->updated_engaged_advocate_id;
+        $data->updated_engaged_advocate_write = $request->updated_engaged_advocate_write;
         $data->updated_next_day_presence_id = $request->updated_next_day_presence_id;
+        $data->updated_remarks = $request->updated_remarks;
         $data->save();
 
         session()->flash('success', 'Case Status Updated Successfully');
@@ -715,10 +742,13 @@ class CriminalCasesController extends Controller
         $data->activity_date = $request->activity_date;
         $data->activity_action = $request->activity_action;
         $data->activity_progress = $request->activity_progress;
-        $data->activity_mode = implode(', ', $request->activity_mode);
+        $data->activity_mode_id = $request->activity_mode_id;
+        $data->activity_mode_write = $request->activity_mode_write;
         $data->activity_time_spent = $request->activity_time_spent;
-        $data->activity_engaged = $request->activity_engaged ? implode(', ', $request->activity_engaged) : '';
+        $data->activity_engaged_id = $request->activity_engaged_id;
+        $data->activity_engaged_write = $request->activity_engaged_write;
         $data->activity_forwarded_to_id = $request->activity_forwarded_to_id;
+        $data->activity_forwarded_to_write = $request->activity_forwarded_to_write;
         $data->save();
 
         session()->flash('success', 'Case Status Updated Successfully');

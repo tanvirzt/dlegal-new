@@ -327,9 +327,9 @@
                                                                 class="form-control select2"
                                                                 id="client_party_id">
                                                             <option value="">Select</option>
-                                                            @foreach ($party as $item)
+                                                            @foreach($in_favour_of as $item)
                                                                 <option
-                                                                    value="{{ $item->id }}" {{(old('client_party_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->party_name) }}</option>
+                                                                    value="{{ $item->id }}" {{(old('client_party_id') == $item->id ? 'selected':'')}}> {{ $item->in_favour_of_name }} </option>
                                                             @endforeach
                                                         </select>
                                                         @error('client_party_id')<span
@@ -638,9 +638,9 @@
                                                                 class="form-control select2"
                                                                 id="opposition_party_id">
                                                             <option value="">Select</option>
-                                                            @foreach ($party as $item)
+                                                            @foreach($in_favour_of as $item)
                                                                 <option
-                                                                    value="{{ $item->id }}" {{(old('opposition_party_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->party_name) }}</option>
+                                                                    value="{{ $item->id }}" {{(old('opposition_party_id') == $item->id ? 'selected':'')}}> {{ $item->in_favour_of_name }} </option>
                                                             @endforeach
                                                         </select>
                                                         @error('opposition_party_id')<span
@@ -953,7 +953,7 @@
                                                         of
                                                         Advocate/Law Firm</label>
                                                     <div class="col-sm-8">
-                                                        <select name="lawyer_advocate_id" class="form-control select2">
+                                                        <select name="lawyer_advocate_id" id="lawyer_advocate_id" class="form-control select2" action="{{ route('find-associates') }}">
                                                             <option value="">Select</option>
                                                             @foreach($external_council as $item)
                                                                 <option
@@ -968,12 +968,9 @@
                                                     <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Name of Assigned
                                                         Lawyer</label>
                                                     <div class="col-sm-8">
-                                                        <select name="assigned_lawyer_id[]" class="form-control select2" multiple>
+                                                        <select name="assigned_lawyer_id[]" id="assigned_lawyer_id" class="form-control select2" multiple>
                                                             <option value="">Select</option>
-                                                            @foreach($internal_council as $item)
-                                                                <option
-                                                                    value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name }}" {{(old('assigned_lawyer_id') == $item->first_name.' '.$item->middle_name.' '.$item->last_name ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
-                                                            @endforeach
+
                                                         </select>
                                                         @error('assigned_lawyer_id')<span
                                                             class="text-danger">{{$message}}</span>@enderror
@@ -1162,38 +1159,64 @@
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="case_infos_case_no"
                                                            class="col-sm-4 col-form-label">Case
                                                         No.</label>
                                                     <div class="col-sm-8">
-                                                        <div class="input-group hdtuto_case_infos_case_no control-group increment_case_infos_case_no">
-                                                            <input type="text" name="case_infos_case_no[]"
-                                                                   class="myfrm form-control">
-                                                            <div class="input-group-btn">
-                                                                <button class="btn btn-success btn_success_case_infos_case_no"
-                                                                        type="button"><i
-                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="clone_case_infos_case_no hide">
-                                                            <div class="hdtuto_case_infos_case_no control-group lst input-group"
-                                                                 style="margin-top:10px">
-                                                                <input type="text" name="case_infos_case_no[]"
-                                                                       class="myfrm form-control">
-                                                                <div class="input-group-btn">
-                                                                    <button class="btn btn-danger btn_danger_case_infos_case_no"
+
+
+                                                        <div class="input-group hdtuto_case_infos_case_no control-group increment_case_infos_case_no ml-2">
+                                                            <div class="row" style="">
+                                                                <input type="text" class="form-control col-5"
+                                                                       id="case_infos_case_no"
+                                                                       name="case_infos_case_no[]" placeholder="Case No."
+                                                                       value="{{old('case_infos_case_no')}}">
+                                                                <input type="text" class="form-control col-5 ml-0"
+                                                                       id="case_infos_case_year"
+                                                                       name="case_infos_case_year[]" placeholder="Case Year"
+                                                                       value="{{old('case_infos_case_year')}}">
+                                                                <div class="input-group-btn col-2">
+
+                                                                    <button class="btn btn-success btn_success_case_infos_case_no ml-2"
                                                                             type="button"><i
-                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                            class="fldemo glyphicon glyphicon-plus"></i>+
                                                                     </button>
                                                                 </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="clone_case_infos_case_no hide ">
+                                                            <div class="hdtuto_case_infos_case_no control-group lst input-group ml-2"
+                                                                 style="margin-top:10px">
+                                                                <div class="row" style="">
+                                                                    <input type="text" class="form-control col-5"
+                                                                           id="case_infos_case_no"
+                                                                           name="case_infos_case_no[]" placeholder="Case No."
+                                                                           value="{{old('case_infos_case_no')}}">
+                                                                    <input type="text" class="form-control col-5 ml-0"
+                                                                           id="case_infos_case_year"
+                                                                           name="case_infos_case_year[]" placeholder="Case Year"
+                                                                           value="{{old('case_infos_case_year')}}">
+                                                                    <div class="input-group-btn col-2">
+                                                                        <button class="btn btn-danger btn_danger_case_infos_case_no ml-2"
+                                                                                type="button"><i
+                                                                                class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+
                                                             </div>
                                                         </div>
                                                         @error('case_infos_case_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
+
+
+
+
 
                                                 <div class="form-group row">
                                                     <label for="case_infos_court_id"

@@ -89,6 +89,7 @@ class CreateCriminalCasesTable extends Migration
             $table->integer('case_subcategory_id')->nullable();
             $table->integer('case_infos_case_title_id')->nullable();
             $table->string('case_infos_case_no')->nullable();
+            $table->string('case_infos_case_year')->nullable();
             $table->string('case_infos_court_id')->nullable();
             $table->integer('case_infos_sub_seq_case_title_id')->nullable();
             $table->string('case_infos_sub_seq_case_no')->nullable();

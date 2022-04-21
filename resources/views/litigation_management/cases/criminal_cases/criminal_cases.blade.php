@@ -209,7 +209,7 @@
                                                 {{ $datum->case_types_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->another_claim }}
+                                                {{ $datum->allegation_name }} {{ $datum->case_infos_allegation_claim_write }}
                                             </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)
