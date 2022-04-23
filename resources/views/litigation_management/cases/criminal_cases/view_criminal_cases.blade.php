@@ -55,10 +55,18 @@
                         </div>
                     @endif
                     <div class="card">
-                        <div >
+                        <div>
                             <div class="card-header">
-                                <h3 class="card-title custom_h3 font-italic text-uppercase font_weight"  id="heading">View Criminal Case No. {{ $data->case_no }}</h3>
+                                <h3 class="card-title custom_h3 font-italic text-uppercase font_weight" id="heading">View Criminal Case
+                                    No. {{ $data->case_no }}</h3>
                                 <div class="float-right">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg"
+                                            data-toggle="tooltip"
+                                            data-placement="top" title="Update Status"><i
+                                            class="far fa-bell"></i></button>
+
+
                                     <a href="{{ route('edit-criminal-cases', $data->id) }}">
                                         <button
                                             class="btn btn-info btn-sm" data-toggle="tooltip"
@@ -339,11 +347,11 @@
 
                                                         <tr>
                                                             <td>Received Documents</td>
-                                                            <td> {{ $data->received_documents_name }} {{ $data->received_documents_write }} </td>
+                                                            <td> {{ $data->received_documents_id }} {{ rtrim($data->received_documents_write, ', ') }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Required/Wanting Documents</td>
-                                                            <td> {{ $data->required_documents_name }} {{ $data->required_wanting_documents_write }} </td>
+                                                            <td> {{ $data->required_wanting_documents_id }} {{ rtrim($data->required_wanting_documents_write, ', ') }} </td>
                                                         </tr>
 
                                                         </tbody>
@@ -513,7 +521,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Case Proceedings Logs <span
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Case Proceedings Log <span
                                             class="font-italic custom_font">(Case No: {{ $data->case_no }}, Court Name: {{ $data->court_name }})</span>
                                     </h3>
                                     <div class="card-tools">
@@ -533,11 +541,11 @@
                                             <th class="table_logs_text_center">Status</th>
                                             <th class="table_logs_text_center">Order Date</th>
                                             <th class="table_logs_text_center">Fixed For</th>
-                                            <th class="table_logs_text_center">Court Proceeding </th>
-                                            <th class="table_logs_text_center text-nowrap">Court Order </th>
+                                            <th class="table_logs_text_center">Court Proceeding</th>
+                                            <th class="table_logs_text_center text-nowrap">Court Order</th>
                                             <th class="table_logs_text_center text-nowrap">Day Note</th>
                                             <th class="table_logs_text_center text-nowrap">Engaged Advocates</th>
-                                            <th class="table_logs_text_center text-nowrap">Next Day Presence </th>
+                                            <th class="table_logs_text_center text-nowrap">Next Day Presence</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -561,7 +569,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Case Activities Logs</h3>
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Case Activities Log</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
@@ -589,14 +597,14 @@
                                         <tbody>
                                         @foreach($case_activity_log as $activity_log)
                                             <tr>
-                                                <td > {{ $activity_log->activity_date }} </td>
-                                                <td > {{ $activity_log->activity_action }} </td>
-                                                <td > {{ $activity_log->activity_progress }} </td>
-                                                <td > {{ $activity_log->mode_name }} {{ $activity_log->activity_mode_write }} </td>
-                                                <td > {{ $activity_log->activity_time_spent }} </td>
-                                                <td > {{ $activity_log->first_name }} {{ $activity_log->middle_name }} {{ $activity_log->last_name }} {{ $activity_log->activity_engaged_write }} </td>
-                                                <td > {{ $activity_log->forwarded_first_name }} {{ $activity_log->forwarded_middle_name }} {{ $activity_log->forwarded_last_name }} {{ $activity_log->activity_forwarded_to_write }} </td>
-                                                <td > {{ $activity_log->created_at }} </td>
+                                                <td> {{ $activity_log->activity_date }} </td>
+                                                <td> {{ $activity_log->activity_action }} </td>
+                                                <td> {{ $activity_log->activity_progress }} </td>
+                                                <td> {{ $activity_log->mode_name }} {{ $activity_log->activity_mode_write }} </td>
+                                                <td> {{ $activity_log->activity_time_spent }} </td>
+                                                <td> {{ $activity_log->activity_engaged_id }} {{ $activity_log->activity_engaged_write }} </td>
+                                                <td> {{ $activity_log->forwarded_first_name }} {{ $activity_log->forwarded_middle_name }} {{ $activity_log->forwarded_last_name }} {{ $activity_log->activity_forwarded_to_write }} </td>
+                                                <td> {{ $activity_log->created_at }} </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -607,7 +615,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Documents Logs
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Documents Log
                                         @php
                                             $now = Carbon\Carbon::now();
                                             $days_count = Carbon\Carbon::parse($data->created_at)->diffInDays($now);
@@ -644,9 +652,11 @@
                                                 <td class="text-nowrap">{{ $files->created_by }} </td>
                                                 <td class="text-nowrap">{{ $files->created_at }} </td>
                                                 <td class="text-nowrap">
-                                                    <form method="get" action="{{ route('delete-criminal-cases-files',$files->id) }}" class="delete-user btn btn-outline-danger btn-xs">
+                                                    <form method="get" action="{{ route('delete-criminal-cases-files',$files->id) }}"
+                                                          class="delete-user btn btn-outline-danger btn-xs">
                                                         @csrf
-                                                        <button type="submit" class="btn  btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+                                                        <button type="submit" class="btn  btn-sm" data-toggle="tooltip" data-placement="top"
+                                                                title="Delete"><i class="fas fa-trash"></i></button>
                                                     </form>
 
                                                     <a href="{{ route('download-criminal-cases-files', $files->id) }}">
@@ -665,7 +675,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Billings Logs</h3>
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Billings Log</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
@@ -726,7 +736,298 @@
     </div>
     <!-- /.content-wrapper -->
 
+    <!-- /.modal -->
+
+    <div class="modal fade" id="modal-lg">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-title"> Update Criminal Case Status </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                        <form
+                            action="{{ route('update-criminal-cases-status', $data->id) }}"
+                            method="post">
+                            <div class="">
+
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="updated_case_status_id"
+                                                       class="col-md-4 col-form-label"> Status
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <select name="updated_case_status_id"
+                                                                    id="updated_case_status_id"
+                                                                    class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach($court_proceeding as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{  old('updated_case_status_id') == $item->id ? 'selected' : '' }}>{{ $item->court_proceeding_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control"
+                                                                   id="updated_case_status_write"
+                                                                   name="updated_case_status_write"
+                                                                   placeholder="Status"
+                                                                   value="{{ old('updated_case_status_write') }}">
+                                                        </div>
+                                                    </div>
+
+                                                    @error('updated_case_status')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="updated_order_date"
+                                                       class="col-sm-4 col-form-label">
+                                                    Order Date
+                                                </label>
+                                                <div class="col-sm-8">
+                                                                                <span class="date_span_status_modal">
+                                                                                    <input type="date" class="xDateContainer date_first_input"
+                                                                                           onchange="setCorrect(this,'updated_order_date');"><input
+                                                                                        type="text" id="updated_order_date" name="updated_order_date"
+                                                                                        value="dd/mm/yyyy"
+                                                                                        class="date_second_input"
+                                                                                        tabindex="-1"><span
+                                                                                        class="date_second_span" tabindex="-1">&#9660;</span>
+                                                                                </span>
+                                                    @error('updated_order_date')
+                                                    <span
+                                                        class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="updated_fixed_for_id"
+                                                       class="col-md-4 col-form-label"> Fixed For
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <select name="updated_fixed_for_id"
+                                                                    id="updated_fixed_for_id"
+                                                                    class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach($next_date_reason as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{(old('updated_fixed_for_id') == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control"
+                                                                   id="updated_fixed_for_write"
+                                                                   name="updated_fixed_for_write"
+                                                                   placeholder="Fixed For"
+                                                                   value="{{ old('updated_fixed_for_write') }}">
+                                                        </div>
+                                                    </div>
+
+                                                    @error('updated_fixed_for')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label for="court_proceedings_id"
+                                                       class="col-md-4 col-form-label"> Court Proceeding
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <select name="court_proceedings_id"
+                                                                    id="court_proceedings_id"
+                                                                    class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach($court_proceeding as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{  old('court_proceedings_id') == $item->id ? 'selected' : '' }}>{{ $item->court_proceeding_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control"
+                                                                   id="court_proceedings_write"
+                                                                   name="court_proceedings_write"
+                                                                   placeholder="Court Proceeding"
+                                                                   value="{{ old('court_proceedings_write') }}">
+                                                        </div>
+                                                    </div>
+
+                                                    @error('court_proceedings')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="updated_court_order_id"
+                                                       class="col-md-4 col-form-label"> Court Order
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <select name="updated_court_order_id"
+                                                                    id="updated_court_order_id"
+                                                                    class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach($last_court_order as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{  old('updated_court_order_id') == $item->id ? 'selected' : '' }}>{{ $item->court_last_order_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control"
+                                                                   id="updated_court_order_write"
+                                                                   placeholder="Court Order"
+                                                                   name="updated_court_order_write">
+
+                                                        </div>
+                                                    </div>
+
+                                                    @error('updated_court_order_write')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="updated_day_notes_id"
+                                                       class="col-md-4 col-form-label"> Day Notes
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <select name="updated_day_notes_id"
+                                                                    id="updated_day_notes_id"
+                                                                    class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach($day_notes as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{  old('updated_day_notes_id') == $item->id ? 'selected' : '' }}>{{ $item->day_notes_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control"
+                                                                   id="updated_day_notes_write"
+                                                                   placeholder="Day Notes"
+                                                                   name="updated_day_notes_write">
+                                                        </div>
+                                                    </div>
+
+                                                    @error('updated_day_notes_write')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="updated_engaged_advocate_id"
+                                                       class="col-md-4 col-form-label"> Engaged Advocate
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <select name="updated_engaged_advocate_id"
+                                                                    class="form-control select2"
+                                                            >
+                                                                <option value="">Select</option>
+                                                                @foreach ($external_council as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}"
+                                                                        {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
+                                                                        {{ $item->first_name }}
+                                                                        {{ $item->middle_name }}
+                                                                        {{ $item->last_name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control"
+                                                                   id="updated_engaged_advocate_write"
+                                                                   placeholder="Engaged Advocate"
+                                                                   name="updated_engaged_advocate_write">
+                                                        </div>
+                                                    </div>
+
+                                                    @error('updated_engaged_advocate_write')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="updated_next_day_presence_id"
+                                                       class="col-sm-4 col-form-label">
+                                                    Next Day Presence</label>
+                                                <div class="col-sm-8">
+                                                    <select name="updated_next_day_presence_id"
+                                                            class="form-control select2">
+                                                        <option value="">Select</option>
+                                                        @foreach($next_day_presence as $item)
+                                                            <option
+                                                                value="{{ $item->id }}" {{(old('updated_next_day_presence_id') == $item->id ? 'selected':'')}}>{{ $item->next_day_presence_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('updated_next_day_presence_id')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="updated_remarks"
+                                                       class="col-sm-4 col-form-label"> Remarks </label>
+                                                <div class="col-sm-8">
+                                                    <textarea name="updated_remarks" class="form-control"
+                                                              rows="3"
+                                                              placeholder=""></textarea>
+                                                    @error('updated_remarks')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <div class="float-right">
+                                    <button type="submit"
+                                            class="btn btn-primary text-uppercase"><i
+                                            class="fas fa-save"></i> Update
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+
 @endsection
+
 
 
 

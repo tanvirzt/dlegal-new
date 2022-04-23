@@ -146,6 +146,13 @@
                             </div>
                         </div>
                     </div>
+
+
+
+
+
+
+
                     <div class="col-12">
 
                         <div class="card">
@@ -190,7 +197,7 @@
                                                 {{ $datum->next_date_reason_name }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('view-criminal-cases',$datum->id) }}"> {{ $datum->case_no }} </a>
+                                                <a href="{{ route('view-criminal-cases',$datum->id) }}"> {{ rtrim($datum->case_no, ', ') }} </a>
                                             </td>
 
                                             <td>

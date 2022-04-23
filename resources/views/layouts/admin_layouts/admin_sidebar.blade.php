@@ -56,105 +56,15 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('person-title') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Title</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('external-council') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>External Council</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('external-council-associates') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>External Council Associates</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('internal-council') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Internal Council</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('designation') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Designation</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('next-day-presence') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Next Day Presence</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('case-status') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Case Status </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('case-types') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Type of Cases</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('court') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Court Name</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('next-date-reason') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Reason for Next Date</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('court-last-order') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Last order of the Court</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('region') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Zone</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('area') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Area</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('branch') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Branch</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('program') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Program</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a href="{{ route('allegation') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Allegation</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('bill-type') }}" class="nav-link">
+                                    <a href="{{ route('area') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Bill Type</p>
+                                        <p>Area</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -170,27 +80,27 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('digital-payment-type') }}" class="nav-link">
+                                    <a href="{{ route('bill-type') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Payment Type</p>
+                                        <p>Bill Type</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('seller-buyer') }}" class="nav-link">
+                                    <a href="{{ route('branch') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Seller/Buyer</p>
+                                        <p>Branch</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('floor') }}" class="nav-link">
+                                    <a href="{{ route('case-status') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Floor</p>
+                                        <p>Case Status </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('flat-number') }}" class="nav-link">
+                                    <a href="{{ route('case-title') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Flat Number</p>
+                                        <p>Case Title</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -212,9 +122,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('section') }}" class="nav-link">
+                                    <a href="{{ route('client') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Section</p>
+                                        <p>Client</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -227,6 +137,90 @@
                                     <a href="{{ route('client-subcategory') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Client Subcategory</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('coordinator') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Coordinator/Tadbirkar</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('court') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Court Name</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('court-proceeding') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Court Proceeding</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('day-notes') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Day Notes</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('designation') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Designation</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('documents-setup') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Documents</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('external-council') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>External Council</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('external-council-associates') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>External Council Associates</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('floor') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Floor</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('flat-number') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Flat Number</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('internal-council') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Internal Council</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('in-favour-of') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>In favour of</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('law') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Law</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('court-last-order') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Last order of the Court</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -248,57 +242,21 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('coordinator') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Coordinator/Tadbirkar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a href="{{ route('mode') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Mode</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('law') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Law</p>
+                                    <a href="{{ route('next-day-presence') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Next Day Presence</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('court-proceeding') }}" class="nav-link">
+                                    <a href="{{ route('opposition') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Court Proceeding</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('day-notes') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Day Notes</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('in-favour-of') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>In favour of</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('referrer') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Referrer</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('party') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Party</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('client') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Client</p>
+                                        <p>Opposition</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -308,23 +266,80 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('documents-setup') }}" class="nav-link">
+                                    <a href="{{ route('digital-payment-type') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Documents</p>
+                                        <p>Payment Type</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('case-title') }}" class="nav-link">
+                                    <a href="{{ route('program') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Case Title</p>
+                                        <p>Program</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('opposition') }}" class="nav-link">
+                                    <a href="{{ route('referrer') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Opposition</p>
+                                        <p>Referrer</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('next-date-reason') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Reason for Next Date</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('section') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Section</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('seller-buyer') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Seller/Buyer</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('person-title') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Title</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('case-types') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Type of Cases</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('region') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Zone</p>
+                                    </a>
+                                </li>
+
+
+
+
+
+
+
+
+
+
+{{--                                <li class="nav-item">--}}
+{{--                                    <a href="{{ route('party') }}" class="nav-link">--}}
+{{--                                        <i class="far fa-dot-circle nav-icon"></i>--}}
+{{--                                        <p>Party</p>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+
+
+
+
+
 
 
                             </ul>

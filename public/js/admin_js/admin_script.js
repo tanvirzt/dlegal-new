@@ -238,6 +238,21 @@ $(document).ready(function () {
         $(this).parents(".hdtuto_case_infos_sub_seq_case_no").remove();
     });
 
+    $(".btn_success_received_documents").click(function () {
+        var lsthmtl_received_documents = $(".clone_received_documents").html();
+        $(".increment_received_documents").after(lsthmtl_received_documents);
+    });
+    $("body").on("click", ".btn_danger_received_documents", function () {
+        $(this).parents(".hdtuto_received_documents").remove();
+    });
+
+    $(".btn_success_required_wanting_documents").click(function () {
+        var lsthmtl_required_wanting_documents = $(".clone_required_wanting_documents").html();
+        $(".increment_required_wanting_documents").after(lsthmtl_required_wanting_documents);
+    });
+    $("body").on("click", ".btn_danger_required_wanting_documents", function () {
+        $(this).parents(".hdtuto_required_wanting_documents").remove();
+    });
 
     $('#division_id').on('change', function () {
         var div_id = $(this).val();
@@ -622,18 +637,16 @@ $(document).ready(function () {
                         $('#search_data').append(`
 
                                 <tr>
-
-                                            <td> ${value.next_date === null ? '' : value.next_date} </td>
-                                            <td> ${value.next_date_reason_name === null ? '' : value.next_date_reason_name} </td>
-                                            <td> <a href="view-criminal-cases/${value.id}"> ${value.case_no} </a> </td>
-                                            <td> ${value.court_name === null ? '' : value.court_name}</td>
-                                            <td> ${value.district_name === null ? '' : value.district_name} </td>
-                                            <td> ${value.complainant_informant_name ? '' : value.complainant_informant_name} </td>
-                                            <td> ${value.accused_name === null ? '' : value.accused_name} </td>
-                                            <td> ${value.case_types_name === null ? '' : value.case_types_name} </td>
-                                            <td> ${value.another_claim === null ? '' : value.another_claim} </td>
-
-
+                                   <td> ${value.id === null ? '' : value.id} </td>
+                                   <td> ${value.next_date === null ? '' : value.next_date} </td>
+                                   <td> ${value.next_date_reason_name === null ? '' : value.next_date_reason_name} </td>
+                                   <td> <a href="view-criminal-cases/${value.id}"> ${value.case_no} </a> </td>
+                                    <td> ${value.court_name === null ? '' : value.court_name}</td>
+                                    <td> ${value.district_name === null ? '' : value.district_name} </td>
+                                    <td> ${value.complainant_informant_name ? '' : value.complainant_informant_name} </td>
+                                    <td> ${value.accused_name === null ? '' : value.accused_name} </td>
+                                    <td> ${value.case_types_name === null ? '' : value.case_types_name} </td>
+                                    <td> ${value.allegation_name === null ? '' : value.allegation_name} ${value.case_infos_allegation_claim_write === null ? '' : value.case_infos_allegation_claim_write} </td>
                                     <td> ${value.delete_status === 0 ? '<button type="button" class="btn-custom btn-success-custom text-uppercase">Active</button>' : '<button type="button" class="btn-custom btn-warning-custom text-uppercase">Inactive</button>'}</td>
                                     <td>
                                         <a href="view-criminal-cases/${value.id}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"

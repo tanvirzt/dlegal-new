@@ -1053,22 +1053,41 @@
                                                                             <div class="col-sm-8">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
-                                                                                        <select name="received_documents_id"
+                                                                                        <select name="received_documents_id[]"
                                                                                                 id="received_documents_id"
-                                                                                                class="form-control select2">
+                                                                                                class="form-control select2" multiple>
                                                                                             <option value="">Select</option>
                                                                                             @foreach($documents as $item)
                                                                                                 <option
-                                                                                                    value="{{ $item->id }}" {{  $data->received_documents_id  == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                    value="{{ $item->documents_name }}" {{ in_array($item->documents_name, $received_documents_explode) ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-md-6">
-                                                                                        <input type="text" class="form-control"
-                                                                                               id="received_documents_write"
-                                                                                               name="received_documents_write"
-                                                                                               placeholder="Received Documents"
-                                                                                               value="{{ $data->received_documents_write }}">
+                                                                                        <div class="input-group hdtuto_received_documents control-group increment_received_documents">
+                                                                                            <input type="text" name="received_documents_write[]"
+                                                                                                   class="myfrm form-control col-12" value="{{ rtrim($data->received_documents_write, ', ') }}">
+                                                                                            <div class="input-group-btn">
+                                                                                                <button class="btn btn-success btn_success_received_documents"
+                                                                                                        type="button"><i
+                                                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="clone_received_documents hide">
+                                                                                            <div class="hdtuto_received_documents control-group lst input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                <input type="text" name="received_documents_write[]"
+                                                                                                       class="myfrm form-control col-12">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_received_documents"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
                                                                                     </div>
                                                                                 </div>
                                                                                 @error('received_documents')<span
@@ -1082,22 +1101,41 @@
                                                                             <div class="col-sm-8">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
-                                                                                        <select name="required_wanting_documents_id"
+                                                                                        <select name="required_wanting_documents_id[]"
                                                                                                 id="required_wanting_documents_id"
-                                                                                                class="form-control select2">
+                                                                                                class="form-control select2" multiple>
                                                                                             <option value="">Select</option>
                                                                                             @foreach($documents as $item)
                                                                                                 <option
-                                                                                                    value="{{ $item->id }}" {{ $data->required_wanting_documents_id  == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                    value="{{ $item->documents_name }}" {{ in_array($item->documents_name, $required_documents_explode) ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-md-6">
-                                                                                        <input type="text" class="form-control"
-                                                                                               id="required_wanting_documents_write"
-                                                                                               name="required_wanting_documents_write"
-                                                                                               placeholder="Required Documents"
-                                                                                               value="{{ $data->required_wanting_documents_write }}">
+                                                                                        <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
+                                                                                            <input type="text" name="required_wanting_documents_write[]"
+                                                                                                   class="myfrm form-control col-12" placeholder="Required Documents" value="{{ rtrim($data->required_wanting_documents_write, ', ') }}">
+                                                                                            <div class="input-group-btn">
+                                                                                                <button class="btn btn-success btn_success_required_wanting_documents"
+                                                                                                        type="button"><i
+                                                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="clone_required_wanting_documents hide">
+                                                                                            <div class="hdtuto_required_wanting_documents control-group lst input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                <input type="text" name="required_wanting_documents_write[]"
+                                                                                                       class="myfrm form-control col-12">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_required_wanting_documents"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
                                                                                     </div>
                                                                                 </div>
                                                                                 @error('required_wanting_documents')<span
@@ -1829,7 +1867,7 @@
                                                                                             <option value="">Select</option>
                                                                                             @foreach($court_proceeding as $item)
                                                                                                 <option
-                                                                                                    value="{{ $item->id }}" {{  $data->updated_case_status_id == $item->id ? 'selected' : '' }}>{{ $item->court_proceeding_name }}</option>
+                                                                                                    value="{{ $item->id }}" {{  old('updated_case_status_id') == $item->id ? 'selected' : '' }}>{{ $item->court_proceeding_name }}</option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
@@ -1912,7 +1950,7 @@
                                                                                         <option value="">Select</option>
                                                                                         @foreach($court_proceeding as $item)
                                                                                             <option
-                                                                                                value="{{ $item->id }}" {{  $data->court_proceedings_id == $item->id ? 'selected' : '' }}>{{ $item->court_proceeding_name }}</option>
+                                                                                                value="{{ $item->id }}" {{  old('court_proceedings_id') == $item->id ? 'selected' : '' }}>{{ $item->court_proceeding_name }}</option>
                                                                                         @endforeach
                                                                                     </select>
                                                                                     </div>
@@ -1942,7 +1980,7 @@
                                                                                             <option value="">Select</option>
                                                                                             @foreach($last_court_order as $item)
                                                                                                 <option
-                                                                                                    value="{{ $item->id }}" {{  $data->updated_court_order_id == $item->id ? 'selected' : '' }}>{{ $item->court_last_order_name }}</option>
+                                                                                                    value="{{ $item->id }}" {{  old('updated_court_order_id') == $item->id ? 'selected' : '' }}>{{ $item->court_last_order_name }}</option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
@@ -2006,7 +2044,7 @@
                                                                                             @foreach ($external_council as $item)
                                                                                                 <option
                                                                                                     value="{{ $item->id }}"
-                                                                                                    {{ $data->updated_engaged_advocate_id == $item->id ? 'selected' : '' }}>
+                                                                                                    {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
                                                                                                     {{ $item->first_name }}
                                                                                                     {{ $item->middle_name }}
                                                                                                     {{ $item->last_name }}
@@ -2198,14 +2236,12 @@
                                                                             <div class="col-md-8">
                                                                                 <div class="row" >
                                                                                     <div class="col-md-6">
-                                                                                        <select name="activity_engaged_id"
-                                                                                                class="form-control select2"
-                                                                                        >
+                                                                                        <select name="activity_engaged_id[]" class="form-control select2" multiple>
                                                                                             <option value="">Select</option>
                                                                                             @foreach ($external_council as $item)
                                                                                                 <option
-                                                                                                    value="{{ $item->id }}"
-                                                                                                    {{ $data->updated_engaged_advocate_id == $item->id ? 'selected' : '' }}>
+                                                                                                    value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name}}"
+                                                                                                    {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
                                                                                                     {{ $item->first_name }}
                                                                                                     {{ $item->middle_name }}
                                                                                                     {{ $item->last_name }}
@@ -2239,7 +2275,7 @@
                                                                                             @foreach ($external_council as $item)
                                                                                                 <option
                                                                                                     value="{{ $item->id }}"
-                                                                                                    {{ $data->updated_engaged_advocate_id == $item->id ? 'selected' : '' }}>
+                                                                                                    {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
                                                                                                     {{ $item->first_name }}
                                                                                                     {{ $item->middle_name }}
                                                                                                     {{ $item->last_name }}
@@ -2250,7 +2286,7 @@
                                                                                     <div class="col-md-6">
                                                                                         <input type="text" class="form-control"
                                                                                                id="activity_forwarded_to_write"
-                                                                                               placeholder="Activity Engaged"
+                                                                                               placeholder="Forwarded To"
                                                                                                name="activity_forwarded_to_write">
                                                                                     </div>
                                                                                 </div>

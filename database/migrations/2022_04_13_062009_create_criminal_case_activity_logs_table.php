@@ -22,7 +22,7 @@ class CreateCriminalCaseActivityLogsTable extends Migration
             $table->integer('activity_mode_id')->nullable();
             $table->string('activity_mode_write')->nullable();
             $table->string('activity_time_spent')->nullable();
-            $table->integer('activity_engaged_id')->nullable();
+            $table->string('activity_engaged_id')->nullable();
             $table->string('activity_engaged_write')->nullable();
             $table->integer('activity_forwarded_to_id')->nullable();
             $table->string('activity_forwarded_to_write')->nullable();
