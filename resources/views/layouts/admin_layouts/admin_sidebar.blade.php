@@ -41,7 +41,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-circle"></i>
                         <p>
-                            Admin
+                            Admin Setup
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -50,7 +50,7 @@
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
-                                    Setup
+                                    Litigation Setup
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -58,7 +58,7 @@
                                 <li class="nav-item">
                                     <a href="{{ route('allegation') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Allegation</p>
+                                        <p>Allegation/Claim</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -124,19 +124,19 @@
                                 <li class="nav-item">
                                     <a href="{{ route('client') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Client</p>
+                                        <p>Client(Which Party)</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('client-category') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Client Category</p>
+                                        <p>Party Category</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('client-subcategory') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Client Subcategory</p>
+                                        <p>Party Subcategory</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -188,18 +188,6 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('floor') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Floor</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('flat-number') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Flat Number</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a href="{{ route('internal-council') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Internal Council</p>
@@ -215,6 +203,12 @@
                                     <a href="{{ route('law') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Law</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('section') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Section</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -238,13 +232,13 @@
                                 <li class="nav-item">
                                     <a href="{{ route('matter') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Matter</p>
+                                        <p>Case Matter</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('mode') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Mode</p>
+                                        <p>Mode of received</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -256,7 +250,7 @@
                                 <li class="nav-item">
                                     <a href="{{ route('opposition') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Opposition</p>
+                                        <p>Opposition(Which Party)</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -286,21 +280,10 @@
                                 <li class="nav-item">
                                     <a href="{{ route('next-date-reason') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Reason for Next Date</p>
+                                        <p>Next date fixed for</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('section') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Section</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('seller-buyer') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Seller/Buyer</p>
-                                    </a>
-                                </li>
+
                                 <li class="nav-item">
                                     <a href="{{ route('person-title') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -319,31 +302,110 @@
                                         <p>Zone</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Map Info
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ route('division') }}" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Division</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('district') }}" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>District</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('thana') }}" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Thana</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
 
+                            </ul>
+                        </li>
 
-
-
-
-
-
-
-
-
-{{--                                <li class="nav-item">--}}
-{{--                                    <a href="{{ route('party') }}" class="nav-link">--}}
-{{--                                        <i class="far fa-dot-circle nav-icon"></i>--}}
-{{--                                        <p>Party</p>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-
-
-
-
-
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Property Setup
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('floor') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Floor</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('flat-number') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Flat Number</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('property-type') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Property Type</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('seller-buyer') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Seller/Buyer</p>
+                                    </a>
+                                </li>
 
 
                             </ul>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Compliance Setup
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+
+
+                                <li class="nav-item">
+                                    <a href="{{ route('compliance-category') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Compliance Category</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('compliance-type') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Compliance Type</p>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+
+
+
+
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -353,18 +415,18 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-{{--                                <li class="nav-item">--}}
-{{--                                    <a href="#" class="nav-link">--}}
-{{--                                        <i class="far fa-dot-circle nav-icon"></i>--}}
-{{--                                        <p>Individual Person</p>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-item">--}}
-{{--                                    <a href="#" class="nav-link">--}}
-{{--                                        <i class="far fa-dot-circle nav-icon"></i>--}}
-{{--                                        <p>Law Firm</p>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
+                                {{--                                <li class="nav-item">--}}
+                                {{--                                    <a href="#" class="nav-link">--}}
+                                {{--                                        <i class="far fa-dot-circle nav-icon"></i>--}}
+                                {{--                                        <p>Individual Person</p>--}}
+                                {{--                                    </a>--}}
+                                {{--                                </li>--}}
+                                {{--                                <li class="nav-item">--}}
+                                {{--                                    <a href="#" class="nav-link">--}}
+                                {{--                                        <i class="far fa-dot-circle nav-icon"></i>--}}
+                                {{--                                        <p>Law Firm</p>--}}
+                                {{--                                    </a>--}}
+                                {{--                                </li>--}}
                                 <li class="nav-item">
                                     <a href="{{ route('company-type') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -379,54 +441,10 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('property-type') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Property Type</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('compliance-category') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Compliance Category</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('compliance-type') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Compliance Type</p>
-                            </a>
-                        </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    Map Info
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('division') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Division</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('district') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>District</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('thana') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Thana</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+
+
+
                     </ul>
                 </li>
 

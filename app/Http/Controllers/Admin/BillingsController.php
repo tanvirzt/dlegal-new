@@ -55,7 +55,7 @@ class BillingsController extends Controller
     public function find_bank_branch(Request $request)
     {
 
-        $bank_branch = SetupBankBranch::where('bank_id',$request->bank_id)->get();
+        $bank_branch = SetupBankBranch::where('bank_id',$request->bank_id)->orderBy('bank_branch_name','asc')->get();
         return response()->json($bank_branch);
     }
 

@@ -21,11 +21,11 @@ class CreateCriminalCaseStatusLogsTable extends Migration
             $table->string('updated_order_date')->nullable();
             $table->integer('updated_fixed_for_id')->nullable();
             $table->string('updated_fixed_for_write')->nullable();
-            $table->integer('court_proceedings_id')->nullable();
+            $table->string('court_proceedings_id')->nullable();
             $table->string('court_proceedings_write')->nullable();
-            $table->integer('updated_court_order_id')->nullable();
+            $table->string('updated_court_order_id')->nullable();
             $table->string('updated_court_order_write')->nullable();
-            $table->integer('updated_day_notes_id')->nullable();
+            $table->string('updated_day_notes_id')->nullable();
             $table->string('updated_day_notes_write')->nullable();
             $table->integer('updated_engaged_advocate_id')->nullable();
             $table->string('updated_engaged_advocate_write')->nullable();

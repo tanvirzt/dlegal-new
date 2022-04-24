@@ -51,6 +51,7 @@
                                         <th class="text-center text-nowrap">ID</th>
                                         <th class="text-center text-nowrap">Allegation</th>
                                         <th class="text-center text-nowrap">Status</th>
+                                        <th class="text-center text-nowrap">Created At</th>
                                         <th class="text-center text-nowrap">Action</th>
                                     </tr>
                                     </thead>
@@ -64,6 +65,7 @@
                                             <td class="text-center">
                                                 {{$datum->allegation_name}}
                                             </td>
+
                                             <td class="text-center">
                                                 @if ($datum->delete_status == 0)
                                                     <button type="button"
@@ -74,6 +76,9 @@
                                                         class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                 @endif
                                                 </span>
+                                            </td>
+                                            <td class="text-center">
+                                                {{$datum->created_at}}
                                             </td>
                                             <td class="text-center">
                                                     <a href="{{ route('edit-allegation',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"

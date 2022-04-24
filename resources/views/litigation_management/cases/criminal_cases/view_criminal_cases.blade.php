@@ -66,6 +66,10 @@
                                             data-placement="top" title="Update Status"><i
                                             class="far fa-bell"></i></button>
 
+                                    <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-lg-2"
+                                            data-toggle="tooltip"
+                                            data-placement="top" title="Update Activities"><i class="fas fa-chart-line"></i></button>
+
 
                                     <a href="{{ route('edit-criminal-cases', $data->id) }}">
                                         <button
@@ -153,7 +157,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Received By</td>
-                                                            <td>{{ $data->received_by }}</td>
+                                                            <td>{{ $data->name }} {{ $data->received_by_write }}</td>
                                                         </tr>
 
                                                         </tbody>
@@ -546,6 +550,7 @@
                                             <th class="table_logs_text_center text-nowrap">Day Note</th>
                                             <th class="table_logs_text_center text-nowrap">Engaged Advocates</th>
                                             <th class="table_logs_text_center text-nowrap">Next Day Presence</th>
+                                            <th class="text-left text-nowrap">Update</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -554,11 +559,40 @@
                                                 <td class="table_logs_text_center"> {{ $logs->case_status_name }} {{ $logs->updated_case_status_write }} </td>
                                                 <td class="table_logs_text_center"> {{ $logs->updated_order_date }} </td>
                                                 <td class="table_logs_text_center"> {{ $logs->next_date_reason_name }} {{ $logs->updated_fixed_for_write }} </td>
-                                                <td class="table_logs_text_center"> {{ $logs->court_proceeding_name }} {{ $logs->court_proceedings_write }} </td>
-                                                <td class="table_logs_text_center"> {{ $logs->court_last_order_name }} {{ $logs->updated_court_order_write }}</td>
-                                                <td class="table_logs_text_center"> {{ $logs->day_notes_name }} {{ $logs->updated_day_notes_write }} </td>
+                                                <td class="text-left">
+
+                                                    @php
+                                                        $proceedings = explode(', ',$logs->court_proceedings_id);
+                                                    @endphp
+                                                    @if($logs->court_proceedings_id)
+                                                        @foreach ($proceedings as $pro)
+                                                            <li class="text-left">{{ $pro }}</li>
+                                                        @endforeach
+                                                    @endif
+                                                    {{ $logs->court_proceedings_write }} </td>
+                                                <td class="text-left">
+                                                    @php
+                                                        $order = explode(', ',$logs->updated_court_order_id);
+                                                    @endphp
+                                                    @if($logs->updated_court_order_id)
+                                                        @foreach ($order as $pro)
+                                                            <li class="text-left">{{ $pro }}</li>
+                                                        @endforeach
+                                                    @endif
+                                                    {{ $logs->updated_court_order_write }}</td>
+                                                <td class="table_logs_text_center">
+                                                    @php
+                                                        $notes = explode(', ',$logs->updated_day_notes_id);
+                                                    @endphp
+                                                    @if($logs->updated_day_notes_id)
+                                                        @foreach ($notes as $pro)
+                                                            <li class="text-left">{{ $pro }}</li>
+                                                        @endforeach
+                                                    @endif
+                                                    {{ $logs->updated_day_notes_write }} </td>
                                                 <td class="table_logs_text_center"> {{ $logs->first_name }} {{ $logs->middle_name }} {{ $logs->last_name }} {{ $logs->updated_engaged_advocate_write }} </td>
                                                 <td class="table_logs_text_center"> {{ $logs->next_day_presence_name }} </td>
+                                                <td class="table_logs_text_center"> {{ $logs->created_at }} </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -602,7 +636,18 @@
                                                 <td> {{ $activity_log->activity_progress }} </td>
                                                 <td> {{ $activity_log->mode_name }} {{ $activity_log->activity_mode_write }} </td>
                                                 <td> {{ $activity_log->activity_time_spent }} </td>
-                                                <td> {{ $activity_log->activity_engaged_id }} {{ $activity_log->activity_engaged_write }} </td>
+                                                <td>
+                                                    @php
+                                                    $engaged = explode(', ',$activity_log->activity_engaged_id);
+                                                    @endphp
+
+                                                    @if($activity_log->activity_engaged_id)
+                                                        @foreach($engaged as $item)
+                                                            <li class="text-left">{{ $item }}</li>
+                                                        @endforeach
+                                                    @endif
+
+                                                    {{ $activity_log->activity_engaged_write }} </td>
                                                 <td> {{ $activity_log->forwarded_first_name }} {{ $activity_log->forwarded_middle_name }} {{ $activity_log->forwarded_last_name }} {{ $activity_log->activity_forwarded_to_write }} </td>
                                                 <td> {{ $activity_log->created_at }} </td>
                                             </tr>
@@ -727,6 +772,7 @@
 
                             </div>
 
+
                         </div>
                     </div>
 
@@ -747,51 +793,51 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                        <form
-                            action="{{ route('update-criminal-cases-status', $data->id) }}"
-                            method="post">
-                            <div class="">
+                <form
+                    action="{{ route('update-criminal-cases-status', $data->id) }}"
+                    method="post">
+                    <div class="">
 
-                                <div class="card-body">
+                        <div class="card-body">
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label for="updated_case_status_id"
-                                                       class="col-md-4 col-form-label"> Status
-                                                </label>
-                                                <div class="col-md-8">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <select name="updated_case_status_id"
-                                                                    id="updated_case_status_id"
-                                                                    class="form-control select2">
-                                                                <option value="">Select</option>
-                                                                @foreach($court_proceeding as $item)
-                                                                    <option
-                                                                        value="{{ $item->id }}" {{  old('updated_case_status_id') == $item->id ? 'selected' : '' }}>{{ $item->court_proceeding_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <input type="text" class="form-control"
-                                                                   id="updated_case_status_write"
-                                                                   name="updated_case_status_write"
-                                                                   placeholder="Status"
-                                                                   value="{{ old('updated_case_status_write') }}">
-                                                        </div>
-                                                    </div>
-
-                                                    @error('updated_case_status')<span
-                                                        class="text-danger">{{$message}}</span>@enderror
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="updated_case_status_id"
+                                               class="col-md-4 col-form-label"> Status
+                                        </label>
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select name="updated_case_status_id"
+                                                            id="updated_case_status_id"
+                                                            class="form-control select2">
+                                                        <option value="">Select</option>
+                                                        @foreach($case_status as $item)
+                                                            <option
+                                                                value="{{ $item->id }}" {{  old('updated_case_status_id') == $item->id ? 'selected' : '' }}>{{ $item->case_status_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control"
+                                                           id="updated_case_status_write"
+                                                           name="updated_case_status_write"
+                                                           placeholder="Status"
+                                                           value="{{ old('updated_case_status_write') }}">
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="updated_order_date"
-                                                       class="col-sm-4 col-form-label">
-                                                    Order Date
-                                                </label>
-                                                <div class="col-sm-8">
+
+                                            @error('updated_case_status')<span
+                                                class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="updated_order_date"
+                                               class="col-sm-4 col-form-label">
+                                            Order Date
+                                        </label>
+                                        <div class="col-sm-8">
                                                                                 <span class="date_span_status_modal">
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'updated_order_date');"><input
@@ -801,222 +847,428 @@
                                                                                         tabindex="-1"><span
                                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
                                                                                 </span>
-                                                    @error('updated_order_date')
-                                                    <span
-                                                        class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="updated_fixed_for_id"
-                                                       class="col-md-4 col-form-label"> Fixed For
-                                                </label>
-                                                <div class="col-md-8">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <select name="updated_fixed_for_id"
-                                                                    id="updated_fixed_for_id"
-                                                                    class="form-control select2">
-                                                                <option value="">Select</option>
-                                                                @foreach($next_date_reason as $item)
-                                                                    <option
-                                                                        value="{{ $item->id }}" {{(old('updated_fixed_for_id') == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <input type="text" class="form-control"
-                                                                   id="updated_fixed_for_write"
-                                                                   name="updated_fixed_for_write"
-                                                                   placeholder="Fixed For"
-                                                                   value="{{ old('updated_fixed_for_write') }}">
-                                                        </div>
-                                                    </div>
-
-                                                    @error('updated_fixed_for')<span
-                                                        class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group row">
-                                                <label for="court_proceedings_id"
-                                                       class="col-md-4 col-form-label"> Court Proceeding
-                                                </label>
-                                                <div class="col-md-8">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <select name="court_proceedings_id"
-                                                                    id="court_proceedings_id"
-                                                                    class="form-control select2">
-                                                                <option value="">Select</option>
-                                                                @foreach($court_proceeding as $item)
-                                                                    <option
-                                                                        value="{{ $item->id }}" {{  old('court_proceedings_id') == $item->id ? 'selected' : '' }}>{{ $item->court_proceeding_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <input type="text" class="form-control"
-                                                                   id="court_proceedings_write"
-                                                                   name="court_proceedings_write"
-                                                                   placeholder="Court Proceeding"
-                                                                   value="{{ old('court_proceedings_write') }}">
-                                                        </div>
-                                                    </div>
-
-                                                    @error('court_proceedings')<span
-                                                        class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="updated_court_order_id"
-                                                       class="col-md-4 col-form-label"> Court Order
-                                                </label>
-                                                <div class="col-md-8">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <select name="updated_court_order_id"
-                                                                    id="updated_court_order_id"
-                                                                    class="form-control select2">
-                                                                <option value="">Select</option>
-                                                                @foreach($last_court_order as $item)
-                                                                    <option
-                                                                        value="{{ $item->id }}" {{  old('updated_court_order_id') == $item->id ? 'selected' : '' }}>{{ $item->court_last_order_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <input type="text" class="form-control"
-                                                                   id="updated_court_order_write"
-                                                                   placeholder="Court Order"
-                                                                   name="updated_court_order_write">
-
-                                                        </div>
-                                                    </div>
-
-                                                    @error('updated_court_order_write')<span
-                                                        class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
+                                            @error('updated_order_date')
+                                            <span
+                                                class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
-
-
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label for="updated_day_notes_id"
-                                                       class="col-md-4 col-form-label"> Day Notes
-                                                </label>
-                                                <div class="col-md-8">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <select name="updated_day_notes_id"
-                                                                    id="updated_day_notes_id"
-                                                                    class="form-control select2">
-                                                                <option value="">Select</option>
-                                                                @foreach($day_notes as $item)
-                                                                    <option
-                                                                        value="{{ $item->id }}" {{  old('updated_day_notes_id') == $item->id ? 'selected' : '' }}>{{ $item->day_notes_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <input type="text" class="form-control"
-                                                                   id="updated_day_notes_write"
-                                                                   placeholder="Day Notes"
-                                                                   name="updated_day_notes_write">
-                                                        </div>
-                                                    </div>
-
-                                                    @error('updated_day_notes_write')<span
-                                                        class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="updated_engaged_advocate_id"
-                                                       class="col-md-4 col-form-label"> Engaged Advocate
-                                                </label>
-                                                <div class="col-md-8">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <select name="updated_engaged_advocate_id"
-                                                                    class="form-control select2"
-                                                            >
-                                                                <option value="">Select</option>
-                                                                @foreach ($external_council as $item)
-                                                                    <option
-                                                                        value="{{ $item->id }}"
-                                                                        {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
-                                                                        {{ $item->first_name }}
-                                                                        {{ $item->middle_name }}
-                                                                        {{ $item->last_name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <input type="text" class="form-control"
-                                                                   id="updated_engaged_advocate_write"
-                                                                   placeholder="Engaged Advocate"
-                                                                   name="updated_engaged_advocate_write">
-                                                        </div>
-                                                    </div>
-
-                                                    @error('updated_engaged_advocate_write')<span
-                                                        class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="updated_next_day_presence_id"
-                                                       class="col-sm-4 col-form-label">
-                                                    Next Day Presence</label>
-                                                <div class="col-sm-8">
-                                                    <select name="updated_next_day_presence_id"
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="updated_fixed_for_id"
+                                               class="col-md-4 col-form-label"> Fixed For
+                                        </label>
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select name="updated_fixed_for_id"
+                                                            id="updated_fixed_for_id"
                                                             class="form-control select2">
                                                         <option value="">Select</option>
-                                                        @foreach($next_day_presence as $item)
+                                                        @foreach($next_date_reason as $item)
                                                             <option
-                                                                value="{{ $item->id }}" {{(old('updated_next_day_presence_id') == $item->id ? 'selected':'')}}>{{ $item->next_day_presence_name }}</option>
+                                                                value="{{ $item->id }}" {{(old('updated_fixed_for_id') == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
                                                         @endforeach
                                                     </select>
-                                                    @error('updated_next_day_presence_id')<span
-                                                        class="text-danger">{{$message}}</span>@enderror
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="updated_remarks"
-                                                       class="col-sm-4 col-form-label"> Remarks </label>
-                                                <div class="col-sm-8">
-                                                    <textarea name="updated_remarks" class="form-control"
-                                                              rows="3"
-                                                              placeholder=""></textarea>
-                                                    @error('updated_remarks')<span
-                                                        class="text-danger">{{$message}}</span>@enderror
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control"
+                                                           id="updated_fixed_for_write"
+                                                           name="updated_fixed_for_write"
+                                                           placeholder="Fixed For"
+                                                           value="{{ old('updated_fixed_for_write') }}">
                                                 </div>
                                             </div>
 
+                                            @error('updated_fixed_for')<span
+                                                class="text-danger">{{$message}}</span>@enderror
                                         </div>
-
                                     </div>
 
 
+                                    <div class="form-group row">
+                                        <label for="court_proceedings_id"
+                                               class="col-md-4 col-form-label"> Court Proceeding
+                                        </label>
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select name="court_proceedings_id[]"
+                                                            id="court_proceedings_id"
+                                                            class="form-control select2" multiple>
+                                                        <option value="">Select</option>
+                                                        @foreach($court_proceeding as $item)
+                                                            <option
+                                                                value="{{ $item->court_proceeding_name }}" {{  old('court_proceedings_id') == $item->id ? 'selected' : '' }}>{{ $item->court_proceeding_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control"
+                                                           id="court_proceedings_write"
+                                                           name="court_proceedings_write"
+                                                           placeholder="Court Proceeding"
+                                                           value="{{ old('court_proceedings_write') }}">
+                                                </div>
+                                            </div>
 
+                                            @error('court_proceedings')<span
+                                                class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="updated_court_order_id"
+                                               class="col-md-4 col-form-label"> Court Order
+                                        </label>
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select name="updated_court_order_id[]"
+                                                            id="updated_court_order_id"
+                                                            class="form-control select2" multiple>
+                                                        <option value="">Select</option>
+                                                        @foreach($last_court_order as $item)
+                                                            <option
+                                                                value="{{ $item->court_last_order_name }}" {{  old('updated_court_order_id') == $item->court_last_order_name ? 'selected' : '' }}>{{ $item->court_last_order_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control"
+                                                           id="updated_court_order_write"
+                                                           placeholder="Court Order"
+                                                           name="updated_court_order_write">
 
+                                                </div>
+                                            </div>
+
+                                            @error('updated_court_order_write')<span
+                                                class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
                                 </div>
 
 
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="updated_day_notes_id"
+                                               class="col-md-4 col-form-label"> Day Notes
+                                        </label>
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select name="updated_day_notes_id[]"
+                                                            id="updated_day_notes_id"
+                                                            class="form-control select2" multiple>
+                                                        <option value="">Select</option>
+                                                        @foreach($day_notes as $item)
+                                                            <option
+                                                                value="{{ $item->day_notes_name }}" {{  old('updated_day_notes_id') == $item->day_notes_name ? 'selected' : '' }}>{{ $item->day_notes_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control"
+                                                           id="updated_day_notes_write"
+                                                           placeholder="Day Notes"
+                                                           name="updated_day_notes_write">
+                                                </div>
+                                            </div>
+
+                                            @error('updated_day_notes_write')<span
+                                                class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="updated_engaged_advocate_id"
+                                               class="col-md-4 col-form-label"> Engaged Advocate
+                                        </label>
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select name="updated_engaged_advocate_id"
+                                                            class="form-control select2"
+                                                    >
+                                                        <option value="">Select</option>
+                                                        @foreach ($external_council as $item)
+                                                            <option
+                                                                value="{{ $item->id }}"
+                                                                {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
+                                                                {{ $item->first_name }}
+                                                                {{ $item->middle_name }}
+                                                                {{ $item->last_name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control"
+                                                           id="updated_engaged_advocate_write"
+                                                           placeholder="Engaged Advocate"
+                                                           name="updated_engaged_advocate_write">
+                                                </div>
+                                            </div>
+
+                                            @error('updated_engaged_advocate_write')<span
+                                                class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="updated_next_day_presence_id"
+                                               class="col-sm-4 col-form-label">
+                                            Next Day Presence</label>
+                                        <div class="col-sm-8">
+                                            <select name="updated_next_day_presence_id"
+                                                    class="form-control select2">
+                                                <option value="">Select</option>
+                                                @foreach($next_day_presence as $item)
+                                                    <option
+                                                        value="{{ $item->id }}" {{(old('updated_next_day_presence_id') == $item->id ? 'selected':'')}}>{{ $item->next_day_presence_name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('updated_next_day_presence_id')<span
+                                                class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="updated_remarks"
+                                               class="col-sm-4 col-form-label"> Remarks </label>
+                                        <div class="col-sm-8">
+                                                    <textarea name="updated_remarks" class="form-control"
+                                                              rows="3"
+                                                              placeholder=""></textarea>
+                                            @error('updated_remarks')<span
+                                                class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
-                            <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <div class="float-right">
-                                    <button type="submit"
-                                            class="btn btn-primary text-uppercase"><i
-                                            class="fas fa-save"></i> Update
-                                    </button>
+
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div class="float-right">
+                            <button type="submit"
+                                    class="btn btn-primary text-uppercase"><i
+                                    class="fas fa-save"></i> Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- /.modal -->
+
+    <div class="modal fade" id="modal-lg-2">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-title"> Update Activities </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form
+                    action="{{ route('update-criminal-cases-activity', $data->id) }}"
+                    method="post">
+                    @csrf
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="form-group row">
+                                    <label for="activity_date"
+                                           class="col-sm-4 col-form-label"> Date
+                                    </label>
+                                    <div class="col-sm-8">
+                                                                                <span class="date_span_status_modal">
+                                                                                    <input type="date" class="xDateContainer date_first_input"
+                                                                                           onchange="setCorrect(this,'activity_date');"><input type="text" id="activity_date" name="activity_date"
+                                                                                                                                               value="dd/mm/yyyy"
+                                                                                                                                               class="date_second_input"
+                                                                                                                                               tabindex="-1"><span
+                                                                                        class="date_second_span" tabindex="-1">&#9660;</span>
+                                                                                </span>
+
+                                        @error('activity_date')
+                                        <span
+                                            class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="activity_action"
+                                           class="col-sm-4 col-form-label"> Activity/Action </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"
+                                               id="activity_action" name="activity_action">
+                                        @error('activity_action')
+                                        <span
+                                            class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="activity_progress"
+                                           class="col-sm-4 col-form-label">Progress</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"
+                                               id="activity_progress" name="activity_progress">
+                                        @error('activity_progress')
+                                        <span
+                                            class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="activity_mode_id"
+                                           class="col-md-4 col-form-label"> Mode
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div class="row" >
+                                            <div class="col-md-6">
+                                                <select name="activity_mode_id"
+                                                        class="form-control select2"
+                                                >
+                                                    <option value="">Select</option>
+                                                    @foreach ($mode as $item)
+                                                        <option
+                                                            value="{{ $item->id }}"
+                                                            {{ old('activity_mode_id') == $item->mode_name ? 'selected' : '' }}>
+                                                            {{ $item->mode_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control"
+                                                       id="activity_mode_write"
+                                                       placeholder="Day Notes"
+                                                       name="activity_mode_write">
+                                            </div>
+                                        </div>
+
+                                        @error('activity_mode_write')<span
+                                            class="text-danger">{{$message}}</span>@enderror
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+
+
+                            <div class="col-md-6">
+
+
+                                <div class="form-group row">
+                                    <label for="activity_time_spent"
+                                           class="col-sm-4 col-form-label">Time Spent</label>
+                                    <div class="col-sm-8">
+
+                                        <input type="text" class="form-control"
+                                               id="activity_time_spent" name="activity_time_spent"
+                                        >
+                                        @error('activity_time_spent')
+                                        <span
+                                            class="text-danger">{{ $message }}</span>
+                                        @enderror
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="activity_engaged_id"
+                                           class="col-md-4 col-form-label"> Engaged
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div class="row" >
+                                            <div class="col-md-6">
+                                                <select name="activity_engaged_id[]" class="form-control select2" multiple>
+                                                    <option value="">Select</option>
+                                                    @foreach ($external_council as $item)
+                                                        <option
+                                                            value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name}}"
+                                                            {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
+                                                            {{ $item->first_name }}
+                                                            {{ $item->middle_name }}
+                                                            {{ $item->last_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control"
+                                                       id="activity_engaged_write"
+                                                       placeholder="Activity Engaged"
+                                                       name="activity_engaged_write">
+                                            </div>
+                                        </div>
+
+                                        @error('activity_mode_write')<span
+                                            class="text-danger">{{$message}}</span>@enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="activity_forwarded_to_id"
+                                           class="col-md-4 col-form-label"> Forwarded To
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div class="row" >
+                                            <div class="col-md-6">
+                                                <select name="activity_forwarded_to_id"
+                                                        class="form-control select2"
+                                                >
+                                                    <option value="">Select</option>
+                                                    @foreach ($external_council as $item)
+                                                        <option
+                                                            value="{{ $item->id }}"
+                                                            {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
+                                                            {{ $item->first_name }}
+                                                            {{ $item->middle_name }}
+                                                            {{ $item->last_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control"
+                                                       id="activity_forwarded_to_write"
+                                                       placeholder="Forwarded To"
+                                                       name="activity_forwarded_to_write">
+                                            </div>
+                                        </div>
+
+                                        @error('activity_forwarded_to_write')<span
+                                            class="text-danger">{{$message}}</span>@enderror
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <div class="float-right">
+                                <button type="submit"
+                                        class="btn btn-primary text-uppercase"><i
+                                        class="fas fa-save"></i> Update
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
 
             </div>
             <!-- /.modal-content -->

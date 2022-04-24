@@ -51,7 +51,7 @@ class LandInfoController extends Controller
 
     public function find_thana(Request $request)
     {
-        $thana = SetupThana::where('district_id',$request->district_id)->get();
+        $thana = SetupThana::where('district_id',$request->district_id)->orderBy('thana_name','asc')->get();
         return response()->json($thana);
     }
 

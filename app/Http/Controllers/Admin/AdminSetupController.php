@@ -3098,27 +3098,27 @@ public function find_case_category(Request $request)
 
     if ($request->case_type == "Civil Cases") {
 
-        $data = SetupCaseCategory::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->get();
+        $data = SetupCaseCategory::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->orderBy('case_category','asc')->get();
 
     } else if($request->case_type == "Criminal Cases"){
 
-        $data = SetupCaseCategory::where(['case_type' => 'Criminal Cases','delete_status' => 0])->get();
+        $data = SetupCaseCategory::where(['case_type' => 'Criminal Cases','delete_status' => 0])->orderBy('case_category','asc')->get();
 
     }else if($request->case_type == "Labour Cases"){
 
-        $data = SetupCaseCategory::where(['case_type' => 'Labour Cases','delete_status' => 0])->get();
+        $data = SetupCaseCategory::where(['case_type' => 'Labour Cases','delete_status' => 0])->orderBy('case_category','asc')->get();
 
     }else if($request->case_type == "Special Quassi - Judicial Cases"){
 
-        $data = SetupCaseCategory::where(['case_type' => 'Special Quassi - Judicial Cases','delete_status' => 0])->get();
+        $data = SetupCaseCategory::where(['case_type' => 'Special Quassi - Judicial Cases','delete_status' => 0])->orderBy('case_category','asc')->get();
 
     }else if($request->case_type == "High Court Division"){
 
-        $data = SetupCaseCategory::where(['case_type' => 'High Court Division','delete_status' => 0])->get();
+        $data = SetupCaseCategory::where(['case_type' => 'High Court Division','delete_status' => 0])->orderBy('case_category','asc')->get();
 
     }else if($request->case_type == "Appellate Court Division"){
 
-        $data = SetupCaseCategory::where(['case_type' => 'Appellate Court Division','delete_status' => 0])->get();
+        $data = SetupCaseCategory::where(['case_type' => 'Appellate Court Division','delete_status' => 0])->orderBy('case_category','asc')->get();
 
     }
 

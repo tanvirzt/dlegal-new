@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\CriminalCase;
 use App\Models\CriminalCaseActivityLog;
 use App\Models\SetupAllegation;
@@ -83,43 +84,44 @@ class CriminalCasesController extends Controller
 
     public function add_criminal_cases()
     {
-        $law = SetupLaw::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
-        $court = SetupCourt::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
-        $designation = SetupDesignation::where('delete_status', 0)->get();
-        $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
-        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
-        $case_status = SetupCaseStatus::where('delete_status', 0)->get();
-        $property_type = SetupPropertyType::where('delete_status', 0)->get();
-        $division = DB::table("setup_divisions")->get();
-        $person_title = SetupPersonTitle::where('delete_status', 0)->get();
-        $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
-        $case_types = SetupCaseTypes::where('delete_status', 0)->get();
-        $company = SetupCompany::where('delete_status', 0)->get();
-        $zone = SetupRegion::where('delete_status', 0)->get();
-        $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->get();
-        $area = SetupArea::where('delete_status', 0)->get();
-        $internal_council = SetupInternalCouncil::where('delete_status', 0)->get();
-        $client_category = SetupClientCategory::where('delete_status', 0)->get();
-        $branch = SetupBranch::where('delete_status', 0)->get();
-        $program = SetupProgram::where('delete_status', 0)->get();
-        $section = SetupSection::where('delete_status', 0)->get();
-        $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->get();
-        $legal_issue = SetupLegalIssue::where('delete_status', 0)->get();
-        $legal_service = SetupLegalService::where('delete_status', 0)->get();
-        $matter = SetupMatter::where('delete_status', 0)->get();
-        $coordinator = SetupCoordinator::where('delete_status', 0)->get();
-        $allegation = SetupAllegation::where('delete_status', 0)->get();
-        $in_favour_of = SetupInFavourOf::where('delete_status', 0)->get();
-        $mode = SetupMode::where('delete_status', 0)->get();
-        $referrer = SetupReferrer::where('delete_status', 0)->get();
-        $party = SetupParty::where('delete_status', 0)->get();
-        $client = SetupClient::where('delete_status', 0)->get();
-        $profession = SetupProfession::where('delete_status', 0)->get();
-        $opposition = SetupOpposition::where('delete_status', 0)->get();
-        $documents = SetupDocument::where('delete_status', 0)->get();
-        $case_title = SetupCaseTitle::where('delete_status', 0)->get();
+        $law = SetupLaw::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->orderBy('law_name','asc')->get();
+        $court = SetupCourt::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->orderBy('court_name','asc')->get();
+        $designation = SetupDesignation::where('delete_status', 0)->orderBy('designation_name','asc')->get();
+        $external_council = SetupExternalCouncil::where('delete_status', 0)->orderBy('first_name','asc')->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->orderBy('case_category','asc')->get();
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
+        $property_type = SetupPropertyType::where('delete_status', 0)->orderBy('property_type_name','asc')->get();
+        $division = DB::table("setup_divisions")->orderBy('division_name','asc')->get();
+        $person_title = SetupPersonTitle::where('delete_status', 0)->orderBy('person_title_name','asc')->get();
+        $next_date_reason = SetupNextDateReason::where('delete_status', 0)->orderBy('next_date_reason_name','asc')->get();
+        $case_types = SetupCaseTypes::where('delete_status', 0)->orderBy('case_types_name','asc')->get();
+        $company = SetupCompany::where('delete_status', 0)->orderBy('company_name','asc')->get();
+        $zone = SetupRegion::where('delete_status', 0)->orderBy('region_name','asc')->get();
+        $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->orderBy('court_last_order_name','asc')->get();
+        $area = SetupArea::where('delete_status', 0)->orderBy('area_name','asc')->get();
+        $internal_council = SetupInternalCouncil::where('delete_status', 0)->orderBy('first_name','asc')->get();
+        $client_category = SetupClientCategory::where('delete_status', 0)->orderBy('client_category_name','asc')->get();
+        $branch = SetupBranch::where('delete_status', 0)->orderBy('branch_name','asc')->get();
+        $program = SetupProgram::where('delete_status', 0)->orderBy('program_name','asc')->get();
+        $section = SetupSection::where('delete_status', 0)->orderBy('section_name','asc')->get();
+        $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->orderBy('next_day_presence_name','asc')->get();
+        $legal_issue = SetupLegalIssue::where('delete_status', 0)->orderBy('legal_issue_name','asc')->get();
+        $legal_service = SetupLegalService::where('delete_status', 0)->orderBy('legal_service_name','asc')->get();
+        $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name','asc')->get();
+        $coordinator = SetupCoordinator::where('delete_status', 0)->orderBy('coordinator_name','asc')->get();
+        $allegation = SetupAllegation::where('delete_status', 0)->orderBy('allegation_name','asc')->get();
+        $in_favour_of = SetupInFavourOf::where('delete_status', 0)->orderBy('in_favour_of_name','asc')->get();
+        $mode = SetupMode::where('delete_status', 0)->orderBy('mode_name','asc')->get();
+        $referrer = SetupReferrer::where('delete_status', 0)->orderBy('referrer_name','asc')->get();
+        $party = SetupParty::where('delete_status', 0)->orderBy('party_name','asc')->get();
+        $client = SetupClient::where('delete_status', 0)->orderBy('client_name','asc')->get();
+        $profession = SetupProfession::where('delete_status', 0)->orderBy('profession_name','asc')->get();
+        $opposition = SetupOpposition::where('delete_status', 0)->orderBy('opposition_name','asc')->get();
+        $documents = SetupDocument::where('delete_status', 0)->orderBy('documents_name','asc')->get();
+        $case_title = SetupCaseTitle::where('delete_status', 0)->orderBy('case_title_name','asc')->get();
+        $user = Admin::orderBy('name','asc')->get();
 
-        return view('litigation_management.cases.criminal_cases.add_criminal_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'client_category', 'section', 'section', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'in_favour_of', 'mode', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title'));
+        return view('litigation_management.cases.criminal_cases.add_criminal_cases', compact('person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'client_category', 'section', 'section', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'in_favour_of', 'mode', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title','user'));
     }
 
     public function save_criminal_cases(Request $request)
@@ -159,7 +161,8 @@ class CriminalCasesController extends Controller
         $data->referrer_id = $request->referrer_id;
         $data->referrer_write = $request->referrer_write;
         $data->referrer_details = $request->referrer_details;
-        $data->received_by = $request->received_by;
+        $data->received_by_id = $request->received_by_id;
+        $data->received_by_write = $request->received_by_write;
         $data->client_party_id = $request->client_party_id;
         $data->client_category_id = $request->client_category_id;
         $data->client_subcategory_id = $request->client_subcategory_id;
@@ -220,6 +223,7 @@ class CriminalCasesController extends Controller
         $data->case_infos_court_id = $request->case_infos_court_id ? implode(', ', $request->case_infos_court_id) : null;
         $data->case_infos_sub_seq_case_title_id = $request->case_infos_sub_seq_case_title_id;
         $data->case_infos_sub_seq_case_no = $request->case_infos_sub_seq_case_no ? implode(', ', $request->case_infos_sub_seq_case_no) : null;
+        $data->case_infos_sub_seq_case_year = $request->case_infos_sub_seq_case_year ? implode(', ', $request->case_infos_sub_seq_case_year) : null;
         $data->case_infos_sub_seq_court_id = $request->case_infos_sub_seq_court_id ? implode(', ', $request->case_infos_sub_seq_court_id) : null;
         $data->law_id = $request->law_id ? implode(', ', $request->law_id) : null;
         $data->law_write = $request->law_write ? implode(', ', $request->law_write) : null;
@@ -266,55 +270,56 @@ class CriminalCasesController extends Controller
 
     public function edit_criminal_cases($id)
     {
-        $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->get();
-        $legal_issue = SetupLegalIssue::where('delete_status', 0)->get();
-        $legal_service = SetupLegalService::where('delete_status', 0)->get();
-        $matter = SetupMatter::where('delete_status', 0)->get();
-        $coordinator = SetupCoordinator::where('delete_status', 0)->get();
-        $allegation = SetupAllegation::where('delete_status', 0)->get();
-        $law = SetupLaw::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
-        $court = SetupCourt::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
-        $designation = SetupDesignation::where('delete_status', 0)->get();
-        $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
-        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
-        $case_status = SetupCaseStatus::where('delete_status', 0)->get();
-        $property_type = SetupPropertyType::where('delete_status', 0)->get();
-        $division = DB::table("setup_divisions")->get();
-        $person_title = SetupPersonTitle::where('delete_status', 0)->get();
-        $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
-        $case_types = SetupCaseTypes::where('delete_status', 0)->get();
-        $company = SetupCompany::where('delete_status', 0)->get();
-        $zone = SetupRegion::where('delete_status', 0)->get();
-        $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->get();
-        $area = SetupArea::where('delete_status', 0)->get();
-        $internal_council = SetupInternalCouncil::where('delete_status', 0)->get();
-        $branch = SetupBranch::where('delete_status', 0)->get();
-        $program = SetupProgram::where('delete_status', 0)->get();
-        $data = CriminalCase::find($id);
-        $existing_district = SetupDistrict::where('division_id', $data->client_division_id)->get();
-        $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_name_id)->get();
-        $section = SetupSection::where('delete_status', 0)->get();
-        $client_category = SetupClientCategory::where('delete_status', 0)->get();
-        $existing_client_subcategory = SetupClientSubcategory::where(['client_category_id' => $data->client_category_id, 'delete_status' => 0])->get();
-        $existing_case_subcategory = SetupCaseSubcategory::where(['case_category_id' => $data->case_category_id, 'delete_status' => 0])->get();
-        $existing_thana = SetupThana::where(['district_id' => $data->client_district_id, 'delete_status' => 0])->get();
-        $assigned_lawyer_explode = explode(', ', $data->assigned_lawyer_id);
-        $case_infos_existing_district = SetupDistrict::where('division_id', $data->case_infos_division_id)->get();
-        $case_infos_existing_thana = SetupThana::where(['district_id' => $data->case_infos_district_id, 'delete_status' => 0])->get();
+        $law = SetupLaw::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->orderBy('law_name','asc')->get();
+        $court = SetupCourt::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->orderBy('court_name','asc')->get();
+        $designation = SetupDesignation::where('delete_status', 0)->orderBy('designation_name','asc')->get();
+        $external_council = SetupExternalCouncil::where('delete_status', 0)->orderBy('first_name','asc')->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->orderBy('case_category','asc')->get();
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
+        $property_type = SetupPropertyType::where('delete_status', 0)->orderBy('property_type_name','asc')->get();
+        $division = DB::table("setup_divisions")->orderBy('division_name','asc')->get();
+        $person_title = SetupPersonTitle::where('delete_status', 0)->orderBy('person_title_name','asc')->get();
+        $next_date_reason = SetupNextDateReason::where('delete_status', 0)->orderBy('next_date_reason_name','asc')->get();
+        $case_types = SetupCaseTypes::where('delete_status', 0)->orderBy('case_types_name','asc')->get();
+        $company = SetupCompany::where('delete_status', 0)->orderBy('company_name','asc')->get();
+        $zone = SetupRegion::where('delete_status', 0)->orderBy('region_name','asc')->get();
+        $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->orderBy('court_last_order_name','asc')->get();
+        $area = SetupArea::where('delete_status', 0)->orderBy('area_name','asc')->get();
+        $internal_council = SetupInternalCouncil::where('delete_status', 0)->orderBy('first_name','asc')->get();
+        $client_category = SetupClientCategory::where('delete_status', 0)->orderBy('client_category_name','asc')->get();
+        $branch = SetupBranch::where('delete_status', 0)->orderBy('branch_name','asc')->get();
+        $program = SetupProgram::where('delete_status', 0)->orderBy('program_name','asc')->get();
+        $section = SetupSection::where('delete_status', 0)->orderBy('section_name','asc')->get();
+        $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->orderBy('next_day_presence_name','asc')->get();
+        $legal_issue = SetupLegalIssue::where('delete_status', 0)->orderBy('legal_issue_name','asc')->get();
+        $legal_service = SetupLegalService::where('delete_status', 0)->orderBy('legal_service_name','asc')->get();
+        $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name','asc')->get();
+        $coordinator = SetupCoordinator::where('delete_status', 0)->orderBy('coordinator_name','asc')->get();
+        $allegation = SetupAllegation::where('delete_status', 0)->orderBy('allegation_name','asc')->get();
+        $in_favour_of = SetupInFavourOf::where('delete_status', 0)->orderBy('in_favour_of_name','asc')->get();
+        $mode = SetupMode::where('delete_status', 0)->orderBy('mode_name','asc')->get();
+        $referrer = SetupReferrer::where('delete_status', 0)->orderBy('referrer_name','asc')->get();
+        $party = SetupParty::where('delete_status', 0)->orderBy('party_name','asc')->get();
+        $client = SetupClient::where('delete_status', 0)->orderBy('client_name','asc')->get();
+        $profession = SetupProfession::where('delete_status', 0)->orderBy('profession_name','asc')->get();
+        $opposition = SetupOpposition::where('delete_status', 0)->orderBy('opposition_name','asc')->get();
+        $documents = SetupDocument::where('delete_status', 0)->orderBy('documents_name','asc')->get();
+        $case_title = SetupCaseTitle::where('delete_status', 0)->orderBy('case_title_name','asc')->get();
 
-        $mode = SetupMode::where('delete_status', 0)->get();
-        $court_proceeding = SetupCourtProceeding::where('delete_status', 0)->get();
-        $day_notes = SetupDayNote::where('delete_status', 0)->get();
-        $in_favour_of = SetupInFavourOf::where('delete_status', 0)->get();
-        $referrer = SetupReferrer::where('delete_status', 0)->get();
-        $party = SetupParty::where('delete_status', 0)->get();
-        $client = SetupClient::where('delete_status', 0)->get();
-        $profession = SetupProfession::where('delete_status', 0)->get();
-        $opposition = SetupOpposition::where('delete_status', 0)->get();
-        $documents = SetupDocument::where('delete_status', 0)->get();
-        $case_title = SetupCaseTitle::where('delete_status', 0)->get();
-        $existing_opposition_subcategory = SetupClientSubcategory::where(['client_category_id' => $data->opposition_category_id, 'delete_status' => 0])->get();
-        $existing_assignend_external_council = SetupExternalCouncilAssociate::where('external_council_id',$data->lawyer_advocate_id)->get();
+        $data = CriminalCase::find($id);
+        $existing_district = SetupDistrict::where('division_id', $data->client_division_id)->orderBy('district_name','asc')->get();
+        $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_name_id)->orderBy('first_name','asc')->get();
+        $existing_client_subcategory = SetupClientSubcategory::where(['client_category_id' => $data->client_category_id, 'delete_status' => 0])->orderBy('client_subcategory_name','asc')->get();
+        $existing_case_subcategory = SetupCaseSubcategory::where(['case_category_id' => $data->case_category_id, 'delete_status' => 0])->orderBy('case_subcategory','asc')->get();
+        $existing_thana = SetupThana::where(['district_id' => $data->client_district_id, 'delete_status' => 0])->orderBy('thana_name','asc')->get();
+        $assigned_lawyer_explode = explode(', ', $data->assigned_lawyer_id);
+        $case_infos_existing_district = SetupDistrict::where('division_id', $data->case_infos_division_id)->orderBy('district_name','asc')->get();
+        $case_infos_existing_thana = SetupThana::where(['district_id' => $data->case_infos_district_id, 'delete_status' => 0])->orderBy('thana_name','asc')->get();
+
+        $court_proceeding = SetupCourtProceeding::where('delete_status', 0)->orderBy('court_proceeding_name','asc')->get();
+        $day_notes = SetupDayNote::where('delete_status', 0)->orderBy('day_notes_name','asc')->get();
+        $existing_opposition_subcategory = SetupClientSubcategory::where(['client_category_id' => $data->opposition_category_id, 'delete_status' => 0])->orderBy('client_subcategory_name','asc')->get();
+        $existing_assignend_external_council = SetupExternalCouncilAssociate::where('external_council_id',$data->lawyer_advocate_id)->orderBy('first_name','asc')->get();
         $client_explode = explode(', ', $data->client_id);
         $court_explode = explode(', ', $data->case_infos_court_id);
         $law_explode = explode(', ', $data->law_id);
@@ -323,8 +328,10 @@ class CriminalCasesController extends Controller
         $sub_seq_court_explode = explode(', ', $data->case_infos_sub_seq_court_id);
         $received_documents_explode = explode(', ', $data->received_documents_id);
         $required_documents_explode = explode(', ', $data->required_wanting_documents_id);
+        $user = Admin::orderBy('name','asc')->get();
+
 //        dd($assigned_lawyer_explode);
-        return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'received_documents_explode', 'required_documents_explode'));
+        return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'received_documents_explode', 'required_documents_explode','user'));
     }
 
     public function update_criminal_cases(Request $request, $id)
@@ -350,7 +357,8 @@ class CriminalCasesController extends Controller
         $data->referrer_id = $request->referrer_id;
         $data->referrer_write = $request->referrer_write;
         $data->referrer_details = $request->referrer_details;
-        $data->received_by = $request->received_by;
+        $data->received_by_id = $request->received_by_id;
+        $data->received_by_write = $request->received_by_write;
         $data->client_party_id = $request->client_party_id;
         $data->client_category_id = $request->client_category_id;
         $data->client_subcategory_id = $request->client_subcategory_id;
@@ -411,6 +419,7 @@ class CriminalCasesController extends Controller
         $data->case_infos_court_id = $request->case_infos_court_id ? implode(', ', $request->case_infos_court_id) : null;
         $data->case_infos_sub_seq_case_title_id = $request->case_infos_sub_seq_case_title_id;
         $data->case_infos_sub_seq_case_no = $request->case_infos_sub_seq_case_no ? implode(', ', $request->case_infos_sub_seq_case_no) : null;
+        $data->case_infos_sub_seq_case_year = $request->case_infos_sub_seq_case_year ? implode(', ', $request->case_infos_sub_seq_case_year) : null;
         $data->case_infos_sub_seq_court_id = $request->case_infos_sub_seq_court_id ? implode(', ', $request->case_infos_sub_seq_court_id) : null;
         $data->law_id = $request->law_id ? implode(', ', $request->law_id) : null;
         $data->law_write = $request->law_write ? implode(', ', $request->law_write) : null;
@@ -484,6 +493,8 @@ class CriminalCasesController extends Controller
         $day_notes = SetupDayNote::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->get();
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
+        $mode = SetupMode::where('delete_status', 0)->orderBy('mode_name','asc')->get();
 
 
         $data = DB::table('criminal_cases')
@@ -525,6 +536,7 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
             ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
             ->leftJoin('setup_allegations', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'setup_allegations.id')
+            ->leftJoin('admins', 'criminal_cases.received_by_id', '=', 'admins.id')
             ->select('criminal_cases.*',
                 'setup_legal_issues.legal_issue_name',
                 'setup_legal_services.legal_service_name',
@@ -565,7 +577,8 @@ class CriminalCasesController extends Controller
                 'sub_seq_case_infos_case_title.case_title_name as sub_seq_case_infos_case_title_name',
                 'setup_matters.matter_name',
                 'setup_case_types.case_types_name',
-                'setup_allegations.allegation_name')
+                'setup_allegations.allegation_name',
+                'admins.name')
             ->where('criminal_cases.id', $id)
             ->first();
 
@@ -622,7 +635,7 @@ class CriminalCasesController extends Controller
 
 
 //         dd($case_activity_log);
-        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence'));
+        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode'));
     }
 
     public function download_criminal_cases_file($id)
@@ -652,11 +665,11 @@ class CriminalCasesController extends Controller
         $data->updated_order_date = $request->updated_order_date == 'dd/mm/yyyy' ?  null : $request->updated_order_date;
         $data->updated_fixed_for_id = $request->updated_fixed_for_id;
         $data->updated_fixed_for_write = $request->updated_fixed_for_write;
-        $data->court_proceedings_id = $request->court_proceedings_id;
+        $data->court_proceedings_id = $request->court_proceedings_id ? implode(', ',$request->court_proceedings_id) :null;
         $data->court_proceedings_write = $request->court_proceedings_write;
-        $data->updated_court_order_id = $request->updated_court_order_id;
+        $data->updated_court_order_id = $request->updated_court_order_id ? implode(', ',$request->updated_court_order_id) : null;
         $data->updated_court_order_write = $request->updated_court_order_write;
-        $data->updated_day_notes_id = $request->updated_day_notes_id;
+        $data->updated_day_notes_id = $request->updated_day_notes_id ? implode(', ',$request->updated_day_notes_id) : null;
         $data->updated_day_notes_write = $request->updated_day_notes_write;
         $data->updated_engaged_advocate_id = $request->updated_engaged_advocate_id;
         $data->updated_engaged_advocate_write = $request->updated_engaged_advocate_write;

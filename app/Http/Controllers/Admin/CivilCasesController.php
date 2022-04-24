@@ -61,13 +61,13 @@ class CivilCasesController extends Controller
 
     public function find_district(Request $request)
     {
-        $district = SetupDistrict::where(['division_id' => $request->div_id, 'delete_status' => 0])->get();
+        $district = SetupDistrict::where(['division_id' => $request->div_id, 'delete_status' => 0])->orderBy('district_name','asc')->get();
         return response()->json($district);
     }
 
     public function find_associates(Request $request)
     {
-        $associates = SetupExternalCouncilAssociate::where('external_council_id', $request->external_council_name_id)->get();
+        $associates = SetupExternalCouncilAssociate::where('external_council_id', $request->external_council_name_id)->orderBy('first_name','asc')->get();
         return response()->json($associates);
     }
 

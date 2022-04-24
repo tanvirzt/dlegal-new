@@ -32,7 +32,8 @@ class CreateCriminalCasesTable extends Migration
             $table->integer('referrer_id')->nullable();
             $table->string('referrer_write')->nullable();
             $table->mediumText('referrer_details')->nullable();
-            $table->string('received_by')->nullable();
+            $table->integer('received_by_id')->nullable();
+            $table->string('received_by_write')->nullable();
             $table->integer('client_party_id')->nullable();
             $table->integer('client_category_id')->nullable();
             $table->integer('client_subcategory_id')->nullable();
@@ -93,6 +94,7 @@ class CreateCriminalCasesTable extends Migration
             $table->string('case_infos_court_id')->nullable();
             $table->integer('case_infos_sub_seq_case_title_id')->nullable();
             $table->string('case_infos_sub_seq_case_no')->nullable();
+            $table->string('case_infos_sub_seq_case_year')->nullable();
             $table->string('case_infos_sub_seq_court_id')->nullable();
             $table->string('law_id')->nullable();
             $table->string('law_write')->nullable();

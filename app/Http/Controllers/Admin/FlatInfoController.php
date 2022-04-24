@@ -51,7 +51,7 @@ class FlatInfoController extends Controller
 
     public function find_flat_number(Request $request)
     {
-        $flat_number = SetupFlatNumber::where(['floor_id' => $request->floor_id, 'delete_status' => 0])->get();
+        $flat_number = SetupFlatNumber::where(['floor_id' => $request->floor_id, 'delete_status' => 0])->orderBy('flat_number','asc')->get();
         return response()->json($flat_number);
     }
 
