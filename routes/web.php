@@ -598,6 +598,34 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-opposition/{id}','AdminSetupController@update_opposition')->name('update-opposition');
         Route::post('delete-opposition/{id}','AdminSetupController@delete_opposition')->name('delete-opposition');
 
+        Route::get('complainant', 'AdminSetupController@complainant')->name('complainant');
+        Route::get('add-complainant','AdminSetupController@add_complainant')->name('add-complainant');
+        Route::post('save-complainant','AdminSetupController@save_complainant')->name('save-complainant');
+        Route::get('edit-complainant/{id}','AdminSetupController@edit_complainant')->name('edit-complainant');
+        Route::post('update-complainant/{id}','AdminSetupController@update_complainant')->name('update-complainant');
+        Route::post('delete-complainant/{id}','AdminSetupController@delete_complainant')->name('delete-complainant');
+
+        Route::get('accused', 'AdminSetupController@accused')->name('accused');
+        Route::get('add-accused','AdminSetupController@add_accused')->name('add-accused');
+        Route::post('save-accused','AdminSetupController@save_accused')->name('save-accused');
+        Route::get('edit-accused/{id}','AdminSetupController@edit_accused')->name('edit-accused');
+        Route::post('update-accused/{id}','AdminSetupController@update_accused')->name('update-accused');
+        Route::post('delete-accused/{id}','AdminSetupController@delete_accused')->name('delete-accused');
+
+        Route::get('court-short', 'AdminSetupController@court_short')->name('court-short');
+        Route::get('add-court-short','AdminSetupController@add_court_short')->name('add-court-short');
+        Route::post('save-court-short','AdminSetupController@save_court_short')->name('save-court-short');
+        Route::get('edit-court-short/{id}','AdminSetupController@edit_court_short')->name('edit-court-short');
+        Route::post('update-court-short/{id}','AdminSetupController@update_court_short')->name('update-court-short');
+        Route::post('delete-court-short/{id}','AdminSetupController@delete_court_short')->name('delete-court-short');
+
+        Route::get('progress', 'AdminSetupController@progress')->name('progress');
+        Route::get('add-progress','AdminSetupController@add_progress')->name('add-progress');
+        Route::post('save-progress','AdminSetupController@save_progress')->name('save-progress');
+        Route::get('edit-progress/{id}','AdminSetupController@edit_progress')->name('edit-progress');
+        Route::post('update-progress/{id}','AdminSetupController@update_progress')->name('update-progress');
+        Route::post('delete-progress/{id}','AdminSetupController@delete_progress')->name('delete-progress');
+
 
 
     });

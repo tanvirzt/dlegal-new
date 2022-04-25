@@ -113,11 +113,11 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Complainant/Informant Name</td>
-                                                            <td>{{ $data->complainant_informant_name }}</td>
+                                                            <td>{{ $data->complainant_name }} {{ $data->complainant_informant_write }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Accused Name</td>
-                                                            <td>{{ $data->accused_name }}</td>
+                                                            <td>{{ $data->accused_name }} {{ $data->accused_write }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>In favour of</td>
@@ -404,6 +404,10 @@
                                                             <td>{{ $data->case_infos_court_id }}</td>
                                                         </tr>
                                                         <tr>
+                                                            <td>Name of Court(Short)</td>
+                                                            <td>{{ $data->case_infos_court_short_id }} {{ $data->court_short_write }}</td>
+                                                        </tr>
+                                                        <tr>
                                                             <td>Sub Seq. Case Title</td>
                                                             <td> {{ $data->sub_seq_case_infos_case_title_name }}</td>
                                                         </tr>
@@ -414,6 +418,10 @@
                                                         <tr>
                                                             <td>Sub-Seq. Court</td>
                                                             <td> {{ $data->case_infos_sub_seq_court_id }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Sub-Seq. Court(Short)</td>
+                                                            <td> {{ $data->case_infos_sub_seq_court_short_id }} {{ $data->sub_seq_court_short_write }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Law</td>
@@ -512,6 +520,66 @@
                                                         <tr>
                                                             <td>Remarks</td>
                                                             <td> @if(!empty($latest))  {{ $latest->updated_remarks }} @endif </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="text-uppercase text-bold"><u> Case Steps </u>
+                                                    </h6>
+                                                    <table class="table table-bordered table-responsive">
+
+                                                        <tbody>
+
+                                                        <tr>
+                                                            <td>Next Date</td>
+                                                            <td> {{ $edit_case_steps->case_steps_filing }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Taking Cognizance</td>
+                                                            <td> {{ $edit_case_steps->taking_cognizance }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Arrest/Surrender/C.W.</td>
+                                                            <td>  {{ $edit_case_steps->arrest_surrender_cw }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Bail</td>
+                                                            <td> {{ $edit_case_steps->case_steps_bail }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Court Transfer</td>
+                                                            <td> {{ $edit_case_steps->case_steps_court_transfer }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Charge Framed</td>
+                                                            <td> {{ $edit_case_steps->case_steps_charge_framed }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Witness (From)</td>
+                                                            <td> {{ $edit_case_steps->case_steps_witness_from }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Witness (To)</td>
+                                                            <td> {{ $edit_case_steps->case_steps_witness_to }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Argument</td>
+                                                            <td> {{ $edit_case_steps->case_steps_argument }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Judgement & Order</td>
+                                                            <td> {{ $edit_case_steps->case_steps_judgement_order }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Summary of Judgement & Order</td>
+                                                            <td> {{ $edit_case_steps->case_steps_summary_judgement_order }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Remarks</td>
+                                                            <td> {{ $edit_case_steps->case_steps_remarks }} </td>
                                                         </tr>
                                                         </tbody>
                                                     </table>

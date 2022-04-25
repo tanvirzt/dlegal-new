@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SetupAccused;
 use App\Models\SetupCaseCategory;
 use App\Models\SetupCaseClass;
 use App\Models\SetupCaseStatus;
@@ -12,10 +13,12 @@ use App\Models\SetupCaseTypes;
 use App\Models\SetupClient;
 use App\Models\SetupClientCategory;
 use App\Models\SetupClientSubcategory;
+use App\Models\SetupComplainant;
 use App\Models\SetupComplianceCategory;
 use App\Models\SetupCoordinator;
 use App\Models\SetupCourtClass;
 use App\Models\SetupCourtProceeding;
+use App\Models\SetupCourtShort;
 use App\Models\SetupDayNote;
 use App\Models\SetupDesignation;
 use App\Models\SetupDocument;
@@ -28,6 +31,7 @@ use App\Models\SetupNextDayPresence;
 use App\Models\SetupOpposition;
 use App\Models\SetupParty;
 use App\Models\SetupProfession;
+use App\Models\SetupProgress;
 use App\Models\SetupPropertyType;
 use App\Models\SetupReferrer;
 use App\Models\SetupSection;
@@ -4695,6 +4699,328 @@ public function find_case_category(Request $request)
         session()->flash('success','Opposition Deleted Successfully');
         return redirect()->back();
     }
+
+
+    //complainant
+
+    public function complainant()
+    {
+        $data = SetupComplainant::all();
+        return view('setup.complainant.complainant',compact('data'));
+    }
+
+    public function add_complainant()
+    {
+        return view('setup.complainant.add_complainant');
+    }
+
+    public function save_complainant(Request $request)
+    {
+        $rules = [
+            'complainant_name' => 'required'
+        ];
+
+        $validMsg = [
+            'complainant_name.required' => 'Complainant field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $complainant = new SetupComplainant();
+        $complainant->complainant_name = $request->complainant_name;
+        $complainant->complainant_mobile = $request->complainant_mobile;
+        $complainant->complainant_email = $request->complainant_email;
+        $complainant->complainant_address = $request->complainant_address;
+        $complainant->save();
+
+        session()->flash('success','Complainant Added Successfully.');
+        return redirect()->route('complainant');
+    }
+
+    public function edit_complainant($id)
+    {
+        $data = SetupComplainant::find($id);
+        return view('setup.complainant.edit_complainant',compact('data'));
+    }
+
+    public function update_complainant(Request $request, $id)
+    {
+        $rules = [
+            'complainant_name' => 'required'
+        ];
+
+        $validMsg = [
+            'complainant_name.required' => 'Complainant field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $complainant = SetupComplainant::find($id);
+        $complainant->complainant_name = $request->complainant_name;
+        $complainant->complainant_mobile = $request->complainant_mobile;
+        $complainant->complainant_email = $request->complainant_email;
+        $complainant->complainant_address = $request->complainant_address;
+        $complainant->save();
+
+        session()->flash('success', 'Complainant Updated Successfully.');
+
+        return redirect()->route('complainant');
+    }
+
+    public function delete_complainant($id)
+    {
+        $data = SetupComplainant::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Complainant Deleted Successfully');
+        return redirect()->back();
+    }
+
+
+    //accused
+
+    public function accused()
+    {
+        $data = SetupAccused::all();
+        return view('setup.accused.accused',compact('data'));
+    }
+
+    public function add_accused()
+    {
+        return view('setup.accused.add_accused');
+    }
+
+    public function save_accused(Request $request)
+    {
+        $rules = [
+            'accused_name' => 'required'
+        ];
+
+        $validMsg = [
+            'accused_name.required' => 'Accused field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $accused = new SetupAccused();
+        $accused->accused_name = $request->accused_name;
+        $accused->accused_mobile = $request->accused_mobile;
+        $accused->accused_email = $request->accused_email;
+        $accused->accused_address = $request->accused_address;
+        $accused->save();
+
+        session()->flash('success','Accused Added Successfully.');
+        return redirect()->route('accused');
+    }
+
+    public function edit_accused($id)
+    {
+        $data = SetupAccused::find($id);
+        return view('setup.accused.edit_accused',compact('data'));
+    }
+
+    public function update_accused(Request $request, $id)
+    {
+        $rules = [
+            'accused_name' => 'required'
+        ];
+
+        $validMsg = [
+            'accused_name.required' => 'Accused field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $accused = SetupAccused::find($id);
+        $accused->accused_name = $request->accused_name;
+        $accused->accused_mobile = $request->accused_mobile;
+        $accused->accused_email = $request->accused_email;
+        $accused->accused_address = $request->accused_address;
+        $accused->save();
+
+        session()->flash('success', 'Accused Updated Successfully.');
+
+        return redirect()->route('accused');
+    }
+
+    public function delete_accused($id)
+    {
+        $data = SetupAccused::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Accused Deleted Successfully.');
+        return redirect()->back();
+    }
+
+
+    //court_short setup
+
+    public function court_short()
+    {
+        $data = SetupCourtShort::all();
+        return view('setup.court_short.court_short',compact('data'));
+    }
+
+    public function add_court_short()
+    {
+        return view('setup.court_short.add_court_short');
+    }
+
+    public function save_court_short(Request $request)
+    {
+        $rules = [
+            'court_short_name' => 'required'
+        ];
+
+        $validMsg = [
+            'court_short_name.required' => 'Court Short field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = new SetupCourtShort();
+        $data->case_type = $request->case_type;
+        $data->court_short_name = $request->court_short_name;
+        $data->save();
+
+        session()->flash('success','Court Short Added Successfully');
+        return redirect()->route('court-short');
+
+    }
+
+    public function edit_court_short($id)
+    {
+        $data = SetupCourtShort::find($id);
+        return view('setup.court_short.edit_court_short',compact('data'));
+    }
+
+    public function update_court_short(Request $request, $id)
+    {
+        $rules = [
+            'court_short_name' => 'required'
+        ];
+
+        $validMsg = [
+            'court_short_name.required' => 'Court Short field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $data = SetupCourtShort::find($id);
+        $data->case_type = $request->case_type;
+        $data->court_short_name = $request->court_short_name;
+        $data->save();
+
+        session()->flash('success','Court Short Updated');
+        return redirect()->route('court-short');
+    }
+
+    public function delete_court_short($id)
+    {
+        $data = SetupCourtShort::find($id);
+        if ($data['delete_status'] == 1){
+            $delete_status = 0;
+        }else{
+            $delete_status = 1;
+        }
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success', 'Court Short Deleted');
+        return redirect()->back();
+    }
+
+
+    //progress
+
+    public function progress()
+    {
+        $data = SetupProgress::all();
+        return view('setup.progress.progress',compact('data'));
+    }
+
+    public function add_progress()
+    {
+        return view('setup.progress.add_progress');
+    }
+
+    public function save_progress(Request $request)
+    {
+        $rules = [
+            'progress_name' => 'required'
+        ];
+
+        $validMsg = [
+            'progress_name.required' => 'Progress field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $progress = new SetupProgress();
+        $progress->progress_name = $request->progress_name;
+        $progress->save();
+
+        session()->flash('success','Progress Added Successfully.');
+        return redirect()->route('progress');
+    }
+
+    public function edit_progress($id)
+    {
+        $data = SetupProgress::find($id);
+        return view('setup.progress.edit_progress',compact('data'));
+    }
+
+    public function update_progress(Request $request, $id)
+    {
+        $rules = [
+            'progress_name' => 'required'
+        ];
+
+        $validMsg = [
+            'progress_name.required' => 'Progress field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $progress = SetupProgress::find($id);
+        $progress->progress_name = $request->progress_name;
+        $progress->save();
+
+        session()->flash('success', 'Progress Updated Successfully.');
+
+        return redirect()->route('progress');
+    }
+
+    public function delete_progress($id)
+    {
+        $data = SetupProgress::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Progress Deleted Successfully');
+        return redirect()->back();
+    }
+
 
 
 

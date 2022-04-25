@@ -14,7 +14,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Criminal Cases </li>
+                            <li class="breadcrumb-item active"> Criminal Cases</li>
                         </ol>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                                     <h3 class="card-title"> Criminal Cases :: Search </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
-                                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                         <button type="button" class="btn btn-tool" data-card-widget="remove">
@@ -51,7 +51,7 @@
 
 
                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                    data-parent="#accordion">
+                                     data-parent="#accordion">
                                     <div class="card-body">
 
 
@@ -66,9 +66,9 @@
                                                             No.</label>
                                                         <div class="col-sm-8">
                                                             <input type="text" class="form-control" id="case_no"
-                                                                name="case_no" value="{{ old('case_no') }}">
+                                                                   name="case_no" value="{{ old('case_no') }}">
                                                             @error('case_no')
-                                                                <span class="text-danger">{{ $message }}</span>
+                                                            <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
@@ -108,10 +108,12 @@
                                                         <label for="case_category_id" class="col-sm-4 col-form-label">Case Category</label>
                                                         <div class="col-sm-8">
 
-                                                            <select name="case_category_id" id="case_category_id" class="form-control select2" action="{{ route('find-case-subcategory') }}">
+                                                            <select name="case_category_id" id="case_category_id" class="form-control select2"
+                                                                    action="{{ route('find-case-subcategory') }}">
                                                                 <option value="">Select</option>
                                                                 @foreach($case_category as $item)
-                                                                    <option value="{{ $item->id }}" {{(old('case_category_id') == $item->id ? 'selected':'')}}>{{ $item->case_category }}</option>
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{(old('case_category_id') == $item->id ? 'selected':'')}}>{{ $item->case_category }}</option>
                                                                 @endforeach
                                                             </select>
                                                             @error('case_category_id')<span class="text-danger">{{$message}}</span>@enderror
@@ -136,7 +138,8 @@
 
                                             <div class="float-right">
                                                 <button type="submit" id="submit" class="btn btn-primary text-uppercase"><i
-                                                        class="fas fa-search"></i> Search </button>
+                                                        class="fas fa-search"></i> Search
+                                                </button>
                                             </div>
 
                                         </form>
@@ -148,19 +151,17 @@
                     </div>
 
 
-
-
-
-
-
                     <div class="col-12">
 
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-criminal-cases') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Criminal Cases </button></a>
+                                    <a href="{{ route('add-criminal-cases') }}">
+                                        <button class="btn btn-sm
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Criminal Cases
+                                        </button>
+                                    </a>
                                 </div>
 
                             </div>
@@ -169,16 +170,16 @@
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
-                                        <th class="text-center"> ID </th>
-                                        <th class="text-center"> Next Date </th>
-                                        <th class="text-center"> Fixed for </th>
-                                        <th class="text-center"> Case No </th>
-                                        <th class="text-center"> Court Name </th>
-                                        <th class="text-center"> District </th>
-                                        <th class="text-center"> Complainant </th>
-                                        <th class="text-center"> Accused Name </th>
-                                        <th class="text-center"> Case Type </th>
-                                        <th class="text-center"> Claim </th>
+                                        <th class="text-center"> ID</th>
+                                        <th class="text-center"> Next Date</th>
+                                        <th class="text-center"> Fixed for</th>
+                                        <th class="text-center"> Case No</th>
+                                        <th class="text-center"> Court Name</th>
+                                        <th class="text-center"> District</th>
+                                        <th class="text-center"> Complainant</th>
+                                        <th class="text-center"> Accused Name</th>
+                                        <th class="text-center"> Case Type</th>
+                                        <th class="text-center"> Claim</th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -188,10 +189,10 @@
 
                                         <tr>
                                             <td>
-                                                 {{ $datum->id }} </a>
+                                                {{ $datum->id }} </a>
                                             </td>
                                             <td>
-                                                 {{ $datum->next_date }} </a>
+                                                {{ $datum->next_date }} </a>
                                             </td>
                                             <td>
                                                 {{ $datum->next_date_reason_name }}
@@ -201,16 +202,42 @@
                                             </td>
 
                                             <td>
-                                                {{ $datum->court_name }}
+
+                                                @php
+                                                    $court_name = explode(', ', $datum->case_infos_court_id);
+                                                @endphp
+
+                                                @if($datum->case_infos_court_id)
+                                                    @foreach($court_name as $item)
+                                                        <li class="text-left">{{ $item }}</li>
+                                                    @endforeach
+                                                @endif
+
                                             </td>
                                             <td>
                                                 {{ $datum->district_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->complainant_informant_name }}
+                                                @php
+                                                    $notes = explode(', ',$datum->case_infos_complainant_informant_name);
+                                                @endphp
+                                                @if($datum->case_infos_complainant_informant_name)
+                                                    @foreach ($notes as $pro)
+                                                        <li class="text-left">{{ $pro }}</li>
+                                                    @endforeach
+                                                @endif
+
                                             </td>
                                             <td>
-                                                {{ $datum->accused_name }}
+                                                @php
+                                                    $accused = explode(', ',$datum->case_infos_accused_name);
+                                                @endphp
+                                                @if($datum->case_infos_accused_name)
+                                                    @foreach($accused as $item)
+                                                        <li class="text-left">{{ $item }}</li>
+                                                    @endforeach
+                                                @endif
+                                                {{ $datum->accused_write }}
                                             </td>
                                             <td>
                                                 {{ $datum->case_types_name }}
@@ -221,25 +248,34 @@
                                             <td>
                                                 @if ($datum->delete_status == 0)
                                                     <button type="button"
-                                                        class="btn-custom btn-success-custom text-uppercase"> Active
+                                                            class="btn-custom btn-success-custom text-uppercase"> Active
                                                     </button>
                                                 @else
                                                     <button type="button"
-                                                        class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
+                                                            class="btn-custom btn-warning-custom text-uppercase">Inactive
+                                                    </button>
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('view-criminal-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
-                                                    ><i class="fas fa-eye"></i></button></a>
-                                                <a href="{{ route('add-billing-criminal-cases', $datum->id) }}"><button
-                                                    class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                                    data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
-                                                <a href="{{ route('edit-criminal-cases',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
-                                                    ><i class="fas fa-edit"></i></button></a>
+                                                <a href="{{ route('view-criminal-cases',$datum->id) }}">
+                                                    <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                                    ><i class="fas fa-eye"></i></button>
+                                                </a>
+                                                <a href="{{ route('add-billing-criminal-cases', $datum->id) }}">
+                                                    <button
+                                                        class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                                        data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button>
+                                                </a>
+                                                <a href="{{ route('edit-criminal-cases',$datum->id) }}">
+                                                    <button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                    ><i class="fas fa-edit"></i></button>
+                                                </a>
 
-                                                <form method="POST" action="{{ route('delete-criminal-cases',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                <form method="POST" action="{{ route('delete-criminal-cases',$datum->id) }}"
+                                                      class="delete-user btn btn-danger btn-xs">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top"
+                                                            title="Delete"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

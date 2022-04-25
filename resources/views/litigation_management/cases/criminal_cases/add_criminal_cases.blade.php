@@ -125,28 +125,66 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="complainant_informant_name" class="col-sm-4 col-form-label">Complainant/Informant
-                                                        Name </label>
+                                                    <label for="complainant_informant_id" class="col-sm-4 col-form-label">Complainant/Informant
+                                                        Name</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control"
-                                                               id="complainant_informant_name"
-                                                               name="complainant_informant_name"
-                                                               value="{{old('complainant_informant_name')}}">
-                                                        @error('complainant_informant_name')<span
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="complainant_informant_id"
+                                                                        id="complainant_informant_id"
+                                                                        class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($complainant as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{(old('complainant_informant_id') == $item->id ? 'selected':'')}}>{{ $item->complainant_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="complainant_informant_write"
+                                                                       name="complainant_informant_write"
+                                                                       placeholder="Complainant"
+                                                                       value="{{ old('complainant_informant_write') }}">
+                                                            </div>
+                                                        </div>
+
+
+                                                        @error('legal_service_id')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="accused_name" class="col-sm-4 col-form-label">Accused
-                                                        Name </label>
+                                                    <label for="accused_id" class="col-sm-4 col-form-label">Accused
+                                                        Name</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="accused_name"
-                                                               name="accused_name"
-                                                               value="{{old('accused_name')}}">
-                                                        @error('accused_name')<span
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="accused_id"
+                                                                        id="accused_id"
+                                                                        class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($accused as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{(old('accused_id') == $item->id ? 'selected':'')}}>{{ $item->accused_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="accused_write"
+                                                                       name="accused_write"
+                                                                       placeholder="Complainant"
+                                                                       value="{{ old('accused_write') }}">
+                                                            </div>
+                                                        </div>
+
+
+                                                        @error('legal_service_id')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
                                                     <label for="in_favour_of_id" class="col-sm-4 col-form-label">In favour
                                                         of </label>
@@ -1140,6 +1178,56 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
+                                                    <label for="case_infos_court_short_id" class="col-sm-4 col-form-label">Name of Court(Short)</label>
+                                                    <div class="col-sm-8">
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="case_infos_court_short_id[]"
+                                                                        id="case_infos_court_short_id"
+                                                                        class="form-control select2" multiple>
+                                                                    <option value="">Select</option>
+                                                                    @foreach($court_short as $item)
+                                                                        <option
+                                                                            value="{{ $item->court_short_name }}" {{  old('case_infos_court_short_id') == $item->id ? 'selected' : '' }}>{{ $item->court_short_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="input-group hdtuto_court_short control-group increment_court_short">
+                                                                    <input type="text" name="court_short_write[]"
+                                                                           class="myfrm form-control col-12" placeholder="Court Name(Short)">
+                                                                    <div class="input-group-btn">
+                                                                        <button class="btn btn-success btn_success_court_short"
+                                                                                type="button"><i
+                                                                                class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="clone_court_short hide">
+                                                                    <div class="hdtuto_court_short control-group lst input-group"
+                                                                         style="margin-top:10px">
+                                                                        <input type="text" name="court_short_write[]"
+                                                                               class="myfrm form-control col-12">
+                                                                        <div class="input-group-btn">
+                                                                            <button class="btn btn-danger btn_danger_court_short"
+                                                                                    type="button"><i
+                                                                                    class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </div>
+
+                                                        @error('client_name')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
                                                     <label for="case_infos_sub_seq_case_title_id"
                                                            class="col-sm-4 col-form-label">Sub Seq. Case Title</label>
                                                     <div class="col-sm-8">
@@ -1159,7 +1247,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="case_infos_sub_seq_case_no"
-                                                           class="col-sm-4 col-form-label">Sub-Seq.</label>
+                                                           class="col-sm-4 col-form-label">Sub-Seq. Case No</label>
                                                     <div class="col-sm-8">
                                                         <div class="input-group hdtuto_case_infos_sub_seq_case_no control-group increment_case_infos_sub_seq_case_no ml-2">
                                                             <div class="row" style="">
@@ -1221,6 +1309,53 @@
                                                             @endforeach
                                                         </select>
                                                         @error('case_infos_sub_seq_court_id')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_infos_sub_seq_court_short_id" class="col-sm-4 col-form-label">Sub-Seq. Court(Short)</label>
+                                                    <div class="col-sm-8">
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="case_infos_sub_seq_court_short_id[]"
+                                                                        id="case_infos_sub_seq_court_short_id"
+                                                                        class="form-control select2" multiple>
+                                                                    <option value="">Select</option>
+                                                                    @foreach($court_short as $item)
+                                                                        <option
+                                                                            value="{{ $item->court_short_name }}" {{  old('case_infos_sub_seq_court_short_id') == $item->id ? 'selected' : '' }}>{{ $item->court_short_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="input-group hdtuto_sub_seq_court_short control-group increment_sub_seq_court_short">
+                                                                    <input type="text" name="sub_seq_court_short_write[]"
+                                                                           class="myfrm form-control col-12" placeholder="Sub-Seq. Court Name(Short)">
+                                                                    <div class="input-group-btn">
+                                                                        <button class="btn btn-success btn_success_sub_seq_court_short"
+                                                                                type="button"><i
+                                                                                class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="clone_sub_seq_court_short hide">
+                                                                    <div class="hdtuto_sub_seq_court_short control-group lst input-group"
+                                                                         style="margin-top:10px">
+                                                                        <input type="text" name="sub_seq_court_short_write[]"
+                                                                               class="myfrm form-control col-12">
+                                                                        <div class="input-group-btn">
+                                                                            <button class="btn btn-danger btn_danger_sub_seq_court_short"
+                                                                                    type="button"><i
+                                                                                    class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        @error('client_name')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
@@ -1665,6 +1800,8 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
                                         <div class="card">
                                             <div class="card-body">
                                                 <h6 class="text-uppercase text-bold"><u> Documents
@@ -1767,7 +1904,187 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="text-uppercase text-bold"><u> Case Steps </u></h6>
+                                                <div class="form-group row">
+                                                    <label for="case_steps_filing" class="col-sm-4 col-form-label"> Next
+                                                        Date </label>
+                                                    <div class="col-sm-8">
+                                                    <span class="date_span">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                               onchange="setCorrect(this,'case_steps_filing');"><input type="text" id="case_steps_filing" name="case_steps_filing"
+                                                                                                                       value="dd/mm/yyyy"
+                                                                                                                       class="date_second_input"
+                                                                                                                       tabindex="-1"><span
+                                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
+                                                        @error('case_steps_filing')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
 
+                                                <div class="form-group row">
+                                                    <label for="taking_cognizance" class="col-sm-4 col-form-label"> Taking Cognizance </label>
+                                                    <div class="col-sm-8">
+                                                    <span class="date_span">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                               onchange="setCorrect(this,'taking_cognizance');"><input type="text" id="taking_cognizance" name="taking_cognizance"
+                                                                                                                       value="dd/mm/yyyy"
+                                                                                                                       class="date_second_input"
+                                                                                                                       tabindex="-1"><span
+                                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
+                                                        @error('taking_cognizance')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="arrest_surrender_cw" class="col-sm-4 col-form-label"> Arrest/Surrender/C.W. </label>
+                                                    <div class="col-sm-8">
+                                                    <span class="date_span">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                               onchange="setCorrect(this,'arrest_surrender_cw');"><input type="text" id="arrest_surrender_cw" name="arrest_surrender_cw"
+                                                                                                                       value="dd/mm/yyyy"
+                                                                                                                       class="date_second_input"
+                                                                                                                       tabindex="-1"><span
+                                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
+                                                        @error('arrest_surrender_cw')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_steps_bail" class="col-sm-4 col-form-label"> Bail </label>
+                                                    <div class="col-sm-8">
+                                                    <span class="date_span">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                               onchange="setCorrect(this,'case_steps_bail');"><input type="text" id="case_steps_bail" name="case_steps_bail"
+                                                                                                                       value="dd/mm/yyyy"
+                                                                                                                       class="date_second_input"
+                                                                                                                       tabindex="-1"><span
+                                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
+                                                        @error('case_steps_bail')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_steps_court_transfer" class="col-sm-4 col-form-label"> Court Transfer </label>
+                                                    <div class="col-sm-8">
+                                                    <span class="date_span">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                               onchange="setCorrect(this,'case_steps_court_transfer');"><input type="text" id="case_steps_court_transfer" name="case_steps_court_transfer"
+                                                                                                                       value="dd/mm/yyyy"
+                                                                                                                       class="date_second_input"
+                                                                                                                       tabindex="-1"><span
+                                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
+                                                        @error('case_steps_court_transfer')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_steps_charge_framed" class="col-sm-4 col-form-label"> Charge Framed </label>
+                                                    <div class="col-sm-8">
+                                                    <span class="date_span">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                               onchange="setCorrect(this,'case_steps_charge_framed');"><input type="text" id="case_steps_charge_framed" name="case_steps_charge_framed"
+                                                                                                                       value="dd/mm/yyyy"
+                                                                                                                       class="date_second_input"
+                                                                                                                       tabindex="-1"><span
+                                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
+                                                        @error('case_steps_charge_framed')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_steps_witness_from" class="col-sm-4 col-form-label"> Witness (From) </label>
+                                                    <div class="col-sm-8">
+                                                    <span class="date_span">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                               onchange="setCorrect(this,'case_steps_witness_from');"><input type="text" id="case_steps_witness_from" name="case_steps_witness_from"
+                                                                                                                       value="dd/mm/yyyy"
+                                                                                                                       class="date_second_input"
+                                                                                                                       tabindex="-1"><span
+                                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
+                                                        @error('case_steps_witness_from')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_steps_witness_to" class="col-sm-4 col-form-label"> Witness (To) </label>
+                                                    <div class="col-sm-8">
+                                                    <span class="date_span">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                               onchange="setCorrect(this,'case_steps_witness_to');"><input type="text" id="case_steps_witness_to" name="case_steps_witness_to"
+                                                                                                                       value="dd/mm/yyyy"
+                                                                                                                       class="date_second_input"
+                                                                                                                       tabindex="-1"><span
+                                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
+                                                        @error('case_steps_witness_to')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_steps_argument" class="col-sm-4 col-form-label"> Argument </label>
+                                                    <div class="col-sm-8">
+                                                    <span class="date_span">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                               onchange="setCorrect(this,'case_steps_argument');"><input type="text" id="case_steps_argument" name="case_steps_argument"
+                                                                                                                       value="dd/mm/yyyy"
+                                                                                                                       class="date_second_input"
+                                                                                                                       tabindex="-1"><span
+                                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
+                                                        @error('case_steps_argument')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_steps_judgement_order" class="col-sm-4 col-form-label"> Judgement & Order </label>
+                                                    <div class="col-sm-8">
+                                                    <span class="date_span">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                               onchange="setCorrect(this,'case_steps_judgement_order');"><input type="text" id="case_steps_judgement_order" name="case_steps_judgement_order"
+                                                                                                                       value="dd/mm/yyyy"
+                                                                                                                       class="date_second_input"
+                                                                                                                       tabindex="-1"><span
+                                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
+                                                        @error('case_steps_judgement_order')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_steps_summary_judgement_order"
+                                                           class="col-sm-4 col-form-label"> Summary of Judgement & Order </label>
+                                                    <div class="col-sm-8">
+                                                    <textarea name="case_steps_summary_judgement_order" class="form-control"
+                                                              rows="3"
+                                                              placeholder="">{{old('case_steps_summary_judgement_order')}}</textarea>
+                                                        @error('case_steps_summary_judgement_order')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_steps_remarks"
+                                                           class="col-sm-4 col-form-label"> Remarks </label>
+                                                    <div class="col-sm-8">
+                                                    <textarea name="case_steps_remarks" class="form-control"
+                                                              rows="3"
+                                                              placeholder="">{{old('case_steps_remarks')}}</textarea>
+                                                        @error('case_steps_remarks')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </div>

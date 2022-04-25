@@ -56,11 +56,18 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
+                                    <a href="{{ route('accused') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Accused</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('allegation') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Allegation/Claim</p>
                                     </a>
                                 </li>
+
                                 <li class="nav-item">
                                     <a href="{{ route('area') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -128,6 +135,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('complainant') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Complainant</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('client-category') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Party Category</p>
@@ -149,6 +162,12 @@
                                     <a href="{{ route('court') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Court Name</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('court-short') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Court Name(Short)</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -269,6 +288,12 @@
                                     <a href="{{ route('program') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Program</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('progress') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Progress</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

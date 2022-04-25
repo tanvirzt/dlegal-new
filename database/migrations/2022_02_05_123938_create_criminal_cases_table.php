@@ -20,8 +20,10 @@ class CreateCriminalCasesTable extends Migration
             $table->string('legal_issue_write')->nullable();
             $table->integer('legal_service_id')->nullable();
             $table->string('legal_service_write')->nullable();
-            $table->string('complainant_informant_name')->nullable();
-            $table->string('accused_name')->nullable();
+            $table->integer('complainant_informant_id')->nullable();
+            $table->string('complainant_informant_write')->nullable();
+            $table->integer('accused_id')->nullable();
+            $table->string('accused_write')->nullable();
             $table->integer('in_favour_of_id')->nullable();
             $table->string('case_no')->nullable();
             $table->integer('name_of_the_court_id')->nullable();
@@ -92,10 +94,14 @@ class CreateCriminalCasesTable extends Migration
             $table->string('case_infos_case_no')->nullable();
             $table->string('case_infos_case_year')->nullable();
             $table->string('case_infos_court_id')->nullable();
+            $table->string('case_infos_court_short_id')->nullable();
+            $table->string('court_short_write')->nullable();
             $table->integer('case_infos_sub_seq_case_title_id')->nullable();
             $table->string('case_infos_sub_seq_case_no')->nullable();
             $table->string('case_infos_sub_seq_case_year')->nullable();
             $table->string('case_infos_sub_seq_court_id')->nullable();
+            $table->string('case_infos_sub_seq_court_short_id')->nullable();
+            $table->string('sub_seq_court_short_write')->nullable();
             $table->string('law_id')->nullable();
             $table->string('law_write')->nullable();
             $table->string('section_id')->nullable();
@@ -116,6 +122,7 @@ class CreateCriminalCasesTable extends Migration
             $table->mediumText('recovery_seizure_articles')->nullable();
             $table->mediumText('summary_facts')->nullable();
             $table->mediumText('case_info_remarks')->nullable();
+            $table->string('random_case_id')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

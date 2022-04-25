@@ -254,6 +254,26 @@ $(document).ready(function () {
         $(this).parents(".hdtuto_required_wanting_documents").remove();
     });
 
+    $(".btn_success_court_short").click(function () {
+        var lsthmtl_court_short = $(".clone_court_short").html();
+        $(".increment_court_short").after(lsthmtl_court_short);
+    });
+    $("body").on("click", ".btn_danger_court_short", function () {
+        $(this).parents(".hdtuto_court_short").remove();
+    });
+
+    $(".btn_success_sub_seq_court_short").click(function () {
+        var lsthmtl_sub_seq_court_short = $(".clone_sub_seq_court_short").html();
+        $(".increment_sub_seq_court_short").after(lsthmtl_sub_seq_court_short);
+    });
+    $("body").on("click", ".btn_danger_sub_seq_court_short", function () {
+        $(this).parents(".hdtuto_sub_seq_court_short").remove();
+    });
+
+
+
+
+
     $('#division_id').on('change', function () {
         var div_id = $(this).val();
         var route = $(this).attr('action');

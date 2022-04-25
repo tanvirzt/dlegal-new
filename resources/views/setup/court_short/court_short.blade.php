@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Allegation</h1>
+                        <h1> Court (Short) </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active">Allegation</li>
+                            <li class="breadcrumb-item active"> Court (Short) </li>
                         </ol>
                     </div>
                 </div>
@@ -36,10 +36,10 @@
                         @endif
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">List</h3>
+                                <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-allegation') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Allegation </button></a>
+                                    <a href="{{ route('add-court-short') }}"><button class="btn btn-sm
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Court (Short) </button></a>
                                 </div>
 
                             </div>
@@ -49,7 +49,8 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center text-nowrap">ID</th>
-                                        <th class="text-center text-nowrap">Allegation</th>
+                                        <th class="text-center text-nowrap">Case Type</th>
+                                        <th class="text-center text-nowrap">Court Name(Short) </th>
                                         <th class="text-center text-nowrap">Status</th>
                                         <th class="text-center text-nowrap">Action</th>
                                     </tr>
@@ -59,12 +60,14 @@
 
                                         <tr>
                                             <td class="text-center">
-                                                {{$datum->id}}
+                                                {{ $datum->id }}
                                             </td>
                                             <td class="text-center">
-                                                {{$datum->allegation_name}}
+                                                {{ $datum->case_type }}
                                             </td>
-
+                                            <td class="text-center">
+                                                {{ $datum->court_short_name }}
+                                            </td>
                                             <td class="text-center">
                                                 @if ($datum->delete_status == 0)
                                                     <button type="button"
@@ -74,12 +77,12 @@
                                                     <button type="button"
                                                         class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                 @endif
-                                                </span>
                                             </td>
                                             <td class="text-center">
-                                                    <a href="{{ route('edit-allegation',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+
+                                                <a href="{{ route('edit-court-short',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
-                                                    <form method="POST" action="{{ route('delete-allegation',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                    <form method="POST" action="{{ route('delete-court-short',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                     </form>
