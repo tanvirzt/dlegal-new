@@ -202,14 +202,12 @@
                                             </td>
 
                                             <td>
-
                                                 @php
-                                                    $court_name = explode(', ', $datum->case_infos_court_id);
+                                                    $court_name = explode(', ',$datum->case_infos_court_id);
                                                 @endphp
-
                                                 @if($datum->case_infos_court_id)
-                                                    @foreach($court_name as $item)
-                                                        <li class="text-left">{{ $item }}</li>
+                                                    @foreach ($court_name as $pro)
+                                                        <li class="text-left">{{ $pro }}</li>
                                                     @endforeach
                                                 @endif
 
@@ -226,7 +224,6 @@
                                                         <li class="text-left">{{ $pro }}</li>
                                                     @endforeach
                                                 @endif
-
                                             </td>
                                             <td>
                                                 @php
