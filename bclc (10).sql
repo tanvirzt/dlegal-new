@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2022 at 11:25 AM
+-- Generation Time: Apr 27, 2022 at 11:39 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -510,8 +510,10 @@ CREATE TABLE `criminal_cases` (
   `legal_issue_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `legal_service_id` int(11) DEFAULT NULL,
   `legal_service_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `complainant_informant_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `accused_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `complainant_informant_id` int(11) DEFAULT NULL,
+  `complainant_informant_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `accused_id` int(11) DEFAULT NULL,
+  `accused_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `in_favour_of_id` int(11) DEFAULT NULL,
   `case_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `name_of_the_court_id` int(11) DEFAULT NULL,
@@ -582,10 +584,14 @@ CREATE TABLE `criminal_cases` (
   `case_infos_case_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_infos_case_year` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_infos_court_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_infos_court_short_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `court_short_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_infos_sub_seq_case_title_id` int(11) DEFAULT NULL,
   `case_infos_sub_seq_case_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_infos_sub_seq_case_year` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_infos_sub_seq_court_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_infos_sub_seq_court_short_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_seq_court_short_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `law_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `law_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `section_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -606,6 +612,7 @@ CREATE TABLE `criminal_cases` (
   `recovery_seizure_articles` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `summary_facts` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_info_remarks` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `random_case_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delete_status` int(11) NOT NULL DEFAULT 0,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -617,9 +624,59 @@ CREATE TABLE `criminal_cases` (
 -- Dumping data for table `criminal_cases`
 --
 
-INSERT INTO `criminal_cases` (`id`, `client`, `legal_issue_id`, `legal_issue_write`, `legal_service_id`, `legal_service_write`, `complainant_informant_name`, `accused_name`, `in_favour_of_id`, `case_no`, `name_of_the_court_id`, `next_date`, `next_date_fixed_id`, `received_date`, `mode_of_receipt_id`, `referrer_id`, `referrer_write`, `referrer_details`, `received_by_id`, `received_by_write`, `client_party_id`, `client_category_id`, `client_subcategory_id`, `client_id`, `client_name_write`, `client_address`, `client_mobile`, `client_email`, `client_profession_id`, `client_profession_write`, `client_division_id`, `client_divisoin_write`, `client_district_id`, `client_district_write`, `client_thana_id`, `client_thana_write`, `client_representative_name`, `client_representative_details`, `client_coordinator_tadbirkar_id`, `coordinator_tadbirkar_write`, `client_coordinator_details`, `opposition_party_id`, `opposition_category_id`, `opposition_subcategory_id`, `opposition_id`, `opposition_write`, `opposition_address`, `opposition_mobile`, `opposition_email`, `opposition_profession_id`, `opposition_profession_write`, `opposition_division_id`, `opposition_divisoin_write`, `opposition_district_id`, `opposition_district_write`, `opposition_thana_id`, `opposition_thana_write`, `opposition_representative_name`, `opposition_representative_details`, `opposition_coordinator_tadbirkar_id`, `opposition_coordinator_tadbirkar_write`, `opposition_coordinator_details`, `lawyer_advocate_id`, `assigned_lawyer_id`, `lawyers_remarks`, `received_documents_id`, `received_documents_write`, `required_wanting_documents_id`, `required_wanting_documents_write`, `case_infos_division_id`, `case_infos_district_id`, `case_infos_thana_id`, `case_category_id`, `case_subcategory_id`, `case_infos_case_title_id`, `case_infos_case_no`, `case_infos_case_year`, `case_infos_court_id`, `case_infos_sub_seq_case_title_id`, `case_infos_sub_seq_case_no`, `case_infos_sub_seq_case_year`, `case_infos_sub_seq_court_id`, `law_id`, `law_write`, `section_id`, `section_write`, `date_of_filing`, `matter_id`, `case_type_id`, `case_infos_complainant_informant_name`, `complainant_informant_representative`, `case_infos_accused_name`, `case_infos_accused_representative`, `prosecution_witness`, `defense_witness`, `case_infos_allegation_claim_id`, `case_infos_allegation_claim_write`, `amount_of_money`, `another_claim`, `recovery_seizure_articles`, `summary_facts`, `case_info_remarks`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '5/5/2022', NULL, '24/04/2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', , 2022', NULL, NULL, 'asdf21212, test, ', '2023, ', NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-24 00:30:21', '2022-04-24 01:53:44'),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '29/4/2022', NULL, '24/04/2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, '54554654, dfssdf, ', '35451, 333333, ', NULL, NULL, 'asdf21212, asdf212124521, werewfasdf, ', '2023, 2020, 2021, ', NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-24 00:35:07', '2022-04-24 02:40:15');
+INSERT INTO `criminal_cases` (`id`, `client`, `legal_issue_id`, `legal_issue_write`, `legal_service_id`, `legal_service_write`, `complainant_informant_id`, `complainant_informant_write`, `accused_id`, `accused_write`, `in_favour_of_id`, `case_no`, `name_of_the_court_id`, `next_date`, `next_date_fixed_id`, `received_date`, `mode_of_receipt_id`, `referrer_id`, `referrer_write`, `referrer_details`, `received_by_id`, `received_by_write`, `client_party_id`, `client_category_id`, `client_subcategory_id`, `client_id`, `client_name_write`, `client_address`, `client_mobile`, `client_email`, `client_profession_id`, `client_profession_write`, `client_division_id`, `client_divisoin_write`, `client_district_id`, `client_district_write`, `client_thana_id`, `client_thana_write`, `client_representative_name`, `client_representative_details`, `client_coordinator_tadbirkar_id`, `coordinator_tadbirkar_write`, `client_coordinator_details`, `opposition_party_id`, `opposition_category_id`, `opposition_subcategory_id`, `opposition_id`, `opposition_write`, `opposition_address`, `opposition_mobile`, `opposition_email`, `opposition_profession_id`, `opposition_profession_write`, `opposition_division_id`, `opposition_divisoin_write`, `opposition_district_id`, `opposition_district_write`, `opposition_thana_id`, `opposition_thana_write`, `opposition_representative_name`, `opposition_representative_details`, `opposition_coordinator_tadbirkar_id`, `opposition_coordinator_tadbirkar_write`, `opposition_coordinator_details`, `lawyer_advocate_id`, `assigned_lawyer_id`, `lawyers_remarks`, `received_documents_id`, `received_documents_write`, `required_wanting_documents_id`, `required_wanting_documents_write`, `case_infos_division_id`, `case_infos_district_id`, `case_infos_thana_id`, `case_category_id`, `case_subcategory_id`, `case_infos_case_title_id`, `case_infos_case_no`, `case_infos_case_year`, `case_infos_court_id`, `case_infos_court_short_id`, `court_short_write`, `case_infos_sub_seq_case_title_id`, `case_infos_sub_seq_case_no`, `case_infos_sub_seq_case_year`, `case_infos_sub_seq_court_id`, `case_infos_sub_seq_court_short_id`, `sub_seq_court_short_write`, `law_id`, `law_write`, `section_id`, `section_write`, `date_of_filing`, `matter_id`, `case_type_id`, `case_infos_complainant_informant_name`, `complainant_informant_representative`, `case_infos_accused_name`, `case_infos_accused_representative`, `prosecution_witness`, `defense_witness`, `case_infos_allegation_claim_id`, `case_infos_allegation_claim_write`, `amount_of_money`, `another_claim`, `recovery_seizure_articles`, `summary_facts`, `case_info_remarks`, `random_case_id`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Jack', 1, 'asfd', 2, 'aewrew', 2, 'asdf', 1, 'asdf', 1, '654643', NULL, NULL, NULL, '25/04/2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, NULL, ', ', NULL, ', ', ', ', NULL, NULL, ', ', NULL, ', ', NULL, ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-25 07:39:44', '2022-04-25 07:39:44'),
+(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '25/04/2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, NULL, ', ', NULL, ', ', ', ', NULL, NULL, ', ', NULL, ', ', NULL, ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-25 07:41:13', '2022-04-25 07:41:13'),
+(3, 'Jack', 2, 'legal issues', 2, 'were', 2, 'asdf', 1, 'asdf', 1, '654643', 7, '28/4/2022', 3, '28/4/2022', 2, 1, 'wrew', 'asdfds asdf', 3, 'wrewf', 1, 3, 1, 'Aminur Rahman Smith Aminur, Smith Aminu', 'ewrw, asdf, ', '43 Phillip St, Sydney NSW 2000, Australia', '4645648522', 'asdf@adf', 1, 'werew', 3, '44 asdf', 3, 'tewt', NULL, 'thana 1', 'representative 1', 'wer', 2, 'wer', 'asdf', 1, 3, 1, 'Aminur, Smith Aminur', 'rewr, asdf, ', '43 Phillip St, Sydney NSW 2000, Australia', 'rewrasdf', 'asdf@adf', 2, 'profession 1', 3, 'ewr', NULL, 'wer', NULL, 'wer', 'retreg', 'asdf', 1, 'tes asdf2', 'werwadf', 3, 'Stewert Jhonson khan, Terry Jhon Khan', 'ewrew asdf', 'test, test doc', 'werew, afds, ', 'test 2, test doc', 'asdf, werrd, ', 3, 3, 1, 6, 6, 1, 'dfssdf, 54554654, ', '2022, 2022, ', 'Criminal Court 2, Shadharghat', NULL, 'werew, wer,,, ', 1, 'asdf21212, test, ', '2023, 2022, ', 'Criminal Court 2, Shadharghat', NULL, 'werewf a, werew,,, ', 'Criminal Law 2, Criminal Laws', 'wer, wer adf, ', '144, 33', 'wer, werewr, ', '14/4/2022', 2, 2, 'wer adsf, asdf 5245, ', 'were asdf, werw asdf, ', 'wer, asdf, ', 'werew, asdf dfgfd, ', 'asdf fdgf', 'defense witness', 3, 'sdfg dfg', 'fds', 'adf', 'wer', 'afd', 'werw', NULL, 0, NULL, NULL, '2022-04-25 07:46:00', '2022-04-25 08:58:24'),
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '26/04/2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, 'dfssdf, case 1, case 1, ', '2022, 2022, 2022, ', NULL, NULL, ', ', NULL, ', ', ', ', NULL, NULL, ', ', NULL, ', ', NULL, ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-26 03:57:57', '2022-04-26 03:57:57'),
+(5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '26/04/2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, NULL, ', ', NULL, ', ', ', ', NULL, NULL, ', ', NULL, ', ', NULL, ', ', NULL, NULL, NULL, ', ', ', ', ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-26 03:59:02', '2022-04-26 03:59:02'),
+(6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '26/04/2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-26 03:59:12', '2022-04-27 03:32:29'),
+(7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '26/04/2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-26 04:00:42', '2022-04-27 03:32:36'),
+(8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '26/04/2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', NULL, ', ', NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, NULL, ', ', NULL, ', ', ', ', NULL, NULL, ', ', NULL, ', ', NULL, ', ', NULL, NULL, NULL, '', ', ', '', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-26 04:03:18', '2022-04-26 04:03:18'),
+(9, 'Jack', 1, 'wer', 2, 'rew', 2, 'asdf', 2, 'wrwe', 2, '564687adsf', 2, '14/4/2022', 1, '30/3/2022', 2, 1, 'rew', 'adf', 5, 'ewrtwer', 1, 3, 1, 'Aminur Rahman Smith Aminur, Smith Aminu', 'werewr, asdf', 'wetew', 'asdf', 'asdf@adf', 1, 'test asdf', 3, 'werwe', 3, 'adf', 2, 'dfgfd', 'wrwe', 'asdf', 1, 'wer', 'afd', 1, 3, 1, 'Aminur, Smith Aminur', 'ewrew, werew', 'adf', 'werrfasd', 'asdf@adf', 2, 'werew', 3, 'ewtr', NULL, 'adsf', NULL, 'werw', 'werew', 'asdf', 1, 'wer', 'afd', 3, 'Stewert Jhonson khan, Terry Jhon Khan', 'adfscdf', 'test 2, test doc', 'werew, wer', 'test, test 2', 'wer, asdf', 3, 3, 2, 7, 7, 1, 'ewr, wer', 'adfs, adfs', 'Criminal Court 2, Shadharghat', NULL, 'wer, wer', 1, 'wer, r', 'afsd, adsf', 'Criminal Court 2, Shadharghat', NULL, 'wer, werasd', 'Criminal Law 2, Criminal Laws', 'ewr, asdf', '33, 44', 'ewr, asdf', '6/4/2022', 1, 2, 'wer adsf, adfs adsf', 'werew, rew asfd', 'wer afd, asdf', 'werew, a dsfasdf', 'af', 'defense witness', 1, 'ewrew afd', '5346543', 'wrwer adsf', 'wra dsf', 'wera df', 'werew asdf', NULL, 0, NULL, NULL, '2022-04-26 06:18:46', '2022-04-27 08:21:36');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `criminal_cases_case_steps`
+--
+
+CREATE TABLE `criminal_cases_case_steps` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `criminal_case_id` int(11) DEFAULT NULL,
+  `case_steps_filing` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `taking_cognizance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `arrest_surrender_cw` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_steps_bail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_steps_court_transfer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_steps_charge_framed` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_steps_witness_from` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_steps_witness_to` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_steps_argument` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_steps_judgement_order` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_steps_summary_judgement_order` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_steps_remarks` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `criminal_cases_case_steps`
+--
+
+INSERT INTO `criminal_cases_case_steps` (`id`, `criminal_case_id`, `case_steps_filing`, `taking_cognizance`, `arrest_surrender_cw`, `case_steps_bail`, `case_steps_court_transfer`, `case_steps_charge_framed`, `case_steps_witness_from`, `case_steps_witness_to`, `case_steps_argument`, `case_steps_judgement_order`, `case_steps_summary_judgement_order`, `case_steps_remarks`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 1, '14/4/2022', '29/4/2022', '23/4/2022', '21/4/2022', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'asdf', 'werewr', 0, NULL, NULL, '2022-04-25 07:39:44', '2022-04-25 07:39:44'),
+(2, 2, 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', NULL, NULL, 0, NULL, NULL, '2022-04-25 07:41:13', '2022-04-25 07:41:13'),
+(3, 3, '30/3/2022', '13/7/2022', '7/5/2022', '7/4/2022', '6/7/2022', '6/5/2022', '2/3/2022', '30/4/2022', '15/4/2022', '13/4/2022', 'adf asdf', 'adfewrew adsf', 0, NULL, NULL, '2022-04-25 07:46:00', '2022-04-25 08:58:24'),
+(4, 4, 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', NULL, NULL, 0, NULL, NULL, '2022-04-26 03:57:57', '2022-04-26 03:57:57'),
+(5, 5, 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', NULL, NULL, 0, NULL, NULL, '2022-04-26 03:59:02', '2022-04-26 03:59:02'),
+(6, 6, 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', NULL, NULL, 0, NULL, NULL, '2022-04-26 03:59:12', '2022-04-26 03:59:12'),
+(7, 7, 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', NULL, NULL, 0, NULL, NULL, '2022-04-26 04:00:42', '2022-04-26 04:00:42'),
+(8, 8, 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', 'dd/mm/yyyy', NULL, NULL, 0, NULL, NULL, '2022-04-26 04:03:18', '2022-04-26 04:03:18'),
+(9, 9, '20/4/2022', '22/4/2022', '15/4/2022', '30/3/2022', '6/4/2022', '13/4/2022', '30/3/2022', '29/4/2022', '30/4/2022', '6/4/2022', 'afds', 'wer', 0, NULL, NULL, '2022-04-26 06:18:46', '2022-04-26 06:18:46');
 
 -- --------------------------------------------------------
 
@@ -664,7 +721,9 @@ INSERT INTO `criminal_cases_files` (`id`, `case_id`, `uploaded_document`, `delet
 (26, 16, '16504388798816484401354816480981926916474106851byden (1).jpg', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-20 01:14:39', '2022-04-20 01:14:39'),
 (27, 16, '165043887956164741083064asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-20 01:14:39', '2022-04-20 01:14:39'),
 (28, 4, '165068902454164741083064asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-22 22:43:44', '2022-04-22 22:43:44'),
-(29, 4, '165068902426165007933236164524589178asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-22 22:43:44', '2022-04-22 22:43:44');
+(29, 4, '165068902426165007933236164524589178asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-22 22:43:44', '2022-04-22 22:43:44'),
+(30, 9, '165095392616165068902426165007933236164524589178asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-26 06:18:46', '2022-04-26 06:18:46'),
+(31, 9, '165095392649164509798992byden (1) (1).jpg', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-26 06:18:46', '2022-04-26 06:18:46');
 
 -- --------------------------------------------------------
 
@@ -701,7 +760,11 @@ INSERT INTO `criminal_case_activity_logs` (`id`, `case_id`, `activity_date`, `ac
 (2, 4, '27/4/2022', 'asdf', 'asdf', 3, 'erewf', '45 min', 'Stefen Smith adsf, Md. Imran Hossain', 'asdf', 3, 'ewfdsa', 0, NULL, NULL, '2022-04-23 01:48:26', '2022-04-23 01:48:26'),
 (3, 2, '13/4/2022', 'asdf', 'In progress', 2, 'erewf', '30 min', 'Jack Smith Aminur, Stefen Smith adsf', 'asdf', 2, 'wrwefa', 0, NULL, NULL, '2022-04-24 03:14:39', '2022-04-24 03:14:39'),
 (4, 2, '27/4/2022', 'asdf', 'asdf', 1, 'asdf', '80 min', 'Jack Smith Aminur, Stefen Smith adsf, Md. Imran Hossain', 'asdf', 3, 'asf', 0, NULL, NULL, '2022-04-24 03:15:21', '2022-04-24 03:15:21'),
-(5, 2, '12/4/2022', 'asdf', 'In progress', 2, 'asdf', '30 min', 'Jack Smith Aminur, Md. Imran Hossain', 'asdf', 2, 'asf', 0, NULL, NULL, '2022-04-24 03:21:54', '2022-04-24 03:21:54');
+(5, 2, '12/4/2022', 'asdf', 'In progress', 2, 'asdf', '30 min', 'Jack Smith Aminur, Md. Imran Hossain', 'asdf', 2, 'asf', 0, NULL, NULL, '2022-04-24 03:21:54', '2022-04-24 03:21:54'),
+(6, 9, '12/4/2022', 'asdf', 'wer', 2, 'rewre', '45 min', 'Stewert Jhonson khan, Terry Jhon Khan', 'asdf', 1, 'ewfdsa', 0, NULL, NULL, '2022-04-27 08:23:30', '2022-04-27 08:23:30'),
+(7, 9, 'dd/mm/yyyy', NULL, NULL, NULL, NULL, '05:32', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-27 08:28:46', '2022-04-27 08:28:46'),
+(8, 9, 'dd/mm/yyyy', NULL, NULL, NULL, NULL, '14:35', 'Stewert Jhonson khan, Terry Jhon Khan', 'asdf', NULL, NULL, 0, NULL, NULL, '2022-04-27 08:33:21', '2022-04-27 08:33:21'),
+(9, 9, NULL, NULL, NULL, NULL, NULL, '1 day', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-27 09:38:02', '2022-04-27 09:38:02');
 
 -- --------------------------------------------------------
 
@@ -742,7 +805,8 @@ INSERT INTO `criminal_case_status_logs` (`id`, `case_id`, `updated_case_status_i
 (1, 2, 3, 'done', '14/4/2022', 1, 'case proceedings', 'aewrewr, test', 'asdf', 'Case Hearings, Hearing purpose', 'asdfb adfg', 'gfhfgh, test', 'case notes', 3, 'werew', 1, 'asdf asdf', 0, NULL, NULL, '2022-04-24 01:42:22', '2022-04-24 01:42:22'),
 (2, 2, 3, 'done', '19/4/2022', 3, 'adf', 'test, aewrewr', NULL, 'Case Hearings, Hearing purpose', 'none', 'test, ertret', 'asdf', 2, 'werew', 1, 'vcxvxcvdcs asdfdsf', 0, NULL, NULL, '2022-04-24 01:45:01', '2022-04-24 01:45:01'),
 (3, 1, 2, 'done', '5/5/2022', 1, 'case proceedings', 'test asdf, aewrewr', 'asdf', 'Appelled', 'none', 'ertret, gfhfgh', 'asdf', 1, 'sadf', NULL, 'asdf', 0, NULL, NULL, '2022-04-24 01:53:44', '2022-04-24 01:53:44'),
-(4, 2, NULL, NULL, '29/4/2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-24 02:40:15', '2022-04-24 02:40:15');
+(4, 2, NULL, NULL, '29/4/2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-24 02:40:15', '2022-04-24 02:40:15'),
+(5, 9, 3, 'done', '14/4/2022', 1, 'wer', 'test, test asdf', 'wer', 'Appelled, Case Hearings', 'werewf', 'dsfdsf, gfhfgh', 'case notes', 3, 'test', 1, 'er asdf', 0, NULL, NULL, '2022-04-27 08:21:36', '2022-04-27 08:21:36');
 
 -- --------------------------------------------------------
 
@@ -1386,8 +1450,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (423, '2022_04_18_051710_create_setup_case_titles_table', 66),
 (424, '2022_04_18_070838_create_setup_oppositions_table', 67),
 (433, '2022_04_13_062009_create_criminal_case_activity_logs_table', 72),
-(435, '2022_02_05_123938_create_criminal_cases_table', 73),
-(436, '2022_02_24_092255_create_criminal_case_status_logs_table', 74);
+(436, '2022_02_24_092255_create_criminal_case_status_logs_table', 74),
+(437, '2022_04_25_034241_create_setup_complainants_table', 75),
+(438, '2022_04_25_040138_create_setup_accuseds_table', 76),
+(439, '2022_04_25_045323_create_setup_court_shorts_table', 77),
+(440, '2022_04_25_050722_create_setup_progress_table', 78),
+(444, '2022_04_25_133138_create_criminal_cases_case_steps_table', 80),
+(446, '2022_02_05_123938_create_criminal_cases_table', 81);
 
 -- --------------------------------------------------------
 
@@ -1635,7 +1704,34 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('x5bAoetZM26fLQNA4WPDiMZrhtWuAOKnDYjnVPSW', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiM0Z0RFZERXU5YzB5QWR0Q0NOZThiYXBWZzFnQ0ZIallsbjByaGowdiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njc6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi92aWV3LWNyaW1pbmFsLWNhc2VzLzIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJwYWdlIjtzOjk6ImRhc2hib2FyZCI7fQ==', 1650792302);
+('h7omwEVUub334Qr5rWWLeaxtJZO6QFF8UQNjOi9D', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUVBXeDN5cHUzN1NSNHR3SFdNSHZVS3VadEhEOWhHNlhEdmFjRXJCVSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njc6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9lZGl0LWNyaW1pbmFsLWNhc2VzLzkiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJwYWdlIjtzOjk6ImRhc2hib2FyZCI7fQ==', 1651052305);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setup_accuseds`
+--
+
+CREATE TABLE `setup_accuseds` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `accused_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `accused_mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `accused_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `accused_address` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_accuseds`
+--
+
+INSERT INTO `setup_accuseds` (`id`, `accused_name`, `accused_mobile`, `accused_email`, `accused_address`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Stefen', '544651651', 'asdf@adf', '43 Phillip St, Sydney NSW 2000, Australia', 0, NULL, NULL, '2022-04-24 22:22:27', '2022-04-24 22:22:48'),
+(2, 'jack', '895646565', 'asdf@adf', '43 Phillip St, Sydney NSW 2000, Australia', 0, NULL, NULL, '2022-04-24 22:22:42', '2022-04-24 22:22:42');
 
 -- --------------------------------------------------------
 
@@ -1659,7 +1755,10 @@ CREATE TABLE `setup_allegations` (
 
 INSERT INTO `setup_allegations` (`id`, `allegation_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'allegation main', 0, NULL, NULL, '2022-04-10 03:52:42', '2022-04-10 03:53:10'),
-(2, 'test allegation', 0, NULL, NULL, '2022-04-10 03:52:48', '2022-04-10 03:52:48');
+(2, 'test allegation', 0, NULL, NULL, '2022-04-10 03:52:48', '2022-04-10 03:52:48'),
+(3, 'allegation asdfsdaf', 0, NULL, NULL, '2022-04-24 03:39:21', '2022-04-24 03:39:21'),
+(4, 'werasdf', 0, NULL, NULL, '2022-04-24 03:50:45', '2022-04-24 03:50:45'),
+(5, 'adsfa asdf adsf sdfadsf', 0, NULL, NULL, '2022-04-25 05:38:41', '2022-04-25 05:39:06');
 
 -- --------------------------------------------------------
 
@@ -2091,6 +2190,33 @@ INSERT INTO `setup_company_types` (`id`, `company_type_name`, `delete_status`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `setup_complainants`
+--
+
+CREATE TABLE `setup_complainants` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `complainant_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `complainant_mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `complainant_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `complainant_address` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_complainants`
+--
+
+INSERT INTO `setup_complainants` (`id`, `complainant_name`, `complainant_mobile`, `complainant_email`, `complainant_address`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Jack', '254655', 'asdf@adf', 'adderes', 0, NULL, NULL, '2022-04-24 21:50:19', '2022-04-24 22:25:52'),
+(2, 'Aminur Rahman Smith Aminur', '254655', 'asdf@adf', '43 Phillip St, Sydney NSW 2000, Australia', 0, NULL, NULL, '2022-04-24 21:50:27', '2022-04-24 21:50:27');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `setup_compliance_categories`
 --
 
@@ -2271,6 +2397,31 @@ INSERT INTO `setup_court_proceedings` (`id`, `court_proceeding_name`, `delete_st
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `setup_court_shorts`
+--
+
+CREATE TABLE `setup_court_shorts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `case_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `court_short_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_court_shorts`
+--
+
+INSERT INTO `setup_court_shorts` (`id`, `case_type`, `court_short_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'Criminal Cases', 'CC 1', 0, NULL, NULL, '2022-04-24 22:54:57', '2022-04-24 22:55:27'),
+(2, 'High Court Division', 'HC 1', 0, NULL, NULL, '2022-04-24 22:55:08', '2022-04-24 22:55:31');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `setup_day_notes`
 --
 
@@ -2366,10 +2517,72 @@ CREATE TABLE `setup_districts` (
 --
 
 INSERT INTO `setup_districts` (`id`, `division_id`, `district_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 2, 'werw', 1, NULL, NULL, '2022-03-15 23:58:02', '2022-03-15 23:59:10'),
-(2, 2, 'werw', 0, NULL, NULL, '2022-03-15 23:58:08', '2022-03-15 23:58:48'),
-(3, 3, 'Pirojpur', 0, NULL, NULL, '2022-03-15 23:58:17', '2022-03-15 23:58:17'),
-(4, 1, 'Shahjalal Majhar', 0, NULL, NULL, '2022-03-15 23:59:06', '2022-03-15 23:59:06');
+(1, 1, 'Barisal', 0, NULL, NULL, '2022-04-27 03:39:17', '2022-04-27 03:39:17'),
+(2, 1, 'Barguna', 0, NULL, NULL, '2022-04-27 03:39:52', '2022-04-27 03:39:52'),
+(3, 1, 'Bhola', 0, NULL, NULL, '2022-04-27 03:40:02', '2022-04-27 03:40:02'),
+(4, 1, 'Jhalokati', 0, NULL, NULL, '2022-04-27 03:40:09', '2022-04-27 03:40:09'),
+(5, 1, 'Patuakhali', 0, NULL, NULL, '2022-04-27 03:40:25', '2022-04-27 03:40:25'),
+(6, 1, 'Pirojpur', 0, NULL, NULL, '2022-04-27 03:40:35', '2022-04-27 03:40:35'),
+(7, 2, 'Brahmanbaria', 0, NULL, NULL, '2022-04-27 03:41:58', '2022-04-27 03:41:58'),
+(8, 2, 'Comilla', 0, NULL, NULL, '2022-04-27 03:42:09', '2022-04-27 03:42:09'),
+(9, 2, 'Chandpur', 0, NULL, NULL, '2022-04-27 03:42:18', '2022-04-27 03:42:18'),
+(10, 2, 'Lakshmipur', 0, NULL, NULL, '2022-04-27 03:42:29', '2022-04-27 03:42:29'),
+(11, 2, 'Maijdee', 0, NULL, NULL, '2022-04-27 03:42:37', '2022-04-27 03:42:37'),
+(12, 2, 'Feni', 0, NULL, NULL, '2022-04-27 03:42:44', '2022-04-27 03:42:44'),
+(13, 2, 'Comilla(North Feni)', 0, NULL, NULL, '2022-04-27 03:45:33', '2022-04-27 03:45:46'),
+(14, 2, 'Khagrachhari', 0, NULL, NULL, '2022-04-27 03:45:59', '2022-04-27 03:45:59'),
+(15, 2, 'Rangamati', 0, NULL, NULL, '2022-04-27 03:46:09', '2022-04-27 03:46:09'),
+(16, 2, 'Bandarban', 0, NULL, NULL, '2022-04-27 03:46:16', '2022-04-27 03:46:16'),
+(17, 2, 'Chittagong', 0, NULL, NULL, '2022-04-27 03:46:23', '2022-04-27 03:46:23'),
+(18, 2, 'Cox\'s Bazar', 0, NULL, NULL, '2022-04-27 03:46:29', '2022-04-27 03:46:29'),
+(19, 2, 'Chittagong(South Feni)', 0, NULL, NULL, '2022-04-27 03:47:07', '2022-04-27 03:47:07'),
+(20, 3, 'Dhaka', 0, NULL, NULL, '2022-04-27 03:47:48', '2022-04-27 03:47:48'),
+(21, 3, 'Gazipur', 0, NULL, NULL, '2022-04-27 03:47:58', '2022-04-27 03:47:58'),
+(22, 3, 'Kishoreganj', 0, NULL, NULL, '2022-04-27 03:48:06', '2022-04-27 03:48:06'),
+(23, 3, 'Manikganj', 0, NULL, NULL, '2022-04-27 03:48:19', '2022-04-27 03:48:19'),
+(24, 3, 'Munshiganj', 0, NULL, NULL, '2022-04-27 03:48:30', '2022-04-27 03:48:30'),
+(25, 3, 'Narayanganj', 0, NULL, NULL, '2022-04-27 03:48:39', '2022-04-27 03:48:39'),
+(26, 3, 'Narsingdi', 0, NULL, NULL, '2022-04-27 03:48:47', '2022-04-27 03:48:47'),
+(27, 3, 'Tangail', 0, NULL, NULL, '2022-04-27 03:48:54', '2022-04-27 03:48:54'),
+(28, 3, 'Faridpur', 0, NULL, NULL, '2022-04-27 03:49:02', '2022-04-27 03:49:02'),
+(29, 3, 'Gopalganj', 0, NULL, NULL, '2022-04-27 03:49:14', '2022-04-27 03:49:14'),
+(30, 3, 'Madaripur', 0, NULL, NULL, '2022-04-27 03:49:21', '2022-04-27 03:49:21'),
+(31, 3, 'Rajbari', 0, NULL, NULL, '2022-04-27 03:49:30', '2022-04-27 03:49:30'),
+(32, 3, 'Shariatpur', 0, NULL, NULL, '2022-04-27 03:49:38', '2022-04-27 03:49:38'),
+(33, 4, 'Bagerhat', 0, NULL, NULL, '2022-04-27 03:50:52', '2022-04-27 03:50:52'),
+(34, 4, 'Chuadanga', 0, NULL, NULL, '2022-04-27 03:51:01', '2022-04-27 03:51:01'),
+(35, 4, 'Jashore', 0, NULL, NULL, '2022-04-27 03:51:13', '2022-04-27 03:51:13'),
+(36, 4, 'Jhenaidah', 0, NULL, NULL, '2022-04-27 03:51:23', '2022-04-27 03:51:23'),
+(37, 4, 'Khulna', 0, NULL, NULL, '2022-04-27 03:51:29', '2022-04-27 03:51:29'),
+(38, 4, 'Kushtia', 0, NULL, NULL, '2022-04-27 03:51:39', '2022-04-27 03:51:39'),
+(39, 4, 'Magura', 0, NULL, NULL, '2022-04-27 03:51:46', '2022-04-27 03:51:46'),
+(40, 4, 'Meherpur', 0, NULL, NULL, '2022-04-27 03:51:52', '2022-04-27 03:51:52'),
+(41, 4, 'Narail', 0, NULL, NULL, '2022-04-27 03:52:00', '2022-04-27 03:52:00'),
+(42, 4, 'Satkhira', 0, NULL, NULL, '2022-04-27 03:52:09', '2022-04-27 03:52:09'),
+(43, 5, 'Mymensingh', 0, NULL, NULL, '2022-04-27 03:53:06', '2022-04-27 03:53:06'),
+(44, 5, 'Netrokona', 0, NULL, NULL, '2022-04-27 03:53:15', '2022-04-27 03:53:15'),
+(45, 5, 'Jamalpur', 0, NULL, NULL, '2022-04-27 03:53:24', '2022-04-27 03:53:24'),
+(46, 5, 'Sherpur', 0, NULL, NULL, '2022-04-27 03:53:33', '2022-04-27 03:53:33'),
+(47, 6, 'Joypurhat', 0, NULL, NULL, '2022-04-27 03:55:48', '2022-04-27 03:55:48'),
+(48, 6, 'Naogaon', 0, NULL, NULL, '2022-04-27 03:55:58', '2022-04-27 03:55:58'),
+(49, 6, 'Nawabganj', 0, NULL, NULL, '2022-04-27 03:56:05', '2022-04-27 03:56:05'),
+(50, 6, 'Natore', 0, NULL, NULL, '2022-04-27 03:56:11', '2022-04-27 03:56:11'),
+(51, 6, 'Pabna', 0, NULL, NULL, '2022-04-27 03:56:18', '2022-04-27 03:56:18'),
+(52, 6, 'Bogra', 0, NULL, NULL, '2022-04-27 03:56:26', '2022-04-27 03:56:26'),
+(53, 6, 'Rajshahi', 0, NULL, NULL, '2022-04-27 03:56:32', '2022-04-27 03:56:32'),
+(54, 6, 'Sirajganj', 0, NULL, NULL, '2022-04-27 03:56:38', '2022-04-27 03:56:38'),
+(55, 7, 'Dinajpur', 0, NULL, NULL, '2022-04-27 03:57:56', '2022-04-27 03:57:56'),
+(56, 7, 'Kurigram', 0, NULL, NULL, '2022-04-27 03:58:02', '2022-04-27 03:58:02'),
+(57, 7, 'Gaibandha', 0, NULL, NULL, '2022-04-27 03:58:08', '2022-04-27 03:58:08'),
+(58, 7, 'Lalmonirhat', 0, NULL, NULL, '2022-04-27 03:58:15', '2022-04-27 03:58:15'),
+(59, 7, 'Nilphamari', 0, NULL, NULL, '2022-04-27 03:58:23', '2022-04-27 03:58:23'),
+(60, 7, 'Panchagarh', 0, NULL, NULL, '2022-04-27 03:58:30', '2022-04-27 03:58:30'),
+(61, 7, 'Rangpur', 0, NULL, NULL, '2022-04-27 03:58:37', '2022-04-27 03:58:37'),
+(62, 7, 'Thakurgaon', 0, NULL, NULL, '2022-04-27 03:58:44', '2022-04-27 03:58:44'),
+(63, 8, 'Habiganj', 0, NULL, NULL, '2022-04-27 03:59:40', '2022-04-27 03:59:40'),
+(64, 8, 'Moulvibazar', 0, NULL, NULL, '2022-04-27 03:59:50', '2022-04-27 03:59:50'),
+(65, 8, 'Sunamganj', 0, NULL, NULL, '2022-04-27 04:00:02', '2022-04-27 04:00:02'),
+(66, 8, 'Sylhet', 0, NULL, NULL, '2022-04-27 04:00:11', '2022-04-27 04:00:11');
 
 -- --------------------------------------------------------
 
@@ -2392,9 +2605,14 @@ CREATE TABLE `setup_divisions` (
 --
 
 INSERT INTO `setup_divisions` (`id`, `division_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Sylhet', 0, NULL, NULL, '2022-03-15 23:57:46', '2022-03-15 23:57:46'),
-(2, 'Noakhali', 0, NULL, NULL, '2022-03-15 23:57:50', '2022-03-15 23:57:50'),
-(3, 'Barishal', 0, NULL, NULL, '2022-03-15 23:57:54', '2022-03-15 23:57:54');
+(1, 'Barisal', 0, NULL, NULL, '2022-04-27 03:35:43', '2022-04-27 03:35:43'),
+(2, 'Chittagong', 0, NULL, NULL, '2022-04-27 03:36:40', '2022-04-27 03:36:40'),
+(3, 'Dhaka', 0, NULL, NULL, '2022-04-27 03:37:15', '2022-04-27 03:37:15'),
+(4, 'Khulna', 0, NULL, NULL, '2022-04-27 03:37:20', '2022-04-27 03:37:20'),
+(5, 'Mymensingh', 0, NULL, NULL, '2022-04-27 03:37:28', '2022-04-27 03:37:28'),
+(6, 'Rajshahi', 0, NULL, NULL, '2022-04-27 03:37:36', '2022-04-27 03:37:36'),
+(7, 'Rangpur', 0, NULL, NULL, '2022-04-27 03:37:42', '2022-04-27 03:37:42'),
+(8, 'Sylhet', 0, NULL, NULL, '2022-04-27 03:37:47', '2022-04-27 03:37:47');
 
 -- --------------------------------------------------------
 
@@ -3008,6 +3226,31 @@ INSERT INTO `setup_programs` (`id`, `program_name`, `delete_status`, `created_by
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `setup_progress`
+--
+
+CREATE TABLE `setup_progress` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `progress_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `setup_progress`
+--
+
+INSERT INTO `setup_progress` (`id`, `progress_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'test 2', 0, NULL, NULL, '2022-04-24 23:37:16', '2022-04-24 23:38:10'),
+(2, 'No progress', 0, NULL, NULL, '2022-04-24 23:37:25', '2022-04-24 23:37:25'),
+(3, 'Advanced Progress', 0, NULL, NULL, '2022-04-24 23:38:01', '2022-04-24 23:38:01');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `setup_property_types`
 --
 
@@ -3218,8 +3461,530 @@ CREATE TABLE `setup_thanas` (
 --
 
 INSERT INTO `setup_thanas` (`id`, `district_id`, `thana_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Kawkhali', 0, NULL, NULL, '2022-03-15 23:59:32', '2022-03-27 22:58:48'),
-(2, 3, 'Bhandaria', 0, NULL, NULL, '2022-03-15 23:59:39', '2022-03-15 23:59:52');
+(1, 1, 'Agailjhara', 0, NULL, NULL, '2022-04-27 04:18:30', '2022-04-27 04:18:30'),
+(2, 1, 'Gournadi', 0, NULL, NULL, '2022-04-27 04:19:06', '2022-04-27 04:19:06'),
+(3, 1, 'Bakergonj', 0, NULL, NULL, '2022-04-27 04:19:17', '2022-04-27 04:19:17'),
+(4, 1, 'Banaripara', 0, NULL, NULL, '2022-04-27 04:19:23', '2022-04-27 04:19:23'),
+(5, 1, 'Barishal Sadar', 0, NULL, NULL, '2022-04-27 04:19:37', '2022-04-27 04:19:37'),
+(6, 1, 'Mehendigonj', 0, NULL, NULL, '2022-04-27 04:19:44', '2022-04-27 04:19:44'),
+(7, 1, 'Muladi', 0, NULL, NULL, '2022-04-27 04:19:50', '2022-04-27 04:19:50'),
+(8, 1, 'Wazirpur', 0, NULL, NULL, '2022-04-27 04:19:56', '2022-04-27 04:19:56'),
+(9, 1, 'Hizla', 0, NULL, NULL, '2022-04-27 04:20:04', '2022-04-27 04:20:04'),
+(10, 2, 'Amtali', 0, NULL, NULL, '2022-04-27 04:20:59', '2022-04-27 04:20:59'),
+(11, 2, 'Bamna', 0, NULL, NULL, '2022-04-27 04:21:08', '2022-04-27 04:21:08'),
+(12, 2, 'Barguna Sadar', 0, NULL, NULL, '2022-04-27 04:21:16', '2022-04-27 04:21:16'),
+(13, 2, 'Betagi', 0, NULL, NULL, '2022-04-27 04:21:23', '2022-04-27 04:21:23'),
+(14, 2, 'Patharghata', 0, NULL, NULL, '2022-04-27 04:21:31', '2022-04-27 04:21:31'),
+(15, 2, 'Taltali', 0, NULL, NULL, '2022-04-27 04:21:37', '2022-04-27 04:21:37'),
+(16, 3, 'Bhola Sadar', 0, NULL, NULL, '2022-04-27 04:22:47', '2022-04-27 04:22:47'),
+(17, 3, 'Char Fasson', 0, NULL, NULL, '2022-04-27 04:22:55', '2022-04-27 04:22:55'),
+(18, 3, 'Manpura', 0, NULL, NULL, '2022-04-27 04:31:11', '2022-04-27 04:31:11'),
+(19, 3, 'Burhanuddin', 0, NULL, NULL, '2022-04-27 04:31:19', '2022-04-27 04:31:19'),
+(20, 3, 'Tazumuddin', 0, NULL, NULL, '2022-04-27 04:31:26', '2022-04-27 04:31:26'),
+(21, 3, 'Daulatkhan', 0, NULL, NULL, '2022-04-27 04:31:34', '2022-04-27 04:31:34'),
+(22, 3, 'Lalmohan', 0, NULL, NULL, '2022-04-27 04:31:40', '2022-04-27 04:31:40'),
+(23, 4, 'Kathalia', 0, NULL, NULL, '2022-04-27 04:33:20', '2022-04-27 04:33:20'),
+(24, 4, 'Jhalokati Sadar', 0, NULL, NULL, '2022-04-27 04:33:30', '2022-04-27 04:33:30'),
+(25, 4, 'Nalchity', 0, NULL, NULL, '2022-04-27 04:33:36', '2022-04-27 04:33:36'),
+(26, 4, 'Rajapur', 0, NULL, NULL, '2022-04-27 04:33:43', '2022-04-27 04:33:43'),
+(27, 5, 'Patuakhali Sadar', 0, NULL, NULL, '2022-04-27 04:34:40', '2022-04-27 04:34:40'),
+(28, 5, 'Galachipa', 0, NULL, NULL, '2022-04-27 04:34:47', '2022-04-27 04:34:47'),
+(29, 5, 'Dumki', 0, NULL, NULL, '2022-04-27 04:34:56', '2022-04-27 04:34:56'),
+(30, 5, 'Mirzaganj', 0, NULL, NULL, '2022-04-27 04:35:07', '2022-04-27 04:35:07'),
+(31, 5, 'Dasmina', 0, NULL, NULL, '2022-04-27 04:38:56', '2022-04-27 04:38:56'),
+(32, 5, 'Bauphal', 0, NULL, NULL, '2022-04-27 04:39:09', '2022-04-27 04:39:09'),
+(33, 5, 'Kalapara', 0, NULL, NULL, '2022-04-27 04:39:19', '2022-04-27 04:39:19'),
+(34, 5, 'Rangabali', 0, NULL, NULL, '2022-04-27 04:39:27', '2022-04-27 04:39:27'),
+(35, 6, 'Bhandaria', 0, NULL, NULL, '2022-04-27 04:40:05', '2022-04-27 04:40:05'),
+(36, 6, 'Kawkhali', 0, NULL, NULL, '2022-04-27 04:40:18', '2022-04-27 04:40:18'),
+(37, 6, 'Mathbaria', 0, NULL, NULL, '2022-04-27 04:40:32', '2022-04-27 04:40:32'),
+(38, 6, 'Nazirpur', 0, NULL, NULL, '2022-04-27 04:40:40', '2022-04-27 04:40:40'),
+(39, 6, 'Nesarabad', 0, NULL, NULL, '2022-04-27 04:40:51', '2022-04-27 04:40:51'),
+(40, 6, 'Pirojpur Sadar', 0, NULL, NULL, '2022-04-27 04:40:58', '2022-04-27 04:40:58'),
+(41, 6, 'Indurkani', 0, NULL, NULL, '2022-04-27 04:41:06', '2022-04-27 04:41:06'),
+(42, 7, 'Brahmanbaria(B.Baria) Sadar', 0, NULL, NULL, '2022-04-27 04:42:32', '2022-04-27 04:42:32'),
+(43, 7, 'Bijoynagar', 0, NULL, NULL, '2022-04-27 04:42:42', '2022-04-27 04:42:42'),
+(44, 7, 'Akhaura', 0, NULL, NULL, '2022-04-27 04:42:53', '2022-04-27 04:42:53'),
+(45, 7, 'Ashuganj', 0, NULL, NULL, '2022-04-27 04:43:01', '2022-04-27 04:43:01'),
+(46, 7, 'Bancharampur', 0, NULL, NULL, '2022-04-27 04:43:10', '2022-04-27 04:43:10'),
+(47, 7, 'Kasba', 0, NULL, NULL, '2022-04-27 04:43:17', '2022-04-27 04:43:17'),
+(48, 7, 'Nabinagar', 0, NULL, NULL, '2022-04-27 04:43:24', '2022-04-27 04:43:24'),
+(49, 7, 'Nasirnagar', 0, NULL, NULL, '2022-04-27 04:43:32', '2022-04-27 04:43:32'),
+(50, 7, 'Sarail', 0, NULL, NULL, '2022-04-27 04:43:40', '2022-04-27 04:43:40'),
+(51, 8, 'Comilla Sadar South', 0, NULL, NULL, '2022-04-27 04:44:33', '2022-04-27 04:44:33'),
+(52, 8, 'Comilla Adarsa Sadar', 0, NULL, NULL, '2022-04-27 04:44:44', '2022-04-27 04:44:44'),
+(53, 8, 'Barura', 0, NULL, NULL, '2022-04-27 04:44:53', '2022-04-27 04:44:53'),
+(54, 8, 'Chandina', 0, NULL, NULL, '2022-04-27 04:45:01', '2022-04-27 04:45:01'),
+(55, 8, 'Chauddagram', 0, NULL, NULL, '2022-04-27 04:45:08', '2022-04-27 04:45:08'),
+(56, 8, 'Daudkandi', 0, NULL, NULL, '2022-04-27 04:45:16', '2022-04-27 04:45:16'),
+(57, 8, 'Brahmanpara', 0, NULL, NULL, '2022-04-27 04:45:23', '2022-04-27 04:45:23'),
+(58, 8, 'Homna', 0, NULL, NULL, '2022-04-27 04:45:29', '2022-04-27 04:45:29'),
+(59, 8, 'Monohorgonj', 0, NULL, NULL, '2022-04-27 04:45:35', '2022-04-27 04:45:35'),
+(60, 8, 'Laksam', 0, NULL, NULL, '2022-04-27 04:45:42', '2022-04-27 04:45:42'),
+(61, 8, 'Debidwar', 0, NULL, NULL, '2022-04-27 04:45:51', '2022-04-27 04:45:51'),
+(62, 8, 'Meghna', 0, NULL, NULL, '2022-04-27 04:45:57', '2022-04-27 04:45:57'),
+(63, 8, 'Muradnagar', 0, NULL, NULL, '2022-04-27 04:46:09', '2022-04-27 04:46:09'),
+(64, 8, 'Nangalkot', 0, NULL, NULL, '2022-04-27 04:46:16', '2022-04-27 04:46:16'),
+(65, 8, 'Burichong', 0, NULL, NULL, '2022-04-27 04:46:23', '2022-04-27 04:46:23'),
+(66, 8, 'Titas', 0, NULL, NULL, '2022-04-27 04:46:29', '2022-04-27 04:46:29'),
+(67, 9, 'Chandpur Sadar', 0, NULL, NULL, '2022-04-27 04:54:56', '2022-04-27 04:54:56'),
+(68, 9, 'Haziganj', 0, NULL, NULL, '2022-04-27 04:55:09', '2022-04-27 04:55:09'),
+(69, 9, 'Shahrasti', 0, NULL, NULL, '2022-04-27 04:55:18', '2022-04-27 04:55:18'),
+(70, 9, 'Haimchar', 0, NULL, NULL, '2022-04-27 04:55:27', '2022-04-27 04:55:27'),
+(71, 9, 'Faridganj', 0, NULL, NULL, '2022-04-27 04:55:37', '2022-04-27 04:55:37'),
+(72, 9, 'Kachua', 0, NULL, NULL, '2022-04-27 04:55:44', '2022-04-27 04:55:44'),
+(73, 9, 'Matlab Uttar', 0, NULL, NULL, '2022-04-27 04:55:57', '2022-04-27 04:55:57'),
+(74, 9, 'Matlab Dakkhin', 0, NULL, NULL, '2022-04-27 04:56:06', '2022-04-27 04:56:06'),
+(75, 10, 'Lakshmipur (Laxmipur) Sadar', 0, NULL, NULL, '2022-04-27 04:57:10', '2022-04-27 04:57:10'),
+(76, 10, 'Ramgati', 0, NULL, NULL, '2022-04-27 04:57:19', '2022-04-27 04:57:19'),
+(77, 10, 'Komolnagar', 0, NULL, NULL, '2022-04-27 04:57:33', '2022-04-27 04:57:33'),
+(78, 10, 'Raipur', 0, NULL, NULL, '2022-04-27 04:57:44', '2022-04-27 04:57:44'),
+(79, 10, 'Ramganj', 0, NULL, NULL, '2022-04-27 04:57:51', '2022-04-27 04:57:51'),
+(80, 12, 'Feni Sadar', 0, NULL, NULL, '2022-04-27 04:59:12', '2022-04-27 05:43:03'),
+(81, 12, 'Daganbhuiyan', 0, NULL, NULL, '2022-04-27 05:43:24', '2022-04-27 05:43:24'),
+(82, 12, 'Chhagalnaiya', 0, NULL, NULL, '2022-04-27 05:43:32', '2022-04-27 05:43:32'),
+(83, 12, 'Porshuram', 0, NULL, NULL, '2022-04-27 05:43:39', '2022-04-27 05:43:39'),
+(84, 12, 'Fulgazi', 0, NULL, NULL, '2022-04-27 05:43:45', '2022-04-27 05:43:45'),
+(85, 12, 'Sonagazi', 0, NULL, NULL, '2022-04-27 05:43:52', '2022-04-27 05:43:52'),
+(86, 14, 'Khagrachhari Sadar', 0, NULL, NULL, '2022-04-27 05:45:08', '2022-04-27 05:45:08'),
+(87, 14, 'Panchhari', 0, NULL, NULL, '2022-04-27 05:45:17', '2022-04-27 05:45:17'),
+(88, 14, 'Dighinala', 0, NULL, NULL, '2022-04-27 05:45:26', '2022-04-27 05:45:26'),
+(89, 14, 'Manikchhari', 0, NULL, NULL, '2022-04-27 05:45:34', '2022-04-27 05:45:34'),
+(90, 14, 'Lakshmichhari', 0, NULL, NULL, '2022-04-27 05:45:42', '2022-04-27 05:45:42'),
+(91, 14, 'Ramgarh', 0, NULL, NULL, '2022-04-27 05:45:53', '2022-04-27 05:45:53'),
+(92, 14, 'Mahalchhari', 0, NULL, NULL, '2022-04-27 05:46:04', '2022-04-27 05:46:04'),
+(93, 14, 'Matiranga', 0, NULL, NULL, '2022-04-27 05:46:13', '2022-04-27 05:46:13'),
+(94, 15, 'Rangamati Sadar', 0, NULL, NULL, '2022-04-27 05:46:57', '2022-04-27 05:46:57'),
+(95, 15, 'Kaptai', 0, NULL, NULL, '2022-04-27 05:47:06', '2022-04-27 05:47:06'),
+(96, 15, 'Kaukhali', 0, NULL, NULL, '2022-04-27 05:47:14', '2022-04-27 05:47:14'),
+(97, 15, 'Nannerchar', 0, NULL, NULL, '2022-04-27 05:47:23', '2022-04-27 05:47:23'),
+(98, 15, 'Bagaichhari', 0, NULL, NULL, '2022-04-27 05:47:30', '2022-04-27 05:47:30'),
+(99, 15, 'Juraichhari', 0, NULL, NULL, '2022-04-27 05:47:37', '2022-04-27 05:47:37'),
+(100, 15, 'Rajasthali', 0, NULL, NULL, '2022-04-27 05:47:44', '2022-04-27 05:47:44'),
+(101, 15, 'Belaichhari', 0, NULL, NULL, '2022-04-27 05:47:51', '2022-04-27 05:47:51'),
+(102, 15, 'Barkal', 0, NULL, NULL, '2022-04-27 05:47:58', '2022-04-27 05:47:58'),
+(103, 15, 'Langadu', 0, NULL, NULL, '2022-04-27 05:48:04', '2022-04-27 05:48:04'),
+(104, 16, 'Bandarban Sadar', 0, NULL, NULL, '2022-04-27 05:48:35', '2022-04-27 05:48:35'),
+(105, 16, 'Lama', 0, NULL, NULL, '2022-04-27 05:48:42', '2022-04-27 05:48:42'),
+(106, 16, 'Thanchi', 0, NULL, NULL, '2022-04-27 05:48:50', '2022-04-27 05:48:50'),
+(107, 16, 'Alikadam', 0, NULL, NULL, '2022-04-27 05:48:57', '2022-04-27 05:48:57'),
+(108, 16, 'Ruma', 0, NULL, NULL, '2022-04-27 05:49:05', '2022-04-27 05:49:05'),
+(109, 16, 'Naikhongchhari', 0, NULL, NULL, '2022-04-27 05:49:14', '2022-04-27 05:49:14'),
+(110, 16, 'Rowangcchari', 0, NULL, NULL, '2022-04-27 05:49:20', '2022-04-27 05:49:20'),
+(111, 17, 'Anwara', 0, NULL, NULL, '2022-04-27 05:50:17', '2022-04-27 05:50:17'),
+(112, 17, 'Banshkhali', 0, NULL, NULL, '2022-04-27 05:50:29', '2022-04-27 05:50:29'),
+(113, 17, 'Boalkhali', 0, NULL, NULL, '2022-04-27 05:50:36', '2022-04-27 05:50:36'),
+(114, 17, 'Chandanaish', 0, NULL, NULL, '2022-04-27 05:50:43', '2022-04-27 05:50:43'),
+(115, 17, 'Fatikchhari', 0, NULL, NULL, '2022-04-27 05:50:50', '2022-04-27 05:50:50'),
+(116, 17, 'Hathazari', 0, NULL, NULL, '2022-04-27 05:50:56', '2022-04-27 05:50:56'),
+(117, 17, 'Lohagara', 0, NULL, NULL, '2022-04-27 05:51:03', '2022-04-27 05:51:03'),
+(118, 17, 'Mirsharai', 0, NULL, NULL, '2022-04-27 05:51:09', '2022-04-27 05:51:09'),
+(119, 17, 'Patiya', 0, NULL, NULL, '2022-04-27 05:51:15', '2022-04-27 05:51:15'),
+(120, 17, 'Rangunia', 0, NULL, NULL, '2022-04-27 05:51:21', '2022-04-27 05:51:21'),
+(121, 17, 'Raozan', 0, NULL, NULL, '2022-04-27 05:51:28', '2022-04-27 05:51:28'),
+(122, 17, 'Sandwip', 0, NULL, NULL, '2022-04-27 05:51:34', '2022-04-27 05:51:34'),
+(123, 17, 'Satkania', 0, NULL, NULL, '2022-04-27 05:51:42', '2022-04-27 05:51:42'),
+(124, 17, 'Sitakunda', 0, NULL, NULL, '2022-04-27 05:51:49', '2022-04-27 05:51:49'),
+(125, 17, 'Karnaphuli', 0, NULL, NULL, '2022-04-27 05:51:55', '2022-04-27 05:51:55'),
+(126, 18, 'Cox\'s Bazar Sadar', 0, NULL, NULL, '2022-04-27 05:52:47', '2022-04-27 05:52:47'),
+(127, 18, 'Teknaf', 0, NULL, NULL, '2022-04-27 05:52:55', '2022-04-27 05:52:55'),
+(128, 18, 'Chakaria', 0, NULL, NULL, '2022-04-27 05:53:03', '2022-04-27 05:53:03'),
+(129, 18, 'Maheshkhali', 0, NULL, NULL, '2022-04-27 05:53:09', '2022-04-27 05:53:09'),
+(130, 18, 'Pekua', 0, NULL, NULL, '2022-04-27 05:53:15', '2022-04-27 05:53:15'),
+(131, 18, 'Kutubdia', 0, NULL, NULL, '2022-04-27 05:53:22', '2022-04-27 05:53:22'),
+(132, 18, 'Ukhia', 0, NULL, NULL, '2022-04-27 05:53:28', '2022-04-27 05:53:28'),
+(133, 18, 'Ramu', 0, NULL, NULL, '2022-04-27 05:53:34', '2022-04-27 05:53:34'),
+(134, 20, 'Adabor', 0, NULL, NULL, '2022-04-27 05:54:45', '2022-04-27 05:54:45'),
+(135, 20, 'Badda', 0, NULL, NULL, '2022-04-27 05:54:54', '2022-04-27 05:54:54'),
+(136, 20, 'Banani', 0, NULL, NULL, '2022-04-27 05:55:01', '2022-04-27 05:55:01'),
+(137, 20, 'Bangshal', 0, NULL, NULL, '2022-04-27 05:55:07', '2022-04-27 05:55:07'),
+(138, 20, 'Bimanbandar', 0, NULL, NULL, '2022-04-27 05:55:15', '2022-04-27 05:55:15'),
+(139, 20, 'Bsahantek', 0, NULL, NULL, '2022-04-27 05:55:22', '2022-04-27 05:55:22'),
+(140, 20, 'Cantonment', 0, NULL, NULL, '2022-04-27 05:55:29', '2022-04-27 05:55:29'),
+(141, 20, 'Chalkbazar', 0, NULL, NULL, '2022-04-27 05:55:36', '2022-04-27 05:55:36'),
+(142, 20, 'Dakhin Khan', 0, NULL, NULL, '2022-04-27 05:55:44', '2022-04-27 05:55:44'),
+(143, 20, 'Darus-Salam', 0, NULL, NULL, '2022-04-27 05:55:53', '2022-04-27 05:55:53'),
+(144, 20, 'Demra', 0, NULL, NULL, '2022-04-27 05:56:00', '2022-04-27 05:56:00'),
+(145, 20, 'Dhanmondi', 0, NULL, NULL, '2022-04-27 05:56:07', '2022-04-27 05:56:07'),
+(146, 20, 'Gandaria', 0, NULL, NULL, '2022-04-27 05:56:14', '2022-04-27 05:56:14'),
+(147, 20, 'Gulshan', 0, NULL, NULL, '2022-04-27 05:56:20', '2022-04-27 05:56:20'),
+(148, 20, 'Hazaribag', 0, NULL, NULL, '2022-04-27 05:56:26', '2022-04-27 05:56:26'),
+(149, 20, 'Jattrabari', 0, NULL, NULL, '2022-04-27 05:56:34', '2022-04-27 05:56:34'),
+(150, 20, 'Kafrul', 0, NULL, NULL, '2022-04-27 05:56:40', '2022-04-27 05:56:40'),
+(151, 20, 'Kalabagan', 0, NULL, NULL, '2022-04-27 05:56:46', '2022-04-27 05:56:46'),
+(152, 20, 'Kamrangirchar', 0, NULL, NULL, '2022-04-27 05:56:52', '2022-04-27 05:56:52'),
+(153, 20, 'Khilgaon', 0, NULL, NULL, '2022-04-27 05:56:58', '2022-04-27 05:56:58'),
+(154, 20, 'Khilkhet', 0, NULL, NULL, '2022-04-27 05:57:05', '2022-04-27 05:57:05'),
+(155, 20, 'Kodomtali', 0, NULL, NULL, '2022-04-27 05:57:14', '2022-04-27 05:57:14'),
+(156, 20, 'Kotwali', 0, NULL, NULL, '2022-04-27 05:57:24', '2022-04-27 05:57:24'),
+(157, 20, 'Lalbagh', 0, NULL, NULL, '2022-04-27 05:57:30', '2022-04-27 05:57:30'),
+(158, 20, 'Mirpur Model', 0, NULL, NULL, '2022-04-27 05:57:37', '2022-04-27 05:57:37'),
+(159, 20, 'Mohammadpur', 0, NULL, NULL, '2022-04-27 05:57:43', '2022-04-27 05:57:43'),
+(160, 20, 'Motijheel', 0, NULL, NULL, '2022-04-27 05:57:50', '2022-04-27 05:57:50'),
+(161, 20, 'Mugda', 0, NULL, NULL, '2022-04-27 05:57:57', '2022-04-27 05:57:57'),
+(162, 20, 'New Market', 0, NULL, NULL, '2022-04-27 05:58:04', '2022-04-27 05:58:04'),
+(163, 20, 'Pallabi', 0, NULL, NULL, '2022-04-27 05:58:09', '2022-04-27 05:58:09'),
+(164, 20, 'Paltan', 0, NULL, NULL, '2022-04-27 05:58:15', '2022-04-27 05:58:15'),
+(165, 20, 'Ramna Model', 0, NULL, NULL, '2022-04-27 05:58:27', '2022-04-27 05:58:27'),
+(166, 20, 'Rampura', 0, NULL, NULL, '2022-04-27 05:58:32', '2022-04-27 05:58:32'),
+(167, 20, 'Rupnagar', 0, NULL, NULL, '2022-04-27 05:58:39', '2022-04-27 05:58:39'),
+(168, 20, 'Sabujbag', 0, NULL, NULL, '2022-04-27 05:58:45', '2022-04-27 05:58:45'),
+(169, 20, 'Shah Ali', 0, NULL, NULL, '2022-04-27 05:58:52', '2022-04-27 05:58:52'),
+(170, 20, 'Shahbag', 0, NULL, NULL, '2022-04-27 05:58:58', '2022-04-27 05:58:58'),
+(171, 20, 'Shahjahanpur', 0, NULL, NULL, '2022-04-27 05:59:03', '2022-04-27 05:59:03'),
+(172, 20, 'Sutrapur', 0, NULL, NULL, '2022-04-27 05:59:10', '2022-04-27 05:59:10'),
+(173, 20, 'Shyampur', 0, NULL, NULL, '2022-04-27 05:59:16', '2022-04-27 05:59:16'),
+(174, 20, 'Sher-e-Bangla Nagar', 0, NULL, NULL, '2022-04-27 05:59:24', '2022-04-27 05:59:24'),
+(175, 20, 'Tejgaon Industrial Police', 0, NULL, NULL, '2022-04-27 05:59:32', '2022-04-27 05:59:32'),
+(176, 20, 'Tejgaon', 0, NULL, NULL, '2022-04-27 05:59:41', '2022-04-27 05:59:41'),
+(177, 20, 'Turag', 0, NULL, NULL, '2022-04-27 05:59:47', '2022-04-27 05:59:47'),
+(178, 20, 'Uttara East', 0, NULL, NULL, '2022-04-27 05:59:53', '2022-04-27 05:59:53'),
+(179, 20, 'Uttara West', 0, NULL, NULL, '2022-04-27 06:00:02', '2022-04-27 06:00:02'),
+(180, 20, 'Uttar Khan', 0, NULL, NULL, '2022-04-27 06:00:10', '2022-04-27 06:00:10'),
+(181, 20, 'Vatara', 0, NULL, NULL, '2022-04-27 06:00:17', '2022-04-27 06:00:17'),
+(182, 20, 'Wari', 0, NULL, NULL, '2022-04-27 06:00:24', '2022-04-27 06:00:24'),
+(183, 21, 'Gazipur Sadar', 0, NULL, NULL, '2022-04-27 06:01:01', '2022-04-27 06:01:01'),
+(184, 21, 'Kapasia', 0, NULL, NULL, '2022-04-27 06:01:08', '2022-04-27 06:01:08'),
+(185, 21, 'Tongi', 0, NULL, NULL, '2022-04-27 06:01:31', '2022-04-27 06:01:31'),
+(186, 21, 'Sripur', 0, NULL, NULL, '2022-04-27 06:01:37', '2022-04-27 06:01:37'),
+(187, 21, 'Kaliganj', 0, NULL, NULL, '2022-04-27 06:01:44', '2022-04-27 06:01:44'),
+(188, 21, 'Kaliakior', 0, NULL, NULL, '2022-04-27 06:01:52', '2022-04-27 06:01:52'),
+(189, 22, 'Kishoreganj Sadar', 0, NULL, NULL, '2022-04-27 06:02:33', '2022-04-27 06:02:33'),
+(190, 22, 'Bhairab', 0, NULL, NULL, '2022-04-27 06:02:43', '2022-04-27 06:02:43'),
+(191, 22, 'Bajitpur', 0, NULL, NULL, '2022-04-27 06:02:51', '2022-04-27 06:02:51'),
+(192, 22, 'Kuliarchar', 0, NULL, NULL, '2022-04-27 06:02:58', '2022-04-27 06:02:58'),
+(193, 22, 'Pakundia', 0, NULL, NULL, '2022-04-27 06:03:07', '2022-04-27 06:03:07'),
+(194, 22, 'Itna', 0, NULL, NULL, '2022-04-27 06:03:16', '2022-04-27 06:03:16'),
+(195, 22, 'Karimganj', 0, NULL, NULL, '2022-04-27 06:03:24', '2022-04-27 06:03:24'),
+(196, 22, 'Katiadi', 0, NULL, NULL, '2022-04-27 06:03:32', '2022-04-27 06:03:32'),
+(197, 22, 'Austagram', 0, NULL, NULL, '2022-04-27 06:03:40', '2022-04-27 06:03:40'),
+(198, 22, 'Mithamain', 0, NULL, NULL, '2022-04-27 06:03:48', '2022-04-27 06:03:48'),
+(199, 22, 'Tarail', 0, NULL, NULL, '2022-04-27 06:03:56', '2022-04-27 06:03:56'),
+(200, 22, 'Hossainpur', 0, NULL, NULL, '2022-04-27 06:04:04', '2022-04-27 06:04:04'),
+(201, 22, 'Nikli', 0, NULL, NULL, '2022-04-27 06:04:14', '2022-04-27 06:04:14'),
+(202, 23, 'Manikganj Sadar', 0, NULL, NULL, '2022-04-27 06:04:51', '2022-04-27 06:04:51'),
+(203, 23, 'Singair', 0, NULL, NULL, '2022-04-27 06:05:02', '2022-04-27 06:05:02'),
+(204, 23, 'Daulatpur', 0, NULL, NULL, '2022-04-27 06:05:14', '2022-04-27 06:05:14'),
+(205, 23, 'Saturia', 0, NULL, NULL, '2022-04-27 06:05:22', '2022-04-27 06:05:22'),
+(206, 23, 'Ghior', 0, NULL, NULL, '2022-04-27 06:05:31', '2022-04-27 06:05:31'),
+(207, 23, 'Shivalaya', 0, NULL, NULL, '2022-04-27 06:05:38', '2022-04-27 06:05:38'),
+(208, 23, 'Harirampur', 0, NULL, NULL, '2022-04-27 06:05:46', '2022-04-27 06:05:46'),
+(209, 24, 'Munshiganj Sadar', 0, NULL, NULL, '2022-04-27 06:06:32', '2022-04-27 06:06:32'),
+(210, 24, 'Sreenagar', 0, NULL, NULL, '2022-04-27 06:06:41', '2022-04-27 06:06:41'),
+(211, 24, 'Lohajang', 0, NULL, NULL, '2022-04-27 06:06:50', '2022-04-27 06:06:50'),
+(212, 24, 'Sirajdikhan', 0, NULL, NULL, '2022-04-27 06:06:58', '2022-04-27 06:06:58'),
+(213, 24, 'Gazaria', 0, NULL, NULL, '2022-04-27 06:07:06', '2022-04-27 06:07:06'),
+(214, 24, 'Tongibari', 0, NULL, NULL, '2022-04-27 06:07:15', '2022-04-27 06:07:15'),
+(215, 25, 'Narayanganj Sadar', 0, NULL, NULL, '2022-04-27 06:07:48', '2022-04-27 06:07:48'),
+(216, 25, 'Araihazar', 0, NULL, NULL, '2022-04-27 06:07:58', '2022-04-27 06:07:58'),
+(217, 25, 'Rupganj', 0, NULL, NULL, '2022-04-27 06:08:09', '2022-04-27 06:08:09'),
+(218, 25, 'Bandar', 0, NULL, NULL, '2022-04-27 06:08:18', '2022-04-27 06:08:18'),
+(219, 25, 'Sonargaon', 0, NULL, NULL, '2022-04-27 06:08:27', '2022-04-27 06:08:27'),
+(220, 25, 'Siddhirganj', 0, NULL, NULL, '2022-04-27 06:08:35', '2022-04-27 06:08:35'),
+(221, 25, 'Fatullah', 0, NULL, NULL, '2022-04-27 06:08:43', '2022-04-27 06:08:43'),
+(222, 26, 'Narsingdi Sadar', 0, NULL, NULL, '2022-04-27 06:09:14', '2022-04-27 06:09:14'),
+(223, 26, 'Monohardi', 0, NULL, NULL, '2022-04-27 06:09:23', '2022-04-27 06:09:23'),
+(224, 26, 'Belabo', 0, NULL, NULL, '2022-04-27 06:09:37', '2022-04-27 06:09:37'),
+(225, 26, 'Raipura', 0, NULL, NULL, '2022-04-27 06:09:46', '2022-04-27 06:09:46'),
+(226, 26, 'Shibpur', 0, NULL, NULL, '2022-04-27 06:09:55', '2022-04-27 06:09:55'),
+(227, 26, 'Palash', 0, NULL, NULL, '2022-04-27 06:10:03', '2022-04-27 06:10:03'),
+(228, 27, 'Tangail Sadar', 0, NULL, NULL, '2022-04-27 06:10:29', '2022-04-27 06:10:29'),
+(229, 27, 'Basail', 0, NULL, NULL, '2022-04-27 06:10:35', '2022-04-27 06:10:35'),
+(230, 27, 'Bhuapur', 0, NULL, NULL, '2022-04-27 06:10:41', '2022-04-27 06:10:41'),
+(231, 27, 'Delduar', 0, NULL, NULL, '2022-04-27 06:10:48', '2022-04-27 06:10:48'),
+(232, 27, 'Dhonbari', 0, NULL, NULL, '2022-04-27 06:10:54', '2022-04-27 06:10:54'),
+(233, 27, 'Ghatail', 0, NULL, NULL, '2022-04-27 06:11:01', '2022-04-27 06:11:01'),
+(234, 27, 'Gopalpur', 0, NULL, NULL, '2022-04-27 06:11:08', '2022-04-27 06:11:08'),
+(235, 27, 'Kalihati', 0, NULL, NULL, '2022-04-27 06:11:16', '2022-04-27 06:11:16'),
+(236, 27, 'Madhupur', 0, NULL, NULL, '2022-04-27 06:11:22', '2022-04-27 06:11:22'),
+(237, 27, 'Mirzapur', 0, NULL, NULL, '2022-04-27 06:11:28', '2022-04-27 06:11:28'),
+(238, 27, 'Nagarpur', 0, NULL, NULL, '2022-04-27 06:11:36', '2022-04-27 06:11:36'),
+(239, 27, 'Sakhipur', 0, NULL, NULL, '2022-04-27 06:11:41', '2022-04-27 06:11:41'),
+(240, 28, 'Faridpur Sadar', 0, NULL, NULL, '2022-04-27 06:12:18', '2022-04-27 06:12:18'),
+(241, 28, 'Bhanga', 0, NULL, NULL, '2022-04-27 06:12:25', '2022-04-27 06:12:25'),
+(242, 28, 'Madhukhali', 0, NULL, NULL, '2022-04-27 06:12:32', '2022-04-27 06:12:32'),
+(243, 28, 'Sadarpur', 0, NULL, NULL, '2022-04-27 06:12:54', '2022-04-27 06:12:54'),
+(244, 28, 'Alfadanga', 0, NULL, NULL, '2022-04-27 06:13:06', '2022-04-27 06:13:06'),
+(245, 28, 'Boalmari', 0, NULL, NULL, '2022-04-27 06:13:13', '2022-04-27 06:13:13'),
+(246, 28, 'Charbhadrasan', 0, NULL, NULL, '2022-04-27 06:13:19', '2022-04-27 06:13:19'),
+(247, 28, 'Nagarkanda', 0, NULL, NULL, '2022-04-27 06:13:26', '2022-04-27 06:13:26'),
+(248, 28, 'Shaltha', 0, NULL, NULL, '2022-04-27 06:13:32', '2022-04-27 06:13:32'),
+(249, 29, 'Gopalganj Sadar', 0, NULL, NULL, '2022-04-27 06:14:26', '2022-04-27 06:14:26'),
+(250, 29, 'Tungipara', 0, NULL, NULL, '2022-04-27 06:14:41', '2022-04-27 06:14:41'),
+(251, 29, 'Kotalipara', 0, NULL, NULL, '2022-04-27 06:14:52', '2022-04-27 06:14:52'),
+(252, 29, 'Kashiani', 0, NULL, NULL, '2022-04-27 06:15:11', '2022-04-27 06:15:11'),
+(253, 29, 'Muksudpur', 0, NULL, NULL, '2022-04-27 06:15:21', '2022-04-27 06:15:21'),
+(254, 30, 'Madaripur Sadar', 0, NULL, NULL, '2022-04-27 06:16:57', '2022-04-27 06:16:57'),
+(255, 30, 'Shibchar', 0, NULL, NULL, '2022-04-27 06:17:07', '2022-04-27 06:17:07'),
+(256, 30, 'Kalkini', 0, NULL, NULL, '2022-04-27 06:17:17', '2022-04-27 06:17:17'),
+(257, 30, 'Rajoir', 0, NULL, NULL, '2022-04-27 06:17:25', '2022-04-27 06:17:25'),
+(258, 31, 'Rajbari Sadar', 0, NULL, NULL, '2022-04-27 06:18:58', '2022-04-27 06:18:58'),
+(259, 31, 'Baliakandi', 0, NULL, NULL, '2022-04-27 06:19:10', '2022-04-27 06:19:10'),
+(260, 31, 'Kalukhali', 0, NULL, NULL, '2022-04-27 06:19:22', '2022-04-27 06:19:22'),
+(261, 31, 'Goalandaghat', 0, NULL, NULL, '2022-04-27 06:19:34', '2022-04-27 06:19:34'),
+(262, 31, 'Pangsha', 0, NULL, NULL, '2022-04-27 06:19:42', '2022-04-27 06:19:42'),
+(263, 32, 'Shariatpur Sadar', 0, NULL, NULL, '2022-04-27 06:20:21', '2022-04-27 06:20:21'),
+(264, 32, 'Bhedarganj', 0, NULL, NULL, '2022-04-27 06:20:29', '2022-04-27 06:20:29'),
+(265, 32, 'Damudya', 0, NULL, NULL, '2022-04-27 06:20:38', '2022-04-27 06:20:38'),
+(266, 32, 'Gosairhat', 0, NULL, NULL, '2022-04-27 06:20:45', '2022-04-27 06:20:45'),
+(267, 32, 'Naria', 0, NULL, NULL, '2022-04-27 06:20:56', '2022-04-27 06:20:56'),
+(268, 32, 'Shakhipur', 0, NULL, NULL, '2022-04-27 06:21:05', '2022-04-27 06:21:05'),
+(269, 32, 'Zanjira', 0, NULL, NULL, '2022-04-27 06:21:15', '2022-04-27 06:21:15'),
+(270, 33, 'Bagerhat Sadar', 0, NULL, NULL, '2022-04-27 06:21:52', '2022-04-27 06:21:52'),
+(271, 33, 'Mongla', 0, NULL, NULL, '2022-04-27 06:22:01', '2022-04-27 06:22:01'),
+(272, 33, 'Chitalmari', 0, NULL, NULL, '2022-04-27 06:22:09', '2022-04-27 06:22:09'),
+(273, 33, 'Mollahat', 0, NULL, NULL, '2022-04-27 06:22:19', '2022-04-27 06:26:22'),
+(274, 33, 'Sarankhola', 0, NULL, NULL, '2022-04-27 06:22:26', '2022-04-27 06:26:40'),
+(275, 33, 'Rampal', 0, NULL, NULL, '2022-04-27 06:22:38', '2022-04-27 06:26:58'),
+(276, 33, 'Fakirhat', 0, NULL, NULL, '2022-04-27 06:22:47', '2022-04-27 06:27:04'),
+(277, 33, 'Morrelganj', 0, NULL, NULL, '2022-04-27 06:22:55', '2022-04-27 06:27:12'),
+(278, 33, 'Kachua', 0, NULL, NULL, '2022-04-27 06:23:03', '2022-04-27 06:27:18'),
+(279, 34, 'Chuadanga Sadar', 0, NULL, NULL, '2022-04-27 06:28:39', '2022-04-27 06:28:39'),
+(280, 34, 'Alamdanga', 0, NULL, NULL, '2022-04-27 06:28:47', '2022-04-27 06:28:47'),
+(281, 34, 'Damurhuda', 0, NULL, NULL, '2022-04-27 06:28:56', '2022-04-27 06:28:56'),
+(282, 34, 'Jibonnagar', 0, NULL, NULL, '2022-04-27 06:29:04', '2022-04-27 06:29:04'),
+(283, 35, 'Jessore Sadar', 0, NULL, NULL, '2022-04-27 06:29:42', '2022-04-27 06:29:42'),
+(284, 35, 'Jhikargachha', 0, NULL, NULL, '2022-04-27 06:29:51', '2022-04-27 06:29:51'),
+(285, 35, 'Manirampur', 0, NULL, NULL, '2022-04-27 06:29:58', '2022-04-27 06:29:58'),
+(286, 35, 'Bagherpara', 0, NULL, NULL, '2022-04-27 06:30:08', '2022-04-27 06:30:08'),
+(287, 35, 'Abhaynagar', 0, NULL, NULL, '2022-04-27 06:30:15', '2022-04-27 06:30:15'),
+(288, 35, 'Keshabpur', 0, NULL, NULL, '2022-04-27 06:30:23', '2022-04-27 06:30:23'),
+(289, 35, 'Sharsha', 0, NULL, NULL, '2022-04-27 06:30:30', '2022-04-27 06:30:30'),
+(290, 35, 'Chaugachha', 0, NULL, NULL, '2022-04-27 06:30:38', '2022-04-27 06:30:38'),
+(291, 36, 'Jhenaidah Sadar', 0, NULL, NULL, '2022-04-27 06:31:37', '2022-04-27 06:31:37'),
+(292, 36, 'Shailkupa', 0, NULL, NULL, '2022-04-27 06:31:45', '2022-04-27 06:31:45'),
+(293, 36, 'Harinakunda', 0, NULL, NULL, '2022-04-27 06:31:52', '2022-04-27 06:31:52'),
+(294, 36, 'Maheshpur', 0, NULL, NULL, '2022-04-27 06:32:01', '2022-04-27 06:32:01'),
+(295, 36, 'Kotchandpur', 0, NULL, NULL, '2022-04-27 06:32:09', '2022-04-27 06:32:09'),
+(296, 36, 'Kaliganj', 0, NULL, NULL, '2022-04-27 06:32:18', '2022-04-27 06:32:18'),
+(297, 37, 'Dumuria', 0, NULL, NULL, '2022-04-27 06:33:05', '2022-04-27 06:33:05'),
+(298, 37, 'Batiaghata', 0, NULL, NULL, '2022-04-27 06:33:12', '2022-04-27 06:33:12'),
+(299, 37, 'Dacope', 0, NULL, NULL, '2022-04-27 06:33:20', '2022-04-27 06:33:20'),
+(300, 37, 'Phultala', 0, NULL, NULL, '2022-04-27 06:33:28', '2022-04-27 06:33:28'),
+(301, 37, 'Dighalia', 0, NULL, NULL, '2022-04-27 06:33:38', '2022-04-27 06:33:38'),
+(302, 37, 'Koyra', 0, NULL, NULL, '2022-04-27 06:33:46', '2022-04-27 06:33:46'),
+(303, 37, 'Terokhada', 0, NULL, NULL, '2022-04-27 06:33:54', '2022-04-27 06:33:54'),
+(304, 37, 'Rupsha', 0, NULL, NULL, '2022-04-27 06:34:02', '2022-04-27 06:34:02'),
+(305, 37, 'Paikgachha', 0, NULL, NULL, '2022-04-27 06:34:10', '2022-04-27 06:34:10'),
+(306, 38, 'Kushtia Sadar', 0, NULL, NULL, '2022-04-27 06:34:54', '2022-04-27 06:34:54'),
+(307, 38, 'Mirpur', 0, NULL, NULL, '2022-04-27 06:35:03', '2022-04-27 06:35:03'),
+(308, 38, 'Khoksa', 0, NULL, NULL, '2022-04-27 06:35:11', '2022-04-27 06:35:11'),
+(309, 38, 'Bheramara', 0, NULL, NULL, '2022-04-27 06:35:19', '2022-04-27 06:35:19'),
+(310, 38, 'Kumarkhali', 0, NULL, NULL, '2022-04-27 06:35:26', '2022-04-27 06:35:26'),
+(311, 38, 'Daulatpur', 0, NULL, NULL, '2022-04-27 06:35:34', '2022-04-27 06:35:34'),
+(312, 39, 'Magura Sadar', 0, NULL, NULL, '2022-04-27 06:36:12', '2022-04-27 06:36:12'),
+(313, 39, 'Shalikha', 0, NULL, NULL, '2022-04-27 06:36:21', '2022-04-27 06:36:21'),
+(314, 39, 'Sreepur', 0, NULL, NULL, '2022-04-27 06:36:29', '2022-04-27 06:36:29'),
+(315, 39, 'Mohammadpur', 0, NULL, NULL, '2022-04-27 06:36:37', '2022-04-27 06:36:37'),
+(316, 40, 'Meherpur Sadar', 0, NULL, NULL, '2022-04-27 06:37:16', '2022-04-27 06:37:16'),
+(317, 40, 'Mujibnagar', 0, NULL, NULL, '2022-04-27 06:37:23', '2022-04-27 06:37:23'),
+(318, 40, 'Gangni', 0, NULL, NULL, '2022-04-27 06:37:31', '2022-04-27 06:37:31'),
+(319, 41, 'Narail Sadar', 0, NULL, NULL, '2022-04-27 06:38:22', '2022-04-27 06:38:22'),
+(320, 41, 'Lohagara', 0, NULL, NULL, '2022-04-27 06:38:32', '2022-04-27 06:38:32'),
+(321, 41, 'Kalia', 0, NULL, NULL, '2022-04-27 06:38:41', '2022-04-27 06:38:41'),
+(322, 42, 'Satkhira Sadar', 0, NULL, NULL, '2022-04-27 06:39:19', '2022-04-27 06:39:19'),
+(323, 42, 'Shyamnagar', 0, NULL, NULL, '2022-04-27 06:39:28', '2022-04-27 06:39:28'),
+(324, 42, 'Assasuni', 0, NULL, NULL, '2022-04-27 06:39:40', '2022-04-27 06:39:40'),
+(325, 42, 'Kaliganj', 0, NULL, NULL, '2022-04-27 06:39:49', '2022-04-27 06:39:49'),
+(326, 42, 'Debhata', 0, NULL, NULL, '2022-04-27 06:39:57', '2022-04-27 06:39:57'),
+(327, 42, 'Kalaroa', 0, NULL, NULL, '2022-04-27 06:40:04', '2022-04-27 06:40:04'),
+(328, 42, 'Tala', 0, NULL, NULL, '2022-04-27 06:40:10', '2022-04-27 06:40:10'),
+(329, 43, 'Mymensingh Sadar', 0, NULL, NULL, '2022-04-27 06:40:53', '2022-04-27 06:40:53'),
+(330, 43, 'Muktagachha', 0, NULL, NULL, '2022-04-27 06:41:01', '2022-04-27 06:41:01'),
+(331, 43, 'Valuka', 0, NULL, NULL, '2022-04-27 06:41:08', '2022-04-27 06:41:08'),
+(332, 43, 'Haluaghat', 0, NULL, NULL, '2022-04-27 06:41:15', '2022-04-27 06:41:15'),
+(333, 43, 'Gouripur', 0, NULL, NULL, '2022-04-27 06:41:23', '2022-04-27 06:41:23'),
+(334, 43, 'Dhobaura', 0, NULL, NULL, '2022-04-27 06:41:30', '2022-04-27 06:41:30'),
+(335, 43, 'Fulbaria', 0, NULL, NULL, '2022-04-27 06:41:38', '2022-04-27 06:41:38'),
+(336, 43, 'Gafargaon', 0, NULL, NULL, '2022-04-27 06:41:45', '2022-04-27 06:41:45'),
+(337, 43, 'Trishal', 0, NULL, NULL, '2022-04-27 06:41:53', '2022-04-27 06:41:53'),
+(338, 43, 'Fulpur', 0, NULL, NULL, '2022-04-27 06:42:00', '2022-04-27 06:42:00'),
+(339, 43, 'Nandail', 0, NULL, NULL, '2022-04-27 06:42:07', '2022-04-27 06:42:07'),
+(340, 43, 'Ishwarganj', 0, NULL, NULL, '2022-04-27 06:42:15', '2022-04-27 06:42:15'),
+(341, 44, 'Netrokona Sadar', 0, NULL, NULL, '2022-04-27 06:42:49', '2022-04-27 06:42:49'),
+(342, 44, 'Kendua', 0, NULL, NULL, '2022-04-27 06:43:00', '2022-04-27 06:43:00'),
+(343, 44, 'Mohangonj', 0, NULL, NULL, '2022-04-27 06:43:11', '2022-04-27 06:43:11'),
+(344, 44, 'Khaliajuri', 0, NULL, NULL, '2022-04-27 06:43:23', '2022-04-27 06:43:23'),
+(345, 44, 'Purbodhola', 0, NULL, NULL, '2022-04-27 06:43:32', '2022-04-27 06:43:32'),
+(346, 44, 'Atpara', 0, NULL, NULL, '2022-04-27 06:43:40', '2022-04-27 06:43:40'),
+(347, 44, 'Modon', 0, NULL, NULL, '2022-04-27 06:43:47', '2022-04-27 06:43:47'),
+(348, 44, 'Kolmkakanda', 0, NULL, NULL, '2022-04-27 06:43:55', '2022-04-27 06:43:55'),
+(349, 44, 'Barhatta', 0, NULL, NULL, '2022-04-27 06:44:03', '2022-04-27 06:44:03'),
+(350, 44, 'Durgapur', 0, NULL, NULL, '2022-04-27 06:44:10', '2022-04-27 06:44:10'),
+(351, 45, 'Jamalpur Sadar', 0, NULL, NULL, '2022-04-27 06:44:42', '2022-04-27 06:44:42'),
+(352, 45, 'Baksiganj', 0, NULL, NULL, '2022-04-27 06:44:49', '2022-04-27 06:44:49'),
+(353, 45, 'Dewanganj', 0, NULL, NULL, '2022-04-27 06:44:58', '2022-04-27 06:44:58'),
+(354, 45, 'Islampur', 0, NULL, NULL, '2022-04-27 06:45:05', '2022-04-27 06:45:05'),
+(355, 45, 'Madarganj', 0, NULL, NULL, '2022-04-27 06:45:14', '2022-04-27 06:45:14'),
+(356, 45, 'Melandaha', 0, NULL, NULL, '2022-04-27 06:45:22', '2022-04-27 06:45:22'),
+(357, 45, 'Sarishabari', 0, NULL, NULL, '2022-04-27 06:45:33', '2022-04-27 06:45:33'),
+(358, 46, 'Sherpur Sadar', 0, NULL, NULL, '2022-04-27 06:46:05', '2022-04-27 06:46:05'),
+(359, 46, 'Nakla', 0, NULL, NULL, '2022-04-27 06:46:15', '2022-04-27 06:46:15'),
+(360, 46, 'Sreebardi', 0, NULL, NULL, '2022-04-27 06:46:24', '2022-04-27 06:46:24'),
+(361, 46, 'Nalitabari', 0, NULL, NULL, '2022-04-27 06:46:34', '2022-04-27 06:46:34'),
+(362, 46, 'Jhenaigati', 0, NULL, NULL, '2022-04-27 06:46:41', '2022-04-27 06:46:41'),
+(363, 47, 'Joypurhat Sadar', 0, NULL, NULL, '2022-04-27 06:47:13', '2022-04-27 06:47:13'),
+(364, 47, 'Akkelpur', 0, NULL, NULL, '2022-04-27 06:47:20', '2022-04-27 06:47:20'),
+(365, 47, 'Khetlal', 0, NULL, NULL, '2022-04-27 06:47:28', '2022-04-27 06:47:28'),
+(366, 47, 'Panchbibi', 0, NULL, NULL, '2022-04-27 06:47:38', '2022-04-27 06:47:38'),
+(367, 47, 'Kalai', 0, NULL, NULL, '2022-04-27 06:47:47', '2022-04-27 06:47:47'),
+(368, 48, 'Naogaon Sadar', 0, NULL, NULL, '2022-04-27 06:48:20', '2022-04-27 06:48:20'),
+(369, 48, 'Atrai', 0, NULL, NULL, '2022-04-27 06:48:36', '2022-04-27 06:48:36'),
+(370, 48, 'Dhamoirhat', 0, NULL, NULL, '2022-04-27 06:48:55', '2022-04-27 06:48:55'),
+(371, 48, 'Badalgachhi', 0, NULL, NULL, '2022-04-27 06:49:07', '2022-04-27 06:49:07'),
+(372, 48, 'Niamatpur', 0, NULL, NULL, '2022-04-27 06:49:16', '2022-04-27 06:49:16'),
+(373, 48, 'Manda', 0, NULL, NULL, '2022-04-27 06:49:23', '2022-04-27 06:49:23'),
+(374, 48, 'Mohadevpur', 0, NULL, NULL, '2022-04-27 06:49:31', '2022-04-27 06:49:31'),
+(375, 48, 'Patnitala', 0, NULL, NULL, '2022-04-27 06:49:38', '2022-04-27 06:49:38'),
+(376, 48, 'Porsha', 0, NULL, NULL, '2022-04-27 06:49:45', '2022-04-27 06:49:45'),
+(377, 48, 'Sapahar', 0, NULL, NULL, '2022-04-27 06:49:53', '2022-04-27 06:49:53'),
+(378, 48, 'Raninagar', 0, NULL, NULL, '2022-04-27 06:50:00', '2022-04-27 06:50:00'),
+(379, 49, 'Gomastapur', 0, NULL, NULL, '2022-04-27 06:51:28', '2022-04-27 06:51:28'),
+(380, 49, 'Nawabganj Sadar', 0, NULL, NULL, '2022-04-27 06:51:36', '2022-04-27 06:51:36'),
+(381, 49, 'Nachole', 0, NULL, NULL, '2022-04-27 06:51:44', '2022-04-27 06:51:44'),
+(382, 49, 'Bholahat', 0, NULL, NULL, '2022-04-27 06:51:54', '2022-04-27 06:51:54'),
+(383, 49, 'Shibganj', 0, NULL, NULL, '2022-04-27 06:52:04', '2022-04-27 06:52:04'),
+(384, 50, 'Natore Sadar', 0, NULL, NULL, '2022-04-27 06:52:59', '2022-04-27 06:52:59'),
+(385, 50, 'Bagatipara', 0, NULL, NULL, '2022-04-27 06:53:06', '2022-04-27 06:53:06'),
+(386, 50, 'Singra', 0, NULL, NULL, '2022-04-27 06:53:14', '2022-04-27 06:53:14'),
+(387, 50, 'Boraigram', 0, NULL, NULL, '2022-04-27 06:53:22', '2022-04-27 06:53:22'),
+(388, 50, 'Gurudaspur', 0, NULL, NULL, '2022-04-27 06:53:30', '2022-04-27 06:53:30'),
+(389, 50, 'Lalpur', 0, NULL, NULL, '2022-04-27 06:53:41', '2022-04-27 06:53:41'),
+(390, 51, 'Atgharia', 0, NULL, NULL, '2022-04-27 06:54:25', '2022-04-27 06:54:25'),
+(391, 51, 'Ishwardi', 0, NULL, NULL, '2022-04-27 06:54:33', '2022-04-27 06:54:33'),
+(392, 51, 'Chatmohar', 0, NULL, NULL, '2022-04-27 06:54:41', '2022-04-27 06:54:41'),
+(393, 51, 'Pabna Sadar', 0, NULL, NULL, '2022-04-27 06:54:48', '2022-04-27 06:54:48'),
+(394, 51, 'Faridpur', 0, NULL, NULL, '2022-04-27 06:54:56', '2022-04-27 06:54:56'),
+(395, 51, 'Bera', 0, NULL, NULL, '2022-04-27 06:55:06', '2022-04-27 06:55:06'),
+(396, 51, 'Bhangura', 0, NULL, NULL, '2022-04-27 06:55:16', '2022-04-27 06:55:16'),
+(397, 51, 'Santhia', 0, NULL, NULL, '2022-04-27 06:55:24', '2022-04-27 06:55:24'),
+(398, 51, 'Sujanagar', 0, NULL, NULL, '2022-04-27 06:55:31', '2022-04-27 06:55:31'),
+(399, 52, 'Bogura Sadar', 0, NULL, NULL, '2022-04-27 06:56:11', '2022-04-27 06:56:11'),
+(400, 52, 'Sherpur', 0, NULL, NULL, '2022-04-27 06:56:19', '2022-04-27 06:56:19'),
+(401, 52, 'Dhunat', 0, NULL, NULL, '2022-04-27 06:56:27', '2022-04-27 06:56:27'),
+(402, 52, 'Nandigram', 0, NULL, NULL, '2022-04-27 06:56:38', '2022-04-27 06:56:38'),
+(403, 52, 'Kahaloo', 0, NULL, NULL, '2022-04-27 06:56:47', '2022-04-27 06:56:47'),
+(404, 52, 'Adamdighi', 0, NULL, NULL, '2022-04-27 06:56:55', '2022-04-27 06:56:55'),
+(405, 52, 'Dupchanchia', 0, NULL, NULL, '2022-04-27 06:57:03', '2022-04-27 06:57:03'),
+(406, 52, 'Sariakandi', 0, NULL, NULL, '2022-04-27 06:57:10', '2022-04-27 06:57:10'),
+(407, 52, 'Gabtali', 0, NULL, NULL, '2022-04-27 06:57:22', '2022-04-27 06:57:22'),
+(408, 52, 'Shibganj', 0, NULL, NULL, '2022-04-27 06:57:30', '2022-04-27 06:57:30'),
+(409, 52, 'Sonatala', 0, NULL, NULL, '2022-04-27 06:57:37', '2022-04-27 06:57:37'),
+(410, 52, 'Shajahanpur', 0, NULL, NULL, '2022-04-27 06:57:45', '2022-04-27 06:57:45'),
+(411, 53, 'Bagmara', 0, NULL, NULL, '2022-04-27 06:58:28', '2022-04-27 06:58:28'),
+(412, 53, 'Paba', 0, NULL, NULL, '2022-04-27 06:58:41', '2022-04-27 06:58:41'),
+(413, 53, 'Charghat', 0, NULL, NULL, '2022-04-27 06:58:50', '2022-04-27 06:58:50'),
+(414, 53, 'Durgapur', 0, NULL, NULL, '2022-04-27 06:58:58', '2022-04-27 06:58:58'),
+(415, 53, 'Godagari', 0, NULL, NULL, '2022-04-27 06:59:05', '2022-04-27 06:59:05'),
+(416, 53, 'Mohanpur', 0, NULL, NULL, '2022-04-27 06:59:15', '2022-04-27 06:59:15'),
+(417, 53, 'Bagha', 0, NULL, NULL, '2022-04-27 06:59:24', '2022-04-27 06:59:24'),
+(418, 53, 'Puthia', 0, NULL, NULL, '2022-04-27 06:59:34', '2022-04-27 06:59:34'),
+(419, 53, 'Tanore', 0, NULL, NULL, '2022-04-27 06:59:42', '2022-04-27 06:59:42'),
+(420, 54, 'Sirajganj Sadar', 0, NULL, NULL, '2022-04-27 07:00:38', '2022-04-27 07:00:38'),
+(421, 54, 'Chauhali', 0, NULL, NULL, '2022-04-27 07:00:49', '2022-04-27 07:00:49'),
+(422, 54, 'Kamarkhanda', 0, NULL, NULL, '2022-04-27 07:01:07', '2022-04-27 07:01:07'),
+(423, 54, 'Belkuchi', 0, NULL, NULL, '2022-04-27 07:01:17', '2022-04-27 07:01:17'),
+(424, 54, 'Kazipur', 0, NULL, NULL, '2022-04-27 07:01:28', '2022-04-27 07:01:28'),
+(425, 54, 'Raiganj', 0, NULL, NULL, '2022-04-27 07:01:37', '2022-04-27 07:01:37'),
+(426, 54, 'Ullahpara', 0, NULL, NULL, '2022-04-27 07:01:53', '2022-04-27 07:01:53'),
+(427, 54, 'Tarash', 0, NULL, NULL, '2022-04-27 07:02:01', '2022-04-27 07:02:01'),
+(428, 54, 'Shahjadpur', 0, NULL, NULL, '2022-04-27 07:02:09', '2022-04-27 07:02:09'),
+(429, 55, 'Dinajpur Sadar', 0, NULL, NULL, '2022-04-27 07:02:43', '2022-04-27 07:02:43'),
+(430, 55, 'Birampur', 0, NULL, NULL, '2022-04-27 07:02:51', '2022-04-27 07:02:51'),
+(431, 55, 'Biral', 0, NULL, NULL, '2022-04-27 07:02:58', '2022-04-27 07:02:58'),
+(432, 55, 'Phulbari', 0, NULL, NULL, '2022-04-27 07:03:07', '2022-04-27 07:03:07'),
+(433, 55, 'Hakimpur', 0, NULL, NULL, '2022-04-27 07:03:18', '2022-04-27 07:03:18'),
+(434, 55, 'Khansama', 0, NULL, NULL, '2022-04-27 07:03:27', '2022-04-27 07:03:27'),
+(435, 55, 'Nawabganj', 0, NULL, NULL, '2022-04-27 07:03:35', '2022-04-27 07:03:35'),
+(436, 55, 'Parbatipur', 0, NULL, NULL, '2022-04-27 07:03:44', '2022-04-27 07:03:44'),
+(437, 55, 'Birganj', 0, NULL, NULL, '2022-04-27 07:03:52', '2022-04-27 07:03:52'),
+(438, 55, 'Kaharole', 0, NULL, NULL, '2022-04-27 07:04:00', '2022-04-27 07:04:00'),
+(439, 55, 'Chirirbandar', 0, NULL, NULL, '2022-04-27 07:04:08', '2022-04-27 07:04:08'),
+(440, 55, 'Ghoraghat', 0, NULL, NULL, '2022-04-27 07:04:15', '2022-04-27 07:04:15'),
+(441, 55, 'Bochaganj', 0, NULL, NULL, '2022-04-27 07:04:26', '2022-04-27 07:04:26'),
+(442, 56, 'Kurigram Sadar', 0, NULL, NULL, '2022-04-27 07:05:07', '2022-04-27 07:05:07'),
+(443, 56, 'Phulbari', 0, NULL, NULL, '2022-04-27 07:05:14', '2022-04-27 07:05:14'),
+(444, 56, 'Nageshwari', 0, NULL, NULL, '2022-04-27 07:05:22', '2022-04-27 07:05:22'),
+(445, 56, 'Rajarha', 0, NULL, NULL, '2022-04-27 07:05:31', '2022-04-27 07:05:31'),
+(446, 56, 'Bhurungamari', 0, NULL, NULL, '2022-04-27 07:05:39', '2022-04-27 07:05:39'),
+(447, 56, 'Ulipur', 0, NULL, NULL, '2022-04-27 07:05:50', '2022-04-27 07:05:50'),
+(448, 56, 'Char Rajibpur', 0, NULL, NULL, '2022-04-27 07:05:59', '2022-04-27 07:05:59'),
+(449, 56, 'Rowmari', 0, NULL, NULL, '2022-04-27 07:06:07', '2022-04-27 07:06:07'),
+(450, 56, 'Chilmari', 0, NULL, NULL, '2022-04-27 07:06:15', '2022-04-27 07:06:15'),
+(451, 57, 'Gaibandha Sadar', 0, NULL, NULL, '2022-04-27 07:08:15', '2022-04-27 07:08:15'),
+(452, 57, 'Palashbari', 0, NULL, NULL, '2022-04-27 07:17:07', '2022-04-27 07:17:07'),
+(453, 57, 'Fulchhari', 0, NULL, NULL, '2022-04-27 07:17:16', '2022-04-27 07:17:16'),
+(454, 57, 'Sadullapur', 0, NULL, NULL, '2022-04-27 07:17:27', '2022-04-27 07:17:27'),
+(455, 57, 'Sundarganj', 0, NULL, NULL, '2022-04-27 07:36:35', '2022-04-27 07:36:35'),
+(456, 57, 'Gobindaganj', 0, NULL, NULL, '2022-04-27 07:36:47', '2022-04-27 07:36:47'),
+(457, 57, 'Saghata', 0, NULL, NULL, '2022-04-27 07:36:59', '2022-04-27 07:36:59'),
+(458, 58, 'Lalmonirhat Sadar', 0, NULL, NULL, '2022-04-27 07:37:38', '2022-04-27 07:37:38'),
+(459, 58, 'Patgram', 0, NULL, NULL, '2022-04-27 07:37:46', '2022-04-27 07:37:46'),
+(460, 58, 'Aditmari', 0, NULL, NULL, '2022-04-27 07:37:56', '2022-04-27 07:37:56'),
+(461, 58, 'Hatibandha', 0, NULL, NULL, '2022-04-27 07:38:04', '2022-04-27 07:38:04'),
+(462, 58, 'Kaliganj', 0, NULL, NULL, '2022-04-27 07:38:12', '2022-04-27 07:38:12'),
+(463, 59, 'Nilphamari Sadar', 0, NULL, NULL, '2022-04-27 07:38:41', '2022-04-27 07:38:41'),
+(464, 59, 'Jaldhaka', 0, NULL, NULL, '2022-04-27 07:38:50', '2022-04-27 07:38:50'),
+(465, 59, 'Saidpur', 0, NULL, NULL, '2022-04-27 07:38:57', '2022-04-27 07:38:57'),
+(466, 59, 'Dimla', 0, NULL, NULL, '2022-04-27 07:39:05', '2022-04-27 07:39:05'),
+(467, 59, 'Kishoreganj', 0, NULL, NULL, '2022-04-27 07:39:12', '2022-04-27 07:39:12'),
+(468, 59, 'Domar', 0, NULL, NULL, '2022-04-27 07:39:19', '2022-04-27 07:39:19'),
+(469, 60, 'Panchagarh Sadar', 0, NULL, NULL, '2022-04-27 07:40:16', '2022-04-27 07:40:16'),
+(470, 60, 'Atwari', 0, NULL, NULL, '2022-04-27 07:40:25', '2022-04-27 07:40:25'),
+(471, 60, 'Boda', 0, NULL, NULL, '2022-04-27 07:40:35', '2022-04-27 07:40:35'),
+(472, 60, 'Debiganj', 0, NULL, NULL, '2022-04-27 07:40:43', '2022-04-27 07:40:43'),
+(473, 60, 'Tetulia', 0, NULL, NULL, '2022-04-27 07:40:50', '2022-04-27 07:40:50'),
+(474, 61, 'Rangpur Sadar', 0, NULL, NULL, '2022-04-27 07:41:44', '2022-04-27 07:41:44'),
+(475, 61, 'Badarganj', 0, NULL, NULL, '2022-04-27 07:41:54', '2022-04-27 07:41:54'),
+(476, 61, 'Kaunia', 0, NULL, NULL, '2022-04-27 07:42:03', '2022-04-27 07:42:03'),
+(477, 61, 'Gangachhara', 0, NULL, NULL, '2022-04-27 07:42:12', '2022-04-27 07:42:12'),
+(478, 61, 'Mithapukur', 0, NULL, NULL, '2022-04-27 07:42:19', '2022-04-27 07:42:19'),
+(479, 61, 'Taraganj', 0, NULL, NULL, '2022-04-27 07:42:26', '2022-04-27 07:42:26'),
+(480, 61, 'Pirganj', 0, NULL, NULL, '2022-04-27 07:42:34', '2022-04-27 07:42:34'),
+(481, 61, 'Pirgachha', 0, NULL, NULL, '2022-04-27 07:42:41', '2022-04-27 07:42:41'),
+(482, 62, 'Thakurgaon Sadar', 0, NULL, NULL, '2022-04-27 07:43:25', '2022-04-27 07:43:25'),
+(483, 62, 'Baliadangi', 0, NULL, NULL, '2022-04-27 07:43:34', '2022-04-27 07:43:34'),
+(484, 62, 'Pirganj', 0, NULL, NULL, '2022-04-27 07:43:41', '2022-04-27 07:43:41'),
+(485, 62, 'Ranisankail', 0, NULL, NULL, '2022-04-27 07:43:50', '2022-04-27 07:43:50'),
+(486, 62, 'Haripur', 0, NULL, NULL, '2022-04-27 07:43:57', '2022-04-27 07:43:57'),
+(487, 63, 'Habiganj Sadar', 0, NULL, NULL, '2022-04-27 07:44:22', '2022-04-27 07:44:22'),
+(488, 63, 'Lakhai', 0, NULL, NULL, '2022-04-27 07:44:32', '2022-04-27 07:44:32'),
+(489, 63, 'Madhabpur', 0, NULL, NULL, '2022-04-27 07:44:40', '2022-04-27 07:44:40'),
+(490, 63, 'Nabiganj', 0, NULL, NULL, '2022-04-27 07:44:50', '2022-04-27 07:44:50'),
+(491, 63, 'Chunarughat', 0, NULL, NULL, '2022-04-27 07:44:58', '2022-04-27 07:44:58'),
+(492, 63, 'Baniachang', 0, NULL, NULL, '2022-04-27 07:45:07', '2022-04-27 07:45:07'),
+(493, 63, 'Bahubal', 0, NULL, NULL, '2022-04-27 07:45:14', '2022-04-27 07:45:14'),
+(494, 63, 'Ajmiriganj', 0, NULL, NULL, '2022-04-27 07:45:22', '2022-04-27 07:45:22'),
+(495, 64, 'Moulvibazar Sadar', 0, NULL, NULL, '2022-04-27 08:04:29', '2022-04-27 08:04:29'),
+(496, 64, 'SreeMangal', 0, NULL, NULL, '2022-04-27 08:04:38', '2022-04-27 08:04:38'),
+(497, 64, 'Kulaura', 0, NULL, NULL, '2022-04-27 08:04:52', '2022-04-27 08:04:52'),
+(498, 64, 'Kamalganj', 0, NULL, NULL, '2022-04-27 08:05:04', '2022-04-27 08:05:04'),
+(499, 64, 'Juri', 0, NULL, NULL, '2022-04-27 08:05:16', '2022-04-27 08:05:16'),
+(500, 64, 'Barlekha', 0, NULL, NULL, '2022-04-27 08:05:26', '2022-04-27 08:05:26'),
+(501, 64, 'Rajnagar', 0, NULL, NULL, '2022-04-27 08:05:36', '2022-04-27 08:05:36'),
+(502, 65, 'Sunamganj Sadar', 0, NULL, NULL, '2022-04-27 08:06:12', '2022-04-27 08:06:12'),
+(503, 65, 'Sunamganj South', 0, NULL, NULL, '2022-04-27 08:06:24', '2022-04-27 08:06:24'),
+(504, 65, 'Chhatak', 0, NULL, NULL, '2022-04-27 08:06:33', '2022-04-27 08:06:33'),
+(505, 65, 'Jagannathpur', 0, NULL, NULL, '2022-04-27 08:06:41', '2022-04-27 08:06:41'),
+(506, 65, 'Bishwamvarpur', 0, NULL, NULL, '2022-04-27 08:06:49', '2022-04-27 08:06:49'),
+(507, 65, 'Tahirpur', 0, NULL, NULL, '2022-04-27 08:06:57', '2022-04-27 08:06:57'),
+(508, 65, 'Derai', 0, NULL, NULL, '2022-04-27 08:07:04', '2022-04-27 08:07:04'),
+(509, 65, 'Dharampasha', 0, NULL, NULL, '2022-04-27 08:07:12', '2022-04-27 08:07:12'),
+(510, 65, 'Sulla', 0, NULL, NULL, '2022-04-27 08:07:19', '2022-04-27 08:07:19'),
+(511, 65, 'Dowarabazar', 0, NULL, NULL, '2022-04-27 08:07:27', '2022-04-27 08:07:27'),
+(512, 65, 'Jamalganj', 0, NULL, NULL, '2022-04-27 08:07:34', '2022-04-27 08:07:34'),
+(513, 66, 'Sylhet Sadar', 0, NULL, NULL, '2022-04-27 08:08:01', '2022-04-27 08:08:01'),
+(514, 66, 'Beanibazar', 0, NULL, NULL, '2022-04-27 08:08:08', '2022-04-27 08:08:08'),
+(515, 66, 'Golapganj', 0, NULL, NULL, '2022-04-27 08:08:17', '2022-04-27 08:08:17'),
+(516, 66, 'Companiganj', 0, NULL, NULL, '2022-04-27 08:08:25', '2022-04-27 08:08:25'),
+(517, 66, 'Fenchuganj', 0, NULL, NULL, '2022-04-27 08:08:32', '2022-04-27 08:08:32'),
+(518, 66, 'Bishwanath', 0, NULL, NULL, '2022-04-27 08:08:42', '2022-04-27 08:08:42'),
+(519, 66, 'Gowainghat', 0, NULL, NULL, '2022-04-27 08:08:49', '2022-04-27 08:08:49'),
+(520, 66, 'Jaintiapur', 0, NULL, NULL, '2022-04-27 08:08:58', '2022-04-27 08:08:58'),
+(521, 66, 'Kanaighat', 0, NULL, NULL, '2022-04-27 08:09:05', '2022-04-27 08:09:05'),
+(522, 66, 'Balaganj', 0, NULL, NULL, '2022-04-27 08:09:13', '2022-04-27 08:09:13'),
+(523, 66, 'South Shurma', 0, NULL, NULL, '2022-04-27 08:09:21', '2022-04-27 08:09:21'),
+(524, 66, 'Zakiganj', 0, NULL, NULL, '2022-04-27 08:09:30', '2022-04-27 08:09:30');
 
 -- --------------------------------------------------------
 
@@ -3465,6 +4230,12 @@ ALTER TABLE `criminal_cases`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `criminal_cases_case_steps`
+--
+ALTER TABLE `criminal_cases_case_steps`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `criminal_cases_files`
 --
 ALTER TABLE `criminal_cases_files`
@@ -3608,6 +4379,12 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
+-- Indexes for table `setup_accuseds`
+--
+ALTER TABLE `setup_accuseds`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `setup_allegations`
 --
 ALTER TABLE `setup_allegations`
@@ -3710,6 +4487,12 @@ ALTER TABLE `setup_company_types`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `setup_complainants`
+--
+ALTER TABLE `setup_complainants`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `setup_compliance_categories`
 --
 ALTER TABLE `setup_compliance_categories`
@@ -3749,6 +4532,12 @@ ALTER TABLE `setup_court_last_orders`
 -- Indexes for table `setup_court_proceedings`
 --
 ALTER TABLE `setup_court_proceedings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setup_court_shorts`
+--
+ALTER TABLE `setup_court_shorts`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -3920,6 +4709,12 @@ ALTER TABLE `setup_programs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `setup_progress`
+--
+ALTER TABLE `setup_progress`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `setup_property_types`
 --
 ALTER TABLE `setup_property_types`
@@ -4060,25 +4855,31 @@ ALTER TABLE `contact_infos`
 -- AUTO_INCREMENT for table `criminal_cases`
 --
 ALTER TABLE `criminal_cases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `criminal_cases_case_steps`
+--
+ALTER TABLE `criminal_cases_case_steps`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `criminal_cases_files`
 --
 ALTER TABLE `criminal_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `criminal_case_activity_logs`
 --
 ALTER TABLE `criminal_case_activity_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `criminal_case_status_logs`
 --
 ALTER TABLE `criminal_case_status_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `external_files`
@@ -4156,7 +4957,7 @@ ALTER TABLE `land_information_files`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=437;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=447;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -4189,10 +4990,16 @@ ALTER TABLE `regulatory_compliances`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `setup_accuseds`
+--
+ALTER TABLE `setup_accuseds`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `setup_allegations`
 --
 ALTER TABLE `setup_allegations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `setup_areas`
@@ -4291,6 +5098,12 @@ ALTER TABLE `setup_company_types`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `setup_complainants`
+--
+ALTER TABLE `setup_complainants`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `setup_compliance_categories`
 --
 ALTER TABLE `setup_compliance_categories`
@@ -4333,6 +5146,12 @@ ALTER TABLE `setup_court_proceedings`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `setup_court_shorts`
+--
+ALTER TABLE `setup_court_shorts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `setup_day_notes`
 --
 ALTER TABLE `setup_day_notes`
@@ -4354,13 +5173,13 @@ ALTER TABLE `setup_digital_payments`
 -- AUTO_INCREMENT for table `setup_districts`
 --
 ALTER TABLE `setup_districts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `setup_divisions`
 --
 ALTER TABLE `setup_divisions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `setup_documents`
@@ -4501,6 +5320,12 @@ ALTER TABLE `setup_programs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `setup_progress`
+--
+ALTER TABLE `setup_progress`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `setup_property_types`
 --
 ALTER TABLE `setup_property_types`
@@ -4546,7 +5371,7 @@ ALTER TABLE `setup_supreme_court_subcategories`
 -- AUTO_INCREMENT for table `setup_thanas`
 --
 ALTER TABLE `setup_thanas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=525;
 
 --
 -- AUTO_INCREMENT for table `social_compliances`

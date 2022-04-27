@@ -121,6 +121,10 @@
 
     <script>
         $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+            });
             $("#data_table").DataTable({
                 "responsive": true,
                 "autoWidth": false,

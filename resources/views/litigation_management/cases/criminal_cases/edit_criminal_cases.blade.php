@@ -2388,7 +2388,16 @@
                                                                                                 class="form-control select2"
                                                                                         >
                                                                                             <option value="">Select</option>
-                                                                                            @foreach ($external_council as $item)
+                                                                                            @foreach ($exist_engaged_advocate as $item)
+                                                                                                <option
+                                                                                                    value="{{ $item->id }}"
+                                                                                                    {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
+                                                                                                    {{ $item->first_name }}
+                                                                                                    {{ $item->middle_name }}
+                                                                                                    {{ $item->last_name }}
+                                                                                                </option>
+                                                                                            @endforeach
+                                                                                            @foreach ($exist_engaged_advocate_associates as $item)
                                                                                                 <option
                                                                                                     value="{{ $item->id }}"
                                                                                                     {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
@@ -2431,7 +2440,7 @@
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="updated_remarks"
-                                                                                   class="col-sm-4 col-form-label"> Remarks </label>
+                                                                                   class="col-sm-4 col-form-label"> Steps To be taken next date </label>
                                                                             <div class="col-sm-8">
                                                     <textarea name="updated_remarks" class="form-control"
                                                               rows="3"
@@ -2565,9 +2574,13 @@
                                                                             <label for="activity_time_spent"
                                                                                    class="col-sm-4 col-form-label">Time Spent</label>
                                                                             <div class="col-sm-8">
+                                                                                @php
+                                                                                    $now = Carbon\Carbon::now();
+                                                                                    $days_count = Carbon\Carbon::parse($data->created_at)->diffInDays($now);
+                                                                                @endphp
 
-                                                                                <input type="text" class="form-control"
-                                                                                       id="activity_time_spent" name="activity_time_spent"
+                                                                                <input type="text" class="form-control" readonly
+                                                                                       id="activity_time_spent" name="activity_time_spent" value="{{ $days_count }} day"
                                                                                 >
                                                                                 @error('activity_time_spent')
                                                                                 <span
@@ -2585,10 +2598,19 @@
                                                                                     <div class="col-md-6">
                                                                                         <select name="activity_engaged_id[]" class="form-control select2" multiple>
                                                                                             <option value="">Select</option>
-                                                                                            @foreach ($external_council as $item)
+                                                                                            @foreach ($exist_engaged_advocate as $item)
                                                                                                 <option
                                                                                                     value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name}}"
-                                                                                                    {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
+                                                                                                    {{ old('activity_engaged_id') == $item->id ? 'selected' : '' }}>
+                                                                                                    {{ $item->first_name }}
+                                                                                                    {{ $item->middle_name }}
+                                                                                                    {{ $item->last_name }}
+                                                                                                </option>
+                                                                                            @endforeach
+                                                                                            @foreach ($exist_engaged_advocate_associates as $item)
+                                                                                                <option
+                                                                                                    value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name}}"
+                                                                                                    {{ old('activity_engaged_id') == $item->id ? 'selected' : '' }}>
                                                                                                     {{ $item->first_name }}
                                                                                                     {{ $item->middle_name }}
                                                                                                     {{ $item->last_name }}

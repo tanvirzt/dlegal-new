@@ -380,14 +380,34 @@ class CriminalCasesController extends Controller
         $required_documents_explode = explode(', ', $data->required_wanting_documents_id);
         $user = Admin::orderBy('name','asc')->get();
 
+        $exist_engaged_advocate = SetupExternalCouncil::where('id',$data->lawyer_advocate_id)->get();
+        $exist_engaged_advocate_associates = SetupExternalCouncilAssociate::where(['external_council_id'=>$data->lawyer_advocate_id,'delete_status'=>0])->get();
         $edit_case_steps = CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
 
 //        dd($assigned_lawyer_explode);
-        return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'received_documents_explode', 'required_documents_explode','user','complainant','accused','court_short','edit_case_steps'));
+        return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'received_documents_explode', 'required_documents_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates'));
     }
 
     public function update_criminal_cases(Request $request, $id)
     {
+
+        $complainant = $request->case_infos_complainant_informant_name ? implode(', ', $request->case_infos_complainant_informant_name) : null;
+        $accused = $request->case_infos_accused_name ? implode(', ', $request->case_infos_accused_name) : null;
+        $client = $request->client_name_write ? implode(', ', $request->client_name_write) : null;
+        $opposition = $request->opposition_write ? implode(', ', $request->opposition_write) : null;
+        $received_documents = $request->received_documents_write ? implode(', ', $request->received_documents_write) : null;
+        $wanting_documents = $request->required_wanting_documents_write ? implode(', ', $request->required_wanting_documents_write) : null;
+        $case_infos_case_no = $request->case_infos_case_no ? implode(', ', $request->case_infos_case_no) : null;
+        $case_infos_case_year = $request->case_infos_case_year ? implode(', ', $request->case_infos_case_year) : null;
+        $court_short_write = $request->court_short_write ? implode(', ', $request->court_short_write) : null;
+        $case_infos_sub_seq_case_no = $request->case_infos_sub_seq_case_no ? implode(', ', $request->case_infos_sub_seq_case_no) : null;
+        $case_infos_sub_seq_case_year = $request->case_infos_sub_seq_case_year ? implode(', ', $request->case_infos_sub_seq_case_year) : null;
+        $sub_seq_court_short_write = $request->sub_seq_court_short_write ? implode(', ', $request->sub_seq_court_short_write) : null;
+        $law_write = $request->law_write ? implode(', ', $request->law_write) : null;
+        $section_write = $request->section_write ? implode(', ', $request->section_write) : null;
+        $complainant_informant_representative = $request->complainant_informant_representative ? implode(', ', $request->complainant_informant_representative) : null;
+        $case_infos_accused_representative = $request->case_infos_accused_representative ? implode(', ', $request->case_infos_accused_representative) : null;
+
 
         DB::beginTransaction();
 
@@ -405,7 +425,7 @@ class CriminalCasesController extends Controller
         $data->case_no = $request->case_no;
         $data->name_of_the_court_id = $request->name_of_the_court_id;
         $data->case_infos_court_short_id = $request->case_infos_court_short_id ? implode(', ', $request->case_infos_court_short_id) : null;
-        $data->court_short_write = $request->court_short_write ? implode(', ', $request->court_short_write) : null;
+        $data->court_short_write = rtrim($court_short_write, ', ');
         $data->next_date = $request->next_date == 'dd/mm/yyyy' ? null : $request->next_date;
         $data->next_date_fixed_id = $request->next_date_fixed_id;
         $data->received_date = $request->received_date == 'dd/mm/yyyy' ? date('d/m/Y') : $request->received_date;
@@ -419,7 +439,7 @@ class CriminalCasesController extends Controller
         $data->client_category_id = $request->client_category_id;
         $data->client_subcategory_id = $request->client_subcategory_id;
         $data->client_id = $request->client_id ? implode(', ', $request->client_id) : null;
-        $data->client_name_write = $request->client_name_write ? implode(', ', $request->client_name_write) : null;
+        $data->client_name_write = rtrim($client, ', ');
         $data->client_address = $request->client_address;
         $data->client_mobile = $request->client_mobile;
         $data->client_email = $request->client_email;
@@ -440,7 +460,7 @@ class CriminalCasesController extends Controller
         $data->opposition_category_id = $request->opposition_category_id;
         $data->opposition_subcategory_id = $request->opposition_subcategory_id;
         $data->opposition_id = $request->opposition_id ? implode(', ', $request->opposition_id) : null;
-        $data->opposition_write = $request->opposition_write ? implode(', ', $request->opposition_write) : null;
+        $data->opposition_write = rtrim($opposition, ', ');
         $data->opposition_address = $request->opposition_address;
         $data->opposition_mobile = $request->opposition_mobile;
         $data->opposition_email = $request->opposition_email;
@@ -461,35 +481,35 @@ class CriminalCasesController extends Controller
         $data->assigned_lawyer_id = $request->assigned_lawyer_id ? implode(', ', $request->assigned_lawyer_id) : null;
         $data->lawyers_remarks = $request->lawyers_remarks;
         $data->received_documents_id = $request->received_documents_id ? implode(', ', $request->received_documents_id) : null;
-        $data->received_documents_write = $request->received_documents_write ? implode(', ', $request->received_documents_write) : null;
+        $data->received_documents_write = rtrim($received_documents, ', ');
         $data->required_wanting_documents_id = $request->required_wanting_documents_id ? implode(', ', $request->required_wanting_documents_id) : null;
-        $data->required_wanting_documents_write = $request->required_wanting_documents_write ? implode(', ', $request->required_wanting_documents_write) : null;
+        $data->required_wanting_documents_write = rtrim($wanting_documents,', ');
         $data->case_infos_division_id = $request->case_infos_division_id;
         $data->case_infos_district_id = $request->case_infos_district_id;
         $data->case_infos_thana_id = $request->case_infos_thana_id;
         $data->case_category_id = $request->case_category_id;
         $data->case_subcategory_id = $request->case_subcategory_id;
         $data->case_infos_case_title_id = $request->case_infos_case_title_id;
-        $data->case_infos_case_no = $request->case_infos_case_no ? implode(', ', $request->case_infos_case_no) : null;
-        $data->case_infos_case_year = $request->case_infos_case_year ? implode(', ', $request->case_infos_case_year) : '';
+        $data->case_infos_case_no = rtrim($case_infos_case_no,', ');
+        $data->case_infos_case_year = rtrim($case_infos_case_year, ', ');
         $data->case_infos_court_id = $request->case_infos_court_id ? implode(', ', $request->case_infos_court_id) : null;
         $data->case_infos_sub_seq_case_title_id = $request->case_infos_sub_seq_case_title_id;
-        $data->case_infos_sub_seq_case_no = $request->case_infos_sub_seq_case_no ? implode(', ', $request->case_infos_sub_seq_case_no) : null;
-        $data->case_infos_sub_seq_case_year = $request->case_infos_sub_seq_case_year ? implode(', ', $request->case_infos_sub_seq_case_year) : null;
+        $data->case_infos_sub_seq_case_no = rtrim($case_infos_sub_seq_case_no, ', ');
+        $data->case_infos_sub_seq_case_year = rtrim($case_infos_sub_seq_case_year, ', ');
         $data->case_infos_sub_seq_court_id = $request->case_infos_sub_seq_court_id ? implode(', ', $request->case_infos_sub_seq_court_id) : null;
         $data->case_infos_sub_seq_court_short_id = $request->case_infos_sub_seq_court_short_id ? implode(', ', $request->case_infos_sub_seq_court_short_id) : null;
-        $data->sub_seq_court_short_write = $request->sub_seq_court_short_write ? implode(', ', $request->sub_seq_court_short_write) : null;
+        $data->sub_seq_court_short_write = rtrim($sub_seq_court_short_write, ', ');
         $data->law_id = $request->law_id ? implode(', ', $request->law_id) : null;
-        $data->law_write = $request->law_write ? implode(', ', $request->law_write) : null;
+        $data->law_write = rtrim($law_write,', ');
         $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
-        $data->section_write = $request->section_write ? implode(', ', $request->section_write) : null;
+        $data->section_write = rtrim($section_write,', ');
         $data->date_of_filing = $request->date_of_filing == 'dd/mm/yyyy' ? null : $request->date_of_filing;
         $data->matter_id = $request->matter_id;
         $data->case_type_id = $request->case_type_id;
-        $data->case_infos_complainant_informant_name = $request->case_infos_complainant_informant_name ? implode(', ', $request->case_infos_complainant_informant_name) : null;
-        $data->complainant_informant_representative = $request->complainant_informant_representative ? implode(', ', $request->complainant_informant_representative) : null;
-        $data->case_infos_accused_name = $request->case_infos_accused_name ? implode(', ', $request->case_infos_accused_name) : null;
-        $data->case_infos_accused_representative = $request->case_infos_accused_representative ? implode(', ', $request->case_infos_accused_representative) : null;
+        $data->case_infos_complainant_informant_name = rtrim($complainant, ', ');
+        $data->complainant_informant_representative = rtrim($complainant_informant_representative,', ');
+        $data->case_infos_accused_name = rtrim($accused, ', ');
+        $data->case_infos_accused_representative = rtrim($case_infos_accused_representative, ', ');
         $data->prosecution_witness = $request->prosecution_witness;
         $data->defense_witness = $request->defense_witness;
         $data->case_infos_allegation_claim_id = $request->case_infos_allegation_claim_id;
@@ -842,7 +862,7 @@ class CriminalCasesController extends Controller
 
         $data = new CriminalCaseActivityLog();
         $data->case_id = $id;
-        $data->activity_date = $request->activity_date;
+        $data->activity_date = $request->activity_date == 'dd/mm/yyyy' ?  null : $request->activity_date;
         $data->activity_action = $request->activity_action;
         $data->activity_progress = $request->activity_progress;
         $data->activity_mode_id = $request->activity_mode_id;

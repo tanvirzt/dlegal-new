@@ -1759,9 +1759,7 @@
                                                 <h6 class="text-uppercase text-bold"><u> Lawyer
                                                         Information </u></h6>
                                                 <div class="form-group row">
-                                                    <label for="lawyer_advocate_id" class="col-sm-4 col-form-label">Name
-                                                        of
-                                                        Advocate/Law Firm</label>
+                                                    <label for="lawyer_advocate_id" class="col-sm-4 col-form-label">Name of Advocate/Law Firm</label>
                                                     <div class="col-sm-8">
                                                         <select name="lawyer_advocate_id" id="lawyer_advocate_id" class="form-control select2" action="{{ route('find-associates') }}">
                                                             <option value="">Select</option>

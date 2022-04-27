@@ -591,6 +591,8 @@
 
                             </div>
 
+
+
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Case Proceedings Log <span
@@ -607,27 +609,25 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table id="table_logs_text_center" class="table table-responsive no-footer dtr-inline">
+                                    <table class="table table-bordered table-striped data_table">
                                         <thead>
                                         <tr>
-                                            <th class="table_logs_text_center">Status</th>
-                                            <th class="table_logs_text_center">Order Date</th>
-                                            <th class="table_logs_text_center">Fixed For</th>
-                                            <th class="table_logs_text_center">Court Proceeding</th>
-                                            <th class="table_logs_text_center text-nowrap">Court Order</th>
-                                            <th class="table_logs_text_center text-nowrap">Day Note</th>
-                                            <th class="table_logs_text_center text-nowrap">Engaged Advocates</th>
-                                            <th class="table_logs_text_center text-nowrap">Next Day Presence</th>
-                                            <th class="text-left text-nowrap">Update</th>
+                                            <th class="text-nowrap">Date</th>
+                                            <th class="text-nowrap">Fixed For</th>
+                                            <th class="text-nowrap">Court Proceeding</th>
+                                            <th class="text-nowrap">Court Order</th>
+                                            <th class="text-nowrap">Next Day Presence</th>
+                                            <th class="text-nowrap">Day Note</th>
+                                            <th class="text-nowrap">Engaged Advocates</th>
+                                            <th class="text-nowrap">Update</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($case_logs as $logs)
                                             <tr>
-                                                <td class="table_logs_text_center"> {{ $logs->case_status_name }} {{ $logs->updated_case_status_write }} </td>
-                                                <td class="table_logs_text_center"> {{ $logs->updated_order_date }} </td>
-                                                <td class="table_logs_text_center"> {{ $logs->next_date_reason_name }} {{ $logs->updated_fixed_for_write }} </td>
-                                                <td class="text-left">
+                                                <td> {{ $logs->updated_order_date }} </td>
+                                                <td> {{ $logs->next_date_reason_name }} {{ $logs->updated_fixed_for_write }} </td>
+                                                <td >
 
                                                     @php
                                                         $proceedings = explode(', ',$logs->court_proceedings_id);
@@ -638,7 +638,7 @@
                                                         @endforeach
                                                     @endif
                                                     {{ $logs->court_proceedings_write }} </td>
-                                                <td class="text-left">
+                                                <td style="padding-right: 80px;">
                                                     @php
                                                         $order = explode(', ',$logs->updated_court_order_id);
                                                     @endphp
@@ -648,7 +648,9 @@
                                                         @endforeach
                                                     @endif
                                                     {{ $logs->updated_court_order_write }}</td>
-                                                <td class="table_logs_text_center">
+                                                <td> {{ $logs->next_day_presence_name }} </td>
+
+                                                <td>
                                                     @php
                                                         $notes = explode(', ',$logs->updated_day_notes_id);
                                                     @endphp
@@ -658,9 +660,8 @@
                                                         @endforeach
                                                     @endif
                                                     {{ $logs->updated_day_notes_write }} </td>
-                                                <td class="table_logs_text_center"> {{ $logs->first_name }} {{ $logs->middle_name }} {{ $logs->last_name }} {{ $logs->updated_engaged_advocate_write }} </td>
-                                                <td class="table_logs_text_center"> {{ $logs->next_day_presence_name }} </td>
-                                                <td class="table_logs_text_center"> {{ $logs->created_at }} </td>
+                                                <td > {{ $logs->first_name }} {{ $logs->middle_name }} {{ $logs->last_name }} {{ $logs->updated_engaged_advocate_write }} </td>
+                                                <td> {{ $logs->created_at }} </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -683,17 +684,17 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table class="table table-responsive no-footer dtr-inline data_table">
+                                    <table class="table table-bordered table-striped data_table">
                                         <thead>
                                         <tr>
-                                            <th class="text-left text-nowrap">Date</th>
-                                            <th class="text-left text-nowrap">Activity/Action</th>
-                                            <th class="text-left text-nowrap">Progress</th>
-                                            <th class="text-left text-nowrap">Mode</th>
-                                            <th class="text-left text-nowrap">Time Spent</th>
-                                            <th class="text-left text-nowrap padding_right_th">Engaged</th>
-                                            <th class="text-left text-nowrap">Forwarded To</th>
-                                            <th class="text-left text-nowrap">Update</th>
+                                            <th class="text-nowrap">Date</th>
+                                            <th class="text-nowrap">Activity/Action</th>
+                                            <th class="text-nowrap">Progress</th>
+                                            <th class="text-nowrap">Mode</th>
+                                            <th class="text-nowrap">Time Spent</th>
+                                            <th class="text-nowrap">Engaged</th>
+                                            <th class="text-nowrap">Forwarded To</th>
+                                            <th class="text-nowrap">Update</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -749,22 +750,22 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table id="data_table" class="table dataTable no-footer dtr-inline">
+                                    <table class="table table-bordered table-striped data_table">
                                         <thead>
                                         <tr>
-                                            <th class="text-nowrap text-left">Uploaded Document</th>
-                                            <th class="text-nowrap text-left">Uploaded By</th>
-                                            <th class="text-nowrap text-left">Date & Time</th>
-                                            <th class="text-nowrap text-left">Action</th>
+                                            <th>Uploaded Document</th>
+                                            <th>Uploaded By</th>
+                                            <th>Date & Time</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($criminal_cases_files as $files)
                                             <tr>
-                                                <td class="text-nowrap">{{ $files->uploaded_document }} </td>
-                                                <td class="text-nowrap">{{ $files->created_by }} </td>
-                                                <td class="text-nowrap">{{ $files->created_at }} </td>
-                                                <td class="text-nowrap">
+                                                <td>{{ $files->uploaded_document }} </td>
+                                                <td>{{ $files->created_by }} </td>
+                                                <td>{{ $files->created_at }} </td>
+                                                <td>
                                                     <form method="get" action="{{ route('delete-criminal-cases-files',$files->id) }}"
                                                           class="delete-user btn btn-outline-danger btn-xs">
                                                         @csrf
@@ -800,38 +801,38 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table class="data_table table table-responsive no-footer dtr-inline">
+                                    <table class="table table-bordered table-striped data_table">
                                         <thead>
                                         <tr>
-                                            <th class="table_logs_text_center">Bill Type</th>
-                                            <th class="table_logs_text_center">Payment Type</th>
-                                            <th class="table_logs_text_center">District Name</th>
-                                            <th class="table_logs_text_center">Panel Lawyer</th>
-                                            <th class="table_logs_text_center">Bill Amount</th>
-                                            <th class="table_logs_text_center">Billing Date</th>
-                                            <th class="table_logs_text_center">Bank Name</th>
-                                            <th class="table_logs_text_center">Bank Branch</th>
-                                            <th class="table_logs_text_center">Cheque No.</th>
-                                            <th class="table_logs_text_center">Payment Amount</th>
-                                            <th class="table_logs_text_center">Digital Payment</th>
-                                            <th class="table_logs_text_center">Approval</th>
+                                            <th>Bill Type</th>
+                                            <th>Payment Type</th>
+                                            <th>District Name</th>
+                                            <th>Panel Lawyer</th>
+                                            <th>Bill Amount</th>
+                                            <th>Billing Date</th>
+                                            <th>Bank Name</th>
+                                            <th>Bank Branch</th>
+                                            <th>Cheque No.</th>
+                                            <th>Payment Amount</th>
+                                            <th>Digital Payment</th>
+                                            <th>Approval</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($bill_history as $bill_logs)
                                             <tr>
-                                                <td class="table_logs_text_center"> {{ $bill_logs->bill_type_name }} </td>
-                                                <td class="table_logs_text_center"> {{ $bill_logs->payment_type }} </td>
-                                                <td class="table_logs_text_center"> {{ $bill_logs->district_name }} </td>
-                                                <td class="table_logs_text_center"> {{ $bill_logs->first_name }} </td>
-                                                <td class="table_logs_text_center"> {{ $bill_logs->bill_amount }} </td>
-                                                <td class="table_logs_text_center"> {{ $bill_logs->date_of_billing }} </td>
-                                                <td class="table_logs_text_center"> {{ $bill_logs->bank_name }} </td>
-                                                <td class="table_logs_text_center"> {{ $bill_logs->bank_branch_name }} </td>
-                                                <td class="table_logs_text_center"> {{ $bill_logs->cheque_no }} </td>
-                                                <td class="table_logs_text_center"> {{ $bill_logs->payment_amount }} </td>
-                                                <td class="table_logs_text_center"> {{ $bill_logs->digital_payment_type_name }} </td>
-                                                <td class="table_logs_text_center"> {{ $bill_logs->is_approved }} </td>
+                                                <td> {{ $bill_logs->bill_type_name }} </td>
+                                                <td> {{ $bill_logs->payment_type }} </td>
+                                                <td> {{ $bill_logs->district_name }} </td>
+                                                <td> {{ $bill_logs->first_name }} </td>
+                                                <td> {{ $bill_logs->bill_amount }} </td>
+                                                <td> {{ $bill_logs->date_of_billing }} </td>
+                                                <td> {{ $bill_logs->bank_name }} </td>
+                                                <td> {{ $bill_logs->bank_branch_name }} </td>
+                                                <td> {{ $bill_logs->cheque_no }} </td>
+                                                <td> {{ $bill_logs->payment_amount }} </td>
+                                                <td> {{ $bill_logs->digital_payment_type_name }} </td>
+                                                <td> {{ $bill_logs->is_approved }} </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -1244,8 +1245,13 @@
                                            class="col-sm-4 col-form-label">Time Spent</label>
                                     <div class="col-sm-8">
 
-                                        <input type="text" class="form-control"
-                                               id="activity_time_spent" name="activity_time_spent"
+                                        @php
+                                            $now = Carbon\Carbon::now();
+                                            $days_count = Carbon\Carbon::parse($data->created_at)->diffInDays($now);
+                                        @endphp
+
+                                        <input type="text" class="form-control" readonly
+                                               id="activity_time_spent" name="activity_time_spent" value="{{ $days_count }} day"
                                         >
                                         @error('activity_time_spent')
                                         <span
