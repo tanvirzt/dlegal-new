@@ -39,6 +39,11 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('new/plugins/fontawesome-free/css/all.min.css') }}">
+    <script src="{{ asset('plugins/fullcalendar/main.min.js') }}"></script>
+    <script src="{{ asset('plugins/fullcalendar-daygrid/main.min.js') }}"></script>
+    <script src="{{ asset('plugins/fullcalendar-timegrid/main.min.js') }}"></script>
+    <script src="{{ asset('plugins/fullcalendar-interaction/main.min.js') }}"></script>
+    <script src="{{ asset('plugins/fullcalendar-bootstrap/main.min.js') }}"></script>
   <!-- Theme style -->
   {{-- <link rel="stylesheet" href="{{ asset('new/dist/css/adminlte.min.css') }}"> --}}
 
@@ -114,6 +119,12 @@
 
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script src="{{ asset('plugins/fullcalendar/main.min.js') }}"></script>
+    <script src="{{ asset('plugins/fullcalendar-daygrid/main.min.js') }}"></script>
+    <script src="{{ asset('plugins/fullcalendar-timegrid/main.min.js') }}"></script>
+    <script src="{{ asset('plugins/fullcalendar-interaction/main.min.js') }}"></script>
+    <script src="{{ asset('plugins/fullcalendar-bootstrap/main.min.js') }}"></script>
+
 
 {{-- new  --}}
 
@@ -153,6 +164,7 @@
 
          });
     </script>
+
 
 </body>
 </html>

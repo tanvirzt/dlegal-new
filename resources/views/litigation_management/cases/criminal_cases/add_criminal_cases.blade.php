@@ -433,7 +433,7 @@
                                                             <div class="col-md-6">
                                                                 <select name="client_id[]"
                                                                         id="client_id"
-                                                                        class="form-control select2" multiple>
+                                                                        class="form-control select2" data-placeholder="Select" multiple>
                                                                     <option value="">Select</option>
                                                                     @foreach($client as $item)
                                                                         <option
@@ -744,7 +744,7 @@
                                                             <div class="col-md-6">
                                                                 <select name="opposition_id[]"
                                                                         id="opposition_id"
-                                                                        class="form-control select2" multiple>
+                                                                        class="form-control select2" data-placeholder="Select" multiple>
                                                                     <option value="">Select</option>
                                                                     @foreach($opposition as $item)
                                                                         <option
@@ -1166,7 +1166,7 @@
                                                         of the Court </label>
                                                     <div class="col-sm-8">
                                                         <select name="case_infos_court_id[]"
-                                                                class="form-control select2" multiple>
+                                                                class="form-control select2" data-placeholder="Select" multiple>
                                                             <option value="">Select</option>
                                                             @foreach($court as $item)
                                                                 <option
@@ -1185,7 +1185,7 @@
                                                             <div class="col-md-6">
                                                                 <select name="case_infos_court_short_id[]"
                                                                         id="case_infos_court_short_id"
-                                                                        class="form-control select2" multiple>
+                                                                        class="form-control select2" data-placeholder="Select" multiple>
                                                                     <option value="">Select</option>
                                                                     @foreach($court_short as $item)
                                                                         <option
@@ -1301,7 +1301,7 @@
                                                            class="col-sm-4 col-form-label"> Sub-Seq. Court </label>
                                                     <div class="col-sm-8">
                                                         <select name="case_infos_sub_seq_court_id[]"
-                                                                class="form-control select2" multiple>
+                                                                class="form-control select2" data-placeholder="Select" multiple>
                                                             <option value="">Select</option>
                                                             @foreach($court as $item)
                                                                 <option
@@ -1320,7 +1320,7 @@
                                                             <div class="col-md-6">
                                                                 <select name="case_infos_sub_seq_court_short_id[]"
                                                                         id="case_infos_sub_seq_court_short_id"
-                                                                        class="form-control select2" multiple>
+                                                                        class="form-control select2" data-placeholder="Select" multiple>
                                                                     <option value="">Select</option>
                                                                     @foreach($court_short as $item)
                                                                         <option
@@ -1367,7 +1367,7 @@
                                                             <div class="col-md-6">
                                                                 <select name="law_id[]"
                                                                         id="law_id"
-                                                                        class="form-control select2" multiple>
+                                                                        class="form-control select2" data-placeholder="Select" multiple>
                                                                     <option value="">Select</option>
                                                                     @foreach($law as $item)
                                                                         <option
@@ -1414,7 +1414,7 @@
                                                             <div class="col-md-6">
                                                                 <select name="section_id[]"
                                                                         id="section_id"
-                                                                        class="form-control select2" multiple>
+                                                                        class="form-control select2" data-placeholder="Select" multiple>
                                                                     <option value="">Select</option>
                                                                     @foreach($section as $item)
                                                                         <option
@@ -1776,7 +1776,7 @@
                                                     <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Name of Assigned
                                                         Lawyer</label>
                                                     <div class="col-sm-8">
-                                                        <select name="assigned_lawyer_id[]" id="assigned_lawyer_id" class="form-control select2" multiple>
+                                                        <select name="assigned_lawyer_id[]" id="assigned_lawyer_id" class="form-control select2" data-placeholder="Select" multiple>
                                                             <option value="">Select</option>
 
                                                         </select>
@@ -1813,7 +1813,7 @@
                                                             <div class="col-md-6">
                                                                 <select name="received_documents_id[]"
                                                                         id="received_documents_id"
-                                                                        class="form-control select2" multiple>
+                                                                        class="form-control select2" data-placeholder="Select" multiple>
                                                                     <option value="">Select</option>
                                                                     @foreach($documents as $item)
                                                                         <option
@@ -1861,7 +1861,7 @@
                                                             <div class="col-md-6">
                                                                 <select name="required_wanting_documents_id[]"
                                                                         id="required_wanting_documents_id"
-                                                                        class="form-control select2" multiple>
+                                                                        class="form-control select2" data-placeholder="Select" multiple>
                                                                     <option value="">Select</option>
                                                                     @foreach($documents as $item)
                                                                         <option

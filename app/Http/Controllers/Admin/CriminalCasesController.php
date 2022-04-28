@@ -180,9 +180,9 @@ class CriminalCasesController extends Controller
         $data->in_favour_of_id = $request->in_favour_of_id;
         $data->case_no = $request->case_no;
         $data->name_of_the_court_id = $request->name_of_the_court_id;
-        $data->next_date = $request->next_date == 'dd/mm/yyyy' ? null : $request->next_date;
+        $data->next_date = $request->next_date == 'dd/mm/yyyy' || $request->next_date == 'NaN/NaN/NaN' ? null : $request->next_date;
         $data->next_date_fixed_id = $request->next_date_fixed_id;
-        $data->received_date = $request->received_date == 'dd/mm/yyyy' ? date('d/m/Y') : $request->received_date;
+        $data->received_date = $request->received_date == 'dd/mm/yyyy' || $request->received_date == 'NaN/NaN/NaN' ? date('d/m/Y') : $request->received_date;
         $data->mode_of_receipt_id = $request->mode_of_receipt_id;
         $data->referrer_id = $request->referrer_id;
         $data->referrer_write = $request->referrer_write;
@@ -259,7 +259,7 @@ class CriminalCasesController extends Controller
         $data->law_write = rtrim($law_write,', ');
         $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
         $data->section_write = rtrim($section_write,', ');
-        $data->date_of_filing = $request->date_of_filing == 'dd/mm/yyyy' ? null : $request->date_of_filing;
+        $data->date_of_filing = $request->date_of_filing == 'dd/mm/yyyy' || $request->date_of_filing == 'NaN/NaN/NaN' ? null : $request->date_of_filing;
         $data->matter_id = $request->matter_id;
         $data->case_type_id = $request->case_type_id;
         $data->case_infos_complainant_informant_name = rtrim($complainant, ', ');
@@ -279,16 +279,16 @@ class CriminalCasesController extends Controller
 
         $steps = new CriminalCasesCaseSteps();
         $steps->criminal_case_id = $data->id;
-        $steps->case_steps_filing = $request->case_steps_filing;
-        $steps->taking_cognizance = $request->taking_cognizance;
-        $steps->arrest_surrender_cw = $request->arrest_surrender_cw;
-        $steps->case_steps_bail = $request->case_steps_bail;
-        $steps->case_steps_court_transfer = $request->case_steps_court_transfer;
-        $steps->case_steps_charge_framed = $request->case_steps_charge_framed;
-        $steps->case_steps_witness_from = $request->case_steps_witness_from;
-        $steps->case_steps_witness_to = $request->case_steps_witness_to;
-        $steps->case_steps_argument = $request->case_steps_argument;
-        $steps->case_steps_judgement_order = $request->case_steps_judgement_order;
+        $steps->case_steps_filing = $request->case_steps_filing == 'dd/mm/yyyy' || $request->case_steps_filing == 'NaN/NaN/NaN' ? null : $request->case_steps_filing;
+        $steps->taking_cognizance = $request->taking_cognizance == 'dd/mm/yyyy' || $request->taking_cognizance == 'NaN/NaN/NaN' ? null : $request->taking_cognizance;
+        $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd/mm/yyyy' || $request->arrest_surrender_cw == 'NaN/NaN/NaN' ? null : $request->arrest_surrender_cw;
+        $steps->case_steps_bail = $request->case_steps_bail == 'dd/mm/yyyy' || $request->case_steps_bail == 'NaN/NaN/NaN' ? null : $request->case_steps_bail;
+        $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd/mm/yyyy' || $request->case_steps_court_transfer == 'NaN/NaN/NaN' ? null : $request->case_steps_court_transfer;
+        $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd/mm/yyyy' || $request->case_steps_charge_framed == 'NaN/NaN/NaN' ? null : $request->case_steps_charge_framed;
+        $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd/mm/yyyy' || $request->case_steps_witness_from == 'NaN/NaN/NaN' ? null : $request->case_steps_witness_from;
+        $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd/mm/yyyy' || $request->case_steps_witness_to == 'NaN/NaN/NaN' ? null : $request->case_steps_witness_to;
+        $steps->case_steps_argument = $request->case_steps_argument == 'dd/mm/yyyy' || $request->case_steps_argument == 'NaN/NaN/NaN' ? null : $request->case_steps_argument;
+        $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd/mm/yyyy' || $request->case_steps_judgement_order == 'NaN/NaN/NaN'  ? null : $request->case_steps_judgement_order;
         $steps->case_steps_summary_judgement_order = $request->case_steps_summary_judgement_order;
         $steps->case_steps_remarks = $request->case_steps_remarks;
 
@@ -426,9 +426,9 @@ class CriminalCasesController extends Controller
         $data->name_of_the_court_id = $request->name_of_the_court_id;
         $data->case_infos_court_short_id = $request->case_infos_court_short_id ? implode(', ', $request->case_infos_court_short_id) : null;
         $data->court_short_write = rtrim($court_short_write, ', ');
-        $data->next_date = $request->next_date == 'dd/mm/yyyy' ? null : $request->next_date;
+        $data->next_date = $request->next_date == 'dd/mm/yyyy' || $request->next_date == 'NaN/NaN/NaN' ? null : $request->next_date;
         $data->next_date_fixed_id = $request->next_date_fixed_id;
-        $data->received_date = $request->received_date == 'dd/mm/yyyy' ? date('d/m/Y') : $request->received_date;
+        $data->received_date = $request->received_date == 'dd/mm/yyyy' || $request->received_date == 'NaN/NaN/NaN' ? date('d/m/Y') : $request->received_date;
         $data->mode_of_receipt_id = $request->mode_of_receipt_id;
         $data->referrer_id = $request->referrer_id;
         $data->referrer_write = $request->referrer_write;
@@ -503,7 +503,7 @@ class CriminalCasesController extends Controller
         $data->law_write = rtrim($law_write,', ');
         $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
         $data->section_write = rtrim($section_write,', ');
-        $data->date_of_filing = $request->date_of_filing == 'dd/mm/yyyy' ? null : $request->date_of_filing;
+        $data->date_of_filing = $request->date_of_filing == 'dd/mm/yyyy' || $request->date_of_filing == 'NaN/NaN/NaN' ? null : $request->date_of_filing;
         $data->matter_id = $request->matter_id;
         $data->case_type_id = $request->case_type_id;
         $data->case_infos_complainant_informant_name = rtrim($complainant, ', ');
@@ -523,16 +523,16 @@ class CriminalCasesController extends Controller
 
 
         $steps = CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
-        $steps->case_steps_filing = $request->case_steps_filing;
-        $steps->taking_cognizance = $request->taking_cognizance;
-        $steps->arrest_surrender_cw = $request->arrest_surrender_cw;
-        $steps->case_steps_bail = $request->case_steps_bail;
-        $steps->case_steps_court_transfer = $request->case_steps_court_transfer;
-        $steps->case_steps_charge_framed = $request->case_steps_charge_framed;
-        $steps->case_steps_witness_from = $request->case_steps_witness_from;
-        $steps->case_steps_witness_to = $request->case_steps_witness_to;
-        $steps->case_steps_argument = $request->case_steps_argument;
-        $steps->case_steps_judgement_order = $request->case_steps_judgement_order;
+        $steps->case_steps_filing = $request->case_steps_filing == 'dd/mm/yyyy' || $request->case_steps_filing == 'NaN/NaN/NaN' ? null : $request->case_steps_filing;
+        $steps->taking_cognizance = $request->taking_cognizance == 'dd/mm/yyyy' || $request->taking_cognizance == 'NaN/NaN/NaN' ? null : $request->taking_cognizance;
+        $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd/mm/yyyy' || $request->arrest_surrender_cw == 'NaN/NaN/NaN' ? null : $request->arrest_surrender_cw;
+        $steps->case_steps_bail = $request->case_steps_bail == 'dd/mm/yyyy' || $request->case_steps_bail == 'NaN/NaN/NaN' ? null : $request->case_steps_bail;
+        $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd/mm/yyyy' || $request->case_steps_court_transfer == 'NaN/NaN/NaN' ? null : $request->case_steps_court_transfer;
+        $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd/mm/yyyy' || $request->case_steps_charge_framed == 'NaN/NaN/NaN' ? null : $request->case_steps_charge_framed;
+        $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd/mm/yyyy' || $request->case_steps_witness_from == 'NaN/NaN/NaN' ? null : $request->case_steps_witness_from;
+        $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd/mm/yyyy' || $request->case_steps_witness_to == 'NaN/NaN/NaN' ? null : $request->case_steps_witness_to;
+        $steps->case_steps_argument = $request->case_steps_argument == 'dd/mm/yyyy' || $request->case_steps_argument == 'NaN/NaN/NaN' ? null : $request->case_steps_argument;
+        $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd/mm/yyyy' || $request->case_steps_judgement_order == 'NaN/NaN/NaN'  ? null : $request->case_steps_judgement_order;
         $steps->case_steps_summary_judgement_order = $request->case_steps_summary_judgement_order;
         $steps->case_steps_remarks = $request->case_steps_remarks;
 

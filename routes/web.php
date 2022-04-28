@@ -626,6 +626,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-progress/{id}','AdminSetupController@update_progress')->name('update-progress');
         Route::post('delete-progress/{id}','AdminSetupController@delete_progress')->name('delete-progress');
 
+        Route::get('litigation-calender-list','LitigationCalenderController@litigation_calender_list')->name('litigation-calender-list');
+        Route::get('litigation-calender-short','LitigationCalenderController@litigation_calender_short')->name('litigation-calender-short');
 
 
     });
