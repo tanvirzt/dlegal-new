@@ -75,13 +75,23 @@
                                 <div class="card-header">
                                     <div class="text-center mr-md-5">
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" class="custom-control-input" id="appeal_case"
-                                                   name="case" value="Appeal Case">
-                                            <label class="custom-control-label" for="appeal_case">Appeal Case</label>
+                                            <input type="checkbox" class="custom-control-input" id="original_case"
+                                                   name="original_case" value="Appeal Case" checked>
+                                            <label class="custom-control-label" for="original_case">Original Case</label>
                                         </div>
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" class="custom-control-input" id="revision_case"
-                                                   name="case" value="Revision Case">
+                                        <div
+                                            class="custom-control custom-radio custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input"
+                                                   id="appeal_case"
+                                                   name="appeal_case" value="Appeal Case" @if($data->appeal_case == 'Appeal Case') checked @endif >
+                                            <label class="custom-control-label" for="appeal_case">Appeal
+                                                Case</label>
+                                        </div>
+                                        <div
+                                            class="custom-control custom-radio custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input"
+                                                   id="revision_case"
+                                                   name="revision_case" value="Revision Case" @if($data->revision_case == 'Revision Case') checked @endif>
                                             <label class="custom-control-label" for="revision_case">Revision
                                                 Case</label>
                                         </div>
@@ -89,11 +99,10 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <div class="row">
-
+                                    <div class="row original_case">
                                         <div class="col-md-6">
 
-                                            <div class="appeal_case_info">
+                                            <div class="">
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h6 class="text-uppercase text-bold"><u> Basic Information </u>
@@ -109,7 +118,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Case No.</td>
-                                                                <td>{{ $data->client_name }}</td>
+                                                                <td>{{ $data->case_no }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Name of the Court</td>
@@ -125,7 +134,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>In favour of</td>
-                                                                <td>{{ $data->ic_first_name }} {{ $data->ic_middle_name }} {{ $data->ic_last_name }}</td>
+                                                                <td>{{ $data->in_favour_of_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Received Date</td>
@@ -139,15 +148,6 @@
                                                                 <td>Received By</td>
                                                                 <td>{{ $data->received_by }}</td>
                                                             </tr>
-                                                            <tr>
-                                                                <td>Receiver Contact Details</td>
-                                                                <td>{{ $data->receiver_contact_details }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Received By</td>
-                                                                <td>{{ $data->received_by }}</td>
-                                                            </tr>
-
                                                             </tbody>
                                                         </table>
 
@@ -157,6 +157,7 @@
                                                     <div class="card-body">
                                                         <h6 class="text-uppercase text-bold"><u> Client Information </u>
                                                         </h6>
+
                                                         <table class="table table-bordered">
 
                                                             <tbody>
@@ -191,12 +192,14 @@
                                                             </tr>
                                                             </tbody>
                                                         </table>
+
                                                     </div>
                                                 </div>
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h6 class="text-uppercase text-bold"><u> Documents
-                                                                Information </u></h6>
+                                                        <h6 class="text-uppercase text-bold"><u> Documents Information </u>
+                                                        </h6>
+
                                                         <table class="table table-bordered">
 
                                                             <tbody>
@@ -209,15 +212,16 @@
                                                                 <td>Required/Missing Documents</td>
                                                                 <td>{{ $data->required_missing_documents }}</td>
                                                             </tr>
-
                                                             </tbody>
                                                         </table>
+
                                                     </div>
                                                 </div>
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h6 class="text-uppercase text-bold"><u> Update Case Status </u>
                                                         </h6>
+
                                                         <table class="table table-bordered">
 
                                                             <tbody>
@@ -246,22 +250,21 @@
                                                                 <td>Next Day Presence</td>
                                                                 <td>{{ $data->next_day_presence_name }}</td>
                                                             </tr>
-
                                                             </tbody>
                                                         </table>
+
                                                     </div>
                                                 </div>
                                             </div>
 
                                         </div>
-
-
                                         <div class="col-md-6">
-                                            <div class="revision_case_info">
+                                            <div class="">
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h6 class="text-uppercase text-bold"><u> Case Information </u>
                                                         </h6>
+
                                                         <table class="table table-bordered">
 
                                                             <tbody>
@@ -300,15 +303,15 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Division</td>
-                                                                <td>{{ $data->client_division_name }}</td>
+                                                                <td>{{ $data->case_infos_division_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>District</td>
-                                                                <td>{{ $data->client_district_name }}</td>
+                                                                <td>{{ $data->case_infos_district_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Thana</td>
-                                                                <td>{{ $data->client_thana_name }}</td>
+                                                                <td>{{ $data->case_infos_thana_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Allegation/Claim</td>
@@ -327,8 +330,8 @@
                                                                 <td>{{ $data->summary_facts }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Name of the Complainant</td>
-                                                                <td>{{ $data->complainant_name }}</td>
+                                                                <td>Name of the Plaintiff</td>
+                                                                <td>{{ $data->plaintiff_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Name of the Representative</td>
@@ -339,17 +342,28 @@
                                                                 <td>{{ $data->representative_details }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Name of the Accused</td>
-                                                                <td>{{ $data->accused_name }}</td>
+                                                                <td>Name of the Defendant</td>
+                                                                <td>{{ $data->defendant_name }}</td>
                                                             </tr>
+                                                            <tr>
+                                                                <td>Name of the Representative</td>
+                                                                <td>{{ $data->defendant_representative_name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Details of the Representative</td>
+                                                                <td>{{ $data->defendant_representative_details }}</td>
+                                                            </tr>
+
                                                             </tbody>
                                                         </table>
+
                                                     </div>
                                                 </div>
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h6 class="text-uppercase text-bold"><u> Lawyers
-                                                                Information </u></h6>
+                                                        <h6 class="text-uppercase text-bold"><u> Lawyers Information </u>
+                                                        </h6>
+
                                                         <table class="table table-bordered">
 
                                                             <tbody>
@@ -362,9 +376,9 @@
                                                                 <td>Name of Assigned Lawyer</td>
                                                                 <td>{{ $data->assigned_lawyer }}</td>
                                                             </tr>
-
                                                             </tbody>
                                                         </table>
+
                                                     </div>
                                                 </div>
                                                 <div class="card">
@@ -392,6 +406,114 @@
                                                                 <td>Comments</td>
                                                                 <td>{{ $data->comments }}</td>
                                                             </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="appeal_case_info" style="display: none;">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="text-uppercase text-bold"><u> Case Information </u>
+                                                        </h6>
+
+                                                        <table class="table table-bordered">
+
+                                                            <tbody>
+
+                                                            <tr>
+                                                                <td>Original Case No.</td>
+                                                                <td> {{ $data->appeal_original_case_no }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Subsequent Case No.</td>
+                                                                <td>{{ $data->appeal_subsequent_case_no }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Date of Judgement & Order</td>
+                                                                <td>{{ $data->appeal_date_of_judgement_order }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Summary of Judgement & Order</td>
+                                                                <td>{{ $data->appeal_summary_of_judgement_order }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Appeal Case Category</td>
+                                                                <td>{{ $data->appeal_case_category }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Appeal Case Subcategory</td>
+                                                                <td>{{ $data->appeal_case_subcategory }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Appeal Case Type</td>
+                                                                <td>{{ $data->appeal_case_type }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Appeal Case No.</td>
+                                                                <td>{{ $data->appeal_case_no }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Name of the filing Court</td>
+                                                                <td>{{ $data->appellate_filing_court }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Date of filing</td>
+                                                                <td>{{ $data->appeal_date_of_filing }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Law</td>
+                                                                <td>{{ $data->appeal_law }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Section</td>
+                                                                <td>{{ $data->appeal_section }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Allegation/Claim</td>
+                                                                <td>{{ $data->appeal_allegation_claim }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Amount of Money</td>
+                                                                <td>{{ $data->appeal_amount_of_money }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Another Claim (if any)</td>
+                                                                <td>{{ $data->appeal_another_claim }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Summary of Facts</td>
+                                                                <td>{{ $data->appeal_summary_facts }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Name of the Appellant</td>
+                                                                <td>{{ $data->appeal_name_of_the_appellant }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Name of the Representative</td>
+                                                                <td>{{ $data->appeal_representative }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Details of the Representative</td>
+                                                                <td>{{ $data->appeal_representative_details }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Name of the Respondent/Opposite Party</td>
+                                                                <td>{{ $data->appeal_respondent_opposite_party }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Name of the Representative</td>
+                                                                <td>{{ $data->appeal_opposite_representative }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Details of the Representative</td>
+                                                                <td>{{ $data->appeal_opposite_representative_details }}</td>
+                                                            </tr>
 
                                                             </tbody>
                                                         </table>
@@ -401,113 +523,113 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Case Information </u>
-                                                    </h6>
+                                            <div class="revision_case_info" style="display: none;">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="text-uppercase text-bold"><u> Case Information </u>
+                                                        </h6>
 
-                                                    <table class="table table-bordered">
+                                                        <table class="table table-bordered">
 
-                                                        <tbody>
+                                                            <tbody>
 
-                                                        <tr>
-                                                            <td>Original Case No.</td>
-                                                            <td> {{ $data->case_status_name }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Subsequent Case No.</td>
-                                                            <td>{{ $data->status_next_date }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Date of Judgement & Order</td>
-                                                            <td>{{ $data->status_next_date_reason_name }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Summary of Judgement & Order</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Appeal Case Category</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Appeal Case Subcategory</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Appeal Case Type</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Appeal Case No.</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Name of the filing Court</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Date of filing</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Law</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Section</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Allegation/Claim</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Amount of Money</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Another Claim (if any)</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Summary of Facts</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Name of the Appellant</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Name of the Representative</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Details of the Representative</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Name of the Respondent/Opposite Party</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Name of the Representative</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Details of the Representative</td>
-                                                            <td>{{ $data->comments }}</td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td>Original Case No.</td>
+                                                                <td> {{ $data->revision_original_case_no }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Subsequent Case No.</td>
+                                                                <td>{{ $data->revision_subsequent_case_no }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Date of Judgement & Order</td>
+                                                                <td>{{ $data->revision_date_of_judgement_order }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Summary of Judgement & Order</td>
+                                                                <td>{{ $data->revision_summary_of_judgement_order }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Revision Case Category</td>
+                                                                <td>{{ $data->revision_case_category }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Revision Case Subcategory</td>
+                                                                <td>{{ $data->revision_case_subcategory }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Revision Case Type</td>
+                                                                <td>{{ $data->revision_case_type }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Revision Case No.</td>
+                                                                <td>{{ $data->revision_case_no }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Name of the filing Court</td>
+                                                                <td>{{ $data->revision_filing_court }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Date of filing</td>
+                                                                <td>{{ $data->revision_date_of_filing }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Law</td>
+                                                                <td>{{ $data->revision_law }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Section</td>
+                                                                <td>{{ $data->revision_section }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Allegation/Claim</td>
+                                                                <td>{{ $data->revision_allegation_claim }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Amount of Money</td>
+                                                                <td>{{ $data->revision_amount_of_money }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Another Claim (if any)</td>
+                                                                <td>{{ $data->revision_another_claim }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Summary of Facts</td>
+                                                                <td>{{ $data->revision_summary_facts }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Name of the Petitioner</td>
+                                                                <td>{{ $data->revision_name_of_the_appellant }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Name of the Representative</td>
+                                                                <td>{{ $data->revision_representative }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Details of the Representative</td>
+                                                                <td>{{ $data->revision_representative_details }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Name of the Respondent/Opposite Party</td>
+                                                                <td>{{ $data->revision_respondent_opposite_party }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Name of the Representative</td>
+                                                                <td>{{ $data->revision_opposite_representative }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Details of the Representative</td>
+                                                                <td>{{ $data->revision_opposite_representative_details }}</td>
+                                                            </tr>
 
-                                                        </tbody>
-                                                    </table>
+                                                            </tbody>
+                                                        </table>
 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
 
                             </div>

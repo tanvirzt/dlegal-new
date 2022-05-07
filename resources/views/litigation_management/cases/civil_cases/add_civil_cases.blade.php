@@ -153,9 +153,9 @@
                                                                 <select name="in_favour_of"
                                                                         class="form-control select2">
                                                                     <option value="">Select</option>
-                                                                    @foreach($internal_council as $item)
+                                                                    @foreach($in_favour_of as $item)
                                                                         <option
-                                                                            value="{{ $item->id }}" {{(old('in_favour_of') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                                            value="{{ $item->id }}" {{(old('in_favour_of') == $item->id ? 'selected':'')}}>{{ $item->in_favour_of_name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 @error('in_favour_of')<span

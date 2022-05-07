@@ -85,14 +85,14 @@
                                                         <div class="text-center mr-md-5">
                                                             <div class="custom-control custom-radio custom-control-inline">
                                                                 <input type="checkbox" class="custom-control-input" id="original_case"
-                                                                       name="original_case" value="Appeal Case">
+                                                                       name="original_case" value="Appeal Case" checked>
                                                                 <label class="custom-control-label" for="original_case">Original Case</label>
                                                             </div>
                                                             <div
                                                                 class="custom-control custom-radio custom-control-inline">
                                                                 <input type="checkbox" class="custom-control-input"
                                                                        id="appeal_case"
-                                                                       name="appeal_case" value="Appeal Case" @if($data->case == 'Appeal Case') checked @endif >
+                                                                       name="appeal_case" value="Appeal Case" @if($data->appeal_case == 'Appeal Case') checked @endif >
                                                                 <label class="custom-control-label" for="appeal_case">Appeal
                                                                     Case</label>
                                                             </div>
@@ -100,7 +100,7 @@
                                                                 class="custom-control custom-radio custom-control-inline">
                                                                 <input type="checkbox" class="custom-control-input"
                                                                        id="revision_case"
-                                                                       name="revision_case" value="Revision Case" @if($data->case == 'Revision Case') checked @endif>
+                                                                       name="revision_case" value="Revision Case" @if($data->revision_case == 'Revision Case') checked @endif>
                                                                 <label class="custom-control-label" for="revision_case">Revision
                                                                     Case</label>
                                                             </div>
@@ -192,9 +192,9 @@
                                                                                     <select name="in_favour_of"
                                                                                             class="form-control select2">
                                                                                         <option value="">Select</option>
-                                                                                        @foreach($internal_council as $item)
+                                                                                        @foreach($in_favour_of as $item)
                                                                                             <option
-                                                                                                value="{{ $item->id }}" {{( $data->in_favour_of == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                                                                value="{{ $item->id }}" {{( $data->in_favour_of == $item->id ? 'selected':'')}}>{{ $item->in_favour_of_name }}</option>
                                                                                         @endforeach
                                                                                     </select>
                                                                                     @error('in_favour_of')<span
@@ -1546,6 +1546,8 @@
                                                     </div>
 
                                                 </div>
+
+
                                             </form>
 
 

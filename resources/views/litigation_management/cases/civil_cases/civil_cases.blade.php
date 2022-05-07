@@ -173,6 +173,7 @@
                                 <table id="data_table" class="table table-responsive no-footer dtr-inline">
                                     <thead>
                                     <tr>
+                                        <th class="text-nowrap text-center">ID</th>
                                         <th class="text-nowrap text-center">Case No</th>
                                         <th class="text-center">Next Date</th>
                                         <th class="text-center">Received Date</th>
@@ -187,6 +188,9 @@
                                     <tbody id="search_data">
                                     @foreach ($data as $datum)
                                         <tr>
+                                            <td>
+                                                    {{ $datum->id }}
+                                            </td>
                                             <td>
                                                 <a href="{{ route('view-civil-cases', $datum->id) }}">
                                                     {{ $datum->case_no }} </a>
