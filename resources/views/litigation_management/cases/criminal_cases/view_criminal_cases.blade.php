@@ -317,51 +317,6 @@
 
                                     <div class="col-md-6">
                                         <div class="revision_case_info">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Lawyers Information </u>
-                                                    </h6>
-                                                    <table class="table table-bordered table-responsive">
-
-                                                        <tbody>
-
-                                                        <tr>
-                                                            <td>Name of Advocate/Law Firm</td>
-                                                            <td> {{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Name of Assigned Lawyer</td>
-                                                            <td> {{ $data->assigned_lawyer_id }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Remarks</td>
-                                                            <td> {{ $data->lawyers_remarks }} </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Documents
-                                                            Information </u></h6>
-                                                    <table class="table table-bordered table-responsive">
-
-                                                        <tbody>
-
-                                                        <tr>
-                                                            <td>Received Documents</td>
-                                                            <td> {{ $data->received_documents_id }} {{ rtrim($data->received_documents_write, ', ') }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Required/Wanting Documents</td>
-                                                            <td> {{ $data->required_wanting_documents_id }} {{ rtrim($data->required_wanting_documents_write, ', ') }} </td>
-                                                        </tr>
-
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
 
                                             <div class="card">
                                                 <div class="card-body">
@@ -497,6 +452,52 @@
                                                     </table>
                                                 </div>
                                             </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="text-uppercase text-bold"><u> Lawyers Information </u>
+                                                    </h6>
+                                                    <table class="table table-bordered table-responsive">
+
+                                                        <tbody>
+
+                                                        <tr>
+                                                            <td>Name of Advocate/Law Firm</td>
+                                                            <td> {{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Name of Assigned Lawyer</td>
+                                                            <td> {{ $data->assigned_lawyer_id }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Remarks</td>
+                                                            <td> {{ $data->lawyers_remarks }} </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="text-uppercase text-bold"><u> Documents
+                                                            Information </u></h6>
+                                                    <table class="table table-bordered table-responsive">
+
+                                                        <tbody>
+
+                                                        <tr>
+                                                            <td>Received Documents</td>
+                                                            <td> {{ $data->received_documents_id }} {{ rtrim($data->received_documents_write, ', ') }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Required/Wanting Documents</td>
+                                                            <td> {{ $data->required_wanting_documents_id }} {{ rtrim($data->required_wanting_documents_write, ', ') }} </td>
+                                                        </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h6 class="text-uppercase text-bold"><u> Status of the Case </u>

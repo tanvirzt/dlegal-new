@@ -111,7 +111,10 @@
                                                         <table class="table table-bordered">
 
                                                             <tbody>
-
+                                                            <tr>
+                                                                <td>ID</td>
+                                                                <td> {{ $data->id }} </td>
+                                                            </tr>
                                                             <tr>
                                                                 <td>Client Name</td>
                                                                 <td> {{ $data->client }} </td>
