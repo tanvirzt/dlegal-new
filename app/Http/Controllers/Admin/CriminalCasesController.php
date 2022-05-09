@@ -76,9 +76,10 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', 'setup_next_date_reasons.id')
             ->leftJoin('setup_courts', 'criminal_cases.name_of_the_court_id', '=', 'setup_courts.id')
             ->leftJoin('setup_districts', 'criminal_cases.case_infos_district_id', '=', 'setup_districts.id')
+            ->leftJoin('setup_districts as accused_district', 'criminal_cases.case_infos_district_id', '=', 'accused_district.id')
             ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
             ->leftJoin('setup_allegations', 'criminal_cases.case_infos_allegation_claim_id', '=', 'setup_allegations.id')
-            ->select('criminal_cases.*', 'setup_next_date_reasons.next_date_reason_name', 'setup_courts.court_name', 'setup_districts.district_name', 'setup_case_types.case_types_name','setup_allegations.allegation_name')
+            ->select('criminal_cases.*', 'setup_next_date_reasons.next_date_reason_name', 'setup_courts.court_name', 'setup_districts.district_name','accused_district.district_name as accused_district_name', 'setup_case_types.case_types_name','setup_allegations.allegation_name')
             ->get();
 
 //         dd($data);
@@ -769,6 +770,7 @@ class CriminalCasesController extends Controller
         $data->court_proceedings_write = $request->court_proceedings_write;
         $data->updated_court_order_id = $request->updated_court_order_id ? implode(', ',$request->updated_court_order_id) : null;
         $data->updated_court_order_write = $request->updated_court_order_write;
+        $data->updated_next_date = $request->updated_next_date;
         $data->updated_day_notes_id = $request->updated_day_notes_id ? implode(', ',$request->updated_day_notes_id) : null;
         $data->updated_day_notes_write = $request->updated_day_notes_write;
         $data->updated_engaged_advocate_id = $request->updated_engaged_advocate_id;

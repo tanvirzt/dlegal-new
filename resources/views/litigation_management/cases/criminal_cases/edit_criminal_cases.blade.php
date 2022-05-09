@@ -2344,10 +2344,29 @@
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="updated_next_date"
+                                                                                   class="col-sm-4 col-form-label">
+                                                                                Next Date
+                                                                            </label>
+                                                                            <div class="col-sm-8">
+                                                                                <span class="date_span_status">
+                                                                                    <input type="date" class="xDateContainer date_first_input"
+                                                                                           onchange="setCorrect(this,'updated_next_date');"><input type="text" id="updated_next_date" name="updated_next_date"
+                                                                                                                                                   value="dd/mm/yyyy"
+                                                                                                                                                   class="date_second_input"
+                                                                                                                                                   tabindex="-1"><span
+                                                                                        class="date_second_span" tabindex="-1">&#9660;</span>
+                                                                                </span>
+                                                                                @error('updated_next_date')
+                                                                                <span
+                                                                                    class="text-danger">{{ $message }}</span>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-
-
                                                                     <div class="col-md-6">
+
                                                                         <div class="form-group row">
                                                                             <label for="updated_day_notes_id"
                                                                                    class="col-md-4 col-form-label"> Day Notes

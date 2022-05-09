@@ -617,6 +617,7 @@
                                             <th class="text-nowrap">Fixed For</th>
                                             <th class="text-nowrap">Court Proceeding</th>
                                             <th class="text-nowrap">Court Order</th>
+                                            <th class="text-nowrap">Next Date</th>
                                             <th class="text-nowrap">Next Day Presence</th>
                                             <th class="text-nowrap">Day Note</th>
                                             <th class="text-nowrap">Engaged Advocates</th>
@@ -649,6 +650,7 @@
                                                         @endforeach
                                                     @endif
                                                     {{ $logs->updated_court_order_write }}</td>
+                                                <td> {{ $logs->updated_next_date }} </td>
                                                 <td> {{ $logs->next_day_presence_name }} </td>
 
                                                 <td>
@@ -1013,6 +1015,26 @@
 
                                             @error('updated_court_order_write')<span
                                                 class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="updated_next_date"
+                                               class="col-sm-4 col-form-label">
+                                            Next Date
+                                        </label>
+                                        <div class="col-sm-8">
+                                                                                <span class="date_span_status_modal">
+                                                                                    <input type="date" class="xDateContainer date_first_input"
+                                                                                           onchange="setCorrect(this,'updated_next_date');"><input type="text" id="updated_next_date" name="updated_next_date"
+                                                                                                                                                   value="dd/mm/yyyy"
+                                                                                                                                                   class="date_second_input"
+                                                                                                                                                   tabindex="-1"><span
+                                                                                        class="date_second_span" tabindex="-1">&#9660;</span>
+                                                                                </span>
+                                            @error('updated_next_date')
+                                            <span
+                                                class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>

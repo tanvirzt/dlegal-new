@@ -178,6 +178,7 @@
                                         <th class="text-center"> District</th>
                                         <th class="text-center"> Complainant</th>
                                         <th class="text-center"> Accused Name</th>
+                                        <th class="text-center"> Accused District</th>
                                         <th class="text-center"> Case Type</th>
                                         <th class="text-center"> Claim</th>
                                         <th class="text-center">Status</th>
@@ -200,7 +201,6 @@
                                             <td>
                                                 <a href="{{ route('view-criminal-cases',$datum->id) }}"> {{ rtrim($datum->case_no, ', ') }} </a>
                                             </td>
-
                                             <td>
                                                 @php
                                                     $court_name = explode(', ',$datum->case_infos_court_id);
@@ -235,6 +235,9 @@
                                                     @endforeach
                                                 @endif
                                                 {{ $datum->accused_write }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->accused_district_name }}
                                             </td>
                                             <td>
                                                 {{ $datum->case_types_name }}
