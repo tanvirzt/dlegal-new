@@ -90,8 +90,11 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h6 class="text-uppercase text-bold"><u> Basic Information </u>
+                                                        <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal" data-target="#modal-lg-basic-info" data-toggle="tooltip"
+                                                                data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i></button>
+{{--                                                        <a href="{{ route('update-criminal-cases-basic-info', $data->id) }}" class="float-right"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"--}}
+{{--                                                            ><i class="fas fa-edit"></i></button></a>--}}
                                                     </h6>
-
                                                     <table class="table table-bordered table-responsive">
 
                                                         <tbody>
@@ -168,6 +171,8 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h6 class="text-uppercase text-bold"><u> Client Information </u>
+                                                        <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal" data-target="#modal-lg-client-info" data-toggle="tooltip"
+                                                                data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i></button>
                                                     </h6>
                                                     <table class="table table-bordered table-responsive">
 
@@ -187,6 +192,10 @@
                                                         <tr>
                                                             <td>Client Name</td>
                                                             <td>{{ $data->client_name }} {{ rtrim($data->client_name_write, ', ') }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Client Business Name</td>
+                                                            <td>{{ $data->client_business_name }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Client Address</td>
@@ -260,6 +269,10 @@
                                                         <tr>
                                                             <td>Opposition Name</td>
                                                             <td>{{ $data->opposition_name }} {{ rtrim($data->opposition_write, ', ') }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Opposition Business Name</td>
+                                                            <td>{{ $data->opposition_business_name }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Opposition Address</td>
@@ -391,8 +404,12 @@
                                                             <td>{{ $data->date_of_filing }}</td>
                                                         </tr>
                                                         <tr>
+                                                            <td>Status of the Cases</td>
+                                                            <td>{{ $data->case_status_name }}</td>
+                                                        </tr>
+                                                        <tr>
                                                             <td>Case Matter</td>
-                                                            <td>{{ $data->matter_name }}</td>
+                                                            <td>{{ $data->matter_name }} {{ $data->matter_write }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Case Type</td>
@@ -424,27 +441,27 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Allegation/Claim</td>
-                                                            <td> {{ $data->allegation_name }} {{ $data->case_infos_allegation_claim_write }} </td>
+                                                            <td> {{ $data->allegation_name }} {{ $edit_case_steps->case_infos_allegation_claim_write }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Amount of Money</td>
-                                                            <td>{{ $data->amount_of_money }}</td>
+                                                            <td>{{ $edit_case_steps->amount_of_money }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Another Claim(if any)</td>
-                                                            <td>{{ $data->another_claim }}</td>
+                                                            <td>{{ $edit_case_steps->another_claim }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Recovery/Seizure Articles</td>
-                                                            <td>{{ $data->recovery_seizure_articles }}</td>
+                                                            <td>{{ $edit_case_steps->recovery_seizure_articles }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Summary of Facts</td>
-                                                            <td>{{ $data->summary_facts }}</td>
+                                                            <td>{{ $edit_case_steps->summary_facts }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Remarks</td>
-                                                            <td>{{ $data->case_info_remarks }}</td>
+                                                            <td>{{ $edit_case_steps->case_info_remarks }}</td>
                                                         </tr>
 
 
@@ -462,7 +479,7 @@
 
                                                         <tr>
                                                             <td>Name of Advocate/Law Firm</td>
-                                                            <td> {{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }} </td>
+                                                            <td> {{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }} {{ $data->lawyer_advocate_write }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Name of Assigned Lawyer</td>
@@ -526,66 +543,96 @@
                                                     </table>
                                                 </div>
                                             </div>
+
+
+                                            
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Case Steps </u>
+                                                    <h6 class="text-uppercase text-bold">
+                                                        <div class="row">
+                                                            <div class="col-md-4"><u> Case Steps </u></div>
+                                                            <div class="col-md-3">Date</div>
+                                                            <div class="col-md-3">Copy</div>
+                                                            <div class="col-md-2">Yes/No</div>
+                                                        </div>
                                                     </h6>
                                                     <table class="table table-bordered table-responsive">
 
                                                         <tbody>
 
                                                         <tr>
-                                                            <td>Next Date</td>
+                                                            <td>Filing Date</td>
                                                             <td> {{ $edit_case_steps->case_steps_filing }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_filing_copy }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_filing_yes_no }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Taking Cognizance</td>
                                                             <td> {{ $edit_case_steps->taking_cognizance }} </td>
+                                                            <td> {{ $edit_case_steps->taking_cognizance_copy }} </td>
+                                                            <td> {{ $edit_case_steps->taking_cognizance_yes_no }} </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Arrest/Surrender/C.W.</td>
-                                                            <td>  {{ $edit_case_steps->arrest_surrender_cw }} </td>
+                                                            <td>Arrest/Surrender/C.W.                       </td>
+                                                            <td> {{ $edit_case_steps->arrest_surrender_cw }} </td>
+                                                            <td> {{ $edit_case_steps->arrest_surrender_cw_copy }} </td>
+                                                            <td> {{ $edit_case_steps->arrest_surrender_cw_yes_no }} </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Bail</td>
+                                                            <td>Bail     </td>
                                                             <td> {{ $edit_case_steps->case_steps_bail }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_bail_copy }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_bail_yes_no }} </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Court Transfer</td>
+                                                            <td>Court Transfer    </td>
                                                             <td> {{ $edit_case_steps->case_steps_court_transfer }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_court_transfer_copy }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_court_transfer_yes_no }} </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Charge Framed</td>
+                                                            <td>Charge Framed     </td>
                                                             <td> {{ $edit_case_steps->case_steps_charge_framed }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_charge_framed_copy }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_charge_framed_yes_no }} </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Witness (From)</td>
+                                                            <td>Witness (From)    </td>
                                                             <td> {{ $edit_case_steps->case_steps_witness_from }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_witness_from_copy }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_witness_from_yes_no }} </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Witness (To)</td>
+                                                            <td>Witness (To)   </td>
                                                             <td> {{ $edit_case_steps->case_steps_witness_to }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_witness_to_copy }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_witness_to_yes_no }} </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Argument</td>
+                                                            <td>Argument  </td>
                                                             <td> {{ $edit_case_steps->case_steps_argument }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_argument_copy }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_argument_yes_no }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Judgement & Order</td>
                                                             <td> {{ $edit_case_steps->case_steps_judgement_order }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_judgement_order_copy }} </td>
+                                                            <td> {{ $edit_case_steps->case_steps_judgement_order_yes_no }} </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Summary of Judgement & Order</td>
+                                                            <td>Summary of Judgement & Order                                                       </td>
                                                             <td> {{ $edit_case_steps->case_steps_summary_judgement_order }} </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Remarks</td>
+                                                            <td>Remarks  </td>
                                                             <td> {{ $edit_case_steps->case_steps_remarks }} </td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -707,7 +754,7 @@
                                                 <td> {{ $activity_log->activity_action }} </td>
                                                 <td> {{ $activity_log->activity_progress }} </td>
                                                 <td> {{ $activity_log->mode_name }} {{ $activity_log->activity_mode_write }} </td>
-                                                <td> {{ $activity_log->activity_time_spent }} </td>
+                                                <td> {{ $activity_log->total_time }} </td>
                                                 <td>
                                                     @php
                                                     $engaged = explode(', ',$activity_log->activity_engaged_id);
@@ -965,7 +1012,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <select name="court_proceedings_id[]"
-                                                            id="court_proceedings_id"
+                                                            id="court_proceedings_id" data-placeholder="Select"
                                                             class="form-control select2" multiple>
                                                         <option value="">Select</option>
                                                         @foreach($court_proceeding as $item)
@@ -995,7 +1042,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <select name="updated_court_order_id[]"
-                                                            id="updated_court_order_id"
+                                                            id="updated_court_order_id" data-placeholder="Select"
                                                             class="form-control select2" multiple>
                                                         <option value="">Select</option>
                                                         @foreach($last_court_order as $item)
@@ -1050,7 +1097,7 @@
                                                 <div class="col-md-6">
                                                     <select name="updated_day_notes_id[]"
                                                             id="updated_day_notes_id"
-                                                            class="form-control select2" multiple>
+                                                            class="form-control select2" data-placeholder="Select" multiple>
                                                         <option value="">Select</option>
                                                         @foreach($day_notes as $item)
                                                             <option
@@ -1261,26 +1308,40 @@
 
 
                             <div class="col-md-6">
-
-
                                 <div class="form-group row">
-                                    <label for="activity_time_spent"
-                                           class="col-sm-4 col-form-label">Time Spent</label>
+                                    <label for="start_time"
+                                           class="col-sm-4 col-form-label">Start Time</label>
                                     <div class="col-sm-8">
-
-                                        @php
-                                            $now = Carbon\Carbon::now();
-                                            $days_count = Carbon\Carbon::parse($data->created_at)->diffInDays($now);
-                                        @endphp
-
-                                        <input type="text" class="form-control" readonly
-                                               id="activity_time_spent" name="activity_time_spent" value="{{ $days_count }} day"
-                                        >
-                                        @error('activity_time_spent')
+                                        <input type="datetime-local" class="form-control"
+                                               id="start_time" name="start_time" >
+                                        @error('start_time')
                                         <span
                                             class="text-danger">{{ $message }}</span>
                                         @enderror
-
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="end_time"
+                                           class="col-sm-4 col-form-label">End Time</label>
+                                    <div class="col-sm-8">
+                                        <input type="datetime-local" class="form-control"
+                                               id="end_time" name="end_time" >
+                                        @error('end_time')
+                                        <span
+                                            class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="setup_hours"
+                                           class="col-sm-4 col-form-label">Time Spent</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"
+                                               id="setup_hours" name="setup_hours" readonly>
+                                        @error('setup_hours')
+                                        <span
+                                            class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -1290,7 +1351,7 @@
                                     <div class="col-md-8">
                                         <div class="row" >
                                             <div class="col-md-6">
-                                                <select name="activity_engaged_id[]" class="form-control select2" multiple>
+                                                <select name="activity_engaged_id[]" data-placeholder="Select" class="form-control select2" multiple>
                                                     <option value="">Select</option>
                                                     @foreach ($external_council as $item)
                                                         <option
@@ -1374,7 +1435,706 @@
     </div>
     <!-- /.modal -->
 
+{{--    update cases modal--}}
 
+    <div class="modal fade" id="modal-lg-basic-info">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-title"> Edit Criminal Cases </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form
+                    action="{{ route('update-criminal-cases', $data->id) }}"
+                    method="post">
+                    @csrf
+                    <div class="card-body">
+
+                        <h6 class="text-uppercase text-bold"><u> Basic Information </u>
+                        </h6>
+                        <div class="form-group row">
+                            <label for="client" class="col-sm-4 col-form-label">Client
+                                Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="client"
+                                       name="client"
+                                       value="{{ $data->client }}">
+                                @error('client')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="legal_issue_id" class="col-sm-4 col-form-label">Legal
+                                Issue</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="legal_issue_id"
+                                                id="legal_issue_id"
+                                                class="form-control select2">
+                                            <option value="">Select</option>
+                                            @foreach($legal_issue as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{  $data->legal_issue_id == $item->id ? 'selected' : '' }}>{{ $item->legal_issue_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="legal_issue_write"
+                                               name="legal_issue_write"
+                                               placeholder="Legal Issue"
+                                               value="{{ $data->legal_issue_write }}">
+                                    </div>
+                                </div>
+
+                                @error('legal_issue_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="legal_service_id" class="col-sm-4 col-form-label">Legal
+                                Service</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="legal_service_id"
+                                                id="legal_service_id"
+                                                class="form-control select2">
+                                            <option value="">Select</option>
+                                            @foreach($legal_service as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{( $data->legal_service_id == $item->id ? 'selected':'')}}>{{ $item->legal_service_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="legal_service_write"
+                                               name="legal_service_write"
+                                               placeholder="Legal Service"
+                                               value="{{ $data->legal_service_write }}">
+                                    </div>
+                                </div>
+
+
+                                @error('legal_service_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="complainant_informant_id" class="col-sm-4 col-form-label">Complainant/Informant
+                                Name</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="complainant_informant_id"
+                                                id="complainant_informant_id"
+                                                class="form-control select2">
+                                            <option value="">Select</option>
+                                            @foreach($complainant as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{( $data->complainant_informant_id == $item->id ? 'selected':'')}}>{{ $item->complainant_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="complainant_informant_write"
+                                               name="complainant_informant_write"
+                                               placeholder="Complainant"
+                                               value="{{ $data->complainant_informant_write }}">
+                                    </div>
+                                </div>
+
+
+                                @error('legal_service_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="accused_id" class="col-sm-4 col-form-label">Accused
+                                Name</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="accused_id"
+                                                id="accused_id"
+                                                class="form-control select2">
+                                            <option value="">Select</option>
+                                            @foreach($accused as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{( $data->accused_id == $item->id ? 'selected':'')}}>{{ $item->accused_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="accused_write"
+                                               name="accused_write"
+                                               placeholder="Complainant"
+                                               value="{{ $data->accused_write }}">
+                                    </div>
+                                </div>
+
+
+                                @error('legal_service_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="in_favour_of_id" class="col-sm-4 col-form-label">In favour
+                                of </label>
+                            <div class="col-sm-8">
+                                <select name="in_favour_of_id" class="form-control select2">
+                                    <option value="">Select</option>
+                                    @foreach($in_favour_of as $item)
+                                        <option
+                                            value="{{ $item->id }}" {{( $data->in_favour_of_id == $item->id ? 'selected':'')}}> {{ $item->in_favour_of_name }} </option>
+                                    @endforeach
+                                </select>
+                                @error('in_favour_of_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="case_no" class="col-sm-4 col-form-label">Case
+                                No.</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="case_no"
+                                       name="case_no"
+                                       value="{{ $data->case_no }}">
+                                @error('case_no')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="name_of_the_court_id"
+                                   class="col-sm-4 col-form-label">
+                                Name
+                                of the Court </label>
+                            <div class="col-sm-8">
+                                <select name="name_of_the_court_id"
+                                        class="form-control select2">
+                                    <option value="">Select</option>
+                                    @foreach($court as $item)
+                                        <option
+                                            value="{{ $item->id }}" {{( $data->name_of_the_court_id == $item->id ? 'selected':'')}}>{{ $item->court_name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('name_of_the_court_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="next_date" class="col-sm-4 col-form-label"> Next
+                                Date </label>
+                            <div class="col-sm-8">
+                                                    <span class="date_span">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                               onchange="setCorrect(this,'xTime');"><input type="text" id="xTime" name="next_date"
+                                                                                                           @if($data->next_date != null) value="{{ $data->next_date }}" @else value="dd/mm/yyyy" @endif
+                                                                                                           class="date_second_input"
+                                                                                                           tabindex="-1"><span
+                                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
+                                @error('next_date')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="next_date_fixed_id"
+                                   class="col-sm-4 col-form-label">
+                                Next
+                                date fixed for </label>
+                            <div class="col-sm-8">
+                                <select name="next_date_fixed_id"
+                                        class="form-control select2">
+                                    <option value="">Select</option>
+                                    @foreach($next_date_reason as $item)
+                                        <option
+                                            value="{{ $item->id }}" {{( $data->next_date_fixed_id == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('next_date_fixed_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="received_date" class="col-sm-4 col-form-label">
+                                Received
+                                Date </label>
+                            <div class="col-sm-8">
+                                                    <span class="date_span">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                               onchange="setCorrect(this,'xTime2');"><input type="text" id="xTime2"
+                                                                                                            name="received_date" @if($data->received_date != null) value="{{ $data->received_date }}" @else value="dd/mm/yyyy" @endif
+                                                                                                            class="date_second_input"
+                                                                                                            tabindex="-1"><span
+                                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
+                                @error('received_date')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="mode_of_receipt_id"
+                                   class="col-sm-4 col-form-label"> Mode
+                                of Receipt </label>
+                            <div class="col-sm-8">
+                                <select name="mode_of_receipt_id"
+                                        class="form-control select2"
+                                        id="mode_of_receipt_id"
+                                        action="{{ route('find-client-subcategory') }}">
+                                    <option value="">Select</option>
+                                    @foreach ($mode as $item)
+                                        <option
+                                            value="{{ $item->id }}" {{( $data->mode_of_receipt_id  == $item->id ? 'selected':'')}}>{{ ucfirst($item->mode_name) }}</option>
+                                    @endforeach
+                                </select>
+                                @error('mode_of_receipt')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="referrer_id"
+                                   class="col-sm-4 col-form-label"> Referrer Name </label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="referrer_id"
+                                                id="referrer_id"
+                                                class="form-control select2">
+                                            <option value="">Select</option>
+                                            @foreach($referrer as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{   $data->referrer_id == $item->id ? 'selected' : '' }}>{{ $item->referrer_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="referrer_write"
+                                               name="referrer_write"
+                                               placeholder="Referrer"
+                                               value="{{  $data->referrer_write  }}">
+                                    </div>
+                                </div>
+                                @error('contact_person_name')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="referrer_details"
+                                   class="col-sm-4 col-form-label"> Referrer
+                                Details </label>
+                            <div class="col-sm-8">
+                                                    <textarea name="referrer_details" class="form-control"
+                                                              rows="3"
+                                                              placeholder="">{{ $data->referrer_details }}</textarea>
+                                @error('referrer_details')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="received_by_id"
+                                   class="col-sm-4 col-form-label"> Received By </label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="received_by_id"
+                                                id="received_by_id"
+                                                class="form-control select2">
+                                            <option value="">Select</option>
+                                            @foreach($user as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{  $data->received_by_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="received_by_write"
+                                               name="received_by_write"
+                                               placeholder="Received By"
+                                               value="{{ $data->received_by_write }}">
+                                    </div>
+                                </div>
+                                @error('contact_person_name')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <div class="float-right">
+                                <button type="submit"
+                                        class="btn btn-primary text-uppercase"><i
+                                        class="fas fa-save"></i> Update
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="modal-lg-client-info">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-title"> Edit Criminal Cases </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form
+                    action="{{ route('update-criminal-cases', $data->id) }}"
+                    method="post">
+                    @csrf
+                    <div class="card-body">
+
+                        <h6 class="text-uppercase text-bold"><u> Client Information </u>
+                        </h6>
+                        <div class="form-group row">
+                            <label for="client_party_id"
+                                   class="col-sm-4 col-form-label">Client(Which Party)</label>
+                            <div class="col-sm-8">
+                                <select name="client_party_id"
+                                        class="form-control select2"
+                                        id="client_party_id">
+                                    <option value="">Select</option>
+                                    @foreach($in_favour_of as $item)
+                                        <option
+                                            value="{{ $item->id }}" {{(  $data->client_party_id == $item->id ? 'selected':'')}}> {{ $item->in_favour_of_name }} </option>
+                                    @endforeach
+                                </select>
+                                @error('client_party_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_category_id"
+                                   class="col-sm-4 col-form-label">Client
+                                Category</label>
+                            <div class="col-sm-8">
+                                <select name="client_category_id"
+                                        class="form-control select2"
+                                        id="client_category_id"
+                                        action="{{ route('find-client-subcategory') }}">
+                                    <option value="">Select</option>
+                                    @foreach ($client_category as $item)
+                                        <option
+                                            value="{{ $item->id }}" {{( $data->client_category_id  == $item->id ? 'selected':'')}}>{{ ucfirst($item->client_category_name) }}</option>
+                                    @endforeach
+                                </select>
+                                @error('client_category_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_subcategory_id"
+                                   class="col-sm-4 col-form-label">Client
+                                Subcategory</label>
+                            <div class="col-sm-8">
+                                <select name="client_subcategory_id"
+                                        class="form-control select2"
+                                        id="client_subcategory_id">
+                                    <option value="">Select</option>
+                                    @foreach ($existing_client_subcategory as $item)
+                                        <option
+                                            value="{{ $item->id }}" {{( $data->client_subcategory_id  == $item->id ? 'selected':'')}}>{{ ucfirst($item->client_subcategory_name) }}</option>
+                                    @endforeach
+                                </select>
+                                @error('client_subcategory_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_id" class="col-sm-4 col-form-label">Client
+                                Name</label>
+                            <div class="col-sm-8">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="client_id[]"
+                                                id="client_id"
+                                                class="form-control select2" data-placeholder="Select" multiple>
+                                            <option value="">Select</option>
+                                            @foreach($client as $item)
+                                                <option
+                                                    value="{{ $item->client_name }}" {{  in_array($item->client_name, $client_explode) ? 'selected' : '' }}>{{ $item->client_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group hdtuto_client control-group increment_client">
+                                            <input type="text" name="client_name_write[]"
+                                                   class="myfrm form-control col-12" placeholder="Client Name" value="{{ rtrim($data->client_name_write, ', ') }}">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-success btn_success_client"
+                                                        type="button"><i
+                                                        class="fldemo glyphicon glyphicon-plus"></i>+
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="clone_client hide">
+                                            <div class="hdtuto_client control-group lst input-group"
+                                                 style="margin-top:10px">
+                                                <input type="text" name="client_name_write[]"
+                                                       class="myfrm form-control col-12">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-danger btn_danger_client"
+                                                            type="button"><i
+                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+                                @error('client_name')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_address" class="col-sm-4 col-form-label">
+                                Client
+                                Address </label>
+                            <div class="col-sm-8">
+                                                    <textarea name="client_address" class="form-control" rows="3"
+                                                              placeholder="">{{ $data->client_address }}</textarea>
+                                @error('client_address')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_mobile" class="col-sm-4 col-form-label">Client
+                                Mobile</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="client_mobile"
+                                       name="client_mobile"
+                                       value="{{ $data->client_mobile }}">
+                                @error('client_mobile')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_email" class="col-sm-4 col-form-label">Client
+                                Email</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="client_email"
+                                       name="client_email"
+                                       value="{{ $data->client_email }}">
+                                @error('client_email')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_profession_id"
+                                   class="col-sm-4 col-form-label">Profession/Type</label>
+                            <div class="col-sm-8">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="client_profession_id"
+                                                class="form-control select2"
+                                                id="client_profession_id">
+                                            <option value="">Select</option>
+                                            @foreach ($profession as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{( $data->client_profession_id  == $item->id ? 'selected':'')}}>{{ ucfirst($item->profession_name) }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="client_profession_write"
+                                               name="client_profession_write"
+                                               placeholder="Profession Name"
+                                               value="{{ $data->client_profession_write  }}">
+                                    </div>
+                                </div>
+
+                                @error('client_profession_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_division_id"
+                                   class="col-sm-4 col-form-label">Division/Zone</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="client_division_id"
+                                                id="client_division_id"
+                                                class="form-control select2" action="{{ route('find_district') }}">
+                                            <option value="">Select</option>
+                                            @foreach ($division as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{( $data->client_division_id  == $item->id ? 'selected':'')}}>{{ ucfirst($item->division_name) }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="client_divisoin_write"
+                                               name="client_divisoin_write"
+                                               placeholder="Client Division"
+                                               value="{{ $data->client_divisoin_write  }}">
+                                    </div>
+                                </div>
+                                @error('client_division_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="client_district_id"
+                                   class="col-sm-4 col-form-label">Area/District</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="client_district_id"
+                                                id="client_district_id"
+                                                class="form-control select2" action="{{ route('find-thana') }}">
+                                            <option value="">Select</option>
+                                            @foreach ($existing_district as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{( $data->client_district_id  == $item->id ? 'selected':'')}}>{{ ucfirst($item->district_name) }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="client_district_write"
+                                               name="client_district_write"
+                                               placeholder="Client District"
+                                               value="{{ $data->client_district_write  }}">
+                                    </div>
+                                </div>
+
+                                @error('client_district_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_thana_id"
+                                   class="col-sm-4 col-form-label">Branch/Thana</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="client_thana_id"
+                                                id="client_thana_id"
+                                                class="form-control select2">
+                                            <option value="">Select</option>
+                                            @foreach ($existing_thana as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{( $data->client_thana_id  == $item->id ? 'selected':'')}}>{{ ucfirst($item->thana_name) }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="client_thana_write"
+                                               name="client_thana_write"
+                                               placeholder="Client Thana"
+                                               value="{{ $data->client_thana_write  }}">
+                                    </div>
+                                </div>
+                                @error('client_thana_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_representative_name" class="col-sm-4 col-form-label">Representative Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="client_representative_name"
+                                       name="client_representative_name"
+                                       value="{{ $data->client_representative_name }}">
+                                @error('client_representative_name')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_representative_details"
+                                   class="col-sm-4 col-form-label"> Representative Details </label>
+                            <div class="col-sm-8">
+                                                    <textarea name="client_representative_details" class="form-control"
+                                                              rows="3"
+                                                              placeholder="">{{ $data->client_representative_details }}</textarea>
+                                @error('client_representative_details')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_coordinator_tadbirkar_id"
+                                   class="col-sm-4 col-form-label"> Coordinator/Tadbirkar </label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="client_coordinator_tadbirkar_id"
+                                                id="client_coordinator_tadbirkar_id"
+                                                class="form-control select2">
+                                            <option value="">Select</option>
+                                            @foreach($coordinator as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{  $data->client_coordinator_tadbirkar_id  == $item->id ? 'selected' : '' }}>{{ $item->coordinator_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="coordinator_tadbirkar_write"
+                                               name="coordinator_tadbirkar_write"
+                                               placeholder="Tadbirkar Name"
+                                               value="{{ $data->coordinator_tadbirkar_write }}">
+                                    </div>
+                                </div>
+                                @error('coordinator_tadbirkar_write')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_coordinator_details"
+                                   class="col-sm-4 col-form-label"> Coordinator Details </label>
+                            <div class="col-sm-8">
+                                                    <textarea name="client_coordinator_details" class="form-control"
+                                                              rows="3"
+                                                              placeholder="">{{ $data->client_coordinator_details }}</textarea>
+                                @error('client_coordinator_details')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <div class="float-right">
+                                <button type="submit"
+                                        class="btn btn-primary text-uppercase"><i
+                                        class="fas fa-save"></i> Update
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+{{--    update cases modal--}}
 @endsection
 
 

@@ -171,6 +171,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center"> ID</th>
+                                        <th class="text-center"> Status</th>
                                         <th class="text-center"> Next Date</th>
                                         <th class="text-center"> Fixed for</th>
                                         <th class="text-center"> Case No</th>
@@ -180,7 +181,7 @@
                                         <th class="text-center"> Accused Name</th>
                                         <th class="text-center"> Accused District</th>
                                         <th class="text-center"> Case Type</th>
-                                        <th class="text-center"> Claim</th>
+                                       <th class="text-center"> Lawyer</th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -193,24 +194,27 @@
                                                 {{ $datum->id }} </a>
                                             </td>
                                             <td>
+                                                {{ $datum->case_status_name }} </a>
+                                            </td>
+                                            <td>
                                                 {{ $datum->next_date }} </a>
                                             </td>
                                             <td>
                                                 {{ $datum->next_date_reason_name }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('view-criminal-cases',$datum->id) }}"> {{ rtrim($datum->case_no, ', ') }} </a>
+                                                <a href="{{ route('view-criminal-cases', $datum->id) }}"> {{ $datum->case_infos_case_no ? $datum->case_title_name.' '.$datum->case_infos_case_no.'/'.$datum->case_infos_case_no : '' }} </a>
                                             </td>
                                             <td>
                                                 @php
-                                                    $court_name = explode(', ',$datum->case_infos_court_id);
+                                                    $court_name = explode(', ',$datum->case_infos_court_short_id);
                                                 @endphp
-                                                @if($datum->case_infos_court_id)
+                                                @if($datum->case_infos_court_short_id)
                                                     @foreach ($court_name as $pro)
                                                         <li class="text-left">{{ $pro }}</li>
                                                     @endforeach
                                                 @endif
-
+                                                {{ $datum->court_short_write }}
                                             </td>
                                             <td>
                                                 {{ $datum->district_name }}
@@ -243,7 +247,15 @@
                                                 {{ $datum->case_types_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->allegation_name }} {{ $datum->case_infos_allegation_claim_write }}
+                                               {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }} {{ $datum->lawyer_advocate_write }} 
+                                               @php
+                                                    $assigned_lawyer = explode(', ',$datum->assigned_lawyer_id);
+                                                @endphp
+                                                @if($datum->assigned_lawyer_id)
+                                                    @foreach ($assigned_lawyer as $pro)
+                                                        <li class="text-left">{{ $pro }}</li>
+                                                    @endforeach
+                                                @endif
                                             </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)

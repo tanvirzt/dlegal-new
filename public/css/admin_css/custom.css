@@ -411,6 +411,9 @@ h3{
 .date_span{
     position: relative;display: inline-block;border: 1px solid #a9a9a9;height: 26px;width: 318px;border-radius: 4px;
 }
+.date_span_steps{
+    position: relative;display: inline-block;border: 1px solid #a9a9a9;height: 26px;width: 110px;border-radius: 4px;
+}
 .date_span_status{
     position: relative;display: inline-block;border: 1px solid #a9a9a9;height: 26px;width: 337px;border-radius: 4px;
 }
@@ -424,6 +427,9 @@ h3{
 
 .date_second_input{
     border: none;height: 90%;padding-left: 9px;
+}
+.date_second_input_steps{
+    border: none;height: 90%;padding-left: 9px;width: 60px;
 }
 
 .date_second_span{

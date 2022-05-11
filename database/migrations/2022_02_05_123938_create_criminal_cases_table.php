@@ -41,6 +41,7 @@ class CreateCriminalCasesTable extends Migration
             $table->integer('client_subcategory_id')->nullable();
             $table->string('client_id')->nullable();
             $table->string('client_name_write')->nullable();
+            $table->string('client_business_name')->nullable();
             $table->mediumText('client_address')->nullable();
             $table->string('client_mobile')->nullable();
             $table->string('client_email')->nullable();
@@ -62,6 +63,7 @@ class CreateCriminalCasesTable extends Migration
             $table->integer('opposition_subcategory_id')->nullable();
             $table->string('opposition_id')->nullable();
             $table->string('opposition_write')->nullable();
+            $table->string('opposition_business_name')->nullable();
             $table->mediumText('opposition_address')->nullable();
             $table->string('opposition_mobile')->nullable();
             $table->string('opposition_email')->nullable();
@@ -79,6 +81,7 @@ class CreateCriminalCasesTable extends Migration
             $table->string('opposition_coordinator_tadbirkar_write')->nullable();
             $table->mediumText('opposition_coordinator_details')->nullable();
             $table->integer('lawyer_advocate_id')->nullable();
+            $table->string('lawyer_advocate_write')->nullable();
             $table->string('assigned_lawyer_id')->nullable();
             $table->mediumText('lawyers_remarks')->nullable();
             $table->string('received_documents_id')->nullable();
@@ -107,7 +110,9 @@ class CreateCriminalCasesTable extends Migration
             $table->string('section_id')->nullable();
             $table->string('section_write')->nullable();
             $table->string('date_of_filing')->nullable();
+            $table->integer('case_status_id')->nullable();
             $table->integer('matter_id')->nullable();
+            $table->string('matter_write')->nullable();
             $table->integer('case_type_id')->nullable();
             $table->string('case_infos_complainant_informant_name')->nullable();
             $table->string('complainant_informant_representative')->nullable();
@@ -115,14 +120,6 @@ class CreateCriminalCasesTable extends Migration
             $table->string('case_infos_accused_representative')->nullable();
             $table->string('prosecution_witness')->nullable();
             $table->string('defense_witness')->nullable();
-            $table->integer('case_infos_allegation_claim_id')->nullable();
-            $table->string('case_infos_allegation_claim_write')->nullable();
-            $table->string('amount_of_money')->nullable();
-            $table->mediumText('another_claim')->nullable();
-            $table->mediumText('recovery_seizure_articles')->nullable();
-            $table->mediumText('summary_facts')->nullable();
-            $table->mediumText('case_info_remarks')->nullable();
-            $table->string('random_case_id')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

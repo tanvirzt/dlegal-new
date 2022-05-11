@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <a href="{{ route('litigation-calender-list') }}">
-                                    <button type="button" class="btn btn-block bg-gradient-info">Litigation Calender</button>
+                                    <button type="button" class="btn btn-block bg-gradient-info">Litigation Calender(list)</button>
                                 </a>
                             </div>
 {{--                            <div class="col-md-6">--}}
@@ -38,8 +38,8 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-@foreach($criminal_cases as $data)
                 <h3 class="" id="heading">Litigation Calender</h3>
+                @foreach($criminal_cases as $key=>$datum)
                 <div class="card">
 
                     <div class="card-header">
@@ -48,8 +48,14 @@
                                 <div class="col-12 col-md-2">
                                     <div class="info-box bg-light">
                                         <div class="info-box-content" style="margin-right: 130px;">
-                                            <span class="info-box-text text-center text-muted text-bold">21-04-2022</span>
-                                            <span class="info-box-number text-center text-muted mb-0 text-bold">Thursday</span>
+                                            <span class="info-box-text text-center text-muted text-bold">{{ $datum->received_date }}</span>
+                                            <span class="info-box-number text-center text-muted mb-0 text-bold">
+                                                @php
+                                                    $date = $datum->received_date;
+                                                    $time = date('l', strtotime($date));
+                                                    echo $time;
+                                                @endphp
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +63,7 @@
                                     <div class="info-box bg-light">
                                         <div class="info-box-content">
                                             <span class="info-box-text text-center text-muted text-bold">Total</span>
-                                            <span class="info-box-number text-center text-muted mb-0 text-bold">6</span>
+                                            <span class="info-box-number text-center text-muted mb-0 text-bold">{{ $criminal_cases_count }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +71,7 @@
                                     <div class="info-box bg-light">
                                         <div class="info-box-content">
                                             <span class="info-box-text text-center text-muted text-bold">Civil Cases</span>
-                                            <span class="info-box-number text-center text-muted mb-0 text-bold">2</span>
+                                            <span class="info-box-number text-center text-muted mb-0 text-bold">0</span>
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +79,7 @@
                                     <div class="info-box bg-light">
                                         <div class="info-box-content">
                                             <span class="info-box-text text-center text-muted text-bold">Criminal Cases</span>
-                                            <span class="info-box-number text-center text-muted mb-0 text-bold">3</span>
+                                            <span class="info-box-number text-center text-muted mb-0 text-bold">{{ $criminal_cases_count }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +87,7 @@
                                     <div class="info-box bg-light">
                                         <div class="info-box-content">
                                             <span class="info-box-text text-center text-muted text-bold">Others</span>
-                                            <span class="info-box-number text-center text-muted mb-0 text-bold">1</span>
+                                            <span class="info-box-number text-center text-muted mb-0 text-bold">0</span>
                                         </div>
                                     </div>
                                 </div>
@@ -111,18 +117,35 @@
                                 <th>2nd Party/Accused</th>
                                 <th>Step to be taken</th>
                                 <th>Day Note</th>
-                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $key+1 }}</td>
+                                <td>{{ $datum->court_name }}</td>
+                                <td>{{ $datum->case_no }}</td>
+                                <td>{{ $datum->next_date_reason_name }}</td>
+                                <td>
+                                    @php
+                                        $notes = explode(', ',$datum->case_infos_complainant_informant_name);
+                                    @endphp
+                                    @if($datum->case_infos_complainant_informant_name)
+                                        @foreach ($notes as $pro)
+                                            <li class="text-left">{{ $pro }}</li>
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
+                                    @php
+                                        $accused = explode(', ',$datum->case_infos_accused_name);
+                                    @endphp
+                                    @if($datum->case_infos_accused_name)
+                                        @foreach($accused as $item)
+                                            <li class="text-left">{{ $item }}</li>
+                                        @endforeach
+                                    @endif
+                                    {{ $datum->accused_write }}
+                                </td>
                                 <td></td>
                                 <td></td>
                             </tr>

@@ -1678,7 +1678,22 @@ $(document).ready(function () {
         }
     });
 
+    $('#start_time,#end_time').on('change',function() {
+        var start_time = $('#start_time').val();
+        var end_time = $('#end_time').val();
 
+        var diff = new Date(end_time) - new Date(start_time);
+        diff_time = diff/(60*60*1000);
+
+        if (start_time && end_time){
+            $('#setup_hours').val(diff_time+' Hrs');
+        }
+    });
+
+    $('.xDateContainer').on('change',function() {
+        var xTime4 = $('#xTime4').val();
+            $('#case_steps_filing').val(xTime4);
+    });
 
 
 
