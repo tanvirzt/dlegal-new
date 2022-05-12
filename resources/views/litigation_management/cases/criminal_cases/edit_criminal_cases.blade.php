@@ -1234,7 +1234,7 @@
                                                                                             <option value="">Select</option>
                                                                                             @foreach($court_short as $item)
                                                                                                 <option
-                                                                                                    value="{{ $item->court_short_name }}" {{  $data->case_infos_court_short_id == $item->id ? 'selected' : '' }}>{{ $item->court_short_name }}</option>
+                                                                                                    value="{{ $item->court_short_name }}" {{ in_array($item->court_short_name, $court_short_explode) ? 'selected' : '' }}>{{ $item->court_short_name }}</option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
@@ -1367,7 +1367,7 @@
                                                                                             <option value="">Select</option>
                                                                                             @foreach($court_short as $item)
                                                                                                 <option
-                                                                                                    value="{{ $item->court_short_name }}" {{  $data->case_infos_sub_seq_court_short_id == $item->id ? 'selected' : '' }}>{{ $item->court_short_name }}</option>
+                                                                                                    value="{{ $item->court_short_name }}" {{ in_array($item->court_short_name, $sub_seq_court_short_explode) ? 'selected' : '' }}>{{ $item->court_short_name }}</option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
@@ -1747,7 +1747,7 @@
                                                                                             <option value="">Select</option>
                                                                                             @foreach($allegation as $item)
                                                                                                 <option
-                                                                                                    value="{{ $item->id }}" {{( $data->case_infos_allegation_claim_id  == $item->id ? 'selected':'')}}>{{ $item->allegation_name }}</option>
+                                                                                                    value="{{ $item->id }}" {{( $edit_case_steps->case_infos_allegation_claim_id  == $item->id ? 'selected':'')}}>{{ $item->allegation_name }}</option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
@@ -1757,7 +1757,7 @@
                                                                                                id="case_infos_allegation_claim_write"
                                                                                                name="case_infos_allegation_claim_write"
                                                                                                placeholder="Allegation"
-                                                                                               value="{{ $data->case_infos_allegation_claim_write }}">
+                                                                                               value="{{ $edit_case_steps->case_infos_allegation_claim_write }}">
                                                                                     </div>
                                                                                 </div>
 
@@ -1774,7 +1774,7 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="amount_of_money"
                                                                                        name="amount_of_money"
-                                                                                       value="{{ $data->amount_of_money }}">
+                                                                                       value="{{ $edit_case_steps->amount_of_money }}">
                                                                                 @error('amount_of_money')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -1786,7 +1786,7 @@
                                                                                 any) </label>
                                                                             <div class="col-sm-8">
                                                     <textarea name="another_claim" class="form-control" rows="3"
-                                                              placeholder="">{{ $data->another_claim }}</textarea>
+                                                              placeholder="">{{ $edit_case_steps->another_claim }}</textarea>
                                                                                 @error('another_claim')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -1796,7 +1796,7 @@
                                                                                 Recovery/Seizure Articles </label>
                                                                             <div class="col-sm-8">
                                                     <textarea name="recovery_seizure_articles" class="form-control" rows="3"
-                                                              placeholder="">{{ $data->recovery_seizure_articles }}</textarea>
+                                                              placeholder="">{{ $edit_case_steps->recovery_seizure_articles }}</textarea>
                                                                                 @error('recovery_seizure_articles')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -1807,7 +1807,7 @@
                                                                                 of Facts </label>
                                                                             <div class="col-sm-8">
                                                     <textarea name="summary_facts" class="form-control" rows="3"
-                                                              placeholder="">{{ $data->summary_facts }}</textarea>
+                                                              placeholder="">{{ $edit_case_steps->summary_facts }}</textarea>
                                                                                 @error('summary_facts')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -1819,7 +1819,7 @@
                                                                             <div class="col-sm-8">
                                                     <textarea name="case_info_remarks" class="form-control"
                                                               rows="3"
-                                                              placeholder="">{{ $data->case_info_remarks }}</textarea>
+                                                              placeholder="">{{ $edit_case_steps->case_info_remarks }}</textarea>
                                                                                 @error('case_info_remarks')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -2025,7 +2025,7 @@
                                                                                 <input type="checkbox" class="form-control"
                                                                                        id="case_steps_filing_yes_no"
                                                                                        name="case_steps_filing_yes_no"
-                                                                                       {{ $edit_case_steps->case_steps_filing_yes_no == 'on' ? 'checked': '' }}>
+                                                                                       {{ $edit_case_steps->case_steps_filing_yes_no == 'Yes' ? 'checked': '' }}>
                                                                                 @error('case_steps_filing_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -2057,7 +2057,7 @@
                                                                                 <input type="checkbox" class="form-control"
                                                                                        id="taking_cognizance_yes_no"
                                                                                        name="taking_cognizance_yes_no"
-                                                                                       {{ $edit_case_steps->taking_cognizance_yes_no == 'on' ? 'checked': '' }}>
+                                                                                       {{ $edit_case_steps->taking_cognizance_yes_no == 'Yes' ? 'checked': '' }}>
                                                                                 @error('taking_cognizance_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -2088,7 +2088,7 @@
                                                                                 <input type="checkbox" class="form-control"
                                                                                        id="arrest_surrender_cw_yes_no"
                                                                                        name="arrest_surrender_cw_yes_no"
-                                                                                       {{ $edit_case_steps->arrest_surrender_cw_yes_no == 'on' ? 'checked': '' }}>
+                                                                                       {{ $edit_case_steps->arrest_surrender_cw_yes_no == 'Yes' ? 'checked': '' }}>
                                                                                 @error('arrest_surrender_cw_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -2119,7 +2119,7 @@
                                                                                 <input type="checkbox" class="form-control"
                                                                                        id="case_steps_bail_yes_no"
                                                                                        name="case_steps_bail_yes_no"
-                                                                                       {{ $edit_case_steps->case_steps_bail_yes_no == 'on' ? 'checked': '' }}>
+                                                                                       {{ $edit_case_steps->case_steps_bail_yes_no == 'Yes' ? 'checked': '' }}>
                                                                                 @error('case_steps_bail_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -2150,7 +2150,7 @@
                                                                                 <input type="checkbox" class="form-control"
                                                                                        id="case_steps_court_transfer_yes_no"
                                                                                        name="case_steps_court_transfer_yes_no"
-                                                                                       {{ $edit_case_steps->case_steps_court_transfer_yes_no == 'on' ? 'checked': '' }}>
+                                                                                       {{ $edit_case_steps->case_steps_court_transfer_yes_no == 'Yes' ? 'checked': '' }}>
                                                                                 @error('case_steps_court_transfer_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -2181,7 +2181,7 @@
                                                                                 <input type="checkbox" class="form-control"
                                                                                        id="case_steps_charge_framed_yes_no"
                                                                                        name="case_steps_charge_framed_yes_no"
-                                                                                       {{ $edit_case_steps->case_steps_charge_framed_yes_no == 'on' ? 'checked': '' }}>
+                                                                                       {{ $edit_case_steps->case_steps_charge_framed_yes_no == 'Yes' ? 'checked': '' }}>
                                                                                 @error('case_steps_charge_framed_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -2212,7 +2212,7 @@
                                                                                 <input type="checkbox" class="form-control"
                                                                                        id="case_steps_witness_from_yes_no"
                                                                                        name="case_steps_witness_from_yes_no"
-                                                                                       {{ $edit_case_steps->case_steps_witness_from_yes_no == 'on' ? 'checked': '' }}>
+                                                                                       {{ $edit_case_steps->case_steps_witness_from_yes_no == 'Yes' ? 'checked': '' }}>
                                                                                 @error('case_steps_witness_from_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -2243,7 +2243,7 @@
                                                                                 <input type="checkbox" class="form-control"
                                                                                        id="case_steps_witness_to_yes_no"
                                                                                        name="case_steps_witness_to_yes_no"
-                                                                                       {{ $edit_case_steps->case_steps_witness_to_yes_no == 'on' ? 'checked': '' }}>
+                                                                                       {{ $edit_case_steps->case_steps_witness_to_yes_no == 'Yes' ? 'checked': '' }}>
                                                                                 @error('case_steps_witness_to_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -2274,7 +2274,7 @@
                                                                                 <input type="checkbox" class="form-control"
                                                                                        id="case_steps_argument_yes_no"
                                                                                        name="case_steps_argument_yes_no"
-                                                                                       {{ $edit_case_steps->case_steps_argument_yes_no == 'on' ? 'checked': '' }}>
+                                                                                       {{ $edit_case_steps->case_steps_argument_yes_no == 'Yes' ? 'checked': '' }}>
                                                                                 @error('case_steps_argument_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -2303,7 +2303,7 @@
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                             <div class="col-sm-2">
-                                                                                <input type="checkbox" {{ $edit_case_steps->case_steps_judgement_order_yes_no == 'on' ? 'checked': '' }} class="form-control"
+                                                                                <input type="checkbox" {{ $edit_case_steps->case_steps_judgement_order_yes_no == 'Yes' ? 'checked': '' }} class="form-control"
                                                                                        id="case_steps_judgement_order_yes_no"
                                                                                        name="case_steps_judgement_order_yes_no">
                                                                                 @error('case_steps_judgement_order_yes_no')<span

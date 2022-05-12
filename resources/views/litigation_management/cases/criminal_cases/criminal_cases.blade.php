@@ -175,6 +175,7 @@
                                         <th class="text-center"> Next Date</th>
                                         <th class="text-center"> Fixed for</th>
                                         <th class="text-center"> Case No</th>
+                                        <th class="text-center"> Sub-Seq. Case No</th>
                                         <th class="text-center"> Court Name</th>
                                         <th class="text-center"> District</th>
                                         <th class="text-center"> Complainant</th>
@@ -204,6 +205,21 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('view-criminal-cases', $datum->id) }}"> {{ $datum->case_infos_case_no ? $datum->case_title_name.' '.$datum->case_infos_case_no.'/'.$datum->case_infos_case_no : '' }} </a>
+                                            </td>
+                                            <td>
+                                                {{ $datum->sub_seq_case_title_name }}
+                                                @php
+                                                    $case_infos_sub_seq_case_no = explode(', ',trim($datum->case_infos_sub_seq_case_no));
+                                                    $key = array_key_last($case_infos_sub_seq_case_no);
+                                                    echo $case_infos_sub_seq_case_no[$key];
+
+                                                    $case_infos_sub_seq_case_year = explode(', ',trim($datum->case_infos_sub_seq_case_year));
+                                                    $key = array_key_last($case_infos_sub_seq_case_year);
+                                                    $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                                    if ($last_case_no != null) {
+                                                        echo '/'.$last_case_no;
+                                                    }
+                                                @endphp
                                             </td>
                                             <td>
                                                 @php

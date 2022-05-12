@@ -20,8 +20,8 @@ class LitigationCalenderController extends Controller
                         ->leftJoin('setup_districts', 'criminal_cases.case_infos_district_id', '=', 'setup_districts.id')
                         ->leftJoin('setup_districts as accused_district', 'criminal_cases.case_infos_district_id', '=', 'accused_district.id')
                         ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
-                        ->leftJoin('setup_allegations', 'criminal_cases.case_infos_allegation_claim_id', '=', 'setup_allegations.id')
-                        ->select('criminal_cases.*', 'setup_next_date_reasons.next_date_reason_name', 'setup_courts.court_name', 'setup_districts.district_name','accused_district.district_name as accused_district_name', 'setup_case_types.case_types_name','setup_allegations.allegation_name')
+                        // ->leftJoin('setup_allegations', 'criminal_cases.case_infos_allegation_claim_id', '=', 'setup_allegations.id')
+                        ->select('criminal_cases.*', 'setup_next_date_reasons.next_date_reason_name', 'setup_courts.court_name', 'setup_districts.district_name','accused_district.district_name as accused_district_name', 'setup_case_types.case_types_name')
                         ->get();
 
 //        $criminal_cases = json_decode(json_encode($criminal_cases));

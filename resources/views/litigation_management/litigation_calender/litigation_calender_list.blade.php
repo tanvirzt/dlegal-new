@@ -146,8 +146,19 @@
                                     @endif
                                     {{ $datum->accused_write }}
                                 </td>
-                                <td></td>
-                                <td></td>
+                                <td>
+                                    @php
+                                        $updated_day_notes = explode(', ',$datum->updated_day_notes_id);
+                                    @endphp
+                                    @if($datum->updated_day_notes_id)
+                                        @foreach ($updated_day_notes as $pro)
+                                            <li class="text-left">{{ $pro }}</li>
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $datum->updated_remarks_or_steps_taken }}
+                                </td>
                             </tr>
                             </tbody>
                         </table>

@@ -120,6 +120,8 @@ class CreateCriminalCasesTable extends Migration
             $table->string('case_infos_accused_representative')->nullable();
             $table->string('prosecution_witness')->nullable();
             $table->string('defense_witness')->nullable();
+            $table->mediumText('updated_day_notes_id')->nullable();
+            $table->string('updated_remarks_or_steps_taken')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
