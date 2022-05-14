@@ -164,12 +164,12 @@
                                         <p>Court Name</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a href="{{ route('court-short') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Court Name(Short)</p>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a href="{{ route('court-proceeding') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -197,19 +197,19 @@
                                 <li class="nav-item">
                                     <a href="{{ route('external-council') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>External Council</p>
+                                        <p>External Counsel</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('external-council-associates') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>External Council Associates</p>
+                                        <p>External Counsel Associates</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('internal-council') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Internal Council</p>
+                                        <p>Internal Counsel</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

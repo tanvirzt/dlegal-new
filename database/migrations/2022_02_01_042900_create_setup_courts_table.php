@@ -17,6 +17,7 @@ class CreateSetupCourtsTable extends Migration
             $table->id();
             $table->string('case_type')->nullable();
             $table->string('court_name')->nullable();
+            $table->string('court_short_name')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

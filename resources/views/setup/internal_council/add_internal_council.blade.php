@@ -48,7 +48,7 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Add Internal Council</h3>
+                                <h3 class="card-title" id="heading">Add Internal Counsel</h3>
                             </div>
 
                             <form action="{{ route('save-internal-council') }}" enctype="multipart/form-data" method="post">

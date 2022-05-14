@@ -710,6 +710,7 @@ class AdminSetupController extends Controller
         $data = new SetupCourt();
         $data->case_type = $request->case_type;
         $data->court_name = $request->court_name;
+        $data->court_short_name = $request->court_short_name;
         $data->save();
 
         session()->flash('success','Court Added Successfully');
@@ -738,6 +739,7 @@ class AdminSetupController extends Controller
         $data = SetupCourt::find($id);
         $data->case_type = $request->case_type;
         $data->court_name = $request->court_name;
+        $data->court_short_name = $request->court_short_name;
         $data->save();
 
         session()->flash('success','Court Updated');
@@ -1736,18 +1738,12 @@ public function delete_company($id)
  {
      $rules = [
          'title_id' => 'required',
-         'first_name' => 'required',
-         'middle_name' => 'required',
-         'last_name' => 'required',
          'email' => 'required',
          'work_phone' => 'required'
      ];
 
      $validMsg = [
          'title_id.required' => 'Title field is required',
-         'first_name.required' => 'First Name field is required',
-         'middle_name.required' => 'Middle Name field is required',
-         'last_name.required' => 'Last Name field is required',
          'email.required' => 'Email field is required',
          'work_phone.required' => 'Work Phone field is required',
      ];
@@ -1801,18 +1797,12 @@ public function delete_company($id)
  {
     $rules = [
          'title_id' => 'required',
-         'first_name' => 'required',
-         'middle_name' => 'required',
-         'last_name' => 'required',
          'email' => 'required',
          'work_phone' => 'required'
      ];
 
      $validMsg = [
          'title_id.required' => 'Title field is required',
-         'first_name.required' => 'First Name field is required',
-         'middle_name.required' => 'Middle Name field is required',
-         'last_name.required' => 'Last Name field is required',
          'email.required' => 'Email field is required',
          'work_phone.required' => 'Work Phone field is required',
      ];
@@ -1889,18 +1879,12 @@ public function delete_company($id)
     //  dd($request->all());
      $rules = [
          'title_id' => 'required',
-         'first_name' => 'required',
-         'middle_name' => 'required',
-         'last_name' => 'required',
          'email' => 'required',
          'work_phone' => 'required'
      ];
 
      $validMsg = [
          'title_id.required' => 'Title field is required',
-         'first_name.required' => 'First Name field is required',
-         'middle_name.required' => 'Middle Name field is required',
-         'last_name.required' => 'Last Name field is required',
          'email.required' => 'Email field is required',
          'work_phone.required' => 'Work Phone field is required',
      ];
@@ -1954,18 +1938,12 @@ public function delete_company($id)
  {
     $rules = [
          'title_id' => 'required',
-         'first_name' => 'required',
-         'middle_name' => 'required',
-         'last_name' => 'required',
          'email' => 'required',
          'work_phone' => 'required'
      ];
 
      $validMsg = [
          'title_id.required' => 'Title field is required',
-         'first_name.required' => 'First Name field is required',
-         'middle_name.required' => 'Middle Name field is required',
-         'last_name.required' => 'Last Name field is required',
          'email.required' => 'Email field is required',
          'work_phone.required' => 'Work Phone field is required',
      ];
@@ -2050,10 +2028,6 @@ public function delete_company($id)
      $rules = [
          'external_council_id' => 'required',
          'title_id' => 'required',
-         'title_id' => 'required',
-         'first_name' => 'required',
-         'middle_name' => 'required',
-         'last_name' => 'required',
          'email' => 'required',
          'work_phone' => 'required'
      ];
@@ -2061,10 +2035,6 @@ public function delete_company($id)
      $validMsg = [
          'external_council_id.required' => 'External Council field is required',
          'title_id.required' => 'Title field is required',
-         'title_id.required' => 'Title field is required',
-         'first_name.required' => 'First Name field is required',
-         'middle_name.required' => 'Middle Name field is required',
-         'last_name.required' => 'Last Name field is required',
          'email.required' => 'Email field is required',
          'work_phone.required' => 'Work Phone field is required',
      ];
@@ -2121,9 +2091,6 @@ public function delete_company($id)
     $rules = [
          'external_council_id' => 'required',
          'title_id' => 'required',
-         'first_name' => 'required',
-         'middle_name' => 'required',
-         'last_name' => 'required',
          'email' => 'required',
          'work_phone' => 'required'
      ];
@@ -2131,9 +2098,6 @@ public function delete_company($id)
      $validMsg = [
          'external_council_id.required' => 'External Council field is required',
          'title_id.required' => 'Title field is required',
-         'first_name.required' => 'First Name field is required',
-         'middle_name.required' => 'Middle Name field is required',
-         'last_name.required' => 'Last Name field is required',
          'email.required' => 'Email field is required',
          'work_phone.required' => 'Work Phone field is required',
      ];

@@ -48,7 +48,7 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Edit External Council Associates</h3>
+                                <h3 class="card-title" id="heading">Edit External Counsel Associates</h3>
                             </div>
 
                             <form action="{{ route('update-external-council-associates',$data->id) }}" method="post" enctype="multipart/form-data" >
@@ -59,7 +59,7 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label for="title_id" class="col-sm-4 col-form-label">External Council</label>
+                                                <label for="title_id" class="col-sm-4 col-form-label">External Counsel</label>
                                                 <div class="col-sm-8">
                                                         <select name="external_council_id" class="form-control select2" id="external_council_id">
                                                             <option value="">Select</option>

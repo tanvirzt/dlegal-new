@@ -76,6 +76,12 @@
                                                    id="court_name">
                                             @error('court_name')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
+                                        <div class="form-group">
+                                            <label for="court_short_name">Court Name(Short)</label>
+                                            <input type="text" class="form-control" name="court_short_name"
+                                                   id="court_short_name">
+                                            @error('court_short_name')<span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
 
                                         <div class="float-right">
                                             <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save</button>

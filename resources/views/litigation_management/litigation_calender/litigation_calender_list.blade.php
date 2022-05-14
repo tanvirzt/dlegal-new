@@ -123,7 +123,7 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $datum->court_name }}</td>
-                                <td>{{ $datum->case_infos_case_no ? $datum->case_title_name.' '.$datum->case_infos_case_no.'/'.$datum->case_infos_case_no : '' }}</td>
+                                <td>{{ $datum->case_infos_case_no ? $datum->case_title_name.' '.$datum->case_infos_case_no.'/'.$datum->case_infos_case_year : '' }}</td>
                                 <td>{{ $datum->next_date_reason_name }}</td>
                                 <td>
                                     @php

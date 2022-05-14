@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> External Council </h1>
+                        <h1> External Counsel </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> External Council </li>
+                            <li class="breadcrumb-item active"> External Counsel </li>
                         </ol>
                     </div>
                 </div>
@@ -38,8 +38,8 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-external-council') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add External Council </button></a>
+                                    <a href="{{ route('add-external-Counsel') }}"><button class="btn btn-sm
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add External Counsel </button></a>
                                 </div>
 
                             </div>
@@ -89,9 +89,9 @@
                                             </td>
                                             <td class="text-center">
                                                 
-                                                <a href="{{ route('edit-external-council',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                <a href="{{ route('edit-external-Counsel',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
-                                                <form method="POST" action="{{ route('delete-external-council',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                <form method="POST" action="{{ route('delete-external-Counsel',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
                                                 </form>

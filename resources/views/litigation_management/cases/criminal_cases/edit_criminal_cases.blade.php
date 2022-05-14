@@ -77,7 +77,7 @@
 
                                             </div>
 
-                                            <form action="{{ route('update-criminal-cases', $data->id) }}" method="post"
+                                            <form action="{{ route('update-criminal-case', $data->id) }}" method="post"
                                                   enctype="multipart/form-data">
                                                 @csrf
 
@@ -1058,7 +1058,108 @@
 
                                                                     </div>
                                                                 </div>
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <h6 class="text-uppercase text-bold"><u> Documents
+                                                                                Information </u></h6>
+                                                                        <div class="form-group row">
+                                                                            <label for="received_documents_id"
+                                                                                   class="col-sm-4 col-form-label">
+                                                                                Received Documents </label>
+                                                                            <div class="col-sm-8">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <select name="received_documents_id[]"
+                                                                                                id="received_documents_id"
+                                                                                                class="form-control select2" data-placeholder="Select" multiple>
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach($documents as $item)
+                                                                                                <option
+                                                                                                    value="{{ $item->documents_name }}" {{ in_array($item->documents_name, $received_documents_explode) ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="input-group hdtuto_received_documents control-group increment_received_documents">
+                                                                                            <input type="text" name="received_documents_write[]"
+                                                                                                   class="myfrm form-control col-12" value="{{ rtrim($data->received_documents_write, ', ') }}">
+                                                                                            <div class="input-group-btn">
+                                                                                                <button class="btn btn-success btn_success_received_documents"
+                                                                                                        type="button"><i
+                                                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="clone_received_documents hide">
+                                                                                            <div class="hdtuto_received_documents control-group lst input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                <input type="text" name="received_documents_write[]"
+                                                                                                       class="myfrm form-control col-12">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_received_documents"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
 
+                                                                                    </div>
+                                                                                </div>
+                                                                                @error('received_documents')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="required_wanting_documents_id"
+                                                                                   class="col-sm-4 col-form-label"> Required/Wanting
+                                                                                Documents </label>
+                                                                            <div class="col-sm-8">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <select name="required_wanting_documents_id[]"
+                                                                                                id="required_wanting_documents_id"
+                                                                                                class="form-control select2" data-placeholder="Select" multiple>
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach($documents as $item)
+                                                                                                <option
+                                                                                                    value="{{ $item->documents_name }}" {{ in_array($item->documents_name, $required_documents_explode) ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
+                                                                                            <input type="text" name="required_wanting_documents_write[]"
+                                                                                                   class="myfrm form-control col-12" placeholder="Required Documents" value="{{ rtrim($data->required_wanting_documents_write, ', ') }}">
+                                                                                            <div class="input-group-btn">
+                                                                                                <button class="btn btn-success btn_success_required_wanting_documents"
+                                                                                                        type="button"><i
+                                                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="clone_required_wanting_documents hide">
+                                                                                            <div class="hdtuto_required_wanting_documents control-group lst input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                <input type="text" name="required_wanting_documents_write[]"
+                                                                                                       class="myfrm form-control col-12">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_required_wanting_documents"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                @error('required_wanting_documents')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
 
                                                             </div>
@@ -1890,108 +1991,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="card">
-                                                                    <div class="card-body">
-                                                                        <h6 class="text-uppercase text-bold"><u> Documents
-                                                                                Information </u></h6>
-                                                                        <div class="form-group row">
-                                                                            <label for="received_documents_id"
-                                                                                   class="col-sm-4 col-form-label">
-                                                                                Received Documents </label>
-                                                                            <div class="col-sm-8">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-6">
-                                                                                        <select name="received_documents_id[]"
-                                                                                                id="received_documents_id"
-                                                                                                class="form-control select2" data-placeholder="Select" multiple>
-                                                                                            <option value="">Select</option>
-                                                                                            @foreach($documents as $item)
-                                                                                                <option
-                                                                                                    value="{{ $item->documents_name }}" {{ in_array($item->documents_name, $received_documents_explode) ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                    </div>
-                                                                                    <div class="col-md-6">
-                                                                                        <div class="input-group hdtuto_received_documents control-group increment_received_documents">
-                                                                                            <input type="text" name="received_documents_write[]"
-                                                                                                   class="myfrm form-control col-12" value="{{ rtrim($data->received_documents_write, ', ') }}">
-                                                                                            <div class="input-group-btn">
-                                                                                                <button class="btn btn-success btn_success_received_documents"
-                                                                                                        type="button"><i
-                                                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
-                                                                                                </button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="clone_received_documents hide">
-                                                                                            <div class="hdtuto_received_documents control-group lst input-group"
-                                                                                                 style="margin-top:10px">
-                                                                                                <input type="text" name="received_documents_write[]"
-                                                                                                       class="myfrm form-control col-12">
-                                                                                                <div class="input-group-btn">
-                                                                                                    <button class="btn btn-danger btn_danger_received_documents"
-                                                                                                            type="button"><i
-                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
 
-                                                                                    </div>
-                                                                                </div>
-                                                                                @error('received_documents')<span
-                                                                                    class="text-danger">{{$message}}</span>@enderror
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="required_wanting_documents_id"
-                                                                                   class="col-sm-4 col-form-label"> Required/Wanting
-                                                                                Documents </label>
-                                                                            <div class="col-sm-8">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-6">
-                                                                                        <select name="required_wanting_documents_id[]"
-                                                                                                id="required_wanting_documents_id"
-                                                                                                class="form-control select2" data-placeholder="Select" multiple>
-                                                                                            <option value="">Select</option>
-                                                                                            @foreach($documents as $item)
-                                                                                                <option
-                                                                                                    value="{{ $item->documents_name }}" {{ in_array($item->documents_name, $required_documents_explode) ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                    </div>
-                                                                                    <div class="col-md-6">
-                                                                                        <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
-                                                                                            <input type="text" name="required_wanting_documents_write[]"
-                                                                                                   class="myfrm form-control col-12" placeholder="Required Documents" value="{{ rtrim($data->required_wanting_documents_write, ', ') }}">
-                                                                                            <div class="input-group-btn">
-                                                                                                <button class="btn btn-success btn_success_required_wanting_documents"
-                                                                                                        type="button"><i
-                                                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
-                                                                                                </button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="clone_required_wanting_documents hide">
-                                                                                            <div class="hdtuto_required_wanting_documents control-group lst input-group"
-                                                                                                 style="margin-top:10px">
-                                                                                                <input type="text" name="required_wanting_documents_write[]"
-                                                                                                       class="myfrm form-control col-12">
-                                                                                                <div class="input-group-btn">
-                                                                                                    <button class="btn btn-danger btn_danger_required_wanting_documents"
-                                                                                                            type="button"><i
-                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                    </div>
-                                                                                </div>
-                                                                                @error('required_wanting_documents')<span
-                                                                                    class="text-danger">{{$message}}</span>@enderror
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
                                                                 <div class="card">
                                                                     <div class="card-body">
                                                                         <h6 class="text-uppercase text-bold">

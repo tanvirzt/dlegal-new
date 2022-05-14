@@ -324,7 +324,30 @@
                                                     </table>
                                                 </div>
                                             </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="text-uppercase text-bold"><u> Documents
+                                                            Information </u>
+                                                            <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal" data-target="#modal-lg-documents-info" data-toggle="tooltip"
+                                                            data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i></button>
+                                                        </h6>
+                                                    <table class="table table-bordered table-responsive">
 
+                                                        <tbody>
+
+                                                        <tr>
+                                                            <td>Received Documents</td>
+                                                            <td> {{ $data->received_documents_id }} {{ rtrim($data->received_documents_write, ', ') }} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Required/Wanting Documents</td>
+                                                            <td> {{ $data->required_wanting_documents_id }} {{ rtrim($data->required_wanting_documents_write, ', ') }} </td>
+                                                        </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -499,30 +522,7 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Documents
-                                                            Information </u>
-                                                            <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal" data-target="#modal-lg-documents-info" data-toggle="tooltip"
-                                                            data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i></button>
-                                                        </h6>
-                                                    <table class="table table-bordered table-responsive">
 
-                                                        <tbody>
-
-                                                        <tr>
-                                                            <td>Received Documents</td>
-                                                            <td> {{ $data->received_documents_id }} {{ rtrim($data->received_documents_write, ', ') }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Required/Wanting Documents</td>
-                                                            <td> {{ $data->required_wanting_documents_id }} {{ rtrim($data->required_wanting_documents_write, ', ') }} </td>
-                                                        </tr>
-
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
 
                                             <div class="card">
                                                 <div class="card-body">
@@ -945,7 +945,7 @@
     <!-- /.modal -->
 
     <div class="modal fade" id="modal-lg">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="card-title"> Update Criminal Case Status </h3>
@@ -1270,7 +1270,7 @@
     <!-- /.modal -->
 
     <div class="modal fade" id="modal-lg-2">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="card-title"> Update Activities </h3>

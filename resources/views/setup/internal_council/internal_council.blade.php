@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Internal Council </h1>
+                        <h1> Internal Counsel </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Internal Council </li>
+                            <li class="breadcrumb-item active"> Internal Counsel </li>
                         </ol>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
                                     <a href="{{ route('add-internal-council') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Internal Council </button></a>
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Internal Counsel </button></a>
                                 </div>
 
                             </div>
@@ -93,7 +93,7 @@
                                                     ><i class="fas fa-edit"></i></button></a>
                                                 <form method="POST" action="{{ route('delete-internal-council',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
 
                                             </td>

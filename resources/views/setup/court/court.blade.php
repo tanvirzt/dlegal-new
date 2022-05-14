@@ -51,6 +51,7 @@
                                         <th class="text-center text-nowrap">ID</th>
                                         <th class="text-center text-nowrap">Case Type</th>
                                         <th class="text-center text-nowrap">Court Name</th>
+                                        <th class="text-center text-nowrap">Court Name(Short)</th>
                                         <th class="text-center text-nowrap">Status</th>
                                         <th class="text-center text-nowrap">Action</th>
                                     </tr>
@@ -67,6 +68,9 @@
                                             </td>
                                             <td class="text-center">
                                                 {{ $datum->court_name }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ $datum->court_short_name }}
                                             </td>
                                             <td class="text-center">
                                                 @if ($datum->delete_status == 0)

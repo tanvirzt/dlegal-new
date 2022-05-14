@@ -204,7 +204,7 @@
                                                 {{ $datum->next_date_reason_name }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('view-criminal-cases', $datum->id) }}"> {{ $datum->case_infos_case_no ? $datum->case_title_name.' '.$datum->case_infos_case_no.'/'.$datum->case_infos_case_no : '' }} </a>
+                                                <a href="{{ route('view-criminal-cases', $datum->id) }}"> {{ $datum->case_infos_case_no ? $datum->case_title_name.' '.$datum->case_infos_case_no.'/'.$datum->case_infos_case_year : '' }} </a>
                                             </td>
                                             <td>
                                                 {{ $datum->sub_seq_case_title_name }}
