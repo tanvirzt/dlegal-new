@@ -182,7 +182,11 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-criminal-cases-activity/{id}','CriminalCasesController@update_criminal_cases_activity')->name('update-criminal-cases-activity');
         Route::post('search-criminal-cases','CriminalCasesController@search_criminal_cases')->name('search-criminal-cases');
         Route::post('delete-criminal-cases-status/{id}','CriminalCasesController@delete_criminal_cases_status')->name('delete-criminal-cases-status');
+        Route::get('edit_criminal_cases_status/{id}','CriminalCasesController@edit_criminal_cases_status')->name('edit-criminal-cases-status');
+        Route::post('update-criminal-cases-status-logs/{id}','CriminalCasesController@update_criminal_cases_status_logs')->name('update-criminal-cases-status-logs');
         Route::post('delete-criminal-cases-activity/{id}','CriminalCasesController@delete_criminal_cases_activity')->name('delete-criminal-cases-activity');
+        Route::get('edit_criminal_cases_activity/{id}','CriminalCasesController@edit_criminal_cases_activity')->name('edit-criminal-cases-activity');
+        Route::post('update-criminal-cases-activity-logs/{id}','CriminalCasesController@update_criminal_cases_activity_logs')->name('update-criminal-cases-activity-logs');
 
         Route::get('labour-cases','LabourCasesController@labour_cases')->name('labour-cases');
         Route::get('add-labour-cases','LabourCasesController@add_labour_cases')->name('add-labour-cases');

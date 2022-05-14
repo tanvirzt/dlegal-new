@@ -1696,6 +1696,43 @@ $(document).ready(function () {
     });
 
 
+    $('body').on('click', '#editCompany', function (event) {
+
+        event.preventDefault();
+        var id = $(this).data('id');
+        console.log(id);
+        
+        $.get('/dlegal-software/public/admin/edit_criminal_cases_status/' + id, function (data) {
+            //  $('#userCrudModal').html("Edit category");
+            //  $('#submit').val("Edit category");
+            
+             $('#practice_modal').modal('show');
+
+            //  $('#updated_case_status_id_update').val(data.data.updated_case_status_id);
+
+             $.each(data.case_status, function (key, value) {
+                $('select[id="updated_case_status_id_update"]').append('<option value="'+value.id+'" '+data.data.updated_case_status_id == value.id ? 'selected' : ''+'>' + value.case_status_name + '</option>');
+            });
+
+             $('#updated_case_status_write_update').val(data.data.updated_case_status_write);
+             $('#updated_order_date_update').val(data.data.updated_order_date);
+             $('#updated_fixed_for_id_update').val(data.data.updated_fixed_for_id);
+             $('#updated_fixed_for_write_update').val(data.data.updated_fixed_for_write);
+             $('#court_proceedings_id_update').val(data.data.court_proceedings_id);
+             $('#court_proceedings_write_update').val(data.data.court_proceedings_write);
+             $('#updated_court_order_id_update').val(data.data.updated_court_order_id);
+             $('#updated_court_order_write_update').val(data.data.updated_court_order_write);
+             $('#updated_next_date_update').val(data.data.updated_next_date);
+             $('#updated_index_fixed_for_id_update').val(data.data.updated_index_fixed_for_id);
+             $('#updated_day_notes_id_update').val(data.data.updated_day_notes_id);
+             $('#updated_day_notes_write_update').val(data.data.updated_day_notes_write);
+             $('#updated_engaged_advocate_id_update').val(data.data.updated_engaged_advocate_id);
+             $('#updated_engaged_advocate_write_update').val(data.data.updated_engaged_advocate_write);
+             $('#updated_next_day_presence_id_update').val(data.data.updated_next_day_presence_id);
+             $('#updated_remarks_update').val(data.data.updated_remarks);
+         })
+    });
+
 
 });
 

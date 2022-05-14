@@ -430,7 +430,7 @@ class CriminalCasesController extends Controller
         $user = Admin::orderBy('name','asc')->get();
 
         $exist_engaged_advocate = SetupExternalCouncil::where('id',$data->lawyer_advocate_id)->get();
-        $exist_engaged_advocate_associates = SetupExternalCouncilAssociate::where(['external_council_id'=>$data->lawyer_advocate_id,'delete_status'=>0])->get();
+        $exist_engaged_advocate_associates = SetupExternalCouncilAssociate::where(['delete_status'=>0])->get();
         $edit_case_steps = CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
 
 //        dd($assigned_lawyer_explode);
@@ -1258,5 +1258,100 @@ class CriminalCasesController extends Controller
         return redirect()->back();
     }
 
+
+    public function edit_criminal_cases_status($id)
+    {
+        $data = CriminalCaseStatusLog::find($id);
+        $case_no = CriminalCase::find($data->case_id);
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
+        $next_date_reason = SetupNextDateReason::where('delete_status', 0)->orderBy('next_date_reason_name','asc')->get();
+        $court_proceeding = SetupCourtProceeding::where('delete_status', 0)->orderBy('court_proceeding_name','asc')->get();
+        $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->orderBy('court_last_order_name','asc')->get();
+        $day_notes = SetupDayNote::where('delete_status', 0)->orderBy('day_notes_name','asc')->get();
+        // $exist_engaged_advocate = SetupExternalCouncil::where('id',$data->lawyer_advocate_id)->get();
+        $exist_engaged_advocate_associates = SetupExternalCouncilAssociate::where(['delete_status'=>0])->get();
+        $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->orderBy('next_day_presence_name','asc')->get();
+        $court_proceeding_explode = explode(', ', $data->court_proceedings_id );
+        $updated_court_order_explode  = explode(', ', $data->updated_court_order_id );
+        $updated_day_notes_explode = explode(', ', $data->updated_day_notes_id );
+
+// dd($data);
+
+        return view('litigation_management.cases.criminal_cases.criminal_cases_status_update',compact('data','case_status','next_date_reason','court_proceeding','last_court_order','day_notes', 'exist_engaged_advocate_associates','next_day_presence','court_proceeding_explode', 'updated_court_order_explode','updated_day_notes_explode'));
+    }
+
+    public function update_criminal_cases_status_logs(Request $request, $id)
+    {
+
+        $case_id = CriminalCaseStatusLog::find($id);
+
+        $updated_day_notes_id = $request->updated_day_notes_id ? implode(', ',$request->updated_day_notes_id) : null;
+        $status = CriminalCase::find($case_id->case_id);
+        $status->next_date = $request->updated_order_date == 'dd/mm/yyyy' ?  $status->next_date : $request->updated_order_date;
+        $status->next_date_fixed_id = $request->updated_index_fixed_for_id;
+        $status->updated_day_notes_id = $updated_day_notes_id.', '.$request->updated_day_notes_write;
+        $status->updated_remarks_or_steps_taken = $request->updated_remarks;
+        $status->save();
+
+
+        $data = CriminalCaseStatusLog::find($id);
+
+        $data->updated_case_status_id = $request->updated_case_status_id;
+        $data->updated_case_status_write = $request->updated_case_status_write;
+        $data->updated_order_date = $request->updated_order_date == 'dd/mm/yyyy' ?  null : $request->updated_order_date;
+        $data->updated_fixed_for_id = $request->updated_fixed_for_id;
+        $data->updated_fixed_for_write = $request->updated_fixed_for_write;
+        $data->court_proceedings_id = $request->court_proceedings_id ? implode(', ',$request->court_proceedings_id) :null;
+        $data->court_proceedings_write = $request->court_proceedings_write;
+        $data->updated_court_order_id = $request->updated_court_order_id ? implode(', ',$request->updated_court_order_id) : null;
+        $data->updated_court_order_write = $request->updated_court_order_write;
+        $data->updated_next_date = $request->updated_next_date;
+        $data->updated_index_fixed_for_id = $request->updated_index_fixed_for_id;
+        $data->updated_day_notes_id = $request->updated_day_notes_id ? implode(', ',$request->updated_day_notes_id) : null;
+        $data->updated_day_notes_write = $request->updated_day_notes_write;
+        $data->updated_engaged_advocate_id = $request->updated_engaged_advocate_id;
+        $data->updated_engaged_advocate_write = $request->updated_engaged_advocate_write;
+        $data->updated_next_day_presence_id = $request->updated_next_day_presence_id;
+        $data->updated_remarks = $request->updated_remarks;
+        $data->save();
+
+        session()->flash('success', 'Case Status Updated Successfully');
+        return redirect()->route('view-criminal-cases',$case_id->case_id);
+    }
+
+    public function edit_criminal_cases_activity($id)
+    {
+        $data = CriminalCaseActivityLog::find($id);
+        $mode = SetupMode::where('delete_status', 0)->orderBy('mode_name','asc')->get();
+        $exist_engaged_advocate_associates = SetupExternalCouncilAssociate::where(['delete_status'=>0])->get();
+        $external_council = SetupExternalCouncil::where('delete_status', 0)->orderBy('first_name','asc')->get();
+        $exist_engaged_advocate_associates_explode = explode(', ', $data->activity_engaged_id);
+        // dd($exist_engaged_advocate_associates_explode);
+        return view('litigation_management.cases.criminal_cases.criminal_cases_activity_update',compact('data','mode','exist_engaged_advocate_associates','external_council','exist_engaged_advocate_associates_explode'));
+    }
+
+    public function update_criminal_cases_activity_logs(Request $request, $id)
+    {
+
+        $case_id = CriminalCaseStatusLog::find($id);
+
+        $data = CriminalCaseActivityLog::find($id);
+        $data->activity_date = $request->activity_date == 'dd/mm/yyyy' ?  null : $request->activity_date;
+        $data->activity_action = $request->activity_action;
+        $data->activity_progress = $request->activity_progress;
+        $data->activity_mode_id = $request->activity_mode_id;
+        $data->activity_mode_write = $request->activity_mode_write;
+        $data->start_time = $request->start_time;
+        $data->end_time = $request->end_time;
+        $data->total_time = $request->setup_hours;
+        $data->activity_engaged_id = $request->activity_engaged_id ? implode(', ',$request->activity_engaged_id) : null;
+        $data->activity_engaged_write = $request->activity_engaged_write;
+        $data->activity_forwarded_to_id = $request->activity_forwarded_to_id;
+        $data->activity_forwarded_to_write = $request->activity_forwarded_to_write;
+        $data->save();
+
+        session()->flash('success', 'Case Activity Updated Successfully');
+        return redirect()->route('view-criminal-cases',$case_id->case_id);
+    }
 
 }

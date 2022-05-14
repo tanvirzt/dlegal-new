@@ -2626,7 +2626,7 @@
                                                                                                 class="form-control select2"
                                                                                         >
                                                                                             <option value="">Select</option>
-                                                                                            @foreach ($exist_engaged_advocate as $item)
+                                                                                            {{-- @foreach ($exist_engaged_advocate as $item)
                                                                                                 <option
                                                                                                     value="{{ $item->id }}"
                                                                                                     {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
@@ -2634,7 +2634,7 @@
                                                                                                     {{ $item->middle_name }}
                                                                                                     {{ $item->last_name }}
                                                                                                 </option>
-                                                                                            @endforeach
+                                                                                            @endforeach --}}
                                                                                             @foreach ($exist_engaged_advocate_associates as $item)
                                                                                                 <option
                                                                                                     value="{{ $item->id }}"
@@ -2852,7 +2852,7 @@
                                                                                     <div class="col-md-6">
                                                                                         <select name="activity_engaged_id[]" class="form-control select2" data-placeholder="Select" multiple>
                                                                                             <option value="">Select</option>
-                                                                                            @foreach ($exist_engaged_advocate as $item)
+                                                                                            {{-- @foreach ($exist_engaged_advocate as $item)
                                                                                                 <option
                                                                                                     value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name}}"
                                                                                                     {{ old('activity_engaged_id') == $item->id ? 'selected' : '' }}>
@@ -2860,7 +2860,7 @@
                                                                                                     {{ $item->middle_name }}
                                                                                                     {{ $item->last_name }}
                                                                                                 </option>
-                                                                                            @endforeach
+                                                                                            @endforeach --}}
                                                                                             @foreach ($exist_engaged_advocate_associates as $item)
                                                                                                 <option
                                                                                                     value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name}}"

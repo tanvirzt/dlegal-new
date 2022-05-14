@@ -724,6 +724,12 @@
                                                     {{ $logs->updated_day_notes_write }} </td>
                                                 <td > {{ $logs->first_name }} {{ $logs->middle_name }} {{ $logs->last_name }} {{ $logs->updated_engaged_advocate_write }} </td>
                                                 <td> 
+                                                    <a href="{{ route('edit-criminal-cases-status', $logs->id) }}">
+                                                        <button
+                                                            class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"><i
+                                                                class="fas fa-edit"></i></button>
+                                                    </a>
                                                     <form method="POST" action="{{ route('delete-criminal-cases-status',$logs->id) }}"
                                                         class="delete-user btn btn-danger btn-xs">
                                                       @csrf
@@ -790,6 +796,12 @@
                                                     {{ $activity_log->activity_engaged_write }} </td>
                                                 <td> {{ $activity_log->forwarded_first_name }} {{ $activity_log->forwarded_middle_name }} {{ $activity_log->forwarded_last_name }} {{ $activity_log->activity_forwarded_to_write }} </td>
                                                 <td> 
+                                                    <a href="{{ route('edit-criminal-cases-activity', $activity_log->id) }}">
+                                                        <button
+                                                            class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"><i
+                                                                class="fas fa-edit"></i></button>
+                                                    </a>
                                                     <form method="POST" action="{{ route('delete-criminal-cases-activity',$activity_log->id) }}"
                                                         class="delete-user btn btn-danger btn-xs">
                                                       @csrf
@@ -1400,7 +1412,7 @@
                                             <div class="col-md-6">
                                                 <select name="activity_engaged_id[]" data-placeholder="Select" class="form-control select2" multiple>
                                                     <option value="">Select</option>
-                                                    @foreach ($external_council as $item)
+                                                    @foreach ($exist_engaged_advocate_associates as $item)
                                                         <option
                                                             value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name}}"
                                                             {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
