@@ -155,8 +155,8 @@ class CriminalCasesController extends Controller
         // $key = array_key_last(($request->case_infos_complainant_informant_name));
         // $element[$key-1];
 
-    //    $data = json_decode(json_encode($element[2]));
-    //    echo "<pre>";print_r($key);die();
+    //    $data = json_decode(json_encode($request->all()));
+    //    echo "<pre>";print_r($data);die();
 
 //        $rules = [
 //            'case_no' => 'required|unique:criminal_cases',
@@ -258,8 +258,10 @@ class CriminalCasesController extends Controller
         $data->lawyers_remarks = $request->lawyers_remarks;
         $data->received_documents_id = $request->received_documents_id ? implode(', ', $request->received_documents_id) : null;
         $data->received_documents_write = rtrim($received_documents, ', ');
+        $data->received_documents_date = $request->received_documents_date == 'dd/mm/yyyy' || $request->received_documents_date == 'NaN/NaN/NaN' ? null : $request->received_documents_date;
         $data->required_wanting_documents_id = $request->required_wanting_documents_id ? implode(', ', $request->required_wanting_documents_id): null;
         $data->required_wanting_documents_write = rtrim($wanting_documents,', ');
+        $data->required_wanting_documents_date = $request->required_wanting_documents_date == 'dd/mm/yyyy' || $request->required_wanting_documents_date == 'NaN/NaN/NaN' ? null : $request->required_wanting_documents_date;
         $data->case_infos_division_id = $request->case_infos_division_id;
         $data->case_infos_district_id = $request->case_infos_district_id;
         $data->case_infos_thana_id = $request->case_infos_thana_id;
@@ -537,8 +539,10 @@ class CriminalCasesController extends Controller
             $data->lawyers_remarks = $request->lawyers_remarks;
             $data->received_documents_id = $request->received_documents_id ? implode(', ', $request->received_documents_id) : null;
             $data->received_documents_write = rtrim($received_documents, ', ');
+            $data->received_documents_date = $request->received_documents_date == 'dd/mm/yyyy' || $request->received_documents_date == 'NaN/NaN/NaN' ? null : $request->received_documents_date;
             $data->required_wanting_documents_id = $request->required_wanting_documents_id ? implode(', ', $request->required_wanting_documents_id) : null;
             $data->required_wanting_documents_write = rtrim($wanting_documents,', ');
+            $data->required_wanting_documents_date = $request->required_wanting_documents_date == 'dd/mm/yyyy' || $request->required_wanting_documents_date == 'NaN/NaN/NaN' ? null : $request->required_wanting_documents_date;
             $data->case_infos_division_id = $request->case_infos_division_id;
             $data->case_infos_district_id = $request->case_infos_district_id;
             $data->case_infos_thana_id = $request->case_infos_thana_id;
@@ -720,8 +724,10 @@ class CriminalCasesController extends Controller
 
             $data->received_documents_id = $request->received_documents_id ? implode(', ', $request->received_documents_id) : null;
             $data->received_documents_write = rtrim($received_documents, ', ');
+            $data->received_documents_date = $request->received_documents_date == 'dd/mm/yyyy' || $request->received_documents_date == 'NaN/NaN/NaN' ? null : $request->received_documents_date;
             $data->required_wanting_documents_id = $request->required_wanting_documents_id ? implode(', ', $request->required_wanting_documents_id) : null;
             $data->required_wanting_documents_write = rtrim($wanting_documents,', ');
+            $data->required_wanting_documents_date = $request->required_wanting_documents_date == 'dd/mm/yyyy' || $request->required_wanting_documents_date == 'NaN/NaN/NaN' ? null : $request->required_wanting_documents_date;
             $data->save();
 
         }else if ($request->case_infos_division_id) {
@@ -917,8 +923,10 @@ class CriminalCasesController extends Controller
             $data->lawyers_remarks = $request->lawyers_remarks;
             $data->received_documents_id = $request->received_documents_id ? implode(', ', $request->received_documents_id) : null;
             $data->received_documents_write = rtrim($received_documents, ', ');
+            $data->received_documents_date = $request->received_documents_date == 'dd/mm/yyyy' || $request->received_documents_date == 'NaN/NaN/NaN' ? null : $request->received_documents_date;
             $data->required_wanting_documents_id = $request->required_wanting_documents_id ? implode(', ', $request->required_wanting_documents_id) : null;
             $data->required_wanting_documents_write = rtrim($wanting_documents,', ');
+            $data->required_wanting_documents_date = $request->required_wanting_documents_date == 'dd/mm/yyyy' || $request->required_wanting_documents_date == 'NaN/NaN/NaN' ? null : $request->required_wanting_documents_date;
             $data->case_infos_division_id = $request->case_infos_division_id;
             $data->case_infos_district_id = $request->case_infos_district_id;
             $data->case_infos_thana_id = $request->case_infos_thana_id;
@@ -1215,8 +1223,8 @@ class CriminalCasesController extends Controller
         $edit_case_steps = CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
 
 
-    //    $data = json_decode(json_encode($edit_case_steps));
-    //    echo "<pre>";print_r($data);die();
+    //    $edit_case_steps = json_decode(json_encode($edit_case_steps));
+    //    echo "<pre>";print_r($edit_case_steps);die();
 
 
         //   dd($data);

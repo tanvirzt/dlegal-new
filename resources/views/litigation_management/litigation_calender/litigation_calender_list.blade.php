@@ -48,8 +48,8 @@
                                 <div class="col-12 col-md-2">
                                     <div class="info-box bg-light">
                                         <div class="info-box-content" style="margin-right: 130px;">
-                                            <span class="info-box-text text-center text-muted text-bold">{{ $datum->received_date }}</span>
-                                            <span class="info-box-number text-center text-muted mb-0 text-bold">
+                                            <span class="info-box-text text-center text-success text-bold h6 text-text-warning" style="color: ">{{ $datum->received_date }}</span>
+                                            <span class="info-box-number text-center text-success mb-0 text-bold h6">
                                                 @php
                                                     $date = $datum->received_date;
                                                     $time = date('l', strtotime($date));
@@ -106,12 +106,12 @@
                     </div>
 
                     <div class="card-body">
-                        <table class="table table-bordered table-striped data_table">
+                        <table class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>SL</th>
                                 <th>Court Name</th>
-                                <th>Case Number</th>
+                                <th>Case No.</th>
                                 <th>Fixed For</th>
                                 <th>1st Party/Complainant</th>
                                 <th>2nd Party/Accused</th>
@@ -122,7 +122,23 @@
                             <tbody>
                             <tr>
                                 <td>{{ $key+1 }}</td>
-                                <td>{{ $datum->court_name }}</td>
+                                <td>
+                                    @php
+                                        $court_name = explode(', ',$datum->case_infos_court_short_id);
+                                    @endphp
+                                    @if($datum->case_infos_court_short_id)
+                                        @if (count($court_name)> 1)
+                                            @foreach ($court_name as $pro)
+                                                <li class="text-left">{{ $pro }}</li>
+                                            @endforeach
+                                        @else
+                                            @foreach ($court_name as $pro)
+                                                {{ $pro }}
+                                            @endforeach
+                                        @endif
+                                    @endif
+                                    {{ $datum->court_short_write }}
+                                </td>
                                 <td>{{ $datum->case_infos_case_no ? $datum->case_title_name.' '.$datum->case_infos_case_no.'/'.$datum->case_infos_case_year : '' }}</td>
                                 <td>{{ $datum->next_date_reason_name }}</td>
                                 <td>
@@ -130,9 +146,16 @@
                                         $notes = explode(', ',$datum->case_infos_complainant_informant_name);
                                     @endphp
                                     @if($datum->case_infos_complainant_informant_name)
-                                        @foreach ($notes as $pro)
-                                            <li class="text-left">{{ $pro }}</li>
-                                        @endforeach
+                                        @if (count($notes) >1)
+                                            @foreach ($notes as $pro)
+                                                <li class="text-left">{{ $pro }}</li>
+                                            @endforeach
+                                        @else
+                                            @foreach ($notes as $pro)
+                                                    {{ $pro }}
+                                            @endforeach
+                                        @endif
+                                        
                                     @endif
                                 </td>
                                 <td>
@@ -140,9 +163,15 @@
                                         $accused = explode(', ',$datum->case_infos_accused_name);
                                     @endphp
                                     @if($datum->case_infos_accused_name)
-                                        @foreach($accused as $item)
-                                            <li class="text-left">{{ $item }}</li>
-                                        @endforeach
+                                        @if (count($accused)>1)
+                                            @foreach($accused as $item)
+                                                <li class="text-left">{{ $item }}</li>
+                                            @endforeach
+                                        @else
+                                            @foreach($accused as $item)
+                                                {{ $item }}
+                                            @endforeach
+                                        @endif
                                     @endif
                                     {{ $datum->accused_write }}
                                 </td>
@@ -151,9 +180,15 @@
                                         $updated_day_notes = explode(', ',$datum->updated_day_notes_id);
                                     @endphp
                                     @if($datum->updated_day_notes_id)
-                                        @foreach ($updated_day_notes as $pro)
-                                            <li class="text-left">{{ $pro }}</li>
-                                        @endforeach
+                                        @if (count($updated_day_notes) >1)
+                                            @foreach ($updated_day_notes as $pro)
+                                                <li class="text-left">{{ $pro }}</li>
+                                            @endforeach    
+                                        @else
+                                            @foreach ($updated_day_notes as $pro)
+                                                {{ $pro }}
+                                            @endforeach
+                                        @endif
                                     @endif
                                 </td>
                                 <td>

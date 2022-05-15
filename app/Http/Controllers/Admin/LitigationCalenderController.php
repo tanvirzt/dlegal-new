@@ -14,7 +14,7 @@ class LitigationCalenderController extends Controller
     public function litigation_calender_list()
     {
         $criminal_cases_count = CriminalCase::where('delete_status',0)->count();
-        $criminal_cases = $data = DB::table('criminal_cases')
+        $criminal_cases = DB::table('criminal_cases')
         // ->leftJoin('criminal_cases_case_steps', 'criminal_cases.id', 'criminal_cases_case_steps.criminal_case_id')
         ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', 'setup_next_date_reasons.id')
         ->leftJoin('setup_case_statuses', 'criminal_cases.case_status_id', 'setup_case_statuses.id')
@@ -38,11 +38,12 @@ class LitigationCalenderController extends Controller
         'setup_external_councils.middle_name',
         'setup_external_councils.last_name',
         'case_infos_title.case_title_name as sub_seq_case_title_name')
+        ->orderBy('criminal_cases.received_date','desc')
         ->where('criminal_cases.delete_status',0)
         ->get();
 
-//        $criminal_cases = json_decode(json_encode($criminal_cases));
-//        echo "<pre>";print_r($criminal_cases);die();
+    //    $criminal_cases = json_decode(json_encode($criminal_cases));
+    //    echo "<pre>";print_r($criminal_cases);die();
 
         return view('litigation_management.litigation_calender.litigation_calender_list',compact('criminal_cases','criminal_cases_count'));
     }

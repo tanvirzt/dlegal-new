@@ -226,9 +226,15 @@
                                                     $court_name = explode(', ',$datum->case_infos_court_short_id);
                                                 @endphp
                                                 @if($datum->case_infos_court_short_id)
-                                                    @foreach ($court_name as $pro)
-                                                        <li class="text-left">{{ $pro }}</li>
-                                                    @endforeach
+                                                    @if (count($court_name)> 1)
+                                                        @foreach ($court_name as $pro)
+                                                            <li class="text-left">{{ $pro }}</li>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach ($court_name as $pro)
+                                                            {{ $pro }}
+                                                        @endforeach
+                                                    @endif
                                                 @endif
                                                 {{ $datum->court_short_write }}
                                             </td>
@@ -240,9 +246,16 @@
                                                     $notes = explode(', ',$datum->case_infos_complainant_informant_name);
                                                 @endphp
                                                 @if($datum->case_infos_complainant_informant_name)
-                                                    @foreach ($notes as $pro)
-                                                        <li class="text-left">{{ $pro }}</li>
-                                                    @endforeach
+                                                    @if (count($notes)>1)
+                                                        @foreach ($notes as $pro)
+                                                            <li class="text-left">{{ $pro }}</li>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach ($notes as $pro)
+                                                            {{ $pro }}
+                                                        @endforeach
+                                                    @endif
+                                                    
                                                 @endif
                                             </td>
                                             <td>
@@ -250,9 +263,16 @@
                                                     $accused = explode(', ',$datum->case_infos_accused_name);
                                                 @endphp
                                                 @if($datum->case_infos_accused_name)
-                                                    @foreach($accused as $item)
-                                                        <li class="text-left">{{ $item }}</li>
-                                                    @endforeach
+                                                    @if (count($accused)>1)
+                                                        @foreach($accused as $item)
+                                                            <li class="text-left">{{ $item }}</li>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach($accused as $item)
+                                                            {{ $item }}
+                                                        @endforeach
+                                                    @endif
+                                                    
                                                 @endif
                                                 {{ $datum->accused_write }}
                                             </td>
@@ -268,9 +288,16 @@
                                                     $assigned_lawyer = explode(', ',$datum->assigned_lawyer_id);
                                                 @endphp
                                                 @if($datum->assigned_lawyer_id)
-                                                    @foreach ($assigned_lawyer as $pro)
-                                                        <li class="text-left">{{ $pro }}</li>
-                                                    @endforeach
+                                                    @if (count($assigned_lawyer)>1)
+                                                        @foreach ($assigned_lawyer as $pro)
+                                                            <li class="text-left">{{ $pro }}</li>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach ($assigned_lawyer as $pro)
+                                                            {{ $pro }}
+                                                        @endforeach
+                                                    @endif
+                                                    
                                                 @endif
                                             </td>
                                             <td>

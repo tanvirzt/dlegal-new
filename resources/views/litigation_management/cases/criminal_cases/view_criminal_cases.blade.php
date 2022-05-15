@@ -191,7 +191,37 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Client Name</td>
-                                                            <td>{{ $data->client_name }} {{ rtrim($data->client_name_write, ', ') }}</td>
+                                                            <td>
+                                                                @php
+                                                                    $client_explode = explode(', ',$data->client_id);
+                                                                @endphp
+                                                                @if($data->client_id)
+                                                                    @if (count($client_explode)> 1)
+                                                                        @foreach ($client_explode as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($client_explode as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+
+                                                                @php
+                                                                    $client_name_write = explode(', ',$data->client_name_write);
+                                                                @endphp
+                                                                @if($data->client_name_write)
+                                                                    @if (count($client_name_write)> 1)
+                                                                        @foreach ($client_name_write as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($client_name_write as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+
                                                         </tr>
                                                         <tr>
                                                             <td>Client Business Name</td>
@@ -270,7 +300,37 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Opposition Name</td>
-                                                            <td>{{ $data->opposition_name }} {{ rtrim($data->opposition_write, ', ') }}</td>
+                                                            <td>
+                                                                @php
+                                                                    $opposition_id = explode(', ',$data->opposition_id);
+                                                                @endphp
+                                                                @if($data->opposition_id)
+                                                                    @if (count($opposition_id)> 1)
+                                                                        @foreach ($opposition_id as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($opposition_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                @php
+                                                                    $opposition_write = explode(', ',$data->opposition_write);
+                                                                @endphp
+                                                                @if($data->opposition_write)
+                                                                    @if (count($opposition_write)> 1)
+                                                                        @foreach ($opposition_write as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($opposition_write as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                
+                                                                </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Opposition Business Name</td>
@@ -337,13 +397,80 @@
 
                                                         <tr>
                                                             <td>Received Documents</td>
-                                                            <td> {{ $data->received_documents_id }} {{ rtrim($data->received_documents_write, ', ') }} </td>
+                                                            <td> 
+                                                                @php
+                                                                    $received_documents_id = explode(', ',$data->received_documents_id);
+                                                                @endphp
+                                                                @if($data->received_documents_id)
+                                                                    @if (count($received_documents_id)> 1)
+                                                                        @foreach ($received_documents_id as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($received_documents_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+
+                                                                @php
+                                                                    $received_documents_write = explode(', ',$data->received_documents_write);
+                                                                @endphp
+                                                                @if($data->received_documents_write)
+                                                                    @if (count($received_documents_write)> 1)
+                                                                        @foreach ($received_documents_write as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($received_documents_write as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Received Documents Date</td>
+                                                            <td> {{ $data->received_documents_date }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Required/Wanting Documents</td>
-                                                            <td> {{ $data->required_wanting_documents_id }} {{ rtrim($data->required_wanting_documents_write, ', ') }} </td>
+                                                            <td> 
+                                                                @php
+                                                                    $required_wanting_documents_id = explode(', ',$data->required_wanting_documents_id);
+                                                                @endphp
+                                                                @if($data->required_wanting_documents_id)
+                                                                    @if (count($required_wanting_documents_id)> 1)
+                                                                        @foreach ($required_wanting_documents_id as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($required_wanting_documents_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                @php
+                                                                    $required_wanting_documents_write = explode(', ',$data->required_wanting_documents_write);
+                                                                @endphp
+                                                                @if($data->required_wanting_documents_write)
+                                                                    @if (count($required_wanting_documents_write)> 1)
+                                                                        @foreach ($required_wanting_documents_write as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($required_wanting_documents_write as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                
+                                                               </td>
                                                         </tr>
-
+                                                        <tr>
+                                                            <td>Required/Wanting Documents Date</td>
+                                                            <td> {{ $data->required_wanting_documents_date }} </td>
+                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -396,11 +523,57 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Name of the Court</td>
-                                                            <td>{{ $data->case_infos_court_id }}</td>
+                                                            <td>
+                                                                @php
+                                                                    $case_infos_court_id = explode(', ',$data->case_infos_court_id);
+                                                                @endphp
+                                                                @if($data->case_infos_court_id)
+                                                                    @if (count($case_infos_court_id)> 1)
+                                                                        @foreach ($case_infos_court_id as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($case_infos_court_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Name of Court(Short)</td>
-                                                            <td>{{ $data->case_infos_court_short_id }} {{ $data->court_short_write }}</td>
+                                                            <td>
+                                                                @php
+                                                                    $case_infos_court_short_id = explode(', ',$data->case_infos_court_short_id);
+                                                                @endphp
+                                                                @if($data->case_infos_court_short_id)
+                                                                    @if (count($case_infos_court_short_id)> 1)
+                                                                        @foreach ($case_infos_court_short_id as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($case_infos_court_short_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+
+                                                                @php
+                                                                    $court_short_write = explode(', ',$data->court_short_write);
+                                                                @endphp
+                                                                @if($data->court_short_write)
+                                                                    @if (count($court_short_write)> 1)
+                                                                        @foreach ($court_short_write as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($court_short_write as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Sub Seq. Case Title</td>
@@ -408,23 +581,146 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Sub Seq. Case No.</td>
-                                                            <td> {{ rtrim($data->case_infos_sub_seq_case_no, ', ') }} </td>
+                                                            <td>
+                                                                @php
+                                                                    $case_infos_sub_seq_case_no = explode(', ',$data->case_infos_sub_seq_case_no);
+                                                                @endphp
+                                                                @if($data->case_infos_sub_seq_case_no)
+                                                                    @if (count($case_infos_sub_seq_case_no)> 1)
+                                                                        @foreach ($case_infos_sub_seq_case_no as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($case_infos_sub_seq_case_no as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif 
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Sub-Seq. Court</td>
-                                                            <td> {{ $data->case_infos_sub_seq_court_id }} </td>
+                                                            <td> 
+                                                                @php
+                                                                    $case_infos_sub_seq_court_id = explode(', ',$data->case_infos_sub_seq_court_id);
+                                                                @endphp
+                                                                @if($data->case_infos_sub_seq_court_id)
+                                                                    @if (count($case_infos_sub_seq_court_id)> 1)
+                                                                        @foreach ($case_infos_sub_seq_court_id as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($case_infos_sub_seq_court_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif 
+                                                                
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Sub-Seq. Court(Short)</td>
-                                                            <td> {{ $data->case_infos_sub_seq_court_short_id }} {{ $data->sub_seq_court_short_write }} </td>
+                                                            <td>
+                                                                @php
+                                                                    $case_infos_sub_seq_court_short_id = explode(', ',$data->case_infos_sub_seq_court_short_id);
+                                                                @endphp
+                                                                @if($data->case_infos_sub_seq_court_short_id)
+                                                                    @if (count($case_infos_sub_seq_court_short_id)> 1)
+                                                                        @foreach ($case_infos_sub_seq_court_short_id as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($case_infos_sub_seq_court_short_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                @php
+                                                                    $sub_seq_court_short_write = explode(', ',$data->sub_seq_court_short_write);
+                                                                @endphp
+                                                                @if($data->sub_seq_court_short_write)
+                                                                    @if (count($sub_seq_court_short_write)> 1)
+                                                                        @foreach ($sub_seq_court_short_write as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($sub_seq_court_short_write as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Law</td>
-                                                            <td>{{ $data->law_id }} {{ rtrim($data->law_write, ', ') }}</td>
+                                                            <td>
+                                                                @php
+                                                                    $law_id = explode(', ',$data->law_id);
+                                                                @endphp
+                                                                @if($data->law_id)
+                                                                    @if (count($law_id)> 1)
+                                                                        @foreach ($law_id as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($law_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                @php
+                                                                    $law_write = explode(', ',$data->law_write);
+                                                                @endphp
+                                                                @if($data->law_write)
+                                                                    @if (count($law_write)> 1)
+                                                                        @foreach ($law_write as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($law_write as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Section</td>
-                                                            <td> {{ $data->section_id }} {{ rtrim($data->section_write, ', ') }} </td>
+                                                            <td> 
+                                                                @php
+                                                                    $section_id = explode(', ',$data->section_id);
+                                                                @endphp
+                                                                @if($data->section_id)
+                                                                    @if (count($section_id)> 1)
+                                                                        @foreach ($section_id as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($section_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                @php
+                                                                    $section_write = explode(', ',$data->section_write);
+                                                                @endphp
+                                                                @if($data->section_write)
+                                                                    @if (count($section_write)> 1)
+                                                                        @foreach ($section_write as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($section_write as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Case Filing Date</td>
@@ -444,19 +740,83 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Complainant/Informant Name</td>
-                                                            <td> {{ rtrim($data->case_infos_complainant_informant_name, ', ') }} </td>
+                                                            <td>
+                                                                @php
+                                                                    $case_infos_complainant_informant_name = explode(', ',$data->case_infos_complainant_informant_name);
+                                                                @endphp
+                                                                @if($data->case_infos_complainant_informant_name)
+                                                                    @if (count($case_infos_complainant_informant_name)> 1)
+                                                                        @foreach ($case_infos_complainant_informant_name as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($case_infos_complainant_informant_name as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Complainant/Informant's Representative</td>
-                                                            <td> {{ rtrim($data->complainant_informant_representative, ', ') }} </td>
+                                                            <td> 
+                                                                @php
+                                                                    $complainant_informant_representative = explode(', ',$data->complainant_informant_representative);
+                                                                @endphp
+                                                                @if($data->complainant_informant_representative)
+                                                                    @if (count($complainant_informant_representative)> 1)
+                                                                        @foreach ($complainant_informant_representative as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($complainant_informant_representative as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Accused Name</td>
-                                                            <td> {{ rtrim($data->case_infos_accused_name, ', ') }} </td>
+                                                            <td> 
+                                                                @php
+                                                                    $case_infos_accused_name = explode(', ',$data->case_infos_accused_name);
+                                                                @endphp
+                                                                @if($data->case_infos_accused_name)
+                                                                    @if (count($case_infos_accused_name)> 1)
+                                                                        @foreach ($case_infos_accused_name as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($case_infos_accused_name as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Accused's Representative</td>
-                                                            <td>{{ rtrim($data->case_infos_accused_representative, ', ') }}</td>
+                                                            <td>
+                                                                @php
+                                                                    $case_infos_accused_representative = explode(', ',$data->case_infos_accused_representative);
+                                                                @endphp
+                                                                @if($data->case_infos_accused_representative)
+                                                                    @if (count($case_infos_accused_representative)> 1)
+                                                                        @foreach ($case_infos_accused_representative as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($case_infos_accused_representative as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Prosecution Witnesses</td>
@@ -512,7 +872,22 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Name of Assigned Lawyer</td>
-                                                            <td> {{ $data->assigned_lawyer_id }} </td>
+                                                            <td> 
+                                                                @php
+                                                                    $assigned_lawyer_id = explode(', ',$data->assigned_lawyer_id);
+                                                                @endphp
+                                                                @if($data->assigned_lawyer_id)
+                                                                    @if (count($assigned_lawyer_id)> 1)
+                                                                        @foreach ($assigned_lawyer_id as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($assigned_lawyer_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Remarks</td>
@@ -3518,6 +3893,21 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="received_documents_date" class="col-sm-4 col-form-label">Received Documents Date</label>
+                        <div class="col-sm-8">
+                        <span class="date_span">
+                            <input type="date" class="xDateContainer date_first_input"
+                                   onchange="setCorrect(this,'received_documents_date');"><input type="text" id="received_documents_date"
+                                                                                name="received_documents_date" value="{{ $data->received_documents_date }}"
+                                                                                class="date_second_input"
+                                                                                tabindex="-1"><span
+                                class="date_second_span" tabindex="-1">&#9660;</span>
+                        </span>
+                            @error('received_documents_date')<span
+                                class="text-danger">{{$message}}</span>@enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="required_wanting_documents_id"
                                class="col-sm-4 col-form-label"> Required/Wanting
                             Documents </label>
@@ -3562,6 +3952,21 @@
                                 </div>
                             </div>
                             @error('required_wanting_documents')<span
+                                class="text-danger">{{$message}}</span>@enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="required_wanting_documents_date" class="col-sm-4 col-form-label">Required/Wanting Documents Date</label>
+                        <div class="col-sm-8">
+                        <span class="date_span">
+                            <input type="date" class="xDateContainer date_first_input"
+                                   onchange="setCorrect(this,'required_wanting_documents_date');"><input type="text" id="required_wanting_documents_date"
+                                                                                name="required_wanting_documents_date" value="{{ $data->required_wanting_documents_date }}"
+                                                                                class="date_second_input"
+                                                                                tabindex="-1"><span
+                                class="date_second_span" tabindex="-1">&#9660;</span>
+                        </span>
+                            @error('required_wanting_documents_date')<span
                                 class="text-danger">{{$message}}</span>@enderror
                         </div>
                     </div>

@@ -1111,6 +1111,21 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group row">
+                                                                            <label for="received_documents_date" class="col-sm-4 col-form-label">Received Documents Date</label>
+                                                                            <div class="col-sm-8">
+                                                                            <span class="date_span">
+                                                                                <input type="date" class="xDateContainer date_first_input"
+                                                                                       onchange="setCorrect(this,'received_documents_date');"><input type="text" id="received_documents_date"
+                                                                                                                                    name="received_documents_date" value="{{ $data->received_documents_date }}"
+                                                                                                                                    class="date_second_input"
+                                                                                                                                    tabindex="-1"><span
+                                                                                    class="date_second_span" tabindex="-1">&#9660;</span>
+                                                                            </span>
+                                                                                @error('received_documents_date')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
                                                                             <label for="required_wanting_documents_id"
                                                                                    class="col-sm-4 col-form-label"> Required/Wanting
                                                                                 Documents </label>
@@ -1155,6 +1170,21 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 @error('required_wanting_documents')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="required_wanting_documents_date" class="col-sm-4 col-form-label">Required/Wanting Documents Date</label>
+                                                                            <div class="col-sm-8">
+                                                                            <span class="date_span">
+                                                                                <input type="date" class="xDateContainer date_first_input"
+                                                                                       onchange="setCorrect(this,'required_wanting_documents_date');"><input type="text" id="required_wanting_documents_date"
+                                                                                                                                    name="required_wanting_documents_date" value="{{ $data->required_wanting_documents_date }}"
+                                                                                                                                    class="date_second_input"
+                                                                                                                                    tabindex="-1"><span
+                                                                                    class="date_second_span" tabindex="-1">&#9660;</span>
+                                                                            </span>
+                                                                                @error('required_wanting_documents_date')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
