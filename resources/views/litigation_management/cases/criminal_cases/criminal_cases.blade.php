@@ -222,21 +222,67 @@
                                                 @endphp
                                             </td>
                                             <td>
-                                                @php
-                                                    $court_name = explode(', ',$datum->case_infos_court_short_id);
-                                                @endphp
-                                                @if($datum->case_infos_court_short_id)
-                                                    @if (count($court_name)> 1)
-                                                        @foreach ($court_name as $pro)
-                                                            <li class="text-left">{{ $pro }}</li>
-                                                        @endforeach
-                                                    @else
-                                                        @foreach ($court_name as $pro)
-                                                            {{ $pro }}
-                                                        @endforeach
+                                                @if (!empty($datum->case_infos_sub_seq_court_short_id || $datum->sub_seq_court_short_write) )
+                                                    @php
+                                                        $court_name = explode(', ',$datum->case_infos_sub_seq_court_short_id);
+                                                    @endphp
+                                                    @if($datum->case_infos_sub_seq_court_short_id)
+                                                        @if (count($court_name)> 1)
+                                                            @foreach ($court_name as $pro)
+                                                                <li class="text-left">{{ $pro }}</li>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($court_name as $pro)
+                                                                {{ $pro }}
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+                                                    @php
+                                                        $sub_seq_court_short_write = explode(', ',$datum->sub_seq_court_short_write);
+                                                    @endphp
+                                                    @if($datum->sub_seq_court_short_write)
+                                                        @if (count($sub_seq_court_short_write)> 1)
+                                                            @foreach ($sub_seq_court_short_write as $pro)
+                                                                <li class="text-left">{{ $pro }}</li>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($sub_seq_court_short_write as $pro)
+                                                                {{ $pro }}
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+                                                @else
+                                                    @php
+                                                        $court_name = explode(', ',$datum->case_infos_court_short_id);
+                                                    @endphp
+                                                    @if($datum->case_infos_court_short_id)
+                                                        @if (count($court_name)> 1)
+                                                            @foreach ($court_name as $pro)
+                                                                <li class="text-left">{{ $pro }}</li>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($court_name as $pro)
+                                                                {{ $pro }}
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+                                                    @php
+                                                        $court_short_write = explode(', ',$datum->court_short_write);
+                                                    @endphp
+                                                    @if($datum->court_short_write)
+                                                        @if (count($court_short_write)> 1)
+                                                            @foreach ($court_short_write as $pro)
+                                                                <li class="text-left">{{ $pro }}</li>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($court_short_write as $pro)
+                                                                {{ $pro }}
+                                                            @endforeach
+                                                        @endif
                                                     @endif
                                                 @endif
-                                                {{ $datum->court_short_write }}
+
+                                                
                                             </td>
                                             <td>
                                                 {{ $datum->district_name }}

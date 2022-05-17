@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2022 at 09:22 AM
+-- Generation Time: May 17, 2022 at 07:48 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -633,7 +633,7 @@ INSERT INTO `criminal_cases` (`id`, `client`, `legal_issue_id`, `legal_issue_wri
 (1, 'Jack', 1, 'legal issues', 1, 'werwe', 2, 'asdf', 2, 'wrwe', 1, '654643', 1, '12/5/2022', 3, '15/05/2022', 1, 1, 'tewdsaf', 'werewr adf', 3, 'asdf', 1, 3, 1, 'Aminur Rahman Smith Aminur', 'readsf', 'werewr asdf', '43 Phillip St, Sydney NSW 2000, Australia', '4645648522', 'asdf@adf', 1, 'test asdf', 1, 'werewr', 4, 'adsf', 24, 'werew', 'sdf', 'wrew', 2, 'werewf', 'adsf', 2, 3, 1, 'Smith Aminur', 'test  2', 'ewrewr', 'asdf', '545345', 'asdf@adf', 1, 'gfhfgh', 2, 'ydsfgh', NULL, 'rtytr', NULL, 'fgh', 'wre', 'hgfhdf', 2, 'tewt', 'erewrew', 3, 'sdfg', 'Terry Jhon Khan', 'tytttttt', 'test, test 2, test doc', 'werew, fgfd', '18/6/2022', 'test, test 2', 'erwr, sdfadf', '26/5/2022', 2, 16, 107, 6, 6, 1, '54651', '2021', 'Court Kachari, Judge Court Dhaka', 'CC1', 'ee, www', 1, 'test', '2023', 'Court Kachari, Judge Court Dhaka', 'CC1, JDC1', 'hhh, 5555', 'Criminal Laws', 'asdf', '44', 'test', '10/5/2022', 2, 2, 'adsf', 1, 'Mr. Khan', 'representative 1', 'wer afd', 'accused 121fasdf', 'asdf fdgf', 'defense witness', NULL, NULL, 0, NULL, NULL, '2022-05-15 04:27:00', '2022-05-15 05:15:35'),
 (2, 'Jack Smith', 1, 'legal issues', 2, 'werwe', 2, 'asdf', 2, 'asdf', 1, '654643', 1, '18/5/2022', 1, '6/5/2022', 2, 1, 'test', 'erwefa', 2, 'wrewf', 1, 2, 3, 'Aminur Rahman Smith Aminur, Smith Aminu', 'werew', 'werewr asdf', '43 Phillip St, Sydney NSW 2000, Australia', '4645648522', 'asdf@adf', 1, 'test asdf', 3, 'adsf', 21, 'tewt', 184, 'thana 1', 'representative 1', 'test accused', 2, 'test', 'terqewr', 2, 3, 1, 'Aminur, Smith Aminur', 'rewr, werwer', NULL, '43 Phillip St, Sydney NSW 2000, Australia', 'sfdgfdg', 'asdf@adf', 2, 'profession 1', 1, 'sadf', 3, 'were', 17, 'asdf', 'werew', 'ewrew', 1, 'sdf', 'asdf', 3, 'sdfg', 'Stewert Jhonson khan, Terry Jhon Khan', 'ggggg', 'test, test doc', 'tset, ewrewr', '19/5/2022', 'test 2, test doc', 'fdsf, erewr', '14/5/2022', 1, 1, 3, 6, 6, 1, '54651', '2021', 'Court Kachari, Judge Court Dhaka', 'CC1, JDC1', 'erew, ww', 1, 'asdf21212, ere', '2023, 2025', 'Court Kachari, Judge Court Dhaka', 'CC1, JDC1', 'ererer, 2040', 'Criminal Law 2, Criminal Laws', 'asdf, erere', '33, 44', 'werwer, cxvbfg', '12/5/2022', 3, 1, 'adsf', 2, 'werewr, yyuyuyu', 'test res, eeee', 'fffff, jjjjjjj', 'llllll, iiiii', 'vvvvv', 'gggggg', NULL, NULL, 0, NULL, NULL, '2022-05-15 05:24:50', '2022-05-15 05:24:50'),
 (3, 'adsfsdaf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '15/05/2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', 'dd/mm/yyyy', NULL, '', 'dd/mm/yyyy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-15 05:34:52', '2022-05-15 05:34:52'),
-(4, 'eeeeee', 2, 'rwer', 1, 'werwe', 2, 'wer', 2, 'wrwe', 1, '654643', 2, '20/5/2022', 3, '18/5/2022', 2, 1, 'test referrer', 'ghgrf', 7, 'rtret', 2, 4, 2, 'Aminur Rahman Smith Aminur, Smith Aminu', 'test, tretret', 'sdfgdfs', 'vcbvcb', 'nbmnb', 'ghjghj', 1, 'ertr', 2, 'sfghf', 7, 'bhnvbn', 45, 'dfgdfg', 'rtytrytr', 'dfhfgh', 1, 'rtyert', 'sdfgdfsg', 1, 3, 1, 'Aminur, Smith Aminur', 'rewr, rrr', 'afds', 'eeee', 'werrfasd', 'asdf@adf', 2, 'profession 1', 3, 'sadf', NULL, 'gfd', NULL, 'asdf', 'werew', 'erewr', 2, 'asdf', 'werewr', 3, 'sdfg', 'Stewert Jhonson khan, Terry Jhon Khan', 'asdfasdf', 'test 2, test doc', 'adsf, eee', '11/5/2022', 'test 2, test doc', 'test 2adsf, erewr', '25/5/2022', 5, 43, 333, 7, 7, 1, '3551321', '2000', 'Court Kachari, Judge Court Dhaka', 'CC1, JDC1', 'eee, gggg', 1, 'asdf21212, asdf21212', '2023, 2023', 'Court Kachari, Judge Court Dhaka', 'CC1, JDC1', 'werewf a', 'Criminal Laws', 'asdf', '33, 44', 'tadsf 5, eee', '13/5/2022', 3, 2, 'adsf', 1, 'complainant 1, er', 'asdf, werewrf', 'asdf, dfgdf', 'werew, dfds', 'asdf fdgf', 'werew', 'gfhfgh, phpo, werew', 'adsfdsf', 0, NULL, NULL, '2022-05-15 05:35:35', '2022-05-15 07:15:02');
+(4, 'eeeeee', 2, 'rwer', 1, 'werwe', 2, 'wer', 2, 'wrwe', 1, '654643', 2, '21/5/2022', 1, '18/5/2022', 2, 1, 'test referrer', 'ghgrf', 7, 'rtret', 2, 4, 2, 'Aminur Rahman Smith Aminur, Smith Aminu', 'test, tretret', 'sdfgdfs', 'vcbvcb', 'nbmnb', 'ghjghj', 1, 'ertr', 2, 'sfghf', 7, 'bhnvbn', 45, 'dfgdfg', 'rtytrytr', 'dfhfgh', 1, 'rtyert', 'sdfgdfsg', 1, 3, 1, 'Aminur, Smith Aminur', 'rewr, rrr', 'afds', 'eeee', 'werrfasd', 'asdf@adf', 2, 'profession 1', 3, 'sadf', NULL, 'gfd', NULL, 'asdf', 'werew', 'erewr', 2, 'asdf', 'werewr', 3, 'sdfg', 'Stewert Jhonson khan, Terry Jhon Khan', 'asdfasdf', 'test 2, test doc', 'adsf, eee', '11/5/2022', 'test 2, test doc', 'test 2adsf, erewr', '25/5/2022', 5, 43, 333, 7, 7, 1, '3551321', '2000', 'Court Kachari, Judge Court Dhaka', 'CC1, JDC1', 'eee, gggg', 1, 'asdf21212, asdf21212', '2023, 2023', 'Court Kachari, Judge Court Dhaka', 'CC1', 'hhh', 'Criminal Laws', 'asdf', '33, 44', 'tadsf 5, eee', '13/5/2022', 3, 2, 'adsf', 1, 'complainant 1, er', 'asdf, werewrf', 'asdf, dfgdf', 'werew, dfds', 'asdf fdgf', 'werew', 'ertret, phpo, case notes', 'erewr', 0, NULL, NULL, '2022-05-15 05:35:35', '2022-05-17 05:08:11');
 
 -- --------------------------------------------------------
 
@@ -788,7 +788,9 @@ INSERT INTO `criminal_case_activity_logs` (`id`, `case_id`, `activity_date`, `ac
 (8, 7, '17/5/2022', 'asdf', 'ewrewr', 2, 'sadfd', '2022-05-05T15:10', '2022-05-20T15:10', '360 Hrs', 'Stefen Smith Aminur, Stewert Jhonson khan, Terry Jhon Khan', 'adf', 1, 'asdf', 0, NULL, NULL, '2022-05-14 09:13:08', '2022-05-14 09:13:08'),
 (9, 7, '17/5/2022', 'asdf', 'ewrewr', 2, 'sadfd', '2022-05-05T15:10', '2022-05-20T15:10', '360 Hrs', 'Stefen Smith Aminur, Stewert Jhonson khan, Terry Jhon Khan', 'adf', 1, 'asdf', 0, NULL, NULL, '2022-05-14 09:13:21', '2022-05-14 09:13:21'),
 (10, 7, '17/5/2022', 'asdf', 'ewrewr', 2, 'sadfd', '2022-05-05T15:10', '2022-05-20T15:10', '360 Hrs', 'Stefen Smith Aminur, Stewert Jhonson khan, Terry Jhon Khan', 'adf', 1, 'asdf', 0, NULL, NULL, '2022-05-14 09:18:32', '2022-05-14 09:18:32'),
-(11, 7, '17/5/2022', 'asdf', 'ewrewr', 2, 'sadfd', '2022-05-05T15:10', '2022-05-20T15:10', '360 Hrs', 'Stefen Smith Aminur, Stewert Jhonson khan, Terry Jhon Khan', 'adf', 1, 'asdf', 0, NULL, NULL, '2022-05-14 09:18:49', '2022-05-14 09:18:49');
+(11, 7, '17/5/2022', 'asdf', 'ewrewr', 2, 'sadfd', '2022-05-05T15:10', '2022-05-20T15:10', '360 Hrs', 'Stefen Smith Aminur, Stewert Jhonson khan, Terry Jhon Khan', 'adf', 1, 'asdf', 0, NULL, NULL, '2022-05-14 09:18:49', '2022-05-14 09:18:49'),
+(12, 4, '20/5/2022', 'asdf', 'In progress', 2, 'rewre', '2022-05-04T11:10', '2022-05-05T23:09', '35.983333333333334 Hrs', 'Terry Jhon Khan', 'asdf', 3, 'ewfdsa', 0, NULL, NULL, '2022-05-17 05:10:03', '2022-05-17 05:10:03'),
+(13, 4, '2/5/2022', 'asdf', 'In progress', 2, 'rewre', '2022-05-06T11:10', '2022-05-07T11:10', '24 Hrs', 'Terry Jhon Khan', 'asdf', 1, 'ewfdsa', 0, NULL, NULL, '2022-05-17 05:10:50', '2022-05-17 05:10:50');
 
 -- --------------------------------------------------------
 
@@ -836,7 +838,10 @@ INSERT INTO `criminal_case_status_logs` (`id`, `case_id`, `updated_case_status_i
 (6, 3, 3, 'done', '18/5/2022', 1, 'qqq', 'test, test asdf', 'test', 'Case Hearings, Hearing purpose', 'none', '3/6/2022', '1', 'ertret, gfhfgh', 'asdf', 1, 'werew', 1, 'werewr', 0, NULL, NULL, '2022-05-14 04:39:33', '2022-05-14 07:48:35'),
 (7, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-14 07:30:58', '2022-05-14 09:19:51'),
 (8, 3, 2, 'activeaaaaa', '11/5/2022', 3, 'case proceedings', 'test, test asdf', 'test', 'Appelled, Case Hearings', 'none', '6/5/2022', '3', 'ertret, phpo', 'case notes', 3, 'werew', 1, 'eeeeeeeeeee', 0, NULL, NULL, '2022-05-14 07:35:50', '2022-05-14 07:46:01'),
-(9, 4, 1, 'active', '20/5/2022', 3, 'adf', 'test, test asdf', 'asdf', 'Case Hearings', 'none', '19/5/2022', '3', 'gfhfgh, phpo', 'werew', 3, 'test', 1, 'adsfdsf', 0, NULL, NULL, '2022-05-15 07:15:02', '2022-05-15 07:15:02');
+(9, 4, 1, 'active', '20/5/2022', 3, 'adf', 'test, test asdf', 'asdf', 'Case Hearings', 'none', '19/5/2022', '3', 'gfhfgh, phpo', 'werew', 3, 'test', 1, 'adsfdsf', 0, NULL, NULL, '2022-05-15 07:15:02', '2022-05-15 07:15:02'),
+(10, 4, 3, 'done', '12/5/2022', 1, 'case proceedings', 'test asdf', 'cccc', 'Appelled', 'bbb', '14/5/2022', '1', 'gfhfgh, phpo', 'rrrr', 2, 'jjjj', 1, 'ttttt', 0, NULL, NULL, '2022-05-17 04:17:17', '2022-05-17 04:17:17'),
+(11, 4, 3, 'done', '2/6/2022', 3, 'case proceedings', 'test, test asdf', 'test', 'Case Hearings', 'none', '7/5/2022', '1', 'ertret, phpo', 'case notes', 2, 'test', 1, 'eeeee dsfadsf', 0, NULL, NULL, '2022-05-17 05:05:06', '2022-05-17 05:05:06'),
+(12, 4, 3, 'done', '19/5/2022', 1, 'adf', 'test, test asdf', 'test', 'Case Hearings', 'none', '21/5/2022', '1', 'ertret, phpo', 'case notes', 1, 'test', 1, 'erewr', 0, NULL, NULL, '2022-05-17 05:08:11', '2022-05-17 05:08:11');
 
 -- --------------------------------------------------------
 
@@ -1734,7 +1739,10 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('IdpWEaBe7n3d2VvY8WpFU9Xa5A7v1F2S3HZqmX3B', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZ2F2SzVqQmFDam9ZUzBWOWtLdFJYQ0pJa3h5M0Uzb3BkaTNhUWVhWCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoicGFnZSI7czo5OiJkYXNoYm9hcmQiO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjY3OiJodHRwOi8vbG9jYWxob3N0L2RsZWdhbC1zb2Z0d2FyZS9wdWJsaWMvYWRtaW4vdmlldy1jcmltaW5hbC1jYXNlcy80Ijt9fQ==', 1652599312);
+('cpHfMAcbEdmtjgDRmmB9ZYYldIOhJD9WZyV24BeX', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWlNxNk5ka094eUZDZmt4aDd1d01oODFPRVR6OEc0STV3c0xIbkc2aiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDU6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1652766129),
+('L1xxen8ldVVkn0rPGaKXYnGNdxvgK2Nm8ZxqiJ3N', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVDVyY0JoYjdvTnM1dzBXYW1GYzVIaGxIYUJjdXR2MHFLVWVJaTc1aiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njc6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi92aWV3LWNyaW1pbmFsLWNhc2VzLzQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJwYWdlIjtzOjk6ImRhc2hib2FyZCI7fQ==', 1652766489),
+('QytQzKGs0vQEVrJhKItvhMfqqlNsZgS2jElLctXS', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZDVRSVdzTGNwU0czZUpNVDcycWFhbEdEbldjMlA4cVh1SVlQQ2E2WiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njc6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi92aWV3LWNyaW1pbmFsLWNhc2VzLzQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJwYWdlIjtzOjk6ImRhc2hib2FyZCI7fQ==', 1652766288),
+('UUArLQsEbhPMaciQGaxpNMYR2Se5dQEAB5VsGsid', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidFRSVkxjOVBMQ3dhY1ZsUVRRUWsyTmltM2J6bjBqTmRmcU1TaXdsMyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njc6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi92aWV3LWNyaW1pbmFsLWNhc2VzLzQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1652766128);
 
 -- --------------------------------------------------------
 
@@ -4899,13 +4907,13 @@ ALTER TABLE `criminal_cases_files`
 -- AUTO_INCREMENT for table `criminal_case_activity_logs`
 --
 ALTER TABLE `criminal_case_activity_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `criminal_case_status_logs`
 --
 ALTER TABLE `criminal_case_status_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `external_files`

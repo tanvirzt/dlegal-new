@@ -82,7 +82,7 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_districts as accused_district', 'criminal_cases.case_infos_district_id', '=', 'accused_district.id')
             ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
-           ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+            ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
             ->select('criminal_cases.*',
             // 'criminal_cases_case_steps.another_claim',
             'setup_case_statuses.case_status_name',
@@ -1142,6 +1142,8 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
             ->leftJoin('setup_allegations', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'setup_allegations.id')
             ->leftJoin('admins', 'criminal_cases.received_by_id', '=', 'admins.id')
+            ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+
             ->select('criminal_cases.*',
                 'setup_legal_issues.legal_issue_name',
                 'setup_legal_services.legal_service_name',
@@ -1186,7 +1188,8 @@ class CriminalCasesController extends Controller
                 'setup_case_statuses.case_status_name',
                 'setup_case_types.case_types_name',
                 'setup_allegations.allegation_name',
-                'admins.name')
+                'admins.name',
+                'case_infos_title.case_title_name as sub_seq_case_title_name')
             ->where('criminal_cases.id', $id)
             ->first();
 
@@ -1292,11 +1295,11 @@ class CriminalCasesController extends Controller
     {
 //         dd($request->all());
 
-//        $data = json_decode(json_encode($request->all()));
-//        echo "<pre>";print_r($data);die();
+    //    $data = json_decode(json_encode($request->all()));
+    //    echo "<pre>";print_r($data);die();
         $updated_day_notes_id = $request->updated_day_notes_id ? implode(', ',$request->updated_day_notes_id) : null;
         $status = CriminalCase::find($id);
-        $status->next_date = $request->updated_order_date == 'dd/mm/yyyy' ?  $status->next_date : $request->updated_order_date;
+        $status->next_date = $request->updated_next_date == 'dd/mm/yyyy' ?  $status->next_date : $request->updated_next_date;
         $status->next_date_fixed_id = $request->updated_index_fixed_for_id;
         $status->updated_day_notes_id = $updated_day_notes_id.', '.$request->updated_day_notes_write;
         $status->updated_remarks_or_steps_taken = $request->updated_remarks;
@@ -1326,7 +1329,7 @@ class CriminalCasesController extends Controller
         $data->save();
 
         session()->flash('success', 'Case Status Updated Successfully');
-        return redirect()->route('criminal-cases');
+        return redirect()->back();
 
     }
 
@@ -1425,7 +1428,7 @@ class CriminalCasesController extends Controller
         $data->save();
 
         session()->flash('success', 'Case Status Updated Successfully');
-        return redirect()->route('criminal-cases');
+        return redirect()->back();
 
     }
 
