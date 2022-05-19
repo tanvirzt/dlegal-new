@@ -49,19 +49,7 @@
                                 <h3 class="card-title custom_h3 font-italic text-uppercase font_weight" id="heading">View Criminal Case
                                     No.
 
-                                    {{ $data->sub_seq_case_title_name }}
-                                    @php
-                                        $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
-                                        $key = array_key_last($case_infos_sub_seq_case_no);
-                                        echo $case_infos_sub_seq_case_no[$key];
-
-                                        $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
-                                        $key = array_key_last($case_infos_sub_seq_case_year);
-                                        $last_case_no = $case_infos_sub_seq_case_year[$key];
-                                        if ($last_case_no != null) {
-                                            echo '/'.$last_case_no;
-                                        }
-                                    @endphp
+                                    {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.'/'.$data->case_infos_case_year : '' }}
 
                                 </h3>
                                 <div class="float-right">
@@ -102,7 +90,7 @@
                                                         {{--                                                        <a href="{{ route('update-criminal-cases-basic-info', $data->id) }}" class="float-right"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"--}}
                                                         {{--                                                            ><i class="fas fa-edit"></i></button></a>--}}
                                                     </h6>
-                                                    <table class="table table-bordered table-responsive">
+                                                    <table class="table table-bordered">
 
                                                         <tbody>
                                                         <tr>
@@ -183,7 +171,7 @@
                                                                 data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
-                                                    <table class="table table-bordered table-responsive">
+                                                    <table class="table table-bordered">
 
                                                         <tbody>
                                                         <tr>
@@ -294,7 +282,7 @@
                                                                 data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
-                                                    <table class="table table-bordered table-responsive">
+                                                    <table class="table table-bordered">
 
                                                         <tbody>
                                                         <tr>
@@ -404,7 +392,7 @@
                                                                 data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
-                                                    <table class="table table-bordered table-responsive">
+                                                    <table class="table table-bordered">
 
                                                         <tbody>
 
@@ -504,7 +492,7 @@
                                                                 data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
-                                                    <table class="table table-bordered table-responsive">
+                                                    <table class="table table-bordered">
 
                                                         <tbody>
 
@@ -879,7 +867,7 @@
                                                                 data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
-                                                    <table class="table table-bordered table-responsive">
+                                                    <table class="table table-bordered">
 
                                                         <tbody>
 
@@ -920,7 +908,7 @@
                                                 <div class="card-body">
                                                     <h6 class="text-uppercase text-bold"><u> Status of the Case </u>
                                                     </h6>
-                                                    <table class="table table-bordered table-responsive">
+                                                    <table class="table table-bordered">
 
                                                         <tbody>
 
@@ -962,7 +950,7 @@
                                                             </div>
                                                         </div>
                                                     </h6>
-                                                    <table class="table table-bordered table-responsive">
+                                                    <table class="table table-bordered">
 
                                                         <tbody>
 
@@ -1062,7 +1050,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table class="table table-bordered table-striped data_table">
+                                    <table class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
                                             <th class="text-nowrap">Date</th>
@@ -1080,20 +1068,26 @@
                                         <tbody>
                                         @foreach($case_logs as $logs)
                                             <tr>
-                                                <td> {{ $logs->updated_order_date }} </td>
+                                                <td> {{ date('d/m/Y', strtotime($logs->updated_order_date)) }} </td>
                                                 <td> {{ $logs->next_date_reason_name }} {{ $logs->updated_fixed_for_write }} </td>
                                                 <td>
-
                                                     @php
                                                         $proceedings = explode(', ',$logs->court_proceedings_id);
                                                     @endphp
+                                                  
                                                     @if($logs->court_proceedings_id)
-                                                        @foreach ($proceedings as $pro)
-                                                            <li class="text-left">{{ $pro }}</li>
-                                                        @endforeach
+                                                        @if (count($proceedings)> 1)
+                                                            @foreach ($proceedings as $pro)
+                                                                <li class="text-left">{{ $pro }}</li>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($proceedings as $pro)
+                                                                {{ $pro }}
+                                                            @endforeach
+                                                        @endif
                                                     @endif
                                                     {{ $logs->court_proceedings_write }} </td>
-                                                <td style="padding-right: 80px;">
+                                                <td>
                                                     @php
                                                         $order = explode(', ',$logs->updated_court_order_id);
                                                     @endphp
@@ -1103,7 +1097,7 @@
                                                         @endforeach
                                                     @endif
                                                     {{ $logs->updated_court_order_write }}</td>
-                                                <td> {{ $logs->updated_next_date }} </td>
+                                                <td> {{ date('d/m/Y', strtotime($logs->updated_next_date)) }} </td>
                                                 <td> {{ $logs->index_next_date_reason_name }} </td>
 
                                                 <td>
@@ -1154,7 +1148,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table class="table table-bordered table-striped data_table">
+                                    <table class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
                                             <th class="text-nowrap">Date</th>
@@ -1171,7 +1165,7 @@
                                         <tbody>
                                         @foreach($case_activity_log as $activity_log)
                                             <tr>
-                                                <td> {{ $activity_log->activity_date }} </td>
+                                                <td> {{ date('d/m/Y',strtotime($activity_log->activity_date)) }} </td>
                                                 <td> {{ $activity_log->activity_action }} </td>
                                                 <td> {{ $activity_log->activity_progress }} </td>
                                                 <td> {{ $activity_log->mode_name }} {{ $activity_log->activity_mode_write }} </td>

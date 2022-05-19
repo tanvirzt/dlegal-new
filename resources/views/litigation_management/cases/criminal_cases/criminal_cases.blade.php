@@ -177,10 +177,10 @@
                                         <th class="text-center"> Case No</th>
                                         <th class="text-center"> Sub-Seq. Case No</th>
                                         <th class="text-center"> Court Name</th>
-                                        <th class="text-center"> District</th>
-                                        <th class="text-center"> Complainant</th>
-                                        <th class="text-center"> Accused Name</th>
-                                        <th class="text-center"> Accused District</th>
+                                        <th class="text-center"> Complainant District </th>
+                                        <th class="text-center"> Complainant </th>
+                                        <th class="text-center"> Accused Name </th>
+                                        <th class="text-center"> Accused District </th>
                                         <th class="text-center"> Case Type</th>
                                        <th class="text-center"> Lawyer</th>
                                         <th class="text-center">Status</th>
@@ -192,13 +192,13 @@
 
                                         <tr>
                                             <td>
-                                                {{ $datum->id }} </a>
+                                                {{ $datum->id }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_status_name }} </a>
+                                                {{ $datum->case_status_name }} 
                                             </td>
                                             <td>
-                                                {{ $datum->next_date }} </a>
+                                                {{ date('d/m/Y', strtotime($datum->next_date)) }}
                                             </td>
                                             <td>
                                                 {{ $datum->next_date_reason_name }}
@@ -318,7 +318,6 @@
                                                             {{ $item }}
                                                         @endforeach
                                                     @endif
-                                                    
                                                 @endif
                                                 {{ $datum->accused_write }}
                                             </td>
@@ -329,11 +328,27 @@
                                                 {{ $datum->case_types_name }}
                                             </td>
                                             <td>
-                                               {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }} {{ $datum->lawyer_advocate_write }} 
-                                               @php
-                                                    $assigned_lawyer = explode(', ',$datum->assigned_lawyer_id);
+
+                                               @if (!empty($datum->first_name) && !empty($datum->assigned_lawyer_id))
+                                                <li class="text-left">{{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }}  </li> @if($datum->lawyer_advocate_write) <li class="text-left">{{ $datum->lawyer_advocate_write }}</li> @endif
+                                               
+                                                @php
+                                                $assigned_lawyer = explode(', ',$datum->assigned_lawyer_id);
                                                 @endphp
                                                 @if($datum->assigned_lawyer_id)
+                                                            @foreach ($assigned_lawyer as $pro)
+                                                                <li class="text-left">{{ $pro }}</li>
+                                                            @endforeach
+                                
+                                                @endif
+                                    
+                                                @else
+                                                {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }} {{ $datum->lawyer_advocate_write }} 
+                                               
+                                                @php
+                                                    $assigned_lawyer = explode(', ',$datum->assigned_lawyer_id);
+                                               @endphp
+                                               @if($datum->assigned_lawyer_id)
                                                     @if (count($assigned_lawyer)>1)
                                                         @foreach ($assigned_lawyer as $pro)
                                                             <li class="text-left">{{ $pro }}</li>
@@ -343,8 +358,13 @@
                                                             {{ $pro }}
                                                         @endforeach
                                                     @endif
-                                                    
+                            
+                                               @endif
+                                               
                                                 @endif
+
+                                               
+                                               
                                             </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)
