@@ -319,7 +319,6 @@
                                                         @endforeach
                                                     @endif
                                                 @endif
-                                                {{ $datum->accused_write }}
                                             </td>
                                             <td>
                                                 {{ $datum->accused_district_name }}
