@@ -1050,7 +1050,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table class="table table-bordered table-striped">
+                                    <table class="table view_table table-bordered table-striped">
                                         <thead>
                                         <tr>
                                             <th class="text-nowrap">Date</th>
@@ -1148,7 +1148,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table class="table table-bordered table-striped">
+                                    <table class="table view_table table-bordered table-striped">
                                         <thead>
                                         <tr>
                                             <th class="text-nowrap">Date</th>
@@ -1229,7 +1229,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table class="table table-bordered table-striped data_table">
+                                    <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                         <tr>
                                             <th>Uploaded Document</th>
@@ -1280,7 +1280,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table class="table table-bordered table-striped data_table">
+                                    <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                         <tr>
                                             <th>Bill Type</th>

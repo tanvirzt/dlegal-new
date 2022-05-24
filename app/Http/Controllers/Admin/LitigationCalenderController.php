@@ -14,9 +14,8 @@ class LitigationCalenderController extends Controller
     public function litigation_calender_list()
     {
 // dd('adsfsdf');
-
-        $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('received_date','asc')->where('delete_status',0)->count(['next_date']);
-        $criminal_cases = DB::table('criminal_cases')->distinct()->orderBy('received_date','asc')->where('delete_status',0)->get(['next_date']);
+        $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date','asc')->where('delete_status',0)->count(['next_date']);
+        $criminal_cases = DB::table('criminal_cases')->distinct()->orderBy('next_date','asc')->where(['delete_status' => 0])->where('next_date','>=',date('Y-m-d'))->get(['next_date']);
 // dd($criminal_cases);
         // dd($data);
 

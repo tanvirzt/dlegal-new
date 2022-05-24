@@ -43,7 +43,7 @@
 .table thead th {
     vertical-align: bottom;
     border-bottom: 0px solid #dee2e6;
-    font-weight: 400;
+    /* font-weight: 400; */
 }
 
 /* .delete-user {
@@ -438,4 +438,11 @@ h3{
 
 .font_weight{
     font-weight: 600;
+}
+
+.view_table thead th {
+    vertical-align: bottom;
+    border-bottom: 0px solid #dee2e6;
+    font-weight: 700;
+    color: #4925d9fc;
 }
