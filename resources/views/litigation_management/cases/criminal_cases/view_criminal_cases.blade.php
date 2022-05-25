@@ -49,7 +49,21 @@
                                 <h3 class="card-title custom_h3 font-italic text-uppercase font_weight" id="heading">View Criminal Case
                                     No.
 
-                                    {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.'/'.$data->case_infos_case_year : '' }}
+                                    {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.'/'.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
+                                    @endif
+                                    {{ $data->sub_seq_case_title_name }}
+                                    @php
+                                        $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+                                        $key = array_key_last($case_infos_sub_seq_case_no);
+                                        echo $case_infos_sub_seq_case_no[$key];
+
+                                        $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
+                                        $key = array_key_last($case_infos_sub_seq_case_year);
+                                        $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                        if ($last_case_no != null) {
+                                            echo '/'.$last_case_no;
+                                        }
+                                    @endphp
 
                                 </h3>
                                 <div class="float-right">

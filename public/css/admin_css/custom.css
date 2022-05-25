@@ -446,3 +446,46 @@ h3{
     font-weight: 700;
     color: #4925d9fc;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.search_date {
+    position: relative;
+    width: 150px; height: 20px;
+    color: white;
+}
+
+.search_date:before {
+    position: absolute;
+    top: 3px; left: 3px;
+    content: attr(data-date);
+    display: inline-block;
+    color: black;
+}
+
+.search_date::-webkit-datetime-edit, .search_date::-webkit-inner-spin-button, .search_date::-webkit-clear-button {
+    display: none;
+}
+
+.search_date::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    color: black;
+    opacity: 1;
+}
+
+
+.date_span_calendar{
+    position: relative;display: inline-block;border: 1px solid #a9a9a9;height: 26px;width: 216px;border-radius: 4px;
+}

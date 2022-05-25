@@ -58,4 +58,39 @@ class LitigationCalenderController extends Controller
         return view('litigation_management.litigation_calender.litigation_calender_short');
     }
 
+    public function search_litigation_calendar(Request $request)
+    {
+// dd($request->all());
+        if ($request->from_date != "dd/mm/yyyy" && $request->to_date != "dd/mm/yyyy") {
+
+            $from_date_explode = explode('/', $request->from_date);
+            $from_date_implode = implode('-',$from_date_explode);
+            $from_date = date('Y-m-d', strtotime($from_date_implode));
+
+            $to_date_explode = explode('/', $request->to_date);
+            $to_date_implode = implode('-',$to_date_explode);
+            $to_date = date('Y-m-d', strtotime($to_date_implode));
+
+            $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date','asc')->where('delete_status',0)->count(['next_date']);
+            
+            $criminal_cases = DB::table('criminal_cases')
+                                ->distinct()->orderBy('next_date','asc')
+                                ->where(['delete_status' => 0])
+                                ->where('next_date','>=',date('Y-m-d'))
+                                ->where('next_date', '>=', $from_date)
+                                ->where('next_date', '<=', $to_date)->get(['next_date']);
+
+            return view('litigation_management.litigation_calender.litigation_calender_list',compact('criminal_cases','criminal_cases_count'));
+
+        } else {
+
+            $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date','asc')->where('delete_status',0)->count(['next_date']);
+            $criminal_cases = DB::table('criminal_cases')->distinct()->orderBy('next_date','asc')->where(['delete_status' => 0])->where('next_date','>=',date('Y-m-d'))->get(['next_date']);
+            return view('litigation_management.litigation_calender.litigation_calender_list',compact('criminal_cases','criminal_cases_count'));
+
+        }
+        
+    }
+
+
 }

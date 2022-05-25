@@ -39,7 +39,81 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <h3 class="" id="heading">Litigation Calender</h3>
-           
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div id="accordion">
+                                <div class="card-header" id="headingTwo">
+                                    <h3 class="card-title"> Search </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn collapsed" data-toggle="collapse"
+                                                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        <form method="post" action="{{ route('search-litigation-calendar') }}">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="from_date" class="col-sm-4 col-form-label">
+                                                            From Date </label>
+                                                        <div class="col-sm-8">
+                                                            <span class="date_span_calendar">
+                                                                <input type="date" class="xDateContainer date_first_input"
+                                                                       onchange="setCorrect(this,'from_date');"><input type="text" id="from_date"
+                                                                                                                    name="from_date" value="dd/mm/yyyy"
+                                                                                                                    class="date_second_input"
+                                                                                                                    tabindex="-1"><span
+                                                                    class="date_second_span" tabindex="-1">&#9660;</span>
+                                                            </span>
+                                                            @error('from_date')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="to_date" class="col-sm-4 col-form-label">
+                                                            To Date </label>
+                                                        <div class="col-sm-8">
+                                                            <span class="date_span_calendar">
+                                                                <input type="date" class="xDateContainer date_first_input"
+                                                                       onchange="setCorrect(this,'to_date');"><input type="text" id="to_date"
+                                                                                                                    name="to_date" value="dd/mm/yyyy"
+                                                                                                                    class="date_second_input"
+                                                                                                                    tabindex="-1"><span
+                                                                    class="date_second_span" tabindex="-1">&#9660;</span>
+                                                            </span>
+                                                            @error('to_date')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="float-right">
+                                                <button type="submit" id="submit" class="btn btn-primary text-uppercase"><i
+                                                        class="fas fa-search"></i> Search
+                                                </button>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 @foreach($criminal_cases as $key=>$datum)
                     @if (!empty($datum->next_date))
                         <div class="card">
@@ -260,6 +334,10 @@
                                                 @endif
                                             @endif
                                         </td>
+                                        
+                                        <td>
+                                            {{ $value->updated_remarks_or_steps_taken }}
+                                        </td>
                                         <td>
                                             @php
                                                 $updated_day_notes = explode(', ',$value->updated_day_notes_id);
@@ -275,9 +353,6 @@
                                                     @endforeach
                                                 @endif
                                             @endif
-                                        </td>
-                                        <td>
-                                            {{ $value->updated_remarks_or_steps_taken }}
                                         </td>
                                     </tr>
                                     @endforeach
