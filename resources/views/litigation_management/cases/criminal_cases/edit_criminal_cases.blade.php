@@ -1062,6 +1062,98 @@
                                                                     <div class="card-body">
                                                                         <h6 class="text-uppercase text-bold"><u> Documents
                                                                                 Information </u></h6>
+                                                                                <h6 class="text-uppercase text-bold mt-4">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-6">Received Documents</div>
+                                                                                        <div class="col-md-6">Date</div>
+                                                                                    </div>
+                                                                                </h6>
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="input-group hdtuto_received_documents control-group increment_received_documents">
+                                                                                            <input type="text" name="received_documents[]"
+                                                                                                   class="myfrm form-control mr-2" value="{{ rtrim($data->received_documents, ', ') }}">
+                                                                                            <input type="text" name="received_documents_date[]"
+                                                                                                   class="myfrm form-control ml-2" value="{{ rtrim($data->received_documents_date, ', ') }}">
+                                                                                            <div class="input-group-btn">
+                                                                                                <button class="btn btn-success btn_success_received_documents"
+                                                                                                        type="button"><i
+                                                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="clone_received_documents hide">
+                                                                                            <div class="hdtuto_received_documents control-group lst input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                <input type="text" name="received_documents[]"
+                                                                                                       class="myfrm form-control mr-2">
+                                                                                                <input type="date" name="received_documents_date[]"
+                                                                                                       class="myfrm form-control ml-2">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_received_documents"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                
+                                                                                        @error('case_infos_received_documents_informant_name')<span
+                                                                                            class="text-danger">{{$message}}</span>@enderror
+                                                                                    </div>
+                                                                                </div>
+                                                                                <h6 class="text-uppercase text-bold">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-6">Required/Wanting Documents</div>
+                                                                                        <div class="col-md-6">Date</div>
+                                                                                    </div>
+                                                                                </h6>
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
+                                                                                            <input type="text" name="required_wanting_documents[]"
+                                                                                                   class="myfrm form-control mr-2" value="{{ rtrim($data->required_wanting_documents, ', ') }}">
+                                                                                            <input type="text" name="required_wanting_documents_date[]"
+                                                                                                   class="myfrm form-control ml-2" value="{{ rtrim($data->required_wanting_documents_date, ', ') }}">
+                                                                                            <div class="input-group-btn">
+                                                                                                <button class="btn btn-success btn_success_required_wanting_documents"
+                                                                                                        type="button"><i
+                                                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="clone_required_wanting_documents hide">
+                                                                                            <div class="hdtuto_required_wanting_documents control-group lst input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                <input type="text" name="required_wanting_documents[]"
+                                                                                                       class="myfrm form-control mr-2">
+                                                                                                <input type="date" name="required_wanting_documents_date[]"
+                                                                                                       class="myfrm form-control ml-2">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_required_wanting_documents"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                
+                                                                                        @error('required_wanting_documents')<span
+                                                                                            class="text-danger">{{$message}}</span>@enderror
+                                                                                    </div>
+                                                                                </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+
+
+
+                                                                {{-- <div class="card">
+                                                                    <div class="card-body">
+                                                                        <h6 class="text-uppercase text-bold"><u> Documents
+                                                                                Information </u></h6>
                                                                         <div class="form-group row">
                                                                             <label for="received_documents_id"
                                                                                    class="col-sm-4 col-form-label">
@@ -1189,7 +1281,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </div> --}}
 
 
                                                             </div>

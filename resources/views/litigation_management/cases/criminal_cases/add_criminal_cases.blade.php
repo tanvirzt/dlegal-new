@@ -1015,28 +1015,19 @@
                                             <div class="card-body">
                                                 <h6 class="text-uppercase text-bold"><u> Documents
                                                         Information </u></h6>
-                                                <div class="form-group row">
-                                                    <label for="received_documents_id"
-                                                           class="col-sm-4 col-form-label">
-                                                        Received Documents </label>
-                                                    <div class="col-sm-8">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <select name="received_documents_id[]"
-                                                                        id="received_documents_id"
-                                                                        class="form-control select2" data-placeholder="Select" multiple>
-                                                                    <option value="">Select</option>
-                                                                    @foreach($documents as $item)
-                                                                        <option
-                                                                            value="{{ $item->documents_name }}" {{ old('received_documents_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                                    @endforeach
-                                                                </select>
+                                                        <h6 class="text-uppercase text-bold mt-4">
+                                                            <div class="row">
+                                                                <div class="col-md-6">Received Documents</div>
+                                                                <div class="col-md-6">Date</div>
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <div
-                                                                    class="input-group hdtuto_received_documents control-group increment_received_documents">
-                                                                    <input type="text" name="received_documents_write[]"
-                                                                           class="myfrm form-control col-12" placeholder="Received Documents">
+                                                        </h6>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-12">
+                                                                <div class="input-group hdtuto_received_documents control-group increment_received_documents">
+                                                                    <input type="text" name="received_documents[]"
+                                                                           class="myfrm form-control mr-2">
+                                                                    <input type="date" name="received_documents_date[]"
+                                                                           class="myfrm form-control ml-2">
                                                                     <div class="input-group-btn">
                                                                         <button class="btn btn-success btn_success_received_documents"
                                                                                 type="button"><i
@@ -1047,8 +1038,10 @@
                                                                 <div class="clone_received_documents hide">
                                                                     <div class="hdtuto_received_documents control-group lst input-group"
                                                                          style="margin-top:10px">
-                                                                        <input type="text" name="received_documents_write[]"
-                                                                               class="myfrm form-control col-12">
+                                                                        <input type="text" name="received_documents[]"
+                                                                               class="myfrm form-control mr-2">
+                                                                        <input type="date" name="received_documents_date[]"
+                                                                               class="myfrm form-control ml-2">
                                                                         <div class="input-group-btn">
                                                                             <button class="btn btn-danger btn_danger_received_documents"
                                                                                     type="button"><i
@@ -1057,50 +1050,24 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
+        
+                                                                @error('case_infos_received_documents_informant_name')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
-                                                        @error('received_documents_write')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="received_documents_date" class="col-sm-4 col-form-label">Received Documents Date</label>
-                                                    <div class="col-sm-8">
-                                                    <span class="date_span">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'received_documents_date');"><input type="text" id="received_documents_date"
-                                                                                                            name="received_documents_date" value="dd/mm/yyyy"
-                                                                                                            class="date_second_input"
-                                                                                                            tabindex="-1"><span
-                                                            class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
-                                                        @error('received_documents_date')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="required_wanting_documents_id"
-                                                           class="col-sm-4 col-form-label"> Required/Wanting
-                                                        Documents </label>
-                                                    <div class="col-sm-8">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <select name="required_wanting_documents_id[]"
-                                                                        id="required_wanting_documents_id"
-                                                                        class="form-control select2" data-placeholder="Select" multiple>
-                                                                    <option value="">Select</option>
-                                                                    @foreach($documents as $item)
-                                                                        <option
-                                                                            value="{{ $item->documents_name }}" {{ old('required_wanting_documents_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                                    @endforeach
-                                                                </select>
+                                                        <h6 class="text-uppercase text-bold">
+                                                            <div class="row">
+                                                                <div class="col-md-6">Required/Wanting Documents</div>
+                                                                <div class="col-md-6">Date</div>
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <div
-                                                                    class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
-                                                                    <input type="text" name="required_wanting_documents_write[]"
-                                                                           class="myfrm form-control col-12" placeholder="Required Documents">
+                                                        </h6>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-12">
+                                                                <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
+                                                                    <input type="text" name="required_wanting_documents[]"
+                                                                           class="myfrm form-control mr-2">
+                                                                    <input type="date" name="required_wanting_documents_date[]"
+                                                                           class="myfrm form-control ml-2">
                                                                     <div class="input-group-btn">
                                                                         <button class="btn btn-success btn_success_required_wanting_documents"
                                                                                 type="button"><i
@@ -1111,8 +1078,10 @@
                                                                 <div class="clone_required_wanting_documents hide">
                                                                     <div class="hdtuto_required_wanting_documents control-group lst input-group"
                                                                          style="margin-top:10px">
-                                                                        <input type="text" name="required_wanting_documents_write[]"
-                                                                               class="myfrm form-control col-12">
+                                                                        <input type="text" name="required_wanting_documents[]"
+                                                                               class="myfrm form-control mr-2">
+                                                                        <input type="date" name="required_wanting_documents_date[]"
+                                                                               class="myfrm form-control ml-2">
                                                                         <div class="input-group-btn">
                                                                             <button class="btn btn-danger btn_danger_required_wanting_documents"
                                                                                     type="button"><i
@@ -1121,28 +1090,16 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
+        
+                                                                @error('required_wanting_documents')<span
+                                                                    class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
-                                                        @error('required_wanting_documents')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="required_wanting_documents_date" class="col-sm-4 col-form-label">Required/Wanting Documents Date</label>
-                                                    <div class="col-sm-8">
-                                                    <span class="date_span">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'required_wanting_documents_date');"><input type="text" id="required_wanting_documents_date"
-                                                                                                            name="required_wanting_documents_date" value="dd/mm/yyyy"
-                                                                                                            class="date_second_input"
-                                                                                                            tabindex="-1"><span
-                                                            class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
-                                                        @error('required_wanting_documents_date')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
+
+
+
+                                                
+                                        
                                             </div>
                                         </div>
 

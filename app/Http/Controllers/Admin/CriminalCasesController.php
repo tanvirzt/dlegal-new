@@ -58,6 +58,7 @@ use App\Models\SetupThana;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\CivilCases;
 
 class CriminalCasesController extends Controller
 {
@@ -169,22 +170,35 @@ class CriminalCasesController extends Controller
 //        $this->validate($request, $rules, $validMsg);
 
 
-        $received_date_explode = explode('/', $request->received_date);
-        $received_date_implode = implode('-',$received_date_explode);
-        $received_date = date('Y-m-d', strtotime($received_date_implode));
+        if ($request->received_date != 'dd/mm/yyyy') {
+            $received_date_explode = explode('/', $request->received_date);
+            $received_date_implode = implode('-',$received_date_explode);
+            $received_date = date('Y-m-d', strtotime($received_date_implode));
+        } else {
+            $received_date = date('Y-m-d');
+        }
 
-        $next_date_explode = explode('/', $request->next_date);
-        $next_date_implode = implode('-',$next_date_explode);
-        $next_date = date('Y-m-d', strtotime($next_date_implode));
+        if ($request->next_date != 'dd/mm/yyyy') {
+            $next_date_explode = explode('/', $request->next_date);
+            $next_date_implode = implode('-',$next_date_explode);
+            $next_date = date('Y-m-d', strtotime($next_date_implode));
+        } else {
+            $next_date = date('Y-m-d');
+        }
+
+
+
+
         
         $complainant = $request->case_infos_complainant_informant_name ? implode(', ', $request->case_infos_complainant_informant_name) : null;
         $accused = $request->case_infos_accused_name ? implode(', ', $request->case_infos_accused_name) : null;
         $client = $request->client_name_write ? implode(', ', $request->client_name_write) : null;
         $opposition = $request->opposition_write ? implode(', ', $request->opposition_write) : null;
-        $received_documents = $request->received_documents_write ? implode(', ', $request->received_documents_write) : null;
-        $wanting_documents = $request->required_wanting_documents_write ? implode(', ', $request->required_wanting_documents_write) : null;
-//        $case_infos_case_no = $request->case_infos_case_no ? implode(', ', $request->case_infos_case_no) : null;
-//        $case_infos_case_year = $request->case_infos_case_year ? implode(', ', $request->case_infos_case_year) : null;
+        $received_documents = $request->received_documents ? implode(', ', $request->received_documents) : null;
+        $received_documents_date = $request->received_documents_date ? implode(', ', $request->received_documents_date) : null;
+        $required_wanting_documents = $request->required_wanting_documents ? implode(', ', $request->required_wanting_documents) : null;
+        $required_wanting_documents_date = $request->required_wanting_documents_date ? implode(', ', $request->required_wanting_documents_date) : null;
+
         $court_short_write = $request->court_short_write ? implode(', ', $request->court_short_write) : null;
         $case_infos_sub_seq_case_no = $request->case_infos_sub_seq_case_no ? implode(', ', $request->case_infos_sub_seq_case_no) : null;
         $case_infos_sub_seq_case_year = $request->case_infos_sub_seq_case_year ? implode(', ', $request->case_infos_sub_seq_case_year) : null;
@@ -209,9 +223,9 @@ class CriminalCasesController extends Controller
         $data->in_favour_of_id = $request->in_favour_of_id;
         $data->case_no = $request->case_no;
         $data->name_of_the_court_id = $request->name_of_the_court_id;
-        $data->next_date = $request->next_date == 'dd/mm/yyyy' || $request->next_date == 'NaN/NaN/NaN' ? null : $next_date;
+        $data->next_date = $next_date;
         $data->next_date_fixed_id = $request->next_date_fixed_id;
-        $data->received_date = $request->received_date == 'dd/mm/yyyy' || $request->received_date == 'NaN/NaN/NaN' ? date('Y-m-d') : $received_date;
+        $data->received_date = $received_date;
         $data->mode_of_receipt_id = $request->mode_of_receipt_id;
         $data->referrer_id = $request->referrer_id;
         $data->referrer_write = $request->referrer_write;
@@ -265,12 +279,13 @@ class CriminalCasesController extends Controller
         $data->lawyer_advocate_write = $request->lawyer_advocate_write;
         $data->assigned_lawyer_id = $request->assigned_lawyer_id ? implode(', ', $request->assigned_lawyer_id) : null;
         $data->lawyers_remarks = $request->lawyers_remarks;
-        $data->received_documents_id = $request->received_documents_id ? implode(', ', $request->received_documents_id) : null;
-        $data->received_documents_write = rtrim($received_documents, ', ');
-        $data->received_documents_date = $request->received_documents_date == 'dd/mm/yyyy' || $request->received_documents_date == 'NaN/NaN/NaN' ? null : $request->received_documents_date;
-        $data->required_wanting_documents_id = $request->required_wanting_documents_id ? implode(', ', $request->required_wanting_documents_id): null;
-        $data->required_wanting_documents_write = rtrim($wanting_documents,', ');
-        $data->required_wanting_documents_date = $request->required_wanting_documents_date == 'dd/mm/yyyy' || $request->required_wanting_documents_date == 'NaN/NaN/NaN' ? null : $request->required_wanting_documents_date;
+
+
+        $data->received_documents = $received_documents;
+        $data->received_documents_date = $received_documents_date;
+        $data->required_wanting_documents = $required_wanting_documents;
+        $data->required_wanting_documents_date = $required_wanting_documents_date;
+        
         $data->case_infos_division_id = $request->case_infos_division_id;
         $data->case_infos_district_id = $request->case_infos_district_id;
         $data->case_infos_thana_id = $request->case_infos_thana_id;
@@ -453,22 +468,33 @@ class CriminalCasesController extends Controller
 
 // dd($request->all());
 
-        $received_date_explode = explode('/', $request->received_date);
-        $received_date_implode = implode('-',$received_date_explode);
-        $received_date = date('Y-m-d', strtotime($received_date_implode));
+        if ($request->received_date != 'dd/mm/yyyy') {
+            $received_date_explode = explode('/', $request->received_date);
+            $received_date_implode = implode('-',$received_date_explode);
+            $received_date = date('Y-m-d', strtotime($received_date_implode));
+        } else {
+            $received_date = date('Y-m-d');
+        }
 
-        $next_date_explode = explode('/', $request->next_date);
-        $next_date_implode = implode('-',$next_date_explode);
-        $next_date = date('Y-m-d', strtotime($next_date_implode));
+        if ($request->next_date != 'dd/mm/yyyy') {
+            $next_date_explode = explode('/', $request->next_date);
+            $next_date_implode = implode('-',$next_date_explode);
+            $next_date = date('Y-m-d', strtotime($next_date_implode));
+        } else {
+            $next_date = date('Y-m-d');
+        }
 
         $complainant = $request->case_infos_complainant_informant_name ? implode(', ', $request->case_infos_complainant_informant_name) : null;
         $accused = $request->case_infos_accused_name ? implode(', ', $request->case_infos_accused_name) : null;
         $client = $request->client_name_write ? implode(', ', $request->client_name_write) : null;
         $opposition = $request->opposition_write ? implode(', ', $request->opposition_write) : null;
-        $received_documents = $request->received_documents_write ? implode(', ', $request->received_documents_write) : null;
-        $wanting_documents = $request->required_wanting_documents_write ? implode(', ', $request->required_wanting_documents_write) : null;
-//        $case_infos_case_no = $request->case_infos_case_no ? implode(', ', $request->case_infos_case_no) : null;
-//        $case_infos_case_year = $request->case_infos_case_year ? implode(', ', $request->case_infos_case_year) : null;
+
+        $received_documents = $request->received_documents ? implode(', ', $request->received_documents) : null;
+        $received_documents_date = $request->received_documents_date ? implode(', ', $request->received_documents_date) : null;
+        $required_wanting_documents = $request->required_wanting_documents ? implode(', ', $request->required_wanting_documents) : null;
+        $required_wanting_documents_date = $request->required_wanting_documents_date ? implode(', ', $request->required_wanting_documents_date) : null;
+
+
         $court_short_write = $request->court_short_write ? implode(', ', $request->court_short_write) : null;
         $case_infos_sub_seq_case_no = $request->case_infos_sub_seq_case_no ? implode(', ', $request->case_infos_sub_seq_case_no) : null;
         $case_infos_sub_seq_case_year = $request->case_infos_sub_seq_case_year ? implode(', ', $request->case_infos_sub_seq_case_year) : null;
@@ -498,9 +524,9 @@ class CriminalCasesController extends Controller
             $data->name_of_the_court_id = $request->name_of_the_court_id;
             $data->case_infos_court_short_id = $request->case_infos_court_short_id ? implode(', ', $request->case_infos_court_short_id) : null;
             $data->court_short_write = rtrim($court_short_write, ', ');
-            $data->next_date = $request->next_date == 'dd/mm/yyyy' || $request->next_date == 'NaN/NaN/NaN' ? null : $next_date;
+            $data->next_date = $next_date;
             $data->next_date_fixed_id = $request->next_date_fixed_id;
-            $data->received_date = $request->received_date == 'dd/mm/yyyy' || $request->received_date == 'NaN/NaN/NaN' ? date('Y-m-d') : $received_date;
+            $data->received_date = $received_date;
             $data->mode_of_receipt_id = $request->mode_of_receipt_id;
             $data->referrer_id = $request->referrer_id;
             $data->referrer_write = $request->referrer_write;
@@ -555,12 +581,12 @@ class CriminalCasesController extends Controller
             $data->lawyer_advocate_write = $request->lawyer_advocate_write;
             $data->assigned_lawyer_id = $request->assigned_lawyer_id ? implode(', ', $request->assigned_lawyer_id) : null;
             $data->lawyers_remarks = $request->lawyers_remarks;
-            $data->received_documents_id = $request->received_documents_id ? implode(', ', $request->received_documents_id) : null;
-            $data->received_documents_write = rtrim($received_documents, ', ');
-            $data->received_documents_date = $request->received_documents_date == 'dd/mm/yyyy' || $request->received_documents_date == 'NaN/NaN/NaN' ? null : $request->received_documents_date;
-            $data->required_wanting_documents_id = $request->required_wanting_documents_id ? implode(', ', $request->required_wanting_documents_id) : null;
-            $data->required_wanting_documents_write = rtrim($wanting_documents,', ');
-            $data->required_wanting_documents_date = $request->required_wanting_documents_date == 'dd/mm/yyyy' || $request->required_wanting_documents_date == 'NaN/NaN/NaN' ? null : $request->required_wanting_documents_date;
+
+            $data->received_documents = $received_documents;
+            $data->received_documents_date = $received_documents_date;
+            $data->required_wanting_documents = $required_wanting_documents;
+            $data->required_wanting_documents_date = $required_wanting_documents_date;
+
             $data->case_infos_division_id = $request->case_infos_division_id;
             $data->case_infos_district_id = $request->case_infos_district_id;
             $data->case_infos_thana_id = $request->case_infos_thana_id;
@@ -667,9 +693,9 @@ class CriminalCasesController extends Controller
             $data->name_of_the_court_id = $request->name_of_the_court_id;
             $data->case_infos_court_short_id = $request->case_infos_court_short_id ? implode(', ', $request->case_infos_court_short_id) : null;
             $data->court_short_write = rtrim($court_short_write, ', ');
-            $data->next_date = $request->next_date == 'dd/mm/yyyy' || $request->next_date == 'NaN/NaN/NaN' ? null : $next_date;
+            $data->next_date = $next_date;
             $data->next_date_fixed_id = $request->next_date_fixed_id;
-            $data->received_date = $request->received_date == 'dd/mm/yyyy' || $request->received_date == 'NaN/NaN/NaN' ? date('Y-m-d') : $received_date;
+            $data->received_date = $received_date;
             $data->mode_of_receipt_id = $request->mode_of_receipt_id;
             $data->referrer_id = $request->referrer_id;
             $data->referrer_write = $request->referrer_write;
@@ -738,14 +764,12 @@ class CriminalCasesController extends Controller
             $data->lawyers_remarks = $request->lawyers_remarks;
             $data->save();
 
-        }else if ($request->received_documents_id) {
+        }else if ($request->received_documents) {
 
-            $data->received_documents_id = $request->received_documents_id ? implode(', ', $request->received_documents_id) : null;
-            $data->received_documents_write = rtrim($received_documents, ', ');
-            $data->received_documents_date = $request->received_documents_date == 'dd/mm/yyyy' || $request->received_documents_date == 'NaN/NaN/NaN' ? null : $request->received_documents_date;
-            $data->required_wanting_documents_id = $request->required_wanting_documents_id ? implode(', ', $request->required_wanting_documents_id) : null;
-            $data->required_wanting_documents_write = rtrim($wanting_documents,', ');
-            $data->required_wanting_documents_date = $request->required_wanting_documents_date == 'dd/mm/yyyy' || $request->required_wanting_documents_date == 'NaN/NaN/NaN' ? null : $request->required_wanting_documents_date;
+            $data->received_documents = $received_documents;
+            $data->received_documents_date = $received_documents_date;
+            $data->required_wanting_documents = $required_wanting_documents;
+            $data->required_wanting_documents_date = $required_wanting_documents_date;
             $data->save();
 
         }else if ($request->case_infos_division_id) {
@@ -845,23 +869,32 @@ class CriminalCasesController extends Controller
     public function update_criminal_case(Request $request, $id)
     {
 
-        $received_date_explode = explode('/', $request->received_date);
-        $received_date_implode = implode('-',$received_date_explode);
-        $received_date = date('Y-m-d', strtotime($received_date_implode));
+        if ($request->received_date != 'dd/mm/yyyy') {
+            $received_date_explode = explode('/', $request->received_date);
+            $received_date_implode = implode('-',$received_date_explode);
+            $received_date = date('Y-m-d', strtotime($received_date_implode));
+        } else {
+            $received_date = date('Y-m-d');
+        }
 
-        $next_date_explode = explode('/', $request->next_date);
-        $next_date_implode = implode('-',$next_date_explode);
-        $next_date = date('Y-m-d', strtotime($next_date_implode));
+        if ($request->next_date != 'dd/mm/yyyy') {
+            $next_date_explode = explode('/', $request->next_date);
+            $next_date_implode = implode('-',$next_date_explode);
+            $next_date = date('Y-m-d', strtotime($next_date_implode));
+        } else {
+            $next_date = date('Y-m-d');
+        }
 
 // dd($request->all());
         $complainant = $request->case_infos_complainant_informant_name ? implode(', ', $request->case_infos_complainant_informant_name) : null;
         $accused = $request->case_infos_accused_name ? implode(', ', $request->case_infos_accused_name) : null;
         $client = $request->client_name_write ? implode(', ', $request->client_name_write) : null;
         $opposition = $request->opposition_write ? implode(', ', $request->opposition_write) : null;
-        $received_documents = $request->received_documents_write ? implode(', ', $request->received_documents_write) : null;
-        $wanting_documents = $request->required_wanting_documents_write ? implode(', ', $request->required_wanting_documents_write) : null;
-//        $case_infos_case_no = $request->case_infos_case_no ? implode(', ', $request->case_infos_case_no) : null;
-//        $case_infos_case_year = $request->case_infos_case_year ? implode(', ', $request->case_infos_case_year) : null;
+        $received_documents = $request->received_documents ? implode(', ', $request->received_documents) : null;
+        $received_documents_date = $request->received_documents_date ? implode(', ', $request->received_documents_date) : null;
+        $required_wanting_documents = $request->required_wanting_documents ? implode(', ', $request->required_wanting_documents) : null;
+        $required_wanting_documents_date = $request->required_wanting_documents_date ? implode(', ', $request->required_wanting_documents_date) : null;
+
         $court_short_write = $request->court_short_write ? implode(', ', $request->court_short_write) : null;
         $case_infos_sub_seq_case_no = $request->case_infos_sub_seq_case_no ? implode(', ', $request->case_infos_sub_seq_case_no) : null;
         $case_infos_sub_seq_case_year = $request->case_infos_sub_seq_case_year ? implode(', ', $request->case_infos_sub_seq_case_year) : null;
@@ -890,9 +923,9 @@ class CriminalCasesController extends Controller
             $data->name_of_the_court_id = $request->name_of_the_court_id;
             $data->case_infos_court_short_id = $request->case_infos_court_short_id ? implode(', ', $request->case_infos_court_short_id) : null;
             $data->court_short_write = rtrim($court_short_write, ', ');
-            $data->next_date = $request->next_date == 'dd/mm/yyyy' || $request->next_date == 'NaN/NaN/NaN' ? null : $next_date;
+            $data->next_date = $next_date;
             $data->next_date_fixed_id = $request->next_date_fixed_id;
-            $data->received_date = $request->received_date == 'dd/mm/yyyy' || $request->received_date == 'NaN/NaN/NaN' ? date('Y-m-d') : $received_date;
+            $data->received_date = $received_date;
             $data->mode_of_receipt_id = $request->mode_of_receipt_id;
             $data->referrer_id = $request->referrer_id;
             $data->referrer_write = $request->referrer_write;
@@ -947,12 +980,12 @@ class CriminalCasesController extends Controller
             $data->lawyer_advocate_write = $request->lawyer_advocate_write;
             $data->assigned_lawyer_id = $request->assigned_lawyer_id ? implode(', ', $request->assigned_lawyer_id) : null;
             $data->lawyers_remarks = $request->lawyers_remarks;
-            $data->received_documents_id = $request->received_documents_id ? implode(', ', $request->received_documents_id) : null;
-            $data->received_documents_write = rtrim($received_documents, ', ');
-            $data->received_documents_date = $request->received_documents_date == 'dd/mm/yyyy' || $request->received_documents_date == 'NaN/NaN/NaN' ? null : $request->received_documents_date;
-            $data->required_wanting_documents_id = $request->required_wanting_documents_id ? implode(', ', $request->required_wanting_documents_id) : null;
-            $data->required_wanting_documents_write = rtrim($wanting_documents,', ');
-            $data->required_wanting_documents_date = $request->required_wanting_documents_date == 'dd/mm/yyyy' || $request->required_wanting_documents_date == 'NaN/NaN/NaN' ? null : $request->required_wanting_documents_date;
+
+            $data->received_documents = $received_documents;
+            $data->received_documents_date = $received_documents_date;
+            $data->required_wanting_documents = $required_wanting_documents;
+            $data->required_wanting_documents_date = $required_wanting_documents_date;
+
             $data->case_infos_division_id = $request->case_infos_division_id;
             $data->case_infos_district_id = $request->case_infos_district_id;
             $data->case_infos_thana_id = $request->case_infos_thana_id;
@@ -1154,8 +1187,6 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_thanas as opposition_thana', 'criminal_cases.opposition_thana_id', '=', 'opposition_thana.id')
             ->leftJoin('setup_coordinators as opposition_coordinator', 'criminal_cases.opposition_coordinator_tadbirkar_id', '=', 'opposition_coordinator.id')
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
-            ->leftJoin('setup_documents as received_documents', 'criminal_cases.received_documents_id', '=', 'received_documents.id')
-            ->leftJoin('setup_documents as required_documents', 'criminal_cases.required_wanting_documents_id', '=', 'required_documents.id')
             ->leftJoin('setup_divisions as case_infos_division', 'criminal_cases.case_infos_division_id', '=', 'case_infos_division.id')
             ->leftJoin('setup_districts as case_infos_district', 'criminal_cases.case_infos_district_id', '=', 'case_infos_district.id')
             ->leftJoin('setup_thanas as case_infos_thana', 'criminal_cases.case_infos_thana_id', '=', 'case_infos_thana.id')
@@ -1201,8 +1232,6 @@ class CriminalCasesController extends Controller
                 'setup_external_councils.first_name',
                 'setup_external_councils.middle_name',
                 'setup_external_councils.last_name',
-                'received_documents.documents_name as received_documents_name',
-                'required_documents.documents_name as required_documents_name',
                 'case_infos_division.division_name as case_infos_division_name',
                 'case_infos_district.district_name as case_infos_district_name',
                 'case_infos_thana.thana_name as case_infos_thana_name',
@@ -1240,8 +1269,6 @@ class CriminalCasesController extends Controller
         $section_explode = explode(', ', $data->section_id);
         $opposition_explode = explode(', ', $data->opposition_id);
         $sub_seq_court_explode = explode(', ', $data->case_infos_sub_seq_court_id);
-        $received_documents_explode = explode(', ', $data->received_documents_id);
-        $required_documents_explode = explode(', ', $data->required_wanting_documents_id);
         $court_short_explode = explode(', ', $data->case_infos_court_short_id);
         $sub_seq_court_short_explode = explode(', ', $data->case_infos_sub_seq_court_short_id);
 
@@ -1310,7 +1337,7 @@ class CriminalCasesController extends Controller
 
 
         // dd($case_activity_log);
-        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode','edit_case_steps','existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'received_documents_explode', 'required_documents_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode'));
+        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode','edit_case_steps','existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode'));
     }
 
     public function download_criminal_cases_file($id)
@@ -1554,8 +1581,6 @@ class CriminalCasesController extends Controller
         $court_proceeding_explode = explode(', ', $data->court_proceedings_id );
         $updated_court_order_explode  = explode(', ', $data->updated_court_order_id );
         $updated_day_notes_explode = explode(', ', $data->updated_day_notes_id );
-
-// dd($data);
 
         return view('litigation_management.cases.criminal_cases.criminal_cases_status_update',compact('data','case_status','next_date_reason','court_proceeding','last_court_order','day_notes', 'exist_engaged_advocate_associates','next_day_presence','court_proceeding_explode', 'updated_court_order_explode','updated_day_notes_explode'));
     }

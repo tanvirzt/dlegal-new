@@ -84,12 +84,12 @@ class CreateCriminalCasesTable extends Migration
             $table->string('lawyer_advocate_write')->nullable();
             $table->string('assigned_lawyer_id')->nullable();
             $table->mediumText('lawyers_remarks')->nullable();
-            $table->string('received_documents_id')->nullable();
-            $table->string('received_documents_write')->nullable();
-            $table->text('received_documents_date')->nullable();
-            $table->string('required_wanting_documents_id')->nullable();
-            $table->string('required_wanting_documents_write')->nullable();
-            $table->text('required_wanting_documents_date')->nullable();
+
+            $table->string('received_documents')->nullable();
+            $table->string('received_documents_date')->nullable();
+            $table->string('required_wanting_documents')->nullable();
+            $table->string('required_wanting_documents_date')->nullable();
+
             $table->integer('case_infos_division_id')->nullable();
             $table->integer('case_infos_district_id')->nullable();
             $table->integer('case_infos_thana_id')->nullable();

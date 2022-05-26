@@ -406,88 +406,99 @@
                                                                 data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
+                                                    <h6 class="text-uppercase text-bold mt-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6"> Received Documents 
+                                                            </div>
+                                                            <div class="col-md-6">Date</div>
+                                                        </div>
+                                                    </h6>
                                                     <table class="table table-bordered">
-
                                                         <tbody>
-
-                                                        <tr>
-                                                            <td>Received Documents</td>
-                                                            <td>
-                                                                @php
-                                                                    $received_documents_id = explode(', ',$data->received_documents_id);
-                                                                @endphp
-                                                                @if($data->received_documents_id)
-                                                                    @if (count($received_documents_id)> 1)
-                                                                        @foreach ($received_documents_id as $pro)
-                                                                            <li class="text-left">{{ $pro }}</li>
-                                                                        @endforeach
-                                                                    @else
-                                                                        @foreach ($received_documents_id as $pro)
-                                                                            {{ $pro }}
-                                                                        @endforeach
+                                                            <tr>
+                                                                <td>
+                                                                    @php
+                                                                        $received_documents = explode(', ', rtrim($data->received_documents, ', '));
+                                                                    @endphp
+                                                                    @if($data->received_documents)
+                                                                        @if (count($received_documents)> 1)
+                                                                            @foreach ($received_documents as $pro)
+                                                                                <li class="text-left">{{ $pro }}</li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($received_documents as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
                                                                     @endif
-                                                                @endif
-
-                                                                @php
-                                                                    $received_documents_write = explode(', ',$data->received_documents_write);
-                                                                @endphp
-                                                                @if($data->received_documents_write)
-                                                                    @if (count($received_documents_write)> 1)
-                                                                        @foreach ($received_documents_write as $pro)
-                                                                            <li class="text-left">{{ $pro }}</li>
-                                                                        @endforeach
-                                                                    @else
-                                                                        @foreach ($received_documents_write as $pro)
-                                                                            {{ $pro }}
-                                                                        @endforeach
-                                                                    @endif
-                                                                @endif
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Received Documents Date</td>
-                                                            <td> {{ $data->received_documents_date }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Required/Wanting Documents</td>
-                                                            <td>
-                                                                @php
-                                                                    $required_wanting_documents_id = explode(', ',$data->required_wanting_documents_id);
-                                                                @endphp
-                                                                @if($data->required_wanting_documents_id)
-                                                                    @if (count($required_wanting_documents_id)> 1)
-                                                                        @foreach ($required_wanting_documents_id as $pro)
-                                                                            <li class="text-left">{{ $pro }}</li>
-                                                                        @endforeach
-                                                                    @else
-                                                                        @foreach ($required_wanting_documents_id as $pro)
-                                                                            {{ $pro }}
-                                                                        @endforeach
-                                                                    @endif
-                                                                @endif
-                                                                @php
-                                                                    $required_wanting_documents_write = explode(', ',$data->required_wanting_documents_write);
-                                                                @endphp
-                                                                @if($data->required_wanting_documents_write)
-                                                                    @if (count($required_wanting_documents_write)> 1)
-                                                                        @foreach ($required_wanting_documents_write as $pro)
-                                                                            <li class="text-left">{{ $pro }}</li>
-                                                                        @endforeach
-                                                                    @else
-                                                                        @foreach ($required_wanting_documents_write as $pro)
-                                                                            {{ $pro }}
-                                                                        @endforeach
-                                                                    @endif
-                                                                @endif
-
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Required/Wanting Documents Date</td>
-                                                            <td> {{ $data->required_wanting_documents_date }} </td>
-                                                        </tr>
+                                                                </td>
+                                                                <td> 
+                                                                    @php
+                                                                        $received_documents_date = explode(', ', rtrim($data->received_documents_date, ', '));
+                                                                    @endphp
+                                                                    @if($data->received_documents_date)
+                                                                        @if (count($received_documents_date)> 1)
+                                                                            @foreach ($received_documents_date as $pro)
+                                                                                <li class="text-left">{{ $pro }}</li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($received_documents_date as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif    
+                                                                </td>
+                                                            </tr>
+                                                            
                                                         </tbody>
                                                     </table>
+                                                    <h6 class="text-uppercase text-bold mt-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6"> Required/Wanting Documents
+                                                            </div>
+                                                            <div class="col-md-6">Date</div>
+                                                        </div>
+                                                    </h6>
+                                                    <table class="table table-bordered">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    @php
+                                                                        $required_wanting_documents = explode(', ', rtrim($data->required_wanting_documents, ', '));
+                                                                    @endphp
+                                                                    @if($data->required_wanting_documents)
+                                                                        @if (count($required_wanting_documents)> 1)
+                                                                            @foreach ($required_wanting_documents as $pro)
+                                                                                <li class="text-left">{{ $pro }}</li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($required_wanting_documents as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+                                                                </td>
+                                                                <td> 
+                                                                    
+                                                                    @php
+                                                                        $required_wanting_documents_date = explode(', ', rtrim($data->required_wanting_documents_date, ', '));
+                                                                    @endphp
+                                                                    @if($data->required_wanting_documents_date)
+                                                                        @if (count($required_wanting_documents_date)> 1)
+                                                                            @foreach ($required_wanting_documents_date as $pro)
+                                                                                <li class="text-left">{{ $pro }}</li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($required_wanting_documents_date as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
                                                 </div>
                                             </div>
 
@@ -3883,30 +3894,21 @@
                     method="post">
                     @csrf
                     <div class="card-body">
-
-                        <h6 class="text-uppercase text-bold"><u> Documents Information </u>
-                        </h6>
-                        <div class="form-group row">
-                            <label for="received_documents_id"
-                                   class="col-sm-4 col-form-label">
-                                Received Documents </label>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <select name="received_documents_id[]"
-                                                id="received_documents_id"
-                                                class="form-control select2" data-placeholder="Select" multiple>
-                                            <option value="">Select</option>
-                                            @foreach($documents as $item)
-                                                <option
-                                                    value="{{ $item->documents_name }}" {{ in_array($item->documents_name, $received_documents_explode) ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                            @endforeach
-                                        </select>
+                        <h6 class="text-uppercase text-bold"><u> Documents
+                                Information </u></h6>
+                                <h6 class="text-uppercase text-bold mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6">Received Documents</div>
+                                        <div class="col-md-6">Date</div>
                                     </div>
-                                    <div class="col-md-6">
+                                </h6>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
                                         <div class="input-group hdtuto_received_documents control-group increment_received_documents">
-                                            <input type="text" name="received_documents_write[]"
-                                                   class="myfrm form-control col-12" value="{{ rtrim($data->received_documents_write, ', ') }}">
+                                            <input type="text" name="received_documents[]"
+                                                   class="myfrm form-control mr-2" value="{{ rtrim($data->received_documents, ', ') }}">
+                                            <input type="text" name="received_documents_date[]"
+                                                   class="myfrm form-control ml-2" value="{{ rtrim($data->received_documents_date, ', ') }}">
                                             <div class="input-group-btn">
                                                 <button class="btn btn-success btn_success_received_documents"
                                                         type="button"><i
@@ -3917,8 +3919,10 @@
                                         <div class="clone_received_documents hide">
                                             <div class="hdtuto_received_documents control-group lst input-group"
                                                  style="margin-top:10px">
-                                                <input type="text" name="received_documents_write[]"
-                                                       class="myfrm form-control col-12">
+                                                <input type="text" name="received_documents[]"
+                                                       class="myfrm form-control mr-2">
+                                                <input type="date" name="received_documents_date[]"
+                                                       class="myfrm form-control ml-2">
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-danger btn_danger_received_documents"
                                                             type="button"><i
@@ -3928,50 +3932,23 @@
                                             </div>
                                         </div>
 
+                                        @error('case_infos_received_documents_informant_name')<span
+                                            class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                 </div>
-                                @error('received_documents')<span
-                                    class="text-danger">{{$message}}</span>@enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="received_documents_date" class="col-sm-4 col-form-label">Received Documents Date</label>
-                            <div class="col-sm-8">
-                        <span class="date_span">
-                            <input type="date" class="xDateContainer date_first_input"
-                                   onchange="setCorrect(this,'received_documents_date');"><input type="text" id="received_documents_date"
-                                                                                                 name="received_documents_date"
-                                                                                                 value="{{ $data->received_documents_date }}"
-                                                                                                 class="date_second_input"
-                                                                                                 tabindex="-1"><span
-                                class="date_second_span" tabindex="-1">&#9660;</span>
-                        </span>
-                                @error('received_documents_date')<span
-                                    class="text-danger">{{$message}}</span>@enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="required_wanting_documents_id"
-                                   class="col-sm-4 col-form-label"> Required/Wanting
-                                Documents </label>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <select name="required_wanting_documents_id[]"
-                                                id="required_wanting_documents_id"
-                                                class="form-control select2" data-placeholder="Select" multiple>
-                                            <option value="">Select</option>
-                                            @foreach($documents as $item)
-                                                <option
-                                                    value="{{ $item->documents_name }}" {{ in_array($item->documents_name, $required_documents_explode) ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                            @endforeach
-                                        </select>
+                                <h6 class="text-uppercase text-bold">
+                                    <div class="row">
+                                        <div class="col-md-6">Required/Wanting Documents</div>
+                                        <div class="col-md-6">Date</div>
                                     </div>
-                                    <div class="col-md-6">
+                                </h6>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
                                         <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
-                                            <input type="text" name="required_wanting_documents_write[]"
-                                                   class="myfrm form-control col-12" placeholder="Required Documents"
-                                                   value="{{ rtrim($data->required_wanting_documents_write, ', ') }}">
+                                            <input type="text" name="required_wanting_documents[]"
+                                                   class="myfrm form-control mr-2" value="{{ rtrim($data->required_wanting_documents, ', ') }}">
+                                            <input type="text" name="required_wanting_documents_date[]"
+                                                   class="myfrm form-control ml-2" value="{{ rtrim($data->required_wanting_documents_date, ', ') }}">
                                             <div class="input-group-btn">
                                                 <button class="btn btn-success btn_success_required_wanting_documents"
                                                         type="button"><i
@@ -3982,8 +3959,10 @@
                                         <div class="clone_required_wanting_documents hide">
                                             <div class="hdtuto_required_wanting_documents control-group lst input-group"
                                                  style="margin-top:10px">
-                                                <input type="text" name="required_wanting_documents_write[]"
-                                                       class="myfrm form-control col-12">
+                                                <input type="text" name="required_wanting_documents[]"
+                                                       class="myfrm form-control mr-2">
+                                                <input type="date" name="required_wanting_documents_date[]"
+                                                       class="myfrm form-control ml-2">
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-danger btn_danger_required_wanting_documents"
                                                             type="button"><i
@@ -3993,39 +3972,19 @@
                                             </div>
                                         </div>
 
+                                        @error('required_wanting_documents')<span
+                                            class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                 </div>
-                                @error('required_wanting_documents')<span
-                                    class="text-danger">{{$message}}</span>@enderror
-                            </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div class="float-right">
+                            <button type="submit"
+                                    class="btn btn-primary text-uppercase"><i
+                                    class="fas fa-save"></i> Update
+                            </button>
                         </div>
-                        <div class="form-group row">
-                            <label for="required_wanting_documents_date" class="col-sm-4 col-form-label">Required/Wanting Documents Date</label>
-                            <div class="col-sm-8">
-                        <span class="date_span">
-                            <input type="date" class="xDateContainer date_first_input"
-                                   onchange="setCorrect(this,'required_wanting_documents_date');"><input type="text"
-                                                                                                         id="required_wanting_documents_date"
-                                                                                                         name="required_wanting_documents_date"
-                                                                                                         value="{{ $data->required_wanting_documents_date }}"
-                                                                                                         class="date_second_input"
-                                                                                                         tabindex="-1"><span
-                                class="date_second_span" tabindex="-1">&#9660;</span>
-                        </span>
-                                @error('required_wanting_documents_date')<span
-                                    class="text-danger">{{$message}}</span>@enderror
-                            </div>
-                        </div>
-                        <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <div class="float-right">
-                                <button type="submit"
-                                        class="btn btn-primary text-uppercase"><i
-                                        class="fas fa-save"></i> Update
-                                </button>
-                            </div>
-                        </div>
-
                     </div>
                 </form>
 
