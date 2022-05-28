@@ -84,12 +84,12 @@ class CreateCriminalCasesTable extends Migration
             $table->string('lawyer_advocate_write')->nullable();
             $table->string('assigned_lawyer_id')->nullable();
             $table->mediumText('lawyers_remarks')->nullable();
-
+            $table->string('received_documents_id')->nullable();
             $table->string('received_documents')->nullable();
             $table->string('received_documents_date')->nullable();
+            $table->string('required_wanting_documents_id')->nullable();
             $table->string('required_wanting_documents')->nullable();
             $table->string('required_wanting_documents_date')->nullable();
-
             $table->integer('case_infos_division_id')->nullable();
             $table->integer('case_infos_district_id')->nullable();
             $table->integer('case_infos_thana_id')->nullable();
@@ -120,10 +120,10 @@ class CreateCriminalCasesTable extends Migration
             $table->string('complainant_informant_representative')->nullable();
             $table->string('case_infos_accused_name')->nullable();
             $table->string('case_infos_accused_representative')->nullable();
-            $table->string('prosecution_witness')->nullable();
-            $table->string('defense_witness')->nullable();
-            $table->mediumText('updated_day_notes_id')->nullable();
-            $table->string('updated_remarks_or_steps_taken')->nullable();
+            $table->text('prosecution_witness')->nullable();
+            $table->text('defense_witness')->nullable();
+            $table->text('updated_day_notes_id')->nullable();
+            $table->text('updated_remarks_or_steps_taken')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

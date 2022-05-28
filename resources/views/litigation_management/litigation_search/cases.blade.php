@@ -62,12 +62,12 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label for="case_no" class="col-sm-4 col-form-label">Case
+                                                        <label for="case_infos_case_no" class="col-sm-4 col-form-label">Case
                                                             No.</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" id="case_no"
-                                                                   name="case_no" value="{{ old('case_no') }}">
-                                                            @error('case_no')
+                                                            <input type="text" class="form-control" id="case_infos_case_no"
+                                                                   name="case_infos_case_no" value="{{ old('case_infos_case_no') }}">
+                                                            @error('case_infos_case_no')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
@@ -77,9 +77,18 @@
                                                             Received
                                                             Date </label>
                                                         <div class="col-sm-8">
-                                                            <input type="date" class="form-control"
+                                                            <span class="date_span_calendar">
+                                                                <input type="date" class="xDateContainer date_first_input"
+                                                                       onchange="setCorrect(this,'received_date');"><input type="text" id="received_date"
+                                                                                                                    name="received_date" value="dd/mm/yyyy"
+                                                                                                                    class="date_second_input"
+                                                                                                                    tabindex="-1"><span
+                                                                    class="date_second_span" tabindex="-1">&#9660;</span>
+                                                            </span>
+
+                                                            {{-- <input type="date" class="form-control"
                                                                    id="received_date"
-                                                                   name="received_date">
+                                                                   name="received_date"> --}}
                                                             @error('received_date')<span
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
@@ -207,7 +216,7 @@
                                                 {{ $datum->next_date_reason_name }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('view-cases', $datum->id) }}"> {{ $datum->case_infos_case_no ? $datum->case_title_name.' '.$datum->case_infos_case_no.'/'.$datum->case_infos_case_year : '' }} </a>
+                                                <a href="{{ route('view-criminal-cases', $datum->id) }}"> {{ $datum->case_infos_case_no ? $datum->case_title_name.' '.$datum->case_infos_case_no.'/'.$datum->case_infos_case_year : '' }} </a>
                                             </td>
                                             <td>
                                                 {{ $datum->sub_seq_case_title_name }}

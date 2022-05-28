@@ -66,7 +66,7 @@
                                                             No.</label>
                                                         <div class="col-sm-8">
                                                             <input type="text" class="form-control" id="case_no"
-                                                                   name="case_no" value="{{ old('case_no') }}">
+                                                                   name="case_infos_case_no" value="{{ old('case_infos_case_no') }}">
                                                             @error('case_no')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
@@ -103,11 +103,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-
                                                     <div class="form-group row">
                                                         <label for="case_category_id" class="col-sm-4 col-form-label">Case Category</label>
                                                         <div class="col-sm-8">
-
                                                             <select name="case_category_id" id="case_category_id" class="form-control select2"
                                                                     action="{{ route('find-case-subcategory') }}">
                                                                 <option value="">Select</option>
@@ -117,31 +115,25 @@
                                                                 @endforeach
                                                             </select>
                                                             @error('case_category_id')<span class="text-danger">{{$message}}</span>@enderror
-
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="case_subcategory_id" class="col-sm-4 col-form-label">Case Subcategory</label>
                                                         <div class="col-sm-8">
-
                                                             <select name="case_subcategory_id" id="case_subcategory_id" class="form-control select2">
                                                                 <option value="">Select</option>
 
                                                             </select>
                                                             @error('case_subcategory_id')<span class="text-danger">{{$message}}</span>@enderror
-
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
-
                                             <div class="float-right">
                                                 <button type="submit" id="submit" class="btn btn-primary text-uppercase"><i
                                                         class="fas fa-search"></i> Search
                                                 </button>
                                             </div>
-
                                         </form>
 
                                     </div>
@@ -152,7 +144,6 @@
 
 
                     <div class="col-12">
-
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
@@ -163,7 +154,6 @@
                                         </button>
                                     </a>
                                 </div>
-
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">

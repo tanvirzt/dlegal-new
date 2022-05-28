@@ -408,9 +408,9 @@
                                                     </h6>
                                                     <h6 class="text-uppercase text-bold mt-4">
                                                         <div class="row">
-                                                            <div class="col-md-6"> Received Documents 
-                                                            </div>
-                                                            <div class="col-md-6">Date</div>
+                                                            <div class="col-md-4">Received Documents(DD)</div>
+                                                            <div class="col-md-4">Received Documents</div>
+                                                            <div class="col-md-4">Date</div>
                                                         </div>
                                                     </h6>
                                                     <table class="table table-bordered">
@@ -418,12 +418,28 @@
                                                             <tr>
                                                                 <td>
                                                                     @php
+                                                                        $received_documents_id = explode(', ', rtrim($data->received_documents_id, ', '));
+                                                                    @endphp
+                                                                    @if($data->received_documents_id)
+                                                                        @if (count($received_documents_id)> 1)
+                                                                            @foreach ($received_documents_id as $pro)
+                                                                                <p>{{ $pro }}</p>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($received_documents_id as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    @php
                                                                         $received_documents = explode(', ', rtrim($data->received_documents, ', '));
                                                                     @endphp
                                                                     @if($data->received_documents)
                                                                         @if (count($received_documents)> 1)
                                                                             @foreach ($received_documents as $pro)
-                                                                                <li class="text-left">{{ $pro }}</li>
+                                                                                <p>{{ $pro }}</p>
                                                                             @endforeach
                                                                         @else
                                                                             @foreach ($received_documents as $pro)
@@ -439,7 +455,7 @@
                                                                     @if($data->received_documents_date)
                                                                         @if (count($received_documents_date)> 1)
                                                                             @foreach ($received_documents_date as $pro)
-                                                                                <li class="text-left">{{ $pro }}</li>
+                                                                                <p>{{ $pro }}</p>
                                                                             @endforeach
                                                                         @else
                                                                             @foreach ($received_documents_date as $pro)
@@ -449,14 +465,13 @@
                                                                     @endif    
                                                                 </td>
                                                             </tr>
-                                                            
                                                         </tbody>
                                                     </table>
                                                     <h6 class="text-uppercase text-bold mt-4">
                                                         <div class="row">
-                                                            <div class="col-md-6"> Required/Wanting Documents
-                                                            </div>
-                                                            <div class="col-md-6">Date</div>
+                                                            <div class="col-md-4">Required/Wanting Documents(DD)</div>
+                                                            <div class="col-md-4">Required/Wanting Documents</div>
+                                                            <div class="col-md-4">Date</div>
                                                         </div>
                                                     </h6>
                                                     <table class="table table-bordered">
@@ -464,12 +479,28 @@
                                                             <tr>
                                                                 <td>
                                                                     @php
+                                                                        $required_wanting_documents_id = explode(', ', rtrim($data->required_wanting_documents_id, ', '));
+                                                                    @endphp
+                                                                    @if($data->required_wanting_documents_id)
+                                                                        @if (count($required_wanting_documents_id)> 1)
+                                                                            @foreach ($required_wanting_documents_id as $pro)
+                                                                                <p>{{ $pro }}</p>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($required_wanting_documents_id as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+                                                                </td>
+                                                                <td> 
+                                                                    @php
                                                                         $required_wanting_documents = explode(', ', rtrim($data->required_wanting_documents, ', '));
                                                                     @endphp
                                                                     @if($data->required_wanting_documents)
                                                                         @if (count($required_wanting_documents)> 1)
                                                                             @foreach ($required_wanting_documents as $pro)
-                                                                                <li class="text-left">{{ $pro }}</li>
+                                                                                <p>{{ $pro }}</p>
                                                                             @endforeach
                                                                         @else
                                                                             @foreach ($required_wanting_documents as $pro)
@@ -479,14 +510,13 @@
                                                                     @endif
                                                                 </td>
                                                                 <td> 
-                                                                    
                                                                     @php
                                                                         $required_wanting_documents_date = explode(', ', rtrim($data->required_wanting_documents_date, ', '));
                                                                     @endphp
                                                                     @if($data->required_wanting_documents_date)
                                                                         @if (count($required_wanting_documents_date)> 1)
                                                                             @foreach ($required_wanting_documents_date as $pro)
-                                                                                <li class="text-left">{{ $pro }}</li>
+                                                                                <p>{{ $pro }}</p>
                                                                             @endforeach
                                                                         @else
                                                                             @foreach ($required_wanting_documents_date as $pro)
@@ -498,7 +528,6 @@
                                                             </tr>
                                                         </tbody>
                                                     </table>
-
                                                 </div>
                                             </div>
 

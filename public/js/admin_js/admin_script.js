@@ -648,17 +648,13 @@ $(document).ready(function () {
 
 
                 } else if (res.result == "criminal_cases") {
-
                     // console.log(res);
-
                     $('#search_data').empty();
                     $.each(res.data, function (key, value) {
-
                         $('#search_data').append(`
-
                                 <tr>
                                    <td> ${value.id === null ? '' : value.id} </td>
-                                   <td> ${value.next_date === null ? '' : value.next_date} </td>
+                                   <td> ${value.case_status_name === null ? '' : value.case_status_name} </td>
                                    <td> ${value.next_date_reason_name === null ? '' : value.next_date_reason_name} </td>
                                    <td> <a href="view-criminal-cases/${value.id}"> ${value.case_no} </a> </td>
                                     <td> ${value.court_name === null ? '' : value.court_name}</td>

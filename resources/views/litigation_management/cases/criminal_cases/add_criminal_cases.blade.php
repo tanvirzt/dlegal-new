@@ -1017,12 +1017,24 @@
                                                         Information </u></h6>
                                                         <h6 class="text-uppercase text-bold mt-4">
                                                             <div class="row">
-                                                                <div class="col-md-6">Received Documents</div>
-                                                                <div class="col-md-6">Date</div>
+                                                                <div class="col-md-5">Received Documents(DD)</div>
+                                                                <div class="col-md-4">Received Documents</div>
+                                                                <div class="col-md-3">Date</div>
                                                             </div>
                                                         </h6>
                                                         <div class="form-group row">
-                                                            <div class="col-sm-12">
+                                                            <div class="col-sm-4">
+                                                                <select name="received_documents_id[]"
+                                                                        id="received_documents_id"
+                                                                        class="form-control select2" data-placeholder="Select" multiple>
+                                                                    <option value="">Select</option>
+                                                                    @foreach($documents as $item)
+                                                                        <option
+                                                                            value="{{ $item->documents_name }}" {{ old('received_documents_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-8">
                                                                 <div class="input-group hdtuto_received_documents control-group increment_received_documents">
                                                                     <input type="text" name="received_documents[]"
                                                                            class="myfrm form-control mr-2">
@@ -1057,12 +1069,24 @@
                                                         </div>
                                                         <h6 class="text-uppercase text-bold">
                                                             <div class="row">
-                                                                <div class="col-md-6">Required/Wanting Documents</div>
-                                                                <div class="col-md-6">Date</div>
+                                                                <div class="col-md-4">Required/Wanting Documents(DD)</div>
+                                                                <div class="col-md-4">Required/Wanting Documents</div>
+                                                                <div class="col-md-4">Date</div>
                                                             </div>
                                                         </h6>
                                                         <div class="form-group row">
-                                                            <div class="col-sm-12">
+                                                            <div class="col-sm-4">
+                                                                <select name="required_wanting_documents_id[]"
+                                                                        id="required_wanting_documents_id"
+                                                                        class="form-control select2" data-placeholder="Select" multiple>
+                                                                    <option value="">Select</option>
+                                                                    @foreach($documents as $item)
+                                                                        <option
+                                                                            value="{{ $item->documents_name }}" {{ old('required_wanting_documents_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-8">
                                                                 <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
                                                                     <input type="text" name="required_wanting_documents[]"
                                                                            class="myfrm form-control mr-2">
@@ -1095,11 +1119,6 @@
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
-
-
-
-                                                
-                                        
                                             </div>
                                         </div>
 

@@ -185,17 +185,16 @@ class CriminalCasesController extends Controller
         } else {
             $next_date = date('Y-m-d');
         }
-
-
-
-
         
         $complainant = $request->case_infos_complainant_informant_name ? implode(', ', $request->case_infos_complainant_informant_name) : null;
         $accused = $request->case_infos_accused_name ? implode(', ', $request->case_infos_accused_name) : null;
         $client = $request->client_name_write ? implode(', ', $request->client_name_write) : null;
         $opposition = $request->opposition_write ? implode(', ', $request->opposition_write) : null;
+
+        $received_documents_id = $request->received_documents_id ? implode(', ', $request->received_documents_id) : null;
         $received_documents = $request->received_documents ? implode(', ', $request->received_documents) : null;
         $received_documents_date = $request->received_documents_date ? implode(', ', $request->received_documents_date) : null;
+        $required_wanting_documents_id = $request->required_wanting_documents_id ? implode(', ', $request->required_wanting_documents_id) : null;
         $required_wanting_documents = $request->required_wanting_documents ? implode(', ', $request->required_wanting_documents) : null;
         $required_wanting_documents_date = $request->required_wanting_documents_date ? implode(', ', $request->required_wanting_documents_date) : null;
 
@@ -281,8 +280,10 @@ class CriminalCasesController extends Controller
         $data->lawyers_remarks = $request->lawyers_remarks;
 
 
+        $data->received_documents_id = $received_documents_id;
         $data->received_documents = $received_documents;
         $data->received_documents_date = $received_documents_date;
+        $data->required_wanting_documents_id = $required_wanting_documents_id;
         $data->required_wanting_documents = $required_wanting_documents;
         $data->required_wanting_documents_date = $required_wanting_documents_date;
         
@@ -489,11 +490,12 @@ class CriminalCasesController extends Controller
         $client = $request->client_name_write ? implode(', ', $request->client_name_write) : null;
         $opposition = $request->opposition_write ? implode(', ', $request->opposition_write) : null;
 
+        $received_documents_id = $request->received_documents_id ? implode(', ', $request->received_documents_id) : null;
         $received_documents = $request->received_documents ? implode(', ', $request->received_documents) : null;
         $received_documents_date = $request->received_documents_date ? implode(', ', $request->received_documents_date) : null;
+        $required_wanting_documents_id = $request->required_wanting_documents_id ? implode(', ', $request->required_wanting_documents_id) : null;
         $required_wanting_documents = $request->required_wanting_documents ? implode(', ', $request->required_wanting_documents) : null;
         $required_wanting_documents_date = $request->required_wanting_documents_date ? implode(', ', $request->required_wanting_documents_date) : null;
-
 
         $court_short_write = $request->court_short_write ? implode(', ', $request->court_short_write) : null;
         $case_infos_sub_seq_case_no = $request->case_infos_sub_seq_case_no ? implode(', ', $request->case_infos_sub_seq_case_no) : null;
@@ -582,8 +584,10 @@ class CriminalCasesController extends Controller
             $data->assigned_lawyer_id = $request->assigned_lawyer_id ? implode(', ', $request->assigned_lawyer_id) : null;
             $data->lawyers_remarks = $request->lawyers_remarks;
 
+            $data->received_documents_id = $received_documents_id;
             $data->received_documents = $received_documents;
             $data->received_documents_date = $received_documents_date;
+            $data->required_wanting_documents_id = $required_wanting_documents_id;
             $data->required_wanting_documents = $required_wanting_documents;
             $data->required_wanting_documents_date = $required_wanting_documents_date;
 
@@ -766,10 +770,13 @@ class CriminalCasesController extends Controller
 
         }else if ($request->received_documents) {
 
+            $data->received_documents_id = $received_documents_id;
             $data->received_documents = $received_documents;
             $data->received_documents_date = $received_documents_date;
+            $data->required_wanting_documents_id = $required_wanting_documents_id;
             $data->required_wanting_documents = $required_wanting_documents;
             $data->required_wanting_documents_date = $required_wanting_documents_date;
+
             $data->save();
 
         }else if ($request->case_infos_division_id) {
@@ -890,8 +897,10 @@ class CriminalCasesController extends Controller
         $accused = $request->case_infos_accused_name ? implode(', ', $request->case_infos_accused_name) : null;
         $client = $request->client_name_write ? implode(', ', $request->client_name_write) : null;
         $opposition = $request->opposition_write ? implode(', ', $request->opposition_write) : null;
+        $received_documents_id = $request->received_documents_id ? implode(', ', $request->received_documents_id) : null;
         $received_documents = $request->received_documents ? implode(', ', $request->received_documents) : null;
         $received_documents_date = $request->received_documents_date ? implode(', ', $request->received_documents_date) : null;
+        $required_wanting_documents_id = $request->required_wanting_documents_id ? implode(', ', $request->required_wanting_documents_id) : null;
         $required_wanting_documents = $request->required_wanting_documents ? implode(', ', $request->required_wanting_documents) : null;
         $required_wanting_documents_date = $request->required_wanting_documents_date ? implode(', ', $request->required_wanting_documents_date) : null;
 
@@ -981,8 +990,10 @@ class CriminalCasesController extends Controller
             $data->assigned_lawyer_id = $request->assigned_lawyer_id ? implode(', ', $request->assigned_lawyer_id) : null;
             $data->lawyers_remarks = $request->lawyers_remarks;
 
+            $data->received_documents_id = $received_documents_id;
             $data->received_documents = $received_documents;
             $data->received_documents_date = $received_documents_date;
+            $data->required_wanting_documents_id = $required_wanting_documents_id;
             $data->required_wanting_documents = $required_wanting_documents;
             $data->required_wanting_documents_date = $required_wanting_documents_date;
 
@@ -1417,56 +1428,55 @@ class CriminalCasesController extends Controller
         $received_date_implode = implode('-',$received_date_explode);
         $received_date = date('Y-m-d', strtotime($received_date_implode));
 
-
 //         dd($request->all());
         $query = DB::table('criminal_cases')
             ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', 'setup_next_date_reasons.id')
             ->leftJoin('setup_courts', 'criminal_cases.name_of_the_court_id', '=', 'setup_courts.id')
             ->leftJoin('setup_districts', 'criminal_cases.case_infos_district_id', '=', 'setup_districts.id')
-            ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
-            ->leftJoin('setup_allegations', 'criminal_cases.case_infos_allegation_claim_id', '=', 'setup_allegations.id');
+            ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id');
+            // ->leftJoin('setup_allegations', 'criminal_cases.case_infos_allegation_claim_id', '=', 'setup_allegations.id');
 
-        if ($request->case_no && $request->received_date && $request->name_of_the_court_id) {
+        if ($request->case_infos_case_no && $request->received_date && $request->name_of_the_court_id) {
 // dd('case no, dof, court name ');
 
-            $query2 = $query->where(['criminal_cases.case_no' => $request->case_no, 'criminal_cases.received_date' => $received_date, 'criminal_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
+            $query2 = $query->where(['criminal_cases.case_infos_case_no' => $request->case_infos_case_no, 'criminal_cases.received_date' => $received_date, 'criminal_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
 
-        } else if ($request->case_no && $request->received_date && $request->name_of_the_court_id == null) {
+        } else if ($request->case_infos_case_no && $request->received_date && $request->name_of_the_court_id == null) {
 // dd('case no, dof');
 
-            $query2 = $query->where(['criminal_cases.case_no' => $request->case_no, 'criminal_cases.received_date' => $received_date]);
+            $query2 = $query->where(['criminal_cases.case_infos_case_no' => $request->case_infos_case_no, 'criminal_cases.received_date' => $received_date]);
 
-        } else if ($request->case_no && $request->received_date == null && $request->name_of_the_court_id) {
+        } else if ($request->case_infos_case_no && $request->received_date == null && $request->name_of_the_court_id) {
             // dd('case no, court name ');
 
-            $query2 = $query->where(['criminal_cases.case_no' => $request->case_no, 'criminal_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
+            $query2 = $query->where(['criminal_cases.case_infos_case_no' => $request->case_infos_case_no, 'criminal_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
 
-        } else if ($request->case_no == null && $request->received_date && $request->name_of_the_court_id) {
+        } else if ($request->case_infos_case_no == null && $request->received_date && $request->name_of_the_court_id) {
             // dd('dof, court name');
 
             $query2 = $query->where(['criminal_cases.received_date' => $received_date, 'criminal_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
 
-        } else if ($request->case_no && $request->received_date == null && $request->name_of_the_court_id == null) {
+        } else if ($request->case_infos_case_no && $request->received_date == null && $request->name_of_the_court_id == null) {
             // dd('case no');
 
-            $query2 = $query->where(['criminal_cases.case_no' => $request->case_no]);
+            $query2 = $query->where(['criminal_cases.case_infos_case_no' => $request->case_infos_case_no]);
 
-        } else if ($request->case_no == null && $received_date && $request->name_of_the_court_id == null) {
+        } else if ($request->case_infos_case_no == null && $received_date && $request->name_of_the_court_id == null) {
             // dd('dof');
 
             $query2 = $query->where('criminal_cases.received_date', $request->received_date);
 
-        } else if ($request->case_no == null && $received_date == null && $request->name_of_the_court_id) {
+        } else if ($request->case_infos_case_no == null && $received_date == null && $request->name_of_the_court_id) {
 
             // dd('court name');
             $query2 = $query->where('criminal_cases.name_of_the_court_id', $request->name_of_the_court_id);
 
-        } else if ($request->case_no == null && $received_date == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id) {
+        } else if ($request->case_infos_case_no == null && $received_date == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id) {
 
             // dd('court name');
             $query2 = $query->where(['criminal_cases.case_category_id' => $request->case_category_id, 'criminal_cases.case_subcategory_id' => $request->case_subcategory_id]);
 
-        } else if ($request->case_no == null && $received_date == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id == null) {
+        } else if ($request->case_infos_case_no == null && $received_date == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id == null) {
 
             // dd('court name');
             $query2 = $query->where('criminal_cases.case_category_id', $request->case_category_id);
@@ -1476,8 +1486,7 @@ class CriminalCasesController extends Controller
 
         }
 
-
-        $data = $query2->select('criminal_cases.*', 'setup_next_date_reasons.next_date_reason_name', 'setup_courts.court_name', 'setup_districts.district_name', 'setup_case_types.case_types_name','setup_allegations.allegation_name')
+        $data = $query2->select('criminal_cases.*', 'setup_next_date_reasons.next_date_reason_name', 'setup_courts.court_name', 'setup_districts.district_name', 'setup_case_types.case_types_name')
             ->get();
 
         return response()->json([
