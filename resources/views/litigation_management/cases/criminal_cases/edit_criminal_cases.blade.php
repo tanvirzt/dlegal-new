@@ -589,7 +589,7 @@
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="client_division_id"
-                                                                                   class="col-sm-4 col-form-label">Zone/Division</label>
+                                                                                   class="col-sm-4 col-form-label">Division/Zone</label>
                                                                             <div class="col-sm-8">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
@@ -917,7 +917,7 @@
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="opposition_division_id"
-                                                                                   class="col-sm-4 col-form-label">Zone/Division</label>
+                                                                                   class="col-sm-4 col-form-label">Division/Zone</label>
                                                                             <div class="col-sm-8">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
