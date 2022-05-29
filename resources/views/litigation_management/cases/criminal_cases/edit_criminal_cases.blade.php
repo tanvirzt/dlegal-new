@@ -589,7 +589,7 @@
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="client_division_id"
-                                                                                   class="col-sm-4 col-form-label">Division/Zone</label>
+                                                                                   class="col-sm-4 col-form-label">Zone/Division</label>
                                                                             <div class="col-sm-8">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
@@ -618,7 +618,7 @@
 
                                                                         <div class="form-group row">
                                                                             <label for="client_district_id"
-                                                                                   class="col-sm-4 col-form-label">Area/District</label>
+                                                                                   class="col-sm-4 col-form-label">District/Area</label>
                                                                             <div class="col-sm-8">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
@@ -647,7 +647,7 @@
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="client_thana_id"
-                                                                                   class="col-sm-4 col-form-label">Branch/Thana</label>
+                                                                                   class="col-sm-4 col-form-label">Thana/Branch</label>
                                                                             <div class="col-sm-8">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
@@ -917,7 +917,7 @@
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="opposition_division_id"
-                                                                                   class="col-sm-4 col-form-label">Division/Zone</label>
+                                                                                   class="col-sm-4 col-form-label">Zone/Division</label>
                                                                             <div class="col-sm-8">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
@@ -946,7 +946,7 @@
 
                                                                         <div class="form-group row">
                                                                             <label for="opposition_district_id"
-                                                                                   class="col-sm-4 col-form-label">Area/District</label>
+                                                                                   class="col-sm-4 col-form-label">District/Area</label>
                                                                             <div class="col-sm-8">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
@@ -972,7 +972,7 @@
                                                                         </div>
                                                                         <div class="form-group row">
                                                                             <label for="opposition_thana_id"
-                                                                                   class="col-sm-4 col-form-label">Branch/Thana</label>
+                                                                                   class="col-sm-4 col-form-label">Thana/Branch</label>
                                                                             <div class="col-sm-8">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
@@ -2561,7 +2561,8 @@
                                                                                             <option value="">Select</option>
                                                                                             @foreach($case_status as $item)
                                                                                                 <option
-                                                                                                    value="{{ $item->id }}" {{  old('updated_case_status_id') == $item->id ? 'selected' : '' }}>{{ $item->case_status_name }}</option>
+                                                                                                    value="{{ $item->id }}" @if (!empty($previous_activity->updated_case_status_id) && $previous_activity->updated_case_status_id == $item->id)
+                                                                                                        selected @else {{ old('updated_case_status_id') == $item->id ? 'selected' : '' }} @endif>{{ $item->case_status_name }}</option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
@@ -2569,7 +2570,9 @@
                                                                                         <input type="text" class="form-control"
                                                                                                id="updated_case_status_write"
                                                                                                name="updated_case_status_write"
-                                                                                               placeholder="Status"
+                                                                                               placeholder="Status" @if (!empty($previous_activity->updated_case_status_write))
+                                                                                               value="{{ $previous_activity->updated_case_status_write }}"
+                                                                                               @endif
                                                                                                value="{{ old('updated_case_status_write') }}">
                                                                                     </div>
                                                                                 </div>
@@ -2581,13 +2584,15 @@
                                                                         <div class="form-group row">
                                                                             <label for="updated_order_date"
                                                                                    class="col-sm-4 col-form-label">
-                                                                                Order Date
+                                                                                Case/Order Date
                                                                             </label>
                                                                             <div class="col-sm-8">
                                                                                 <span class="date_span_status">
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'updated_order_date');"><input type="text" id="updated_order_date" name="updated_order_date"
-                                                                                                                                        value="dd/mm/yyyy"
+                                                                                                                                      @if (!empty($previous_activity->updated_order_date))
+                                                                                                                                        value="{{ date('d/m/Y', strtotime($previous_activity->updated_order_date)) }}"
+                                                                                                                                      @endif  value="dd/mm/yyyy"
                                                                                                                                        class="date_second_input"
                                                                                                                                        tabindex="-1"><span
                                                                                                                     class="date_second_span" tabindex="-1">&#9660;</span>
@@ -2611,14 +2616,17 @@
                                                                                             <option value="">Select</option>
                                                                                             @foreach($next_date_reason as $item)
                                                                                                 <option
-                                                                                                    value="{{ $item->id }}" {{(old('updated_fixed_for_id') == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
+                                                                                                    value="{{ $item->id }}" @if (!empty($previous_activity->updated_fixed_for_id) && $previous_activity->updated_fixed_for_id == $item->id)
+                                                                                                    selected @else {{(old('updated_fixed_for_id') == $item->id ? 'selected':'')}} @endif>{{ $item->next_date_reason_name }}</option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-md-6">
                                                                                         <input type="text" class="form-control"
                                                                                                id="updated_fixed_for_write"
-                                                                                               name="updated_fixed_for_write"
+                                                                                               name="updated_fixed_for_write" @if (!empty($previous_activity->updated_fixed_for_write))
+                                                                                               value="{{ $previous_activity->updated_fixed_for_write }}"
+                                                                                               @endif
                                                                                                placeholder="Fixed For"
                                                                                                value="{{ old('updated_fixed_for_write') }}">
                                                                                     </div>
@@ -2711,12 +2719,9 @@
                                                                                 @enderror
                                                                             </div>
                                                                         </div>
-                                                                        
-                                                                    </div>
-                                                                    <div class="col-md-6">
                                                                         <div class="form-group row">
                                                                             <label for="updated_index_fixed_for_id"
-                                                                                   class="col-md-4 col-form-label"> Fixed For
+                                                                                   class="col-md-4 col-form-label"> Next Date Fixed For
                                                                             </label>
                                                                             <div class="col-md-8">
                                                                                         <select name="updated_index_fixed_for_id"
@@ -2732,6 +2737,9 @@
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        
                                                                         <div class="form-group row">
                                                                             <label for="updated_day_notes_id"
                                                                                    class="col-md-4 col-form-label"> Day Notes
@@ -2781,7 +2789,7 @@
                                                                                                     {{ $item->last_name }}
                                                                                                 </option>
                                                                                             @endforeach --}}
-                                                                                            @foreach ($exist_engaged_advocate_associates as $item)
+                                                                                            @foreach ($existing_assignend_external_council as $item)
                                                                                                 <option
                                                                                                     value="{{ $item->id }}"
                                                                                                     {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>

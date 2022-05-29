@@ -99,7 +99,7 @@
                                                         <div class="form-group row">
                                                             <label for="updated_order_date"
                                                                    class="col-sm-4 col-form-label">
-                                                                Order Date
+                                                                Case/Order Date
                                                             </label>
                                                             <div class="col-sm-8">
                                                                 <span class="date_span_status">
@@ -229,9 +229,6 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        
-                                                    </div>
-                                                    <div class="col-md-6">
                                                         <div class="form-group row">
                                                             <label for="updated_index_fixed_for_id"
                                                                    class="col-md-4 col-form-label"> Fixed For
@@ -250,6 +247,9 @@
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        
                                                         <div class="form-group row">
                                                             <label for="updated_day_notes_id"
                                                                    class="col-md-4 col-form-label"> Day Notes

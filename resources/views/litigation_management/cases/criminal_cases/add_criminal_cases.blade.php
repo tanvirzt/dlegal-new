@@ -549,7 +549,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="client_division_id"
-                                                           class="col-sm-4 col-form-label">Division/Zone</label>
+                                                           class="col-sm-4 col-form-label">Zone/Division</label>
                                                     <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -578,7 +578,7 @@
 
                                                 <div class="form-group row">
                                                     <label for="client_district_id"
-                                                           class="col-sm-4 col-form-label">Area/District</label>
+                                                           class="col-sm-4 col-form-label">District/Area</label>
                                                     <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -604,7 +604,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="client_thana_id"
-                                                           class="col-sm-4 col-form-label">Branch/Thana</label>
+                                                           class="col-sm-4 col-form-label">Thana/Branch</label>
                                                     <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -869,7 +869,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="opposition_division_id"
-                                                           class="col-sm-4 col-form-label">Division/Zone</label>
+                                                           class="col-sm-4 col-form-label">Zone/Division</label>
                                                     <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -898,7 +898,7 @@
 
                                                 <div class="form-group row">
                                                     <label for="opposition_district_id"
-                                                           class="col-sm-4 col-form-label">Area/District</label>
+                                                           class="col-sm-4 col-form-label">District/Area</label>
                                                     <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -924,7 +924,7 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="opposition_thana_id"
-                                                           class="col-sm-4 col-form-label">Branch/Thana</label>
+                                                           class="col-sm-4 col-form-label">Thana/Branch</label>
                                                     <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="col-md-6">

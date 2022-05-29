@@ -29,12 +29,19 @@
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
-        <!-- Main content -->
 
-
-        <section class="content">
+        <div class="links">
+            <a href="#section1st" class="btn-custom btn-success-preview text-uppercase">Case Info</a>
+            <a href="#section1" class="btn-custom btn-success-preview text-uppercase">Case Proceedings Log</a>
+            <a href="#section2" class="btn-custom btn-success-preview text-uppercase">Case Activities Log</a>
+            <a href="#section3" class="btn-custom btn-success-preview text-uppercase">Documents Log</a>
+            <a href="#section4" class="btn-custom btn-success-preview text-uppercase">Billings Log</a>
+        </div>
+          
+        <section class="content" id="section1st">
             <div class="container-fluid py-2">
                 <div class="col-md-12">
+                    
                     @if(Session::has('success'))
                         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                             {{Session::get('success')}}
@@ -108,8 +115,8 @@
 
                                                         <tbody>
                                                         <tr>
-                                                            <td>ID</td>
-                                                            <td> {{ $data->id }} </td>
+                                                            <td width="50%">ID</td>
+                                                            <td width="50%"> {{ $data->id }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Client Name</td>
@@ -189,8 +196,8 @@
 
                                                         <tbody>
                                                         <tr>
-                                                            <td>Client(Which Party)</td>
-                                                            <td> {{ $data->client_party_name }} </td>
+                                                            <td width="50%">Client(Which Party)</td>
+                                                            <td width="50%"> {{ $data->client_party_name }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Client Category</td>
@@ -300,8 +307,8 @@
 
                                                         <tbody>
                                                         <tr>
-                                                            <td>Opposition(Which Party)</td>
-                                                            <td> {{ $data->oppsition_party_name }} </td>
+                                                            <td width="50%">Opposition(Which Party)</td>
+                                                            <td width="50%"> {{ $data->oppsition_party_name }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Opposition Category</td>
@@ -408,15 +415,15 @@
                                                     </h6>
                                                     <h6 class="text-uppercase text-bold mt-4">
                                                         <div class="row">
-                                                            <div class="col-md-4">Received Documents(DD)</div>
-                                                            <div class="col-md-4">Received Documents</div>
-                                                            <div class="col-md-4">Date</div>
+                                                            <div class="col-md-5">Received Documents(DD)</div>
+                                                            <div class="col-md-5">Received Documents</div>
+                                                            <div class="col-md-2">Date</div>
                                                         </div>
                                                     </h6>
                                                     <table class="table table-bordered">
                                                         <tbody>
                                                             <tr>
-                                                                <td>
+                                                                <td width="40%">
                                                                     @php
                                                                         $received_documents_id = explode(', ', rtrim($data->received_documents_id, ', '));
                                                                     @endphp
@@ -432,7 +439,7 @@
                                                                         @endif
                                                                     @endif
                                                                 </td>
-                                                                <td>
+                                                                <td width="40%">
                                                                     @php
                                                                         $received_documents = explode(', ', rtrim($data->received_documents, ', '));
                                                                     @endphp
@@ -448,7 +455,7 @@
                                                                         @endif
                                                                     @endif
                                                                 </td>
-                                                                <td> 
+                                                                <td width="20%"> 
                                                                     @php
                                                                         $received_documents_date = explode(', ', rtrim($data->received_documents_date, ', '));
                                                                     @endphp
@@ -469,15 +476,15 @@
                                                     </table>
                                                     <h6 class="text-uppercase text-bold mt-4">
                                                         <div class="row">
-                                                            <div class="col-md-4">Required/Wanting Documents(DD)</div>
-                                                            <div class="col-md-4">Required/Wanting Documents</div>
-                                                            <div class="col-md-4">Date</div>
+                                                            <div class="col-md-5">Required/Wanting Documents(DD)</div>
+                                                            <div class="col-md-5">Required/Wanting Documents</div>
+                                                            <div class="col-md-2">Date</div>
                                                         </div>
                                                     </h6>
                                                     <table class="table table-bordered">
                                                         <tbody>
                                                             <tr>
-                                                                <td>
+                                                                <td width="40%">
                                                                     @php
                                                                         $required_wanting_documents_id = explode(', ', rtrim($data->required_wanting_documents_id, ', '));
                                                                     @endphp
@@ -493,7 +500,7 @@
                                                                         @endif
                                                                     @endif
                                                                 </td>
-                                                                <td> 
+                                                                <td width="40%"> 
                                                                     @php
                                                                         $required_wanting_documents = explode(', ', rtrim($data->required_wanting_documents, ', '));
                                                                     @endphp
@@ -509,7 +516,7 @@
                                                                         @endif
                                                                     @endif
                                                                 </td>
-                                                                <td> 
+                                                                <td width="20%"> 
                                                                     @php
                                                                         $required_wanting_documents_date = explode(', ', rtrim($data->required_wanting_documents_date, ', '));
                                                                     @endphp
@@ -551,8 +558,8 @@
                                                         <tbody>
 
                                                         <tr>
-                                                            <td>Division</td>
-                                                            <td> {{ $data->case_infos_division_name }} </td>
+                                                            <td width="50%">Division</td>
+                                                            <td width="50%"> {{ $data->case_infos_division_name }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>District</td>
@@ -715,7 +722,7 @@
                                                             <td>Law</td>
                                                             <td>
                                                                 @php
-                                                                    $law_id = explode(', ',$data->law_id);
+                                                                    $law_id = explode('/ ',$data->law_id);
                                                                 @endphp
                                                                 @if($data->law_id)
                                                                     @if (count($law_id)> 1)
@@ -889,7 +896,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Amount of Money</td>
-                                                            <td>{{ $edit_case_steps->amount_of_money }}</td>
+                                                            <td>{{ number_format($edit_case_steps->amount_of_money, 2) }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Another Claim(if any)</td>
@@ -926,8 +933,8 @@
                                                         <tbody>
 
                                                         <tr>
-                                                            <td>Name of Advocate/Law Firm</td>
-                                                            <td> {{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }} {{ $data->lawyer_advocate_write }} </td>
+                                                            <td width="50%">Name of Advocate/Law Firm</td>
+                                                            <td width="50%"> {{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }} {{ $data->lawyer_advocate_write }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Name of Assigned Lawyer</td>
@@ -967,8 +974,8 @@
                                                         <tbody>
 
                                                         <tr>
-                                                            <td>Status</td>
-                                                            <td> @if(!empty($latest)) {{ $latest->case_status_name }} @endif</td>
+                                                            <td width="50%">Status</td>
+                                                            <td width="50%"> @if(!empty($latest)) {{ $latest->case_status_name }} @endif</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Next Date</td>
@@ -1005,77 +1012,75 @@
                                                         </div>
                                                     </h6>
                                                     <table class="table table-bordered">
-
                                                         <tbody>
-
-                                                        <tr>
-                                                            <td>Filing Date</td>
-                                                            <td> {{ $edit_case_steps->case_steps_filing }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_filing_copy }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_filing_yes_no }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Taking Cognizance</td>
-                                                            <td> {{ $edit_case_steps->taking_cognizance }} </td>
-                                                            <td> {{ $edit_case_steps->taking_cognizance_copy }} </td>
-                                                            <td> {{ $edit_case_steps->taking_cognizance_yes_no }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Arrest/Surrender/C.W.</td>
-                                                            <td> {{ $edit_case_steps->arrest_surrender_cw }} </td>
-                                                            <td> {{ $edit_case_steps->arrest_surrender_cw_copy }} </td>
-                                                            <td> {{ $edit_case_steps->arrest_surrender_cw_yes_no }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Bail</td>
-                                                            <td> {{ $edit_case_steps->case_steps_bail }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_bail_copy }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_bail_yes_no }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Court Transfer</td>
-                                                            <td> {{ $edit_case_steps->case_steps_court_transfer }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_court_transfer_copy }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_court_transfer_yes_no }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Charge Framed</td>
-                                                            <td> {{ $edit_case_steps->case_steps_charge_framed }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_charge_framed_copy }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_charge_framed_yes_no }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Witness (From)</td>
-                                                            <td> {{ $edit_case_steps->case_steps_witness_from }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_witness_from_copy }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_witness_from_yes_no }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Witness (To)</td>
-                                                            <td> {{ $edit_case_steps->case_steps_witness_to }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_witness_to_copy }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_witness_to_yes_no }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Argument</td>
-                                                            <td> {{ $edit_case_steps->case_steps_argument }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_argument_copy }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_argument_yes_no }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Judgement & Order</td>
-                                                            <td> {{ $edit_case_steps->case_steps_judgement_order }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_judgement_order_copy }} </td>
-                                                            <td> {{ $edit_case_steps->case_steps_judgement_order_yes_no }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Summary of Judgement & Order</td>
-                                                            <td> {{ $edit_case_steps->case_steps_summary_judgement_order }} </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Remarks</td>
-                                                            <td> {{ $edit_case_steps->case_steps_remarks }} </td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td width="30%">Filing Date</td>
+                                                                <td width="20%"> {{ $edit_case_steps->case_steps_filing }} </td>
+                                                                <td width="30%"> {{ $edit_case_steps->case_steps_filing_copy }} </td>
+                                                                <td width="20%"> {{ $edit_case_steps->case_steps_filing_yes_no }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Taking Cognizance</td>
+                                                                <td> {{ $edit_case_steps->taking_cognizance }} </td>
+                                                                <td> {{ $edit_case_steps->taking_cognizance_copy }} </td>
+                                                                <td> {{ $edit_case_steps->taking_cognizance_yes_no }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Arrest/Surrender/C.W.</td>
+                                                                <td> {{ $edit_case_steps->arrest_surrender_cw }} </td>
+                                                                <td> {{ $edit_case_steps->arrest_surrender_cw_copy }} </td>
+                                                                <td> {{ $edit_case_steps->arrest_surrender_cw_yes_no }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Bail</td>
+                                                                <td> {{ $edit_case_steps->case_steps_bail }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_bail_copy }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_bail_yes_no }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Court Transfer</td>
+                                                                <td> {{ $edit_case_steps->case_steps_court_transfer }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_court_transfer_copy }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_court_transfer_yes_no }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Charge Framed</td>
+                                                                <td> {{ $edit_case_steps->case_steps_charge_framed }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_charge_framed_copy }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_charge_framed_yes_no }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Witness (From)</td>
+                                                                <td> {{ $edit_case_steps->case_steps_witness_from }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_witness_from_copy }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_witness_from_yes_no }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Witness (To)</td>
+                                                                <td> {{ $edit_case_steps->case_steps_witness_to }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_witness_to_copy }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_witness_to_yes_no }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Argument</td>
+                                                                <td> {{ $edit_case_steps->case_steps_argument }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_argument_copy }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_argument_yes_no }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Judgement & Order</td>
+                                                                <td> {{ $edit_case_steps->case_steps_judgement_order }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_judgement_order_copy }} </td>
+                                                                <td> {{ $edit_case_steps->case_steps_judgement_order_yes_no }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Summary of Judgement & Order</td>
+                                                                <td> {{ $edit_case_steps->case_steps_summary_judgement_order }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Remarks</td>
+                                                                <td> {{ $edit_case_steps->case_steps_remarks }} </td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -1088,12 +1093,16 @@
                             </div>
 
 
-                            <div class="card">
+                            <div class="card" id="section1">
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Case Proceedings Log <span
                                             class="font-italic custom_font">(Case No: {{ $data->case_no }}, Court Name: {{ $data->court_name }})</span>
                                     </h3>
                                     <div class="card-tools">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg"
+                                            data-toggle="tooltip"
+                                            data-placement="top" title="Update Status"><i
+                                            class="far fa-bell"></i></button>
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
                                         </button>
@@ -1188,10 +1197,14 @@
 
                             </div>
 
-                            <div class="card">
+                            <div class="card" id="section2">
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Case Activities Log</h3>
                                     <div class="card-tools">
+                                        <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal-lg-2"
+                                        data-toggle="tooltip"
+                                        data-placement="top" title="Update Activities"><i class="fas fa-chart-line"></i></button>
+
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
                                         </button>
@@ -1260,12 +1273,12 @@
 
                             </div>
 
-                            <div class="card">
+                            <div class="card" id="section3">
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Documents Log
                                         @php
                                             $now = Carbon\Carbon::now();
-                                            $days_count = Carbon\Carbon::parse($data->created_at)->diffInDays($now);
+                                            $days_count = Carbon\Carbon::parse($data->date_of_filing)->diffInDays($now);
                                         @endphp
 
                                         <span class="font-italic custom_font"> (Total Elapsed Time:
@@ -1320,7 +1333,7 @@
 
                             </div>
 
-                            <div class="card">
+                            <div class="card" id="section4">
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Billings Log</h3>
                                     <div class="card-tools">
@@ -1419,14 +1432,17 @@
                                                         <option value="">Select</option>
                                                         @foreach($case_status as $item)
                                                             <option
-                                                                value="{{ $item->id }}" {{  old('updated_case_status_id') == $item->id ? 'selected' : '' }}>{{ $item->case_status_name }}</option>
+                                                                value="{{ $item->id }}" @if (!empty($previous_activity->updated_case_status_id) && $previous_activity->updated_case_status_id == $item->id)
+                                                                selected @else {{ old('updated_case_status_id') == $item->id ? 'selected' : '' }} @endif>{{ $item->case_status_name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control"
                                                            id="updated_case_status_write"
-                                                           name="updated_case_status_write"
+                                                           name="updated_case_status_write" @if (!empty($previous_activity->updated_case_status_write))
+                                                           value="{{ $previous_activity->updated_case_status_write }}"
+                                                           @endif
                                                            placeholder="Status"
                                                            value="{{ old('updated_case_status_write') }}">
                                                 </div>
@@ -1439,14 +1455,16 @@
                                     <div class="form-group row">
                                         <label for="updated_order_date"
                                                class="col-sm-4 col-form-label">
-                                            Order Date
+                                            Case/Order Date
                                         </label>
                                         <div class="col-sm-8">
                                                                                 <span class="date_span_status_modal">
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'updated_order_date');"><input
                                                                                         type="text" id="updated_order_date" name="updated_order_date"
-                                                                                        value="dd/mm/yyyy"
+                                                                                        @if (!empty($previous_activity->updated_order_date))
+                                                                                        value="{{ date('d/m/Y', strtotime($previous_activity->updated_order_date)) }}"
+                                                                                      @endif value="dd/mm/yyyy" 
                                                                                         class="date_second_input"
                                                                                         tabindex="-1"><span
                                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -1470,7 +1488,8 @@
                                                         <option value="">Select</option>
                                                         @foreach($next_date_reason as $item)
                                                             <option
-                                                                value="{{ $item->id }}" {{(old('updated_fixed_for_id') == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
+                                                                value="{{ $item->id }}" @if (!empty($previous_activity->updated_fixed_for_id) && $previous_activity->updated_fixed_for_id == $item->id)
+                                                                selected @else {{(old('updated_fixed_for_id') == $item->id ? 'selected':'')}} @endif>{{ $item->next_date_reason_name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -1478,7 +1497,9 @@
                                                     <input type="text" class="form-control"
                                                            id="updated_fixed_for_write"
                                                            name="updated_fixed_for_write"
-                                                           placeholder="Fixed For"
+                                                           placeholder="Fixed For" @if (!empty($previous_activity->updated_fixed_for_write))
+                                                           value="{{ $previous_activity->updated_fixed_for_write }}"
+                                                           @endif
                                                            value="{{ old('updated_fixed_for_write') }}">
                                                 </div>
                                             </div>
@@ -1570,13 +1591,9 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
-
-
-                                <div class="col-md-6">
                                     <div class="form-group row">
                                         <label for="updated_index_fixed_for_id"
-                                               class="col-md-4 col-form-label"> Fixed For
+                                               class="col-md-4 col-form-label"> Next Date Fixed For
                                         </label>
                                         <div class="col-md-8">
                                             <select name="updated_index_fixed_for_id"
@@ -1592,6 +1609,11 @@
                                                 class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    
                                     <div class="form-group row">
                                         <label for="updated_day_notes_id"
                                                class="col-md-4 col-form-label"> Day Notes
@@ -1632,7 +1654,7 @@
                                                             class="form-control select2"
                                                     >
                                                         <option value="">Select</option>
-                                                        @foreach ($external_council as $item)
+                                                        @foreach ($existing_assignend_external_council as $item)
                                                             <option
                                                                 value="{{ $item->id }}"
                                                                 {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
@@ -3927,12 +3949,24 @@
                                 Information </u></h6>
                                 <h6 class="text-uppercase text-bold mt-4">
                                     <div class="row">
-                                        <div class="col-md-6">Received Documents</div>
-                                        <div class="col-md-6">Date</div>
+                                        <div class="col-md-4">Received Documents(DD)</div>
+                                        <div class="col-md-4">Received Documents</div>
+                                        <div class="col-md-4">Date</div>
                                     </div>
                                 </h6>
                                 <div class="form-group row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <select name="received_documents_id[]"
+                                                id="received_documents_id"
+                                                class="form-control select2" data-placeholder="Select" multiple>
+                                            <option value="">Select</option>
+                                            @foreach($documents as $item)
+                                                <option
+                                                    value="{{ $item->documents_name }}" {{ in_array($item->documents_name, $received_documents_explode) ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-8">
                                         <div class="input-group hdtuto_received_documents control-group increment_received_documents">
                                             <input type="text" name="received_documents[]"
                                                    class="myfrm form-control mr-2" value="{{ rtrim($data->received_documents, ', ') }}">
@@ -3967,12 +4001,24 @@
                                 </div>
                                 <h6 class="text-uppercase text-bold">
                                     <div class="row">
-                                        <div class="col-md-6">Required/Wanting Documents</div>
-                                        <div class="col-md-6">Date</div>
+                                        <div class="col-md-4">Required/Wanting Documents(DD)</div>
+                                        <div class="col-md-4">Required/Wanting Documents</div>
+                                        <div class="col-md-4">Date</div>
                                     </div>
                                 </h6>
                                 <div class="form-group row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <select name="required_wanting_documents_id[]"
+                                                id="required_wanting_documents_id"
+                                                class="form-control select2" data-placeholder="Select" multiple>
+                                            <option value="">Select</option>
+                                            @foreach($documents as $item)
+                                                <option
+                                                    value="{{ $item->documents_name }}" {{ in_array($item->documents_name, $required_documents_explode) ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-8">
                                         <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
                                             <input type="text" name="required_wanting_documents[]"
                                                    class="myfrm form-control mr-2" value="{{ rtrim($data->required_wanting_documents, ', ') }}">
