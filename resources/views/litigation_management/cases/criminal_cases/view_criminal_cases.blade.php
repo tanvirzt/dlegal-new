@@ -152,7 +152,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Next Date</td>
-                                                            <td>{{ $data->next_date }}</td>
+                                                            <td>{{ date('d-m-Y', strtotime($data->next_date)) }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Next date fixed for</td>
@@ -160,7 +160,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Received Date</td>
-                                                            <td>{{ $data->received_date }}</td>
+                                                            <td>{{ date('d-m-Y', strtotime($data->received_date)) }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Mode of Receipt</td>
@@ -462,11 +462,11 @@
                                                                     @if($data->received_documents_date)
                                                                         @if (count($received_documents_date)> 1)
                                                                             @foreach ($received_documents_date as $pro)
-                                                                                <p>{{ $pro }}</p>
+                                                                                <p>{{ date('d-m-Y', strtotime($pro)) }}</p>
                                                                             @endforeach
                                                                         @else
                                                                             @foreach ($received_documents_date as $pro)
-                                                                                {{ $pro }}
+                                                                                {{ date('d-m-Y', strtotime($pro)) }}
                                                                             @endforeach
                                                                         @endif
                                                                     @endif    
@@ -523,11 +523,11 @@
                                                                     @if($data->required_wanting_documents_date)
                                                                         @if (count($required_wanting_documents_date)> 1)
                                                                             @foreach ($required_wanting_documents_date as $pro)
-                                                                                <p>{{ $pro }}</p>
+                                                                                <p>{{ date('d-m-Y', strtotime($pro)) }}</p>
                                                                             @endforeach
                                                                         @else
                                                                             @foreach ($required_wanting_documents_date as $pro)
-                                                                                {{ $pro }}
+                                                                                {{ date('d-m-Y', strtotime($pro)) }}
                                                                             @endforeach
                                                                         @endif
                                                                     @endif
@@ -979,7 +979,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Next Date</td>
-                                                            <td> {{ $data->next_date }} </td>
+                                                            <td> {{ date('d-m-Y', strtotime($data->next_date)) }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Next Date Fixed For</td>
@@ -1131,8 +1131,8 @@
                                         <tbody>
                                         @foreach($case_logs as $logs)
                                             <tr>
-                                                <td> {{ date('d/m/Y', strtotime($logs->updated_order_date)) }} </td>
-                                                <td> {{ $logs->next_date_reason_name }} {{ $logs->updated_fixed_for_write }} </td>
+                                                <td width="8%"> {{ date('d-m-Y', strtotime($logs->updated_order_date)) }} </td>
+                                                <td width="10%"> {{ $logs->next_date_reason_name }} {{ $logs->updated_fixed_for_write }} </td>
                                                 <td>
                                                     @php
                                                         $proceedings = explode(', ',$logs->court_proceedings_id);
@@ -1160,8 +1160,8 @@
                                                         @endforeach
                                                     @endif
                                                     {{ $logs->updated_court_order_write }}</td>
-                                                <td> {{ date('d/m/Y', strtotime($logs->updated_next_date)) }} </td>
-                                                <td> {{ $logs->index_next_date_reason_name }} </td>
+                                                <td> {{ date('d-m-Y', strtotime($logs->updated_next_date)) }} </td>
+                                                <td width="8%"> {{ $logs->index_next_date_reason_name }}  {{ $logs->updated_index_fixed_for_write }}</td>
 
                                                 <td>
                                                     @php
@@ -1232,7 +1232,7 @@
                                         <tbody>
                                         @foreach($case_activity_log as $activity_log)
                                             <tr>
-                                                <td> {{ date('d/m/Y',strtotime($activity_log->activity_date)) }} </td>
+                                                <td> {{ date('d-m-Y', strtotime($activity_log->activity_date)) }} </td>
                                                 <td> {{ $activity_log->activity_action }} </td>
                                                 <td> {{ $activity_log->activity_progress }} </td>
                                                 <td> {{ $activity_log->mode_name }} {{ $activity_log->activity_mode_write }} </td>
@@ -1464,7 +1464,7 @@
                                                                                         type="text" id="updated_order_date" name="updated_order_date"
                                                                                         @if (!empty($previous_activity->updated_order_date))
                                                                                         value="{{ date('d/m/Y', strtotime($previous_activity->updated_order_date)) }}"
-                                                                                      @endif value="dd/mm/yyyy" 
+                                                                                      @endif value="dd-mm-yyyy" 
                                                                                         class="date_second_input"
                                                                                         tabindex="-1"><span
                                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -1580,7 +1580,7 @@
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'updated_next_date');"><input
                                                                                         type="text" id="updated_next_date" name="updated_next_date"
-                                                                                        value="dd/mm/yyyy"
+                                                                                        value="dd-mm-yyyy"
                                                                                         class="date_second_input"
                                                                                         tabindex="-1"><span
                                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -1596,16 +1596,28 @@
                                                class="col-md-4 col-form-label"> Next Date Fixed For
                                         </label>
                                         <div class="col-md-8">
-                                            <select name="updated_index_fixed_for_id"
-                                                    id="updated_index_fixed_for_id"
-                                                    class="form-control select2">
-                                                <option value="">Select</option>
-                                                @foreach($next_date_reason as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{(old('updated_index_fixed_for_id') == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('updatindex_ed_fixed_for')<span
+                                            <div class="row" >
+                                                <div class="col-md-6">
+                                                    <select name="updated_index_fixed_for_id"
+                                                            id="updated_index_fixed_for_id"
+                                                            class="form-control select2">
+                                                        <option value="">Select</option>
+                                                        @foreach($next_date_reason as $item)
+                                                            <option
+                                                                value="{{ $item->id }}" {{(old('updated_index_fixed_for_id') == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control"
+                                                           id="updated_index_fixed_for_write"
+                                                           placeholder="Next Date Fixed For"
+                                                           name="updated_index_fixed_for_write">
+
+                                                </div>
+                                            </div>
+
+                                            @error('updated_index_fixed_for_write')<span
                                                 class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -1650,13 +1662,12 @@
                                         <div class="col-md-8">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <select name="updated_engaged_advocate_id"
-                                                            class="form-control select2"
-                                                    >
+                                                    <select name="updated_engaged_advocate_id[]" data-placeholder="Select"
+                                                            class="form-control select2" multiple>
                                                         <option value="">Select</option>
                                                         @foreach ($existing_assignend_external_council as $item)
                                                             <option
-                                                                value="{{ $item->id }}"
+                                                                value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name }}"
                                                                 {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
                                                                 {{ $item->first_name }}
                                                                 {{ $item->middle_name }}
@@ -1763,7 +1774,7 @@
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'activity_date');"><input
                                                                                         type="text" id="activity_date" name="activity_date"
-                                                                                        value="dd/mm/yyyy"
+                                                                                        value="dd-mm-yyyy"
                                                                                         class="date_second_input"
                                                                                         tabindex="-1"><span
                                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -2162,8 +2173,8 @@
                                                     <span class="date_span">
                                                         <input type="date" class="xDateContainer date_first_input"
                                                                onchange="setCorrect(this,'xTime');"><input type="text" id="xTime" name="next_date"
-                                                                                                           @if($data->next_date != null) value="{{ $data->next_date }}"
-                                                                                                           @else value="dd/mm/yyyy" @endif
+                                                                                                           @if($data->next_date != null) value="{{ date('d-m-Y', strtotime($data->next_date)) }}"
+                                                                                                           @else value="dd-mm-yyyy" @endif
                                                                                                            class="date_second_input"
                                                                                                            tabindex="-1"><span
                                                             class="date_second_span" tabindex="-1">&#9660;</span>
@@ -2199,8 +2210,8 @@
                                                         <input type="date" class="xDateContainer date_first_input"
                                                                onchange="setCorrect(this,'xTime2');"><input type="text" id="xTime2"
                                                                                                             name="received_date"
-                                                                                                            @if($data->received_date != null) value="{{ $data->received_date }}"
-                                                                                                            @else value="dd/mm/yyyy" @endif
+                                                                                                            @if($data->received_date != null) value="{{ date('d-m-Y', strtotime($data->received_date)) }}"
+                                                                                                            @else value="dd-mm-yyyy" @endif
                                                                                                             class="date_second_input"
                                                                                                             tabindex="-1"><span
                                                             class="date_second_span" tabindex="-1">&#9660;</span>
@@ -3487,7 +3498,7 @@
                    onchange="setCorrect(this,'xTime4');"><input type="text" id="xTime4"
                                                                 name="date_of_filing"
                                                                 @if($data->date_of_filing != null) value="{{ $data->date_of_filing }}"
-                                                                @else value="dd/mm/yyyy" @endif
+                                                                @else value="dd-mm-yyyy" @endif
                                                                 class="date_second_input"
                                                                 tabindex="-1"><span
                 class="date_second_span" tabindex="-1">&#9660;</span>

@@ -236,7 +236,7 @@
                                                     <span class="date_span">
                                                         <input type="date" class="xDateContainer date_first_input"
                                                                onchange="setCorrect(this,'xTime');"><input type="text" id="xTime" name="next_date"
-                                                                                                           value="dd/mm/yyyy"
+                                                                                                           value="dd-mm-yyyy"
                                                                                                            class="date_second_input"
                                                                                                            tabindex="-1"><span
                                                             class="date_second_span" tabindex="-1">&#9660;</span>
@@ -271,7 +271,7 @@
                                                     <span class="date_span">
                                                         <input type="date" class="xDateContainer date_first_input"
                                                                onchange="setCorrect(this,'xTime2');"><input type="text" id="xTime2"
-                                                                                                            name="received_date" value="dd/mm/yyyy"
+                                                                                                            name="received_date" value="dd-mm-yyyy"
                                                                                                             class="date_second_input"
                                                                                                             tabindex="-1"><span
                                                             class="date_second_span" tabindex="-1">&#9660;</span>
@@ -1562,7 +1562,7 @@
                                                     <span class="date_span">
                                                         <input type="date" class="xDateContainer date_first_input"
                                                                onchange="setCorrect(this,'xTime4');"><input type="text" id="xTime4"
-                                                                                                            name="date_of_filing" value="dd/mm/yyyy"
+                                                                                                            name="date_of_filing" value="dd-mm-yyyy"
                                                                                                             class="date_second_input"
                                                                                                             tabindex="-1"><span
                                                             class="date_second_span" tabindex="-1">&#9660;</span>
@@ -1995,7 +1995,7 @@
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'taking_cognizance');">
                                                             <input type="text" id="taking_cognizance" name="taking_cognizance"
-                                                                   value="{{ old('taking_cognizance') }}" class="date_second_input_steps"
+                                                                value="dd-mm-yyyy" class="date_second_input_steps"
                                                                    tabindex="-1">
                                                             <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                         </span>
@@ -2026,7 +2026,7 @@
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'arrest_surrender_cw');">
                                                             <input type="text" id="arrest_surrender_cw" name="arrest_surrender_cw"
-                                                                   value="{{ old('arrest_surrender_cw') }}" class="date_second_input_steps"
+                                                                value="dd-mm-yyyy" class="date_second_input_steps"
                                                                    tabindex="-1">
                                                             <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                         </span>
@@ -2057,7 +2057,7 @@
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'case_steps_bail');">
                                                             <input type="text" id="case_steps_bail" name="case_steps_bail"
-                                                                   value="{{ old('case_steps_bail') }}" class="date_second_input_steps"
+                                                                    value="dd-mm-yyyy" class="date_second_input_steps"
                                                                    tabindex="-1">
                                                             <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                         </span>
@@ -2088,7 +2088,7 @@
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'case_steps_court_transfer');">
                                                             <input type="text" id="case_steps_court_transfer" name="case_steps_court_transfer"
-                                                                   value="{{ old('case_steps_court_transfer') }}" class="date_second_input_steps"
+                                                                   value="dd-mm-yyyy" class="date_second_input_steps"
                                                                    tabindex="-1">
                                                             <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                         </span>
@@ -2119,7 +2119,7 @@
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'case_steps_charge_framed');">
                                                             <input type="text" id="case_steps_charge_framed" name="case_steps_charge_framed"
-                                                                   value="{{ old('case_steps_charge_framed') }}" class="date_second_input_steps"
+                                                                    value="dd-mm-yyyy"  class="date_second_input_steps"
                                                                    tabindex="-1">
                                                             <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                         </span>
@@ -2150,7 +2150,7 @@
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'case_steps_witness_from');">
                                                             <input type="text" id="case_steps_witness_from" name="case_steps_witness_from"
-                                                                   value="{{ old('case_steps_witness_from') }}" class="date_second_input_steps"
+                                                                    value="dd-mm-yyyy" class="date_second_input_steps"
                                                                    tabindex="-1">
                                                             <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                         </span>
@@ -2181,7 +2181,7 @@
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'case_steps_witness_to');">
                                                             <input type="text" id="case_steps_witness_to" name="case_steps_witness_to"
-                                                                   value="{{ old('case_steps_witness_to') }}" class="date_second_input_steps"
+                                                                   value="dd-mm-yyyy" class="date_second_input_steps"
                                                                    tabindex="-1">
                                                             <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                         </span>
@@ -2212,7 +2212,7 @@
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'case_steps_argument');">
                                                             <input type="text" id="case_steps_argument" name="case_steps_argument"
-                                                                   value="{{ old('case_steps_argument') }}" class="date_second_input_steps"
+                                                                    value="dd-mm-yyyy" class="date_second_input_steps"
                                                                    tabindex="-1">
                                                             <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                         </span>
@@ -2244,7 +2244,7 @@
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'case_steps_judgement_order');">
                                                             <input type="text" id="case_steps_judgement_order" name="case_steps_judgement_order"
-                                                                   value="{{ old('case_steps_judgement_order') }}" class="date_second_input_steps"
+                                                                   value="dd-mm-yyyy" class="date_second_input_steps"
                                                                    tabindex="-1">
                                                             <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                         </span>

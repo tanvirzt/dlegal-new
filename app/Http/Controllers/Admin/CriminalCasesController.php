@@ -170,16 +170,16 @@ class CriminalCasesController extends Controller
 //        $this->validate($request, $rules, $validMsg);
 
 
-        if ($request->received_date != 'dd/mm/yyyy') {
-            $received_date_explode = explode('/', $request->received_date);
-            $received_date_implode = implode('-',$received_date_explode);
+        if ($request->received_date != 'dd-mm-yyyy') {
+            $received_date_explode = explode('-', $request->received_date);
+            $received_date_implode = implode('-', $received_date_explode);
             $received_date = date('Y-m-d', strtotime($received_date_implode));
         } else {
             $received_date = date('Y-m-d');
         }
 
-        if ($request->next_date != 'dd/mm/yyyy') {
-            $next_date_explode = explode('/', $request->next_date);
+        if ($request->next_date != 'dd-mm-yyyy') {
+            $next_date_explode = explode('-', $request->next_date);
             $next_date_implode = implode('-',$next_date_explode);
             $next_date = date('Y-m-d', strtotime($next_date_implode));
         } else {
@@ -308,7 +308,7 @@ class CriminalCasesController extends Controller
         $data->law_write = rtrim($law_write,', ');
         $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
         $data->section_write = rtrim($section_write,', ');
-        $data->date_of_filing = $request->date_of_filing == 'dd/mm/yyyy' || $request->date_of_filing == 'NaN/NaN/NaN' ? null : $request->date_of_filing;
+        $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
         $data->case_status_id = $request->case_status_id;
         $data->matter_id = $request->matter_id;
         $data->matter_write = $request->matter_write;
@@ -331,34 +331,34 @@ class CriminalCasesController extends Controller
         $steps->summary_facts = $request->summary_facts;
         $steps->case_info_remarks = $request->case_info_remarks;
 
-        $steps->case_steps_filing = $request->case_steps_filing == 'dd/mm/yyyy' || $request->case_steps_filing == 'NaN/NaN/NaN' ? null : $request->case_steps_filing;
+        $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
         $steps->case_steps_filing_copy = $request->case_steps_filing_copy;
         $steps->case_steps_filing_yes_no = $request->case_steps_filing_yes_no ? 'Yes' : 'No';
-        $steps->taking_cognizance = $request->taking_cognizance == 'dd/mm/yyyy' || $request->taking_cognizance == 'NaN/NaN/NaN' ? null : $request->taking_cognizance;
+        $steps->taking_cognizance = $request->taking_cognizance == 'dd-mm-yyyy' || $request->taking_cognizance == 'NaN-NaN-NaN' ? null : $request->taking_cognizance;
         $steps->taking_cognizance_copy = $request->taking_cognizance_copy;
         $steps->taking_cognizance_yes_no = $request->taking_cognizance_yes_no ? 'Yes' : 'No';
-        $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd/mm/yyyy' || $request->arrest_surrender_cw == 'NaN/NaN/NaN' ? null : $request->arrest_surrender_cw;
+        $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd-mm-yyyy' || $request->arrest_surrender_cw == 'NaN-NaN-NaN' ? null : $request->arrest_surrender_cw;
         $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy;
         $steps->arrest_surrender_cw_yes_no = $request->arrest_surrender_cw_yes_no ? 'Yes' : 'No';
-        $steps->case_steps_bail = $request->case_steps_bail == 'dd/mm/yyyy' || $request->case_steps_bail == 'NaN/NaN/NaN' ? null : $request->case_steps_bail;
+        $steps->case_steps_bail = $request->case_steps_bail == 'dd-mm-yyyy' || $request->case_steps_bail == 'NaN-NaN-NaN' ? null : $request->case_steps_bail;
         $steps->case_steps_bail_copy = $request->case_steps_bail_copy;
         $steps->case_steps_bail_yes_no = $request->case_steps_bail_yes_no ? 'Yes' : 'No';
-        $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd/mm/yyyy' || $request->case_steps_court_transfer == 'NaN/NaN/NaN' ? null : $request->case_steps_court_transfer;
+        $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd-mm-yyyy' || $request->case_steps_court_transfer == 'NaN-NaN-NaN' ? null : $request->case_steps_court_transfer;
         $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy;
         $steps->case_steps_court_transfer_yes_no = $request->case_steps_court_transfer_yes_no ? 'Yes' : 'No';
-        $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd/mm/yyyy' || $request->case_steps_charge_framed == 'NaN/NaN/NaN' ? null : $request->case_steps_charge_framed;
+        $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd-mm-yyyy' || $request->case_steps_charge_framed == 'NaN-NaN-NaN' ? null : $request->case_steps_charge_framed;
         $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy;
         $steps->case_steps_charge_framed_yes_no = $request->case_steps_charge_framed_yes_no ? 'Yes' : 'No';
-        $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd/mm/yyyy' || $request->case_steps_witness_from == 'NaN/NaN/NaN' ? null : $request->case_steps_witness_from;
+        $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd-mm-yyyy' || $request->case_steps_witness_from == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_from;
         $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy;
         $steps->case_steps_witness_from_yes_no = $request->case_steps_witness_from_yes_no ? 'Yes' : 'No';
-        $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd/mm/yyyy' || $request->case_steps_witness_to == 'NaN/NaN/NaN' ? null : $request->case_steps_witness_to;
+        $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd-mm-yyyy' || $request->case_steps_witness_to == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_to;
         $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy;
         $steps->case_steps_witness_to_yes_no = $request->case_steps_witness_to_yes_no ? 'Yes' : 'No';
-        $steps->case_steps_argument = $request->case_steps_argument == 'dd/mm/yyyy' || $request->case_steps_argument == 'NaN/NaN/NaN' ? null : $request->case_steps_argument;
+        $steps->case_steps_argument = $request->case_steps_argument == 'dd-mm-yyyy' || $request->case_steps_argument == 'NaN-NaN-NaN' ? null : $request->case_steps_argument;
         $steps->case_steps_argument_copy = $request->case_steps_argument_copy;
         $steps->case_steps_argument_yes_no = $request->case_steps_argument_yes_no ? 'Yes' : 'No';
-        $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd/mm/yyyy' || $request->case_steps_judgement_order == 'NaN/NaN/NaN'  ? null : $request->case_steps_judgement_order;
+        $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN'  ? null : $request->case_steps_judgement_order;
         $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy;
         $steps->case_steps_judgement_order_yes_no = $request->case_steps_judgement_order_yes_no ? 'Yes' : 'No';
         $steps->case_steps_summary_judgement_order = $request->case_steps_summary_judgement_order;
@@ -471,16 +471,16 @@ class CriminalCasesController extends Controller
 
 // dd($request->all());
 
-        if ($request->received_date != 'dd/mm/yyyy') {
-            $received_date_explode = explode('/', $request->received_date);
+        if ($request->received_date != 'dd-mm-yyyy') {
+            $received_date_explode = explode('-', $request->received_date);
             $received_date_implode = implode('-',$received_date_explode);
             $received_date = date('Y-m-d', strtotime($received_date_implode));
         } else {
             $received_date = date('Y-m-d');
         }
 
-        if ($request->next_date != 'dd/mm/yyyy') {
-            $next_date_explode = explode('/', $request->next_date);
+        if ($request->next_date != 'dd-mm-yyyy') {
+            $next_date_explode = explode('-', $request->next_date);
             $next_date_implode = implode('-',$next_date_explode);
             $next_date = date('Y-m-d', strtotime($next_date_implode));
         } else {
@@ -612,7 +612,7 @@ class CriminalCasesController extends Controller
             $data->law_write = rtrim($law_write,', ');
             $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
             $data->section_write = rtrim($section_write,', ');
-            $data->date_of_filing = $request->date_of_filing == 'dd/mm/yyyy' || $request->date_of_filing == 'NaN/NaN/NaN' ? null : $request->date_of_filing;
+            $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
             $data->case_status_id = $request->case_status_id;
             $data->matter_id = $request->matter_id;
             $data->matter_write = $request->matter_write;
@@ -635,34 +635,34 @@ class CriminalCasesController extends Controller
             $steps->summary_facts = $request->summary_facts;
             $steps->case_info_remarks = $request->case_info_remarks;
 
-            $steps->case_steps_filing = $request->case_steps_filing == 'dd/mm/yyyy' || $request->case_steps_filing == 'NaN/NaN/NaN' ? null : $request->case_steps_filing;
+            $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
             $steps->case_steps_filing_copy = $request->case_steps_filing_copy;
             $steps->case_steps_filing_yes_no = $request->case_steps_filing_yes_no ? 'Yes' : 'No';
-            $steps->taking_cognizance = $request->taking_cognizance == 'dd/mm/yyyy' || $request->taking_cognizance == 'NaN/NaN/NaN' ? null : $request->taking_cognizance;
+            $steps->taking_cognizance = $request->taking_cognizance == 'dd-mm-yyyy' || $request->taking_cognizance == 'NaN-NaN-NaN' ? null : $request->taking_cognizance;
             $steps->taking_cognizance_copy = $request->taking_cognizance_copy;
             $steps->taking_cognizance_yes_no = $request->taking_cognizance_yes_no ? 'Yes' : 'No';
-            $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd/mm/yyyy' || $request->arrest_surrender_cw == 'NaN/NaN/NaN' ? null : $request->arrest_surrender_cw;
+            $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd-mm-yyyy' || $request->arrest_surrender_cw == 'NaN-NaN-NaN' ? null : $request->arrest_surrender_cw;
             $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy;
             $steps->arrest_surrender_cw_yes_no = $request->arrest_surrender_cw_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_bail = $request->case_steps_bail == 'dd/mm/yyyy' || $request->case_steps_bail == 'NaN/NaN/NaN' ? null : $request->case_steps_bail;
+            $steps->case_steps_bail = $request->case_steps_bail == 'dd-mm-yyyy' || $request->case_steps_bail == 'NaN-NaN-NaN' ? null : $request->case_steps_bail;
             $steps->case_steps_bail_copy = $request->case_steps_bail_copy;
             $steps->case_steps_bail_yes_no = $request->case_steps_bail_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd/mm/yyyy' || $request->case_steps_court_transfer == 'NaN/NaN/NaN' ? null : $request->case_steps_court_transfer;
+            $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd-mm-yyyy' || $request->case_steps_court_transfer == 'NaN-NaN-NaN' ? null : $request->case_steps_court_transfer;
             $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy;
             $steps->case_steps_court_transfer_yes_no = $request->case_steps_court_transfer_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd/mm/yyyy' || $request->case_steps_charge_framed == 'NaN/NaN/NaN' ? null : $request->case_steps_charge_framed;
+            $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd-mm-yyyy' || $request->case_steps_charge_framed == 'NaN-NaN-NaN' ? null : $request->case_steps_charge_framed;
             $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy;
             $steps->case_steps_charge_framed_yes_no = $request->case_steps_charge_framed_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd/mm/yyyy' || $request->case_steps_witness_from == 'NaN/NaN/NaN' ? null : $request->case_steps_witness_from;
+            $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd-mm-yyyy' || $request->case_steps_witness_from == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_from;
             $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy;
             $steps->case_steps_witness_from_yes_no = $request->case_steps_witness_from_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd/mm/yyyy' || $request->case_steps_witness_to == 'NaN/NaN/NaN' ? null : $request->case_steps_witness_to;
+            $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd-mm-yyyy' || $request->case_steps_witness_to == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_to;
             $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy;
             $steps->case_steps_witness_to_yes_no = $request->case_steps_witness_to_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_argument = $request->case_steps_argument == 'dd/mm/yyyy' || $request->case_steps_argument == 'NaN/NaN/NaN' ? null : $request->case_steps_argument;
+            $steps->case_steps_argument = $request->case_steps_argument == 'dd-mm-yyyy' || $request->case_steps_argument == 'NaN-NaN-NaN' ? null : $request->case_steps_argument;
             $steps->case_steps_argument_copy = $request->case_steps_argument_copy;
             $steps->case_steps_argument_yes_no = $request->case_steps_argument_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd/mm/yyyy' || $request->case_steps_judgement_order == 'NaN/NaN/NaN'  ? null : $request->case_steps_judgement_order;
+            $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN'  ? null : $request->case_steps_judgement_order;
             $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy;
             $steps->case_steps_judgement_order_yes_no = $request->case_steps_judgement_order_yes_no ? 'Yes' : 'No';
             $steps->case_steps_summary_judgement_order = $request->case_steps_summary_judgement_order;
@@ -802,7 +802,7 @@ class CriminalCasesController extends Controller
             $data->law_write = rtrim($law_write,', ');
             $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
             $data->section_write = rtrim($section_write,', ');
-            $data->date_of_filing = $request->date_of_filing == 'dd/mm/yyyy' || $request->date_of_filing == 'NaN/NaN/NaN' ? null : $request->date_of_filing;
+            $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
             $data->case_status_id = $request->case_status_id;
             $data->matter_id = $request->matter_id;
             $data->matter_write = $request->matter_write;
@@ -831,34 +831,34 @@ class CriminalCasesController extends Controller
         }else if ($request->case_steps_filing) {
             
             $steps = CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
-            $steps->case_steps_filing = $request->case_steps_filing == 'dd/mm/yyyy' || $request->case_steps_filing == 'NaN/NaN/NaN' ? null : $request->case_steps_filing;
+            $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
             $steps->case_steps_filing_copy = $request->case_steps_filing_copy;
             $steps->case_steps_filing_yes_no = $request->case_steps_filing_yes_no ? 'Yes' : 'No';
-            $steps->taking_cognizance = $request->taking_cognizance == 'dd/mm/yyyy' || $request->taking_cognizance == 'NaN/NaN/NaN' ? null : $request->taking_cognizance;
+            $steps->taking_cognizance = $request->taking_cognizance == 'dd-mm-yyyy' || $request->taking_cognizance == 'NaN-NaN-NaN' ? null : $request->taking_cognizance;
             $steps->taking_cognizance_copy = $request->taking_cognizance_copy;
             $steps->taking_cognizance_yes_no = $request->taking_cognizance_yes_no ? 'Yes' : 'No';
-            $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd/mm/yyyy' || $request->arrest_surrender_cw == 'NaN/NaN/NaN' ? null : $request->arrest_surrender_cw;
+            $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd-mm-yyyy' || $request->arrest_surrender_cw == 'NaN-NaN-NaN' ? null : $request->arrest_surrender_cw;
             $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy;
             $steps->arrest_surrender_cw_yes_no = $request->arrest_surrender_cw_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_bail = $request->case_steps_bail == 'dd/mm/yyyy' || $request->case_steps_bail == 'NaN/NaN/NaN' ? null : $request->case_steps_bail;
+            $steps->case_steps_bail = $request->case_steps_bail == 'dd-mm-yyyy' || $request->case_steps_bail == 'NaN-NaN-NaN' ? null : $request->case_steps_bail;
             $steps->case_steps_bail_copy = $request->case_steps_bail_copy;
             $steps->case_steps_bail_yes_no = $request->case_steps_bail_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd/mm/yyyy' || $request->case_steps_court_transfer == 'NaN/NaN/NaN' ? null : $request->case_steps_court_transfer;
+            $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd-mm-yyyy' || $request->case_steps_court_transfer == 'NaN-NaN-NaN' ? null : $request->case_steps_court_transfer;
             $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy;
             $steps->case_steps_court_transfer_yes_no = $request->case_steps_court_transfer_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd/mm/yyyy' || $request->case_steps_charge_framed == 'NaN/NaN/NaN' ? null : $request->case_steps_charge_framed;
+            $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd-mm-yyyy' || $request->case_steps_charge_framed == 'NaN-NaN-NaN' ? null : $request->case_steps_charge_framed;
             $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy;
             $steps->case_steps_charge_framed_yes_no = $request->case_steps_charge_framed_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd/mm/yyyy' || $request->case_steps_witness_from == 'NaN/NaN/NaN' ? null : $request->case_steps_witness_from;
+            $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd-mm-yyyy' || $request->case_steps_witness_from == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_from;
             $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy;
             $steps->case_steps_witness_from_yes_no = $request->case_steps_witness_from_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd/mm/yyyy' || $request->case_steps_witness_to == 'NaN/NaN/NaN' ? null : $request->case_steps_witness_to;
+            $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd-mm-yyyy' || $request->case_steps_witness_to == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_to;
             $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy;
             $steps->case_steps_witness_to_yes_no = $request->case_steps_witness_to_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_argument = $request->case_steps_argument == 'dd/mm/yyyy' || $request->case_steps_argument == 'NaN/NaN/NaN' ? null : $request->case_steps_argument;
+            $steps->case_steps_argument = $request->case_steps_argument == 'dd-mm-yyyy' || $request->case_steps_argument == 'NaN-NaN-NaN' ? null : $request->case_steps_argument;
             $steps->case_steps_argument_copy = $request->case_steps_argument_copy;
             $steps->case_steps_argument_yes_no = $request->case_steps_argument_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd/mm/yyyy' || $request->case_steps_judgement_order == 'NaN/NaN/NaN'  ? null : $request->case_steps_judgement_order;
+            $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN'  ? null : $request->case_steps_judgement_order;
             $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy;
             $steps->case_steps_judgement_order_yes_no = $request->case_steps_judgement_order_yes_no ? 'Yes' : 'No';
             $steps->case_steps_summary_judgement_order = $request->case_steps_summary_judgement_order;
@@ -878,16 +878,16 @@ class CriminalCasesController extends Controller
     public function update_criminal_case(Request $request, $id)
     {
 
-        if ($request->received_date != 'dd/mm/yyyy') {
-            $received_date_explode = explode('/', $request->received_date);
+        if ($request->received_date != 'dd-mm-yyyy') {
+            $received_date_explode = explode('-', $request->received_date);
             $received_date_implode = implode('-',$received_date_explode);
             $received_date = date('Y-m-d', strtotime($received_date_implode));
         } else {
             $received_date = date('Y-m-d');
         }
 
-        if ($request->next_date != 'dd/mm/yyyy') {
-            $next_date_explode = explode('/', $request->next_date);
+        if ($request->next_date != 'dd-mm-yyyy') {
+            $next_date_explode = explode('-', $request->next_date);
             $next_date_implode = implode('-',$next_date_explode);
             $next_date = date('Y-m-d', strtotime($next_date_implode));
         } else {
@@ -1018,7 +1018,7 @@ class CriminalCasesController extends Controller
             $data->law_write = rtrim($law_write,', ');
             $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
             $data->section_write = rtrim($section_write,', ');
-            $data->date_of_filing = $request->date_of_filing == 'dd/mm/yyyy' || $request->date_of_filing == 'NaN/NaN/NaN' ? null : $request->date_of_filing;
+            $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
             $data->case_status_id = $request->case_status_id;
             $data->matter_id = $request->matter_id;
             $data->matter_write = $request->matter_write;
@@ -1041,34 +1041,34 @@ class CriminalCasesController extends Controller
             $steps->summary_facts = $request->summary_facts;
             $steps->case_info_remarks = $request->case_info_remarks;
 
-            $steps->case_steps_filing = $request->case_steps_filing == 'dd/mm/yyyy' || $request->case_steps_filing == 'NaN/NaN/NaN' ? null : $request->case_steps_filing;
+            $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
             $steps->case_steps_filing_copy = $request->case_steps_filing_copy;
             $steps->case_steps_filing_yes_no = $request->case_steps_filing_yes_no ? 'Yes' : 'No';
-            $steps->taking_cognizance = $request->taking_cognizance == 'dd/mm/yyyy' || $request->taking_cognizance == 'NaN/NaN/NaN' ? null : $request->taking_cognizance;
+            $steps->taking_cognizance = $request->taking_cognizance == 'dd-mm-yyyy' || $request->taking_cognizance == 'NaN-NaN-NaN' ? null : $request->taking_cognizance;
             $steps->taking_cognizance_copy = $request->taking_cognizance_copy;
             $steps->taking_cognizance_yes_no = $request->taking_cognizance_yes_no ? 'Yes' : 'No';
-            $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd/mm/yyyy' || $request->arrest_surrender_cw == 'NaN/NaN/NaN' ? null : $request->arrest_surrender_cw;
+            $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd-mm-yyyy' || $request->arrest_surrender_cw == 'NaN-NaN-NaN' ? null : $request->arrest_surrender_cw;
             $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy;
             $steps->arrest_surrender_cw_yes_no = $request->arrest_surrender_cw_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_bail = $request->case_steps_bail == 'dd/mm/yyyy' || $request->case_steps_bail == 'NaN/NaN/NaN' ? null : $request->case_steps_bail;
+            $steps->case_steps_bail = $request->case_steps_bail == 'dd-mm-yyyy' || $request->case_steps_bail == 'NaN-NaN-NaN' ? null : $request->case_steps_bail;
             $steps->case_steps_bail_copy = $request->case_steps_bail_copy;
             $steps->case_steps_bail_yes_no = $request->case_steps_bail_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd/mm/yyyy' || $request->case_steps_court_transfer == 'NaN/NaN/NaN' ? null : $request->case_steps_court_transfer;
+            $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd-mm-yyyy' || $request->case_steps_court_transfer == 'NaN-NaN-NaN' ? null : $request->case_steps_court_transfer;
             $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy;
             $steps->case_steps_court_transfer_yes_no = $request->case_steps_court_transfer_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd/mm/yyyy' || $request->case_steps_charge_framed == 'NaN/NaN/NaN' ? null : $request->case_steps_charge_framed;
+            $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd-mm-yyyy' || $request->case_steps_charge_framed == 'NaN-NaN-NaN' ? null : $request->case_steps_charge_framed;
             $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy;
             $steps->case_steps_charge_framed_yes_no = $request->case_steps_charge_framed_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd/mm/yyyy' || $request->case_steps_witness_from == 'NaN/NaN/NaN' ? null : $request->case_steps_witness_from;
+            $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd-mm-yyyy' || $request->case_steps_witness_from == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_from;
             $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy;
             $steps->case_steps_witness_from_yes_no = $request->case_steps_witness_from_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd/mm/yyyy' || $request->case_steps_witness_to == 'NaN/NaN/NaN' ? null : $request->case_steps_witness_to;
+            $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd-mm-yyyy' || $request->case_steps_witness_to == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_to;
             $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy;
             $steps->case_steps_witness_to_yes_no = $request->case_steps_witness_to_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_argument = $request->case_steps_argument == 'dd/mm/yyyy' || $request->case_steps_argument == 'NaN/NaN/NaN' ? null : $request->case_steps_argument;
+            $steps->case_steps_argument = $request->case_steps_argument == 'dd-mm-yyyy' || $request->case_steps_argument == 'NaN-NaN-NaN' ? null : $request->case_steps_argument;
             $steps->case_steps_argument_copy = $request->case_steps_argument_copy;
             $steps->case_steps_argument_yes_no = $request->case_steps_argument_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd/mm/yyyy' || $request->case_steps_judgement_order == 'NaN/NaN/NaN'  ? null : $request->case_steps_judgement_order;
+            $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN'  ? null : $request->case_steps_judgement_order;
             $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy;
             $steps->case_steps_judgement_order_yes_no = $request->case_steps_judgement_order_yes_no ? 'Yes' : 'No';
             $steps->case_steps_summary_judgement_order = $request->case_steps_summary_judgement_order;
@@ -1372,16 +1372,16 @@ class CriminalCasesController extends Controller
 
 // dd(date('Y-m-d'));
 
-        if ($request->updated_order_date != 'dd/mm/yyyy') {
-            $order_date_explode = explode('/', $request->updated_order_date);
+        if ($request->updated_order_date != 'dd-mm-yyyy') {
+            $order_date_explode = explode('-', $request->updated_order_date);
             $order_date_implode = implode('-',$order_date_explode);
             $order_date = date('Y-m-d', strtotime($order_date_implode));    
         } else {
             $order_date = date('Y-m-d');
         }
 
-        if ($request->updated_next_date != 'dd/mm/yyyy') {
-            $next_date_explode = explode('/', $request->updated_next_date);
+        if ($request->updated_next_date != 'dd-mm-yyyy') {
+            $next_date_explode = explode('-', $request->updated_next_date);
             $next_date_implode = implode('-',$next_date_explode);
             $next_date = date('Y-m-d', strtotime($next_date_implode));
         } else {
@@ -1413,9 +1413,10 @@ class CriminalCasesController extends Controller
         $data->updated_court_order_write = $request->updated_court_order_write;
         $data->updated_next_date = $next_date;
         $data->updated_index_fixed_for_id = $request->updated_index_fixed_for_id;
+        $data->updated_index_fixed_for_write = $request->updated_index_fixed_for_write;
         $data->updated_day_notes_id = $request->updated_day_notes_id ? implode(', ',$request->updated_day_notes_id) : null;
         $data->updated_day_notes_write = $request->updated_day_notes_write;
-        $data->updated_engaged_advocate_id = $request->updated_engaged_advocate_id;
+        $data->updated_engaged_advocate_id = $request->updated_engaged_advocate_id ? implode(', ',$request->updated_engaged_advocate_id) : null;
         $data->updated_engaged_advocate_write = $request->updated_engaged_advocate_write;
         $data->updated_next_day_presence_id = $request->updated_next_day_presence_id;
         $data->updated_remarks = $request->updated_remarks;
@@ -1429,7 +1430,7 @@ class CriminalCasesController extends Controller
     public function search_criminal_cases(Request $request)
     {
 
-        $received_date_explode = explode('/', $request->received_date);
+        $received_date_explode = explode('-', $request->received_date);
         $received_date_implode = implode('-',$received_date_explode);
         $received_date = date('Y-m-d', strtotime($received_date_implode));
 
@@ -1509,8 +1510,8 @@ class CriminalCasesController extends Controller
     //    echo "<pre>";print_r($data);die();
 
 
-        if ($request->activity_date != 'dd/mm/yyyy') {
-            $activity_date_explode = explode('/', $request->activity_date);
+        if ($request->activity_date != 'dd-mm-yyyy') {
+            $activity_date_explode = explode('-', $request->activity_date);
             $activity_date_implode = implode('-',$activity_date_explode);
             $activity_date = date('Y-m-d', strtotime($activity_date_implode));
         } else {
@@ -1595,14 +1596,15 @@ class CriminalCasesController extends Controller
         $court_proceeding_explode = explode(', ', $data->court_proceedings_id );
         $updated_court_order_explode  = explode(', ', $data->updated_court_order_id );
         $updated_day_notes_explode = explode(', ', $data->updated_day_notes_id );
-
-        return view('litigation_management.cases.criminal_cases.criminal_cases_status_update',compact('data','case_status','next_date_reason','court_proceeding','last_court_order','day_notes', 'exist_engaged_advocate_associates','next_day_presence','court_proceeding_explode', 'updated_court_order_explode','updated_day_notes_explode'));
+        $updated_engaged_advocate = explode(', ', $data->updated_engaged_advocate_id );
+// dd($data);
+        return view('litigation_management.cases.criminal_cases.criminal_cases_status_update',compact('data','case_status','next_date_reason','court_proceeding','last_court_order','day_notes', 'exist_engaged_advocate_associates','next_day_presence','court_proceeding_explode', 'updated_court_order_explode','updated_day_notes_explode','updated_engaged_advocate'));
     }
 
     public function update_criminal_cases_status_logs(Request $request, $id)
     {
 
-        if ($request->updated_order_date != 'dd/mm/yyyy') {
+        if ($request->updated_order_date != 'dd-mm-yyyy') {
             $order_date_explode = explode('/', $request->updated_order_date);
             $order_date_implode = implode('-',$order_date_explode);
             $order_date = date('Y-m-d', strtotime($order_date_implode));    
@@ -1610,7 +1612,7 @@ class CriminalCasesController extends Controller
             $order_date = date('Y-m-d');
         }
 
-        if ($request->updated_next_date != 'dd/mm/yyyy') {
+        if ($request->updated_next_date != 'dd-mm-yyyy') {
             $next_date_explode = explode('/', $request->updated_next_date);
             $next_date_implode = implode('-',$next_date_explode);
             $next_date = date('Y-m-d', strtotime($next_date_implode));
@@ -1642,9 +1644,10 @@ class CriminalCasesController extends Controller
         $data->updated_court_order_write = $request->updated_court_order_write;
         $data->updated_next_date = $next_date;
         $data->updated_index_fixed_for_id = $request->updated_index_fixed_for_id;
+        $data->updated_index_fixed_for_write = $request->updated_index_fixed_for_write;
         $data->updated_day_notes_id = $request->updated_day_notes_id ? implode(', ',$request->updated_day_notes_id) : null;
         $data->updated_day_notes_write = $request->updated_day_notes_write;
-        $data->updated_engaged_advocate_id = $request->updated_engaged_advocate_id;
+        $data->updated_engaged_advocate_id = $request->updated_engaged_advocate_id ? implode(', ',$request->updated_engaged_advocate_id) : null;
         $data->updated_engaged_advocate_write = $request->updated_engaged_advocate_write;
         $data->updated_next_day_presence_id = $request->updated_next_day_presence_id;
         $data->updated_remarks = $request->updated_remarks;
@@ -1668,8 +1671,8 @@ class CriminalCasesController extends Controller
     public function update_criminal_cases_activity_logs(Request $request, $id)
     {
 
-        if ($request->activity_date != 'dd/mm/yyyy') {
-            $activity_date_explode = explode('/', $request->activity_date);
+        if ($request->activity_date != 'dd-mm-yyyy') {
+            $activity_date_explode = explode('-', $request->activity_date);
             $activity_date_implode = implode('-',$activity_date_explode);
             $activity_date = date('Y-m-d', strtotime($activity_date_implode));
         } else {

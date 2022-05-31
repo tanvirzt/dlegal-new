@@ -209,8 +209,8 @@
                                             <td>
                                                 {{ $datum->case_status_name }} 
                                             </td>
-                                            <td>
-                                                {{ date('d/m/Y', strtotime($datum->next_date)) }}
+                                            <td width="8%">
+                                                {{ date('d-m-Y', strtotime($datum->next_date)) }}
                                             </td>
                                             <td>
                                                 {{ $datum->next_date_reason_name }}

@@ -272,7 +272,7 @@
                                                     <span class="date_span">
                                                         <input type="date" class="xDateContainer date_first_input"
                                                                onchange="setCorrect(this,'xTime');"><input type="text" id="xTime" name="next_date"
-                                                                                                          @if($data->next_date != null) value="{{ $data->next_date }}" @else value="dd/mm/yyyy" @endif
+                                                                                                          @if($data->next_date != null) value="{{ date('d-m-Y', strtotime($data->next_date)) }}" @else value="dd-mm-yyyy" @endif
                                                                                                            class="date_second_input"
                                                                                                            tabindex="-1"><span
                                                             class="date_second_span" tabindex="-1">&#9660;</span>
@@ -307,7 +307,7 @@
                                                     <span class="date_span">
                                                         <input type="date" class="xDateContainer date_first_input"
                                                                onchange="setCorrect(this,'xTime2');"><input type="text" id="xTime2"
-                                                                                                            name="received_date" @if($data->received_date != null) value="{{ $data->received_date }}" @else value="dd/mm/yyyy" @endif
+                                                                                                            name="received_date" @if($data->received_date != null) value="{{ date('d-m-Y', strtotime($data->received_date)) }}" @else value="dd-mm-yyyy" @endif
                                                                                                             class="date_second_input"
                                                                                                             tabindex="-1"><span
                                                             class="date_second_span" tabindex="-1">&#9660;</span>
@@ -1750,7 +1750,7 @@
                                                     <span class="date_span">
                                                         <input type="date" class="xDateContainer date_first_input"
                                                                onchange="setCorrect(this,'xTime4');"><input type="text" id="xTime4"
-                                                                                                            name="date_of_filing" @if($data->date_of_filing != null) value="{{ $data->date_of_filing }}" @else value="dd/mm/yyyy" @endif
+                                                                                                            name="date_of_filing" @if($data->date_of_filing != null) value="{{ $data->date_of_filing }}" @else value="dd-mm-yyyy" @endif
                                                                                                             class="date_second_input"
                                                                                                             tabindex="-1"><span
                                                             class="date_second_span" tabindex="-1">&#9660;</span>
@@ -2590,9 +2590,9 @@
                                                                                 <span class="date_span_status">
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'updated_order_date');"><input type="text" id="updated_order_date" name="updated_order_date"
-                                                                                                                                      @if (!empty($previous_activity->updated_order_date))
-                                                                                                                                        value="{{ date('d/m/Y', strtotime($previous_activity->updated_order_date)) }}"
-                                                                                                                                      @endif  value="dd/mm/yyyy"
+                                                                                                                                      @if (!empty($previous_activity->updated_next_date))
+                                                                                                                                        value="{{ date('d-m-Y', strtotime($previous_activity->updated_next_date)) }}"
+                                                                                                                                      @endif  value="dd-mm-yyyy"
                                                                                                                                        class="date_second_input"
                                                                                                                                        tabindex="-1"><span
                                                                                                                     class="date_second_span" tabindex="-1">&#9660;</span>
@@ -2708,7 +2708,7 @@
                                                                                 <span class="date_span_status">
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'updated_next_date');"><input type="text" id="updated_next_date" name="updated_next_date"
-                                                                                                                                                   value="dd/mm/yyyy"
+                                                                                                                                                   value="dd-mm-yyyy"
                                                                                                                                                    class="date_second_input"
                                                                                                                                                    tabindex="-1"><span
                                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -2719,11 +2719,17 @@
                                                                                 @enderror
                                                                             </div>
                                                                         </div>
+
+
+
+
                                                                         <div class="form-group row">
                                                                             <label for="updated_index_fixed_for_id"
                                                                                    class="col-md-4 col-form-label"> Next Date Fixed For
                                                                             </label>
                                                                             <div class="col-md-8">
+                                                                                <div class="row" >
+                                                                                    <div class="col-md-6">
                                                                                         <select name="updated_index_fixed_for_id"
                                                                                                 id="updated_index_fixed_for_id"
                                                                                                 class="form-control select2">
@@ -2733,7 +2739,17 @@
                                                                                                     value="{{ $item->id }}" {{(old('updated_index_fixed_for_id') == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
                                                                                             @endforeach
                                                                                         </select>
-                                                                                @error('updatindex_ed_fixed_for')<span
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <input type="text" class="form-control"
+                                                                                               id="updated_index_fixed_for_write"
+                                                                                               placeholder="Next Date Fixed For"
+                                                                                               name="updated_index_fixed_for_write">
+
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                @error('updated_index_fixed_for_write')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
@@ -2776,9 +2792,8 @@
                                                                             <div class="col-md-8">
                                                                                 <div class="row" >
                                                                                     <div class="col-md-6">
-                                                                                        <select name="updated_engaged_advocate_id"
-                                                                                                class="form-control select2"
-                                                                                        >
+                                                                                        <select name="updated_engaged_advocate_id[]" data-placeholder="Select"
+                                                                                                class="form-control select2" multiple>
                                                                                             <option value="">Select</option>
                                                                                             {{-- @foreach ($exist_engaged_advocate as $item)
                                                                                                 <option
@@ -2791,7 +2806,7 @@
                                                                                             @endforeach --}}
                                                                                             @foreach ($existing_assignend_external_council as $item)
                                                                                                 <option
-                                                                                                    value="{{ $item->id }}"
+                                                                                                    value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name}}"
                                                                                                     {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
                                                                                                     {{ $item->first_name }}
                                                                                                     {{ $item->middle_name }}

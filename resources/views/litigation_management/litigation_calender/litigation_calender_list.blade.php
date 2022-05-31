@@ -125,7 +125,7 @@
                                             <div class="info-box bg-light">
                                                 <div class="info-box-content" style="margin-right: 130px;">
                                                     <span class="info-box-text text-center text-success text-bold h6 text-text-warning" style="color: ">
-                                                        {{ $calendar_date = date('d/m/Y', strtotime($datum->next_date)) }}
+                                                        {{ $calendar_date = date('d-m-Y', strtotime($datum->next_date)) }}
                                                         {{-- {{ date('d/m/Y', strtotime($datum->received_date)) }} --}}
                                                     </span>
                                                     <span class="info-box-number text-center text-success mb-0 text-bold h6">

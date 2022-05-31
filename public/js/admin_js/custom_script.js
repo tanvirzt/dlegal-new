@@ -344,7 +344,7 @@ function setCorrect(xObj,xTraget){
     var day = date.getDate();
     var year = date.getFullYear();
     if(month!='NaN'){
-        document.getElementById(xTraget).value=day+"/"+month+"/"+year;
+        document.getElementById(xTraget).value=day+"-"+month+"-"+year;
     }else{
         if(matchEnterdDate==1){document.getElementById(xTraget).value=xObj.value;}
     }

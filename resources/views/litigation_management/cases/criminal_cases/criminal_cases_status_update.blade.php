@@ -231,9 +231,11 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <label for="updated_index_fixed_for_id"
-                                                                   class="col-md-4 col-form-label"> Fixed For
+                                                                   class="col-md-4 col-form-label"> Next Date Fixed For
                                                             </label>
                                                             <div class="col-md-8">
+                                                                <div class="row" >
+                                                                    <div class="col-md-6">
                                                                         <select name="updated_index_fixed_for_id"
                                                                                 id="updated_index_fixed_for_id"
                                                                                 class="form-control select2">
@@ -243,10 +245,20 @@
                                                                                     value="{{ $item->id }}" {{( $data->updated_index_fixed_for_id == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
                                                                             @endforeach
                                                                         </select>
-                                                                @error('updatindex_ed_fixed_for')<span
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <input type="text" class="form-control"
+                                                                               id="updated_index_fixed_for_write"
+                                                                               placeholder="Next Date Fixed For" value="{{ $data->updated_index_fixed_for_write }}"
+                                                                               name="updated_index_fixed_for_write">
+                    
+                                                                    </div>
+                                                                </div>
+                                                                @error('updated_index_fixed_for_write')<span
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
+                                                        
                                                     </div>
                                                     <div class="col-md-6">
                                                         
@@ -286,9 +298,8 @@
                                                             <div class="col-md-8">
                                                                 <div class="row" >
                                                                     <div class="col-md-6">
-                                                                        <select name="updated_engaged_advocate_id"
-                                                                                class="form-control select2"
-                                                                        >
+                                                                        <select name="updated_engaged_advocate_id[]" data-placeholder="Select"
+                                                                                class="form-control select2" multiple>
                                                                             <option value="">Select</option>
                                                                             {{-- @foreach ($exist_engaged_advocate as $item)
                                                                                 <option
@@ -301,8 +312,8 @@
                                                                             @endforeach --}}
                                                                             @foreach ($exist_engaged_advocate_associates as $item)
                                                                                 <option
-                                                                                    value="{{ $item->id }}"
-                                                                                    {{ $data->updated_engaged_advocate_id == $item->id ? 'selected' : '' }}>
+                                                                                    value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name }}"
+                                                                                    {{ in_array($item->first_name.' '.$item->middle_name.' '.$item->last_name, $updated_engaged_advocate) ? 'selected' : '' }}>
                                                                                     {{ $item->first_name }}
                                                                                     {{ $item->middle_name }}
                                                                                     {{ $item->last_name }}
