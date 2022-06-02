@@ -1678,8 +1678,8 @@ class CriminalCasesController extends Controller
         } else {
             $activity_date = date('Y-m-d');
         }
-        $case_id = CriminalCaseStatusLog::find($id);
-
+        $case_id = CriminalCaseActivityLog::find($id);
+// dd($case_id);
         $data = CriminalCaseActivityLog::find($id);
         $data->activity_date = $activity_date;
         $data->activity_action = $request->activity_action;

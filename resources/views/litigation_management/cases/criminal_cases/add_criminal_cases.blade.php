@@ -1014,14 +1014,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h6 class="text-uppercase text-bold"><u> Documents
-                                                        Information </u></h6>
-                                                        <h6 class="text-uppercase text-bold mt-4">
-                                                            <div class="row">
-                                                                <div class="col-md-5">Received Documents(DD)</div>
-                                                                <div class="col-md-4">Received Documents</div>
-                                                                <div class="col-md-3">Date</div>
-                                                            </div>
-                                                        </h6>
+                                                        Received </u></h6>
                                                         <div class="form-group row">
                                                             <div class="col-sm-4">
                                                                 <select name="received_documents_id[]"
@@ -1068,11 +1061,8 @@
                                                             </div>
                                                         </div>
                                                         <h6 class="text-uppercase text-bold">
-                                                            <div class="row">
-                                                                <div class="col-md-4">Required/Wanting Documents(DD)</div>
-                                                                <div class="col-md-4">Required/Wanting Documents</div>
-                                                                <div class="col-md-4">Date</div>
-                                                            </div>
+                                                            <u> Documents
+                                                                Required </u>
                                                         </h6>
                                                         <div class="form-group row">
                                                             <div class="col-sm-4">

@@ -31,11 +31,11 @@
         <!-- /.content-header -->
 
         <div class="links">
-            <a href="#section1st" class="btn-custom btn-success-preview text-uppercase">Case Info</a>
-            <a href="#section1" class="btn-custom btn-success-preview text-uppercase">Case Proceedings Log</a>
-            <a href="#section2" class="btn-custom btn-success-preview text-uppercase">Case Activities Log</a>
-            <a href="#section3" class="btn-custom btn-success-preview text-uppercase">Documents Log</a>
-            <a href="#section4" class="btn-custom btn-success-preview text-uppercase">Billings Log</a>
+            <a href="#section1st" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Case Info"><i class="fas fa-info-circle"></i></a>
+            <a href="#section1" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Case Proceedings Log"><i class="far fa-bell"></i></a>
+            <a href="#section2" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top" title="Activity Log"><i class="fas fa-chart-line"></i></a>
+            <a href="#section3" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Documents Log"><i class="fas fa-file-archive nav-icon"></i></a>
+            <a href="#section4" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Billings Log"><i class="fas fa-money-bill"></i></a>
         </div>
           
         <section class="content" id="section1st">
@@ -407,19 +407,13 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h6 class="text-uppercase text-bold"><u> Documents
-                                                            Information </u>
+                                                            Received </u>
                                                         <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal"
                                                                 data-target="#modal-lg-documents-info" data-toggle="tooltip"
                                                                 data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
-                                                    <h6 class="text-uppercase text-bold mt-4">
-                                                        <div class="row">
-                                                            <div class="col-md-5">Received Documents(DD)</div>
-                                                            <div class="col-md-5">Received Documents</div>
-                                                            <div class="col-md-2">Date</div>
-                                                        </div>
-                                                    </h6>
+                                                    
                                                     <table class="table table-bordered">
                                                         <tbody>
                                                             <tr>
@@ -475,11 +469,8 @@
                                                         </tbody>
                                                     </table>
                                                     <h6 class="text-uppercase text-bold mt-4">
-                                                        <div class="row">
-                                                            <div class="col-md-5">Required/Wanting Documents(DD)</div>
-                                                            <div class="col-md-5">Required/Wanting Documents</div>
-                                                            <div class="col-md-2">Date</div>
-                                                        </div>
+                                                        <u> Documents
+                                                            Required </u>
                                                     </h6>
                                                     <table class="table table-bordered">
                                                         <tbody>
@@ -3957,14 +3948,8 @@
                     @csrf
                     <div class="card-body">
                         <h6 class="text-uppercase text-bold"><u> Documents
-                                Information </u></h6>
-                                <h6 class="text-uppercase text-bold mt-4">
-                                    <div class="row">
-                                        <div class="col-md-4">Received Documents(DD)</div>
-                                        <div class="col-md-4">Received Documents</div>
-                                        <div class="col-md-4">Date</div>
-                                    </div>
-                                </h6>
+                                Received </u></h6>
+                               
                                 <div class="form-group row">
                                     <div class="col-sm-4">
                                         <select name="received_documents_id[]"
@@ -4011,11 +3996,8 @@
                                     </div>
                                 </div>
                                 <h6 class="text-uppercase text-bold">
-                                    <div class="row">
-                                        <div class="col-md-4">Required/Wanting Documents(DD)</div>
-                                        <div class="col-md-4">Required/Wanting Documents</div>
-                                        <div class="col-md-4">Date</div>
-                                    </div>
+                                        <u> Documents
+                                            Required </u>
                                 </h6>
                                 <div class="form-group row">
                                     <div class="col-sm-4">
