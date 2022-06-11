@@ -56,7 +56,20 @@
                                 <div class="card-body">
 
                                     <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="case_type"> Class of Cases </label>
+                                            <select name="case_type" class="form-control select2" id="case_type">
+                                                <option value="">Select</option>
+                                                <option value="Civil Cases"> Civil Cases </option>
+                                                <option value="Criminal Cases"> Criminal Cases </option>
+                                                <option value="Labour Cases"> Labour Cases </option>
+                                                <option value="Special Quassi - Judicial Cases"> Special Quassi - Judicial Cases </option>
+                                                <option value="High Court Division"> High Court Division </option>
+                                                <option value="Appellate Court Division"> Appellate Court Division </option>
+                                            </select>
+                                            @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
 
+                                        </div>
                                         <div class="form-group">
                                             <label for="case_title_name">Case Title</label>
                                             <input type="text" class="form-control" name="case_title_name"

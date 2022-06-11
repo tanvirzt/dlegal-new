@@ -165,7 +165,7 @@
                                         <th class="text-center"> Next Date</th>
                                         <th class="text-center"> Fixed for</th>
                                         <th class="text-center"> Case No</th>
-                                        <th class="text-center"> Sub-Seq. Case No</th>
+                                        <th class="text-center"> S.S. Case No</th>
                                         <th class="text-center"> Court Name</th>
                                         <th class="text-center"> Complainant District </th>
                                         <th class="text-center"> Complainant </th>

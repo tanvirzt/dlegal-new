@@ -15,6 +15,7 @@ class CreateSetupCaseTitlesTable extends Migration
     {
         Schema::create('setup_case_titles', function (Blueprint $table) {
             $table->id();
+            $table->string('case_type')->nullable();
             $table->string('case_title_name')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();

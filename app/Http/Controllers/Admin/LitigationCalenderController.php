@@ -79,7 +79,7 @@ class LitigationCalenderController extends Controller
             $criminal_cases = DB::table('criminal_cases')
                                 ->distinct()->orderBy('next_date','asc')
                                 ->where(['delete_status' => 0])
-                                ->where('next_date','>=',date('Y-m-d'))
+                                // ->where('next_date','>=',date('Y-m-d'))
                                 ->where('next_date', '>=', $from_date)
                                 ->where('next_date', '<=', $to_date)->get(['next_date']);
 

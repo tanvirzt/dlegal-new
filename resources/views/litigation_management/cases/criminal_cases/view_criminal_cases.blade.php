@@ -55,7 +55,6 @@
                             <div class="card-header">
                                 <h3 class="card-title custom_h3 font-italic text-uppercase font_weight" id="heading">View Criminal Case
                                     No.
-
                                     {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.'/'.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
                                     @endif
                                     {{ $data->sub_seq_case_title_name }}
@@ -569,6 +568,14 @@
                                                             <td>{{ $data->case_subcategory }}</td>
                                                         </tr>
                                                         <tr>
+                                                            <td>Case Matter</td>
+                                                            <td>{{ $data->matter_name }} {{ $data->matter_write }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Case Type</td>
+                                                            <td>{{ $data->case_types_name }}</td>
+                                                        </tr>
+                                                        <tr>
                                                             <td>Case Title</td>
                                                             <td>{{ $data->case_infos_case_title_name }}</td>
                                                         </tr>
@@ -785,14 +792,7 @@
                                                             <td>Status of the Cases</td>
                                                             <td>{{ $data->case_status_name }}</td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>Case Matter</td>
-                                                            <td>{{ $data->matter_name }} {{ $data->matter_write }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Case Type</td>
-                                                            <td>{{ $data->case_types_name }}</td>
-                                                        </tr>
+                                                        
                                                         <tr>
                                                             <td>Complainant/Informant Name</td>
                                                             <td>
@@ -1087,7 +1087,26 @@
                             <div class="card" id="section1">
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Case Proceedings Log <span
-                                            class="font-italic custom_font">(Case No: {{ $data->case_no }}, Court Name: {{ $data->court_name }})</span>
+                                            class="font-italic custom_font">(Case No: 
+                                            {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.'/'.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
+                                            @endif
+                                            {{ $data->sub_seq_case_title_name }}
+                                            Court Name:
+                                            @php
+                                                $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+                                                $key = array_key_last($case_infos_sub_seq_case_no);
+                                                echo $case_infos_sub_seq_case_no[$key];
+
+                                                $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
+                                                $key = array_key_last($case_infos_sub_seq_case_year);
+                                                $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                                if ($last_case_no != null) {
+                                                    echo '/'.$last_case_no;
+                                                }
+                                            @endphp
+                                            
+                                            
+                                        )</span>
                                     </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg"
@@ -1121,6 +1140,7 @@
                                         </thead>
                                         <tbody>
                                         @foreach($case_logs as $logs)
+                                        
                                             <tr>
                                                 <td width="8%"> {{ date('d-m-Y', strtotime($logs->updated_order_date)) }} </td>
                                                 <td width="10%"> {{ $logs->next_date_reason_name }} {{ $logs->updated_fixed_for_write }} </td>
@@ -1179,7 +1199,7 @@
                                                                 title="Delete"><i class="fas fa-trash"></i></button>
                                                     </form>
                                                 </td>
-                                                <td> {{ $logs->created_at }} </td>
+                                                <td> {{ date('d-m-Y H:i:s', strtotime($logs->created_at)) }} </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -1255,7 +1275,7 @@
                                                                 title="Delete"><i class="fas fa-trash"></i></button>
                                                     </form>
                                                 </td>
-                                                <td> {{ $activity_log->created_at }} </td>
+                                                <td> {{ date('d-m-Y H:i:s', strtotime($activity_log->created_at)) }} </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -1277,6 +1297,9 @@
                                            {{ $days_count }} Days) </span>
                                     </h3>
                                     <div class="card-tools">
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal"
+                                        data-toggle="tooltip"
+                                        data-placement="top" title="Add Documents"><i class="fas fa-file-archive nav-icon"></i></button>
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
                                         </button>
@@ -1454,7 +1477,7 @@
                                                                                            onchange="setCorrect(this,'updated_order_date');"><input
                                                                                         type="text" id="updated_order_date" name="updated_order_date"
                                                                                         @if (!empty($previous_activity->updated_order_date))
-                                                                                        value="{{ date('d/m/Y', strtotime($previous_activity->updated_order_date)) }}"
+                                                                                        value="{{ date('d/m/Y', strtotime($previous_activity->updated_next_date)) }}"
                                                                                       @endif value="dd-mm-yyyy" 
                                                                                         class="date_second_input"
                                                                                         tabindex="-1"><span
@@ -3144,6 +3167,50 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="matter_id"
+                                                id="matter_id"
+                                                class="form-control select2">
+                                            <option value="">Select</option>
+                                            @foreach($matter as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{( $data->matter_id == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="matter_write"
+                                               name="matter_write"
+                                               placeholder="Matter"
+                                               value="{{ $data->matter_write }}">
+                                    </div>
+                                </div>
+
+
+                                @error('matter_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
+                            <div class="col-sm-8">
+                                <select name="case_type_id"
+                                        class="form-control select2">
+                                    <option value="">Select</option>
+                                    @foreach($case_types as $item)
+                                        <option
+                                            value="{{ $item->id }}" {{( $data->case_type_id  == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('case_type_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="case_infos_case_title_id"
                                    class="col-sm-4 col-form-label">Case Title</label>
                             <div class="col-sm-8">
@@ -3513,50 +3580,7 @@
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
-                            <div class="col-sm-8">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <select name="matter_id"
-                                                id="matter_id"
-                                                class="form-control select2">
-                                            <option value="">Select</option>
-                                            @foreach($matter as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{( $data->matter_id == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control"
-                                               id="matter_write"
-                                               name="matter_write"
-                                               placeholder="Matter"
-                                               value="{{ $data->matter_write }}">
-                                    </div>
-                                </div>
-
-
-                                @error('matter_id')<span
-                                    class="text-danger">{{$message}}</span>@enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
-                            <div class="col-sm-8">
-                                <select name="case_type_id"
-                                        class="form-control select2">
-                                    <option value="">Select</option>
-                                    @foreach($case_types as $item)
-                                        <option
-                                            value="{{ $item->id }}" {{( $data->case_type_id  == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('case_type_id')<span
-                                    class="text-danger">{{$message}}</span>@enderror
-                            </div>
-                        </div>
+                        
                         <div class="form-group row">
                             <label for="case_infos_complainant_informant_name"
                                    class="col-sm-4 col-form-label">
@@ -4441,6 +4465,27 @@
         <!-- /.modal-dialog -->
     </div>
 
+    {{-- documents add --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{-- documents add  --}}
     {{-- case Information --}}
 
     {{--    update cases modal--}}

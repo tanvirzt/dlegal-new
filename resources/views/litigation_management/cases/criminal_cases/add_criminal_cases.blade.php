@@ -1205,6 +1205,50 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
+                                                    <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="matter_id"
+                                                                        id="matter_id"
+                                                                        class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($matter as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{( old('matter_id') == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="matter_write"
+                                                                       name="matter_write"
+                                                                       placeholder="Matter"
+                                                                       value="{{ old('matter_write') }}">
+                                                            </div>
+                                                        </div>
+
+
+                                                        @error('matter_id')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
+                                                    <div class="col-sm-8">
+                                                        <select name="case_type_id"
+                                                                class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($case_types as $item)
+                                                                <option
+                                                                    value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('case_type_id')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
                                                     <label for="case_infos_case_title_id"
                                                            class="col-sm-4 col-form-label">Case Title</label>
                                                     <div class="col-sm-8">
@@ -1576,50 +1620,7 @@
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
-                                                    <div class="col-sm-8">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <select name="matter_id"
-                                                                        id="matter_id"
-                                                                        class="form-control select2">
-                                                                    <option value="">Select</option>
-                                                                    @foreach($matter as $item)
-                                                                        <option
-                                                                            value="{{ $item->id }}" {{( old('matter_id') == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <input type="text" class="form-control"
-                                                                       id="matter_write"
-                                                                       name="matter_write"
-                                                                       placeholder="Matter"
-                                                                       value="{{ old('matter_write') }}">
-                                                            </div>
-                                                        </div>
-
-
-                                                        @error('matter_id')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
-                                                    <div class="col-sm-8">
-                                                        <select name="case_type_id"
-                                                                class="form-control select2">
-                                                            <option value="">Select</option>
-                                                            @foreach($case_types as $item)
-                                                                <option
-                                                                    value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('case_type_id')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="form-group row">
                                                     <label for="case_infos_complainant_informant_name"
                                                            class="col-sm-4 col-form-label">

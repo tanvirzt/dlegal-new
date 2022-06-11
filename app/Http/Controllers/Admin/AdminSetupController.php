@@ -4519,16 +4519,19 @@ public function find_case_category(Request $request)
     public function save_case_title(Request $request)
     {
         $rules = [
-            'case_title_name' => 'required'
+            'case_type' => 'required',
+            'case_title_name' => 'required',
         ];
 
         $validMsg = [
-            'case_title_name.required' => 'Case Title field is required'
+            'case_type.required' => 'Class of Cases field is required',
+            'case_title_name.required' => 'Case Title field is required',
         ];
 
         $this->validate($request, $rules, $validMsg);
 
         $case_title = new SetupCaseTitle();
+        $case_title->case_type = $request->case_type;
         $case_title->case_title_name = $request->case_title_name;
         $case_title->save();
 
@@ -4545,16 +4548,19 @@ public function find_case_category(Request $request)
     public function update_case_title(Request $request, $id)
     {
         $rules = [
-            'case_title_name' => 'required'
+            'case_type' => 'required',
+            'case_title_name' => 'required',
         ];
 
         $validMsg = [
-            'case_title_name.required' => 'Case Title field is required.'
+            'case_type.required' => 'Class of Cases field is required',
+            'case_title_name.required' => 'Case Title field is required',
         ];
 
         $this->validate($request, $rules, $validMsg);
 
         $case_title = SetupCaseTitle::find($id);
+        $case_title->case_type = $request->case_type;
         $case_title->case_title_name = $request->case_title_name;
         $case_title->save();
 

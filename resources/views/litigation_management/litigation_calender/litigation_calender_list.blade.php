@@ -119,14 +119,77 @@
                         <div class="card">
 
                             <div class="card-header">
-                                <h3 class="card-title">
+                                {{-- <h3 class="card-title"> --}}
                                     <div class="row">
-                                        <div class="col-12 col-md-2">
+                                        <div class="col-md-1 border pt-1 mr-1">
+                                            <span class="info-box-text text-center text-success text-bold h6 text-text-warning" style="color: ">
+                                                {{ $calendar_date = date('d-m-Y', strtotime($datum->next_date)) }}
+                                            </span>
+                                            <span class="info-box-number text-center text-success mb-0 text-bold h6">
+                                                @php
+                                                    $date = $datum->next_date;
+                                                    $time = date('l', strtotime($date));
+                                                    echo $time;
+                                                @endphp
+                                            </span>
+                                        </div>
+                                        <div class="col-md-1 border pt-1 mr-1">
+                                            <h6 class="info-box-text text-center text-muted text-bold">Total</h6>
+                                                    <p class="info-box-number text-center text-muted mb-0 text-bold">
+                                                        
+                                                        @php
+                                                            
+                                                            $calendar_count = DB::table('criminal_cases')->where(['criminal_cases.delete_status' => 0, 'next_date' => $datum->next_date])
+                                                                            ->count();
+                                                        $calendar_wise_data = DB::table('criminal_cases')
+                                                                            // ->leftJoin('criminal_cases_case_steps', 'criminal_cases.id', 'criminal_cases_case_steps.criminal_case_id')
+                                                                            ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', 'setup_next_date_reasons.id')
+                                                                            ->leftJoin('setup_case_statuses', 'criminal_cases.case_status_id', 'setup_case_statuses.id')
+                                                                            ->leftJoin('setup_case_titles', 'criminal_cases.case_infos_case_title_id', 'setup_case_titles.id')
+                                                                            ->leftJoin('setup_courts', 'criminal_cases.name_of_the_court_id', '=', 'setup_courts.id')
+                                                                            ->leftJoin('setup_districts', 'criminal_cases.case_infos_district_id', '=', 'setup_districts.id')
+                                                                            ->leftJoin('setup_districts as accused_district', 'criminal_cases.client_district_id', '=', 'accused_district.id')
+                                                                            ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
+                                                                            ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
+                                                                        ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+                                                                            ->select('criminal_cases.*',
+                                                                            // 'criminal_cases_case_steps.another_claim',
+                                                                            'setup_case_statuses.case_status_name',
+                                                                            'setup_case_titles.case_title_name', 
+                                                                            'setup_next_date_reasons.next_date_reason_name', 
+                                                                            'setup_courts.court_name', 
+                                                                            'setup_districts.district_name',
+                                                                            'accused_district.district_name as accused_district_name', 
+                                                                            'setup_case_types.case_types_name',
+                                                                            'setup_external_councils.first_name',
+                                                                            'setup_external_councils.middle_name',
+                                                                            'setup_external_councils.last_name',
+                                                                            'case_infos_title.case_title_name as sub_seq_case_title_name')
+                                                                            ->orderBy('criminal_cases.received_date','asc')
+                                                                            ->where(['criminal_cases.delete_status' => 0, 'next_date' => $datum->next_date])
+                                                                            ->get();
+                                                                @endphp
+                                                        {{ $calendar_count }}</p>
+                                        </div>
+                                        <div class="col-md-1 border pt-1 mr-1">
+                                            <h6 class="info-box-text text-center text-muted text-bold">Civil Cases</h6>
+                                                    <p class="info-box-number text-center text-muted mb-0 text-bold">0</p>
+                                        </div>
+                                        <div class="col-md-1 border pt-1 mr-1">
+                                            <h6 class="info-box-text text-center text-muted text-bold">Criminal Cases</h6>
+                                            <p class="info-box-number text-center text-muted mb-0 text-bold">{{ $calendar_count }}</p>
+                                        </div>
+                                        <div class="col-md-1 border pt-1 mr-1">
+                                            <h6 class="info-box-text text-center text-muted text-bold">Others</h6>
+                                            <p class="info-box-number text-center text-muted mb-0 text-bold">0</p>
+                                        </div>
+                                        
+                                        
+                                        {{-- <div class="col-md-2">
                                             <div class="info-box bg-light">
-                                                <div class="info-box-content" style="margin-right: 130px;">
+                                                <div class="info-box-content">
                                                     <span class="info-box-text text-center text-success text-bold h6 text-text-warning" style="color: ">
                                                         {{ $calendar_date = date('d-m-Y', strtotime($datum->next_date)) }}
-                                                        {{-- {{ date('d/m/Y', strtotime($datum->received_date)) }} --}}
                                                     </span>
                                                     <span class="info-box-number text-center text-success mb-0 text-bold h6">
                                                         @php
@@ -137,8 +200,10 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-12 col-md-2">
+                                        </div> --}}
+
+                                        
+                                        {{-- <div class="col-12 col-md-2">
                                             <div class="info-box bg-light">
                                                 <div class="info-box-content">
                                                     <span class="info-box-text text-center text-muted text-bold">Total</span>
@@ -203,10 +268,10 @@
                                                     <span class="info-box-number text-center text-muted mb-0 text-bold">0</span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
 
-                                </h3>
+                                {{-- </h3> --}}
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                         <i class="fas fa-minus"></i>
@@ -340,7 +405,8 @@
                                         </td>
                                         <td>
                                             @php
-                                                $updated_day_notes = explode(', ',$value->updated_day_notes_id);
+                                                $updated_day_notes = explode(', ', trim($value->updated_day_notes_id));
+                                                // dd($updated_day_notes);
                                             @endphp
                                             @if($value->updated_day_notes_id)
                                                 @if (count($updated_day_notes) >1)

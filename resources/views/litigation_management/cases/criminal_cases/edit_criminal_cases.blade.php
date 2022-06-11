@@ -953,9 +953,13 @@
                                                                                         <select name="opposition_district_id"
                                                                                                 id="opposition_district_id"
                                                                                                 class="form-control select2" action="{{ route('find-thana') }}">
-                                                                                            <option value="">Select</option>
-
+                                                                                                <option value="">Select</option>
+                                                                                                @foreach ($opposition_existing_district as $item)
+                                                                                                    <option
+                                                                                                        value="{{ $item->id }}" {{( $data->opposition_district_id  == $item->id ? 'selected':'')}}>{{ ucfirst($item->district_name) }}</option>
+                                                                                                @endforeach
                                                                                         </select>
+                                                                                        
                                                                                     </div>
                                                                                     <div class="col-md-6">
                                                                                         <input type="text" class="form-control"
@@ -980,7 +984,10 @@
                                                                                                 id="opposition_thana_id"
                                                                                                 class="form-control select2">
                                                                                             <option value="">Select</option>
-
+                                                                                            @foreach ($opposition_existing_thana as $item)
+                                                                                                <option
+                                                                                                    value="{{ $item->id }}" {{( $data->opposition_thana_id  == $item->id ? 'selected':'')}}>{{ ucfirst($item->thana_name) }}</option>
+                                                                                            @endforeach
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-md-6">
@@ -1079,7 +1086,7 @@
                                                                                         <div class="input-group hdtuto_received_documents control-group increment_received_documents">
                                                                                             <input type="text" name="received_documents[]"
                                                                                                    class="myfrm form-control mr-2" value="{{ rtrim($data->received_documents, ', ') }}">
-                                                                                            <input type="text" name="received_documents_date[]"
+                                                                                            <input type="date" name="received_documents_date[]"
                                                                                                    class="myfrm form-control ml-2" value="{{ rtrim($data->received_documents_date, ', ') }}">
                                                                                             <div class="input-group-btn">
                                                                                                 <button class="btn btn-success btn_success_received_documents"
@@ -1128,7 +1135,7 @@
                                                                                         <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
                                                                                             <input type="text" name="required_wanting_documents[]"
                                                                                                    class="myfrm form-control mr-2" value="{{ rtrim($data->required_wanting_documents, ', ') }}">
-                                                                                            <input type="text" name="required_wanting_documents_date[]"
+                                                                                            <input type="date" name="required_wanting_documents_date[]"
                                                                                                    class="myfrm form-control ml-2" value="{{ rtrim($data->required_wanting_documents_date, ', ') }}">
                                                                                             <div class="input-group-btn">
                                                                                                 <button class="btn btn-success btn_success_required_wanting_documents"
@@ -1398,6 +1405,50 @@
                                                                                 @error('case_subcategory_id')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
 
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
+                                                                            <div class="col-sm-8">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <select name="matter_id"
+                                                                                                id="matter_id"
+                                                                                                class="form-control select2">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach($matter as $item)
+                                                                                                <option
+                                                                                                    value="{{ $item->id }}" {{( $data->matter_id == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <input type="text" class="form-control"
+                                                                                               id="matter_write"
+                                                                                               name="matter_write"
+                                                                                               placeholder="Matter"
+                                                                                               value="{{ $data->matter_write }}">
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                @error('matter_id')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
+                                                                            <div class="col-sm-8">
+                                                                                <select name="case_type_id"
+                                                                                        class="form-control select2">
+                                                                                    <option value="">Select</option>
+                                                                                    @foreach($case_types as $item)
+                                                                                        <option
+                                                                                            value="{{ $item->id }}" {{( $data->case_type_id  == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                                @error('case_type_id')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group row">
@@ -1765,50 +1816,7 @@
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
-                                                                            <div class="col-sm-8">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-6">
-                                                                                        <select name="matter_id"
-                                                                                                id="matter_id"
-                                                                                                class="form-control select2">
-                                                                                            <option value="">Select</option>
-                                                                                            @foreach($matter as $item)
-                                                                                                <option
-                                                                                                    value="{{ $item->id }}" {{( $data->matter_id == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                    </div>
-                                                                                    <div class="col-md-6">
-                                                                                        <input type="text" class="form-control"
-                                                                                               id="matter_write"
-                                                                                               name="matter_write"
-                                                                                               placeholder="Matter"
-                                                                                               value="{{ $data->matter_write }}">
-                                                                                    </div>
-                                                                                </div>
-
-
-                                                                                @error('matter_id')<span
-                                                                                    class="text-danger">{{$message}}</span>@enderror
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
-                                                                            <div class="col-sm-8">
-                                                                                <select name="case_type_id"
-                                                                                        class="form-control select2">
-                                                                                    <option value="">Select</option>
-                                                                                    @foreach($case_types as $item)
-                                                                                        <option
-                                                                                            value="{{ $item->id }}" {{( $data->case_type_id  == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                                @error('case_type_id')<span
-                                                                                    class="text-danger">{{$message}}</span>@enderror
-                                                                            </div>
-                                                                        </div>
+                                                                        
                                                                         <div class="form-group row">
                                                                             <label for="case_infos_complainant_informant_name"
                                                                                    class="col-sm-4 col-form-label">

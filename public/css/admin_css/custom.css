@@ -509,6 +509,11 @@ h3{
     z-index: 98;
     padding: 17px;
     background-color: hsla(5,76%,62%,.8);
+    opacity: 0;
+}
+
+#toTopBtn:hover{
+    opacity: 1;
 }
 
 .js .cd-top--fade-out {
@@ -555,6 +560,11 @@ h3{
     right: 3rem;
     z-index: 98;
     font-family: "parisplus-std", sans-serif;
+    /* display: none; */
+    opacity: 0;
+  }
+  .links:hover{
+      opacity: 1;
   }
 
   .btn-success-preview {
@@ -569,3 +579,11 @@ h3{
     transition: all 0.3s ease 0s;
     padding: 2px 4px 0px 5px;
 }
+
+/* .foo{
+    opacity: 0;
+}
+.foo:hover {
+    color: red;
+    opacity: 1;
+} */

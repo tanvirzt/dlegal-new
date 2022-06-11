@@ -57,7 +57,7 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="case_type"> Case Type </label>
+                                            <label for="case_type"> Class of Cases </label>
                                             <select name="case_type" class="form-control select2" id="case_type">
                                                 <option value="">Select</option>
                                                 <option value="Civil Cases"> Civil Cases </option>

@@ -49,7 +49,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center text-nowrap">ID</th>
-                                        <th class="text-center text-nowrap">Case Type</th>
+                                        <th class="text-center text-nowrap">Class of Cases</th>
                                         <th class="text-center text-nowrap">Case Category</th>
                                         <th class="text-center text-nowrap">Status</th>
                                         <th class="text-center text-nowrap">Action</th>

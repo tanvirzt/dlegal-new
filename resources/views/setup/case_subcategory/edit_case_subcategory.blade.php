@@ -58,7 +58,7 @@
                                     <div class="col-md-12">
 
                                         <div class="form-group">
-                                            <label for="case_type"> Case Type </label>
+                                            <label for="case_type"> Class of Cases </label>
                                             <select name="case_type" class="form-control select2" id="case_type" action="{{ route('find-case-category') }}">
                                                 <option value="">Select</option>
                                                 <option value="Civil Cases" {{ $data->case_type == "Civil Cases" ? 'selected' : '' }}> Civil Cases </option>
