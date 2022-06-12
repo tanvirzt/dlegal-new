@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BillSchedule;
+use App\Models\PaymentMode;
 use App\Models\SetupAccused;
 use App\Models\SetupCaseCategory;
 use App\Models\SetupCaseClass;
@@ -67,6 +69,7 @@ use App\Models\SetupSellerBuyer;
 use App\Models\SetupFloor;
 use App\Models\SetupFlatNumber;
 use App\Models\SetupSupremeCourtCategory;
+use App\Models\SetupBillParticular;
 use Illuminate\Support\Facades\DB;
 
 
@@ -4991,7 +4994,233 @@ public function find_case_category(Request $request)
         return redirect()->back();
     }
 
+    //bill_particulars
 
+    public function bill_particulars()
+    {
+        $data = SetupBillParticular::all();
+        return view('setup.bill_particulars.bill_particulars',compact('data'));
+    }
+
+    public function add_bill_particulars()
+    {
+        return view('setup.bill_particulars.add_bill_particulars');
+    }
+
+    public function save_bill_particulars(Request $request)
+    {
+        $rules = [
+            'bill_particulars_name' => 'required'
+        ];
+
+        $validMsg = [
+            'bill_particulars_name.required' => 'Bill Particulars field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $bill_particulars = new SetupBillParticular();
+        $bill_particulars->bill_particulars_name = $request->bill_particulars_name;
+        $bill_particulars->save();
+
+        session()->flash('success','Bill Particulars Added Successfully.');
+        return redirect()->route('bill-particulars');
+    }
+
+    public function edit_bill_particulars($id)
+    {
+        $data = SetupBillParticular::find($id);
+        return view('setup.bill_particulars.edit_bill_particulars',compact('data'));
+    }
+
+    public function update_bill_particulars(Request $request, $id)
+    {
+        $rules = [
+            'bill_particulars_name' => 'required'
+        ];
+
+        $validMsg = [
+            'bill_particulars_name.required' => 'Bill Particulars field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $bill_particulars = SetupBillParticular::find($id);
+        $bill_particulars->bill_particulars_name = $request->bill_particulars_name;
+        $bill_particulars->save();
+
+        session()->flash('success', 'Bill Particulars Updated Successfully.');
+
+        return redirect()->route('bill-particulars');
+    }
+
+    public function delete_bill_particulars($id)
+    {
+        $data = SetupBillParticular::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Bill Particulars Deleted Successfully');
+        return redirect()->back();
+    }
+
+    //bill_schedule
+
+    public function bill_schedule()
+    {
+        $data = BillSchedule::all();
+        return view('setup.bill_schedule.bill_schedule',compact('data'));
+    }
+
+    public function add_bill_schedule()
+    {
+        return view('setup.bill_schedule.add_bill_schedule');
+    }
+
+    public function save_bill_schedule(Request $request)
+    {
+        $rules = [
+            'bill_schedule_name' => 'required'
+        ];
+
+        $validMsg = [
+            'bill_schedule_name.required' => 'Bill Schedule field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $bill_schedule = new BillSchedule();
+        $bill_schedule->bill_schedule_name = $request->bill_schedule_name;
+        $bill_schedule->save();
+
+        session()->flash('success','Bill Schedule Added Successfully.');
+        return redirect()->route('bill-schedule');
+    }
+
+    public function edit_bill_schedule($id)
+    {
+        $data = BillSchedule::find($id);
+        return view('setup.bill_schedule.edit_bill_schedule',compact('data'));
+    }
+
+    public function update_bill_schedule(Request $request, $id)
+    {
+        $rules = [
+            'bill_schedule_name' => 'required'
+        ];
+
+        $validMsg = [
+            'bill_schedule_name.required' => 'Bill Schedule field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $bill_schedule = BillSchedule::find($id);
+        $bill_schedule->bill_schedule_name = $request->bill_schedule_name;
+        $bill_schedule->save();
+
+        session()->flash('success', 'Bill Schedule Updated Successfully.');
+
+        return redirect()->route('bill-schedule');
+    }
+
+    public function delete_bill_schedule($id)
+    {
+        $data = BillSchedule::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Bill Schedule Deleted Successfully');
+        return redirect()->back();
+    }
+
+    //payment_mode
+
+    public function payment_mode()
+    {
+        $data = PaymentMode::all();
+        return view('setup.payment_mode.payment_mode',compact('data'));
+    }
+
+    public function add_payment_mode()
+    {
+        return view('setup.payment_mode.add_payment_mode');
+    }
+
+    public function save_payment_mode(Request $request)
+    {
+        $rules = [
+            'payment_mode_name' => 'required'
+        ];
+
+        $validMsg = [
+            'payment_mode_name.required' => 'Payment Mode field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $payment_mode = new PaymentMode();
+        $payment_mode->payment_mode_name = $request->payment_mode_name;
+        $payment_mode->save();
+
+        session()->flash('success','Payment Mode Added Successfully.');
+        return redirect()->route('payment-mode');
+    }
+
+    public function edit_payment_mode($id)
+    {
+        $data = PaymentMode::find($id);
+        return view('setup.payment_mode.edit_payment_mode',compact('data'));
+    }
+
+    public function update_payment_mode(Request $request, $id)
+    {
+        $rules = [
+            'payment_mode_name' => 'required'
+        ];
+
+        $validMsg = [
+            'payment_mode_name.required' => 'Payment Mode field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $payment_mode = PaymentMode::find($id);
+        $payment_mode->payment_mode_name = $request->payment_mode_name;
+        $payment_mode->save();
+
+        session()->flash('success', 'Payment Mode Updated Successfully.');
+
+        return redirect()->route('payment-mode');
+    }
+
+    public function delete_payment_mode($id)
+    {
+        $data = PaymentMode::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Payment Mode Deleted Successfully');
+        return redirect()->back();
+    }
 
 
 }

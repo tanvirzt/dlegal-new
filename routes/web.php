@@ -172,6 +172,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('criminal-cases','CriminalCasesController@criminal_cases')->name('criminal-cases');
         Route::get('add-criminal-cases','CriminalCasesController@add_criminal_cases')->name('add-criminal-cases');
         Route::post('save-criminal-cases','CriminalCasesController@save_criminal_cases')->name('save-criminal-cases');
+        Route::post('upload-criminal-cases-files/{id}','CriminalCasesController@upload_criminal_cases_files')->name('upload-criminal-cases-files');
+        Route::post('update-criminal-cases-files','CriminalCasesController@update_criminal_cases_files')->name('update-criminal-cases-files');
         Route::get('edit-criminal-cases/{id}','CriminalCasesController@edit_criminal_cases')->name('edit-criminal-cases');
         Route::post('update-criminal-cases/{id}','CriminalCasesController@update_criminal_cases')->name('update-criminal-cases');
         Route::post('update-criminal-case/{id}','CriminalCasesController@update_criminal_case')->name('update-criminal-case');
@@ -346,6 +348,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('/update-billing/{id}','BillingsController@update_billing')->name('update-billing');
         Route::get('add-billing-civil-cases/{id}','BillingsController@add_billing_civil_cases')->name('add-billing-civil-cases');
         Route::get('add-billing-criminal-cases/{id}','BillingsController@add_billing_criminal_cases')->name('add-billing-criminal-cases');
+        Route::get('add-criminal-cases-billling/{id}','BillingsController@add_criminal_cases_billling')->name('add-criminal-cases-billling');
+        Route::post('save-criminal-cases-billing/{id}','BillingsController@save_criminal_cases_billing')->name('save-criminal-cases-billing');
         Route::post('delete-billing/{id}','BillingsController@delete_billing')->name('delete-billing');
         Route::get('add-billing-labour-cases/{id}','BillingsController@add_billing_labour_cases')->name('add-billing-labour-cases');
         Route::get('add-billing-quassi-judicial-cases/{id}','BillingsController@add_billing_quassi_judicial_cases')->name('add-billing-quassi-judicial-cases');
@@ -632,6 +636,27 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('edit-progress/{id}','AdminSetupController@edit_progress')->name('edit-progress');
         Route::post('update-progress/{id}','AdminSetupController@update_progress')->name('update-progress');
         Route::post('delete-progress/{id}','AdminSetupController@delete_progress')->name('delete-progress');
+
+        Route::get('bill-particulars', 'AdminSetupController@bill_particulars')->name('bill-particulars');
+        Route::get('add-bill-particulars','AdminSetupController@add_bill_particulars')->name('add-bill-particulars');
+        Route::post('save-bill-particulars','AdminSetupController@save_bill_particulars')->name('save-bill-particulars');
+        Route::get('edit-bill-particulars/{id}','AdminSetupController@edit_bill_particulars')->name('edit-bill-particulars');
+        Route::post('update-bill-particulars/{id}','AdminSetupController@update_bill_particulars')->name('update-bill-particulars');
+        Route::post('delete-bill-particulars/{id}','AdminSetupController@delete_bill_particulars')->name('delete-bill-particulars');
+
+        Route::get('bill-schedule', 'AdminSetupController@bill_schedule')->name('bill-schedule');
+        Route::get('add-bill-schedule','AdminSetupController@add_bill_schedule')->name('add-bill-schedule');
+        Route::post('save-bill-schedule','AdminSetupController@save_bill_schedule')->name('save-bill-schedule');
+        Route::get('edit-bill-schedule/{id}','AdminSetupController@edit_bill_schedule')->name('edit-bill-schedule');
+        Route::post('update-bill-schedule/{id}','AdminSetupController@update_bill_schedule')->name('update-bill-schedule');
+        Route::post('delete-bill-schedule/{id}','AdminSetupController@delete_bill_schedule')->name('delete-bill-schedule');
+
+        Route::get('payment-mode', 'AdminSetupController@payment_mode')->name('payment-mode');
+        Route::get('add-payment-mode','AdminSetupController@add_payment_mode')->name('add-payment-mode');
+        Route::post('save-payment-mode','AdminSetupController@save_payment_mode')->name('save-payment-mode');
+        Route::get('edit-payment-mode/{id}','AdminSetupController@edit_payment_mode')->name('edit-payment-mode');
+        Route::post('update-payment-mode/{id}','AdminSetupController@update_payment_mode')->name('update-payment-mode');
+        Route::post('delete-payment-mode/{id}','AdminSetupController@delete_payment_mode')->name('delete-payment-mode');
 
         Route::get('litigation-calender-list','LitigationCalenderController@litigation_calender_list')->name('litigation-calender-list');
         Route::get('litigation-calender-short','LitigationCalenderController@litigation_calender_short')->name('litigation-calender-short');

@@ -721,8 +721,58 @@
                                                             <td>
                                                                 @php
                                                                     $law_id = explode('/ ',$data->law_id);
+                                                                    $law_write = explode('/ ',$data->law_write);
+                                                                    // dd(!empty($data->law_id));
                                                                 @endphp
-                                                                @if($data->law_id)
+
+                                                                @if($data->law_id || $data->law_write)
+                                                                    @if (count($law_id)>= 1 && count($law_write)>= 1)
+                                                                        @if (!empty($data->law_id) && count($law_id)>= 1 && count($law_write)>= 1)
+                                                                        {{-- {{ dd('case info') }} --}}
+                                                                            @foreach ($law_id as $pro)
+                                                                                <li class="text-left">{{ $pro }}</li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($law_id as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                        @if (!empty($data->law_write) && count($law_write)>= 1 && count($law_id)>= 1)
+                                                                            @foreach ($law_write as $pro)
+                                                                                <li class="text-left">{{ $pro }}</li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($law_write as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @elseif (count($law_id)> 1 && count($law_write) == 0)
+                                                                        @foreach ($law_id as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                        @foreach ($law_write as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @elseif (count($law_id) == 0 && count($law_write)> 1)
+                                                                        @foreach ($law_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                        @foreach ($law_write as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($law_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                        @foreach ($law_write as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+
+
+
+                                                                {{-- @if($data->law_id)
                                                                     @if (count($law_id)> 1)
                                                                         @foreach ($law_id as $pro)
                                                                             <li class="text-left">{{ $pro }}</li>
@@ -733,9 +783,7 @@
                                                                         @endforeach
                                                                     @endif
                                                                 @endif
-                                                                @php
-                                                                    $law_write = explode(', ',$data->law_write);
-                                                                @endphp
+                                  
                                                                 @if($data->law_write)
                                                                     @if (count($law_write)> 1)
                                                                         @foreach ($law_write as $pro)
@@ -746,7 +794,9 @@
                                                                             {{ $pro }}
                                                                         @endforeach
                                                                     @endif
-                                                                @endif
+                                                                @endif --}}
+
+
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -1184,7 +1234,7 @@
                                                         @endforeach
                                                     @endif
                                                     {{ $logs->updated_day_notes_write }} </td>
-                                                <td> {{ $logs->first_name }} {{ $logs->middle_name }} {{ $logs->last_name }} {{ $logs->updated_engaged_advocate_write }} </td>
+                                                <td> {{ $logs->updated_engaged_advocate_id }} {{ $logs->updated_engaged_advocate_write }} </td>
                                                 <td>
                                                     <a href="{{ route('edit-criminal-cases-status', $logs->id) }}">
                                                         <button
@@ -1326,6 +1376,13 @@
                                                 <td>{{ $files->created_by }} </td>
                                                 <td>{{ $files->created_at }} </td>
                                                 <td>
+                                                    <a >
+                                                        <button data-toggle="modal" data-target="#edit_document"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top" action={{$files->id}}
+                                                            class="btn btn-info btn-sm file_edit_modals" title="Edit"><i
+                                                                class="fas fa-edit"></i></button>
+                                                    </a>
                                                     <form method="get" action="{{ route('delete-criminal-cases-files',$files->id) }}"
                                                           class="delete-user btn btn-outline-danger btn-xs">
                                                         @csrf
@@ -1364,35 +1421,33 @@
                                     <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                         <tr>
+                                            <th>Bill for the Date</th>
+                                            <th>Bill Particulars</th>
                                             <th>Bill Type</th>
-                                            <th>Payment Type</th>
-                                            <th>District Name</th>
-                                            <th>Panel Lawyer</th>
+                                            <th>Bill Schedule</th>
                                             <th>Bill Amount</th>
-                                            <th>Billing Date</th>
-                                            <th>Bank Name</th>
-                                            <th>Bank Branch</th>
-                                            <th>Cheque No.</th>
+                                            <th>Bill Submitted</th>
                                             <th>Payment Amount</th>
-                                            <th>Digital Payment</th>
-                                            <th>Approval</th>
+                                            <th>Payment Received</th>
+                                            <th>Payment Mode</th>
+                                            <th>Paid/Due</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($bill_history as $bill_logs)
                                             <tr>
+                                                <td> {{ $bill_logs->bill_for_the_date }} </td>
+                                                <td> {{ $bill_logs->bill_particulars_id }} {{ $bill_logs->bill_particulars }} </td>
                                                 <td> {{ $bill_logs->bill_type_name }} </td>
-                                                <td> {{ $bill_logs->payment_type }} </td>
-                                                <td> {{ $bill_logs->district_name }} </td>
-                                                <td> {{ $bill_logs->first_name }} </td>
+                                                <td> {{ $bill_logs->bill_schedule_name }} </td>
                                                 <td> {{ $bill_logs->bill_amount }} </td>
-                                                <td> {{ $bill_logs->date_of_billing }} </td>
-                                                <td> {{ $bill_logs->bank_name }} </td>
-                                                <td> {{ $bill_logs->bank_branch_name }} </td>
-                                                <td> {{ $bill_logs->cheque_no }} </td>
-                                                <td> {{ $bill_logs->payment_amount }} </td>
-                                                <td> {{ $bill_logs->digital_payment_type_name }} </td>
-                                                <td> {{ $bill_logs->is_approved }} </td>
+                                                <td> {{ $bill_logs->bill_submitted }} </td>
+                                                <td>  </td>
+                                                <td> {{ $bill_logs->payment_received }} </td>
+                                                <td> {{ $bill_logs->payment_mode_name }} </td>
+                                                <td>  </td>
+                                                <td> </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -2002,6 +2057,7 @@
                     action="{{ route('update-criminal-cases', $data->id) }}"
                     method="post">
                     @csrf
+                    <input type="hidden" value="basic_information" name="basic_information">
                     <div class="card-body">
 
                         <h6 class="text-uppercase text-bold"><u> Basic Information </u>
@@ -2352,6 +2408,7 @@
                     action="{{ route('update-criminal-cases', $data->id) }}"
                     method="post">
                     @csrf
+                    <input type="hidden" value="client_information" name="client_information">
                     <div class="card-body">
 
                         <h6 class="text-uppercase text-bold"><u> Client Information </u>
@@ -2715,6 +2772,7 @@
                     action="{{ route('update-criminal-cases', $data->id) }}"
                     method="post">
                     @csrf
+                    <input type="hidden" value="opposite_party_information" name="opposite_party_information">
                     <div class="card-body">
 
                         <h6 class="text-uppercase text-bold"><u> Opposite Party Information </u>
@@ -3059,7 +3117,7 @@
     {{-- case Information --}}
 
     <div class="modal fade" id="modal-lg-case-info">
-        <div class="modal-dialog modal-md">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="card-title"> Edit Criminal Cases </h3>
@@ -3071,6 +3129,8 @@
                     action="{{ route('update-criminal-cases', $data->id) }}"
                     method="post">
                     @csrf
+                    <input type="hidden" value="case_information" name="case_information">
+
                     <div class="card-body">
 
                         <h6 class="text-uppercase text-bold"><u> Case Information </u>
@@ -3872,6 +3932,7 @@
                     action="{{ route('update-criminal-cases', $data->id) }}"
                     method="post">
                     @csrf
+                    <input type="hidden" value="lawyers_information" name="lawyers_information">
                     <div class="card-body">
 
                         <h6 class="text-uppercase text-bold"><u> Lawyers Information </u>
@@ -3970,6 +4031,7 @@
                     action="{{ route('update-criminal-cases', $data->id) }}"
                     method="post">
                     @csrf
+                    <input type="hidden" value="documents_information" name="documents_information">
                     <div class="card-body">
                         <h6 class="text-uppercase text-bold"><u> Documents
                                 Received </u></h6>
@@ -4103,6 +4165,7 @@
                     action="{{ route('update-criminal-cases', $data->id) }}"
                     method="post">
                     @csrf
+                    <input type="hidden" value="case_steps" name="case_steps">
                     <div class="card-body">
 
                         {{-- <h6 class="text-uppercase text-bold"><u> Case Steps </u>
@@ -4467,23 +4530,75 @@
 
     {{-- documents add --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+        <form method="post" action="{{ route('upload-criminal-cases-files',$data->id) }}" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Document</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <label for="uploaded_document" class="col-sm-4 col-form-label">Document Upload</label>
+                            <div class="col-sm-8">
+                                <input type="file" class="form-control" id="uploaded_document" name="uploaded_document" value="{{old('uploaded_document')}}">
+                                @error('uploaded_document')<span class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div class="float-right">
+                        <button type="submit"
+                                class="btn btn-primary text-uppercase"><i
+                                class="fas fa-save"></i> Save
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-              ...
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+        </form>
+      </div>
+      <div class="modal fade" id="edit_document" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form method="post" action="{{ route('update-criminal-cases-files') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Document</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <label for="uploaded_document" class="col-sm-4 col-form-label">Document Upload</label>
+                            <div class="col-sm-8">
+                                <span id="files_id"></span>
+                                <input type="file" class="form-control" id="uploaded_document" name="uploaded_document" value="{{old('uploaded_document')}}">
+                                @error('uploaded_document')<span class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div class="float-right">
+                        <button type="submit"
+                                class="btn btn-primary text-uppercase"><i
+                                class="fas fa-save"></i> Save
+                        </button>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
+            </div>
+        </form>
       </div>
     {{-- documents add  --}}
     {{-- case Information --}}

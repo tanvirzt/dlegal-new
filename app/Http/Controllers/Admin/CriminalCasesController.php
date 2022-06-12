@@ -447,7 +447,8 @@ class CriminalCasesController extends Controller
         // dd($existing_assignend_external_council);
         $client_explode = explode(', ', $data->client_id);
         $court_explode = explode(', ', $data->case_infos_court_id);
-        $law_explode = explode(', ', $data->law_id);
+        $law_explode = explode('/ ', $data->law_id);
+        // dd($law_explode);
         $section_explode = explode(', ', $data->section_id);
         $opposition_explode = explode(', ', $data->opposition_id);
         $sub_seq_court_explode = explode(', ', $data->case_infos_sub_seq_court_id);
@@ -528,8 +529,7 @@ class CriminalCasesController extends Controller
             $data->in_favour_of_id = $request->in_favour_of_id;
             $data->case_no = $request->case_no;
             $data->name_of_the_court_id = $request->name_of_the_court_id;
-            $data->case_infos_court_short_id = $request->case_infos_court_short_id ? implode(', ', $request->case_infos_court_short_id) : null;
-            $data->court_short_write = rtrim($court_short_write, ', ');
+
             $data->next_date = $next_date;
             $data->next_date_fixed_id = $request->next_date_fixed_id;
             $data->received_date = $received_date;
@@ -604,6 +604,8 @@ class CriminalCasesController extends Controller
             $data->case_infos_case_no = $request->case_infos_case_no;
             $data->case_infos_case_year = $request->case_infos_case_year;
             $data->case_infos_court_id = $request->case_infos_court_id ? implode(', ', $request->case_infos_court_id) : null;
+            $data->case_infos_court_short_id = $request->case_infos_court_short_id ? implode(', ', $request->case_infos_court_short_id) : null;
+            $data->court_short_write = rtrim($court_short_write, ', ');
             $data->case_infos_sub_seq_case_title_id = $request->case_infos_sub_seq_case_title_id;
             $data->case_infos_sub_seq_case_no = rtrim($case_infos_sub_seq_case_no, ', ');
             $data->case_infos_sub_seq_case_year = rtrim($case_infos_sub_seq_case_year, ', ');
@@ -685,8 +687,8 @@ class CriminalCasesController extends Controller
                     $file->save();
                 }
             }
-        }else if($request->client){
-
+        }else if($request->basic_information){
+// dd('basic_information');
             $data->client = $request->client;
             $data->legal_issue_id = $request->legal_issue_id;
             $data->legal_issue_write = $request->legal_issue_write;
@@ -699,8 +701,6 @@ class CriminalCasesController extends Controller
             $data->in_favour_of_id = $request->in_favour_of_id;
             $data->case_no = $request->case_no;
             $data->name_of_the_court_id = $request->name_of_the_court_id;
-            $data->case_infos_court_short_id = $request->case_infos_court_short_id ? implode(', ', $request->case_infos_court_short_id) : null;
-            $data->court_short_write = rtrim($court_short_write, ', ');
             $data->next_date = $next_date;
             $data->next_date_fixed_id = $request->next_date_fixed_id;
             $data->received_date = $received_date;
@@ -712,7 +712,7 @@ class CriminalCasesController extends Controller
             $data->received_by_write = $request->received_by_write;
             $data->save();
 
-        }else if ($request->client_party_id) {
+        }else if ($request->client_information) {
             
             $data->client_party_id = $request->client_party_id;
             $data->client_category_id = $request->client_category_id;
@@ -738,7 +738,7 @@ class CriminalCasesController extends Controller
             $data->client_coordinator_details = $request->client_coordinator_details;
             $data->save();
 
-        }else if ($request->opposition_party_id) {
+        }else if ($request->opposite_party_information) {
 
             $data->opposition_party_id = $request->opposition_party_id;
             $data->opposition_category_id = $request->opposition_category_id;
@@ -764,7 +764,7 @@ class CriminalCasesController extends Controller
             $data->opposition_coordinator_details = $request->opposition_coordinator_details;
             $data->save();
 
-        }else if ($request->lawyer_advocate_id) {
+        }else if ($request->lawyers_information) {
 
             $data->lawyer_advocate_id = $request->lawyer_advocate_id;
             $data->lawyer_advocate_write = $request->lawyer_advocate_write;
@@ -772,7 +772,7 @@ class CriminalCasesController extends Controller
             $data->lawyers_remarks = $request->lawyers_remarks;
             $data->save();
 
-        }else if ($request->received_documents) {
+        }else if ($request->documents_information) {
 
             $data->received_documents_id = $received_documents_id;
             $data->received_documents = $received_documents;
@@ -783,7 +783,7 @@ class CriminalCasesController extends Controller
 
             $data->save();
 
-        }else if ($request->case_infos_division_id) {
+        }else if ($request->case_information) {
             // dd($request->all());
             $data->case_infos_division_id = $request->case_infos_division_id;
             $data->case_infos_district_id = $request->case_infos_district_id;
@@ -794,6 +794,8 @@ class CriminalCasesController extends Controller
             $data->case_infos_case_no = $request->case_infos_case_no;
             $data->case_infos_case_year = $request->case_infos_case_year;
             $data->case_infos_court_id = $request->case_infos_court_id ? implode(', ', $request->case_infos_court_id) : null;
+            $data->case_infos_court_short_id = $request->case_infos_court_short_id ? implode(', ', $request->case_infos_court_short_id) : null;
+            $data->court_short_write = rtrim($court_short_write, ', ');
             $data->case_infos_sub_seq_case_title_id = $request->case_infos_sub_seq_case_title_id;
             $data->case_infos_sub_seq_case_no = rtrim($case_infos_sub_seq_case_no, ', ');
             $data->case_infos_sub_seq_case_year = rtrim($case_infos_sub_seq_case_year, ', ');
@@ -830,7 +832,7 @@ class CriminalCasesController extends Controller
 
 // dd('asdfadf');
 
-        }else if ($request->case_steps_filing) {
+        }else if ($request->case_steps) {
             
             $steps = CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
             $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
@@ -1010,6 +1012,8 @@ class CriminalCasesController extends Controller
             $data->case_infos_case_no = $request->case_infos_case_no;
             $data->case_infos_case_year = $request->case_infos_case_year;
             $data->case_infos_court_id = $request->case_infos_court_id ? implode(', ', $request->case_infos_court_id) : null;
+            $data->case_infos_court_short_id = $request->case_infos_court_short_id ? implode(', ', $request->case_infos_court_short_id) : null;
+            $data->court_short_write = rtrim($court_short_write, ', ');
             $data->case_infos_sub_seq_case_title_id = $request->case_infos_sub_seq_case_title_id;
             $data->case_infos_sub_seq_case_no = rtrim($case_infos_sub_seq_case_no, ', ');
             $data->case_infos_sub_seq_case_year = rtrim($case_infos_sub_seq_case_year, ', ');
@@ -1280,7 +1284,7 @@ class CriminalCasesController extends Controller
         $existing_assignend_external_council = SetupExternalCouncilAssociate::where('external_council_id',$data->lawyer_advocate_id)->orderBy('first_name','asc')->get();
         $client_explode = explode(', ', $data->client_id);
         $court_explode = explode(', ', $data->case_infos_court_id);
-        $law_explode = explode(', ', $data->law_id);
+        $law_explode = explode('/ ', $data->law_id);
         $section_explode = explode(', ', $data->section_id);
         $opposition_explode = explode(', ', $data->opposition_id);
         $sub_seq_court_explode = explode(', ', $data->case_infos_sub_seq_court_id);
@@ -1333,17 +1337,25 @@ class CriminalCasesController extends Controller
         //        $latest = json_decode(json_encode($latest));
 //        echo "<pre>";print_r($latest);die();
 
-        $bill_history = DB::table('case_billings')
-            ->leftJoin('setup_bill_types', 'case_billings.bill_type_id', '=', 'setup_bill_types.id')
-            ->leftJoin('setup_districts', 'case_billings.district_id', '=', 'setup_districts.id')
-            ->leftJoin('setup_external_councils', 'case_billings.panel_lawyer_id', '=', 'setup_external_councils.id')
-            ->leftJoin('setup_banks', 'case_billings.bank_id', '=', 'setup_banks.id')
-            ->leftJoin('setup_bank_branches', 'case_billings.branch_id', '=', 'setup_bank_branches.id')
-            ->leftJoin('setup_digital_payments', 'case_billings.digital_payment_type_id', '=', 'setup_digital_payments.id')
-            ->where(['case_billings.case_type' => "Criminal Cases", 'case_billings.case_no' => $data->case_no, 'case_billings.delete_status' => 0])
-            ->select('case_billings.*', 'setup_bill_types.bill_type_name', 'setup_districts.district_name', 'setup_external_councils.first_name', 'setup_external_councils.middle_name', 'setup_external_councils.last_name', 'setup_banks.bank_name', 'setup_bank_branches.bank_branch_name', 'setup_digital_payments.digital_payment_type_name')
-            ->get();
+        // $bill_history = DB::table('case_billings')
+        //     ->leftJoin('setup_bill_types', 'case_billings.bill_type_id', '=', 'setup_bill_types.id')
+        //     ->leftJoin('setup_districts', 'case_billings.district_id', '=', 'setup_districts.id')
+        //     ->leftJoin('setup_external_councils', 'case_billings.panel_lawyer_id', '=', 'setup_external_councils.id')
+        //     ->leftJoin('setup_banks', 'case_billings.bank_id', '=', 'setup_banks.id')
+        //     ->leftJoin('setup_bank_branches', 'case_billings.branch_id', '=', 'setup_bank_branches.id')
+        //     ->leftJoin('setup_digital_payments', 'case_billings.digital_payment_type_id', '=', 'setup_digital_payments.id')
+        //     ->where(['case_billings.case_type' => "Criminal Cases", 'case_billings.case_no' => $data->case_no, 'case_billings.delete_status' => 0])
+        //     ->select('case_billings.*', 'setup_bill_types.bill_type_name', 'setup_districts.district_name', 'setup_external_councils.first_name', 'setup_external_councils.middle_name', 'setup_external_councils.last_name', 'setup_banks.bank_name', 'setup_bank_branches.bank_branch_name', 'setup_digital_payments.digital_payment_type_name')
+        //     ->get();
 
+        $bill_history = DB::table('criminal_cases_billings')
+                        ->leftJoin('setup_bill_types','criminal_cases_billings.bill_type_id','setup_bill_types.id')
+                        ->leftJoin('bill_schedules','criminal_cases_billings.bill_schedule_id','bill_schedules.id')
+                        ->leftJoin('payment_modes','criminal_cases_billings.payment_mode_id','payment_modes.id')
+                        ->select('criminal_cases_billings.*','setup_bill_types.bill_type_name','bill_schedules.bill_schedule_name','payment_modes.payment_mode_name')
+                        ->where('case_id',$id)
+                        ->get();
+// dd($bill_history);
         $case_activity_log = DB::table('criminal_case_activity_logs')
             ->leftJoin('setup_modes', 'criminal_case_activity_logs.activity_mode_id', 'setup_modes.id')
             ->leftJoin('setup_external_councils as activity_engaged', 'criminal_case_activity_logs.activity_engaged_id', 'activity_engaged.id')
@@ -1700,5 +1712,55 @@ class CriminalCasesController extends Controller
         session()->flash('success', 'Case Activity Updated Successfully');
         return redirect()->route('view-criminal-cases',$case_id->case_id);
     }
+
+    public function upload_criminal_cases_files(Request $request,$id)
+    {
+        if ($request->hasfile('uploaded_document')) {
+                $file = $request->file('uploaded_document');
+                $original_name = $file->getClientOriginalName();
+                $name = time() . rand(1, 100) . $original_name;
+                $file->move(public_path('files/criminal_cases'), $name);
+
+                $file = new CriminalCasesFile();
+                $file->case_id = $id;
+                $file->uploaded_document = $name;
+                $file->created_by = Auth::guard('admin')->user()->email;
+                $file->save();
+        }
+
+        session()->flash('success', 'Documents Added Successfully.');
+        return redirect()->back();
+
+    }
+
+    public function update_criminal_cases_files(Request $request)
+    {
+        // dd($request->all());
+
+        $data = CriminalCasesFile::find($request->files_id);
+// dd($data);
+        if (!empty($data['uploaded_document'])) {
+            $image_path = 'files/criminal_cases/'.$data['uploaded_document'];
+// if file exists then remove it
+            if(file_exists($image_path)){
+                unlink($image_path);
+            }
+
+            $file = $request->file('uploaded_document');
+            $original_name = $file->getClientOriginalName();
+            $name = time() . rand(1, 100) . $original_name;
+            $file->move(public_path('files/criminal_cases'), $name);
+
+            $file = CriminalCasesFile::find($request->files_id);
+            $file->uploaded_document = $name;
+            $file->created_by = Auth::guard('admin')->user()->email;
+            $file->save();
+
+        }
+
+        session()->flash('success', 'Documents Updated Successfully.');
+        return redirect()->back();
+    }
+
 
 }

@@ -1764,5 +1764,15 @@ $( '.links a' ).on( 'click', function(e){
   
   });
 
+  $('.file_edit_modals').on('click', function () {
+    // var client_category_id = $(this).val();
+    var route = $(this).attr('action');
+
+    // $(".files_id").val(route);
+    // alert(route);
+        $('#files_id').append('<input type="hidden" class="files_id" name="files_id" value="'+route+'">');
+
+  });
+
 });
 

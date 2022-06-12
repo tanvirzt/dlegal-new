@@ -371,7 +371,7 @@
                                                     <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                                     ><i class="fas fa-eye"></i></button>
                                                 </a>
-                                                <a href="{{ route('add-billing-criminal-cases', $datum->id) }}">
+                                                <a href="{{ route('add-criminal-cases-billling', $datum->id) }}">
                                                     <button
                                                         class="btn btn-warning btn-sm" data-toggle="tooltip"
                                                         data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button>

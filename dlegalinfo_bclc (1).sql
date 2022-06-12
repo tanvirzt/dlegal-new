@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2022 at 02:41 PM
+-- Generation Time: Jun 12, 2022 at 02:11 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bclc`
+-- Database: `dlegalinfo_bclc`
 --
 
 -- --------------------------------------------------------
@@ -142,8 +142,7 @@ CREATE TABLE `appellate_court_cases` (
 --
 
 INSERT INTO `appellate_court_cases` (`id`, `lower_court`, `case_no`, `division_id`, `district_id`, `thana_id`, `case_class_id`, `case_type_id`, `law_id`, `relevant_law_id`, `relevant_sections_id`, `section_id`, `date_of_filing`, `plaintiff_name`, `plaintiff_designaiton_id`, `plaintiff_contact_number`, `name_of_the_complainant`, `complainant_contact_no`, `complainant_designation_id`, `accused_name`, `accused_company_id`, `accused_address`, `accused_contact_no`, `other_claim`, `summary_facts_alligation`, `trial_court_id`, `trial_court_judgement_date`, `trial_grounds_judgement`, `appeal_court_id`, `appeal_court_judgement_date`, `appeal_grounds_judgement`, `appeal_court_judgement`, `panel_lawyer_id`, `total_legal_bill_amount`, `case_received_lawyer_id`, `case_papers_received`, `tadbirkar_details`, `tender_no`, `tender_no_date`, `case_category_id`, `case_subcategory_id`, `case_no_acd`, `date_of_filing_acd`, `acd_court_id`, `laws_id`, `sections_id`, `order`, `order_date`, `order_no_memo`, `appellant_petitioner_name`, `appellant_designation_id`, `appellant_address`, `opposite_party_name`, `opposite_party_designation_id`, `opposite_party_address`, `party_steps_taken_id`, `case_status_id`, `fixed_hearing_court_id`, `court_steps_taken_id`, `court_next_steps_date`, `assigned_lawyer_id`, `documents_lawyers_appointment`, `documents_sent_to_law_chamber`, `documents_received_field_programe`, `missing_documents_evidence`, `ground_appeal_revision`, `recommendations`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Yes', '654643', 3, 3, 2, 3, 2, 2, 2, 3, 4, '2022-03-17', 'asdf', 2, 'test', 'Aminur Rahman Smith Aminur', '01998744563', 2, 'Aminur Rahman Smith Aminur', 2, '43 Phillip St, Sydney NSW 2000, Australia', '01998745638', 'test', 'test', '2', '2022-04-01', 'test', 1, '2022-03-19', 'test', 'test', 1, 'test', 1, '2022-03-17', 'test', 'test 2', '2022-03-15', 3, 3, '545653465', '2022-03-15', 2, 2, 2, 'est', '2022-03-09', '2022-04-01', 'est', '1', 'estr', 'Aminur Rahman Smith Aminur', 2, '43 Phillip St, Sydney NSW 2000, Australia', 3, NULL, 2, 3, '2022-03-10', 1, 'test', 'asdf', 'wer', 'sdfds', 'sdafds', 'ertert', 0, NULL, NULL, '2022-03-31 04:47:46', '2022-04-02 06:19:12'),
-(2, 'Yes', '554', 3, 3, 2, 5, 2, 2, 2, 4, 3, '2022-04-29', 'test1 test', 2, '01456698785', 'Aminur Rahman Smith Aminur', '01998744563', 2, 'Aminur Rahman Smith Aminur', 2, '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 'ewrew', 'sdf', '2', '2022-05-05', 'ghfh', 2, '2022-04-27', 'were', 'asdf', 1, 'test 6', 1, '2022-04-21', 'gsddfgrf', 'test 232', '2022-04-11', 3, 12, 'testasdf', '2022-04-26', 2, 2, 4, 'tdfggfgdg', '2022-04-20', '2022-04-20', 'Aminur Rahman Smith Aminur', '2', '43 Phillip St, Sydney NSW 2000, Australia', 'Aminur Rahman Smith Aminur', 2, '43 Phillip St, Sydney NSW 2000, Australia', 3, 3, 2, 3, '2022-04-26', 1, 'rgrfg', 'dsfdsf', 'cvbcxv', 'cvbc', 'retr', 'sdfds', 0, NULL, NULL, '2022-04-02 04:17:30', '2022-04-02 06:18:51');
+(1, 'Yes', '654643', 3, 3, 2, 3, 2, 2, 2, 3, 4, '2022-03-17', 'asdf', 2, 'test', 'Aminur Rahman Smith Aminur', '01998744563', 2, 'Aminur Rahman Smith Aminur', 2, '43 Phillip St, Sydney NSW 2000, Australia', '01998745638', 'test', 'test', '2', '2022-04-01', 'test', 1, '2022-03-19', 'test', 'test', 1, 'test', 1, '2022-03-17', 'test', 'test 2', '2022-03-15', 3, 3, 'testasdf', '2022-03-15', 2, 2, 2, 'est', '2022-03-09', '2022-04-01', 'est', '1', 'estr', 'Aminur Rahman Smith Aminur', 2, '43 Phillip St, Sydney NSW 2000, Australia', 3, 3, 2, 3, '2022-03-10', 1, 'test', 'asdf', 'wer', 'sdfds', 'sdafds', 'ertert', 0, NULL, NULL, '2022-03-31 04:47:46', '2022-03-31 06:21:11');
 
 -- --------------------------------------------------------
 
@@ -167,22 +166,13 @@ CREATE TABLE `appellate_court_cases_files` (
 --
 
 INSERT INTO `appellate_court_cases_files` (`id`, `case_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, '164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-16 05:00:10', '2022-03-16 05:00:10'),
-(2, 1, '164742841018164664984298Ethnicity.png', 0, NULL, NULL, '2022-03-16 05:00:10', '2022-03-16 05:00:10'),
-(3, 1, '164792825535164509724711asdfasdf.pdf', 0, NULL, NULL, '2022-03-21 23:50:55', '2022-03-21 23:50:55'),
-(4, 1, '164792825518164509798992byden.jpg', 0, NULL, NULL, '2022-03-21 23:50:55', '2022-03-21 23:50:55'),
-(5, 2, '164801578796164792221728164509798992byden.jpg', 0, NULL, NULL, '2022-03-23 00:09:47', '2022-03-23 00:09:47'),
-(6, 2, '164801578778164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-23 00:09:47', '2022-03-23 00:09:47'),
-(7, 1, '164809780145164792825535164509724711asdfasdf.pdf', 0, NULL, NULL, '2022-03-23 22:56:41', '2022-03-23 22:56:41'),
-(8, 1, '16480978017216474106851byden (1).jpg', 0, NULL, NULL, '2022-03-23 22:56:41', '2022-03-23 22:56:41'),
-(9, 2, '16480980113516474106851byden (1).jpg', 0, NULL, NULL, '2022-03-23 23:00:11', '2022-03-23 23:00:11'),
-(10, 2, '164809801148164792825535164509724711asdfasdf.pdf', 0, NULL, NULL, '2022-03-23 23:00:11', '2022-03-23 23:00:11'),
-(11, 3, '164809819213164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-23 23:03:12', '2022-03-23 23:03:12'),
-(12, 3, '16480981926916474106851byden (1).jpg', 0, NULL, NULL, '2022-03-23 23:03:12', '2022-03-23 23:03:12'),
-(13, 1, '164809894245164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-23 23:15:42', '2022-03-23 23:15:42'),
-(14, 1, '1648098942716474106851byden (1).jpg', 0, NULL, NULL, '2022-03-23 23:15:42', '2022-03-23 23:15:42'),
-(15, 1, '164872366660byden.jpg', 0, NULL, NULL, '2022-03-31 04:47:46', '2022-03-31 04:47:46'),
-(16, 1, '164872366684asdfasdf.pdf', 0, NULL, NULL, '2022-03-31 04:47:46', '2022-03-31 04:47:46');
+(1, 1, '164524564339asdfasdf.pdf', 0, NULL, NULL, '2022-02-18 22:40:43', '2022-02-18 22:40:43'),
+(2, 1, '16452456431byden.jpg', 0, NULL, NULL, '2022-02-18 22:40:43', '2022-02-18 22:40:43'),
+(3, 1, '164524589178asdfasdf.pdf', 0, NULL, NULL, '2022-02-18 22:44:51', '2022-02-18 22:44:51'),
+(4, 1, '16452458912Ethnicity.png', 0, NULL, NULL, '2022-02-18 22:44:51', '2022-02-18 22:44:51'),
+(5, 1, '164524589160john.jpg', 0, NULL, NULL, '2022-02-18 22:44:51', '2022-02-18 22:44:51'),
+(6, 2, '164524605669asdfasdf.pdf', 0, NULL, NULL, '2022-02-18 22:47:36', '2022-02-18 22:47:36'),
+(7, 2, '164524605664Ethnicity.png', 0, NULL, NULL, '2022-02-18 22:47:36', '2022-02-18 22:47:36');
 
 -- --------------------------------------------------------
 
@@ -216,7 +206,9 @@ CREATE TABLE `appellate_court_case_status_logs` (
 --
 
 INSERT INTO `appellate_court_case_status_logs` (`id`, `case_id`, `updated_court_id`, `updated_next_date`, `updated_next_date_fixed_id`, `updated_panel_lawyer_id`, `order_date`, `updated_case_status_id`, `updated_accused_name`, `update_description`, `case_proceedings`, `case_notes`, `next_date_fixed_reason`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 03:06:25', '2022-04-02 03:06:25');
+(1, 1, 1, '2022-02-10', 3, 2, '2022-03-12', 3, 'test', 'test 3', 'test 4', 'test 5', 'Disposed', 0, NULL, NULL, '2022-02-26 04:38:51', '2022-02-26 04:38:51'),
+(2, 1, 1, '2022-02-18', 1, 2, '2022-03-12', 3, 'test 2', 'test 3', 'test 4', 'test 5', 'Disposed', 0, NULL, NULL, '2022-02-26 04:39:46', '2022-02-26 04:39:46'),
+(3, 2, 1, '2022-02-10', 3, 2, '2022-03-04', 3, 'test 2', 'test 3', 'test 4', 'test 5', 'No Next Date', 0, NULL, NULL, '2022-02-26 04:40:38', '2022-02-26 04:40:38');
 
 -- --------------------------------------------------------
 
@@ -252,23 +244,32 @@ CREATE TABLE `case_billings` (
 --
 
 INSERT INTO `case_billings` (`id`, `bill_type_id`, `payment_type`, `district_id`, `case_type`, `case_no`, `panel_lawyer_id`, `bill_amount`, `date_of_billing`, `bank_id`, `branch_id`, `cheque_no`, `payment_amount`, `digital_payment_type_id`, `is_approved`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Cash Payment', 3, 'Criminal Cases', '4546151', 1, '78000', '2022-03-07', NULL, NULL, NULL, '36000', NULL, NULL, 0, NULL, NULL, '2022-03-16 04:11:26', '2022-03-16 04:11:26'),
-(2, 3, 'Digital Payment', 3, 'Special Quassi - Judicial Cases', '654643', 1, '780000', '2022-03-14', NULL, NULL, NULL, '258000', 3, NULL, 0, NULL, NULL, '2022-03-16 04:11:48', '2022-03-16 04:11:48'),
-(3, 2, 'Digital Payment', 4, 'Special Quassi - Judicial Cases', '654643', 1, '3698500', '2022-03-17', NULL, NULL, NULL, '38000', 3, NULL, 0, NULL, NULL, '2022-03-16 04:12:48', '2022-03-16 04:12:48'),
-(4, 3, 'Digital Payment', 3, 'Civil Cases', '4546151', 1, '356000', '2022-03-24', NULL, NULL, NULL, '258000', 3, NULL, 0, NULL, NULL, '2022-03-16 04:13:26', '2022-03-16 04:13:26'),
-(5, 2, 'Bank Payment', 3, 'Civil Cases', '4546151', 1, '69000', '2022-03-17', 2, 2, '6946546874', '500000', NULL, NULL, 0, NULL, NULL, '2022-03-16 04:41:41', '2022-03-16 04:41:41'),
-(6, 2, 'Digital Payment', 3, 'Civil Cases', '4546151', 1, '780000', '2022-03-18', NULL, NULL, NULL, '258000', 2, NULL, 0, NULL, NULL, '2022-03-16 04:42:10', '2022-03-16 04:42:10'),
-(7, 3, 'Digital Payment', 4, 'Civil Cases', '4546151', 1, '565656', '2022-03-24', NULL, NULL, NULL, '377000', 3, NULL, 0, NULL, NULL, '2022-03-16 04:42:43', '2022-03-16 04:42:43'),
-(8, 3, 'Bank Payment', 4, 'Supreme Court of Bangladesh', '65464321313', 1, NULL, '2022-03-17', 2, 2, '6946546874', '100000', NULL, NULL, 0, NULL, NULL, '2022-03-16 04:52:24', '2022-03-16 04:52:24'),
-(9, 1, 'Cash Payment', 2, 'High Court Division', '65464321313', 1, '780000', '2022-03-24', NULL, NULL, NULL, '38000', NULL, NULL, 0, NULL, NULL, '2022-03-16 04:58:29', '2022-03-16 04:58:29'),
-(10, 2, 'Bank Payment', 4, 'Appellate Court Division', '4546151', 1, '69000', '2022-03-24', 2, 2, '6946546874', '100000', NULL, NULL, 0, NULL, NULL, '2022-03-16 05:00:31', '2022-03-16 05:00:31'),
-(11, 1, 'Cash Payment', 4, 'Civil Cases', '4546151', 1, '780000', '2022-03-24', NULL, NULL, NULL, '38000', NULL, NULL, 0, NULL, NULL, '2022-03-16 05:49:53', '2022-03-16 05:49:53'),
-(12, 1, 'Bank Payment', 3, 'Civil Cases', '4546151', 1, '356000', '2022-03-16', 2, 2, '6946546877465', '38000', NULL, NULL, 0, NULL, NULL, '2022-03-30 04:31:54', '2022-03-30 04:31:54'),
-(13, 3, 'Bank Payment', 4, 'Civil Cases', '6546435456465', 1, '356000', '2022-03-16', 2, 2, '6946546877465', '38000', NULL, NULL, 0, NULL, NULL, '2022-03-30 04:33:38', '2022-03-30 04:33:38'),
-(14, 3, 'Digital Payment', 4, 'Special Quassi - Judicial Cases', '6546', 1, '87500', '2022-04-18', NULL, NULL, NULL, '36000', 3, NULL, 0, NULL, NULL, '2022-04-01 23:10:49', '2022-04-01 23:10:49'),
-(15, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 03:18:37', '2022-04-02 03:18:37'),
-(16, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 03:21:05', '2022-04-02 03:21:05'),
-(17, 2, 'Bank Payment', 3, 'Criminal Cases', 'asdf', 2, 'asdf', '2022-05-04', 2, 2, 'asdf', 'adf', NULL, NULL, 0, NULL, NULL, '2022-04-13 05:52:19', '2022-04-13 05:52:19');
+(1, 1, 'Digital Payment', 1, 'Civil Cases', '65464321', 2, '87000', '2022-03-18', NULL, NULL, '', '74000', 2, 'Approved', 1, NULL, NULL, '2022-03-02 01:34:07', '2022-03-03 00:35:16'),
+(2, 2, 'Cash Payment', 19, 'Criminal Cases', 'CR Case No. 1580/2015', 2, '250000', '2022-03-03', NULL, NULL, NULL, '100000', NULL, NULL, 0, NULL, NULL, '2022-03-02 01:34:28', '2022-03-23 03:38:47'),
+(3, 1, 'Digital Payment', 1, 'Labour Cases', '65464321313', 2, '780000', '2022-03-17', NULL, NULL, NULL, '33000', 2, NULL, 0, NULL, NULL, '2022-03-02 01:49:03', '2022-03-02 04:02:09'),
+(4, 2, 'Digital Payment', 4, 'Special Quassi - Judicial Cases', '6546', 2, '780000', '2022-03-11', NULL, NULL, NULL, '780000', 2, NULL, 1, NULL, NULL, '2022-03-02 01:49:50', '2022-03-02 05:41:57'),
+(5, 2, 'Digital Payment', 4, 'Supreme Court of Bangladesh', '6985', 2, '69000', '2022-03-25', NULL, NULL, NULL, '37000', 2, NULL, 0, NULL, NULL, '2022-03-02 01:50:14', '2022-03-02 01:50:14'),
+(6, 2, 'Digital Payment', 2, 'High Court Division', '544', 2, '7500', '2022-03-18', NULL, NULL, NULL, '145000', 2, 'Approved', 0, NULL, NULL, '2022-03-02 01:50:43', '2022-03-02 01:50:43'),
+(7, 2, 'Bank Payment', 5, 'Appellate Court Division', '6546', 2, '54000', '2022-03-25', 1, 3, '6946546874', '368888', NULL, NULL, 0, NULL, NULL, '2022-03-02 01:51:42', '2022-03-02 03:57:33'),
+(8, 1, 'Bank Payment', 1, 'Civil Cases', '65464321', 2, '780000', '2022-03-26', 1, 3, '6946546874', '100000', NULL, NULL, 1, NULL, NULL, '2022-03-02 04:42:52', '2022-03-03 00:34:14'),
+(9, 1, 'Digital Payment', 4, 'Criminal Cases', '6399887745', 2, NULL, '2022-03-10', NULL, NULL, NULL, '639000', 3, NULL, 1, NULL, NULL, '2022-03-02 05:19:56', '2022-03-02 05:42:11'),
+(10, 1, 'Bank Payment', 5, 'Criminal Cases', '6399887745', 2, '2654000', '2022-04-02', 2, 2, '875574', '98000', NULL, NULL, 1, NULL, NULL, '2022-03-02 05:21:34', '2022-03-02 05:40:57'),
+(11, 2, 'Digital Payment', 2, 'Labour Cases', '65464321313', 2, '85700', '2022-03-11', NULL, NULL, NULL, '960000', 3, NULL, 0, NULL, NULL, '2022-03-02 05:44:56', '2022-03-02 05:44:56'),
+(12, 1, 'Bank Payment', 3, 'Labour Cases', '65464321313', 2, '69000', '2022-03-05', 2, 2, '6946546874', '87600', NULL, NULL, 0, NULL, NULL, '2022-03-02 22:29:10', '2022-03-02 22:29:10'),
+(13, 2, 'Digital Payment', 5, 'Labour Cases', '65464321313', 2, '85600', '2022-03-23', NULL, NULL, NULL, '38000', 2, NULL, 0, NULL, NULL, '2022-03-02 22:30:40', '2022-03-02 22:30:40'),
+(14, 2, 'Digital Payment', 5, 'Labour Cases', '6546', 2, '780000', '2022-03-26', NULL, NULL, NULL, '38000', 3, NULL, 0, NULL, NULL, '2022-03-02 22:32:06', '2022-03-02 22:32:06'),
+(15, 1, 'Bank Payment', 5, 'Special Quassi - Judicial Cases', '6DSD55', 2, '962000', '2022-04-02', 1, 3, '6946546874', '798000', NULL, NULL, 0, NULL, NULL, '2022-03-02 22:48:18', '2022-03-02 22:48:18'),
+(16, 2, 'Bank Payment', 5, 'Supreme Court of Bangladesh', '321313', 2, '986000', '2022-03-24', 2, 2, '7584574', '8796000', NULL, NULL, 0, NULL, NULL, '2022-03-02 23:08:18', '2022-03-02 23:08:18'),
+(17, 2, 'Digital Payment', 5, 'High Court Division', '544', 2, '690000', '2022-03-18', NULL, NULL, NULL, '38000', 3, NULL, 0, NULL, NULL, '2022-03-02 23:17:47', '2022-03-02 23:17:47'),
+(18, 2, 'Bank Payment', 2, 'Appellate Court Division', '65464321313', 2, '87000', '2022-03-17', 2, 2, '879874', '875000', NULL, NULL, 0, NULL, NULL, '2022-03-02 23:26:58', '2022-03-02 23:26:58'),
+(19, 2, 'Digital Payment', 1, 'Labour Cases', '65464321313', 2, '870100', '2022-03-18', NULL, NULL, NULL, '36000', 2, NULL, 0, NULL, NULL, '2022-03-03 00:50:40', '2022-03-03 00:50:40'),
+(20, 1, 'Bank Payment', 3, 'High Court Division', '544', 2, '250000', '2022-03-16', 2, 2, '6946546877465', '100000', NULL, NULL, 0, NULL, NULL, '2022-03-06 01:49:50', '2022-03-06 01:49:50'),
+(21, 1, 'Digital Payment', 24, 'Criminal Cases', 'BLA(wages)- 194/2021', 5, '690000', '2022-03-24', NULL, NULL, NULL, '690000', 1, NULL, 0, NULL, NULL, '2022-03-07 22:33:56', '2022-06-01 10:02:34'),
+(22, 1, 'Cash Payment', 4, 'Civil Cases', '4546151', 2, '87500', '2022-03-24', NULL, NULL, NULL, '36000', NULL, NULL, 0, NULL, NULL, '2022-03-07 22:34:15', '2022-03-07 22:34:15'),
+(23, 1, 'Digital Payment', 5, 'Civil Cases', '654663', 2, '356000', '2022-03-10', NULL, NULL, NULL, '36000', 1, NULL, 0, NULL, NULL, '2022-03-07 22:35:57', '2022-03-07 22:35:57'),
+(24, 1, 'Cash Payment', 3, 'Criminal Cases', '6546', NULL, '500', '2022-03-28', NULL, NULL, NULL, '500', NULL, NULL, 0, NULL, NULL, '2022-03-28 01:05:11', '2022-03-28 01:05:11'),
+(25, 2, 'Cash Payment', 17, 'Criminal Cases', 'BLA(wages)- 194/2021', 4, '485000', '2022-03-30', NULL, NULL, NULL, '400000', NULL, NULL, 0, NULL, NULL, '2022-04-03 03:45:43', '2022-06-01 10:00:18'),
+(26, 1, 'Bank Payment', 20, 'Criminal Cases', 'BLA(wages)- 194/2021', 5, '500000', '2022-05-25', 2, 2, '254368', '370000', NULL, NULL, 0, NULL, NULL, '2022-06-01 09:54:01', '2022-06-01 09:55:34');
 
 -- --------------------------------------------------------
 
@@ -393,9 +394,7 @@ INSERT INTO `civil_cases` (`id`, `appeal_case`, `revision_case`, `client`, `case
 (2, NULL, 'Revision Case', 'Jack', '564687', 1, '2022-04-13', 1, '1', '2022-04-06', 'werw', 'asdf', 'test test', 'werew', 3, 1, 'test test', 'test', 3, 3, 1, 'test', 'test', 3, '2022-04-15', 3, '2022-04-22', 'test', 2, 5, 5, 2, 'test sadfasdf', 'test asdfsdaf', '2022-04-21', 'test', 'sdfg', 3, 3, 2, 'test asdf', '246541', 'test asdf test adf', 'test asdf tes adfdsf', 'Aminur', 'test dafgfd asdfds sdfgfd', 'yersy adsf', 'dfghfdgf dfgfd', 'gfhgfcvb cfvgbfd', 'dfgfdg', 'Aminur', 'th Aminur', 3, '2022-04-19', 3, 'sdf try sdfdsfd', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'cvbn', 'gth', '2022-03-29', 'fghfgh', 5, 5, 2, 'cvbvcgf', 'gfhgfh', '2022-04-20', 'test test test', 'asdfds gffdg sdafd', 'xcvxb', 'dfghfdg', 'xcv', 'dgdfg', 'Aminur Rahman Smith Aminur', 'Aminur Rahman Smith Aminur', 'fdsgfdg', 'zxcvb', 'edgtret', 'nvbcn', 0, NULL, NULL, '2022-04-09 03:51:39', '2022-04-09 21:58:36'),
 (3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-10 21:52:42', '2022-04-10 21:52:42'),
 (4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-10 21:52:56', '2022-04-10 21:52:56'),
-(5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-10 21:53:04', '2022-04-10 21:53:04'),
-(6, NULL, 'Revision Case', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-07 04:56:53', '2022-05-07 04:56:53'),
-(7, NULL, 'Revision Case', 'Jack', '6546434', 1, '2022-05-20', 1, '2', '2022-05-26', 'werw', 'asdf', 'asdf', 'wer', 3, 1, 'wrtewr', 'test', 3, 29, 253, 'tewta', 'asdf', 3, '2022-06-03', 1, '2022-05-19', 'wrwe', 2, 4, 4, 1, 'adsf', 'were', '2022-06-01', 'retet', 'sdfg', 3, 20, 135, 'ertrt updaed', '5346543', 'werew', 'adsf', 'Aminur Rahman Smith Aminur', 'asdf', 'wertewr', 'asdf', 'sdfg', 'erwer', 'Aminur Rahman Smith Aminur', 'Aminur Rahman Smith Aminur', 3, '2022-05-25', 1, 'werewa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'asdf', 'adsf', '2022-05-18', 'adsf sfdg', 5, 5, 2, 'sdfg', 'sfdg', '2022-05-24', 'sfdg', 'cvbzxcv', 'fsdfa', 'zxcv', 'sdfds', 'zxcv', 'sdfd', 'zxcv', 'sdf', 'zxcv', 'SDFCsdf', 'zxcv', 0, NULL, NULL, '2022-05-07 05:12:52', '2022-05-07 05:27:00');
+(5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mdimranhossain985@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-10 21:53:04', '2022-04-10 21:53:04');
 
 -- --------------------------------------------------------
 
@@ -419,36 +418,15 @@ CREATE TABLE `civil_cases_files` (
 --
 
 INSERT INTO `civil_cases_files` (`id`, `case_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, '16474106851byden.jpg', 0, NULL, NULL, '2022-03-16 00:04:45', '2022-03-16 00:04:45'),
-(2, 1, '164741068538asdfasdf.pdf', 0, NULL, NULL, '2022-03-16 00:04:45', '2022-03-16 00:04:45'),
-(3, 1, '16483611061116480981926916474106851byden (1).jpg', 0, NULL, NULL, '2022-03-27 00:05:06', '2022-03-27 00:05:06'),
-(4, 1, '164836110677164792106643164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-03-27 00:05:06', '2022-03-27 00:05:06'),
-(5, 2, '164836122353164809819213164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-27 00:07:03', '2022-03-27 00:07:03'),
-(6, 2, '164836122355164792106681164553223132no_images.png', 0, NULL, NULL, '2022-03-27 00:07:03', '2022-03-27 00:07:03'),
-(7, 2, '164836373792164792106681164553223132no_images.png', 0, NULL, NULL, '2022-03-27 00:48:57', '2022-03-27 00:48:57'),
-(8, 2, '164836373749164792106643164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-03-27 00:48:57', '2022-03-27 00:48:57'),
-(9, 1, '164836669897164809819213164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-27 01:38:18', '2022-03-27 01:38:18'),
-(10, 1, '164836669863164792106681164553223132no_images.png', 0, NULL, NULL, '2022-03-27 01:38:18', '2022-03-27 01:38:18'),
-(11, 1, '164836677212164792106643164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-03-27 01:39:32', '2022-03-27 01:39:32'),
-(12, 1, '16483667725216474106851byden (1).jpg', 0, NULL, NULL, '2022-03-27 01:39:32', '2022-03-27 01:39:32'),
-(13, 3, '164837941431164792106643164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-03-27 05:10:14', '2022-03-27 05:10:14'),
-(14, 3, '16483794146716480981926916474106851byden (1).jpg', 0, NULL, NULL, '2022-03-27 05:10:14', '2022-03-27 05:10:14'),
-(15, 1, '164922510920164586820532Ethnicity (1).png', 0, NULL, NULL, '2022-04-06 00:05:09', '2022-04-06 00:05:09'),
-(16, 1, '164922510975164836373749164792106643164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-04-06 00:05:09', '2022-04-06 00:05:09'),
-(17, 2, '16492264665016474106851byden (3).jpg', 0, NULL, NULL, '2022-04-06 00:27:46', '2022-04-06 00:27:46'),
-(18, 2, '164922646688164836373749164792106643164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-04-06 00:27:46', '2022-04-06 00:27:46'),
-(19, 1, '164930432461164836373792164792106681164553223132no_images.png', 0, NULL, NULL, '2022-04-06 22:05:24', '2022-04-06 22:05:24'),
-(20, 1, '164930432468164742841054164664984221asdfasdf (2).pdf', 0, NULL, NULL, '2022-04-06 22:05:24', '2022-04-06 22:05:24'),
-(21, 2, '164930812827164836122355164792106681164553223132no_images (3).png', 0, NULL, NULL, '2022-04-06 23:08:48', '2022-04-06 23:08:48'),
-(22, 2, '164930812874164524589178asdfasdf.pdf', 0, NULL, NULL, '2022-04-06 23:08:48', '2022-04-06 23:08:48'),
-(23, 1, '164947798581164524589178asdfasdf.pdf', 0, NULL, NULL, '2022-04-08 22:19:45', '2022-04-08 22:19:45'),
-(24, 1, '164947798592164509798992byden (1) (1).jpg', 0, NULL, NULL, '2022-04-08 22:19:45', '2022-04-08 22:19:45'),
-(25, 1, '164948929088164509798992byden (1) (2).jpg', 0, NULL, NULL, '2022-04-09 01:28:10', '2022-04-09 01:28:10'),
-(26, 1, '16494892901416449247777asdfasdf (1).pdf', 0, NULL, NULL, '2022-04-09 01:28:10', '2022-04-09 01:28:10'),
-(27, 2, '164949789971164509798992byden (1) (1).jpg', 0, NULL, NULL, '2022-04-09 03:51:39', '2022-04-09 03:51:39'),
-(28, 2, '164949789931164716896270asdfasdf.pdf', 0, NULL, NULL, '2022-04-09 03:51:39', '2022-04-09 03:51:39'),
-(29, 7, '165190037239164966692153164509798992byden (1) (2).jpg', 0, NULL, NULL, '2022-05-07 05:12:52', '2022-05-07 05:12:52'),
-(30, 7, '165190037263165068902426165007933236164524589178asdfasdf.pdf', 0, NULL, NULL, '2022-05-07 05:12:52', '2022-05-07 05:12:52');
+(1, 1, '16449247777asdfasdf.pdf', 0, NULL, NULL, '2022-02-15 05:32:57', '2022-02-15 05:32:57'),
+(2, 1, '164492477745byden.jpg', 0, NULL, NULL, '2022-02-15 05:32:57', '2022-02-15 05:32:57'),
+(3, 1, '164492477731john.jpg', 0, NULL, NULL, '2022-02-15 05:32:57', '2022-02-15 05:32:57'),
+(4, 2, '164498360026asdfasdf.pdf', 0, NULL, NULL, '2022-02-15 21:53:20', '2022-02-15 21:53:20'),
+(5, 2, '164498360033byden.jpg', 0, NULL, NULL, '2022-02-15 21:53:20', '2022-02-15 21:53:20'),
+(6, 2, '164498360011Ethnicity.png', 1, NULL, NULL, '2022-02-15 21:53:20', '2022-02-19 04:07:09'),
+(7, 2, '164498360060Integra_Logo.png', 0, NULL, NULL, '2022-02-15 21:53:20', '2022-02-15 21:53:20'),
+(8, 3, '164602471210asdfasdf.pdf', 0, NULL, NULL, '2022-02-27 23:05:12', '2022-02-27 23:05:12'),
+(9, 3, '164602471251byden.jpg', 0, NULL, NULL, '2022-02-27 23:05:12', '2022-02-27 23:05:12');
 
 -- --------------------------------------------------------
 
@@ -484,7 +462,7 @@ CREATE TABLE `civil_case_status_logs` (
 INSERT INTO `civil_case_status_logs` (`id`, `case_id`, `updated_court_id`, `updated_next_date`, `updated_next_date_fixed_id`, `updated_panel_lawyer_id`, `order_date`, `updated_case_status_id`, `updated_accused_name`, `update_description`, `case_proceedings`, `case_notes`, `next_date_fixed_reason`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 3, 1, '2022-03-18', 3, 1, '2022-03-25', 3, NULL, 'test 52', 'test45', 'test4', 'Disposed', 0, NULL, NULL, '2022-03-30 04:27:44', '2022-03-30 04:27:44'),
 (2, 3, 1, '2022-03-17', 1, 1, '2022-03-25', 2, NULL, 'ewrtewr', 'asdfsd', 'asdfds', 'No Next Date', 0, NULL, NULL, '2022-03-30 04:32:49', '2022-03-30 04:32:49'),
-(3, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 03:00:02', '2022-04-02 03:00:02');
+(3, 4, 18, '2022-04-13', 2, 5, '2022-03-10', 5, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-03-31 06:09:40', '2022-03-31 06:09:40');
 
 -- --------------------------------------------------------
 
@@ -578,10 +556,10 @@ CREATE TABLE `criminal_cases` (
   `lawyer_advocate_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `assigned_lawyer_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lawyers_remarks` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `received_documents_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `received_documents_id` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `received_documents` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `received_documents_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `required_wanting_documents_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `required_wanting_documents_id` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `required_wanting_documents` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `required_wanting_documents_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_infos_division_id` int(11) DEFAULT NULL,
@@ -614,10 +592,10 @@ CREATE TABLE `criminal_cases` (
   `complainant_informant_representative` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_infos_accused_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_infos_accused_representative` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `prosecution_witness` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `defense_witness` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `updated_day_notes_id` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `updated_remarks_or_steps_taken` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `prosecution_witness` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `defense_witness` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_day_notes_id` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_remarks_or_steps_taken` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delete_status` int(11) NOT NULL DEFAULT 0,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -630,13 +608,29 @@ CREATE TABLE `criminal_cases` (
 --
 
 INSERT INTO `criminal_cases` (`id`, `client`, `legal_issue_id`, `legal_issue_write`, `legal_service_id`, `legal_service_write`, `complainant_informant_id`, `complainant_informant_write`, `accused_id`, `accused_write`, `in_favour_of_id`, `case_no`, `name_of_the_court_id`, `next_date`, `next_date_fixed_id`, `received_date`, `mode_of_receipt_id`, `referrer_id`, `referrer_write`, `referrer_details`, `received_by_id`, `received_by_write`, `client_party_id`, `client_category_id`, `client_subcategory_id`, `client_id`, `client_name_write`, `client_business_name`, `client_address`, `client_mobile`, `client_email`, `client_profession_id`, `client_profession_write`, `client_division_id`, `client_divisoin_write`, `client_district_id`, `client_district_write`, `client_thana_id`, `client_thana_write`, `client_representative_name`, `client_representative_details`, `client_coordinator_tadbirkar_id`, `coordinator_tadbirkar_write`, `client_coordinator_details`, `opposition_party_id`, `opposition_category_id`, `opposition_subcategory_id`, `opposition_id`, `opposition_write`, `opposition_business_name`, `opposition_address`, `opposition_mobile`, `opposition_email`, `opposition_profession_id`, `opposition_profession_write`, `opposition_division_id`, `opposition_divisoin_write`, `opposition_district_id`, `opposition_district_write`, `opposition_thana_id`, `opposition_thana_write`, `opposition_representative_name`, `opposition_representative_details`, `opposition_coordinator_tadbirkar_id`, `opposition_coordinator_tadbirkar_write`, `opposition_coordinator_details`, `lawyer_advocate_id`, `lawyer_advocate_write`, `assigned_lawyer_id`, `lawyers_remarks`, `received_documents_id`, `received_documents`, `received_documents_date`, `required_wanting_documents_id`, `required_wanting_documents`, `required_wanting_documents_date`, `case_infos_division_id`, `case_infos_district_id`, `case_infos_thana_id`, `case_category_id`, `case_subcategory_id`, `case_infos_case_title_id`, `case_infos_case_no`, `case_infos_case_year`, `case_infos_court_id`, `case_infos_court_short_id`, `court_short_write`, `case_infos_sub_seq_case_title_id`, `case_infos_sub_seq_case_no`, `case_infos_sub_seq_case_year`, `case_infos_sub_seq_court_id`, `case_infos_sub_seq_court_short_id`, `sub_seq_court_short_write`, `law_id`, `law_write`, `section_id`, `section_write`, `date_of_filing`, `case_status_id`, `matter_id`, `matter_write`, `case_type_id`, `case_infos_complainant_informant_name`, `complainant_informant_representative`, `case_infos_accused_name`, `case_infos_accused_representative`, `prosecution_witness`, `defense_witness`, `updated_day_notes_id`, `updated_remarks_or_steps_taken`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-28', NULL, '2022-05-28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2, 3', 'werewr, eeeee', '2022-05-02, 2022-05-18', '1, 2', 'retert, adsf werewr', '2022-05-16, 2022-05-24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-28 09:06:06', '2022-05-28 09:06:06'),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-29', NULL, '2022-05-28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1, 2', 'werewr, asf, ', '2022-05-02, 2022-05-14, ', '2, 3', 'retert, test, ', '2022-06-03, 2022-06-11, ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, ', ', NULL, 0, NULL, NULL, '2022-05-28 09:28:46', '2022-05-29 10:00:12'),
-(3, 'Jack', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-13', 1, '2022-05-28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'test 2, test doc', 'test, test a, werewr adsf, ', '2022-05-02, 2022-05-20, 2022-06-09, ', 'test 2, test doc', 'asdf asdf, asdfasdf, asdf asdf asdf, ', '2022-05-02, 2022-06-01, 2022-06-11, ', 3, 21, 186, NULL, NULL, 1, '54651', '2021', NULL, NULL, '', 1, '', '', NULL, NULL, '', NULL, 'esr, asdf', NULL, '', '8-5-2022', NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, ', ', NULL, 0, NULL, NULL, '2022-05-28 09:31:17', '2022-05-31 11:02:28'),
-(4, 'Jack', 2, 'rwer', 1, 'werwe', 2, 'wer', 2, 'wrwe', 1, '654643', 2, '2022-06-11', NULL, '2022-06-04', 2, 1, 'tewdsaf', 'testafd', 7, 'test', 1, 3, 1, 'Aminur Rahman Smith Aminur, Smith Aminu', 'asdf, tet', 'werewr asdf', 'asdf', 'asdf', 'asdf@adf', 1, 'test asdf', 2, '44 asdf', 7, 'district 1', 46, 'asdf', 'test asdf', 'adsf', 2, 'test afds', 'werewfa', 1, 3, 1, 'Aminur, Smith Aminur', 'asdf, werew', 'afds', 'asdf', 'wer', 'adf', 1, 'gfg', 3, 'fdg', 29, 'rtwer', 253, 'dfg', 'wre', 'asdf', 2, 'tewt', 'trewrew asdf', 3, 'sdfg', NULL, 'asdf', 'test 2, test doc', 'erewr, adsf, ', '2022-05-19, 2022-05-30, ', 'test 2, test doc', 'wwwww, adsf, ', '2022-05-25, 2022-05-25, ', 3, 21, 184, 6, 6, 1, 'fghg', '2000', 'Court Kachari, Judge Court Dhaka', 'JDC1', 'werew, test', 1, 'asdf21212, test', '2023, 2025', 'Court Kachari, Judge Court Dhaka', 'CC1, JDC1', 'werewf a, rer', NULL, 'asdf, asdf', '33, 44', 'adsf, werew', '11/5/2022', 3, 2, 'asdf', 1, 'asdf, were', 'adsf, wer', 'asdf, asdf', 'wer, asdf', 'gfg', 'fgfd', ', ', NULL, 0, NULL, NULL, '2022-05-28 11:41:27', '2022-06-11 11:16:59'),
-(5, 'Jack', 1, 'rwer', 2, 'were', 2, 'wer', 1, 'asdf', 2, '654643', 1, '2022-06-24', 1, '2022-06-10', 3, 1, 'tewdsaf', 'wereadsf', 3, 'wrewf', 2, 3, 1, 'Smith Aminu', 'test, test asdf', 'werewr asdf', 'asdf', 'ewre', 'asdf', 1, 'rewrwe', 3, 'gfhfh', 21, 'hgjhgh', 186, 'dfgfd', 'test asdf', 'fghfgh', 1, 'ghjhgj', 'ghhgh', 2, 3, 1, 'Aminur, Smith Aminur', 'utyu, rwe4re', NULL, 'fghgfh', 'rewrasdf', 'sdgfd', 1, 'dfgh', 4, 'wre', 36, 'were', 294, 'ertyret', 'sfdgfd', 'sfdgdf', 1, 'fghj', 'tyuytd', 3, 'dfhg', 'Stewert Jhonson khan, Terry Jhon Khan', 'sdfrdse', 'test 2, test doc', 'werewr, rtyrty, ', '2022-05-18, 2022-06-03, ', 'test 2, test doc', 'adsf werewr, tyest asdf fsghgf, ', '2022-05-17, 2022-06-04, ', 4, 35, 283, 6, 6, 1, '54651', '2021', 'Court Kachari, Judge Court Dhaka', 'CC1, JDC1', 'werew, trytry', 1, 'asdf21212, test 544444444', '2023, 2025', 'Court Kachari, Judge Court Dhaka', 'CC1, JDC1', 'werewr, gfhgf', NULL, 'rtytr, rtyt', '33, 44', 'ewrwe, asdf', '18-5-2022', 2, 1, 'adsf', 1, 'Mr. Khan, complainant 545', 'representative 545, test res', 'test accused 1, ytuytu fdgfdg', 'hjgj, retret', 'sdfds', 'hgjhg', 'gfhfgh, rtret', 'ertret', 0, NULL, NULL, '2022-05-31 06:32:00', '2022-06-11 11:49:34'),
-(6, 'Jack', 1, 'legal issues', 1, 'rwer asdf', 2, 'wer', NULL, NULL, NULL, NULL, NULL, '2022-05-03', NULL, '2022-06-30', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', '13-5-2022', NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-31 06:46:29', '2022-05-31 06:47:18'),
-(7, 'Jack', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-31', NULL, '2022-07-02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, NULL, 'test 2, test doc', 'werewr, ', '2022-05-30, ', 'test, test 2', ', ', '2022-05-25, ', 5, 44, 344, 7, 7, 3, '3551321', NULL, NULL, NULL, '', 3, '', '', NULL, NULL, '', NULL, '', NULL, '', '18-5-2022', NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, ', ', NULL, 0, NULL, NULL, '2022-05-31 07:06:20', '2022-06-11 08:00:39');
+(1, 'Premier Cement Mills Limited', 1, NULL, 1, NULL, NULL, 'Premier Cement Mills Limited', NULL, 'Mizanur Rahman', 6, 'BLA(wages)- 194/2021', NULL, '2022-05-28', NULL, '2022-05-28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, 'Premier Cement Mills Limited', 'G M Fazle Rabbi', 'Mizanur Rahman', '', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-05-28 06:10:38', '2022-05-28 06:12:32'),
+(2, 'Premier Cement Mills Limited', 1, NULL, 1, NULL, NULL, 'Mizanur Rahman', NULL, 'Premier Cement Mills Limited', 6, 'BLA(wages)- 194/2021', NULL, '2022-05-28', NULL, '2022-05-28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-05-28 06:15:40', '2022-06-07 15:39:42'),
+(3, 'Partex Agro Limited', 3, NULL, 3, NULL, NULL, 'Partex Agro Limited', NULL, NULL, 1, NULL, NULL, '2021-08-22', NULL, '2021-03-02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-05-28 06:30:12', '2022-06-07 15:39:47'),
+(4, 'Partex Cables Limited', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '428/20214', NULL, '2022-05-28', NULL, '2022-05-28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-05-28 06:32:11', '2022-06-07 15:39:52'),
+(5, 'Partex Agro Limited', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-28', NULL, '2022-05-28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-05-28 06:33:39', '2022-06-07 15:40:03'),
+(6, 'Abdul Kaiyum', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'The State & Others', NULL, 'AT Case No.-426/2018', 13, '2022-08-03', 16, '2022-04-03', 2, NULL, 'Adv. Foisal', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', 3, 20, NULL, 9, NULL, 8, '426', '2018', NULL, NULL, '', 8, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, 'Abdul Quaiyum', '', '', '', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-05-28 06:34:08', '2022-06-07 05:20:49'),
+(7, 'Partex PVC Industries Limited', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-28', NULL, '2022-05-28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-05-28 06:35:49', '2022-06-07 15:39:57'),
+(8, 'Partex PVC Industries Limited', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-10-11', NULL, '2022-08-16', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-05-28 06:37:24', '2022-06-07 05:20:39'),
+(9, 'Premier Cement Mills Limited', 3, NULL, 1, NULL, NULL, 'Mizanur Rahman', NULL, 'Premier Cement Mills Limited', 6, 'BLA(wages)- 194/2021', 10, '2021-12-23', 7, '2021-09-26', 1, NULL, NULL, NULL, NULL, NULL, 6, 3, 7, NULL, 'Premier Cement Mills Limited', 'Cement Manufacturing and Marketing', 'T.K Bhaban, Karwan Bazar, Dhaka', NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'G M Fazle Rabbi', 'Deputy Manager, Administration and Legal Affairs, PCML\r\nContact: 0100000000', 3, NULL, 'CFO, PCML', 5, 1, 13, NULL, 'Mizanur Rahman', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL, 'Md. Johirul Islam, Md. Zohurul Haque', NULL, NULL, 'Petition, Written Statement, Notice from Court, charge sheety, ', ', 2022-05-04, ', NULL, 'Gratuity Policy (Approved), Financial Statement, ', ', ', 3, 20, 176, 7, NULL, 6, '194', '2021', '1st Labour Court', NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', '132(1)', '', '12/9/2021', 13, 3, NULL, 3, 'Mizanur Rahman', '', 'Premier Cement Mills Limited', 'G M Fazle Rabbi', NULL, NULL, '2nd Party was present, ', 'To submit WS', 0, NULL, NULL, '2022-05-28 06:38:22', '2022-06-02 11:22:39'),
+(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-29', NULL, '2022-05-29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Charge Form, Complaint, Investigation Report, Legal Notice by 1st Party, Legal Notice by 2nd Party', ', ', '2022-05-25, ', NULL, ', ', ', ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-05-29 10:45:24', '2022-05-30 03:51:00'),
+(11, 'Partex PVC Industries Limited', 1, NULL, NULL, 'to file case', NULL, NULL, NULL, 'Khaza Md. Ali Azgor', NULL, 'CR Case No. 428/2019', NULL, '2022-07-13', 6, '2022-04-20', NULL, NULL, NULL, NULL, NULL, NULL, 1, 2, 3, 'Star Particle Board Mills Limited', '', NULL, NULL, NULL, NULL, 1, NULL, 3, NULL, 20, NULL, 138, NULL, NULL, NULL, NULL, 'Golam Regwanul Haque', NULL, 6, 3, 7, 'Smith Aminur', '', NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 8, NULL, 57, NULL, NULL, 'hhhhhhhhhhhhhhhh', NULL, NULL, 'gggggggggggggggggggggggg', 5, NULL, 'Md. Johirul Islam, Md. Zohurul Haque, Tamzid Islam none', NULL, 'Charge Sheet, Investigation Report', 'Complaint, written statement, investigating Report, Legal Notice, sdgsdgsdg, , ', ', 2022-05-03, 2022-04-06, 2022-03-10, 2022-04-07, 2022-05-03, 2021-09-09, ', 'Charge Form, Letter by 2nd Party', 'Letter by 1st party, ', ', 2022-05-28, 2022-05-19, ', 3, 21, 183, 7, 12, 1, '594', '2021', 'Metropolitan Magistrate Court No. 25', NULL, '', 1, '17809', '2022', '3rd Joint  Metro Session Court', NULL, 'JMS-3', NULL, 'Penal Code, 1860, CrPC, 1860', '138, 138 and 140, 144, 33', '420 and 506, 435, 450', '9/3/2022', NULL, NULL, NULL, NULL, 'Star Particle Boards Mills Limited', 'Md. Khondakar Ayenul Haque', 'Abul Kalam Azad', 'test', 'test', 'test', 'Submitted Complaint Hazira, ', NULL, 1, NULL, NULL, '2022-05-30 05:49:36', '2022-06-05 10:52:09'),
+(12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-08-09', 7, '2022-05-30', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Golam Regwanul Haque', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL, 'Md. Zohurul Haque', NULL, NULL, ', ', ', ', NULL, ', ', ', ', 3, 20, 157, 7, NULL, 6, '60', '2021', '3rd Labour Court', 'DLC-3', '', 6, '', '', NULL, NULL, '', NULL, 'Bangladesh Labour Act, 2006', NULL, '132(1)and132 (5)', '29/8/2021', 23, 4, NULL, 3, 'Mohammad Ainal Hossain', '', 'Daily Banik Barta and Others', '', NULL, NULL, 'Completed case filing successfully, ', NULL, 1, NULL, NULL, '2022-05-30 06:54:01', '2022-05-31 15:56:44'),
+(13, 'Shah Alam', NULL, NULL, 3, NULL, NULL, NULL, NULL, 'RDRS', 5, NULL, NULL, '2022-06-06', 8, '2022-05-31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL, 'Md. Johirul Islam, Md. Zohurul Haque', NULL, NULL, ', ', ', ', NULL, ', ', ', ', 3, 20, 158, 7, NULL, 7, '248', '2021', '3rd Labour Court', 'DLC-3', '', NULL, '', '', NULL, NULL, '', NULL, '', '33', '', NULL, NULL, NULL, NULL, NULL, 'Shah Alam', '', 'RDRS Bangladesh', '', NULL, NULL, ', ', NULL, 0, NULL, NULL, '2022-05-31 01:21:26', '2022-06-06 12:38:14'),
+(14, 'Mohammad Ainal Hossain', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-06', 7, '2022-05-31', NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, 13, NULL, 'Mohammad Ainal Hossain', NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, 20, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 7, 3, 7, NULL, 'Daily Banik Barta and Others', NULL, NULL, NULL, NULL, 1, NULL, 3, NULL, 20, NULL, 136, NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL, 'Md. Zohurul Haque', NULL, NULL, ', ', ', ', NULL, ', ', ', ', 3, 20, 157, 7, NULL, NULL, '60', '2021', '3rd Labour Court', 'DLC-3', '', NULL, '', '', NULL, '', '', 'The Code of Criminal Procedure, 1860', '', NULL, '', '29-8-2021', 23, 4, NULL, 3, 'Mohammad Ainal Hossain', '', 'Daily Banik Barta and Others', '', NULL, NULL, ', ', NULL, 0, NULL, NULL, '2022-05-31 15:52:05', '2022-06-12 06:51:43'),
+(15, 'Star Particle Boards Mills Limited', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-06-01', NULL, '2022-06-01', NULL, NULL, NULL, NULL, NULL, NULL, 5, 3, 7, 'Star Particle Board Mills Limited', '', 'test', 'test', 'test', 'test', 2, NULL, 6, NULL, 49, NULL, 382, NULL, 'Md. Khondokar Ayenul Haque', NULL, NULL, NULL, 'v', 1, 3, 7, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', 2, 16, 104, 7, 12, 1, '999', '2019', 'Metropolitan Magistrate Court No. 22', NULL, '', NULL, '', '', NULL, NULL, '', NULL, 'Penal Code, 1860', NULL, '420 and 506', '14/6/2022', 50, 3, NULL, 8, 'Star Particle Boards Mills Limited', 'Md. Khondakar Ayenul Haque', 'Mizanur Rahamn', 'test', 'test', 'test', NULL, NULL, 1, NULL, NULL, '2022-06-01 05:21:34', '2022-06-01 09:15:54'),
+(16, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-08', 4, '2022-06-05', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 2, 3, NULL, 'Md. Siraj Mia', 'Sonar Modina Electric', NULL, NULL, NULL, 1, NULL, 8, NULL, 66, NULL, 513, NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL, 'Md. Johirul Islam, Tamzid Islam Tamzid', NULL, NULL, ', ', ', ', NULL, ', ', ', ', 3, 20, 176, 7, 12, 1, '1341', '2021', NULL, 'MM-06', '', 1, '', '', NULL, '', '', 'The Code of Criminal Procedure, 1860', 'The Negotiable Instrument Act, 1881', NULL, '138', '2-12-2021', 30, 4, NULL, 8, 'Partex Cables Limited', 'Md. Khondakar Ayenul Haque', 'Md. Siraj Mia', '', NULL, NULL, 'Submitted Complaint Hazira, ', NULL, 0, NULL, NULL, '2022-06-05 10:00:59', '2022-06-12 06:23:50'),
+(17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-26', 10, '2022-06-08', NULL, NULL, NULL, NULL, NULL, NULL, 4, 1, NULL, NULL, 'Mohammad Alimuzzaman Milton', NULL, NULL, NULL, NULL, 1, NULL, 3, NULL, 20, NULL, 159, NULL, NULL, NULL, NULL, NULL, NULL, 1, 3, 7, NULL, 'Giant Agro Processing Ltd', NULL, NULL, NULL, NULL, 1, NULL, 3, NULL, 20, NULL, 178, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', 3, 20, 178, 7, 6, 1, '715', '2021', 'Metropolitan Magistrate Court No. 18', 'MM-18', '', 1, '1987', '2022', '4th Joint  Metro Session Court', 'JMS-4', '', NULL, '', '138', '', NULL, NULL, NULL, NULL, 1, 'Giant Agro Processing Ltd', 'Nazrul Islam Bhuiyan', 'Mohammad Alimuzzaman Milton', '', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-06-08 13:28:59', '2022-06-08 13:59:01'),
+(18, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-06-16', 11, '2022-06-08', NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, NULL, NULL, 'Md. Joynul Abedin', NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, 27, NULL, 232, NULL, NULL, NULL, NULL, NULL, NULL, 7, 3, 7, NULL, 'The ACME Laboratories Ltd and Others', NULL, NULL, NULL, NULL, 1, NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL, 'Md. Johirul Islam', NULL, NULL, ', ', ', ', NULL, ', ', ', ', 3, 20, NULL, 9, 14, 6, '78', '2018', '3rd Labour Court', 'DLC-3', '', NULL, '', '', NULL, NULL, '', NULL, '', '132(1)', '', NULL, 22, 3, NULL, 3, 'Md. Joynul Abedin', '', 'The ACME Laboratories Ltd and Others', '', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-06-08 13:49:55', '2022-06-08 14:33:43'),
+(19, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-14', 7, '2022-06-08', NULL, NULL, NULL, NULL, NULL, NULL, 7, 3, 7, NULL, 'Gentle Park and Others', NULL, NULL, NULL, NULL, 1, NULL, 3, NULL, 20, NULL, 136, NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, 13, NULL, 'Saleh Ahmed', NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL, 'Md. Johirul Islam', NULL, NULL, ', ', ', ', NULL, ', ', ', ', 3, 20, NULL, 9, 14, 6, '528', '2020', '1st Labour Court', 'DLC-1', '', NULL, '', '', NULL, NULL, '', NULL, '', '132(1)', '', NULL, NULL, NULL, NULL, 3, 'Saleh Ahmed', '', 'Gentle Park and Others', '', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-06-08 14:10:46', '2022-06-08 14:33:12'),
+(20, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-07', 8, '2022-06-08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', 3, 20, 149, 10, NULL, 9, '318', '2021', '4th Joint  District Judge Court', 'JDJC-4', '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', '10-10-2021', NULL, NULL, NULL, 2, 'Md. Nasir Uddin and Others', '', 'Munsi Sanwar Hossain and Others', '', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-06-08 14:49:09', '2022-06-08 14:52:21'),
+(21, 'asdf asdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-12', NULL, '2022-06-08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', NULL, NULL, NULL, 7, 7, NULL, '471', '2020', 'Nari O Shishu Nirjaton Damon Tribunal No. 09', 'NSNDT-9', '', NULL, '', '', NULL, '', '', 'The Code of Criminal Procedure, 1860', 'Nari O Shishu Nirjaton Damon Ain, 2000', '144', '9(3) and 30', NULL, NULL, NULL, NULL, 1, 'Mst. Salma Akter', '', 'Md. Jewel', '', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-06-08 15:04:13', '2022-06-12 05:57:20'),
+(22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-07', 8, '2022-06-08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', NULL, NULL, NULL, 7, NULL, 9, '03', '2022', 'Senior Assistant Judge (Damrai)', NULL, '', NULL, '', '', NULL, NULL, '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, 'Md. Delower Hossain', '', '', '', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-06-08 15:58:03', '2022-06-08 15:58:03'),
+(23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-03', NULL, '2022-06-08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ', ', ', ', NULL, ', ', ', ', 3, 20, NULL, NULL, NULL, 8, '426', '2018', NULL, 'DAT-1', '', 8, '', '', NULL, '', '', NULL, '', NULL, '', NULL, NULL, NULL, NULL, NULL, 'Abdul Quaiyum', '', 'The State and Others', '', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-06-08 16:29:30', '2022-06-08 16:30:49');
 
 -- --------------------------------------------------------
 
@@ -699,26 +693,37 @@ CREATE TABLE `criminal_cases_case_steps` (
 --
 
 INSERT INTO `criminal_cases_case_steps` (`id`, `criminal_case_id`, `case_infos_allegation_claim_id`, `case_infos_allegation_claim_write`, `recovery_seizure_articles`, `amount_of_money`, `another_claim`, `summary_facts`, `case_info_remarks`, `random_case_id`, `case_steps_filing`, `case_steps_filing_copy`, `case_steps_filing_yes_no`, `taking_cognizance`, `taking_cognizance_copy`, `taking_cognizance_yes_no`, `arrest_surrender_cw`, `arrest_surrender_cw_copy`, `arrest_surrender_cw_yes_no`, `case_steps_bail`, `case_steps_bail_copy`, `case_steps_bail_yes_no`, `case_steps_court_transfer`, `case_steps_court_transfer_copy`, `case_steps_court_transfer_yes_no`, `case_steps_charge_framed`, `case_steps_charge_framed_copy`, `case_steps_charge_framed_yes_no`, `case_steps_witness_from`, `case_steps_witness_from_copy`, `case_steps_witness_from_yes_no`, `case_steps_witness_to`, `case_steps_witness_to_copy`, `case_steps_witness_to_yes_no`, `case_steps_argument`, `case_steps_argument_copy`, `case_steps_argument_yes_no`, `case_steps_judgement_order`, `case_steps_judgement_order_copy`, `case_steps_judgement_order_yes_no`, `case_steps_summary_judgement_order`, `case_steps_remarks`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 4, 1, 'fgfdg', 'dfgd', '5346543', 'ewrew', 'cvbvcb', 'wrwer', NULL, '11/5/2022', 'dffff', 'Yes', '5/5/2022', 'asdf', 'No', '18/5/2022', 'sdfg', 'Yes', '24/5/2022', 'testl', 'Yes', '2/6/2022', 'ert', 'Yes', '26/5/2022', 'were', 'Yes', '1/6/2022', 'erter', 'No', '10/6/2022', 'ddd', 'No', '5/5/2022', 'bbbbb', 'No', '3/6/2022', 'cccccc', 'Yes', 'rrrrrrr', 'tttttttt', 0, NULL, NULL, '2022-05-15 05:35:35', '2022-05-29 03:55:46'),
-(2, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-19 06:23:48', '2022-05-19 06:23:48'),
-(3, 2, 2, 'tretst', 'fgjhsdfg', '5346543', 'ytgfh', 'fghgfhfgh', 'ghfgh', NULL, '19/5/2022', 'wer', 'Yes', '21/5/2022', 'ret', 'Yes', '11/6/2022', 'aef', 'Yes', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-19 06:24:14', '2022-05-24 04:20:32'),
-(4, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '8-5-2022', NULL, 'No', '25-5-2022', NULL, 'Yes', '27-5-2022', NULL, 'No', '9-5-2022', NULL, 'Yes', '28-5-2022', NULL, 'No', '23-5-2022', NULL, 'No', NULL, 'erter', 'No', NULL, 'fdgfd', 'Yes', NULL, 'bbbbb', 'No', '20-5-2022', NULL, 'No', 'wer asddf asdf', 'dfgfd dfg sdffg', 0, NULL, NULL, '2022-05-19 06:31:41', '2022-05-31 11:08:46'),
-(5, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-21 04:41:14', '2022-05-21 04:41:14'),
-(6, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-23 06:48:41', '2022-05-23 06:48:41'),
-(7, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-23 06:49:04', '2022-05-23 06:49:04'),
-(8, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-23 06:49:34', '2022-05-23 06:49:34'),
-(9, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-26 04:12:55', '2022-05-26 04:12:55'),
-(10, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-26 04:18:25', '2022-05-26 04:18:25'),
-(11, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-26 04:26:43', '2022-05-26 04:26:43'),
-(12, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-26 05:12:58', '2022-05-26 05:12:58'),
-(13, 5, 1, 'sdfg dfg', 'asdf', '246541', 'test', 'ghhg', 'retret', NULL, '17/5/2022', 'wer', 'Yes', '23/5/2022', 'ret', 'Yes', '24/5/2022', NULL, 'No', NULL, NULL, 'No', NULL, 'ert', 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-26 05:38:08', '2022-05-28 04:33:31'),
-(14, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-28 09:06:06', '2022-05-28 09:06:06'),
-(15, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-28 09:28:46', '2022-05-28 09:28:46'),
-(16, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-28 09:31:17', '2022-05-28 09:31:17'),
-(17, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-28 11:41:27', '2022-05-28 11:41:27'),
-(18, 5, 3, 'tretst asf', 'dfgdfg', 'er', 'sfdg', 'zv', 'wetrwet', NULL, '18-5-2022', 'wer', 'No', '31-5-2022', NULL, 'No', '3-6-2022', NULL, 'No', '16-5-2022', NULL, 'No', '11-6-2022', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', 'werew', 'asdfd', 0, NULL, NULL, '2022-05-31 06:32:00', '2022-05-31 06:32:00'),
-(19, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13-5-2022', NULL, 'No', '3-6-2022', NULL, 'No', '31-5-2022', NULL, 'No', NULL, NULL, 'No', '22-6-2022', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', '27-5-2022', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-31 06:46:29', '2022-05-31 06:47:18'),
-(20, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '18-5-2022', NULL, 'No', NULL, NULL, 'Yes', NULL, NULL, 'No', '12-5-2022', NULL, 'No', NULL, NULL, 'Yes', '11-6-2022', NULL, 'No', '16-5-2022', NULL, 'No', NULL, NULL, 'Yes', '11-6-2022', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-31 07:06:20', '2022-05-31 11:13:12');
+(1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '6/3/2019', NULL, 'Yes', NULL, NULL, 'Yes', NULL, NULL, 'Yes', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-16 10:05:32', '2022-05-16 10:37:49'),
+(2, 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '11/8/2021', NULL, 'No', '11/8/2021', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'Yes', '24/3/2022', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'Yes', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-17 11:00:42', '2022-05-18 05:48:51'),
+(3, 3, 2, NULL, NULL, '558434/-', NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', NULL, NULL, 'Yes', NULL, NULL, 'Yes', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-18 09:27:27', '2022-05-28 06:32:53'),
+(4, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-18 10:53:48', '2022-05-18 10:53:48'),
+(5, 5, NULL, NULL, NULL, '1630980/-', NULL, NULL, NULL, NULL, '2/6/2021', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-19 10:28:44', '2022-05-19 10:28:44'),
+(6, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-19 10:47:34', '2022-05-19 10:47:34'),
+(7, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '13/11/2019', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-19 10:51:26', '2022-05-19 10:55:50'),
+(8, 8, NULL, NULL, NULL, '1000000/-', NULL, NULL, NULL, NULL, '13/8/2015', NULL, 'Yes', NULL, NULL, 'Yes', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-23 04:53:05', '2022-05-25 10:47:11'),
+(9, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-28 06:10:38', '2022-05-28 06:10:38'),
+(10, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-28 06:15:40', '2022-05-28 06:15:40'),
+(11, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-28 06:30:12', '2022-05-28 06:30:12'),
+(12, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-28 06:32:11', '2022-05-28 06:32:11'),
+(13, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-28 06:33:39', '2022-05-28 06:33:39'),
+(14, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-28 06:34:08', '2022-05-28 06:34:08'),
+(15, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-28 06:35:49', '2022-05-28 06:35:49'),
+(16, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-28 06:37:24', '2022-05-28 06:37:24'),
+(17, 9, NULL, NULL, NULL, '7156584', NULL, NULL, NULL, NULL, '12/9/2021', 'Petition (copy)', 'Yes', '12/9/2021', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-28 06:38:22', '2022-05-30 07:28:03'),
+(18, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Photocopy', 'Yes', '16/6/2021', 'copy', 'Yes', '29/5/2022', 'Photocopy', 'Yes', NULL, NULL, 'Yes', NULL, NULL, 'No', '28/1/2020', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-29 10:45:24', '2022-05-29 10:48:43'),
+(19, 11, NULL, NULL, 'test', '1000000', 'test', 'test', 'test', NULL, '9/3/2022', 'Photocopy', 'Yes', '18/5/2022', 'copy', 'Yes', '4/5/2022', 'Photocopy', 'Yes', '3/5/2022', 'Photocopy', 'No', '1/5/2022', 'Photocopy', 'No', '1/6/2022', 'Photocopy', 'No', '11/5/2022', 'Photocopy', 'No', '17/5/2022', 'Photocopy', 'No', '3/5/2022', NULL, 'No', '2/5/2022', NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-30 05:49:36', '2022-05-30 06:40:53'),
+(20, 12, NULL, 'Compensation', NULL, NULL, NULL, NULL, NULL, NULL, '29/8/2021', 'Photocopy', 'No', '2/5/2022', 'copy', 'No', '11/5/2022', 'Photocopy', 'No', '25/5/2022', 'Photocopy', 'No', NULL, 'Photocopy', 'No', '3/5/2022', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-30 06:54:01', '2022-05-31 15:33:57'),
+(21, 13, NULL, NULL, NULL, NULL, NULL, NULL, 'Next Date >>> 06-06-2022', NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-31 01:21:26', '2022-05-31 17:46:42'),
+(22, 14, NULL, 'Compensation', NULL, '1405197', NULL, NULL, NULL, NULL, '29-8-2021', 'Petition (copy)', 'Yes', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-05-31 15:52:05', '2022-05-31 17:49:36'),
+(23, 15, NULL, NULL, NULL, '1876040', NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-06-01 05:21:34', '2022-06-01 05:24:18'),
+(24, 16, 2, NULL, NULL, '150000', NULL, NULL, NULL, NULL, '2-12-2021', NULL, 'No', '2-12-2021', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-06-05 10:00:59', '2022-06-05 16:13:55'),
+(25, 17, 2, NULL, NULL, '275000', NULL, NULL, NULL, NULL, NULL, 'Petition (copy)', 'Yes', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-06-08 13:28:59', '2022-06-08 13:41:13'),
+(26, 18, NULL, NULL, NULL, '495766', NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-06-08 13:49:55', '2022-06-08 13:49:55'),
+(27, 19, NULL, 'Compensation', NULL, '119550', NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-06-08 14:10:46', '2022-06-08 14:10:46'),
+(28, 20, NULL, NULL, NULL, '2800000', NULL, NULL, NULL, NULL, '10-10-2021', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-06-08 14:49:09', '2022-06-08 14:52:21'),
+(29, 21, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', '27-3-2022', NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-06-08 15:04:13', '2022-06-08 15:04:13'),
+(30, 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-06-08 15:58:03', '2022-06-08 15:58:03'),
+(31, 23, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 'No', NULL, NULL, 0, NULL, NULL, '2022-06-08 16:29:30', '2022-06-08 16:29:30');
 
 -- --------------------------------------------------------
 
@@ -742,30 +747,11 @@ CREATE TABLE `criminal_cases_files` (
 --
 
 INSERT INTO `criminal_cases_files` (`id`, `case_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, '164741083064asdfasdf.pdf', 0, NULL, NULL, '2022-03-16 00:07:10', '2022-03-16 00:07:10'),
-(2, 1, '16474108304byden.jpg', 0, NULL, NULL, '2022-03-16 00:07:10', '2022-03-16 00:07:10'),
-(3, 1, '16484401354816480981926916474106851byden (1).jpg', 0, NULL, NULL, '2022-03-27 22:02:15', '2022-03-27 22:02:15'),
-(4, 1, '164844013544164792825535164509724711asdfasdf.pdf', 0, NULL, NULL, '2022-03-27 22:02:15', '2022-03-27 22:02:15'),
-(5, 2, '16484402645716480981926916474106851byden (1).jpg', 0, NULL, NULL, '2022-03-27 22:04:24', '2022-03-27 22:04:24'),
-(6, 2, '16484402648164809819213164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-27 22:04:24', '2022-03-27 22:04:24'),
-(9, 2, '164844437379164792106681164553223132no_images.png', 0, NULL, NULL, '2022-03-27 23:12:53', '2022-03-27 23:12:53'),
-(10, 2, '164844437382164809819213164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-27 23:12:53', '2022-03-27 23:12:53'),
-(11, 3, '164965701545164509798992byden (1) (2).jpg', 0, NULL, NULL, '2022-04-11 00:03:35', '2022-04-11 00:03:35'),
-(12, 3, '164965701579164524589178asdfasdf.pdf', 0, NULL, NULL, '2022-04-11 00:03:35', '2022-04-11 00:03:35'),
-(13, 4, '164966692153164509798992byden (1) (2).jpg', 0, NULL, NULL, '2022-04-11 02:48:41', '2022-04-11 02:48:41'),
-(14, 4, '164966692156164524589178asdfasdf.pdf', 0, NULL, NULL, '2022-04-11 02:48:41', '2022-04-11 02:48:41'),
-(15, 5, '16497407897164524589178asdfasdf.pdf', 0, NULL, NULL, '2022-04-11 23:19:49', '2022-04-11 23:19:49'),
-(16, 5, '164974078910164853079328164847034157164792106681164553223132no_images.png', 0, NULL, NULL, '2022-04-11 23:19:49', '2022-04-11 23:19:49'),
-(22, 2, '16502752813616484401354816480981926916474106851byden (1).jpg', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-18 03:48:01', '2022-04-18 03:48:01'),
-(23, 2, '165027528196164741083064asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-18 03:48:01', '2022-04-18 03:48:01'),
-(24, 3, '165042761151164741083064asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-19 22:06:51', '2022-04-19 22:06:51'),
-(25, 3, '1650427611416484401354816480981926916474106851byden (1).jpg', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-19 22:06:51', '2022-04-19 22:06:51'),
-(26, 16, '16504388798816484401354816480981926916474106851byden (1).jpg', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-20 01:14:39', '2022-04-20 01:14:39'),
-(27, 16, '165043887956164741083064asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-20 01:14:39', '2022-04-20 01:14:39'),
-(28, 4, '165068902454164741083064asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-22 22:43:44', '2022-04-22 22:43:44'),
-(29, 4, '165068902426165007933236164524589178asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-22 22:43:44', '2022-04-22 22:43:44'),
-(30, 9, '165095392616165068902426165007933236164524589178asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-26 06:18:46', '2022-04-26 06:18:46'),
-(31, 9, '165095392649164509798992byden (1) (1).jpg', 0, 'mdimranhossain985@gmail.com', NULL, '2022-04-26 06:18:46', '2022-04-26 06:18:46');
+(1, 9, '165502183970164741107482asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-06-01 06:48:38', '2022-06-12 08:17:19'),
+(2, 9, '165502193022164742860314164664984298Ethnicity.png', 0, 'mdimranhossain985@gmail.com', NULL, '2022-06-01 06:49:15', '2022-06-12 08:18:50'),
+(3, 9, '16550219663716497407897164524589178asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-06-01 10:03:27', '2022-06-12 08:19:26'),
+(4, NULL, '165502173639164741107482asdfasdf.pdf', 0, 'mdimranhossain985@gmail.com', NULL, '2022-06-12 08:15:36', '2022-06-12 08:15:36'),
+(5, NULL, '165502174934164966692153164509798992byden (1) (2) (3).jpg', 0, 'mdimranhossain985@gmail.com', NULL, '2022-06-12 08:15:49', '2022-06-12 08:15:49');
 
 -- --------------------------------------------------------
 
@@ -800,14 +786,18 @@ CREATE TABLE `criminal_case_activity_logs` (
 --
 
 INSERT INTO `criminal_case_activity_logs` (`id`, `case_id`, `activity_date`, `activity_action`, `activity_progress`, `activity_mode_id`, `activity_mode_write`, `start_time`, `end_time`, `total_time`, `activity_engaged_id`, `activity_engaged_write`, `activity_forwarded_to_id`, `activity_forwarded_to_write`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 3, '2029-07-31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-19 07:00:33', '2022-05-19 07:05:33'),
-(2, 3, '2025-12-20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-19 07:00:51', '2022-05-19 07:00:51'),
-(3, 2, '2022-05-25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-25 11:21:52', '2022-05-25 11:21:52'),
-(4, 2, '2022-05-25', 'asdf', 'asdf', NULL, 'zxcvfds', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-25 11:22:16', '2022-05-25 11:22:16'),
-(5, 3, '2022-05-29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-29 04:37:43', '2022-05-29 04:37:43'),
-(6, 7, '2022-06-29', 'asdf', 'In progress', 2, 'erewf', '2022-05-20T16:15', '2022-06-10T16:15', '504 Hrs', 'Stewert Jhonson khan', 'asdf adsf', 1, 'asf', 0, NULL, NULL, '2022-05-31 10:15:22', '2022-06-02 11:37:27'),
-(7, 7, '2022-06-21', 'asdf', 'In progress', 2, 'erewf', '2022-06-07T17:03', '2022-06-11T17:03', '96 Hrs', 'Stewert Jhonson khan, Terry Jhon Khan', 'adsfa', 3, 'ewfdsa', 0, NULL, NULL, '2022-06-02 11:03:52', '2022-06-02 11:35:54'),
-(8, 7, '1970-01-01', 'asdf', 'In progress', 2, 'werewr', '2022-06-23T17:41', '2022-06-29T17:41', '144 Hrs', 'Stewert Jhonson khan, Terry Jhon Khan', 'werew', 1, 'ewfdsa', 0, NULL, NULL, '2022-06-02 11:41:40', '2022-06-02 11:41:49');
+(1, 1, '9/1/2019', 'Arranged a meeting', 'Meeting Successful', 4, NULL, '2019-01-09T17:30', '2019-01-09T18:40', '1.1666666666666667 Hrs', 'Shahin Alom Talukder', NULL, NULL, 'Zahirul Haque', 0, NULL, NULL, '2022-05-16 11:07:26', '2022-05-16 11:07:26'),
+(2, 1, '7/2/2019', 'Sent file for Summary', 'made summary successfully', 1, NULL, '2019-02-07T16:00', '2019-02-10T17:00', '73 Hrs', 'Md. Zohurul Haque', NULL, 4, NULL, 0, NULL, NULL, '2022-05-16 11:15:28', '2022-05-17 07:31:21'),
+(3, 2, '10/6/2021', 'Arranged a meeting', 'Meeting Successful', 2, NULL, '2021-06-17T11:20', '2021-06-17T12:20', '1 Hrs', 'Md. Zohurul Haque', NULL, NULL, 'Md. Johiru Islam', 0, NULL, NULL, '2022-05-17 11:18:12', '2022-05-17 11:18:12'),
+(4, 3, '10/3/2021', 'Arranged a meeting', 'Meeting Successful', 3, NULL, '2021-03-10T14:00', '2021-03-10T15:10', '1.1666666666666667 Hrs', 'Shahin Alom Talukder', NULL, 5, NULL, 0, NULL, NULL, '2022-05-18 09:46:46', '2022-05-18 09:46:46'),
+(5, 3, '16/3/2021', 'Sent file for Summary', 'made summary successfully', 2, NULL, NULL, NULL, NULL, 'Md. Zohurul Haque', NULL, 4, NULL, 0, NULL, NULL, '2022-05-18 09:47:30', '2022-05-18 09:47:30'),
+(6, 8, '2015-06-10', 'Arranged a meeting', 'Meeting Successful', 4, NULL, '2015-06-10T12:40', '2015-06-10T13:40', '1 Hrs', NULL, 'Md. Niamul Kabir', NULL, 'Md. Johiru Islam', 0, NULL, NULL, '2022-05-23 05:52:37', '2022-05-23 05:53:01'),
+(7, 8, '2015-06-16', 'Sent file for Sending Legal Notice', 'Sent Legal Notice', 2, NULL, NULL, NULL, NULL, 'Shahin Alom Talukder', NULL, NULL, 'Zahirul Haque', 0, NULL, NULL, '2022-05-23 05:55:23', '2022-05-23 05:55:23'),
+(8, 11, '2022-05-03', 'Arranged a meeting', 'Meeting Successful', 3, NULL, '2022-05-03T13:14', '2022-05-03T14:14', '1 Hrs', 'Md. Zohurul Haque', NULL, 4, NULL, 0, NULL, NULL, '2022-05-30 06:14:01', '2022-05-30 06:14:01'),
+(9, 9, '2021-08-28', 'Arranged a meeting', 'Meeting Successful', 4, NULL, '2021-08-20T14:20', '2021-08-20T15:30', '1.1666666666666667 Hrs', 'Md. Zohurul Haque', NULL, 5, NULL, 0, NULL, NULL, '2022-06-01 05:17:08', '2022-06-02 12:04:59'),
+(10, 9, '2022-06-03', 'Sent file for Summary', 'made summary successfully', 2, NULL, NULL, NULL, NULL, NULL, 'Md. Niamul Kabir', NULL, 'Md. Johirul Islam', 0, NULL, NULL, '2022-06-01 05:20:12', '2022-06-02 12:09:50'),
+(11, 16, '2021-10-07', 'Arranged a meeting', 'Meeting Successful', 4, NULL, '2021-10-07T11:16', '2021-10-07T13:20', '2.066666666666667 Hrs', NULL, 'Md. Niamul Kabir', NULL, 'Md. Johiru Islam', 0, NULL, NULL, '2022-06-05 10:15:18', '2022-06-05 10:15:18'),
+(12, 16, '2021-11-16', 'Sent file for Summary', 'made summary successfully', 2, NULL, '2021-11-16T10:20', '2021-11-22T17:20', '151 Hrs', 'Md. Johirul Islam', NULL, NULL, NULL, 0, NULL, NULL, '2022-06-05 10:17:28', '2022-06-05 17:08:01');
 
 -- --------------------------------------------------------
 
@@ -832,7 +822,7 @@ CREATE TABLE `criminal_case_status_logs` (
   `updated_index_fixed_for_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_day_notes_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_day_notes_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `updated_engaged_advocate_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_engaged_advocate_id` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_engaged_advocate_write` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `updated_next_day_presence_id` int(11) DEFAULT NULL,
   `updated_remarks` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -848,17 +838,48 @@ CREATE TABLE `criminal_case_status_logs` (
 --
 
 INSERT INTO `criminal_case_status_logs` (`id`, `case_id`, `updated_case_status_id`, `updated_case_status_write`, `updated_order_date`, `updated_fixed_for_id`, `updated_fixed_for_write`, `court_proceedings_id`, `court_proceedings_write`, `updated_court_order_id`, `updated_court_order_write`, `updated_next_date`, `updated_index_fixed_for_id`, `updated_index_fixed_for_write`, `updated_day_notes_id`, `updated_day_notes_write`, `updated_engaged_advocate_id`, `updated_engaged_advocate_write`, `updated_next_day_presence_id`, `updated_remarks`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 7, 3, 'done', '2022-05-31', 1, 'case proceedings', NULL, NULL, NULL, NULL, '2022-05-31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-31 11:38:02', '2022-06-11 08:00:39'),
-(2, 7, 3, 'done', '2022-05-18', 1, 'case proceedings', NULL, NULL, NULL, NULL, '2022-05-31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-31 11:39:19', '2022-05-31 11:39:19'),
-(3, 7, 3, 'done', '2022-05-31', 1, 'case proceedings', NULL, NULL, NULL, NULL, '2022-05-31', NULL, NULL, NULL, NULL, 'Stewert Jhonson khan, Terry Jhon Khan', NULL, NULL, NULL, 0, NULL, NULL, '2022-05-31 11:41:38', '2022-06-11 10:13:19'),
-(4, 7, 3, 'done', '2022-05-31', 1, 'case proceedings', NULL, NULL, NULL, NULL, '2022-05-31', NULL, NULL, NULL, NULL, 'Stewert Jhonson khan, Terry Jhon Khan', NULL, NULL, NULL, 0, NULL, NULL, '2022-05-31 11:50:54', '2022-06-11 08:00:53'),
-(5, 4, 3, 'activeaaaaa', '2022-06-30', 1, 'case proceedings', 'test asdf', 'wer', 'Hearing purpose', 'asdfb adfg', '2022-06-16', '3', 'ertgertre', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-06-11 06:28:54', '2022-06-11 06:28:54'),
-(6, 7, 2, 'done', '1970-01-01', 1, 'case proceedings', 'test asdf', 'wer', 'Case Hearings', 'sdafdsf asdfdsf', '2022-06-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-06-11 06:29:34', '2022-06-11 06:29:34'),
-(7, 7, 2, 'done', '2022-06-29', 1, 'case proceedings', NULL, NULL, NULL, NULL, '2022-06-11', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-06-11 07:42:19', '2022-06-11 07:42:19'),
-(8, 7, 2, 'done', '2022-06-11', 1, 'case proceedings', NULL, NULL, NULL, NULL, '2022-06-11', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-06-11 08:00:18', '2022-06-11 08:00:29'),
-(9, 4, 3, 'activeerewr', '1970-01-01', 1, 'case proceedings', 'test', 'asdf', 'Case Hearings', 'asdfb adfg', '2022-06-21', '3', 'werweradf', 'phpo', 'asdf', 'Terry Jhon Khan', 'werew', 1, 'werwerfasdf', 0, NULL, NULL, '2022-06-11 10:46:29', '2022-06-11 10:46:29'),
-(10, 4, 3, 'activeerewr', '2022-06-11', 1, 'case proceedings', NULL, NULL, NULL, NULL, '2022-06-11', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-06-11 10:47:21', '2022-06-11 12:16:01'),
-(11, 5, 3, 'active', '2022-06-22', 1, 'case proceedings', 'test asdf', 'asdf', 'Case Hearings', 'werewr', '2022-06-24', '1', 'gdfsgdf', 'gfhfgh', 'rtret', 'Terry Jhon Khan', 'fdgdfg', 1, 'ertret', 0, NULL, NULL, '2022-06-11 10:50:24', '2022-06-11 10:50:24');
+(1, 1, 19, NULL, '14/3/2019', 8, NULL, 'Filed complaint petition', NULL, 'Service Return (SR)', NULL, '14/5/2019', '8', NULL, 'Submitted Complaint Hazira', NULL, '2', NULL, 1, 'to file W/A petition', 0, NULL, NULL, '2022-05-16 10:25:45', '2022-05-17 07:30:42'),
+(2, 1, 13, NULL, '14/5/2019', 8, NULL, 'Filed Petition', NULL, 'Warrant of Arrest', NULL, '20/7/2022', '4', NULL, 'Submitted Complaint Hazira', NULL, '2', NULL, 1, NULL, 0, NULL, NULL, '2022-05-16 11:00:52', '2022-05-17 07:31:38'),
+(3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'dd/mm/yyyy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-05-16 11:35:48', '2022-05-16 11:38:05'),
+(4, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'dd/mm/yyyy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-05-16 11:36:30', '2022-05-16 11:38:12'),
+(5, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'dd/mm/yyyy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-05-16 11:36:33', '2022-05-16 11:38:20'),
+(6, 2, 30, NULL, '11/8/2021', 8, NULL, 'Filed complaint petition and issued Summon', NULL, 'Service Return (SR)', NULL, '7/10/2021', '8', NULL, 'Completed case filing successfully', NULL, '2', NULL, 1, 'if summon duly served to file W/A Petition', 0, NULL, NULL, '2022-05-17 11:07:30', '2022-05-17 11:08:07'),
+(7, 2, 21, NULL, '7/10/2021', 4, NULL, 'Filed Petition', NULL, 'Warrant of Arrest', NULL, '30/12/2021', '4', NULL, 'Submitted Complaint Hazira', NULL, '1', NULL, 1, NULL, 0, NULL, NULL, '2022-05-17 11:15:39', '2022-05-17 11:15:39'),
+(8, 3, 30, NULL, '2021-06-02', 14, NULL, 'Filed complaint petition and issued Summon', NULL, 'Service Return (SR)', NULL, '2021-07-14', '8', NULL, 'Completed case filing successfully, Submitted Complaint Hazira', NULL, '2', NULL, 1, NULL, 0, NULL, NULL, '2022-05-18 09:35:26', '2022-05-19 10:17:05'),
+(9, 3, NULL, 'W/A', '2021-07-14', 8, NULL, 'Filed Petition', NULL, 'Warrant of Arrest', NULL, '2021-11-21', '4', NULL, 'Submitted Complaint Hazira', NULL, '1', NULL, 1, NULL, 0, NULL, NULL, '2022-05-18 09:37:33', '2022-05-19 10:15:33'),
+(10, 3, NULL, 'W/A', '2021-11-21', 4, NULL, 'Filed Petition', NULL, 'Warrant of Arrest', NULL, '2022-03-20', '4', NULL, 'Submitted Complaint Hazira', NULL, '5', NULL, 1, 'to file WP&A petition', 0, NULL, NULL, '2022-05-18 09:44:33', '2022-05-19 10:16:37'),
+(11, 5, 30, NULL, '2021-06-02', 14, NULL, 'Filed complaint petition and issued Summon', NULL, 'Issued Summon', NULL, '2021-07-14', '8', NULL, 'Completed case filing successfully, Submitted Complaint Hazira', NULL, '6', NULL, 1, NULL, 0, NULL, NULL, '2022-05-19 10:34:25', '2022-05-19 10:34:25'),
+(12, 5, 13, NULL, '2021-07-14', 8, NULL, 'Filed Petition', NULL, 'Warrant of Arrest', NULL, '2021-11-21', '4', NULL, 'Submitted Complaint Hazira', NULL, '1', NULL, 1, NULL, 0, NULL, NULL, '2022-05-19 10:36:27', '2022-05-19 10:36:27'),
+(13, 5, 21, NULL, '2021-11-21', 4, NULL, 'Filed Petition', NULL, 'Warrant of Arrest', NULL, '2022-03-20', NULL, NULL, 'Submitted Complaint Hazira', NULL, '5', NULL, 1, NULL, 0, NULL, NULL, '2022-05-19 10:39:17', '2022-05-19 10:43:26'),
+(14, 7, 30, NULL, '2019-11-13', 14, NULL, 'Filed complaint petition and issued Summon', NULL, 'Issued Summon', NULL, '2020-01-14', '8', NULL, 'Completed case filing successfully', 'Submitted Complaint Hazira', '2', NULL, 1, NULL, 0, NULL, NULL, '2022-05-19 10:57:45', '2022-05-21 14:13:57'),
+(15, 8, 30, NULL, '2015-08-13', 14, NULL, 'Filed complaint petition and issued Summon', NULL, 'Service Return (SR)', NULL, '2015-09-22', '8', NULL, 'Completed case filing successfully', NULL, '6', NULL, 1, NULL, 0, NULL, NULL, '2022-05-23 04:57:13', '2022-05-23 04:57:13'),
+(16, 8, 13, NULL, '2015-09-22', 8, NULL, 'Filed Petition', NULL, 'Warrant of Arrest', NULL, '2016-02-01', '8', NULL, 'Submitted Complaint Hazira', NULL, '5', NULL, 1, NULL, 0, NULL, NULL, '2022-05-23 04:59:08', '2022-05-23 04:59:08'),
+(17, 8, 13, NULL, '2016-02-01', 8, NULL, 'Filed Petition', NULL, 'Warrant of Arrest', NULL, '2016-06-14', '4', NULL, 'Submitted Complaint Hazira', NULL, '2', NULL, 1, NULL, 0, NULL, NULL, '2022-05-23 05:00:25', '2022-05-23 05:00:25'),
+(18, 8, 21, NULL, '2016-06-14', 4, NULL, NULL, 'Accept Hajira', 'Warrant of Arrest', NULL, '2017-08-02', '4', NULL, 'Submitted Complaint Hazira', NULL, '1', NULL, 1, NULL, 0, NULL, NULL, '2022-05-23 05:02:23', '2022-05-23 05:02:23'),
+(19, 8, 21, NULL, '2017-08-02', 4, NULL, 'Filed Petition', NULL, 'Warrant of Proclamation and Attachment (WP&A)', NULL, '2018-01-10', '6', NULL, 'Submitted Complaint Hazira', NULL, '2', NULL, 1, NULL, 0, NULL, NULL, '2022-05-23 05:22:39', '2022-05-23 05:22:39'),
+(20, 2, 21, NULL, '2021-12-30', 4, NULL, 'Filed Petition', NULL, 'Warrant of Arrest', NULL, '2022-02-16', '4', NULL, NULL, NULL, '5', NULL, NULL, NULL, 0, NULL, NULL, '2022-05-24 12:56:54', '2022-05-24 12:57:54'),
+(21, 1, NULL, NULL, '2022-05-25', NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-25 11:58:22', '2022-05-25 11:58:22'),
+(22, 8, 22, NULL, '2021-09-29', 11, NULL, 'Filed complaint petition', NULL, NULL, NULL, '2022-06-07', '11', NULL, 'Submitted Complaint Hazira', NULL, '5', NULL, 1, NULL, 0, NULL, NULL, '2022-05-26 05:55:45', '2022-05-26 05:55:45'),
+(23, 7, 21, NULL, '2022-01-27', 4, NULL, NULL, 'Accept WP&A petition', NULL, NULL, '2022-06-05', '4', NULL, 'Submitted Complaint Hazira', NULL, '5', NULL, 1, 'petition of WP&A submitted on previous date and pending for hearing.', 0, NULL, NULL, '2022-05-26 06:14:27', '2022-05-26 06:14:27'),
+(24, 9, 38, 'test', '2021-09-12', 15, NULL, 'Filed Petition', NULL, 'Issued Summon', NULL, '2021-11-25', '8', NULL, NULL, NULL, NULL, 'Md. Johirul Islam', NULL, 'testttt', 0, NULL, NULL, '2022-05-28 07:45:00', '2022-06-02 10:41:57'),
+(25, 9, 13, NULL, '2021-11-25', 8, NULL, '2nd Party appeared by Wokalotnama', NULL, 'Wokalotnama accepted', 'Written Statement', '2021-12-23', '7', NULL, '2nd Party was present', NULL, 'Md. Johirul Islam', NULL, 1, 'To submit WS', 0, NULL, NULL, '2022-05-28 07:49:16', '2022-06-02 11:58:57'),
+(26, 9, 23, NULL, '2021-12-23', 7, NULL, '2nd Party submitted TP for submitting WS', NULL, 'TP granted', NULL, '2022-02-20', '7', NULL, NULL, NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, '2022-05-28 07:58:38', '2022-05-28 07:58:38'),
+(27, 9, 23, NULL, '2022-02-20', 7, NULL, '2nd Party submitted TP for submitting WS', NULL, 'TP granted', NULL, '2022-03-30', '7', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-28 07:59:38', '2022-05-28 07:59:38'),
+(28, 9, 23, NULL, '2022-03-30', 7, NULL, '2nd Party submitted TP for submitting WS', NULL, 'TP granted', NULL, '2022-04-26', '7', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-28 08:00:24', '2022-05-28 08:00:24'),
+(29, 9, 23, NULL, '2022-04-26', 7, NULL, '2nd Party submitted TP for submitting WS', NULL, NULL, 'TP granted for Last Time', '2022-05-18', '7', NULL, NULL, NULL, NULL, NULL, 1, 'To submit WS (Last Time)', 0, NULL, NULL, '2022-05-28 08:01:41', '2022-05-28 08:01:41'),
+(30, 9, 23, NULL, '2022-05-18', 7, NULL, NULL, '* Submitted WS * Submitted application for non-maintenance of the Petition', 'Accepted WS', NULL, '2022-05-31', '5', NULL, NULL, NULL, 'Md. Zohurul Haque', NULL, 1, 'Hearing of non-maintenance of the Petition', 0, NULL, NULL, '2022-05-28 08:03:24', '2022-06-02 11:05:32'),
+(31, 11, 13, NULL, '2022-02-02', 8, NULL, NULL, NULL, 'Service Return (SR), TP granted', NULL, '2022-03-30', '4', NULL, NULL, NULL, '5', NULL, 1, NULL, 0, NULL, NULL, '2022-05-30 06:11:00', '2022-05-30 07:29:18'),
+(32, 11, 21, NULL, '2022-03-30', 8, NULL, NULL, NULL, 'Warrant of Proclamation and Attachment (WP&A)', NULL, '2022-05-18', '6', NULL, 'Submitted Complaint Hazira', NULL, '1', NULL, 1, NULL, 0, NULL, NULL, '2022-05-30 06:19:52', '2022-05-30 07:30:00'),
+(33, 11, 6, NULL, '2022-05-18', 6, NULL, NULL, NULL, 'Warrant of Proclamation and Attachment (WP&A)', NULL, '2022-07-13', '6', NULL, 'Submitted Complaint Hazira', NULL, '5', NULL, 1, NULL, 0, NULL, NULL, '2022-05-30 06:25:39', '2022-05-30 07:30:35'),
+(34, 13, 38, NULL, '2021-07-22', 8, NULL, 'Filed Petition', NULL, 'Issued Summon', NULL, '2021-12-13', '8', NULL, NULL, NULL, 'Md. Johirul Islam', NULL, NULL, NULL, 0, NULL, NULL, '2022-05-31 01:24:20', '2022-06-02 10:30:33'),
+(35, 13, 13, NULL, '2021-12-13', 8, NULL, '2nd Party submitted TP for submitting WS', NULL, 'TP granted', NULL, '2022-03-24', '8', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-31 01:26:40', '2022-05-31 01:26:40'),
+(36, 13, 13, NULL, '2022-06-06', 8, NULL, '2nd Party submitted TP for submitting WS', NULL, 'TP granted', NULL, '2022-06-06', '8', NULL, NULL, NULL, 'Md Solimullah Sarkar, Md. Johirul Islam', NULL, NULL, NULL, 0, NULL, NULL, '2022-05-31 01:27:24', '2022-06-12 06:04:31'),
+(37, 9, 23, NULL, '2022-05-31', 5, NULL, NULL, 'Partly Heard', 'Petition Hearing', NULL, '2022-06-23', '5', NULL, NULL, '1st party submitted reply to WS', 'Md. Johirul Islam', NULL, 1, NULL, 0, NULL, NULL, '2022-05-31 10:21:05', '2022-06-02 11:04:33'),
+(38, 14, 49, NULL, '2022-11-05', 10, NULL, '2nd Party submitted TP for submitting WS', NULL, 'Issued Summon', NULL, '2022-08-06', '14', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-06-01 09:16:57', '2022-06-01 09:17:17'),
+(39, 16, 30, NULL, '2021-12-02', 14, NULL, 'Filed complaint petition and issued Summon', NULL, 'Service Return (SR)', NULL, '2022-02-08', '8', NULL, 'Completed case filing successfully', NULL, 'Md. Johirul Islam', NULL, 1, NULL, 0, NULL, NULL, '2022-06-05 10:02:47', '2022-06-05 16:15:42'),
+(40, 13, 13, NULL, '2022-06-14', 8, NULL, NULL, NULL, NULL, NULL, '2022-07-08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2022-06-05 10:03:09', '2022-06-06 11:03:18'),
+(41, 16, 13, NULL, '2022-02-08', 8, NULL, NULL, NULL, 'Service Return (SR)', NULL, '2022-05-11', '8', NULL, 'Submitted Complaint Hazira', NULL, 'Tamzid Islam none', NULL, 1, NULL, 0, NULL, NULL, '2022-06-05 10:05:51', '2022-06-05 10:05:51'),
+(42, 16, 21, NULL, '2022-05-11', 4, NULL, 'Filed Petition', NULL, 'Warrant of Arrest', NULL, '2022-08-08', '4', NULL, 'Submitted Complaint Hazira', NULL, NULL, NULL, 1, NULL, 0, NULL, NULL, '2022-06-05 10:08:00', '2022-06-07 05:17:13');
 
 -- --------------------------------------------------------
 
@@ -882,7 +903,9 @@ CREATE TABLE `external_files` (
 --
 
 INSERT INTO `external_files` (`id`, `file_name`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'test', '164743046653164664984298Ethnicity.png', 0, NULL, NULL, '2022-03-16 05:34:26', '2022-03-16 05:34:26');
+(1, 'new files', '164725962490byden.jpg', 0, NULL, NULL, '2022-03-14 06:07:04', '2022-03-14 06:07:04'),
+(2, 'new files', '164725962475john.jpg', 0, NULL, NULL, '2022-03-14 06:07:04', '2022-03-14 06:07:04'),
+(3, NULL, '164728342653LEX CASTLE_High Court_updated_09.03.2022.xlsx', 0, NULL, NULL, '2022-03-14 12:43:46', '2022-03-14 12:43:46');
 
 -- --------------------------------------------------------
 
@@ -961,8 +984,8 @@ CREATE TABLE `flat_information` (
 --
 
 INSERT INTO `flat_information` (`id`, `property_type_id`, `district_id`, `thana_id`, `seller_id`, `buyer_id`, `cs_khatian`, `cs_dag`, `sa_khatian`, `sa_dag`, `rs_khatian`, `rs_dag`, `bs_khatian`, `bs_dag`, `khatian_dag_city_jorip`, `flat_area`, `deed_no`, `date_of_deed`, `deed_value`, `possession`, `boundary_wall`, `any_dispute`, `any_suit_case`, `flat_owner`, `mouza_name`, `mutation_khatian_no`, `mutation_case_no`, `mutation_khatian_owner`, `dcr_number`, `dcr_date`, `register_office_name`, `floor_id`, `flat_number_id`, `flat_size`, `flat_number`, `flat_compliance`, `electricity`, `gas`, `sewerage`, `water`, `expires`, `renew`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, 2, 2, 1, 'CS khatian 1', '35465464', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', '1', '1000 sft', 'deed no 11', '2022-03-31', '13 test', '14 test', NULL, NULL, NULL, 'Aminur Rahman Smith Aminur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-03-16 05:08:26', '2022-03-27 21:58:27'),
-(2, 1, 3, 1, 2, 1, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', '1', '1000 sft', 'deed no 11', '2022-04-28', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Aminur Rahman Smith Aminur', '17 sadf', 'test mutation', 'm case no', '20 ertre', '23 test', '2022-04-20', 'Aminur Rahman Smith Aminur', 1, 2, '25000 sft', NULL, 'Yes', '1', '24 asdf', 'test sewerage', '28 test', '2022-04-12', '2022-05-06', 0, NULL, NULL, '2022-04-02 03:43:19', '2022-04-02 04:46:32');
+(1, 2, 4, 2, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  14', '1000 sft', 'deed no 11', '2022-03-09', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Aminur Rahman Smith Aminur', '17 sadf', 'test mutation', 'm case no', '20 ertre', '23 test', '2022-03-16', 'Aminur Rahman Smith Aminur', 3, 3, '25000 sft', NULL, 'No', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-03-07 04:44:02', '2022-03-07 05:08:37'),
+(2, 3, 2, 4, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  12', '1000 sft', 'deed no 11', '2022-03-17', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Aminur Rahman Smith Aminur', '17 sadf', 'test mutation', 'm case no', '20 ertre', '23 test', '2022-03-02', 'Aminur Rahman Smith Aminur', 3, 3, '25000 sft', NULL, 'Yes', 'elect 2', 'test gas', 'test sewerage', 'test warter', '2022-03-17', NULL, 0, NULL, NULL, '2022-03-07 05:05:32', '2022-03-07 05:30:43');
 
 -- --------------------------------------------------------
 
@@ -980,6 +1003,15 @@ CREATE TABLE `flat_information_files` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `flat_information_files`
+--
+
+INSERT INTO `flat_information_files` (`id`, `flat_information_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 1, '164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-07 04:44:02', '2022-03-07 04:44:02'),
+(2, 1, '164664984298Ethnicity.png', 0, NULL, NULL, '2022-03-07 04:44:02', '2022-03-07 04:44:02'),
+(3, 1, '164664984260john.jpg', 0, NULL, NULL, '2022-03-07 04:44:02', '2022-03-07 04:44:02');
 
 -- --------------------------------------------------------
 
@@ -1067,8 +1099,8 @@ CREATE TABLE `high_court_cases` (
 --
 
 INSERT INTO `high_court_cases` (`id`, `lower_court`, `case_no`, `division_id`, `district_id`, `thana_id`, `case_class_id`, `case_type_id`, `law_id`, `relevant_law_id`, `relevant_sections_id`, `section_id`, `date_of_filing`, `plaintiff_name`, `plaintiff_designaiton_id`, `plaintiff_contact_number`, `name_of_the_complainant`, `complainant_contact_no`, `complainant_designation_id`, `accused_name`, `accused_company_id`, `accused_address`, `accused_contact_no`, `other_claim`, `summary_facts_alligation`, `trial_court_id`, `trial_court_judgement_date`, `trial_grounds_judgement`, `appeal_court_id`, `appeal_court_judgement_date`, `appeal_grounds_judgement`, `appeal_court_judgement`, `panel_lawyer_id`, `total_legal_bill_amount`, `case_received_lawyer`, `case_papers_received`, `tadbirkar_details`, `tender_no`, `tender_no_date`, `case_category_id`, `case_subcategory_id`, `case_no_hcd`, `date_of_filing_hcd`, `hcd_court_id`, `laws_id`, `sections`, `order`, `order_date`, `order_no_memo`, `appellant_petitioner_name`, `appellant_designation`, `appellant_address`, `opposite_party_name`, `opposite_party_designation`, `opposite_party_address`, `party_steps_taken`, `case_status`, `fixed_hearing_court`, `court_steps_taken`, `court_next_steps_date`, `assigned_lawyer`, `documents_lawyers_appointment`, `documents_sent_to_law_chamber`, `documents_received_field_programe`, `missing_documents_evidence`, `ground_appeal_revision`, `recommendations`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Yes', '4546151', 3, 3, 1, 5, 1, 2, 2, 3, 4, '2022-04-28', 'asdf', 2, 'test2', 'Aminur Rahman Smith Aminur', '01998744563', 1, 'Aminur Rahman Smith Aminur', 2, '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 'asdf', 'werew', 2, '2022-04-14', 'ewrew', 1, '2022-04-30', 'asdf', 'test', 1, 'sdfds', 'asdf asdf', '2022-04-14', 'asdfds', 'sdfdsfd', '2022-04-06', 1, 2, 'sdfdsf', '2022-04-05', 1, NULL, 'zxcv', 'asdfdsf', '2022-04-06', '2022-04-16', NULL, 'asdf', 'ZXc', 'sdf', 'zxcv', 'sdfds', 'ZXcv', 'sadf', 'Xc', 'cd udpate', NULL, 'sdfd update', 'zxcv', 'sdf', 'zxcv', 'were update', 'sf update', 'xcv updated', 0, NULL, NULL, '2022-04-04 03:28:01', '2022-04-04 21:46:05'),
-(2, 'Yes', '45451313', 3, 3, 2, 3, 2, 2, 2, 2, 1, '2022-04-21', 'asdf', 2, 'test2', 'Aminur Rahman Smith Aminur', '01998744568', 2, 'Aminur Rahman Smith Aminur', 2, '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 'ert', 'sdfds', 2, '2022-04-08', 'nfgbnfgh', 2, '2022-04-30', 'jhgjhg', 'cvbvc', 1, 'dgfdg', 'adsaf dfgfdg adsf', '2022-05-06', 'dgfdgf', 'test 8', '2022-04-28', 1, 2, 'asdf23465', '2022-04-27', 2, NULL, 'cvbcvxzfdgdf', 'dfgfdg', '2022-04-20', '2022-05-06', NULL, 'asdf', '43 Phillip St, Sydney NSW 2000, Australia', 'Aminur Rahman Smith Aminur', 'zxcv', '43 Phillip St, Sydney NSW 2000, Australia', 'ZXcv', 'sadf', 'Aminur Rahman Smith Aminur', 'cd udpate', '2022-04-28', 'Aminur Rahman Smith Aminur', 'fsdf', 'ertrg', 'fgdfg', 'xcvbdfg', 'zvgb fgdf', 'gfdg xvbdfg', 0, NULL, NULL, '2022-04-04 21:21:59', '2022-04-04 21:46:30');
+(1, 'No', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Atiar Rahman-2, Adv, CDG', '2022-03-14', 'Shish Uddin', '00000/2022', '2022-04-06', 1, 2, '00000 of 2022', '2022-03-31', NULL, NULL, '498', 'abc', NULL, NULL, 'Md. Siddikur Rahman', NULL, 'Chuadanga', 'The State', NULL, NULL, NULL, 'Filed case in Section', NULL, 'To be mentioned in Motion Court', NULL, 'Md. Niamul Kabir', 'N/A', 'abc', 'xyz', 'xyz', 'abc', 'abc', 0, NULL, NULL, '2022-04-04 03:28:01', '2022-04-06 02:59:03'),
+(2, 'Yes', '45451313', 3, NULL, NULL, 3, 2, 2, 2, 2, 1, '2022-04-21', 'asdf', NULL, 'test2', 'Aminur Rahman Smith Aminur', '01998744568', NULL, 'Aminur Rahman Smith Aminur', 2, '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 'ert', 'sdfds', 2, '2022-04-08', 'nfgbnfgh', 2, '2022-04-30', 'jhgjhg', 'cvbvc', 1, 'dgfdg', 'rtretre fdgfg hjjkhgjhg  fghfghgf', '2022-05-06', 'dgfdgf', 'test 8', '2022-04-28', 1, 2, 'asdf23465', '2022-04-27', 2, NULL, 'cvbcvxzfdgdf', 'dfgfdg', '2022-04-20', '2022-05-06', NULL, 'asdf', '43 Phillip St, Sydney NSW 2000, Australia', 'Aminur Rahman Smith Aminur', 'zxcv', '43 Phillip St, Sydney NSW 2000, Australia', 'ZXcv', 'sadf', 'Aminur Rahman Smith Aminur', 'cd udpate', '2022-04-28', 'Aminur Rahman Smith Aminur', 'fsdf', 'ertrg', 'fgdfg', 'xcvbdfg', 'zvgb fgdf', 'gfdg xvbdfg', 0, NULL, NULL, '2022-04-04 21:21:59', '2022-04-04 21:51:56');
 
 -- --------------------------------------------------------
 
@@ -1092,46 +1124,15 @@ CREATE TABLE `high_court_cases_files` (
 --
 
 INSERT INTO `high_court_cases_files` (`id`, `case_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, '16474282232164733878840byden.jpg', 0, NULL, NULL, '2022-03-16 04:57:03', '2022-03-16 04:57:03'),
-(2, 1, '164742822345164664984298Ethnicity.png', 0, NULL, NULL, '2022-03-16 04:57:03', '2022-03-16 04:57:03'),
-(3, 1, '164783621952164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-20 22:16:59', '2022-03-20 22:16:59'),
-(4, 1, '164783621975164725962475john.jpg', 0, NULL, NULL, '2022-03-20 22:16:59', '2022-03-20 22:16:59'),
-(5, 1, '16478444329164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-21 00:33:52', '2022-03-21 00:33:52'),
-(6, 1, '164784443296164733878840byden.jpg', 0, NULL, NULL, '2022-03-21 00:33:52', '2022-03-21 00:33:52'),
-(7, 2, '164784526641164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-21 00:47:46', '2022-03-21 00:47:46'),
-(8, 2, '164784526612164725962490byden.jpg', 0, NULL, NULL, '2022-03-21 00:47:46', '2022-03-21 00:47:46'),
-(9, 2, '16478472589116449247777asdfasdf (1).pdf', 0, NULL, NULL, '2022-03-21 01:20:58', '2022-03-21 01:20:58'),
-(10, 2, '164784725881164725962475john (1).jpg', 0, NULL, NULL, '2022-03-21 01:20:58', '2022-03-21 01:20:58'),
-(11, 3, '164792106681164553223132no_images.png', 0, NULL, NULL, '2022-03-21 21:51:06', '2022-03-21 21:51:06'),
-(12, 3, '164792106643164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-03-21 21:51:06', '2022-03-21 21:51:06'),
-(13, 6, '164792152849164509724711asdfasdf.pdf', 0, NULL, NULL, '2022-03-21 21:58:48', '2022-03-21 21:58:48'),
-(14, 6, '164792152830164553223132no_images.png', 0, NULL, NULL, '2022-03-21 21:58:48', '2022-03-21 21:58:48'),
-(15, 7, '164792221792164509724711asdfasdf.pdf', 0, NULL, NULL, '2022-03-21 22:10:17', '2022-03-21 22:10:17'),
-(16, 7, '164792221728164509798992byden.jpg', 0, NULL, NULL, '2022-03-21 22:10:17', '2022-03-21 22:10:17'),
-(17, 8, '164792234857164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-03-21 22:12:28', '2022-03-21 22:12:28'),
-(18, 11, '16479246947164509724711asdfasdf.pdf', 0, NULL, NULL, '2022-03-21 22:51:34', '2022-03-21 22:51:34'),
-(19, 12, '164792518136164509724711asdfasdf.pdf', 0, NULL, NULL, '2022-03-21 22:59:41', '2022-03-21 22:59:41'),
-(20, 12, '16479251815164509798992byden.jpg', 0, NULL, NULL, '2022-03-21 22:59:41', '2022-03-21 22:59:41'),
-(21, 14, '164792533373164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-03-21 23:02:13', '2022-03-21 23:02:13'),
-(22, 14, '164792533386164509798992byden.jpg', 0, NULL, NULL, '2022-03-21 23:02:13', '2022-03-21 23:02:13'),
-(23, 1, '164809885478164792825535164509724711asdfasdf.pdf', 0, NULL, NULL, '2022-03-23 23:14:14', '2022-03-23 23:14:14'),
-(24, 1, '16480988541716474106851byden (1).jpg', 0, NULL, NULL, '2022-03-23 23:14:14', '2022-03-23 23:14:14'),
-(25, 1, '164845620150164809819213164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-28 02:30:01', '2022-03-28 02:30:01'),
-(26, 1, '164845620177164792106681164553223132no_images.png', 0, NULL, NULL, '2022-03-28 02:30:01', '2022-03-28 02:30:01'),
-(27, 3, '164845660438164792106681164553223132no_images.png', 0, NULL, NULL, '2022-03-28 02:36:44', '2022-03-28 02:36:44'),
-(28, 3, '164845660413164792106643164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-03-28 02:36:44', '2022-03-28 02:36:44'),
-(29, 1, '16484641163616480981926916474106851byden (1).jpg', 0, NULL, NULL, '2022-03-28 04:41:56', '2022-03-28 04:41:56'),
-(30, 1, '164846411628164809819213164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-28 04:41:56', '2022-03-28 04:41:56'),
-(31, 1, '164846478737164809819213164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-28 04:53:07', '2022-03-28 04:53:07'),
-(32, 1, '16484647874516480981926916474106851byden (1).jpg', 0, NULL, NULL, '2022-03-28 04:53:07', '2022-03-28 04:53:07'),
-(33, 1, '164853079310016478444329164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-28 23:13:13', '2022-03-28 23:13:13'),
-(34, 1, '164853079328164847034157164792106681164553223132no_images.png', 0, NULL, NULL, '2022-03-28 23:13:13', '2022-03-28 23:13:13'),
-(35, 2, '164853199755164847034157164792106681164553223132no_images.png', 0, NULL, NULL, '2022-03-28 23:33:17', '2022-03-28 23:33:17'),
-(36, 2, '164853199790164792106681164553223132no_images.png', 0, NULL, NULL, '2022-03-28 23:33:17', '2022-03-28 23:33:17'),
-(37, 1, '164906448195164792825518164509798992byden (3) (6).jpg', 0, NULL, NULL, '2022-04-04 03:28:01', '2022-04-04 03:28:01'),
-(38, 1, '164906448166164509798992byden (1) (5).jpg', 0, NULL, NULL, '2022-04-04 03:28:01', '2022-04-04 03:28:01'),
-(39, 2, '164912891920164792825518164509798992byden (3) (6).jpg', 0, NULL, NULL, '2022-04-04 21:21:59', '2022-04-04 21:21:59'),
-(40, 2, '164912891962164836373749164792106643164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-04-04 21:21:59', '2022-04-04 21:21:59');
+(1, 2, '164509724711asdfasdf.pdf', 0, NULL, NULL, '2022-02-17 05:27:27', '2022-02-17 05:27:27'),
+(2, 2, '164509724752byden.jpg', 0, NULL, NULL, '2022-02-17 05:27:27', '2022-02-17 05:27:27'),
+(3, 2, '16450979893asdfasdf.pdf', 0, NULL, NULL, '2022-02-17 05:39:49', '2022-02-17 05:39:49'),
+(4, 2, '164509798992byden.jpg', 0, NULL, NULL, '2022-02-17 05:39:49', '2022-02-17 05:39:49'),
+(5, 1, '1645868205100byden.jpg', 0, NULL, NULL, '2022-02-26 03:36:45', '2022-02-26 03:36:45'),
+(6, 1, '164586820532Ethnicity.png', 0, NULL, NULL, '2022-02-26 03:36:45', '2022-02-26 03:36:45'),
+(7, 1, '164586820516asdfasdf.pdf', 0, NULL, NULL, '2022-02-26 03:36:45', '2022-02-26 03:36:45'),
+(8, 2, '164847034157164792106681164553223132no_images.png', 0, NULL, NULL, '2022-03-28 06:25:41', '2022-03-28 06:25:41'),
+(9, 2, '164847034156164792106643164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-03-28 06:25:41', '2022-03-28 06:25:41');
 
 -- --------------------------------------------------------
 
@@ -1165,9 +1166,10 @@ CREATE TABLE `high_court_case_status_logs` (
 --
 
 INSERT INTO `high_court_case_status_logs` (`id`, `case_id`, `updated_court_id`, `updated_next_date`, `updated_next_date_fixed_id`, `updated_panel_lawyer_id`, `order_date`, `updated_case_status_id`, `updated_accused_name`, `update_description`, `case_proceedings`, `case_notes`, `next_date_fixed_reason`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, '2022-03-18', 1, 1, '2022-03-10', 3, 'test accused', 'test', 'test', 'test', 'Disposed', 0, NULL, NULL, '2022-03-16 04:57:37', '2022-03-16 04:57:37'),
-(2, 2, 1, '2022-03-17', 3, 1, '2022-03-31', 2, 'test', 'test 1', 'test 2', 'test 3', 'Disposed', 0, NULL, NULL, '2022-03-21 05:38:26', '2022-03-21 05:38:26'),
-(3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 03:05:18', '2022-04-02 03:05:18');
+(1, 2, 1, '2022-02-08', 3, 2, '2022-03-12', 3, 'test', 'test 3', 'test 2', 'test 9', 'Disposed', 0, NULL, NULL, '2022-02-26 03:32:33', '2022-02-26 03:32:33'),
+(2, 2, 1, '2022-02-02', 3, 2, '2022-03-11', 3, 'test', 'test 9', 'test 8', 'test 7', 'Disposed', 0, NULL, NULL, '2022-02-26 03:33:10', '2022-02-26 03:33:10'),
+(3, 2, 1, '2022-02-12', 3, 2, '2022-03-12', 2, 'asdf', 'test 9', 'test 9', 'test 5', 'No Next Date', 0, NULL, NULL, '2022-02-26 03:33:38', '2022-02-26 03:33:38'),
+(4, 1, 1, '2022-02-09', 1, 2, '2022-03-11', 1, '6were', 'test 9', 'test 2', 'test 8', 'Next Date', 0, NULL, NULL, '2022-02-26 03:37:27', '2022-02-26 03:37:27');
 
 -- --------------------------------------------------------
 
@@ -1230,8 +1232,10 @@ CREATE TABLE `labour_cases` (
 --
 
 INSERT INTO `labour_cases` (`id`, `case_no`, `case_year`, `client_category_id`, `client_subcategory_id`, `date_of_case_received`, `case_category_id`, `case_subcategory_id`, `case_type_id`, `trial_court`, `zone_id`, `area_id`, `branch_id`, `company_organization_id`, `name_of_the_court_id`, `date_of_filing`, `division_id`, `district_id`, `thana_id`, `relevant_law_id`, `relevant_sections_id`, `alligation`, `amount`, `name_of_the_first_party`, `first_party_contact_no`, `first_party_designation_id`, `external_council_name_id`, `external_council_associates_id`, `second_party_name`, `second_party_address`, `case_status_id`, `last_order_court_id`, `next_date`, `next_date_fixed_id`, `case_notes`, `assigned_lawyer_id`, `total_legal_bill_amount`, `other_claim`, `summary_facts_alligation`, `prayer_claims_by_psg`, `missing_documents_evidence`, `comments`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '4546151', '2026', '2', '3', '2022-03-30', '8', '8', '1', 'test', '2', '2', '1', '2', '2', '2022-04-06', '3', '3', '1', '2', '3', 'asdf 32', '2454545', 'Aminur Rahman Smith Aminur', '5464568465', '2', '1', '1', 'Aminur Rahman Smith Aminur', '43 Phillip St, Sydney NSW 2000, Australia', '3', '3', '2022-03-25', '3', 'test21', '1', '25600', 'wertewr update', 'asdfds update', 'erewr update', 'dfgdg update', 'sadfsda update', 0, NULL, NULL, '2022-03-29 04:38:30', '2022-04-02 06:20:38'),
-(2, '45461512', '2026', '4', '4', '2022-03-17', '9', '9', '2', 'test', '2', '2', '1', '2', '1', '2022-03-10', '3', '3', '2', '2', '1', 'asdf 32', '356200', 'Aminur Rahman Smith Aminur', '5464568465', '2', '1', '1', 'Aminur Rahman Smith Aminur', '43 Phillip St, Sydney NSW 2000, Australia', NULL, '3', '2022-03-25', '3', 'test24', '1', '78600', 'test', 'test', 'test', 'test', 'test', 0, NULL, NULL, '2022-03-29 22:54:22', '2022-04-02 03:02:55');
+(1, '4546151', '2026', '2', '3', '2022-03-30', '8', '8', '1', 'test', '2', '2', '1', '2', '2', '2022-04-06', '3', '3', '1', '2', '3', 'asdf 32', '2454545', 'Aminur Rahman Smith Aminur', '5464568465', '2', '1', '1', 'Aminur Rahman Smith Aminur', '43 Phillip St, Sydney NSW 2000, Australia', '3', '3', '2022-03-25', '3', 'test21', '1', '25600', 'wertewr update', 'asdfds update', 'erewr update', 'dfgdg update', 'sadfsda update', 0, NULL, NULL, '2022-03-29 04:38:30', '2022-03-29 22:48:21'),
+(2, '45461512', '2026', '4', '4', '2022-03-17', '9', '9', '2', 'test', '2', '2', '1', '2', '1', '2022-03-10', '3', '3', '2', '2', '1', 'asdf 32', '356200', 'Aminur Rahman Smith Aminur', '5464568465', '2', '1', '1', 'Aminur Rahman Smith Aminur', '43 Phillip St, Sydney NSW 2000, Australia', '3', '3', '2022-03-25', '3', 'test24', '1', '78600', 'test', 'test', 'test', 'test', 'test', 0, NULL, NULL, '2022-03-29 22:54:22', '2022-03-29 23:06:40'),
+(3, 'BLA(wages)- 195/2021', '2021', '1', NULL, '2020-11-19', NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, '20', NULL, NULL, NULL, NULL, '2', '4', NULL, NULL, 'Rafiq', NULL, NULL, NULL, NULL, 'Shamim', NULL, '8', '2', '2022-05-05', '5', NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-03-31 06:18:06', '2022-03-31 06:19:54'),
+(4, 'BLA(wages)- 194/2021', '2021', '3', '7', '2021-09-26', NULL, NULL, '3', NULL, NULL, NULL, NULL, '4', '22', NULL, '1', '1', NULL, '3', '5', '1st party is entitled to get service benefits, gratuity, compensation', '71,56,584/-', 'Md. Mizanur Rahman', NULL, NULL, '5', '5', 'Premier Cement Mills Ltd and Others', 'T.K Bhaban (12th Floor), 13 kawran Bazar, Tejgaon, Dhaka-1215', '23', NULL, NULL, '5', NULL, '3', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 00:04:04', '2022-04-02 00:42:49');
 
 -- --------------------------------------------------------
 
@@ -1255,14 +1259,9 @@ CREATE TABLE `labour_cases_files` (
 --
 
 INSERT INTO `labour_cases_files` (`id`, `case_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, '164741107482asdfasdf.pdf', 0, NULL, NULL, '2022-03-16 00:11:14', '2022-03-16 00:11:14'),
-(2, 1, '16474110743byden.jpg', 0, NULL, NULL, '2022-03-16 00:11:14', '2022-03-16 00:11:14'),
-(3, 1, '16485503101216484647874516480981926916474106851byden (1).jpg', 0, NULL, NULL, '2022-03-29 04:38:30', '2022-03-29 04:38:30'),
-(4, 1, '164855031039164845620150164809819213164742841054164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-29 04:38:30', '2022-03-29 04:38:30'),
-(5, 1, '164861561173164784526612164725962490byden.jpg', 0, NULL, NULL, '2022-03-29 22:46:51', '2022-03-29 22:46:51'),
-(6, 1, '16486156119816478472589116449247777asdfasdf (1).pdf', 0, NULL, NULL, '2022-03-29 22:46:51', '2022-03-29 22:46:51'),
-(7, 2, '164861606221164784526612164725962490byden.jpg', 0, NULL, NULL, '2022-03-29 22:54:22', '2022-03-29 22:54:22'),
-(8, 2, '16486160623116478472589116449247777asdfasdf (1).pdf', 0, NULL, NULL, '2022-03-29 22:54:22', '2022-03-29 22:54:22');
+(1, 3, '164553201621byden.jpg', 0, NULL, NULL, '2022-02-22 06:13:36', '2022-02-22 06:13:36'),
+(2, 3, '164553201653asdfasdf.pdf', 0, NULL, NULL, '2022-02-22 06:13:36', '2022-02-22 06:13:36'),
+(3, 3, '164553201672Ethnicity.png', 0, NULL, NULL, '2022-02-22 06:13:37', '2022-02-22 06:13:37');
 
 -- --------------------------------------------------------
 
@@ -1296,9 +1295,15 @@ CREATE TABLE `labour_case_status_logs` (
 --
 
 INSERT INTO `labour_case_status_logs` (`id`, `case_id`, `updated_court_id`, `updated_next_date`, `updated_next_date_fixed_id`, `updated_panel_lawyer_id`, `order_date`, `updated_case_status_id`, `updated_accused_name`, `update_description`, `case_proceedings`, `case_notes`, `next_date_fixed_reason`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, '2022-03-17', 3, 1, '2022-03-31', 3, 'test accused', 'test', 'test', 'tset', 'Next Date', 0, NULL, NULL, '2022-03-16 00:11:49', '2022-03-16 00:11:49'),
-(2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 03:02:55', '2022-04-02 03:02:55'),
-(3, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Disposed', 0, NULL, NULL, '2022-04-02 03:15:56', '2022-04-02 03:15:56');
+(1, 3, 1, '2022-02-18', 2, 2, '2022-03-05', 3, 'new accused', 'test 66', 'test 33', 'test 22', 'Next Date', 0, NULL, NULL, '2022-02-24 06:07:26', '2022-02-24 06:07:26'),
+(2, 3, 1, '2022-02-26', 3, 2, '2022-03-11', 3, 'accuseddd', 'adsf', 'asdf', 'asdf', 'Disposed', 0, NULL, NULL, '2022-02-24 06:08:48', '2022-02-24 06:08:48'),
+(3, 1, 1, '2022-02-11', 3, 2, '2022-03-04', 3, 'none', 'test 33', 'test 22', 'test 33', 'Disposed', 0, NULL, NULL, '2022-02-24 07:01:04', '2022-02-24 07:01:04'),
+(4, 3, 20, '2022-05-05', 5, 5, '2022-03-09', 8, 'Shamim', 'test', 'test', 'test', 'Next Date', 0, NULL, NULL, '2022-03-31 06:19:54', '2022-03-31 06:19:54'),
+(5, 4, 22, '2021-11-25', 5, 5, '2021-11-25', 13, 'Premier Cement Mills Limited', NULL, NULL, NULL, 'Next Date', 0, NULL, NULL, '2022-04-02 00:10:57', '2022-04-02 00:10:57'),
+(6, 4, 22, '2021-12-23', 5, 5, '2021-12-23', 13, 'Premier Cement Mills Limited', NULL, NULL, NULL, 'Next Date', 0, NULL, NULL, '2022-04-02 00:13:06', '2022-04-02 00:13:06'),
+(7, 4, 22, '2022-02-20', 5, 5, '2022-02-20', 23, 'Premier Cement Mills Limited', NULL, NULL, NULL, 'Next Date', 0, NULL, NULL, '2022-04-02 00:14:35', '2022-04-02 00:14:35'),
+(8, 4, 22, '2022-03-30', 5, 5, '2022-03-30', 23, 'Premier Cement Mills Limited', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 00:15:17', '2022-04-02 00:15:17'),
+(9, 4, 22, '2022-03-30', 7, 5, '2022-03-30', 23, 'Premier Cement Mills Ltd.', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 02:25:20', '2022-04-02 02:25:20');
 
 -- --------------------------------------------------------
 
@@ -1357,9 +1362,8 @@ CREATE TABLE `land_information` (
 --
 
 INSERT INTO `land_information` (`id`, `property_type_id`, `district_id`, `thana_id`, `seller_id`, `buyer_id`, `cs_khatian`, `cs_dag`, `sa_khatian`, `sa_dag`, `rs_khatian`, `rs_dag`, `bs_khatian`, `bs_dag`, `khatian_dag_city_jorip`, `land_area`, `deed_no`, `date_of_deed`, `deed_value`, `possession`, `boundary_wall`, `any_dispute`, `any_suit_case`, `property_owner`, `mouza_name`, `mutation_khatian_no`, `mutation_case_no`, `mutation_khatian_owner`, `dcr_number`, `dcr_date`, `register_office_name`, `land_compliance`, `electricity`, `gas`, `sewerage`, `water`, `expires`, `renew`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, 2, 2, 1, 'CS khatian 1', '35465464', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'rrrr', '10', '11 test', '2022-03-31', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Aminur Rahman Smith Aminur', '17 sadf', '18 kjh', 'm case no', '20 ertre', '23 test', '2022-03-03', 'Aminur Rahman Smith Aminur', 'Yes', 'elect 98', 'test gas', 'test sewerage', 'test warter', '2022-03-18', '2022-03-25', 0, NULL, NULL, '2022-03-16 05:03:23', '2022-03-16 05:03:23'),
-(2, 2, 3, 1, 2, 1, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', '1', 'land area 10', 'deed no 11', '2022-03-24', '13 test', '14 test', NULL, NULL, NULL, 'Aminur Rahman Smith Aminur', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-03-16 05:05:49', '2022-03-16 05:06:01'),
-(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 03:41:29', '2022-04-02 03:41:29');
+(1, 2, 2, 4, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'khatian & dag city jorip  9', 'land area 10', 'deed no 11', 'dod 12', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Jack Smith', '17 sadf', 'test mutation', 'm case no', 'test khatian', '4654654DCR', '2022-03-17', 'Main office', 'No', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-03-06 00:24:05', '2022-03-12 00:42:09'),
+(2, 3, 4, 3, 1, 3, 'CS khatian 1', 'cs dag 2', 'sa khatian 3', 'sa dag 4', 'rs khatian 5', 'rs dag 6', 'bs khatian 7', 'bs dag 8', 'aaaa', 'land area 10', 'deed no 11', '12 test', '13 test', '14 test', 'boundary 15', 'dispute 16', 'any suit 17', 'Stefen', '17 sadf', 'test mutation', 'm case no', '20 ertre', '23 test', '2022-03-15', 'test offfice', 'Yes', 'elect 98', 'test gas', 'test sewerage', 'test warter', '2022-03-31', '2022-03-30', 0, NULL, NULL, '2022-03-06 00:25:45', '2022-03-07 06:05:50');
 
 -- --------------------------------------------------------
 
@@ -1383,8 +1387,11 @@ CREATE TABLE `land_information_files` (
 --
 
 INSERT INTO `land_information_files` (`id`, `land_information_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, '164742860314164664984298Ethnicity.png', 0, NULL, NULL, '2022-03-16 05:03:23', '2022-03-16 05:03:23'),
-(2, 1, '16474286033016449247777asdfasdf (1).pdf', 0, NULL, NULL, '2022-03-16 05:03:23', '2022-03-16 05:03:23');
+(1, 1, '164654784592byden.jpg', 0, NULL, NULL, '2022-03-06 00:24:05', '2022-03-06 00:24:05'),
+(2, 1, '164654784550asdfasdf.pdf', 0, NULL, NULL, '2022-03-06 00:24:05', '2022-03-06 00:24:05'),
+(3, 1, '164654784596Integra_Logo.png', 0, NULL, NULL, '2022-03-06 00:24:05', '2022-03-06 00:24:05'),
+(4, 1, '164654828555Ethnicity.png', 0, NULL, NULL, '2022-03-06 00:31:25', '2022-03-06 00:31:25'),
+(5, 1, '16465482851asdfasdf.pdf', 0, NULL, NULL, '2022-03-06 00:31:25', '2022-03-06 00:31:25');
 
 -- --------------------------------------------------------
 
@@ -1404,111 +1411,77 @@ CREATE TABLE `migrations` (
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (74, '2022_02_13_053654_create_setup_external_council_associates_table', 19),
-(283, '2014_10_12_000000_create_users_table', 20),
-(284, '2014_10_12_100000_create_password_resets_table', 20),
-(285, '2014_10_12_200000_add_two_factor_columns_to_users_table', 20),
-(286, '2019_08_19_000000_create_failed_jobs_table', 20),
-(287, '2019_12_14_000001_create_personal_access_tokens_table', 20),
-(288, '2020_11_15_100619_create_sessions_table', 20),
-(289, '2020_11_15_133901_create_admins_table', 20),
-(290, '2022_01_23_065415_create_setup_designations_table', 20),
-(291, '2022_01_24_050641_create_setup_case_categories_table', 20),
-(292, '2022_01_24_090201_create_setup_case_statuses_table', 20),
-(293, '2022_01_24_092137_create_setup_case_types_table', 20),
-(294, '2022_01_25_052801_create_setup_property_types_table', 20),
-(295, '2022_01_25_062602_create_setup_compliance_categories_table', 20),
-(296, '2022_01_31_063010_create_setup_person_titles_table', 20),
-(297, '2022_01_31_070832_create_setup_external_councils_table', 20),
-(299, '2022_02_01_064505_create_setup_compliance_types_table', 20),
-(301, '2022_02_02_101211_create_setup_divisions_table', 20),
-(302, '2022_02_02_102424_create_setup_districts_table', 20),
-(303, '2022_02_03_115304_create_setup_law_sections_table', 20),
-(304, '2022_02_03_174007_create_civil_cases_files_table', 20),
-(305, '2022_02_05_042409_create_setup_next_date_reasons_table', 20),
-(306, '2022_02_05_095928_create_setup_court_last_orders_table', 20),
-(307, '2022_02_05_104823_create_setup_external_council_files_table', 20),
-(309, '2022_02_06_133706_create_setup_regions_table', 20),
-(310, '2022_02_07_051606_create_setup_areas_table', 20),
-(311, '2022_02_07_053103_create_setup_branches_table', 20),
-(312, '2022_02_07_063805_create_setup_programs_table', 20),
-(313, '2022_02_07_064505_create_setup_alligations_table', 20),
-(314, '2022_02_08_133409_create_contact_infos_table', 20),
-(315, '2022_02_09_092253_create_criminal_cases_files_table', 20),
-(316, '2022_02_12_103417_create_setup_companies_table', 20),
-(317, '2022_02_12_111247_create_setup_company_types_table', 20),
-(318, '2022_02_12_120355_create_setup_internal_councils_table', 20),
-(319, '2022_02_12_120617_create_setup_internal_council_files_table', 20),
-(320, '2022_02_13_062358_create_setup_external_council_associates_files_table', 20),
-(321, '2022_02_13_063316_create_setup_external_council_associates_table', 20),
-(323, '2022_02_16_122342_create_labour_cases_files_table', 20),
-(325, '2022_02_17_071328_create_quassi_judicial_cases_files_table', 20),
-(326, '2022_02_17_090404_create_supreme_court_cases_table', 20),
-(327, '2022_02_17_090617_create_supreme_court_cases_files_table', 20),
-(329, '2022_02_17_104722_create_high_court_cases_files_table', 20),
-(331, '2022_02_17_115024_create_appellate_court_cases_files_table', 20),
-(334, '2022_02_24_112509_create_labour_case_status_logs_table', 20),
-(335, '2022_02_26_050811_create_quassi_judicial_case_status_logs_table', 20),
-(336, '2022_02_26_075141_create_supreme_court_case_status_logs_table', 20),
-(337, '2022_02_26_092935_create_high_court_case_status_logs_table', 20),
-(338, '2022_02_26_103647_create_appellate_court_case_status_logs_table', 20),
-(339, '2022_03_01_061808_create_setup_bill_types_table', 20),
-(340, '2022_03_01_063826_create_setup_banks_table', 20),
-(341, '2022_03_01_072242_create_setup_bank_branches_table', 20),
-(342, '2022_03_01_093042_create_setup_digital_payments_table', 20),
-(343, '2022_03_02_041449_create_case_billings_table', 20),
-(344, '2022_03_03_100737_create_setup_thanas_table', 20),
-(345, '2022_03_03_110811_create_setup_seller_buyers_table', 20),
-(346, '2022_03_05_094634_create_land_information_table', 20),
-(347, '2022_03_05_100641_create_land_information_files_table', 20),
-(348, '2022_03_07_044224_create_flat_information_table', 20),
-(349, '2022_03_07_051253_create_flat_information_files_table', 20),
-(350, '2022_03_07_052042_create_setup_floors_table', 20),
-(351, '2022_03_07_055414_create_setup_flat_numbers_table', 20),
-(352, '2022_03_08_110826_create_regulatory_compliances_table', 20),
-(353, '2022_03_09_070843_create_social_compliances_table', 20),
-(354, '2022_03_13_104748_create_external_files_table', 20),
-(355, '2022_03_16_063902_create_setup_supreme_court_categories_table', 21),
-(357, '2022_03_16_085702_create_setup_supreme_court_subcategories_table', 22),
-(358, '2022_03_20_090552_create_setup_court_classes_table', 23),
-(359, '2022_03_20_092651_create_setup_case_classes_table', 24),
-(360, '2022_03_20_093859_create_setup_sections_table', 25),
-(368, '2022_03_24_064203_create_setup_client_categories_table', 30),
-(369, '2022_03_24_070908_create_setup_client_subcategories_table', 31),
-(370, '2022_03_24_102157_create_setup_case_categories_table', 32),
-(372, '2022_03_24_110935_create_setup_case_subcategories_table', 33),
-(385, '2022_02_16_073059_create_labour_cases_table', 38),
-(388, '2022_02_17_064635_create_quassi_judicial_cases_table', 39),
-(389, '2022_02_23_100709_create_civil_case_status_logs_table', 40),
-(391, '2022_02_17_114951_create_appellate_court_cases_table', 41),
-(392, '2022_02_17_104706_create_high_court_cases_table', 42),
-(397, '2022_04_07_043208_create_setup_next_day_presences_table', 44),
-(399, '2022_03_27_103111_create_setup_laws_table', 46),
-(401, '2022_02_01_094805_create_civil_cases_table', 47),
-(402, '2022_04_10_082519_create_setup_legal_issues_table', 48),
-(403, '2022_04_10_083722_create_setup_legal_services_table', 49),
-(404, '2022_04_10_090007_create_setup_matters_table', 50),
-(405, '2022_04_10_093842_create_setup_allegations_table', 51),
-(406, '2022_04_11_040354_create_setup_coordinators_table', 52),
-(408, '2022_04_13_054721_create_setup_modes_table', 54),
-(411, '2022_04_13_093928_create_setup_court_proceedings_table', 56),
-(412, '2022_04_13_095131_create_setup_day_notes_table', 57),
-(417, '2022_04_17_043510_create_setup_in_favour_ofs_table', 60),
-(418, '2022_04_17_063359_create_setup_referrers_table', 61),
-(419, '2022_04_17_071308_create_setup_parties_table', 62),
-(420, '2022_04_17_082929_create_setup_clients_table', 63),
-(421, '2022_04_17_091253_create_setup_professions_table', 64),
-(422, '2022_04_18_045333_create_setup_documents_table', 65),
-(424, '2022_04_18_070838_create_setup_oppositions_table', 67),
-(437, '2022_04_25_034241_create_setup_complainants_table', 75),
-(438, '2022_04_25_040138_create_setup_accuseds_table', 76),
-(439, '2022_04_25_045323_create_setup_court_shorts_table', 77),
-(440, '2022_04_25_050722_create_setup_progress_table', 78),
-(448, '2022_04_13_062009_create_criminal_case_activity_logs_table', 83),
-(460, '2022_04_25_133138_create_criminal_cases_case_steps_table', 92),
-(467, '2022_02_01_042900_create_setup_courts_table', 94),
-(470, '2022_02_05_123938_create_criminal_cases_table', 95),
-(472, '2022_02_24_092255_create_criminal_case_status_logs_table', 96),
-(473, '2022_04_18_051710_create_setup_case_titles_table', 97);
+(117, '2014_10_12_000000_create_users_table', 20),
+(118, '2014_10_12_100000_create_password_resets_table', 20),
+(119, '2014_10_12_200000_add_two_factor_columns_to_users_table', 20),
+(120, '2019_08_19_000000_create_failed_jobs_table', 20),
+(121, '2019_12_14_000001_create_personal_access_tokens_table', 20),
+(122, '2020_11_15_100619_create_sessions_table', 20),
+(123, '2020_11_15_133901_create_admins_table', 20),
+(124, '2022_01_23_065415_create_setup_designations_table', 20),
+(125, '2022_01_24_050641_create_setup_case_categories_table', 20),
+(126, '2022_01_24_090201_create_setup_case_statuses_table', 20),
+(127, '2022_01_24_092137_create_setup_case_types_table', 20),
+(128, '2022_01_25_052801_create_setup_property_types_table', 20),
+(129, '2022_01_25_062602_create_setup_compliance_categories_table', 20),
+(130, '2022_01_31_063010_create_setup_person_titles_table', 20),
+(131, '2022_01_31_070832_create_setup_external_councils_table', 20),
+(132, '2022_02_01_042900_create_setup_courts_table', 20),
+(133, '2022_02_01_064505_create_setup_compliance_types_table', 20),
+(134, '2022_02_01_094805_create_civil_cases_table', 20),
+(135, '2022_02_02_101211_create_setup_divisions_table', 20),
+(136, '2022_02_02_102424_create_setup_districts_table', 20),
+(137, '2022_02_03_115304_create_setup_law_sections_table', 20),
+(138, '2022_02_03_174007_create_civil_cases_files_table', 20),
+(139, '2022_02_05_042409_create_setup_next_date_reasons_table', 20),
+(140, '2022_02_05_095928_create_setup_court_last_orders_table', 20),
+(141, '2022_02_05_104823_create_setup_external_council_files_table', 20),
+(142, '2022_02_05_123938_create_criminal_cases_table', 20),
+(143, '2022_02_06_133706_create_setup_regions_table', 20),
+(144, '2022_02_07_051606_create_setup_areas_table', 20),
+(145, '2022_02_07_053103_create_setup_branches_table', 20),
+(146, '2022_02_07_063805_create_setup_programs_table', 20),
+(147, '2022_02_07_064505_create_setup_alligations_table', 20),
+(148, '2022_02_08_133409_create_contact_infos_table', 20),
+(149, '2022_02_09_092253_create_criminal_cases_files_table', 20),
+(150, '2022_02_12_103417_create_setup_companies_table', 20),
+(151, '2022_02_12_111247_create_setup_company_types_table', 20),
+(152, '2022_02_12_120355_create_setup_internal_councils_table', 20),
+(153, '2022_02_12_120617_create_setup_internal_council_files_table', 20),
+(154, '2022_02_13_062358_create_setup_external_council_associates_files_table', 20),
+(155, '2022_02_13_063316_create_setup_external_council_associates_table', 20),
+(156, '2022_02_16_073059_create_labour_cases_table', 21),
+(157, '2022_02_16_122342_create_labour_cases_files_table', 22),
+(158, '2022_02_17_064635_create_quassi_judicial_cases_table', 23),
+(159, '2022_02_17_071328_create_quassi_judicial_cases_files_table', 23),
+(160, '2022_02_17_090404_create_supreme_court_cases_table', 24),
+(161, '2022_02_17_090617_create_supreme_court_cases_files_table', 24),
+(162, '2022_02_17_104706_create_high_court_cases_table', 25),
+(163, '2022_02_17_104722_create_high_court_cases_files_table', 25),
+(164, '2022_02_17_114951_create_appellate_court_cases_table', 26),
+(165, '2022_02_17_115024_create_appellate_court_cases_files_table', 26),
+(167, '2022_02_23_100709_create_civil_case_status_logs_table', 27),
+(170, '2022_02_24_092255_create_criminal_case_status_logs_table', 28),
+(171, '2022_02_24_112509_create_labour_case_status_logs_table', 28),
+(172, '2022_02_26_050811_create_quassi_judicial_case_status_logs_table', 29),
+(173, '2022_02_26_075141_create_supreme_court_case_status_logs_table', 30),
+(174, '2022_02_26_092935_create_high_court_case_status_logs_table', 31),
+(175, '2022_02_26_103647_create_appellate_court_case_status_logs_table', 32),
+(176, '2022_03_01_061808_create_setup_bill_types_table', 33),
+(177, '2022_03_01_063826_create_setup_banks_table', 34),
+(178, '2022_03_01_072242_create_setup_bank_branches_table', 35),
+(181, '2022_03_01_093042_create_setup_digital_payments_table', 36),
+(183, '2022_03_02_041449_create_case_billings_table', 37),
+(184, '2022_03_03_100737_create_setup_thanas_table', 38),
+(187, '2022_03_03_110811_create_setup_seller_buyers_table', 39),
+(190, '2022_03_05_094634_create_land_information_table', 40),
+(191, '2022_03_05_100641_create_land_information_files_table', 40),
+(200, '2022_03_07_044224_create_flat_information_table', 41),
+(201, '2022_03_07_051253_create_flat_information_files_table', 41),
+(202, '2022_03_07_052042_create_setup_floors_table', 41),
+(203, '2022_03_07_055414_create_setup_flat_numbers_table', 41),
+(206, '2022_03_08_110826_create_regulatory_compliances_table', 42),
+(209, '2022_03_09_070843_create_social_compliances_table', 43);
 
 -- --------------------------------------------------------
 
@@ -1612,9 +1585,8 @@ CREATE TABLE `quassi_judicial_cases` (
 --
 
 INSERT INTO `quassi_judicial_cases` (`id`, `case_no`, `case_year`, `client_category_id`, `client_subcategory_id`, `date_of_case_received`, `case_category_id`, `case_subcategory_id`, `case_type_id`, `trial_court`, `subsequent_case_no`, `zone_id`, `area_id`, `branch_id`, `member_no`, `program_id`, `name_of_the_court_id`, `date_of_filing`, `division_id`, `district_id`, `thana_id`, `relevant_laws_id`, `relevant_sections_id`, `alligation`, `amount`, `name_of_the_complainant`, `complainant_contact_no`, `complainant_designation_id`, `external_council_name_id`, `external_council_associates_id`, `opposite_party_name`, `opposite_party_address`, `case_status_id`, `last_order_court_id`, `accused_name`, `accused_company_id`, `next_date`, `accused_address`, `accused_contact_no`, `next_date_fixed_id`, `plaintiff_name`, `plaintiff_designaiton_id`, `plaintiff_contact_number`, `company_id`, `case_notes`, `panel_lawyer_id`, `assigned_lawyer_id`, `total_legal_bill_amount`, `other_claim`, `summary_facts_alligation`, `prayer_claims_by_psg`, `missing_documents_evidence`, `comments`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '4546151', '2026', 3, 1, '2022-03-18', 2, 10, 1, 'test', '7788965', 2, 2, 1, '546464', 2, 2, '2022-03-31', 3, 3, 2, 2, 3, 'asdf', '356200', 'Aminur Rahman Smith Aminur', '01998744568', 2, 1, 1, 'Aminur Rahman Smith Aminur', '43 Phillip St, Sydney NSW 2000, Australia', NULL, 3, 'Aminur Rahman Smith Aminur', 2, '2022-04-08', '43 Phillip St, Sydney NSW 2000, Australia', '01998745638', 3, 'asdf', 2, '01456698785', 2, 'test40', 1, 1, '25600', 'test', 'test', 'test', 'test update', 'test update', 0, NULL, NULL, '2022-03-30 00:39:09', '2022-04-02 03:04:04'),
-(2, '6546', 'test14', 4, 4, '2022-03-18', 2, 13, 1, 'test', '7783223', 2, 2, 1, '541', 2, 2, '2022-03-24', 3, 3, 2, 2, 4, 'asdf 32', '30000', 'Aminur Rahman Smith Aminur', '01998744568', 2, 1, 1, 'Aminur Rahman Smith Aminur', '43 Phillip St, Sydney NSW 2000, Australia', 3, 3, 'Aminur Rahman Smith Aminur', 2, '2022-03-17', '43 Phillip St, Sydney NSW 2000, Australia', '01998745638', 3, 'test1 test', 2, 'test', 2, 'test24', 1, 1, 'test 6', 'test update', 'test udpate', 'test udpate', 'test udpate', 'test update', 0, NULL, NULL, '2022-03-30 00:41:20', '2022-03-30 01:30:39'),
-(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 04:21:32', '2022-04-02 06:20:13');
+(1, '4546151', '2026', 3, 1, '2022-03-18', 2, 10, 1, 'test', '7788965', 2, 2, 1, '546464', 2, 2, '2022-03-31', 3, 3, 2, 2, 3, 'asdf', '356200', 'Aminur Rahman Smith Aminur', '01998744568', 2, 1, 1, 'Aminur Rahman Smith Aminur', '43 Phillip St, Sydney NSW 2000, Australia', 3, 3, 'Aminur Rahman Smith Aminur', 2, '2022-04-08', '43 Phillip St, Sydney NSW 2000, Australia', '01998745638', 3, 'asdf', 2, '01456698785', 2, 'test40', 1, 1, '25600', 'test', 'test', 'test', 'test', 'test', 0, NULL, NULL, '2022-03-30 00:39:09', '2022-03-30 00:39:09'),
+(2, '6546', 'test14', 4, 4, '2022-03-18', 2, 13, 1, 'test', '7783223', 2, 2, 1, '541', 2, 2, '2022-03-24', 3, 3, 2, 2, 4, 'asdf 32', '30000', 'Aminur Rahman Smith Aminur', '01998744568', 2, 1, 1, 'Aminur Rahman Smith Aminur', '43 Phillip St, Sydney NSW 2000, Australia', 3, 3, 'Aminur Rahman Smith Aminur', 2, '2022-03-17', '43 Phillip St, Sydney NSW 2000, Australia', '01998745638', 3, 'test1 test', 2, 'test', 2, 'test24', 1, 1, 'test 6', 'test update', 'test udpate', 'test udpate', 'test udpate', 'test update', 0, NULL, NULL, '2022-03-30 00:41:20', '2022-03-30 01:30:39');
 
 -- --------------------------------------------------------
 
@@ -1638,24 +1610,13 @@ CREATE TABLE `quassi_judicial_cases_files` (
 --
 
 INSERT INTO `quassi_judicial_cases_files` (`id`, `case_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, '16474112404asdfasdf.pdf', 0, NULL, NULL, '2022-03-16 00:14:00', '2022-03-16 00:14:00'),
-(2, 1, '16474112408byden.jpg', 0, NULL, NULL, '2022-03-16 00:14:00', '2022-03-16 00:14:00'),
-(3, 2, '164794088468164509724711asdfasdf.pdf', 0, NULL, NULL, '2022-03-22 03:21:24', '2022-03-22 03:21:24'),
-(4, 2, '16479408847116474282232164733878840byden.jpg', 0, NULL, NULL, '2022-03-22 03:21:24', '2022-03-22 03:21:24'),
-(5, 1, '164861934323164784526612164725962490byden.jpg', 0, NULL, NULL, '2022-03-29 23:49:03', '2022-03-29 23:49:03'),
-(6, 1, '16486193434916478472589116449247777asdfasdf (1).pdf', 0, NULL, NULL, '2022-03-29 23:49:03', '2022-03-29 23:49:03'),
-(7, 1, '16486205367316478472589116449247777asdfasdf (1).pdf', 0, NULL, NULL, '2022-03-30 00:08:56', '2022-03-30 00:08:56'),
-(8, 1, '164862053658164784526612164725962490byden.jpg', 0, NULL, NULL, '2022-03-30 00:08:56', '2022-03-30 00:08:56'),
-(9, 2, '164862073984164784526612164725962490byden.jpg', 0, NULL, NULL, '2022-03-30 00:12:19', '2022-03-30 00:12:19'),
-(10, 2, '16486207394116478472589116449247777asdfasdf (1).pdf', 0, NULL, NULL, '2022-03-30 00:12:19', '2022-03-30 00:12:19'),
-(11, 1, '16486209286716478472589116449247777asdfasdf (1).pdf', 0, NULL, NULL, '2022-03-30 00:15:28', '2022-03-30 00:15:28'),
-(12, 1, '1648620928216484647874516480981926916474106851byden (1).jpg', 0, NULL, NULL, '2022-03-30 00:15:28', '2022-03-30 00:15:28'),
-(13, 1, '164862234975164784526612164725962490byden.jpg', 0, NULL, NULL, '2022-03-30 00:39:09', '2022-03-30 00:39:09'),
-(14, 1, '16486223491816478472589116449247777asdfasdf (1).pdf', 0, NULL, NULL, '2022-03-30 00:39:09', '2022-03-30 00:39:09'),
-(15, 2, '164862248091164784526612164725962490byden.jpg', 0, NULL, NULL, '2022-03-30 00:41:20', '2022-03-30 00:41:20'),
-(16, 2, '164862248011164845620150164809819213164742841054164664984221asdfasdf (1).pdf', 0, NULL, NULL, '2022-03-30 00:41:20', '2022-03-30 00:41:20'),
-(17, 2, '164862351587164845620150164809819213164742841054164664984221asdfasdf (1).pdf', 0, NULL, NULL, '2022-03-30 00:58:35', '2022-03-30 00:58:35'),
-(18, 2, '16486235152016484647874516480981926916474106851byden (1).jpg', 0, NULL, NULL, '2022-03-30 00:58:35', '2022-03-30 00:58:35');
+(1, 2, '164508363862asdfasdf.pdf', 0, NULL, NULL, '2022-02-17 01:40:38', '2022-02-17 01:40:38'),
+(2, 2, '164508363882byden.jpg', 0, NULL, NULL, '2022-02-17 01:40:38', '2022-02-17 01:40:38'),
+(3, 2, '164508363829Ethnicity.png', 0, NULL, NULL, '2022-02-17 01:40:38', '2022-02-17 01:40:38'),
+(4, 2, '164508427179asdfasdf.pdf', 0, NULL, NULL, '2022-02-17 01:51:11', '2022-02-17 01:51:11'),
+(5, 2, '164508427111byden.jpg', 0, NULL, NULL, '2022-02-17 01:51:11', '2022-02-17 01:51:11'),
+(6, 1, '164553223132no_images.png', 0, NULL, NULL, '2022-02-22 06:17:11', '2022-02-22 06:17:11'),
+(7, 1, '164553223131john.jpg', 0, NULL, NULL, '2022-02-22 06:17:11', '2022-02-22 06:17:11');
 
 -- --------------------------------------------------------
 
@@ -1689,7 +1650,9 @@ CREATE TABLE `quassi_judicial_case_status_logs` (
 --
 
 INSERT INTO `quassi_judicial_case_status_logs` (`id`, `case_id`, `updated_court_id`, `updated_next_date`, `updated_next_date_fixed_id`, `updated_panel_lawyer_id`, `order_date`, `updated_case_status_id`, `updated_accused_name`, `update_description`, `case_proceedings`, `case_notes`, `next_date_fixed_reason`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 03:04:04', '2022-04-02 03:04:04');
+(1, 1, 1, '2022-02-02', 1, 2, '2022-02-18', 3, 'none', 'test des', 'test pro', 'test notes', 'Disposed', 0, NULL, NULL, '2022-02-25 23:20:50', '2022-02-25 23:20:50'),
+(2, 1, 1, '2022-02-18', 3, 2, '2022-03-04', 3, 'nones', 'test test', 'test test', 'test test', 'Disposed', 0, NULL, NULL, '2022-02-25 23:21:51', '2022-02-25 23:21:51'),
+(3, 2, 1, '2022-02-09', 3, 2, '2022-03-12', 2, 'tweet', 'test 6', 'test 9', 'test 8', 'No Next Date', 0, NULL, NULL, '2022-02-25 23:33:44', '2022-02-25 23:33:44');
 
 -- --------------------------------------------------------
 
@@ -1733,8 +1696,9 @@ CREATE TABLE `regulatory_compliances` (
 --
 
 INSERT INTO `regulatory_compliances` (`id`, `certificates_name`, `compliance_category_id`, `certificates_authority`, `certificates_ministry`, `certificates_getting_cl_first_date`, `certificates_expires`, `certificates_renew`, `certificates_special_provision`, `certificates_special_remarks`, `govt_authority`, `govt_ministry_dept`, `govt_getting_cl_first_date`, `govt_expires`, `govt_renew`, `govt_special_provision`, `govt_special_remarks`, `utility_electricity`, `utility_gas`, `utility_sewerage`, `utility_water`, `utility_expires`, `utility_renew`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Aminur Rahman Smith Aminur', 1, 'Aminur Rahman Smith Aminur', 'asdf', '2022-03-17', '2022-03-24', '2022-03-26', 'asdf updated', 'adsf updated', 'Aminur Rahman Smith Aminur', 'asdf', '2022-03-24', '2022-04-01', '2022-03-25', 'asdf updated', 'asdf updated', 'aaa', 'asdf', 'sewerage', 'test water', '2022-03-17', '2022-03-25', 0, NULL, NULL, '2022-03-16 05:18:50', '2022-03-16 05:18:50'),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 03:47:05', '2022-04-02 03:47:05');
+(1, 'Bsc Certificates', 2, 'test Authority', 'asdf updated', '2022-03-04', '2022-03-11', '2022-03-12', 'asdf updated', 'adsf updated', 'Aminur Rahman Smith Aminur', 'asdf updaetd', '2022-03-14', '2022-03-25', '2022-03-11', 'asdf updated', 'asdf updated', 'elects test', 'asdf test updated', 'asdf test', 'test water test', '2022-03-02', '2022-03-24', 0, NULL, NULL, '2022-03-08 22:25:38', '2022-03-09 03:20:19'),
+(2, 'Aminur Rahman Smith Aminur', 2, 'Aminur Rahman Smith Aminur', 'asdf', '2022-04-01', '2022-03-18', '2022-03-26', 'asdf', 'adsf', 'Aminur Rahman Smith Aminur', 'asdf', '2022-03-31', '2022-03-26', '2022-03-12', 'asdf', 'asdf', 'edq', 'gas', 'asdf', 'test water', '2022-03-17', '2022-03-25', 0, NULL, NULL, '2022-03-08 22:26:31', '2022-03-08 23:25:17'),
+(3, 'Aminur Rahman Smith Aminur', 1, 'Aminur Rahman Smith Aminur', 'asdf updated', '2022-03-18', '2022-03-17', '2022-03-19', 'asd', 'adsf', 'Aminur Rahman Smith Aminur', 'asdf', '2022-03-11', '2022-03-03', '2022-03-17', 'asdf', 'asdf', 'test', 'asdf', 'sewerage', 'asdf', '2022-03-02', '2022-03-04', 1, NULL, NULL, '2022-03-08 23:40:31', '2022-03-09 01:07:50');
 
 -- --------------------------------------------------------
 
@@ -1756,7 +1720,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('VBigK0aDBmV8tze7UJbsBDqmA6HYRpRRfbUtDtgK', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiY0ltR1BQbXo1M3dJMVdRaFM1a1FDRWtoUmIwVXFPWXhsdVV6SWhDMCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njc6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi92aWV3LWNyaW1pbmFsLWNhc2VzLzUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjQ6InBhZ2UiO3M6OToiZGFzaGJvYXJkIjtzOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1654951070);
+('2WGX8GuQQjfp6HxTZoqe6vQqjqpQRTRd7ofKElfW', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUUhPS2ZoTnFhNkJCUlB0TGxITFpKcTlXemttZmVnZXlOd212aFZRbyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzA6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9hZGQtZGlnaXRhbC1wYXltZW50LXR5cGUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJwYWdlIjtzOjk6ImRhc2hib2FyZCI7fQ==', 1655026085);
 
 -- --------------------------------------------------------
 
@@ -1806,11 +1770,8 @@ CREATE TABLE `setup_allegations` (
 --
 
 INSERT INTO `setup_allegations` (`id`, `allegation_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'allegation main', 0, NULL, NULL, '2022-04-10 03:52:42', '2022-04-10 03:53:10'),
-(2, 'test allegation', 0, NULL, NULL, '2022-04-10 03:52:48', '2022-04-10 03:52:48'),
-(3, 'allegation asdfsdaf', 0, NULL, NULL, '2022-04-24 03:39:21', '2022-04-24 03:39:21'),
-(4, 'werasdf', 0, NULL, NULL, '2022-04-24 03:50:45', '2022-04-24 03:50:45'),
-(5, 'adsfa asdf adsf sdfadsf', 0, NULL, NULL, '2022-04-25 05:38:41', '2022-04-25 05:39:06');
+(1, 'Dishonor of Cheque', 0, NULL, NULL, '2022-04-10 03:52:42', '2022-04-20 14:00:55'),
+(2, 'Outstanding Recovery', 0, NULL, NULL, '2022-04-10 03:52:48', '2022-04-20 14:02:25');
 
 -- --------------------------------------------------------
 
@@ -1833,8 +1794,8 @@ CREATE TABLE `setup_areas` (
 --
 
 INSERT INTO `setup_areas` (`id`, `area_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Dhakeshwari', 0, NULL, NULL, '2022-03-15 23:48:24', '2022-03-15 23:48:24'),
-(2, 'Shahjahanpur', 0, NULL, NULL, '2022-03-15 23:48:29', '2022-03-15 23:48:46');
+(1, 'Shantibag', 0, NULL, NULL, '2022-02-15 05:25:34', '2022-02-26 05:47:00'),
+(2, 'Malibag', 1, NULL, NULL, '2022-02-15 05:25:41', '2022-03-14 21:56:36');
 
 -- --------------------------------------------------------
 
@@ -1857,9 +1818,8 @@ CREATE TABLE `setup_banks` (
 --
 
 INSERT INTO `setup_banks` (`id`, `bank_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Sonali Bank', 0, NULL, NULL, '2022-03-15 23:51:24', '2022-03-15 23:51:47'),
-(2, 'Rupali Bank', 0, NULL, NULL, '2022-03-15 23:51:28', '2022-03-15 23:51:28'),
-(3, 'Sonali Bank', 0, NULL, NULL, '2022-03-15 23:51:32', '2022-03-15 23:51:39');
+(1, 'Sonali Bank', 0, NULL, NULL, '2022-03-01 00:46:56', '2022-03-01 00:47:40'),
+(2, 'Rupali Bank', 0, NULL, NULL, '2022-03-01 00:47:02', '2022-03-01 00:47:02');
 
 -- --------------------------------------------------------
 
@@ -1883,8 +1843,9 @@ CREATE TABLE `setup_bank_branches` (
 --
 
 INSERT INTO `setup_bank_branches` (`id`, `bank_id`, `bank_branch_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Shahjahanpur', 1, NULL, NULL, '2022-03-15 23:51:59', '2022-03-15 23:52:17'),
-(2, 2, 'Lalbag', 0, NULL, NULL, '2022-03-15 23:52:06', '2022-03-15 23:52:06');
+(1, 1, 'Lalbag', 0, NULL, NULL, '2022-03-01 05:27:32', '2022-03-01 05:28:25'),
+(2, 2, 'Posta', 0, NULL, NULL, '2022-03-01 05:27:45', '2022-03-01 05:27:45'),
+(3, 1, 'Shahjahanpur', 0, NULL, NULL, '2022-03-01 05:28:08', '2022-03-01 05:28:08');
 
 -- --------------------------------------------------------
 
@@ -1907,9 +1868,8 @@ CREATE TABLE `setup_bill_types` (
 --
 
 INSERT INTO `setup_bill_types` (`id`, `bill_type_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Panel Layer Payment', 0, NULL, NULL, '2022-03-15 23:50:28', '2022-03-15 23:50:28'),
-(2, 'Miscellaneous', 0, NULL, NULL, '2022-03-15 23:50:33', '2022-03-15 23:50:33'),
-(3, 'Panel Layer Payment', 0, NULL, NULL, '2022-03-15 23:50:37', '2022-03-15 23:50:42');
+(1, 'Panel Layer Payment', 0, NULL, NULL, '2022-03-01 00:28:41', '2022-03-01 00:31:21'),
+(2, 'Miscellaneous', 0, NULL, NULL, '2022-03-01 00:29:04', '2022-03-01 00:29:04');
 
 -- --------------------------------------------------------
 
@@ -1932,8 +1892,8 @@ CREATE TABLE `setup_branches` (
 --
 
 INSERT INTO `setup_branches` (`id`, `branch_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Chalkbazar', 0, NULL, NULL, '2022-03-15 23:48:55', '2022-03-15 23:49:17'),
-(2, 'Posta Branch', 1, NULL, NULL, '2022-03-15 23:49:00', '2022-03-15 23:49:15');
+(1, 'Posta Branch', 0, NULL, NULL, '2022-02-15 21:56:14', '2022-02-26 05:48:21'),
+(2, 'Islambag Branch', 1, NULL, NULL, '2022-02-15 21:56:22', '2022-02-26 05:48:26');
 
 -- --------------------------------------------------------
 
@@ -1957,17 +1917,16 @@ CREATE TABLE `setup_case_categories` (
 --
 
 INSERT INTO `setup_case_categories` (`id`, `case_type`, `case_category`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'High Court Division', 'High Court Cases Category 1', 0, NULL, NULL, '2022-03-24 04:44:58', '2022-03-29 01:27:38'),
-(2, 'Special Quassi - Judicial Cases', 'Special Quassi Judicial Cases Category 1', 0, NULL, NULL, '2022-03-24 04:45:21', '2022-03-29 00:51:31'),
-(3, 'Appellate Court Division', 'Appellate Court Cases Category 1', 0, NULL, NULL, '2022-03-24 04:59:58', '2022-03-29 00:52:07'),
-(4, 'Civil Cases', 'Civil Case category 1', 0, NULL, NULL, '2022-03-29 00:48:20', '2022-03-29 00:50:46'),
-(5, 'Civil Cases', 'Civil Case category 2', 0, NULL, NULL, '2022-03-29 00:48:29', '2022-03-29 00:50:37'),
-(6, 'Criminal Cases', 'Criminal Cases category 1', 0, NULL, NULL, '2022-03-29 00:48:50', '2022-03-29 00:50:25'),
-(7, 'Criminal Cases', 'Criminal Cases category 2', 0, NULL, NULL, '2022-03-29 00:48:58', '2022-03-29 00:50:16'),
-(8, 'Labour Cases', 'Labour Cases category 1', 0, NULL, NULL, '2022-03-29 00:49:32', '2022-03-29 00:50:04'),
-(9, 'Labour Cases', 'Labour Cases category 2', 0, NULL, NULL, '2022-03-29 00:49:41', '2022-03-29 00:49:57'),
-(10, 'High Court Division', 'Contempt Cases', 0, NULL, NULL, '2022-04-06 02:21:30', '2022-04-06 02:21:30'),
-(11, 'Appellate Court Division', 'Appellate Court Case Main category', 0, NULL, NULL, '2022-04-06 02:22:33', '2022-04-06 02:22:33');
+(1, 'High Court Division', 'Criminal', 0, NULL, NULL, '2022-03-24 04:44:58', '2022-04-06 02:23:41'),
+(2, 'Special Quassi - Judicial Cases', 'Contempt Cases', 0, NULL, NULL, '2022-03-24 04:45:21', '2022-03-24 04:59:30'),
+(3, 'Appellate Court Division', 'Civil Cases', 0, NULL, NULL, '2022-03-24 04:59:58', '2022-03-24 05:00:09'),
+(4, 'High Court Division', 'Civil', 0, NULL, NULL, '2022-04-06 02:23:10', '2022-04-06 02:23:10'),
+(5, 'High Court Division', 'Writ', 0, NULL, NULL, '2022-04-06 02:23:56', '2022-04-06 02:23:56'),
+(6, 'Criminal Cases', 'Test Category 1', 1, NULL, NULL, '2022-04-12 05:37:08', '2022-06-07 15:52:02'),
+(7, 'Criminal Cases', 'Criminal', 0, NULL, NULL, '2022-04-13 02:32:07', '2022-04-13 02:32:07'),
+(8, 'Civil Cases', 'Civil', 0, NULL, NULL, '2022-04-13 02:32:18', '2022-04-13 02:32:18'),
+(9, 'Criminal Cases', 'Labour', 0, NULL, NULL, '2022-05-13 08:49:14', '2022-05-13 08:49:14'),
+(10, 'Criminal Cases', 'Civil', 0, NULL, NULL, '2022-06-08 14:41:40', '2022-06-08 14:46:32');
 
 -- --------------------------------------------------------
 
@@ -1990,10 +1949,12 @@ CREATE TABLE `setup_case_classes` (
 --
 
 INSERT INTO `setup_case_classes` (`id`, `case_class_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'test', 0, NULL, NULL, '2022-03-20 03:30:59', '2022-03-20 03:30:59'),
-(2, 'test 2', 0, NULL, NULL, '2022-03-20 03:31:03', '2022-03-20 03:31:03'),
-(3, 'test 3', 0, NULL, NULL, '2022-03-20 03:31:07', '2022-03-20 03:31:07'),
-(5, 'test 5', 0, NULL, NULL, '2022-03-20 03:31:15', '2022-03-20 03:31:21');
+(1, 'Appellate Division', 0, NULL, NULL, '2022-03-20 03:30:59', '2022-06-07 17:25:38'),
+(2, 'High Court Division', 0, NULL, NULL, '2022-03-20 03:31:03', '2022-06-07 17:25:17'),
+(3, 'Quasi-judicial / Special Court', 0, NULL, NULL, '2022-03-20 03:31:07', '2022-06-07 17:24:52'),
+(4, 'Employee Case', 0, NULL, NULL, '2022-03-20 03:31:11', '2022-06-07 17:22:53'),
+(5, 'Criminal', 0, NULL, NULL, '2022-03-20 03:31:15', '2022-06-07 17:22:12'),
+(6, 'Civil', 0, NULL, NULL, '2022-06-07 15:57:20', '2022-06-07 17:21:59');
 
 -- --------------------------------------------------------
 
@@ -2016,9 +1977,71 @@ CREATE TABLE `setup_case_statuses` (
 --
 
 INSERT INTO `setup_case_statuses` (`id`, `case_status_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Active', 0, NULL, NULL, '2022-03-15 23:42:03', '2022-03-15 23:42:03'),
-(2, 'Inactive', 0, NULL, NULL, '2022-03-15 23:42:07', '2022-03-15 23:42:07'),
-(3, 'Ongoing', 0, NULL, NULL, '2022-03-15 23:42:18', '2022-03-15 23:42:25');
+(1, 'Active', 1, NULL, NULL, '2022-02-15 05:14:05', '2022-03-16 04:33:14'),
+(2, 'Inactive', 1, NULL, NULL, '2022-02-15 05:14:10', '2022-03-16 04:31:54'),
+(3, 'Ongoing', 1, NULL, NULL, '2022-02-15 05:14:17', '2022-03-16 04:33:05'),
+(4, 'Police Report', 0, NULL, NULL, '2022-03-16 04:34:46', '2022-03-16 04:34:46'),
+(5, 'Proceedings', 0, NULL, NULL, '2022-03-16 04:35:12', '2022-03-16 04:35:12'),
+(6, 'Warrant of Proclamation and Attachment order (WP&A)', 0, NULL, NULL, '2022-03-16 04:36:10', '2022-03-16 04:36:10'),
+(7, 'PW', 0, NULL, NULL, '2022-03-16 04:36:23', '2022-03-16 04:36:23'),
+(8, 'Re-call Witness', 0, NULL, NULL, '2022-03-16 04:36:56', '2022-03-16 04:36:56'),
+(9, 'Repealed by Govt. Gazette', 0, NULL, NULL, '2022-03-16 04:37:47', '2022-03-16 04:37:47'),
+(10, 'Responding Appeal Hearing', 0, NULL, NULL, '2022-03-16 04:38:11', '2022-03-16 04:38:11'),
+(11, 'Retain for Transfer', 0, NULL, NULL, '2022-03-16 04:38:26', '2022-03-16 04:38:26'),
+(12, 'Rule & Stay', 0, NULL, NULL, '2022-03-16 04:38:49', '2022-03-16 04:38:49'),
+(13, 'Service Return (SR)', 0, NULL, NULL, '2022-03-16 04:39:16', '2022-03-16 04:39:16'),
+(14, 'Settling Date (SD)', 0, NULL, NULL, '2022-03-16 04:40:09', '2022-03-16 04:40:09'),
+(15, 'Status Quo', 0, NULL, NULL, '2022-03-16 04:40:27', '2022-03-16 04:40:27'),
+(16, 'Stayed', 0, NULL, NULL, '2022-03-16 04:40:38', '2022-03-16 04:40:38'),
+(17, 'Step (Todvir)', 0, NULL, NULL, '2022-03-16 04:41:40', '2022-03-16 04:41:40'),
+(18, 'Submission of Court Fee', 0, NULL, NULL, '2022-03-16 04:42:07', '2022-03-16 04:42:07'),
+(19, 'Summon', 0, NULL, NULL, '2022-03-16 04:42:15', '2022-03-16 04:42:15'),
+(20, 'Taking cognizance', 0, NULL, NULL, '2022-03-16 04:42:39', '2022-03-16 04:42:39'),
+(21, 'Warrant of Arrest', 0, NULL, NULL, '2022-03-16 04:43:14', '2022-05-23 05:13:23'),
+(22, 'Witness', 0, NULL, NULL, '2022-03-16 04:43:37', '2022-03-16 04:43:37'),
+(23, 'Written Statement', 0, NULL, NULL, '2022-03-16 04:43:49', '2022-03-16 04:43:49'),
+(24, 'Pending for WP&A Process Fee', 0, NULL, NULL, '2022-03-16 05:13:24', '2022-03-16 05:13:24'),
+(25, 'Pending for Summon Process Fee', 0, NULL, NULL, '2022-03-16 05:13:49', '2022-03-16 05:13:49'),
+(26, 'Pending for Warrant of Arrest (W/A) Process Fee', 0, NULL, NULL, '2022-03-16 05:14:36', '2022-03-16 05:14:36'),
+(27, 'Peremptory Hearing', 0, NULL, NULL, '2022-03-16 05:15:30', '2022-03-16 05:15:30'),
+(28, 'Petition Hearing', 0, NULL, NULL, '2022-03-16 05:15:53', '2022-03-16 05:15:53'),
+(29, 'Exparty Hearing', 0, NULL, NULL, '2022-03-16 05:17:04', '2022-03-16 05:17:04'),
+(30, 'Filing Complaint', 0, NULL, NULL, '2022-03-16 05:17:21', '2022-03-16 05:17:21'),
+(31, 'Filing FIR', 0, NULL, NULL, '2022-03-16 05:18:38', '2022-03-16 05:18:38'),
+(32, 'Final Hearing', 0, NULL, NULL, '2022-03-16 05:18:53', '2022-03-16 05:18:53'),
+(33, 'Framing of Charge', 0, NULL, NULL, '2022-03-16 05:19:12', '2022-03-16 05:19:12'),
+(34, 'Framing of Issue', 0, NULL, NULL, '2022-03-16 05:19:34', '2022-03-16 05:19:34'),
+(35, 'Further Investigation', 0, NULL, NULL, '2022-03-16 05:20:10', '2022-03-16 05:20:10'),
+(36, 'Further Peremptory Hearing (FPH)', 0, NULL, NULL, '2022-03-16 05:20:43', '2022-03-16 05:20:43'),
+(37, 'Further Witness', 0, NULL, NULL, '2022-03-16 05:21:08', '2022-03-16 05:21:08'),
+(38, 'Filing Petition', 0, NULL, NULL, '2022-03-16 05:21:20', '2022-05-13 12:43:44'),
+(39, 'Hearing', 0, NULL, NULL, '2022-03-16 05:21:29', '2022-03-16 05:21:29'),
+(40, 'Inquiry', 0, NULL, NULL, '2022-03-16 05:22:01', '2022-03-16 05:22:01'),
+(41, 'Investigation', 0, NULL, NULL, '2022-03-16 05:22:13', '2022-03-16 05:22:13'),
+(42, 'Judgment', 0, NULL, NULL, '2022-03-16 05:22:24', '2022-03-16 05:22:24'),
+(43, 'Naraji petition', 0, NULL, NULL, '2022-03-16 05:22:44', '2022-03-16 05:22:44'),
+(44, 'LCR', 0, NULL, NULL, '2022-03-16 05:23:12', '2022-03-16 05:23:12'),
+(45, 'Off Track', 0, NULL, NULL, '2022-03-16 05:24:50', '2022-03-16 05:24:50'),
+(46, 'Paper Notifucation', 0, NULL, NULL, '2022-03-16 05:25:19', '2022-03-16 05:25:19'),
+(47, 'Pending for ACC Report', 0, NULL, NULL, '2022-03-16 05:25:43', '2022-03-16 05:25:43'),
+(48, '30 CPC', 0, NULL, NULL, '2022-03-16 05:26:56', '2022-03-16 05:26:56'),
+(49, 'Acquittal', 0, NULL, NULL, '2022-03-16 05:27:18', '2022-03-16 05:27:18'),
+(50, 'AD Return', 0, NULL, NULL, '2022-03-16 05:27:41', '2022-03-16 05:27:41'),
+(51, 'Admission Hearing', 0, NULL, NULL, '2022-03-16 05:28:19', '2022-03-16 05:28:19'),
+(52, 'ADR', 0, NULL, NULL, '2022-03-16 05:28:29', '2022-03-16 05:28:29'),
+(53, 'Appeal', 0, NULL, NULL, '2022-03-16 05:28:44', '2022-03-16 05:28:44'),
+(54, 'Appearance of the parties', 0, NULL, NULL, '2022-03-16 05:29:06', '2022-03-16 05:29:06'),
+(55, 'Arguments', 0, NULL, NULL, '2022-03-16 05:29:29', '2022-03-16 05:29:29'),
+(56, 'Case Dismissed', 0, NULL, NULL, '2022-03-16 05:30:00', '2022-03-16 05:30:00'),
+(57, 'Cross Examination', 0, NULL, NULL, '2022-03-16 05:30:23', '2022-03-16 05:30:23'),
+(58, 'Defense Witness', 0, NULL, NULL, '2022-03-16 05:30:45', '2022-03-16 05:30:45'),
+(59, 'Discharge', 0, NULL, NULL, '2022-03-16 05:30:59', '2022-03-16 05:30:59'),
+(60, 'Disposed off By Compromise', 0, NULL, NULL, '2022-03-16 05:31:40', '2022-03-16 05:31:40'),
+(61, 'Disposed off By Judgment (In Disfavour)', 0, NULL, NULL, '2022-03-16 05:32:48', '2022-03-16 05:32:48'),
+(62, 'Disposed off By Judgment (In favour)', 0, NULL, NULL, '2022-03-16 05:33:19', '2022-03-16 05:33:19'),
+(63, 'Disposed off By Withdrawal', 0, NULL, NULL, '2022-03-16 05:34:02', '2022-03-16 05:34:02'),
+(64, 'Examination of Accused', 0, NULL, NULL, '2022-03-16 05:34:30', '2022-03-16 05:34:30'),
+(65, 'Ex-party Decree', 0, NULL, NULL, '2022-03-16 05:34:51', '2022-03-16 05:34:51');
 
 -- --------------------------------------------------------
 
@@ -2043,20 +2066,21 @@ CREATE TABLE `setup_case_subcategories` (
 --
 
 INSERT INTO `setup_case_subcategories` (`id`, `case_type`, `case_category_id`, `case_subcategory`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'High Court Division', 1, 'Test Organizations', 0, NULL, NULL, '2022-03-24 05:54:11', '2022-03-29 01:22:27'),
-(2, 'High Court Division', 1, 'Financial Organizations', 0, NULL, NULL, '2022-03-24 05:54:36', '2022-03-29 01:22:17'),
+(1, 'High Court Division', 1, 'Appeal', 0, NULL, NULL, '2022-03-24 05:54:11', '2022-04-06 02:26:03'),
+(2, 'High Court Division', 1, 'Miscellaneous', 0, NULL, NULL, '2022-03-24 05:54:36', '2022-04-06 02:29:23'),
 (3, 'Appellate Court Division', 3, 'test financial Cases', 0, NULL, NULL, '2022-03-24 05:54:58', '2022-03-24 06:01:07'),
-(4, 'Civil Cases', 4, 'Civil Case Subcategory 1', 0, NULL, NULL, '2022-03-29 01:22:45', '2022-03-29 01:22:45'),
-(5, 'Civil Cases', 5, 'Civil Case Subcategory 2', 0, NULL, NULL, '2022-03-29 01:23:02', '2022-03-29 01:23:02'),
-(6, 'Criminal Cases', 6, 'Criminal Case Subcategory 1', 0, NULL, NULL, '2022-03-29 01:23:29', '2022-03-29 01:23:29'),
-(7, 'Criminal Cases', 7, 'Criminal Case Subcategory 2', 0, NULL, NULL, '2022-03-29 01:23:45', '2022-03-29 01:23:45'),
-(8, 'Labour Cases', 8, 'Labour Cases Subcategory 1', 0, NULL, NULL, '2022-03-29 01:24:07', '2022-03-29 01:24:07'),
-(9, 'Labour Cases', 9, 'Labour Cases Subcategory 2', 0, NULL, NULL, '2022-03-29 01:24:17', '2022-03-29 01:24:17'),
-(10, 'Special Quassi - Judicial Cases', 2, 'Special Quassi Judicial Cases Subcategory 1', 0, NULL, NULL, '2022-03-29 01:24:42', '2022-03-29 01:24:42'),
-(11, 'High Court Division', 1, 'Appellate Court Cases Subcategory 1', 0, NULL, NULL, '2022-03-29 01:25:06', '2022-03-29 01:25:16'),
-(12, 'Appellate Court Division', 3, 'Appellate Court Cases Subcategory 2', 0, NULL, NULL, '2022-03-29 01:25:42', '2022-03-29 01:25:42'),
-(13, 'Special Quassi - Judicial Cases', 2, 'Non financial Cases', 0, NULL, NULL, '2022-03-30 01:09:22', '2022-03-30 01:09:22'),
-(14, 'Appellate Court Division', 11, 'Appellate court case main subcategory', 0, NULL, NULL, '2022-04-06 02:23:21', '2022-04-06 02:23:21');
+(4, 'High Court Division', 1, 'Revision', 0, NULL, NULL, '2022-04-06 02:26:23', '2022-04-06 02:26:23'),
+(5, 'High Court Division', 1, 'Quashment', 0, NULL, NULL, '2022-04-06 02:26:59', '2022-04-06 02:26:59'),
+(6, 'Criminal Cases', 7, 'C.R.', 0, NULL, NULL, '2022-04-13 03:12:14', '2022-04-13 03:12:14'),
+(7, 'Criminal Cases', 7, 'G.R.', 0, NULL, NULL, '2022-04-13 03:12:33', '2022-04-13 03:12:33'),
+(8, 'Criminal Cases', 7, 'Cr. Revision', 0, NULL, NULL, '2022-04-13 03:13:04', '2022-04-13 03:13:04'),
+(9, 'Civil Cases', 8, 'Civil Revision', 0, NULL, NULL, '2022-04-13 03:13:21', '2022-04-13 09:57:04'),
+(10, 'Criminal Cases', 7, 'Cr. Appeal', 0, NULL, NULL, '2022-04-13 03:13:48', '2022-04-13 03:13:48'),
+(11, 'Criminal Cases', 7, 'Sessions Case (SC)', 0, NULL, NULL, '2022-04-13 03:14:10', '2022-04-13 03:14:10'),
+(12, 'Criminal Cases', 7, 'NIAct', 0, NULL, NULL, '2022-04-13 09:57:55', '2022-04-13 09:57:55'),
+(13, 'Criminal Cases', 7, 'Complaint Register', 0, NULL, NULL, '2022-04-20 13:01:51', '2022-04-20 13:01:51'),
+(14, 'Criminal Cases', 9, 'Wages', 0, NULL, NULL, '2022-05-13 08:50:04', '2022-05-13 08:50:04'),
+(15, 'Criminal Cases', 9, 'Complaint', 0, NULL, NULL, '2022-05-31 17:40:56', '2022-05-31 17:40:56');
 
 -- --------------------------------------------------------
 
@@ -2080,9 +2104,17 @@ CREATE TABLE `setup_case_titles` (
 --
 
 INSERT INTO `setup_case_titles` (`id`, `case_type`, `case_title_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Criminal Cases', 'PR', 0, NULL, NULL, '2022-06-11 10:23:07', '2022-06-11 10:24:17'),
-(2, 'Civil Cases', 'C.R.', 0, NULL, NULL, '2022-06-11 10:23:54', '2022-06-11 10:23:54'),
-(3, 'High Court Division', 'CR', 0, NULL, NULL, '2022-06-11 10:24:01', '2022-06-11 10:24:11');
+(1, 'Criminal Cases', 'C.R.', 0, NULL, NULL, '2022-04-17 23:35:49', '2022-06-11 11:13:02'),
+(2, NULL, 'G.R.', 0, NULL, NULL, '2022-04-17 23:35:53', '2022-04-20 13:05:26'),
+(3, NULL, 'Petition', 0, NULL, NULL, '2022-04-17 23:35:59', '2022-04-20 13:05:46'),
+(4, NULL, 'Sessions', 0, NULL, NULL, '2022-04-20 13:06:03', '2022-05-13 08:51:03'),
+(5, NULL, 'SC', 0, NULL, NULL, '2022-04-20 13:06:20', '2022-04-20 13:06:20'),
+(6, NULL, 'BLA (wages)', 0, NULL, NULL, '2022-05-13 08:51:29', '2022-05-13 08:51:29'),
+(7, NULL, 'BLA(complaint)', 0, NULL, NULL, '2022-05-31 17:42:38', '2022-05-31 17:42:38'),
+(8, NULL, 'AT', 0, NULL, NULL, '2022-06-06 11:27:22', '2022-06-06 11:27:22'),
+(9, NULL, 'Civil Suit', 0, NULL, NULL, '2022-06-08 14:43:29', '2022-06-08 14:43:29'),
+(10, NULL, 'Nari O Shishu Case No.', 1, NULL, NULL, '2022-06-08 14:57:42', '2022-06-08 14:57:59'),
+(11, NULL, 'Nari O Shishu Case No.', 0, NULL, NULL, '2022-06-08 14:57:52', '2022-06-08 14:57:52');
 
 -- --------------------------------------------------------
 
@@ -2105,8 +2137,16 @@ CREATE TABLE `setup_case_types` (
 --
 
 INSERT INTO `setup_case_types` (`id`, `case_types_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Civil Case', 0, NULL, NULL, '2022-03-15 23:42:31', '2022-03-15 23:43:02'),
-(2, 'Criminal Cases', 0, NULL, NULL, '2022-03-15 23:42:39', '2022-03-15 23:42:39');
+(1, 'Criminal Cases', 0, NULL, NULL, '2022-02-15 05:22:22', '2022-02-28 04:25:28'),
+(2, 'Civil Cases', 0, NULL, NULL, '2022-02-15 05:22:34', '2022-02-28 04:25:20'),
+(3, 'Labour Cases', 0, NULL, NULL, '2022-02-28 04:25:37', '2022-04-01 23:57:36'),
+(4, 'Special / Quassi-Judicial Cases', 0, NULL, NULL, '2022-02-28 04:26:50', '2022-02-28 04:26:50'),
+(5, 'Supreme Court of Bangladesh', 0, NULL, NULL, '2022-02-28 04:27:14', '2022-02-28 04:27:14'),
+(6, 'High Court Division', 1, NULL, NULL, '2022-02-28 04:27:34', '2022-03-14 06:02:34'),
+(7, 'Appellate Court Division', 1, NULL, NULL, '2022-02-28 04:27:49', '2022-03-14 06:02:12'),
+(8, 'NIAct', 0, NULL, NULL, '2022-04-13 02:28:55', '2022-04-13 10:19:38'),
+(9, 'Fraud', 0, NULL, NULL, '2022-04-13 02:29:05', '2022-04-13 02:29:05'),
+(10, 'Fraud and Misappropriation', 0, NULL, NULL, '2022-04-13 02:29:35', '2022-04-13 02:29:35');
 
 -- --------------------------------------------------------
 
@@ -2132,8 +2172,8 @@ CREATE TABLE `setup_clients` (
 --
 
 INSERT INTO `setup_clients` (`id`, `client_name`, `client_mobile`, `client_email`, `client_address`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Smith Aminu', '4645648522', 'asdf@adf', '43 Phillip St, Sydney NSW 2000, Australia', 0, NULL, NULL, '2022-04-17 02:40:26', '2022-04-17 02:40:46'),
-(2, 'Aminur Rahman Smith Aminur', '4645648522', 'asdf@adf', '43 Phillip St, Sydney NSW 2000, Australia', 0, NULL, NULL, '2022-04-17 02:40:33', '2022-04-17 02:40:33');
+(1, 'Star Particle Board Mills Limited', NULL, NULL, 'Shanta Western Tower, Level – 13 Bir Uttam Mir Shawkat Road, 186 Tejgaon I/A Dhaka – 1208, Bangladesh', 0, NULL, NULL, '2022-04-17 02:40:26', '2022-04-20 14:39:42'),
+(2, 'Partex Agro Limited', NULL, NULL, NULL, 0, NULL, NULL, '2022-04-17 02:40:33', '2022-04-20 14:40:10');
 
 -- --------------------------------------------------------
 
@@ -2156,11 +2196,11 @@ CREATE TABLE `setup_client_categories` (
 --
 
 INSERT INTO `setup_client_categories` (`id`, `client_category_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Individual', 0, NULL, NULL, '2022-03-24 01:44:40', '2022-03-24 01:44:40'),
-(2, 'Organization', 0, NULL, NULL, '2022-03-24 01:44:54', '2022-03-24 01:44:54'),
-(3, 'Company', 0, NULL, NULL, '2022-03-24 01:45:03', '2022-03-24 01:45:03'),
-(4, 'Bank', 0, NULL, NULL, '2022-03-24 01:45:09', '2022-03-24 01:45:09'),
-(5, 'NBF', 0, NULL, NULL, '2022-03-24 01:45:16', '2022-03-24 01:45:16');
+(1, 'PERSON', 0, NULL, NULL, '2022-03-24 01:44:40', '2022-04-02 00:32:24'),
+(2, 'PROPRIETORSHIP', 0, NULL, NULL, '2022-03-24 01:44:54', '2022-04-20 14:23:17'),
+(3, 'COMPANY', 0, NULL, NULL, '2022-03-24 01:45:03', '2022-04-20 14:22:51'),
+(4, 'NGO', 0, NULL, NULL, '2022-03-24 01:45:09', '2022-04-02 00:31:01'),
+(5, 'FIRM', 0, NULL, NULL, '2022-03-24 01:45:16', '2022-04-20 14:22:25');
 
 -- --------------------------------------------------------
 
@@ -2186,8 +2226,19 @@ CREATE TABLE `setup_client_subcategories` (
 INSERT INTO `setup_client_subcategories` (`id`, `client_category_id`, `client_subcategory_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 3, 'Zaimah Technologies Limited', 0, NULL, NULL, '2022-03-24 03:16:09', '2022-03-24 03:16:42'),
 (2, 4, 'Premier Bank Limited', 0, NULL, NULL, '2022-03-24 03:16:26', '2022-03-24 03:16:26'),
-(3, 2, 'WHO', 0, NULL, NULL, '2022-03-24 03:17:03', '2022-03-24 03:17:03'),
-(4, 4, 'City Bank Limited', 0, NULL, NULL, '2022-03-24 03:17:20', '2022-03-24 03:17:20');
+(3, 2, 'Person', 0, NULL, NULL, '2022-03-24 03:17:03', '2022-04-20 14:21:23'),
+(4, 4, 'City Bank Limited', 0, NULL, NULL, '2022-03-24 03:17:20', '2022-03-24 03:17:20'),
+(5, 3, 'Bank', 0, NULL, NULL, '2022-04-02 00:34:03', '2022-04-02 00:34:03'),
+(6, 3, 'Non Banking Financial Institution', 0, NULL, NULL, '2022-04-02 00:34:24', '2022-04-02 00:34:24'),
+(7, 3, 'Private Limited Company', 0, NULL, NULL, '2022-04-02 00:35:23', '2022-04-02 00:35:23'),
+(8, 3, 'Public Limited Company', 0, NULL, NULL, '2022-04-02 00:35:40', '2022-04-02 00:35:40'),
+(9, 4, 'National NGO', 0, NULL, NULL, '2022-04-02 00:36:01', '2022-04-02 00:36:01'),
+(10, 4, 'International NGO', 0, NULL, NULL, '2022-04-02 00:36:24', '2022-04-02 00:36:24'),
+(11, 4, 'Foundation', 0, NULL, NULL, '2022-04-02 00:36:40', '2022-04-02 00:36:40'),
+(12, 2, 'Company', 0, NULL, NULL, '2022-04-20 14:21:39', '2022-04-20 14:21:39'),
+(13, 1, 'Ex-employee', 0, NULL, NULL, '2022-05-28 07:00:04', '2022-05-28 07:00:04'),
+(14, 1, 'Private Service', 0, NULL, NULL, '2022-05-28 07:00:35', '2022-05-28 07:00:35'),
+(15, 1, 'Business', 0, NULL, NULL, '2022-05-28 07:00:48', '2022-05-28 07:00:48');
 
 -- --------------------------------------------------------
 
@@ -2213,8 +2264,10 @@ CREATE TABLE `setup_companies` (
 --
 
 INSERT INTO `setup_companies` (`id`, `company_type_id`, `company_name`, `owner_name`, `designation_id`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'ASD Company', 'Smith', 1, 0, NULL, NULL, '2022-03-15 23:55:43', '2022-03-15 23:55:43'),
-(2, 2, 'ABC Company', 'Stefen', 2, 0, NULL, NULL, '2022-03-15 23:55:52', '2022-03-15 23:56:01');
+(1, 1, 'ABC Company', 'Smith', 1, 1, NULL, NULL, '2022-02-15 05:12:27', '2022-02-26 06:06:45'),
+(2, 2, 'ASD Company', 'Jack', 2, 0, NULL, NULL, '2022-02-15 05:12:36', '2022-02-26 06:06:56'),
+(3, 2, 'Partex Star Group', 'Aziz Al Kaiser', 8, 0, NULL, NULL, '2022-03-16 01:08:48', '2022-03-16 01:10:03'),
+(4, 2, 'Premier Cement Mills Limited', 'test', 8, 0, NULL, NULL, '2022-04-01 23:50:44', '2022-04-01 23:50:44');
 
 -- --------------------------------------------------------
 
@@ -2237,8 +2290,9 @@ CREATE TABLE `setup_company_types` (
 --
 
 INSERT INTO `setup_company_types` (`id`, `company_type_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Owened', 0, NULL, NULL, '2022-03-15 23:54:58', '2022-03-15 23:55:21'),
-(2, 'Privates', 0, NULL, NULL, '2022-03-15 23:55:02', '2022-03-16 01:06:52');
+(1, 'Owened', 0, NULL, NULL, '2022-02-15 05:11:10', '2022-02-26 05:52:38'),
+(2, 'Private', 0, NULL, NULL, '2022-02-15 05:11:12', '2022-02-15 05:11:12'),
+(3, 'Business Company', 0, NULL, NULL, '2022-03-02 05:54:02', '2022-03-02 05:54:02');
 
 -- --------------------------------------------------------
 
@@ -2264,8 +2318,8 @@ CREATE TABLE `setup_complainants` (
 --
 
 INSERT INTO `setup_complainants` (`id`, `complainant_name`, `complainant_mobile`, `complainant_email`, `complainant_address`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Jack', '254655', 'asdf@adf', 'adderes', 0, NULL, NULL, '2022-04-24 21:50:19', '2022-04-24 22:25:52'),
-(2, 'Aminur Rahman Smith Aminur', '254655', 'asdf@adf', '43 Phillip St, Sydney NSW 2000, Australia', 0, NULL, NULL, '2022-04-24 21:50:27', '2022-04-24 21:50:27');
+(1, 'Star Particle Board Mills Limited', '254655516515', 'spbml@psgbd.com', 'adderes', 0, NULL, NULL, '2022-04-24 21:50:19', '2022-04-25 18:06:32'),
+(2, 'Partex Agro Limited', '2546555555', 'pal@psgbd.com', '43 bdslk;, Tejgaon, Dhaka', 0, NULL, NULL, '2022-04-24 21:50:27', '2022-04-25 18:07:12');
 
 -- --------------------------------------------------------
 
@@ -2288,8 +2342,8 @@ CREATE TABLE `setup_compliance_categories` (
 --
 
 INSERT INTO `setup_compliance_categories` (`id`, `compliance_category_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'test 2 compliance', 0, NULL, NULL, '2022-03-15 23:56:26', '2022-03-15 23:56:47'),
-(2, 'Test compliance', 0, NULL, NULL, '2022-03-15 23:56:30', '2022-03-15 23:56:39');
+(1, 'test', 0, NULL, NULL, '2022-02-26 06:11:36', '2022-03-08 23:36:39'),
+(2, 'test 2 compliance', 0, NULL, NULL, '2022-03-08 04:51:15', '2022-03-14 04:45:21');
 
 -- --------------------------------------------------------
 
@@ -2313,8 +2367,7 @@ CREATE TABLE `setup_compliance_types` (
 --
 
 INSERT INTO `setup_compliance_types` (`id`, `compliance_category_id`, `compliance_type_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '2', 'test', 0, NULL, NULL, '2022-03-15 23:56:56', '2022-03-16 01:31:47'),
-(2, '2', 'rtyert', 0, NULL, NULL, '2022-03-15 23:57:04', '2022-03-15 23:57:36');
+(1, '1', 'test 2', 0, NULL, NULL, '2022-02-26 06:11:52', '2022-03-08 04:52:11');
 
 -- --------------------------------------------------------
 
@@ -2337,8 +2390,9 @@ CREATE TABLE `setup_coordinators` (
 --
 
 INSERT INTO `setup_coordinators` (`id`, `coordinator_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'coordinator 6', 0, NULL, NULL, '2022-04-10 22:10:24', '2022-04-10 22:16:32'),
-(2, 'coordinator 2', 0, NULL, NULL, '2022-04-10 22:10:35', '2022-04-10 22:10:35');
+(1, 'Client Himself', 0, NULL, NULL, '2022-04-10 22:10:24', '2022-04-20 10:14:03'),
+(2, 'Client Representative', 0, NULL, NULL, '2022-04-10 22:10:35', '2022-04-20 10:13:55'),
+(3, 'Client Coordinator', 0, NULL, NULL, '2022-05-28 06:52:26', '2022-05-28 06:52:26');
 
 -- --------------------------------------------------------
 
@@ -2363,8 +2417,28 @@ CREATE TABLE `setup_courts` (
 --
 
 INSERT INTO `setup_courts` (`id`, `case_type`, `court_name`, `court_short_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Criminal Cases', 'Judge Court Dhaka', 'JDC1', 0, NULL, NULL, '2022-05-14 10:41:03', '2022-05-14 10:41:13'),
-(2, 'Criminal Cases', 'Court Kachari', 'CC1', 0, NULL, NULL, '2022-05-14 10:43:08', '2022-05-14 10:43:08');
+(1, 'Criminal Cases', 'Judge Court Dhaka', 'JDC1', 1, NULL, NULL, '2022-05-14 10:41:03', '2022-05-18 10:56:06'),
+(2, 'Criminal Cases', 'Court Kachari', 'CC1', 1, NULL, NULL, '2022-05-14 10:43:08', '2022-05-18 10:55:58'),
+(3, 'Criminal Cases', 'Metropolitan Magistrate Court No. 25', 'MM-25', 0, NULL, NULL, '2022-05-17 10:44:10', '2022-05-17 10:44:10'),
+(4, 'Criminal Cases', 'Metropolitan Magistrate Court No. 22', 'MM-22', 0, NULL, NULL, '2022-05-17 10:44:38', '2022-05-17 10:44:38'),
+(5, 'Criminal Cases', 'Metropolitan Magistrate Court No. 19', 'MM-19', 0, NULL, NULL, '2022-05-17 10:44:57', '2022-05-17 10:44:57'),
+(6, 'Criminal Cases', 'Metropolitan Magistrate Court No. 06', 'MM-06', 0, NULL, NULL, '2022-05-17 10:45:14', '2022-05-17 10:45:14'),
+(7, 'Criminal Cases', '1st Joint  Metro Session Court', 'JMS-1', 0, NULL, NULL, '2022-05-17 10:45:29', '2022-05-17 10:45:29'),
+(8, 'Criminal Cases', '2nd Joint  Metro Session Court', 'JMS-2', 0, NULL, NULL, '2022-05-17 10:45:49', '2022-05-17 10:45:49'),
+(9, 'Criminal Cases', '3rd Joint  Metro Session Court', 'JMS-3', 0, NULL, NULL, '2022-05-17 10:46:08', '2022-05-17 10:46:08'),
+(10, 'Criminal Cases', '1st Labour Court', 'DLC-1', 0, NULL, NULL, '2022-05-28 06:06:14', '2022-05-28 06:43:45'),
+(11, 'Criminal Cases', '2nd  Labour Court', 'DLC-2', 0, NULL, NULL, '2022-05-28 06:06:31', '2022-05-28 06:43:32'),
+(12, 'Criminal Cases', '3rd Labour Court', 'DLC-3', 0, NULL, NULL, '2022-05-28 06:06:57', '2022-05-28 06:43:21'),
+(13, 'Criminal Cases', 'Administrative Tribunal-1, Dhaka', 'DAT-1', 0, NULL, NULL, '2022-06-06 11:14:13', '2022-06-06 11:14:13'),
+(14, 'Criminal Cases', 'Metropolitan Magistrate Court No. 18', 'MM-18', 0, NULL, NULL, '2022-06-08 13:25:44', '2022-06-08 13:25:44'),
+(15, 'Criminal Cases', 'Metropolitan Magistrate Court No. 20', 'MM-20', 0, NULL, NULL, '2022-06-08 13:32:25', '2022-06-08 13:32:40'),
+(16, 'Criminal Cases', '4th Joint  Metro Session Court', 'JMS-4', 0, NULL, NULL, '2022-06-08 13:33:19', '2022-06-08 13:33:19'),
+(17, 'Criminal Cases', '5th Joint  Metro Session Court', 'JMS-5', 0, NULL, NULL, '2022-06-08 13:33:38', '2022-06-08 13:33:38'),
+(18, 'Criminal Cases', '6th Joint  Metro Session Court', 'JMS-6', 0, NULL, NULL, '2022-06-08 13:34:02', '2022-06-08 13:34:02'),
+(19, 'Criminal Cases', '7th Joint  Metro Session Court', 'JMS-7', 0, NULL, NULL, '2022-06-08 13:34:23', '2022-06-08 13:34:23'),
+(20, 'Criminal Cases', '4th Joint  District Judge Court', 'JDJC-4', 0, NULL, NULL, '2022-06-08 14:40:07', '2022-06-08 14:45:51'),
+(21, 'Criminal Cases', 'Nari O Shishu Nirjaton Damon Tribunal No. 09', 'NSNDT-9', 0, NULL, NULL, '2022-06-08 14:59:52', '2022-06-08 14:59:52'),
+(22, 'Criminal Cases', 'Senior Assistant Judge (Damrai)', NULL, 0, NULL, NULL, '2022-06-08 15:56:37', '2022-06-08 15:56:37');
 
 -- --------------------------------------------------------
 
@@ -2414,9 +2488,15 @@ CREATE TABLE `setup_court_last_orders` (
 --
 
 INSERT INTO `setup_court_last_orders` (`id`, `court_last_order_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Case Hearings', 0, NULL, NULL, '2022-03-15 23:44:23', '2022-03-15 23:44:47'),
-(2, 'Appelled', 0, NULL, NULL, '2022-03-15 23:44:32', '2022-03-15 23:44:32'),
-(3, 'Hearing purpose', 0, NULL, NULL, '2022-03-15 23:44:41', '2022-03-15 23:44:41');
+(1, 'Issued Summon', 0, NULL, NULL, '2022-02-15 05:13:38', '2022-05-13 12:50:57'),
+(2, 'Argument Hearing', 0, NULL, NULL, '2022-03-13 05:40:15', '2022-03-13 05:40:15'),
+(3, 'Service Return (SR)', 0, NULL, NULL, '2022-03-16 01:05:03', '2022-03-16 01:05:03'),
+(4, 'Warrant of Arrest', 0, NULL, NULL, '2022-03-16 01:05:20', '2022-03-16 01:05:20'),
+(5, 'TP granted', 0, NULL, NULL, '2022-05-13 13:57:26', '2022-05-13 13:57:26'),
+(6, 'Wokalotnama accepted', 0, NULL, NULL, '2022-05-13 13:57:49', '2022-05-13 13:57:49'),
+(7, 'Warrant of Proclamation and Attachment (WP&A)', 0, NULL, NULL, '2022-05-23 05:20:29', '2022-05-23 05:20:29'),
+(8, 'Accepted WS', 0, NULL, NULL, '2022-05-28 08:07:14', '2022-05-28 08:07:14'),
+(9, 'Petition Hearing', 0, NULL, NULL, '2022-05-31 10:19:10', '2022-05-31 10:19:10');
 
 -- --------------------------------------------------------
 
@@ -2439,9 +2519,13 @@ CREATE TABLE `setup_court_proceedings` (
 --
 
 INSERT INTO `setup_court_proceedings` (`id`, `court_proceeding_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'test', 0, NULL, NULL, '2022-04-13 03:44:51', '2022-04-13 03:45:21'),
-(2, 'test asdf', 0, NULL, NULL, '2022-04-13 03:45:12', '2022-04-13 03:45:16'),
-(3, 'aewrewr', 0, NULL, NULL, '2022-04-13 04:02:37', '2022-04-13 04:02:37');
+(1, 'Filed complaint petition and issued Summon', 0, NULL, NULL, '2022-04-13 03:44:51', '2022-04-21 14:13:06'),
+(2, 'Filed complaint petition', 0, NULL, NULL, '2022-04-13 03:45:12', '2022-04-21 14:27:32'),
+(3, 'Witness Completed', 0, NULL, NULL, '2022-04-13 04:02:37', '2022-04-13 10:33:59'),
+(4, 'Filed petition and issued Summon', 0, NULL, NULL, '2022-05-13 12:47:31', '2022-05-13 12:47:31'),
+(5, 'Filed Petition', 0, NULL, NULL, '2022-05-13 12:48:07', '2022-05-13 12:48:07'),
+(6, '2nd Party appeared by Wokalotnama', 0, NULL, NULL, '2022-05-13 13:38:03', '2022-05-13 13:38:03'),
+(7, '2nd Party submitted TP for submitting WS', 0, NULL, NULL, '2022-05-13 13:39:05', '2022-05-13 13:39:05');
 
 -- --------------------------------------------------------
 
@@ -2465,8 +2549,13 @@ CREATE TABLE `setup_court_shorts` (
 --
 
 INSERT INTO `setup_court_shorts` (`id`, `case_type`, `court_short_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Criminal Cases', 'CC 1', 0, NULL, NULL, '2022-04-24 22:54:57', '2022-04-24 22:55:27'),
-(2, 'High Court Division', 'HC 1', 0, NULL, NULL, '2022-04-24 22:55:08', '2022-04-24 22:55:31');
+(1, 'Criminal Cases', 'MM-1', 0, NULL, NULL, '2022-04-24 22:54:57', '2022-04-25 18:28:05'),
+(2, 'High Court Division', 'HC 1', 0, NULL, NULL, '2022-04-24 22:55:08', '2022-04-24 22:55:31'),
+(3, 'Criminal Cases', 'MM-2', 0, NULL, NULL, '2022-04-25 18:28:16', '2022-04-25 18:28:16'),
+(4, 'Criminal Cases', 'MM-3', 0, NULL, NULL, '2022-04-25 18:29:56', '2022-04-25 18:29:56'),
+(5, 'Criminal Cases', 'DLC-1', 0, NULL, NULL, '2022-05-13 08:30:10', '2022-05-13 08:30:10'),
+(6, 'Criminal Cases', 'DLC-2', 0, NULL, NULL, '2022-05-13 08:30:22', '2022-05-13 08:30:22'),
+(7, 'Criminal Cases', 'DLC-3', 0, NULL, NULL, '2022-05-13 08:30:46', '2022-05-13 08:30:46');
 
 -- --------------------------------------------------------
 
@@ -2489,9 +2578,9 @@ CREATE TABLE `setup_day_notes` (
 --
 
 INSERT INTO `setup_day_notes` (`id`, `day_notes_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'test', 0, NULL, NULL, '2022-04-13 04:02:33', '2022-04-13 04:02:33'),
-(2, 'phpo', 0, NULL, NULL, '2022-04-13 04:10:19', '2022-04-13 04:11:38'),
-(3, 'ertret', 0, NULL, NULL, '2022-04-13 04:10:55', '2022-04-13 04:12:04'),
+(1, 'Completed case filing successfully', 0, NULL, NULL, '2022-04-13 04:02:33', '2022-04-21 14:29:58'),
+(2, 'Submitted Complaint Hazira', 0, NULL, NULL, '2022-04-13 04:10:19', '2022-04-21 14:31:09'),
+(3, '2nd Party was present', 0, NULL, NULL, '2022-04-13 04:10:55', '2022-05-13 17:13:08'),
 (4, 'dsfdsf', 0, NULL, NULL, '2022-04-13 04:10:59', '2022-04-13 04:10:59'),
 (5, 'gfhfgh', 0, NULL, NULL, '2022-04-13 04:11:11', '2022-04-13 04:11:11');
 
@@ -2516,8 +2605,15 @@ CREATE TABLE `setup_designations` (
 --
 
 INSERT INTO `setup_designations` (`id`, `designation_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Professor', 0, NULL, NULL, '2022-03-15 23:39:40', '2022-03-15 23:39:40'),
-(2, 'Lawyers', 0, NULL, NULL, '2022-03-15 23:39:48', '2022-03-15 23:39:58');
+(1, 'Assistant Professor', 0, NULL, NULL, '2022-02-15 05:11:40', '2022-03-14 04:50:05'),
+(2, 'Lawyer', 1, NULL, NULL, '2022-02-15 05:11:44', '2022-03-22 05:41:16'),
+(3, 'Executive', 0, NULL, NULL, '2022-03-14 04:47:37', '2022-03-22 05:41:24'),
+(4, 'Senior Executive', 0, NULL, NULL, '2022-03-14 04:48:53', '2022-03-14 04:48:53'),
+(5, 'Junior Executive', 0, NULL, NULL, '2022-03-14 04:48:53', '2022-03-14 23:04:35'),
+(6, 'Officer', 0, NULL, NULL, '2022-03-14 23:01:53', '2022-03-16 03:30:58'),
+(7, 'Assistant General Manager', 0, NULL, NULL, '2022-03-15 00:22:28', '2022-03-15 00:22:28'),
+(8, 'Managing Director (MD)', 0, NULL, NULL, '2022-03-16 01:09:17', '2022-03-16 01:09:17'),
+(9, 'Credit Recovery Officer', 0, NULL, NULL, '2022-03-22 05:40:58', '2022-03-22 05:40:58');
 
 -- --------------------------------------------------------
 
@@ -2540,9 +2636,9 @@ CREATE TABLE `setup_digital_payments` (
 --
 
 INSERT INTO `setup_digital_payments` (`id`, `digital_payment_type_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Bkash', 0, NULL, NULL, '2022-03-15 23:52:31', '2022-03-15 23:52:31'),
-(2, 'Nagad', 0, NULL, NULL, '2022-03-15 23:52:36', '2022-03-15 23:52:36'),
-(3, 'Rockets', 0, NULL, NULL, '2022-03-15 23:52:42', '2022-03-15 23:52:55');
+(1, 'Bkash', 0, NULL, NULL, '2022-03-01 03:47:40', '2022-03-01 03:49:42'),
+(2, 'Nagad', 1, NULL, NULL, '2022-03-01 03:47:48', '2022-03-14 21:57:39'),
+(3, 'Rockets', 0, NULL, NULL, '2022-03-01 03:47:53', '2022-03-01 03:48:27');
 
 -- --------------------------------------------------------
 
@@ -2578,13 +2674,13 @@ INSERT INTO `setup_districts` (`id`, `division_id`, `district_name`, `delete_sta
 (10, 2, 'Lakshmipur', 0, NULL, NULL, '2022-04-27 03:42:29', '2022-04-27 03:42:29'),
 (11, 2, 'Maijdee', 0, NULL, NULL, '2022-04-27 03:42:37', '2022-04-27 03:42:37'),
 (12, 2, 'Feni', 0, NULL, NULL, '2022-04-27 03:42:44', '2022-04-27 03:42:44'),
-(13, 2, 'Comilla(North Feni)', 1, NULL, NULL, '2022-04-27 03:45:33', '2022-04-27 10:03:20'),
+(13, 2, 'Comilla(North Feni)', 1, NULL, NULL, '2022-04-27 03:45:33', '2022-04-27 10:03:54'),
 (14, 2, 'Khagrachhari', 0, NULL, NULL, '2022-04-27 03:45:59', '2022-04-27 03:45:59'),
 (15, 2, 'Rangamati', 0, NULL, NULL, '2022-04-27 03:46:09', '2022-04-27 03:46:09'),
 (16, 2, 'Bandarban', 0, NULL, NULL, '2022-04-27 03:46:16', '2022-04-27 03:46:16'),
 (17, 2, 'Chittagong', 0, NULL, NULL, '2022-04-27 03:46:23', '2022-04-27 03:46:23'),
 (18, 2, 'Cox\'s Bazar', 0, NULL, NULL, '2022-04-27 03:46:29', '2022-04-27 03:46:29'),
-(19, 2, 'Chittagong(South Feni)', 1, NULL, NULL, '2022-04-27 03:47:07', '2022-04-27 10:03:08'),
+(19, 2, 'Chittagong(South Feni)', 1, NULL, NULL, '2022-04-27 03:47:07', '2022-04-27 10:03:47'),
 (20, 3, 'Dhaka', 0, NULL, NULL, '2022-04-27 03:47:48', '2022-04-27 03:47:48'),
 (21, 3, 'Gazipur', 0, NULL, NULL, '2022-04-27 03:47:58', '2022-04-27 03:47:58'),
 (22, 3, 'Kishoreganj', 0, NULL, NULL, '2022-04-27 03:48:06', '2022-04-27 03:48:06'),
@@ -2685,8 +2781,18 @@ CREATE TABLE `setup_documents` (
 
 INSERT INTO `setup_documents` (`id`, `documents_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'test', 0, NULL, NULL, '2022-04-17 23:04:02', '2022-04-17 23:04:46'),
-(2, 'test 2', 0, NULL, NULL, '2022-04-17 23:04:18', '2022-04-22 22:39:22'),
-(3, 'test doc', 0, NULL, NULL, '2022-04-17 23:04:22', '2022-04-17 23:04:38');
+(2, 'test', 0, NULL, NULL, '2022-04-17 23:04:18', '2022-04-17 23:04:18'),
+(3, 'Petition', 0, NULL, NULL, '2022-04-17 23:04:22', '2022-05-13 09:51:20'),
+(4, 'Plaint', 0, NULL, NULL, '2022-05-13 09:51:43', '2022-05-13 09:51:43'),
+(5, 'Complaint', 0, NULL, NULL, '2022-05-13 09:51:55', '2022-05-13 09:51:55'),
+(6, 'Written Statement', 0, NULL, NULL, '2022-05-13 09:52:17', '2022-05-13 09:52:17'),
+(7, 'Charge Sheet', 0, NULL, NULL, '2022-05-13 09:52:36', '2022-05-13 09:52:36'),
+(8, 'Charge Form', 0, NULL, NULL, '2022-05-13 09:52:48', '2022-05-13 09:52:48'),
+(9, 'Investigation Report', 0, NULL, NULL, '2022-05-13 09:53:07', '2022-05-13 09:53:07'),
+(10, 'Legal Notice by 1st Party', 0, NULL, NULL, '2022-05-13 09:53:49', '2022-05-13 09:53:49'),
+(11, 'Legal Notice by 2nd Party', 0, NULL, NULL, '2022-05-13 09:54:11', '2022-05-13 09:54:11'),
+(12, 'Letter by 1st Party', 0, NULL, NULL, '2022-05-13 09:54:27', '2022-05-13 09:54:27'),
+(13, 'Letter by 2nd Party', 0, NULL, NULL, '2022-05-13 09:54:41', '2022-05-13 09:54:41');
 
 -- --------------------------------------------------------
 
@@ -2718,9 +2824,10 @@ CREATE TABLE `setup_external_councils` (
 --
 
 INSERT INTO `setup_external_councils` (`id`, `title_id`, `first_name`, `middle_name`, `last_name`, `email`, `work_phone`, `home_phone`, `mobile_phone`, `emergency_contact`, `document_upload`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Jack', 'Smith', 'Aminur', 'asdf@adf', '01996321542', '01698774123', '01996321542', '01996321542', NULL, 0, NULL, NULL, '2022-03-15 23:38:01', '2022-03-15 23:38:11'),
-(2, 2, 'Stefen', 'Smith', 'adsf', 'asdf@adf', '01996325478', '01996321542', '01996321542', '54641654984', NULL, 0, NULL, NULL, '2022-04-13 00:06:36', '2022-04-13 00:06:36'),
-(3, 3, 'Md.', 'Imran', 'Hossain', 'qewre@jkjkj', '01996325478', '01996321542', '01996321541', '0156549875', NULL, 0, NULL, NULL, '2022-04-13 00:07:17', '2022-04-13 00:07:17');
+(1, 1, 'Aminur Rahman', 'Smith', 'Aminur', 'asdf@adf', '01996325478', '01996321542', '01887669542', '01996321542', NULL, 0, NULL, NULL, '2022-02-15 04:49:55', '2022-03-12 03:00:22'),
+(2, 1, 'Jack', 'Smith', 'Khan', 'testtesteasdf@asdfasdf.com', '01996325478', '01996321542', '01996321542', '0156549875', NULL, 0, NULL, NULL, '2022-02-15 05:02:39', '2022-02-15 05:02:39'),
+(4, 1, 'Smith', 'Khan', 'None', 'test@test.com', '01996325477', '01698774120', '01996321541', '01996321548', NULL, 0, NULL, NULL, '2022-03-12 03:37:08', '2022-03-12 03:37:08'),
+(5, 3, 'Md.', 'Niamul', 'Kabir', 'niamulkabir.adv@gmail.com', '01717-406688', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-03-16 03:39:30', '2022-03-16 03:41:24');
 
 -- --------------------------------------------------------
 
@@ -2753,9 +2860,12 @@ CREATE TABLE `setup_external_council_associates` (
 --
 
 INSERT INTO `setup_external_council_associates` (`id`, `external_council_id`, `title_id`, `first_name`, `middle_name`, `last_name`, `email`, `work_phone`, `home_phone`, `mobile_phone`, `emergency_contact`, `document_upload`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'Stefen', 'Smith', 'Aminur', 'asdf@adf', '01996321542', '01698774123', '01996321542', '01996321542', NULL, 0, NULL, NULL, '2022-03-15 23:38:36', '2022-03-15 23:38:56'),
-(2, 3, 3, 'Stewert', 'Jhonson', 'khan', 'test@gmail.com', '01996325478', '01996321542', '01996321541', '01996321542', NULL, 0, NULL, NULL, '2022-04-21 01:12:01', '2022-04-21 01:12:01'),
-(3, 3, 2, 'Terry', 'Jhon', 'Khan', 'asdf@adf', '54654654', '6534651654', '654654645', '465654543', NULL, 0, NULL, NULL, '2022-04-21 02:52:50', '2022-04-21 02:52:50');
+(1, 5, 5, 'Tamzid', 'Islam', 'Tamzid', 'testtesttest@asdf.com', '01996325478', '01996321542', '01996321542', '0156549875', NULL, 0, NULL, NULL, '2022-02-15 04:50:29', '2022-06-06 11:55:17'),
+(2, 5, 3, 'Md', 'Solimullah', 'Sarkar', 'solimullahsarkar@gmail.com', '01996325478', '01996321542', '01998876465', '54641654984', NULL, 0, NULL, NULL, '2022-02-15 05:03:28', '2022-06-06 11:56:49'),
+(3, 2, 2, 'Jhon', 'Doe', 'Jack', 'smith@atesste', '01996325478', '01996321542', '01998876465', '01996321542', NULL, 1, NULL, NULL, '2022-02-15 05:04:04', '2022-06-06 11:55:30'),
+(4, 2, 2, 'Stefen', 'Hokings', 'H', 'testtesttest@faasdfadsf.com', '01996325478', '01996321542', '01998876465', '54641654984', NULL, 1, NULL, NULL, '2022-02-15 05:04:53', '2022-06-06 11:55:24'),
+(5, 5, 3, 'Md.', 'Johirul', 'Islam', 'Johirulislam.adv@gmail.com', '01820703940', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-03-16 03:42:47', '2022-03-16 03:42:47'),
+(6, 5, 3, 'Md.', 'Zohurul', 'Haque', 'zohurul.haque.cdla@gmail.com', '01712701286', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-13 09:49:17', '2022-05-13 09:49:17');
 
 -- --------------------------------------------------------
 
@@ -2779,10 +2889,8 @@ CREATE TABLE `setup_external_council_associates_files` (
 --
 
 INSERT INTO `setup_external_council_associates_files` (`id`, `external_council_associates_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, '164740911679asdfasdf.pdf', 0, NULL, NULL, '2022-03-15 23:38:36', '2022-03-15 23:38:36'),
-(2, 1, '164740911675byden.jpg', 0, NULL, NULL, '2022-03-15 23:38:36', '2022-03-15 23:38:36'),
-(3, 2, '165052512173165007933236164524589178asdfasdf.pdf', 0, NULL, NULL, '2022-04-21 01:12:01', '2022-04-21 01:12:01'),
-(4, 2, '16505251214916484401354816480981926916474106851byden (1).jpg', 0, NULL, NULL, '2022-04-21 01:12:01', '2022-04-21 01:12:01');
+(1, 4, '164708153424164492477745byden (4).jpg', 0, NULL, NULL, '2022-03-12 04:38:54', '2022-03-12 04:38:54'),
+(2, 4, '164708153467164707806045164654784592byden.jpg', 0, NULL, NULL, '2022-03-12 04:38:54', '2022-03-12 04:38:54');
 
 -- --------------------------------------------------------
 
@@ -2806,8 +2914,8 @@ CREATE TABLE `setup_external_council_files` (
 --
 
 INSERT INTO `setup_external_council_files` (`id`, `external_council_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, '164740908182asdfasdf.pdf', 0, NULL, NULL, '2022-03-15 23:38:01', '2022-03-15 23:38:01'),
-(2, 1, '164740908110byden.jpg', 0, NULL, NULL, '2022-03-15 23:38:01', '2022-03-15 23:38:01');
+(1, 1, '164707806045164654784592byden.jpg', 0, NULL, NULL, '2022-03-12 03:41:00', '2022-03-12 03:41:00'),
+(2, 1, '164707806075164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-12 03:41:00', '2022-03-12 03:41:00');
 
 -- --------------------------------------------------------
 
@@ -2831,9 +2939,11 @@ CREATE TABLE `setup_flat_numbers` (
 --
 
 INSERT INTO `setup_flat_numbers` (`id`, `floor_id`, `flat_number`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 3, 'C1', 0, NULL, NULL, '2022-03-15 23:54:31', '2022-03-15 23:54:31'),
-(2, 1, 'B1', 0, NULL, NULL, '2022-03-15 23:54:37', '2022-03-15 23:54:48'),
-(3, 3, 'D1', 0, NULL, NULL, '2022-03-15 23:54:43', '2022-03-15 23:54:43');
+(1, 1, 'A1', 0, NULL, NULL, '2022-03-07 02:42:10', '2022-03-07 02:42:10'),
+(2, 2, 'B1', 0, NULL, NULL, '2022-03-07 02:42:15', '2022-03-07 02:42:15'),
+(3, 3, 'C1', 0, NULL, NULL, '2022-03-07 02:42:20', '2022-03-07 02:42:20'),
+(4, 4, 'D1', 0, NULL, NULL, '2022-03-07 02:42:24', '2022-03-07 02:42:24'),
+(5, 5, 'adsf', 0, NULL, NULL, '2022-03-07 02:42:28', '2022-03-07 02:42:28');
 
 -- --------------------------------------------------------
 
@@ -2856,9 +2966,13 @@ CREATE TABLE `setup_floors` (
 --
 
 INSERT INTO `setup_floors` (`id`, `floor_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '1st', 0, NULL, NULL, '2022-03-15 23:53:45', '2022-03-15 23:54:06'),
-(2, '2 nd', 0, NULL, NULL, '2022-03-15 23:53:49', '2022-03-15 23:54:20'),
-(3, '3rd', 0, NULL, NULL, '2022-03-15 23:53:55', '2022-03-15 23:53:55');
+(1, '1st', 0, NULL, NULL, '2022-03-07 02:41:38', '2022-03-07 02:41:38'),
+(2, '2nd', 0, NULL, NULL, '2022-03-07 02:41:41', '2022-03-07 02:41:41'),
+(3, '3rd', 0, NULL, NULL, '2022-03-07 02:41:44', '2022-03-07 02:41:44'),
+(4, '4th', 0, NULL, NULL, '2022-03-07 02:41:47', '2022-03-14 21:58:15'),
+(5, '5th', 0, NULL, NULL, '2022-03-07 02:41:51', '2022-03-07 02:41:51'),
+(6, '6th', 0, NULL, NULL, '2022-03-07 02:41:54', '2022-03-07 02:41:54'),
+(7, '7th', 0, NULL, NULL, '2022-03-07 02:41:57', '2022-03-07 02:41:57');
 
 -- --------------------------------------------------------
 
@@ -2890,9 +3004,10 @@ CREATE TABLE `setup_internal_councils` (
 --
 
 INSERT INTO `setup_internal_councils` (`id`, `title_id`, `first_name`, `middle_name`, `last_name`, `email`, `work_phone`, `home_phone`, `mobile_phone`, `emergency_contact`, `document_upload`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Kibria', 'Smith', 'Aminur', 'asdf@adf', '01996321542', '01698774123', '01996321542', '01996321542', NULL, 0, NULL, NULL, '2022-03-15 23:39:21', '2022-03-15 23:39:34'),
-(2, 2, 'Aminur Rahman', 'Smith', 'Aminur', 'asdf@adf', '01996325478', '01996321542', '01996321542', '54641654984', NULL, 0, NULL, NULL, '2022-04-11 21:10:03', '2022-04-11 21:10:03'),
-(3, 3, 'Md.', 'Imran', 'Hossain', 'test@gmail.com', '01996325478', '01996321542', '01998876465', '01996321542', NULL, 0, NULL, NULL, '2022-04-11 21:11:13', '2022-04-11 21:11:13');
+(1, 1, 'Stewert', 'Johan', 'Son', 'stwert@adsfasdf', '01996325478', '01996321542', '01998876465', '54641654984', NULL, 0, NULL, NULL, '2022-02-15 05:27:43', '2022-02-26 05:32:44'),
+(2, 2, 'Jacks', 'Parrow', 'none', 'jacks@adsf', '01996325478', '01698774123', '01887669542', '01996321542', NULL, 0, NULL, NULL, '2022-02-15 05:28:20', '2022-02-15 05:28:20'),
+(3, 3, 'Md.', 'Niamul', 'Kabir', 'niamulkabir@gmail.com', '017406688', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-01 23:55:46', '2022-04-01 23:55:46'),
+(4, 3, 'Md.', 'Zohurul', 'Haque', 'zohurul.haque.cdla@gmail.com', '01712701286', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-05-13 09:47:00', '2022-05-13 09:47:00');
 
 -- --------------------------------------------------------
 
@@ -2916,8 +3031,8 @@ CREATE TABLE `setup_internal_council_files` (
 --
 
 INSERT INTO `setup_internal_council_files` (`id`, `internal_council_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, '164740916184asdfasdf.pdf', 0, NULL, NULL, '2022-03-15 23:39:21', '2022-03-15 23:39:21'),
-(2, 1, '164740916188byden.jpg', 0, NULL, NULL, '2022-03-15 23:39:21', '2022-03-15 23:39:21');
+(1, 2, '164707915393164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-12 03:59:13', '2022-03-12 03:59:13'),
+(2, 2, '164707915315164664984260john.jpg', 0, NULL, NULL, '2022-03-12 03:59:13', '2022-03-12 03:59:13');
 
 -- --------------------------------------------------------
 
@@ -2940,8 +3055,13 @@ CREATE TABLE `setup_in_favour_ofs` (
 --
 
 INSERT INTO `setup_in_favour_ofs` (`id`, `in_favour_of_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Accused', 0, NULL, NULL, '2022-04-18 01:58:37', '2022-04-18 01:58:37'),
-(2, 'Opponents', 0, NULL, NULL, '2022-04-18 01:58:41', '2022-04-18 01:58:46');
+(1, 'Complainant', 0, NULL, NULL, '2022-04-18 01:58:37', '2022-04-20 08:29:03'),
+(2, 'Petitioner', 0, NULL, NULL, '2022-04-18 01:58:41', '2022-04-20 08:29:17'),
+(3, 'Informant', 0, NULL, NULL, '2022-04-20 08:29:31', '2022-04-20 08:29:31'),
+(4, 'Accused', 0, NULL, NULL, '2022-04-20 08:29:39', '2022-04-20 08:29:39'),
+(5, '1st Party', 0, NULL, NULL, '2022-04-20 08:30:05', '2022-04-20 08:30:05'),
+(6, '2nd Party', 0, NULL, NULL, '2022-04-20 08:30:22', '2022-04-20 08:30:52'),
+(7, 'Opposite Party', 0, NULL, NULL, '2022-04-20 08:30:36', '2022-04-20 08:30:36');
 
 -- --------------------------------------------------------
 
@@ -2966,13 +3086,13 @@ CREATE TABLE `setup_laws` (
 
 INSERT INTO `setup_laws` (`id`, `case_type`, `law_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'Civil Cases', 'Cilvil Laws', 0, NULL, NULL, '2022-04-06 23:56:21', '2022-04-06 23:57:27'),
-(2, 'Criminal Cases', 'Criminal Laws', 0, NULL, NULL, '2022-04-06 23:56:29', '2022-04-06 23:57:30'),
+(2, 'Criminal Cases', 'The Negotiable Instrument Act, 1881', 0, NULL, NULL, '2022-04-06 23:56:29', '2022-04-20 13:41:34'),
 (3, 'Labour Cases', 'Labour Laws', 0, NULL, NULL, '2022-04-06 23:56:37', '2022-04-06 23:57:34'),
 (4, 'Special Quassi - Judicial Cases', 'Judicial Law', 0, NULL, NULL, '2022-04-06 23:56:48', '2022-04-06 23:56:48'),
 (5, 'High Court Division', 'High Court Law', 0, NULL, NULL, '2022-04-06 23:57:03', '2022-04-06 23:57:03'),
 (6, 'Appellate Court Division', 'Appellate Law', 0, NULL, NULL, '2022-04-06 23:57:14', '2022-04-06 23:57:14'),
-(7, 'Criminal Cases', 'Criminal Law 2', 0, NULL, NULL, '2022-04-23 22:05:59', '2022-04-23 22:05:59'),
-(8, 'Criminal Cases', 'last criminal law 3', 0, NULL, NULL, '2022-04-23 22:06:12', '2022-04-23 22:06:12');
+(7, 'Criminal Cases', 'The Code of Criminal Procedure, 1860', 0, NULL, NULL, '2022-04-20 13:47:25', '2022-04-20 13:47:25'),
+(8, 'Criminal Cases', 'Bangladesh Labour Act, 2006', 0, NULL, NULL, '2022-05-13 09:34:25', '2022-05-13 09:34:25');
 
 -- --------------------------------------------------------
 
@@ -2995,8 +3115,12 @@ CREATE TABLE `setup_law_sections` (
 --
 
 INSERT INTO `setup_law_sections` (`id`, `law_section_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Section 32', 0, NULL, NULL, '2022-03-15 23:57:11', '2022-03-16 01:07:18'),
-(2, 'Section 12', 0, NULL, NULL, '2022-03-15 23:57:15', '2022-03-15 23:57:15');
+(1, 'Section 12', 1, NULL, NULL, '2022-02-15 05:23:50', '2022-03-14 04:47:09'),
+(2, 'Section 33', 0, NULL, NULL, '2022-02-15 05:23:57', '2022-02-15 05:23:57'),
+(3, 'Section 44', 0, NULL, NULL, '2022-02-15 05:24:01', '2022-02-15 05:24:01'),
+(4, 'Section 138 of NI Act 1881', 0, NULL, NULL, '2022-03-13 05:43:33', '2022-03-15 00:03:50'),
+(5, '420 and 406 of Penal Code 1860', 0, NULL, NULL, '2022-03-15 00:04:29', '2022-03-15 00:04:29'),
+(6, '132(1) and 132(2) of Bangladesh Labour Act, 2006', 0, NULL, NULL, '2022-03-15 09:21:20', '2022-03-15 09:21:20');
 
 -- --------------------------------------------------------
 
@@ -3020,7 +3144,8 @@ CREATE TABLE `setup_legal_issues` (
 
 INSERT INTO `setup_legal_issues` (`id`, `legal_issue_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'Legal Issue 5', 0, NULL, NULL, '2022-04-10 02:32:47', '2022-04-10 02:33:10'),
-(2, 'Legal Issue', 0, NULL, NULL, '2022-04-10 02:32:55', '2022-04-10 02:32:55');
+(2, 'Recovery of Money', 0, NULL, NULL, '2022-04-10 02:32:55', '2022-04-20 08:19:19'),
+(3, 'Litigation for Recovery of Money', 0, NULL, NULL, '2022-04-13 02:35:31', '2022-04-13 02:35:31');
 
 -- --------------------------------------------------------
 
@@ -3043,8 +3168,9 @@ CREATE TABLE `setup_legal_services` (
 --
 
 INSERT INTO `setup_legal_services` (`id`, `legal_service_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Legal Service', 0, NULL, NULL, '2022-04-10 02:54:51', '2022-04-10 02:55:09'),
-(2, 'Legal Service 4', 0, NULL, NULL, '2022-04-10 02:54:58', '2022-04-10 02:55:14');
+(1, 'To appear and contest case', 0, NULL, NULL, '2022-04-10 02:54:51', '2022-04-20 08:21:22'),
+(2, 'To send Legal Notice', 0, NULL, NULL, '2022-04-10 02:54:58', '2022-04-20 08:20:45'),
+(3, 'To file case', 0, NULL, NULL, '2022-04-13 02:38:14', '2022-04-13 02:38:14');
 
 -- --------------------------------------------------------
 
@@ -3068,7 +3194,9 @@ CREATE TABLE `setup_matters` (
 
 INSERT INTO `setup_matters` (`id`, `matter_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'test matter', 0, NULL, NULL, '2022-04-10 03:11:37', '2022-04-10 03:12:09'),
-(2, 'test matter 3', 0, NULL, NULL, '2022-04-10 03:11:42', '2022-04-10 03:12:36');
+(2, 'To file and conduct case', 0, NULL, NULL, '2022-04-10 03:11:42', '2022-04-13 10:17:24'),
+(3, 'Appear and Contest', 0, NULL, NULL, '2022-04-13 02:53:05', '2022-04-13 02:53:05'),
+(4, 'Case file and proceeding continue', 0, NULL, NULL, '2022-04-13 02:54:30', '2022-04-13 02:54:30');
 
 -- --------------------------------------------------------
 
@@ -3093,7 +3221,8 @@ CREATE TABLE `setup_modes` (
 INSERT INTO `setup_modes` (`id`, `mode_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'Email', 0, NULL, NULL, '2022-04-12 23:52:23', '2022-04-13 00:03:37'),
 (2, 'Hard Copy', 0, NULL, NULL, '2022-04-12 23:52:57', '2022-04-13 00:03:26'),
-(3, 'In Presence', 0, NULL, NULL, '2022-04-12 23:53:00', '2022-04-13 00:03:18');
+(3, 'WhatsApp', 0, NULL, NULL, '2022-04-12 23:53:00', '2022-04-20 09:20:22'),
+(4, 'In Presence', 0, NULL, NULL, '2022-04-20 09:20:44', '2022-04-20 09:20:44');
 
 -- --------------------------------------------------------
 
@@ -3116,9 +3245,22 @@ CREATE TABLE `setup_next_date_reasons` (
 --
 
 INSERT INTO `setup_next_date_reasons` (`id`, `next_date_reason_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Appeared', 0, NULL, NULL, '2022-03-15 23:43:40', '2022-03-15 23:43:40'),
-(2, 'Appeals', 1, NULL, NULL, '2022-03-15 23:43:45', '2022-03-15 23:43:59'),
-(3, 'Appealed', 0, NULL, NULL, '2022-03-15 23:43:51', '2022-03-15 23:43:51');
+(1, 'Appeared', 1, NULL, NULL, '2022-02-15 05:24:34', '2022-03-14 21:50:51'),
+(2, 'Appeal', 0, NULL, NULL, '2022-02-15 05:24:38', '2022-03-14 21:51:14'),
+(3, 'To appear by Wokalatnama', 0, NULL, NULL, '2022-02-15 05:24:43', '2022-04-20 08:52:42'),
+(4, 'Warrant of Arrest', 0, NULL, NULL, '2022-03-14 04:41:41', '2022-04-20 08:53:49'),
+(5, 'Petition Hearing', 0, NULL, NULL, '2022-03-14 04:42:44', '2022-03-14 21:50:12'),
+(6, 'Warrant of Proclamation & Attachment (WP&A)', 0, NULL, NULL, '2022-03-22 05:43:25', '2022-04-20 08:46:30'),
+(7, 'Written Statement', 0, NULL, NULL, '2022-04-02 02:22:26', '2022-04-02 02:22:26'),
+(8, 'Service Return (SR)', 0, NULL, NULL, '2022-04-20 08:53:42', '2022-05-23 05:11:03'),
+(9, 'Investigation Report', 0, NULL, NULL, '2022-04-20 09:00:27', '2022-04-20 09:00:27'),
+(10, 'Charge Hearing', 0, NULL, NULL, '2022-04-20 09:00:52', '2022-04-20 09:00:52'),
+(11, 'Witness Testimony', 0, NULL, NULL, '2022-04-20 09:01:14', '2022-04-20 09:01:14'),
+(12, 'Argument', 0, NULL, NULL, '2022-04-20 09:08:54', '2022-04-20 09:08:54'),
+(13, 'Proclamation of Judgement', 0, NULL, NULL, '2022-04-20 09:09:16', '2022-04-20 09:09:16'),
+(14, 'Filing of Complaint Petition', 0, NULL, NULL, '2022-04-21 14:11:15', '2022-04-21 14:11:15'),
+(15, 'Filing Petition', 0, NULL, NULL, '2022-05-13 12:45:43', '2022-05-13 12:45:43'),
+(16, 'Hearing', 0, NULL, NULL, '2022-06-06 11:31:20', '2022-06-06 11:31:20');
 
 -- --------------------------------------------------------
 
@@ -3219,10 +3361,11 @@ CREATE TABLE `setup_person_titles` (
 --
 
 INSERT INTO `setup_person_titles` (`id`, `person_title_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Professors', 0, NULL, NULL, '2022-03-15 23:37:10', '2022-03-15 23:37:32'),
-(2, 'Dr.', 0, NULL, NULL, '2022-03-15 23:37:16', '2022-03-15 23:37:16'),
-(3, 'Mr.', 0, NULL, NULL, '2022-03-15 23:37:22', '2022-03-15 23:37:22'),
-(4, 'werewr asdf', 0, NULL, NULL, '2022-03-24 03:49:36', '2022-03-30 06:41:31');
+(1, 'Professor', 0, NULL, NULL, '2022-02-15 04:49:36', '2022-02-26 05:15:19'),
+(2, 'Dr.', 0, NULL, NULL, '2022-02-15 04:49:40', '2022-02-15 04:49:40'),
+(3, 'Advocate', 0, NULL, NULL, '2022-03-13 05:35:03', '2022-03-13 05:35:03'),
+(4, 'Engineer', 1, NULL, NULL, '2022-03-14 04:50:48', '2022-03-14 04:51:01'),
+(5, 'Lawyer', 0, NULL, NULL, '2022-03-22 05:41:41', '2022-03-22 05:41:41');
 
 -- --------------------------------------------------------
 
@@ -3245,8 +3388,8 @@ CREATE TABLE `setup_professions` (
 --
 
 INSERT INTO `setup_professions` (`id`, `profession_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Businessman', 0, NULL, NULL, '2022-04-17 03:19:07', '2022-04-17 03:19:31'),
-(2, 'Jobholder', 0, NULL, NULL, '2022-04-17 03:19:22', '2022-04-17 03:19:22');
+(1, 'Business', 0, NULL, NULL, '2022-04-17 03:19:07', '2022-04-21 13:36:42'),
+(2, 'Development', 0, NULL, NULL, '2022-04-17 03:19:22', '2022-04-21 13:37:06');
 
 -- --------------------------------------------------------
 
@@ -3269,8 +3412,8 @@ CREATE TABLE `setup_programs` (
 --
 
 INSERT INTO `setup_programs` (`id`, `program_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Additional Program', 0, NULL, NULL, '2022-03-15 23:49:27', '2022-03-15 23:49:27'),
-(2, 'Optional Program', 0, NULL, NULL, '2022-03-15 23:49:34', '2022-03-15 23:49:46');
+(1, 'testtes', 0, NULL, NULL, '2022-02-15 21:55:49', '2022-02-26 05:49:34'),
+(2, 'Additional Program', 1, NULL, NULL, '2022-02-15 21:55:55', '2022-02-26 05:49:50');
 
 -- --------------------------------------------------------
 
@@ -3318,8 +3461,9 @@ CREATE TABLE `setup_property_types` (
 --
 
 INSERT INTO `setup_property_types` (`id`, `property_type_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Private Property', 0, NULL, NULL, '2022-03-15 23:56:07', '2022-03-15 23:56:19'),
-(2, 'Owened', 0, NULL, NULL, '2022-03-15 23:56:11', '2022-03-15 23:56:11');
+(1, 'Owened', 1, NULL, NULL, '2022-02-15 05:14:46', '2022-03-14 04:44:51'),
+(2, 'Private Property', 0, NULL, NULL, '2022-02-15 05:15:01', '2022-02-15 05:15:01'),
+(3, 'Business Property', 0, NULL, NULL, '2022-02-15 05:15:08', '2022-02-15 05:15:08');
 
 -- --------------------------------------------------------
 
@@ -3345,7 +3489,11 @@ CREATE TABLE `setup_referrers` (
 --
 
 INSERT INTO `setup_referrers` (`id`, `referrer_name`, `referrer_mobile`, `referrer_email`, `referrer_address`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Aminur Rahman', '56464514', 'asdf@adf', '43 Phillip St, Sydney NSW 2000, Australia', 0, NULL, NULL, '2022-04-17 00:46:13', '2022-04-17 01:02:29');
+(1, 'Client himself', NULL, NULL, NULL, 0, NULL, NULL, '2022-04-17 00:46:13', '2022-04-20 09:23:07'),
+(2, 'Advocate', NULL, NULL, NULL, 0, NULL, NULL, '2022-04-20 09:23:53', '2022-04-20 09:28:00'),
+(3, 'Relative', NULL, NULL, NULL, 0, NULL, NULL, '2022-04-20 09:28:09', '2022-04-20 09:28:09'),
+(4, 'Vice Chairman', NULL, NULL, NULL, 0, NULL, NULL, '2022-04-24 00:31:38', '2022-04-24 00:31:38'),
+(5, 'Client Representative', NULL, NULL, NULL, 0, NULL, NULL, '2022-04-25 18:10:01', '2022-04-25 18:10:01');
 
 -- --------------------------------------------------------
 
@@ -3368,8 +3516,8 @@ CREATE TABLE `setup_regions` (
 --
 
 INSERT INTO `setup_regions` (`id`, `region_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Lalbag', 0, NULL, NULL, '2022-03-15 23:46:36', '2022-03-15 23:48:15'),
-(2, 'Shantinagar', 0, NULL, NULL, '2022-03-15 23:48:01', '2022-03-15 23:48:01');
+(1, 'Lalbag', 1, NULL, NULL, '2022-02-15 05:25:02', '2022-02-26 05:45:38'),
+(2, 'Shantinagar', 0, NULL, NULL, '2022-02-15 05:25:10', '2022-02-15 05:25:10');
 
 -- --------------------------------------------------------
 
@@ -3395,7 +3543,9 @@ INSERT INTO `setup_sections` (`id`, `section_name`, `delete_status`, `created_by
 (1, 'test', 0, NULL, NULL, '2022-03-20 03:45:48', '2022-03-20 03:46:12'),
 (2, '144', 0, NULL, NULL, '2022-03-20 03:45:53', '2022-03-20 03:46:06'),
 (3, '33', 0, NULL, NULL, '2022-03-20 03:45:57', '2022-03-20 03:45:57'),
-(4, '44', 0, NULL, NULL, '2022-03-20 03:46:00', '2022-03-20 03:46:00');
+(4, '138 and 140', 0, NULL, NULL, '2022-03-20 03:46:00', '2022-04-20 13:53:34'),
+(5, '138', 0, NULL, NULL, '2022-04-01 23:46:24', '2022-04-20 13:53:10'),
+(6, '132(1)', 0, NULL, NULL, '2022-05-13 09:35:14', '2022-05-13 09:35:14');
 
 -- --------------------------------------------------------
 
@@ -3428,8 +3578,9 @@ CREATE TABLE `setup_seller_buyers` (
 --
 
 INSERT INTO `setup_seller_buyers` (`id`, `title_id`, `seller_or_buyer`, `seller_buyer_name`, `email`, `work_phone`, `home_phone`, `mobile_phone`, `emergency_contact`, `present_address`, `permanent_address`, `image`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Buyer', 'Stefen Hokings', 'asdf@adf', '01996321542', '01698774123', '01996321542', NULL, '43 Phillip St, Sydney NSW 2000, Australia', 'test', '16474099990byden.jpg', 0, NULL, NULL, '2022-03-15 23:53:19', '2022-03-15 23:53:38'),
-(2, 2, 'Seller', 'Aminur Rahman Smith Aminur', 'asdf@adf', '01996321542', '01698774123', '01887669542', NULL, '43 Phillip St, Sydney NSW 2000, Australia', 'test', '16474285171164725962475john.jpg', 0, NULL, NULL, '2022-03-16 05:01:57', '2022-03-16 05:01:57');
+(1, 1, 'Seller', 'Aminur Rahman Smith Aminur', 'asdf@adf', '01996325478', '01698774123', '01996321542', NULL, '43 Phillip St, Sydney NSW 2000, Australia', 'adsf', '16464571030no_images.png', 0, NULL, NULL, '2022-03-04 23:08:06', '2022-03-04 23:46:34'),
+(2, 2, 'Buyer', 'Stefen Hokings', 'asdf@adf', '234151', '01996321542', '01998876465', NULL, '43 Phillip St, Sydney NSW 2000, Australia', 'terte', '16465497401Integra_Logo.png', 1, NULL, NULL, '2022-03-04 23:08:25', '2022-03-14 21:57:48'),
+(3, 2, 'Buyer', 'Jack Smith', 'asdf@adf', '01996325478', '01996321542', '01996321542', NULL, '43 Phillip St, Sydney NSW 2000, Australia', 'test updated', '16465497220byden.jpg', 0, NULL, NULL, '2022-03-04 23:12:28', '2022-03-06 00:55:22');
 
 -- --------------------------------------------------------
 
@@ -3458,7 +3609,11 @@ INSERT INTO `setup_supreme_court_categories` (`id`, `supreme_court_type`, `supre
 (3, 'Appellate Court Division', 'Contempt Case', 0, NULL, NULL, '2022-03-16 00:53:45', '2022-03-16 01:06:07'),
 (4, 'Appellate Court Division', 'Jail Cases', 0, NULL, NULL, '2022-03-16 00:53:56', '2022-03-16 00:53:56'),
 (5, 'Appellate Court Division', 'Criminal Cases (HD)', 0, NULL, NULL, '2022-03-16 01:04:43', '2022-03-16 01:05:34'),
-(6, 'High Court Division', 'Contempt Cases', 0, NULL, NULL, '2022-03-20 05:55:15', '2022-03-20 05:55:15');
+(6, 'High Court Division', 'Contempt Cases', 1, NULL, NULL, '2022-03-20 05:55:15', '2022-03-23 01:47:16'),
+(7, 'High Court Division', 'Writ Cases', 0, NULL, NULL, '2022-03-23 01:48:09', '2022-03-23 01:48:09'),
+(8, 'High Court Division', 'Civil Appeal', 0, NULL, NULL, '2022-03-23 02:08:11', '2022-03-23 02:08:11'),
+(9, 'High Court Division', 'Civil Revision', 0, NULL, NULL, '2022-03-23 02:08:36', '2022-03-23 02:08:36'),
+(10, 'High Court Division', 'Criminal Cases (HD)', 0, NULL, NULL, '2022-03-23 02:10:20', '2022-03-23 02:10:20');
 
 -- --------------------------------------------------------
 
@@ -4068,8 +4223,8 @@ CREATE TABLE `social_compliances` (
 --
 
 INSERT INTO `social_compliances` (`id`, `employment_condition`, `working_hour_leave`, `compensation_benefit`, `hygine_safety`, `welfare_security`, `industrial_relation`, `labour_law_safety`, `bnbc_safety`, `fire_safety`, `electrical_safety`, `natural_disaster`, `code_of_conduct`, `international_standard`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'test updated', 'test updated', 'test aaaaaaaa', 'asdf', 'asdf', 'asdf', 'test', 'test', 'asdf', 'asdf', 'asdf', 'asdf updated', 'asdf d', 0, NULL, NULL, '2022-03-16 05:19:36', '2022-03-16 05:43:04'),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2022-04-02 03:48:43', '2022-04-02 03:48:43');
+(1, 'test updated', 'test updated', 'test updated', 'asdf', 'asdf', 'asdf', 'test updated', 'test updated', 'asdf', 'asdf', 'asdf', 'asdf updated', 'werwer', 1, NULL, NULL, '2022-03-09 03:51:00', '2022-03-09 22:32:28'),
+(2, 'test 2', 'test 2', 'test 2', '2022-03-14', '2022-03-17', '2022-03-08', 'test a', 'test g', '2022-03-02', '2022-03-17', '2022-03-08', 'asdf we', 'asdf d', 0, NULL, NULL, '2022-03-09 03:52:55', '2022-03-09 22:32:42');
 
 -- --------------------------------------------------------
 
@@ -4083,7 +4238,6 @@ CREATE TABLE `supreme_court_cases` (
   `date_of_case_received` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_category_nature_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `case_type_id` int(11) DEFAULT NULL,
-  `trial_court` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `subsequent_case_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `zone_id` int(11) DEFAULT NULL,
   `area_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -4137,8 +4291,9 @@ CREATE TABLE `supreme_court_cases` (
 -- Dumping data for table `supreme_court_cases`
 --
 
-INSERT INTO `supreme_court_cases` (`id`, `case_no`, `date_of_case_received`, `case_category_nature_id`, `case_type_id`, `trial_court`, `subsequent_case_no`, `zone_id`, `area_id`, `branch_id`, `member_no`, `program_id`, `police_station`, `name_of_the_court_id`, `date_of_filing`, `division_id`, `district_id`, `relevant_law_sections_id`, `alligation_id`, `amount`, `name_of_the_complainant`, `complainant_contact_no`, `complainant_designation_id`, `external_council_name_id`, `external_council_associates_id`, `opposite_party_name`, `opposite_party_address`, `case_status_id`, `last_order_court_id`, `accused_name`, `accused_company_id`, `next_date`, `accused_address`, `accused_contact_no`, `next_date_fixed_id`, `plaintiff_name`, `plaintiff_designaiton_id`, `plaintiff_contact_number`, `company_id`, `case_notes`, `panel_lawyer_id`, `assigned_lawyer_id`, `other_claim`, `summary_facts_alligation`, `prayer_claims_by_psg`, `total_legal_bill_amount`, `missing_documents_evidence`, `comments`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '65464321313', '2022-03-18', '2', 2, 'test', '7788965', 1, '1', 1, '546464', 1, 'Lalbagh', 2, '2022-03-23', 2, 2, 2, 1, '35000', 'Aminur Rahman Smith Aminur', '01998744568', 2, 1, 1, 'Aminur Rahman Smith Aminur', '43 Phillip St, Sydney NSW 2000, Australia', 2, 2, 'Aminur Rahman Smith Aminur', 2, '2022-03-07', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 3, 'asdf', 1, '01456698785', 1, 'test21', 1, 1, 'testr', 'test', 'test', '97600', 'test', 'test', 0, NULL, NULL, '2022-03-16 04:52:00', '2022-03-16 04:55:08');
+INSERT INTO `supreme_court_cases` (`id`, `case_no`, `date_of_case_received`, `case_category_nature_id`, `case_type_id`, `subsequent_case_no`, `zone_id`, `area_id`, `branch_id`, `member_no`, `program_id`, `police_station`, `name_of_the_court_id`, `date_of_filing`, `division_id`, `district_id`, `relevant_law_sections_id`, `alligation_id`, `amount`, `name_of_the_complainant`, `complainant_contact_no`, `complainant_designation_id`, `external_council_name_id`, `external_council_associates_id`, `opposite_party_name`, `opposite_party_address`, `case_status_id`, `last_order_court_id`, `accused_name`, `accused_company_id`, `next_date`, `accused_address`, `accused_contact_no`, `next_date_fixed_id`, `plaintiff_name`, `plaintiff_designaiton_id`, `plaintiff_contact_number`, `company_id`, `case_notes`, `panel_lawyer_id`, `assigned_lawyer_id`, `other_claim`, `summary_facts_alligation`, `prayer_claims_by_psg`, `total_legal_bill_amount`, `missing_documents_evidence`, `comments`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, '321313', '2022-01-31', '1', 2, '7788', 1, '2', 2, '321313', 2, 'Lalbagh', 1, '2022-03-09', 2, 3, 3, 2, '65000', 'Aminur Rahman Smith Aminur', '01998744563', 2, 2, 4, 'Aminur Rahman Smith Aminur', '43 Phillip St, Sydney NSW 2000, Australia', 3, 1, 'Aminur Rahman Smith Aminur', 2, '2022-02-07', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 3, 'test1', 2, '01456698785', 2, 'test21', 2, 2, 'test claim none updated', 'facts and alligation none updated', 'no psg selected updated', '97600', 'file 1, file 2, file 3 updated', 'test comments of null updated', 0, NULL, NULL, '2022-02-17 04:17:17', '2022-02-26 01:53:48'),
+(2, '6985', '2022-01-31', '2', 1, '778', 2, '1', 2, '541', 2, 'Lalbagh', 1, '2022-02-15', 1, 2, 3, 2, '35000', 'Aminur Rahman Smith Aminur', '01998744563', 2, 2, 4, 'Aminur Rahman Smith Aminur', '43 Phillip St, Sydney NSW 2000, Australia', 3, 1, 'Jack', 2, '2022-02-09', '43 Phillip St, Sydney NSW 2000, Australia', '01998745632', 3, 'Smith', 2, '01456698783', 2, 'test21', 2, 2, 'test 2', 'test 3', 'test 4', '40000', 'test 5', 'test 6', 1, NULL, NULL, '2022-02-26 01:35:10', '2022-03-07 06:10:22');
 
 -- --------------------------------------------------------
 
@@ -4162,8 +4317,15 @@ CREATE TABLE `supreme_court_cases_files` (
 --
 
 INSERT INTO `supreme_court_cases_files` (`id`, `case_id`, `uploaded_document`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 1, '164742792070164664984298Ethnicity.png', 0, NULL, NULL, '2022-03-16 04:52:00', '2022-03-16 04:52:00'),
-(2, 1, '164742792040164664984221asdfasdf.pdf', 0, NULL, NULL, '2022-03-16 04:52:00', '2022-03-16 04:52:00');
+(1, 1, '164509303746asdfasdf.pdf', 0, NULL, NULL, '2022-02-17 04:17:17', '2022-02-17 04:17:17'),
+(2, 1, '164509303772byden.jpg', 0, NULL, NULL, '2022-02-17 04:17:17', '2022-02-17 04:17:17'),
+(3, 1, '164509303726Ethnicity.png', 0, NULL, NULL, '2022-02-17 04:17:17', '2022-02-17 04:17:17'),
+(4, 1, '164509401622asdfasdf.pdf', 0, NULL, NULL, '2022-02-17 04:33:36', '2022-02-17 04:33:36'),
+(5, 1, '16450940161byden.jpg', 0, NULL, NULL, '2022-02-17 04:33:36', '2022-02-17 04:33:36'),
+(6, 1, '164509401627Ethnicity.png', 0, NULL, NULL, '2022-02-17 04:33:36', '2022-02-17 04:33:36'),
+(7, 2, '164586091045asdfasdf.pdf', 0, NULL, NULL, '2022-02-26 01:35:10', '2022-02-26 01:35:10'),
+(8, 2, '164586091072byden.jpg', 0, NULL, NULL, '2022-02-26 01:35:10', '2022-02-26 01:35:10'),
+(9, 2, '164586091037Ethnicity.png', 0, NULL, NULL, '2022-02-26 01:35:10', '2022-02-26 01:35:10');
 
 -- --------------------------------------------------------
 
@@ -4191,6 +4353,15 @@ CREATE TABLE `supreme_court_case_status_logs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `supreme_court_case_status_logs`
+--
+
+INSERT INTO `supreme_court_case_status_logs` (`id`, `case_id`, `updated_court_id`, `updated_next_date`, `updated_next_date_fixed_id`, `updated_panel_lawyer_id`, `order_date`, `updated_case_status_id`, `updated_accused_name`, `update_description`, `case_proceedings`, `case_notes`, `next_date_fixed_reason`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2022-02-03', 1, 2, '2022-02-16', 3, 'nones', 'test 9', 'test 8', 'test 7', 'Next Date', 0, NULL, NULL, '2022-02-26 01:54:49', '2022-02-26 01:54:49'),
+(2, 1, 1, '2022-02-03', 2, 2, '2022-03-12', 3, 'test accuse', 'test 2', 'test 3', 'test 6', 'Disposed', 0, NULL, NULL, '2022-02-26 01:55:58', '2022-02-26 01:55:58'),
+(3, 2, 1, '2022-02-02', 3, 2, '2022-03-05', 3, 'no one', 'test 1', 'test 2', 'test 3', 'Disposed', 0, NULL, NULL, '2022-02-26 03:03:57', '2022-02-26 03:03:57');
 
 -- --------------------------------------------------------
 
@@ -4856,37 +5027,37 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `appellate_court_cases`
 --
 ALTER TABLE `appellate_court_cases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `appellate_court_cases_files`
 --
 ALTER TABLE `appellate_court_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `appellate_court_case_status_logs`
 --
 ALTER TABLE `appellate_court_case_status_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `case_billings`
 --
 ALTER TABLE `case_billings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `civil_cases`
 --
 ALTER TABLE `civil_cases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `civil_cases_files`
 --
 ALTER TABLE `civil_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `civil_case_status_logs`
@@ -4904,37 +5075,37 @@ ALTER TABLE `contact_infos`
 -- AUTO_INCREMENT for table `criminal_cases`
 --
 ALTER TABLE `criminal_cases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `criminal_cases_case_steps`
 --
 ALTER TABLE `criminal_cases_case_steps`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `criminal_cases_files`
 --
 ALTER TABLE `criminal_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `criminal_case_activity_logs`
 --
 ALTER TABLE `criminal_case_activity_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `criminal_case_status_logs`
 --
 ALTER TABLE `criminal_case_status_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `external_files`
 --
 ALTER TABLE `external_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -4952,7 +5123,7 @@ ALTER TABLE `flat_information`
 -- AUTO_INCREMENT for table `flat_information_files`
 --
 ALTER TABLE `flat_information_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `high_court_cases`
@@ -4964,49 +5135,49 @@ ALTER TABLE `high_court_cases`
 -- AUTO_INCREMENT for table `high_court_cases_files`
 --
 ALTER TABLE `high_court_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `high_court_case_status_logs`
 --
 ALTER TABLE `high_court_case_status_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `labour_cases`
 --
 ALTER TABLE `labour_cases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `labour_cases_files`
 --
 ALTER TABLE `labour_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `labour_case_status_logs`
 --
 ALTER TABLE `labour_case_status_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `land_information`
 --
 ALTER TABLE `land_information`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `land_information_files`
 --
 ALTER TABLE `land_information_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=474;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -5018,25 +5189,25 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `quassi_judicial_cases`
 --
 ALTER TABLE `quassi_judicial_cases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `quassi_judicial_cases_files`
 --
 ALTER TABLE `quassi_judicial_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `quassi_judicial_case_status_logs`
 --
 ALTER TABLE `quassi_judicial_case_status_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `regulatory_compliances`
 --
 ALTER TABLE `regulatory_compliances`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setup_accuseds`
@@ -5048,7 +5219,7 @@ ALTER TABLE `setup_accuseds`
 -- AUTO_INCREMENT for table `setup_allegations`
 --
 ALTER TABLE `setup_allegations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `setup_areas`
@@ -5060,19 +5231,19 @@ ALTER TABLE `setup_areas`
 -- AUTO_INCREMENT for table `setup_banks`
 --
 ALTER TABLE `setup_banks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `setup_bank_branches`
 --
 ALTER TABLE `setup_bank_branches`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setup_bill_types`
 --
 ALTER TABLE `setup_bill_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `setup_branches`
@@ -5084,37 +5255,37 @@ ALTER TABLE `setup_branches`
 -- AUTO_INCREMENT for table `setup_case_categories`
 --
 ALTER TABLE `setup_case_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `setup_case_classes`
 --
 ALTER TABLE `setup_case_classes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `setup_case_statuses`
 --
 ALTER TABLE `setup_case_statuses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `setup_case_subcategories`
 --
 ALTER TABLE `setup_case_subcategories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `setup_case_titles`
 --
 ALTER TABLE `setup_case_titles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `setup_case_types`
 --
 ALTER TABLE `setup_case_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `setup_clients`
@@ -5132,19 +5303,19 @@ ALTER TABLE `setup_client_categories`
 -- AUTO_INCREMENT for table `setup_client_subcategories`
 --
 ALTER TABLE `setup_client_subcategories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `setup_companies`
 --
 ALTER TABLE `setup_companies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `setup_company_types`
 --
 ALTER TABLE `setup_company_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setup_complainants`
@@ -5162,19 +5333,19 @@ ALTER TABLE `setup_compliance_categories`
 -- AUTO_INCREMENT for table `setup_compliance_types`
 --
 ALTER TABLE `setup_compliance_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `setup_coordinators`
 --
 ALTER TABLE `setup_coordinators`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setup_courts`
 --
 ALTER TABLE `setup_courts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `setup_court_classes`
@@ -5186,19 +5357,19 @@ ALTER TABLE `setup_court_classes`
 -- AUTO_INCREMENT for table `setup_court_last_orders`
 --
 ALTER TABLE `setup_court_last_orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `setup_court_proceedings`
 --
 ALTER TABLE `setup_court_proceedings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `setup_court_shorts`
 --
 ALTER TABLE `setup_court_shorts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `setup_day_notes`
@@ -5210,7 +5381,7 @@ ALTER TABLE `setup_day_notes`
 -- AUTO_INCREMENT for table `setup_designations`
 --
 ALTER TABLE `setup_designations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `setup_digital_payments`
@@ -5234,25 +5405,25 @@ ALTER TABLE `setup_divisions`
 -- AUTO_INCREMENT for table `setup_documents`
 --
 ALTER TABLE `setup_documents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `setup_external_councils`
 --
 ALTER TABLE `setup_external_councils`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `setup_external_council_associates`
 --
 ALTER TABLE `setup_external_council_associates`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `setup_external_council_associates_files`
 --
 ALTER TABLE `setup_external_council_associates_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `setup_external_council_files`
@@ -5264,19 +5435,19 @@ ALTER TABLE `setup_external_council_files`
 -- AUTO_INCREMENT for table `setup_flat_numbers`
 --
 ALTER TABLE `setup_flat_numbers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `setup_floors`
 --
 ALTER TABLE `setup_floors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `setup_internal_councils`
 --
 ALTER TABLE `setup_internal_councils`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `setup_internal_council_files`
@@ -5288,7 +5459,7 @@ ALTER TABLE `setup_internal_council_files`
 -- AUTO_INCREMENT for table `setup_in_favour_ofs`
 --
 ALTER TABLE `setup_in_favour_ofs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `setup_laws`
@@ -5300,37 +5471,37 @@ ALTER TABLE `setup_laws`
 -- AUTO_INCREMENT for table `setup_law_sections`
 --
 ALTER TABLE `setup_law_sections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `setup_legal_issues`
 --
 ALTER TABLE `setup_legal_issues`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setup_legal_services`
 --
 ALTER TABLE `setup_legal_services`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setup_matters`
 --
 ALTER TABLE `setup_matters`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `setup_modes`
 --
 ALTER TABLE `setup_modes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `setup_next_date_reasons`
 --
 ALTER TABLE `setup_next_date_reasons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `setup_next_day_presences`
@@ -5354,7 +5525,7 @@ ALTER TABLE `setup_parties`
 -- AUTO_INCREMENT for table `setup_person_titles`
 --
 ALTER TABLE `setup_person_titles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `setup_professions`
@@ -5378,13 +5549,13 @@ ALTER TABLE `setup_progress`
 -- AUTO_INCREMENT for table `setup_property_types`
 --
 ALTER TABLE `setup_property_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setup_referrers`
 --
 ALTER TABLE `setup_referrers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `setup_regions`
@@ -5396,19 +5567,19 @@ ALTER TABLE `setup_regions`
 -- AUTO_INCREMENT for table `setup_sections`
 --
 ALTER TABLE `setup_sections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `setup_seller_buyers`
 --
 ALTER TABLE `setup_seller_buyers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setup_supreme_court_categories`
 --
 ALTER TABLE `setup_supreme_court_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `setup_supreme_court_subcategories`
@@ -5432,19 +5603,19 @@ ALTER TABLE `social_compliances`
 -- AUTO_INCREMENT for table `supreme_court_cases`
 --
 ALTER TABLE `supreme_court_cases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `supreme_court_cases_files`
 --
 ALTER TABLE `supreme_court_cases_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `supreme_court_case_status_logs`
 --
 ALTER TABLE `supreme_court_case_status_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

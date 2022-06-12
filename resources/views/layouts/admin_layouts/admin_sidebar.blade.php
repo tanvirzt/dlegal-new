@@ -93,6 +93,19 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('bill-particulars') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Bill Particulars</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('bill-schedule') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Bill Schedule</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a href="{{ route('branch') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Branch</p>
@@ -282,6 +295,12 @@
                                     <a href="{{ route('digital-payment-type') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Payment Type</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('payment-mode') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Payment Mode</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

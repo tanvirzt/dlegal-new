@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BillSchedule;
+use App\Models\CriminalCasesBilling;
+use App\Models\PaymentMode;
+use App\Models\SetupBillParticular;
 use Illuminate\Http\Request;
 use App\Models\SetupExternalCouncil;
 use App\Models\SetupBillType;
@@ -304,6 +308,22 @@ class BillingsController extends Controller
         return view('litigation_management.billings.billings.add_billing',compact('external_council','bill_type','bank','digital_payment_type','district','criminal_case'));
     }
 
+    public function add_criminal_cases_billling($id)
+    {
+        $external_council = SetupExternalCouncil::where('delete_status',0)->get();
+        $bank = SetupBank::where('delete_status',0)->get();
+        $digital_payment_type = SetupDigitalPayment::where('delete_status',0)->get();
+        $district = SetupDistrict::where('delete_status',0)->get();
+
+        $bill_type = SetupBillType::where('delete_status',0)->get();
+        $bill_particulars = SetupBillParticular::where('delete_status',0)->get();
+        $bill_schedule = BillSchedule::where('delete_status',0)->get();
+        $payment_mode = PaymentMode::where('delete_status',0)->get();
+        $data = CriminalCase::find($id);
+//dd($payment_mode);
+        return view('litigation_management.cases.criminal_cases.add_criminal_cases_billing',compact('payment_mode','bill_schedule','bill_particulars','external_council','bill_type','bank','digital_payment_type','district','data'));
+    }
+
     public function delete_billing($id)
     {
         $data = CaseBilling::find($id);
@@ -431,5 +451,32 @@ class BillingsController extends Controller
         ]);
 
     }
+
+    public function save_criminal_cases_billing(Request $request, $id)
+    {
+//        $data = $request->all();
+//        $data = json_decode(json_encode($data));
+//        echo "<pre>";print_r($data);die();
+
+        $data = new CriminalCasesBilling();
+        $data->case_id = $id;
+        $data->bill_date = $request->bill_date == "dd/mm/yyyy" ? null : $request->bill_date;
+        $data->bill_for_the_date = $request->bill_for_the_date == "dd/mm/yyyy" ? null : $request->bill_for_the_date;
+        $data->bill_particulars_id = $request->bill_particulars_id ? implode(', ',$request->bill_particulars_id) : null;
+        $data->bill_particulars = $request->bill_particulars;
+        $data->bill_type_id = $request->bill_type_id;
+        $data->bill_type = $request->bill_type;
+        $data->bill_schedule_id = $request->bill_schedule_id;
+        $data->bill_amount = $request->bill_amount;
+        $data->bill_submitted = $request->bill_submitted;
+        $data->payment_received = $request->payment_received;
+        $data->payment_mode_id = $request->payment_mode_id;
+        $data->save();
+
+        session()->flash('success', 'Criminal Cases Billing Added Successfully.');
+        return redirect()->back();
+
+    }
+
 
 }

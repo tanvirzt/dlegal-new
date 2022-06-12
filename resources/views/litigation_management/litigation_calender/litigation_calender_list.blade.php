@@ -286,16 +286,16 @@
                             <div class="card-body">
                                 <table class="table table-bordered table-striped">
                                     <thead>
-                                    <tr>
-                                        <th>SL</th>
-                                        <th>Court Name</th>
-                                        <th>Case No.</th>
-                                        <th>Fixed For</th>
-                                        <th>1st Party/Complainant</th>
-                                        <th>2nd Party/Accused</th>
-                                        <th>Step to be taken</th>
-                                        <th>Day Note</th>
-                                    </tr>
+                                        <tr>
+                                            <th>SL</th>
+                                            <th>Court Name</th>
+                                            <th>Case No.</th>
+                                            <th>Fixed For</th>
+                                            <th>1st Party/Complainant/ Petitioner/Plaintiff</th>
+                                            <th>2nd Party/Accused/ Oppositon/Defendant</th>
+                                            <th>Step to be taken</th>
+                                            <th>Day Note</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                     @if (!empty($calendar_wise_data))
