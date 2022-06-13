@@ -15,12 +15,12 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <a href="{{ route('litigation-calender-list') }}">
-                                    <button type="button" class="btn btn-block bg-gradient-info">Litigation Calender(List)</button>
+                                    <button type="button" class="btn btn-block bg-gradient-info">Litigation Calendar(List)</button>
                                 </a>
                             </div>
                             <div class="col-md-6">
                                 <a href="{{ route('litigation-calender-short') }}">
-                                    <button type="button" class="btn btn-block bg-gradient-success">Litigation Calender(Short)</button>
+                                    <button type="button" class="btn btn-block bg-gradient-success">Litigation Calendar(Short)</button>
                                 </a>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-                <h3 class="" id="heading">Litigation Calender</h3>
+                <h3 class="" id="heading">Litigation Calendar</h3>
                 <div class="row">
 
                     <div class="col-md-2">
