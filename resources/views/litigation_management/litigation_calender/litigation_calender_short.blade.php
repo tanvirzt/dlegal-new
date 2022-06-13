@@ -35,6 +35,234 @@
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Small boxes (Stat box) -->
+                <h3 class="" id="heading">Litigation Calender</h3>
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm">
+                                      3
+                                    </div>
+                                    <div class="col-sm">
+                                      12
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="card-body text-secondary">
+                              <p class="card-text">Civil: </p>
+                              <p class="card-text">Criminal: </p>
+                              <p class="card-text">Labour: </p>
+                              <p class="card-text">Other: </p>
+                              <p class="card-text">HC: </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-2">
+                        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm">
+                                      3
+                                    </div>
+                                    <div class="col-sm">
+                                      12
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="card-body text-secondary">
+                              <p class="card-text">Civil: </p>
+                              <p class="card-text">Criminal: </p>
+                              <p class="card-text">Labour: </p>
+                              <p class="card-text">Other: </p>
+                              <p class="card-text">HC: </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm">
+                                      3
+                                    </div>
+                                    <div class="col-sm">
+                                      12
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="card-body text-secondary">
+                              <p class="card-text">Civil: </p>
+                              <p class="card-text">Criminal: </p>
+                              <p class="card-text">Labour: </p>
+                              <p class="card-text">Other: </p>
+                              <p class="card-text">HC: </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm">
+                                      3
+                                    </div>
+                                    <div class="col-sm">
+                                      12
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="card-body text-secondary">
+                              <p class="card-text">Civil: </p>
+                              <p class="card-text">Criminal: </p>
+                              <p class="card-text">Labour: </p>
+                              <p class="card-text">Other: </p>
+                              <p class="card-text">HC: </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm">
+                                      3
+                                    </div>
+                                    <div class="col-sm">
+                                      12
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="card-body text-secondary">
+                              <p class="card-text">Civil: </p>
+                              <p class="card-text">Criminal: </p>
+                              <p class="card-text">Labour: </p>
+                              <p class="card-text">Other: </p>
+                              <p class="card-text">HC: </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm">
+                                      3
+                                    </div>
+                                    <div class="col-sm">
+                                      12
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="card-body text-secondary">
+                              <p class="card-text">Civil: </p>
+                              <p class="card-text">Criminal: </p>
+                              <p class="card-text">Labour: </p>
+                              <p class="card-text">Other: </p>
+                              <p class="card-text">HC: </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm">
+                                      3
+                                    </div>
+                                    <div class="col-sm">
+                                      12
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="card-body text-secondary">
+                              <p class="card-text">Civil: </p>
+                              <p class="card-text">Criminal: </p>
+                              <p class="card-text">Labour: </p>
+                              <p class="card-text">Other: </p>
+                              <p class="card-text">HC: </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm">
+                                      3
+                                    </div>
+                                    <div class="col-sm">
+                                      12
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="card-body text-secondary">
+                              <p class="card-text">Civil: </p>
+                              <p class="card-text">Criminal: </p>
+                              <p class="card-text">Labour: </p>
+                              <p class="card-text">Other: </p>
+                              <p class="card-text">HC: </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm">
+                                      3
+                                    </div>
+                                    <div class="col-sm">
+                                      12
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="card-body text-secondary">
+                              <p class="card-text">Civil: </p>
+                              <p class="card-text">Criminal: </p>
+                              <p class="card-text">Labour: </p>
+                              <p class="card-text">Other: </p>
+                              <p class="card-text">HC: </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm">
+                                      3
+                                    </div>
+                                    <div class="col-sm">
+                                      12
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="card-body text-secondary">
+                              <p class="card-text">Civil: </p>
+                              <p class="card-text">Criminal: </p>
+                              <p class="card-text">Labour: </p>
+                              <p class="card-text">Other: </p>
+                              <p class="card-text">HC: </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+            </div>
+        </section>
+
+
+
 
         <!-- Main content -->
 
