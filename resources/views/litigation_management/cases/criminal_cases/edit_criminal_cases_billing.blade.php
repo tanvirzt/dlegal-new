@@ -49,10 +49,10 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading"> Add Billing </h3>
+                                <h3 class="card-title" id="heading"> Edit Billing </h3>
                             </div>
 
-                            <form action="{{ route('save-criminal-cases-billing',$data->id) }}" method="post">
+                            <form action="{{ route('update-criminal-cases-billing-submit',$data->id) }}" method="post">
                                 @csrf
                                 <div class="card-body">
 
@@ -68,7 +68,11 @@
                                                                 <span class="date_span_bill">
                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                            onchange="setCorrect(this,'bill_date');"><input type="text" id="bill_date" name="bill_date"
-                                                                                                                                    value="dd-mm-yyyy"
+                                                                                                                                   @if (!empty($data->bill_date))
+                                                                                                                                   value="{{ $data->bill_date }}"
+                                                                                                                                   @else
+                                                                                                                                   value="dd-mm-yyyy"
+                                                                                                                                   @endif 
                                                                                                                                     class="date_second_input"
                                                                                                                                     tabindex="-1"><span
                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -88,7 +92,11 @@
                                                                 <span class="date_span_bill">
                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                            onchange="setCorrect(this,'bill_for_the_date');"><input type="text" id="bill_for_the_date" name="bill_for_the_date"
-                                                                                                                           value="dd-mm-yyyy"
+                                                                           @if (!empty($data->bill_for_the_date))
+                                                                           value="{{ $data->bill_for_the_date }}"
+                                                                           @else
+                                                                           value="dd-mm-yyyy"
+                                                                           @endif 
                                                                                                                            class="date_second_input"
                                                                                                                            tabindex="-1"><span
                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -113,7 +121,7 @@
                                                                 <option value="">Select</option>
                                                                 @foreach($bill_particulars as $item)
                                                                     <option
-                                                                        value="{{ $item->bill_particulars_name }}" {{( $data->bill_particulars_id  == $item->id ? 'selected':'')}}>{{ $item->bill_particulars_name }}</option>
+                                                                        value="{{ $item->bill_particulars_name }}" {{( in_array($data->bill_particulars_id, $explode_particulars)  ? 'selected':'')}}>{{ $item->bill_particulars_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -122,7 +130,7 @@
                                                                    id="bill_particulars"
                                                                    name="bill_particulars"
                                                                    placeholder="Bill Particulars"
-                                                                   value="">
+                                                                   value="{{ $data->bill_particulars }}">
                                                         </div>
                                                     </div>
 
@@ -142,7 +150,7 @@
                                                                     class="form-control select2">
                                                                 <option value="">Select</option>
                                                                 @foreach($bill_type as $item)
-                                                                    <option value="{{ $item->id }}" {{(old('bill_type_id') == $item->id ? 'selected':'')}}>{{ $item->bill_type_name }}</option>
+                                                                    <option value="{{ $item->id }}" {{($data->bill_type_id == $item->id ? 'selected':'')}}>{{ $item->bill_type_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -151,7 +159,7 @@
                                                                    id="bill_type"
                                                                    name="bill_type"
                                                                    placeholder="Bill Type"
-                                                                   value="">
+                                                                   value="{{ $data->bill_type }}">
                                                         </div>
                                                     </div>
 
@@ -165,7 +173,7 @@
                                                     <select name="bill_schedule_id" class="form-control select2" id="bill_schedule_id">
                                                         <option value=""> Select </option>
                                                             @foreach($bill_schedule as $item)
-                                                                <option value="{{ $item->id }}" {{(old('bill_schedule_id') == $item->id ? 'selected':'')}}>{{ $item->bill_schedule_name }}</option>
+                                                                <option value="{{ $item->id }}" {{($data->bill_schedule_id == $item->id ? 'selected':'')}}>{{ $item->bill_schedule_name }}</option>
                                                             @endforeach
                                                     </select>
                                                     @error('bill_schedule_id')<span class="text-danger">{{$message}}</span>@enderror
@@ -177,7 +185,7 @@
                                             <div class="form-group row">
                                                 <label for="bill_amount" class="col-sm-4 col-form-label">Bill Amount</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="bill_amount" name="bill_amount" value="{{old('bill_amount')}}">
+                                                    <input type="text" class="form-control" id="bill_amount" name="bill_amount" value="{{ $data->bill_amount }}">
                                                     @error('bill_amount')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -190,7 +198,11 @@
                                                                 <span class="date_span_bill">
                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                            onchange="setCorrect(this,'bill_submitted');"><input type="text" id="bill_submitted" name="bill_submitted"
-                                                                                                                           value="dd-mm-yyyy"
+                                                                           @if (!empty($data->bill_submitted))
+                                                                           value="{{ $data->bill_submitted }}"
+                                                                           @else
+                                                                           value="dd-mm-yyyy"
+                                                                           @endif 
                                                                                                                            class="date_second_input"
                                                                                                                            tabindex="-1"><span
                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -210,7 +222,11 @@
                                                                 <span class="date_span_bill">
                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                            onchange="setCorrect(this,'payment_received');"><input type="text" id="payment_received" name="payment_received"
-                                                                                                                           value="dd-mm-yyyy"
+                                                                           @if (!empty($data->payment_received))
+                                                                           value="{{ $data->payment_received }}"
+                                                                           @else
+                                                                           value="dd-mm-yyyy"
+                                                                           @endif 
                                                                                                                            class="date_second_input"
                                                                                                                            tabindex="-1"><span
                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -227,7 +243,7 @@
                                                     <select name="payment_mode_id" class="form-control select2" id="payment_mode_id">
                                                         <option value=""> Select </option>
                                                             @foreach($payment_mode as $item)
-                                                                <option value="{{ $item->id }}" {{(old('payment_mode_id') == $item->id ? 'selected':'')}}>{{ $item->payment_mode_name }}</option>
+                                                                <option value="{{ $item->id }}" {{( $data->payment_mode_id == $item->id ? 'selected':'')}}>{{ $item->payment_mode_name }}</option>
                                                             @endforeach
                                                     </select>
                                                     @error('payment_mode_id')<span class="text-danger">{{$message}}</span>@enderror
@@ -236,7 +252,7 @@
                                         </div>
                                     </div>
                                     <div class="float-right mt-4">
-                                        <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save</button>
+                                        <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update </button>
                                     </div>
                                 </div>
                             </form>

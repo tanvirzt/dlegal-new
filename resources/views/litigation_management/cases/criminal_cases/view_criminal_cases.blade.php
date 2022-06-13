@@ -74,6 +74,8 @@
                                 </h3>
                                 <div class="float-right">
                                     <!-- Button trigger modal -->
+                                    <a href="{{ route('criminal-case-print-preview', $data->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
+
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg"
                                             data-toggle="tooltip"
                                             data-placement="top" title="Update Status"><i
@@ -1163,6 +1165,8 @@
                                             data-toggle="tooltip"
                                             data-placement="top" title="Update Status"><i
                                             class="far fa-bell"></i></button>
+                                        <a href="{{ route('case-porceedings-print-preview', $data->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
+                                                  
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
                                         </button>
@@ -1185,7 +1189,7 @@
                                             <th class="text-nowrap">Day Note</th>
                                             <th class="text-nowrap">Engaged Advocates</th>
                                             <th class="text-nowrap">Action</th>
-                                            <th class="text-nowrap">Update</th>
+                                            <th class="text-nowrap" width="80px;">Update</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -1408,6 +1412,10 @@
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Billings Log</h3>
                                     <div class="card-tools">
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-bill"
+                                        data-toggle="tooltip" data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button>
+                                        <a href="{{ route('billings-log-print-preview', $data->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
+
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
                                         </button>
@@ -1447,7 +1455,20 @@
                                                 <td> {{ $bill_logs->payment_received }} </td>
                                                 <td> {{ $bill_logs->payment_mode_name }} </td>
                                                 <td>  </td>
-                                                <td> </td>
+                                                <td> 
+                                                    <a href="{{ route('edit-criminal-cases-billing', $bill_logs->id) }}">
+                                                        <button
+                                                            class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"><i
+                                                                class="fas fa-edit"></i></button>
+                                                    </a>
+                                                    <form method="POST" action="{{ route('delete-criminal-cases-billing',$bill_logs->id) }}"
+                                                          class="delete-user btn btn-danger btn-xs">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top"
+                                                                title="Delete"><i class="fas fa-trash"></i></button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -4603,7 +4624,221 @@
     {{-- documents add  --}}
     {{-- case Information --}}
 
+{{-- billings log --}}
+
+<div class="modal fade" id="modal-bill">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="card-title"> Add Billing </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('save-criminal-cases-billing',$data->id) }}" method="post">
+                @csrf
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group row">
+                                <label for="bill_date"
+                                       class="col-sm-4 col-form-label">
+                                    Bill Date
+                                </label>
+                                <div class="col-sm-8">
+                                                <span class="date_span_status_modal">
+                                                    <input type="date" class="xDateContainer date_first_input"
+                                                           onchange="setCorrect(this,'bill_date');"><input type="text" id="bill_date" name="bill_date"
+                                                                                                                    value="dd-mm-yyyy"
+                                                                                                                    class="date_second_input"
+                                                                                                                    tabindex="-1"><span
+                                                        class="date_second_span" tabindex="-1">&#9660;</span>
+                                                </span>
+                                    @error('bill_date')
+                                    <span
+                                        class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="bill_for_the_date"
+                                       class="col-sm-4 col-form-label">
+                                    Bill for the Date
+                                </label>
+                                <div class="col-sm-8">
+                                                <span class="date_span_status_modal">
+                                                    <input type="date" class="xDateContainer date_first_input"
+                                                           onchange="setCorrect(this,'bill_for_the_date');"><input type="text" id="bill_for_the_date" name="bill_for_the_date"
+                                                                                                           value="dd-mm-yyyy"
+                                                                                                           class="date_second_input"
+                                                                                                           tabindex="-1"><span
+                                                        class="date_second_span" tabindex="-1">&#9660;</span>
+                                                </span>
+                                    @error('bill_for_the_date')
+                                    <span
+                                        class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="bill_particulars_id"
+                                       class="col-md-4 col-form-label"> Bill Particulars
+                                </label>
+                                <div class="col-md-8">
+                                    <div class="row" >
+                                        <div class="col-md-6">
+                                            <select name="bill_particulars_id[]"
+                                                    id="bill_particulars_id" multiple data-placeholder="Select"
+                                                    class="form-control select2">
+                                                <option value="">Select</option>
+                                                @foreach($bill_particulars as $item)
+                                                    <option
+                                                        value="{{ $item->bill_particulars_name }}" {{( old('bill_particulars_id') == $item->id ? 'selected':'')}}>{{ $item->bill_particulars_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="bill_particulars"
+                                                   name="bill_particulars"
+                                                   placeholder="Bill Particulars"
+                                                   value="">
+                                        </div>
+                                    </div>
+
+                                    @error('updated_fixed_for')<span
+                                        class="text-danger">{{$message}}</span>@enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="bill_type_id"
+                                       class="col-md-4 col-form-label"> Bill Type
+                                </label>
+                                <div class="col-md-8">
+                                    <div class="row" >
+                                        <div class="col-md-6">
+                                            <select name="bill_type_id"
+                                                    id="bill_type_id"
+                                                    class="form-control select2">
+                                                <option value="">Select</option>
+                                                @foreach($bill_type as $item)
+                                                    <option value="{{ $item->id }}" {{(old('bill_type_id') == $item->id ? 'selected':'')}}>{{ $item->bill_type_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control"
+                                                   id="bill_type"
+                                                   name="bill_type"
+                                                   placeholder="Bill Type"
+                                                   value="">
+                                        </div>
+                                    </div>
+
+                                    @error('updated_fixed_for')<span
+                                        class="text-danger">{{$message}}</span>@enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="bill_schedule_id" class="col-sm-4 col-form-label">Bill Schedule</label>
+                                <div class="col-sm-8">
+                                    <select name="bill_schedule_id" class="form-control select2" id="bill_schedule_id">
+                                        <option value=""> Select </option>
+                                            @foreach($bill_schedule as $item)
+                                                <option value="{{ $item->id }}" {{(old('bill_schedule_id') == $item->id ? 'selected':'')}}>{{ $item->bill_schedule_name }}</option>
+                                            @endforeach
+                                    </select>
+                                    @error('bill_schedule_id')<span class="text-danger">{{$message}}</span>@enderror
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="bill_amount" class="col-sm-4 col-form-label">Bill Amount</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="bill_amount" name="bill_amount" value="{{old('bill_amount')}}">
+                                    @error('bill_amount')<span class="text-danger">{{$message}}</span>@enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="bill_submitted"
+                                       class="col-sm-4 col-form-label">
+                                    Bill Submitted
+                                </label>
+                                <div class="col-sm-8">
+                                                <span class="date_span_status_modal">
+                                                    <input type="date" class="xDateContainer date_first_input"
+                                                           onchange="setCorrect(this,'bill_submitted');"><input type="text" id="bill_submitted" name="bill_submitted"
+                                                                                                           value="dd-mm-yyyy"
+                                                                                                           class="date_second_input"
+                                                                                                           tabindex="-1"><span
+                                                        class="date_second_span" tabindex="-1">&#9660;</span>
+                                                </span>
+                                    @error('bill_submitted')
+                                    <span
+                                        class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="payment_received"
+                                       class="col-sm-4 col-form-label">
+                                    Payment Received
+                                </label>
+                                <div class="col-sm-8">
+                                                <span class="date_span_status_modal">
+                                                    <input type="date" class="xDateContainer date_first_input"
+                                                           onchange="setCorrect(this,'payment_received');"><input type="text" id="payment_received" name="payment_received"
+                                                                                                           value="dd-mm-yyyy"
+                                                                                                           class="date_second_input"
+                                                                                                           tabindex="-1"><span
+                                                        class="date_second_span" tabindex="-1">&#9660;</span>
+                                                </span>
+                                    @error('payment_received')
+                                    <span
+                                        class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="payment_mode_id" class="col-sm-4 col-form-label">Payment Mode</label>
+                                <div class="col-sm-8">
+                                    <select name="payment_mode_id" class="form-control select2" id="payment_mode_id">
+                                        <option value=""> Select </option>
+                                            @foreach($payment_mode as $item)
+                                                <option value="{{ $item->id }}" {{(old('payment_mode_id') == $item->id ? 'selected':'')}}>{{ $item->payment_mode_name }}</option>
+                                            @endforeach
+                                    </select>
+                                    @error('payment_mode_id')<span class="text-danger">{{$message}}</span>@enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div class="float-right">
+                            <button type="submit"
+                                    class="btn btn-primary text-uppercase"><i
+                                    class="fas fa-save"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+{{-- billings log --}}
     {{--    update cases modal--}}
+
 @endsection
 
 

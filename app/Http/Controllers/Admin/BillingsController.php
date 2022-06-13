@@ -454,22 +454,29 @@ class BillingsController extends Controller
 
     public function save_criminal_cases_billing(Request $request, $id)
     {
-//        $data = $request->all();
-//        $data = json_decode(json_encode($data));
-//        echo "<pre>";print_r($data);die();
+    //    $data = $request->all();
+    //    $data = json_decode(json_encode($data));
+    //    echo "<pre>";print_r($data);die();
+
+        $due = $request->bill_amount - $request->payment_amount;
 
         $data = new CriminalCasesBilling();
         $data->case_id = $id;
-        $data->bill_date = $request->bill_date == "dd/mm/yyyy" ? null : $request->bill_date;
-        $data->bill_for_the_date = $request->bill_for_the_date == "dd/mm/yyyy" ? null : $request->bill_for_the_date;
+        $data->bill_date = $request->bill_date == "dd-mm-yyyy" ? null : $request->bill_date;
+        $data->bill_for_the_date = $request->bill_for_the_date == "dd-mm-yyyy" ? null : $request->bill_for_the_date;
         $data->bill_particulars_id = $request->bill_particulars_id ? implode(', ',$request->bill_particulars_id) : null;
         $data->bill_particulars = $request->bill_particulars;
         $data->bill_type_id = $request->bill_type_id;
         $data->bill_type = $request->bill_type;
         $data->bill_schedule_id = $request->bill_schedule_id;
         $data->bill_amount = $request->bill_amount;
-        $data->bill_submitted = $request->bill_submitted;
-        $data->payment_received = $request->payment_received;
+
+        $data->payment_amount = $request->payment_amount;
+        $data->due_amount = $due;
+        $data->paid_due = $due==0 ? 'Paid' : 'Due';
+
+        $data->bill_submitted = $request->bill_submitted == "dd-mm-yyyy" ? null : $request->bill_submitted;
+        $data->payment_received = $request->payment_received == "dd-mm-yyyy" ? null : $request->payment_received;
         $data->payment_mode_id = $request->payment_mode_id;
         $data->save();
 
@@ -478,5 +485,64 @@ class BillingsController extends Controller
 
     }
 
+    public function edit_criminal_cases_billing($id)
+    {
+        // dd('adsfasdf');
+        $bill_type = SetupBillType::where('delete_status',0)->get();
+        $bill_particulars = SetupBillParticular::where('delete_status',0)->get();
+        $bill_schedule = BillSchedule::where('delete_status',0)->get();
+        $payment_mode = PaymentMode::where('delete_status',0)->get();
+        $data = CriminalCasesBilling::find($id);
+
+        $explode_particulars = explode(', ',$data->bill_particulars_id);
+//dd($payment_mode);
+        return view('litigation_management.cases.criminal_cases.edit_criminal_cases_billing',compact('payment_mode','bill_schedule','bill_particulars','bill_type','data','explode_particulars'));
+
+    }
+
+    public function update_criminal_cases_billing_submit(Request $request, $id)
+    {
+        
+        $due = $request->bill_amount - $request->payment_amount;
+
+        $data = CriminalCasesBilling::find($id);
+        $data->bill_date = $request->bill_date == "dd-mm-yyyy" ? null : $request->bill_date;
+        $data->bill_for_the_date = $request->bill_for_the_date == "dd-mm-yyyy" ? null : $request->bill_for_the_date;
+        $data->bill_particulars_id = $request->bill_particulars_id ? implode(', ',$request->bill_particulars_id) : null;
+        $data->bill_particulars = $request->bill_particulars;
+        $data->bill_type_id = $request->bill_type_id;
+        $data->bill_type = $request->bill_type;
+        $data->bill_schedule_id = $request->bill_schedule_id;
+        $data->bill_amount = $request->bill_amount;
+
+        $data->payment_amount = $request->payment_amount;
+        $data->due_amount = $due;
+        $data->paid_due = $due==0 ? 'Paid' : 'Due';
+
+        $data->bill_submitted = $request->bill_submitted == "dd-mm-yyyy" ? null : $request->bill_submitted;
+        $data->payment_received = $request->payment_received == "dd-mm-yyyy" ? null : $request->payment_received;
+        $data->payment_mode_id = $request->payment_mode_id;
+        $data->save();
+
+        session()->flash('success', 'Criminal Cases Billing Updated Successfully.');
+        return redirect()->route('view-criminal-cases',$data->case_id);
+
+    }
+
+    public function delete_criminal_cases_billing($id)
+    {
+        $data = CriminalCasesBilling::find($id);
+        // dd($data);
+        if ($data['delete_status'] == 1) {
+            $delete_status = 0;
+        } else {
+            $delete_status = 1;
+        }
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success', 'Criminal Cases Deleted');
+        return redirect()->back();
+    }
 
 }

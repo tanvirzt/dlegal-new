@@ -1,4 +1,4 @@
-<footer class="main-footer">
+<footer class="main-footer no-print">
    <strong>Copyright &copy; 2021-2022 <a href="#">BCLC</a>.</strong>
     <p class="d-inline"> All Rights Reserved.
 {{--        Developed by <a href="https://zaimahtech.com/">Zaimah Technologies Ltd</a>--}}

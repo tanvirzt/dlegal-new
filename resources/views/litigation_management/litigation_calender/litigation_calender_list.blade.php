@@ -16,11 +16,11 @@
                                     <button type="button" class="btn btn-block bg-gradient-info">Litigation Calender(list)</button>
                                 </a>
                             </div>
-{{--                            <div class="col-md-6">--}}
-{{--                                <a href="{{ route('litigation-calender-short') }}">--}}
-{{--                                    <button type="button" class="btn btn-block bg-gradient-success">Litigation Calender(Short)</button>--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
+                            {{-- <div class="col-md-6">
+                                <a href="{{ route('litigation-calender-short') }}">
+                                    <button type="button" class="btn btn-block bg-gradient-success">Litigation Calender(Short)</button>
+                                </a>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="col-sm-4">

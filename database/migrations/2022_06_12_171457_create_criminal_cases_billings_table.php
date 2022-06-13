@@ -27,6 +27,9 @@ class CreateCriminalCasesBillingsTable extends Migration
             $table->string('bill_submitted')->nullable();
             $table->string('payment_received')->nullable();
             $table->integer('payment_mode_id')->nullable();
+            $table->string('payment_amount')->nullable();
+            $table->string('due_amount')->nullable();
+            $table->string('paid_due')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

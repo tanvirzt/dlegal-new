@@ -59,6 +59,10 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CivilCases;
+use App\Models\SetupBillType;
+use App\Models\SetupBillParticular;
+use App\Models\BillSchedule;
+use App\Models\PaymentMode;
 
 class CriminalCasesController extends Controller
 {
@@ -1300,11 +1304,13 @@ class CriminalCasesController extends Controller
         $edit_case_steps = CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
         $previous_activity = CriminalCaseStatusLog::latest()->where(['case_id'=> $id, 'delete_status' => 0])->first();
 
+        $bill_type = SetupBillType::where('delete_status',0)->get();
+        $bill_particulars = SetupBillParticular::where('delete_status',0)->get();
+        $bill_schedule = BillSchedule::where('delete_status',0)->get();
+        $payment_mode = PaymentMode::where('delete_status',0)->get();
 
     //    $edit_case_steps = json_decode(json_encode($edit_case_steps));
     //    echo "<pre>";print_r($edit_case_steps);die();
-
-
         //   dd($data);
         $criminal_cases_files = CriminalCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
 
@@ -1353,7 +1359,7 @@ class CriminalCasesController extends Controller
                         ->leftJoin('bill_schedules','criminal_cases_billings.bill_schedule_id','bill_schedules.id')
                         ->leftJoin('payment_modes','criminal_cases_billings.payment_mode_id','payment_modes.id')
                         ->select('criminal_cases_billings.*','setup_bill_types.bill_type_name','bill_schedules.bill_schedule_name','payment_modes.payment_mode_name')
-                        ->where('case_id',$id)
+                        ->where(['criminal_cases_billings.delete_status'=> 0,'case_id' => $id])
                         ->get();
 // dd($bill_history);
         $case_activity_log = DB::table('criminal_case_activity_logs')
@@ -1367,7 +1373,7 @@ class CriminalCasesController extends Controller
 
 
         // dd($case_activity_log);
-        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode','edit_case_steps','existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','received_documents_explode','required_documents_explode','previous_activity'));
+        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode','edit_case_steps','existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','received_documents_explode','required_documents_explode','previous_activity','payment_mode','bill_schedule','bill_particulars','bill_type'));
     }
 
     public function download_criminal_cases_file($id)
@@ -1762,5 +1768,135 @@ class CriminalCasesController extends Controller
         return redirect()->back();
     }
 
+    public function case_porceedings_print_preview($id)
+    {
+        // dd($id);
+        $case_logs = DB::table('criminal_case_status_logs')
+            ->leftJoin('setup_case_statuses', 'criminal_case_status_logs.updated_case_status_id', '=', 'setup_case_statuses.id')
+            ->leftJoin('setup_next_date_reasons', 'criminal_case_status_logs.updated_fixed_for_id', '=', 'setup_next_date_reasons.id')
+            ->leftJoin('setup_court_proceedings', 'criminal_case_status_logs.court_proceedings_id', '=', 'setup_court_proceedings.id')
+            ->leftJoin('setup_court_last_orders', 'criminal_case_status_logs.updated_court_order_id', '=', 'setup_court_last_orders.id')
+            ->leftJoin('setup_day_notes', 'criminal_case_status_logs.updated_day_notes_id', '=', 'setup_day_notes.id')
+            ->leftJoin('setup_next_date_reasons as index_reason', 'criminal_case_status_logs.updated_index_fixed_for_id', '=', 'index_reason.id')
+            ->leftJoin('setup_external_council_associates', 'criminal_case_status_logs.updated_engaged_advocate_id', '=', 'setup_external_council_associates.id')
+            ->leftJoin('setup_next_day_presences', 'criminal_case_status_logs.updated_next_day_presence_id', '=', 'setup_next_day_presences.id')
+            ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name', 'setup_court_proceedings.court_proceeding_name', 'setup_court_last_orders.court_last_order_name', 'setup_day_notes.day_notes_name', 'setup_external_council_associates.first_name', 'setup_external_council_associates.middle_name', 'setup_external_council_associates.last_name', 'setup_next_day_presences.next_day_presence_name','index_reason.next_date_reason_name as index_next_date_reason_name')        
+            ->where(['criminal_case_status_logs.case_id' => $id, 'criminal_case_status_logs.delete_status' => 0])
+            ->orderBy('criminal_case_status_logs.created_at','asc')
+            // ->orderByRaw("DATE_FORMAT('d-m-Y',criminal_case_status_logs.updated_order_date), 'ASC'")
+            ->get();
+// dd($case_logs);
+        return view('litigation_management.cases.criminal_cases.print_preview_criminal_case_proceedings', compact('case_logs'));
+    }
+
+    public function billings_log_print_preview($id)
+    {
+        $bill_history = DB::table('criminal_cases_billings')
+                        ->leftJoin('setup_bill_types','criminal_cases_billings.bill_type_id','setup_bill_types.id')
+                        ->leftJoin('bill_schedules','criminal_cases_billings.bill_schedule_id','bill_schedules.id')
+                        ->leftJoin('payment_modes','criminal_cases_billings.payment_mode_id','payment_modes.id')
+                        ->select('criminal_cases_billings.*','setup_bill_types.bill_type_name','bill_schedules.bill_schedule_name','payment_modes.payment_mode_name')
+                        ->where(['criminal_cases_billings.delete_status'=> 0,'case_id' => $id])
+                        ->get();
+    // dd($case_logs);
+        return view('litigation_management.cases.criminal_cases.print_preview_criminal_case_billing', compact('bill_history'));
+    }
+
+    public function criminal_case_print_preview($id)
+    {
+        $data = DB::table('criminal_cases')
+                ->leftJoin('setup_legal_issues', 'criminal_cases.legal_issue_id', '=', 'setup_legal_issues.id')
+                ->leftJoin('setup_legal_services', 'criminal_cases.legal_service_id', '=', 'setup_legal_services.id')
+                ->leftJoin('setup_complainants', 'criminal_cases.complainant_informant_id', '=', 'setup_complainants.id')
+                ->leftJoin('setup_accuseds', 'criminal_cases.accused_id', '=', 'setup_accuseds.id')
+                ->leftJoin('setup_in_favour_ofs', 'criminal_cases.in_favour_of_id', '=', 'setup_in_favour_ofs.id')
+                ->leftJoin('setup_courts', 'criminal_cases.name_of_the_court_id', '=', 'setup_courts.id')
+                ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', '=', 'setup_next_date_reasons.id')
+                ->leftJoin('setup_modes', 'criminal_cases.mode_of_receipt_id', '=', 'setup_modes.id')
+                ->leftJoin('setup_referrers', 'criminal_cases.referrer_id', '=', 'setup_referrers.id')
+                ->leftJoin('setup_in_favour_ofs as client_party', 'criminal_cases.client_party_id', '=', 'client_party.id')
+                ->leftJoin('setup_client_categories', 'criminal_cases.client_category_id', '=', 'setup_client_categories.id')
+                ->leftJoin('setup_client_subcategories', 'criminal_cases.client_subcategory_id', '=', 'setup_client_subcategories.id')
+                ->leftJoin('setup_clients', 'criminal_cases.client_id', '=', 'setup_clients.id')
+                ->leftJoin('setup_professions', 'criminal_cases.client_profession_id', '=', 'setup_professions.id')
+                ->leftJoin('setup_divisions as client_division', 'criminal_cases.client_division_id', '=', 'client_division.id')
+                ->leftJoin('setup_districts as client_district', 'criminal_cases.client_district_id', '=', 'client_district.id')
+                ->leftJoin('setup_thanas as client_thana', 'criminal_cases.client_thana_id', '=', 'client_thana.id')
+                ->leftJoin('setup_coordinators', 'criminal_cases.client_coordinator_tadbirkar_id', '=', 'setup_coordinators.id')
+                ->leftJoin('setup_in_favour_ofs as opposition_party', 'criminal_cases.opposition_party_id', '=', 'opposition_party.id')
+                ->leftJoin('setup_client_categories as opposition_category', 'criminal_cases.opposition_category_id', '=', 'opposition_category.id')
+                ->leftJoin('setup_client_subcategories as opposition_subcategory', 'criminal_cases.opposition_subcategory_id', '=', 'opposition_subcategory.id')
+                ->leftJoin('setup_clients as opposition', 'criminal_cases.opposition_id', '=', 'opposition.id')
+                ->leftJoin('setup_professions as opposition_profession', 'criminal_cases.opposition_profession_id', '=', 'opposition_profession.id')
+                ->leftJoin('setup_divisions as opposition_division', 'criminal_cases.opposition_division_id', '=', 'opposition_division.id')
+                ->leftJoin('setup_districts as opposition_district', 'criminal_cases.opposition_district_id', '=', 'opposition_district.id')
+                ->leftJoin('setup_thanas as opposition_thana', 'criminal_cases.opposition_thana_id', '=', 'opposition_thana.id')
+                ->leftJoin('setup_coordinators as opposition_coordinator', 'criminal_cases.opposition_coordinator_tadbirkar_id', '=', 'opposition_coordinator.id')
+                ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
+                ->leftJoin('setup_divisions as case_infos_division', 'criminal_cases.case_infos_division_id', '=', 'case_infos_division.id')
+                ->leftJoin('setup_districts as case_infos_district', 'criminal_cases.case_infos_district_id', '=', 'case_infos_district.id')
+                ->leftJoin('setup_thanas as case_infos_thana', 'criminal_cases.case_infos_thana_id', '=', 'case_infos_thana.id')
+                ->leftJoin('setup_case_categories', 'criminal_cases.case_category_id', '=', 'setup_case_categories.id')
+                ->leftJoin('setup_case_subcategories', 'criminal_cases.case_subcategory_id', '=', 'setup_case_subcategories.id')
+                ->leftJoin('setup_case_titles as case_infos_case_title', 'criminal_cases.case_infos_case_title_id', '=', 'case_infos_case_title.id')
+                ->leftJoin('setup_case_titles as sub_seq_case_infos_case_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'sub_seq_case_infos_case_title.id')
+                ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
+                ->leftJoin('setup_case_statuses', 'criminal_cases.case_status_id', '=', 'setup_case_statuses.id')
+                ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
+                ->leftJoin('setup_allegations', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'setup_allegations.id')
+                ->leftJoin('admins', 'criminal_cases.received_by_id', '=', 'admins.id')
+                ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+
+                ->select('criminal_cases.*',
+                    'setup_legal_issues.legal_issue_name',
+                    'setup_legal_services.legal_service_name',
+                    'setup_complainants.complainant_name',
+                    'setup_accuseds.accused_name',
+                    'setup_in_favour_ofs.in_favour_of_name',
+                    'setup_courts.court_name',
+                    'setup_next_date_reasons.next_date_reason_name',
+                    'setup_modes.mode_name',
+                    'setup_referrers.referrer_name',
+                    'client_party.in_favour_of_name as client_party_name',
+                    'setup_client_categories.client_category_name',
+                    'setup_client_subcategories.client_subcategory_name',
+                    'setup_clients.client_name',
+                    'setup_professions.profession_name',
+                    'client_division.division_name as client_division_name',
+                    'client_district.district_name as client_district_name',
+                    'client_thana.thana_name as client_thana_name',
+                    'setup_coordinators.coordinator_name',
+                    'opposition_party.in_favour_of_name as oppsition_party_name',
+                    'opposition_category.client_category_name as opposition_category_name',
+                    'opposition_subcategory.client_subcategory_name as opposition_subcategory_name',
+                    'opposition.client_name as opposition_name',
+                    'opposition_profession.profession_name as opposition_profession_name',
+                    'opposition_division.division_name as opposition_division_name',
+                    'opposition_district.district_name as opposition_district_name',
+                    'opposition_thana.thana_name as opposition_thana_name',
+                    'opposition_coordinator.coordinator_name as opposition_coordinator_name',
+                    'setup_external_councils.first_name',
+                    'setup_external_councils.middle_name',
+                    'setup_external_councils.last_name',
+                    'case_infos_division.division_name as case_infos_division_name',
+                    'case_infos_district.district_name as case_infos_district_name',
+                    'case_infos_thana.thana_name as case_infos_thana_name',
+                    'setup_case_categories.case_category',
+                    'setup_case_subcategories.case_subcategory',
+                    'case_infos_case_title.case_title_name as case_infos_case_title_name',
+                    'sub_seq_case_infos_case_title.case_title_name as sub_seq_case_infos_case_title_name',
+                    'setup_matters.matter_name',
+                    'setup_case_statuses.case_status_name',
+                    'setup_case_types.case_types_name',
+                    'setup_allegations.allegation_name',
+                    'admins.name',
+                    'case_infos_title.case_title_name as sub_seq_case_title_name')
+                ->where('criminal_cases.id', $id)
+                ->first();
+        $edit_case_steps = CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
+
+       return view('litigation_management.cases.criminal_cases.print_preview_criminal_case_info', compact('data','edit_case_steps'));
+
+    }
 
 }

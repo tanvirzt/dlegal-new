@@ -190,6 +190,9 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('delete-criminal-cases-activity/{id}','CriminalCasesController@delete_criminal_cases_activity')->name('delete-criminal-cases-activity');
         Route::get('edit_criminal_cases_activity/{id}','CriminalCasesController@edit_criminal_cases_activity')->name('edit-criminal-cases-activity');
         Route::post('update-criminal-cases-activity-logs/{id}','CriminalCasesController@update_criminal_cases_activity_logs')->name('update-criminal-cases-activity-logs');
+        Route::get('case-porceedings-print-preview/{id}','CriminalCasesController@case_porceedings_print_preview')->name('case-porceedings-print-preview');
+        Route::get('billings-log-print-preview/{id}','CriminalCasesController@billings_log_print_preview')->name('billings-log-print-preview');
+        Route::get('criminal-case-print-preview/{id}','CriminalCasesController@criminal_case_print_preview')->name('criminal-case-print-preview');
 
         Route::get('labour-cases','LabourCasesController@labour_cases')->name('labour-cases');
         Route::get('add-labour-cases','LabourCasesController@add_labour_cases')->name('add-labour-cases');
@@ -349,6 +352,9 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('add-billing-civil-cases/{id}','BillingsController@add_billing_civil_cases')->name('add-billing-civil-cases');
         Route::get('add-billing-criminal-cases/{id}','BillingsController@add_billing_criminal_cases')->name('add-billing-criminal-cases');
         Route::get('add-criminal-cases-billling/{id}','BillingsController@add_criminal_cases_billling')->name('add-criminal-cases-billling');
+        Route::get('edit-criminal-cases-billing/{id}','BillingsController@edit_criminal_cases_billing')->name('edit-criminal-cases-billing');
+        Route::post('delete-criminal-cases-billing/{id}','BillingsController@delete_criminal_cases_billing')->name('delete-criminal-cases-billing');
+        Route::post('update-criminal-cases-billing-submit/{id}','BillingsController@update_criminal_cases_billing_submit')->name('update-criminal-cases-billing-submit');
         Route::post('save-criminal-cases-billing/{id}','BillingsController@save_criminal_cases_billing')->name('save-criminal-cases-billing');
         Route::post('delete-billing/{id}','BillingsController@delete_billing')->name('delete-billing');
         Route::get('add-billing-labour-cases/{id}','BillingsController@add_billing_labour_cases')->name('add-billing-labour-cases');
