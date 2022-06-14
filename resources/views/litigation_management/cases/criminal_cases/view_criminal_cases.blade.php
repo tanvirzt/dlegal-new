@@ -37,11 +37,11 @@
             <a href="#section3" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Documents Log"><i class="fas fa-file-archive nav-icon"></i></a>
             <a href="#section4" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Billings Log"><i class="fas fa-money-bill"></i></a>
         </div>
-          
+
         <section class="content" id="section1st">
             <div class="container-fluid py-2">
                 <div class="col-md-12">
-                    
+
                     @if(Session::has('success'))
                         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                             {{Session::get('success')}}
@@ -414,7 +414,7 @@
                                                                 data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
-                                                    
+
                                                     <table class="table table-bordered">
                                                         <tbody>
                                                             <tr>
@@ -450,7 +450,7 @@
                                                                         @endif
                                                                     @endif
                                                                 </td>
-                                                                <td width="20%"> 
+                                                                <td width="20%">
                                                                     @php
                                                                         $received_documents_date = explode(', ', rtrim($data->received_documents_date, ', '));
                                                                     @endphp
@@ -464,7 +464,7 @@
                                                                                 {{ date('d-m-Y', strtotime($pro)) }}
                                                                             @endforeach
                                                                         @endif
-                                                                    @endif    
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -492,7 +492,7 @@
                                                                         @endif
                                                                     @endif
                                                                 </td>
-                                                                <td width="40%"> 
+                                                                <td width="40%">
                                                                     @php
                                                                         $required_wanting_documents = explode(', ', rtrim($data->required_wanting_documents, ', '));
                                                                     @endphp
@@ -508,7 +508,7 @@
                                                                         @endif
                                                                     @endif
                                                                 </td>
-                                                                <td width="20%"> 
+                                                                <td width="20%">
                                                                     @php
                                                                         $required_wanting_documents_date = explode(', ', rtrim($data->required_wanting_documents_date, ', '));
                                                                     @endphp
@@ -785,7 +785,7 @@
                                                                         @endforeach
                                                                     @endif
                                                                 @endif
-                                  
+
                                                                 @if($data->law_write)
                                                                     @if (count($law_write)> 1)
                                                                         @foreach ($law_write as $pro)
@@ -844,7 +844,7 @@
                                                             <td>Status of the Cases</td>
                                                             <td>{{ $data->case_status_name }}</td>
                                                         </tr>
-                                                        
+
                                                         <tr>
                                                             <td>Complainant/Informant Name</td>
                                                             <td>
@@ -1139,7 +1139,7 @@
                             <div class="card" id="section1">
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Case Proceedings Log <span
-                                            class="font-italic custom_font">(Case No: 
+                                            class="font-italic custom_font">(Case No:
                                             {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.'/'.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
                                             @endif
                                             {{ $data->sub_seq_case_title_name }}
@@ -1156,8 +1156,8 @@
                                                     echo '/'.$last_case_no;
                                                 }
                                             @endphp
-                                            
-                                            
+
+
                                         )</span>
                                     </h3>
                                     <div class="card-tools">
@@ -1166,7 +1166,7 @@
                                             data-placement="top" title="Update Status"><i
                                             class="far fa-bell"></i></button>
                                         <a href="{{ route('case-porceedings-print-preview', $data->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
-                                                  
+
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
                                         </button>
@@ -1194,7 +1194,7 @@
                                         </thead>
                                         <tbody>
                                         @foreach($case_logs as $logs)
-                                        
+
                                             <tr>
                                                 <td width="8%"> {{ date('d-m-Y', strtotime($logs->updated_order_date)) }} </td>
                                                 <td width="10%"> {{ $logs->next_date_reason_name }} {{ $logs->updated_fixed_for_write }} </td>
@@ -1202,7 +1202,7 @@
                                                     @php
                                                         $proceedings = explode(', ',$logs->court_proceedings_id);
                                                     @endphp
-                                                  
+
                                                     @if($logs->court_proceedings_id)
                                                         @if (count($proceedings)> 1)
                                                             @foreach ($proceedings as $pro)
@@ -1410,7 +1410,7 @@
 
                             <div class="card" id="section4">
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Billings Log</h3>
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Billings Log(Total: {{ $bill_amount }} ৳, Paid: {{ $payment_amount }} ৳, Due: {{ $due_amount }} ৳)</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-bill"
                                         data-toggle="tooltip" data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button>
@@ -1446,16 +1446,36 @@
                                         @foreach($bill_history as $bill_logs)
                                             <tr>
                                                 <td> {{ $bill_logs->bill_for_the_date }} </td>
-                                                <td> {{ $bill_logs->bill_particulars_id }} {{ $bill_logs->bill_particulars }} </td>
+                                                <td> 
+                                                    
+                                                    @php
+                                                        $engaged = explode(', ',$bill_logs->bill_particulars_id);
+                                                        // dd($engaged->count())
+                                                    @endphp
+
+                                                    @if(count($engaged) > 1)
+                                                        @foreach($engaged as $item)
+                                                            <li class="text-left">{{ $item }}</li>
+                                                        @endforeach
+                                                        <li class="text-left">{{ $bill_logs->bill_particulars }}</li>
+
+                                                    @else
+                                                        @foreach($engaged as $item)
+                                                            {{ $item }}
+                                                        @endforeach
+                                                        {{ $bill_logs->bill_particulars }}
+                                                    @endif
+
+                                                </td>
                                                 <td> {{ $bill_logs->bill_type_name }} </td>
                                                 <td> {{ $bill_logs->bill_schedule_name }} </td>
                                                 <td> {{ $bill_logs->bill_amount }} </td>
                                                 <td> {{ $bill_logs->bill_submitted }} </td>
-                                                <td>  </td>
+                                                <td> {{ $bill_logs->payment_amount }} </td>
                                                 <td> {{ $bill_logs->payment_received }} </td>
                                                 <td> {{ $bill_logs->payment_mode_name }} </td>
-                                                <td>  </td>
-                                                <td> 
+                                                <td> {{ $bill_logs->paid_due }} </td>
+                                                <td>
                                                     <a href="{{ route('edit-criminal-cases-billing', $bill_logs->id) }}">
                                                         <button
                                                             class="btn btn-info btn-sm" data-toggle="tooltip"
@@ -1484,8 +1504,8 @@
                 </div>
             </div>
         </section>
-        
-        
+
+
     </div>
     <!-- /.content-wrapper -->
 
@@ -1554,7 +1574,7 @@
                                                                                         type="text" id="updated_order_date" name="updated_order_date"
                                                                                         @if (!empty($previous_activity->updated_order_date))
                                                                                         value="{{ date('d/m/Y', strtotime($previous_activity->updated_next_date)) }}"
-                                                                                      @endif value="dd-mm-yyyy" 
+                                                                                      @endif value="dd-mm-yyyy"
                                                                                         class="date_second_input"
                                                                                         tabindex="-1"><span
                                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -1715,7 +1735,7 @@
 
 
                                 <div class="col-md-6">
-                                    
+
                                     <div class="form-group row">
                                         <label for="updated_day_notes_id"
                                                class="col-md-4 col-form-label"> Day Notes
@@ -1798,7 +1818,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="updated_remarks"
-                                               class="col-sm-4 col-form-label"> Remarks </label>
+                                               class="col-sm-4 col-form-label"> Steps To be taken next date </label>
                                         <div class="col-sm-8">
                                                     <textarea name="updated_remarks" class="form-control"
                                                               rows="3"
@@ -3661,7 +3681,7 @@
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="case_infos_complainant_informant_name"
                                    class="col-sm-4 col-form-label">
@@ -4056,7 +4076,7 @@
                     <div class="card-body">
                         <h6 class="text-uppercase text-bold"><u> Documents
                                 Received </u></h6>
-                               
+
                                 <div class="form-group row">
                                     <div class="col-sm-4">
                                         <select name="received_documents_id[]"
@@ -4073,8 +4093,15 @@
                                         <div class="input-group hdtuto_received_documents control-group increment_received_documents">
                                             <input type="text" name="received_documents[]"
                                                    class="myfrm form-control mr-2" value="{{ rtrim($data->received_documents, ', ') }}">
-                                            <input type="text" name="received_documents_date[]"
-                                                   class="myfrm form-control ml-2" value="{{ rtrim($data->received_documents_date, ', ') }}">
+                                               @if (!empty($data->received_documents_date))
+                                                   <input type="text" name="received_documents_date[]"
+                                                   class="myfrm form-control ml-2"
+                                                       value="{{ $data->received_documents_date }}">
+                                               @else
+                                                   <input type="date" name="received_documents_date[]"
+                                                   class="myfrm form-control ml-2"
+                                                   value="dd-mm-yyyy">
+                                               @endif
                                             <div class="input-group-btn">
                                                 <button class="btn btn-success btn_success_received_documents"
                                                         type="button"><i
@@ -4097,7 +4124,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         @error('case_infos_received_documents_informant_name')<span
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
@@ -4122,8 +4148,16 @@
                                         <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
                                             <input type="text" name="required_wanting_documents[]"
                                                    class="myfrm form-control mr-2" value="{{ rtrim($data->required_wanting_documents, ', ') }}">
-                                            <input type="text" name="required_wanting_documents_date[]"
-                                                   class="myfrm form-control ml-2" value="{{ rtrim($data->required_wanting_documents_date, ', ') }}">
+
+                                               @if (!empty($data->required_wanting_documents_date))
+                                                   <input type="text" name="required_wanting_documents_date[]"
+                                                   class="myfrm form-control ml-2"
+                                                       value="{{ $data->required_wanting_documents_date }}">
+                                               @else
+                                                   <input type="date" name="required_wanting_documents_date[]"
+                                                   class="myfrm form-control ml-2"
+                                                   value="dd-mm-yyyy">
+                                               @endif
                                             <div class="input-group-btn">
                                                 <button class="btn btn-success btn_success_required_wanting_documents"
                                                         type="button"><i
@@ -4762,6 +4796,13 @@
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" id="bill_amount" name="bill_amount" value="{{old('bill_amount')}}">
                                     @error('bill_amount')<span class="text-danger">{{$message}}</span>@enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="payment_amount" class="col-sm-4 col-form-label">Payment Amount</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="payment_amount" name="payment_amount" value="{{old('payment_amount')}}">
+                                    @error('payment_amount')<span class="text-danger">{{$message}}</span>@enderror
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -65,7 +65,7 @@
                                                 <br/>
                                                     <span id="lblVoucherType" class="VoucherStyle">
                                                 <br/>
-                                                    <u><span style="padding: 5px;">Billings Log</span></u>
+                                                    <u><span style="padding: 5px;">Billings Log(Total: {{ $bill_amount }} ৳, Paid: {{ $payment_amount }} ৳, Due: {{ $due_amount }} ৳)</span></u>
                                                 <br/>
                                                 <br/>
 
@@ -119,7 +119,7 @@
                                                     {{ $bill_logs->bill_submitted }}
                                                 </td>
                                                 <td class="AccStyle" align="left">
-                                                   
+                                                    {{ $bill_logs->payment_amount }}
                                                 </td>
                                                 <td class="AccStyle" align="left">
                                                     {{ $bill_logs->payment_received }} 
@@ -128,7 +128,7 @@
                                                     {{ $bill_logs->payment_mode_name }}
                                                 </td>
                                                 <td class="AccStyle" align="left"> 
-                                                    
+                                                    {{ $bill_logs->paid_due }}
                                                 </td>
                                             </tr>
                                         

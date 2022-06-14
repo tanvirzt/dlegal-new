@@ -72,7 +72,7 @@
                                                                                                                                    value="{{ $data->bill_date }}"
                                                                                                                                    @else
                                                                                                                                    value="dd-mm-yyyy"
-                                                                                                                                   @endif 
+                                                                                                                                   @endif
                                                                                                                                     class="date_second_input"
                                                                                                                                     tabindex="-1"><span
                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -96,7 +96,7 @@
                                                                            value="{{ $data->bill_for_the_date }}"
                                                                            @else
                                                                            value="dd-mm-yyyy"
-                                                                           @endif 
+                                                                           @endif
                                                                                                                            class="date_second_input"
                                                                                                                            tabindex="-1"><span
                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -121,7 +121,7 @@
                                                                 <option value="">Select</option>
                                                                 @foreach($bill_particulars as $item)
                                                                     <option
-                                                                        value="{{ $item->bill_particulars_name }}" {{( in_array($data->bill_particulars_id, $explode_particulars)  ? 'selected':'')}}>{{ $item->bill_particulars_name }}</option>
+                                                                        value="{{ $item->bill_particulars_name }}" {{( in_array($item->bill_particulars_name, $explode_particulars)  ? 'selected':'')}}>{{ $item->bill_particulars_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -190,6 +190,13 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
+                                                <label for="payment_amount" class="col-sm-4 col-form-label">Payment Amount</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="payment_amount" name="payment_amount" value="{{ $data->payment_amount }}">
+                                                    @error('payment_amount')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
                                                 <label for="bill_submitted"
                                                        class="col-sm-4 col-form-label">
                                                     Bill Submitted
@@ -202,7 +209,7 @@
                                                                            value="{{ $data->bill_submitted }}"
                                                                            @else
                                                                            value="dd-mm-yyyy"
-                                                                           @endif 
+                                                                           @endif
                                                                                                                            class="date_second_input"
                                                                                                                            tabindex="-1"><span
                                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -226,7 +233,7 @@
                                                                            value="{{ $data->payment_received }}"
                                                                            @else
                                                                            value="dd-mm-yyyy"
-                                                                           @endif 
+                                                                           @endif
                                                                                                                            class="date_second_input"
                                                                                                                            tabindex="-1"><span
                                                                         class="date_second_span" tabindex="-1">&#9660;</span>

@@ -182,6 +182,13 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
+                                                <label for="payment_amount" class="col-sm-4 col-form-label">Payment Amount</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="payment_amount" name="payment_amount" value="{{old('payment_amount')}}">
+                                                    @error('payment_amount')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
                                                 <label for="bill_submitted"
                                                        class="col-sm-4 col-form-label">
                                                     Bill Submitted

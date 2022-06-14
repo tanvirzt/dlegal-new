@@ -13,12 +13,12 @@
                         <div class="row">
                         <div class="col-md-6">
                             <a href="{{ route('litigation-calender-list') }}">
-                                <button type="button" class="btn btn-block bg-gradient-info">Litigation Calender(List)</button>
+                                <button type="button" class="btn btn-block bg-gradient-info">Litigation Calendar(List)</button>
                             </a>
                         </div>
                        <div class="col-md-6">
                            <a href="{{ route('litigation-calender-short') }}">
-                               <button type="button" class="btn btn-block bg-gradient-success">Litigation Calender(Short)</button>
+                               <button type="button" class="btn btn-block bg-gradient-success">Litigation Calendar(Short)</button>
                            </a>
                        </div>
                         </div>

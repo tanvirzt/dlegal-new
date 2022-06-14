@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CriminalCase;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\SetupCaseTypes;
@@ -34,11 +35,11 @@ class LitigationCalenderController extends Controller
     //    ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
     //     ->select('criminal_cases.*',
     //     'setup_case_statuses.case_status_name',
-    //     'setup_case_titles.case_title_name', 
-    //     'setup_next_date_reasons.next_date_reason_name', 
-    //     'setup_courts.court_name', 
+    //     'setup_case_titles.case_title_name',
+    //     'setup_next_date_reasons.next_date_reason_name',
+    //     'setup_courts.court_name',
     //     'setup_districts.district_name',
-    //     'accused_district.district_name as accused_district_name', 
+    //     'accused_district.district_name as accused_district_name',
     //     'setup_case_types.case_types_name',
     //     'setup_external_councils.first_name',
     //     'setup_external_councils.middle_name',
@@ -58,7 +59,19 @@ class LitigationCalenderController extends Controller
 
     public function litigation_calender_short()
     {
-        return view('litigation_management.litigation_calender.litigation_calender_short');
+
+        $month = date('Y-m');
+
+        $start = Carbon::parse($month)->startOfMonth();
+        $end = Carbon::parse($month)->endOfMonth();
+
+        $dates = [];
+        while ($start->lte($end)) {
+            $dates[] = $start->copy();
+            $start->addDay();
+        }
+
+        return view('litigation_management.litigation_calender.litigation_calender_short', compact('dates'));
     }
 
     public function search_litigation_calendar(Request $request)
@@ -75,7 +88,7 @@ class LitigationCalenderController extends Controller
             $to_date = date('Y-m-d', strtotime($to_date_implode));
 
             $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date','asc')->where('delete_status',0)->count(['next_date']);
-            
+
             $criminal_cases = DB::table('criminal_cases')
                                 ->distinct()->orderBy('next_date','asc')
                                 ->where(['delete_status' => 0])
@@ -92,7 +105,7 @@ class LitigationCalenderController extends Controller
             return view('litigation_management.litigation_calender.litigation_calender_list',compact('criminal_cases','criminal_cases_count'));
 
         }
-        
+
     }
 
     public function search_case_pages()
@@ -122,7 +135,7 @@ class LitigationCalenderController extends Controller
         } else if($request->received_date == "dd/mm/yyyy") {
             $received_date = null;
         }
-        
+
 
         // dd($received_date);
         $query = DB::table('criminal_cases')
@@ -189,14 +202,14 @@ dd('1st');
             $query2 = $query;
 
         }
-        
+
         $data = $query2->select('criminal_cases.*',
         'setup_case_statuses.case_status_name',
-        'setup_case_titles.case_title_name', 
-        'setup_next_date_reasons.next_date_reason_name', 
-        'setup_courts.court_name', 
+        'setup_case_titles.case_title_name',
+        'setup_next_date_reasons.next_date_reason_name',
+        'setup_courts.court_name',
         'setup_districts.district_name',
-        'accused_district.district_name as accused_district_name', 
+        'accused_district.district_name as accused_district_name',
         'setup_case_types.case_types_name',
         'setup_external_councils.first_name',
         'setup_external_councils.middle_name',

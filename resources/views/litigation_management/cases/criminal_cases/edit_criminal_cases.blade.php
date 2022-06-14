@@ -1086,8 +1086,16 @@
                                                                                         <div class="input-group hdtuto_received_documents control-group increment_received_documents">
                                                                                             <input type="text" name="received_documents[]"
                                                                                                    class="myfrm form-control mr-2" value="{{ rtrim($data->received_documents, ', ') }}">
-                                                                                            <input type="date" name="received_documents_date[]"
-                                                                                                   class="myfrm form-control ml-2" value="{{ rtrim($data->received_documents_date, ', ') }}">
+                                                                                            @if (!empty($data->received_documents_date))
+                                                                                                <input type="text" name="received_documents_date[]"
+                                                                                                class="myfrm form-control ml-2"
+                                                                                                    value="{{ $data->received_documents_date }}">
+                                                                                            @else
+                                                                                                <input type="date" name="received_documents_date[]"
+                                                                                                class="myfrm form-control ml-2"
+                                                                                                value="dd-mm-yyyy">
+                                                                                            @endif
+                                                                                        
                                                                                             <div class="input-group-btn">
                                                                                                 <button class="btn btn-success btn_success_received_documents"
                                                                                                         type="button"><i
@@ -1135,8 +1143,16 @@
                                                                                         <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
                                                                                             <input type="text" name="required_wanting_documents[]"
                                                                                                    class="myfrm form-control mr-2" value="{{ rtrim($data->required_wanting_documents, ', ') }}">
-                                                                                            <input type="date" name="required_wanting_documents_date[]"
-                                                                                                   class="myfrm form-control ml-2" value="{{ rtrim($data->required_wanting_documents_date, ', ') }}">
+                                                                                            
+                                                                                               @if (!empty($data->required_wanting_documents_date))
+                                                                                                   <input type="text" name="required_wanting_documents_date[]"
+                                                                                                   class="myfrm form-control ml-2"
+                                                                                                       value="{{ $data->required_wanting_documents_date }}">
+                                                                                               @else
+                                                                                                   <input type="date" name="required_wanting_documents_date[]"
+                                                                                                   class="myfrm form-control ml-2"
+                                                                                                   value="dd-mm-yyyy">
+                                                                                               @endif
                                                                                             <div class="input-group-btn">
                                                                                                 <button class="btn btn-success btn_success_required_wanting_documents"
                                                                                                         type="button"><i

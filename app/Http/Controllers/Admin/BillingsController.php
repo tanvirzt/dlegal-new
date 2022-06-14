@@ -454,9 +454,9 @@ class BillingsController extends Controller
 
     public function save_criminal_cases_billing(Request $request, $id)
     {
-    //    $data = $request->all();
-    //    $data = json_decode(json_encode($data));
-    //    echo "<pre>";print_r($data);die();
+//        $data = $request->all();
+//        $data = json_decode(json_encode($data));
+//        echo "<pre>";print_r($data);die();
 
         $due = $request->bill_amount - $request->payment_amount;
 
@@ -473,7 +473,7 @@ class BillingsController extends Controller
 
         $data->payment_amount = $request->payment_amount;
         $data->due_amount = $due;
-        $data->paid_due = $due==0 ? 'Paid' : 'Due';
+        $data->paid_due = $due<=0 ? 'Paid' : 'Due';
 
         $data->bill_submitted = $request->bill_submitted == "dd-mm-yyyy" ? null : $request->bill_submitted;
         $data->payment_received = $request->payment_received == "dd-mm-yyyy" ? null : $request->payment_received;
@@ -493,16 +493,16 @@ class BillingsController extends Controller
         $bill_schedule = BillSchedule::where('delete_status',0)->get();
         $payment_mode = PaymentMode::where('delete_status',0)->get();
         $data = CriminalCasesBilling::find($id);
-
+// dd($data);
         $explode_particulars = explode(', ',$data->bill_particulars_id);
-//dd($payment_mode);
+// dd($explode_particulars);
         return view('litigation_management.cases.criminal_cases.edit_criminal_cases_billing',compact('payment_mode','bill_schedule','bill_particulars','bill_type','data','explode_particulars'));
 
     }
 
     public function update_criminal_cases_billing_submit(Request $request, $id)
     {
-        
+
         $due = $request->bill_amount - $request->payment_amount;
 
         $data = CriminalCasesBilling::find($id);
@@ -517,7 +517,7 @@ class BillingsController extends Controller
 
         $data->payment_amount = $request->payment_amount;
         $data->due_amount = $due;
-        $data->paid_due = $due==0 ? 'Paid' : 'Due';
+        $data->paid_due = $due<=0 ? 'Paid' : 'Due';
 
         $data->bill_submitted = $request->bill_submitted == "dd-mm-yyyy" ? null : $request->bill_submitted;
         $data->payment_received = $request->payment_received == "dd-mm-yyyy" ? null : $request->payment_received;

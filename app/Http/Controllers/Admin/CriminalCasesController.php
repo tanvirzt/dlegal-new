@@ -63,6 +63,7 @@ use App\Models\SetupBillType;
 use App\Models\SetupBillParticular;
 use App\Models\BillSchedule;
 use App\Models\PaymentMode;
+use App\Models\CriminalCasesBilling;
 
 class CriminalCasesController extends Controller
 {
@@ -284,12 +285,12 @@ class CriminalCasesController extends Controller
         $data->lawyers_remarks = $request->lawyers_remarks;
 
 
-        $data->received_documents_id = $received_documents_id;
+        $data->received_documents_id = rtrim($received_documents_id,', ');
         $data->received_documents = $received_documents;
-        $data->received_documents_date = $received_documents_date;
-        $data->required_wanting_documents_id = $required_wanting_documents_id;
+        $data->received_documents_date = rtrim($received_documents_date,', ');
+        $data->required_wanting_documents_id = rtrim($required_wanting_documents_id,', ');
         $data->required_wanting_documents = $required_wanting_documents;
-        $data->required_wanting_documents_date = $required_wanting_documents_date;
+        $data->required_wanting_documents_date = rtrim($required_wanting_documents_date,', ');
         
         $data->case_infos_division_id = $request->case_infos_division_id;
         $data->case_infos_district_id = $request->case_infos_district_id;
@@ -592,12 +593,12 @@ class CriminalCasesController extends Controller
             $data->assigned_lawyer_id = $request->assigned_lawyer_id ? implode(', ', $request->assigned_lawyer_id) : null;
             $data->lawyers_remarks = $request->lawyers_remarks;
 
-            $data->received_documents_id = $received_documents_id;
+            $data->received_documents_id = rtrim($received_documents_id,', ');
             $data->received_documents = $received_documents;
-            $data->received_documents_date = $received_documents_date;
-            $data->required_wanting_documents_id = $required_wanting_documents_id;
+            $data->received_documents_date = rtrim($received_documents_date,', ');
+            $data->required_wanting_documents_id = rtrim($required_wanting_documents_id,', ');
             $data->required_wanting_documents = $required_wanting_documents;
-            $data->required_wanting_documents_date = $required_wanting_documents_date;
+            $data->required_wanting_documents_date = rtrim($required_wanting_documents_date,', ');
 
             $data->case_infos_division_id = $request->case_infos_division_id;
             $data->case_infos_district_id = $request->case_infos_district_id;
@@ -778,12 +779,12 @@ class CriminalCasesController extends Controller
 
         }else if ($request->documents_information) {
 
-            $data->received_documents_id = $received_documents_id;
+            $data->received_documents_id = rtrim($received_documents_id,', ');
             $data->received_documents = $received_documents;
-            $data->received_documents_date = $received_documents_date;
-            $data->required_wanting_documents_id = $required_wanting_documents_id;
+            $data->received_documents_date = rtrim($received_documents_date,', ');
+            $data->required_wanting_documents_id = rtrim($required_wanting_documents_id,', ');
             $data->required_wanting_documents = $required_wanting_documents;
-            $data->required_wanting_documents_date = $required_wanting_documents_date;
+            $data->required_wanting_documents_date = rtrim($required_wanting_documents_date,', ');
 
             $data->save();
 
@@ -1000,12 +1001,12 @@ class CriminalCasesController extends Controller
             $data->assigned_lawyer_id = $request->assigned_lawyer_id ? implode(', ', $request->assigned_lawyer_id) : null;
             $data->lawyers_remarks = $request->lawyers_remarks;
 
-            $data->received_documents_id = $received_documents_id;
+            $data->received_documents_id = rtrim($received_documents_id,', ');
             $data->received_documents = $received_documents;
-            $data->received_documents_date = $received_documents_date;
-            $data->required_wanting_documents_id = $required_wanting_documents_id;
+            $data->received_documents_date = rtrim($received_documents_date,', ');
+            $data->required_wanting_documents_id = rtrim($required_wanting_documents_id,', ');
             $data->required_wanting_documents = $required_wanting_documents;
-            $data->required_wanting_documents_date = $required_wanting_documents_date;
+            $data->required_wanting_documents_date = rtrim($required_wanting_documents_date,', ');
 
             $data->case_infos_division_id = $request->case_infos_division_id;
             $data->case_infos_district_id = $request->case_infos_district_id;
@@ -1361,6 +1362,10 @@ class CriminalCasesController extends Controller
                         ->select('criminal_cases_billings.*','setup_bill_types.bill_type_name','bill_schedules.bill_schedule_name','payment_modes.payment_mode_name')
                         ->where(['criminal_cases_billings.delete_status'=> 0,'case_id' => $id])
                         ->get();
+        $bill_amount = CriminalCasesBilling::where(['delete_status' =>0 ,'case_id' => $id])->sum('bill_amount');
+        $payment_amount = CriminalCasesBilling::where(['delete_status' =>0 ,'case_id' => $id])->sum('payment_amount');
+        $due_amount = CriminalCasesBilling::where(['delete_status' =>0 ,'case_id' => $id])->sum('due_amount');
+// dd($due_amount);
 // dd($bill_history);
         $case_activity_log = DB::table('criminal_case_activity_logs')
             ->leftJoin('setup_modes', 'criminal_case_activity_logs.activity_mode_id', 'setup_modes.id')
@@ -1373,7 +1378,7 @@ class CriminalCasesController extends Controller
 
 
         // dd($case_activity_log);
-        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode','edit_case_steps','existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','received_documents_explode','required_documents_explode','previous_activity','payment_mode','bill_schedule','bill_particulars','bill_type'));
+        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode','edit_case_steps','existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','received_documents_explode','required_documents_explode','previous_activity','payment_mode','bill_schedule','bill_particulars','bill_type','bill_amount','payment_amount','due_amount'));
     }
 
     public function download_criminal_cases_file($id)
@@ -1798,8 +1803,11 @@ class CriminalCasesController extends Controller
                         ->select('criminal_cases_billings.*','setup_bill_types.bill_type_name','bill_schedules.bill_schedule_name','payment_modes.payment_mode_name')
                         ->where(['criminal_cases_billings.delete_status'=> 0,'case_id' => $id])
                         ->get();
+        $bill_amount = CriminalCasesBilling::where(['delete_status' =>0 ,'case_id' => $id])->sum('bill_amount');
+        $payment_amount = CriminalCasesBilling::where(['delete_status' =>0 ,'case_id' => $id])->sum('payment_amount');
+        $due_amount = CriminalCasesBilling::where(['delete_status' =>0 ,'case_id' => $id])->sum('due_amount');
     // dd($case_logs);
-        return view('litigation_management.cases.criminal_cases.print_preview_criminal_case_billing', compact('bill_history'));
+        return view('litigation_management.cases.criminal_cases.print_preview_criminal_case_billing', compact('bill_history','bill_amount','payment_amount','due_amount'));
     }
 
     public function criminal_case_print_preview($id)

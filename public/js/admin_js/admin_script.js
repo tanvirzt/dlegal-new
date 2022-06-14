@@ -1681,8 +1681,14 @@ $(document).ready(function () {
         var diff = new Date(end_time) - new Date(start_time);
         diff_time = diff/(60*60*1000);
 
+        if (diff_time > 24) {
+            var total_days_full = diff_time/24;
+            var total_days = total_days_full.toFixed(2)+' Days';
+        }else{
+            var total_days = diff_time.toFixed(2)+' Hrs';
+        }
         if (start_time && end_time){
-            $('#setup_hours').val(diff_time+' Hrs');
+            $('#setup_hours').val(total_days);
         }
     });
 
@@ -1697,11 +1703,11 @@ $(document).ready(function () {
         event.preventDefault();
         var id = $(this).data('id');
         console.log(id);
-        
+
         $.get('/dlegal-software/public/admin/edit_criminal_cases_status/' + id, function (data) {
             //  $('#userCrudModal').html("Edit category");
             //  $('#submit').val("Edit category");
-            
+
              $('#practice_modal').modal('show');
 
             //  $('#updated_case_status_id_update').val(data.data.updated_case_status_id);
@@ -1737,7 +1743,7 @@ $(document).ready(function () {
           $('#toTopBtn').fadeOut();
         }
       });
-    
+
       $('#toTopBtn').click(function() {
         $("html, body").animate({
           scrollTop: 0
@@ -1745,23 +1751,23 @@ $(document).ready(function () {
         return false;
       });
 
-      
+
 
 
       // Select all »a« elements with a parent class »links« and add a function that is executed on click
 $( '.links a' ).on( 'click', function(e){
-	
+
     // Define variable of the clicked »a« element (»this«) and get its href value.
     var href = $(this).attr( 'href' );
-    
+
     // Run a scroll animation to the position of the element which has the same id like the href value.
     $( 'html, body' ).animate({
           scrollTop: $( href ).offset().top
     }, '300' );
-      
+
     // Prevent the browser from showing the attribute name of the clicked link in the address bar
     e.preventDefault();
-  
+
   });
 
   $('.file_edit_modals').on('click', function () {
