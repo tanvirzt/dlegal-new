@@ -33,7 +33,7 @@
                     </div>
                 @endif
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
@@ -62,6 +62,16 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
+                                                        <label for="created_case_id" class="col-sm-4 col-form-label">Case ID</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="created_case_id"
+                                                                   name="created_case_id" value="{{ old('created_case_id') }}">
+                                                            @error('created_case_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
                                                         <label for="case_infos_case_no" class="col-sm-4 col-form-label">Case
                                                             No.</label>
                                                         <div class="col-sm-8">
@@ -70,27 +80,6 @@
                                                             @error('case_infos_case_no')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="received_date" class="col-sm-4 col-form-label">
-                                                            Received
-                                                            Date </label>
-                                                        <div class="col-sm-8">
-                                                            <span class="date_span_calendar">
-                                                                <input type="date" class="xDateContainer date_first_input"
-                                                                       onchange="setCorrect(this,'received_date');"><input type="text" id="received_date"
-                                                                                                                    name="received_date" value="dd/mm/yyyy"
-                                                                                                                    class="date_second_input"
-                                                                                                                    tabindex="-1"><span
-                                                                    class="date_second_span" tabindex="-1">&#9660;</span>
-                                                            </span>
-
-                                                            {{-- <input type="date" class="form-control"
-                                                                   id="received_date"
-                                                                   name="received_date"> --}}
-                                                            @error('received_date')<span
-                                                                class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -110,9 +99,60 @@
                                                             @enderror
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row">
+                                                        <label for="case_infos_complainant_informant_name" class="col-sm-4 col-form-label">1st Party/Complainant/ Petitioner/Plaintiff</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="case_infos_complainant_informant_name"
+                                                                   name="case_infos_complainant_informant_name" value="{{ old('case_infos_complainant_informant_name') }}">
+                                                            @error('case_infos_complainant_informant_name')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="case_infos_accused_name" class="col-sm-4 col-form-label">2nd Party/Accused/ Oppositon/Defendant</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="case_infos_accused_name"
+                                                                   name="case_infos_accused_name" value="{{ old('case_infos_accused_name') }}">
+                                                            @error('case_infos_accused_name')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>      
+                                                    <div class="form-group row">
+                                                        <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
+                                                        <div class="col-sm-8">
+                                                            <select name="case_type_id"
+                                                                    class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach($case_types as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('case_type_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                                                                  
                                                 </div>
                                                 <div class="col-md-6">
-
+                                                    <div class="form-group row">
+                                                        <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
+                                                        <div class="col-sm-8">
+                                                                    <select name="matter_id"
+                                                                            id="matter_id"
+                                                                            class="form-control select2">
+                                                                        <option value="">Select</option>
+                                                                        @foreach($matter as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{( old('matter_id') == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                            @error('matter_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
                                                     <div class="form-group row">
                                                         <label for="case_category_id" class="col-sm-4 col-form-label">Case Category</label>
                                                         <div class="col-sm-8">
@@ -141,7 +181,54 @@
 
                                                         </div>
                                                     </div>
-
+                                                    
+                                                    <div class="form-group row">
+                                                        <label for="case_infos_division_id"
+                                                               class="col-sm-4 col-form-label">Division</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="case_infos_division_id"
+                                                                    class="form-control select2"
+                                                                    id="case_infos_division_id"
+                                                                    action="{{ route('find_district') }}">
+                                                                <option value="">Select</option>
+                                                                @foreach ($division as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{(old('case_infos_division_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->division_name) }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('case_infos_division_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="case_infos_district_id"
+                                                               class="col-sm-4 col-form-label">District</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="case_infos_district_id"
+                                                                    class="form-control select2"
+                                                                    id="case_infos_district_id"
+                                                                    action="{{ route('find-thana') }}">
+                                                                <option value=""> Select</option>
+    
+                                                            </select>
+                                                            @error('case_infos_district_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="case_infos_thana_id"
+                                                               class="col-sm-4 col-form-label">Thana</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="case_infos_thana_id"
+                                                                    id="case_infos_thana_id"
+                                                                    class="form-control select2">
+                                                                <option value="">Select</option>
+    
+                                                            </select>
+                                                            @error('case_infos_thana_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -204,7 +291,7 @@
 
                                         <tr>
                                             <td>
-                                                {{ $datum->id }}
+                                                {{ $datum->created_case_id }}
                                             </td>
                                             <td>
                                                 {{ $datum->case_status_name }} 

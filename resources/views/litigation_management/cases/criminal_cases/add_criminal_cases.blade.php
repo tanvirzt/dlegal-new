@@ -52,7 +52,7 @@
                                     <div class="">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h6 class="text-uppercase text-bold"><u> Basic Information </u>
+                                                <h6 class="text-uppercase text-bold"><u> Primary Information </u>
                                                 </h6>
                                                 <div class="form-group row">
                                                     <label for="client" class="col-sm-4 col-form-label">Client

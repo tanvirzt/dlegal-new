@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\SetupCaseTypes;
 use App\Models\SetupCourt;
 use App\Models\SetupCaseCategory;
+use App\Models\SetupComplainant;
+use App\Models\SetupMatter;
 
 class LitigationCalenderController extends Controller
 {
@@ -115,8 +117,10 @@ class LitigationCalenderController extends Controller
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
         $court = SetupCourt::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
+        $complainant = SetupComplainant::where('delete_status', 0)->orderBy('complainant_name','asc')->get();
+        $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name','asc')->get();
 
-        return view('litigation_management.litigation_search.cases',compact('division','case_types','court','case_category'));
+        return view('litigation_management.litigation_search.cases',compact('division','case_types','court','case_category','complainant','matter'));
     }
 
     public function search_cases(Request $request)
@@ -126,6 +130,8 @@ class LitigationCalenderController extends Controller
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
         $court = SetupCourt::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
+        $complainant = SetupComplainant::where('delete_status', 0)->orderBy('complainant_name','asc')->get();
+        $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name','asc')->get();
 
 
         if ($request->received_date != "dd/mm/yyyy") {
@@ -149,59 +155,31 @@ class LitigationCalenderController extends Controller
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id');
 
-        if ($request->case_infos_case_no && $request->received_date && $request->name_of_the_court_id) {
 
-            $query2 = $query->where(['criminal_cases.case_infos_case_no' => $request->case_infos_case_no, 'criminal_cases.received_date' => $received_date, 'criminal_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
-dd('1st');
-        } else if ($request->case_infos_case_no && $request->received_date && $request->name_of_the_court_id == null) {
-            // dd('2nd');
 
-            $query2 = $query->where(['criminal_cases.case_infos_case_no' => $request->case_infos_case_no]);
-
-        } else if ($request->case_infos_case_no && $request->received_date == null && $request->name_of_the_court_id) {
-            dd('3rd');
-
-            $query2 = $query->where(['criminal_cases.case_infos_case_no' => $request->case_infos_case_no, 'criminal_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
-
-        } else if ($request->case_infos_case_no == null && $request->received_date != "dd/mm/yyyy" && $request->name_of_the_court_id) {
-            dd('4rd');
-
-            $query2 = $query->where(['criminal_cases.received_date' => $received_date, 'criminal_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
-
-        } else if ($request->case_infos_case_no && $request->received_date == null && $request->name_of_the_court_id == null) {
-            dd('5rd');
-
-            $query2 = $query->where(['criminal_cases.case_infos_case_no' => $request->case_infos_case_no]);
-            // dd('6rd');
-
-        } else if ($request->case_infos_case_no == null && $received_date && $request->name_of_the_court_id == null) {
-            // dd('7rd');
-
-            // dd($received_date);
-            $query2 = $query->where('criminal_cases.received_date', $received_date);
-
-        } else if ($request->case_infos_case_no == null && $request->received_date == 'dd/mm/yyyy' && $request->name_of_the_court_id) {
-// dd($request->all());
-// dd('8rd');
-// dd($request->all());
-            $query2 = $query->where('criminal_cases.name_of_the_court_id', $request->name_of_the_court_id);
-
-        } else if ($request->case_infos_case_no == null && $received_date == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id) {
-            // dd('9rd');
-
-            $query2 = $query->where(['criminal_cases.case_category_id' => $request->case_category_id, 'criminal_cases.case_subcategory_id' => $request->case_subcategory_id]);
-
-        } else if ($request->case_infos_case_no == null && $received_date == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id == null) {
-            // dd('10rd');
-
-            $query2 = $query->where('criminal_cases.case_category_id', $request->case_category_id);
-
-        } else {
-            dd('11rd');
-
-            $query2 = $query;
-
+        switch ($request->isMethod('post')) {
+            case $request->created_case_id:
+                
+                $query2 = $query->where('criminal_cases.created_case_id', 'LIKE', "%{$request->created_case_id}%");
+                break;
+            case $request->case_infos_case_no:
+                
+                    $query2 = $query->where('criminal_cases.case_infos_case_no', 'LIKE', "%{$request->case_infos_case_no}%");
+                    break;
+            case $request->name_of_the_court_id:
+    
+                $query2 = $query->where('criminal_cases.name_of_the_court_id', 'LIKE', "%{$request->name_of_the_court_id}%");
+                break;
+            default:
+                $query2 = $query;
         }
+
+
+
+
+
+
+
 
         $data = $query2->select('criminal_cases.*',
         'setup_case_statuses.case_status_name',
@@ -217,7 +195,7 @@ dd('1st');
         'case_infos_title.case_title_name as sub_seq_case_title_name')
         ->get();
 // dd($data);
-        return view('litigation_management.litigation_search.cases',compact('data','division','case_types','court','case_category'));
+        return view('litigation_management.litigation_search.cases',compact('data','division','case_types','court','case_category','complainant','matter'));
     }
 
 

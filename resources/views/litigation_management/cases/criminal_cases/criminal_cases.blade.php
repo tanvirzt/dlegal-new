@@ -160,7 +160,7 @@
                                 <table id="data_table" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th class="text-center"> ID</th>
+                                        <th class="text-center"> ID </th>
                                         <th class="text-center"> Status</th>
                                         <th class="text-center"> Next Date</th>
                                         <th class="text-center"> Fixed for</th>
@@ -182,7 +182,7 @@
 
                                         <tr>
                                             <td>
-                                                {{ $datum->id }}
+                                                {{ $datum->created_case_id }}
                                             </td>
                                             <td>
                                                 {{ $datum->case_status_name }} 

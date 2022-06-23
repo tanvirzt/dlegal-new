@@ -588,3 +588,14 @@ h3{
     width: 332px;
     border-radius: 4px;
 }
+
+.header_links {
+    position: fixed;
+    top: 130px;
+    left: 24rem;
+    z-index: 98;
+    font-family: "parisplus-std", sans-serif;
+    /* display: none; */
+    opacity: 1;
+    text-decoration: underline;
+}

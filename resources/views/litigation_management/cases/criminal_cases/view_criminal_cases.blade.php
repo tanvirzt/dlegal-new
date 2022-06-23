@@ -53,9 +53,9 @@
                     <div class="card">
                         <div>
                             <div class="card-header">
-                                <h3 class="card-title custom_h3 font-italic text-uppercase font_weight" id="heading">View Criminal Case
+                                <h3 class="card-title custom_h3 font-italic text-uppercase font_weight header_links">View Criminal Case
                                     No.
-                                    {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.'/'.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
+                                    {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
                                     @endif
                                     {{ $data->sub_seq_case_title_name }}
                                     @php
@@ -104,7 +104,7 @@
                                         <div class="appeal_case_info">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Basic Information </u>
+                                                    <h6 class="text-uppercase text-bold"><u> Primary Information </u>
                                                         <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal"
                                                                 data-target="#modal-lg-basic-info" data-toggle="tooltip"
                                                                 data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
@@ -117,7 +117,7 @@
                                                         <tbody>
                                                         <tr>
                                                             <td width="50%">ID</td>
-                                                            <td width="50%"> {{ $data->id }} </td>
+                                                            <td width="50%"> {{ $data->created_case_id }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Client Name</td>
@@ -187,10 +187,10 @@
                                             </div>
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Client Information </u>
+                                                    <h6 class="text-uppercase text-bold"><u> Primary Information </u>
                                                         <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal"
                                                                 data-target="#modal-lg-client-info" data-toggle="tooltip"
-                                                                data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
+                                                                data-placement="top" title="Update Primary Information"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
                                                     <table class="table table-bordered">
@@ -301,7 +301,7 @@
                                                     <h6 class="text-uppercase text-bold"><u> OPPOSITE PARTY INFORMATION </u>
                                                         <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal"
                                                                 data-target="#modal-lg-opposition-info" data-toggle="tooltip"
-                                                                data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
+                                                                data-placement="top" title="Update Opposite Party Information"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
                                                     <table class="table table-bordered">
@@ -411,7 +411,7 @@
                                                             Received </u>
                                                         <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal"
                                                                 data-target="#modal-lg-documents-info" data-toggle="tooltip"
-                                                                data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
+                                                                data-placement="top" title="Update Documents"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
 
@@ -539,10 +539,10 @@
 
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Case Information </u>
+                                                    <h6 class="text-uppercase text-bold"><u> Primary Information </u>
                                                         <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal"
                                                                 data-target="#modal-lg-case-info" data-toggle="tooltip"
-                                                                data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
+                                                                data-placement="top" title="Update Primary Information"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
                                                     <table class="table table-bordered">
@@ -583,7 +583,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Case No.</td>
-                                                            <td>{{ rtrim($data->case_infos_case_no, ', ') }} {{ rtrim($data->case_infos_case_year, ', ') }} </td>
+                                                            <td>{{ rtrim($data->case_infos_case_no, ', ') }} of {{ rtrim($data->case_infos_case_year, ', ') }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Name of the Court</td>
@@ -968,7 +968,7 @@
                                                     <h6 class="text-uppercase text-bold"><u> Lawyers Information </u>
                                                         <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal"
                                                                 data-target="#modal-lg-lawyers-info" data-toggle="tooltip"
-                                                                data-placement="top" title="Update Basic Information"><i class="fas fa-edit"></i>
+                                                                data-placement="top" title="Update Lawyers Information"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
                                                     <table class="table table-bordered">
@@ -1049,7 +1049,7 @@
                                                             <div class="col-md-3">Yes/No
                                                                 <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal"
                                                                         data-target="#modal-lg-case-steps" data-toggle="tooltip"
-                                                                        data-placement="top" title="Update Basic Information"><i
+                                                                        data-placement="top" title="Update Case Steps"><i
                                                                         class="fas fa-edit"></i></button>
                                                             </div>
                                                         </div>
@@ -1138,27 +1138,15 @@
 
                             <div class="card" id="section1">
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Case Proceedings Log <span
-                                            class="font-italic custom_font">(Case No:
-                                            {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.'/'.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
-                                            @endif
-                                            {{ $data->sub_seq_case_title_name }}
-                                            Court Name:
-                                            @php
-                                                $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
-                                                $key = array_key_last($case_infos_sub_seq_case_no);
-                                                echo $case_infos_sub_seq_case_no[$key];
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Case Proceedings Log 
+                                        @php
+                                            $now = Carbon\Carbon::now();
+                                            $days_count = Carbon\Carbon::parse($data->date_of_filing)->diffInDays($now);
+                                        @endphp
 
-                                                $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
-                                                $key = array_key_last($case_infos_sub_seq_case_year);
-                                                $last_case_no = $case_infos_sub_seq_case_year[$key];
-                                                if ($last_case_no != null) {
-                                                    echo '/'.$last_case_no;
-                                                }
-                                            @endphp
+                                        <span class="font-italic custom_font"> (Total Elapsed Time:
 
-
-                                        )</span>
+                                           {{ $days_count }} Days) </span>
                                     </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg"
@@ -1290,6 +1278,7 @@
                                             <th class="text-nowrap">Time Spent</th>
                                             <th class="text-nowrap">Engaged Lawyer</th>
                                             <th class="text-nowrap">Forwarded To</th>
+                                            <th class="text-nowrap">Remarks</th>
                                             <th class="text-nowrap">Action</th>
                                             <th class="text-nowrap">Update</th>
                                         </tr>
@@ -1300,7 +1289,7 @@
                                                 <td> {{ date('d-m-Y', strtotime($activity_log->activity_date)) }} </td>
                                                 <td> {{ $activity_log->activity_action }} </td>
                                                 <td> {{ $activity_log->activity_progress }} </td>
-                                                <td> {{ $activity_log->mode_name }} {{ $activity_log->activity_mode_write }} </td>
+                                                <td> {{ $activity_log->mode_name }}  </td>
                                                 <td> {{ $activity_log->total_time }} </td>
                                                 <td>
                                                     @php
@@ -1315,6 +1304,7 @@
 
                                                     {{ $activity_log->activity_engaged_write }} </td>
                                                 <td> {{ $activity_log->forwarded_first_name }} {{ $activity_log->forwarded_middle_name }} {{ $activity_log->forwarded_last_name }} {{ $activity_log->activity_forwarded_to_write }} </td>
+                                                <td>{{ $activity_log->activity_mode_write }}</td>
                                                 <td>
                                                     <a href="{{ route('edit-criminal-cases-activity', $activity_log->id) }}">
                                                         <button
@@ -1341,14 +1331,7 @@
                             <div class="card" id="section3">
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Documents Log
-                                        @php
-                                            $now = Carbon\Carbon::now();
-                                            $days_count = Carbon\Carbon::parse($data->date_of_filing)->diffInDays($now);
-                                        @endphp
-
-                                        <span class="font-italic custom_font"> (Total Elapsed Time:
-
-                                           {{ $days_count }} Days) </span>
+                                        
                                     </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal"
@@ -1940,12 +1923,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                       id="activity_mode_write"
-                                                       placeholder="Day Notes"
-                                                       name="activity_mode_write">
-                                            </div>
+                                            
                                         </div>
 
                                         @error('activity_mode_write')<span
@@ -2058,7 +2036,18 @@
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                 </div>
-
+                                <div class="form-group row">
+                                    <label for="activity_mode_write" class="col-sm-4 col-form-label">Remarks</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"
+                                           id="activity_mode_write"
+                                           
+                                           name="activity_mode_write">
+                                        @error('client')<span
+                                            class="text-danger">{{$message}}</span>@enderror
+                                    </div>
+                                </div>
+                                
                             </div>
 
                         </div>
@@ -2101,7 +2090,7 @@
                     <input type="hidden" value="basic_information" name="basic_information">
                     <div class="card-body">
 
-                        <h6 class="text-uppercase text-bold"><u> Basic Information </u>
+                        <h6 class="text-uppercase text-bold"><u> Primary Information </u>
                         </h6>
                         <div class="form-group row">
                             <label for="client" class="col-sm-4 col-form-label">Client

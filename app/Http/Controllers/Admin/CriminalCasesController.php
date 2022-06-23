@@ -174,6 +174,15 @@ class CriminalCasesController extends Controller
 //
 //        $this->validate($request, $rules, $validMsg);
 
+$latest = CriminalCase::latest()->first();
+
+if ($latest != null) {
+    $latest_no = explode('-', $latest->created_case_id);
+    $sl = $latest_no[1]+1;
+}else{
+    $sl = +1;
+}
+$created_case_id = 'LCR-0'.$sl;
 
         if ($request->received_date != 'dd-mm-yyyy') {
             $received_date_explode = explode('-', $request->received_date);
@@ -215,6 +224,7 @@ class CriminalCasesController extends Controller
         DB::beginTransaction();
 
         $data = new CriminalCase();
+        $data->created_case_id = $created_case_id;
         $data->client = $request->client;
         $data->legal_issue_id = $request->legal_issue_id;
         $data->legal_issue_write = $request->legal_issue_write;

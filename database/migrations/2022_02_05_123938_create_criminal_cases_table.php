@@ -15,6 +15,7 @@ class CreateCriminalCasesTable extends Migration
     {
         Schema::create('criminal_cases', function (Blueprint $table) {
             $table->id();
+            $table->string('created_case_id')->nullable();
             $table->string('client')->nullable();
             $table->integer('legal_issue_id')->nullable();
             $table->string('legal_issue_write')->nullable();
