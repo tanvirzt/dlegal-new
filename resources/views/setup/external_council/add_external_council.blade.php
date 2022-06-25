@@ -107,6 +107,24 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
+                                                <label for="password" class="col-sm-4 col-form-label">Password</label>
+                                                <div class="col-sm-8">
+                                                    <input type="password" class="form-control" id="password" name="password" value="{{old('password')}}">
+                                                    @error('password')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="confirm_password" class="col-sm-4 col-form-label">Confirm Password</label>
+                                                <div class="col-sm-8">
+                                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" value="{{old('confirm_password')}}">
+                                                    @error('confirm_password')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
                                                 <label for="work_phone" class="col-sm-4 col-form-label">Work Phone</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="work_phone" name="work_phone" value="{{old('work_phone')}}">

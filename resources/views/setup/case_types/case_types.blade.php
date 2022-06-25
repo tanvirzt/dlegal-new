@@ -49,6 +49,8 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center text-nowrap">ID</th>
+                                        <th class="text-center text-nowrap">Class of Cases</th>
+                                        <th class="text-center text-nowrap">Case Category</th>
                                         <th class="text-center text-nowrap">Case Types</th>
                                         <th class="text-center text-nowrap">Status</th>
                                         <th class="text-center text-nowrap">Action</th>
@@ -60,6 +62,12 @@
                                         <tr>
                                             <td class="text-center">
                                                 {{$datum->id}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{$datum->case_class_name}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{$datum->case_category}}
                                             </td>
                                             <td class="text-center">
                                                 {{$datum->case_types_name}}

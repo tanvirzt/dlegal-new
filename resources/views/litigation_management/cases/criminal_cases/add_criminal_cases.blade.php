@@ -409,7 +409,7 @@
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
+                                                {{-- <div class="form-group row">
                                                     <label for="client_subcategory_id"
                                                            class="col-sm-4 col-form-label">Client
                                                         Subcategory</label>
@@ -423,7 +423,7 @@
                                                         @error('client_subcategory_id')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="form-group row">
                                                     <label for="client_id" class="col-sm-4 col-form-label">Client
                                                         Name</label>
@@ -730,7 +730,7 @@
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
+                                                {{-- <div class="form-group row">
                                                     <label for="opposition_subcategory_id"
                                                            class="col-sm-4 col-form-label">Opposition
                                                         Subcategory</label>
@@ -744,7 +744,7 @@
                                                         @error('opposition_subcategory_id')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="form-group row">
                                                     <label for="opposition_id" class="col-sm-4 col-form-label">Opposition
                                                         Name</label>
@@ -1209,7 +1209,7 @@
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
+                                                {{-- <div class="form-group row">
                                                     <label for="case_subcategory_id"
                                                            class="col-sm-4 col-form-label">Case
                                                         Subcategory </label>
@@ -1224,6 +1224,21 @@
                                                         @error('case_subcategory_id')<span
                                                             class="text-danger">{{$message}}</span>@enderror
 
+                                                    </div>
+                                                </div> --}}
+                                                <div class="form-group row">
+                                                    <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
+                                                    <div class="col-sm-8">
+                                                        <select name="case_type_id"
+                                                                class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            @foreach($case_types as $item)
+                                                                <option
+                                                                    value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('case_type_id')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -1255,21 +1270,7 @@
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
-                                                    <div class="col-sm-8">
-                                                        <select name="case_type_id"
-                                                                class="form-control select2">
-                                                            <option value="">Select</option>
-                                                            @foreach($case_types as $item)
-                                                                <option
-                                                                    value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('case_type_id')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="form-group row">
                                                     <label for="case_infos_case_title_id"
                                                            class="col-sm-4 col-form-label">Case Title</label>

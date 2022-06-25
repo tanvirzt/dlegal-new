@@ -56,6 +56,60 @@
                                 <div class="card-body">
 
                                     <div class="col-md-12">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="case_class_id">Class of Cases</label>
+                                                <select name="case_class_id" id="case_class_id"
+                                                            class="form-control select2"
+                                                            action="{{ route('find-case-subcategory') }}">
+                                                        <option value="">Select</option>
+                                                        @foreach($case_class as $item)
+                                                            <option
+                                                                value="{{ $item->id }}" {{( $data->case_class_id == $item->id ? 'selected':'')}}>{{ $item->case_class_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('case_class_id')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="case_category_id">Case Category</label>
+                                                <select name="case_category_id" id="case_category_id"
+                                                            class="form-control select2"
+                                                            action="{{ route('find-case-subcategory') }}">
+                                                        <option value="">Select</option>
+                                                        @foreach($case_category as $item)
+                                                            <option
+                                                                value="{{ $item->id }}" {{( $data->case_category_id == $item->id ? 'selected':'')}}>{{ $item->case_category }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('case_category_id')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="applicable_district_id">Applicable District</label>
+                                                <div class="row pl-2 pr-2">
+                                                    <select name="applicable_district_id[]" id="applicable_district_id"
+                                                            class="form-control select2 col-md-6" multiple data-placeholder="Select">
+                                                        <option value="">Select</option>
+                                                        @foreach($district as $item)
+                                                            <option
+                                                                value="{{ $item->district_name }}" {{( in_array($item->district_name, $district_explode) ? 'selected':'')}}>{{ $item->district_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <div class="col-md-6 text-center">
+                                                        <input type="checkbox" 
+                                                        id="all_district"
+                                                        name="all_district"
+                                                        @if ($data->all_district == 'on') checked @endif >
+                                                        <label for="all_district">
+                                                Applicable for all District
+                                            </label>
+                                                    </div>
+                                                    
+                                                </div>
+                                                    @error('case_category_id')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                            </div>
                                         <div class="form-group">
                                             <label for="case_type"> Case Type </label>
                                             <select name="case_type" class="form-control select2" id="case_type">

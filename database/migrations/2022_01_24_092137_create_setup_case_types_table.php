@@ -15,6 +15,8 @@ class CreateSetupCaseTypesTable extends Migration
     {
         Schema::create('setup_case_types', function (Blueprint $table) {
             $table->id();
+            $table->integer('case_class_id')->nullable();
+            $table->integer('case_category_id')->nullable();
             $table->string('case_types_name')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();

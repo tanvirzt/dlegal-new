@@ -53,6 +53,25 @@
                     <div class="card">
                         <div>
                             <div class="card-header">
+                                <h3 class="card-title custom_h3 font-italic text-uppercase font_weight">View Criminal Case
+                                    No.
+                                    {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
+                                    @endif
+                                    {{ $data->sub_seq_case_title_name }}
+                                    @php
+                                        $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+                                        $key = array_key_last($case_infos_sub_seq_case_no);
+                                        echo $case_infos_sub_seq_case_no[$key];
+
+                                        $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
+                                        $key = array_key_last($case_infos_sub_seq_case_year);
+                                        $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                        if ($last_case_no != null) {
+                                            echo '/'.$last_case_no;
+                                        }
+                                    @endphp
+
+                                </h3>
                                 <h3 class="card-title custom_h3 font-italic text-uppercase font_weight header_links">View Criminal Case
                                     No.
                                     {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
@@ -204,10 +223,10 @@
                                                             <td>Client Category</td>
                                                             <td> {{ $data->client_category_name }} </td>
                                                         </tr>
-                                                        <tr>
+                                                        {{-- <tr>
                                                             <td>Client Subcategory</td>
                                                             <td>{{ $data->client_subcategory_name }}</td>
-                                                        </tr>
+                                                        </tr> --}}
                                                         <tr>
                                                             <td>Client Name</td>
                                                             <td>
@@ -315,10 +334,10 @@
                                                             <td>Opposition Category</td>
                                                             <td> {{ $data->opposition_category_name }} </td>
                                                         </tr>
-                                                        <tr>
+                                                        {{-- <tr>
                                                             <td>Opposition Subcategory</td>
                                                             <td>{{ $data->opposition_subcategory_name }}</td>
-                                                        </tr>
+                                                        </tr> --}}
                                                         <tr>
                                                             <td>Opposition Name</td>
                                                             <td>
@@ -565,10 +584,10 @@
                                                             <td>Case Category</td>
                                                             <td>{{ $data->case_category }}</td>
                                                         </tr>
-                                                        <tr>
+                                                        {{-- <tr>
                                                             <td>Case Subcategory</td>
                                                             <td>{{ $data->case_subcategory }}</td>
-                                                        </tr>
+                                                        </tr> --}}
                                                         <tr>
                                                             <td>Case Matter</td>
                                                             <td>{{ $data->matter_name }} {{ $data->matter_write }}</td>
@@ -1855,6 +1874,23 @@
                     @csrf
                     <div class="card-body">
 
+
+                        <input type="hidden" name="case_no" value="{{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
+                        @endif
+                        {{ $data->sub_seq_case_title_name }}
+                        @php
+                            $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+                            $key = array_key_last($case_infos_sub_seq_case_no);
+                            echo $case_infos_sub_seq_case_no[$key];
+
+                            $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
+                            $key = array_key_last($case_infos_sub_seq_case_year);
+                            $last_case_no = $case_infos_sub_seq_case_year[$key];
+                            if ($last_case_no != null) {
+                                echo '/'.$last_case_no;
+                            }
+                        @endphp">
+
                         <div class="row">
                             <div class="col-md-6">
 
@@ -2479,7 +2515,7 @@
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="client_subcategory_id"
                                    class="col-sm-4 col-form-label">Client
                                 Subcategory</label>
@@ -2496,7 +2532,7 @@
                                 @error('client_subcategory_id')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
                             <label for="client_id" class="col-sm-4 col-form-label">Client
                                 Name</label>
@@ -2843,7 +2879,7 @@
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="opposition_subcategory_id"
                                    class="col-sm-4 col-form-label">Opposition
                                 Subcategory</label>
@@ -2860,7 +2896,7 @@
                                 @error('opposition_subcategory_id')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
                             <label for="opposition_id" class="col-sm-4 col-form-label">Opposition
                                 Name</label>
@@ -3236,7 +3272,7 @@
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="case_subcategory_id"
                                    class="col-sm-4 col-form-label">Case
                                 Subcategory </label>
@@ -3255,7 +3291,7 @@
                                     class="text-danger">{{$message}}</span>@enderror
 
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
                             <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
                             <div class="col-sm-8">

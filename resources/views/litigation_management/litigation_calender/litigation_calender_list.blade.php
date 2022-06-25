@@ -120,7 +120,7 @@
 
                             <div class="card-header">
                                 {{-- <h3 class="card-title"> --}}
-                                    <div class="row">
+                                    <div class="row" style="margin-bottom: -20px;">
                                         <div class="col-md-1 border pt-1 mr-1">
                                             <span class="info-box-text text-center text-success text-bold h6 text-text-warning" style="color: ">
                                                 {{ $calendar_date = date('d-m-Y', strtotime($datum->next_date)) }}
@@ -283,7 +283,7 @@
 
                             </div>
 
-                            <div class="card-body">
+                            <div class="card-body" style="padding: 0.52rem;">
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>

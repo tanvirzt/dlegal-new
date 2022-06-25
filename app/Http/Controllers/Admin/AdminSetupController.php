@@ -71,6 +71,7 @@ use App\Models\SetupFlatNumber;
 use App\Models\SetupSupremeCourtCategory;
 use App\Models\SetupBillParticular;
 use Illuminate\Support\Facades\DB;
+use App\Models\Admin;
 
 
 class AdminSetupController extends Controller
@@ -302,13 +303,20 @@ class AdminSetupController extends Controller
 
     public function case_types()
     {
-        $data = SetupCaseTypes::all();
+        $data = DB::table('setup_case_types')
+                ->leftJoin('setup_case_classes','setup_case_types.case_class_id','setup_case_classes.id')
+                ->leftJoin('setup_case_categories','setup_case_types.case_category_id','setup_case_categories.id')
+                ->select('setup_case_types.*', 'setup_case_classes.case_class_name','setup_case_categories.case_category')
+                ->get();
         return view('setup.case_types.case_types',compact('data'));
     }
 
     public function add_case_types()
     {
-        return view('setup.case_types.add_case_types');
+        $case_category = SetupCaseCategory::where(['delete_status' => 0])->orderBy('case_category','asc')->get();
+        $case_class = SetupCaseClass::where('delete_status',0)->get();
+// dd($case_class);
+        return view('setup.case_types.add_case_types', compact('case_category','case_class'));
     }
 
     public function save_case_types(Request $request)
@@ -324,6 +332,8 @@ class AdminSetupController extends Controller
         $this->validate($request, $rules, $validMsg);
 
         $data = new SetupCaseTypes();
+        $data->case_class_id = $request->case_class_id;
+        $data->case_category_id = $request->case_category_id;
         $data->case_types_name = $request->case_types_name;
         $data->save();
 
@@ -334,8 +344,10 @@ class AdminSetupController extends Controller
 
     public function edit_case_types($id)
     {
+        $case_category = SetupCaseCategory::where(['delete_status' => 0])->orderBy('case_category','asc')->get();
+        $case_class = SetupCaseClass::where('delete_status',0)->get();
         $data = SetupCaseTypes::find($id);
-        return view('setup.case_types.edit_case_types',compact('data'));
+        return view('setup.case_types.edit_case_types',compact('data','case_category','case_class'));
     }
 
     public function update_case_types(Request $request, $id)
@@ -351,6 +363,8 @@ class AdminSetupController extends Controller
         $this->validate($request, $rules, $validMsg);
 
         $data = SetupCaseTypes::find($id);
+        $data->case_class_id = $request->case_class_id;
+        $data->case_category_id = $request->case_category_id;
         $data->case_types_name = $request->case_types_name;
         $data->save();
 
@@ -695,11 +709,15 @@ class AdminSetupController extends Controller
 
     public function add_court()
     {
-        return view('setup.court.add_court');
+        $case_category = SetupCaseCategory::where(['delete_status' => 0])->orderBy('case_category','asc')->get();
+        $case_class = SetupCaseClass::where('delete_status',0)->get();
+        $district = SetupDistrict::where('delete_status',0)->get();
+        return view('setup.court.add_court',compact('case_category','case_class','district'));
     }
 
     public function save_court(Request $request)
     {
+        // dd($request->all());
         $rules = [
             'court_name' => 'required'
         ];
@@ -711,6 +729,10 @@ class AdminSetupController extends Controller
         $this->validate($request, $rules, $validMsg);
 
         $data = new SetupCourt();
+        $data->case_class_id = $request->case_class_id;
+        $data->case_category_id = $request->case_category_id;
+        $data->applicable_district_id = implode(', ', $request->applicable_district_id);
+        $data->all_district = $request->all_district;
         $data->case_type = $request->case_type;
         $data->court_name = $request->court_name;
         $data->court_short_name = $request->court_short_name;
@@ -723,8 +745,12 @@ class AdminSetupController extends Controller
 
     public function edit_court($id)
     {
+        $case_category = SetupCaseCategory::where(['delete_status' => 0])->orderBy('case_category','asc')->get();
+        $case_class = SetupCaseClass::where('delete_status',0)->get();
+        $district = SetupDistrict::where('delete_status',0)->get();
         $data = SetupCourt::find($id);
-        return view('setup.court.edit_court',compact('data'));
+        $district_explode = explode(', ', $data->applicable_district_id);
+        return view('setup.court.edit_court',compact('data','case_category','case_class','district','district_explode'));
     }
 
     public function update_court(Request $request, $id)
@@ -740,6 +766,10 @@ class AdminSetupController extends Controller
         $this->validate($request, $rules, $validMsg);
 
         $data = SetupCourt::find($id);
+        $data->case_class_id = $request->case_class_id;
+        $data->case_category_id = $request->case_category_id;
+        $data->applicable_district_id = implode(', ', $request->applicable_district_id);
+        $data->all_district = $request->all_district;
         $data->case_type = $request->case_type;
         $data->court_name = $request->court_name;
         $data->court_short_name = $request->court_short_name;
@@ -1739,9 +1769,12 @@ public function delete_company($id)
 
  public function save_external_council(Request $request)
  {
+    // dd($request->all());
      $rules = [
          'title_id' => 'required',
-         'email' => 'required',
+         'email' => 'required|unique:admins',
+         'password' => 'required:min:8',
+         'confirm_password' => 'required|same:password',
          'work_phone' => 'required'
      ];
 
@@ -1754,6 +1787,16 @@ public function delete_company($id)
      $this->validate($request, $rules, $validMsg);
 
      DB::beginTransaction();
+
+     $admin = new Admin();
+     $admin->name = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
+     $admin->email = $request->email;
+     $admin->password = bcrypt($request->password);
+     $admin->mobile = $request->work_phone;
+     $admin->type = 'subadmin';
+     $admin->image = '';
+     $admin->status = 1;
+     $admin->save();
 
      $data = new SetupExternalCouncil();
      $data->title_id = $request->title_id;

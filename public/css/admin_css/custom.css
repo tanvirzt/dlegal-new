@@ -591,11 +591,13 @@ h3{
 
 .header_links {
     position: fixed;
-    top: 130px;
+    top: 10px;
     left: 24rem;
-    z-index: 98;
-    font-family: "parisplus-std", sans-serif;
+    z-index: 98; 
+    /* font-family: "parisplus-std", sans-serif; */
     /* display: none; */
     opacity: 1;
-    text-decoration: underline;
-}
+  }
+  /* .header_links:hover{
+      opacity: 1;
+  } */

@@ -50,11 +50,11 @@
 
                     @foreach($dates as $data)
 
-                    <div class="col-md-2">
-                        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                    {{-- <div class="col-md-2"> --}}
+                        <div class="card border-secondary mb-3 mr-4" style="min-width: 120px;">
                             <div class="card-header">
                                 <div class="row">
-                                    <div class="col-sm text-bold text-uppercase text-primary">
+                                    <div class="col-md-9 text-bold text-uppercase text-primary">
 
                                         @php
                                             $civil_cases = \App\Models\CivilCases::where(['next_date' => $data->toDateString(),'delete_status' => 0])->count();
@@ -75,20 +75,28 @@
                                         ({{ date('D', strtotime($data->toDateString())) }})
 
                                     </div>
-                                    <div class="col-sm text-bold text-danger">
-                                      <span class="float-right">{{ $total }}</span>
+                                    <div class="col-md-3 text-bold text-danger">
+                                      <span class="float-right">{{ $total == 0 ? '' : $total}}</span>
                                     </div>
                                   </div>
                             </div>
                             <div class="card-body text-secondary">
-                              <p class="card-text">Civil: {{ $civil_cases }}</p>
-                              <p class="card-text">Criminal: {{ $criminal_cases }}</p>
-                              <p class="card-text">Labour: {{ $labour_cases }}</p>
-                              <p class="card-text">Other: {{ $others }}</p>
-                              <p class="card-text">HC: {{ $high_court_cases }}</p>
+                                <div class="d-flex flex-row" style="height:20px;"><div class="p-2" style="min-width: 56px;">Civil</div><div class="p-2"> :</div><div class="p-2">{{ $civil_cases == 0 ? '' : $civil_cases }}</div></div>
+                                <div class="d-flex flex-row" style="height:20px;"><div class="p-2" style="min-width: 0px;">Criminal</div><div class="p-2">:</div><div class="p-2">{{ $criminal_cases == 0 ? '' :  $criminal_cases}}</div></div>
+                                <div class="d-flex flex-row" style="height:20px;"><div class="p-2" style="min-width: 56px;">Labour</div><div class="p-2">:</div><div class="p-2">{{ $labour_cases == 0 ? '' : $labour_cases}}</div></div>
+                                <div class="d-flex flex-row" style="height:20px;"><div class="p-2" style="min-width: 56px;">Other</div><div class="p-2">:</div><div class="p-2"> {{ $others == 0     ? '' :  $others}}</div></div>
+                                <div class="d-flex flex-row" style="height:20px;"><div class="p-2" style="min-width: 56px;">HC</div><div class="p-2">:</div><div class="p-2">{{ $high_court_cases == 0 ? '' : $high_court_cases }}</div></div>
+
+
+
+                              {{-- <p class="card-text">Civil <span class="float-right">: {{ $civil_cases == 0 ? '' : $civil_cases }} </span></p>
+                              <p class="card-text">Criminal <span class="float-right">: {{ $criminal_cases == 0 ? '' :  $criminal_cases}}</span></p>
+                              <p class="card-text">Labour <span class="float-right">: {{ $labour_cases == 0 ? '' : $labour_cases}} </span></p>
+                              <p class="card-text">Other <span class="float-right">: {{ $others == 0     ? '' :  $others}}</span></p>
+                              <p class="card-text">HC <span class="float-right">: {{ $high_court_cases == 0 ? '' : $high_court_cases }}</span></p> --}}
                             </div>
                         </div>
-                    </div>
+                    {{-- </div> --}}
                     @endforeach
                 </div>
             </div>

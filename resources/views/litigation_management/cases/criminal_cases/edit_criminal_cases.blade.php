@@ -445,7 +445,7 @@
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
-                                                                        <div class="form-group row">
+                                                                        {{-- <div class="form-group row">
                                                                             <label for="client_subcategory_id"
                                                                                    class="col-sm-4 col-form-label">Client
                                                                                 Subcategory</label>
@@ -462,7 +462,7 @@
                                                                                 @error('client_subcategory_id')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
-                                                                        </div>
+                                                                        </div> --}}
                                                                         <div class="form-group row">
                                                                             <label for="client_id" class="col-sm-4 col-form-label">Client
                                                                                 Name</label>
@@ -775,7 +775,7 @@
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
-                                                                        <div class="form-group row">
+                                                                        {{-- <div class="form-group row">
                                                                             <label for="opposition_subcategory_id"
                                                                                    class="col-sm-4 col-form-label">Opposition
                                                                                 Subcategory</label>
@@ -792,7 +792,7 @@
                                                                                 @error('opposition_subcategory_id')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
-                                                                        </div>
+                                                                        </div> --}}
                                                                         <div class="form-group row">
                                                                             <label for="opposition_id" class="col-sm-4 col-form-label">Opposition
                                                                                 Name</label>
@@ -1403,7 +1403,7 @@
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
-                                                                        <div class="form-group row">
+                                                                        {{-- <div class="form-group row">
                                                                             <label for="case_subcategory_id"
                                                                                    class="col-sm-4 col-form-label">Case
                                                                                 Subcategory </label>
@@ -1421,6 +1421,21 @@
                                                                                 @error('case_subcategory_id')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
 
+                                                                            </div>
+                                                                        </div> --}}
+                                                                        <div class="form-group row">
+                                                                            <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
+                                                                            <div class="col-sm-8">
+                                                                                <select name="case_type_id"
+                                                                                        class="form-control select2">
+                                                                                    <option value="">Select</option>
+                                                                                    @foreach($case_types as $item)
+                                                                                        <option
+                                                                                            value="{{ $item->id }}" {{( $data->case_type_id  == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                                @error('case_type_id')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group row">
@@ -1452,21 +1467,7 @@
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
-                                                                            <div class="col-sm-8">
-                                                                                <select name="case_type_id"
-                                                                                        class="form-control select2">
-                                                                                    <option value="">Select</option>
-                                                                                    @foreach($case_types as $item)
-                                                                                        <option
-                                                                                            value="{{ $item->id }}" {{( $data->case_type_id  == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                                @error('case_type_id')<span
-                                                                                    class="text-danger">{{$message}}</span>@enderror
-                                                                            </div>
-                                                                        </div>
+                                                                        
                                                                         <div class="form-group row">
                                                                             <label for="case_infos_case_title_id"
                                                                                    class="col-sm-4 col-form-label">Case Title</label>
@@ -2906,7 +2907,21 @@
                                                             method="post">
                                                             @csrf
                                                             <div class="card-body">
-
+                                                                <input type="hidden" name="case_no" value="{{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
+                                                                @endif
+                                                                {{ $data->sub_seq_case_title_name }}
+                                                                @php
+                                                                    $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+                                                                    $key = array_key_last($case_infos_sub_seq_case_no);
+                                                                    echo $case_infos_sub_seq_case_no[$key];
+                                        
+                                                                    $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
+                                                                    $key = array_key_last($case_infos_sub_seq_case_year);
+                                                                    $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                                                    if ($last_case_no != null) {
+                                                                        echo '/'.$last_case_no;
+                                                                    }
+                                                                @endphp">
                                                                 <div class="row">
                                                                     <div class="col-md-6">
 

@@ -56,7 +56,34 @@
                                 <div class="card-body">
 
                                     <div class="col-md-12">
-
+                                        <div class="form-group">
+                                            <label for="case_class_id">Class of Cases</label>
+                                            <select name="case_class_id" id="case_class_id"
+                                                        class="form-control select2"
+                                                        action="{{ route('find-case-subcategory') }}">
+                                                    <option value="">Select</option>
+                                                    @foreach($case_class as $item)
+                                                        <option
+                                                            value="{{ $item->id }}" {{( $data->case_class_id == $item->id ? 'selected':'')}}>{{ $item->case_class_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('case_class_id')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="case_category_id">Case Category</label>
+                                            <select name="case_category_id" id="case_category_id"
+                                                        class="form-control select2"
+                                                        action="{{ route('find-case-subcategory') }}">
+                                                    <option value="">Select</option>
+                                                    @foreach($case_category as $item)
+                                                        <option
+                                                            value="{{ $item->id }}" {{( $data->case_category_id == $item->id ? 'selected':'')}}>{{ $item->case_category }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('case_category_id')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                        </div>
                                         <div class="form-group">
                                             <label for="case_types_name"> Case Types </label>
                                             <input type="text" class="form-control" name="case_types_name"
