@@ -601,3 +601,11 @@ h3{
   /* .header_links:hover{
       opacity: 1;
   } */
+.navbar_badge_custom{
+    right: -4px;
+    top: 0px;
+    font-size: 10px;
+}
+.custom_size{
+    font-size: 15px;
+}

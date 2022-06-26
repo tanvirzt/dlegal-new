@@ -66,6 +66,7 @@ use App\Models\PaymentMode;
 use App\Models\CriminalCasesBilling;
 use Mail;
 use App\Mail\CaseForwardedMail;
+use App\Models\CasesNotifications;
 
 
 
@@ -1547,11 +1548,11 @@ $created_case_id = 'LCR-0'.$sl;
 
     //    $data = json_decode(json_encode($request->all()));
     //    echo "<pre>";print_r($data);die();
+// dd($id);
 
 
-
-       $external_council = SetupExternalCouncil::where('id', $id)->first();
-
+       $external_council = SetupExternalCouncil::where('id', $request->activity_forwarded_to_id)->first();
+// dd($external_council);
         if ($request->activity_date != 'dd-mm-yyyy') {
             $activity_date_explode = explode('-', $request->activity_date);
             $activity_date_implode = implode('-',$activity_date_explode);
@@ -1576,12 +1577,18 @@ $created_case_id = 'LCR-0'.$sl;
         $data->activity_forwarded_to_write = $request->activity_forwarded_to_write;
         $data->save();
 
-
+        $notifications = new CasesNotifications();
+        $notifications->case_id = $id;
+        $notifications->case_type = "Criminal Cases";
+        $notifications->case_no = $request->case_no;
+        $notifications->send_by = Auth::guard('admin')->user()->email;
+        $notifications->received_by = $external_council->email;
+        $notifications->save();
 
         $details = [
             'name' => $external_council->first_name.' '.$external_council->middle_name,
             'case_id' => 'Criminal Cases No: '.$request->case_no,
-            'messages' => Auth::guard('admin')->user()->name.' this case has been send to you.',
+            'messages' => Auth::guard('admin')->user()->name.' has been send this case to you.',
         ];
 
         Mail::to($external_council->email)->send(new CaseForwardedMail($details));
@@ -1806,7 +1813,7 @@ $created_case_id = 'LCR-0'.$sl;
             'setup_allegations.allegation_name',
             'admins.name',
             'case_infos_title.case_title_name as sub_seq_case_title_name')
-        ->where('criminal_cases.id', $id)
+        ->where('criminal_cases.id', $data->case_id)
         ->first();
      
         return view('litigation_management.cases.criminal_cases.criminal_cases_activity_update',compact('data','mode','exist_engaged_advocate_associates','external_council','exist_engaged_advocate_associates_explode','activity_data'));
@@ -1814,6 +1821,7 @@ $created_case_id = 'LCR-0'.$sl;
 
     public function update_criminal_cases_activity_logs(Request $request, $id)
     {
+// dd($request->all());
 
         if ($request->activity_date != 'dd-mm-yyyy') {
             $activity_date_explode = explode('-', $request->activity_date);
@@ -1839,12 +1847,22 @@ $created_case_id = 'LCR-0'.$sl;
         $data->activity_forwarded_to_write = $request->activity_forwarded_to_write;
         $data->save();
 
-        $external_council = SetupExternalCouncil::where('id', $case_id->activity_forwarded_to_id)->first();
+        $external_council = SetupExternalCouncil::where('id', $data->activity_forwarded_to_id)->first();
+        // dd($external_council);
+
+        $notifications = new CasesNotifications();
+        $notifications->case_id = $case_id->case_id;
+        $notifications->case_type = "Criminal Cases";
+        $notifications->case_no = $request->case_no;
+        $notifications->send_by = Auth::guard('admin')->user()->email;
+        $notifications->received_by = $external_council->email;
+        $notifications->save();
+
 
         $details = [
-            'name' => $external_council->first_name.' '.$external_council->middle_name,
+            'name' => $external_council->first_name.' '.$external_council->middle_name.' '.$external_council->last_name,
             'case_id' => 'Criminal Cases No: '.$request->case_no,
-            'messages' => Auth::guard('admin')->user()->name.' this case has been send to you.',
+            'messages' => Auth::guard('admin')->user()->name.' has been send this case to you.',
         ];
 
         Mail::to($external_council->email)->send(new CaseForwardedMail($details));

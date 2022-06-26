@@ -62,7 +62,21 @@
                                             method="post">
                                             @csrf
                                             <div class="card-body">
-
+                                                <input type="hidden" name="case_no" value="{{ $activity_data->case_infos_case_no ? $activity_data->case_infos_case_title_name.' '.$activity_data->case_infos_case_no.' of '.$activity_data->case_infos_case_year : '' }}@if ($activity_data->sub_seq_case_title_name != null),
+                                                @endif
+                                                {{ $activity_data->sub_seq_case_title_name }}
+                                                @php
+                                                    $case_infos_sub_seq_case_no = explode(', ',trim($activity_data->case_infos_sub_seq_case_no));
+                                                    $key = array_key_last($case_infos_sub_seq_case_no);
+                                                    echo $case_infos_sub_seq_case_no[$key];
+                        
+                                                    $case_infos_sub_seq_case_year = explode(', ',trim($activity_data->case_infos_sub_seq_case_year));
+                                                    $key = array_key_last($case_infos_sub_seq_case_year);
+                                                    $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                                    if ($last_case_no != null) {
+                                                        echo '/'.$last_case_no;
+                                                    }
+                                                @endphp">
                                                 <div class="row">
                                                     <div class="col-md-6">
 
