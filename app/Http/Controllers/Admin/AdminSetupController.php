@@ -731,7 +731,7 @@ class AdminSetupController extends Controller
         $data = new SetupCourt();
         $data->case_class_id = $request->case_class_id;
         $data->case_category_id = $request->case_category_id;
-        $data->applicable_district_id = implode(', ', $request->applicable_district_id);
+        $data->applicable_district_id = $request->applicable_district_id ? implode(', ', $request->applicable_district_id) : '';
         $data->all_district = $request->all_district;
         $data->case_type = $request->case_type;
         $data->court_name = $request->court_name;
@@ -768,7 +768,7 @@ class AdminSetupController extends Controller
         $data = SetupCourt::find($id);
         $data->case_class_id = $request->case_class_id;
         $data->case_category_id = $request->case_category_id;
-        $data->applicable_district_id = implode(', ', $request->applicable_district_id);
+        $data->applicable_district_id = $request->applicable_district_id ? implode(', ', $request->applicable_district_id) : '';
         $data->all_district = $request->all_district;
         $data->case_type = $request->case_type;
         $data->court_name = $request->court_name;

@@ -145,7 +145,7 @@
             $("#data_table").DataTable({
                 "responsive": true,
                 "autoWidth": false,
-                "orderFixed": [0, 'desc'],
+                // "orderFixed": [0, 'desc'],
             });
 
             $(".data_table").DataTable({

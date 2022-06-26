@@ -609,3 +609,7 @@ h3{
 .custom_size{
     font-size: 15px;
 }
+
+sup{
+    font-size: 10px !important;
+}

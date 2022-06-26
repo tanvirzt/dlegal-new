@@ -160,6 +160,7 @@
                                 <table id="data_table" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
+                                        <th class="text-center"> Sl </th>
                                         <th class="text-center"> ID </th>
                                         <th class="text-center"> Status</th>
                                         <th class="text-center"> Next Date</th>
@@ -178,9 +179,12 @@
                                     </tr>
                                     </thead>
                                     <tbody id="search_data">
-                                    @foreach($data as $datum)
+                                    @foreach($data as $key=>$datum)
 
                                         <tr>
+                                            <td>
+                                                {{ $key+1 }}
+                                            </td>
                                             <td>
                                                 {{ $datum->created_case_id }}
                                             </td>

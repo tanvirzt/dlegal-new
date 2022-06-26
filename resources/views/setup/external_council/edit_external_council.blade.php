@@ -108,14 +108,14 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label for="work_phone" class="col-sm-4 col-form-label">Work Phone</label>
+                                                <label for="work_phone" class="col-sm-4 col-form-label">Mobile</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="work_phone" name="work_phone" value="{{ $data->work_phone }}">
                                                     @error('work_phone')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="home_phone" class="col-sm-4 col-form-label">Home Phone</label>
                                                 <div class="col-sm-8">
@@ -132,7 +132,7 @@
                                                     @error('mobile_phone')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="emergency_contact" class="col-sm-4 col-form-label">Emergency Contact</label>

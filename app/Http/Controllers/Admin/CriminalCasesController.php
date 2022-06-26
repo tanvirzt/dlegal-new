@@ -108,6 +108,7 @@ class CriminalCasesController extends Controller
             'setup_external_councils.last_name',
             'case_infos_title.case_title_name as sub_seq_case_title_name')
             ->where('criminal_cases.delete_status',0)
+            ->orderBy('created_at','desc')
             ->get();
 
         // dd($data);
