@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2022 at 02:53 PM
+-- Generation Time: Jun 26, 2022 at 09:30 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -243,6 +243,34 @@ CREATE TABLE `bill_schedules` (
 INSERT INTO `bill_schedules` (`id`, `bill_schedule_name`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'erere', 0, NULL, NULL, '2022-06-12 10:08:43', '2022-06-12 10:09:22'),
 (2, 'werwe', 0, NULL, NULL, '2022-06-12 10:09:17', '2022-06-12 10:09:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cases_notifications`
+--
+
+CREATE TABLE `cases_notifications` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `case_id` int(11) DEFAULT NULL,
+  `case_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `case_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `received_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `send_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delete_status` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cases_notifications`
+--
+
+INSERT INTO `cases_notifications` (`id`, `case_id`, `case_no`, `case_type`, `received_by`, `send_by`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 3, '5465145 of 2021                                                                \r\n                                                                test 544444444/2023', 'Criminal Cases', 'imran.zaimahtech@gmail.com', 'imran.zaimahtech@gmail.com', 0, NULL, NULL, '2022-06-26 07:10:54', '2022-06-26 07:10:54'),
+(2, 3, '5465145 of 2021                                                \r\n                                                test 544444444/2023', 'Criminal Cases', 'imran.zaimahtech@gmail.com', 'mdimranhossain985@gmail.com', 0, NULL, NULL, '2022-06-26 07:27:23', '2022-06-26 07:27:23');
 
 -- --------------------------------------------------------
 
@@ -889,12 +917,20 @@ INSERT INTO `criminal_case_activity_logs` (`id`, `case_id`, `activity_date`, `ac
 (8, 7, '1970-01-01', 'asdf', 'In progress', 2, 'werewr', '2022-06-23T17:41', '2022-06-29T17:41', '144 Hrs', 'Stewert Jhonson khan, Terry Jhon Khan', 'werew', 1, 'ewfdsa', 0, NULL, NULL, '2022-06-02 11:41:40', '2022-06-02 11:41:49'),
 (9, 3, '2022-06-21', 'asdf', 'In progress', 1, 'erewf', '2022-06-06T16:34', '2022-06-18T16:34', '12.00 Days', NULL, 'asdf', 1, 'ewfdsa', 0, NULL, NULL, '2022-06-23 10:34:55', '2022-06-23 10:34:55'),
 (10, 3, '2022-06-25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 6, NULL, 0, NULL, NULL, '2022-06-25 11:40:50', '2022-06-25 11:40:50'),
-(11, 3, '2022-06-25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 6, NULL, 0, NULL, NULL, '2022-06-25 11:50:54', '2022-06-25 11:50:54'),
+(11, 3, '1970-01-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 0, NULL, NULL, '2022-06-25 11:50:54', '2022-06-26 07:27:23'),
 (12, 3, '2022-06-25', NULL, NULL, NULL, 'rewre', NULL, NULL, NULL, NULL, NULL, 3, NULL, 0, NULL, NULL, '2022-06-25 11:54:12', '2022-06-25 11:54:12'),
 (13, 3, '2022-05-30', 'asdf', 'In progress', 1, 'asdf', '2022-05-30T18:01', '2022-06-22T18:01', '23.00 Days', NULL, NULL, 3, NULL, 0, NULL, NULL, '2022-06-25 12:01:20', '2022-06-25 12:01:20'),
 (14, 3, '2022-05-30', 'asdf', 'In progress', 1, 'asdf', '2022-05-30T18:01', '2022-06-22T18:01', '23.00 Days', NULL, NULL, 3, NULL, 0, NULL, NULL, '2022-06-25 12:02:17', '2022-06-25 12:02:17'),
-(15, 4, '1970-01-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 7, 'ewfdsa', 0, NULL, NULL, '2022-06-25 12:19:53', '2022-06-25 12:24:48'),
-(16, 3, '2022-06-07', 'asdf', 'asdf', 1, 'rewre asdfsdf', '2022-05-29T18:36', '2022-07-01T18:36', '33.00 Days', NULL, 'asdf', 3, 'asf', 0, NULL, NULL, '2022-06-25 12:36:47', '2022-06-25 12:36:47');
+(15, 4, '1970-01-01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 6, 'ewfdsa', 0, NULL, NULL, '2022-06-25 12:19:53', '2022-06-26 04:34:35'),
+(16, 3, '2022-07-06', 'asdf', 'asdf', 1, 'rewre asdfsdf', '2022-05-29T18:36', '2022-07-01T18:36', '33.00 Days', NULL, 'asdf', 2, 'asf', 0, NULL, NULL, '2022-06-25 12:36:47', '2022-06-26 04:35:52'),
+(17, 3, '2022-06-26', NULL, NULL, NULL, 'rewre', '2022-06-05T10:37', '2022-06-18T10:42', '13.00 Days', NULL, NULL, 1, 'ewfdsa', 0, NULL, NULL, '2022-06-26 04:37:37', '2022-06-26 04:37:37'),
+(18, 4, '2022-06-07', NULL, NULL, NULL, NULL, '2022-06-15T10:41', '2022-06-24T10:47', '9.00 Days', NULL, NULL, 6, NULL, 0, NULL, NULL, '2022-06-26 04:42:01', '2022-06-26 04:42:01'),
+(19, 4, '2022-06-26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, 0, NULL, NULL, '2022-06-26 05:43:59', '2022-06-26 05:43:59'),
+(20, 4, '2022-06-26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, 0, NULL, NULL, '2022-06-26 05:44:22', '2022-06-26 05:44:22'),
+(21, 4, '2022-06-26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, 0, NULL, NULL, '2022-06-26 05:45:31', '2022-06-26 05:45:31'),
+(22, 4, '2022-06-26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, 0, NULL, NULL, '2022-06-26 05:46:06', '2022-06-26 05:46:06'),
+(23, 4, '2022-06-22', 'wertewr', NULL, NULL, 'adsfasdf', '2022-05-31T11:51', '2022-07-01T11:57', '31.00 Days', NULL, NULL, 2, NULL, 0, NULL, NULL, '2022-06-26 05:51:55', '2022-06-26 05:51:55'),
+(24, 3, '2022-06-06', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 'test', 0, NULL, NULL, '2022-06-26 07:10:54', '2022-06-26 07:10:54');
 
 -- --------------------------------------------------------
 
@@ -1601,7 +1637,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (479, '2022_06_12_171457_create_criminal_cases_billings_table', 101),
 (480, '2022_02_05_123938_create_criminal_cases_table', 102),
 (481, '2022_01_24_092137_create_setup_case_types_table', 103),
-(482, '2022_02_01_042900_create_setup_courts_table', 104);
+(482, '2022_02_01_042900_create_setup_courts_table', 104),
+(486, '2022_06_26_130436_create_cases_notifications_table', 105);
 
 -- --------------------------------------------------------
 
@@ -1874,7 +1911,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('M9DL7AntugEeeH2r07T3lSBjsDnIWjykxLS73lB4', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoieU5NYTZLenB3c05TSlRDUzlOcHVyZm5VUXp4QnhVeU5pRjQxRnlZZCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Nzc6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi9lZGl0X2NyaW1pbmFsX2Nhc2VzX2FjdGl2aXR5LzE2Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo0OiJwYWdlIjtzOjk6ImRhc2hib2FyZCI7czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1656161529);
+('JICbpYzcKVk9LyVMlMZHFmOtvGoMY6WXh4BNgqHO', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiemZwMmt1bXRNckl5NUdzTHRWeWVmQTNRQksxTEc3QndzaXJPa09uSiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Njc6Imh0dHA6Ly9sb2NhbGhvc3QvZGxlZ2FsLXNvZnR3YXJlL3B1YmxpYy9hZG1pbi92aWV3LWNyaW1pbmFsLWNhc2VzLzMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjQ6InBhZ2UiO3M6OToiZGFzaGJvYXJkIjtzOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1656228447);
 
 -- --------------------------------------------------------
 
@@ -2869,12 +2906,12 @@ CREATE TABLE `setup_external_councils` (
 
 INSERT INTO `setup_external_councils` (`id`, `title_id`, `first_name`, `middle_name`, `last_name`, `email`, `work_phone`, `home_phone`, `mobile_phone`, `emergency_contact`, `document_upload`, `delete_status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Jack', 'Smith', 'Aminur', 'imran.zaimahtech@gmail.com', '01996321542', '01698774123', '01996321542', '01996321542', NULL, 0, NULL, NULL, '2022-03-15 23:38:01', '2022-06-25 11:51:59'),
-(2, 2, 'Stefen', 'Smith', 'adsf', 'asdf@adf', '01996325478', '01996321542', '01996321542', '54641654984', NULL, 0, NULL, NULL, '2022-04-13 00:06:36', '2022-04-13 00:06:36'),
+(2, 2, 'Stefen', 'Smith', 'adsf', 'imran.zaimahtech@gmail.com', '01996325478', '01996321542', '01996321542', '54641654984', NULL, 0, NULL, NULL, '2022-04-13 00:06:36', '2022-06-26 04:35:12'),
 (3, 3, 'Md.', 'Imran', 'Hossain', 'imran.zaimahtech@gmail.com', '01996325478', '01996321542', '01996321541', '0156549875', NULL, 0, NULL, NULL, '2022-04-13 00:07:17', '2022-06-25 11:52:41'),
 (4, 3, 'Aminur Rahman', 'Smith', 'Aminur', 'imran.zaimahtech@gmail.com', '01996325478', '01996321542', '01996321542', '0156549875', NULL, 0, NULL, NULL, '2022-06-25 11:02:38', '2022-06-25 11:02:38'),
 (5, 3, 'Aminur Rahman', 'Smith', 'Aminur', 'imran.zaimahtech@gmail.com', '01996325478', '01996321542', '01996321542', '01996321542', NULL, 0, NULL, NULL, '2022-06-25 11:05:39', '2022-06-25 11:05:39'),
 (6, 3, 'Aminur Rahman', 'Smith', 'Aminur', 'imran.zaimahtech@gmail.com', '01996325478', '01698774123', '01887669542', '0156549875', NULL, 0, NULL, NULL, '2022-06-25 11:10:37', '2022-06-25 11:10:37'),
-(7, 4, 'Khan', 'Mohammad', 'Yousuf', 'test@gmail.com', '01778331245', '01996321542', '01996321542', '01996321542', NULL, 0, NULL, NULL, '2022-06-25 11:13:04', '2022-06-25 11:13:04');
+(7, 4, 'Khan', 'Mohammad', 'Yousuf', 'imran.zaimahtech@gmail.com', '01778331245', '01996321542', '01996321542', '01996321542', NULL, 0, NULL, NULL, '2022-06-25 11:13:04', '2022-06-26 04:35:20');
 
 -- --------------------------------------------------------
 
@@ -4403,6 +4440,12 @@ ALTER TABLE `bill_schedules`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `cases_notifications`
+--
+ALTER TABLE `cases_notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `case_billings`
 --
 ALTER TABLE `case_billings`
@@ -5055,6 +5098,12 @@ ALTER TABLE `bill_schedules`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `cases_notifications`
+--
+ALTER TABLE `cases_notifications`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `case_billings`
 --
 ALTER TABLE `case_billings`
@@ -5112,7 +5161,7 @@ ALTER TABLE `criminal_cases_files`
 -- AUTO_INCREMENT for table `criminal_case_activity_logs`
 --
 ALTER TABLE `criminal_case_activity_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `criminal_case_status_logs`
@@ -5196,7 +5245,7 @@ ALTER TABLE `land_information_files`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=483;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=487;
 
 --
 -- AUTO_INCREMENT for table `payment_modes`
