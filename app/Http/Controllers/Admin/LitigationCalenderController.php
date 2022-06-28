@@ -62,6 +62,7 @@ class LitigationCalenderController extends Controller
     public function litigation_calender_short()
     {
 
+        $date = date('F, Y');
         $month = date('Y-m');
 
         $start = Carbon::parse($month)->startOfMonth();
@@ -73,7 +74,7 @@ class LitigationCalenderController extends Controller
             $start->addDay();
         }
 
-        return view('litigation_management.litigation_calender.litigation_calender_short', compact('dates'));
+        return view('litigation_management.litigation_calender.litigation_calender_short', compact('dates','date'));
     }
 
     public function search_litigation_calendar(Request $request)
@@ -224,5 +225,35 @@ class LitigationCalenderController extends Controller
         return view('litigation_management.litigation_search.cases', compact('data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter'));
     }
 
+    public function search_litigation_calendar_short(Request $request)
+    {
+
+        // dd($request->from_date);
+
+        $date = date('F, Y',strtotime($request->from_date));
+        // dd($date);
+
+
+        $search_month = explode('-', $request->from_date);
+
+
+
+        // dd($search_month[1]);
+
+        // dd($search_month[0].'-'.$search_month[1]);
+
+        $month = $search_month[0].'-'.$search_month[1];
+// dd($month);
+        $start = Carbon::parse($month)->startOfMonth();
+        $end = Carbon::parse($month)->endOfMonth();
+// dd($end);
+        $dates = [];
+        while ($start->lte($end)) {
+            $dates[] = $start->copy();
+            $start->addDay();
+        }
+
+        return view('litigation_management.litigation_calender.litigation_calender_short', compact('dates','date'));
+    }
 
 }

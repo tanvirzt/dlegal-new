@@ -38,15 +38,59 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-                <h3 class="" id="heading">Litigation Calendar({{ date('F, Y') }})</h3>
+                <h3 class="" id="heading">Litigation Calendar({{ $date }})</h3>
                 <div class="row">
-@php
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div id="accordion">
+                                <div class="card-header" id="headingTwo">
+                                    <h3 class="card-title"> Search </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn collapsed" data-toggle="collapse"
+                                                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        <form method="post" action="{{ route('search-litigation-calendar-short') }}">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label for="from_date" class="col-sm-4 col-form-label">
+                                                             Month </label>
+                                                        <div class="col-sm-8">
+                                                            <input type="date" class="form-control" name="from_date">
+                                                            @error('from_date')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
 
+                                            <div class="float-right">
+                                                <button type="submit" id="submit" class="btn btn-primary text-uppercase"><i
+                                                        class="fas fa-search"></i> Search
+                                                </button>
+                                            </div>
 
+                                        </form>
 
-   //dd($dates);
-  // dd($dates->toDateString());
-@endphp
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
 
                     @foreach($dates as $data)
 

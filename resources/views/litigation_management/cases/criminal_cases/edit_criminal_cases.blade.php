@@ -1471,7 +1471,7 @@
                                                                                     class="text-danger">{{$message}}</span>@enderror
 
                                                                             </div>
-                                                                        </div> --}}
+                                                                        </div> --}} 
                                                                         <div class="form-group row">
                                                                             <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
                                                                             <div class="col-sm-8">
