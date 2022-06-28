@@ -53,7 +53,8 @@
                     <div class="card">
                         <div>
                             <div class="card-header">
-                                <h3 class="card-title custom_h3 font-italic text-uppercase font_weight">View Criminal Case
+
+                                <h3 class="card-title custom_h3 font-italic text-uppercase font_weight" style="color: #2f9d3d;">Criminal Case
                                     No.
                                     {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
                                     @endif
@@ -72,7 +73,7 @@
                                     @endphp
 
                                 </h3>
-                                <h3 class="card-title custom_h3 font-italic text-uppercase font_weight header_links">View Criminal Case
+                                <h3 class="card-title custom_h3 font-italic text-uppercase font_weight header_links">Criminal Case
                                     No.
                                     {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
                                     @endif
@@ -198,7 +199,19 @@
                                                             <td>Received By</td>
                                                             <td>{{ $data->name }} {{ $data->received_by_write }}</td>
                                                         </tr>
+                                                        
+                                                        
+                                                        </tbody>
+                                                    </table>
 
+                                                    <h6 class="text-uppercase text-bold mt-3"><u> Case File Location </u>
+                                                    </h6>
+                                                    <table class="table table-bordered">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Cabinet Name</td>
+                                                                <td>{{ $data->cabinet_name }} @if($data->self_number) ({{ $data->self_number }}) @endif</td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
 
@@ -206,7 +219,7 @@
                                             </div>
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Primary Information </u>
+                                                    <h6 class="text-uppercase text-bold"><u> Client Information </u>
                                                         <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal"
                                                                 data-target="#modal-lg-client-info" data-toggle="tooltip"
                                                                 data-placement="top" title="Update Primary Information"><i class="fas fa-edit"></i>
@@ -558,7 +571,7 @@
 
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Primary Information </u>
+                                                    <h6 class="text-uppercase text-bold"><u> Case Information </u>
                                                         <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal"
                                                                 data-target="#modal-lg-case-info" data-toggle="tooltip"
                                                                 data-placement="top" title="Update Primary Information"><i class="fas fa-edit"></i>
@@ -1431,7 +1444,7 @@
                                     <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                         <tr>
-                                            <th>Bill for the Date</th>
+                                            <th width="10%">Bill for the Date</th>
                                             <th>Bill Particulars</th>
                                             <th>Bill Type</th>
                                             <th>Bill Schedule</th>
@@ -2440,6 +2453,36 @@
                                     </div>
                                 </div>
                                 @error('contact_person_name')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <h6 class="text-uppercase text-bold"><u> Case File Location </u>
+                        </h6>
+                        <div class="form-group row">
+                            <label for="cabinet_id"
+                                   class="col-sm-4 col-form-label"> Cabinet Name </label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="cabinet_id"
+                                                id="cabinet_id"
+                                                class="form-control select2">
+                                            <option value="">Select</option>
+                                            @foreach($cabinet as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{  $data->cabinet_id == $item->id ? 'selected' : '' }}>{{ $item->cabinet_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="self_number"
+                                               name="self_number"
+                                               placeholder="Self Number"
+                                               value="{{ $data->self_number }}">
+                                    </div>
+                                </div>
+                                @error('self_number')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>

@@ -184,6 +184,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-criminal-cases-status/{id}','CriminalCasesController@update_criminal_cases_status')->name('update-criminal-cases-status');
         Route::post('update-criminal-cases-activity/{id}','CriminalCasesController@update_criminal_cases_activity')->name('update-criminal-cases-activity');
         Route::post('search-criminal-cases','CriminalCasesController@search_criminal_cases')->name('search-criminal-cases');
+        Route::post('advanced-search-criminal-cases','CriminalCasesController@advanced_search_criminal_cases')->name('advanced-search-criminal-cases');
         Route::post('delete-criminal-cases-status/{id}','CriminalCasesController@delete_criminal_cases_status')->name('delete-criminal-cases-status');
         Route::get('edit_criminal_cases_status/{id}','CriminalCasesController@edit_criminal_cases_status')->name('edit-criminal-cases-status');
         Route::post('update-criminal-cases-status-logs/{id}','CriminalCasesController@update_criminal_cases_status_logs')->name('update-criminal-cases-status-logs');
@@ -669,6 +670,13 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('search-litigation-calendar','LitigationCalenderController@search_litigation_calendar')->name('search-litigation-calendar');
         Route::get('search-case-pages','LitigationCalenderController@search_case_pages')->name('search-case-pages');
         Route::post('search-cases','LitigationCalenderController@search_cases')->name('search-cases');
+
+        Route::get('cabinet', 'AdminSetupController@cabinet')->name('cabinet');
+        Route::get('add-cabinet','AdminSetupController@add_cabinet')->name('add-cabinet');
+        Route::post('save-cabinet','AdminSetupController@save_cabinet')->name('save-cabinet');
+        Route::get('edit-cabinet/{id}','AdminSetupController@edit_cabinet')->name('edit-cabinet');
+        Route::post('update-cabinet/{id}','AdminSetupController@update_cabinet')->name('update-cabinet');
+        Route::post('delete-cabinet/{id}','AdminSetupController@delete_cabinet')->name('delete-cabinet');
 
 
     });

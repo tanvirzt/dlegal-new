@@ -72,6 +72,7 @@ use App\Models\SetupSupremeCourtCategory;
 use App\Models\SetupBillParticular;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin;
+use App\Models\SetupCabinet;
 
 
 class AdminSetupController extends Controller
@@ -79,7 +80,7 @@ class AdminSetupController extends Controller
     //
     public function designation()
     {
-        $data = SetupDesignation::all();
+        $data = SetupDesignation::where('delete_status',0)->get();
         return view('setup.designation.designation',compact('data'));
     }
 
@@ -153,7 +154,7 @@ class AdminSetupController extends Controller
 
 //    public function case_category()
 //    {
-//        $data = SetupCaseCategory::all();
+//        $data = SetupCaseCategory::where('delete_status',0)->get();
 //        return view('setup.case_category.case_category',compact('data'));
 //    }
 //
@@ -228,7 +229,7 @@ class AdminSetupController extends Controller
 
     public function case_status()
     {
-        $data = SetupCaseStatus::all();
+        $data = SetupCaseStatus::where('delete_status',0)->get();
         return view('setup.case_status.case_status',compact('data'));
     }
 
@@ -306,6 +307,7 @@ class AdminSetupController extends Controller
         $data = DB::table('setup_case_types')
                 ->leftJoin('setup_case_classes','setup_case_types.case_class_id','setup_case_classes.id')
                 ->leftJoin('setup_case_categories','setup_case_types.case_category_id','setup_case_categories.id')
+                ->where('setup_case_types.delete_status',0)
                 ->select('setup_case_types.*', 'setup_case_classes.case_class_name','setup_case_categories.case_category')
                 ->get();
         return view('setup.case_types.case_types',compact('data'));
@@ -391,7 +393,7 @@ class AdminSetupController extends Controller
 
     public function property_type()
     {
-        $data = SetupPropertyType::all();
+        $data = SetupPropertyType::where('delete_status',0)->get();
         return view('setup.property_type.property_type',compact('data'));
     }
 
@@ -466,7 +468,7 @@ class AdminSetupController extends Controller
 
     public function compliance_category()
     {
-        $data = SetupComplianceCategory::all();
+        $data = SetupComplianceCategory::where('delete_status',0)->get();
         return view('setup.compliance_category.compliance_category',compact('data'));
     }
 
@@ -543,7 +545,7 @@ class AdminSetupController extends Controller
 
     public function compliance_type()
     {
-        $data = SetupComplianceType::all();
+        $data = SetupComplianceType::where('delete_status',0)->get();
         return view('setup.compliance_type.compliance_type',compact('data'));
     }
 
@@ -628,7 +630,7 @@ class AdminSetupController extends Controller
 
  public function person_title()
  {
-     $data = SetupPersonTitle::all();
+     $data = SetupPersonTitle::where('delete_status',0)->get();
      return view('setup.person_title.person_title',compact('data'))->with('sl',1);
  }
 
@@ -703,7 +705,13 @@ class AdminSetupController extends Controller
 
     public function court()
     {
-        $data = SetupCourt::all();
+        $data = DB::table('setup_courts')
+                ->leftJoin('setup_case_classes','setup_courts.case_class_id','setup_case_classes.id')
+                ->leftJoin('setup_case_categories','setup_courts.case_category_id','setup_case_categories.id')
+                ->where('setup_courts.delete_status',0)
+                ->select('setup_courts.*', 'setup_case_classes.case_class_name', 'setup_case_categories.case_category')
+                ->get();
+                // dd($data);
         return view('setup.court.court',compact('data'));
     }
 
@@ -799,7 +807,7 @@ class AdminSetupController extends Controller
 
     public function law()
     {
-        $data = SetupLaw::all();
+        $data = SetupLaw::where('delete_status',0)->get();
         return view('setup.law.law',compact('data'));
     }
 
@@ -877,7 +885,7 @@ class AdminSetupController extends Controller
 
     public function division()
     {
-        $data = SetupDivision::all();
+        $data = SetupDivision::where('delete_status',0)->get();
         return view('setup.division.division',compact('data'));
     }
 
@@ -953,9 +961,10 @@ class AdminSetupController extends Controller
 
     public function district()
     {
-//        $data = SetupDistrict::all();
+//        $data = SetupDistrict::where('delete_status',0)->get();
         $data = DB::table('setup_districts')
                     ->join('setup_divisions','setup_districts.division_id', '=', 'setup_divisions.id')
+                    ->where('setup_districts.delete_status',0)
                     ->select('setup_districts.*','setup_divisions.division_name')
                     ->get();
         return view('setup.district.district',compact('data'));
@@ -1037,7 +1046,7 @@ class AdminSetupController extends Controller
 
  public function court_last_order()
  {
-     $data = SetupCourtLastOrder::all();
+     $data = SetupCourtLastOrder::where('delete_status',0)->get();
      return view('setup.court_last_order.court_last_order',compact('data'));
  }
 
@@ -1114,7 +1123,7 @@ class AdminSetupController extends Controller
 
  public function region()
  {
-     $data = SetupRegion::all();
+     $data = SetupRegion::where('delete_status',0)->get();
      return view('setup.region.region',compact('data'));
  }
 
@@ -1191,7 +1200,7 @@ class AdminSetupController extends Controller
 
 public function area()
 {
-    $data = SetupArea::all();
+    $data = SetupArea::where('delete_status',0)->get();
     return view('setup.area.area',compact('data'));
 }
 
@@ -1268,7 +1277,7 @@ public function delete_area($id)
 
 public function branch()
 {
-    $data = SetupBranch::all();
+    $data = SetupBranch::where('delete_status',0)->get();
     return view('setup.branch.branch',compact('data'));
 }
 
@@ -1344,7 +1353,7 @@ public function delete_branch($id)
 
 public function program()
 {
-    $data = SetupProgram::all();
+    $data = SetupProgram::where('delete_status',0)->get();
     return view('setup.program.program',compact('data'));
 }
 
@@ -1420,7 +1429,7 @@ public function delete_program($id)
 
 public function allegation()
 {
-    $data = SetupAllegation::all();
+    $data = SetupAllegation::where('delete_status',0)->get();
     return view('setup.allegation.allegation',compact('data'));
 }
 
@@ -1497,6 +1506,7 @@ public function delete_allegation($id)
         public function next_date_reason()
         {
             $data = DB::table('setup_next_date_reasons')
+                    ->where('setup_next_date_reasons.delete_status',0)
                         ->get();
             return view('setup.next_date_reason.next_date_reason',compact('data'));
         }
@@ -1575,7 +1585,7 @@ public function delete_allegation($id)
 
 public function company_type()
 {
-    $data = SetupCompanyType::all();
+    $data = SetupCompanyType::where('delete_status',0)->get();
     return view('setup.company_type.company_type',compact('data'));
 }
 
@@ -1652,10 +1662,11 @@ public function delete_company_type($id)
 
 public function company()
 {
-    // $data = SetupCompany::all();
+    // $data = SetupCompany::where('delete_status',0)->get();
     $data = DB::table('setup_companies')
             ->leftJoin('setup_company_types','setup_companies.company_type_id','=','setup_company_types.id')
             ->leftJoin('setup_designations','setup_companies.designation_id','=','setup_designations.id')
+            ->where('setup_companies.delete_status',0)
             ->select('setup_companies.*','setup_company_types.company_type_name','setup_designations.designation_name')
             ->get();
             // dd($data);
@@ -1757,7 +1768,7 @@ public function delete_company($id)
 
  public function external_council()
  {
-     $data = SetupExternalCouncil::all();
+     $data = SetupExternalCouncil::where('delete_status',0)->get();
      return view('setup.external_council.external_council',compact('data'));
  }
 
@@ -1910,7 +1921,7 @@ public function delete_company($id)
 
  public function internal_council()
  {
-     $data = SetupInternalCouncil::all();
+     $data = SetupInternalCouncil::where('delete_status',0)->get();
      return view('setup.internal_council.internal_council',compact('data'));
  }
 
@@ -2051,10 +2062,11 @@ public function delete_company($id)
 
  public function external_council_associates()
  {
-    //  $data = SetupExternalCouncilAssociate::all();
+    //  $data = SetupExternalCouncilAssociate::where('delete_status',0)->get();
      $data = DB::table('setup_external_council_associates')
                 ->leftJoin('setup_external_councils','setup_external_council_associates.external_council_id','=','setup_external_councils.id')
                 ->leftJoin('setup_person_titles','setup_external_council_associates.title_id','=','setup_person_titles.id')
+                ->where('setup_external_council_associates.delete_status',0)
                 ->select('setup_external_council_associates.*','setup_external_councils.first_name as ec_first_name','setup_external_councils.middle_name as ec_middle_name','setup_external_councils.last_name as ec_last_name','setup_person_titles.person_title_name')
                 ->get();
                 // dd($data);
@@ -2206,7 +2218,7 @@ public function delete_company($id)
 
     public function bill_type()
     {
-        $data = SetupBillType::all();
+        $data = SetupBillType::where('delete_status',0)->get();
         return view('setup.bill_type.bill_type',compact('data'));
     }
 
@@ -2283,7 +2295,7 @@ public function delete_company($id)
 
     public function bank()
     {
-        $data = SetupBank::all();
+        $data = SetupBank::where('delete_status',0)->get();
         return view('setup.bank.bank',compact('data'));
     }
 
@@ -2360,9 +2372,10 @@ public function delete_company($id)
 
     public function bank_branch()
     {
-    //    $data = SetupBankBranch::all();
+    //    $data = SetupBankBranch::where('delete_status',0)->get();
         $data = DB::table('setup_bank_branches')
                     ->leftJoin('setup_banks','setup_bank_branches.bank_id', '=', 'setup_banks.id')
+                    ->where('setup_bank_branches.delete_status',0)
                     ->select('setup_bank_branches.*','setup_banks.bank_name')
                     ->get();
                     // dd($data);
@@ -2445,7 +2458,7 @@ public function delete_company($id)
 
     public function digital_payment_type()
     {
-        $data = SetupDigitalPayment::all();
+        $data = SetupDigitalPayment::where('delete_status',0)->get();
         return view('setup.digital_payment_type.digital_payment_type',compact('data'));
     }
 
@@ -2520,9 +2533,10 @@ public function delete_company($id)
 
     public function thana()
     {
-    //    $data = SetupThana::all();
+    //    $data = SetupThana::where('delete_status',0)->get();
         $data = DB::table('setup_thanas')
                     ->join('setup_districts','setup_thanas.district_id', '=', 'setup_districts.id')
+                    ->where('setup_thanas.delete_status',0)
                     ->select('setup_thanas.*','setup_districts.district_name')
                     ->get();
         return view('setup.thana.thana',compact('data'));
@@ -2603,7 +2617,7 @@ public function delete_company($id)
 
  public function seller_buyer()
  {
-     $data = SetupSellerBuyer::all();
+     $data = SetupSellerBuyer::where('delete_status',0)->get();
      return view('setup.seller_buyer.seller_buyer',compact('data'));
  }
 
@@ -2744,7 +2758,7 @@ public function delete_company($id)
 
 public function floor()
 {
-    $data = SetupFloor::all();
+    $data = SetupFloor::where('delete_status',0)->get();
     return view('setup.floor.floor',compact('data'));
 }
 
@@ -2812,9 +2826,10 @@ public function delete_floor($id)
 
 public function flat_number()
 {
-    //    $data = SetupFlatNumber::all();
+    //    $data = SetupFlatNumber::where('delete_status',0)->get();
     $data = DB::table('setup_flat_numbers')
                 ->leftJoin('setup_floors','setup_flat_numbers.floor_id','=','setup_floors.id')
+                ->where('setup_flat_numbers.delete_status',0)
                 ->select('setup_flat_numbers.*','setup_floors.floor_name')
                 ->get();
                 // dd($data);
@@ -2922,7 +2937,7 @@ public function download_external_council_associates_files($id)
 
 public function case_category()
 {
-    $data = SetupCaseCategory::all();
+    $data = SetupCaseCategory::where('delete_status',0)->get();
 
                 // dd($data);
     return view('setup.case_category.case_category',compact('data'));
@@ -3010,6 +3025,7 @@ public function case_subcategory()
 
     $data = DB::table('setup_case_subcategories')
             ->leftJoin('setup_case_categories','setup_case_subcategories.case_category_id','=','setup_case_categories.id')
+            ->where('setup_case_subcategories.delete_status',0)
             ->select('setup_case_subcategories.*','setup_case_categories.case_category')
             ->orderBy('setup_case_subcategories.id','desc')
             ->get();
@@ -3222,7 +3238,7 @@ public function find_case_category(Request $request)
 
     public function section()
     {
-        $data = SetupSection::all();
+        $data = SetupSection::where('delete_status',0)->get();
         return view('setup.section.section',compact('data'));
     }
 
@@ -3298,7 +3314,7 @@ public function find_case_category(Request $request)
 
     public function client_category()
     {
-        $data = SetupClientCategory::all();
+        $data = SetupClientCategory::where('delete_status',0)->get();
         return view('setup.client_category.client_category',compact('data'));
     }
 
@@ -3374,9 +3390,10 @@ public function find_case_category(Request $request)
 
     public function client_subcategory()
     {
-        //    $data = SetupBankBranch::all();
+        //    $data = SetupBankBranch::where('delete_status',0)->get();
         $data = DB::table('setup_client_subcategories')
             ->leftJoin('setup_client_categories','setup_client_subcategories.client_category_id', '=', 'setup_client_categories.id')
+            ->where('setup_client_subcategories.delete_status',0)
             ->select('setup_client_subcategories.*','setup_client_categories.client_category_name')
             ->get();
         // dd($data);
@@ -3465,7 +3482,7 @@ public function find_case_category(Request $request)
 
     public function next_day_presence()
     {
-        $data = SetupNextDayPresence::all();
+        $data = SetupNextDayPresence::where('delete_status',0)->get();
         return view('setup.next_day_presence.next_day_presence',compact('data'));
     }
 
@@ -3542,7 +3559,7 @@ public function find_case_category(Request $request)
 
     public function legal_issue()
     {
-        $data = SetupLegalIssue::all();
+        $data = SetupLegalIssue::where('delete_status',0)->get();
         return view('setup.legal_issue.legal_issue',compact('data'));
     }
 
@@ -3619,7 +3636,7 @@ public function find_case_category(Request $request)
 
     public function legal_service()
     {
-        $data = SetupLegalService::all();
+        $data = SetupLegalService::where('delete_status',0)->get();
         return view('setup.legal_service.legal_service',compact('data'));
     }
 
@@ -3695,7 +3712,7 @@ public function find_case_category(Request $request)
 
     public function matter()
     {
-        $data = SetupMatter::all();
+        $data = SetupMatter::where('delete_status',0)->get();
         return view('setup.matter.matter',compact('data'));
     }
 
@@ -3770,7 +3787,7 @@ public function find_case_category(Request $request)
 
     public function coordinator()
     {
-        $data = SetupCoordinator::all();
+        $data = SetupCoordinator::where('delete_status',0)->get();
         return view('setup.coordinator.coordinator',compact('data'));
     }
 
@@ -3846,7 +3863,7 @@ public function find_case_category(Request $request)
 
     public function mode()
     {
-        $data = SetupMode::all();
+        $data = SetupMode::where('delete_status',0)->get();
         return view('setup.mode.mode',compact('data'));
     }
 
@@ -3923,7 +3940,7 @@ public function find_case_category(Request $request)
 
     public function court_proceeding()
     {
-        $data = SetupCourtProceeding::all();
+        $data = SetupCourtProceeding::where('delete_status',0)->get();
         return view('setup.court_proceeding.court_proceeding',compact('data'));
     }
 
@@ -4000,7 +4017,7 @@ public function find_case_category(Request $request)
 
     public function day_notes()
     {
-        $data = SetupDayNote::all();
+        $data = SetupDayNote::where('delete_status',0)->get();
         return view('setup.day_notes.day_notes',compact('data'));
     }
 
@@ -4077,7 +4094,7 @@ public function find_case_category(Request $request)
 
     public function in_favour_of()
     {
-        $data = SetupInFavourOf::all();
+        $data = SetupInFavourOf::where('delete_status',0)->get();
         return view('setup.in_favour_of.in_favour_of',compact('data'));
     }
 
@@ -4154,7 +4171,7 @@ public function find_case_category(Request $request)
 
     public function referrer()
     {
-        $data = SetupReferrer::all();
+        $data = SetupReferrer::where('delete_status',0)->get();
         return view('setup.referrer.referrer',compact('data'));
     }
 
@@ -4237,7 +4254,7 @@ public function find_case_category(Request $request)
 
     public function party()
     {
-        $data = SetupParty::all();
+        $data = SetupParty::where('delete_status',0)->get();
         return view('setup.parties.party',compact('data'));
     }
 
@@ -4314,7 +4331,7 @@ public function find_case_category(Request $request)
 
     public function client()
     {
-        $data = SetupClient::all();
+        $data = SetupClient::where('delete_status',0)->get();
         return view('setup.client.client',compact('data'));
     }
 
@@ -4398,7 +4415,7 @@ public function find_case_category(Request $request)
 
     public function profession()
     {
-        $data = SetupProfession::all();
+        $data = SetupProfession::where('delete_status',0)->get();
         return view('setup.profession.profession',compact('data'));
     }
 
@@ -4476,7 +4493,7 @@ public function find_case_category(Request $request)
 
     public function documents()
     {
-        $data = SetupDocument::all();
+        $data = SetupDocument::where('delete_status',0)->get();
         return view('setup.documents.documents',compact('data'));
     }
 
@@ -4553,7 +4570,7 @@ public function find_case_category(Request $request)
 
     public function case_title()
     {
-        $data = SetupCaseTitle::all();
+        $data = SetupCaseTitle::where('delete_status',0)->get();
         return view('setup.case_title.case_title',compact('data'));
     }
 
@@ -4638,7 +4655,7 @@ public function find_case_category(Request $request)
 
     public function opposition()
     {
-        $data = SetupOpposition::all();
+        $data = SetupOpposition::where('delete_status',0)->get();
         return view('setup.opposition.opposition',compact('data'));
     }
 
@@ -4721,7 +4738,7 @@ public function find_case_category(Request $request)
 
     public function complainant()
     {
-        $data = SetupComplainant::all();
+        $data = SetupComplainant::where('delete_status',0)->get();
         return view('setup.complainant.complainant',compact('data'));
     }
 
@@ -4804,7 +4821,7 @@ public function find_case_category(Request $request)
 
     public function accused()
     {
-        $data = SetupAccused::all();
+        $data = SetupAccused::where('delete_status',0)->get();
         return view('setup.accused.accused',compact('data'));
     }
 
@@ -4887,7 +4904,7 @@ public function find_case_category(Request $request)
 
     public function court_short()
     {
-        $data = SetupCourtShort::all();
+        $data = SetupCourtShort::where('delete_status',0)->get();
         return view('setup.court_short.court_short',compact('data'));
     }
 
@@ -4965,7 +4982,7 @@ public function find_case_category(Request $request)
 
     public function progress()
     {
-        $data = SetupProgress::all();
+        $data = SetupProgress::where('delete_status',0)->get();
         return view('setup.progress.progress',compact('data'));
     }
 
@@ -5041,7 +5058,7 @@ public function find_case_category(Request $request)
 
     public function bill_particulars()
     {
-        $data = SetupBillParticular::all();
+        $data = SetupBillParticular::where('delete_status',0)->get();
         return view('setup.bill_particulars.bill_particulars',compact('data'));
     }
 
@@ -5117,7 +5134,7 @@ public function find_case_category(Request $request)
 
     public function bill_schedule()
     {
-        $data = BillSchedule::all();
+        $data = BillSchedule::where('delete_status',0)->get();
         return view('setup.bill_schedule.bill_schedule',compact('data'));
     }
 
@@ -5193,7 +5210,7 @@ public function find_case_category(Request $request)
 
     public function payment_mode()
     {
-        $data = PaymentMode::all();
+        $data = PaymentMode::where('delete_status',0)->get();
         return view('setup.payment_mode.payment_mode',compact('data'));
     }
 
@@ -5262,6 +5279,83 @@ public function find_case_category(Request $request)
         $data->save();
 
         session()->flash('success','Payment Mode Deleted Successfully');
+        return redirect()->back();
+    }
+
+
+    //cabinet
+
+    public function cabinet()
+    {
+        $data = SetupCabinet::where('delete_status',0)->get();
+        return view('setup.cabinet.cabinet',compact('data'));
+    }
+
+    public function add_cabinet()
+    {
+        return view('setup.cabinet.add_cabinet');
+    }
+
+    public function save_cabinet(Request $request)
+    {
+        $rules = [
+            'cabinet_name' => 'required'
+        ];
+
+        $validMsg = [
+            'cabinet_name.required' => 'Cabinet field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $cabinet = new SetupCabinet();
+        $cabinet->cabinet_name = $request->cabinet_name;
+        $cabinet->save();
+
+        session()->flash('success','Cabinet Added Successfully.');
+        return redirect()->route('cabinet');
+    }
+
+    public function edit_cabinet($id)
+    {
+        $data = SetupCabinet::find($id);
+        return view('setup.cabinet.edit_cabinet',compact('data'));
+    }
+
+    public function update_cabinet(Request $request, $id)
+    {
+        $rules = [
+            'cabinet_name' => 'required'
+        ];
+
+        $validMsg = [
+            'cabinet_name.required' => 'Cabinet field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $cabinet = SetupCabinet::find($id);
+        $cabinet->cabinet_name = $request->cabinet_name;
+        $cabinet->save();
+
+        session()->flash('success', 'Cabinet Updated Successfully.');
+
+        return redirect()->route('cabinet');
+    }
+
+    public function delete_cabinet($id)
+    {
+        $data = SetupCabinet::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Cabinet Deleted Successfully');
         return redirect()->back();
     }
 

@@ -38,7 +38,7 @@
                                     <td style="text-align: center; width:100%;" valign="top">
 
 
-                                        <span id="lblUnitName" class="HeaderStyle"><b>BCLC</b></span>
+                                        <span id="lblUnitName" class="HeaderStyle"><b>DLegal</b></span>
                                         <br/>
                                         <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag, Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
                                         <br/>
@@ -55,7 +55,7 @@
                                         <br/>
                                             <u><span style="padding: 5px;">Criminal Case No. 
                                             
-                                                {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.'/'.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
+                                                {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
                                                 @endif
                                                 {{ $data->sub_seq_case_title_name }}
                                                 @php
@@ -164,7 +164,16 @@
 
                                                     </tbody>
                                                 </table>
-
+                                                <h6 class="text-uppercase text-bold mt-3"><u> Case File Location </u>
+                                                </h6>
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Cabinet Name</td>
+                                                            <td>{{ $data->cabinet_name }} @if($data->self_number) ({{ $data->self_number }}) @endif</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                         <div class="card">

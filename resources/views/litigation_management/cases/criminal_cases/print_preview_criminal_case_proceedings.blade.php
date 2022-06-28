@@ -65,7 +65,23 @@
                                                 <br/>
                                                     <span id="lblVoucherType" class="VoucherStyle">
                                                 <br/>
-                                                    <u><span style="padding: 5px;">Case Proceedings Log</span></u>
+                                                    <u><span style="padding: 5px;"> Criminal Case No. 
+                                                        {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
+                                                        @endif
+                                                        {{ $data->sub_seq_case_title_name }}
+                                                        @php
+                                                            $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+                                                            $key = array_key_last($case_infos_sub_seq_case_no);
+                                                            echo $case_infos_sub_seq_case_no[$key];
+                        
+                                                            $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
+                                                            $key = array_key_last($case_infos_sub_seq_case_year);
+                                                            $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                                            if ($last_case_no != null) {
+                                                                echo '/'.$last_case_no;
+                                                            }
+                                                        @endphp
+                                                    </span></u>
                                                 <br/>
                                                 <br/>
 
@@ -91,7 +107,6 @@
                                             <th>Fixed For</th>
                                             <th style="width: 75px;">Day Note</th>
                                             <th>Engaged Advocate</th>
-                                            <th>Update</th>
                                         </tr>
                                         @foreach($case_logs as $key=>$logs)
                                             <tr>
@@ -155,9 +170,7 @@
                                                 <td class="AccStyle" align="left"> 
                                                     {{ $logs->updated_engaged_advocate_id }} {{ $logs->updated_engaged_advocate_write }}
                                                 </td>
-                                                <td class="AccStyle" align="left"> 
-                                                    {{ date('d-m-Y H:i:s', strtotime($logs->created_at)) }}
-                                                </td>
+                                                
                                             </tr>
                                         
                                     @endforeach

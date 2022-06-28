@@ -33,7 +33,7 @@
                     </div>
                 @endif
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
@@ -55,33 +55,31 @@
                                     <div class="card-body">
 
 
-                                        <form id="form_data" method="post" action="{{ route('search-criminal-cases') }}">
+                                        <form method="post" action="{{ route('advanced-search-criminal-cases') }}">
                                             @csrf
 
 
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label for="case_no" class="col-sm-4 col-form-label">Case
-                                                            No.</label>
+                                                        <label for="created_case_id" class="col-sm-4 col-form-label">Case ID</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" class="form-control" id="case_no"
-                                                                   name="case_infos_case_no" value="{{ old('case_infos_case_no') }}">
-                                                            @error('case_no')
+                                                            <input type="text" class="form-control" id="created_case_id"
+                                                                   name="created_case_id" value="{{ old('created_case_id') }}">
+                                                            @error('created_case_id')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="received_date" class="col-sm-4 col-form-label">
-                                                            Received
-                                                            Date </label>
+                                                        <label for="case_infos_case_no" class="col-sm-4 col-form-label">Case
+                                                            No.</label>
                                                         <div class="col-sm-8">
-                                                            <input type="date" class="form-control"
-                                                                   id="received_date"
-                                                                   name="received_date">
-                                                            @error('received_date')<span
-                                                                class="text-danger">{{$message}}</span>@enderror
+                                                            <input type="text" class="form-control" id="case_infos_case_no"
+                                                                   name="case_infos_case_no" value="{{ old('case_infos_case_no') }}">
+                                                            @error('case_infos_case_no')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -101,11 +99,34 @@
                                                             @enderror
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row">
+                                                        <label for="case_infos_complainant_informant_name" class="col-sm-4 col-form-label">1st Party/Complainant/ Petitioner/Plaintiff</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="case_infos_complainant_informant_name"
+                                                                   name="case_infos_complainant_informant_name" value="{{ old('case_infos_complainant_informant_name') }}">
+                                                            @error('case_infos_complainant_informant_name')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="case_infos_accused_name" class="col-sm-4 col-form-label">2nd Party/Accused/ Oppositon/Defendant</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control" id="case_infos_accused_name"
+                                                                   name="case_infos_accused_name" value="{{ old('case_infos_accused_name') }}">
+                                                            @error('case_infos_accused_name')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>      
+                                                    
+                                                                                                  
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
                                                         <label for="case_category_id" class="col-sm-4 col-form-label">Case Category</label>
                                                         <div class="col-sm-8">
+
                                                             <select name="case_category_id" id="case_category_id" class="form-control select2"
                                                                     action="{{ route('find-case-subcategory') }}">
                                                                 <option value="">Select</option>
@@ -115,25 +136,143 @@
                                                                 @endforeach
                                                             </select>
                                                             @error('case_category_id')<span class="text-danger">{{$message}}</span>@enderror
+
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
+                                                        <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
+                                                        <div class="col-sm-8">
+                                                            <select name="case_type_id"
+                                                                    class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach($case_types as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('case_type_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
+                                                        <div class="col-sm-8">
+                                                                    <select name="matter_id"
+                                                                            id="matter_id"
+                                                                            class="form-control select2">
+                                                                        <option value="">Select</option>
+                                                                        @foreach($matter as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{( old('matter_id') == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                            @error('matter_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    {{-- <div class="form-group row">
                                                         <label for="case_subcategory_id" class="col-sm-4 col-form-label">Case Subcategory</label>
                                                         <div class="col-sm-8">
+
                                                             <select name="case_subcategory_id" id="case_subcategory_id" class="form-control select2">
                                                                 <option value="">Select</option>
 
                                                             </select>
                                                             @error('case_subcategory_id')<span class="text-danger">{{$message}}</span>@enderror
+
+                                                        </div>
+                                                    </div> --}}
+                                                    
+                                                    <div class="form-group row">
+                                                        <label for="client_division_id"
+                                                               class="col-sm-4 col-form-label">Division/Zone</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <select name="client_division_id"
+                                                                            id="client_division_id"
+                                                                            class="form-control select2" action="{{ route('find_district') }}">
+                                                                        <option value="">Select</option>
+                                                                        @foreach ($division as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{(old('client_division_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->division_name) }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" class="form-control"
+                                                                           id="client_divisoin_write"
+                                                                           name="client_divisoin_write"
+                                                                           placeholder="Client Zone"
+                                                                           value="{{ old('client_divisoin_write') }}">
+                                                                </div>
+                                                            </div>
+                                                            @error('client_division_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+    
+                                                    <div class="form-group row">
+                                                        <label for="client_district_id"
+                                                               class="col-sm-4 col-form-label">District/Area</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <select name="client_district_id"
+                                                                            id="client_district_id"
+                                                                            class="form-control select2" action="{{ route('find-thana') }}">
+                                                                        <option value="">Select</option>
+    
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" class="form-control"
+                                                                           id="client_district_write"
+                                                                           name="client_district_write"
+                                                                           placeholder="Client Area"
+                                                                           value="{{ old('client_district_write') }}">
+                                                                </div>
+                                                            </div>
+    
+                                                            @error('client_district_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="client_thana_id"
+                                                               class="col-sm-4 col-form-label">Thana/Branch</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <select name="client_thana_id"
+                                                                            id="client_thana_id"
+                                                                            class="form-control select2">
+                                                                        <option value="">Select</option>
+    
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" class="form-control"
+                                                                           id="client_thana_write"
+                                                                           name="client_thana_write"
+                                                                           placeholder="Client Branch"
+                                                                           value="{{ old('client_thana_write') }}">
+                                                                </div>
+                                                            </div>
+                                                            @error('client_thana_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="float-right">
                                                 <button type="submit" id="submit" class="btn btn-primary text-uppercase"><i
                                                         class="fas fa-search"></i> Search
                                                 </button>
                                             </div>
+
                                         </form>
 
                                     </div>
@@ -216,7 +355,50 @@
                                                 @endphp
                                             </td>
                                             <td>
-                                                @if (!empty($datum->case_infos_sub_seq_court_short_id || $datum->sub_seq_court_short_write) )
+                                                @php
+                                                    $notes = explode(', ',$datum->case_infos_sub_seq_court_short_id);
+                                                    // dd($notes);
+                                                    // dd(trim($notes));
+                                                @endphp
+                                                @if($datum->case_infos_sub_seq_court_short_id)
+                                                    @if (count($notes)>1)
+                                                        @foreach ($notes as $pro)
+                                                            <li class="text-left">{{ $pro }}</li>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach ($notes as $pro)
+                                                            {{ $pro }}
+                                                        @endforeach
+                                                    @endif
+                                                    
+                                                @endif
+
+
+
+
+                                                @php
+                                                    $notes = explode(', ',$datum->sub_seq_court_short_write);
+                                                @endphp
+                                                @if($datum->sub_seq_court_short_write)
+                                                    @if (count($notes)>1)
+                                                        @foreach ($notes as $pro)
+                                                            <li class="text-left">{{ $pro }}</li>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach ($notes as $pro)
+                                                            {{ $pro }}
+                                                        @endforeach
+                                                    @endif
+                                                    
+                                                @endif
+
+
+
+
+
+
+
+                                                {{-- @if (!empty($datum->case_infos_sub_seq_court_short_id || $datum->sub_seq_court_short_write) )
                                                     @php
                                                         $court_name = explode(', ',$datum->case_infos_sub_seq_court_short_id);
                                                     @endphp
@@ -274,7 +456,7 @@
                                                             @endforeach
                                                         @endif
                                                     @endif
-                                                @endif
+                                                @endif --}}
 
                                                 
                                             </td>

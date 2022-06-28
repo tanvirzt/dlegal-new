@@ -110,7 +110,7 @@
                                                     @error('case_category_id')<span
                                                         class="text-danger">{{$message}}</span>@enderror
                                             </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label for="case_type"> Case Type </label>
                                             <select name="case_type" class="form-control select2" id="case_type">
                                                 <option value="">Select</option>
@@ -122,7 +122,7 @@
                                                 <option value="Appellate Court Division" {{ $data->case_type == "Appellate Court Division" ? 'selected' : '' }}> Appellate Court Division </option>
                                             </select>
                                             @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <label for="court_name"> Court Name </label>
                                             <input type="text" class="form-control" name="court_name"

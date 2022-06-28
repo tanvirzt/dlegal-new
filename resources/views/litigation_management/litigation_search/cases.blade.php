@@ -119,40 +119,10 @@
                                                             @enderror
                                                         </div>
                                                     </div>      
-                                                    <div class="form-group row">
-                                                        <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
-                                                        <div class="col-sm-8">
-                                                            <select name="case_type_id"
-                                                                    class="form-control select2">
-                                                                <option value="">Select</option>
-                                                                @foreach($case_types as $item)
-                                                                    <option
-                                                                        value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('case_type_id')<span
-                                                                class="text-danger">{{$message}}</span>@enderror
-                                                        </div>
-                                                    </div>
+                                                    
                                                                                                   
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
-                                                        <div class="col-sm-8">
-                                                                    <select name="matter_id"
-                                                                            id="matter_id"
-                                                                            class="form-control select2">
-                                                                        <option value="">Select</option>
-                                                                        @foreach($matter as $item)
-                                                                            <option
-                                                                                value="{{ $item->id }}" {{( old('matter_id') == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                            @error('matter_id')<span
-                                                                class="text-danger">{{$message}}</span>@enderror
-                                                        </div>
-                                                    </div>
                                                     <div class="form-group row">
                                                         <label for="case_category_id" class="col-sm-4 col-form-label">Case Category</label>
                                                         <div class="col-sm-8">
@@ -170,6 +140,38 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
+                                                        <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
+                                                        <div class="col-sm-8">
+                                                            <select name="case_type_id"
+                                                                    class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach($case_types as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('case_type_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
+                                                        <div class="col-sm-8">
+                                                                    <select name="matter_id"
+                                                                            id="matter_id"
+                                                                            class="form-control select2">
+                                                                        <option value="">Select</option>
+                                                                        @foreach($matter as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{( old('matter_id') == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                            @error('matter_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    {{-- <div class="form-group row">
                                                         <label for="case_subcategory_id" class="col-sm-4 col-form-label">Case Subcategory</label>
                                                         <div class="col-sm-8">
 
@@ -180,52 +182,85 @@
                                                             @error('case_subcategory_id')<span class="text-danger">{{$message}}</span>@enderror
 
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                     
                                                     <div class="form-group row">
-                                                        <label for="case_infos_division_id"
-                                                               class="col-sm-4 col-form-label">Division</label>
+                                                        <label for="client_division_id"
+                                                               class="col-sm-4 col-form-label">Division/Zone</label>
                                                         <div class="col-sm-8">
-                                                            <select name="case_infos_division_id"
-                                                                    class="form-control select2"
-                                                                    id="case_infos_division_id"
-                                                                    action="{{ route('find_district') }}">
-                                                                <option value="">Select</option>
-                                                                @foreach ($division as $item)
-                                                                    <option
-                                                                        value="{{ $item->id }}" {{(old('case_infos_division_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->division_name) }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('case_infos_division_id')<span
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <select name="client_division_id"
+                                                                            id="client_division_id"
+                                                                            class="form-control select2" action="{{ route('find_district') }}">
+                                                                        <option value="">Select</option>
+                                                                        @foreach ($division as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{(old('client_division_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->division_name) }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" class="form-control"
+                                                                           id="client_divisoin_write"
+                                                                           name="client_divisoin_write"
+                                                                           placeholder="Client Zone"
+                                                                           value="{{ old('client_divisoin_write') }}">
+                                                                </div>
+                                                            </div>
+                                                            @error('client_division_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+    
+                                                    <div class="form-group row">
+                                                        <label for="client_district_id"
+                                                               class="col-sm-4 col-form-label">District/Area</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <select name="client_district_id"
+                                                                            id="client_district_id"
+                                                                            class="form-control select2" action="{{ route('find-thana') }}">
+                                                                        <option value="">Select</option>
+    
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" class="form-control"
+                                                                           id="client_district_write"
+                                                                           name="client_district_write"
+                                                                           placeholder="Client Area"
+                                                                           value="{{ old('client_district_write') }}">
+                                                                </div>
+                                                            </div>
+    
+                                                            @error('client_district_id')<span
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="case_infos_district_id"
-                                                               class="col-sm-4 col-form-label">District</label>
+                                                        <label for="client_thana_id"
+                                                               class="col-sm-4 col-form-label">Thana/Branch</label>
                                                         <div class="col-sm-8">
-                                                            <select name="case_infos_district_id"
-                                                                    class="form-control select2"
-                                                                    id="case_infos_district_id"
-                                                                    action="{{ route('find-thana') }}">
-                                                                <option value=""> Select</option>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <select name="client_thana_id"
+                                                                            id="client_thana_id"
+                                                                            class="form-control select2">
+                                                                        <option value="">Select</option>
     
-                                                            </select>
-                                                            @error('case_infos_district_id')<span
-                                                                class="text-danger">{{$message}}</span>@enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="case_infos_thana_id"
-                                                               class="col-sm-4 col-form-label">Thana</label>
-                                                        <div class="col-sm-8">
-                                                            <select name="case_infos_thana_id"
-                                                                    id="case_infos_thana_id"
-                                                                    class="form-control select2">
-                                                                <option value="">Select</option>
-    
-                                                            </select>
-                                                            @error('case_infos_thana_id')<span
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" class="form-control"
+                                                                           id="client_thana_write"
+                                                                           name="client_thana_write"
+                                                                           placeholder="Client Branch"
+                                                                           value="{{ old('client_thana_write') }}">
+                                                                </div>
+                                                            </div>
+                                                            @error('client_thana_id')<span
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>

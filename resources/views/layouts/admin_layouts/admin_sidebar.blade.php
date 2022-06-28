@@ -2,10 +2,10 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
     <a href="#" class="brand-link">
-        <img src="{{ asset('images/admin_images/admin_profile/bclc logo 4.png')}}" alt="AdminLTE Logo"
+        {{-- <img src="{{ asset('images/admin_images/admin_profile/bclc logo 4.png')}}" alt="AdminLTE Logo"
              class="brand-image"
-             style="opacity:1">
-        <!-- <span style="font-size: 16px;" class="brand-text font-weight-light">BCLC</span> -->
+             style="opacity:1"> --}}
+        <h2 class="font-weight-light text-center">DLegal</h2>
     </a>
 
     <!-- Sidebar -->
@@ -112,6 +112,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('cabinet') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Cabinet </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('case-status') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Case Status </p>
@@ -129,12 +135,12 @@
                                         <p>Case Category</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a href="{{ route('case-subcategory') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Case Subcategory</p>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a href="{{ route('case-class') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -544,7 +550,7 @@
                                 <li class="nav-item">
                                     <a href="{{ route('labour-cases') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Labour Cases</p>
+                                        <p>Service Matter</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

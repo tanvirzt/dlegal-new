@@ -125,7 +125,7 @@ class LitigationCalenderController extends Controller
 
     public function search_cases(Request $request)
     {
-//        dd($request->all());
+    //    dd($request->all());
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
         $court = SetupCourt::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
@@ -184,14 +184,23 @@ class LitigationCalenderController extends Controller
             case $request->case_subcategory_id:
                 $query2 = $query->where('criminal_cases.case_subcategory_id', 'LIKE', "%{$request->case_subcategory_id}%");
                 break;
-            case $request->case_infos_division_id:
-                $query2 = $query->where('criminal_cases.case_infos_division_id', 'LIKE', "%{$request->case_infos_division_id}%");
+            case $request->client_division_id:
+                $query2 = $query->where('criminal_cases.client_division_id', 'LIKE', "%{$request->client_division_id}%");
                 break;
-            case $request->case_infos_district_id:
-                $query2 = $query->where('criminal_cases.case_infos_district_id', 'LIKE', "%{$request->case_infos_district_id}%");
+            case $request->client_divisoin_write:
+                $query2 = $query->where('criminal_cases.client_divisoin_write', 'LIKE', "%{$request->client_divisoin_write}%");
                 break;
-            case $request->case_infos_thana_id:
-                $query2 = $query->where('criminal_cases.case_infos_thana_id', 'LIKE', "%{$request->case_infos_thana_id}%");
+            case $request->client_district_id:
+                $query2 = $query->where('criminal_cases.client_district_id', 'LIKE', "%{$request->client_district_id}%");
+                break;
+            case $request->client_district_write:
+                $query2 = $query->where('criminal_cases.client_district_write', 'LIKE', "%{$request->client_district_write}%");
+                break;
+            case $request->client_thana_id:
+                $query2 = $query->where('criminal_cases.client_thana_id', 'LIKE', "%{$request->client_thana_id}%");
+                break;
+            case $request->client_thana_write:
+                $query2 = $query->where('criminal_cases.client_thana_write', 'LIKE', "%{$request->client_thana_write}%");
                 break;
             default:
                 $query2 = $query;

@@ -303,7 +303,43 @@
                                     <tr>
                                         <td>{{ $keys+1 }}</td>
                                         <td>
-                                            @if (!empty($value->case_infos_sub_seq_court_short_id || $value->sub_seq_court_short_write) )
+                                            @php
+                                                    $notes = explode(', ',$value->case_infos_sub_seq_court_short_id);
+                                                    // dd($notes);
+                                                    // dd(trim($notes));
+                                                @endphp
+                                                @if($value->case_infos_sub_seq_court_short_id)
+                                                    @if (count($notes)>1)
+                                                        @foreach ($notes as $pro)
+                                                            <li class="text-left">{{ $pro }}</li>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach ($notes as $pro)
+                                                            {{ $pro }}
+                                                        @endforeach
+                                                    @endif
+                                                    
+                                                @endif
+
+
+
+
+                                                @php
+                                                    $notes = explode(', ',$value->sub_seq_court_short_write);
+                                                @endphp
+                                                @if($value->sub_seq_court_short_write)
+                                                    @if (count($notes)>1)
+                                                        @foreach ($notes as $pro)
+                                                            <li class="text-left">{{ $pro }}</li>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach ($notes as $pro)
+                                                            {{ $pro }}
+                                                        @endforeach
+                                                    @endif
+                                                    
+                                                @endif
+                                            {{-- @if (!empty($value->case_infos_sub_seq_court_short_id || $value->sub_seq_court_short_write) )
                                                 @php
                                                     $court_name = explode(', ',$value->case_infos_sub_seq_court_short_id);
                                                 @endphp
@@ -361,7 +397,7 @@
                                                         @endforeach
                                                     @endif
                                                 @endif
-                                            @endif
+                                            @endif --}}
 
                                         </td>
                                         <td><a href="{{ route('view-criminal-cases', $value->id) }}"> {{ $value->case_infos_case_no ? $value->case_title_name.' '.$value->case_infos_case_no.'/'.$value->case_infos_case_year : '' }} </a></td>

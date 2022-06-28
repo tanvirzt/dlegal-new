@@ -50,7 +50,7 @@
                                             <td style="text-align: center; width:100%;" valign="top">
 
 
-                                                <span id="lblUnitName" class="HeaderStyle"><b>BCLC</b></span>
+                                                <span id="lblUnitName" class="HeaderStyle"><b>DLegal</b></span>
                                                 <br/>
                                                 <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag, Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
                                                 <br/>
@@ -65,7 +65,23 @@
                                                 <br/>
                                                     <span id="lblVoucherType" class="VoucherStyle">
                                                 <br/>
-                                                    <u><span style="padding: 5px;">Billings Log(Total: {{ $bill_amount }} ৳, Paid: {{ $payment_amount }} ৳, Due: {{ $due_amount }} ৳)</span></u>
+                                                    <u><span style="padding: 5px;">Criminal Case No. 
+                                                        {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
+                                                        @endif
+                                                        {{ $data->sub_seq_case_title_name }}
+                                                        @php
+                                                            $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+                                                            $key = array_key_last($case_infos_sub_seq_case_no);
+                                                            echo $case_infos_sub_seq_case_no[$key];
+                        
+                                                            $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
+                                                            $key = array_key_last($case_infos_sub_seq_case_year);
+                                                            $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                                            if ($last_case_no != null) {
+                                                                echo '/'.$last_case_no;
+                                                            }
+                                                        @endphp <br>
+                                                        (Total: {{ $bill_amount }} ৳, Paid: {{ $payment_amount }} ৳, Due: {{ $due_amount }} ৳)</span></u>
                                                 <br/>
                                                 <br/>
 

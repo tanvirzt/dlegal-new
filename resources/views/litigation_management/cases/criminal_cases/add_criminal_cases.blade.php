@@ -367,6 +367,37 @@
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
+                                                <h6 class="text-uppercase text-bold"><u> Case File Location </u>
+                                                </h6>
+                                                <div class="form-group row">
+                                                    <label for="cabinet_id"
+                                                           class="col-sm-4 col-form-label"> Cabinet Name </label>
+                                                    <div class="col-sm-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="cabinet_id"
+                                                                        id="cabinet_id"
+                                                                        class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($cabinet as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{  old('cabinet_id') == $item->id ? 'selected' : '' }}>{{ $item->cabinet_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="self_number"
+                                                                       name="self_number"
+                                                                       placeholder="Self Number"
+                                                                       value="{{ old('self_number') }}">
+                                                            </div>
+                                                        </div>
+                                                        @error('self_number')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                         <div class="card">
@@ -567,7 +598,7 @@
                                                                 <input type="text" class="form-control"
                                                                        id="client_divisoin_write"
                                                                        name="client_divisoin_write"
-                                                                       placeholder="Client Division"
+                                                                       placeholder="Client Zone"
                                                                        value="{{ old('client_divisoin_write') }}">
                                                             </div>
                                                         </div>
@@ -593,7 +624,7 @@
                                                                 <input type="text" class="form-control"
                                                                        id="client_district_write"
                                                                        name="client_district_write"
-                                                                       placeholder="Client District"
+                                                                       placeholder="Client Area"
                                                                        value="{{ old('client_district_write') }}">
                                                             </div>
                                                         </div>
@@ -619,7 +650,7 @@
                                                                 <input type="text" class="form-control"
                                                                        id="client_thana_write"
                                                                        name="client_thana_write"
-                                                                       placeholder="Client Thana"
+                                                                       placeholder="Client Branch"
                                                                        value="{{ old('client_thana_write') }}">
                                                             </div>
                                                         </div>
@@ -887,7 +918,7 @@
                                                                 <input type="text" class="form-control"
                                                                        id="opposition_divisoin_write"
                                                                        name="opposition_divisoin_write"
-                                                                       placeholder="Opposition Division"
+                                                                       placeholder="Opposition Zone"
                                                                        value="{{ old('opposition_divisoin_write') }}">
                                                             </div>
                                                         </div>
@@ -913,7 +944,7 @@
                                                                 <input type="text" class="form-control"
                                                                        id="opposition_district_write"
                                                                        name="opposition_district_write"
-                                                                       placeholder="Opposition District"
+                                                                       placeholder="Opposition Area"
                                                                        value="{{ old('opposition_district_write') }}">
                                                             </div>
                                                         </div>
@@ -939,7 +970,7 @@
                                                                 <input type="text" class="form-control"
                                                                        id="opposition_thana_write"
                                                                        name="opposition_thana_write"
-                                                                       placeholder="Opposition Thana"
+                                                                       placeholder="Opposition Branch"
                                                                        value="{{ old('opposition_thana_write') }}">
                                                             </div>
                                                         </div>

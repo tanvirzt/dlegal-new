@@ -40,6 +40,22 @@
                             </button>
                         </div>
                     @endif
+                    <h3 class="mt-2" style="color: #2f9d3d;">
+                        Criminal Case
+                        No.
+                        {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
+                        @endif
+                        {{ $data->sub_seq_case_title_name }}
+                        @php
+                            $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+                            $key = array_key_last($case_infos_sub_seq_case_no);
+                            echo $case_infos_sub_seq_case_no[$key];
+                            $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
+                            $key = array_key_last($case_infos_sub_seq_case_year);
+                            $last_case_no = $case_infos_sub_seq_case_year[$key];
+                            if ($last_case_no != null) {
+                                echo '/'.$last_case_no;
+                            }@endphp</h3>
                     <div class="card">
                         <div class="">
 
@@ -57,7 +73,10 @@
                                             <li class="">
                                                 <a data-toggle="tab" href="#activities"> Update Activities </a>
                                             </li>
+                                            
                                         </ul>
+                                        
+        
                                     </h3>
                                     <div class="float-right">
                                         <a href="{{ route('view-criminal-cases', $data->id) }}">
@@ -89,7 +108,7 @@
                                                             <div class="">
                                                                 <div class="card">
                                                                     <div class="card-body">
-                                                                        <h6 class="text-uppercase text-bold"><u> Basic Information </u>
+                                                                        <h6 class="text-uppercase text-bold"><u> Primary Information </u>
                                                                         </h6>
                                                                         <div class="form-group row">
                                                                             <label for="client" class="col-sm-4 col-form-label">Client
@@ -400,6 +419,36 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 @error('contact_person_name')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <h6 class="text-uppercase text-bold"><u> Case File Location </u>
+                                                                        </h6>
+                                                                        <div class="form-group row">
+                                                                            <label for="cabinet_id"
+                                                                                   class="col-sm-4 col-form-label"> Cabinet Name </label>
+                                                                            <div class="col-sm-8">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <select name="cabinet_id"
+                                                                                                id="cabinet_id"
+                                                                                                class="form-control select2">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach($cabinet as $item)
+                                                                                                <option
+                                                                                                    value="{{ $item->id }}" {{  $data->cabinet_id == $item->id ? 'selected' : '' }}>{{ $item->cabinet_name }}</option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <input type="text" class="form-control"
+                                                                                               id="self_number"
+                                                                                               name="self_number"
+                                                                                               placeholder="Self Number"
+                                                                                               value="{{ $data->self_number }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                @error('self_number')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
