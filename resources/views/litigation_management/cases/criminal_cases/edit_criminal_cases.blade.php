@@ -43,18 +43,18 @@
                     <h3 class="mt-2" style="color: #2f9d3d;">
                         Criminal Case
                         No.
-                        {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
+                        {{ $case_no_data->case_infos_case_no ? $case_no_data->case_infos_case_title_name.' '.$case_no_data->case_infos_case_no.' of '.$case_no_data->case_infos_case_year : '' }}@if ($case_no_data->sub_seq_case_title_name != null),
                         @endif
-                        {{ $data->sub_seq_case_title_name }}
+                        {{ $case_no_data->sub_seq_case_title_name }}
                         @php
-                            $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+                            $case_infos_sub_seq_case_no = explode(', ',trim($case_no_data->case_infos_sub_seq_case_no));
                             $key = array_key_last($case_infos_sub_seq_case_no);
                             echo $case_infos_sub_seq_case_no[$key];
-                            $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
+                            $case_infos_sub_seq_case_year = explode(', ',trim($case_no_data->case_infos_sub_seq_case_year));
                             $key = array_key_last($case_infos_sub_seq_case_year);
                             $last_case_no = $case_infos_sub_seq_case_year[$key];
                             if ($last_case_no != null) {
-                                echo '/'.$last_case_no;
+                                echo ' of '.$last_case_no;
                             }@endphp</h3>
                     <div class="card">
                         <div class="">

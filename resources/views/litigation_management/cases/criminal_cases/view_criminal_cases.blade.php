@@ -68,7 +68,7 @@
                                         $key = array_key_last($case_infos_sub_seq_case_year);
                                         $last_case_no = $case_infos_sub_seq_case_year[$key];
                                         if ($last_case_no != null) {
-                                            echo '/'.$last_case_no;
+                                            echo ' of '.$last_case_no;
                                         }
                                     @endphp
 
@@ -87,7 +87,7 @@
                                         $key = array_key_last($case_infos_sub_seq_case_year);
                                         $last_case_no = $case_infos_sub_seq_case_year[$key];
                                         if ($last_case_no != null) {
-                                            echo '/'.$last_case_no;
+                                            echo ' of '.$last_case_no;
                                         }
                                     @endphp
 
@@ -602,13 +602,14 @@
                                                             <td>{{ $data->case_subcategory }}</td>
                                                         </tr> --}}
                                                         <tr>
-                                                            <td>Case Matter</td>
-                                                            <td>{{ $data->matter_name }} {{ $data->matter_write }}</td>
-                                                        </tr>
-                                                        <tr>
                                                             <td>Case Type</td>
                                                             <td>{{ $data->case_types_name }}</td>
                                                         </tr>
+                                                        <tr>
+                                                            <td>Case Matter</td>
+                                                            <td>{{ $data->matter_name }} {{ $data->matter_write }}</td>
+                                                        </tr>
+                                                        
                                                         <tr>
                                                             <td>Case Title</td>
                                                             <td>{{ $data->case_infos_case_title_name }}</td>
@@ -3336,6 +3337,21 @@
                             </div>
                         </div> --}}
                         <div class="form-group row">
+                            <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
+                            <div class="col-sm-8">
+                                <select name="case_type_id"
+                                        class="form-control select2">
+                                    <option value="">Select</option>
+                                    @foreach($case_types as $item)
+                                        <option
+                                            value="{{ $item->id }}" {{( $data->case_type_id  == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('case_type_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
                             <div class="col-sm-8">
                                 <div class="row">
@@ -3364,21 +3380,7 @@
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
-                            <div class="col-sm-8">
-                                <select name="case_type_id"
-                                        class="form-control select2">
-                                    <option value="">Select</option>
-                                    @foreach($case_types as $item)
-                                        <option
-                                            value="{{ $item->id }}" {{( $data->case_type_id  == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('case_type_id')<span
-                                    class="text-danger">{{$message}}</span>@enderror
-                            </div>
-                        </div>
+                        
                         <div class="form-group row">
                             <label for="case_infos_case_title_id"
                                    class="col-sm-4 col-form-label">Case Title</label>
