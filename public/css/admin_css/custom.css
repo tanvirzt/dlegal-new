@@ -440,7 +440,7 @@ h3{
     font-weight: 600;
 }
 
-#data_table thead th, .view_table thead th {
+#data_table thead th, .view_table thead th, .calendar_list thead th{
     vertical-align: bottom;
     border-bottom: 0px solid #dee2e6;
     font-weight: 700;

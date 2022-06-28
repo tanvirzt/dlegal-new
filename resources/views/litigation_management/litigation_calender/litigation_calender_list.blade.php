@@ -284,7 +284,7 @@
                             </div>
 
                             <div class="card-body" style="padding: 0.52rem;">
-                                <table class="table table-bordered table-striped">
+                                <table class="table table-bordered table-striped calendar_list">
                                     <thead>
                                         <tr>
                                             <th>SL</th>
