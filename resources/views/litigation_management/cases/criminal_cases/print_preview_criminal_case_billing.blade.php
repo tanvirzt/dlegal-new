@@ -59,12 +59,10 @@
                                                 <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688 </span>
                                                 <br/>
                                                 <span id="lblUnitAddress" class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
-                                                <br/>
 
 
                                                 <br/>
                                                     <span id="lblVoucherType" class="VoucherStyle">
-                                                <br/>
                                                     <u><span style="padding: 5px;">Criminal Case No. 
                                                         {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
                                                         @endif
@@ -83,17 +81,25 @@
                                                         @endphp <br>
                                                         (Total: {{ $bill_amount }} ৳, Paid: {{ $payment_amount }} ৳, Due: {{ $due_amount }} ৳)</span></u>
                                                 <br/>
-                                                <br/>
 
                                             </td>
 
                                         </tr>
                                     </table>
-                                    <style type="text/css">
+                                    {{-- <style type="text/css">
                                         th, td {
                                             padding: 5px;
                                             text-align: center;
                                             width: auto;
+                                        }
+                                    </style> --}}
+                                    <style>
+                                        .data td, th, .data{
+                                            border: 1px solid #eeeeee;
+                                        }
+                                        .data th{
+                                            font-weight: 600;
+                                            background: #d3d3d3;
                                         }
                                     </style>
                                     <table class="data" style="width:100%;" id="printTable" cellpadding="0" cellspacing="0" border="1">

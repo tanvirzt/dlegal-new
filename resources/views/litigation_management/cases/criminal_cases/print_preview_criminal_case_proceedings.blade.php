@@ -40,6 +40,7 @@
                                         }
                                         .data th{
                                             font-weight: 600;
+                                            background: #d3d3d3;
                                         }
                                     </style>
                                     <table style="width: 100%;z-index:99;" width="100%">
@@ -59,10 +60,7 @@
                                                 <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688 </span>
                                                 <br/>
                                                 <span id="lblUnitAddress" class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
-                                                <br/>
-
-
-                                                <br/>
+                                                
                                                     <span id="lblVoucherType" class="VoucherStyle">
                                                 <br/>
                                                     <u><span style="padding: 5px;"> Criminal Case No. 
@@ -82,7 +80,6 @@
                                                             }
                                                         @endphp
                                                     </span></u>
-                                                <br/>
                                                 <br/>
 
                                             </td>

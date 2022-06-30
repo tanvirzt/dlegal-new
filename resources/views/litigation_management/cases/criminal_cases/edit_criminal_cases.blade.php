@@ -494,7 +494,7 @@
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
-                                                                        {{-- <div class="form-group row">
+                                                                        <div class="form-group row">
                                                                             <label for="client_subcategory_id"
                                                                                    class="col-sm-4 col-form-label">Client
                                                                                 Subcategory</label>
@@ -511,7 +511,7 @@
                                                                                 @error('client_subcategory_id')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
-                                                                        </div> --}}
+                                                                        </div>
                                                                         <div class="form-group row">
                                                                             <label for="client_id" class="col-sm-4 col-form-label">Client
                                                                                 Name</label>
@@ -824,7 +824,7 @@
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
-                                                                        {{-- <div class="form-group row">
+                                                                        <div class="form-group row">
                                                                             <label for="opposition_subcategory_id"
                                                                                    class="col-sm-4 col-form-label">Opposition
                                                                                 Subcategory</label>
@@ -841,7 +841,7 @@
                                                                                 @error('opposition_subcategory_id')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
-                                                                        </div> --}}
+                                                                        </div>
                                                                         <div class="form-group row">
                                                                             <label for="opposition_id" class="col-sm-4 col-form-label">Opposition
                                                                                 Name</label>

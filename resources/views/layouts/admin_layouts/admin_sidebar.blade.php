@@ -135,6 +135,18 @@
                                         <p>Case Category</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('matter') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Case Matter</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('case-types') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Case Type</p>
+                                    </a>
+                                </li>
                                 {{-- <li class="nav-item">
                                     <a href="{{ route('case-subcategory') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -159,18 +171,7 @@
                                         <p>Complainant</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('client-category') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Party Category</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('client-subcategory') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Party Subcategory</p>
-                                    </a>
-                                </li>
+                                
                                 <li class="nav-item">
                                     <a href="{{ route('coordinator') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -243,12 +244,7 @@
                                         <p>Law</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('section') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Section</p>
-                                    </a>
-                                </li>
+                                
                                 <li class="nav-item">
                                     <a href="{{ route('court-last-order') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -267,16 +263,17 @@
                                         <p>Legal Service</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('matter') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Case Matter</p>
-                                    </a>
-                                </li>
+                                
                                 <li class="nav-item">
                                     <a href="{{ route('mode') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Mode of received</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('next-date-reason') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Next date fixed for</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -291,10 +288,17 @@
                                         <p>Opposition(Which Party)</p>
                                     </a>
                                 </li>
+                                
                                 <li class="nav-item">
-                                    <a href="{{ route('profession') }}" class="nav-link">
+                                    <a href="{{ route('client-category') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Profession</p>
+                                        <p>Party Category</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('client-subcategory') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Party Subcategory</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -307,6 +311,12 @@
                                     <a href="{{ route('payment-mode') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Payment Mode</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('profession') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Profession</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -328,24 +338,19 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('next-date-reason') }}" class="nav-link">
+                                    <a href="{{ route('section') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Next date fixed for</p>
+                                        <p>Section</p>
                                     </a>
                                 </li>
-
+                                
                                 <li class="nav-item">
                                     <a href="{{ route('person-title') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Title</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('case-types') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Type of Cases</p>
-                                    </a>
-                                </li>
+                                
                                 <li class="nav-item">
                                     <a href="{{ route('region') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>

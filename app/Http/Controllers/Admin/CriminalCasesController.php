@@ -1516,6 +1516,19 @@ $case_no_data = DB::table('criminal_cases')
         return response()->download($file_path);
     }
 
+    public function view_criminal_cases_file($id)
+    {
+        // dd($id);
+
+        $file = CriminalCasesFile::where('id',$id)->firstOrFail();
+
+        $doc_explode = explode('.', $file->uploaded_document);
+        // dd($doc_explode[1]);
+
+        return view('litigation_management.cases.criminal_cases.view_criminal_cases_files',compact('file','doc_explode'));
+
+    }
+
     public function update_criminal_cases_status(Request $request, $id)
     {
 //         dd($request->all());
@@ -1690,22 +1703,25 @@ $case_no_data = DB::table('criminal_cases')
         $data->activity_forwarded_to_write = $request->activity_forwarded_to_write;
         $data->save();
 
-        $notifications = new CasesNotifications();
-        $notifications->case_id = $id;
-        $notifications->case_type = "Criminal Cases";
-        $notifications->case_no = $request->case_no;
-        $notifications->send_by = Auth::guard('admin')->user()->email;
-        $notifications->received_by = $external_council->email;
-        $notifications->save();
+        if($request->activity_forwarded_to_id != null) {
 
-        $details = [
-            'name' => $external_council->first_name.' '.$external_council->middle_name,
-            'case_id' => 'Criminal Cases No: '.$request->case_no,
-            'messages' => Auth::guard('admin')->user()->name.' has been send this case to you.',
-        ];
+            $notifications = new CasesNotifications();
+            $notifications->case_id = $id;
+            $notifications->case_type = "Criminal Cases";
+            $notifications->case_no = $request->case_no;
+            $notifications->send_by = Auth::guard('admin')->user()->email;
+            $notifications->received_by = $external_council->email;
+            $notifications->save();
 
-        Mail::to($external_council->email)->send(new CaseForwardedMail($details));
+            $details = [
+                'name' => $external_council->first_name.' '.$external_council->middle_name,
+                'case_id' => 'Criminal Cases No: '.$request->case_no,
+                'messages' => Auth::guard('admin')->user()->name.' has been send this case to you.',
+            ];
 
+            Mail::to($external_council->email)->send(new CaseForwardedMail($details));
+
+        }
 
         session()->flash('success', 'Case Status Updated Successfully');
         return redirect()->back();
@@ -1960,26 +1976,27 @@ $case_no_data = DB::table('criminal_cases')
         $data->activity_forwarded_to_write = $request->activity_forwarded_to_write;
         $data->save();
 
-        $external_council = SetupExternalCouncil::where('id', $data->activity_forwarded_to_id)->first();
-        // dd($external_council);
+        if($request->activity_forwarded_to_id != null) {
+            $external_council = SetupExternalCouncil::where('id', $data->activity_forwarded_to_id)->first();
+            // dd($external_council);
 
-        $notifications = new CasesNotifications();
-        $notifications->case_id = $case_id->case_id;
-        $notifications->case_type = "Criminal Cases";
-        $notifications->case_no = $request->case_no;
-        $notifications->send_by = Auth::guard('admin')->user()->email;
-        $notifications->received_by = $external_council->email;
-        $notifications->save();
+            $notifications = new CasesNotifications();
+            $notifications->case_id = $case_id->case_id;
+            $notifications->case_type = "Criminal Cases";
+            $notifications->case_no = $request->case_no;
+            $notifications->send_by = Auth::guard('admin')->user()->email;
+            $notifications->received_by = $external_council->email;
+            $notifications->save();
 
 
-        $details = [
-            'name' => $external_council->first_name.' '.$external_council->middle_name.' '.$external_council->last_name,
-            'case_id' => 'Criminal Cases No: '.$request->case_no,
-            'messages' => Auth::guard('admin')->user()->name.' has been send this case to you.',
-        ];
+            $details = [
+                'name' => $external_council->first_name.' '.$external_council->middle_name.' '.$external_council->last_name,
+                'case_id' => 'Criminal Cases No: '.$request->case_no,
+                'messages' => Auth::guard('admin')->user()->name.' has been send this case to you.',
+            ];
 
-        Mail::to($external_council->email)->send(new CaseForwardedMail($details));
-
+            Mail::to($external_council->email)->send(new CaseForwardedMail($details));
+        }
 
         session()->flash('success', 'Case Activity Updated Successfully');
         return redirect()->route('view-criminal-cases',$case_id->case_id);

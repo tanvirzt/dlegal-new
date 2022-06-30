@@ -119,7 +119,36 @@
                                                             @enderror
                                                         </div>
                                                     </div>      
-                                                    
+                                                    <div class="form-group row">
+                                                        <label for="client_id" class="col-sm-4 col-form-label">Client
+                                                            Name</label>
+                                                        <div class="col-sm-8">
+    
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <select name="client_id"
+                                                                            id="client_id"
+                                                                            class="form-control select2">
+                                                                        <option value="">Select</option>
+                                                                        @foreach($client as $item)
+                                                                            <option
+                                                                                value="{{ $item->client_name }}" {{  old('client_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" class="form-control"
+                                                                           id="client_name_write"
+                                                                           name="client_name_write"
+                                                                           placeholder="Client Zone"
+                                                                           value="{{ old('client_name_write') }}">
+                                                                </div>
+                                                            </div>
+    
+                                                            @error('client_name')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
                                                                                                   
                                                 </div>
                                                 <div class="col-md-6">
@@ -308,7 +337,7 @@
                                         <th class="text-center"> Next Date</th>
                                         <th class="text-center"> Fixed for</th>
                                         <th class="text-center"> Case No</th>
-                                        <th class="text-center"> Sub-Seq. Case No</th>
+                                        <th class="text-center"> S. Case No</th>
                                         <th class="text-center"> Court Name</th>
                                         <th class="text-center"> Complainant District </th>
                                         <th class="text-center"> Complainant </th>

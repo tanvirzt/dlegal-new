@@ -12,6 +12,7 @@ use App\Models\SetupCourt;
 use App\Models\SetupCaseCategory;
 use App\Models\SetupComplainant;
 use App\Models\SetupMatter;
+use App\Models\SetupClient;
 
 class LitigationCalenderController extends Controller
 {
@@ -120,8 +121,10 @@ class LitigationCalenderController extends Controller
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
         $complainant = SetupComplainant::where('delete_status', 0)->orderBy('complainant_name', 'asc')->get();
         $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
+        $client = SetupClient::where('delete_status', 0)->orderBy('client_name','asc')->get();
 
-        return view('litigation_management.litigation_search.cases', compact('division', 'case_types', 'court', 'case_category', 'complainant', 'matter'));
+
+        return view('litigation_management.litigation_search.cases', compact('division', 'case_types', 'court', 'case_category', 'complainant', 'matter','client'));
     }
 
     public function search_cases(Request $request)
@@ -133,6 +136,7 @@ class LitigationCalenderController extends Controller
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
         $complainant = SetupComplainant::where('delete_status', 0)->orderBy('complainant_name', 'asc')->get();
         $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
+        $client = SetupClient::where('delete_status', 0)->orderBy('client_name','asc')->get();
 
 
         if ($request->received_date != "dd/mm/yyyy") {
@@ -203,6 +207,12 @@ class LitigationCalenderController extends Controller
             case $request->client_thana_write:
                 $query2 = $query->where('criminal_cases.client_thana_write', 'LIKE', "%{$request->client_thana_write}%");
                 break;
+            case $request->client_id:
+                $query2 = $query->where('criminal_cases.client_id', 'LIKE', "%{$request->client_id}%");
+                break;
+            case $request->client_name_write:
+                $query2 = $query->where('criminal_cases.client_name_write', 'LIKE', "%{$request->client_name_write}%");
+                break;
             default:
                 $query2 = $query;
         }
@@ -222,7 +232,7 @@ class LitigationCalenderController extends Controller
             'case_infos_title.case_title_name as sub_seq_case_title_name')
             ->get();
 // dd($data);
-        return view('litigation_management.litigation_search.cases', compact('data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter'));
+        return view('litigation_management.litigation_search.cases', compact('data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter','client'));
     }
 
     public function search_litigation_calendar_short(Request $request)

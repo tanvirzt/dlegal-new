@@ -236,10 +236,10 @@
                                                             <td>Client Category</td>
                                                             <td> {{ $data->client_category_name }} </td>
                                                         </tr>
-                                                        {{-- <tr>
+                                                        <tr>
                                                             <td>Client Subcategory</td>
                                                             <td>{{ $data->client_subcategory_name }}</td>
-                                                        </tr> --}}
+                                                        </tr>
                                                         <tr>
                                                             <td>Client Name</td>
                                                             <td>
@@ -347,10 +347,10 @@
                                                             <td>Opposition Category</td>
                                                             <td> {{ $data->opposition_category_name }} </td>
                                                         </tr>
-                                                        {{-- <tr>
+                                                        <tr>
                                                             <td>Opposition Subcategory</td>
                                                             <td>{{ $data->opposition_subcategory_name }}</td>
-                                                        </tr> --}}
+                                                        </tr>
                                                         <tr>
                                                             <td>Opposition Name</td>
                                                             <td>
@@ -1177,7 +1177,7 @@
                                             $days_count = Carbon\Carbon::parse($data->date_of_filing)->diffInDays($now);
                                         @endphp
 
-                                        <span class="font-italic custom_font"> (Total Elapsed Time:
+                                        <span class="font-italic custom_font text-capitalize"> (Total Elapsed Time:
 
                                            {{ $days_count }} Days) </span>
                                     </h3>
@@ -1201,7 +1201,7 @@
                                     <table class="table view_table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th class="text-nowrap">Date</th>
+                                            <th class="text-nowrap" width="90px;">Date</th>
                                             <th class="text-nowrap">Fixed For</th>
                                             <th class="text-nowrap">Court Proceeding</th>
                                             <th class="text-nowrap">Court Order</th>
@@ -1210,14 +1210,14 @@
                                             <th class="text-nowrap">Day Note</th>
                                             <th class="text-nowrap">Engaged Advocates</th>
                                             <th class="text-nowrap">Action</th>
-                                            <th class="text-nowrap" width="80px;">Update</th>
+                                            <th class="text-nowrap" width="90px;">Update</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($case_logs as $logs)
 
                                             <tr>
-                                                <td width="8%"> {{ date('d-m-Y', strtotime($logs->updated_order_date)) }} </td>
+                                                <td > {{ date('d-m-Y', strtotime($logs->updated_order_date)) }} </td>
                                                 <td width="10%"> {{ $logs->next_date_reason_name }} {{ $logs->updated_fixed_for_write }} </td>
                                                 <td>
                                                     @php
@@ -1304,7 +1304,7 @@
                                     <table class="table view_table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th class="text-nowrap">Date</th>
+                                            <th class="text-nowrap" width="90px;">Date</th>
                                             <th class="text-nowrap">Activity/Action</th>
                                             <th class="text-nowrap">Progress</th>
                                             <th class="text-nowrap">Mode</th>
@@ -1313,7 +1313,7 @@
                                             <th class="text-nowrap">Forwarded To</th>
                                             <th class="text-nowrap">Remarks</th>
                                             <th class="text-nowrap">Action</th>
-                                            <th class="text-nowrap">Update</th>
+                                            <th class="text-nowrap" width="90px;">Update</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -1410,11 +1410,18 @@
                                                                 title="Delete"><i class="fas fa-trash"></i></button>
                                                     </form>
 
-                                                    <a href="{{ route('download-criminal-cases-files', $files->id) }}">
+                                                    {{-- <a href="{{ route('download-criminal-cases-files', $files->id) }}">
                                                         <button
                                                             class="btn btn-outline-success btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Download"><i class="fas fa-download"></i></button>
+                                                    </a> --}}
+
+                                                    <a href="{{ route('view-criminal-cases-files', $files->id) }}" target="_blank">
+                                                        <button
+                                                            class="btn btn-outline-success btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Download"><i class="fas fa-eye"></i></button>
                                                     </a>
+
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -1426,7 +1433,7 @@
 
                             <div class="card" id="section4">
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Billings Log(Total: {{ $bill_amount }} ৳, Paid: {{ $payment_amount }} ৳, Due: {{ $due_amount }} ৳)</h3>
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight" id="heading">Billings Log <span class="font-italic custom_font text-capitalize">(Total: <span style="color: darkgreen;"> {{ $bill_amount }} ৳</span>, Paid: {{ $payment_amount }} ৳, Due: <span style="color: red;"> {{ $due_amount }} ৳ </span>) </span></h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-bill"
                                         data-toggle="tooltip" data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button>
@@ -1442,10 +1449,10 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table class="table view_table table-bordered table-striped data_table">
+                                    <table class="table view_table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th width="10%">Bill for the Date</th>
+                                            <th width="80px;">Bill for the Date</th>
                                             <th>Bill Particulars</th>
                                             <th>Bill Type</th>
                                             <th>Bill Schedule</th>
@@ -1490,7 +1497,18 @@
                                                 <td> {{ $bill_logs->payment_amount }} </td>
                                                 <td> {{ $bill_logs->payment_received }} </td>
                                                 <td> {{ $bill_logs->payment_mode_name }} </td>
-                                                <td> {{ $bill_logs->paid_due }} </td>
+                                                <td>
+                                                
+                                                    @if ($bill_logs->paid_due == 'Paid')
+                                                        <button type="button"
+                                                            class="btn-custom btn-success-custom text-uppercase"> {{ $bill_logs->paid_due }} 
+                                                        </button>
+                                                    @else
+                                                        <button type="button"
+                                                            class="btn-custom btn-danger-custom text-uppercase">{{ $bill_logs->paid_due }}</button>
+                                                    @endif
+
+                                                </td>
                                                 <td>
                                                     <a href="{{ route('edit-criminal-cases-billing', $bill_logs->id) }}">
                                                         <button
@@ -2559,7 +2577,7 @@
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
-                        {{-- <div class="form-group row">
+                        <div class="form-group row">
                             <label for="client_subcategory_id"
                                    class="col-sm-4 col-form-label">Client
                                 Subcategory</label>
@@ -2576,7 +2594,7 @@
                                 @error('client_subcategory_id')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="form-group row">
                             <label for="client_id" class="col-sm-4 col-form-label">Client
                                 Name</label>
@@ -2923,7 +2941,7 @@
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
-                        {{-- <div class="form-group row">
+                        <div class="form-group row">
                             <label for="opposition_subcategory_id"
                                    class="col-sm-4 col-form-label">Opposition
                                 Subcategory</label>
@@ -2940,7 +2958,7 @@
                                 @error('opposition_subcategory_id')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="form-group row">
                             <label for="opposition_id" class="col-sm-4 col-form-label">Opposition
                                 Name</label>

@@ -79,7 +79,7 @@ html, body {
     font-weight: 400;
     overflow-x: hidden;
     overflow-y: auto;
-    font-size: 12px !important;
+    font-size: 11px !important;
 }
 .card.card-danger.menu-open p {
     margin-bottom: -2px !important;
@@ -448,7 +448,7 @@ h3{
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(75, 137, 196, 0.2);
+    background-color: rgba(58, 175, 169, 0.2);
 }
 .page-item.active .page-link {
     z-index: 3;
@@ -624,7 +624,7 @@ h3{
 .header_links {
     position: fixed;
     top: 10px;
-    left: 24rem;
+    left: 26rem;
     z-index: 98; 
     color: #2f9d3d;
     /* font-family: "parisplus-std", sans-serif; */
@@ -648,5 +648,5 @@ sup{
 }
 
 th{
-    background: #4e92d9;
+    background: #3AAFA9;
 }

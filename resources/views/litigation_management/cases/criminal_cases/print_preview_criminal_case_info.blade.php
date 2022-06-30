@@ -29,7 +29,15 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-
+                            <style>
+                                .data td, th, .data{
+                                    border: 1px solid #eeeeee;
+                                }
+                                .data th{
+                                    font-weight: 600;
+                                    background: #d3d3d3;
+                                }
+                            </style>
                             <table style="width: 100%;z-index:99;" width="100%">
 
                                 <tr>
@@ -47,10 +55,6 @@
                                         <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688 </span>
                                         <br/>
                                         <span id="lblUnitAddress" class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
-                                        <br/>
-
-
-                                        <br/>
                                             <span id="lblVoucherType" class="VoucherStyle">
                                         <br/>
                                             <u><span style="padding: 5px;">Criminal Case No. 
@@ -73,7 +77,6 @@
                                             
                                             
                                             </span></u>
-                                        <br/>
                                         <br/>
 
                                     </td>
