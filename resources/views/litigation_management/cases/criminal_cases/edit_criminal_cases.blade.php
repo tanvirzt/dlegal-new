@@ -1441,7 +1441,7 @@
                                                                             <div class="col-sm-8">
                                                                                 <select name="case_category_id" id="case_category_id"
                                                                                         class="form-control select2"
-                                                                                        action="{{ route('find-case-subcategory') }}">
+                                                                                        action="{{ route('find-case-type') }}">
                                                                                     <option value="">Select</option>
                                                                                     @foreach($case_category as $item)
                                                                                         <option
@@ -1475,10 +1475,10 @@
                                                                         <div class="form-group row">
                                                                             <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
                                                                             <div class="col-sm-8">
-                                                                                <select name="case_type_id"
+                                                                                <select name="case_type_id" id="case_type_id"
                                                                                         class="form-control select2">
                                                                                     <option value="">Select</option>
-                                                                                    @foreach($case_types as $item)
+                                                                                    @foreach($exist_case_type as $item)
                                                                                         <option
                                                                                             value="{{ $item->id }}" {{( $data->case_type_id  == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
                                                                                     @endforeach
@@ -2681,7 +2681,7 @@
                                                                                             <option value="">Select</option>
                                                                                             @foreach($next_date_reason as $item)
                                                                                                 <option
-                                                                                                    value="{{ $item->id }}" @if (!empty($previous_activity->updated_fixed_for_id) && $previous_activity->updated_fixed_for_id == $item->id)
+                                                                                                    value="{{ $item->id }}" @if (!empty($previous_activity->updated_index_fixed_for_id) && $previous_activity->updated_index_fixed_for_id == $item->id)
                                                                                                     selected @else {{(old('updated_fixed_for_id') == $item->id ? 'selected':'')}} @endif>{{ $item->next_date_reason_name }}</option>
                                                                                             @endforeach
                                                                                         </select>

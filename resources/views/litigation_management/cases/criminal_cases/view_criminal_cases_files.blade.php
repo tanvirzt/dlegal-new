@@ -39,17 +39,12 @@
                         class="btn btn-outline-success btn-sm" data-toggle="tooltip"
                         data-placement="top" title="Download"><i class="fas fa-download"></i> Download</button>
                 </a>
-                @if ($doc_explode[1] == 'png' )
+                @if ($doc_explode[1] == 'png' || $doc_explode[1] == 'jpeg' || $doc_explode[1] == 'jpg' || $doc_explode[1] == 'gif')
                     <img src="{{asset('files/criminal_cases/'.$file->uploaded_document)}}"/>
                 @elseif ($doc_explode[1] == 'pdf' )
                     <iframe src="{{asset('files/criminal_cases/'.$file->uploaded_document)}}" frameborder="0" style="width:100%;min-height:640px;"></iframe>
                 @elseif ($doc_explode[1] == 'doc' ||  $doc_explode[1] == 'docx')
-                <iframe src="https://view.officeapps.live.com/op/view.aspx?src={{url("https://file-examples.com/wp-content/uploads/2017/02/file-sample_100kB.doc")}}" frameborder="0" style="width: 62%; min-height: 562px;"></iframe>
-                {{-- <iframe src='https://view.officeapps.live.com/op/embed.aspx?src=http://localhost/dlegal-software/public/admin/files/criminal_cases/{{ $file->uploaded_document }}' width='100%' height='100%' frameborder='0'>This is an embedded <a target='_blank' href='http://office.com'>Microsoft Office</a> document, powered by <a target='_blank' href='http://office.com/webapps'>Office Online</a>.</iframe> --}}
-                {{-- <iframe src='https://view.officeapps.live.com/op/embed.aspx?src=http%3A%2F%2Fieee802%2Eorg%3A80%2Fsecmail%2FdocIZSEwEqHFr%2Edoc' width='100%' height='100%' frameborder='0'>This is an embedded <a target='_blank' href='http://office.com'>Microsoft Office</a> document, powered by <a target='_blank' href='http://office.com/webapps'>Office Online</a>.</iframe> --}}
-                {{-- <iframe src='https://view.officeapps.live.com/op/embed.aspx?src={{ asset('files/criminal_cases/'.$file->uploaded_document) }}' width='1366px' height='623px' frameborder='0'>This is an embedded <a target='_blank' href='http://office.com'>Microsoft Office</a> document, powered by <a target='_blank' href='http://office.com/webapps'>Office Online</a>.</iframe> --}}
-                {{-- <iframe src="https://view.officeapps.live.com/op/view.aspx?src={{ asset('files/criminal_cases/'.$file->uploaded_document) }}" frameborder="0" style="width: 62%; min-height: 562px;"></iframe> --}}
-                    {{-- <iframe src="https://view.officeapps.live.com/op/view.aspx?src={{asset('files/criminal_cases/'.$file->uploaded_document)}}" frameborder="0" style="width:100%;min-height:640px;"></iframe> --}}
+                    <iframe src="https://view.officeapps.live.com/op/view.aspx?src={{url("http://www.dlegal.info/dev/public/files/criminal_cases/".$file->uploaded_document)}}" frameborder="0" style="width: 100%; min-height: 842px;"></iframe>
                 @endif
 
 

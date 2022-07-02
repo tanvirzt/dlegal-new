@@ -59,6 +59,12 @@ class HighCourtCasesController extends Controller
         return response()->json($data);
     }
 
+    public function find_case_type(Request $request)
+    {
+        $data = SetupCaseTypes::where(['case_category_id' => $request->case_category_id, 'delete_status' => 0])->get();
+        return response()->json($data);
+    }
+
     public function add_high_court_cases()
     {
 

@@ -1229,7 +1229,7 @@
                                                     <div class="col-sm-8">
                                                         <select name="case_category_id" id="case_category_id"
                                                                 class="form-control select2"
-                                                                action="{{ route('find-case-subcategory') }}">
+                                                                action="{{ route('find-case-type') }}">
                                                             <option value="">Select</option>
                                                             @foreach($case_category as $item)
                                                                 <option
@@ -1260,13 +1260,13 @@
                                                 <div class="form-group row">
                                                     <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
                                                     <div class="col-sm-8">
-                                                        <select name="case_type_id"
+                                                        <select name="case_type_id" id="case_type_id"
                                                                 class="form-control select2">
                                                             <option value="">Select</option>
-                                                            @foreach($case_types as $item)
+                                                            {{-- @foreach($case_types as $item)
                                                                 <option
                                                                     value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                         @error('case_type_id')<span
                                                             class="text-danger">{{$message}}</span>@enderror

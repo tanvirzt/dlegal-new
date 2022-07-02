@@ -488,6 +488,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('delete-section/{id}','AdminSetupController@delete_section')->name('delete-section');
 
         Route::get('find-case-subcategory','HighCourtCasesController@find_case_subcategory')->name('find-case-subcategory');
+        Route::get('find-case-type','HighCourtCasesController@find_case_type')->name('find-case-type');
 
         Route::get('client-category', 'AdminSetupController@client_category')->name('client-category');
         Route::get('add-client-category','AdminSetupController@add_client_category')->name('add-client-category');

@@ -48,7 +48,7 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Edit Case Title</h3>
+                                <h3 class="card-title" id="heading">Edit Class of Cases</h3>
                             </div>
 
                             <form action="{{ route('update-case-title',$data->id) }}" method="post">

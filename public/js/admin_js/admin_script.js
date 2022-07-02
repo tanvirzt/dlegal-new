@@ -1291,20 +1291,20 @@ $(document).ready(function () {
                 success: function (data) {
                     // console.log(data);
                     if (data) {
-                        $('#case_subcategory_id').empty();
-                        $('#case_subcategory_id').focus;
-                        $('#case_subcategory_id').append('<option value="">Select</option>');
+                        $('#case_type_id').empty();
+                        $('#case_type_id').focus;
+                        $('#case_type_id').append('<option value="">Select</option>');
                         $.each(data, function (key, value) {
-                            $('select[name="case_subcategory_id"]').append('<option value="' + value.id + '">' + value.case_subcategory + '</option>');
+                            $('select[name="case_type_id"]').append('<option value="' + value.id + '">' + value.case_types_name + '</option>');
                         });
                     } else {
-                        $('#case_subcategory_id').empty();
+                        $('#case_type_id').empty();
                     }
                 }
             });
         } else {
-            $('#case_subcategory_id').empty();
-            $('#case_subcategory_id').append('<option value="">Select</option>');
+            $('#case_type_id').empty();
+            $('#case_type_id').append('<option value="">Select</option>');
         }
     });
 
