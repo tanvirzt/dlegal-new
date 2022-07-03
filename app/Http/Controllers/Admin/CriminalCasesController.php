@@ -400,7 +400,6 @@ $created_case_id = 'LCR-000'.$sl;
                 $original_name = $file->getClientOriginalName();
                 $name = $original_name;
                 $file->move(public_path('files/criminal_cases'), $name);
-
                 $file = new CriminalCasesFile();
                 $file->case_id = $data->id;
                 $file->uploaded_document = $name;
@@ -957,6 +956,7 @@ $case_no_data = DB::table('criminal_cases')
             $steps->recovery_seizure_articles = $request->recovery_seizure_articles;
             $steps->summary_facts = $request->summary_facts;
             $steps->case_info_remarks = $request->case_info_remarks;
+            $steps->case_steps_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
             $steps->save();
 
 // dd('asdfadf');
@@ -964,7 +964,6 @@ $case_no_data = DB::table('criminal_cases')
         }else if ($request->case_steps) {
             
             $steps = CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
-            $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
             $steps->case_steps_filing_copy = $request->case_steps_filing_copy;
             $steps->case_steps_filing_yes_no = $request->case_steps_filing_yes_no ? 'Yes' : 'No';
             $steps->taking_cognizance = $request->taking_cognizance == 'dd-mm-yyyy' || $request->taking_cognizance == 'NaN-NaN-NaN' ? null : $request->taking_cognizance;
@@ -1464,12 +1463,13 @@ $case_no_data = DB::table('criminal_cases')
         $latest = DB::table('criminal_case_status_logs')
             ->leftJoin('setup_case_statuses', 'criminal_case_status_logs.updated_case_status_id', '=', 'setup_case_statuses.id')
             ->leftJoin('setup_next_date_reasons', 'criminal_case_status_logs.updated_fixed_for_id', '=', 'setup_next_date_reasons.id')
+            ->leftJoin('setup_next_date_reasons as index_fixed_for', 'criminal_case_status_logs.updated_index_fixed_for_id', '=', 'index_fixed_for.id')
 //            ->orderBy('created_at','desc')
-            ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name')
+            ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name','index_fixed_for.next_date_reason_name as index_fixed_for_reason_name')
             ->where('criminal_case_status_logs.case_id', $id)
             ->latest()->first();
 
-//        dd($latest);
+    //    dd($latest);
 
         //        $latest = json_decode(json_encode($latest));
 //        echo "<pre>";print_r($latest);die();
@@ -1533,7 +1533,7 @@ $case_no_data = DB::table('criminal_cases')
 
     public function update_criminal_cases_status(Request $request, $id)
     {
-//         dd($request->all());
+    //     dd($request->all());
 
     //    $data = json_decode(json_encode($request->all()));
     //    echo "<pre>";print_r($data);die();
@@ -1561,6 +1561,7 @@ $case_no_data = DB::table('criminal_cases')
         $updated_day_notes_id = $request->updated_day_notes_id ? implode(', ',$request->updated_day_notes_id) : null;
         $status = CriminalCase::find($id);
         $status->next_date = $next_date;
+        $status->updated_fixed_for_id = $request->updated_fixed_for_id;
         $status->next_date_fixed_id = $request->updated_index_fixed_for_id;
         $status->updated_day_notes_id = $updated_day_notes_id.', '.$request->updated_day_notes_write;
         $status->updated_remarks_or_steps_taken = $request->updated_remarks;
@@ -2469,6 +2470,19 @@ $case_no_data = DB::table('criminal_cases')
             ->get();
 // dd($data);
         return view('litigation_management.cases.criminal_cases.criminal_cases', compact('data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter'));
+    }
+
+    public function update_criminal_cases_status_column(Request $request, $id)
+    {
+
+        $data = CriminalCaseStatusLog::where('case_id',$id)->latest()->first();
+
+        $data->updated_case_status_id = $request->updated_case_status_id;
+        $data->save();
+
+        session()->flash('success', 'Case of the Status Updated Successfully.');
+        return redirect()->back();
+
     }
 
 }

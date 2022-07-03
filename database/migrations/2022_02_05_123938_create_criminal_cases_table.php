@@ -29,6 +29,7 @@ class CreateCriminalCasesTable extends Migration
             $table->string('case_no')->nullable();
             $table->integer('name_of_the_court_id')->nullable();
             $table->string('next_date')->nullable();
+            $table->integer('updated_fixed_for_id')->nullable();
             $table->integer('next_date_fixed_id')->nullable();
             $table->string('received_date')->nullable();
             $table->integer('mode_of_receipt_id')->nullable();

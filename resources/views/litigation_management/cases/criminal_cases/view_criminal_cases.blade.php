@@ -873,10 +873,10 @@
                                                             <td>Case Filing Date</td>
                                                             <td>{{ $data->date_of_filing }}</td>
                                                         </tr>
-                                                        <tr>
+                                                        {{-- <tr>
                                                             <td>Status of the Cases</td>
                                                             <td>{{ $data->case_status_name }}</td>
-                                                        </tr>
+                                                        </tr> --}}
 
                                                         <tr>
                                                             <td>Complainant/Informant Name</td>
@@ -972,7 +972,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Amount of Money</td>
-                                                            <td>{{ number_format($edit_case_steps->amount_of_money, 2) }}</td>
+                                                            <td>{{ number_format($edit_case_steps->amount_of_money, 0) }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Another Claim(if any)</td>
@@ -1044,6 +1044,10 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h6 class="text-uppercase text-bold"><u> Status of the Case </u>
+                                                        <button type="button" class="btn btn-info btn-sm float-right" data-toggle="modal"
+                                                                data-target="#modal-lg-status-of-the-case" data-toggle="tooltip"
+                                                                data-placement="top" title="Update Lawyers Information"><i class="fas fa-edit"></i>
+                                                        </button>
                                                     </h6>
                                                     <table class="table table-bordered">
 
@@ -1054,12 +1058,16 @@
                                                             <td width="50%"> @if(!empty($latest)) {{ $latest->case_status_name }} @endif</td>
                                                         </tr>
                                                         <tr>
+                                                            <td>Fixed For</td>
+                                                            <td> @if(!empty($latest))  {{ $latest->next_date_reason_name }} @endif </td>
+                                                        </tr>
+                                                        <tr>
                                                             <td>Next Date</td>
                                                             <td> {{ date('d-m-Y', strtotime($data->next_date)) }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Next Date Fixed For</td>
-                                                            <td> @if(!empty($latest))  {{ $latest->next_date_reason_name }} @endif </td>
+                                                            <td> @if(!empty($latest))  {{ $latest->index_fixed_for_reason_name }} @endif </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Remarks</td>
@@ -1454,7 +1462,7 @@
                                         <tr>
                                             <th width="80px;">Bill for the Date</th>
                                             <th>Bill Particulars</th>
-                                            <th>Bill Type</th>
+                                            <th width="80px;">Bill Type</th>
                                             <th>Bill Schedule</th>
                                             <th>Bill Amount</th>
                                             <th>Bill Submitted</th>
@@ -3754,7 +3762,7 @@
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="case_status_id" class="col-sm-4 col-form-label">Status of
                                 the Cases</label>
                             <div class="col-sm-8">
@@ -3768,7 +3776,7 @@
                                 @error('case_status_id')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row">
                             <label for="case_infos_complainant_informant_name"
@@ -4964,6 +4972,60 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+{{-- update status fo the case --}}
+
+<div class="modal fade" id="modal-lg-status-of-the-case">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="card-title"> Edit Status of the Case </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form
+                action="{{ route('update-criminal-cases-status-column', $data->id) }}"
+                method="post">
+                @csrf
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="updated_case_status_id" class="col-sm-4 col-form-label">Status</label>
+                        <div class="col-sm-8">
+                            <select name="updated_case_status_id" id="updated_case_status_id" class="form-control select2">
+                                <option value="">Select</option>
+                                @foreach($case_status as $item)
+                                                            <option
+                                                                value="{{ $item->id }}" @if (!empty($previous_activity->updated_case_status_id) && $previous_activity->updated_case_status_id == $item->id)
+                                                                selected @else {{ old('updated_case_status_id') == $item->id ? 'selected' : '' }} @endif>{{ $item->case_status_name }}</option>
+                                                        @endforeach
+                            </select>
+                            @error('updated_case_status_id')<span
+                                class="text-danger">{{$message}}</span>@enderror
+                        </div>
+                    </div>
+
+                    
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div class="float-right">
+                            <button type="submit"
+                                    class="btn btn-primary text-uppercase"><i
+                                    class="fas fa-save"></i> Update
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+{{-- update status of the case --}}
 
 {{-- billings log --}}
     {{--    update cases modal--}}

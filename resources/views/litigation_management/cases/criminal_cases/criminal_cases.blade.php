@@ -301,7 +301,7 @@
                                     <tr>
                                         <th class="text-center"> Sl </th>
                                         <th class="text-center"> ID </th>
-                                        <th class="text-center"> Status</th>
+                                        {{-- <th class="text-center"> Status</th> --}}
                                         <th class="text-center"> Next Date</th>
                                         <th class="text-center"> Fixed for</th>
                                         <th class="text-center"> Case No</th>
@@ -327,9 +327,9 @@
                                             <td>
                                                 {{ $datum->created_case_id }}
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 {{ $datum->case_status_name }} 
-                                            </td>
+                                            </td> --}}
                                             <td width="8%">
                                                 {{ date('d-m-Y', strtotime($datum->next_date)) }}
                                             </td>

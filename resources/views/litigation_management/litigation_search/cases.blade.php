@@ -140,7 +140,7 @@
                                                                     <input type="text" class="form-control"
                                                                            id="client_name_write"
                                                                            name="client_name_write"
-                                                                           placeholder="Client Zone"
+                                                                           placeholder="Client Name"
                                                                            value="{{ old('client_name_write') }}">
                                                                 </div>
                                                             </div>

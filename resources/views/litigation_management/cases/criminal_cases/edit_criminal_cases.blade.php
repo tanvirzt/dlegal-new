@@ -1867,7 +1867,7 @@
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
-                                                                        <div class="form-group row">
+                                                                        {{-- <div class="form-group row">
                                                                             <label for="case_status_id" class="col-sm-4 col-form-label">Status of
                                                                                 the Cases</label>
                                                                             <div class="col-sm-8">
@@ -1881,7 +1881,7 @@
                                                                                 @error('case_status_id')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
-                                                                        </div>
+                                                                        </div> --}}
                                                                         
                                                                         <div class="form-group row">
                                                                             <label for="case_infos_complainant_informant_name"
