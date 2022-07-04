@@ -64,7 +64,7 @@
                                                 {{$datum->id}}
                                             </td>
                                             <td class="text-center">
-                                                {{$datum->case_class_name}}
+                                                {{$datum->case_type}}
                                             </td>
                                             <td class="text-center">
                                                 {{$datum->case_category}}

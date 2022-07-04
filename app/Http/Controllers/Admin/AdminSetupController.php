@@ -73,6 +73,7 @@ use App\Models\SetupBillParticular;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin;
 use App\Models\SetupCabinet;
+use App\Models\SetupClientName;
 
 
 class AdminSetupController extends Controller
@@ -305,11 +306,12 @@ class AdminSetupController extends Controller
     public function case_types()
     {
         $data = DB::table('setup_case_types')
-                ->leftJoin('setup_case_classes','setup_case_types.case_class_id','setup_case_classes.id')
+                // ->leftJoin('setup_case_classes','setup_case_types.case_class_id','setup_case_classes.id')
                 ->leftJoin('setup_case_categories','setup_case_types.case_category_id','setup_case_categories.id')
                 ->where('setup_case_types.delete_status',0)
-                ->select('setup_case_types.*', 'setup_case_classes.case_class_name','setup_case_categories.case_category')
+                ->select('setup_case_types.*','setup_case_categories.case_category')
                 ->get();
+                // dd($data);
         return view('setup.case_types.case_types',compact('data'));
     }
 
@@ -334,7 +336,7 @@ class AdminSetupController extends Controller
         $this->validate($request, $rules, $validMsg);
 
         $data = new SetupCaseTypes();
-        $data->case_class_id = $request->case_class_id;
+        $data->case_type = $request->case_type;
         $data->case_category_id = $request->case_category_id;
         $data->case_types_name = $request->case_types_name;
         $data->save();
@@ -365,7 +367,7 @@ class AdminSetupController extends Controller
         $this->validate($request, $rules, $validMsg);
 
         $data = SetupCaseTypes::find($id);
-        $data->case_class_id = $request->case_class_id;
+        $data->case_type = $request->case_type;
         $data->case_category_id = $request->case_category_id;
         $data->case_types_name = $request->case_types_name;
         $data->save();
@@ -706,10 +708,10 @@ class AdminSetupController extends Controller
     public function court()
     {
         $data = DB::table('setup_courts')
-                ->leftJoin('setup_case_classes','setup_courts.case_class_id','setup_case_classes.id')
+                // ->leftJoin('setup_case_classes','setup_courts.case_class_id','setup_case_classes.id')
                 ->leftJoin('setup_case_categories','setup_courts.case_category_id','setup_case_categories.id')
                 ->where('setup_courts.delete_status',0)
-                ->select('setup_courts.*', 'setup_case_classes.case_class_name', 'setup_case_categories.case_category')
+                ->select('setup_courts.*', 'setup_case_categories.case_category')
                 ->get();
                 // dd($data);
         return view('setup.court.court',compact('data'));
@@ -5359,5 +5361,80 @@ public function find_case_category(Request $request)
         return redirect()->back();
     }
 
+    //client_name
+
+    public function client_name()
+    {
+        $data = SetupClientName::where('delete_status',0)->get();
+        return view('setup.client_name.client_name',compact('data'));
+    }
+
+    public function add_client_name()
+    {
+        return view('setup.client_name.add_client_name');
+    }
+
+    public function save_client_name(Request $request)
+    {
+        $rules = [
+            'client_name' => 'required'
+        ];
+
+        $validMsg = [
+            'client_name.required' => 'Client field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $client_name = new SetupClientName();
+        $client_name->client_name = $request->client_name;
+        $client_name->save();
+
+        session()->flash('success','Client Added Successfully.');
+        return redirect()->route('client-name');
+    }
+
+    public function edit_client_name($id)
+    {
+        $data = SetupClientName::find($id);
+        return view('setup.client_name.edit_client_name',compact('data'));
+    }
+
+    public function update_client_name(Request $request, $id)
+    {
+        $rules = [
+            'client_name' => 'required'
+        ];
+
+        $validMsg = [
+            'client_name.required' => 'Client field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $client_name = SetupClientName::find($id);
+        $client_name->client_name = $request->client_name;
+        $client_name->save();
+
+        session()->flash('success', 'Client Updated Successfully.');
+
+        return redirect()->route('client-name');
+    }
+
+    public function delete_client_name($id)
+    {
+        $data = SetupClientName::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Client Deleted Successfully');
+        return redirect()->back();
+    }
 
 }

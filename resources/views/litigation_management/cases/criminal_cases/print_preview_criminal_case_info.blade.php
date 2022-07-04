@@ -71,7 +71,7 @@
                                                     $key = array_key_last($case_infos_sub_seq_case_year);
                                                     $last_case_no = $case_infos_sub_seq_case_year[$key];
                                                     if ($last_case_no != null) {
-                                                        echo '/'.$last_case_no;
+                                                        echo ' of '.$last_case_no;
                                                     }
                                                 @endphp                                            
                                             

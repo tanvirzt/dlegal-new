@@ -1465,21 +1465,64 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (data) {
                     // console.log(data);
-                    if (data) {
+                    if (data.thana) {
                         $('#case_infos_thana_id').empty();
                         $('#case_infos_thana_id').focus;
                         $('#case_infos_thana_id').append('<option value="">Select</option>');
-                        $.each(data, function (key, value) {
+                        $.each(data.thana, function (key, value) {
                             $('select[name="case_infos_thana_id"]').append('<option value="' + value.id + '">' + value.thana_name + '</option>');
                         });
                     } else {
                         $('#case_infos_thana_id').empty();
                     }
+
+                    if (data.court) {
+                        $('#case_infos_court_id').empty();
+                        $('#case_infos_court_short_id').empty();
+                        $('#case_infos_sub_seq_court_id').empty();
+                        $('#case_infos_sub_seq_court_short_id').empty();
+                        
+                        
+                        $('#case_infos_court_id').focus;
+                        $('#case_infos_court_short_id').focus;
+                        $('#case_infos_sub_seq_court_id').focus;
+                        $('#case_infos_sub_seq_court_short_id').focus;
+
+                        $('#case_infos_court_id').append('<option value="">Select</option>');
+                        $('#case_infos_court_short_id').append('<option value="">Select</option>');
+                        $('#case_infos_sub_seq_court_id').append('<option value="">Select</option>');
+                        $('#case_infos_sub_seq_court_short_id').append('<option value="">Select</option>');
+
+                        $.each(data.court, function (key, value) {
+                            $('select[name="case_infos_court_id[]"]').append('<option value="' + value.id + '">' + value.court_name + '</option>');
+                            $('select[name="case_infos_court_short_id[]"]').append('<option value="' + value.id + '">' + value.court_short_name + '</option>');
+                            $('select[name="case_infos_sub_seq_court_id[]"]').append('<option value="' + value.id + '">' + value.court_name + '</option>');
+                            $('select[name="case_infos_sub_seq_court_short_id[]"]').append('<option value="' + value.id + '">' + value.court_short_name + '</option>');
+                        });
+                    } else {
+                        $('#case_infos_court_id').empty();
+                        $('#case_infos_court_short_id').empty();
+                        $('#case_infos_sub_seq_court_id').empty();
+                        $('#case_infos_sub_seq_court_short_id').empty();
+                    }
+                    
                 }
             });
         } else {
             $('#case_infos_thana_id').empty();
             $('#case_infos_thana_id').append('<option value="">Select</option>');
+
+            $('#case_infos_court_id').empty();
+            $('#case_infos_court_id').append('<option value="">Select</option>');
+
+            $('#case_infos_court_short_id').empty();
+            $('#case_infos_court_short_id').append('<option value="">Select</option>');
+
+            $('#case_infos_sub_seq_court_id').empty();
+            $('#case_infos_sub_seq_court_id').append('<option value="">Select</option>');
+
+            $('#case_infos_sub_seq_court_short_id').empty();
+            $('#case_infos_sub_seq_court_short_id').append('<option value="">Select</option>');
 
         }
     });

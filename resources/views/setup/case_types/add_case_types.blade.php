@@ -57,17 +57,19 @@
 
                                     <div class="col-md-12">                                
                                         <div class="form-group">
-                                            <label for="case_class_id">Class of Cases</label>
-                                            <select name="case_class_id" id="case_class_id"
+                                            <label for="case_type">Class of Cases</label>
+                                            <select name="case_type" id="case_class_id"
                                                         class="form-control select2"
                                                         action="{{ route('find-case-subcategory') }}">
                                                     <option value="">Select</option>
-                                                    @foreach($case_class as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{(old('case_class_id') == $item->id ? 'selected':'')}}>{{ $item->case_class_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                @error('case_class_id')<span
+                                                    <option value="Civil"> Civil </option>
+                                                    <option value="Criminal"> Criminal </option>
+                                                    <option value="Service Matter"> Service Matter </option>
+                                                    <option value="Special/Quassi - Judicial Cases"> Special/Quassi - Judicial Cases </option>
+                                                    <option value="High Court Division"> High Court Division </option>
+                                                    <option value="Appellate Court Division"> Appellate Court Division </option>
+                                                    </select>
+                                                @error('case_type')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                         <div class="form-group">

@@ -118,19 +118,19 @@
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
-                                                    </div>      
+                                                    </div>
                                                     <div class="form-group row">
                                                         <label for="client_id" class="col-sm-4 col-form-label">Client
                                                             Name</label>
                                                         <div class="col-sm-8">
-    
+
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <select name="client_id"
                                                                             id="client_id"
                                                                             class="form-control select2">
                                                                         <option value="">Select</option>
-                                                                        @foreach($client as $item)
+                                                                        @foreach($client_name as $item)
                                                                             <option
                                                                                 value="{{ $item->client_name }}" {{  old('client_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
                                                                         @endforeach
@@ -144,12 +144,12 @@
                                                                            value="{{ old('client_name_write') }}">
                                                                 </div>
                                                             </div>
-    
+
                                                             @error('client_name')<span
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
-                                                                                                  
+
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
@@ -199,7 +199,7 @@
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
-                                                    
+
                                                     {{-- <div class="form-group row">
                                                         <label for="case_subcategory_id" class="col-sm-4 col-form-label">Case Subcategory</label>
                                                         <div class="col-sm-8">
@@ -212,7 +212,7 @@
 
                                                         </div>
                                                     </div> --}}
-                                                    
+
                                                     <div class="form-group row">
                                                         <label for="client_division_id"
                                                                class="col-sm-4 col-form-label">Division/Zone</label>
@@ -241,7 +241,7 @@
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
-    
+
                                                     <div class="form-group row">
                                                         <label for="client_district_id"
                                                                class="col-sm-4 col-form-label">District/Area</label>
@@ -252,7 +252,7 @@
                                                                             id="client_district_id"
                                                                             class="form-control select2" action="{{ route('find-thana') }}">
                                                                         <option value="">Select</option>
-    
+
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -263,7 +263,7 @@
                                                                            value="{{ old('client_district_write') }}">
                                                                 </div>
                                                             </div>
-    
+
                                                             @error('client_district_id')<span
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
@@ -278,7 +278,7 @@
                                                                             id="client_thana_id"
                                                                             class="form-control select2">
                                                                         <option value="">Select</option>
-    
+
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -328,7 +328,7 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 @if (!empty($data))
-                                            
+
                                 <table id="data_table" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
@@ -358,7 +358,7 @@
                                                 {{ $datum->created_case_id }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_status_name }} 
+                                                {{ $datum->case_status_name }}
                                             </td>
                                             <td width="8%">
                                                 {{ date('d-m-Y', strtotime($datum->next_date)) }}
@@ -445,7 +445,7 @@
                                                     @endif
                                                 @endif
 
-                                                
+
                                             </td>
                                             <td>
                                                 {{ $datum->district_name }}
@@ -464,7 +464,7 @@
                                                             {{ $pro }}
                                                         @endforeach
                                                     @endif
-                                                    
+
                                                 @endif
                                             </td>
                                             <td>
@@ -493,7 +493,7 @@
 
                                                @if (!empty($datum->first_name) && !empty($datum->assigned_lawyer_id))
                                                 <li class="text-left">{{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }}  </li> @if($datum->lawyer_advocate_write) <li class="text-left">{{ $datum->lawyer_advocate_write }}</li> @endif
-                                               
+
                                                 @php
                                                 $assigned_lawyer = explode(', ',$datum->assigned_lawyer_id);
                                                 @endphp
@@ -501,12 +501,12 @@
                                                             @foreach ($assigned_lawyer as $pro)
                                                                 <li class="text-left">{{ $pro }}</li>
                                                             @endforeach
-                                
+
                                                 @endif
-                                    
+
                                                 @else
-                                                {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }} {{ $datum->lawyer_advocate_write }} 
-                                               
+                                                {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }} {{ $datum->lawyer_advocate_write }}
+
                                                 @php
                                                     $assigned_lawyer = explode(', ',$datum->assigned_lawyer_id);
                                                @endphp
@@ -520,13 +520,13 @@
                                                             {{ $pro }}
                                                         @endforeach
                                                     @endif
-                            
+
                                                @endif
-                                               
+
                                                 @endif
 
-                                               
-                                               
+
+
                                             </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)

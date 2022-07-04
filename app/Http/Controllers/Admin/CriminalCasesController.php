@@ -1492,6 +1492,7 @@ $case_no_data = DB::table('criminal_cases')
                         ->select('criminal_cases_billings.*','setup_bill_types.bill_type_name','bill_schedules.bill_schedule_name','payment_modes.payment_mode_name')
                         ->where(['criminal_cases_billings.delete_status'=> 0,'case_id' => $id])
                         ->get();
+                        // dd($bill_history);
         $bill_amount = CriminalCasesBilling::where(['delete_status' =>0 ,'case_id' => $id])->sum('bill_amount');
         $payment_amount = CriminalCasesBilling::where(['delete_status' =>0 ,'case_id' => $id])->sum('payment_amount');
         $due_amount = CriminalCasesBilling::where(['delete_status' =>0 ,'case_id' => $id])->sum('due_amount');
@@ -2474,6 +2475,10 @@ $case_no_data = DB::table('criminal_cases')
 
     public function update_criminal_cases_status_column(Request $request, $id)
     {
+// dd($request->all());
+        $main_case = CriminalCase::find($id);
+        $main_case->case_status_id = $request->updated_case_status_id;
+        $main_case->save();
 
         $data = CriminalCaseStatusLog::where('case_id',$id)->latest()->first();
 

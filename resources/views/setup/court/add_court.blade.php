@@ -62,10 +62,12 @@
                                                         class="form-control select2"
                                                         action="{{ route('find-case-subcategory') }}">
                                                     <option value="">Select</option>
-                                                    @foreach($case_class as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{(old('case_class_id') == $item->id ? 'selected':'')}}>{{ $item->case_class_name }}</option>
-                                                    @endforeach
+                                                    <option value="Civil"> Civil </option>
+                                                    <option value="Criminal"> Criminal </option>
+                                                    <option value="Service Matter"> Service Matter </option>
+                                                    <option value="Special/Quassi - Judicial Cases"> Special/Quassi - Judicial Cases </option>
+                                                    <option value="High Court Division"> High Court Division </option>
+                                                    <option value="Appellate Court Division"> Appellate Court Division </option>
                                                 </select>
                                                 @error('case_class_id')<span
                                                     class="text-danger">{{$message}}</span>@enderror

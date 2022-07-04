@@ -60,10 +60,10 @@
                                             <label for="case_type"> Class of Cases </label>
                                             <select name="case_type" class="form-control select2" id="case_type">
                                                 <option value="">Select</option>
-                                                <option value="Civil Cases" {{ $data->case_type == "Civil Cases" ? 'selected' : '' }}> Civil Cases </option>
-                                                <option value="Criminal Cases" {{ $data->case_type == "Criminal Cases" ? 'selected' : '' }}> Criminal Cases </option>
-                                                <option value="Case Matter" {{ $data->case_type == "Case Matter" ? 'selected' : '' }}> Case Matter </option>
-                                                <option value="Special Quassi - Judicial Cases" {{ $data->case_type == "Special Quassi - Judicial Cases" ? 'selected' : '' }}> Special Quassi - Judicial Cases </option>
+                                                <option value="Civil" {{ $data->case_type == "Civil" ? 'selected' : '' }}> Civil </option>
+                                                <option value="Criminal" {{ $data->case_type == "Criminal" ? 'selected' : '' }}> Criminal </option>
+                                                <option value="Service Matter" {{ $data->case_type == "Service Matter" ? 'selected' : '' }}> Service Matter </option>
+                                                <option value="Special/Quassi - Judicial Cases" {{ $data->case_type == "Special/Quassi - Judicial Cases" ? 'selected' : '' }}> Special/Quassi - Judicial Cases </option>
                                                 <option value="High Court Division" {{ $data->case_type == "High Court Division" ? 'selected' : '' }}> High Court Division </option>
                                                 <option value="Appellate Court Division" {{ $data->case_type == "Appellate Court Division" ? 'selected' : '' }}> Appellate Court Division </option>
                                             </select>

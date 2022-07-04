@@ -60,10 +60,10 @@
                                             <label for="case_type"> Class of Cases </label>
                                             <select name="case_type" class="form-control select2" id="case_type">
                                                 <option value="">Select</option>
-                                                <option value="Civil Cases"> Civil Cases </option>
-                                                <option value="Criminal Cases"> Criminal Cases </option>
+                                                <option value="Civil"> Civil </option>
+                                                <option value="Criminal"> Criminal </option>
                                                 <option value="Service Matter"> Service Matter </option>
-                                                <option value="Special Quassi - Judicial Cases"> Special Quassi - Judicial Cases </option>
+                                                <option value="Special/Quassi - Judicial Cases"> Special/Quassi - Judicial Cases </option>
                                                 <option value="High Court Division"> High Court Division </option>
                                                 <option value="Appellate Court Division"> Appellate Court Division </option>
                                             </select>

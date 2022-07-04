@@ -57,17 +57,19 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="case_class_id">Class of Cases</label>
-                                            <select name="case_class_id" id="case_class_id"
+                                            <label for="case_type">Class of Cases</label>
+                                            <select name="case_type" id="case_class_id"
                                                         class="form-control select2"
                                                         action="{{ route('find-case-subcategory') }}">
                                                     <option value="">Select</option>
-                                                    @foreach($case_class as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{( $data->case_class_id == $item->id ? 'selected':'')}}>{{ $item->case_class_name }}</option>
-                                                    @endforeach
+                                                    <option value="Civil" {{ $data->case_type == "Civil" ? 'selected' : '' }}> Civil </option>
+                                                <option value="Criminal" {{ $data->case_type == "Criminal" ? 'selected' : '' }}> Criminal </option>
+                                                <option value="Service Matter" {{ $data->case_type == "Service Matter" ? 'selected' : '' }}> Service Matter </option>
+                                                <option value="Special/Quassi - Judicial Cases" {{ $data->case_type == "Special/Quassi - Judicial Cases" ? 'selected' : '' }}> Special/Quassi - Judicial Cases </option>
+                                                <option value="High Court Division" {{ $data->case_type == "High Court Division" ? 'selected' : '' }}> High Court Division </option>
+                                                <option value="Appellate Court Division" {{ $data->case_type == "Appellate Court Division" ? 'selected' : '' }}> Appellate Court Division </option>
                                                 </select>
-                                                @error('case_class_id')<span
+                                                @error('case_type')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                         <div class="form-group">

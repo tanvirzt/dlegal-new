@@ -419,8 +419,9 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('view-flat-information/{id}','FlatInfoController@view_flat_information')->name('view-flat-information');
         Route::get('download-flat-information-files/{id}','FlatInfoController@download_flat_information_files')->name('download-flat-information-files');
         Route::post('search-flat-information','FlatInfoController@search_flat_information')->name('search-flat-information');
-
+        
         Route::get('/find-thana','LandInfoController@find_thana')->name('find-thana');
+        Route::get('/find-case-infos-thana','LandInfoController@find_case_infos_thana')->name('find-case-infos-thana');
         Route::get('/find-seller-details','LandInfoController@find_seller_details')->name('find-seller-details');
         Route::get('/find-buyer-details','LandInfoController@find_buyer_details')->name('find-buyer-details');
         Route::get('/find-flat-number','FlatInfoController@find_flat_number')->name('find-flat-number');
@@ -590,6 +591,13 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('edit-client/{id}','AdminSetupController@edit_client')->name('edit-client');
         Route::post('update-client/{id}','AdminSetupController@update_client')->name('update-client');
         Route::post('delete-client/{id}','AdminSetupController@delete_client')->name('delete-client');
+
+        Route::get('client-name', 'AdminSetupController@client_name')->name('client-name');
+        Route::get('add-client-name','AdminSetupController@add_client_name')->name('add-client-name');
+        Route::post('save-client-name','AdminSetupController@save_client_name')->name('save-client-name');
+        Route::get('edit-client-name/{id}','AdminSetupController@edit_client_name')->name('edit-client-name');
+        Route::post('update-client-name/{id}','AdminSetupController@update_client_name')->name('update-client-name');
+        Route::post('delete-client-name/{id}','AdminSetupController@delete_client_name')->name('delete-client-name');
 
         Route::get('profession', 'AdminSetupController@profession')->name('profession');
         Route::get('add-profession','AdminSetupController@add_profession')->name('add-profession');

@@ -122,10 +122,10 @@
                                 {{-- <h3 class="card-title"> --}}
                                     <div class="row" style="margin-bottom: -20px;">
                                         <div class="col-md-1 border pt-1 mr-1">
-                                            <span class="info-box-text text-center text-success text-bold h6 text-text-warning" style="color: ">
+                                            <span class="info-box-text text-center text-bold h6 text-text-warning" style="color: #FF7034;font-size:12.5px;">
                                                 {{ $calendar_date = date('d-m-Y', strtotime($datum->next_date)) }}
                                             </span>
-                                            <span class="info-box-number text-center text-success mb-0 text-bold h6">
+                                            <span class="info-box-number text-center mb-0 text-bold h6" style="color: #FF7034;font-size:12.5px;">
                                                 @php
                                                     $date = $datum->next_date;
                                                     $time = date('l', strtotime($date));
@@ -134,8 +134,8 @@
                                             </span>
                                         </div>
                                         <div class="col-md-1 border pt-1 mr-1">
-                                            <h6 class="info-box-text text-center text-muted text-bold">Total</h6>
-                                                    <p class="info-box-number text-center text-muted mb-0 text-bold">
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:12.5px;">Total</h6>
+                                                    <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:12.5px;">
                                                         
                                                         @php
                                                             
@@ -172,16 +172,16 @@
                                                         {{ $calendar_count }}</p>
                                         </div>
                                         <div class="col-md-1 border pt-1 mr-1">
-                                            <h6 class="info-box-text text-center text-muted text-bold">Civil Cases</h6>
-                                                    <p class="info-box-number text-center text-muted mb-0 text-bold">0</p>
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:12.5px;">Civil Cases</h6>
+                                                    <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:12.5px;">0</p>
                                         </div>
                                         <div class="col-md-1 border pt-1 mr-1">
-                                            <h6 class="info-box-text text-center text-muted text-bold">Criminal Cases</h6>
-                                            <p class="info-box-number text-center text-muted mb-0 text-bold">{{ $calendar_count }}</p>
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:12.5px;">Criminal Cases</h6>
+                                            <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:12.5px;">{{ $calendar_count }}</p>
                                         </div>
                                         <div class="col-md-1 border pt-1 mr-1">
-                                            <h6 class="info-box-text text-center text-muted text-bold">Others</h6>
-                                            <p class="info-box-number text-center text-muted mb-0 text-bold">0</p>
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:12.5px;">Others</h6>
+                                            <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:12.5px;">0</p>
                                         </div>
                                         
                                         

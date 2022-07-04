@@ -15,7 +15,7 @@ class CreateSetupCourtsTable extends Migration
     {
         Schema::create('setup_courts', function (Blueprint $table) {
             $table->id();
-            $table->integer('case_class_id')->nullable();
+            $table->string('case_class_id')->nullable();
             $table->integer('case_category_id')->nullable();
             $table->string('applicable_district_id')->nullable();
             $table->string('all_district')->nullable();

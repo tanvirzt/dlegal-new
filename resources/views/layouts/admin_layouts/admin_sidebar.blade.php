@@ -5,7 +5,7 @@
         {{-- <img src="{{ asset('images/admin_images/admin_profile/bclc logo 4.png')}}" alt="AdminLTE Logo"
              class="brand-image"
              style="opacity:1"> --}}
-        <h2 class="font-weight-light text-center">DLegal</h2>
+        <h2 class="font-weight-light text-center">dLegal</h2>
     </a>
 
     <!-- Sidebar -->
@@ -153,10 +153,16 @@
                                         <p>Case Subcategory</p>
                                     </a>
                                 </li> --}}
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a href="{{ route('case-class') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Class of Cases</p>
+                                    </a>
+                                </li> --}}
+                                <li class="nav-item">
+                                    <a href="{{ route('client-name') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Client Name</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -190,6 +196,12 @@
                                         <p>Court Name(Short)</p>
                                     </a>
                                 </li> --}}
+                                <li class="nav-item">
+                                    <a href="{{ route('court-last-order') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Court Order</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="{{ route('court-proceeding') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -242,13 +254,6 @@
                                     <a href="{{ route('law') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Law</p>
-                                    </a>
-                                </li>
-                                
-                                <li class="nav-item">
-                                    <a href="{{ route('court-last-order') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Last order of the Court</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

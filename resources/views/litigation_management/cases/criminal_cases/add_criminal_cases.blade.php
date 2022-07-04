@@ -19,9 +19,8 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md"
-                                   type="button" href="{{ route('criminal-cases') }}" aria-disabled="false" role="link"
-                                   tabindex="-1">Back</a>
+                                <a  type="button" href="{{ route('criminal-cases') }}" aria-disabled="false"
+                                    role="link" tabindex="-1">Case Dashboard </a>
                             </li>
                         </ol>
                     </div>
@@ -1200,7 +1199,7 @@
                                                         <select name="case_infos_district_id"
                                                                 class="form-control select2"
                                                                 id="case_infos_district_id"
-                                                                action="{{ route('find-thana') }}">
+                                                                action="{{ route('find-case-infos-thana') }}">
                                                             <option value=""> Select</option>
 
                                                         </select>
@@ -1352,13 +1351,13 @@
                                                            class="col-sm-4 col-form-label"> Name
                                                         of the Court </label>
                                                     <div class="col-sm-8">
-                                                        <select name="case_infos_court_id[]"
+                                                        <select name="case_infos_court_id[]" id="case_infos_court_id"
                                                                 class="form-control select2" data-placeholder="Select" multiple>
                                                             <option value="">Select</option>
-                                                            @foreach($court as $item)
+                                                            {{-- @foreach($court as $item)
                                                                 <option
                                                                     value="{{ $item->court_name }}" {{(old('case_infos_court_id') == $item->id ? 'selected':'')}}>{{ $item->court_name }}</option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                         @error('case_infos_court_id')<span
                                                             class="text-danger">{{$message}}</span>@enderror
@@ -1375,10 +1374,10 @@
                                                                         id="case_infos_court_short_id"
                                                                         class="form-control select2" data-placeholder="Select" multiple>
                                                                     <option value="">Select</option>
-                                                                    @foreach($court_short as $item)
+                                                                    {{-- @foreach($court_short as $item)
                                                                         <option
                                                                             value="{{ $item->court_short_name }}" {{  old('case_infos_court_short_id') == $item->id ? 'selected' : '' }}>{{ $item->court_short_name }}</option>
-                                                                    @endforeach
+                                                                    @endforeach --}}
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-6">
@@ -1488,7 +1487,7 @@
                                                     <label for="case_infos_sub_seq_court_id"
                                                            class="col-sm-4 col-form-label"> Sub-Seq. Court </label>
                                                     <div class="col-sm-8">
-                                                        <select name="case_infos_sub_seq_court_id[]"
+                                                        <select name="case_infos_sub_seq_court_id[]" id="case_infos_sub_seq_court_id"
                                                                 class="form-control select2" data-placeholder="Select" multiple>
                                                             <option value="">Select</option>
                                                             @foreach($court as $item)

@@ -79,7 +79,7 @@ html, body {
     font-weight: 400;
     overflow-x: hidden;
     overflow-y: auto;
-    font-size: 11px !important;
+    font-size: 11.5px !important;
 }
 .card.card-danger.menu-open p {
     margin-bottom: -2px !important;
@@ -624,9 +624,9 @@ h3{
 .header_links {
     position: fixed;
     top: 10px;
-    left: 26rem;
-    z-index: 98; 
-    color: #2f9d3d;
+    left: 25rem;
+    z-index: 98;
+    color: #FF7034;
     /* font-family: "parisplus-std", sans-serif; */
     /* display: none; */
     opacity: 1;
