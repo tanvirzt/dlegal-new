@@ -682,6 +682,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('search-litigation-calendar-short','LitigationCalenderController@search_litigation_calendar_short')->name('search-litigation-calendar-short');
         Route::get('search-case-pages','LitigationCalenderController@search_case_pages')->name('search-case-pages');
         Route::post('search-cases','LitigationCalenderController@search_cases')->name('search-cases');
+        Route::post('calendar-short-next-previous', 'LitigationCalenderController@calendar_short_next_previous')->name('calendar-short-next-previous');
         
         Route::get('cabinet', 'AdminSetupController@cabinet')->name('cabinet');
         Route::get('add-cabinet','AdminSetupController@add_cabinet')->name('add-cabinet');

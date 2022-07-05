@@ -271,4 +271,36 @@ class LitigationCalenderController extends Controller
         return view('litigation_management.litigation_calender.litigation_calender_short', compact('dates','date'));
     }
 
+public function calendar_short_next_previous(Request $request)
+{
+
+    // dd($request->all());
+
+    $time = strtotime($request->from_date);
+
+    if ($request->arrow_up) {
+// dd('arrow_up');
+        $date = date('F, Y',strtotime("+1 month",$time));
+    } else {
+// dd('arrow_down');
+        $date = date('F, Y',strtotime(' - 1 months',$time));
+        // dd($date);
+    }
+// dd($date);    
+    $search_month = explode('-', $request->from_date);
+
+    $month = $search_month[0].'-'.($search_month[1]);
+    $start = Carbon::parse($month)->startOfMonth();
+    $end = Carbon::parse($month)->endOfMonth();
+    $dates = [];
+    while ($start->lte($end)) {
+        $dates[] = $start->copy();
+        $start->addDay();
+    }
+
+    return view('litigation_management.litigation_calender.litigation_calender_short', compact('dates','date'));
+
+}
+
+
 }

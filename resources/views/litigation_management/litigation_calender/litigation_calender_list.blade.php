@@ -6,24 +6,55 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <h1 class="m-0 text-dark">Dashboard</h1>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="{{ route('litigation-calender-list') }}">
-                                    <button type="button" class="btn btn-block bg-gradient-info">Litigation Calendar(list)</button>
-                                </a>
+                                <div class="dropdown">
+                                    <button class="btn bg-gradient-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Litigation Calendar
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="{{ route('civil-cases') }}">Civil</a>
+                                        <a class="dropdown-item" href="{{ route('criminal-cases') }}">Criminal</a>
+                                        <a class="dropdown-item" href="{{ route('labour-cases') }}">Service Matter</a>
+                                        <a class="dropdown-item" href="{{ route('quassi-judicial-cases') }}">Special/Quassi-Judicial Cases</a>
+                                        <a class="dropdown-item" href="{{ route('high-court-cases') }}">High Court Division</a>
+                                        <a class="dropdown-item" href="{{ route('appellate-court-cases') }}">Appellate Court Division</a>
+                                      {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
+                                    </div>
+                                  </div>
                             </div>
                             <div class="col-md-6">
-                                <a href="{{ route('litigation-calender-short') }}">
-                                    <button type="button" class="btn btn-block bg-gradient-success">Litigation Calendar(Short)</button>
-                                </a>
+                                <div class="dropdown">
+                                    <button class="btn bg-gradient-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Litigation Calendar
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <a class="dropdown-item" href="{{ route('litigation-calender-list') }}">Litigation Calendar(List)</a>
+                                      <a class="dropdown-item" href="{{ route('litigation-calender-short') }}">Litigation Calendar(Short)</a>
+                                      {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
+                                    </div>
+                                  </div>
                             </div>
                         </div>
+                          
+                        {{-- <div class="row">
+                        <div class="col-md-6">
+                            <a href="{{ route('litigation-calender-list') }}">
+                                <button type="button" class="btn btn-block bg-gradient-info">Litigation Calendar(List)</button>
+                            </a>
+                        </div>
+                       <div class="col-md-6">
+                           <a href="{{ route('litigation-calender-short') }}">
+                               <button type="button" class="btn btn-block bg-gradient-success">Litigation Calendar(Short)</button>
+                           </a>
+                       </div>
+                        </div> --}}
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">Dashboard v1</li>
@@ -122,7 +153,7 @@
                                 {{-- <h3 class="card-title"> --}}
                                     <div class="row" style="margin-bottom: -20px;">
                                         <div class="col-md-1 border pt-1 mr-1">
-                                            <span class="info-box-text text-center text-bold h6 text-text-warning" style="color: #FF7034;font-size:12.5px;">
+                                            <span class="info-box-text text-center text-bold h6 text-text-warning" style="color: #FF7034;font-size:13px;">
                                                 {{ $calendar_date = date('d-m-Y', strtotime($datum->next_date)) }}
                                             </span>
                                             <span class="info-box-number text-center mb-0 text-bold h6" style="color: #FF7034;font-size:12.5px;">

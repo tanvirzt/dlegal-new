@@ -125,7 +125,7 @@ class CriminalCasesController extends Controller
         $court = SetupCourt::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->orderBy('court_name','asc')->get();
         $designation = SetupDesignation::where('delete_status', 0)->orderBy('designation_name','asc')->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->orderBy('first_name','asc')->get();
-        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->orderBy('case_category','asc')->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->orderBy('case_category','asc')->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
         $property_type = SetupPropertyType::where('delete_status', 0)->orderBy('property_type_name','asc')->get();
         $division = DB::table("setup_divisions")->orderBy('division_name','asc')->get();
@@ -421,7 +421,7 @@ $created_case_id = 'LCR-000'.$sl;
         $court = SetupCourt::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->orderBy('court_name','asc')->get();
         $designation = SetupDesignation::where('delete_status', 0)->orderBy('designation_name','asc')->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->orderBy('first_name','asc')->get();
-        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->orderBy('case_category','asc')->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->orderBy('case_category','asc')->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
         $property_type = SetupPropertyType::where('delete_status', 0)->orderBy('property_type_name','asc')->get();
         $division = DB::table("setup_divisions")->orderBy('division_name','asc')->get();
