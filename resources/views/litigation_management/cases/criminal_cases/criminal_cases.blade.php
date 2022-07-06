@@ -100,17 +100,20 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="case_infos_complainant_informant_name" class="col-sm-4 col-form-label">1st Party/Complainant/ Petitioner/Plaintiff</label>
+                                                        <label for="case_infos_complainant_informant_name" class="col-sm-4 col-form-label">1st
+                                                            Party/Complainant/ Petitioner/Plaintiff</label>
                                                         <div class="col-sm-8">
                                                             <input type="text" class="form-control" id="case_infos_complainant_informant_name"
-                                                                   name="case_infos_complainant_informant_name" value="{{ old('case_infos_complainant_informant_name') }}">
+                                                                   name="case_infos_complainant_informant_name"
+                                                                   value="{{ old('case_infos_complainant_informant_name') }}">
                                                             @error('case_infos_complainant_informant_name')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="case_infos_accused_name" class="col-sm-4 col-form-label">2nd Party/Accused/ Oppositon/Defendant</label>
+                                                        <label for="case_infos_accused_name" class="col-sm-4 col-form-label">2nd Party/Accused/
+                                                            Oppositon/Defendant</label>
                                                         <div class="col-sm-8">
                                                             <input type="text" class="form-control" id="case_infos_accused_name"
                                                                    name="case_infos_accused_name" value="{{ old('case_infos_accused_name') }}">
@@ -118,9 +121,9 @@
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
-                                                    </div>      
-                                                    
-                                                                                                  
+                                                    </div>
+
+
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
@@ -157,20 +160,20 @@
                                                     <div class="form-group row">
                                                         <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
                                                         <div class="col-sm-8">
-                                                                    <select name="matter_id"
-                                                                            id="matter_id"
-                                                                            class="form-control select2">
-                                                                        <option value="">Select</option>
-                                                                        @foreach($matter as $item)
-                                                                            <option
-                                                                                value="{{ $item->id }}" {{( old('matter_id') == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
-                                                                        @endforeach
-                                                                    </select>
+                                                            <select name="matter_id"
+                                                                    id="matter_id"
+                                                                    class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach($matter as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{( old('matter_id') == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
+                                                                @endforeach
+                                                            </select>
                                                             @error('matter_id')<span
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
-                                                    
+
                                                     {{-- <div class="form-group row">
                                                         <label for="case_subcategory_id" class="col-sm-4 col-form-label">Case Subcategory</label>
                                                         <div class="col-sm-8">
@@ -183,7 +186,7 @@
 
                                                         </div>
                                                     </div> --}}
-                                                    
+
                                                     <div class="form-group row">
                                                         <label for="client_division_id"
                                                                class="col-sm-4 col-form-label">Division/Zone</label>
@@ -212,7 +215,7 @@
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
-    
+
                                                     <div class="form-group row">
                                                         <label for="client_district_id"
                                                                class="col-sm-4 col-form-label">District/Area</label>
@@ -223,7 +226,7 @@
                                                                             id="client_district_id"
                                                                             class="form-control select2" action="{{ route('find-thana') }}">
                                                                         <option value="">Select</option>
-    
+
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -234,7 +237,7 @@
                                                                            value="{{ old('client_district_write') }}">
                                                                 </div>
                                                             </div>
-    
+
                                                             @error('client_district_id')<span
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
@@ -249,7 +252,7 @@
                                                                             id="client_thana_id"
                                                                             class="form-control select2">
                                                                         <option value="">Select</option>
-    
+
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -299,20 +302,20 @@
                                 <table id="data_table" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th class="text-center"> Sl </th>
-                                        <th class="text-center"> ID </th>
+                                        <th class="text-center"> Sl</th>
+                                        <th class="text-center"> ID</th>
                                         <th class="text-center"> Status</th>
                                         <th class="text-center"> Next Date</th>
                                         <th class="text-center"> Fixed for</th>
                                         <th class="text-center"> Case No</th>
                                         <th class="text-center"> S. Case No</th>
                                         <th class="text-center"> Court Name</th>
-                                        <th class="text-center"> Complainant District </th>
-                                        <th class="text-center"> Complainant </th>
-                                        <th class="text-center"> Accused Name </th>
-                                        <th class="text-center"> Accused District </th>
+                                        <th class="text-center"> Complainant District</th>
+                                        <th class="text-center"> Complainant</th>
+                                        <th class="text-center"> Accused Name</th>
+                                        <th class="text-center"> Accused District</th>
                                         <th class="text-center"> Case Type</th>
-                                       <th class="text-center"> Lawyer</th>
+                                        <th class="text-center"> Lawyer</th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -328,7 +331,7 @@
                                                 {{ $datum->created_case_id }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_status_name }} 
+                                                {{ $datum->case_status_name }}
                                             </td>
                                             <td width="8%">
                                                 {{ date('d-m-Y', strtotime($datum->next_date)) }}
@@ -370,7 +373,7 @@
                                                             {{ $pro }}
                                                         @endforeach
                                                     @endif
-                                                    
+
                                                 @endif
 
 
@@ -389,7 +392,7 @@
                                                             {{ $pro }}
                                                         @endforeach
                                                     @endif
-                                                    
+
                                                 @endif
 
 
@@ -458,7 +461,7 @@
                                                     @endif
                                                 @endif --}}
 
-                                                
+
                                             </td>
                                             <td>
                                                 {{ $datum->district_name }}
@@ -477,7 +480,7 @@
                                                             {{ $pro }}
                                                         @endforeach
                                                     @endif
-                                                    
+
                                                 @endif
                                             </td>
                                             <td>
@@ -504,42 +507,44 @@
                                             </td>
                                             <td>
 
-                                               @if (!empty($datum->first_name) && !empty($datum->assigned_lawyer_id))
-                                                <li class="text-left">{{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }}  </li> @if($datum->lawyer_advocate_write) <li class="text-left">{{ $datum->lawyer_advocate_write }}</li> @endif
-                                               
-                                                @php
-                                                $assigned_lawyer = explode(', ',$datum->assigned_lawyer_id);
-                                                @endphp
-                                                @if($datum->assigned_lawyer_id)
-                                                            @foreach ($assigned_lawyer as $pro)
-                                                                <li class="text-left">{{ $pro }}</li>
-                                                            @endforeach
-                                
-                                                @endif
-                                    
-                                                @else
-                                                {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }} {{ $datum->lawyer_advocate_write }} 
-                                               
-                                                @php
-                                                    $assigned_lawyer = explode(', ',$datum->assigned_lawyer_id);
-                                               @endphp
-                                               @if($datum->assigned_lawyer_id)
-                                                    @if (count($assigned_lawyer)>1)
-                                                        @foreach ($assigned_lawyer as $pro)
-                                                            <li class="text-left">{{ $pro }}</li>
-                                                        @endforeach
-                                                    @else
-                                                        @foreach ($assigned_lawyer as $pro)
-                                                            {{ $pro }}
-                                                        @endforeach
-                                                    @endif
-                            
-                                               @endif
-                                               
-                                                @endif
+                                                {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }}
 
-                                               
-                                               
+{{--                                                @if (!empty($datum->first_name) && !empty($datum->assigned_lawyer_id))--}}
+{{--                                                    <li class="text-left">{{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }}  </li> @if($datum->lawyer_advocate_write)--}}
+{{--                                                        <li class="text-left">{{ $datum->lawyer_advocate_write }}</li> @endif--}}
+
+{{--                                                    @php--}}
+{{--                                                        $assigned_lawyer = explode(', ',$datum->assigned_lawyer_id);--}}
+{{--                                                    @endphp--}}
+{{--                                                    @if($datum->assigned_lawyer_id)--}}
+{{--                                                        @foreach ($assigned_lawyer as $pro)--}}
+{{--                                                            <li class="text-left">{{ $pro }}</li>--}}
+{{--                                                        @endforeach--}}
+
+{{--                                                    @endif--}}
+
+{{--                                                @else--}}
+{{--                                                    {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }} {{ $datum->lawyer_advocate_write }}--}}
+
+{{--                                                    @php--}}
+{{--                                                        $assigned_lawyer = explode(', ',$datum->assigned_lawyer_id);--}}
+{{--                                                    @endphp--}}
+{{--                                                    @if($datum->assigned_lawyer_id)--}}
+{{--                                                        @if (count($assigned_lawyer)>1)--}}
+{{--                                                            @foreach ($assigned_lawyer as $pro)--}}
+{{--                                                                <li class="text-left">{{ $pro }}</li>--}}
+{{--                                                            @endforeach--}}
+{{--                                                        @else--}}
+{{--                                                            @foreach ($assigned_lawyer as $pro)--}}
+{{--                                                                {{ $pro }}--}}
+{{--                                                            @endforeach--}}
+{{--                                                        @endif--}}
+
+{{--                                                    @endif--}}
+
+{{--                                                @endif--}}
+
+
                                             </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)

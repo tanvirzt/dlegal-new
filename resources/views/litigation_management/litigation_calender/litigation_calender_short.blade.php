@@ -12,7 +12,7 @@
                         <h1 class="m-0 text-dark">Dashboard</h1>
                     </div>
                     <div class="col-sm-6">
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-6">
                                 <div class="dropdown">
                                     <button class="btn bg-gradient-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -25,7 +25,6 @@
                                         <a class="dropdown-item" href="{{ route('quassi-judicial-cases') }}">Special/Quassi-Judicial Cases</a>
                                         <a class="dropdown-item" href="{{ route('high-court-cases') }}">High Court Division</a>
                                         <a class="dropdown-item" href="{{ route('appellate-court-cases') }}">Appellate Court Division</a>
-                                      {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
                                     </div>
                                   </div>
                             </div>
@@ -37,12 +36,11 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                       <a class="dropdown-item" href="{{ route('litigation-calender-list') }}">Litigation Calendar(List)</a>
                                       <a class="dropdown-item" href="{{ route('litigation-calender-short') }}">Litigation Calendar(Short)</a>
-                                      {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
                                     </div>
                                   </div>
                             </div>
                         </div>
-                          
+                           --}}
                         {{-- <div class="row">
                         <div class="col-md-6">
                             <a href="{{ route('litigation-calender-list') }}">
@@ -60,6 +58,7 @@
                         <form method="POST" action="{{ route('calendar-short-next-previous') }}" style="display: contents;">
                             <input type="text" class="form-control" name="from_date" value="{{ date('Y-m-d', strtotime($date)) }}">
                             <input type="submit" class="btn btn-info" name="arrow_up" value="" style="padding: 4px 12px 4px 12px;">
+                            
                             <i class="fas fa-arrow-up" style="position: relative;
                             right: 21px;"></i>  
                         <input type="submit" class="btn btn-success" name="arrow_down" value="" style="padding: 4px 12px 4px 12px;">
@@ -79,7 +78,7 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-                <h3 class="" id="heading">Litigation Calendar({{ $date }})</h3>
+                <h3 class="" id="heading">Litigation Calendar <span style="color: #25d199;font-weight: 700;font-size: 20px;">({{ $date }})</span></h3>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card">

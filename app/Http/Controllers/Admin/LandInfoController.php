@@ -61,7 +61,7 @@ class LandInfoController extends Controller
         $thana = SetupThana::where('district_id',$request->district_id)->orderBy('thana_name','asc')->get();
         $district = SetupDistrict::where('id',$request->district_id)->first();
     //   dd($district);  
-        $court = SetupCourt::where('applicable_district_id', 'like', "%{$district->district_name}%")->orderBy('court_name','asc')->get();
+        $court = SetupCourt::where('applicable_district_id', 'like', "%{$district->district_name}%")->where('delete_status',0)->orderBy('court_name','asc')->get();
         return response()->json([
             'thana' => $thana,
             'court' => $court,

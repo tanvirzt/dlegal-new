@@ -10,7 +10,7 @@
                         <h1 class="m-0 text-dark">Dashboard</h1>
                     </div>
                     <div class="col-sm-6">
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-6">
                                 <div class="dropdown">
                                     <button class="btn bg-gradient-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,7 +23,6 @@
                                         <a class="dropdown-item" href="{{ route('quassi-judicial-cases') }}">Special/Quassi-Judicial Cases</a>
                                         <a class="dropdown-item" href="{{ route('high-court-cases') }}">High Court Division</a>
                                         <a class="dropdown-item" href="{{ route('appellate-court-cases') }}">Appellate Court Division</a>
-                                      {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
                                     </div>
                                   </div>
                             </div>
@@ -35,11 +34,10 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                       <a class="dropdown-item" href="{{ route('litigation-calender-list') }}">Litigation Calendar(List)</a>
                                       <a class="dropdown-item" href="{{ route('litigation-calender-short') }}">Litigation Calendar(Short)</a>
-                                      {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
                                     </div>
                                   </div>
                             </div>
-                        </div>
+                        </div> --}}
                           
                         {{-- <div class="row">
                         <div class="col-md-6">
@@ -199,6 +197,8 @@
                                                                             ->orderBy('criminal_cases.received_date','asc')
                                                                             ->where(['criminal_cases.delete_status' => 0, 'next_date' => $datum->next_date])
                                                                             ->get();
+
+                                                                            // dd($calendar_wise_data);
                                                                 @endphp
                                                         {{ $calendar_count }}</p>
                                         </div>
@@ -321,11 +321,12 @@
                                             <th>SL</th>
                                             <th>Court Name</th>
                                             <th>Case No.</th>
+                                            <th>S. Case No.</th>
                                             <th>Fixed For</th>
                                             <th>1st Party/Complainant/ Petitioner/Plaintiff</th>
                                             <th>2nd Party/Accused/ Oppositon/Defendant</th>
                                             <th>Step to be taken</th>
-                                            <th>Day Note</th>
+                                            <th>Previous Day Note</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -432,6 +433,51 @@
 
                                         </td>
                                         <td><a href="{{ route('view-criminal-cases', $value->id) }}"> {{ $value->case_infos_case_no ? $value->case_title_name.' '.$value->case_infos_case_no.'/'.$value->case_infos_case_year : '' }} </a></td>
+                                        <td>
+                                            @php
+                                                $case_infos_sub_seq_case_no = explode(', ', $value->case_infos_sub_seq_case_no);
+                                            @endphp
+
+                                            {{ last($case_infos_sub_seq_case_no) }} 
+
+                                            @php
+                                            if (!empty($value->case_infos_sub_seq_case_no) && !empty($value->case_infos_sub_seq_case_year)) {
+                                                echo "/";
+                                            }
+                                                $case_infos_sub_seq_case_year = explode(', ', $value->case_infos_sub_seq_case_year);
+                                            @endphp
+
+                                            {{ last($case_infos_sub_seq_case_year) }} 
+
+                                            {{-- @if ($value->case_infos_sub_seq_case_no)
+                                                @if (count($case_infos_sub_seq_case_no) > 1)
+                                                    @foreach ($case_infos_sub_seq_case_no as $pro)
+                                                        <li class="text-left">{{ $pro }}
+                                                        </li>
+                                                    @endforeach
+                                                @else
+                                                    @foreach ($case_infos_sub_seq_case_no as $pro)
+                                                        {{ $pro }}
+                                                    @endforeach
+                                                @endif
+                                            @endif --}}
+                                            {{-- @php
+                                                $case_infos_sub_seq_case_year = explode(', ', $value->case_infos_sub_seq_case_year);
+                                            @endphp
+                                            @if ($value->case_infos_sub_seq_case_year)
+                                                @if (count($case_infos_sub_seq_case_year) > 1)
+                                                    @foreach ($case_infos_sub_seq_case_year as $pro)
+                                                        <li class="text-left">{{ $pro }}
+                                                        </li>
+                                                    @endforeach
+                                                @else
+                                                    @foreach ($case_infos_sub_seq_case_year as $pro)
+                                                        {{ $pro }}
+                                                    @endforeach
+                                                @endif
+                                            @endif --}}
+
+                                        </td>
                                         <td>{{ $value->next_date_reason_name }}</td>
                                         <td>
                                             @php

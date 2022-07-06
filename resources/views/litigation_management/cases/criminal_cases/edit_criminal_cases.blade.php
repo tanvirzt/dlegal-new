@@ -17,7 +17,7 @@
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
                                 <a  type="button" href="{{ route('criminal-cases') }}" aria-disabled="false"
-                                    role="link" tabindex="-1">Case Dashboard </a>
+                                    role="link" tabindex="-1">Back </a>
                             </li>
                         </ol>
                     </div>
@@ -655,7 +655,7 @@
                                                                                         <input type="text" class="form-control"
                                                                                                id="client_divisoin_write"
                                                                                                name="client_divisoin_write"
-                                                                                               placeholder="Client Division"
+                                                                                               placeholder="Client Zone"
                                                                                                value="{{ $data->client_divisoin_write  }}">
                                                                                     </div>
                                                                                 </div>
@@ -684,7 +684,7 @@
                                                                                         <input type="text" class="form-control"
                                                                                                id="client_district_write"
                                                                                                name="client_district_write"
-                                                                                               placeholder="Client District"
+                                                                                               placeholder="Client Area"
                                                                                                value="{{ $data->client_district_write  }}">
                                                                                     </div>
                                                                                 </div>
@@ -713,7 +713,7 @@
                                                                                         <input type="text" class="form-control"
                                                                                                id="client_thana_write"
                                                                                                name="client_thana_write"
-                                                                                               placeholder="Client Thana"
+                                                                                               placeholder="Client Branch"
                                                                                                value="{{ $data->client_thana_write  }}">
                                                                                     </div>
                                                                                 </div>
@@ -983,7 +983,7 @@
                                                                                         <input type="text" class="form-control"
                                                                                                id="opposition_divisoin_write"
                                                                                                name="opposition_divisoin_write"
-                                                                                               placeholder="Opposition Division"
+                                                                                               placeholder="Opposition Zone"
                                                                                                value="{{ $data->opposition_divisoin_write  }}">
                                                                                     </div>
                                                                                 </div>
@@ -1013,7 +1013,7 @@
                                                                                         <input type="text" class="form-control"
                                                                                                id="opposition_district_write"
                                                                                                name="opposition_district_write"
-                                                                                               placeholder="Opposition District"
+                                                                                               placeholder="Opposition Area"
                                                                                                value="{{ $data->opposition_district_write  }}">
                                                                                     </div>
                                                                                 </div>
@@ -1042,7 +1042,7 @@
                                                                                         <input type="text" class="form-control"
                                                                                                id="opposition_thana_write"
                                                                                                name="opposition_thana_write"
-                                                                                               placeholder="Opposition Thana"
+                                                                                               placeholder="Opposition Branch"
                                                                                                value="{{ $data->opposition_thana_write  }}">
                                                                                     </div>
                                                                                 </div>
@@ -1405,7 +1405,7 @@
                                                                                 <select name="case_infos_district_id"
                                                                                         class="form-control select2"
                                                                                         id="case_infos_district_id"
-                                                                                        action="{{ route('find-thana') }}">
+                                                                                        action="{{ route('find-case-infos-thana') }}">
                                                                                     <option value=""> Select</option>
                                                                                     @foreach ($case_infos_existing_district as $item)
                                                                                         <option
@@ -1567,7 +1567,7 @@
                                                                                 <select name="case_infos_court_id[]"
                                                                                         class="form-control select2" data-placeholder="Select" multiple>
                                                                                     <option value="">Select</option>
-                                                                                    @foreach($court as $item)
+                                                                                    @foreach($exist_court_short as $item)
                                                                                         <option
                                                                                             value="{{ $item->court_name }}" {{( in_array($item->court_name, $court_explode) ? 'selected':'')}}>{{ $item->court_name }}</option>
                                                                                     @endforeach
@@ -1586,7 +1586,7 @@
                                                                                                 id="case_infos_court_short_id"
                                                                                                 class="form-control select2" data-placeholder="Select" multiple>
                                                                                             <option value="">Select</option>
-                                                                                            @foreach($court_short as $item)
+                                                                                            @foreach($exist_court_short as $item)
                                                                                                 <option
                                                                                                     value="{{ $item->court_short_name }}" {{ in_array($item->court_short_name, $court_short_explode) ? 'selected' : '' }}>{{ $item->court_short_name }}</option>
                                                                                             @endforeach
@@ -1700,7 +1700,7 @@
                                                                                 <select name="case_infos_sub_seq_court_id[]"
                                                                                         class="form-control select2" data-placeholder="Select" multiple>
                                                                                     <option value="">Select</option>
-                                                                                    @foreach($court as $item)
+                                                                                    @foreach($exist_court_short as $item)
                                                                                         <option
                                                                                             value="{{ $item->court_name }}" {{( in_array($item->court_name, $sub_seq_court_explode) ? 'selected':'')}}>{{ $item->court_name }}</option>
                                                                                     @endforeach
@@ -1719,7 +1719,7 @@
                                                                                                 id="case_infos_sub_seq_court_short_id"
                                                                                                 class="form-control select2" data-placeholder="Select" multiple>
                                                                                             <option value="">Select</option>
-                                                                                            @foreach($court_short as $item)
+                                                                                            @foreach($exist_court_short as $item)
                                                                                                 <option
                                                                                                     value="{{ $item->court_short_name }}" {{ in_array($item->court_short_name, $sub_seq_court_short_explode) ? 'selected' : '' }}>{{ $item->court_short_name }}</option>
                                                                                             @endforeach

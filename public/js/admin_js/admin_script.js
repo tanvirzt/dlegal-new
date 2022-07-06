@@ -1240,15 +1240,15 @@ $(document).ready(function () {
     })
 
 
-    $('#case_type').on('change', function () {
-        var case_type = $(this).val();
+    $('#case_class_id').on('change', function () {
+        var case_class_id = $(this).val();
         var route = $(this).attr('action');
-        // alert(case_type);
-        if (case_type) {
+        // alert(case_class_id);
+        if (case_class_id) {
             $.ajax({
                 url: route,
                 type: "GET",
-                data: {"_token": "{{ csrf_token() }}", case_type: case_type},
+                data: {"_token": "{{ csrf_token() }}", case_class_id: case_class_id},
                 dataType: "json",
                 success: function (data) {
                     // console.log(data);
@@ -1290,21 +1290,37 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (data) {
                     // console.log(data);
-                    if (data) {
+                    if (data.case_types) {
                         $('#case_type_id').empty();
                         $('#case_type_id').focus;
                         $('#case_type_id').append('<option value="">Select</option>');
-                        $.each(data, function (key, value) {
+                        $.each(data.case_types, function (key, value) {
                             $('select[name="case_type_id"]').append('<option value="' + value.id + '">' + value.case_types_name + '</option>');
                         });
                     } else {
                         $('#case_type_id').empty();
                     }
+
+                    if (data.case_matter) {
+                        $('#matter_id').empty();
+                        $('#matter_id').focus;
+                        $('#matter_id').append('<option value="">Select</option>');
+                        $.each(data.case_matter, function (key, value) {
+                            $('select[name="matter_id"]').append('<option value="' + value.id + '">' + value.matter_name + '</option>');
+                        });
+                    } else {
+                        $('#matter_id').empty();
+                    }
+
                 }
             });
         } else {
             $('#case_type_id').empty();
             $('#case_type_id').append('<option value="">Select</option>');
+
+            $('#matter_id').empty();
+            $('#matter_id').append('<option value="">Select</option>');
+
         }
     });
 
@@ -1494,10 +1510,10 @@ $(document).ready(function () {
                         $('#case_infos_sub_seq_court_short_id').append('<option value="">Select</option>');
 
                         $.each(data.court, function (key, value) {
-                            $('select[name="case_infos_court_id[]"]').append('<option value="' + value.id + '">' + value.court_name + '</option>');
-                            $('select[name="case_infos_court_short_id[]"]').append('<option value="' + value.id + '">' + value.court_short_name + '</option>');
-                            $('select[name="case_infos_sub_seq_court_id[]"]').append('<option value="' + value.id + '">' + value.court_name + '</option>');
-                            $('select[name="case_infos_sub_seq_court_short_id[]"]').append('<option value="' + value.id + '">' + value.court_short_name + '</option>');
+                            $('select[name="case_infos_court_id[]"]').append('<option value="' + value.court_name + '">' + value.court_name + '</option>');
+                            $('select[name="case_infos_court_short_id[]"]').append('<option value="' + value.court_short_name + '">' + value.court_short_name + '</option>');
+                            $('select[name="case_infos_sub_seq_court_id[]"]').append('<option value="' + value.court_name + '">' + value.court_name + '</option>');
+                            $('select[name="case_infos_sub_seq_court_short_id[]"]').append('<option value="' + value.court_short_name + '">' + value.court_short_name + '</option>');
                         });
                     } else {
                         $('#case_infos_court_id').empty();

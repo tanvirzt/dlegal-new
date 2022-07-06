@@ -1,14 +1,49 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background: #2A6CB1;">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            <a class="nav-link" style="color:white;" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/dashboard" class="nav-link">Home</a>
+            <a href="{{ route('dashboard') }}" style="color:white;" class="nav-link">Dashboard</a>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style="color:white;" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Litigation Calendar
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <a class="dropdown-item" href="{{ route('litigation-calender-list') }}">Litigation Calendar (List)</a>
+                <a class="dropdown-item" href="{{ route('litigation-calender-short') }}">Litigation Calendar (Short)</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style="color:white;" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Case Dashboard
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
 
+                <a class="dropdown-item" href="{{ route('civil-cases') }}">Civil</a>
+                <a class="dropdown-item" href="{{ route('criminal-cases') }}">Criminal</a>
+                <a class="dropdown-item" href="{{ route('labour-cases') }}">Service Matter</a>
+                <a class="dropdown-item" href="{{ route('quassi-judicial-cases') }}">Special/Quassi-Judicial Cases</a>
+                <a class="dropdown-item" href="{{ route('high-court-cases') }}">High Court Division</a>
+                <a class="dropdown-item" href="{{ route('appellate-court-cases') }}">Appellate Court Division</a>
+
+            </div>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" style="color:white;" class="nav-link">Legal Service</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" style="color:white;" class="nav-link">Compliance MGT</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" style="color:white;" class="nav-link">Document MGT</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" style="color:white;" class="nav-link">Property MGT</a>
+        </li>
     </ul>
 
 @php

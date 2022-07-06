@@ -3127,28 +3127,29 @@ public function delete_case_subcategory($id)
 
 public function find_case_category(Request $request)
 {
+    // return $request->all();
 
-    if ($request->case_type == "Civil Cases") {
+    if ($request->case_class_id == "Civil") {
 
-        $data = SetupCaseCategory::where(['case_type' => 'Civil Cases', 'delete_status' => 0])->orderBy('case_category','asc')->get();
+        $data = SetupCaseCategory::where(['case_type' => 'Civil', 'delete_status' => 0])->orderBy('case_category','asc')->get();
 
-    } else if($request->case_type == "Criminal Cases"){
+    } else if($request->case_class_id == "Criminal"){
 
-        $data = SetupCaseCategory::where(['case_type' => 'Criminal Cases','delete_status' => 0])->orderBy('case_category','asc')->get();
+       return $data = SetupCaseCategory::where(['case_type' => 'Criminal','delete_status' => 0])->orderBy('case_category','asc')->get();
 
-    }else if($request->case_type == "Labour Cases"){
+    }else if($request->case_class_id == "Labour Cases"){
 
         $data = SetupCaseCategory::where(['case_type' => 'Labour Cases','delete_status' => 0])->orderBy('case_category','asc')->get();
 
-    }else if($request->case_type == "Special Quassi - Judicial Cases"){
+    }else if($request->case_class_id == "Special Quassi - Judicial Cases"){
 
-        $data = SetupCaseCategory::where(['case_type' => 'Special Quassi - Judicial Cases','delete_status' => 0])->orderBy('case_category','asc')->get();
+        $data = SetupCaseCategory::where(['case_type' => 'Special/Quassi - Judicial Cases','delete_status' => 0])->orderBy('case_category','asc')->get();
 
-    }else if($request->case_type == "High Court Division"){
+    }else if($request->case_class_id == "High Court Division"){
 
         $data = SetupCaseCategory::where(['case_type' => 'High Court Division','delete_status' => 0])->orderBy('case_category','asc')->get();
 
-    }else if($request->case_type == "Appellate Court Division"){
+    }else if($request->case_class_id == "Appellate Court Division"){
 
         $data = SetupCaseCategory::where(['case_type' => 'Appellate Court Division','delete_status' => 0])->orderBy('case_category','asc')->get();
 
@@ -3725,17 +3726,26 @@ public function find_case_category(Request $request)
 
     public function save_matter(Request $request)
     {
+
+        // dd($request->all());
+
         $rules = [
-            'matter_name' => 'required'
+            'case_class_id' => 'required',
+            'case_category_id' => 'required',
+            'matter_name' => 'required',
         ];
 
         $validMsg = [
-            'matter_name.required' => 'Matter field is required'
+            'case_class_id.required' => 'Case Class field is required',
+            'case_category_id.required' => 'Case Category field is required',
+            'matter_name.required' => 'Matter field is required',
         ];
 
         $this->validate($request, $rules, $validMsg);
 
         $matter = new SetupMatter();
+        $matter->case_class_id = $request->case_class_id;
+        $matter->case_category_id = $request->case_category_id;
         $matter->matter_name = $request->matter_name;
         $matter->save();
 
@@ -3746,25 +3756,32 @@ public function find_case_category(Request $request)
     public function edit_matter($id)
     {
         $data = SetupMatter::find($id);
-        return view('setup.matter.edit_matter',compact('data'));
+        $existing_case_category = SetupCaseCategory::where('case_type',$data->case_class_id)->get();
+        // dd($existing_case_category);
+        return view('setup.matter.edit_matter',compact('data','existing_case_category'));
     }
 
     public function update_matter(Request $request, $id)
     {
         $rules = [
-            'matter_name' => 'required'
+            'case_class_id' => 'required',
+            'case_category_id' => 'required',
+            'matter_name' => 'required',
         ];
 
         $validMsg = [
-            'matter_name.required' => 'Matter field is required.'
+            'case_class_id.required' => 'Case Class field is required',
+            'case_category_id.required' => 'Case Category field is required',
+            'matter_name.required' => 'Matter field is required',
         ];
 
         $this->validate($request, $rules, $validMsg);
 
         $matter = SetupMatter::find($id);
+        $matter->case_class_id = $request->case_class_id;
+        $matter->case_category_id = $request->case_category_id;
         $matter->matter_name = $request->matter_name;
         $matter->save();
-
         session()->flash('success', 'Matter Updated Successfully.');
 
         return redirect()->route('matter');

@@ -652,5 +652,8 @@ th{
 }
 
 .dropdown-menu{
-    background-color: #FF7034;
+    background-color: #2A6CB1;
+}
+.dropdown-item{
+    color: white;
 }

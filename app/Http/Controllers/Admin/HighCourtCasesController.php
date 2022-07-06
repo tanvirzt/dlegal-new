@@ -31,6 +31,7 @@ use App\Models\HighCourtCasesFile;
 use App\Models\SetupDistrict;
 use App\Models\SetupExternalCouncilAssociate;
 use App\Models\HighCourtCaseStatusLog;
+use App\Models\SetupMatter;
 
 //use DB;
 use Illuminate\Support\Facades\DB;
@@ -61,8 +62,13 @@ class HighCourtCasesController extends Controller
 
     public function find_case_type(Request $request)
     {
-        $data = SetupCaseTypes::where(['case_category_id' => $request->case_category_id, 'delete_status' => 0])->get();
-        return response()->json($data);
+        $case_types = SetupCaseTypes::where(['case_category_id' => $request->case_category_id, 'delete_status' => 0])->get();
+        $case_matter = SetupMatter::where(['case_category_id' => $request->case_category_id, 'delete_status' => 0])->get();
+
+        return response()->json([
+            'case_types' => $case_types,
+            'case_matter' => $case_matter
+        ]);
     }
 
     public function add_high_court_cases()

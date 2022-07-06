@@ -10,11 +10,11 @@
                         <h1 class="m-0 text-dark">Dashboard</h1>
                     </div>
                     <div class="col-sm-6">
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-6">
                                 <div class="dropdown">
                                     <button class="btn bg-gradient-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Litigation Calendar
+                                      Classes of Cases
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                       <a class="dropdown-item" href="{{ route('civil-cases') }}">Civil</a>
@@ -23,7 +23,6 @@
                                       <a class="dropdown-item" href="{{ route('quassi-judicial-cases') }}">Special/Quassi-Judicial Cases</a>
                                       <a class="dropdown-item" href="{{ route('high-court-cases') }}">High Court Division</a>
                                       <a class="dropdown-item" href="{{ route('appellate-court-cases') }}">Appellate Court Division</a>
-                                      {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
                                     </div>
                                   </div>
                             </div>
@@ -35,11 +34,10 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                       <a class="dropdown-item" href="{{ route('litigation-calender-list') }}">Litigation Calendar(List)</a>
                                       <a class="dropdown-item" href="{{ route('litigation-calender-short') }}">Litigation Calendar(Short)</a>
-                                      {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
                                     </div>
                                   </div>
                             </div>
-                        </div>
+                        </div> --}}
                           
                         {{-- <div class="row">
                         <div class="col-md-6">

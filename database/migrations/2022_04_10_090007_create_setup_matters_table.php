@@ -15,6 +15,8 @@ class CreateSetupMattersTable extends Migration
     {
         Schema::create('setup_matters', function (Blueprint $table) {
             $table->id();
+            $table->string('case_class_id')->nullable();
+            $table->integer('case_category_id')->nullable();
             $table->string('matter_name')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();

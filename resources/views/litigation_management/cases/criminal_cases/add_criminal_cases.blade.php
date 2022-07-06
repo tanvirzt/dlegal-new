@@ -20,7 +20,7 @@
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
                                 <a  type="button" href="{{ route('criminal-cases') }}" aria-disabled="false"
-                                    role="link" tabindex="-1">Case Dashboard </a>
+                                    role="link" tabindex="-1">Back </a>
                             </li>
                         </ol>
                     </div>
@@ -1280,10 +1280,10 @@
                                                                         id="matter_id"
                                                                         class="form-control select2">
                                                                     <option value="">Select</option>
-                                                                    @foreach($matter as $item)
+                                                                    {{-- @foreach($matter as $item)
                                                                         <option
                                                                             value="{{ $item->id }}" {{( old('matter_id') == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
-                                                                    @endforeach
+                                                                    @endforeach --}}
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-6">

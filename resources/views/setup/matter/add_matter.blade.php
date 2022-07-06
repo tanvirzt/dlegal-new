@@ -56,6 +56,30 @@
                                 <div class="card-body">
 
                                     <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="case_class_id"> Class of Cases </label>
+                                            <select name="case_class_id" class="form-control select2" id="case_class_id" action="{{ route('find-case-category') }}">
+                                                <option value="">Select</option>
+                                                <option value="Civil"> Civil </option>
+                                                <option value="Criminal"> Criminal </option>
+                                                <option value="Service Matter"> Service Matter </option>
+                                                <option value="Special/Quassi - Judicial Cases"> Special/Quassi - Judicial Cases </option>
+                                                <option value="High Court Division"> High Court Division </option>
+                                                <option value="Appellate Court Division"> Appellate Court Division </option>
+                                            </select>
+                                            @error('case_class_id')<span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="case_category_id"> Case Category </label>
+                                            <select name="case_category_id" class="form-control select2" id="case_category_id" action="{{ route('find-case-category') }}">
+                                                <option value="">Select</option>
+
+                                            </select>
+                                            @error('case_category_id')<span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+
+                                        
 
                                         <div class="form-group">
                                             <label for="matter_name">Matter</label>

@@ -56,7 +56,30 @@
                                 <div class="card-body">
 
                                     <div class="col-md-12">
-
+                                        <div class="form-group">
+                                            <label for="case_class_id"> Class of Cases </label>
+                                            <select name="case_class_id" class="form-control select2" id="case_class_id" action="{{ route('find-case-category') }}">
+                                                <option value="">Select</option>
+                                                <option value="Civil" {{ $data->case_class_id == "Civil" ? 'selected' : '' }}> Civil </option>
+                                                <option value="Criminal" {{ $data->case_class_id == "Criminal" ? 'selected' : '' }}> Criminal </option>
+                                                <option value="Service Matter" {{ $data->case_class_id == "Service Matter" ? 'selected' : '' }}> Service Matter </option>
+                                                <option value="Special/Quassi - Judicial Cases" {{ $data->case_class_id == "Special/Quassi - Judicial Cases" ? 'selected' : '' }}> Special/Quassi - Judicial Cases </option>
+                                                <option value="High Court Division" {{ $data->case_class_id == "High Court Division" ? 'selected' : '' }}> High Court Division </option>
+                                                <option value="Appellate Court Division" {{ $data->case_class_id == "Appellate Court Division" ? 'selected' : '' }}> Appellate Court Division </option>
+                                            </select>
+                                            @error('case_class_id')<span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="case_category_id"> Case Category </label>
+                                            <select name="case_category_id" class="form-control select2" id="case_category_id" action="{{ route('find-case-category') }}">
+                                                <option value="">Select</option>
+                                                @foreach($existing_case_category as $item)
+                                                    <option
+                                                        value="{{ $item->id }}" {{( $data->case_category_id == $item->id ? 'selected':'')}}>{{ $item->case_category }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('case_category_id')<span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
                                         <div class="form-group">
                                             <label for="matter_name"> Matter </label>
                                             <input type="text" class="form-control" name="matter_name"

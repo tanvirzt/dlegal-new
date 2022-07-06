@@ -279,9 +279,12 @@ public function calendar_short_next_previous(Request $request)
     $time = strtotime($request->from_date);
 
     if ($request->arrow_up) {
+
 // dd('arrow_up');
         $date = date('F, Y',strtotime("+1 month",$time));
+
     } else {
+
 // dd('arrow_down');
         $date = date('F, Y',strtotime(' - 1 months',$time));
         // dd($date);

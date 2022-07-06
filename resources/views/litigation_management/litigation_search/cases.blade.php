@@ -120,8 +120,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="client_id" class="col-sm-4 col-form-label">Client
-                                                            Name</label>
+                                                        <label for="client_id" class="col-sm-4 col-form-label">Client/Party</label>
                                                         <div class="col-sm-8">
 
                                                             <div class="row">
@@ -140,7 +139,7 @@
                                                                     <input type="text" class="form-control"
                                                                            id="client_name_write"
                                                                            name="client_name_write"
-                                                                           placeholder="Client Name"
+                                                                           placeholder="Client/Party"
                                                                            value="{{ old('client_name_write') }}">
                                                                 </div>
                                                             </div>

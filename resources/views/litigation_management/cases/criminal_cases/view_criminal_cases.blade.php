@@ -16,11 +16,9 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('litigation-calender-list') }}">Litigation Calendar(List)</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('litigation-calender-short') }}">Litigation Calendar(Short)</a></li>
                             <li class="breadcrumb-item active">
                                 <a  type="button" href="{{ route('criminal-cases') }}" aria-disabled="false"
-                                    role="link" tabindex="-1">Case Dashboard </a>
+                                    role="link" tabindex="-1">Back </a>
                             </li>
                         </ol>
                     </div>
@@ -325,18 +323,18 @@
                                                                     {{ $data->client_profession_write }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Zone/Division</td>
-                                                                <td>{{ $data->client_division_name }}
+                                                                <td>Division/Zone</td>
+                                                                <td>{{ $data->client_division_name }} @if ($data->client_division_name && $data->client_divisoin_write) / @endif 
                                                                     {{ $data->client_divisoin_write }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Area/District</td>
-                                                                <td>{{ $data->client_district_name }}
+                                                                <td>District/Area</td>
+                                                                <td>{{ $data->client_district_name }} @if ($data->client_district_name && $data->client_district_write) / @endif 
                                                                     {{ $data->client_district_write }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Branch/Thana</td>
-                                                                <td>{{ $data->client_thana_name }}
+                                                                <td>Thana/Branch</td>
+                                                                <td>{{ $data->client_thana_name }} @if ($data->client_thana_name && $data->client_thana_write) / @endif 
                                                                     {{ $data->client_thana_write }}</td>
                                                             </tr>
                                                             <tr>
@@ -447,18 +445,18 @@
                                                                     {{ $data->opposition_profession_write }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Zone/Division</td>
-                                                                <td>{{ $data->opposition_division_name }}
+                                                                <td>Division/Zone</td>
+                                                                <td> {{ $data->opposition_division_name }} @if ($data->opposition_division_name && $data->opposition_divisoin_write) / @endif 
                                                                     {{ $data->opposition_divisoin_write }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Area/District</td>
-                                                                <td>{{ $data->opposition_district_name }}
+                                                                <td>District/Area</td>
+                                                                <td>{{ $data->opposition_district_name }} @if ($data->opposition_district_name && $data->opposition_district_write) / @endif 
                                                                     {{ $data->opposition_district_write }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Branch/Thana</td>
-                                                                <td>{{ $data->opposition_thana_name }}
+                                                                <td>Thana/Branch</td>
+                                                                <td>{{ $data->opposition_thana_name }} @if ($data->opposition_thana_name && $data->opposition_thana_write) / @endif
                                                                     {{ $data->opposition_thana_write }}</td>
                                                             </tr>
                                                             <tr>
@@ -1332,7 +1330,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table class="table view_table table-bordered table-striped">
+                                    <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                             <tr>
                                                 <th class="text-nowrap" width="90px;">Date</th>
@@ -1442,7 +1440,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table class="table view_table table-bordered table-striped">
+                                    <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                             <tr>
                                                 <th class="text-nowrap" width="90px;">Date</th>
@@ -1572,7 +1570,7 @@
                                                             target="_blank">
                                                             <button class="btn btn-outline-success btn-sm"
                                                                 data-toggle="tooltip" data-placement="top"
-                                                                title="Download"><i class="fas fa-eye"></i></button>
+                                                                title="View Document"><i class="fas fa-eye"></i></button>
                                                         </a>
 
                                                     </td>
@@ -1609,10 +1607,10 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table class="table view_table table-bordered table-striped">
+                                    <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                             <tr>
-                                                <th width="80px;">Bill for the Date</th>
+                                                <th width="150px;">Bill for the Date</th>
                                                 <th>Bill Particulars</th>
                                                 <th width="80px;">Bill Type</th>
                                                 <th>Bill Schedule</th>
@@ -2816,7 +2814,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="client_division_id" class="col-sm-4 col-form-label">Zone/Division</label>
+                            <label for="client_division_id" class="col-sm-4 col-form-label"> Division/Zone</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -2832,7 +2830,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="client_divisoin_write"
-                                            name="client_divisoin_write" placeholder="Client Division"
+                                            name="client_divisoin_write" placeholder="Client Zone"
                                             value="{{ $data->client_divisoin_write }}">
                                     </div>
                                 </div>
@@ -2843,7 +2841,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="client_district_id" class="col-sm-4 col-form-label">Area/District</label>
+                            <label for="client_district_id" class="col-sm-4 col-form-label">District/Area</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -2859,7 +2857,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="client_district_write"
-                                            name="client_district_write" placeholder="Client District"
+                                            name="client_district_write" placeholder="Client Area"
                                             value="{{ $data->client_district_write }}">
                                     </div>
                                 </div>
@@ -2870,7 +2868,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="client_thana_id" class="col-sm-4 col-form-label">Branch/Thana</label>
+                            <label for="client_thana_id" class="col-sm-4 col-form-label">Thana/Branch</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -2886,7 +2884,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="client_thana_write"
-                                            name="client_thana_write" placeholder="Client Thana"
+                                            name="client_thana_write" placeholder="Client Branch"
                                             value="{{ $data->client_thana_write }}">
                                     </div>
                                 </div>
@@ -3168,7 +3166,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="opposition_division_id" class="col-sm-4 col-form-label">Zone/Division</label>
+                            <label for="opposition_division_id" class="col-sm-4 col-form-label">Division/Zone</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -3184,7 +3182,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="opposition_divisoin_write"
-                                            name="opposition_divisoin_write" placeholder="Opposition Division"
+                                            name="opposition_divisoin_write" placeholder="Opposition Zone"
                                             value="{{ $data->opposition_divisoin_write }}">
                                     </div>
                                 </div>
@@ -3195,7 +3193,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="opposition_district_id" class="col-sm-4 col-form-label">Area/District</label>
+                            <label for="opposition_district_id" class="col-sm-4 col-form-label">District/Area</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -3207,7 +3205,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="opposition_district_write"
-                                            name="opposition_district_write" placeholder="Opposition District"
+                                            name="opposition_district_write" placeholder="Opposition Area"
                                             value="{{ $data->opposition_district_write }}">
                                     </div>
                                 </div>
@@ -3218,7 +3216,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="opposition_thana_id" class="col-sm-4 col-form-label">Branch/Thana</label>
+                            <label for="opposition_thana_id" class="col-sm-4 col-form-label">Thana/Branch</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -3230,7 +3228,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="opposition_thana_write"
-                                            name="opposition_thana_write" placeholder="Opposition Thana"
+                                            name="opposition_thana_write" placeholder="Opposition Branch"
                                             value="{{ $data->opposition_thana_write }}">
                                     </div>
                                 </div>
@@ -3515,10 +3513,10 @@
                             <label for="case_infos_court_id" class="col-sm-4 col-form-label"> Name
                                 of the Court </label>
                             <div class="col-sm-8">
-                                <select name="case_infos_court_id[]" class="form-control select2"
+                                <select name="case_infos_court_id[]" id="case_infos_court_id" class="form-control select2"
                                     data-placeholder="Select" multiple>
                                     <option value="">Select</option>
-                                    @foreach ($court as $item)
+                                    @foreach ($exist_court_short as $item)
                                         <option value="{{ $item->court_name }}"
                                             {{ in_array($item->court_name, $court_explode) ? 'selected' : '' }}>
                                             {{ $item->court_name }}</option>
@@ -3539,7 +3537,7 @@
                                         <select name="case_infos_court_short_id[]" id="case_infos_court_short_id"
                                             class="form-control select2" data-placeholder="Select" multiple>
                                             <option value="">Select</option>
-                                            @foreach ($court_short as $item)
+                                            @foreach ($exist_court_short as $item)
                                                 <option value="{{ $item->court_short_name }}"
                                                     {{ in_array($item->court_short_name, $court_short_explode) ? 'selected' : '' }}>
                                                     {{ $item->court_short_name }}</option>
@@ -3651,10 +3649,10 @@
                             <label for="case_infos_sub_seq_court_id" class="col-sm-4 col-form-label"> Sub-Seq. Court
                             </label>
                             <div class="col-sm-8">
-                                <select name="case_infos_sub_seq_court_id[]" class="form-control select2"
+                                <select name="case_infos_sub_seq_court_id[]" id="case_infos_sub_seq_court_id" class="form-control select2"
                                     data-placeholder="Select" multiple>
                                     <option value="">Select</option>
-                                    @foreach ($court as $item)
+                                    @foreach ($exist_court_short as $item)
                                         <option value="{{ $item->court_name }}"
                                             {{ in_array($item->court_name, $sub_seq_court_explode) ? 'selected' : '' }}>
                                             {{ $item->court_name }}</option>
@@ -3676,7 +3674,7 @@
                                             id="case_infos_sub_seq_court_short_id" class="form-control select2"
                                             data-placeholder="Select" multiple>
                                             <option value="">Select</option>
-                                            @foreach ($court_short as $item)
+                                            @foreach ($exist_court_short as $item)
                                                 <option value="{{ $item->court_short_name }}"
                                                     {{ in_array($item->court_short_name, $sub_seq_court_short_explode) ? 'selected' : '' }}>
                                                     {{ $item->court_short_name }}</option>

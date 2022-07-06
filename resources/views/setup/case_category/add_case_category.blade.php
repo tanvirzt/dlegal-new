@@ -68,7 +68,6 @@
                                                 <option value="Appellate Court Division"> Appellate Court Division </option>
                                             </select>
                                             @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
-
                                         </div>
                                         <div class="form-group">
                                             <label for="case_category">Case Category</label>
