@@ -1,7 +1,8 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background: #2A6CB1;">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="padding: 0px;background: #2A6CB1;">
+    {{-- style="background: #2A6CB1;" --}}
     <!-- Left navbar links -->
-    <ul class="navbar-nav">
+    {{-- <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" style="color:white;" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
@@ -44,7 +45,124 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" style="color:white;" class="nav-link">Property MGT</a>
         </li>
-    </ul>
+    </ul> --}}
+
+
+    <style>
+        .custom_ul{
+            padding: 0;
+            list-style: none;
+            /* background: #f2f2f2; */
+            margin-bottom: 0px;
+            background: #2A6CB1;
+        }
+        .custom_ul li{
+            display: inline-block;
+            position: relative;
+            line-height: 21px;
+            text-align: left;
+        }
+        .custom_ul li a{
+            display: block;
+            padding: 8px 20px;
+            color: white;
+            text-decoration: none;
+        }
+        .custom_ul li a:hover{
+            color: #333;
+            background: #939393;
+        }
+        .custom_ul li .colapse_left:hover{
+            color: #333;
+            background: #2A6CB1;
+        }
+        .custom_ul li ul.dropdown{
+            min-width: 100%; /* Set width of the dropdown */
+            background: #f2f2f2;
+            display: none;
+            position: absolute;
+            z-index: 999;
+            left: 0;
+            padding-left: 0px;
+        }
+        .custom_ul li:hover ul.dropdown{
+            display: block;	/* Display the dropdown */
+        }
+        .custom_ul li ul.dropdown li{
+            display: block;
+        }
+        .dropdown li a{
+            color: #333;
+        }
+        /* .custom_ul li ul a:hover{
+            background: #2A6CB1;
+        } */
+        
+        
+    </style>
+
+<ul class="custom_ul">
+    <li>
+        <a class="nav-link colapse_left" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+    </li>
+    <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+    <li>
+        <a href="#">Litigation Calendar &#9662;</a>
+        <ul class="dropdown" style="background:#c3c9cf;">
+            <li><a href="{{ route('litigation-calender-list') }}">Litigation Calendar (List)</a></li>
+            <li><a href="{{ route('litigation-calender-short') }}">Litigation Calendar (Short)</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">Case Dashboard &#9662;</a>
+        <ul class="dropdown" style="background:#c3c9cf;">
+            <li><a href="{{ route('civil-cases') }}">Civil</a></li>
+            <li><a href="{{ route('criminal-cases') }}">Criminal</a></li>
+            <li><a href="{{ route('labour-cases') }}">Service Matter</a></li>
+            <li><a href="{{ route('quassi-judicial-cases') }}">Special/Quassi-Judicial Cases</a></li>
+            <li><a href="{{ route('high-court-cases') }}">High Court Division</a></li>
+            <li><a href="{{ route('appellate-court-cases') }}">Appellate Court Division</a></li>
+        </ul>
+    </li>
+    
+    <li><a href="#">Legal Service</a></li>
+    <li><a href="#">Compliance MGT</a></li>
+    <li><a href="#">Documents MGT</a></li>
+    <li><a href="#">Property MGT</a></li>
+
+
+</ul>
+
+    {{-- <ul class="navbar-nav">
+        
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" style="color:white;" class="nav-link">Compliance MGT</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" style="color:white;" class="nav-link">Document MGT</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" style="color:white;" class="nav-link">Property MGT</a>
+        </li>
+    </ul> --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @php
     $notifications = \App\Models\CasesNotifications::where('received_by',Auth::guard('admin')->user()->email)->get();

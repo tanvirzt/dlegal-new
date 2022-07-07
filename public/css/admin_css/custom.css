@@ -651,9 +651,24 @@ th{
     background: #3AAFA9;
 }
 
-.dropdown-menu{
+/* .dropdown-menu{
     background-color: #2A6CB1;
 }
 .dropdown-item{
     color: white;
+} */
+
+
+/* .dropdown-menu{
+    background-color: #c3c9cf;
 }
+.dropdown-item{
+    color: #2A6CB1;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #2A6CB1;
+} */
+
