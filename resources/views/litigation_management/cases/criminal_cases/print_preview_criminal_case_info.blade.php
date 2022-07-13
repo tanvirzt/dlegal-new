@@ -544,6 +544,10 @@
                                                         <td>{{ $data->case_infos_thana_name }}</td>
                                                     </tr>
                                                     <tr>
+                                                        <td>Class of Cases</td>
+                                                        <td>{{ $data->case_type }}</td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>Case Category</td>
                                                         <td>{{ $data->case_category }}</td>
                                                     </tr>

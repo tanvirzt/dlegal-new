@@ -1119,7 +1119,70 @@
                                                                                 Received </u></h6>
                                                                                 
                                                                                 <div class="form-group row">
-                                                                                    <div class="col-sm-4">
+
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="input-group hdtuto_received_documents control-group increment_received_documents">
+                                                                                            <select name="received_documents_id[]"
+                                                                                                class="form-control mr-3">
+                                                                                                <option value="">Select</option>
+                                                                                                @foreach($documents as $item)
+                                                                                                    <option
+                                                                                                        value="{{ $item->documents_name }}" {{ $received_documents_explode[0] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                            <input type="text" name="received_documents[]"
+                                                                                                   class="myfrm form-control mr-2">
+                                                                                            <input type="date" name="received_documents_date[]"
+                                                                                                   class="myfrm form-control ml-2">
+                                                                                            <div class="input-group-btn">
+                                                                                                <button class="btn btn-success btn_success_received_documents"
+                                                                                                        type="button"><i
+                                                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="clone_received_documents @if(count($received_documents_explode) <= 1) hide @endif">
+                                                                                            @php
+                                                                                            array_shift($received_documents_explode);
+                                                                                            @endphp
+                                                                                            @foreach ( $received_documents_explode as $datas)
+                                                                                            <div class="hdtuto_received_documents control-group input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                 <select name="received_documents_id[]"
+                                                                                                    class="form-control mr-3" >
+                                                                                                    <option value="">Select</option>
+                                                                                                    @foreach($documents as $item)
+                                                                                                        <option
+                                                                                                            value="{{ $item->documents_name }}" {{ $datas == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                    @endforeach
+                                                                                                </select>
+                                                                                                <input type="text" name="received_documents[]"
+                                                                                                       class="myfrm form-control mr-2">
+                                                                                                <input type="date" name="received_documents_date[]"
+                                                                                                       class="myfrm form-control ml-2">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_received_documents"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            @endforeach
+                                                                                            
+
+                                                                                        </div>
+                                
+                                                                                        @error('case_infos_received_documents_informant_name')<span
+                                                                                            class="text-danger">{{$message}}</span>@enderror
+                                                                                    </div>
+
+
+
+
+
+
+
+                                                                                    {{-- <div class="col-sm-4">
                                                                                         <select name="received_documents_id[]"
                                                                                                 id="received_documents_id"
                                                                                                 class="form-control select2" data-placeholder="Select" multiple>
@@ -1169,7 +1232,8 @@
                                 
                                                                                         @error('case_infos_received_documents_informant_name')<span
                                                                                             class="text-danger">{{$message}}</span>@enderror
-                                                                                    </div>
+                                                                                    </div> --}}
+
                                                                                 </div>
                                                                                 <h6 class="text-uppercase text-bold">
                                                                                     <u> Documents

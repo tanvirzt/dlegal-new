@@ -196,6 +196,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('billings-log-print-preview/{id}','CriminalCasesController@billings_log_print_preview')->name('billings-log-print-preview');
         Route::get('criminal-case-print-preview/{id}','CriminalCasesController@criminal_case_print_preview')->name('criminal-case-print-preview');
         Route::post('update-criminal-cases-status-column/{id}','CriminalCasesController@update_criminal_cases_status_column')->name('update-criminal-cases-status-column');
+        Route::get('view-criminal-cases-read-notifications/{id}','CriminalCasesController@view_criminal_cases_read_notifications')->name('view-criminal-cases-read-notifications');
+        
 
         Route::get('labour-cases','LabourCasesController@labour_cases')->name('labour-cases');
         Route::get('add-labour-cases','LabourCasesController@add_labour_cases')->name('add-labour-cases');

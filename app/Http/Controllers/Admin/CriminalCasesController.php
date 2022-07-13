@@ -477,7 +477,11 @@ $created_case_id = 'LCR-000'.$sl;
 
         $exist_case_inofs_district = SetupDistrict::where('id', $data->case_infos_district_id)->first();
 // dd($exist_case_inofs_district);
-        $exist_court_short = SetupCourt::where('applicable_district_id', 'like', "%{$exist_case_inofs_district->district_name}%")->where('delete_status',0)->orderBy('court_name','asc')->get();
+        if(!empty($exist_case_inofs_district)){
+            $exist_court_short = SetupCourt::where('applicable_district_id', 'like', "%{$exist_case_inofs_district->district_name}%")->where('delete_status',0)->orderBy('court_name','asc')->get();
+        }else{
+            $exist_court_short = [];
+        }
 
 // dd($exist_court_short);
 
@@ -2329,6 +2333,7 @@ $case_no_data = DB::table('criminal_cases')
                 ->leftJoin('admins', 'criminal_cases.received_by_id', '=', 'admins.id')
                 ->leftJoin('setup_cabinets', 'criminal_cases.cabinet_id', '=', 'setup_cabinets.id')
                 ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+                
 
                 ->select('criminal_cases.*',
                     'setup_legal_issues.legal_issue_name',
@@ -2365,6 +2370,7 @@ $case_no_data = DB::table('criminal_cases')
                     'case_infos_district.district_name as case_infos_district_name',
                     'case_infos_thana.thana_name as case_infos_thana_name',
                     'setup_case_categories.case_category',
+                    'setup_case_categories.case_type',
                     'setup_case_subcategories.case_subcategory',
                     'case_infos_case_title.case_title_name as case_infos_case_title_name',
                     'sub_seq_case_infos_case_title.case_title_name as sub_seq_case_infos_case_title_name',
@@ -2498,6 +2504,18 @@ $case_no_data = DB::table('criminal_cases')
 
         session()->flash('success', 'Case of the Status Updated Successfully.');
         return redirect()->back();
+
+    }
+
+    public function view_criminal_cases_read_notifications($id)
+    {
+        // dd($id);
+
+        $notifications = CasesNotifications::find($id);
+        $notifications->is_read = 'Yes';
+        $notifications->save();
+
+        return redirect()->route('view-criminal-cases',$notifications->case_id);
 
     }
 

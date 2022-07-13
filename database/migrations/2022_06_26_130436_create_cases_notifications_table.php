@@ -20,6 +20,7 @@ class CreateCasesNotificationsTable extends Migration
             $table->string('case_type')->nullable();
             $table->string('received_by')->nullable();
             $table->string('send_by')->nullable();
+            $table->string('is_read')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

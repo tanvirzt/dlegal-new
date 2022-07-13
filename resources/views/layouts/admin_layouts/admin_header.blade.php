@@ -165,7 +165,7 @@
 
 
 @php
-    $notifications = \App\Models\CasesNotifications::where('received_by',Auth::guard('admin')->user()->email)->get();
+    $notifications = \App\Models\CasesNotifications::where('received_by',Auth::guard('admin')->user()->email)->orderBy('created_at', 'desc')->get();
 @endphp
 
 
@@ -181,7 +181,13 @@
                 <span class="dropdown-item dropdown-header">{{ $notifications->count() }} Notifications</span>
                 @foreach($notifications as $data)
                     <div class="dropdown-divider"></div>
-                    <a href="{{ route('view-criminal-cases', $data->case_id) }}" class="dropdown-item"><p> <b>
+                    {{-- <a href="{{ route('view-criminal-cases', $data->case_id) }}" class="dropdown-item"> --}}
+                        <a href="{{ route('view-criminal-cases-read-notifications', $data->id) }}" @if ($data->is_read == "Yes")
+                            style="background:#fff;"
+                        @endif class="dropdown-item">
+                        
+                        
+                        <p> <b>
                         <i class="fas fa-envelope mr-2"></i> {{ $data->case_type }} {{ $data->case_no }} </b> sent to you.</p>
                         {{-- <span class="float-right text-muted text-sm"></span> --}}
                     </a>
