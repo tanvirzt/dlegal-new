@@ -1777,7 +1777,8 @@ public function delete_company($id)
  public function add_external_council()
  {
     $person_title = SetupPersonTitle::where('delete_status',0)->get();
-    return view('setup.external_council.add_external_council',compact('person_title'));
+    $external_council = SetupExternalCouncil::where(['is_associate' => 'off','delete_status'=> 0])->get();
+    return view('setup.external_council.add_external_council',compact('person_title','external_council'));
  }
 
  public function save_external_council(Request $request)
@@ -1814,8 +1815,17 @@ public function delete_company($id)
      $data = new SetupExternalCouncil();
      $data->title_id = $request->title_id;
      $data->first_name = $request->first_name;
-     $data->middle_name = $request->middle_name;
+    //  $data->middle_name = $request->middle_name;
      $data->last_name = $request->last_name;
+
+     if ($request->is_associate == 'on') {
+        $data->is_associate = $request->is_associate;
+        $data->whose_associate_id = $request->whose_associate_id;
+     } else {
+        $data->is_associate = 'off';
+        $data->whose_associate_id = null;
+     }
+     
      $data->email = $request->email;
      $data->work_phone = $request->work_phone;
      $data->home_phone = $request->home_phone;
@@ -1848,8 +1858,10 @@ public function delete_company($id)
  public function edit_external_council($id)
  {
      $person_title = SetupPersonTitle::where('delete_status',0)->get();
+     $external_council = SetupExternalCouncil::where(['is_associate' => 'off','delete_status'=> 0])->get();
+
      $data = SetupExternalCouncil::find($id);
-     return view('setup.external_council.edit_external_council',compact('data','person_title'));
+     return view('setup.external_council.edit_external_council',compact('external_council','data','person_title'));
  }
 
  public function update_external_council(Request $request, $id)
@@ -1873,8 +1885,17 @@ public function delete_company($id)
      $data = SetupExternalCouncil::find($id);
      $data->title_id = $request->title_id;
      $data->first_name = $request->first_name;
-     $data->middle_name = $request->middle_name;
+    //  $data->middle_name = $request->middle_name;
      $data->last_name = $request->last_name;
+
+     if ($request->is_associate == 'on') {
+        $data->is_associate = $request->is_associate;
+        $data->whose_associate_id = $request->whose_associate_id;
+     } else {
+        $data->is_associate = 'off';
+        $data->whose_associate_id = null;
+     }
+
      $data->email = $request->email;
      $data->work_phone = $request->work_phone;
      $data->home_phone = $request->home_phone;

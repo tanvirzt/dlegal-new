@@ -19,6 +19,8 @@ class CreateSetupExternalCouncilsTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
             $table->string('last_name')->nullable();
+            $table->string('is_associate')->nullable();
+            $table->integer('whose_associate_id')->nullable();
             $table->string('email')->nullable();
             $table->string('work_phone')->nullable();
             $table->string('home_phone')->nullable();

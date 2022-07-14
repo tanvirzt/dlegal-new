@@ -48,7 +48,7 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Add External Council</h3>
+                                <h3 class="card-title" id="heading">Add External Counsel</h3>
                             </div>
 
                             <form action="{{ route('save-external-council') }}" enctype="multipart/form-data" method="post">
@@ -78,15 +78,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label for="middle_name" class="col-sm-4 col-form-label">Middle Name</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="middle_name" name="middle_name"  value="{{old('middle_name')}}">
-                                                    @error('middle_name')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="last_name" class="col-sm-4 col-form-label">Last Name</label>
@@ -96,6 +88,34 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="is_associate" class="col-sm-4 col-form-label">Associate</label>
+                                                <div class="col-sm-8">
+                                                    <input type="checkbox" class="form-control" id="is_associate" name="is_associate">
+                                                    @error('is_associate')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6" id="external_counsel" style="display: none;">
+                                            <div class="form-group row">
+                                                <label for="whose_associate_id" class="col-sm-4 col-form-label">External Counsel</label>
+                                                <div class="col-sm-8">
+                                                    <select name="whose_associate_id"
+                                                            class="form-control select2"
+                                                            id="whose_associate_id" action="{{ route('find-associates') }}">
+                                                        <option value="">Select</option>
+                                                        @foreach($external_council as $item)
+                                                            <option
+                                                                value="{{ $item->id }}" {{( old('whose_associate_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('whose_associate_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="email" class="col-sm-4 col-form-label">Email</label>

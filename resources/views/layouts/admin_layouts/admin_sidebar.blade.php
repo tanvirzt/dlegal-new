@@ -232,12 +232,12 @@
                                         <p>External Counsel</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a href="{{ route('external-council-associates') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>External Counsel Associates</p>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a href="{{ route('internal-council') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>

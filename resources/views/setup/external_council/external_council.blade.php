@@ -65,7 +65,7 @@
                                                 {{ $datum->id }}
                                             </td>
                                             <td class="text-center">
-                                                {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }}
+                                                {{ $datum->first_name }} {{ $datum->last_name }}
                                             </td>
                                             <td class="text-center">
                                                 {{ $datum->email }}

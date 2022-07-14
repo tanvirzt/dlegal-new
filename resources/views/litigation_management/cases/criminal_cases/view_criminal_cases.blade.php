@@ -2173,10 +2173,9 @@
                                                     <option value="">Select</option>
                                                     @foreach ($exist_engaged_advocate_associates as $item)
                                                         <option
-                                                            value="{{ $item->first_name . ' ' . $item->middle_name . ' ' . $item->last_name }}"
+                                                            value="{{ $item->first_name . ' ' . $item->last_name }}"
                                                             {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
                                                             {{ $item->first_name }}
-                                                            {{ $item->middle_name }}
                                                             {{ $item->last_name }}
                                                         </option>
                                                     @endforeach
@@ -2199,13 +2198,12 @@
                                     <div class="col-md-8">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <select name="activity_forwarded_to_id" class="form-control select2">
+                                                <select name="activity_forwarded_to_id[]" class="form-control select2" data-placeholder="Select" multiple>
                                                     <option value="">Select</option>
                                                     @foreach ($external_council as $item)
-                                                        <option value="{{ $item->id }}"
+                                                        <option value="{{ $item->first_name . ' ' . $item->last_name }}"
                                                             {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
                                                             {{ $item->first_name }}
-                                                            {{ $item->middle_name }}
                                                             {{ $item->last_name }}
                                                         </option>
                                                     @endforeach

@@ -1839,5 +1839,9 @@ $( '.links a' ).on( 'click', function(e){
 
   });
 
+  $('#is_associate').on('click', function(){
+    $('#external_counsel').toggle();
+  });
+
 });
 
