@@ -14,6 +14,9 @@ use App\Models\SetupCaseCategory;
 use App\Models\SetupComplainant;
 use App\Models\SetupMatter;
 use App\Models\SetupClient;
+use App\Models\SetupExternalCouncil;
+use App\Models\SetupCaseStatus;
+use App\Models\SetupNextDateReason;
 
 class LitigationCalenderController extends Controller
 {
@@ -118,15 +121,18 @@ class LitigationCalenderController extends Controller
 
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
-        $court = SetupCourt::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
-        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
+        $court = SetupCourt::where(['case_class_id' => 'Criminal', 'delete_status' => 0])->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->get();
         $complainant = SetupComplainant::where('delete_status', 0)->orderBy('complainant_name', 'asc')->get();
         $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
         $client = SetupClient::where('delete_status', 0)->orderBy('client_name','asc')->get();
         $client_name = SetupClientName::where('delete_status', 0)->get();
+        $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
+        $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
 
 
-        return view('litigation_management.litigation_search.cases', compact('division', 'case_types', 'court', 'case_category', 'complainant', 'matter','client','client_name'));
+        return view('litigation_management.litigation_search.cases', compact('next_date_reason','case_status','external_council','division', 'case_types', 'court', 'case_category', 'complainant', 'matter','client','client_name'));
     }
 
     public function search_cases(Request $request)
@@ -134,12 +140,16 @@ class LitigationCalenderController extends Controller
     //    dd($request->all());
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
-        $court = SetupCourt::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
-        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->get();
+        $court = SetupCourt::where(['case_class_id' => 'Criminal', 'delete_status' => 0])->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->get();
         $complainant = SetupComplainant::where('delete_status', 0)->orderBy('complainant_name', 'asc')->get();
         $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
         $client = SetupClient::where('delete_status', 0)->orderBy('client_name','asc')->get();
         $client_name = SetupClientName::where('delete_status', 0)->get();
+        $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
+        $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
+
 
 
         if ($request->received_date != "dd/mm/yyyy") {
@@ -172,7 +182,7 @@ class LitigationCalenderController extends Controller
                 $query2 = $query->where('criminal_cases.case_infos_case_no', 'LIKE', "%{$request->case_infos_case_no}%");
                 break;
             case $request->name_of_the_court_id:
-                $query2 = $query->where('criminal_cases.name_of_the_court_id', 'LIKE', "%{$request->name_of_the_court_id}%");
+                $query2 = $query->where('criminal_cases.name_of_the_court_id', $request->name_of_the_court_id);
                 break;
             case $request->case_infos_complainant_informant_name:
                 $query2 = $query->where('criminal_cases.case_infos_complainant_informant_name', 'LIKE', "%{$request->case_infos_complainant_informant_name}%");
@@ -181,31 +191,31 @@ class LitigationCalenderController extends Controller
                 $query2 = $query->where('criminal_cases.case_infos_accused_name', 'LIKE', "%{$request->case_infos_accused_name}%");
                 break;
             case $request->case_type_id:
-                $query2 = $query->where('criminal_cases.case_type_id', 'LIKE', "%{$request->case_type_id}%");
+                $query2 = $query->where('criminal_cases.case_type_id', $request->case_type_id);
                 break;
             case $request->matter_id:
-                $query2 = $query->where('criminal_cases.matter_id', 'LIKE', "%{$request->matter_id}%");
+                $query2 = $query->where('criminal_cases.matter_id', $request->matter_id);
                 break;
             case $request->case_category_id:
-                $query2 = $query->where('criminal_cases.case_category_id', 'LIKE', "%{$request->case_category_id}%");
+                $query2 = $query->where('criminal_cases.case_category_id', $request->case_category_id);
                 break;
             case $request->case_subcategory_id:
                 $query2 = $query->where('criminal_cases.case_subcategory_id', 'LIKE', "%{$request->case_subcategory_id}%");
                 break;
             case $request->client_division_id:
-                $query2 = $query->where('criminal_cases.client_division_id', 'LIKE', "%{$request->client_division_id}%");
+                $query2 = $query->where('criminal_cases.client_division_id', $request->client_division_id);
                 break;
             case $request->client_divisoin_write:
                 $query2 = $query->where('criminal_cases.client_divisoin_write', 'LIKE', "%{$request->client_divisoin_write}%");
                 break;
             case $request->client_district_id:
-                $query2 = $query->where('criminal_cases.client_district_id', 'LIKE', "%{$request->client_district_id}%");
+                $query2 = $query->where('criminal_cases.client_district_id', $request->client_district_id);
                 break;
             case $request->client_district_write:
                 $query2 = $query->where('criminal_cases.client_district_write', 'LIKE', "%{$request->client_district_write}%");
                 break;
             case $request->client_thana_id:
-                $query2 = $query->where('criminal_cases.client_thana_id', 'LIKE', "%{$request->client_thana_id}%");
+                $query2 = $query->where('criminal_cases.client_thana_id', $request->client_thana_id);
                 break;
             case $request->client_thana_write:
                 $query2 = $query->where('criminal_cases.client_thana_write', 'LIKE', "%{$request->client_thana_write}%");
@@ -217,6 +227,16 @@ class LitigationCalenderController extends Controller
             case $request->client_name_write:
                 $query2 = $query->where('criminal_cases.case_infos_complainant_informant_name', 'LIKE', "%{$request->client_name_write}%")
                                 ->orWhere('criminal_cases.case_infos_accused_name', 'like', "%{$request->client_name_write}%");
+                break;
+            case $request->lawyer_advocate_id:
+                $query2 = $query->where('criminal_cases.lawyer_advocate_id', $request->lawyer_advocate_id);
+                break;
+            case $request->case_status_id:
+                $query2 = $query->where('criminal_cases.case_status_id', $request->case_status_id);
+                break;
+            case $request->next_date_fixed_id:
+                // dd('asdfasdf');
+                $query2 = $query->where('criminal_cases.next_date_fixed_id', $request->next_date_fixed_id);
                 break;
             default:
                 $query2 = $query;
@@ -235,9 +255,10 @@ class LitigationCalenderController extends Controller
             'setup_external_councils.middle_name',
             'setup_external_councils.last_name',
             'case_infos_title.case_title_name as sub_seq_case_title_name')
+            ->where('criminal_cases.delete_status',0)
             ->get();
 // dd($data);
-        return view('litigation_management.litigation_search.cases', compact('data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter','client','client_name'));
+        return view('litigation_management.litigation_search.cases', compact('next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter','client','client_name'));
     }
 
     public function search_litigation_calendar_short(Request $request)

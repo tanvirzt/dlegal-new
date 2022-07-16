@@ -148,6 +148,23 @@
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row">
+                                                        <label for="lawyer_advocate_id" class="col-sm-4 col-form-label">Panel
+                                                            Lawyer</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="lawyer_advocate_id" id="lawyer_advocate_id" class="form-control select2"
+                                                                    >
+                                                                <option value="">Select</option>
+                                                                @foreach($external_council as $item)
+                                                                <option
+                                                                    value="{{ $item->id }}" {{( old('lawyer_advocate_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->last_name }}</option>
+                                                            @endforeach
+                                                            </select>
+                                                            @error('lawyer_advocate_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    
 
                                                 </div>
                                                 <div class="col-md-6">
@@ -155,8 +172,7 @@
                                                         <label for="case_category_id" class="col-sm-4 col-form-label">Case Category</label>
                                                         <div class="col-sm-8">
 
-                                                            <select name="case_category_id" id="case_category_id" class="form-control select2"
-                                                                    action="{{ route('find-case-subcategory') }}">
+                                                            <select name="case_category_id" id="case_category_id" class="form-control select2">
                                                                 <option value="">Select</option>
                                                                 @foreach($case_category as $item)
                                                                     <option
@@ -289,6 +305,41 @@
                                                                 </div>
                                                             </div>
                                                             @error('client_thana_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="case_status_id" class="col-sm-4 col-form-label">Status of the Case</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="case_status_id" id="case_status_id"
+                                                                class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach ($case_status as $item)
+                                                                    <option value="{{ $item->id }}"
+                                                                         {{ old('case_status_id') == $item->id ? 'selected' : '' }}>
+                                                                        {{ $item->case_status_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('case_status_id')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="next_date_fixed_id"
+                                                               class="col-sm-4 col-form-label">
+                                                            Next
+                                                            date fixed for </label>
+                                                        <div class="col-sm-8">
+                                                            <select name="next_date_fixed_id"
+                                                                    class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach($next_date_reason as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{(old('next_date_fixed_id') == $item->id ? 'selected':'')}}>{{ $item->next_date_reason_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('next_date_fixed_id')<span
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>

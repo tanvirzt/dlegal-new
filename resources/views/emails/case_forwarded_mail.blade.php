@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Case Forwarded Mail</title>
+    <title>Notice</title>
 </head>
 <body>
 

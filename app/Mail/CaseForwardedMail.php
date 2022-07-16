@@ -29,6 +29,6 @@ class CaseForwardedMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail from DLegal')->view('emails.case_forwarded_mail');
+        return $this->subject('Notice')->view('emails.case_forwarded_mail');
     }
 }

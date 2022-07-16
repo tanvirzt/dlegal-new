@@ -215,12 +215,11 @@
                                                                                     {{ $item->last_name }}
                                                                                 </option>
                                                                             @endforeach --}}
-                                                                            @foreach ($exist_engaged_advocate_associates as $item)
+                                                                            @foreach ($external_council as $item)
                                                                                 <option
-                                                                                    value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name}}"
-                                                                                    {{ in_array($item->first_name.' '.$item->middle_name.' '.$item->last_name, $exist_engaged_advocate_associates_explode) ? 'selected' : '' }}>
+                                                                                    value="{{ $item->first_name.' '.$item->last_name }}"
+                                                                                    {{ in_array($item->first_name.' '.$item->last_name, $exist_engaged_advocate_associates_explode) ? 'selected' : '' }}>
                                                                                     {{ $item->first_name }}
-                                                                                    {{ $item->middle_name }}
                                                                                     {{ $item->last_name }}
                                                                                 </option>
                                                                             @endforeach
@@ -251,10 +250,9 @@
                                                                             <option value="">Select</option>
                                                                             @foreach ($external_council as $item)
                                                                                 <option
-                                                                                    value="{{ $item->id }}"
+                                                                                    value="{{  $item->id }}"
                                                                                     {{ $data->activity_forwarded_to_id == $item->id ? 'selected' : '' }}>
                                                                                     {{ $item->first_name }}
-                                                                                    {{ $item->middle_name }}
                                                                                     {{ $item->last_name }}
                                                                                 </option>
                                                                             @endforeach

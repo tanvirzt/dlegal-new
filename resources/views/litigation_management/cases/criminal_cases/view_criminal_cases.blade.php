@@ -1477,9 +1477,19 @@
 
                                                         {{ $activity_log->activity_engaged_write }}
                                                     </td>
-                                                    <td> {{ $activity_log->forwarded_first_name }}
-                                                        {{ $activity_log->forwarded_middle_name }}
-                                                        {{ $activity_log->forwarded_last_name }}
+                                                    <td>
+                                                        {{-- @php
+                                                            $forwarded = explode(', ', $activity_log->activity_forwarded_to_id);
+                                                        @endphp
+
+                                                        @if ($activity_log->activity_forwarded_to_id)
+                                                            @foreach ($forwarded as $item)
+                                                                <li class="text-left">{{ $item }}</li>
+                                                            @endforeach
+                                                        @endif  --}}
+                                                        
+                                                        {{ $activity_log->forwarded_first_name }} {{ $activity_log->forwarded_last_name }}
+
                                                         {{ $activity_log->activity_forwarded_to_write }} </td>
                                                     <td>{{ $activity_log->activity_mode_write }}</td>
                                                     <td>
@@ -2171,7 +2181,7 @@
                                                 <select name="activity_engaged_id[]" data-placeholder="Select"
                                                     class="form-control select2" multiple>
                                                     <option value="">Select</option>
-                                                    @foreach ($exist_engaged_advocate_associates as $item)
+                                                    @foreach ($external_council as $item)
                                                         <option
                                                             value="{{ $item->first_name . ' ' . $item->last_name }}"
                                                             {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
@@ -2198,11 +2208,11 @@
                                     <div class="col-md-8">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <select name="activity_forwarded_to_id[]" class="form-control select2" data-placeholder="Select" multiple>
+                                                <select name="activity_forwarded_to_id" class="form-control select2" data-placeholder="Select">
                                                     <option value="">Select</option>
                                                     @foreach ($external_council as $item)
-                                                        <option value="{{ $item->first_name . ' ' . $item->last_name }}"
-                                                            {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
+                                                        <option value="{{ $item->id }}"
+                                                            {{ old('activity_forwarded_to_id') == $item->id ? 'selected' : '' }}>
                                                             {{ $item->first_name }}
                                                             {{ $item->last_name }}
                                                         </option>
@@ -5053,7 +5063,7 @@
                                     <option value="">Select</option>
                                     @foreach ($case_status as $item)
                                         <option value="{{ $item->id }}"
-                                            @if (!empty($previous_activity->updated_case_status_id) && $previous_activity->updated_case_status_id == $item->id) selected @else {{ old('updated_case_status_id') == $item->id ? 'selected' : '' }} @endif>
+                                            {{ old('updated_case_status_id') == $item->id ? 'selected' : '' }}>
                                             {{ $item->case_status_name }}</option>
                                     @endforeach
                                 </select>

@@ -1702,11 +1702,22 @@ $case_no_data = DB::table('criminal_cases')
 
     //    $data = json_decode(json_encode($request->all()));
     //    echo "<pre>";print_r($data);die();
+       
 // dd($id);
 
+// return $arr = array('Hello','World!','Beautiful','Day!');
+// return implode(" ",$arr);
 
-       $external_council = SetupExternalCouncil::where('id', $request->activity_forwarded_to_id)->first();
-// dd($external_council);
+        $external_council = SetupExternalCouncil::where('id', $request->activity_forwarded_to_id)->first();
+
+//        $forwarded = SetupExternalCouncil::whereIn('id', $request->activity_forwarded_to_id)->select(DB::raw("CONCAT(first_name,' ',last_name) AS name"))->pluck('name')->toArray();
+// // dd($forwarded);
+
+//        $implode = implode(', ', $forwarded);
+// dd($implode);
+
+    //    StudentModel::getStudentList()->pluck('Student_name')->toArray();
+
         if ($request->activity_date != 'dd-mm-yyyy') {
             $activity_date_explode = explode('-', $request->activity_date);
             $activity_date_implode = implode('-',$activity_date_explode);
@@ -1714,6 +1725,7 @@ $case_no_data = DB::table('criminal_cases')
         } else {
             $activity_date = date('Y-m-d');
         }
+
 
         $data = new CriminalCaseActivityLog();
         $data->case_id = $id;
@@ -1733,21 +1745,23 @@ $case_no_data = DB::table('criminal_cases')
 
         if($request->activity_forwarded_to_id != null) {
 
-            $notifications = new CasesNotifications();
-            $notifications->case_id = $id;
-            $notifications->case_type = "Criminal Cases";
-            $notifications->case_no = $request->case_no;
-            $notifications->send_by = Auth::guard('admin')->user()->email;
-            $notifications->received_by = $external_council->email;
-            $notifications->save();
+            
+                $notifications = new CasesNotifications();
+                $notifications->case_id = $id;
+                $notifications->case_type = "Criminal Cases";
+                $notifications->case_no = $request->case_no;
+                $notifications->send_by = Auth::guard('admin')->user()->email;
+                $notifications->received_by = $external_council->email;
+                $notifications->save();
 
-            $details = [
-                'name' => $external_council->first_name.' '.$external_council->middle_name,
-                'case_id' => 'Criminal Cases No: '.$request->case_no,
-                'messages' => Auth::guard('admin')->user()->name.' has been send this case to you.',
-            ];
+                $details = [
+                    'name' => $external_council->first_name.' '.$external_council->last_name,
+                    'case_id' => 'Criminal Cases No: '.$request->case_no,
+                    'messages' => Auth::guard('admin')->user()->name.' has sent this case to you.',
+                ];
 
-            Mail::to($external_council->email)->send(new CaseForwardedMail($details));
+                Mail::to($external_council->email)->send(new CaseForwardedMail($details));
+
 
         }
 
@@ -1807,7 +1821,7 @@ $case_no_data = DB::table('criminal_cases')
         $court_proceeding = SetupCourtProceeding::where('delete_status', 0)->orderBy('court_proceeding_name','asc')->get();
         $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->orderBy('court_last_order_name','asc')->get();
         $day_notes = SetupDayNote::where('delete_status', 0)->orderBy('day_notes_name','asc')->get();
-        // $exist_engaged_advocate = SetupExternalCouncil::where('id',$data->lawyer_advocate_id)->get();
+        $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $exist_engaged_advocate_associates = SetupExternalCouncilAssociate::where(['external_council_id' => $case_no->lawyer_advocate_id, 'delete_status'=>0])->get();
         $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->orderBy('next_day_presence_name','asc')->get();
         $court_proceeding_explode = explode(', ', $data->court_proceedings_id );
@@ -1815,7 +1829,7 @@ $case_no_data = DB::table('criminal_cases')
         $updated_day_notes_explode = explode(', ', $data->updated_day_notes_id );
         $updated_engaged_advocate = explode(', ', $data->updated_engaged_advocate_id );
 // dd($data);
-        return view('litigation_management.cases.criminal_cases.criminal_cases_status_update',compact('data','case_status','next_date_reason','court_proceeding','last_court_order','day_notes', 'exist_engaged_advocate_associates','next_day_presence','court_proceeding_explode', 'updated_court_order_explode','updated_day_notes_explode','updated_engaged_advocate'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases_status_update',compact('external_council','data','case_status','next_date_reason','court_proceeding','last_court_order','day_notes', 'exist_engaged_advocate_associates','next_day_presence','court_proceeding_explode', 'updated_court_order_explode','updated_day_notes_explode','updated_engaged_advocate'));
     }
 
     public function update_criminal_cases_status_logs(Request $request, $id)
@@ -1881,7 +1895,7 @@ $case_no_data = DB::table('criminal_cases')
         $exist_engaged_advocate_associates = SetupExternalCouncilAssociate::where(['delete_status'=>0])->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->orderBy('first_name','asc')->get();
         $exist_engaged_advocate_associates_explode = explode(', ', $data->activity_engaged_id);
-        // dd($exist_engaged_advocate_associates_explode);
+        // dd($data);
      
         $activity_data = DB::table('criminal_cases')
         ->leftJoin('setup_legal_issues', 'criminal_cases.legal_issue_id', '=', 'setup_legal_issues.id')
