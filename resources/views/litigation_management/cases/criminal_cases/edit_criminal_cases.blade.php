@@ -1127,13 +1127,13 @@
                                                                                                 <option value="">Select</option>
                                                                                                 @foreach($documents as $item)
                                                                                                     <option
-                                                                                                        value="{{ $item->documents_name }}" {{ $received_documents_explode[0]['received_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                        value="{{ $item->documents_name }}" {{ !empty($received_documents_explode[0]['received_documents_id']) && $received_documents_explode[0]['received_documents_id']  == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                                                                                 @endforeach
                                                                                             </select>
                                                                                             <input type="text" name="received_documents[]"
-                                                                                                   class="myfrm form-control mr-2" value="{{ $received_documents_explode[0]['received_documents'] }}">
+                                                                                                   class="myfrm form-control mr-2" value="{{ !empty($received_documents_explode[0]['received_documents']) ? $received_documents_explode[0]['received_documents'] : '' }}">
                                                                                             <input type="date" name="received_documents_date[]"
-                                                                                                   class="myfrm form-control ml-2" value="{{ $received_documents_explode[0]['received_documents_date'] }}">
+                                                                                                   class="myfrm form-control ml-2" value="{{ !empty($received_documents_explode[0]['received_documents_date']) ? $received_documents_explode[0]['received_documents_date'] : '' }}">
                                                                                             <div class="input-group-btn">
                                                                                                 <button class="btn btn-success btn_success_received_documents"
                                                                                                         type="button"><i
