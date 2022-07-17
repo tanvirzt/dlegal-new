@@ -54,7 +54,11 @@ class CreateCriminalCasesCaseStepsTable extends Migration
             $table->string('case_steps_judgement_order')->nullable();
             $table->string('case_steps_judgement_order_copy')->nullable();
             $table->string('case_steps_judgement_order_yes_no')->nullable();
-            $table->mediumText('case_steps_summary_judgement_order')->nullable();
+
+            $table->string('case_steps_summary_of_cases')->nullable();
+            $table->string('case_steps_summary_of_cases_copy')->nullable();
+            $table->string('case_steps_summary_of_cases_yes_no')->nullable();
+
             $table->mediumText('case_steps_remarks')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();

@@ -494,57 +494,13 @@
 
                                                     <table class="table table-bordered">
                                                         <tbody>
-                                                            <tr>
-                                                                <td width="40%">
-                                                                    @php
-                                                                        $received_documents_id = explode(', ', rtrim($data->received_documents_id, ', '));
-                                                                    @endphp
-                                                                    @if ($data->received_documents_id)
-                                                                        @if (count($received_documents_id) > 1)
-                                                                            @foreach ($received_documents_id as $pro)
-                                                                                <p>{{ $pro }}</p>
-                                                                            @endforeach
-                                                                        @else
-                                                                            @foreach ($received_documents_id as $pro)
-                                                                                {{ $pro }}
-                                                                            @endforeach
-                                                                        @endif
-                                                                    @endif
-                                                                </td>
-                                                                <td width="40%">
-                                                                    @php
-                                                                        $received_documents = explode(', ', rtrim($data->received_documents, ', '));
-                                                                    @endphp
-                                                                    @if ($data->received_documents)
-                                                                        @if (count($received_documents) > 1)
-                                                                            @foreach ($received_documents as $pro)
-                                                                                <p>{{ $pro }}</p>
-                                                                            @endforeach
-                                                                        @else
-                                                                            @foreach ($received_documents as $pro)
-                                                                                {{ $pro }}
-                                                                            @endforeach
-                                                                        @endif
-                                                                    @endif
-                                                                </td>
-                                                                <td width="20%">
-                                                                    @php
-                                                                        $received_documents_date = explode(', ', rtrim($data->received_documents_date, ', '));
-                                                                    @endphp
-                                                                    @if ($data->received_documents_date)
-                                                                        @if (count($received_documents_date) > 1)
-                                                                            @foreach ($received_documents_date as $pro)
-                                                                                <p>{{ date('d-m-Y', strtotime($pro)) }}
-                                                                                </p>
-                                                                            @endforeach
-                                                                        @else
-                                                                            @foreach ($received_documents_date as $pro)
-                                                                                {{ date('d-m-Y', strtotime($pro)) }}
-                                                                            @endforeach
-                                                                        @endif
-                                                                    @endif
-                                                                </td>
-                                                            </tr>
+                                                            @foreach ($received_documents_explode as $value)
+                                                                <tr>
+                                                                    <td>{{ $value['received_documents_id'] }}</td>
+                                                                    <td>{{ $value['received_documents'] }}</td>
+                                                                    <td>{{ $value['received_documents_date'] }}</td>
+                                                                </tr>
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                     <h6 class="text-uppercase text-bold mt-4">
@@ -1280,8 +1236,12 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Summary of Judgement & Order</td>
-                                                                <td> {{ $edit_case_steps->case_steps_summary_judgement_order }}
+                                                                <td>Summary of Cases</td>
+                                                                <td> {{ $edit_case_steps->case_steps_summary_of_cases }}
+                                                                </td>
+                                                                <td> {{ $edit_case_steps->case_steps_summary_of_cases_copy }}
+                                                                </td>
+                                                                <td> {{ $edit_case_steps->case_steps_summary_of_cases_yes_no }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -4227,53 +4187,87 @@
                                 Received </u></h6>
 
                         <div class="form-group row">
-                            <div class="col-sm-4">
-                                <select name="received_documents_id[]" id="received_documents_id"
-                                    class="form-control select2" data-placeholder="Select" multiple>
-                                    <option value="">Select</option>
-                                    @foreach ($documents as $item)
-                                        <option value="{{ $item->documents_name }}"
-                                            {{ in_array($item->documents_name, $received_documents_explode) ? 'selected' : '' }}>
-                                            {{ $item->documents_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-sm-8">
-                                <div
-                                    class="input-group hdtuto_received_documents control-group increment_received_documents">
-                                    <input type="text" name="received_documents[]" class="myfrm form-control mr-2"
-                                        value="{{ rtrim($data->received_documents, ', ') }}">
-                                    @if (!empty($data->received_documents_date))
-                                        <input type="text" name="received_documents_date[]"
-                                            class="myfrm form-control ml-2"
-                                            value="{{ $data->received_documents_date }}">
-                                    @else
-                                        <input type="date" name="received_documents_date[]"
-                                            class="myfrm form-control ml-2" value="dd-mm-yyyy">
-                                    @endif
+                            <div class="col-sm-12">
+                                <div class="input-group hdtuto_received_documents control-group increment_received_documents">
+                                    <select name="received_documents_id[]"
+                                        class="form-control mr-3">
+                                        <option value="">Select</option>
+                                        @foreach($documents as $item)
+                                            <option
+                                                value="{{ $item->documents_name }}" {{ $received_documents_explode[0]['received_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="text" name="received_documents[]"
+                                           class="myfrm form-control mr-2" value="{{ $received_documents_explode[0]['received_documents'] }}">
+                                    <input type="date" name="received_documents_date[]"
+                                           class="myfrm form-control ml-2" value="{{ $received_documents_explode[0]['received_documents_date'] }}">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-success btn_success_received_documents" type="button"><i
+                                        <button class="btn btn-success btn_success_received_documents"
+                                                type="button"><i
                                                 class="fldemo glyphicon glyphicon-plus"></i>+
                                         </button>
                                     </div>
                                 </div>
+                                
                                 <div class="clone_received_documents hide">
-                                    <div class="hdtuto_received_documents control-group lst input-group"
-                                        style="margin-top:10px">
+                                   
+                                    <div class="hdtuto_received_documents control-group input-group"
+                                         style="margin-top:10px">
+                                         <select name="received_documents_id[]"
+                                            class="form-control mr-3" >
+                                            <option value="">Select</option>
+                                            @foreach($documents as $item)
+                                                <option
+                                                    value="{{ $item->documents_name }}" {{ old('received_documents_id') == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                            @endforeach
+                                        </select>
                                         <input type="text" name="received_documents[]"
-                                            class="myfrm form-control mr-2">
+                                               class="myfrm form-control mr-2">
                                         <input type="date" name="received_documents_date[]"
-                                            class="myfrm form-control ml-2">
+                                               class="myfrm form-control ml-2">
                                         <div class="input-group-btn">
                                             <button class="btn btn-danger btn_danger_received_documents"
-                                                type="button"><i class="fldemo glyphicon glyphicon-remove"></i> -
+                                                    type="button"><i
+                                                    class="fldemo glyphicon glyphicon-remove"></i> -
                                             </button>
                                         </div>
                                     </div>
                                 </div>
-                                @error('case_infos_received_documents_informant_name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+
+
+                                <div class="clone_received_documents @if(count($received_documents_explode) <= 1) hide @endif">
+                                    @php
+                                        array_shift($received_documents_explode);
+                                    @endphp
+                                    @foreach ( $received_documents_explode as $datas)
+                                    <div class="hdtuto_received_documents control-group input-group"
+                                         style="margin-top:10px">
+                                         <select name="received_documents_id[]"
+                                            class="form-control mr-3" >
+                                            <option value="">Select</option>
+                                            @foreach($documents as $item)
+                                                <option
+                                                    value="{{ $item->documents_name }}" {{ $datas['received_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <input type="text" name="received_documents[]"
+                                               class="myfrm form-control mr-2" value="{{ $datas['received_documents'] }}">
+                                        <input type="date" name="received_documents_date[]"
+                                               class="myfrm form-control ml-2" value="{{ $datas['received_documents_date'] }}">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger btn_danger_received_documents"
+                                                    type="button"><i
+                                                    class="fldemo glyphicon glyphicon-remove"></i> -
+                                            </button>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                    
+
+                                </div>
+
+                                @error('case_infos_received_documents_informant_name')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
                         <h6 class="text-uppercase text-bold">
@@ -4705,13 +4699,34 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="case_steps_summary_judgement_order" class="col-sm-4 col-form-label"> Summary of
-                                Judgement & Order </label>
-                            <div class="col-sm-8">
-                                <textarea name="case_steps_summary_judgement_order" class="form-control" rows="3" placeholder="">{{ $edit_case_steps->case_steps_summary_judgement_order }}</textarea>
-                                @error('case_steps_summary_judgement_order')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                            <label for="case_steps_summary_of_cases" class="col-sm-4 col-form-label"> Summary of Case </label>
+                            <div class="col-sm-3">
+                                <span class="date_span_steps">
+                                    <input type="date" class="xDateContainer date_first_input"
+                                           onchange="setCorrect(this,'case_steps_summary_of_cases');">
+                                    <input type="text" id="case_steps_summary_of_cases" name="case_steps_summary_of_cases"
+                                    value="{{  $edit_case_steps->case_steps_summary_of_cases }}" class="date_second_input_steps"
+                                           tabindex="-1">
+                                    <span class="date_second_span" tabindex="-1">&#9660;</span>
+                                </span>
+                                @error('case_steps_summary_of_cases')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control"
+                                       id="case_steps_summary_of_cases_copy"
+                                       name="case_steps_summary_of_cases_copy"
+                                       value="{{$edit_case_steps->case_steps_summary_of_cases_copy}}">
+                                @error('case_steps_summary_of_cases_copy')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="checkbox" class="form-control"
+                                       id="case_steps_summary_of_cases_yes_no"
+                                       name="case_steps_summary_of_cases_yes_no"
+                                       {{ $edit_case_steps->case_steps_summary_of_cases_yes_no == 'Yes' ? 'checked': '' }}>
+                                @error('case_steps_summary_of_cases_yes_no')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
                         <div class="form-group row">

@@ -68,6 +68,8 @@ use Mail;
 use App\Mail\CaseForwardedMail;
 use App\Models\CasesNotifications;
 use App\Models\SetupCabinet;
+use App\Models\SetupClientName;
+use App\Models\CriminalCasesDocumentsReceived;
 
 
 
@@ -85,6 +87,10 @@ class CriminalCasesController extends Controller
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->get();
         $complainant = SetupComplainant::where('delete_status', 0)->orderBy('complainant_name', 'asc')->get();
         $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
+        $client_name = SetupClientName::where('delete_status', 0)->get();
+        $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
+        $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
 
         $data = DB::table('criminal_cases')
             // ->leftJoin('criminal_cases_case_steps', 'criminal_cases.id', 'criminal_cases_case_steps.criminal_case_id')
@@ -116,7 +122,7 @@ class CriminalCasesController extends Controller
 
         // dd($data);
 
-        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('data', 'division', 'case_types', 'court', 'case_category','matter'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('client_name','next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category','matter'));
     }
 
     public function add_criminal_cases()
@@ -310,12 +316,12 @@ $created_case_id = 'LCR-000'.$sl;
         $data->lawyers_remarks = $request->lawyers_remarks;
 
 
-        $data->received_documents_id = rtrim($received_documents_id,', ');
-        $data->received_documents = $received_documents;
-        $data->received_documents_date = rtrim($received_documents_date,', ');
-        $data->required_wanting_documents_id = rtrim($required_wanting_documents_id,', ');
-        $data->required_wanting_documents = $required_wanting_documents;
-        $data->required_wanting_documents_date = rtrim($required_wanting_documents_date,', ');
+        // $data->received_documents_id = rtrim($received_documents_id,', ');
+        // $data->received_documents = $received_documents;
+        // $data->received_documents_date = rtrim($received_documents_date,', ');
+        // $data->required_wanting_documents_id = rtrim($required_wanting_documents_id,', ');
+        // $data->required_wanting_documents = $required_wanting_documents;
+        // $data->required_wanting_documents_date = rtrim($required_wanting_documents_date,', ');
         
         $data->case_infos_division_id = $request->case_infos_division_id;
         $data->case_infos_district_id = $request->case_infos_district_id;
@@ -391,7 +397,11 @@ $created_case_id = 'LCR-000'.$sl;
         $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN'  ? null : $request->case_steps_judgement_order;
         $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy;
         $steps->case_steps_judgement_order_yes_no = $request->case_steps_judgement_order_yes_no ? 'Yes' : 'No';
-        $steps->case_steps_summary_judgement_order = $request->case_steps_summary_judgement_order;
+
+        $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN'  ? null : $request->case_steps_summary_of_cases;
+        $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy;
+        $steps->case_steps_summary_of_cases_yes_no = $request->case_steps_summary_of_cases_yes_no ? 'Yes' : 'No';
+
         $steps->case_steps_remarks = $request->case_steps_remarks;
 
         $steps->save();
@@ -407,6 +417,15 @@ $created_case_id = 'LCR-000'.$sl;
                 $file->created_by = Auth::guard('admin')->user()->email;
                 $file->save();
             }
+        }
+
+        foreach ( array_filter($request->received_documents_id) as $key => $value ){
+            $datum = new CriminalCasesDocumentsReceived();
+            $datum->case_id = $data->id;
+            $datum->received_documents_id = $value;
+            $datum->received_documents = $request->received_documents[$key];
+            $datum->received_documents_date = $request->received_documents_date[$key];
+            $datum->save();
         }
 
         DB::commit();
@@ -604,6 +623,9 @@ $case_no_data = DB::table('criminal_cases')
             ->where('criminal_cases.id', $id)
             ->first();
 
+        $received_documents_explode = CriminalCasesDocumentsReceived::where('case_id',$id)->get()->toArray();
+        // dd($received_documents_explode);
+
         return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('received_documents_date_explode','received_documents_write_explode','exist_court_short','data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'received_documents_explode', 'required_documents_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','previous_activity','opposition_existing_district','opposition_existing_thana','cabinet','case_no_data','exist_case_type'));
     }
 
@@ -728,12 +750,12 @@ $case_no_data = DB::table('criminal_cases')
             $data->assigned_lawyer_id = $request->assigned_lawyer_id ? implode(', ', $request->assigned_lawyer_id) : null;
             $data->lawyers_remarks = $request->lawyers_remarks;
 
-            $data->received_documents_id = rtrim($received_documents_id,', ');
-            $data->received_documents = $received_documents;
-            $data->received_documents_date = rtrim($received_documents_date,', ');
-            $data->required_wanting_documents_id = rtrim($required_wanting_documents_id,', ');
-            $data->required_wanting_documents = $required_wanting_documents;
-            $data->required_wanting_documents_date = rtrim($required_wanting_documents_date,', ');
+            // $data->received_documents_id = rtrim($received_documents_id,', ');
+            // $data->received_documents = $received_documents;
+            // $data->received_documents_date = rtrim($received_documents_date,', ');
+            // $data->required_wanting_documents_id = rtrim($required_wanting_documents_id,', ');
+            // $data->required_wanting_documents = $required_wanting_documents;
+            // $data->required_wanting_documents_date = rtrim($required_wanting_documents_date,', ');
 
             $data->case_infos_division_id = $request->case_infos_division_id;
             $data->case_infos_district_id = $request->case_infos_district_id;
@@ -809,7 +831,11 @@ $case_no_data = DB::table('criminal_cases')
             $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN'  ? null : $request->case_steps_judgement_order;
             $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy;
             $steps->case_steps_judgement_order_yes_no = $request->case_steps_judgement_order_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_summary_judgement_order = $request->case_steps_summary_judgement_order;
+
+            $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN'  ? null : $request->case_steps_summary_of_cases;
+            $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy;
+            $steps->case_steps_summary_of_cases_yes_no = $request->case_steps_summary_of_cases_yes_no ? 'Yes' : 'No';    
+
             $steps->case_steps_remarks = $request->case_steps_remarks;
 
             $steps->save();
@@ -827,6 +853,21 @@ $case_no_data = DB::table('criminal_cases')
                     $file->save();
                 }
             }
+
+
+            $received_documents = CriminalCasesDocumentsReceived::where('case_id', $id)->delete();
+            // dd($received_documents);
+            
+            foreach ( array_filter($request->received_documents_id) as $key => $value ){
+                $datum = new CriminalCasesDocumentsReceived();
+                $datum->case_id = $data->id;
+                $datum->received_documents_id = $value;
+                $datum->received_documents = $request->received_documents[$key];
+                $datum->received_documents_date = $request->received_documents_date[$key];
+                $datum->save();
+            }
+            
+
         }else if($request->basic_information){
 // dd('basic_information');
             $data->client = $request->client;
@@ -916,14 +957,19 @@ $case_no_data = DB::table('criminal_cases')
 
         }else if ($request->documents_information) {
 
-            $data->received_documents_id = rtrim($received_documents_id,', ');
-            $data->received_documents = $received_documents;
-            $data->received_documents_date = rtrim($received_documents_date,', ');
-            $data->required_wanting_documents_id = rtrim($required_wanting_documents_id,', ');
-            $data->required_wanting_documents = $required_wanting_documents;
-            $data->required_wanting_documents_date = rtrim($required_wanting_documents_date,', ');
-
-            $data->save();
+            $received_documents = CriminalCasesDocumentsReceived::where('case_id', $id)->delete();
+            // dd($received_documents);
+            
+            foreach ( array_filter($request->received_documents_id) as $key => $value ){
+                $datum = new CriminalCasesDocumentsReceived();
+                $datum->case_id = $data->id;
+                $datum->received_documents_id = $value;
+                $datum->received_documents = $request->received_documents[$key];
+                $datum->received_documents_date = $request->received_documents_date[$key];
+                $datum->save();
+            }
+            
+            $datum->save();
 
         }else if ($request->case_information) {
             // dd($request->all());
@@ -1007,7 +1053,11 @@ $case_no_data = DB::table('criminal_cases')
             $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN'  ? null : $request->case_steps_judgement_order;
             $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy;
             $steps->case_steps_judgement_order_yes_no = $request->case_steps_judgement_order_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_summary_judgement_order = $request->case_steps_summary_judgement_order;
+
+            $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN'  ? null : $request->case_steps_summary_of_cases;
+            $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy;
+            $steps->case_steps_summary_of_cases_yes_no = $request->case_steps_summary_of_cases_yes_no ? 'Yes' : 'No';    
+
             $steps->case_steps_remarks = $request->case_steps_remarks;
             $steps->save();
 
@@ -1140,12 +1190,12 @@ $case_no_data = DB::table('criminal_cases')
             $data->assigned_lawyer_id = $request->assigned_lawyer_id ? implode(', ', $request->assigned_lawyer_id) : null;
             $data->lawyers_remarks = $request->lawyers_remarks;
 
-            $data->received_documents_id = rtrim($received_documents_id,', ');
-            $data->received_documents = $received_documents;
-            $data->received_documents_date = rtrim($received_documents_date,', ');
-            $data->required_wanting_documents_id = rtrim($required_wanting_documents_id,', ');
-            $data->required_wanting_documents = $required_wanting_documents;
-            $data->required_wanting_documents_date = rtrim($required_wanting_documents_date,', ');
+            // $data->received_documents_id = rtrim($received_documents_id,', ');
+            // $data->received_documents = $received_documents;
+            // $data->received_documents_date = rtrim($received_documents_date,', ');
+            // $data->required_wanting_documents_id = rtrim($required_wanting_documents_id,', ');
+            // $data->required_wanting_documents = $required_wanting_documents;
+            // $data->required_wanting_documents_date = rtrim($required_wanting_documents_date,', ');
 
             $data->case_infos_division_id = $request->case_infos_division_id;
             $data->case_infos_district_id = $request->case_infos_district_id;
@@ -1221,7 +1271,11 @@ $case_no_data = DB::table('criminal_cases')
             $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN'  ? null : $request->case_steps_judgement_order;
             $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy;
             $steps->case_steps_judgement_order_yes_no = $request->case_steps_judgement_order_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_summary_judgement_order = $request->case_steps_summary_judgement_order;
+
+            $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN'  ? null : $request->case_steps_summary_of_cases;
+            $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy;
+            $steps->case_steps_summary_of_cases_yes_no = $request->case_steps_summary_of_cases_yes_no ? 'Yes' : 'No';    
+
             $steps->case_steps_remarks = $request->case_steps_remarks;
 
             $steps->save();
@@ -1239,6 +1293,19 @@ $case_no_data = DB::table('criminal_cases')
                     $file->save();
                 }
             }
+
+           $received_documents = CriminalCasesDocumentsReceived::where('case_id', $id)->delete();
+// dd($received_documents);
+
+            foreach ( array_filter($request->received_documents_id) as $key => $value ){
+                $datum = new CriminalCasesDocumentsReceived();
+                $datum->case_id = $data->id;
+                $datum->received_documents_id = $value;
+                $datum->received_documents = $request->received_documents[$key];
+                $datum->received_documents_date = $request->received_documents_date[$key];
+                $datum->save();
+            }
+    
         
 
         DB::commit();
@@ -1531,6 +1598,7 @@ $case_no_data = DB::table('criminal_cases')
             ->orderBy('criminal_case_activity_logs.created_at','asc')
             ->get();
 
+        $received_documents_explode = CriminalCasesDocumentsReceived::where('case_id',$id)->get()->toArray();
 
         // dd($case_activity_log);
         return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('exist_court_short','data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode','edit_case_steps','existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','received_documents_explode','required_documents_explode','previous_activity','payment_mode','bill_schedule','bill_particulars','bill_type','bill_amount','payment_amount','due_amount','cabinet','exist_case_type'));
@@ -2421,6 +2489,11 @@ $case_no_data = DB::table('criminal_cases')
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->get();
         $complainant = SetupComplainant::where('delete_status', 0)->orderBy('complainant_name', 'asc')->get();
         $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
+        $client = SetupClient::where('delete_status', 0)->orderBy('client_name','asc')->get();
+        $client_name = SetupClientName::where('delete_status', 0)->get();
+        $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
+        $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
 
 
         if ($request->received_date != "dd/mm/yyyy") {
@@ -2430,6 +2503,7 @@ $case_no_data = DB::table('criminal_cases')
         } else if ($request->received_date == "dd/mm/yyyy") {
             $received_date = null;
         }
+
 
 
         // dd($received_date);
@@ -2453,7 +2527,7 @@ $case_no_data = DB::table('criminal_cases')
                 $query2 = $query->where('criminal_cases.case_infos_case_no', 'LIKE', "%{$request->case_infos_case_no}%");
                 break;
             case $request->name_of_the_court_id:
-                $query2 = $query->where('criminal_cases.name_of_the_court_id', 'LIKE', "%{$request->name_of_the_court_id}%");
+                $query2 = $query->where('criminal_cases.name_of_the_court_id', $request->name_of_the_court_id);
                 break;
             case $request->case_infos_complainant_informant_name:
                 $query2 = $query->where('criminal_cases.case_infos_complainant_informant_name', 'LIKE', "%{$request->case_infos_complainant_informant_name}%");
@@ -2462,34 +2536,51 @@ $case_no_data = DB::table('criminal_cases')
                 $query2 = $query->where('criminal_cases.case_infos_accused_name', 'LIKE', "%{$request->case_infos_accused_name}%");
                 break;
             case $request->case_type_id:
-                $query2 = $query->where('criminal_cases.case_type_id', 'LIKE', "%{$request->case_type_id}%");
+                $query2 = $query->where('criminal_cases.case_type_id', $request->case_type_id);
                 break;
             case $request->matter_id:
-                $query2 = $query->where('criminal_cases.matter_id', 'LIKE', "%{$request->matter_id}%");
+                $query2 = $query->where('criminal_cases.matter_id', $request->matter_id);
                 break;
             case $request->case_category_id:
-                $query2 = $query->where('criminal_cases.case_category_id', 'LIKE', "%{$request->case_category_id}%");
+                $query2 = $query->where('criminal_cases.case_category_id', $request->case_category_id);
                 break;
             case $request->case_subcategory_id:
                 $query2 = $query->where('criminal_cases.case_subcategory_id', 'LIKE', "%{$request->case_subcategory_id}%");
                 break;
             case $request->client_division_id:
-                $query2 = $query->where('criminal_cases.client_division_id', 'LIKE', "%{$request->client_division_id}%");
+                $query2 = $query->where('criminal_cases.client_division_id', $request->client_division_id);
                 break;
             case $request->client_divisoin_write:
                 $query2 = $query->where('criminal_cases.client_divisoin_write', 'LIKE', "%{$request->client_divisoin_write}%");
                 break;
             case $request->client_district_id:
-                $query2 = $query->where('criminal_cases.client_district_id', 'LIKE', "%{$request->client_district_id}%");
+                $query2 = $query->where('criminal_cases.client_district_id', $request->client_district_id);
                 break;
             case $request->client_district_write:
                 $query2 = $query->where('criminal_cases.client_district_write', 'LIKE', "%{$request->client_district_write}%");
                 break;
             case $request->client_thana_id:
-                $query2 = $query->where('criminal_cases.client_thana_id', 'LIKE', "%{$request->client_thana_id}%");
+                $query2 = $query->where('criminal_cases.client_thana_id', $request->client_thana_id);
                 break;
             case $request->client_thana_write:
                 $query2 = $query->where('criminal_cases.client_thana_write', 'LIKE', "%{$request->client_thana_write}%");
+                break;
+            case $request->client_id:
+                $query2 = $query->where('criminal_cases.case_infos_complainant_informant_name', 'LIKE', "%{$request->client_id}%")
+                                ->orWhere('criminal_cases.case_infos_accused_name', 'like', "%{$request->client_id}%");
+                break;
+            case $request->client_name_write:
+                $query2 = $query->where('criminal_cases.case_infos_complainant_informant_name', 'LIKE', "%{$request->client_name_write}%")
+                                ->orWhere('criminal_cases.case_infos_accused_name', 'like', "%{$request->client_name_write}%");
+                break;
+            case $request->lawyer_advocate_id:
+                $query2 = $query->where('criminal_cases.lawyer_advocate_id', $request->lawyer_advocate_id);
+                break;
+            case $request->case_status_id:
+                $query2 = $query->where('criminal_cases.case_status_id', $request->case_status_id);
+                break;
+            case $request->next_date_fixed_id:
+                $query2 = $query->where('criminal_cases.next_date_fixed_id', $request->next_date_fixed_id);
                 break;
             default:
                 $query2 = $query;
@@ -2508,9 +2599,10 @@ $case_no_data = DB::table('criminal_cases')
             'setup_external_councils.middle_name',
             'setup_external_councils.last_name',
             'case_infos_title.case_title_name as sub_seq_case_title_name')
+            ->where('criminal_cases.delete_status',0)
             ->get();
 // dd($data);
-        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('client_name','next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter'));
     }
 
     public function update_criminal_cases_status_column(Request $request, $id)

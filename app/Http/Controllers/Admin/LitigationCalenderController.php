@@ -235,7 +235,6 @@ class LitigationCalenderController extends Controller
                 $query2 = $query->where('criminal_cases.case_status_id', $request->case_status_id);
                 break;
             case $request->next_date_fixed_id:
-                // dd('asdfasdf');
                 $query2 = $query->where('criminal_cases.next_date_fixed_id', $request->next_date_fixed_id);
                 break;
             default:

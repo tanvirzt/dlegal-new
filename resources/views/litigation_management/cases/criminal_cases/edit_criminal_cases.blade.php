@@ -1120,20 +1120,20 @@
                                                                                 
                                                                                 <div class="form-group row">
 
-                                                                                    {{-- <div class="col-sm-12">
+                                                                                    <div class="col-sm-12">
                                                                                         <div class="input-group hdtuto_received_documents control-group increment_received_documents">
                                                                                             <select name="received_documents_id[]"
                                                                                                 class="form-control mr-3">
                                                                                                 <option value="">Select</option>
                                                                                                 @foreach($documents as $item)
                                                                                                     <option
-                                                                                                        value="{{ $item->documents_name }}" {{ $received_documents_explode[0] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                        value="{{ $item->documents_name }}" {{ $received_documents_explode[0]['received_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                                                                                 @endforeach
                                                                                             </select>
                                                                                             <input type="text" name="received_documents[]"
-                                                                                                   class="myfrm form-control mr-2" value="{{ $received_documents_write_explode[0] }}">
+                                                                                                   class="myfrm form-control mr-2" value="{{ $received_documents_explode[0]['received_documents'] }}">
                                                                                             <input type="date" name="received_documents_date[]"
-                                                                                                   class="myfrm form-control ml-2" value="{{ $received_documents_date_explode[0] }}">
+                                                                                                   class="myfrm form-control ml-2" value="{{ $received_documents_explode[0]['received_documents_date'] }}">
                                                                                             <div class="input-group-btn">
                                                                                                 <button class="btn btn-success btn_success_received_documents"
                                                                                                         type="button"><i
@@ -1180,13 +1180,13 @@
                                                                                                     <option value="">Select</option>
                                                                                                     @foreach($documents as $item)
                                                                                                         <option
-                                                                                                            value="{{ $item->documents_name }}" {{ $datas == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                            value="{{ $item->documents_name }}" {{ $datas['received_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                                                                                     @endforeach
                                                                                                 </select>
                                                                                                 <input type="text" name="received_documents[]"
-                                                                                                       class="myfrm form-control mr-2">
+                                                                                                       class="myfrm form-control mr-2" value="{{ $datas['received_documents'] }}">
                                                                                                 <input type="date" name="received_documents_date[]"
-                                                                                                       class="myfrm form-control ml-2">
+                                                                                                       class="myfrm form-control ml-2" value="{{ $datas['received_documents_date'] }}">
                                                                                                 <div class="input-group-btn">
                                                                                                     <button class="btn btn-danger btn_danger_received_documents"
                                                                                                             type="button"><i
@@ -1201,7 +1201,7 @@
                                 
                                                                                         @error('case_infos_received_documents_informant_name')<span
                                                                                             class="text-danger">{{$message}}</span>@enderror
-                                                                                    </div> --}}
+                                                                                    </div>
 
 
 
@@ -1209,7 +1209,7 @@
 
 
 
-                                                                                    <div class="col-sm-4">
+                                                                                    {{-- <div class="col-sm-4">
                                                                                         <select name="received_documents_id[]"
                                                                                                 id="received_documents_id"
                                                                                                 class="form-control select2" data-placeholder="Select" multiple>
@@ -1259,7 +1259,7 @@
                                 
                                                                                         @error('case_infos_received_documents_informant_name')<span
                                                                                             class="text-danger">{{$message}}</span>@enderror
-                                                                                    </div>
+                                                                                    </div> --}}
 
                                                                                 </div>
                                                                                 <h6 class="text-uppercase text-bold">
@@ -2611,7 +2611,42 @@
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                         </div>
+
+
                                                                         <div class="form-group row">
+                                                                            <label for="case_steps_summary_of_cases" class="col-sm-4 col-form-label"> Summary of Case </label>
+                                                                            <div class="col-sm-3">
+                                                                                <span class="date_span_steps">
+                                                                                    <input type="date" class="xDateContainer date_first_input"
+                                                                                           onchange="setCorrect(this,'case_steps_summary_of_cases');">
+                                                                                    <input type="text" id="case_steps_summary_of_cases" name="case_steps_summary_of_cases"
+                                                                                    value="{{  $edit_case_steps->case_steps_summary_of_cases }}" class="date_second_input_steps"
+                                                                                           tabindex="-1">
+                                                                                    <span class="date_second_span" tabindex="-1">&#9660;</span>
+                                                                                </span>
+                                                                                @error('case_steps_summary_of_cases')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                                            </div>
+                                                                            <div class="col-sm-3">
+                                                                                <input type="text" class="form-control"
+                                                                                       id="case_steps_summary_of_cases_copy"
+                                                                                       name="case_steps_summary_of_cases_copy"
+                                                                                       value="{{$edit_case_steps->case_steps_summary_of_cases_copy}}">
+                                                                                @error('case_steps_summary_of_cases_copy')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                                            </div>
+                                                                            <div class="col-sm-2">
+                                                                                <input type="checkbox" class="form-control"
+                                                                                       id="case_steps_summary_of_cases_yes_no"
+                                                                                       name="case_steps_summary_of_cases_yes_no"
+                                                                                       {{ $edit_case_steps->case_steps_summary_of_cases_yes_no == 'Yes' ? 'checked': '' }}>
+                                                                                @error('case_steps_summary_of_cases_yes_no')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        {{-- <div class="form-group row">
                                                                             <label for="case_steps_summary_judgement_order"
                                                                                    class="col-sm-4 col-form-label"> Summary of Judgement & Order </label>
                                                                             <div class="col-sm-8">
@@ -2621,7 +2656,7 @@
                                                                                 @error('case_steps_summary_judgement_order')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
-                                                                        </div>
+                                                                        </div> --}}
                                                                         <div class="form-group row">
                                                                             <label for="case_steps_remarks"
                                                                                    class="col-sm-4 col-form-label"> Remarks </label>

@@ -2312,9 +2312,41 @@
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
+                                                    <label for="case_steps_summary_of_cases" class="col-sm-4 col-form-label"> Summary of Case </label>
+                                                    <div class="col-sm-3">
+                                                        <span class="date_span_steps">
+                                                            <input type="date" class="xDateContainer date_first_input"
+                                                                   onchange="setCorrect(this,'case_steps_summary_of_cases');">
+                                                            <input type="text" id="case_steps_summary_of_cases" name="case_steps_summary_of_cases"
+                                                                   value="dd-mm-yyyy" class="date_second_input_steps"
+                                                                   tabindex="-1">
+                                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
+                                                        </span>
+                                                        @error('case_steps_summary_of_cases')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <input type="text" class="form-control"
+                                                               id="case_steps_summary_of_cases_copy"
+                                                               name="case_steps_summary_of_cases_copy"
+                                                               value="{{old('case_steps_summary_of_cases_copy')}}">
+                                                        @error('case_steps_summary_of_cases_copy')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <input type="checkbox" class="form-control"
+                                                               id="case_steps_summary_of_cases_yes_no"
+                                                               name="case_steps_summary_of_cases_yes_no"
+                                                               value="{{old('case_steps_summary_of_cases_yes_no')}}">
+                                                        @error('case_steps_summary_of_cases_yes_no')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                {{-- <div class="form-group row">
                                                     <label for="case_steps_summary_judgement_order"
-                                                           class="col-sm-4 col-form-label"> Summary of Judgement & Order </label>
+                                                           class="col-sm-4 col-form-label"> Summary of Case </label>
                                                     <div class="col-sm-8">
                                                     <textarea name="case_steps_summary_judgement_order" class="form-control"
                                                               rows="3"
@@ -2322,7 +2354,7 @@
                                                         @error('case_steps_summary_judgement_order')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="form-group row">
                                                     <label for="case_steps_remarks"
                                                            class="col-sm-4 col-form-label"> Remarks </label>
