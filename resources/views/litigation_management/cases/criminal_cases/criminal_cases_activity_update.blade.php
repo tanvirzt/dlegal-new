@@ -244,14 +244,14 @@
                                                             <div class="col-md-8">
                                                                 <div class="row" >
                                                                     <div class="col-md-6">
-                                                                        <select name="activity_forwarded_to_id"
-                                                                                class="form-control select2"
+                                                                        <select name="activity_forwarded_to_id[]" data-placeholder="Select"
+                                                                                class="form-control select2" multiple
                                                                         >
                                                                             <option value="">Select</option>
                                                                             @foreach ($external_council as $item)
                                                                                 <option
-                                                                                    value="{{  $item->id }}"
-                                                                                    {{ $data->activity_forwarded_to_id == $item->id ? 'selected' : '' }}>
+                                                                                    value="{{ $item->id }}"
+                                                                                    {{ in_array($item->id, $exist_activity_forwarded_explode) ? 'selected' : '' }}>
                                                                                     {{ $item->first_name }}
                                                                                     {{ $item->last_name }}
                                                                                 </option>

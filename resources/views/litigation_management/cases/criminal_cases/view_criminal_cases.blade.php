@@ -498,7 +498,7 @@
                                                                 <tr>
                                                                     <td>{{ $value['received_documents_id'] }}</td>
                                                                     <td>{{ $value['received_documents'] }}</td>
-                                                                    <td>{{ $value['received_documents_date'] }}</td>
+                                                                    <td>{{ date('d-m-Y', strtotime($value['received_documents_date'])) }}</td>
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
@@ -509,57 +509,13 @@
                                                     </h6>
                                                     <table class="table table-bordered">
                                                         <tbody>
-                                                            <tr>
-                                                                <td width="40%">
-                                                                    @php
-                                                                        $required_wanting_documents_id = explode(', ', rtrim($data->required_wanting_documents_id, ', '));
-                                                                    @endphp
-                                                                    @if ($data->required_wanting_documents_id)
-                                                                        @if (count($required_wanting_documents_id) > 1)
-                                                                            @foreach ($required_wanting_documents_id as $pro)
-                                                                                <p>{{ $pro }}</p>
-                                                                            @endforeach
-                                                                        @else
-                                                                            @foreach ($required_wanting_documents_id as $pro)
-                                                                                {{ $pro }}
-                                                                            @endforeach
-                                                                        @endif
-                                                                    @endif
-                                                                </td>
-                                                                <td width="40%">
-                                                                    @php
-                                                                        $required_wanting_documents = explode(', ', rtrim($data->required_wanting_documents, ', '));
-                                                                    @endphp
-                                                                    @if ($data->required_wanting_documents)
-                                                                        @if (count($required_wanting_documents) > 1)
-                                                                            @foreach ($required_wanting_documents as $pro)
-                                                                                <p>{{ $pro }}</p>
-                                                                            @endforeach
-                                                                        @else
-                                                                            @foreach ($required_wanting_documents as $pro)
-                                                                                {{ $pro }}
-                                                                            @endforeach
-                                                                        @endif
-                                                                    @endif
-                                                                </td>
-                                                                <td width="20%">
-                                                                    @php
-                                                                        $required_wanting_documents_date = explode(', ', rtrim($data->required_wanting_documents_date, ', '));
-                                                                    @endphp
-                                                                    @if ($data->required_wanting_documents_date)
-                                                                        @if (count($required_wanting_documents_date) > 1)
-                                                                            @foreach ($required_wanting_documents_date as $pro)
-                                                                                <p>{{ date('d-m-Y', strtotime($pro)) }}
-                                                                                </p>
-                                                                            @endforeach
-                                                                        @else
-                                                                            @foreach ($required_wanting_documents_date as $pro)
-                                                                                {{ date('d-m-Y', strtotime($pro)) }}
-                                                                            @endforeach
-                                                                        @endif
-                                                                    @endif
-                                                                </td>
-                                                            </tr>
+                                                            @foreach ($required_wanting_documents_explode as $value)
+                                                                <tr>
+                                                                    <td>{{ $value['required_wanting_documents_id'] }}</td>
+                                                                    <td>{{ $value['required_wanting_documents'] }}</td>
+                                                                    <td>{{ date('d-m-Y', strtotime($value['required_wanting_documents_date'])) }}</td>
+                                                                </tr>
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -1246,7 +1202,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Remarks</td>
-                                                                <td> {{ $edit_case_steps->case_steps_remarks }} </td>
+                                                                <td colspan="3"> {{ $edit_case_steps->case_steps_remarks }} </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1438,17 +1394,18 @@
                                                         {{ $activity_log->activity_engaged_write }}
                                                     </td>
                                                     <td>
-                                                        {{-- @php
+                                                        @php
                                                             $forwarded = explode(', ', $activity_log->activity_forwarded_to_id);
                                                         @endphp
 
                                                         @if ($activity_log->activity_forwarded_to_id)
                                                             @foreach ($forwarded as $item)
-                                                                <li class="text-left">{{ $item }}</li>
+                                                            @php
+                                                                $name = App\Models\SetupExternalCouncil::where('id',$item)->first();
+                                                            @endphp
+                                                                <li class="text-left">{{  $name->first_name.' '.$name->last_name }}</li>
                                                             @endforeach
-                                                        @endif  --}}
-                                                        
-                                                        {{ $activity_log->forwarded_first_name }} {{ $activity_log->forwarded_last_name }}
+                                                        @endif 
 
                                                         {{ $activity_log->activity_forwarded_to_write }} </td>
                                                     <td>{{ $activity_log->activity_mode_write }}</td>
@@ -2168,7 +2125,7 @@
                                     <div class="col-md-8">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <select name="activity_forwarded_to_id" class="form-control select2" data-placeholder="Select">
+                                                <select name="activity_forwarded_to_id[]" class="form-control select2" data-placeholder="Select" multiple>
                                                     <option value="">Select</option>
                                                     @foreach ($external_council as $item)
                                                         <option value="{{ $item->id }}"
@@ -4194,13 +4151,13 @@
                                         <option value="">Select</option>
                                         @foreach($documents as $item)
                                             <option
-                                                value="{{ $item->documents_name }}" {{ $received_documents_explode[0]['received_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                value="{{ $item->documents_name }}" {{ !empty($received_documents_explode[0]['received_documents_id']) && $received_documents_explode[0]['received_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                         @endforeach
                                     </select>
                                     <input type="text" name="received_documents[]"
-                                           class="myfrm form-control mr-2" value="{{ $received_documents_explode[0]['received_documents'] }}">
+                                           class="myfrm form-control mr-2" value="{{ !empty($received_documents_explode[0]['received_documents']) && $received_documents_explode[0]['received_documents'] ? $received_documents_explode[0]['received_documents'] : '' }}">
                                     <input type="date" name="received_documents_date[]"
-                                           class="myfrm form-control ml-2" value="{{ $received_documents_explode[0]['received_documents_date'] }}">
+                                           class="myfrm form-control ml-2" value="{{ !empty($received_documents_explode[0]['received_documents_date']) && $received_documents_explode[0]['received_documents_date'] ? $received_documents_explode[0]['received_documents_date'] : '' }}">
                                     <div class="input-group-btn">
                                         <button class="btn btn-success btn_success_received_documents"
                                                 type="button"><i
@@ -4275,56 +4232,87 @@
                                 Required </u>
                         </h6>
                         <div class="form-group row">
-                            <div class="col-sm-4">
-                                <select name="required_wanting_documents_id[]" id="required_wanting_documents_id"
-                                    class="form-control select2" data-placeholder="Select" multiple>
-                                    <option value="">Select</option>
-                                    @foreach ($documents as $item)
-                                        <option value="{{ $item->documents_name }}"
-                                            {{ in_array($item->documents_name, $required_documents_explode) ? 'selected' : '' }}>
-                                            {{ $item->documents_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-sm-8">
-                                <div
-                                    class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
+                            <div class="col-sm-12">
+                                <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
+                                    <select name="required_wanting_documents_id[]"
+                                        class="form-control mr-3">
+                                        <option value="">Select</option>
+                                        @foreach($documents as $item)
+                                            <option
+                                                value="{{ $item->documents_name }}" {{ !empty($required_wanting_documents_explode[0]['required_wanting_documents_id']) && $required_wanting_documents_explode[0]['required_wanting_documents_id']  == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                        @endforeach
+                                    </select>
                                     <input type="text" name="required_wanting_documents[]"
-                                        class="myfrm form-control mr-2"
-                                        value="{{ rtrim($data->required_wanting_documents, ', ') }}">
-
-                                    @if (!empty($data->required_wanting_documents_date))
-                                        <input type="text" name="required_wanting_documents_date[]"
-                                            class="myfrm form-control ml-2"
-                                            value="{{ $data->required_wanting_documents_date }}">
-                                    @else
-                                        <input type="date" name="required_wanting_documents_date[]"
-                                            class="myfrm form-control ml-2" value="dd-mm-yyyy">
-                                    @endif
+                                           class="myfrm form-control mr-2" value="{{ !empty($required_wanting_documents_explode[0]['required_wanting_documents']) ? $required_wanting_documents_explode[0]['required_wanting_documents'] : '' }}">
+                                    <input type="date" name="required_wanting_documents_date[]"
+                                           class="myfrm form-control ml-2" value="{{ !empty($required_wanting_documents_explode[0]['required_wanting_documents_date']) ? $required_wanting_documents_explode[0]['required_wanting_documents_date'] : '' }}">
                                     <div class="input-group-btn">
                                         <button class="btn btn-success btn_success_required_wanting_documents"
-                                            type="button"><i class="fldemo glyphicon glyphicon-plus"></i>+
+                                                type="button"><i
+                                                class="fldemo glyphicon glyphicon-plus"></i>+
                                         </button>
                                     </div>
                                 </div>
+                                
                                 <div class="clone_required_wanting_documents hide">
-                                    <div class="hdtuto_required_wanting_documents control-group lst input-group"
-                                        style="margin-top:10px">
+                                   
+                                    <div class="hdtuto_required_wanting_documents control-group input-group"
+                                         style="margin-top:10px">
+                                         <select name="required_wanting_documents_id[]"
+                                            class="form-control mr-3" >
+                                            <option value="">Select</option>
+                                            @foreach($documents as $item)
+                                                <option
+                                                    value="{{ $item->documents_name }}" {{ old('required_wanting_documents_id') == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                            @endforeach
+                                        </select>
                                         <input type="text" name="required_wanting_documents[]"
-                                            class="myfrm form-control mr-2">
+                                               class="myfrm form-control mr-2">
                                         <input type="date" name="required_wanting_documents_date[]"
-                                            class="myfrm form-control ml-2">
+                                               class="myfrm form-control ml-2">
                                         <div class="input-group-btn">
                                             <button class="btn btn-danger btn_danger_required_wanting_documents"
-                                                type="button"><i class="fldemo glyphicon glyphicon-remove"></i> -
+                                                    type="button"><i
+                                                    class="fldemo glyphicon glyphicon-remove"></i> -
                                             </button>
                                         </div>
                                     </div>
                                 </div>
 
-                                @error('required_wanting_documents')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+
+                                <div class="clone_required_wanting_documents @if(count($required_wanting_documents_explode) <= 1) hide @endif">
+                                    @php
+                                        array_shift($required_wanting_documents_explode);
+                                    @endphp
+                                    @foreach ( $required_wanting_documents_explode as $datas)
+                                    <div class="hdtuto_required_wanting_documents control-group input-group"
+                                         style="margin-top:10px">
+                                         <select name="required_wanting_documents_id[]"
+                                            class="form-control mr-3" >
+                                            <option value="">Select</option>
+                                            @foreach($documents as $item)
+                                                <option
+                                                    value="{{ $item->documents_name }}" {{ $datas['required_wanting_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <input type="text" name="required_wanting_documents[]"
+                                               class="myfrm form-control mr-2" value="{{ $datas['required_wanting_documents'] }}">
+                                        <input type="date" name="required_wanting_documents_date[]"
+                                               class="myfrm form-control ml-2" value="{{ $datas['required_wanting_documents_date'] }}">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger btn_danger_required_wanting_documents"
+                                                    type="button"><i
+                                                    class="fldemo glyphicon glyphicon-remove"></i> -
+                                            </button>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                    
+
+                                </div>
+
+                                @error('case_infos_required_wanting_documents_informant_name')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
                     </div>

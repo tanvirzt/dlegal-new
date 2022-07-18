@@ -70,6 +70,7 @@ use App\Models\CasesNotifications;
 use App\Models\SetupCabinet;
 use App\Models\SetupClientName;
 use App\Models\CriminalCasesDocumentsReceived;
+use App\Models\CriminalCasesDocumentsRequired;
 
 
 
@@ -428,6 +429,16 @@ $created_case_id = 'LCR-000'.$sl;
             $datum->save();
         }
 
+
+        foreach ( array_filter($request->required_wanting_documents_id) as $key => $value ){
+            $required = new CriminalCasesDocumentsRequired();
+            $required->case_id = $data->id;
+            $required->required_wanting_documents_id = $value;
+            $required->required_wanting_documents = $request->required_wanting_documents[$key];
+            $required->required_wanting_documents_date = $request->required_wanting_documents_date[$key];
+            $required->save();
+        }
+
         DB::commit();
 
         session()->flash('success', 'Criminal Cases Added Successfully');
@@ -624,9 +635,11 @@ $case_no_data = DB::table('criminal_cases')
             ->first();
 
         $received_documents_explode = CriminalCasesDocumentsReceived::where('case_id',$id)->get()->toArray();
-        // dd($received_documents_explode);
+        $required_wanting_documents_explode = CriminalCasesDocumentsRequired::where('case_id',$id)->get()->toArray();
+        
+        // dd($required_wanting_documents_explode);
 
-        return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('received_documents_date_explode','received_documents_write_explode','exist_court_short','data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'received_documents_explode', 'required_documents_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','previous_activity','opposition_existing_district','opposition_existing_thana','cabinet','case_no_data','exist_case_type'));
+        return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('required_wanting_documents_explode','received_documents_date_explode','received_documents_write_explode','exist_court_short','data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'received_documents_explode', 'required_documents_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','previous_activity','opposition_existing_district','opposition_existing_thana','cabinet','case_no_data','exist_case_type'));
     }
 
     public function update_criminal_cases(Request $request, $id)
@@ -867,6 +880,16 @@ $case_no_data = DB::table('criminal_cases')
                 $datum->save();
             }
             
+            $required_wanting_documents = CriminalCasesDocumentsRequired::where('case_id', $id)->delete();
+
+            foreach ( array_filter($request->required_wanting_documents_id) as $key => $value ){
+                $required = new CriminalCasesDocumentsRequired();
+                $required->case_id = $data->id;
+                $required->required_wanting_documents_id = $value;
+                $required->required_wanting_documents = $request->required_wanting_documents[$key];
+                $required->required_wanting_documents_date = $request->required_wanting_documents_date[$key];
+                $required->save();
+            }
 
         }else if($request->basic_information){
 // dd('basic_information');
@@ -967,6 +990,17 @@ $case_no_data = DB::table('criminal_cases')
                 $datum->received_documents = $request->received_documents[$key];
                 $datum->received_documents_date = $request->received_documents_date[$key];
                 $datum->save();
+            }
+
+            $required_wanting_documents = CriminalCasesDocumentsRequired::where('case_id', $id)->delete();
+
+            foreach ( array_filter($request->required_wanting_documents_id) as $key => $value ){
+                $required = new CriminalCasesDocumentsRequired();
+                $required->case_id = $data->id;
+                $required->required_wanting_documents_id = $value;
+                $required->required_wanting_documents = $request->required_wanting_documents[$key];
+                $required->required_wanting_documents_date = $request->required_wanting_documents_date[$key];
+                $required->save();
             }
             
             $datum->save();
@@ -1306,7 +1340,16 @@ $case_no_data = DB::table('criminal_cases')
                 $datum->save();
             }
     
-        
+            $required_wanting_documents = CriminalCasesDocumentsRequired::where('case_id', $id)->delete();
+
+            foreach ( array_filter($request->required_wanting_documents_id) as $key => $value ){
+                $required = new CriminalCasesDocumentsRequired();
+                $required->case_id = $data->id;
+                $required->required_wanting_documents_id = $value;
+                $required->required_wanting_documents = $request->required_wanting_documents[$key];
+                $required->required_wanting_documents_date = $request->required_wanting_documents_date[$key];
+                $required->save();
+            }
 
         DB::commit();
 
@@ -1599,9 +1642,10 @@ $case_no_data = DB::table('criminal_cases')
             ->get();
 
         $received_documents_explode = CriminalCasesDocumentsReceived::where('case_id',$id)->get()->toArray();
+        $required_wanting_documents_explode = CriminalCasesDocumentsRequired::where('case_id',$id)->get()->toArray();
 
         // dd($case_activity_log);
-        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('exist_court_short','data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode','edit_case_steps','existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','received_documents_explode','required_documents_explode','previous_activity','payment_mode','bill_schedule','bill_particulars','bill_type','bill_amount','payment_amount','due_amount','cabinet','exist_case_type'));
+        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('required_wanting_documents_explode','exist_court_short','data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode','edit_case_steps','existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','received_documents_explode','required_documents_explode','previous_activity','payment_mode','bill_schedule','bill_particulars','bill_type','bill_amount','payment_amount','due_amount','cabinet','exist_case_type'));
     }
 
     public function download_criminal_cases_file($id)
@@ -1776,9 +1820,10 @@ $case_no_data = DB::table('criminal_cases')
 // return $arr = array('Hello','World!','Beautiful','Day!');
 // return implode(" ",$arr);
 
-        $external_council = SetupExternalCouncil::where('id', $request->activity_forwarded_to_id)->first();
+        $external_council = SetupExternalCouncil::whereIn('id', $request->activity_forwarded_to_id)->get();
+        // dd($external_council);
 
-//        $forwarded = SetupExternalCouncil::whereIn('id', $request->activity_forwarded_to_id)->select(DB::raw("CONCAT(first_name,' ',last_name) AS name"))->pluck('name')->toArray();
+    //    $forwarded = SetupExternalCouncil::whereIn('id', $request->activity_forwarded_to_id)->select(DB::raw("CONCAT(first_name,' ',last_name) AS name"))->pluck('name')->toArray();
 // // dd($forwarded);
 
 //        $implode = implode(', ', $forwarded);
@@ -1807,28 +1852,31 @@ $case_no_data = DB::table('criminal_cases')
         $data->total_time = $request->setup_hours;
         $data->activity_engaged_id = $request->activity_engaged_id ? implode(', ',$request->activity_engaged_id) : null;
         $data->activity_engaged_write = $request->activity_engaged_write;
-        $data->activity_forwarded_to_id = $request->activity_forwarded_to_id;
+        $data->activity_forwarded_to_id = $request->activity_forwarded_to_id ? implode(', ',$request->activity_forwarded_to_id) : null;
         $data->activity_forwarded_to_write = $request->activity_forwarded_to_write;
         $data->save();
 
         if($request->activity_forwarded_to_id != null) {
 
-            
+            foreach ($external_council as $key => $value) {
+
                 $notifications = new CasesNotifications();
                 $notifications->case_id = $id;
                 $notifications->case_type = "Criminal Cases";
                 $notifications->case_no = $request->case_no;
                 $notifications->send_by = Auth::guard('admin')->user()->email;
-                $notifications->received_by = $external_council->email;
+                $notifications->received_by = $value->email;
                 $notifications->save();
 
                 $details = [
-                    'name' => $external_council->first_name.' '.$external_council->last_name,
+                    'name' => $value->first_name.' '.$value->last_name,
                     'case_id' => 'Criminal Cases No: '.$request->case_no,
                     'messages' => Auth::guard('admin')->user()->name.' has sent this case to you.',
                 ];
 
-                Mail::to($external_council->email)->send(new CaseForwardedMail($details));
+                Mail::to($value->email)->send(new CaseForwardedMail($details));
+
+            }
 
 
         }
@@ -1963,6 +2011,7 @@ $case_no_data = DB::table('criminal_cases')
         $exist_engaged_advocate_associates = SetupExternalCouncilAssociate::where(['delete_status'=>0])->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->orderBy('first_name','asc')->get();
         $exist_engaged_advocate_associates_explode = explode(', ', $data->activity_engaged_id);
+        $exist_activity_forwarded_explode = explode(', ', $data->activity_forwarded_to_id);
         // dd($data);
      
         $activity_data = DB::table('criminal_cases')
@@ -2055,7 +2104,7 @@ $case_no_data = DB::table('criminal_cases')
         ->where('criminal_cases.id', $data->case_id)
         ->first();
      
-        return view('litigation_management.cases.criminal_cases.criminal_cases_activity_update',compact('data','mode','exist_engaged_advocate_associates','external_council','exist_engaged_advocate_associates_explode','activity_data'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases_activity_update',compact('exist_activity_forwarded_explode','data','mode','exist_engaged_advocate_associates','external_council','exist_engaged_advocate_associates_explode','activity_data'));
     }
 
     public function update_criminal_cases_activity_logs(Request $request, $id)
@@ -2069,8 +2118,11 @@ $case_no_data = DB::table('criminal_cases')
         } else {
             $activity_date = date('Y-m-d');
         }
+        
         $case_id = CriminalCaseActivityLog::find($id);
 // dd($case_id);
+DB::beginTransaction();
+
         $data = CriminalCaseActivityLog::find($id);
         $data->activity_date = $activity_date;
         $data->activity_action = $request->activity_action;
@@ -2082,32 +2134,38 @@ $case_no_data = DB::table('criminal_cases')
         $data->total_time = $request->setup_hours;
         $data->activity_engaged_id = $request->activity_engaged_id ? implode(', ',$request->activity_engaged_id) : null;
         $data->activity_engaged_write = $request->activity_engaged_write;
-        $data->activity_forwarded_to_id = $request->activity_forwarded_to_id;
+        $data->activity_forwarded_to_id = $request->activity_forwarded_to_id ? implode(', ',$request->activity_forwarded_to_id) : null;
         $data->activity_forwarded_to_write = $request->activity_forwarded_to_write;
         $data->save();
-
+// dd('test astesrt asdf asdf asdf');
         if($request->activity_forwarded_to_id != null) {
-            $external_council = SetupExternalCouncil::where('id', $data->activity_forwarded_to_id)->first();
+
+            $external_council = SetupExternalCouncil::whereIn('id', $request->activity_forwarded_to_id)->get();
             // dd($external_council);
 
-            $notifications = new CasesNotifications();
-            $notifications->case_id = $case_id->case_id;
-            $notifications->case_type = "Criminal Cases";
-            $notifications->case_no = $request->case_no;
-            $notifications->send_by = Auth::guard('admin')->user()->email;
-            $notifications->received_by = $external_council->email;
-            $notifications->save();
+            foreach ($external_council as $key => $value) {
+
+                $notifications = new CasesNotifications();
+                $notifications->case_id = $id;
+                $notifications->case_type = "Criminal Cases";
+                $notifications->case_no = $request->case_no;
+                $notifications->send_by = Auth::guard('admin')->user()->email;
+                $notifications->received_by = $value->email;
+                $notifications->save();
+
+                $details = [
+                    'name' => $value->first_name.' '.$value->last_name,
+                    'case_id' => 'Criminal Cases No: '.$request->case_no,
+                    'messages' => Auth::guard('admin')->user()->name.' has sent this case to you.',
+                ];
+
+                Mail::to($value->email)->send(new CaseForwardedMail($details));
+
+            }
 
 
-            $details = [
-                'name' => $external_council->first_name.' '.$external_council->middle_name.' '.$external_council->last_name,
-                'case_id' => 'Criminal Cases No: '.$request->case_no,
-                'messages' => Auth::guard('admin')->user()->name.' has been send this case to you.',
-            ];
-
-            Mail::to($external_council->email)->send(new CaseForwardedMail($details));
         }
-
+        DB::commit();
         session()->flash('success', 'Case Activity Updated Successfully');
         return redirect()->route('view-criminal-cases',$case_id->case_id);
     }

@@ -1267,7 +1267,92 @@
                                                                                         Required </u>
                                                                                 </h6>
                                                                                 <div class="form-group row">
-                                                                                    <div class="col-sm-4">
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
+                                                                                            <select name="required_wanting_documents_id[]"
+                                                                                                class="form-control mr-3">
+                                                                                                <option value="">Select</option>
+                                                                                                @foreach($documents as $item)
+                                                                                                    <option
+                                                                                                        value="{{ $item->documents_name }}" {{ !empty($required_wanting_documents_explode[0]['required_wanting_documents_id']) && $required_wanting_documents_explode[0]['required_wanting_documents_id']  == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                            <input type="text" name="required_wanting_documents[]"
+                                                                                                   class="myfrm form-control mr-2" value="{{ !empty($required_wanting_documents_explode[0]['required_wanting_documents']) ? $required_wanting_documents_explode[0]['required_wanting_documents'] : '' }}">
+                                                                                            <input type="date" name="required_wanting_documents_date[]"
+                                                                                                   class="myfrm form-control ml-2" value="{{ !empty($required_wanting_documents_explode[0]['required_wanting_documents_date']) ? $required_wanting_documents_explode[0]['required_wanting_documents_date'] : '' }}">
+                                                                                            <div class="input-group-btn">
+                                                                                                <button class="btn btn-success btn_success_required_wanting_documents"
+                                                                                                        type="button"><i
+                                                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="clone_required_wanting_documents hide">
+                                                                                           
+                                                                                            <div class="hdtuto_required_wanting_documents control-group input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                 <select name="required_wanting_documents_id[]"
+                                                                                                    class="form-control mr-3" >
+                                                                                                    <option value="">Select</option>
+                                                                                                    @foreach($documents as $item)
+                                                                                                        <option
+                                                                                                            value="{{ $item->documents_name }}" {{ old('required_wanting_documents_id') == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                    @endforeach
+                                                                                                </select>
+                                                                                                <input type="text" name="required_wanting_documents[]"
+                                                                                                       class="myfrm form-control mr-2">
+                                                                                                <input type="date" name="required_wanting_documents_date[]"
+                                                                                                       class="myfrm form-control ml-2">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_required_wanting_documents"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+
+                                                                                        <div class="clone_required_wanting_documents @if(count($required_wanting_documents_explode) <= 1) hide @endif">
+                                                                                            @php
+                                                                                                array_shift($required_wanting_documents_explode);
+                                                                                            @endphp
+                                                                                            @foreach ( $required_wanting_documents_explode as $datas)
+                                                                                            <div class="hdtuto_required_wanting_documents control-group input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                 <select name="required_wanting_documents_id[]"
+                                                                                                    class="form-control mr-3" >
+                                                                                                    <option value="">Select</option>
+                                                                                                    @foreach($documents as $item)
+                                                                                                        <option
+                                                                                                            value="{{ $item->documents_name }}" {{ $datas['required_wanting_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                    @endforeach
+                                                                                                </select>
+                                                                                                <input type="text" name="required_wanting_documents[]"
+                                                                                                       class="myfrm form-control mr-2" value="{{ $datas['required_wanting_documents'] }}">
+                                                                                                <input type="date" name="required_wanting_documents_date[]"
+                                                                                                       class="myfrm form-control ml-2" value="{{ $datas['required_wanting_documents_date'] }}">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_required_wanting_documents"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            @endforeach
+                                                                                            
+
+                                                                                        </div>
+                                
+                                                                                        @error('case_infos_required_wanting_documents_informant_name')<span
+                                                                                            class="text-danger">{{$message}}</span>@enderror
+                                                                                    </div>
+
+
+
+                                                                                    {{-- <div class="col-sm-4">
                                                                                         <select name="required_wanting_documents_id[]"
                                                                                                 id="required_wanting_documents_id"
                                                                                                 class="form-control select2" data-placeholder="Select" multiple>
@@ -1317,7 +1402,7 @@
                                 
                                                                                         @error('required_wanting_documents')<span
                                                                                             class="text-danger">{{$message}}</span>@enderror
-                                                                                    </div>
+                                                                                    </div> --}}
                                                                                 </div>
                                                                     </div>
                                                                 </div>
@@ -3234,12 +3319,11 @@
                                                                                                     {{ $item->last_name }}
                                                                                                 </option>
                                                                                             @endforeach --}}
-                                                                                            @foreach ($exist_engaged_advocate_associates as $item)
+                                                                                            @foreach ($external_council as $item)
                                                                                                 <option
-                                                                                                    value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name}}"
+                                                                                                    value="{{ $item->first_name.' '.$item->last_name}}"
                                                                                                     {{ old('activity_engaged_id') == $item->id ? 'selected' : '' }}>
                                                                                                     {{ $item->first_name }}
-                                                                                                    {{ $item->middle_name }}
                                                                                                     {{ $item->last_name }}
                                                                                                 </option>
                                                                                             @endforeach
@@ -3264,8 +3348,8 @@
                                                                             <div class="col-md-8">
                                                                                 <div class="row" >
                                                                                     <div class="col-md-6">
-                                                                                        <select name="activity_forwarded_to_id"
-                                                                                                class="form-control select2"
+                                                                                        <select name="activity_forwarded_to_id[]"
+                                                                                        data-placeholder="Select" class="form-control select2" multiple 
                                                                                         >
                                                                                             <option value="">Select</option>
                                                                                             @foreach ($external_council as $item)
@@ -3273,7 +3357,6 @@
                                                                                                     value="{{ $item->id }}"
                                                                                                     {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
                                                                                                     {{ $item->first_name }}
-                                                                                                    {{ $item->middle_name }}
                                                                                                     {{ $item->last_name }}
                                                                                                 </option>
                                                                                             @endforeach
