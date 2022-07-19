@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="padding: 0px;background: #2A6CB1;">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="padding: 0px;background: #2A6CB1;position:fixed;">
     {{-- style="background: #2A6CB1;" --}}
     <!-- Left navbar links -->
     {{-- <ul class="navbar-nav">

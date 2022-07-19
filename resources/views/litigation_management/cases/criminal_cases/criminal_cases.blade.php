@@ -434,10 +434,13 @@
                                                 @endphp
                                             </td>
                                             <td>
+
+                                                
+                                                @if (!empty($datum->case_infos_sub_seq_court_short_id) || !empty($datum->sub_seq_court_short_write))
+                                                    
+                                                
                                                 @php
                                                     $notes = explode(', ',$datum->case_infos_sub_seq_court_short_id);
-                                                    // dd($notes);
-                                                    // dd(trim($notes));
                                                 @endphp
                                                 @if($datum->case_infos_sub_seq_court_short_id)
                                                     @if (count($notes)>1)
@@ -451,10 +454,6 @@
                                                     @endif
 
                                                 @endif
-
-
-
-
                                                 @php
                                                     $notes = explode(', ',$datum->sub_seq_court_short_write);
                                                 @endphp
@@ -471,9 +470,42 @@
 
                                                 @endif
 
+@else
+
+                                                @php
+                                                    $notes = explode(', ',$datum->case_infos_court_short_id);
+                                                @endphp
+                                                @if($datum->case_infos_court_short_id)
+                                                    @if (count($notes)>1)
+                                                        @foreach ($notes as $pro)
+                                                            <li class="text-left">{{ $pro }}</li>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach ($notes as $pro)
+                                                            {{ $pro }}
+                                                        @endforeach
+                                                    @endif
+
+                                                @endif
+                                                @php
+                                                    $notes = explode(', ',$datum->court_short_write);
+                                                @endphp
+                                                @if($datum->court_short_write)
+                                                    @if (count($notes)>1)
+                                                        @foreach ($notes as $pro)
+                                                            <li class="text-left">{{ $pro }}</li>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach ($notes as $pro)
+                                                            {{ $pro }}
+                                                        @endforeach
+                                                    @endif
+
+                                                @endif
 
 
 
+                                                @endif
 
 
 

@@ -9,9 +9,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark"> Criminal Cases </h1>
-
                     </div><!-- /.col -->
-
 
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -57,8 +55,30 @@
                     <div class="card">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title custom_h3 font-italic text-uppercase font_weight"
-                                    style="color: #FF7034;">Criminal Case
+
+                                <style>
+                                    .stick {
+    position: fixed;
+    top: 50px;
+}
+                                </style>
+
+
+                                <div id="mainMenuBarAnchor"></div>
+                                {{-- <div id="mainMenuBar" style="width: 100%; height: 30px; background: #999; margin: 0;">Sticky Panel</div> --}}
+                                
+                              
+
+
+
+
+
+
+
+
+
+                                <h3 id="mainMenuBar" class="card-title custom_h3 font-italic text-uppercase font_weight"
+                                    style="color: #FF7034;z-index:99">Criminal Case
                                     No.
                                     {{ $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . ' of ' . $data->case_infos_case_year : '' }}
                                     @if ($data->sub_seq_case_title_name != null)
@@ -79,7 +99,7 @@
                                     @endphp
 
                                 </h3>
-                                <h3 class="card-title custom_h3 font-italic text-uppercase font_weight header_links">
+                                {{-- <h3 class="card-title custom_h3 font-italic text-uppercase font_weight header_links">
                                     Criminal Case
                                     No.
                                     {{ $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . ' of ' . $data->case_infos_case_year : '' }}
@@ -100,7 +120,7 @@
                                         }
                                     @endphp
 
-                                </h3>
+                                </h3> --}}
                                 <div class="card-tools">
                                     
                                     

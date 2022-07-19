@@ -448,7 +448,7 @@ h3{
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(58, 175, 169, 0.2);
+    background-color: rgba(58, 175, 169, 0.1);
 }
 .page-item.active .page-link {
     z-index: 3;
@@ -588,7 +588,7 @@ h3{
 
  .links {
     position: fixed;
-    top: 10px;
+    top: 43px;
     right: 3rem;
     z-index: 98;
     font-family: "parisplus-std", sans-serif;
