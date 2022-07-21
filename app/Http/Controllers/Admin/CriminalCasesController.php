@@ -1810,7 +1810,7 @@ $case_no_data = DB::table('criminal_cases')
 
     public function update_criminal_cases_activity(Request $request, $id)
     {
-    //     dd($request->all());
+        // dd($request->all());
 
     //    $data = json_decode(json_encode($request->all()));
     //    echo "<pre>";print_r($data);die();
@@ -1820,8 +1820,8 @@ $case_no_data = DB::table('criminal_cases')
 // return $arr = array('Hello','World!','Beautiful','Day!');
 // return implode(" ",$arr);
 
-        $external_council = SetupExternalCouncil::whereIn('id', $request->activity_forwarded_to_id)->get();
         // dd($external_council);
+        // dd('asdfasdf');
 
     //    $forwarded = SetupExternalCouncil::whereIn('id', $request->activity_forwarded_to_id)->select(DB::raw("CONCAT(first_name,' ',last_name) AS name"))->pluck('name')->toArray();
 // // dd($forwarded);
@@ -1839,7 +1839,6 @@ $case_no_data = DB::table('criminal_cases')
             $activity_date = date('Y-m-d');
         }
 
-
         $data = new CriminalCaseActivityLog();
         $data->case_id = $id;
         $data->activity_date = $activity_date;
@@ -1854,9 +1853,13 @@ $case_no_data = DB::table('criminal_cases')
         $data->activity_engaged_write = $request->activity_engaged_write;
         $data->activity_forwarded_to_id = $request->activity_forwarded_to_id ? implode(', ',$request->activity_forwarded_to_id) : null;
         $data->activity_forwarded_to_write = $request->activity_forwarded_to_write;
+        $data->activity_remarks = $request->activity_remarks;
+        $data->activity_requirements = $request->activity_requirements;
         $data->save();
 
         if($request->activity_forwarded_to_id != null) {
+
+            $external_council = SetupExternalCouncil::whereIn('id', $request->activity_forwarded_to_id)->get();
 
             foreach ($external_council as $key => $value) {
 
@@ -2107,6 +2110,23 @@ $case_no_data = DB::table('criminal_cases')
         return view('litigation_management.cases.criminal_cases.criminal_cases_activity_update',compact('exist_activity_forwarded_explode','data','mode','exist_engaged_advocate_associates','external_council','exist_engaged_advocate_associates_explode','activity_data'));
     }
 
+    public function view_criminal_cases_activity($id)
+    {
+        // dd($id);
+        // $data = CriminalCaseActivityLog::find($id);
+    //  dd($data);
+        $activity_log = DB::table('criminal_case_activity_logs')
+        ->leftJoin('setup_modes', 'criminal_case_activity_logs.activity_mode_id', 'setup_modes.id')
+        ->leftJoin('setup_external_councils as activity_engaged', 'criminal_case_activity_logs.activity_engaged_id', 'activity_engaged.id')
+        ->leftJoin('setup_external_councils as activity_forwarded', 'criminal_case_activity_logs.activity_forwarded_to_id', 'activity_forwarded.id')
+        ->where(['criminal_case_activity_logs.id' => $id,'criminal_case_activity_logs.delete_status' => 0])
+        ->select('criminal_case_activity_logs.*', 'setup_modes.mode_name', 'activity_engaged.first_name', 'activity_engaged.middle_name', 'activity_engaged.last_name', 'activity_forwarded.first_name as forwarded_first_name', 'activity_forwarded.middle_name as forwarded_middle_name', 'activity_forwarded.last_name as forwarded_last_name')
+        ->orderBy('criminal_case_activity_logs.created_at','asc')
+        ->first();
+    //  dd($activity_log);
+        return view('litigation_management.cases.criminal_cases.view_criminal_cases_activity',compact('activity_log'));
+    }
+
     public function update_criminal_cases_activity_logs(Request $request, $id)
     {
 // dd($request->all());
@@ -2136,6 +2156,8 @@ DB::beginTransaction();
         $data->activity_engaged_write = $request->activity_engaged_write;
         $data->activity_forwarded_to_id = $request->activity_forwarded_to_id ? implode(', ',$request->activity_forwarded_to_id) : null;
         $data->activity_forwarded_to_write = $request->activity_forwarded_to_write;
+        $data->activity_remarks = $request->activity_remarks;
+        $data->activity_requirements = $request->activity_requirements;
         $data->save();
 // dd('test astesrt asdf asdf asdf');
         if($request->activity_forwarded_to_id != null) {
@@ -2659,8 +2681,10 @@ DB::beginTransaction();
             'case_infos_title.case_title_name as sub_seq_case_title_name')
             ->where('criminal_cases.delete_status',0)
             ->get();
+        $is_search = 'Searched';
+
 // dd($data);
-        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('client_name','next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('is_search','client_name','next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter'));
     }
 
     public function update_criminal_cases_status_column(Request $request, $id)
@@ -2672,8 +2696,10 @@ DB::beginTransaction();
 
         $data = CriminalCaseStatusLog::where('case_id',$id)->latest()->first();
 
-        $data->updated_case_status_id = $request->updated_case_status_id;
-        $data->save();
+        if (!empty($data)) {
+            $data->updated_case_status_id = $request->updated_case_status_id;
+            $data->save();
+        }
 
         session()->flash('success', 'Case of the Status Updated Successfully.');
         return redirect()->back();

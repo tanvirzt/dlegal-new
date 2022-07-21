@@ -364,7 +364,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title"> List </h3>
+                                <h3 class="card-title"> List <span style="color: red;font-size:15px;">{{ !empty($is_search) ? '(Showing Searched Item)' : '' }}</span></h3>
                                 <div class="float-right">
                                     <a href="{{ route('add-criminal-cases') }}">
                                         <button class="btn btn-sm

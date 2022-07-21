@@ -55,10 +55,10 @@
 
 
         @include('layouts.admin_layouts.admin_sidebar')
-        <div class="progress progress-striped active">
+        {{-- <div class="progress progress-striped active">
           <div class="progress-bar progress-bar-success" style="width:0%;height: 6px;">
           </div>
-      </div>
+      </div> --}}
         @yield('content')
 
         @include('layouts.admin_layouts.admin_footer')

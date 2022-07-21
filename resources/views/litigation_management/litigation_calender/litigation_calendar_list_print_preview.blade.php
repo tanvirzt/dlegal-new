@@ -1,172 +1,74 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
+
+
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-3">
-                        <h1 class="m-0 text-dark">Dashboard</h1>
-                    </div>
                     <div class="col-sm-6">
-                        {{-- <div class="row">
-                            <div class="col-md-6">
-                                <div class="dropdown">
-                                    <button class="btn bg-gradient-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Litigation Calendar
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{{ route('civil-cases') }}">Civil</a>
-                                        <a class="dropdown-item" href="{{ route('criminal-cases') }}">Criminal</a>
-                                        <a class="dropdown-item" href="{{ route('labour-cases') }}">Service Matter</a>
-                                        <a class="dropdown-item" href="{{ route('quassi-judicial-cases') }}">Special/Quassi-Judicial Cases</a>
-                                        <a class="dropdown-item" href="{{ route('high-court-cases') }}">High Court Division</a>
-                                        <a class="dropdown-item" href="{{ route('appellate-court-cases') }}">Appellate Court Division</a>
-                                    </div>
-                                  </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="dropdown">
-                                    <button class="btn bg-gradient-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Litigation Calendar
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" href="{{ route('litigation-calender-list') }}">Litigation Calendar(List)</a>
-                                      <a class="dropdown-item" href="{{ route('litigation-calender-short') }}">Litigation Calendar(Short)</a>
-                                    </div>
-                                  </div>
-                            </div>
-                        </div> --}}
-                          
-                        {{-- <div class="row">
-                        <div class="col-md-6">
-                            <a href="{{ route('litigation-calender-list') }}">
-                                <button type="button" class="btn btn-block bg-gradient-info">Litigation Calendar(List)</button>
-                            </a>
-                        </div>
-                       <div class="col-md-6">
-                           <a href="{{ route('litigation-calender-short') }}">
-                               <button type="button" class="btn btn-block bg-gradient-success">Litigation Calendar(Short)</button>
-                           </a>
-                       </div>
-                        </div> --}}
-                    </div>
-                    <div class="col-sm-3">
+                        <h1 class="m-0 text-dark">Billings Log</h1>
+
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
+
+                            <li class="breadcrumb-item active">Billings Log</li>
                         </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
-
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <!-- Small boxes (Stat box) -->
-                <h3 class="" id="heading">Litigation Calendar</h3>
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div id="accordion">
-                                <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> Search </h3>
-                                    <div class="card-tools">
-                                        <button type="button" class="btn collapsed" data-toggle="collapse"
-                                                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
-@if (!empty($is_searched))
-    <a href="{{ route('litigation-calendar-list-print-preview-search',['param1'=>$from_date,'param2'=>$to_date]) }}" target="_blank"
-    class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print </a>
-@else
-<a href="{{ route('litigation-calendar-list-print-preview') }}" target="_blank"
-class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
-
-@endif
-
-                                    {{-- <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                        <i class="fas fa-download"></i> Print
-                                        </button> --}}
-                                </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                    data-parent="#accordion">
-                                    <div class="card-body">
-                                        <form method="post" action="{{ route('search-litigation-calendar') }}">
-                                            @csrf
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="from_date" class="col-sm-4 col-form-label">
-                                                            From Date </label>
-                                                        <div class="col-sm-8">
-                                                            <span class="date_span_calendar">
-                                                                <input type="date" class="xDateContainer date_first_input"
-                                                                       onchange="setCorrect(this,'from_date');"><input type="text" id="from_date"
-                                                                                                                    name="from_date" value="dd/mm/yyyy"
-                                                                                                                    class="date_second_input"
-                                                                                                                    tabindex="-1"><span
-                                                                    class="date_second_span" tabindex="-1">&#9660;</span>
-                                                            </span>
-                                                            @error('from_date')<span
-                                                                class="text-danger">{{$message}}</span>@enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="to_date" class="col-sm-4 col-form-label">
-                                                            To Date </label>
-                                                        <div class="col-sm-8">
-                                                            <span class="date_span_calendar">
-                                                                <input type="date" class="xDateContainer date_first_input"
-                                                                       onchange="setCorrect(this,'to_date');"><input type="text" id="to_date"
-                                                                                                                    name="to_date" value="dd/mm/yyyy"
-                                                                                                                    class="date_second_input"
-                                                                                                                    tabindex="-1"><span
-                                                                    class="date_second_span" tabindex="-1">&#9660;</span>
-                                                            </span>
-                                                            @error('to_date')<span
-                                                                class="text-danger">{{$message}}</span>@enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="float-right">
-                                                <button type="submit" id="submit" class="btn btn-primary text-uppercase"><i
-                                                        class="fas fa-search"></i> Search
-                                                </button>
-                                            </div>
-
-                                        </form>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-md-11 mx-auto">
+                <div class="card">
+                    <div>
+                        <div class="card-header" style="border-bottom: 0px;">
+                            <style>
+                                .data td, th, .data{
+                                    border: 1px solid #eeeeee;
+                                }
+                                .data th{
+                                    font-weight: 600;
+                                    background: #d3d3d3;
+                                }
+                            </style>
+                            <table style="width: 100%;z-index:99;" width="100%">
+
+                                <tr>
+                                    <td style="text-align: center; width:100%;" valign="top">
+                                        <span id="lblUnitName" class="HeaderStyle"><b>dLegal</b></span>
+                                        <br/>
+                                        <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag, Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
+                                        <br/>
+                                        <span id="lblUnitAddress" class="HeaderStyle2"> Cell:01717406688 </span>
+                                        <br/>
+                                        <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688 </span>
+                                        <br/>
+                                        <span id="lblUnitAddress" class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
+                                            <span id="lblVoucherType" class="VoucherStyle">
+                                        <br/>
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                        </div>
                 @foreach($criminal_cases as $key=>$datum)
                     @if (!empty($datum->next_date))
                         <div class="card">
-
-                            <div class="card-header">
-                                {{-- <h3 class="card-title"> --}}
-                                    <div class="row" style="margin-bottom: -20px;">
+                            <div class="card-header" style="border-bottom: 0px;">
+                                    <div class="row" style="margin-bottom: -10px;">
                                         <div class="col-md-1 border pt-1 mr-1">
-                                            <span class="info-box-text text-center text-bold h6 text-text-warning" style="color: #FF7034;font-size:13px;">
+                                            <span class="info-box-text text-center text-bold h6 text-text-warning" style="color: #FF7034;font-size:12px;">
                                                 {{ $calendar_date = date('d-m-Y', strtotime($datum->next_date)) }}
                                             </span>
-                                            <span class="info-box-number text-center mb-0 text-bold h6" style="color: #FF7034;font-size:12.5px;">
+                                            <span class="info-box-number text-center mb-0 text-bold h6" style="color: #FF7034;font-size:11px;">
                                                 @php
                                                     $date = $datum->next_date;
                                                     $time = date('l', strtotime($date));
@@ -177,9 +79,7 @@ class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
                                         <div class="col-md-1 border pt-1 mr-1">
                                             <h6 class="info-box-text text-center text-muted text-bold" style="font-size:12.5px;">Total</h6>
                                                     <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:12.5px;">
-                                                        
                                                         @php
-                                                            
                                                             $calendar_count = DB::table('criminal_cases')->where(['criminal_cases.delete_status' => 0, 'next_date' => $datum->next_date])
                                                                             ->count();
                                                         $calendar_wise_data = DB::table('criminal_cases')
@@ -226,23 +126,12 @@ class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
                                             <h6 class="info-box-text text-center text-muted text-bold" style="font-size:12.5px;">Others</h6>
                                             <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:12.5px;">0</p>
                                         </div>
-                                        
                                     </div>
-
-                                {{-- </h3> --}}
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
 
                             </div>
 
                             <div class="card-body" style="padding: 0.52rem;">
-                                <table class="table table-bordered table-striped calendar_list">
+                                <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>SL</th>
@@ -505,12 +394,33 @@ class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
                         </div>
                     @endif
                 @endforeach
-        
-                <!-- /.row (main row) -->
-            </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
+
+
+
+
+
+
+
+
+
+
+   
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
     </div>
-    <!-- /.content-wrapper -->
+    <script type="text/javascript"> 
+      window.addEventListener("load", window.print());
+    </script>
 
 @endsection
+
+
+
+

@@ -17,8 +17,8 @@ class CreateCriminalCaseActivityLogsTable extends Migration
             $table->id();
             $table->integer('case_id')->nullable();
             $table->string('activity_date')->nullable();
-            $table->string('activity_action')->nullable();
-            $table->string('activity_progress')->nullable();
+            $table->text('activity_action')->nullable();
+            $table->text('activity_progress')->nullable();
             $table->integer('activity_mode_id')->nullable();
             $table->string('activity_mode_write')->nullable();
             $table->string('start_time')->nullable();
@@ -28,6 +28,8 @@ class CreateCriminalCaseActivityLogsTable extends Migration
             $table->string('activity_engaged_write')->nullable();
             $table->integer('activity_forwarded_to_id')->nullable();
             $table->string('activity_forwarded_to_write')->nullable();
+            $table->text('activity_remarks')->nullable();
+            $table->text('activity_requirements')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

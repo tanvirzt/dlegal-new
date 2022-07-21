@@ -1387,6 +1387,7 @@
                                                 <th class="text-nowrap">Engaged Lawyer</th>
                                                 <th class="text-nowrap">Forwarded To</th>
                                                 <th class="text-nowrap">Remarks</th>
+                                                <th class="text-nowrap">Requirements</th>
                                                 <th class="text-nowrap">Action</th>
                                                 <th class="text-nowrap" width="90px;">Update</th>
                                             </tr>
@@ -1396,8 +1397,8 @@
                                                 <tr>
                                                     <td> {{ date('d-m-Y', strtotime($activity_log->activity_date)) }}
                                                     </td>
-                                                    <td> {{ $activity_log->activity_action }} </td>
-                                                    <td> {{ $activity_log->activity_progress }} </td>
+                                                    <td> {{\Illuminate\Support\Str::limit($activity_log->activity_action, 15)}} </td>
+                                                    <td> {{\Illuminate\Support\Str::limit($activity_log->activity_progress, 15)}} </td>
                                                     <td> {{ $activity_log->mode_name }} </td>
                                                     <td> {{ $activity_log->total_time }} </td>
                                                     <td>
@@ -1428,13 +1429,19 @@
                                                         @endif 
 
                                                         {{ $activity_log->activity_forwarded_to_write }} </td>
-                                                    <td>{{ $activity_log->activity_mode_write }}</td>
+                                                    <td> {{\Illuminate\Support\Str::limit($activity_log->activity_remarks, 15)}} </td>
+                                                    <td> {{\Illuminate\Support\Str::limit($activity_log->activity_requirements, 15)}} </td>
                                                     <td>
                                                         <a
                                                             href="{{ route('edit-criminal-cases-activity', $activity_log->id) }}">
                                                             <button class="btn btn-info btn-sm" data-toggle="tooltip"
                                                                 data-placement="top" title="Edit"><i
                                                                     class="fas fa-edit"></i></button>
+                                                        </a>
+                                                        <a
+                                                            href="{{ route('view-criminal-cases-activity', $activity_log->id) }}">
+                                                            <button class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                                data-placement="top" title="View"><i class="fas fa-eye"></i></button>
                                                         </a>
                                                         <form method="POST"
                                                             action="{{ route('delete-criminal-cases-activity', $activity_log->id) }}"
@@ -2034,8 +2041,8 @@
                                 <div class="form-group row">
                                     <label for="activity_action" class="col-sm-4 col-form-label"> Activity/Action </label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="activity_action"
-                                            name="activity_action">
+                                        <textarea name="activity_action" class="form-control" rows="2"
+                                                              placeholder="">{{old('activity_action')}}</textarea>
                                         @error('activity_action')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -2044,8 +2051,8 @@
                                 <div class="form-group row">
                                     <label for="activity_progress" class="col-sm-4 col-form-label">Progress</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="activity_progress"
-                                            name="activity_progress">
+                                        <textarea name="activity_progress" class="form-control" rows="2"
+                                                              placeholder="">{{old('activity_progress')}}</textarea>
                                         @error('activity_progress')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -2067,6 +2074,9 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="activity_mode_write" placeholder="Mode" name="activity_mode_write" >
+                                            </div>
 
                                         </div>
 
@@ -2075,10 +2085,6 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
-
-
-                            <div class="col-md-6">
                                 <div class="form-group row">
                                     <label for="start_time" class="col-sm-4 col-form-label">Start Time</label>
                                     <div class="col-sm-8">
@@ -2109,6 +2115,11 @@
                                         @enderror
                                     </div>
                                 </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                
                                 <div class="form-group row">
                                     <label for="activity_engaged_id" class="col-md-4 col-form-label"> Engaged
                                     </label>
@@ -2169,10 +2180,20 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="activity_mode_write" class="col-sm-4 col-form-label">Remarks</label>
+                                    <label for="activity_remarks" class="col-sm-4 col-form-label">Note</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="activity_mode_write"
-                                            name="activity_mode_write">
+                                        <textarea name="activity_remarks" class="form-control" rows="2"
+                                                              placeholder="">{{old('activity_remarks')}}</textarea>
+                                        @error('client')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="activity_requirements" class="col-sm-4 col-form-label">Requirements</label>
+                                    <div class="col-sm-8">
+                                        <textarea name="activity_requirements" class="form-control" rows="2"
+                                                              placeholder="">{{old('activity_requirements')}}</textarea>
                                         @error('client')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror

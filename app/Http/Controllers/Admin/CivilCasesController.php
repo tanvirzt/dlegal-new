@@ -68,7 +68,7 @@ class CivilCasesController extends Controller
 
     public function find_associates(Request $request)
     {
-        $associates = SetupExternalCouncilAssociate::where('external_council_id', $request->external_council_name_id)->orderBy('first_name','asc')->get();
+        $associates = SetupExternalCouncil::where('whose_associate_id', $request->external_council_name_id)->orderBy('first_name','asc')->get();
         return response()->json($associates);
     }
 

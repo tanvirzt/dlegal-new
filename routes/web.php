@@ -191,10 +191,12 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-criminal-cases-status-logs/{id}','CriminalCasesController@update_criminal_cases_status_logs')->name('update-criminal-cases-status-logs');
         Route::post('delete-criminal-cases-activity/{id}','CriminalCasesController@delete_criminal_cases_activity')->name('delete-criminal-cases-activity');
         Route::get('edit_criminal_cases_activity/{id}','CriminalCasesController@edit_criminal_cases_activity')->name('edit-criminal-cases-activity');
+        Route::get('view-criminal-cases-activity/{id}','CriminalCasesController@view_criminal_cases_activity')->name('view-criminal-cases-activity');
         Route::post('update-criminal-cases-activity-logs/{id}','CriminalCasesController@update_criminal_cases_activity_logs')->name('update-criminal-cases-activity-logs');
         Route::get('case-porceedings-print-preview/{id}','CriminalCasesController@case_porceedings_print_preview')->name('case-porceedings-print-preview');
         Route::get('billings-log-print-preview/{id}','CriminalCasesController@billings_log_print_preview')->name('billings-log-print-preview');
         Route::get('criminal-case-print-preview/{id}','CriminalCasesController@criminal_case_print_preview')->name('criminal-case-print-preview');
+
         Route::post('update-criminal-cases-status-column/{id}','CriminalCasesController@update_criminal_cases_status_column')->name('update-criminal-cases-status-column');
         Route::get('view-criminal-cases-read-notifications/{id}','CriminalCasesController@view_criminal_cases_read_notifications')->name('view-criminal-cases-read-notifications');
         
@@ -685,6 +687,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('search-case-pages','LitigationCalenderController@search_case_pages')->name('search-case-pages');
         Route::post('search-cases','LitigationCalenderController@search_cases')->name('search-cases');
         Route::post('calendar-short-next-previous', 'LitigationCalenderController@calendar_short_next_previous')->name('calendar-short-next-previous');
+        Route::get('litigation-calendar-list-print-preview','LitigationCalenderController@litigation_calendar_list_print_preview')->name('litigation-calendar-list-print-preview');
+        Route::get('litigation-calendar-list-print-preview-search/{param1}/{param2}','LitigationCalenderController@litigation_calendar_list_print_preview_search')->name('litigation-calendar-list-print-preview-search');
         
         Route::get('cabinet', 'AdminSetupController@cabinet')->name('cabinet');
         Route::get('add-cabinet','AdminSetupController@add_cabinet')->name('add-cabinet');

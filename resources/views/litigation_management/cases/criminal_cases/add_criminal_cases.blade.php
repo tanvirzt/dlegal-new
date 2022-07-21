@@ -41,7 +41,6 @@
 
                         <div class="card-header">
                             <h3 class="card-title"> Add Criminal Cases </h3>
-
                         </div>
 
                         <div class="card-body">
@@ -173,7 +172,7 @@
                                                                 <input type="text" class="form-control"
                                                                        id="accused_write"
                                                                        name="accused_write"
-                                                                       placeholder="Complainant"
+                                                                       placeholder="Accused"
                                                                        value="{{ old('accused_write') }}">
                                                             </div>
                                                         </div>
@@ -795,7 +794,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="input-group hdtuto_opposition control-group increment_opposition">
                                                                     <input type="text" name="opposition_write[]"
-                                                                           class="myfrm form-control col-12" placeholder="Client Name">
+                                                                           class="myfrm form-control col-12" placeholder="Opposition">
                                                                     <div class="input-group-btn">
                                                                         <button class="btn btn-success btn_success_opposition"
                                                                                 type="button"><i
@@ -1946,7 +1945,7 @@
                                                                     <option value="">Select</option>
                                                                     @foreach($external_council as $item)
                                                                         <option
-                                                                            value="{{ $item->id }}" {{( old('lawyer_advocate_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                                            value="{{ $item->id }}" {{( old('lawyer_advocate_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->last_name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>

@@ -57,8 +57,6 @@
 
                                         <form method="post" action="{{ route('search-cases') }}">
                                             @csrf
-
-
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
@@ -365,7 +363,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title"> List </h3>
+                                <h3 class="card-title"> List <span style="color: red;font-size:15px;">{{ !empty($is_search) ? '(Showing Searched Item)' : '' }}</span> </h3>
                                 <div class="float-right">
                                     {{-- <a href="{{ route('add-cases') }}">
                                         <button class="btn btn-sm

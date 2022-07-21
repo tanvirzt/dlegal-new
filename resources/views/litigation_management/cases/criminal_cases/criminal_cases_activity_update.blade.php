@@ -104,8 +104,9 @@
                                                             <label for="activity_action"
                                                                    class="col-sm-4 col-form-label"> Activity/Action </label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control"
-                                                                       id="activity_action" name="activity_action" value="{{ $data->activity_action }}">
+                                                                <textarea name="activity_action" class="form-control" rows="2"
+                                                                                      placeholder="">{{ $data->activity_action }}</textarea>
+                                                                
                                                                 @error('activity_action')
                                                                 <span
                                                                     class="text-danger">{{ $message }}</span>
@@ -116,8 +117,9 @@
                                                             <label for="activity_progress"
                                                                    class="col-sm-4 col-form-label">Progress</label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control"
-                                                                       id="activity_progress" name="activity_progress" value="{{ $data->activity_progress }}">
+                                                                <textarea name="activity_progress" class="form-control" rows="2"
+                                                                                      placeholder="">{{ $data->activity_progress }}</textarea>
+                                                                
                                                                 @error('activity_progress')
                                                                 <span
                                                                     class="text-danger">{{ $message }}</span>
@@ -156,11 +158,6 @@
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
-                                                    </div>
-
-
-                                                    <div class="col-md-6">
-
                                                         <div class="form-group row">
                                                             <label for="start_time"
                                                                    class="col-sm-4 col-form-label">Start Time</label>
@@ -197,6 +194,12 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
+                                                    </div>
+
+
+                                                    <div class="col-md-6">
+
+                                                        
                                                         <div class="form-group row">
                                                             <label for="activity_engaged_id"
                                                                    class="col-md-4 col-form-label"> Engaged
@@ -270,7 +273,26 @@
                                                                     class="text-danger">{{$message}}</span>@enderror
                                                             </div>
                                                         </div>
-
+                                                        <div class="form-group row">
+                                                            <label for="activity_remarks" class="col-sm-4 col-form-label">Note</label>
+                                                            <div class="col-sm-8">
+                                                                <textarea name="activity_remarks" class="form-control" rows="2"
+                                                                                      placeholder="">{{ $data->activity_remarks }}</textarea>
+                                                                @error('client')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="activity_requirements" class="col-sm-4 col-form-label">Requirements</label>
+                                                            <div class="col-sm-8">
+                                                                <textarea name="activity_requirements" class="form-control" rows="2"
+                                                                                      placeholder="">{{ $data->activity_requirements }}</textarea>
+                                                                @error('client')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                 </div>

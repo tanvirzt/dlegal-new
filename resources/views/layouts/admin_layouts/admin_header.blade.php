@@ -1,5 +1,11 @@
+
+
+
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="padding: 0px;background: #2A6CB1;position:fixed;">
+
+
+
+<nav class="main-header navbar navbar-expand navbar-white navbar-light links_custom" style="padding: 0px;background: #2A6CB1;position:fixed;padding-right:89px;z-index:1020;">
     {{-- style="background: #2A6CB1;" --}}
     <!-- Left navbar links -->
     {{-- <ul class="navbar-nav">
@@ -210,7 +216,7 @@
 
         <!-- Notifications Dropdown Menu -->
 
-        {{-- <li class="nav-item dropdown">
+        <li class="nav-item dropdown float-right">
             <a class="nav-link" data-toggle="dropdown" href="#">
               <i class="far fa-user"></i>
               <span class="badge badge-warning navbar-badge"></span>
@@ -221,17 +227,10 @@
             <div class="dropdown-divider"></div>
             <a href="{{ route('admin.logout') }}" class="dropdown-item dropdown-footer">Logout</a>
         </div>
-        </li> --}}
+        </li>
 
-        <div class="btn-group">
-            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="far fa-user custom_size"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a href="{{ route('admin.logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
-            </div>
-        </div>
-
+    
     </ul>
 </nav>
 <!-- /.navbar -->
+

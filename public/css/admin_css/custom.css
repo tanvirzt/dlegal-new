@@ -599,6 +599,20 @@ h3{
       opacity: 1;
   }
 
+
+  .links_custom {
+    position: fixed;
+    top: 0px;
+    z-index: 98;
+    font-family: "parisplus-std", sans-serif;
+    /* display: none; */
+    opacity: 0;
+  }
+  .links_custom:hover{
+      opacity: 1;
+  }
+
+
   .btn-success-preview {
     font-family: Raleway-SemiBold;
     font-size: 15px;
@@ -672,3 +686,6 @@ th{
     background-color: #2A6CB1;
 } */
 
+.content-wrapper{
+    margin-top: 25px;
+}
