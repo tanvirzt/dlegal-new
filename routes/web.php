@@ -666,6 +666,13 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-bill-particulars/{id}','AdminSetupController@update_bill_particulars')->name('update-bill-particulars');
         Route::post('delete-bill-particulars/{id}','AdminSetupController@delete_bill_particulars')->name('delete-bill-particulars');
 
+        Route::get('particulars', 'AdminSetupController@particulars')->name('particulars');
+        Route::get('add-particulars','AdminSetupController@add_particulars')->name('add-particulars');
+        Route::post('save-particulars','AdminSetupController@save_particulars')->name('save-particulars');
+        Route::get('edit-particulars/{id}','AdminSetupController@edit_particulars')->name('edit-particulars');
+        Route::post('update-particulars/{id}','AdminSetupController@update_particulars')->name('update-particulars');
+        Route::post('delete-particulars/{id}','AdminSetupController@delete_particulars')->name('delete-particulars');
+
         Route::get('bill-schedule', 'AdminSetupController@bill_schedule')->name('bill-schedule');
         Route::get('add-bill-schedule','AdminSetupController@add_bill_schedule')->name('add-bill-schedule');
         Route::post('save-bill-schedule','AdminSetupController@save_bill_schedule')->name('save-bill-schedule');

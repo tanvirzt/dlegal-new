@@ -229,7 +229,7 @@
                                                                                         <input type="text" class="form-control"
                                                                                                id="accused_write"
                                                                                                name="accused_write"
-                                                                                               placeholder="Complainant"
+                                                                                               placeholder="Accused"
                                                                                                value="{{ $data->accused_write }}">
                                                                                     </div>
                                                                                 </div>
@@ -2316,68 +2316,129 @@
 
                                                                 <div class="card">
                                                                     <div class="card-body">
-                                                                        <h6 class="text-uppercase text-bold"><u> Lawyer
-                                                                                Information </u></h6>
-                                                                        <div class="form-group row">
-                                                                            <label for="lawyer_advocate_id"
-                                                                                   class="col-sm-4 col-form-label">Name of Advocate/Law Firm</label>
-                                                                            <div class="col-sm-8">
+                                                                        <h6 class="text-uppercase text-bold"><u> Letter / Notice / Reply </u></h6>
+                                                                        <h6 class="text-uppercase text-bold">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3"> Date </div>
+                                                                                <div class="col-md-3"> Document Name </div>
+                                                                                <div class="col-md-3"> Particulars </div>
+                                                                                <div class="col-md-1"> ORG </div>
+                                                                                <div class="col-md-1"> PHT </div>
+                                                                            </div>
+                                                                        </h6>
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="input-group hdtuto_letter_notice control-group increment_letter_notice">
+                                                                                            <input type="date" name="letter_notice_date[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4" value="{{ !empty($letter_notice_explode[0]['letter_notice_date']) ? $letter_notice_explode[0]['letter_notice_date'] : '' }}">
+                                                                                            <select name="letter_notice_documents_id[]"
+                                                                                                class="form-control mr-2 col-md-3">
+                                                                                                <option value="">Select</option>
+                                                                                                @foreach($documents as $item)
+                                                                                                    <option
+                                                                                                        value="{{ $item->documents_name }}" {{ !empty($letter_notice_explode[0]['letter_notice_documents_id']) && $letter_notice_explode[0]['letter_notice_documents_id']  == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                            <select name="letter_notice_particulars_id[]"
+                                                                                                class="form-control col-md-3">
+                                                                                                <option value="">Select</option>
+                                                                                                @foreach($particulars as $item)
+                                                                                                    <option
+                                                                                                        value="{{ $item->particulars_name }}" {{ !empty($letter_notice_explode[0]['letter_notice_particulars_id']) && $letter_notice_explode[0]['letter_notice_particulars_id']  == $item->particulars_name ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                            <input type="checkbox" name="letter_notice_org[]"
+                                                                                                   class="myfrm form-control col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_org']) && $letter_notice_explode[0]['letter_notice_org'] == 'on') checked @endif>
+                                                                                            <input type="checkbox" name="letter_notice_pht[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_pht']) && $letter_notice_explode[0]['letter_notice_pht'] == 'on') checked @endif>
+                                                                                            
+                                                                                            <div class="input-group-btn">
+                                                                                                <button class="btn btn-success btn_success_letter_notice"
+                                                                                                        type="button"><i
+                                                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="clone_letter_notice hide">
+                                                                                            <div class="hdtuto_letter_notice control-group lst input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                 <input type="date" name="letter_notice_date[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4">
+                                                                                            <select name="letter_notice_documents_id[]"
+                                                                                                class="form-control mr-2 col-md-3">
+                                                                                                <option value="">Select</option>
+                                                                                                @foreach($documents as $item)
+                                                                                                    <option
+                                                                                                        value="{{ $item->documents_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                            <select name="letter_notice_particulars_id[]"
+                                                                                                class="form-control col-md-3">
+                                                                                                <option value="">Select</option>
+                                                                                                @foreach($particulars as $item)
+                                                                                                    <option
+                                                                                                        value="{{ $item->particulars_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                            <input type="checkbox" name="letter_notice_org[]"
+                                                                                                   class="myfrm form-control col-md-1">
+                                                                                            <input type="checkbox" name="letter_notice_pht[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-1">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_letter_notice"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
 
-                                                                                <div class="row">
-                                                                                    <div class="col-md-6">
-                                                                                        <select name="lawyer_advocate_id"
-                                                                                                class="form-control select2"
-                                                                                                id="lawyer_advocate_id" action="{{ route('find-associates') }}">
-                                                                                            <option value="">Select</option>
-                                                                                            @foreach($external_council as $item)
-                                                                                                <option
-                                                                                                    value="{{ $item->id }}" {{($data->lawyer_advocate_id == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                                                        <div class="clone_letter_notice @if(count($letter_notice_explode) <= 1) hide @endif">
+                                                                                            @php
+                                                                                                array_shift($letter_notice_explode);
+                                                                                            @endphp
+                                                                                            @foreach ( $letter_notice_explode as $datas)
+                                                                                            <div class="hdtuto_letter_notice control-group lst input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                 <input type="date" name="letter_notice_date[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4" value="{{ $datas['letter_notice_date'] }}">
+                                                                                                <select name="letter_notice_documents_id[]"
+                                                                                                    class="form-control mr-2 col-md-3">
+                                                                                                    <option value="">Select</option>
+                                                                                                    @foreach($documents as $item)
+                                                                                                        <option
+                                                                                                            value="{{ $item->documents_name }}" {{ $datas['letter_notice_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                    @endforeach
+                                                                                                </select>
+                                                                                                <select name="letter_notice_particulars_id[]"
+                                                                                                    class="form-control col-md-3">
+                                                                                                    <option value="">Select</option>
+                                                                                                    @foreach($particulars as $item)
+                                                                                                        <option
+                                                                                                            value="{{ $item->particulars_name }}" {{ $datas['letter_notice_particulars_id'] == $item->particulars_name ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
+                                                                                                    @endforeach
+                                                                                                </select>
+                                                                                                <input type="checkbox" name="letter_notice_org[]"
+                                                                                                    class="myfrm form-control col-md-1" @if ($datas['letter_notice_org'] == 'on') checked @endif >
+                                                                                                <input type="checkbox" name="letter_notice_pht[]"
+                                                                                                    class="myfrm form-control mr-2 col-md-1" @if ($datas['letter_notice_pht'] == 'on') checked @endif>
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_letter_notice"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
                                                                                             @endforeach
-                                                                                        </select>
-                                                                                    </div>
-                                                                                    <div class="col-md-6">
-                                                                                        <input type="text" class="form-control"
-                                                                                               id="lawyer_advocate_write"
-                                                                                               name="lawyer_advocate_write"
-                                                                                               placeholder="Advocate Name"
-                                                                                               value="{{ $data->lawyer_advocate_write }}">
+                                                                                        </div>
+                                
+                                                                                        @error('case_infos_letter_notice_informant_name')<span
+                                                                                            class="text-danger">{{$message}}</span>@enderror
                                                                                     </div>
                                                                                 </div>
-
-                                                                                @error('client_profession_id')<span
-                                                                                    class="text-danger">{{$message}}</span>@enderror
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Name of Assigned
-                                                                                Lawyer</label>
-                                                                            <div class="col-sm-8">
-                                                                                <select name="assigned_lawyer_id[]" id="assigned_lawyer_id" class="form-control select2" data-placeholder="Select" multiple>
-                                                                                    <option value="">Select</option>
-                                                                                    @foreach($existing_assignend_external_council as $item)
-                                                                                        <option
-                                                                                            value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name }}" {{ in_array($item->first_name.' '.$item->middle_name.' '.$item->last_name, $assigned_lawyer_explode) ? 'selected':'' }}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                                @error('assigned_lawyer_id')<span
-                                                                                    class="text-danger">{{$message}}</span>@enderror
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="form-group row">
-                                                                            <label for="lawyers_remarks"
-                                                                                   class="col-sm-4 col-form-label"> Remarks </label>
-                                                                            <div class="col-sm-8">
-                                                    <textarea name="lawyers_remarks" class="form-control"
-                                                              rows="3"
-                                                              placeholder="">{{ $data->lawyers_remarks }}</textarea>
-                                                                                @error('lawyers_remarks')<span
-                                                                                    class="text-danger">{{$message}}</span>@enderror
-                                                                            </div>
-                                                                        </div>
+                                                                                
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="card">
                                                                     <div class="card-body">
                                                                         <h6 class="text-uppercase text-bold">
@@ -2755,6 +2816,69 @@
                                                                         </div>
                         
                         
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <h6 class="text-uppercase text-bold"><u> Lawyer
+                                                                                Information </u></h6>
+                                                                        <div class="form-group row">
+                                                                            <label for="lawyer_advocate_id"
+                                                                                   class="col-sm-4 col-form-label">Name of Advocate/Law Firm</label>
+                                                                            <div class="col-sm-8">
+
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <select name="lawyer_advocate_id"
+                                                                                                class="form-control select2"
+                                                                                                id="lawyer_advocate_id" action="{{ route('find-associates') }}">
+                                                                                            <option value="">Select</option>
+                                                                                            @foreach($external_council as $item)
+                                                                                                <option
+                                                                                                    value="{{ $item->id }}" {{($data->lawyer_advocate_id == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <input type="text" class="form-control"
+                                                                                               id="lawyer_advocate_write"
+                                                                                               name="lawyer_advocate_write"
+                                                                                               placeholder="Advocate Name"
+                                                                                               value="{{ $data->lawyer_advocate_write }}">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                @error('client_profession_id')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Name of Assigned
+                                                                                Lawyer</label>
+                                                                            <div class="col-sm-8">
+                                                                                <select name="assigned_lawyer_id[]" id="assigned_lawyer_id" class="form-control select2" data-placeholder="Select" multiple>
+                                                                                    <option value="">Select</option>
+                                                                                    @foreach($existing_assignend_external_council as $item)
+                                                                                        <option
+                                                                                            value="{{ $item->first_name.' '.$item->middle_name.' '.$item->last_name }}" {{ in_array($item->first_name.' '.$item->middle_name.' '.$item->last_name, $assigned_lawyer_explode) ? 'selected':'' }}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                                @error('assigned_lawyer_id')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group row">
+                                                                            <label for="lawyers_remarks"
+                                                                                   class="col-sm-4 col-form-label"> Remarks </label>
+                                                                            <div class="col-sm-8">
+                                                    <textarea name="lawyers_remarks" class="form-control"
+                                                              rows="3"
+                                                              placeholder="">{{ $data->lawyers_remarks }}</textarea>
+                                                                                @error('lawyers_remarks')<span
+                                                                                    class="text-danger">{{$message}}</span>@enderror
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                         

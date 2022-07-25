@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>District</h1>
+                        <h1>Particulars</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active">District</li>
+                            <li class="breadcrumb-item active">Particulars</li>
                         </ol>
                     </div>
                 </div>
@@ -38,8 +38,8 @@
                             <div class="card-header">
                                 <h3 class="card-title">List</h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-district') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add District </button></a>
+                                    <a href="{{ route('add-particulars') }}"><button class="btn btn-sm
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Particulars </button></a>
                                 </div>
 
                             </div>
@@ -49,24 +49,20 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center text-nowrap">ID</th>
-                                        <th class="text-center text-nowrap">Division</th>
-                                        <th class="text-center text-nowrap">District</th>
+                                        <th class="text-center text-nowrap">Particulars</th>
                                         <th class="text-center text-nowrap">Status</th>
                                         <th class="text-center text-nowrap">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($data as $key=>$datum)
+                                    @foreach($data as $datum)
 
                                         <tr>
                                             <td class="text-center">
-                                                {{$key+1}}
+                                                {{$datum->id}}
                                             </td>
                                             <td class="text-center">
-                                                {{$datum->division_name}}
-                                            </td>
-                                            <td class="text-center">
-                                                {{$datum->district_name}}
+                                                {{$datum->particulars_name}}
                                             </td>
                                             <td class="text-center">
                                                 @if ($datum->delete_status == 0)
@@ -80,12 +76,14 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ route('edit-district',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
-                                                ><i class="fas fa-edit"></i></button></a>
-                                                <form method="POST" action="{{ route('delete-district',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
-                                                </form>
+
+                                                    <a href="{{ route('edit-particulars',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                    ><i class="fas fa-edit"></i></button></a>
+                                                    <form method="POST" action="{{ route('delete-particulars',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+                                                    </form>
+
                                             </td>
                                         </tr>
                                     @endforeach

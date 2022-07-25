@@ -171,7 +171,7 @@
 
                                                         <tbody>
                                                             <tr>
-                                                                <td width="50%">ID</td>
+                                                                <td width="50%">ID </td>
                                                                 <td width="50%"> {{ $data->created_case_id }} </td>
                                                             </tr>
                                                             <tr>
@@ -250,8 +250,8 @@
                                                     <table class="table table-bordered">
                                                         <tbody>
                                                             <tr>
-                                                                <td>Cabinet Name</td>
-                                                                <td>{{ $data->cabinet_name }} @if ($data->self_number)
+                                                                <td width="50%">Cabinet Name</td>
+                                                                <td width="50%">{{ $data->cabinet_name }} @if ($data->self_number)
                                                                         ({{ $data->self_number }})
                                                                     @endif
                                                                 </td>
@@ -274,20 +274,20 @@
 
                                                         <tbody>
                                                             <tr>
-                                                                <td width="50%">Client(Which Party)</td>
-                                                                <td width="50%"> {{ $data->client_party_name }} </td>
+                                                                <td >Client(Which Party)</td>
+                                                                <td colspan="2"> {{ $data->client_party_name }} </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Client Category</td>
-                                                                <td> {{ $data->client_category_name }} </td>
+                                                                <td colspan="2"> {{ $data->client_category_name }} </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Client Subcategory</td>
-                                                                <td>{{ $data->client_subcategory_name }}</td>
+                                                                <td colspan="2">{{ $data->client_subcategory_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Client Name</td>
-                                                                <td>
+                                                                <td colspan="2">
                                                                     @php
                                                                         $client_explode = explode(', ', $data->client_id);
                                                                     @endphp
@@ -323,62 +323,64 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Client Business Name</td>
-                                                                <td>{{ $data->client_business_name }}</td>
+                                                                <td colspan="2">{{ $data->client_business_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Client Address</td>
-                                                                <td>{{ $data->client_address }}</td>
+                                                                <td colspan="2">{{ $data->client_address }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Client Mobile</td>
-                                                                <td>{{ $data->client_mobile }}</td>
+                                                                <td colspan="2">{{ $data->client_mobile }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Client Email</td>
-                                                                <td>{{ $data->client_email }}</td>
+                                                                <td colspan="2">{{ $data->client_email }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Profession/Type</td>
-                                                                <td>{{ $data->profession_name }}
+                                                                <td colspan="2">{{ $data->profession_name }}
                                                                     {{ $data->client_profession_write }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Division/Zone</td>
-                                                                <td>{{ $data->client_division_name }} @if ($data->client_division_name && $data->client_divisoin_write) / @endif 
-                                                                    {{ $data->client_divisoin_write }}</td>
+                                                                <td width="50%">Division/Zone</td>
+                                                                <td width="25%">{{ $data->client_division_name }} @if ($data->client_division_name && $data->client_divisoin_write) @endif 
+                                                                    </td>
+                                                                    <td width="25%">{{ $data->client_divisoin_write }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>District/Area</td>
-                                                                <td>{{ $data->client_district_name }} @if ($data->client_district_name && $data->client_district_write) / @endif 
-                                                                    {{ $data->client_district_write }}</td>
+                                                                <td>{{ $data->client_district_name }} @if ($data->client_district_name && $data->client_district_write) @endif 
+                                                                    </td>
+                                                                    <td>{{ $data->client_district_write }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Thana/Branch</td>
-                                                                <td>{{ $data->client_thana_name }} @if ($data->client_thana_name && $data->client_thana_write) / @endif 
-                                                                    {{ $data->client_thana_write }}</td>
+                                                                <td>{{ $data->client_thana_name }} @if ($data->client_thana_name && $data->client_thana_write) @endif 
+                                                                    </td>
+                                                                    <td>{{ $data->client_thana_write }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Representative Name</td>
-                                                                <td>{{ $data->client_representative_name }} </td>
+                                                                <td colspan="2">{{ $data->client_representative_name }} </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Representative Details</td>
-                                                                <td>{{ $data->client_representative_details }}</td>
+                                                                <td colspan="2">{{ $data->client_representative_details }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Coordinator/Tadbirkar</td>
-                                                                <td>{{ $data->coordinator_name }}
+                                                                <td colspan="2">{{ $data->coordinator_name }}
                                                                     {{ $data->coordinator_tadbirkar_write }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Coordinator Details</td>
-                                                                <td>{{ $data->client_coordinator_details }}</td>
+                                                                <td colspan="2">{{ $data->client_coordinator_details }}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
-
 
                                             <div class="card">
                                                 <div class="card-body">
@@ -395,21 +397,26 @@
 
                                                         <tbody>
                                                             <tr>
-                                                                <td width="50%">Opposition(Which Party)</td>
-                                                                <td width="50%"> {{ $data->oppsition_party_name }}
+                                                                <td>Opposition(Which Party)</td>
+                                                                <td colspan="2"> {{ $data->oppsition_party_name }}
                                                                 </td>
+                                                                
                                                             </tr>
                                                             <tr>
                                                                 <td>Opposition Category</td>
-                                                                <td> {{ $data->opposition_category_name }} </td>
+                                                                <td colspan="2"> {{ $data->opposition_category_name }} </td>
+                                                                
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Opposition Subcategory</td>
-                                                                <td>{{ $data->opposition_subcategory_name }}</td>
+                                                                <td colspan="2">{{ $data->opposition_subcategory_name }}</td>
+                                                                
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Opposition Name</td>
-                                                                <td>
+                                                                <td colspan="2">
                                                                     @php
                                                                         $opposition_id = explode(', ', $data->opposition_id);
                                                                     @endphp
@@ -442,60 +449,78 @@
                                                                     @endif
 
                                                                 </td>
+                                                                
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Opposition Business Name</td>
-                                                                <td>{{ $data->opposition_business_name }}</td>
+                                                                <td colspan="2">{{ $data->opposition_business_name }}</td>
+                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Opposition Address</td>
-                                                                <td>{{ $data->opposition_address }}</td>
+                                                                <td colspan="2">{{ $data->opposition_address }}</td>
+                                                                
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Opposition Mobile</td>
-                                                                <td>{{ $data->opposition_mobile }}</td>
+                                                                <td colspan="2">{{ $data->opposition_mobile }}</td>
+                                                            
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Opposition Email</td>
-                                                                <td>{{ $data->opposition_email }}</td>
+                                                                <td colspan="2">{{ $data->opposition_email }}</td>
+                                                            
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Profession/Type</td>
-                                                                <td>{{ $data->opposition_profession_name }}
+                                                                <td colspan="2">{{ $data->opposition_profession_name }}
                                                                     {{ $data->opposition_profession_write }}</td>
+                                                                
+
                                                             </tr>
                                                             <tr>
-                                                                <td>Division/Zone</td>
-                                                                <td> {{ $data->opposition_division_name }} @if ($data->opposition_division_name && $data->opposition_divisoin_write) / @endif 
-                                                                    {{ $data->opposition_divisoin_write }}</td>
+                                                                <td width="50%">Division/Zone</td>
+                                                                <td width="25%"> {{ $data->opposition_division_name }} @if ($data->opposition_division_name && $data->opposition_divisoin_write) @endif 
+                                                                    </td>
+                                                                <td width="25%">{{ $data->opposition_divisoin_write }}</td>
+
                                                             </tr>
                                                             <tr>
                                                                 <td>District/Area</td>
-                                                                <td>{{ $data->opposition_district_name }} @if ($data->opposition_district_name && $data->opposition_district_write) / @endif 
-                                                                    {{ $data->opposition_district_write }}</td>
+                                                                <td>{{ $data->opposition_district_name }} @if ($data->opposition_district_name && $data->opposition_district_write) @endif 
+                                                                    </td>
+                                                                    <td>{{ $data->opposition_district_write }}</td>
+                                                                
                                                             </tr>
                                                             <tr>
                                                                 <td>Thana/Branch</td>
-                                                                <td>{{ $data->opposition_thana_name }} @if ($data->opposition_thana_name && $data->opposition_thana_write) / @endif
-                                                                    {{ $data->opposition_thana_write }}</td>
+                                                                <td>{{ $data->opposition_thana_name }} @if ($data->opposition_thana_name && $data->opposition_thana_write) @endif
+                                                                </td>
+                                                                <td>{{ $data->opposition_thana_write }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Representative Name</td>
-                                                                <td>{{ $data->opposition_representative_name }} </td>
+                                                                <td colspan="2">{{ $data->opposition_representative_name }} </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Representative Details</td>
-                                                                <td>{{ $data->opposition_representative_details }}</td>
+                                                                <td colspan="2">{{ $data->opposition_representative_details }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Coordinator/Tadbirkar</td>
-                                                                <td>{{ $data->opposition_coordinator_name }}
+                                                                <td colspan="2">{{ $data->opposition_coordinator_name }}
                                                                     {{ $data->opposition_coordinator_tadbirkar_write }}
                                                                 </td>
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Coordinator Details</td>
-                                                                <td>{{ $data->opposition_coordinator_details }}</td>
+                                                                <td colspan="2">{{ $data->opposition_coordinator_details }}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -516,9 +541,9 @@
                                                         <tbody>
                                                             @foreach ($received_documents_explode as $value)
                                                                 <tr>
-                                                                    <td>{{ $value['received_documents_id'] }}</td>
-                                                                    <td>{{ $value['received_documents'] }}</td>
-                                                                    <td>{{ date('d-m-Y', strtotime($value['received_documents_date'])) }}</td>
+                                                                    <td width="50%">{{ $value['received_documents_id'] }}</td>
+                                                                    <td width="30%">{{ $value['received_documents'] }}</td>
+                                                                    <td width="20%">{{ !empty($value['received_documents_date']) ? date('d-m-Y', strtotime($value['received_documents_date'])) : '' }}</td>
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
@@ -531,9 +556,9 @@
                                                         <tbody>
                                                             @foreach ($required_wanting_documents_explode as $value)
                                                                 <tr>
-                                                                    <td>{{ $value['required_wanting_documents_id'] }}</td>
-                                                                    <td>{{ $value['required_wanting_documents'] }}</td>
-                                                                    <td>{{ date('d-m-Y', strtotime($value['required_wanting_documents_date'])) }}</td>
+                                                                    <td width="50%">{{ $value['required_wanting_documents_id'] }}</td>
+                                                                    <td width="30%">{{ $value['required_wanting_documents'] }}</td>
+                                                                    <td width="20%">{{ !empty($value['required_wanting_documents_date']) ? date('d-m-Y', strtotime($value['required_wanting_documents_date'])) : '' }}</td>
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
@@ -1001,53 +1026,7 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Lawyers Information </u>
-                                                        <button type="button" class="btn btn-info btn-sm float-right"
-                                                            data-toggle="modal" data-target="#modal-lg-lawyers-info"
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Update Lawyers Information"><i class="fas fa-edit"></i>
-                                                        </button>
-                                                    </h6>
-                                                    <table class="table table-bordered">
-
-                                                        <tbody>
-
-                                                            <tr>
-                                                                <td width="50%">Name of Advocate/Law Firm</td>
-                                                                <td width="50%"> {{ $data->first_name }}
-                                                                    {{ $data->middle_name }} {{ $data->last_name }}
-                                                                    {{ $data->lawyer_advocate_write }} </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Name of Assigned Lawyer</td>
-                                                                <td>
-                                                                    @php
-                                                                        $assigned_lawyer_id = explode(', ', $data->assigned_lawyer_id);
-                                                                    @endphp
-                                                                    @if ($data->assigned_lawyer_id)
-                                                                        @if (count($assigned_lawyer_id) > 1)
-                                                                            @foreach ($assigned_lawyer_id as $pro)
-                                                                                <li class="text-left">{{ $pro }}
-                                                                                </li>
-                                                                            @endforeach
-                                                                        @else
-                                                                            @foreach ($assigned_lawyer_id as $pro)
-                                                                                {{ $pro }}
-                                                                            @endforeach
-                                                                        @endif
-                                                                    @endif
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Remarks</td>
-                                                                <td> {{ $data->lawyers_remarks }} </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                            
 
 
                                             <div class="card">
@@ -1066,9 +1045,9 @@
                                                             <tr>
                                                                 <td width="50%">Status</td>
                                                                 <td width="50%">
-                                                                    @if (!empty($latest))
-                                                                        {{ $latest->case_status_name }}
-                                                                    @endif
+                                                                    {{-- @if (!empty($latest)) --}}
+                                                                        {{ $data->case_status_name }}
+                                                                    {{-- @endif --}}
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1104,7 +1083,49 @@
                                                     </table>
                                                 </div>
                                             </div>
-
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="text-uppercase text-bold"><u> Letter / Notice / Reply </u></h6>
+                                                <h6 class="text-uppercase text-bold">
+                                                    <div class="row">
+                                                        <div class="col-md-3"> Date </div>
+                                                        <div class="col-md-2"> Document Name </div>
+                                                        <div class="col-md-3"> Particulars </div>
+                                                        <div class="col-md-2"> ORG </div>
+                                                        <div class="col-md-1"> PHT 
+                                                            
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <button type="button"
+                                                                    class="btn btn-info btn-sm float-right"
+                                                                    data-toggle="modal" data-target="#modal-lg-letter-notice"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Update Case Steps"><i
+                                                                        class="fas fa-edit"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </h6>
+                                                    
+                                                    <table class="table table-bordered">
+                                                        <tbody>
+                                                            @foreach ($letter_notice_explode as $value)
+                                                            <tr>
+                                                                <td width="20%">{{ $value['letter_notice_date'] }}</td>
+                                                                <td width="20%">{{ $value['letter_notice_documents_id'] }}
+                                                                     </td>
+                                                                <td width="20%">{{ $value['letter_notice_particulars_id'] }}
+                                                                    </td>
+                                                                <td width="20%">{{ $value['letter_notice_org'] }}
+                                                                </td>
+                                                                <td width="20%">{{ $value['letter_notice_pht'] }}
+                                                                </td>
+                                                            </tr>
+                                                            @endforeach
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
 
                                             <div class="card">
                                                 <div class="card-body">
@@ -1223,6 +1244,53 @@
                                                             <tr>
                                                                 <td>Remarks</td>
                                                                 <td colspan="3"> {{ $edit_case_steps->case_steps_remarks }} </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h6 class="text-uppercase text-bold"><u> Lawyers Information </u>
+                                                        <button type="button" class="btn btn-info btn-sm float-right"
+                                                            data-toggle="modal" data-target="#modal-lg-lawyers-info"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Update Lawyers Information"><i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </h6>
+                                                    <table class="table table-bordered">
+
+                                                        <tbody>
+
+                                                            <tr>
+                                                                <td width="50%">Name of Advocate/Law Firm</td>
+                                                                <td width="50%"> {{ $data->first_name }}
+                                                                    {{ $data->middle_name }} {{ $data->last_name }}
+                                                                    {{ $data->lawyer_advocate_write }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Name of Assigned Lawyer</td>
+                                                                <td>
+                                                                    @php
+                                                                        $assigned_lawyer_id = explode(', ', $data->assigned_lawyer_id);
+                                                                    @endphp
+                                                                    @if ($data->assigned_lawyer_id)
+                                                                        @if (count($assigned_lawyer_id) > 1)
+                                                                            @foreach ($assigned_lawyer_id as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($assigned_lawyer_id as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Remarks</td>
+                                                                <td> {{ $data->lawyers_remarks }} </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1386,8 +1454,8 @@
                                                 <th class="text-nowrap">Time Spent</th>
                                                 <th class="text-nowrap">Engaged Lawyer</th>
                                                 <th class="text-nowrap">Forwarded To</th>
-                                                <th class="text-nowrap">Remarks</th>
                                                 <th class="text-nowrap">Requirements</th>
+                                                <th class="text-nowrap">Note</th>
                                                 <th class="text-nowrap">Action</th>
                                                 <th class="text-nowrap" width="90px;">Update</th>
                                             </tr>
@@ -1429,8 +1497,9 @@
                                                         @endif 
 
                                                         {{ $activity_log->activity_forwarded_to_write }} </td>
-                                                    <td> {{\Illuminate\Support\Str::limit($activity_log->activity_remarks, 15)}} </td>
                                                     <td> {{\Illuminate\Support\Str::limit($activity_log->activity_requirements, 15)}} </td>
+
+                                                    <td> {{\Illuminate\Support\Str::limit($activity_log->activity_remarks, 15)}} </td>
                                                     <td>
                                                         <a
                                                             href="{{ route('edit-criminal-cases-activity', $activity_log->id) }}">
@@ -2354,7 +2423,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="accused_write"
-                                            name="accused_write" placeholder="Complainant"
+                                            name="accused_write" placeholder="Accused"
                                             value="{{ $data->accused_write }}">
                                     </div>
                                 </div>
@@ -3323,7 +3392,7 @@
                             <label for="case_infos_district_id" class="col-sm-4 col-form-label">District</label>
                             <div class="col-sm-8">
                                 <select name="case_infos_district_id" class="form-control select2"
-                                    id="case_infos_district_id" action="{{ route('find-thana') }}">
+                                    id="case_infos_district_id" action="{{ route('find-case-infos-thana') }}">
                                     <option value=""> Select</option>
                                     @foreach ($case_infos_existing_district as $item)
                                         <option value="{{ $item->id }}"
@@ -4785,6 +4854,7 @@
         <!-- /.modal-dialog -->
     </div>
 
+
     {{-- documents add --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -5136,6 +5206,157 @@
         <!-- /.modal-dialog -->
     </div>
 
+    <div class="modal fade" id="modal-lg-letter-notice">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-title"> Edit Criminal Cases </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('update-criminal-cases-status-column', $data->id) }}" method="post">
+                    @csrf
+                    <div class="card-body">
+                        <h6 class="text-uppercase text-bold"><u> Letter / Notice / Reply </u></h6>
+                                                                        <h6 class="text-uppercase text-bold">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3"> Date </div>
+                                                                                <div class="col-md-3"> Document Name </div>
+                                                                                <div class="col-md-3"> Particulars </div>
+                                                                                <div class="col-md-1"> ORG </div>
+                                                                                <div class="col-md-1"> PHT </div>
+                                                                            </div>
+                                                                        </h6>
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="input-group hdtuto_letter_notice control-group increment_letter_notice">
+                                                                                            <input type="date" name="letter_notice_date[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4" value="{{ !empty($letter_notice_explode[0]['letter_notice_date']) ? $letter_notice_explode[0]['letter_notice_date'] : '' }}">
+                                                                                            <select name="letter_notice_documents_id[]"
+                                                                                                class="form-control mr-2 col-md-3">
+                                                                                                <option value="">Select</option>
+                                                                                                @foreach($documents as $item)
+                                                                                                    <option
+                                                                                                        value="{{ $item->documents_name }}" {{ !empty($letter_notice_explode[0]['letter_notice_documents_id']) && $letter_notice_explode[0]['letter_notice_documents_id']  == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                            <select name="letter_notice_particulars_id[]"
+                                                                                                class="form-control col-md-3">
+                                                                                                <option value="">Select</option>
+                                                                                                @foreach($particulars as $item)
+                                                                                                    <option
+                                                                                                        value="{{ $item->particulars_name }}" {{ !empty($letter_notice_explode[0]['letter_notice_particulars_id']) && $letter_notice_explode[0]['letter_notice_particulars_id']  == $item->particulars_name ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                            <input type="checkbox" name="letter_notice_org[]"
+                                                                                                   class="myfrm form-control col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_org']) && $letter_notice_explode[0]['letter_notice_org'] == 'on') checked @endif>
+                                                                                            <input type="checkbox" name="letter_notice_pht[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_pht']) && $letter_notice_explode[0]['letter_notice_pht'] == 'on') checked @endif>
+                                                                                            
+                                                                                            <div class="input-group-btn">
+                                                                                                <button class="btn btn-success btn_success_letter_notice"
+                                                                                                        type="button"><i
+                                                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="clone_letter_notice hide">
+                                                                                            <div class="hdtuto_letter_notice control-group lst input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                 <input type="date" name="letter_notice_date[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4">
+                                                                                            <select name="letter_notice_documents_id[]"
+                                                                                                class="form-control mr-2 col-md-3">
+                                                                                                <option value="">Select</option>
+                                                                                                @foreach($documents as $item)
+                                                                                                    <option
+                                                                                                        value="{{ $item->documents_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                            <select name="letter_notice_particulars_id[]"
+                                                                                                class="form-control col-md-3">
+                                                                                                <option value="">Select</option>
+                                                                                                @foreach($particulars as $item)
+                                                                                                    <option
+                                                                                                        value="{{ $item->particulars_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                            <input type="checkbox" name="letter_notice_org[]"
+                                                                                                   class="myfrm form-control col-md-1">
+                                                                                            <input type="checkbox" name="letter_notice_pht[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-1">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_letter_notice"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="clone_letter_notice @if(count($letter_notice_explode) <= 1) hide @endif">
+                                                                                            @php
+                                                                                                array_shift($letter_notice_explode);
+                                                                                            @endphp
+                                                                                            @foreach ( $letter_notice_explode as $datas)
+                                                                                            <div class="hdtuto_letter_notice control-group lst input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                 <input type="date" name="letter_notice_date[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4" value="{{ $datas['letter_notice_date'] }}">
+                                                                                                <select name="letter_notice_documents_id[]"
+                                                                                                    class="form-control mr-2 col-md-3">
+                                                                                                    <option value="">Select</option>
+                                                                                                    @foreach($documents as $item)
+                                                                                                        <option
+                                                                                                            value="{{ $item->documents_name }}" {{ $datas['letter_notice_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                    @endforeach
+                                                                                                </select>
+                                                                                                <select name="letter_notice_particulars_id[]"
+                                                                                                    class="form-control col-md-3">
+                                                                                                    <option value="">Select</option>
+                                                                                                    @foreach($particulars as $item)
+                                                                                                        <option
+                                                                                                            value="{{ $item->particulars_name }}" {{ $datas['letter_notice_particulars_id'] == $item->particulars_name ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
+                                                                                                    @endforeach
+                                                                                                </select>
+                                                                                                <input type="checkbox" name="letter_notice_org[]"
+                                                                                                    class="myfrm form-control col-md-1" @if ($datas['letter_notice_org'] == 'on') checked @endif >
+                                                                                                <input type="checkbox" name="letter_notice_pht[]"
+                                                                                                    class="myfrm form-control mr-2 col-md-1" @if ($datas['letter_notice_pht'] == 'on') checked @endif>
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_letter_notice"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            @endforeach
+                                                                                        </div>
+                                
+                                                                                        @error('case_infos_letter_notice_informant_name')<span
+                                                                                            class="text-danger">{{$message}}</span>@enderror
+                                                                                    </div>
+                                                                                </div>
+
+
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-primary text-uppercase"><i
+                                        class="fas fa-save"></i> Update
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
     {{-- update status of the case --}}
 
     {{-- billings log --}}

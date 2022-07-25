@@ -5,7 +5,7 @@
 
 
 
-<nav class="main-header navbar navbar-expand navbar-white navbar-light links_custom" style="padding: 0px;background: #2A6CB1;position:fixed;padding-right:89px;z-index:1020;">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light @if(url()->current() != 'http://localhost/dlegal-software/public/admin/dashboard') links_custom @endif" style="padding: 0px;background: #2A6CB1;position:fixed;padding-right:89px;z-index:1020;@if(url()->current() == 'http://localhost/dlegal-software/public/admin/dashboard') margin-top:-25px; @endif">
     {{-- style="background: #2A6CB1;" --}}
     <!-- Left navbar links -->
     {{-- <ul class="navbar-nav">
@@ -116,6 +116,7 @@
         <a href="#">Litigation Calendar &#9662;</a>
         <ul class="dropdown" style="background:#c3c9cf;">
             <li><a href="{{ route('litigation-calender-list') }}">Litigation Calendar (List)</a></li>
+            <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('litigation-calender-short') }}">Litigation Calendar (Short)</a></li>
         </ul>
     </li>
@@ -123,10 +124,15 @@
         <a href="#">Case Dashboard &#9662;</a>
         <ul class="dropdown" style="background:#c3c9cf;">
             <li><a href="{{ route('civil-cases') }}">Civil</a></li>
+            <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('criminal-cases') }}">Criminal</a></li>
+            <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('labour-cases') }}">Service Matter</a></li>
+            <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('quassi-judicial-cases') }}">Special/Quassi-Judicial Cases</a></li>
+            <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('high-court-cases') }}">High Court Division</a></li>
+            <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('appellate-court-cases') }}">Appellate Court Division</a></li>
         </ul>
     </li>

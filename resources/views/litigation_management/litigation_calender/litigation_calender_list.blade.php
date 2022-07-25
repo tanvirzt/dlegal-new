@@ -83,14 +83,14 @@
                                             <i class="fas fa-times"></i>
                                         </button>
                                     </div>
-@if (!empty($is_searched))
+{{-- @if (!empty($is_searched))
     <a href="{{ route('litigation-calendar-list-print-preview-search',['param1'=>$from_date,'param2'=>$to_date]) }}" target="_blank"
     class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print </a>
 @else
 <a href="{{ route('litigation-calendar-list-print-preview') }}" target="_blank"
 class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
 
-@endif
+@endif --}}
 
                                     {{-- <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                                         <i class="fas fa-download"></i> Print
@@ -139,8 +139,14 @@ class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            
                                             <div class="float-right">
+
+                                                @if (!empty($is_searched))
+                                                    <a href="{{ route('litigation-calendar-list-print-preview-search',['param1'=>$from_date,'param2'=>$to_date]) }}" target="_blank"
+                                                    class="btn btn-info"><i class="fas fa-print"></i> Print </a>
+                                                @endif
+
                                                 <button type="submit" id="submit" class="btn btn-primary text-uppercase"><i
                                                         class="fas fa-search"></i> Search
                                                 </button>
@@ -206,7 +212,8 @@ class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
                                                                             'setup_external_councils.middle_name',
                                                                             'setup_external_councils.last_name',
                                                                             'case_infos_title.case_title_name as sub_seq_case_title_name')
-                                                                            ->orderBy('criminal_cases.received_date','asc')
+                                                                            ->orderBy('criminal_cases.case_infos_sub_seq_court_short_id','asc')
+                                                                            ->orderBy('criminal_cases.case_infos_court_short_id','asc')
                                                                             ->where(['criminal_cases.delete_status' => 0, 'next_date' => $datum->next_date])
                                                                             ->get();
 

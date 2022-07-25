@@ -246,6 +246,15 @@ $(document).ready(function () {
         $(this).parents(".hdtuto_received_documents").remove();
     });
 
+    $(".btn_success_letter_notice").click(function () {
+        var lsthmtl_letter_notice = $(".clone_letter_notice").html();
+        $(".increment_letter_notice").after(lsthmtl_letter_notice);
+    });
+    $("body").on("click", ".btn_danger_letter_notice", function () {
+        $(this).parents(".hdtuto_letter_notice").remove();
+    });
+
+
     $(".btn_success_required_wanting_documents").click(function () {
         var lsthmtl_required_wanting_documents = $(".clone_required_wanting_documents").html();
         $(".increment_required_wanting_documents").after(lsthmtl_required_wanting_documents);

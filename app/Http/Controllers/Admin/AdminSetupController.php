@@ -74,6 +74,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Admin;
 use App\Models\SetupCabinet;
 use App\Models\SetupClientName;
+use App\Models\SetupParticulars;
 
 
 class AdminSetupController extends Controller
@@ -5474,5 +5475,85 @@ public function find_case_category(Request $request)
         session()->flash('success','Client Deleted Successfully');
         return redirect()->back();
     }
+
+
+    //particulars
+
+    public function particulars()
+    {
+        $data = SetupParticulars::where('delete_status',0)->get();
+        return view('setup.particulars.particulars',compact('data'));
+    }
+
+    public function add_particulars()
+    {
+        return view('setup.particulars.add_particulars');
+    }
+
+    public function save_particulars(Request $request)
+    {
+        // dd($request->all());
+        $rules = [
+            'particulars_name' => 'required'
+        ];
+
+        $validMsg = [
+            'particulars_name.required' => 'Particulars field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $particulars = new SetupParticulars();
+        $particulars->particulars_name = $request->particulars_name;
+        $particulars->save();
+
+        session()->flash('success','Particulars Added Successfully.');
+        return redirect()->route('particulars');
+    }
+
+    public function edit_particulars($id)
+    {
+        $data = SetupParticulars::find($id);
+        return view('setup.particulars.edit_particulars',compact('data'));
+    }
+
+    public function update_particulars(Request $request, $id)
+    {
+        $rules = [
+            'particulars_name' => 'required'
+        ];
+
+        $validMsg = [
+            'particulars_name.required' => 'Particulars field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $particulars = SetupParticulars::find($id);
+        $particulars->particulars_name = $request->particulars_name;
+        $particulars->save();
+
+        session()->flash('success', 'Particulars Updated Successfully.');
+
+        return redirect()->route('particulars');
+    }
+
+    public function delete_particulars($id)
+    {
+        $data = SetupParticulars::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Particulars Deleted Successfully.');
+        return redirect()->back();
+    }
+
+
 
 }

@@ -293,7 +293,12 @@
                                         <p>Opposition(Which Party)</p>
                                     </a>
                                 </li>
-                                
+                                <li class="nav-item">
+                                    <a href="{{ route('particulars') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Particulars</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="{{ route('client-category') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
