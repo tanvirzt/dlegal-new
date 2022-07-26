@@ -18,7 +18,9 @@ class CreateCriminalCasesLetterNoticesTable extends Migration
             $table->integer('case_id')->nullable();
             $table->string('letter_notice_date')->nullable();
             $table->string('letter_notice_documents_id')->nullable();
+            $table->string('letter_notice_documents_write')->nullable();
             $table->string('letter_notice_particulars_id')->nullable();
+            $table->string('letter_notice_particulars_write')->nullable();
             $table->string('letter_notice_org')->nullable();
             $table->string('letter_notice_pht')->nullable();
             $table->integer('delete_status')->default(0);

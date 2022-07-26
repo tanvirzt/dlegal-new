@@ -108,16 +108,16 @@
                                                     <tr>
                                                         <th>Progress </th>
                                                         <td>{{ $activity_log->activity_progress }} </td>
-                                                        <th>Remarks </th>
-                                                        <td>
-                                                            {{ $activity_log->activity_remarks }}
-                                                        </td>
+                                                        <th>Requirements</th>
+                                                        <td>{{ $activity_log->activity_requirements }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Mode </th>
                                                         <td>{{ $activity_log->mode_name }} {{ $activity_log->activity_mode_write }} </td>
-                                                        <th>Requirements</th>
-                                                        <td>{{ $activity_log->activity_requirements }}</td>
+                                                        <th>Note </th>
+                                                        <td>
+                                                            {{ $activity_log->activity_remarks }}
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th>Time Spent </th>

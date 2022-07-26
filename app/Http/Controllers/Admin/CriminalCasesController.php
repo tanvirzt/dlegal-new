@@ -429,7 +429,7 @@ $created_case_id = 'LCR-000'.$sl;
             }
         }
 
-        foreach ( array_filter($request->received_documents_id) as $key => $value ){
+        foreach ( $request->received_documents_id as $key => $value ){
             $datum = new CriminalCasesDocumentsReceived();
             $datum->case_id = $data->id;
             $datum->received_documents_id = $value;
@@ -439,7 +439,7 @@ $created_case_id = 'LCR-000'.$sl;
         }
 
 
-        foreach ( array_filter($request->required_wanting_documents_id) as $key => $value ){
+        foreach ( $request->required_wanting_documents_id as $key => $value ){
             $required = new CriminalCasesDocumentsRequired();
             $required->case_id = $data->id;
             $required->required_wanting_documents_id = $value;
@@ -453,9 +453,11 @@ $created_case_id = 'LCR-000'.$sl;
             $required->case_id = $data->id;
             $required->letter_notice_date = $value;
             $required->letter_notice_documents_id = $request->letter_notice_documents_id[$key];
+            $required->letter_notice_documents_write = $request->letter_notice_documents_write[$key];
             $required->letter_notice_particulars_id = $request->letter_notice_particulars_id[$key];
-            $required->letter_notice_org = $request->letter_notice_org[$key];
-            $required->letter_notice_pht = $request->letter_notice_pht[$key];
+            $required->letter_notice_particulars_write = $request->letter_notice_particulars_write[$key];
+            $required->letter_notice_org = isset($request->letter_notice_org[$key]) == '1' ? '1' : '0';
+            $required->letter_notice_pht = isset($request->letter_notice_pht[$key]) == '1' ? '1' : '0';
             $required->save();
         }
 
@@ -660,7 +662,7 @@ $case_no_data = DB::table('criminal_cases')
         $required_wanting_documents_explode = CriminalCasesDocumentsRequired::where('case_id',$id)->get()->toArray();
         $letter_notice_explode = CriminalCasesLetterNotice::where('case_id',$id)->get()->toArray();
         
-        // dd($letter_notice_explode);
+        // dd($received_documents_explode);
 
         return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('required_wanting_documents_explode','received_documents_date_explode','received_documents_write_explode','exist_court_short','data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'received_documents_explode', 'required_documents_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','previous_activity','opposition_existing_district','opposition_existing_thana','cabinet','case_no_data','exist_case_type','particulars','letter_notice_explode'));
     }
@@ -1175,28 +1177,36 @@ $case_no_data = DB::table('criminal_cases')
 // $letter_notice_org =  array_filter($request->letter_notice_org);
 // $letter_notice_pht =  array_filter($request->letter_notice_pht);
         
-// $letter_notice_date_implode = $request->letter_notice_date ? implode(', ', array_filter($request->letter_notice_date)) : null;
-// $letter_notice_date = rtrim($letter_notice_date_implode,', ');
-// $letter_notice_date_explode = explode(', ',$letter_notice_date);
+$letter_notice_date_implode = $request->letter_notice_date ? implode(', ', array_filter($request->letter_notice_date)) : null;
+$letter_notice_date = rtrim($letter_notice_date_implode,', ');
+$letter_notice_date_explode = explode(', ',$letter_notice_date);
 
-// $letter_notice_documents_id_implode = $request->letter_notice_documents_id ? implode(', ', array_filter($request->letter_notice_documents_id)) : null;
-// $letter_notice_documents_id = rtrim($letter_notice_documents_id_implode,', ');
-// $letter_notice_documents_id_explode = explode(', ',$letter_notice_documents_id);
+$letter_notice_documents_id_implode = $request->letter_notice_documents_id ? implode(', ', array_filter($request->letter_notice_documents_id)) : null;
+$letter_notice_documents_id = rtrim($letter_notice_documents_id_implode,', ');
+$letter_notice_documents_id_explode = explode(', ',$letter_notice_documents_id);
 
-// $letter_notice_particulars_id_implode = $request->letter_notice_particulars_id ? implode(', ', array_filter($request->letter_notice_particulars_id)) : null;
-// $letter_notice_particulars_id = rtrim($letter_notice_particulars_id_implode,', ');
-// $letter_notice_particulars_id_explode = explode(', ',$letter_notice_particulars_id);
+$letter_notice_documents_write_implode = $request->letter_notice_documents_write ? implode(', ', array_filter($request->letter_notice_documents_write)) : null;
+$letter_notice_documents_write = rtrim($letter_notice_documents_write_implode,', ');
+$letter_notice_documents_write_explode = explode(', ',$letter_notice_documents_write);
 
-// $letter_notice_org_implode = $request->letter_notice_org ? implode(', ', array_filter($request->letter_notice_org)) : implode(', ', $request->letter_notice_date);
-// $letter_notice_org = rtrim($letter_notice_org_implode,', ');
-// $letter_notice_org_explode = explode(', ',$letter_notice_org);
+$letter_notice_particulars_id_implode = $request->letter_notice_particulars_id ? implode(', ', array_filter($request->letter_notice_particulars_id)) : null;
+$letter_notice_particulars_id = rtrim($letter_notice_particulars_id_implode,', ');
+$letter_notice_particulars_id_explode = explode(', ',$letter_notice_particulars_id);
 
-// $letter_notice_pht_implode = $request->letter_notice_pht ? implode(', ', array_filter($request->letter_notice_pht)) : implode(', ', $request->letter_notice_date);
-// $letter_notice_pht = rtrim($letter_notice_pht_implode,', ');
-// $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
+$letter_notice_particulars_write_implode = $request->letter_notice_particulars_write ? implode(', ', array_filter($request->letter_notice_particulars_write)) : null;
+$letter_notice_particulars_write = rtrim($letter_notice_particulars_write_implode,', ');
+$letter_notice_particulars_write_explode = explode(', ',$letter_notice_particulars_write);
+
+$letter_notice_org_implode = $request->letter_notice_org ? implode(', ', array_filter($request->letter_notice_org)) : implode(', ', $request->letter_notice_date);
+$letter_notice_org = rtrim($letter_notice_org_implode,', ');
+$letter_notice_org_explode = explode(', ',$letter_notice_org);
+
+$letter_notice_pht_implode = $request->letter_notice_pht ? implode(', ', array_filter($request->letter_notice_pht)) : implode(', ', $request->letter_notice_date);
+$letter_notice_pht = rtrim($letter_notice_pht_implode,', ');
+$letter_notice_pht_explode = explode(', ',$letter_notice_pht);
 
 
-// dd($letter_notice_pht_explode);
+// dd($letter_notice_documents_write_explode);
 
         if ($request->received_date != 'dd-mm-yyyy') {
             $received_date_explode = explode('-', $request->received_date);
@@ -1421,7 +1431,7 @@ $case_no_data = DB::table('criminal_cases')
            $received_documents = CriminalCasesDocumentsReceived::where('case_id', $id)->delete();
 // dd($received_documents);
 
-            foreach ( array_filter($request->received_documents_id) as $key => $value ){
+            foreach ( $request->received_documents_id as $key => $value ){
                 $datum = new CriminalCasesDocumentsReceived();
                 $datum->case_id = $data->id;
                 $datum->received_documents_id = $value;
@@ -1432,7 +1442,7 @@ $case_no_data = DB::table('criminal_cases')
     
             $required_wanting_documents = CriminalCasesDocumentsRequired::where('case_id', $id)->delete();
 
-            foreach ( array_filter($request->required_wanting_documents_id) as $key => $value ){
+            foreach ( $request->required_wanting_documents_id as $key => $value ){
                 $required = new CriminalCasesDocumentsRequired();
                 $required->case_id = $data->id;
                 $required->required_wanting_documents_id = $value;
@@ -1443,14 +1453,27 @@ $case_no_data = DB::table('criminal_cases')
 
             $letter_notice = CriminalCasesLetterNotice::where('case_id', $id)->delete();
 
-            foreach ( array_filter($request->letter_notice_date) as $key => $value ){
+            // foreach ( array_filter($request->letter_notice_date) as $key => $value ){
+            //     $letter_noticed = new CriminalCasesLetterNotice();
+            //     $letter_noticed->case_id = $data->id;
+            //     $letter_noticed->letter_notice_date = $value;
+            //     $letter_noticed->letter_notice_documents_id = $request->letter_notice_documents_id[$key];
+            //     $letter_noticed->letter_notice_particulars_id = $request->letter_notice_particulars_id[$key];
+            //     $letter_noticed->letter_notice_org = isset($request->letter_notice_org[$key]) == '1' ? '1' : '0';
+            //     $letter_noticed->letter_notice_pht = isset($request->letter_notice_pht[$key]) == '1' ? '1' : '0';
+            //     $letter_noticed->save();
+            // }
+
+            foreach ( $letter_notice_date_explode as $key => $value ){
                 $letter_noticed = new CriminalCasesLetterNotice();
                 $letter_noticed->case_id = $data->id;
                 $letter_noticed->letter_notice_date = $value;
-                $letter_noticed->letter_notice_documents_id = $request->letter_notice_documents_id[$key];
-                $letter_noticed->letter_notice_particulars_id = $request->letter_notice_particulars_id[$key];
-                $letter_noticed->letter_notice_org = $request->letter_notice_org[$key];
-                $letter_noticed->letter_notice_pht = $request->letter_notice_pht[$key];
+                $letter_noticed->letter_notice_documents_id = $letter_notice_documents_id_explode[$key];
+                $letter_noticed->letter_notice_documents_write = $letter_notice_documents_write_explode[$key];
+                $letter_noticed->letter_notice_particulars_id = $letter_notice_particulars_id_explode[$key];
+                $letter_noticed->letter_notice_particulars_write = $letter_notice_particulars_write_explode[$key];
+                $letter_noticed->letter_notice_org = isset($letter_notice_org_explode[$key]) == '1' ? '1' : '0';
+                $letter_noticed->letter_notice_pht = isset($letter_notice_pht_explode[$key]) == '1' ? '1' : '0';
                 $letter_noticed->save();
             }
     

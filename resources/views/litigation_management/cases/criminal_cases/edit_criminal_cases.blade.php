@@ -2339,18 +2339,22 @@
                                                                                                         value="{{ $item->documents_name }}" {{ !empty($letter_notice_explode[0]['letter_notice_documents_id']) && $letter_notice_explode[0]['letter_notice_documents_id']  == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                                                                                 @endforeach
                                                                                             </select>
+                                                                                            <input type="text" name="letter_notice_documents_write[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4" value="{{ !empty($letter_notice_explode[0]['letter_notice_documents_write']) ? $letter_notice_explode[0]['letter_notice_documents_write'] : '' }}">
                                                                                             <select name="letter_notice_particulars_id[]"
-                                                                                                class="form-control col-md-3">
+                                                                                                class="form-control col-md-3 mr-2">
                                                                                                 <option value="">Select</option>
                                                                                                 @foreach($particulars as $item)
                                                                                                     <option
                                                                                                         value="{{ $item->particulars_name }}" {{ !empty($letter_notice_explode[0]['letter_notice_particulars_id']) && $letter_notice_explode[0]['letter_notice_particulars_id']  == $item->particulars_name ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
                                                                                                 @endforeach
                                                                                             </select>
+                                                                                            <input type="text" name="letter_notice_particulars_write[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4" value="{{ !empty($letter_notice_explode[0]['letter_notice_particulars_write']) ? $letter_notice_explode[0]['letter_notice_particulars_write'] : '' }}">
                                                                                             <input type="checkbox" name="letter_notice_org[]"
-                                                                                                   class="myfrm form-control col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_org']) && $letter_notice_explode[0]['letter_notice_org'] == 'on') checked @endif>
+                                                                                                   class="myfrm form-control col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_org']) && $letter_notice_explode[0]['letter_notice_org'] == '1') checked @endif>
                                                                                             <input type="checkbox" name="letter_notice_pht[]"
-                                                                                                   class="myfrm form-control mr-2 col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_pht']) && $letter_notice_explode[0]['letter_notice_pht'] == 'on') checked @endif>
+                                                                                                   class="myfrm form-control mr-2 col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_pht']) && $letter_notice_explode[0]['letter_notice_pht'] == '1') checked @endif>
                                                                                             
                                                                                             <div class="input-group-btn">
                                                                                                 <button class="btn btn-success btn_success_letter_notice"
@@ -2372,14 +2376,18 @@
                                                                                                         value="{{ $item->documents_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                                                                                 @endforeach
                                                                                             </select>
+                                                                                            <input type="text" name="letter_notice_documents_write[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4">
                                                                                             <select name="letter_notice_particulars_id[]"
-                                                                                                class="form-control col-md-3">
+                                                                                                class="form-control col-md-3 mr-2">
                                                                                                 <option value="">Select</option>
                                                                                                 @foreach($particulars as $item)
                                                                                                     <option
                                                                                                         value="{{ $item->particulars_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
                                                                                                 @endforeach
                                                                                             </select>
+                                                                                            <input type="text" name="letter_notice_particulars_write[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4">
                                                                                             <input type="checkbox" name="letter_notice_org[]"
                                                                                                    class="myfrm form-control col-md-1">
                                                                                             <input type="checkbox" name="letter_notice_pht[]"
@@ -2410,18 +2418,22 @@
                                                                                                             value="{{ $item->documents_name }}" {{ $datas['letter_notice_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                                                                                     @endforeach
                                                                                                 </select>
+                                                                                                <input type="text" name="letter_notice_documents_write[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4" value="{{ $datas['letter_notice_documents_write'] }}">
                                                                                                 <select name="letter_notice_particulars_id[]"
-                                                                                                    class="form-control col-md-3">
+                                                                                                    class="form-control col-md-3 mr-2">
                                                                                                     <option value="">Select</option>
                                                                                                     @foreach($particulars as $item)
                                                                                                         <option
                                                                                                             value="{{ $item->particulars_name }}" {{ $datas['letter_notice_particulars_id'] == $item->particulars_name ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
                                                                                                     @endforeach
                                                                                                 </select>
+                                                                                                <input type="text" name="letter_notice_particulars_write[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4" value="{{ $datas['letter_notice_particulars_write'] }}">
                                                                                                 <input type="checkbox" name="letter_notice_org[]"
-                                                                                                    class="myfrm form-control col-md-1" @if ($datas['letter_notice_org'] == 'on') checked @endif >
+                                                                                                    class="myfrm form-control col-md-1" @if ($datas['letter_notice_org'] == '1') checked @endif >
                                                                                                 <input type="checkbox" name="letter_notice_pht[]"
-                                                                                                    class="myfrm form-control mr-2 col-md-1" @if ($datas['letter_notice_pht'] == 'on') checked @endif>
+                                                                                                    class="myfrm form-control mr-2 col-md-1" @if ($datas['letter_notice_pht'] == '1') checked @endif>
                                                                                                 <div class="input-group-btn">
                                                                                                     <button class="btn btn-danger btn_danger_letter_notice"
                                                                                                             type="button"><i
