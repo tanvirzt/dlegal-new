@@ -194,6 +194,16 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
+                                                        <div class="form-group row">
+                                                            <label for="time_spend_manual" class="col-sm-4 col-form-label">Time Spent</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control" id="time_spend_manual" value="{{ $data->time_spend_manual }}" name="time_spend_manual"
+                                                                    >
+                                                                @error('time_spend_manual')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
                                                     </div>
 
 

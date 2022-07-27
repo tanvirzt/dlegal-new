@@ -1748,10 +1748,27 @@ $(document).ready(function () {
 
         var diff = new Date(end_time) - new Date(start_time);
         diff_time = diff/(60*60*1000);
-
+// alert(diff_time);
         if (diff_time > 24) {
             var total_days_full = diff_time/24;
-            var total_days = total_days_full.toFixed(2)+' Days';
+            var total_day = total_days_full.toFixed(2);
+
+            var minutes = total_day * 24 * 60;
+
+            var hour = minutes/60;
+
+            var day = 0;
+            var minute = parseInt((hour % 1)*60);
+            if (hour>24){
+                day = parseInt(hour / 24);
+                hour = parseInt(hour % 24);
+            }else{
+                hour = parseInt(hour);
+            }
+
+            var total_days = day+' days '+hour+' hours '+minute+' minutes';
+            // alert(total_days);
+
         }else{
             var total_days = diff_time.toFixed(2)+' Hrs';
         }
@@ -1875,7 +1892,14 @@ $( '.links a' ).on( 'click', function(e){
   });
 
 
+  $('#send_sms').on('click', function(){
+    $('#mobile').toggle();
+  });
 
+  $('#send_mail').on('click', function(){
+    $('#mail').toggle();
+  });
+  
 
 });
 

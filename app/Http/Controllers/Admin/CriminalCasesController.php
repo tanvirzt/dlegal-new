@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 use App\Models\Admin;
 use App\Models\CriminalCase;
 use App\Models\CriminalCaseActivityLog;
@@ -73,8 +74,8 @@ use App\Models\CriminalCasesDocumentsReceived;
 use App\Models\CriminalCasesDocumentsRequired;
 use App\Models\SetupParticulars;
 use App\Models\CriminalCasesLetterNotice;
-
-
+use App\Models\CriminalCasesSendMessage;
+use App\Mail\SendMessage;
 
 class CriminalCasesController extends Controller
 {
@@ -429,7 +430,7 @@ $created_case_id = 'LCR-000'.$sl;
             }
         }
 
-        foreach ( $request->received_documents_id as $key => $value ){
+        foreach ( array_filter($request->received_documents_id) as $key => $value ){
             $datum = new CriminalCasesDocumentsReceived();
             $datum->case_id = $data->id;
             $datum->received_documents_id = $value;
@@ -439,7 +440,7 @@ $created_case_id = 'LCR-000'.$sl;
         }
 
 
-        foreach ( $request->required_wanting_documents_id as $key => $value ){
+        foreach ( array_filter($request->required_wanting_documents_id) as $key => $value ){
             $required = new CriminalCasesDocumentsRequired();
             $required->case_id = $data->id;
             $required->required_wanting_documents_id = $value;
@@ -1052,8 +1053,8 @@ $case_no_data = DB::table('criminal_cases')
                 $required->letter_notice_date = $value;
                 $required->letter_notice_documents_id = $request->letter_notice_documents_id[$key];
                 $required->letter_notice_particulars_id = $request->letter_notice_particulars_id[$key];
-                // $required->letter_notice_org = $request->letter_notice_org[$key];
-                // $required->letter_notice_pht = $request->letter_notice_pht[$key];
+                $required->letter_notice_org = isset($request->letter_notice_org[$key]) == '1' ? '1' : '0';
+                $required->letter_notice_pht = isset($request->letter_notice_pht[$key]) == '1' ? '1' : '0';
                 $required->save();
             }
 
@@ -1431,7 +1432,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
            $received_documents = CriminalCasesDocumentsReceived::where('case_id', $id)->delete();
 // dd($received_documents);
 
-            foreach ( $request->received_documents_id as $key => $value ){
+            foreach ( array_filter($request->received_documents_id) as $key => $value ){
                 $datum = new CriminalCasesDocumentsReceived();
                 $datum->case_id = $data->id;
                 $datum->received_documents_id = $value;
@@ -1442,7 +1443,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
     
             $required_wanting_documents = CriminalCasesDocumentsRequired::where('case_id', $id)->delete();
 
-            foreach ( $request->required_wanting_documents_id as $key => $value ){
+            foreach ( array_filter($request->required_wanting_documents_id) as $key => $value ){
                 $required = new CriminalCasesDocumentsRequired();
                 $required->case_id = $data->id;
                 $required->required_wanting_documents_id = $value;
@@ -1716,7 +1717,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             ->leftJoin('setup_next_day_presences', 'criminal_case_status_logs.updated_next_day_presence_id', '=', 'setup_next_day_presences.id')
             ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name', 'setup_court_proceedings.court_proceeding_name', 'setup_court_last_orders.court_last_order_name', 'setup_day_notes.day_notes_name', 'setup_external_council_associates.first_name', 'setup_external_council_associates.middle_name', 'setup_external_council_associates.last_name', 'setup_next_day_presences.next_day_presence_name','index_reason.next_date_reason_name as index_next_date_reason_name')        
             ->where(['criminal_case_status_logs.case_id' => $id, 'criminal_case_status_logs.delete_status' => 0])
-            ->orderBy('criminal_case_status_logs.id','asc')
+            ->orderBy('criminal_case_status_logs.created_at','asc')
             // ->orderByRaw("DATE_FORMAT('d-m-Y',criminal_case_status_logs.updated_order_date), 'ASC'")
             ->get();
     //    dd($case_logs);
@@ -1977,6 +1978,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         $data->start_time = $request->start_time;
         $data->end_time = $request->end_time;
         $data->total_time = $request->setup_hours;
+        $data->time_spend_manual = $request->time_spend_manual;
         $data->activity_engaged_id = $request->activity_engaged_id ? implode(', ',$request->activity_engaged_id) : null;
         $data->activity_engaged_write = $request->activity_engaged_write;
         $data->activity_forwarded_to_id = $request->activity_forwarded_to_id ? implode(', ',$request->activity_forwarded_to_id) : null;
@@ -2268,8 +2270,8 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         }
         
         $case_id = CriminalCaseActivityLog::find($id);
-// dd($case_id);
-DB::beginTransaction();
+
+        DB::beginTransaction();
 
         $data = CriminalCaseActivityLog::find($id);
         $data->activity_date = $activity_date;
@@ -2280,6 +2282,7 @@ DB::beginTransaction();
         $data->start_time = $request->start_time;
         $data->end_time = $request->end_time;
         $data->total_time = $request->setup_hours;
+        $data->time_spend_manual = $request->time_spend_manual;
         $data->activity_engaged_id = $request->activity_engaged_id ? implode(', ',$request->activity_engaged_id) : null;
         $data->activity_engaged_write = $request->activity_engaged_write;
         $data->activity_forwarded_to_id = $request->activity_forwarded_to_id ? implode(', ',$request->activity_forwarded_to_id) : null;
@@ -2843,6 +2846,51 @@ DB::beginTransaction();
         $notifications->save();
 
         return redirect()->route('view-criminal-cases',$notifications->case_id);
+
+    }
+
+    public function send_messages_for_criminal_cases(Request $request,$id)
+    {
+
+        // $data = json_decode(json_encode($request->all()));
+        // echo "<pre>";print_r($data);die;
+
+        $data = new CriminalCasesSendMessage();
+        $data->case_id = $id;
+        $data->case_no = $request->case_no;
+        $data->client_name = $request->client_name;
+        $data->send_sms = $request->send_sms == 'on' ? '1' : '0';
+        $data->send_mail = $request->send_mail  == 'on' ? '1' : '0';
+        $data->client_mobile = $request->client_mobile;
+        $data->client_email = $request->client_email;
+        $data->messages = $request->messages;
+        $data->save();
+
+        $details = [
+            'name' => $request->client_name,
+            'case_id' => 'Criminal Cases No: '.$request->case_no,
+            'messages' => $request->messages,
+        ];
+
+
+        if ($request->send_sms == 'on' && $request->send_mail == 'on') {
+
+            Http::post('https://api.boom-cast.com/boomcast/WebFramework/boomCastWebService/externalApiSendTextMessage.php?masking=NOMASK&userName=fauziaali2000@gmail.com&password=80f50e35f83130f022e78a2862aab390&MsgType=TEXT&receiver=' . $request->client_mobile . '&message='.$request->messages);
+
+            Mail::to($request->client_email)->send(new SendMessage($details));
+
+        } else if ($request->send_sms == 'on') {
+
+            Http::post('https://api.boom-cast.com/boomcast/WebFramework/boomCastWebService/externalApiSendTextMessage.php?masking=NOMASK&userName=fauziaali2000@gmail.com&password=80f50e35f83130f022e78a2862aab390&MsgType=TEXT&receiver=' . $request->client_mobile . '&message='.$request->messages);
+
+        } else {
+
+            Mail::to($request->client_email)->send(new SendMessage($details));
+
+        }
+
+        return redirect()->back();
+
 
     }
 

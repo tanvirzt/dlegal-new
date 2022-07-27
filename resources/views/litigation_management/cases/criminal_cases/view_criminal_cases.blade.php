@@ -1473,7 +1473,7 @@
                                                     <td> {{\Illuminate\Support\Str::limit($activity_log->activity_action, 15)}} </td>
                                                     <td> {{\Illuminate\Support\Str::limit($activity_log->activity_progress, 15)}} </td>
                                                     <td> {{ $activity_log->mode_name }} </td>
-                                                    <td> {{ $activity_log->total_time }} </td>
+                                                    <td> {{ $activity_log->total_time }} @if (!empty($activity_log->time_spend_manual)) / {{ $activity_log->time_spend_manual }} @endif </td>
                                                     <td>
                                                         @php
                                                             $engaged = explode(', ', $activity_log->activity_engaged_id);
@@ -2185,6 +2185,15 @@
                                         <input type="text" class="form-control" id="setup_hours" name="setup_hours"
                                             readonly>
                                         @error('setup_hours')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="time_spend_manual" class="col-sm-4 col-form-label">Time Spent</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="time_spend_manual" name="time_spend_manual">
+                                        @error('time_spend_manual')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -5390,24 +5399,65 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('update-criminal-cases-status-column', $data->id) }}" method="post">
+                <form action="{{ route('send-messages-for-criminal-cases', $data->id) }}" method="post">
                     @csrf
                     <div class="card-body">
+                        <input type="hidden" name="case_no"
+                            value="{{ $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . ' of ' . $data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null) , @endif
+                        {{ $data->sub_seq_case_title_name }}
+                        @php
+                            $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+                            $key = array_key_last($case_infos_sub_seq_case_no);
+                            echo $case_infos_sub_seq_case_no[$key];
+
+                            $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
+                            $key = array_key_last($case_infos_sub_seq_case_year);
+                            $last_case_no = $case_infos_sub_seq_case_year[$key];
+                            if ($last_case_no != null) {
+                                echo '/'.$last_case_no;
+                            }
+                        @endphp">
+                        <input type="hidden" name="client_name" value="{{ $data->client_name }}">
                         <div class="form-group row">
-                            <label for="updated_case_status_id" class="col-sm-4 col-form-label"> Mobile </label>
+                            <div class="form-check ml-2">
+                                <input class="form-check-input" type="checkbox" name="send_sms" id="send_sms">
+                                <label class="form-check-label mt-1" for="send_sms">
+                                    Send SMS
+                                </label>
+                            </div>
+                            <div class="form-check ml-2">
+                                <input class="form-check-input" type="checkbox" name="send_mail" id="send_mail">
+                                <label class="form-check-label mt-1" for="send_mail">
+                                    Send Mail
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="mobile" style="display: none;">
+                            <label for="client_mobile" class="col-sm-4 col-form-label">Client Mobile</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="amount_of_money" name="amount_of_money" value="{{old('amount_of_money')}}">
-                                @error('updated_case_status_id')
+                                <input type="text" class="form-control" id="client_mobile"
+                                    name="client_mobile" value="{{ $data->client_mobile }}" readonly>
+                                @error('client_mobile')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row" id="mail" style="display: none;">
+                            <label for="client_email" class="col-sm-4 col-form-label">Client Email</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="client_email"
+                                    name="client_email" value="{{ $data->client_email }}" readonly>
+                                @error('client_email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="updated_case_status_id" class="col-sm-4 col-form-label"> Messages </label>
+                            <label for="messages" class="col-sm-4 col-form-label"> Messages </label>
                             <div class="col-sm-8">
-                                <textarea name="another_claim" class="form-control" rows="3"
-                                                              placeholder="">{{old('another_claim')}}</textarea>
-                                @error('updated_case_status_id')
+                                <textarea name="messages" id="messages" class="form-control" rows="5"
+                                                              placeholder="">{{old('messages')}}</textarea>
+                                @error('messages')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -5418,7 +5468,7 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             <div class="float-right">
                                 <button type="submit" class="btn btn-primary text-uppercase"><i
-                                        class="fas fa-save"></i> Update
+                                        class="fas fa-save"></i> Send
                                 </button>
                             </div>
                         </div>
