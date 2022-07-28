@@ -151,7 +151,16 @@
             $(".data_table").DataTable({
                 "responsive": true,
                 "autoWidth": false,
-                "orderFixed": [0, 'desc'],
+                columnDefs: [ { type: 'date', 'targets': [2] } ],
+                order: [[ 2, 'desc' ]]
+
+
+
+
+
+
+
+                // "orderFixed": [0, 'desc'],
 
             //     columns: [
             //     {data: 'id', name: 'id'},

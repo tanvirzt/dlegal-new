@@ -1363,7 +1363,6 @@
                                     <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                             <tr>
-                                                <th class=" hide" width="2%">SL</th>
                                                 <th width="8%">Date</th>
                                                 <th width="10%">Fixed For</th>
                                                 <th width="10%">Court Proceeding</th>
@@ -1379,7 +1378,6 @@
                                         <tbody>
                                             @foreach ($case_logs as $logs)
                                                 <tr>
-                                                    <td class="hide"> {{ $logs->id }} </td>
                                                     <td> {{ date('d-m-Y', strtotime($logs->updated_order_date)) }} </td>
                                                     <td width="10%"> {{ $logs->next_date_reason_name }}
                                                         {{ $logs->updated_fixed_for_write }} </td>
@@ -1477,7 +1475,6 @@
                                     <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                             <tr>
-                                                <th class=" hide" width="2%">SL</th>
                                                 <th width="8%"> Date </th>
                                                 <th width="10%">Activity/Action</th>
                                                 <th width="10%">Progress</th>
@@ -1494,7 +1491,6 @@
                                         <tbody>
                                             @foreach ($case_activity_log as $activity_log)
                                                 <tr>
-                                                    <td class="hide"> {{ $activity_log->id }} </td>
                                                     <td> {{ date('d-m-Y', strtotime($activity_log->activity_date)) }}
                                                     </td>
                                                     <td> {{\Illuminate\Support\Str::limit($activity_log->activity_action, 15)}} </td>

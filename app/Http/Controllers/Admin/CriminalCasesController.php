@@ -1788,7 +1788,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             ->leftJoin('setup_external_councils as activity_forwarded', 'criminal_case_activity_logs.activity_forwarded_to_id', 'activity_forwarded.id')
             ->where(['criminal_case_activity_logs.case_id' => $id,'criminal_case_activity_logs.delete_status' => 0])
             ->select('criminal_case_activity_logs.*', 'setup_modes.mode_name', 'activity_engaged.first_name', 'activity_engaged.middle_name', 'activity_engaged.last_name', 'activity_forwarded.first_name as forwarded_first_name', 'activity_forwarded.middle_name as forwarded_middle_name', 'activity_forwarded.last_name as forwarded_last_name')
-            ->orderBy('criminal_case_activity_logs.created_at','desc')
+            ->orderBy('criminal_case_activity_logs.activity_date','desc')
             ->get();
 
         $received_documents_explode = CriminalCasesDocumentsReceived::where('case_id',$id)->get()->toArray();
