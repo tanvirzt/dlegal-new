@@ -85,9 +85,15 @@ html, body {
     margin-bottom: -2px !important;
     margin-top: 4px;
 }
-tr:hover{
-    background-color: #f6f7f7 !important;
+
+tr:hover {
+    background-color: #d3ede9 !important;
 }
+
+
+/* tr:hover{
+    background-color: #f6f7f7 !important;
+} */
 
 .spark-button-focus:focus {
     outline: none;
@@ -605,6 +611,7 @@ h3{
     top: 0px;
     z-index: 98;
     font-family: "parisplus-std", sans-serif;
+    transition: all 0.9s ease !important;
     /* display: none; */
     opacity: 0;
   }

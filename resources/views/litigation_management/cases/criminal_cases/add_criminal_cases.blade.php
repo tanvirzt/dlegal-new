@@ -1048,6 +1048,8 @@
                                                             
                                                             <div class="col-sm-12">
                                                                 <div class="input-group hdtuto_received_documents control-group increment_received_documents">
+                                                                    <input type="hidden" name="received_documents_sections[]"
+                                                                           class="myfrm form-control mr-2" value="received_documents_sections">
                                                                     <select name="received_documents_id[]"
                                                                         class="form-control mr-3">
                                                                         <option value="">Select</option>
@@ -1059,7 +1061,7 @@
                                                                     <input type="text" name="received_documents[]"
                                                                            class="myfrm form-control mr-2">
                                                                     <input type="date" name="received_documents_date[]"
-                                                                           class="myfrm form-control ml-2">
+                                                                           class="myfrm form-control ml-2" value="dd/mm/yyyy">
                                                                     <div class="input-group-btn">
                                                                         <button class="btn btn-success btn_success_received_documents"
                                                                                 type="button"><i
@@ -1070,6 +1072,8 @@
                                                                 <div class="clone_received_documents hide">
                                                                     <div class="hdtuto_received_documents control-group lst input-group"
                                                                          style="margin-top:10px">
+                                                                         <input type="hidden" name="received_documents_sections[]"
+                                                                           class="myfrm form-control mr-2" value="received_documents_sections">
                                                                          <select name="received_documents_id[]"
                                                                             class="form-control mr-3" >
                                                                             <option value="">Select</option>
@@ -1103,6 +1107,8 @@
                                                             
                                                             <div class="col-sm-12">
                                                                 <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
+                                                                    <input type="hidden" name="required_wanting_documents_sections[]"
+                                                                           class="myfrm form-control mr-2" value="required_wanting_documents_sections">
                                                                     <select name="required_wanting_documents_id[]"
                                                                         class="form-control mr-3">
                                                                         <option value="">Select</option>
@@ -1125,6 +1131,8 @@
                                                                 <div class="clone_required_wanting_documents hide">
                                                                     <div class="hdtuto_required_wanting_documents control-group lst input-group"
                                                                          style="margin-top:10px">
+                                                                         <input type="hidden" name="required_wanting_documents_sections[]"
+                                                                           class="myfrm form-control mr-2" value="required_wanting_documents_sections">
                                                                          <select name="required_wanting_documents_id[]"
                                                                             class="form-control mr-3">
                                                                             <option value="">Select</option>
@@ -2021,7 +2029,7 @@
                                                     <div class="row">
                                                         <div class="col-md-4"><u> Case Steps </u></div>
                                                         <div class="col-md-3">Date</div>
-                                                        <div class="col-md-3">Copy</div>
+                                                        <div class="col-md-3">Note</div>
                                                         <div class="col-md-2">Yes/No</div>
                                                     </div>
                                                 </h6>

@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Admin Setup</h1>
+                        <h1 class="m-0 text-dark">Document Uploaded</h1>
 
                     </div><!-- /.col -->
 
@@ -36,7 +36,7 @@
 
                 <a class="text-center mb-2" href="{{ route('download-criminal-cases-files', $file->id) }}">
                     <button
-                        class="btn btn-outline-success btn-sm" data-toggle="tooltip"
+                        class="btn btn-outline-success btn-sm float-right" data-toggle="tooltip"
                         data-placement="top" title="Download"><i class="fas fa-download"></i> Download</button>
                 </a>
                 @if ($doc_explode[1] == 'png' || $doc_explode[1] == 'jpeg' || $doc_explode[1] == 'jpg' || $doc_explode[1] == 'gif')

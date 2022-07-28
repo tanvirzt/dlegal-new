@@ -61,6 +61,7 @@
             /* background: #f2f2f2; */
             margin-bottom: 0px;
             background: #2A6CB1;
+            transition: all 0.5s ease;
         }
         .custom_ul li{
             display: inline-block;

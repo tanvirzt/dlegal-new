@@ -410,7 +410,9 @@
                                                 {{ $datum->case_status_name }}
                                             </td>
                                             <td width="8%">
+                                              @if (!empty($datum->next_date))
                                                 {{ date('d-m-Y', strtotime($datum->next_date)) }}
+                                              @endif  
                                             </td>
                                             <td>
                                                 {{ $datum->next_date_reason_name }}

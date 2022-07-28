@@ -1122,6 +1122,7 @@
 
                                                                                     <div class="col-sm-12">
                                                                                         <div class="input-group hdtuto_received_documents control-group increment_received_documents">
+                                                                                            <input type="hidden" name="received_documents_sections[]" class="myfrm form-control mr-2" value="received_documents_sections">
                                                                                             <select name="received_documents_id[]"
                                                                                                 class="form-control mr-3">
                                                                                                 <option value="">Select</option>
@@ -1146,6 +1147,8 @@
                                                                                            
                                                                                             <div class="hdtuto_received_documents control-group input-group"
                                                                                                  style="margin-top:10px">
+                                                                                            <input type="hidden" name="received_documents_sections[]" class="myfrm form-control mr-2" value="received_documents_sections">
+
                                                                                                  <select name="received_documents_id[]"
                                                                                                     class="form-control mr-3" >
                                                                                                     <option value="">Select</option>
@@ -1175,6 +1178,8 @@
                                                                                             @foreach ( $received_documents_explode as $datas)
                                                                                             <div class="hdtuto_received_documents control-group input-group"
                                                                                                  style="margin-top:10px">
+                                                                                                <input type="hidden" name="received_documents_sections[]" class="myfrm form-control mr-2" value="received_documents_sections">
+
                                                                                                  <select name="received_documents_id[]"
                                                                                                     class="form-control mr-3" >
                                                                                                     <option value="">Select</option>
@@ -1269,6 +1274,8 @@
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-12">
                                                                                         <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
+                                                                                            <input type="hidden" name="required_wanting_documents_sections[]"
+                                                                           class="myfrm form-control mr-2" value="required_wanting_documents_sections">
                                                                                             <select name="required_wanting_documents_id[]"
                                                                                                 class="form-control mr-3">
                                                                                                 <option value="">Select</option>
@@ -1290,9 +1297,10 @@
                                                                                         </div>
                                                                                         
                                                                                         <div class="clone_required_wanting_documents hide">
-                                                                                           
                                                                                             <div class="hdtuto_required_wanting_documents control-group input-group"
                                                                                                  style="margin-top:10px">
+                                                                                                 <input type="hidden" name="required_wanting_documents_sections[]"
+                                                                           class="myfrm form-control mr-2" value="required_wanting_documents_sections">
                                                                                                  <select name="required_wanting_documents_id[]"
                                                                                                     class="form-control mr-3" >
                                                                                                     <option value="">Select</option>
@@ -1322,6 +1330,8 @@
                                                                                             @foreach ( $required_wanting_documents_explode as $datas)
                                                                                             <div class="hdtuto_required_wanting_documents control-group input-group"
                                                                                                  style="margin-top:10px">
+                                                                                                 <input type="hidden" name="required_wanting_documents_sections[]"
+                                                                           class="myfrm form-control mr-2" value="required_wanting_documents_sections">
                                                                                                  <select name="required_wanting_documents_id[]"
                                                                                                     class="form-control mr-3" >
                                                                                                     <option value="">Select</option>
@@ -2457,7 +2467,7 @@
                                                                             <div class="row">
                                                                                 <div class="col-md-4"><u> Case Steps </u></div>
                                                                                 <div class="col-md-3">Date</div>
-                                                                                <div class="col-md-3">Copy</div>
+                                                                                <div class="col-md-3">Note</div>
                                                                                 <div class="col-md-2">Yes/No</div>
                                                                             </div>
                                                                         </h6>

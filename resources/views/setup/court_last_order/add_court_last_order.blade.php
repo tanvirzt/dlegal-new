@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Add Court Last Order Reason</h1>
+                        <h1 class="m-0 text-dark">Add Court Order</h1>
 
                     </div><!-- /.col -->
 
@@ -48,7 +48,7 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Add Court Last Order Reason</h3>
+                                <h3 class="card-title" id="heading">Add Court Order</h3>
                             </div>
 
                             <form action="{{ route('save-court-last-order') }}" method="post">
@@ -57,7 +57,7 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="court_last_order_name">Court Last Order Reason</label>
+                                            <label for="court_last_order_name">Court Order</label>
                                             <input type="text" class="form-control" name="court_last_order_name"
                                                    id="court_last_order_name">
                                             @error('court_last_order_name')<span class="text-danger">{{$message}}</span>@enderror

@@ -198,7 +198,7 @@ class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
                                                                             ->leftJoin('setup_districts as accused_district', 'criminal_cases.client_district_id', '=', 'accused_district.id')
                                                                             ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
                                                                             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
-                                                                        ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+                                                                            ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
                                                                             ->select('criminal_cases.*',
                                                                             // 'criminal_cases_case_steps.another_claim',
                                                                             'setup_case_statuses.case_status_name',

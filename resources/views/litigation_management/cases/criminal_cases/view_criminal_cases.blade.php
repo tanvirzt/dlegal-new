@@ -216,7 +216,11 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Next Date</td>
-                                                                <td>{{ date('d-m-Y', strtotime($data->next_date)) }}</td>
+                                                                <td>
+                                                                    @if (!empty($data->next_date))
+                                                                        {{ date('d-m-Y', strtotime($data->next_date)) }}
+                                                                    @endif
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Next date fixed for</td>
@@ -696,7 +700,24 @@
                                                             <tr>
                                                                 <td>Sub Seq. Case No.</td>
                                                                 <td>
+
+                                                                    
                                                                     @php
+                                                                        $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
+                                                                        $key = array_key_last($case_infos_sub_seq_case_no);
+                                                                        echo $case_infos_sub_seq_case_no[$key];
+                                                                        
+                                                                        $case_infos_sub_seq_case_year = explode(', ', trim($data->case_infos_sub_seq_case_year));
+                                                                        $key = array_key_last($case_infos_sub_seq_case_year);
+                                                                        $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                                                        if ($last_case_no != null) {
+                                                                            echo ' of ' . $last_case_no;
+                                                                        }
+                                                                    @endphp
+
+
+                                                                    
+                                                                    {{-- @php
                                                                         $case_infos_sub_seq_case_no = explode(', ', $data->case_infos_sub_seq_case_no);
                                                                     @endphp
                                                                     @if ($data->case_infos_sub_seq_case_no)
@@ -710,7 +731,7 @@
                                                                                 {{ $pro }}
                                                                             @endforeach
                                                                         @endif
-                                                                    @endif
+                                                                    @endif --}}
 
                                                                 </td>
                                                             </tr>
@@ -999,7 +1020,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Allegation/Claim</td>
-                                                                <td> {{ $data->allegation_name }}
+                                                                <td> {{ $edit_case_steps->allegation_name }}
                                                                     {{ $edit_case_steps->case_infos_allegation_claim_write }}
                                                                 </td>
                                                             </tr>
@@ -1139,7 +1160,7 @@
                                                             <div class="col-md-4"><u> Case Steps </u>
                                                             </div>
                                                             <div class="col-md-3">Date</div>
-                                                            <div class="col-md-2">Copy</div>
+                                                            <div class="col-md-2">Note</div>
                                                             <div class="col-md-3">Yes/No
                                                                 <button type="button"
                                                                     class="btn btn-info btn-sm float-right"
@@ -1342,21 +1363,23 @@
                                     <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                             <tr>
-                                                <th class="text-nowrap" width="90px;">Date</th>
-                                                <th class="text-nowrap">Fixed For</th>
-                                                <th class="text-nowrap">Court Proceeding</th>
-                                                <th class="text-nowrap">Court Order</th>
-                                                <th class="text-nowrap">Next Date</th>
-                                                <th class="text-nowrap">Fixed For</th>
-                                                <th class="text-nowrap">Day Note</th>
-                                                <th class="text-nowrap">Engaged Advocates</th>
-                                                <th class="text-nowrap">Action</th>
-                                                <th class="text-nowrap" width="90px;">Update</th>
+                                                <th class=" hide" width="2%">SL</th>
+                                                <th width="8%">Date</th>
+                                                <th width="10%">Fixed For</th>
+                                                <th width="10%">Court Proceeding</th>
+                                                <th width="10%">Court Order</th>
+                                                <th width="10%">Next Date</th>
+                                                <th width="10%">Fixed For</th>
+                                                <th width="10%">Day Note</th>
+                                                <th width="10%">Engaged Advocates</th>
+                                                <th width="10%">Action</th>
+                                                <th width="10%">Update</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($case_logs as $logs)
                                                 <tr>
+                                                    <td class="hide"> {{ $logs->id }} </td>
                                                     <td> {{ date('d-m-Y', strtotime($logs->updated_order_date)) }} </td>
                                                     <td width="10%"> {{ $logs->next_date_reason_name }}
                                                         {{ $logs->updated_fixed_for_write }} </td>
@@ -1407,16 +1430,18 @@
                                                     <td> {{ $logs->updated_engaged_advocate_id }}
                                                         {{ $logs->updated_engaged_advocate_write }} </td>
                                                     <td>
+
+                                                        
                                                         <a href="{{ route('edit-criminal-cases-status', $logs->id) }}">
-                                                            <button class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                            <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
                                                                 data-placement="top" title="Edit"><i
                                                                     class="fas fa-edit"></i></button>
                                                         </a>
                                                         <form method="POST"
                                                             action="{{ route('delete-criminal-cases-status', $logs->id) }}"
-                                                            class="delete-user btn btn-danger btn-xs">
+                                                            class="delete-user btn btn-outline-danger btn-xs">
                                                             @csrf
-                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                            <button type="submit" class="btn btn-sm"
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 title="Delete"><i class="fas fa-trash"></i></button>
                                                         </form>
@@ -1452,22 +1477,24 @@
                                     <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                             <tr>
-                                                <th class="text-nowrap" width="90px;">Date</th>
-                                                <th class="text-nowrap">Activity/Action</th>
-                                                <th class="text-nowrap">Progress</th>
-                                                <th class="text-nowrap">Mode</th>
-                                                <th class="text-nowrap">Time Spent</th>
-                                                <th class="text-nowrap">Engaged Lawyer</th>
-                                                <th class="text-nowrap">Forwarded To</th>
-                                                <th class="text-nowrap">Requirements</th>
-                                                <th class="text-nowrap">Note</th>
-                                                <th class="text-nowrap">Action</th>
-                                                <th class="text-nowrap" width="90px;">Update</th>
+                                                <th class=" hide" width="2%">SL</th>
+                                                <th width="8%"> Date </th>
+                                                <th width="10%">Activity/Action</th>
+                                                <th width="10%">Progress</th>
+                                                <th width="10%">Mode</th>
+                                                <th width="10%">Time Spent</th>
+                                                <th width="10%">Engaged Lawyer</th>
+                                                <th width="10%">Forwarded To</th>
+                                                <th width="10%">Requirements</th>
+                                                <th width="10%">Note</th>
+                                                <th width="10%">Action</th>
+                                                <th width="10%">Update</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($case_activity_log as $activity_log)
                                                 <tr>
+                                                    <td class="hide"> {{ $activity_log->id }} </td>
                                                     <td> {{ date('d-m-Y', strtotime($activity_log->activity_date)) }}
                                                     </td>
                                                     <td> {{\Illuminate\Support\Str::limit($activity_log->activity_action, 15)}} </td>
@@ -1506,22 +1533,25 @@
 
                                                     <td> {{\Illuminate\Support\Str::limit($activity_log->activity_remarks, 15)}} </td>
                                                     <td>
+
+                                                       
+                                                        <a
+                                                            href="{{ route('view-criminal-cases-activity', $activity_log->id) }}">
+                                                            <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
+                                                                data-placement="top" title="View"><i class="fas fa-eye"></i></button>
+                                                        </a>
                                                         <a
                                                             href="{{ route('edit-criminal-cases-activity', $activity_log->id) }}">
-                                                            <button class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                            <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
                                                                 data-placement="top" title="Edit"><i
                                                                     class="fas fa-edit"></i></button>
                                                         </a>
-                                                        <a
-                                                            href="{{ route('view-criminal-cases-activity', $activity_log->id) }}">
-                                                            <button class="btn btn-info btn-sm" data-toggle="tooltip"
-                                                                data-placement="top" title="View"><i class="fas fa-eye"></i></button>
-                                                        </a>
+                                                        
                                                         <form method="POST"
                                                             action="{{ route('delete-criminal-cases-activity', $activity_log->id) }}"
-                                                            class="delete-user btn btn-danger btn-xs">
+                                                            class="delete-user btn btn-outline-danger btn-xs">
                                                             @csrf
-                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                            <button type="submit" class="btn btn-sm"
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 title="Delete"><i class="fas fa-trash"></i></button>
                                                         </form>
@@ -1559,7 +1589,8 @@
                                     <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                             <tr>
-                                                <th>Uploaded Document</th>
+                                                <th class="hide" width="2%">SL</th>
+                                                <th>Document Uploaded</th>
                                                 <th>Uploaded By</th>
                                                 <th>Date & Time</th>
                                                 <th>Action</th>
@@ -1568,15 +1599,22 @@
                                         <tbody>
                                             @foreach ($criminal_cases_files as $files)
                                                 <tr>
+                                                    <td class="hide"> {{ $files->id }} </td>
                                                     <td>{{ $files->uploaded_document }} </td>
                                                     <td>{{ $files->created_by }} </td>
                                                     <td>{{ $files->created_at }} </td>
                                                     <td>
+                                                        <a href="{{ route('view-criminal-cases-files', $files->id) }}"
+                                                            target="_blank">
+                                                            <button class="btn btn-outline-success btn-sm"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="View Document"><i class="fas fa-eye"></i></button>
+                                                        </a>
                                                         <a>
                                                             <button data-toggle="modal" data-target="#edit_document"
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 action={{ $files->id }}
-                                                                class="btn btn-info btn-sm file_edit_modals"
+                                                                class="btn btn-outline-success btn-sm"
                                                                 title="Edit"><i class="fas fa-edit"></i></button>
                                                         </a>
                                                         <form method="get"
@@ -1594,13 +1632,7 @@
                                                             data-placement="top" title="Download"><i class="fas fa-download"></i></button>
                                                     </a> --}}
 
-                                                        <a href="{{ route('view-criminal-cases-files', $files->id) }}"
-                                                            target="_blank">
-                                                            <button class="btn btn-outline-success btn-sm"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="View Document"><i class="fas fa-eye"></i></button>
-                                                        </a>
-
+                                                        
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -1635,7 +1667,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <table class="table view_table table-bordered table-striped data_table">
+                                    <table class="table view_table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th width="150px;">Bill for the Date</th>
@@ -1701,15 +1733,15 @@
                                                     <td>
                                                         <a
                                                             href="{{ route('edit-criminal-cases-billing', $bill_logs->id) }}">
-                                                            <button class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                            <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
                                                                 data-placement="top" title="Edit"><i
                                                                     class="fas fa-edit"></i></button>
                                                         </a>
                                                         <form method="POST"
                                                             action="{{ route('delete-criminal-cases-billing', $bill_logs->id) }}"
-                                                            class="delete-user btn btn-danger btn-xs">
+                                                            class="delete-user btn btn-outline-danger btn-xs">
                                                             @csrf
-                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                            <button type="submit" class="btn btn-sm"
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 title="Delete"><i class="fas fa-trash"></i></button>
                                                         </form>
@@ -4481,7 +4513,7 @@
                             <div class="row">
                                 <div class="col-md-4"><u> Case Steps </u></div>
                                 <div class="col-md-3">Date</div>
-                                <div class="col-md-3">Copy</div>
+                                <div class="col-md-3">Note</div>
                                 <div class="col-md-2">Yes/No</div>
                             </div>
                         </h6>

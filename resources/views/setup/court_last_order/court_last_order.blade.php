@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Court Last Order Reason</h1>
+                        <h1>Court Order</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active">Court Last Order Reason</li>
+                            <li class="breadcrumb-item active">Court Order</li>
                         </ol>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                                 <h3 class="card-title">List</h3>
                                 <div class="float-right">
                                     <a href="{{ route('add-court-last-order') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Court Last Order Reason </button></a>
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Court Order </button></a>
                                 </div>
 
                             </div>
@@ -49,7 +49,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center text-nowrap">ID</th>
-                                        <th class="text-center text-nowrap">Court Last Order Reason</th>
+                                        <th class="text-center text-nowrap">Court Order</th>
                                         <th class="text-center text-nowrap">Status</th>
                                         <th class="text-center text-nowrap">Action</th>
                                     </tr>

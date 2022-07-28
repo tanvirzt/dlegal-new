@@ -152,6 +152,23 @@
                 "responsive": true,
                 "autoWidth": false,
                 "orderFixed": [0, 'desc'],
+
+            //     columns: [
+            //     {data: 'id', name: 'id'},
+            //     {data: 'name', name: 'name'},
+            //     {data: 'email', name: 'email'},
+            //     {
+            //         data: 'created_at',
+            //         type: 'num',
+            //         render: {
+            //             _: 'display',
+            //             sort: 'timestamp'
+            //        }
+            //     },
+            // ]
+
+
+
             });
 
 
