@@ -2027,14 +2027,16 @@
                                             <div class="card-body">
                                                 <h6 class="text-uppercase text-bold">
                                                     <div class="row">
-                                                        <div class="col-md-4"><u> Case Steps </u></div>
+                                                        <div class="col-md-3"><u> Case Steps </u></div>
                                                         <div class="col-md-3">Date</div>
                                                         <div class="col-md-3">Note</div>
-                                                        <div class="col-md-2">Yes/No</div>
+                                                        <div class="col-md-1">ORG</div>
+                                                        <div class="col-md-1">CC</div>
+                                                        <div class="col-md-1" style="padding-left:1px;">Copy</div>
                                                     </div>
                                                 </h6>
                                                 <div class="form-group row">
-                                                    <label for="case_steps_filing" class="col-sm-4 col-form-label"> Filing
+                                                    <label for="case_steps_filing" class="col-sm-3 col-form-label"> Filing
                                                         Date </label>
                                                     <div class="col-sm-3">
                                                         <input type="text" class="form-control"
@@ -2046,24 +2048,30 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <input type="text" class="form-control"
+                                                               id="case_steps_filing_note"
+                                                               name="case_steps_filing_note"
+                                                               value="{{old('case_steps_filing_note')}}">
+                                                        @error('case_steps_filing_note')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                        <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_filing_org"
+                                                               name="case_steps_filing_org"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_filing_cc"
+                                                               name="case_steps_filing_cc"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
                                                                id="case_steps_filing_copy"
                                                                name="case_steps_filing_copy"
-                                                               value="{{old('case_steps_filing_copy')}}">
+                                                               >
                                                         @error('case_steps_filing_copy')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="checkbox" class="form-control"
-                                                               id="case_steps_filing_yes_no"
-                                                               name="case_steps_filing_yes_no"
-                                                               value="{{old('case_steps_filing_yes_no')}}">
-                                                        @error('case_steps_filing_yes_no')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label for="taking_cognizance" class="col-sm-4 col-form-label"> Taking Cognizance </label>
+                                                    <label for="taking_cognizance" class="col-sm-3 col-form-label"> Taking Cognizance </label>
                                                     <div class="col-sm-3">
                                                         <span class="date_span_steps">
                                                             <input type="date" class="xDateContainer date_first_input"
@@ -2078,23 +2086,29 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <input type="text" class="form-control"
-                                                               id="taking_cognizance_copy"
-                                                               name="taking_cognizance_copy"
-                                                               value="{{old('taking_cognizance_copy')}}">
-                                                        @error('taking_cognizance_copy')<span
+                                                               id="taking_cognizance_note"
+                                                               name="taking_cognizance_note"
+                                                               value="{{old('taking_cognizance_note')}}">
+                                                        @error('taking_cognizance_note')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="checkbox" class="form-control"
-                                                               id="taking_cognizance_yes_no"
-                                                               name="taking_cognizance_yes_no"
-                                                               value="{{old('taking_cognizance_yes_no')}}">
+                                                        <input type="checkbox" class="form-control col-sm-1"
+                                                               id="taking_cognizance_org"
+                                                               name="taking_cognizance_org"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
+                                                               id="taking_cognizance_cc"
+                                                               name="taking_cognizance_cc"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
+                                                               id="taking_cognizance_copy"
+                                                               name="taking_cognizance_copy"
+                                                               >
                                                         @error('taking_cognizance_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                </div>
                                                 <div class="form-group row">
-                                                    <label for="arrest_surrender_cw" class="col-sm-4 col-form-label"> Arrest/Surrender/C.W. </label>
+                                                    <label for="arrest_surrender_cw" class="col-sm-3 col-form-label"> Arrest/Surrender/C.W.</label>
                                                     <div class="col-sm-3">
                                                         <span class="date_span_steps">
                                                             <input type="date" class="xDateContainer date_first_input"
@@ -2109,23 +2123,30 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <input type="text" class="form-control"
+                                                               id="arrest_surrender_cw_note"
+                                                               name="arrest_surrender_cw_note"
+                                                               value="{{old('arrest_surrender_cw_note')}}">
+                                                        @error('arrest_surrender_cw_note')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                        <input type="checkbox" class="form-control col-sm-1"
+                                                               id="arrest_surrender_cw_org"
+                                                               name="arrest_surrender_cw_org"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
+                                                               id="arrest_surrender_cw_cc"
+                                                               name="arrest_surrender_cw_cc"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
                                                                id="arrest_surrender_cw_copy"
                                                                name="arrest_surrender_cw_copy"
-                                                               value="{{old('arrest_surrender_cw_copy')}}">
-                                                        @error('arrest_surrender_cw_copy')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="checkbox" class="form-control"
-                                                               id="arrest_surrender_cw_yes_no"
-                                                               name="arrest_surrender_cw_yes_no"
-                                                               value="{{old('arrest_surrender_cw_yes_no')}}">
+                                                               >
                                                         @error('arrest_surrender_cw_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="case_steps_bail" class="col-sm-4 col-form-label"> Bail </label>
+                                                    <label for="case_steps_bail" class="col-sm-3 col-form-label"> Bail </label>
                                                     <div class="col-sm-3">
                                                         <span class="date_span_steps">
                                                             <input type="date" class="xDateContainer date_first_input"
@@ -2140,23 +2161,29 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <input type="text" class="form-control"
+                                                               id="case_steps_bail_note"
+                                                               name="case_steps_bail_note"
+                                                               value="{{old('case_steps_bail_note')}}">
+                                                        @error('case_steps_bail_note')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                        <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_bail_org"
+                                                               name="case_steps_bail_org"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_bail_cc"
+                                                               name="case_steps_bail_cc"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
                                                                id="case_steps_bail_copy"
                                                                name="case_steps_bail_copy"
-                                                               value="{{old('case_steps_bail_copy')}}">
+                                                               >
                                                         @error('case_steps_bail_copy')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="checkbox" class="form-control"
-                                                               id="case_steps_bail_yes_no"
-                                                               name="case_steps_bail_yes_no"
-                                                               value="{{old('case_steps_bail_yes_no')}}">
-                                                        @error('case_steps_bail_yes_no')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="case_steps_court_transfer" class="col-sm-4 col-form-label"> Court Transfer </label>
+                                                    <label for="case_steps_court_transfer" class="col-sm-3 col-form-label"> Court Transfer </label>
                                                     <div class="col-sm-3">
                                                         <span class="date_span_steps">
                                                             <input type="date" class="xDateContainer date_first_input"
@@ -2171,23 +2198,30 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <input type="text" class="form-control"
+                                                               id="case_steps_court_transfer_note"
+                                                               name="case_steps_court_transfer_note"
+                                                               value="{{old('case_steps_court_transfer_note')}}">
+                                                        @error('case_steps_court_transfer_note')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                        <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_court_transfer_org"
+                                                               name="case_steps_court_transfer_org"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_court_transfer_cc"
+                                                               name="case_steps_court_transfer_cc"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
                                                                id="case_steps_court_transfer_copy"
                                                                name="case_steps_court_transfer_copy"
-                                                               value="{{old('case_steps_court_transfer_copy')}}">
-                                                        @error('case_steps_court_transfer_copy')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="checkbox" class="form-control"
-                                                               id="case_steps_court_transfer_yes_no"
-                                                               name="case_steps_court_transfer_yes_no"
-                                                               value="{{old('case_steps_court_transfer_yes_no')}}">
+                                                               >
                                                         @error('case_steps_court_transfer_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
+                                                   
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="case_steps_charge_framed" class="col-sm-4 col-form-label"> Charge Framed </label>
+                                                    <label for="case_steps_charge_framed" class="col-sm-3 col-form-label"> Charge Framed </label>
                                                     <div class="col-sm-3">
                                                         <span class="date_span_steps">
                                                             <input type="date" class="xDateContainer date_first_input"
@@ -2202,23 +2236,30 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <input type="text" class="form-control"
+                                                               id="case_steps_charge_framed_note"
+                                                               name="case_steps_charge_framed_note"
+                                                               value="{{old('case_steps_charge_framed_note')}}">
+                                                        @error('case_steps_charge_framed_note')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                        <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_charge_framed_org"
+                                                               name="case_steps_charge_framed_org"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_charge_framed_cc"
+                                                               name="case_steps_charge_framed_cc"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
                                                                id="case_steps_charge_framed_copy"
                                                                name="case_steps_charge_framed_copy"
-                                                               value="{{old('case_steps_charge_framed_copy')}}">
-                                                        @error('case_steps_charge_framed_copy')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="checkbox" class="form-control"
-                                                               id="case_steps_charge_framed_yes_no"
-                                                               name="case_steps_charge_framed_yes_no"
-                                                               value="{{old('case_steps_charge_framed_yes_no')}}">
+                                                               >
                                                         @error('case_steps_charge_framed_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="case_steps_witness_from" class="col-sm-4 col-form-label"> Witness (From) </label>
+                                                    <label for="case_steps_witness_from" class="col-sm-3 col-form-label"> Witness (From) </label>
                                                     <div class="col-sm-3">
                                                         <span class="date_span_steps">
                                                             <input type="date" class="xDateContainer date_first_input"
@@ -2233,23 +2274,30 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <input type="text" class="form-control"
+                                                               id="case_steps_witness_from_note"
+                                                               name="case_steps_witness_from_note"
+                                                               value="{{old('case_steps_witness_from_note')}}">
+                                                        @error('case_steps_witness_from_note')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                        <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_witness_from_org"
+                                                               name="case_steps_witness_from_org"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_witness_from_cc"
+                                                               name="case_steps_witness_from_cc"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
                                                                id="case_steps_witness_from_copy"
                                                                name="case_steps_witness_from_copy"
-                                                               value="{{old('case_steps_witness_from_copy')}}">
-                                                        @error('case_steps_witness_from_copy')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="checkbox" class="form-control"
-                                                               id="case_steps_witness_from_yes_no"
-                                                               name="case_steps_witness_from_yes_no"
-                                                               value="{{old('case_steps_witness_from_yes_no')}}">
+                                                               >
                                                         @error('case_steps_witness_from_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="case_steps_witness_to" class="col-sm-4 col-form-label"> Witness (To) </label>
+                                                    <label for="case_steps_witness_to" class="col-sm-3 col-form-label"> Witness (To) </label>
                                                     <div class="col-sm-3">
                                                         <span class="date_span_steps">
                                                             <input type="date" class="xDateContainer date_first_input"
@@ -2264,23 +2312,30 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <input type="text" class="form-control"
+                                                               id="case_steps_witness_to_note"
+                                                               name="case_steps_witness_to_note"
+                                                               value="{{old('case_steps_witness_to_note')}}">
+                                                        @error('case_steps_witness_to_note')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                        <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_witness_to_org"
+                                                               name="case_steps_witness_to_org"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_witness_to_cc"
+                                                               name="case_steps_witness_to_cc"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
                                                                id="case_steps_witness_to_copy"
                                                                name="case_steps_witness_to_copy"
-                                                               value="{{old('case_steps_witness_to_copy')}}">
-                                                        @error('case_steps_witness_to_copy')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="checkbox" class="form-control"
-                                                               id="case_steps_witness_to_yes_no"
-                                                               name="case_steps_witness_to_yes_no"
-                                                               value="{{old('case_steps_witness_to_yes_no')}}">
+                                                               >
                                                         @error('case_steps_witness_to_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="case_steps_argument" class="col-sm-4 col-form-label"> Argument </label>
+                                                    <label for="case_steps_argument" class="col-sm-3 col-form-label"> Argument </label>
                                                     <div class="col-sm-3">
                                                         <span class="date_span_steps">
                                                             <input type="date" class="xDateContainer date_first_input"
@@ -2295,23 +2350,30 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <input type="text" class="form-control"
+                                                               id="case_steps_argument_note"
+                                                               name="case_steps_argument_note"
+                                                               value="{{old('case_steps_argument_note')}}">
+                                                        @error('case_steps_argument_note')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                        <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_argument_org"
+                                                               name="case_steps_argument_org"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_argument_cc"
+                                                               name="case_steps_argument_cc"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
                                                                id="case_steps_argument_copy"
                                                                name="case_steps_argument_copy"
-                                                               value="{{old('case_steps_argument_copy')}}">
-                                                        @error('case_steps_argument_copy')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="checkbox" class="form-control"
-                                                               id="case_steps_argument_yes_no"
-                                                               name="case_steps_argument_yes_no"
-                                                               value="{{old('case_steps_argument_yes_no')}}">
+                                                               >
                                                         @error('case_steps_argument_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
+                                                    
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="case_steps_judgement_order" class="col-sm-4 col-form-label"> Judgement &
+                                                    <label for="case_steps_judgement_order" class="col-sm-3 col-form-label"> Judgement &
                                                         Order </label>
                                                     <div class="col-sm-3">
                                                         <span class="date_span_steps">
@@ -2327,24 +2389,31 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <input type="text" class="form-control"
+                                                               id="case_steps_judgement_order_note"
+                                                               name="case_steps_judgement_order_note"
+                                                               value="{{old('case_steps_judgement_order_note')}}">
+                                                        @error('case_steps_judgement_order_note')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                        <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_judgement_order_org"
+                                                               name="case_steps_judgement_order_org"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_judgement_order_cc"
+                                                               name="case_steps_judgement_order_cc"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
                                                                id="case_steps_judgement_order_copy"
                                                                name="case_steps_judgement_order_copy"
-                                                               value="{{old('case_steps_judgement_order_copy')}}">
-                                                        @error('case_steps_judgement_order_copy')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="checkbox" class="form-control"
-                                                               id="case_steps_judgement_order_yes_no"
-                                                               name="case_steps_judgement_order_yes_no"
-                                                               value="{{old('case_steps_judgement_order_yes_no')}}">
+                                                               >
                                                         @error('case_steps_judgement_order_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
+                                                    
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label for="case_steps_summary_of_cases" class="col-sm-4 col-form-label"> Summary of Case </label>
+                                                    <label for="case_steps_summary_of_cases" class="col-sm-3 col-form-label"> Summary of Case </label>
                                                     <div class="col-sm-3">
                                                         <span class="date_span_steps">
                                                             <input type="date" class="xDateContainer date_first_input"
@@ -2359,20 +2428,27 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <input type="text" class="form-control"
+                                                               id="case_steps_summary_of_cases_note"
+                                                               name="case_steps_summary_of_cases_note"
+                                                               value="{{old('case_steps_summary_of_cases_note')}}">
+                                                        @error('case_steps_summary_of_cases_note')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                        <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_summary_of_cases_org"
+                                                               name="case_steps_summary_of_cases_org"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
+                                                               id="case_steps_summary_of_cases_cc"
+                                                               name="case_steps_summary_of_cases_cc"
+                                                               >
+                                                               <input type="checkbox" class="form-control col-sm-1"
                                                                id="case_steps_summary_of_cases_copy"
                                                                name="case_steps_summary_of_cases_copy"
-                                                               value="{{old('case_steps_summary_of_cases_copy')}}">
-                                                        @error('case_steps_summary_of_cases_copy')<span
-                                                            class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="checkbox" class="form-control"
-                                                               id="case_steps_summary_of_cases_yes_no"
-                                                               name="case_steps_summary_of_cases_yes_no"
-                                                               value="{{old('case_steps_summary_of_cases_yes_no')}}">
+                                                               >
                                                         @error('case_steps_summary_of_cases_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
+                                                    
                                                 </div>
                                                 {{-- <div class="form-group row">
                                                     <label for="case_steps_summary_judgement_order"
@@ -2387,8 +2463,8 @@
                                                 </div> --}}
                                                 <div class="form-group row">
                                                     <label for="case_steps_remarks"
-                                                           class="col-sm-4 col-form-label"> Remarks </label>
-                                                    <div class="col-sm-8">
+                                                           class="col-sm-3 col-form-label"> Remarks </label>
+                                                    <div class="col-sm-9">
                                                     <textarea name="case_steps_remarks" class="form-control"
                                                               rows="3"
                                                               placeholder="">{{old('case_steps_remarks')}}</textarea>
