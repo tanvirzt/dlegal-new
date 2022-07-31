@@ -246,6 +246,18 @@ $(document).ready(function () {
         $(this).parents(".hdtuto_received_documents").remove();
     });
 
+    // edit
+
+    $(".btn_success_received_documents_edit").click(function () {
+        var lsthmtl_received_documents_edit = $(".clone_received_documents_edit").html();
+        $(".clone_received_documents").after(lsthmtl_received_documents_edit);
+    });
+    $("body").on("click", ".btn_danger_received_documents_edit", function () {
+        $(this).parents(".hdtuto_received_documents_edit").remove();
+    });
+
+    // edit
+  
     $(".btn_success_letter_notice").click(function () {
         var lsthmtl_letter_notice = $(".clone_letter_notice").html();
         $(".increment_letter_notice").after(lsthmtl_letter_notice);
@@ -254,6 +266,17 @@ $(document).ready(function () {
         $(this).parents(".hdtuto_letter_notice").remove();
     });
 
+    // edit
+
+    $(".btn_success_letter_notice_edit").click(function () {
+        var lsthmtl_letter_notice_edit = $(".clone_letter_notice_edit").html();
+        $(".clone_letter_notice").after(lsthmtl_letter_notice_edit);
+    });
+    $("body").on("click", ".btn_danger_letter_notice_edit", function () {
+        $(this).parents(".hdtuto_letter_notice_edit").remove();
+    });
+
+    // edit
 
     $(".btn_success_required_wanting_documents").click(function () {
         var lsthmtl_required_wanting_documents = $(".clone_required_wanting_documents").html();
@@ -262,6 +285,16 @@ $(document).ready(function () {
     $("body").on("click", ".btn_danger_required_wanting_documents", function () {
         $(this).parents(".hdtuto_required_wanting_documents").remove();
     });
+
+    // edit
+    $(".btn_success_required_wanting_documents_edit").click(function () {
+        var lsthmtl_required_wanting_documents_edit = $(".clone_required_wanting_documents_edit").html();
+        $(".clone_required_wanting_documents").after(lsthmtl_required_wanting_documents_edit);
+    });
+    $("body").on("click", ".btn_danger_required_wanting_documents_edit", function () {
+        $(this).parents(".hdtuto_required_wanting_documents_edit").remove();
+    });
+    // edit
 
     $(".btn_success_court_short").click(function () {
         var lsthmtl_court_short = $(".clone_court_short").html();
@@ -1900,6 +1933,17 @@ $( '.links a' ).on( 'click', function(e){
     $('#mail').toggle();
   });
   
+
+  $('.checkbox1_checkbox').on('change', function(e){
+    alert('asdfasd');
+    if($(this).prop('checked'))
+    {
+        $(this).next().val(1);
+    } else {
+        $(this).next().val(0);
+    }
+});
+
 
 });
 

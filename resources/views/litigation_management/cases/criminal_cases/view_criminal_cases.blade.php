@@ -1155,13 +1155,33 @@
 
                                             <div class="card">
                                                 <div class="card-body">
+
+                                                    {{-- <h6 class="text-uppercase text-bold">
+                                                        <div class="row">
+                                                            <div class="col-md-3"><u> Case Steps </u></div>
+                                                            <div class="col-md-3">Date</div>
+                                                            <div class="col-md-3">Note</div>
+                                                            <div class="col-md-1">ORG</div>
+                                                            <div class="col-md-1">CC</div>
+                                                            <div class="col-md-1" style="padding-left:1px;">Copy
+                                                                <button type="button"
+                                                                class="btn btn-info btn-sm float-right"
+                                                                data-toggle="modal" data-target="#modal-lg-case-steps"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Update Case Steps"><i
+                                                                    class="fas fa-edit"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </h6> --}}
+
+
                                                     <h6 class="text-uppercase text-bold">
                                                         <div class="row">
                                                             <div class="col-md-4"><u> Case Steps </u>
                                                             </div>
                                                             <div class="col-md-3">Date</div>
                                                             <div class="col-md-2">Note</div>
-                                                            <div class="col-md-3">Yes/No
+                                                            <div class="col-md-3">Type
                                                                 <button type="button"
                                                                     class="btn btn-info btn-sm float-right"
                                                                     data-toggle="modal" data-target="#modal-lg-case-steps"
@@ -1171,100 +1191,177 @@
                                                             </div>
                                                         </div>
                                                     </h6>
+
                                                     <table class="table table-bordered">
                                                         <tbody>
                                                             <tr>
                                                                 <td width="30%">Filing Date</td>
                                                                 <td width="20%">
                                                                     {{ $edit_case_steps->case_steps_filing }} </td>
-                                                                <td width="30%">
-                                                                    {{ $edit_case_steps->case_steps_filing_copy }} </td>
                                                                 <td width="20%">
-                                                                    {{ $edit_case_steps->case_steps_filing_yes_no }}
+                                                                    {{ $edit_case_steps->case_steps_filing_note }} </td>
+                                                                <td width="30%">
+                                                                    @if ($edit_case_steps->case_steps_filing_org == '1')
+                                                                        ORG
+                                                                    @elseif($edit_case_steps->case_steps_filing_cc == '1')
+                                                                        CC
+                                                                    @elseif($edit_case_steps->case_steps_filing_copy == '1')
+                                                                        COPY
+                                                                    @endif 
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Taking Cognizance</td>
                                                                 <td> {{ $edit_case_steps->taking_cognizance }} </td>
-                                                                <td> {{ $edit_case_steps->taking_cognizance_copy }}
+                                                                <td> {{ $edit_case_steps->taking_cognizance_note }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->taking_cognizance_yes_no }}
+                                                                <td> 
+                                                                    @if ($edit_case_steps->taking_cognizance_org == '1')
+                                                                        ORG
+                                                                    @elseif($edit_case_steps->taking_cognizance_cc == '1')
+                                                                        CC
+                                                                    @elseif($edit_case_steps->taking_cognizance_copy == '1')
+                                                                        COPY
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Arrest/Surrender/C.W.</td>
                                                                 <td> {{ $edit_case_steps->arrest_surrender_cw }} </td>
-                                                                <td> {{ $edit_case_steps->arrest_surrender_cw_copy }}
+                                                                <td> {{ $edit_case_steps->arrest_surrender_cw_note }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->arrest_surrender_cw_yes_no }}
+                                                                <td>
+                                                                    @if ($edit_case_steps->arrest_surrender_cw_org == '1')
+                                                                        ORG
+                                                                    @elseif($edit_case_steps->arrest_surrender_cw_cc == '1')
+                                                                        CC
+                                                                    @elseif($edit_case_steps->arrest_surrender_cw_copy == '1')
+                                                                        COPY
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Bail</td>
                                                                 <td> {{ $edit_case_steps->case_steps_bail }} </td>
-                                                                <td> {{ $edit_case_steps->case_steps_bail_copy }} </td>
-                                                                <td> {{ $edit_case_steps->case_steps_bail_yes_no }}
+                                                                <td> {{ $edit_case_steps->case_steps_bail_note }} </td>
+                                                                <td>
+                                                                    @if ($edit_case_steps->case_steps_bail_org == '1')
+                                                                        ORG
+                                                                    @elseif($edit_case_steps->case_steps_bail_cc == '1')
+                                                                        CC
+                                                                    @elseif($edit_case_steps->case_steps_bail_copy == '1')
+                                                                        COPY
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Court Transfer</td>
                                                                 <td> {{ $edit_case_steps->case_steps_court_transfer }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_court_transfer_copy }}
+                                                                <td> {{ $edit_case_steps->case_steps_court_transfer_note }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_court_transfer_yes_no }}
+                                                                <td> 
+                                                                    @if ($edit_case_steps->case_steps_court_transfer_org == '1')
+                                                                        ORG
+                                                                    @elseif($edit_case_steps->case_steps_court_transfer_cc == '1')
+                                                                        CC
+                                                                    @elseif($edit_case_steps->case_steps_court_transfer_copy == '1')
+                                                                        COPY
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Charge Framed</td>
                                                                 <td> {{ $edit_case_steps->case_steps_charge_framed }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_charge_framed_copy }}
+                                                                <td> {{ $edit_case_steps->case_steps_charge_framed_note }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_charge_framed_yes_no }}
+                                                                <td> 
+                                                                    @if ($edit_case_steps->case_steps_charge_framed_org == '1')
+                                                                        ORG
+                                                                    @elseif($edit_case_steps->case_steps_charge_framed_cc == '1')
+                                                                        CC
+                                                                    @elseif($edit_case_steps->case_steps_charge_framed_copy == '1')
+                                                                        COPY
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Witness (From)</td>
                                                                 <td> {{ $edit_case_steps->case_steps_witness_from }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_witness_from_copy }}
+                                                                <td> {{ $edit_case_steps->case_steps_witness_from_note }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_witness_from_yes_no }}
+                                                                <td> 
+                                                                    @if ($edit_case_steps->case_steps_witness_from_org == '1')
+                                                                        ORG
+                                                                    @elseif($edit_case_steps->case_steps_witness_from_cc == '1')
+                                                                        CC
+                                                                    @elseif($edit_case_steps->case_steps_witness_from_copy == '1')
+                                                                        COPY
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Witness (To)</td>
                                                                 <td> {{ $edit_case_steps->case_steps_witness_to }} </td>
-                                                                <td> {{ $edit_case_steps->case_steps_witness_to_copy }}
+                                                                <td> {{ $edit_case_steps->case_steps_witness_to_note }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_witness_to_yes_no }}
+                                                                <td>
+                                                                    @if ($edit_case_steps->case_steps_witness_to_org == '1')
+                                                                        ORG
+                                                                    @elseif($edit_case_steps->case_steps_witness_to_cc == '1')
+                                                                        CC
+                                                                    @elseif($edit_case_steps->case_steps_witness_to_copy == '1')
+                                                                        COPY
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Argument</td>
                                                                 <td> {{ $edit_case_steps->case_steps_argument }} </td>
-                                                                <td> {{ $edit_case_steps->case_steps_argument_copy }}
+                                                                <td> {{ $edit_case_steps->case_steps_argument_note }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_argument_yes_no }}
+                                                                <td>
+                                                                    @if ($edit_case_steps->case_steps_argument_org == '1')
+                                                                        ORG
+                                                                    @elseif($edit_case_steps->case_steps_argument_cc == '1')
+                                                                        CC
+                                                                    @elseif($edit_case_steps->case_steps_argument_copy == '1')
+                                                                        COPY
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Judgement & Order</td>
                                                                 <td> {{ $edit_case_steps->case_steps_judgement_order }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_judgement_order_copy }}
+                                                                <td> {{ $edit_case_steps->case_steps_judgement_order_note }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_judgement_order_yes_no }}
+                                                                <td> 
+                                                                    @if ($edit_case_steps->case_steps_judgement_order_org == '1')
+                                                                        ORG
+                                                                    @elseif($edit_case_steps->case_steps_judgement_order_cc == '1')
+                                                                        CC
+                                                                    @elseif($edit_case_steps->case_steps_judgement_order_copy == '1')
+                                                                        COPY
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Summary of Cases</td>
                                                                 <td> {{ $edit_case_steps->case_steps_summary_of_cases }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_summary_of_cases_copy }}
+                                                                <td> {{ $edit_case_steps->case_steps_summary_of_cases_note }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_summary_of_cases_yes_no }}
+                                                                <td>
+                                                                    @if ($edit_case_steps->case_steps_summary_of_cases_org == '1')
+                                                                        ORG
+                                                                    @elseif($edit_case_steps->case_steps_summary_of_cases_cc == '1')
+                                                                        CC
+                                                                    @elseif($edit_case_steps->case_steps_summary_of_cases_copy == '1')
+                                                                        COPY
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -4299,52 +4396,29 @@
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <div class="input-group hdtuto_received_documents control-group increment_received_documents">
-                                    <select name="received_documents_id[]"
-                                        class="form-control mr-3">
-                                        <option value="">Select</option>
-                                        @foreach($documents as $item)
-                                            <option
-                                                value="{{ $item->documents_name }}" {{ !empty($received_documents_explode[0]['received_documents_id']) && $received_documents_explode[0]['received_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <input type="text" name="received_documents[]"
-                                           class="myfrm form-control mr-2" value="{{ !empty($received_documents_explode[0]['received_documents']) && $received_documents_explode[0]['received_documents'] ? $received_documents_explode[0]['received_documents'] : '' }}">
-                                    <input type="date" name="received_documents_date[]"
-                                           class="myfrm form-control ml-2" value="{{ !empty($received_documents_explode[0]['received_documents_date']) && $received_documents_explode[0]['received_documents_date'] ? $received_documents_explode[0]['received_documents_date'] : '' }}">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-success btn_success_received_documents"
-                                                type="button"><i
-                                                class="fldemo glyphicon glyphicon-plus"></i>+
-                                        </button>
-                                    </div>
-                                </div>
-                                
-                                <div class="clone_received_documents hide">
-                                   
-                                    <div class="hdtuto_received_documents control-group input-group"
-                                         style="margin-top:10px">
-                                         <select name="received_documents_id[]"
-                                            class="form-control mr-3" >
+                                    <span class="d-flex">
+                                        <input type="hidden" name="received_documents_sections[]" class="myfrm form-control mr-2" value="received_documents_sections">
+                                        <select name="received_documents_id[]"
+                                            class="form-control mr-3">
                                             <option value="">Select</option>
                                             @foreach($documents as $item)
                                                 <option
-                                                    value="{{ $item->documents_name }}" {{ old('received_documents_id') == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                    value="{{ $item->documents_name }}" {{ !empty($received_documents_explode[0]['received_documents_id']) && $received_documents_explode[0]['received_documents_id']  == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                             @endforeach
                                         </select>
                                         <input type="text" name="received_documents[]"
-                                               class="myfrm form-control mr-2">
+                                            class="myfrm form-control mr-2" value="{{ !empty($received_documents_explode[0]['received_documents']) ? $received_documents_explode[0]['received_documents'] : '' }}">
                                         <input type="date" name="received_documents_date[]"
-                                               class="myfrm form-control ml-2">
+                                            class="myfrm form-control ml-2" value="{{ !empty($received_documents_explode[0]['received_documents_date']) ? $received_documents_explode[0]['received_documents_date'] : '' }}">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-danger btn_danger_received_documents"
+                                            <button class="btn btn-success btn_success_received_documents_edit"
                                                     type="button"><i
-                                                    class="fldemo glyphicon glyphicon-remove"></i> -
+                                                    class="fldemo glyphicon glyphicon-plus"></i>+
                                             </button>
                                         </div>
-                                    </div>
+                                    </span>
+                                    
                                 </div>
-
-
                                 <div class="clone_received_documents @if(count($received_documents_explode) <= 1) hide @endif">
                                     @php
                                         array_shift($received_documents_explode);
@@ -4352,6 +4426,8 @@
                                     @foreach ( $received_documents_explode as $datas)
                                     <div class="hdtuto_received_documents control-group input-group"
                                          style="margin-top:10px">
+                                        <input type="hidden" name="received_documents_sections[]" class="myfrm form-control mr-2" value="received_documents_sections">
+
                                          <select name="received_documents_id[]"
                                             class="form-control mr-3" >
                                             <option value="">Select</option>
@@ -4372,9 +4448,33 @@
                                         </div>
                                     </div>
                                     @endforeach
-                                    
-
                                 </div>
+                                <div class="clone_received_documents_edit hide">
+                                    <div class="hdtuto_received_documents control-group input-group"
+                                         style="margin-top:10px">
+                                    <input type="hidden" name="received_documents_sections[]" class="myfrm form-control mr-2" value="received_documents_sections">
+                                         <select name="received_documents_id[]"
+                                            class="form-control mr-3" >
+                                            <option value="">Select</option>
+                                            @foreach($documents as $item)
+                                                <option
+                                                    value="{{ $item->documents_name }}" {{ old('received_documents_id') == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <input type="text" name="received_documents[]"
+                                               class="myfrm form-control mr-2">
+                                        <input type="date" name="received_documents_date[]"
+                                               class="myfrm form-control ml-2">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger btn_danger_received_documents"
+                                                    type="button"><i
+                                                    class="fldemo glyphicon glyphicon-remove"></i> -
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
 
                                 @error('case_infos_received_documents_informant_name')<span
                                     class="text-danger">{{$message}}</span>@enderror
@@ -4387,6 +4487,8 @@
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
+                                    <input type="hidden" name="required_wanting_documents_sections[]"
+                   class="myfrm form-control mr-2" value="required_wanting_documents_sections">
                                     <select name="required_wanting_documents_id[]"
                                         class="form-control mr-3">
                                         <option value="">Select</option>
@@ -4400,38 +4502,12 @@
                                     <input type="date" name="required_wanting_documents_date[]"
                                            class="myfrm form-control ml-2" value="{{ !empty($required_wanting_documents_explode[0]['required_wanting_documents_date']) ? $required_wanting_documents_explode[0]['required_wanting_documents_date'] : '' }}">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-success btn_success_required_wanting_documents"
+                                        <button class="btn btn-success btn_success_required_wanting_documents_edit"
                                                 type="button"><i
                                                 class="fldemo glyphicon glyphicon-plus"></i>+
                                         </button>
                                     </div>
                                 </div>
-                                
-                                <div class="clone_required_wanting_documents hide">
-                                   
-                                    <div class="hdtuto_required_wanting_documents control-group input-group"
-                                         style="margin-top:10px">
-                                         <select name="required_wanting_documents_id[]"
-                                            class="form-control mr-3" >
-                                            <option value="">Select</option>
-                                            @foreach($documents as $item)
-                                                <option
-                                                    value="{{ $item->documents_name }}" {{ old('required_wanting_documents_id') == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <input type="text" name="required_wanting_documents[]"
-                                               class="myfrm form-control mr-2">
-                                        <input type="date" name="required_wanting_documents_date[]"
-                                               class="myfrm form-control ml-2">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-danger btn_danger_required_wanting_documents"
-                                                    type="button"><i
-                                                    class="fldemo glyphicon glyphicon-remove"></i> -
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
 
                                 <div class="clone_required_wanting_documents @if(count($required_wanting_documents_explode) <= 1) hide @endif">
                                     @php
@@ -4440,6 +4516,8 @@
                                     @foreach ( $required_wanting_documents_explode as $datas)
                                     <div class="hdtuto_required_wanting_documents control-group input-group"
                                          style="margin-top:10px">
+                                         <input type="hidden" name="required_wanting_documents_sections[]"
+                   class="myfrm form-control mr-2" value="required_wanting_documents_sections">
                                          <select name="required_wanting_documents_id[]"
                                             class="form-control mr-3" >
                                             <option value="">Select</option>
@@ -4462,6 +4540,31 @@
                                     @endforeach
                                     
 
+                                </div>
+                                <div class="clone_required_wanting_documents_edit hide">
+                                    <div class="hdtuto_required_wanting_documents control-group input-group"
+                                         style="margin-top:10px">
+                                         <input type="hidden" name="required_wanting_documents_sections[]"
+                   class="myfrm form-control mr-2" value="required_wanting_documents_sections">
+                                         <select name="required_wanting_documents_id[]"
+                                            class="form-control mr-3" >
+                                            <option value="">Select</option>
+                                            @foreach($documents as $item)
+                                                <option
+                                                    value="{{ $item->documents_name }}" {{ old('required_wanting_documents_id') == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <input type="text" name="required_wanting_documents[]"
+                                               class="myfrm form-control mr-2">
+                                        <input type="date" name="required_wanting_documents_date[]"
+                                               class="myfrm form-control ml-2">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger btn_danger_required_wanting_documents"
+                                                    type="button"><i
+                                                    class="fldemo glyphicon glyphicon-remove"></i> -
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 @error('case_infos_required_wanting_documents_informant_name')<span
@@ -4503,350 +4606,404 @@
                     <input type="hidden" value="case_steps" name="case_steps">
                     <div class="card-body">
 
-                        {{-- <h6 class="text-uppercase text-bold"><u> Case Steps </u>
-                        </h6> --}}
+
+
                         <h6 class="text-uppercase text-bold">
                             <div class="row">
-                                <div class="col-md-4"><u> Case Steps </u></div>
+                                <div class="col-md-3"><u> Case Steps </u></div>
                                 <div class="col-md-3">Date</div>
                                 <div class="col-md-3">Note</div>
-                                <div class="col-md-2">Yes/No</div>
+                                <div class="col-md-1">ORG</div>
+                                <div class="col-md-1">CC</div>
+                                <div class="col-md-1" style="padding-left:1px;">Copy</div>
                             </div>
                         </h6>
+
+
                         <div class="form-group row">
-                            <label for="case_steps_filing" class="col-sm-4 col-form-label"> Filing
+                            <label for="case_steps_filing" class="col-sm-3 col-form-label"> Filing
                                 Date </label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="case_steps_filing"
-                                    name="case_steps_filing" value="{{ $edit_case_steps->case_steps_filing }}"
-                                    readonly>
-                                @error('case_steps_filing')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="text" class="form-control"
+                                       id="case_steps_filing"
+                                       name="case_steps_filing"
+                                       value="{{ $edit_case_steps->case_steps_filing }}" readonly>
+                                @error('case_steps_filing')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="case_steps_filing_copy"
-                                    name="case_steps_filing_copy"
-                                    value="{{ $edit_case_steps->case_steps_filing_copy }}">
-                                @error('case_steps_filing_copy')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="text" class="form-control"
+                                       id="case_steps_filing_note"
+                                       name="case_steps_filing_note"
+                                       value="{{ $edit_case_steps->case_steps_filing_note }}">
+                                @error('case_steps_filing_note')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
-                            <div class="col-sm-2">
-                                <input type="checkbox" class="form-control" id="case_steps_filing_yes_no"
-                                    name="case_steps_filing_yes_no"
-                                    {{ $edit_case_steps->case_steps_filing_yes_no == 'Yes' ? 'checked' : '' }}>
-                                @error('case_steps_filing_yes_no')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_filing_org"
+                                       name="case_steps_filing_org" {{ $edit_case_steps->case_steps_filing_org == '1' ? 'checked' : '' }} >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_filing_cc"
+                                       name="case_steps_filing_cc" {{ $edit_case_steps->case_steps_filing_cc == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_filing_copy"
+                                       name="case_steps_filing_copy" {{ $edit_case_steps->case_steps_filing_copy == '1' ? 'checked' : '' }}
+                                       >
+                                @error('case_steps_filing_copy')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                         </div>
 
                         <div class="form-group row">
-                            <label for="taking_cognizance" class="col-sm-4 col-form-label"> Taking Cognizance </label>
+                            <label for="taking_cognizance" class="col-sm-3 col-form-label"> Taking Cognizance </label>
                             <div class="col-sm-3">
                                 <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
-                                        onchange="setCorrect(this,'taking_cognizance');">
-                                    <input type="text" id="taking_cognizance" name="taking_cognizance"
-                                        value="{{ $edit_case_steps->taking_cognizance }}"
-                                        class="date_second_input_steps" tabindex="-1">
+                                           onchange="setCorrect(this,'taking_cognizance');">
+                                    <input type="text" id="taking_cognizance" name="taking_cognizance" 
+                                         class="date_second_input_steps" @if ($edit_case_steps->taking_cognizance) value="{{ $edit_case_steps->taking_cognizance }}" @else value="dd-mm-yyyy" @endif 
+                                           tabindex="-1">
                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                 </span>
-                                @error('taking_cognizance')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                @error('taking_cognizance')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="taking_cognizance_copy"
-                                    name="taking_cognizance_copy"
-                                    value="{{ $edit_case_steps->taking_cognizance_copy }}">
-                                @error('taking_cognizance_copy')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="text" class="form-control"
+                                       id="taking_cognizance_note"
+                                       name="taking_cognizance_note"
+                                       value="{{ $edit_case_steps->taking_cognizance_note }}">
+                                @error('taking_cognizance_note')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
-                            <div class="col-sm-2">
-                                <input type="checkbox" class="form-control" id="taking_cognizance_yes_no"
-                                    name="taking_cognizance_yes_no"
-                                    {{ $edit_case_steps->taking_cognizance_yes_no == 'Yes' ? 'checked' : '' }}>
-                                @error('taking_cognizance_yes_no')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="checkbox" class="form-control col-sm-1"
+                                       id="taking_cognizance_org"
+                                       name="taking_cognizance_org" {{ $edit_case_steps->taking_cognizance_org == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="taking_cognizance_cc"
+                                       name="taking_cognizance_cc" {{ $edit_case_steps->taking_cognizance_cc == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="taking_cognizance_copy"
+                                       name="taking_cognizance_copy" {{ $edit_case_steps->taking_cognizance_copy == '1' ? 'checked' : '' }}
+                                       >
+                                @error('taking_cognizance_yes_no')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
-                        </div>
                         <div class="form-group row">
-                            <label for="arrest_surrender_cw" class="col-sm-4 col-form-label"> Arrest/Surrender/C.W.
-                            </label>
+                            <label for="arrest_surrender_cw" class="col-sm-3 col-form-label"> Arrest/Surrender/C.W.</label>
                             <div class="col-sm-3">
                                 <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
-                                        onchange="setCorrect(this,'arrest_surrender_cw');">
+                                           onchange="setCorrect(this,'arrest_surrender_cw');">
                                     <input type="text" id="arrest_surrender_cw" name="arrest_surrender_cw"
-                                        value="{{ $edit_case_steps->arrest_surrender_cw }}"
-                                        class="date_second_input_steps" tabindex="-1">
+                                    @if ($edit_case_steps->arrest_surrender_cw) value="{{ $edit_case_steps->arrest_surrender_cw }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps" 
+                                           tabindex="-1">
                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                 </span>
-                                @error('arrest_surrender_cw')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                @error('arrest_surrender_cw')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="arrest_surrender_cw_copy"
-                                    name="arrest_surrender_cw_copy"
-                                    value="{{ $edit_case_steps->arrest_surrender_cw_copy }}">
-                                @error('arrest_surrender_cw_copy')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="text" class="form-control"
+                                       id="arrest_surrender_cw_note"
+                                       name="arrest_surrender_cw_note"
+                                       value="{{ $edit_case_steps->arrest_surrender_cw_note }}">
+                                @error('arrest_surrender_cw_note')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
-                            <div class="col-sm-2">
-                                <input type="checkbox" class="form-control" id="arrest_surrender_cw_yes_no"
-                                    name="arrest_surrender_cw_yes_no"
-                                    {{ $edit_case_steps->arrest_surrender_cw_yes_no == 'Yes' ? 'checked' : '' }}>
-                                @error('arrest_surrender_cw_yes_no')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                <input type="checkbox" class="form-control col-sm-1"
+                                       id="arrest_surrender_cw_org"
+                                       name="arrest_surrender_cw_org" {{ $edit_case_steps->arrest_surrender_cw_org == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="arrest_surrender_cw_cc"
+                                       name="arrest_surrender_cw_cc" {{ $edit_case_steps->arrest_surrender_cw_cc == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="arrest_surrender_cw_copy"
+                                       name="arrest_surrender_cw_copy" {{ $edit_case_steps->arrest_surrender_cw_copy == '1' ? 'checked' : '' }}
+                                       >
+                                @error('arrest_surrender_cw_yes_no')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            
                         </div>
                         <div class="form-group row">
-                            <label for="case_steps_bail" class="col-sm-4 col-form-label"> Bail </label>
+                            <label for="case_steps_bail" class="col-sm-3 col-form-label"> Bail </label>
                             <div class="col-sm-3">
                                 <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
-                                        onchange="setCorrect(this,'case_steps_bail');">
+                                           onchange="setCorrect(this,'case_steps_bail');">
                                     <input type="text" id="case_steps_bail" name="case_steps_bail"
-                                        value="{{ $edit_case_steps->case_steps_bail }}"
-                                        class="date_second_input_steps" tabindex="-1">
+                                    @if ($edit_case_steps->case_steps_bail) value="{{ $edit_case_steps->case_steps_bail }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
+                                           tabindex="-1">
                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                 </span>
-                                @error('case_steps_bail')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                @error('case_steps_bail')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="case_steps_bail_copy"
-                                    name="case_steps_bail_copy"
-                                    value="{{ $edit_case_steps->case_steps_bail_copy }}">
-                                @error('case_steps_bail_copy')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="text" class="form-control"
+                                       id="case_steps_bail_note"
+                                       name="case_steps_bail_note"
+                                       value="{{ $edit_case_steps->case_steps_bail_note }}">
+                                @error('case_steps_bail_note')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
-                            <div class="col-sm-2">
-                                <input type="checkbox" class="form-control" id="case_steps_bail_yes_no"
-                                    name="case_steps_bail_yes_no"
-                                    {{ $edit_case_steps->case_steps_bail_yes_no == 'Yes' ? 'checked' : '' }}>
-                                @error('case_steps_bail_yes_no')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_bail_org"
+                                       name="case_steps_bail_org" {{ $edit_case_steps->case_steps_bail_org == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_bail_cc"
+                                       name="case_steps_bail_cc" {{ $edit_case_steps->case_steps_bail_cc == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_bail_copy"
+                                       name="case_steps_bail_copy" {{ $edit_case_steps->case_steps_bail_copy == '1' ? 'checked' : '' }}
+                                       >
+                                @error('case_steps_bail_copy')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                         </div>
                         <div class="form-group row">
-                            <label for="case_steps_court_transfer" class="col-sm-4 col-form-label"> Court Transfer
-                            </label>
+                            <label for="case_steps_court_transfer" class="col-sm-3 col-form-label"> Court Transfer </label>
                             <div class="col-sm-3">
                                 <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
-                                        onchange="setCorrect(this,'case_steps_court_transfer');">
-                                    <input type="text" id="case_steps_court_transfer"
-                                        name="case_steps_court_transfer"
-                                        value="{{ $edit_case_steps->case_steps_court_transfer }}"
-                                        class="date_second_input_steps" tabindex="-1">
+                                           onchange="setCorrect(this,'case_steps_court_transfer');">
+                                    <input type="text" id="case_steps_court_transfer" name="case_steps_court_transfer"
+                                    @if ($edit_case_steps->case_steps_court_transfer) value="{{ $edit_case_steps->case_steps_court_transfer }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
+                                           tabindex="-1">
                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                 </span>
-                                @error('case_steps_court_transfer')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                @error('case_steps_court_transfer')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="case_steps_court_transfer_copy"
-                                    name="case_steps_court_transfer_copy"
-                                    value="{{ $edit_case_steps->case_steps_court_transfer_copy }}">
-                                @error('case_steps_court_transfer_copy')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="text" class="form-control"
+                                       id="case_steps_court_transfer_note"
+                                       name="case_steps_court_transfer_note"
+                                       value="{{ $edit_case_steps->case_steps_court_transfer_note }}">
+                                @error('case_steps_court_transfer_note')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
-                            <div class="col-sm-2">
-                                <input type="checkbox" class="form-control" id="case_steps_court_transfer_yes_no"
-                                    name="case_steps_court_transfer_yes_no"
-                                    {{ $edit_case_steps->case_steps_court_transfer_yes_no == 'Yes' ? 'checked' : '' }}>
-                                @error('case_steps_court_transfer_yes_no')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_court_transfer_org"
+                                       name="case_steps_court_transfer_org" {{ $edit_case_steps->case_steps_court_transfer_org == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_court_transfer_cc"
+                                       name="case_steps_court_transfer_cc" {{ $edit_case_steps->case_steps_court_transfer_cc == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_court_transfer_copy"
+                                       name="case_steps_court_transfer_copy" {{ $edit_case_steps->case_steps_court_transfer_copy == '1' ? 'checked' : '' }}
+                                       >
+                                @error('case_steps_court_transfer_yes_no')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                           
                         </div>
                         <div class="form-group row">
-                            <label for="case_steps_charge_framed" class="col-sm-4 col-form-label"> Charge Framed
-                            </label>
+                            <label for="case_steps_charge_framed" class="col-sm-3 col-form-label"> Charge Framed </label>
                             <div class="col-sm-3">
                                 <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
-                                        onchange="setCorrect(this,'case_steps_charge_framed');">
-                                    <input type="text" id="case_steps_charge_framed"
-                                        name="case_steps_charge_framed"
-                                        value="{{ $edit_case_steps->case_steps_charge_framed }}"
-                                        class="date_second_input_steps" tabindex="-1">
+                                           onchange="setCorrect(this,'case_steps_charge_framed');">
+                                    <input type="text" id="case_steps_charge_framed" name="case_steps_charge_framed"
+                                    @if ($edit_case_steps->case_steps_charge_framed) value="{{ $edit_case_steps->case_steps_charge_framed }}" @else value="dd-mm-yyyy" @endif  class="date_second_input_steps"
+                                           tabindex="-1">
                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                 </span>
-                                @error('case_steps_charge_framed')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                @error('case_steps_charge_framed')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="case_steps_charge_framed_copy"
-                                    name="case_steps_charge_framed_copy"
-                                    value="{{ $edit_case_steps->case_steps_charge_framed_copy }}">
-                                @error('case_steps_charge_framed_copy')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="text" class="form-control"
+                                       id="case_steps_charge_framed_note"
+                                       name="case_steps_charge_framed_note"
+                                       value="{{ $edit_case_steps->case_steps_charge_framed_note }}">
+                                @error('case_steps_charge_framed_note')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
-                            <div class="col-sm-2">
-                                <input type="checkbox" class="form-control" id="case_steps_charge_framed_yes_no"
-                                    name="case_steps_charge_framed_yes_no"
-                                    {{ $edit_case_steps->case_steps_charge_framed_yes_no == 'Yes' ? 'checked' : '' }}>
-                                @error('case_steps_charge_framed_yes_no')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_charge_framed_org"
+                                       name="case_steps_charge_framed_org" {{ $edit_case_steps->case_steps_charge_framed_org == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_charge_framed_cc"
+                                       name="case_steps_charge_framed_cc" {{ $edit_case_steps->case_steps_charge_framed_cc == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_charge_framed_copy"
+                                       name="case_steps_charge_framed_copy" {{ $edit_case_steps->case_steps_charge_framed_copy == '1' ? 'checked' : '' }}
+                                       >
+                                @error('case_steps_charge_framed_yes_no')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            
                         </div>
                         <div class="form-group row">
-                            <label for="case_steps_witness_from" class="col-sm-4 col-form-label"> Witness (From)
-                            </label>
+                            <label for="case_steps_witness_from" class="col-sm-3 col-form-label"> Witness (From) </label>
                             <div class="col-sm-3">
                                 <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
-                                        onchange="setCorrect(this,'case_steps_witness_from');">
+                                           onchange="setCorrect(this,'case_steps_witness_from');">
                                     <input type="text" id="case_steps_witness_from" name="case_steps_witness_from"
-                                        value="{{ $edit_case_steps->case_steps_witness_from }}"
-                                        class="date_second_input_steps" tabindex="-1">
+                                    @if ($edit_case_steps->case_steps_witness_from) value="{{ $edit_case_steps->case_steps_witness_from }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
+                                           tabindex="-1">
                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                 </span>
-                                @error('case_steps_witness_from')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                @error('case_steps_witness_from')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="case_steps_witness_from_copy"
-                                    name="case_steps_witness_from_copy"
-                                    value="{{ $edit_case_steps->case_steps_witness_from_copy }}">
-                                @error('case_steps_witness_from_copy')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="text" class="form-control"
+                                       id="case_steps_witness_from_note"
+                                       name="case_steps_witness_from_note"
+                                       value="{{ $edit_case_steps->case_steps_witness_from_note }}">
+                                @error('case_steps_witness_from_note')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
-                            <div class="col-sm-2">
-                                <input type="checkbox" class="form-control" id="case_steps_witness_from_yes_no"
-                                    name="case_steps_witness_from_yes_no"
-                                    {{ $edit_case_steps->case_steps_witness_from_yes_no == 'Yes' ? 'checked' : '' }}>
-                                @error('case_steps_witness_from_yes_no')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_witness_from_org"
+                                       name="case_steps_witness_from_org" {{ $edit_case_steps->case_steps_witness_from_org == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_witness_from_cc"
+                                       name="case_steps_witness_from_cc" {{ $edit_case_steps->case_steps_witness_from_cc == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_witness_from_copy"
+                                       name="case_steps_witness_from_copy" {{ $edit_case_steps->case_steps_witness_from_copy == '1' ? 'checked' : '' }}
+                                       >
+                                @error('case_steps_witness_from_yes_no')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            
                         </div>
                         <div class="form-group row">
-                            <label for="case_steps_witness_to" class="col-sm-4 col-form-label"> Witness (To) </label>
+                            <label for="case_steps_witness_to" class="col-sm-3 col-form-label"> Witness (To) </label>
                             <div class="col-sm-3">
                                 <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
-                                        onchange="setCorrect(this,'case_steps_witness_to');">
+                                           onchange="setCorrect(this,'case_steps_witness_to');">
                                     <input type="text" id="case_steps_witness_to" name="case_steps_witness_to"
-                                        value="{{ $edit_case_steps->case_steps_witness_to }}"
-                                        class="date_second_input_steps" tabindex="-1">
+                                    @if ($edit_case_steps->case_steps_witness_to) value="{{ $edit_case_steps->case_steps_witness_to }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
+                                           tabindex="-1">
                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                 </span>
-                                @error('case_steps_witness_to')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                @error('case_steps_witness_to')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="case_steps_witness_to_copy"
-                                    name="case_steps_witness_to_copy"
-                                    value="{{ $edit_case_steps->case_steps_witness_to_copy }}">
-                                @error('case_steps_witness_to_copy')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="text" class="form-control"
+                                       id="case_steps_witness_to_note"
+                                       name="case_steps_witness_to_note"
+                                       value="{{ $edit_case_steps->case_steps_witness_to_note }}">
+                                @error('case_steps_witness_to_note')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
-                            <div class="col-sm-2">
-                                <input type="checkbox" class="form-control" id="case_steps_witness_to_yes_no"
-                                    name="case_steps_witness_to_yes_no"
-                                    {{ $edit_case_steps->case_steps_witness_to_yes_no == 'Yes' ? 'checked' : '' }}>
-                                @error('case_steps_witness_to_yes_no')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_witness_to_org"
+                                       name="case_steps_witness_to_org" {{ $edit_case_steps->case_steps_witness_to_org == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_witness_to_cc"
+                                       name="case_steps_witness_to_cc" {{ $edit_case_steps->case_steps_witness_to_cc == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_witness_to_copy"
+                                       name="case_steps_witness_to_copy" {{ $edit_case_steps->case_steps_witness_to_copy == '1' ? 'checked' : '' }}
+                                       >
+                                @error('case_steps_witness_to_yes_no')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            
                         </div>
                         <div class="form-group row">
-                            <label for="case_steps_argument" class="col-sm-4 col-form-label"> Argument </label>
+                            <label for="case_steps_argument" class="col-sm-3 col-form-label"> Argument </label>
                             <div class="col-sm-3">
                                 <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
-                                        onchange="setCorrect(this,'case_steps_argument');">
+                                           onchange="setCorrect(this,'case_steps_argument');">
                                     <input type="text" id="case_steps_argument" name="case_steps_argument"
-                                        value="{{ $edit_case_steps->case_steps_argument }}"
-                                        class="date_second_input_steps" tabindex="-1">
+                                    @if ($edit_case_steps->case_steps_argument) value="{{ $edit_case_steps->case_steps_argument }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
+                                           tabindex="-1">
                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                 </span>
-                                @error('case_steps_argument')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                @error('case_steps_argument')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="case_steps_argument_copy"
-                                    name="case_steps_argument_copy"
-                                    value="{{ $edit_case_steps->case_steps_argument_copy }}">
-                                @error('case_steps_argument_copy')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="text" class="form-control"
+                                       id="case_steps_argument_note"
+                                       name="case_steps_argument_note"
+                                       value="{{ $edit_case_steps->case_steps_argument_note }}">
+                                @error('case_steps_argument_note')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
-                            <div class="col-sm-2">
-                                <input type="checkbox" class="form-control" id="case_steps_argument_yes_no"
-                                    name="case_steps_argument_yes_no"
-                                    {{ $edit_case_steps->case_steps_argument_yes_no == 'Yes' ? 'checked' : '' }}>
-                                @error('case_steps_argument_yes_no')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_argument_org"
+                                       name="case_steps_argument_org" {{ $edit_case_steps->case_steps_argument_org == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_argument_cc"
+                                       name="case_steps_argument_cc" {{ $edit_case_steps->case_steps_argument_cc == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_argument_copy"
+                                       name="case_steps_argument_copy" {{ $edit_case_steps->case_steps_argument_copy == '1' ? 'checked' : '' }}
+                                       >
+                                @error('case_steps_argument_yes_no')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            
                         </div>
                         <div class="form-group row">
-                            <label for="case_steps_judgement_order" class="col-sm-4 col-form-label"> Judgement &
+                            <label for="case_steps_judgement_order" class="col-sm-3 col-form-label"> Judgement &
                                 Order </label>
                             <div class="col-sm-3">
                                 <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
-                                        onchange="setCorrect(this,'case_steps_judgement_order');">
-                                    <input type="text" id="case_steps_judgement_order"
-                                        name="case_steps_judgement_order"
-                                        value="{{ $edit_case_steps->case_steps_judgement_order }}"
-                                        class="date_second_input_steps" tabindex="-1">
+                                           onchange="setCorrect(this,'case_steps_judgement_order');">
+                                    <input type="text" id="case_steps_judgement_order" name="case_steps_judgement_order"
+                                    @if ($edit_case_steps->case_steps_judgement_order) value="{{ $edit_case_steps->case_steps_judgement_order }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
+                                           tabindex="-1">
                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                 </span>
-                                @error('case_steps_judgement_order')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                @error('case_steps_judgement_order')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="case_steps_judgement_order_copy"
-                                    name="case_steps_judgement_order_copy"
-                                    value="{{ $edit_case_steps->case_steps_judgement_order_copy }}">
-                                @error('case_steps_judgement_order_copy')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="text" class="form-control"
+                                       id="case_steps_judgement_order_note"
+                                       name="case_steps_judgement_order_note"
+                                       value="{{ $edit_case_steps->case_steps_judgement_order_note }}">
+                                @error('case_steps_judgement_order_note')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
-                            <div class="col-sm-2">
-                                <input type="checkbox"
-                                    {{ $edit_case_steps->case_steps_judgement_order_yes_no == 'Yes' ? 'checked' : '' }}
-                                    class="form-control" id="case_steps_judgement_order_yes_no"
-                                    name="case_steps_judgement_order_yes_no">
-                                @error('case_steps_judgement_order_yes_no')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_judgement_order_org"
+                                       name="case_steps_judgement_order_org" {{ $edit_case_steps->case_steps_judgement_order_org == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_judgement_order_cc"
+                                       name="case_steps_judgement_order_cc" {{ $edit_case_steps->case_steps_judgement_order_cc == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_judgement_order_copy"
+                                       name="case_steps_judgement_order_copy" {{ $edit_case_steps->case_steps_judgement_order_copy == '1' ? 'checked' : '' }}
+                                       >
+                                @error('case_steps_judgement_order_yes_no')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            
                         </div>
+
                         <div class="form-group row">
-                            <label for="case_steps_summary_of_cases" class="col-sm-4 col-form-label"> Summary of Case </label>
+                            <label for="case_steps_summary_of_cases" class="col-sm-3 col-form-label"> Summary of Case </label>
                             <div class="col-sm-3">
                                 <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'case_steps_summary_of_cases');">
                                     <input type="text" id="case_steps_summary_of_cases" name="case_steps_summary_of_cases"
-                                    value="{{  $edit_case_steps->case_steps_summary_of_cases }}" class="date_second_input_steps"
+                                    @if ($edit_case_steps->case_steps_summary_of_cases) value="{{ $edit_case_steps->case_steps_summary_of_cases }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
                                            tabindex="-1">
                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                 </span>
@@ -4855,30 +5012,50 @@
                             </div>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control"
-                                       id="case_steps_summary_of_cases_copy"
-                                       name="case_steps_summary_of_cases_copy"
-                                       value="{{$edit_case_steps->case_steps_summary_of_cases_copy}}">
-                                @error('case_steps_summary_of_cases_copy')<span
+                                       id="case_steps_summary_of_cases_note"
+                                       name="case_steps_summary_of_cases_note"
+                                       value="{{ $edit_case_steps->case_steps_summary_of_cases_note }}">
+                                @error('case_steps_summary_of_cases_note')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                            <div class="col-sm-2">
-                                <input type="checkbox" class="form-control"
-                                       id="case_steps_summary_of_cases_yes_no"
-                                       name="case_steps_summary_of_cases_yes_no"
-                                       {{ $edit_case_steps->case_steps_summary_of_cases_yes_no == 'Yes' ? 'checked': '' }}>
+                                <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_summary_of_cases_org"
+                                       name="case_steps_summary_of_cases_org" {{ $edit_case_steps->case_steps_summary_of_cases_org == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_summary_of_cases_cc"
+                                       name="case_steps_summary_of_cases_cc" {{ $edit_case_steps->case_steps_summary_of_cases_cc == '1' ? 'checked' : '' }}
+                                       >
+                                       <input type="checkbox" class="form-control col-sm-1"
+                                       id="case_steps_summary_of_cases_copy"
+                                       name="case_steps_summary_of_cases_copy" {{ $edit_case_steps->case_steps_summary_of_cases_copy == '1' ? 'checked' : '' }}
+                                       >
                                 @error('case_steps_summary_of_cases_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
-                            </div>
+                            
                         </div>
+                        
                         <div class="form-group row">
-                            <label for="case_steps_remarks" class="col-sm-4 col-form-label"> Remarks </label>
-                            <div class="col-sm-8">
-                                <textarea name="case_steps_remarks" class="form-control" rows="3" placeholder="">{{ $edit_case_steps->case_steps_remarks }}</textarea>
-                                @error('case_steps_remarks')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                            <label for="case_steps_remarks"
+                                   class="col-sm-3 col-form-label"> Remarks </label>
+                            <div class="col-sm-9">
+                            <textarea name="case_steps_remarks" class="form-control"
+                                      rows="3"
+                                      placeholder="">{{ $edit_case_steps->case_steps_remarks }}</textarea>
+                                @error('case_steps_remarks')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
+
+
+
+                        
+
+
+
+
+
+
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             <div class="float-right">

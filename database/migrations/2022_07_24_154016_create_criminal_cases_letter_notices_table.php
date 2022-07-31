@@ -19,10 +19,10 @@ class CreateCriminalCasesLetterNoticesTable extends Migration
             $table->string('letter_notice_date')->nullable();
             $table->string('letter_notice_documents_id')->nullable();
             $table->string('letter_notice_documents_write')->nullable();
-            $table->string('letter_notice_particulars_id')->nullable();
             $table->string('letter_notice_particulars_write')->nullable();
             $table->string('letter_notice_org')->nullable();
-            $table->string('letter_notice_pht')->nullable();
+            $table->string('letter_notice_cc')->nullable();
+            $table->string('letter_notice_copy')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

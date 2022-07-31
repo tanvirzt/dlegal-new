@@ -184,8 +184,8 @@ class CriminalCasesController extends Controller
         // $key = array_key_last(($request->case_infos_complainant_informant_name));
         // $element[$key-1];
 
-    //    $data = json_decode(json_encode($request->all()));
-    //    echo "<pre>";print_r($data);die();
+       $data = json_decode(json_encode($request->all()));
+       echo "<pre>";print_r($data);die();
 
 
        $received_documents_sections = $request->received_documents_sections;
@@ -194,8 +194,10 @@ class CriminalCasesController extends Controller
        $required_wanting_documents_sections = $request->required_wanting_documents_sections;
        $remove = array_pop($required_wanting_documents_sections);  
 
+       $letter_notice_sections = $request->letter_notice_sections;
+       $remove = array_pop($letter_notice_sections);  
 
-// dd($required_wanting_documents_sections);
+// dd($letter_notice_sections);
 
 //        $rules = [
 //            'case_no' => 'required|unique:criminal_cases',
@@ -479,7 +481,6 @@ $created_case_id = 'LCR-000'.$sl;
         // $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN'  ? null : $request->case_steps_summary_of_cases;
         // $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy;
         // $steps->case_steps_summary_of_cases_yes_no = $request->case_steps_summary_of_cases_yes_no ? 'Yes' : 'No';
-
         // $steps->case_steps_remarks = $request->case_steps_remarks;
 
         $steps->save();
@@ -516,16 +517,16 @@ $created_case_id = 'LCR-000'.$sl;
             $required->save();
         }
 
-        foreach ( array_filter($request->letter_notice_date) as $key => $value ){
+        foreach ( array_filter($letter_notice_sections) as $key => $value ){
             $required = new CriminalCasesLetterNotice();
             $required->case_id = $data->id;
-            $required->letter_notice_date = $value;
+            $required->letter_notice_date = $request->letter_notice_date[$key];;
             $required->letter_notice_documents_id = $request->letter_notice_documents_id[$key];
             $required->letter_notice_documents_write = $request->letter_notice_documents_write[$key];
-            $required->letter_notice_particulars_id = $request->letter_notice_particulars_id[$key];
             $required->letter_notice_particulars_write = $request->letter_notice_particulars_write[$key];
             $required->letter_notice_org = isset($request->letter_notice_org[$key]) == '1' ? '1' : '0';
-            $required->letter_notice_pht = isset($request->letter_notice_pht[$key]) == '1' ? '1' : '0';
+            $required->letter_notice_cc = isset($request->letter_notice_cc[$key]) == '1' ? '1' : '0';
+            $required->letter_notice_copy = isset($request->letter_notice_copy[$key]) == '1' ? '1' : '0';
             $required->save();
         }
 
@@ -627,7 +628,7 @@ $created_case_id = 'LCR-000'.$sl;
         $exist_engaged_advocate = SetupExternalCouncil::where('id',$data->lawyer_advocate_id)->get();
         $exist_engaged_advocate_associates = SetupExternalCouncilAssociate::where(['delete_status'=>0])->get();
         $edit_case_steps = CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
-        dd($edit_case_steps);
+        // dd($edit_case_steps);
         $previous_activity = CriminalCaseStatusLog::latest()->where(['case_id'=> $id, 'delete_status' => 0])->first();
         $particulars = SetupParticulars::where('delete_status',0)->orderBy('particulars_name','asc')->get();
         
@@ -731,7 +732,7 @@ $case_no_data = DB::table('criminal_cases')
         $required_wanting_documents_explode = CriminalCasesDocumentsRequired::where('case_id',$id)->get()->toArray();
         $letter_notice_explode = CriminalCasesLetterNotice::where('case_id',$id)->get()->toArray();
         
-        // dd($received_documents_explode);
+        // dd($letter_notice_explode);
 
         return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('required_wanting_documents_explode','received_documents_date_explode','received_documents_write_explode','exist_court_short','data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'received_documents_explode', 'required_documents_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','previous_activity','opposition_existing_district','opposition_existing_thana','cabinet','case_no_data','exist_case_type','particulars','letter_notice_explode'));
     }
@@ -740,6 +741,15 @@ $case_no_data = DB::table('criminal_cases')
     {
 
 // dd($request->all());
+
+        $received_documents_sections = $request->received_documents_sections;
+        $remove = !empty($received_documents_sections) ? array_pop($received_documents_sections) : '';  
+
+        $required_wanting_documents_sections = $request->required_wanting_documents_sections;
+        $remove = !empty($required_wanting_documents_sections) ? array_pop($required_wanting_documents_sections) : '';  
+
+        $letter_notice_sections = $request->letter_notice_sections;
+        $remove = array_pop($letter_notice_sections);  
 
         if ($request->received_date != 'dd-mm-yyyy') {
             $received_date_explode = explode('-', $request->received_date);
@@ -908,43 +918,63 @@ $case_no_data = DB::table('criminal_cases')
             $steps->summary_facts = $request->summary_facts;
             $steps->case_info_remarks = $request->case_info_remarks;
 
+
             $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
-            $steps->case_steps_filing_copy = $request->case_steps_filing_copy;
-            $steps->case_steps_filing_yes_no = $request->case_steps_filing_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_filing_note = $request->case_steps_filing_note;
+            $steps->case_steps_filing_org = $request->case_steps_filing_org == 'on' ? '1' : '0';
+            $steps->case_steps_filing_cc = $request->case_steps_filing_cc == 'on' ? '1' : '0';
+            $steps->case_steps_filing_copy = $request->case_steps_filing_copy == 'on' ? '1' : '0';
             $steps->taking_cognizance = $request->taking_cognizance == 'dd-mm-yyyy' || $request->taking_cognizance == 'NaN-NaN-NaN' ? null : $request->taking_cognizance;
-            $steps->taking_cognizance_copy = $request->taking_cognizance_copy;
-            $steps->taking_cognizance_yes_no = $request->taking_cognizance_yes_no ? 'Yes' : 'No';
+            $steps->taking_cognizance_note = $request->taking_cognizance_note;
+            $steps->taking_cognizance_org = $request->taking_cognizance_org  == 'on' ? '1' : '0';
+            $steps->taking_cognizance_cc = $request->taking_cognizance_cc  == 'on' ? '1' : '0';
+            $steps->taking_cognizance_copy = $request->taking_cognizance_copy == 'on' ? '1' : '0';
             $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd-mm-yyyy' || $request->arrest_surrender_cw == 'NaN-NaN-NaN' ? null : $request->arrest_surrender_cw;
-            $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy;
-            $steps->arrest_surrender_cw_yes_no = $request->arrest_surrender_cw_yes_no ? 'Yes' : 'No';
+            $steps->arrest_surrender_cw_note = $request->arrest_surrender_cw_note;
+            $steps->arrest_surrender_cw_org = $request->arrest_surrender_cw_org == 'on' ? '1' : '0';
+            $steps->arrest_surrender_cw_cc = $request->arrest_surrender_cw_cc == 'on' ? '1' : '0';
+            $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy == 'on' ? '1' : '0';
             $steps->case_steps_bail = $request->case_steps_bail == 'dd-mm-yyyy' || $request->case_steps_bail == 'NaN-NaN-NaN' ? null : $request->case_steps_bail;
-            $steps->case_steps_bail_copy = $request->case_steps_bail_copy;
-            $steps->case_steps_bail_yes_no = $request->case_steps_bail_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_bail_note = $request->case_steps_bail_note;
+            $steps->case_steps_bail_org = $request->case_steps_bail_org == 'on' ? '1' : '0';
+            $steps->case_steps_bail_cc = $request->case_steps_bail_cc == 'on' ? '1' : '0';
+            $steps->case_steps_bail_copy = $request->case_steps_bail_copy == 'on' ? '1' : '0';
             $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd-mm-yyyy' || $request->case_steps_court_transfer == 'NaN-NaN-NaN' ? null : $request->case_steps_court_transfer;
-            $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy;
-            $steps->case_steps_court_transfer_yes_no = $request->case_steps_court_transfer_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_court_transfer_note = $request->case_steps_court_transfer_note;
+            $steps->case_steps_court_transfer_org = $request->case_steps_court_transfer_org == 'on' ? '1' : '0';
+            $steps->case_steps_court_transfer_cc = $request->case_steps_court_transfer_cc == 'on' ? '1' : '0';
+            $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy == 'on' ? '1' : '0';
             $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd-mm-yyyy' || $request->case_steps_charge_framed == 'NaN-NaN-NaN' ? null : $request->case_steps_charge_framed;
-            $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy;
-            $steps->case_steps_charge_framed_yes_no = $request->case_steps_charge_framed_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_charge_framed_note = $request->case_steps_charge_framed_note;
+            $steps->case_steps_charge_framed_org = $request->case_steps_charge_framed_org == 'on' ? '1' : '0';
+            $steps->case_steps_charge_framed_cc = $request->case_steps_charge_framed_cc == 'on' ? '1' : '0';
+            $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy == 'on' ? '1' : '0';
             $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd-mm-yyyy' || $request->case_steps_witness_from == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_from;
-            $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy;
-            $steps->case_steps_witness_from_yes_no = $request->case_steps_witness_from_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_witness_from_note = $request->case_steps_witness_from_note;
+            $steps->case_steps_witness_from_org = $request->case_steps_witness_from_org == 'on' ? '1' : '0';
+            $steps->case_steps_witness_from_cc = $request->case_steps_witness_from_cc == 'on' ? '1' : '0';
+            $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy == 'on' ? '1' : '0';
             $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd-mm-yyyy' || $request->case_steps_witness_to == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_to;
-            $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy;
-            $steps->case_steps_witness_to_yes_no = $request->case_steps_witness_to_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_witness_to_note = $request->case_steps_witness_to_note;
+            $steps->case_steps_witness_to_org = $request->case_steps_witness_to_org == 'on' ? '1' : '0';
+            $steps->case_steps_witness_to_cc = $request->case_steps_witness_to_cc == 'on' ? '1' : '0';
+            $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy == 'on' ? '1' : '0';
             $steps->case_steps_argument = $request->case_steps_argument == 'dd-mm-yyyy' || $request->case_steps_argument == 'NaN-NaN-NaN' ? null : $request->case_steps_argument;
-            $steps->case_steps_argument_copy = $request->case_steps_argument_copy;
-            $steps->case_steps_argument_yes_no = $request->case_steps_argument_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN'  ? null : $request->case_steps_judgement_order;
-            $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy;
-            $steps->case_steps_judgement_order_yes_no = $request->case_steps_judgement_order_yes_no ? 'Yes' : 'No';
-
-            $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN'  ? null : $request->case_steps_summary_of_cases;
-            $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy;
-            $steps->case_steps_summary_of_cases_yes_no = $request->case_steps_summary_of_cases_yes_no ? 'Yes' : 'No';    
-
+            $steps->case_steps_argument_note = $request->case_steps_argument_note;
+            $steps->case_steps_argument_org = $request->case_steps_argument_org == 'on' ? '1' : '0';
+            $steps->case_steps_argument_cc = $request->case_steps_argument_cc == 'on' ? '1' : '0';
+            $steps->case_steps_argument_copy = $request->case_steps_argument_copy == 'on' ? '1' : '0';
+            $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN' ? null : $request->case_steps_judgement_order;
+            $steps->case_steps_judgement_order_note = $request->case_steps_judgement_order_note;
+            $steps->case_steps_judgement_order_org = $request->case_steps_judgement_order_org == 'on' ? '1' : '0';
+            $steps->case_steps_judgement_order_cc = $request->case_steps_judgement_order_cc == 'on' ? '1' : '0';
+            $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy == 'on' ? '1' : '0';
+            $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN' ? null : $request->case_steps_summary_of_cases;
+            $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
+            $steps->case_steps_summary_of_cases_org = $request->case_steps_summary_of_cases_org == 'on' ? '1' : '0';
+            $steps->case_steps_summary_of_cases_cc = $request->case_steps_summary_of_cases_cc == 'on' ? '1' : '0';
+            $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy == 'on' ? '1' : '0';
             $steps->case_steps_remarks = $request->case_steps_remarks;
-
             $steps->save();
 
             if ($request->hasfile('uploaded_document')) {
@@ -965,39 +995,40 @@ $case_no_data = DB::table('criminal_cases')
             $received_documents = CriminalCasesDocumentsReceived::where('case_id', $id)->delete();
             // dd($received_documents);
             
-            foreach ( array_filter($request->received_documents_id) as $key => $value ){
+            foreach ( array_filter($received_documents_sections) as $key => $value ){
                 $datum = new CriminalCasesDocumentsReceived();
                 $datum->case_id = $data->id;
-                $datum->received_documents_id = $value;
+                $datum->received_documents_id = $request->received_documents_id[$key];
                 $datum->received_documents = $request->received_documents[$key];
                 $datum->received_documents_date = $request->received_documents_date[$key];
                 $datum->save();
             }
-            
+    
             $required_wanting_documents = CriminalCasesDocumentsRequired::where('case_id', $id)->delete();
 
-            foreach ( array_filter($request->required_wanting_documents_id) as $key => $value ){
+            foreach ( array_filter($required_wanting_documents_sections) as $key => $value ){
                 $required = new CriminalCasesDocumentsRequired();
                 $required->case_id = $data->id;
-                $required->required_wanting_documents_id = $value;
+                $required->required_wanting_documents_id = $request->required_wanting_documents_id[$key];
                 $required->required_wanting_documents = $request->required_wanting_documents[$key];
                 $required->required_wanting_documents_date = $request->required_wanting_documents_date[$key];
                 $required->save();
             }
-
+            
             $letter_notice = CriminalCasesLetterNotice::where('case_id', $id)->delete();
 
-            foreach ( array_filter($request->letter_notice_date) as $key => $value ){
+            foreach ( array_filter($letter_notice_sections) as $key => $value ){
                 $required = new CriminalCasesLetterNotice();
                 $required->case_id = $data->id;
-                $required->letter_notice_date = $value;
+                $required->letter_notice_date = $request->letter_notice_date[$key];;
                 $required->letter_notice_documents_id = $request->letter_notice_documents_id[$key];
-                $required->letter_notice_particulars_id = $request->letter_notice_particulars_id[$key];
-                $required->letter_notice_org = $request->letter_notice_org[$key];
-                $required->letter_notice_pht = $request->letter_notice_pht[$key];
+                $required->letter_notice_documents_write = $request->letter_notice_documents_write[$key];
+                $required->letter_notice_particulars_write = $request->letter_notice_particulars_write[$key];
+                $required->letter_notice_org = isset($request->letter_notice_org[$key]) == '1' ? '1' : '0';
+                $required->letter_notice_cc = isset($request->letter_notice_cc[$key]) == '1' ? '1' : '0';
+                $required->letter_notice_copy = isset($request->letter_notice_copy[$key]) == '1' ? '1' : '0';
                 $required->save();
-            } 
-
+            }
         }else if($request->basic_information){
 // dd('basic_information');
             $data->client = $request->client;
@@ -1090,42 +1121,41 @@ $case_no_data = DB::table('criminal_cases')
             $received_documents = CriminalCasesDocumentsReceived::where('case_id', $id)->delete();
             // dd($received_documents);
             
-            foreach ( array_filter($request->received_documents_id) as $key => $value ){
+            foreach ( array_filter($received_documents_sections) as $key => $value ){
                 $datum = new CriminalCasesDocumentsReceived();
                 $datum->case_id = $data->id;
-                $datum->received_documents_id = $value;
+                $datum->received_documents_id = $request->received_documents_id[$key];
                 $datum->received_documents = $request->received_documents[$key];
                 $datum->received_documents_date = $request->received_documents_date[$key];
                 $datum->save();
             }
-
+    
             $required_wanting_documents = CriminalCasesDocumentsRequired::where('case_id', $id)->delete();
 
-            foreach ( array_filter($request->required_wanting_documents_id) as $key => $value ){
+            foreach ( array_filter($required_wanting_documents_sections) as $key => $value ){
                 $required = new CriminalCasesDocumentsRequired();
                 $required->case_id = $data->id;
-                $required->required_wanting_documents_id = $value;
+                $required->required_wanting_documents_id = $request->required_wanting_documents_id[$key];
                 $required->required_wanting_documents = $request->required_wanting_documents[$key];
                 $required->required_wanting_documents_date = $request->required_wanting_documents_date[$key];
                 $required->save();
             }
             
-            $datum->save();
-
         }else if ($request->letter_notice_date) {
 
             $letter_notice = CriminalCasesLetterNotice::where('case_id', $id)->delete();
-            foreach ( array_filter($request->letter_notice_date) as $key => $value ){
+            foreach ( array_filter($letter_notice_sections) as $key => $value ){
                 $required = new CriminalCasesLetterNotice();
                 $required->case_id = $data->id;
-                $required->letter_notice_date = $value;
+                $required->letter_notice_date = $request->letter_notice_date[$key];;
                 $required->letter_notice_documents_id = $request->letter_notice_documents_id[$key];
-                $required->letter_notice_particulars_id = $request->letter_notice_particulars_id[$key];
+                $required->letter_notice_documents_write = $request->letter_notice_documents_write[$key];
+                $required->letter_notice_particulars_write = $request->letter_notice_particulars_write[$key];
                 $required->letter_notice_org = isset($request->letter_notice_org[$key]) == '1' ? '1' : '0';
-                $required->letter_notice_pht = isset($request->letter_notice_pht[$key]) == '1' ? '1' : '0';
+                $required->letter_notice_cc = isset($request->letter_notice_cc[$key]) == '1' ? '1' : '0';
+                $required->letter_notice_copy = isset($request->letter_notice_copy[$key]) == '1' ? '1' : '0';
                 $required->save();
             }
-
         }else if ($request->case_information) {
             // dd($request->all());
             $data->case_infos_division_id = $request->case_infos_division_id;
@@ -1179,41 +1209,64 @@ $case_no_data = DB::table('criminal_cases')
         }else if ($request->case_steps) {
             
             $steps = CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
-            $steps->case_steps_filing_copy = $request->case_steps_filing_copy;
-            $steps->case_steps_filing_yes_no = $request->case_steps_filing_yes_no ? 'Yes' : 'No';
+
+            $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
+            $steps->case_steps_filing_note = $request->case_steps_filing_note;
+            $steps->case_steps_filing_org = $request->case_steps_filing_org == 'on' ? '1' : '0';
+            $steps->case_steps_filing_cc = $request->case_steps_filing_cc == 'on' ? '1' : '0';
+            $steps->case_steps_filing_copy = $request->case_steps_filing_copy == 'on' ? '1' : '0';
             $steps->taking_cognizance = $request->taking_cognizance == 'dd-mm-yyyy' || $request->taking_cognizance == 'NaN-NaN-NaN' ? null : $request->taking_cognizance;
-            $steps->taking_cognizance_copy = $request->taking_cognizance_copy;
-            $steps->taking_cognizance_yes_no = $request->taking_cognizance_yes_no ? 'Yes' : 'No';
+            $steps->taking_cognizance_note = $request->taking_cognizance_note;
+            $steps->taking_cognizance_org = $request->taking_cognizance_org  == 'on' ? '1' : '0';
+            $steps->taking_cognizance_cc = $request->taking_cognizance_cc  == 'on' ? '1' : '0';
+            $steps->taking_cognizance_copy = $request->taking_cognizance_copy == 'on' ? '1' : '0';
             $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd-mm-yyyy' || $request->arrest_surrender_cw == 'NaN-NaN-NaN' ? null : $request->arrest_surrender_cw;
-            $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy;
-            $steps->arrest_surrender_cw_yes_no = $request->arrest_surrender_cw_yes_no ? 'Yes' : 'No';
+            $steps->arrest_surrender_cw_note = $request->arrest_surrender_cw_note;
+            $steps->arrest_surrender_cw_org = $request->arrest_surrender_cw_org == 'on' ? '1' : '0';
+            $steps->arrest_surrender_cw_cc = $request->arrest_surrender_cw_cc == 'on' ? '1' : '0';
+            $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy == 'on' ? '1' : '0';
             $steps->case_steps_bail = $request->case_steps_bail == 'dd-mm-yyyy' || $request->case_steps_bail == 'NaN-NaN-NaN' ? null : $request->case_steps_bail;
-            $steps->case_steps_bail_copy = $request->case_steps_bail_copy;
-            $steps->case_steps_bail_yes_no = $request->case_steps_bail_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_bail_note = $request->case_steps_bail_note;
+            $steps->case_steps_bail_org = $request->case_steps_bail_org == 'on' ? '1' : '0';
+            $steps->case_steps_bail_cc = $request->case_steps_bail_cc == 'on' ? '1' : '0';
+            $steps->case_steps_bail_copy = $request->case_steps_bail_copy == 'on' ? '1' : '0';
             $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd-mm-yyyy' || $request->case_steps_court_transfer == 'NaN-NaN-NaN' ? null : $request->case_steps_court_transfer;
-            $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy;
-            $steps->case_steps_court_transfer_yes_no = $request->case_steps_court_transfer_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_court_transfer_note = $request->case_steps_court_transfer_note;
+            $steps->case_steps_court_transfer_org = $request->case_steps_court_transfer_org == 'on' ? '1' : '0';
+            $steps->case_steps_court_transfer_cc = $request->case_steps_court_transfer_cc == 'on' ? '1' : '0';
+            $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy == 'on' ? '1' : '0';
             $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd-mm-yyyy' || $request->case_steps_charge_framed == 'NaN-NaN-NaN' ? null : $request->case_steps_charge_framed;
-            $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy;
-            $steps->case_steps_charge_framed_yes_no = $request->case_steps_charge_framed_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_charge_framed_note = $request->case_steps_charge_framed_note;
+            $steps->case_steps_charge_framed_org = $request->case_steps_charge_framed_org == 'on' ? '1' : '0';
+            $steps->case_steps_charge_framed_cc = $request->case_steps_charge_framed_cc == 'on' ? '1' : '0';
+            $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy == 'on' ? '1' : '0';
             $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd-mm-yyyy' || $request->case_steps_witness_from == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_from;
-            $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy;
-            $steps->case_steps_witness_from_yes_no = $request->case_steps_witness_from_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_witness_from_note = $request->case_steps_witness_from_note;
+            $steps->case_steps_witness_from_org = $request->case_steps_witness_from_org == 'on' ? '1' : '0';
+            $steps->case_steps_witness_from_cc = $request->case_steps_witness_from_cc == 'on' ? '1' : '0';
+            $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy == 'on' ? '1' : '0';
             $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd-mm-yyyy' || $request->case_steps_witness_to == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_to;
-            $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy;
-            $steps->case_steps_witness_to_yes_no = $request->case_steps_witness_to_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_witness_to_note = $request->case_steps_witness_to_note;
+            $steps->case_steps_witness_to_org = $request->case_steps_witness_to_org == 'on' ? '1' : '0';
+            $steps->case_steps_witness_to_cc = $request->case_steps_witness_to_cc == 'on' ? '1' : '0';
+            $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy == 'on' ? '1' : '0';
             $steps->case_steps_argument = $request->case_steps_argument == 'dd-mm-yyyy' || $request->case_steps_argument == 'NaN-NaN-NaN' ? null : $request->case_steps_argument;
-            $steps->case_steps_argument_copy = $request->case_steps_argument_copy;
-            $steps->case_steps_argument_yes_no = $request->case_steps_argument_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN'  ? null : $request->case_steps_judgement_order;
-            $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy;
-            $steps->case_steps_judgement_order_yes_no = $request->case_steps_judgement_order_yes_no ? 'Yes' : 'No';
-
-            $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN'  ? null : $request->case_steps_summary_of_cases;
-            $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy;
-            $steps->case_steps_summary_of_cases_yes_no = $request->case_steps_summary_of_cases_yes_no ? 'Yes' : 'No';    
-
+            $steps->case_steps_argument_note = $request->case_steps_argument_note;
+            $steps->case_steps_argument_org = $request->case_steps_argument_org == 'on' ? '1' : '0';
+            $steps->case_steps_argument_cc = $request->case_steps_argument_cc == 'on' ? '1' : '0';
+            $steps->case_steps_argument_copy = $request->case_steps_argument_copy == 'on' ? '1' : '0';
+            $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN' ? null : $request->case_steps_judgement_order;
+            $steps->case_steps_judgement_order_note = $request->case_steps_judgement_order_note;
+            $steps->case_steps_judgement_order_org = $request->case_steps_judgement_order_org == 'on' ? '1' : '0';
+            $steps->case_steps_judgement_order_cc = $request->case_steps_judgement_order_cc == 'on' ? '1' : '0';
+            $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy == 'on' ? '1' : '0';
+            $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN' ? null : $request->case_steps_summary_of_cases;
+            $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
+            $steps->case_steps_summary_of_cases_org = $request->case_steps_summary_of_cases_org == 'on' ? '1' : '0';
+            $steps->case_steps_summary_of_cases_cc = $request->case_steps_summary_of_cases_cc == 'on' ? '1' : '0';
+            $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy == 'on' ? '1' : '0';
             $steps->case_steps_remarks = $request->case_steps_remarks;
+
             $steps->save();
 
         }
@@ -1251,6 +1304,9 @@ $remove = array_pop($received_documents_sections);
 
 $required_wanting_documents_sections = $request->required_wanting_documents_sections;
 $remove = array_pop($required_wanting_documents_sections);  
+
+$letter_notice_sections = $request->letter_notice_sections;
+$remove = array_pop($letter_notice_sections);  
 
 // dd($required_wanting_documents_sections);
 
@@ -1453,42 +1509,61 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             $steps->case_info_remarks = $request->case_info_remarks;
 
             $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
-            $steps->case_steps_filing_copy = $request->case_steps_filing_copy;
-            $steps->case_steps_filing_yes_no = $request->case_steps_filing_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_filing_note = $request->case_steps_filing_note;
+            $steps->case_steps_filing_org = $request->case_steps_filing_org == 'on' ? '1' : '0';
+            $steps->case_steps_filing_cc = $request->case_steps_filing_cc == 'on' ? '1' : '0';
+            $steps->case_steps_filing_copy = $request->case_steps_filing_copy == 'on' ? '1' : '0';
             $steps->taking_cognizance = $request->taking_cognizance == 'dd-mm-yyyy' || $request->taking_cognizance == 'NaN-NaN-NaN' ? null : $request->taking_cognizance;
-            $steps->taking_cognizance_copy = $request->taking_cognizance_copy;
-            $steps->taking_cognizance_yes_no = $request->taking_cognizance_yes_no ? 'Yes' : 'No';
+            $steps->taking_cognizance_note = $request->taking_cognizance_note;
+            $steps->taking_cognizance_org = $request->taking_cognizance_org  == 'on' ? '1' : '0';
+            $steps->taking_cognizance_cc = $request->taking_cognizance_cc  == 'on' ? '1' : '0';
+            $steps->taking_cognizance_copy = $request->taking_cognizance_copy == 'on' ? '1' : '0';
             $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd-mm-yyyy' || $request->arrest_surrender_cw == 'NaN-NaN-NaN' ? null : $request->arrest_surrender_cw;
-            $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy;
-            $steps->arrest_surrender_cw_yes_no = $request->arrest_surrender_cw_yes_no ? 'Yes' : 'No';
+            $steps->arrest_surrender_cw_note = $request->arrest_surrender_cw_note;
+            $steps->arrest_surrender_cw_org = $request->arrest_surrender_cw_org == 'on' ? '1' : '0';
+            $steps->arrest_surrender_cw_cc = $request->arrest_surrender_cw_cc == 'on' ? '1' : '0';
+            $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy == 'on' ? '1' : '0';
             $steps->case_steps_bail = $request->case_steps_bail == 'dd-mm-yyyy' || $request->case_steps_bail == 'NaN-NaN-NaN' ? null : $request->case_steps_bail;
-            $steps->case_steps_bail_copy = $request->case_steps_bail_copy;
-            $steps->case_steps_bail_yes_no = $request->case_steps_bail_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_bail_note = $request->case_steps_bail_note;
+            $steps->case_steps_bail_org = $request->case_steps_bail_org == 'on' ? '1' : '0';
+            $steps->case_steps_bail_cc = $request->case_steps_bail_cc == 'on' ? '1' : '0';
+            $steps->case_steps_bail_copy = $request->case_steps_bail_copy == 'on' ? '1' : '0';
             $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd-mm-yyyy' || $request->case_steps_court_transfer == 'NaN-NaN-NaN' ? null : $request->case_steps_court_transfer;
-            $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy;
-            $steps->case_steps_court_transfer_yes_no = $request->case_steps_court_transfer_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_court_transfer_note = $request->case_steps_court_transfer_note;
+            $steps->case_steps_court_transfer_org = $request->case_steps_court_transfer_org == 'on' ? '1' : '0';
+            $steps->case_steps_court_transfer_cc = $request->case_steps_court_transfer_cc == 'on' ? '1' : '0';
+            $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy == 'on' ? '1' : '0';
             $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd-mm-yyyy' || $request->case_steps_charge_framed == 'NaN-NaN-NaN' ? null : $request->case_steps_charge_framed;
-            $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy;
-            $steps->case_steps_charge_framed_yes_no = $request->case_steps_charge_framed_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_charge_framed_note = $request->case_steps_charge_framed_note;
+            $steps->case_steps_charge_framed_org = $request->case_steps_charge_framed_org == 'on' ? '1' : '0';
+            $steps->case_steps_charge_framed_cc = $request->case_steps_charge_framed_cc == 'on' ? '1' : '0';
+            $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy == 'on' ? '1' : '0';
             $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd-mm-yyyy' || $request->case_steps_witness_from == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_from;
-            $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy;
-            $steps->case_steps_witness_from_yes_no = $request->case_steps_witness_from_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_witness_from_note = $request->case_steps_witness_from_note;
+            $steps->case_steps_witness_from_org = $request->case_steps_witness_from_org == 'on' ? '1' : '0';
+            $steps->case_steps_witness_from_cc = $request->case_steps_witness_from_cc == 'on' ? '1' : '0';
+            $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy == 'on' ? '1' : '0';
             $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd-mm-yyyy' || $request->case_steps_witness_to == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_to;
-            $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy;
-            $steps->case_steps_witness_to_yes_no = $request->case_steps_witness_to_yes_no ? 'Yes' : 'No';
+            $steps->case_steps_witness_to_note = $request->case_steps_witness_to_note;
+            $steps->case_steps_witness_to_org = $request->case_steps_witness_to_org == 'on' ? '1' : '0';
+            $steps->case_steps_witness_to_cc = $request->case_steps_witness_to_cc == 'on' ? '1' : '0';
+            $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy == 'on' ? '1' : '0';
             $steps->case_steps_argument = $request->case_steps_argument == 'dd-mm-yyyy' || $request->case_steps_argument == 'NaN-NaN-NaN' ? null : $request->case_steps_argument;
-            $steps->case_steps_argument_copy = $request->case_steps_argument_copy;
-            $steps->case_steps_argument_yes_no = $request->case_steps_argument_yes_no ? 'Yes' : 'No';
-            $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN'  ? null : $request->case_steps_judgement_order;
-            $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy;
-            $steps->case_steps_judgement_order_yes_no = $request->case_steps_judgement_order_yes_no ? 'Yes' : 'No';
-
-            $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN'  ? null : $request->case_steps_summary_of_cases;
-            $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy;
-            $steps->case_steps_summary_of_cases_yes_no = $request->case_steps_summary_of_cases_yes_no ? 'Yes' : 'No';    
-
+            $steps->case_steps_argument_note = $request->case_steps_argument_note;
+            $steps->case_steps_argument_org = $request->case_steps_argument_org == 'on' ? '1' : '0';
+            $steps->case_steps_argument_cc = $request->case_steps_argument_cc == 'on' ? '1' : '0';
+            $steps->case_steps_argument_copy = $request->case_steps_argument_copy == 'on' ? '1' : '0';
+            $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN' ? null : $request->case_steps_judgement_order;
+            $steps->case_steps_judgement_order_note = $request->case_steps_judgement_order_note;
+            $steps->case_steps_judgement_order_org = $request->case_steps_judgement_order_org == 'on' ? '1' : '0';
+            $steps->case_steps_judgement_order_cc = $request->case_steps_judgement_order_cc == 'on' ? '1' : '0';
+            $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy == 'on' ? '1' : '0';
+            $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN' ? null : $request->case_steps_summary_of_cases;
+            $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
+            $steps->case_steps_summary_of_cases_org = $request->case_steps_summary_of_cases_org == 'on' ? '1' : '0';
+            $steps->case_steps_summary_of_cases_cc = $request->case_steps_summary_of_cases_cc == 'on' ? '1' : '0';
+            $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy == 'on' ? '1' : '0';
             $steps->case_steps_remarks = $request->case_steps_remarks;
-
             $steps->save();
 
             if ($request->hasfile('uploaded_document')) {
@@ -1541,19 +1616,19 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             //     $letter_noticed->save();
             // }
 
-            foreach ( $letter_notice_date_explode as $key => $value ){
-                $letter_noticed = new CriminalCasesLetterNotice();
-                $letter_noticed->case_id = $data->id;
-                $letter_noticed->letter_notice_date = $value;
-                $letter_noticed->letter_notice_documents_id = $letter_notice_documents_id_explode[$key];
-                $letter_noticed->letter_notice_documents_write = $letter_notice_documents_write_explode[$key];
-                $letter_noticed->letter_notice_particulars_id = $letter_notice_particulars_id_explode[$key];
-                $letter_noticed->letter_notice_particulars_write = $letter_notice_particulars_write_explode[$key];
-                $letter_noticed->letter_notice_org = isset($letter_notice_org_explode[$key]) == '1' ? '1' : '0';
-                $letter_noticed->letter_notice_pht = isset($letter_notice_pht_explode[$key]) == '1' ? '1' : '0';
-                $letter_noticed->save();
+            foreach ( array_filter($letter_notice_sections) as $key => $value ){
+                $required = new CriminalCasesLetterNotice();
+                $required->case_id = $data->id;
+                $required->letter_notice_date = $request->letter_notice_date[$key];;
+                $required->letter_notice_documents_id = $request->letter_notice_documents_id[$key];
+                $required->letter_notice_documents_write = $request->letter_notice_documents_write[$key];
+                $required->letter_notice_particulars_write = $request->letter_notice_particulars_write[$key];
+                $required->letter_notice_org = isset($request->letter_notice_org[$key]) == '1' ? '1' : '0';
+                $required->letter_notice_cc = isset($request->letter_notice_cc[$key]) == '1' ? '1' : '0';
+                $required->letter_notice_copy = isset($request->letter_notice_copy[$key]) == '1' ? '1' : '0';
+                $required->save();
             }
-    
+
         DB::commit();
 
         session()->flash('success', 'Criminal Cases Updated Successfully.');
@@ -1886,6 +1961,12 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
 
 // dd(date('Y-m-d'));
 
+        $received_documents_sections = $request->received_documents_sections;
+        $remove = array_pop($received_documents_sections);  
+
+        $required_wanting_documents_sections = $request->required_wanting_documents_sections;
+        $remove = array_pop($required_wanting_documents_sections);  
+
         if ($request->updated_order_date != 'dd-mm-yyyy') {
             $order_date_explode = explode('/', $request->updated_order_date);
             $order_date_implode = implode('-',$order_date_explode);
@@ -2039,6 +2120,12 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
 // dd($implode);
 
     //    StudentModel::getStudentList()->pluck('Student_name')->toArray();
+
+        $received_documents_sections = $request->received_documents_sections;
+        $remove = array_pop($received_documents_sections);  
+
+        $required_wanting_documents_sections = $request->required_wanting_documents_sections;
+        $remove = array_pop($required_wanting_documents_sections);  
 
         if ($request->activity_date != 'dd-mm-yyyy') {
             $activity_date_explode = explode('-', $request->activity_date);

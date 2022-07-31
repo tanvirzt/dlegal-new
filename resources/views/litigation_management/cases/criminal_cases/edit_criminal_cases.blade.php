@@ -1137,7 +1137,7 @@
                                                                                                 <input type="date" name="received_documents_date[]"
                                                                                                     class="myfrm form-control ml-2" value="{{ !empty($received_documents_explode[0]['received_documents_date']) ? $received_documents_explode[0]['received_documents_date'] : '' }}">
                                                                                                 <div class="input-group-btn">
-                                                                                                    <button class="btn btn-success btn_success_received_documents"
+                                                                                                    <button class="btn btn-success btn_success_received_documents_edit"
                                                                                                             type="button"><i
                                                                                                             class="fldemo glyphicon glyphicon-plus"></i>+
                                                                                                     </button>
@@ -1145,33 +1145,6 @@
                                                                                             </span>
                                                                                             
                                                                                         </div>
-                                                                                        
-                                                                                        <div class="clone_received_documents hide">
-                                                                                            <div class="hdtuto_received_documents control-group input-group"
-                                                                                                 style="margin-top:10px">
-                                                                                            <input type="hidden" name="received_documents_sections[]" class="myfrm form-control mr-2" value="received_documents_sections">
-                                                                                                 <select name="received_documents_id[]"
-                                                                                                    class="form-control mr-3" >
-                                                                                                    <option value="">Select</option>
-                                                                                                    @foreach($documents as $item)
-                                                                                                        <option
-                                                                                                            value="{{ $item->documents_name }}" {{ old('received_documents_id') == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                                                                    @endforeach
-                                                                                                </select>
-                                                                                                <input type="text" name="received_documents[]"
-                                                                                                       class="myfrm form-control mr-2">
-                                                                                                <input type="date" name="received_documents_date[]"
-                                                                                                       class="myfrm form-control ml-2">
-                                                                                                <div class="input-group-btn">
-                                                                                                    <button class="btn btn-danger btn_danger_received_documents"
-                                                                                                            type="button"><i
-                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-
-
                                                                                         <div class="clone_received_documents @if(count($received_documents_explode) <= 1) hide @endif">
                                                                                             @php
                                                                                                 array_shift($received_documents_explode);
@@ -1202,52 +1175,18 @@
                                                                                             </div>
                                                                                             @endforeach
                                                                                         </div>
-                                
-                                                                                        @error('case_infos_received_documents_informant_name')<span
-                                                                                            class="text-danger">{{$message}}</span>@enderror
-                                                                                    </div>
-
-
-
-
-
-
-
-                                                                                    {{-- <div class="col-sm-4">
-                                                                                        <select name="received_documents_id[]"
-                                                                                                id="received_documents_id"
-                                                                                                class="form-control select2" data-placeholder="Select" multiple>
-                                                                                            <option value="">Select</option>
-                                                                                            @foreach($documents as $item)
-                                                                                                <option
-                                                                                                    value="{{ $item->documents_name }}" {{ in_array($item->documents_name, $received_documents_explode) ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                    </div>
-                                                                                    <div class="col-sm-8">
-                                                                                        <div class="input-group hdtuto_received_documents control-group increment_received_documents">
-                                                                                            <input type="text" name="received_documents[]"
-                                                                                                   class="myfrm form-control mr-2" value="{{ rtrim($data->received_documents, ', ') }}">
-                                                                                            @if (!empty($data->received_documents_date))
-                                                                                                <input type="text" name="received_documents_date[]"
-                                                                                                class="myfrm form-control ml-2"
-                                                                                                    value="{{ $data->received_documents_date }}">
-                                                                                            @else
-                                                                                                <input type="date" name="received_documents_date[]"
-                                                                                                class="myfrm form-control ml-2"
-                                                                                                value="dd-mm-yyyy">
-                                                                                            @endif
-                                                                                        
-                                                                                            <div class="input-group-btn">
-                                                                                                <button class="btn btn-success btn_success_received_documents"
-                                                                                                        type="button"><i
-                                                                                                        class="fldemo glyphicon glyphicon-plus"></i>+
-                                                                                                </button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="clone_received_documents hide">
-                                                                                            <div class="hdtuto_received_documents control-group lst input-group"
+                                                                                        <div class="clone_received_documents_edit hide">
+                                                                                            <div class="hdtuto_received_documents control-group input-group"
                                                                                                  style="margin-top:10px">
+                                                                                            <input type="hidden" name="received_documents_sections[]" class="myfrm form-control mr-2" value="received_documents_sections">
+                                                                                                 <select name="received_documents_id[]"
+                                                                                                    class="form-control mr-3" >
+                                                                                                    <option value="">Select</option>
+                                                                                                    @foreach($documents as $item)
+                                                                                                        <option
+                                                                                                            value="{{ $item->documents_name }}" {{ old('received_documents_id') == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                    @endforeach
+                                                                                                </select>
                                                                                                 <input type="text" name="received_documents[]"
                                                                                                        class="myfrm form-control mr-2">
                                                                                                 <input type="date" name="received_documents_date[]"
@@ -1260,10 +1199,15 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                
+
+
+
                                                                                         @error('case_infos_received_documents_informant_name')<span
                                                                                             class="text-danger">{{$message}}</span>@enderror
-                                                                                    </div> --}}
+                                                                                    </div>
+
+
+
 
                                                                                 </div>
                                                                                 <h6 class="text-uppercase text-bold">
@@ -1288,39 +1232,12 @@
                                                                                             <input type="date" name="required_wanting_documents_date[]"
                                                                                                    class="myfrm form-control ml-2" value="{{ !empty($required_wanting_documents_explode[0]['required_wanting_documents_date']) ? $required_wanting_documents_explode[0]['required_wanting_documents_date'] : '' }}">
                                                                                             <div class="input-group-btn">
-                                                                                                <button class="btn btn-success btn_success_required_wanting_documents"
+                                                                                                <button class="btn btn-success btn_success_required_wanting_documents_edit"
                                                                                                         type="button"><i
                                                                                                         class="fldemo glyphicon glyphicon-plus"></i>+
                                                                                                 </button>
                                                                                             </div>
                                                                                         </div>
-                                                                                        
-                                                                                        <div class="clone_required_wanting_documents hide">
-                                                                                            <div class="hdtuto_required_wanting_documents control-group input-group"
-                                                                                                 style="margin-top:10px">
-                                                                                                 <input type="hidden" name="required_wanting_documents_sections[]"
-                                                                           class="myfrm form-control mr-2" value="required_wanting_documents_sections">
-                                                                                                 <select name="required_wanting_documents_id[]"
-                                                                                                    class="form-control mr-3" >
-                                                                                                    <option value="">Select</option>
-                                                                                                    @foreach($documents as $item)
-                                                                                                        <option
-                                                                                                            value="{{ $item->documents_name }}" {{ old('required_wanting_documents_id') == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                                                                    @endforeach
-                                                                                                </select>
-                                                                                                <input type="text" name="required_wanting_documents[]"
-                                                                                                       class="myfrm form-control mr-2">
-                                                                                                <input type="date" name="required_wanting_documents_date[]"
-                                                                                                       class="myfrm form-control ml-2">
-                                                                                                <div class="input-group-btn">
-                                                                                                    <button class="btn btn-danger btn_danger_required_wanting_documents"
-                                                                                                            type="button"><i
-                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-
 
                                                                                         <div class="clone_required_wanting_documents @if(count($required_wanting_documents_explode) <= 1) hide @endif">
                                                                                             @php
@@ -1353,6 +1270,31 @@
                                                                                             @endforeach
                                                                                             
 
+                                                                                        </div>
+                                                                                        <div class="clone_required_wanting_documents_edit hide">
+                                                                                            <div class="hdtuto_required_wanting_documents control-group input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                 <input type="hidden" name="required_wanting_documents_sections[]"
+                                                                           class="myfrm form-control mr-2" value="required_wanting_documents_sections">
+                                                                                                 <select name="required_wanting_documents_id[]"
+                                                                                                    class="form-control mr-3" >
+                                                                                                    <option value="">Select</option>
+                                                                                                    @foreach($documents as $item)
+                                                                                                        <option
+                                                                                                            value="{{ $item->documents_name }}" {{ old('required_wanting_documents_id') == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                    @endforeach
+                                                                                                </select>
+                                                                                                <input type="text" name="required_wanting_documents[]"
+                                                                                                       class="myfrm form-control mr-2">
+                                                                                                <input type="date" name="required_wanting_documents_date[]"
+                                                                                                       class="myfrm form-control ml-2">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_required_wanting_documents"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
                                                                                         </div>
                                 
                                                                                         @error('case_infos_required_wanting_documents_informant_name')<span
@@ -2328,16 +2270,19 @@
                                                                         <h6 class="text-uppercase text-bold"><u> Letter / Notice / Reply </u></h6>
                                                                         <h6 class="text-uppercase text-bold">
                                                                             <div class="row">
-                                                                                <div class="col-md-3"> Date </div>
-                                                                                <div class="col-md-3"> Document Name </div>
-                                                                                <div class="col-md-3"> Particulars </div>
-                                                                                <div class="col-md-1"> ORG </div>
-                                                                                <div class="col-md-1"> PHT </div>
+                                                                                <div class="col-md-2"> Date </div>
+                                                                                <div class="col-md-3">Document Name</div>
+                                                                                <div class="col-md-3 ml-5">Particulars</div>
+                                                                                <div class="col-md-1" style="margin-left:-35px;">ORG</div>
+                                                                                <div class="col-md-1">CC</div>
+                                                                                <div class="col-md-1" style="padding-left:1px;">Copy</div>
                                                                             </div>
                                                                         </h6>
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-12">
                                                                                         <div class="input-group hdtuto_letter_notice control-group increment_letter_notice">
+                                                                                            <input type="hidden" name="letter_notice_sections[]"
+                                                                           class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
                                                                                             <input type="date" name="letter_notice_date[]"
                                                                                                    class="myfrm form-control mr-2 col-md-4" value="{{ !empty($letter_notice_explode[0]['letter_notice_date']) ? $letter_notice_explode[0]['letter_notice_date'] : '' }}">
                                                                                             <select name="letter_notice_documents_id[]"
@@ -2349,67 +2294,23 @@
                                                                                                 @endforeach
                                                                                             </select>
                                                                                             <input type="text" name="letter_notice_documents_write[]"
-                                                                                                   class="myfrm form-control mr-2 col-md-4" value="{{ !empty($letter_notice_explode[0]['letter_notice_documents_write']) ? $letter_notice_explode[0]['letter_notice_documents_write'] : '' }}">
-                                                                                            <select name="letter_notice_particulars_id[]"
-                                                                                                class="form-control col-md-3 mr-2">
-                                                                                                <option value="">Select</option>
-                                                                                                @foreach($particulars as $item)
-                                                                                                    <option
-                                                                                                        value="{{ $item->particulars_name }}" {{ !empty($letter_notice_explode[0]['letter_notice_particulars_id']) && $letter_notice_explode[0]['letter_notice_particulars_id']  == $item->particulars_name ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
-                                                                                                @endforeach
-                                                                                            </select>
+                                                                                                   class="myfrm form-control mr-2 col-md-4" placeholder="Document" value="{{ !empty($letter_notice_explode[0]['letter_notice_documents_write']) ? $letter_notice_explode[0]['letter_notice_documents_write'] : '' }}">
+                                                                                            
                                                                                             <input type="text" name="letter_notice_particulars_write[]"
-                                                                                                   class="myfrm form-control mr-2 col-md-4" value="{{ !empty($letter_notice_explode[0]['letter_notice_particulars_write']) ? $letter_notice_explode[0]['letter_notice_particulars_write'] : '' }}">
+                                                                                                   class="myfrm form-control mr-2 col-md-4" placeholder="Particulars" value="{{ !empty($letter_notice_explode[0]['letter_notice_particulars_write']) ? $letter_notice_explode[0]['letter_notice_particulars_write'] : '' }}">
                                                                                             <input type="checkbox" name="letter_notice_org[]"
                                                                                                    class="myfrm form-control col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_org']) && $letter_notice_explode[0]['letter_notice_org'] == '1') checked @endif>
-                                                                                            <input type="checkbox" name="letter_notice_pht[]"
-                                                                                                   class="myfrm form-control mr-2 col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_pht']) && $letter_notice_explode[0]['letter_notice_pht'] == '1') checked @endif>
-                                                                                            
+                                                                                            <input type="checkbox" name="letter_notice_cc[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_cc']) && $letter_notice_explode[0]['letter_notice_cc'] == '1') checked @endif>
+                                                                                            <input type="checkbox" name="letter_notice_copy[]"
+                                                                                                   class="myfrm mr-2 col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_copy']) && $letter_notice_explode[0]['letter_notice_copy'] == '1') checked @endif>
                                                                                             <div class="input-group-btn">
-                                                                                                <button class="btn btn-success btn_success_letter_notice"
+                                                                                                <button class="btn btn-success btn_success_letter_notice_edit"
                                                                                                         type="button"><i
                                                                                                         class="fldemo glyphicon glyphicon-plus"></i>+
                                                                                                 </button>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="clone_letter_notice hide">
-                                                                                            <div class="hdtuto_letter_notice control-group lst input-group"
-                                                                                                 style="margin-top:10px">
-                                                                                                 <input type="date" name="letter_notice_date[]"
-                                                                                                   class="myfrm form-control mr-2 col-md-4">
-                                                                                            <select name="letter_notice_documents_id[]"
-                                                                                                class="form-control mr-2 col-md-3">
-                                                                                                <option value="">Select</option>
-                                                                                                @foreach($documents as $item)
-                                                                                                    <option
-                                                                                                        value="{{ $item->documents_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                                                                @endforeach
-                                                                                            </select>
-                                                                                            <input type="text" name="letter_notice_documents_write[]"
-                                                                                                   class="myfrm form-control mr-2 col-md-4">
-                                                                                            <select name="letter_notice_particulars_id[]"
-                                                                                                class="form-control col-md-3 mr-2">
-                                                                                                <option value="">Select</option>
-                                                                                                @foreach($particulars as $item)
-                                                                                                    <option
-                                                                                                        value="{{ $item->particulars_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
-                                                                                                @endforeach
-                                                                                            </select>
-                                                                                            <input type="text" name="letter_notice_particulars_write[]"
-                                                                                                   class="myfrm form-control mr-2 col-md-4">
-                                                                                            <input type="checkbox" name="letter_notice_org[]"
-                                                                                                   class="myfrm form-control col-md-1">
-                                                                                            <input type="checkbox" name="letter_notice_pht[]"
-                                                                                                   class="myfrm form-control mr-2 col-md-1">
-                                                                                                <div class="input-group-btn">
-                                                                                                    <button class="btn btn-danger btn_danger_letter_notice"
-                                                                                                            type="button"><i
-                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-
                                                                                         <div class="clone_letter_notice @if(count($letter_notice_explode) <= 1) hide @endif">
                                                                                             @php
                                                                                                 array_shift($letter_notice_explode);
@@ -2417,6 +2318,8 @@
                                                                                             @foreach ( $letter_notice_explode as $datas)
                                                                                             <div class="hdtuto_letter_notice control-group lst input-group"
                                                                                                  style="margin-top:10px">
+                                                                                                 <input type="hidden" name="letter_notice_sections[]"
+                                                                           class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
                                                                                                  <input type="date" name="letter_notice_date[]"
                                                                                                    class="myfrm form-control mr-2 col-md-4" value="{{ $datas['letter_notice_date'] }}">
                                                                                                 <select name="letter_notice_documents_id[]"
@@ -2428,21 +2331,16 @@
                                                                                                     @endforeach
                                                                                                 </select>
                                                                                                 <input type="text" name="letter_notice_documents_write[]"
-                                                                                                   class="myfrm form-control mr-2 col-md-4" value="{{ $datas['letter_notice_documents_write'] }}">
-                                                                                                <select name="letter_notice_particulars_id[]"
-                                                                                                    class="form-control col-md-3 mr-2">
-                                                                                                    <option value="">Select</option>
-                                                                                                    @foreach($particulars as $item)
-                                                                                                        <option
-                                                                                                            value="{{ $item->particulars_name }}" {{ $datas['letter_notice_particulars_id'] == $item->particulars_name ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
-                                                                                                    @endforeach
-                                                                                                </select>
+                                                                                                   class="myfrm form-control mr-2 col-md-4" placeholder="Document" value="{{ $datas['letter_notice_documents_write'] }}">
+                                                                                                
                                                                                                 <input type="text" name="letter_notice_particulars_write[]"
-                                                                                                   class="myfrm form-control mr-2 col-md-4" value="{{ $datas['letter_notice_particulars_write'] }}">
+                                                                                                   class="myfrm form-control mr-2 col-md-4" placeholder="Particulars" value="{{ $datas['letter_notice_particulars_write'] }}">
                                                                                                 <input type="checkbox" name="letter_notice_org[]"
                                                                                                     class="myfrm form-control col-md-1" @if ($datas['letter_notice_org'] == '1') checked @endif >
-                                                                                                <input type="checkbox" name="letter_notice_pht[]"
-                                                                                                    class="myfrm form-control mr-2 col-md-1" @if ($datas['letter_notice_pht'] == '1') checked @endif>
+                                                                                                <input type="checkbox" name="letter_notice_cc[]"
+                                                                                                    class="myfrm form-control mr-2 col-md-1" @if ($datas['letter_notice_cc'] == '1') checked @endif>
+                                                                                                <input type="checkbox" name="letter_notice_copy[]"
+                                                                                                    class="myfrm mr-2 col-md-1" @if ($datas['letter_notice_copy'] == '1') checked @endif>
                                                                                                 <div class="input-group-btn">
                                                                                                     <button class="btn btn-danger btn_danger_letter_notice"
                                                                                                             type="button"><i
@@ -2451,6 +2349,40 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                             @endforeach
+                                                                                        </div>
+                                                                                        <div class="clone_letter_notice_edit hide">
+                                                                                            <div class="hdtuto_letter_notice control-group lst input-group"
+                                                                                                 style="margin-top:10px">
+                                                                                                 <input type="hidden" name="letter_notice_sections[]"
+                                                                           class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
+                                                                                                 <input type="date" name="letter_notice_date[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4">
+                                                                                            <select name="letter_notice_documents_id[]"
+                                                                                                class="form-control mr-2 col-md-3">
+                                                                                                <option value="">Select</option>
+                                                                                                @foreach($documents as $item)
+                                                                                                    <option
+                                                                                                        value="{{ $item->documents_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                            <input type="text" name="letter_notice_documents_write[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4" placeholder="Document">
+                                                                                            
+                                                                                            <input type="text" name="letter_notice_particulars_write[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-4" placeholder="Particulars">
+                                                                                            <input type="checkbox" name="letter_notice_org[]"
+                                                                                                   class="myfrm form-control col-md-1">
+                                                                                            <input type="checkbox" name="letter_notice_cc[]"
+                                                                                                   class="myfrm form-control mr-2 col-md-1">
+                                                                                            <input type="checkbox" name="letter_notice_copy[]"
+                                                                                                   class="myfrm mr-2 col-md-1">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-danger btn_danger_letter_notice"
+                                                                                                            type="button"><i
+                                                                                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
                                                                                         </div>
                                 
                                                                                         @error('case_infos_letter_notice_informant_name')<span
@@ -2479,7 +2411,7 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="case_steps_filing"
                                                                                        name="case_steps_filing"
-                                                                                       value="{{('case_steps_filing')}}" readonly>
+                                                                                       value="{{ $edit_case_steps->case_steps_filing }}" readonly>
                                                                                 @error('case_steps_filing')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
@@ -2487,21 +2419,20 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="case_steps_filing_note"
                                                                                        name="case_steps_filing_note"
-                                                                                       value="{{old('case_steps_filing_note')}}">
+                                                                                       value="{{ $edit_case_steps->case_steps_filing_note }}">
                                                                                 @error('case_steps_filing_note')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                                 <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_filing_org"
-                                                                                       name="case_steps_filing_org"
-                                                                                       >
+                                                                                       name="case_steps_filing_org" {{ $edit_case_steps->case_steps_filing_org == '1' ? 'checked' : '' }} >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_filing_cc"
-                                                                                       name="case_steps_filing_cc"
+                                                                                       name="case_steps_filing_cc" {{ $edit_case_steps->case_steps_filing_cc == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_filing_copy"
-                                                                                       name="case_steps_filing_copy"
+                                                                                       name="case_steps_filing_copy" {{ $edit_case_steps->case_steps_filing_copy == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                 @error('case_steps_filing_copy')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -2513,8 +2444,8 @@
                                                                                 <span class="date_span_steps">
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'taking_cognizance');">
-                                                                                    <input type="text" id="taking_cognizance" name="taking_cognizance"
-                                                                                        value="dd-mm-yyyy" class="date_second_input_steps"
+                                                                                    <input type="text" id="taking_cognizance" name="taking_cognizance" 
+                                                                                         class="date_second_input_steps" @if ($edit_case_steps->taking_cognizance) value="{{ $edit_case_steps->taking_cognizance }}" @else value="dd-mm-yyyy" @endif 
                                                                                            tabindex="-1">
                                                                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                                                 </span>
@@ -2525,21 +2456,21 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="taking_cognizance_note"
                                                                                        name="taking_cognizance_note"
-                                                                                       value="{{old('taking_cognizance_note')}}">
+                                                                                       value="{{ $edit_case_steps->taking_cognizance_note }}">
                                                                                 @error('taking_cognizance_note')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                                 <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="taking_cognizance_org"
-                                                                                       name="taking_cognizance_org"
+                                                                                       name="taking_cognizance_org" {{ $edit_case_steps->taking_cognizance_org == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="taking_cognizance_cc"
-                                                                                       name="taking_cognizance_cc"
+                                                                                       name="taking_cognizance_cc" {{ $edit_case_steps->taking_cognizance_cc == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="taking_cognizance_copy"
-                                                                                       name="taking_cognizance_copy"
+                                                                                       name="taking_cognizance_copy" {{ $edit_case_steps->taking_cognizance_copy == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                 @error('taking_cognizance_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -2551,7 +2482,7 @@
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'arrest_surrender_cw');">
                                                                                     <input type="text" id="arrest_surrender_cw" name="arrest_surrender_cw"
-                                                                                        value="dd-mm-yyyy" class="date_second_input_steps"
+                                                                                    @if ($edit_case_steps->arrest_surrender_cw) value="{{ $edit_case_steps->arrest_surrender_cw }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps" 
                                                                                            tabindex="-1">
                                                                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                                                 </span>
@@ -2562,21 +2493,21 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="arrest_surrender_cw_note"
                                                                                        name="arrest_surrender_cw_note"
-                                                                                       value="{{old('arrest_surrender_cw_note')}}">
+                                                                                       value="{{ $edit_case_steps->arrest_surrender_cw_note }}">
                                                                                 @error('arrest_surrender_cw_note')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                                 <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="arrest_surrender_cw_org"
-                                                                                       name="arrest_surrender_cw_org"
+                                                                                       name="arrest_surrender_cw_org" {{ $edit_case_steps->arrest_surrender_cw_org == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="arrest_surrender_cw_cc"
-                                                                                       name="arrest_surrender_cw_cc"
+                                                                                       name="arrest_surrender_cw_cc" {{ $edit_case_steps->arrest_surrender_cw_cc == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="arrest_surrender_cw_copy"
-                                                                                       name="arrest_surrender_cw_copy"
+                                                                                       name="arrest_surrender_cw_copy" {{ $edit_case_steps->arrest_surrender_cw_copy == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                 @error('arrest_surrender_cw_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -2589,7 +2520,7 @@
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'case_steps_bail');">
                                                                                     <input type="text" id="case_steps_bail" name="case_steps_bail"
-                                                                                            value="dd-mm-yyyy" class="date_second_input_steps"
+                                                                                    @if ($edit_case_steps->case_steps_bail) value="{{ $edit_case_steps->case_steps_bail }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
                                                                                            tabindex="-1">
                                                                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                                                 </span>
@@ -2600,21 +2531,21 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="case_steps_bail_note"
                                                                                        name="case_steps_bail_note"
-                                                                                       value="{{old('case_steps_bail_note')}}">
+                                                                                       value="{{ $edit_case_steps->case_steps_bail_note }}">
                                                                                 @error('case_steps_bail_note')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                                 <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_bail_org"
-                                                                                       name="case_steps_bail_org"
+                                                                                       name="case_steps_bail_org" {{ $edit_case_steps->case_steps_bail_org == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_bail_cc"
-                                                                                       name="case_steps_bail_cc"
+                                                                                       name="case_steps_bail_cc" {{ $edit_case_steps->case_steps_bail_cc == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_bail_copy"
-                                                                                       name="case_steps_bail_copy"
+                                                                                       name="case_steps_bail_copy" {{ $edit_case_steps->case_steps_bail_copy == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                 @error('case_steps_bail_copy')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -2626,7 +2557,7 @@
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'case_steps_court_transfer');">
                                                                                     <input type="text" id="case_steps_court_transfer" name="case_steps_court_transfer"
-                                                                                           value="dd-mm-yyyy" class="date_second_input_steps"
+                                                                                    @if ($edit_case_steps->case_steps_court_transfer) value="{{ $edit_case_steps->case_steps_court_transfer }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
                                                                                            tabindex="-1">
                                                                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                                                 </span>
@@ -2637,21 +2568,21 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="case_steps_court_transfer_note"
                                                                                        name="case_steps_court_transfer_note"
-                                                                                       value="{{old('case_steps_court_transfer_note')}}">
+                                                                                       value="{{ $edit_case_steps->case_steps_court_transfer_note }}">
                                                                                 @error('case_steps_court_transfer_note')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                                 <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_court_transfer_org"
-                                                                                       name="case_steps_court_transfer_org"
+                                                                                       name="case_steps_court_transfer_org" {{ $edit_case_steps->case_steps_court_transfer_org == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_court_transfer_cc"
-                                                                                       name="case_steps_court_transfer_cc"
+                                                                                       name="case_steps_court_transfer_cc" {{ $edit_case_steps->case_steps_court_transfer_cc == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_court_transfer_copy"
-                                                                                       name="case_steps_court_transfer_copy"
+                                                                                       name="case_steps_court_transfer_copy" {{ $edit_case_steps->case_steps_court_transfer_copy == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                 @error('case_steps_court_transfer_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -2664,7 +2595,7 @@
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'case_steps_charge_framed');">
                                                                                     <input type="text" id="case_steps_charge_framed" name="case_steps_charge_framed"
-                                                                                            value="dd-mm-yyyy"  class="date_second_input_steps"
+                                                                                    @if ($edit_case_steps->case_steps_charge_framed) value="{{ $edit_case_steps->case_steps_charge_framed }}" @else value="dd-mm-yyyy" @endif  class="date_second_input_steps"
                                                                                            tabindex="-1">
                                                                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                                                 </span>
@@ -2675,21 +2606,21 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="case_steps_charge_framed_note"
                                                                                        name="case_steps_charge_framed_note"
-                                                                                       value="{{old('case_steps_charge_framed_note')}}">
+                                                                                       value="{{ $edit_case_steps->case_steps_charge_framed_note }}">
                                                                                 @error('case_steps_charge_framed_note')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                                 <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_charge_framed_org"
-                                                                                       name="case_steps_charge_framed_org"
+                                                                                       name="case_steps_charge_framed_org" {{ $edit_case_steps->case_steps_charge_framed_org == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_charge_framed_cc"
-                                                                                       name="case_steps_charge_framed_cc"
+                                                                                       name="case_steps_charge_framed_cc" {{ $edit_case_steps->case_steps_charge_framed_cc == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_charge_framed_copy"
-                                                                                       name="case_steps_charge_framed_copy"
+                                                                                       name="case_steps_charge_framed_copy" {{ $edit_case_steps->case_steps_charge_framed_copy == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                 @error('case_steps_charge_framed_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -2702,7 +2633,7 @@
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'case_steps_witness_from');">
                                                                                     <input type="text" id="case_steps_witness_from" name="case_steps_witness_from"
-                                                                                            value="dd-mm-yyyy" class="date_second_input_steps"
+                                                                                    @if ($edit_case_steps->case_steps_witness_from) value="{{ $edit_case_steps->case_steps_witness_from }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
                                                                                            tabindex="-1">
                                                                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                                                 </span>
@@ -2713,21 +2644,21 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="case_steps_witness_from_note"
                                                                                        name="case_steps_witness_from_note"
-                                                                                       value="{{old('case_steps_witness_from_note')}}">
+                                                                                       value="{{ $edit_case_steps->case_steps_witness_from_note }}">
                                                                                 @error('case_steps_witness_from_note')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                                 <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_witness_from_org"
-                                                                                       name="case_steps_witness_from_org"
+                                                                                       name="case_steps_witness_from_org" {{ $edit_case_steps->case_steps_witness_from_org == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_witness_from_cc"
-                                                                                       name="case_steps_witness_from_cc"
+                                                                                       name="case_steps_witness_from_cc" {{ $edit_case_steps->case_steps_witness_from_cc == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_witness_from_copy"
-                                                                                       name="case_steps_witness_from_copy"
+                                                                                       name="case_steps_witness_from_copy" {{ $edit_case_steps->case_steps_witness_from_copy == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                 @error('case_steps_witness_from_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -2740,7 +2671,7 @@
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'case_steps_witness_to');">
                                                                                     <input type="text" id="case_steps_witness_to" name="case_steps_witness_to"
-                                                                                           value="dd-mm-yyyy" class="date_second_input_steps"
+                                                                                    @if ($edit_case_steps->case_steps_witness_to) value="{{ $edit_case_steps->case_steps_witness_to }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
                                                                                            tabindex="-1">
                                                                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                                                 </span>
@@ -2751,21 +2682,21 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="case_steps_witness_to_note"
                                                                                        name="case_steps_witness_to_note"
-                                                                                       value="{{old('case_steps_witness_to_note')}}">
+                                                                                       value="{{ $edit_case_steps->case_steps_witness_to_note }}">
                                                                                 @error('case_steps_witness_to_note')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                                 <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_witness_to_org"
-                                                                                       name="case_steps_witness_to_org"
+                                                                                       name="case_steps_witness_to_org" {{ $edit_case_steps->case_steps_witness_to_org == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_witness_to_cc"
-                                                                                       name="case_steps_witness_to_cc"
+                                                                                       name="case_steps_witness_to_cc" {{ $edit_case_steps->case_steps_witness_to_cc == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_witness_to_copy"
-                                                                                       name="case_steps_witness_to_copy"
+                                                                                       name="case_steps_witness_to_copy" {{ $edit_case_steps->case_steps_witness_to_copy == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                 @error('case_steps_witness_to_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -2778,7 +2709,7 @@
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'case_steps_argument');">
                                                                                     <input type="text" id="case_steps_argument" name="case_steps_argument"
-                                                                                            value="dd-mm-yyyy" class="date_second_input_steps"
+                                                                                    @if ($edit_case_steps->case_steps_argument) value="{{ $edit_case_steps->case_steps_argument }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
                                                                                            tabindex="-1">
                                                                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                                                 </span>
@@ -2789,21 +2720,21 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="case_steps_argument_note"
                                                                                        name="case_steps_argument_note"
-                                                                                       value="{{old('case_steps_argument_note')}}">
+                                                                                       value="{{ $edit_case_steps->case_steps_argument_note }}">
                                                                                 @error('case_steps_argument_note')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                                 <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_argument_org"
-                                                                                       name="case_steps_argument_org"
+                                                                                       name="case_steps_argument_org" {{ $edit_case_steps->case_steps_argument_org == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_argument_cc"
-                                                                                       name="case_steps_argument_cc"
+                                                                                       name="case_steps_argument_cc" {{ $edit_case_steps->case_steps_argument_cc == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_argument_copy"
-                                                                                       name="case_steps_argument_copy"
+                                                                                       name="case_steps_argument_copy" {{ $edit_case_steps->case_steps_argument_copy == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                 @error('case_steps_argument_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -2817,7 +2748,7 @@
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'case_steps_judgement_order');">
                                                                                     <input type="text" id="case_steps_judgement_order" name="case_steps_judgement_order"
-                                                                                           value="dd-mm-yyyy" class="date_second_input_steps"
+                                                                                    @if ($edit_case_steps->case_steps_judgement_order) value="{{ $edit_case_steps->case_steps_judgement_order }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
                                                                                            tabindex="-1">
                                                                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                                                 </span>
@@ -2828,21 +2759,21 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="case_steps_judgement_order_note"
                                                                                        name="case_steps_judgement_order_note"
-                                                                                       value="{{old('case_steps_judgement_order_note')}}">
+                                                                                       value="{{ $edit_case_steps->case_steps_judgement_order_note }}">
                                                                                 @error('case_steps_judgement_order_note')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                                 <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_judgement_order_org"
-                                                                                       name="case_steps_judgement_order_org"
+                                                                                       name="case_steps_judgement_order_org" {{ $edit_case_steps->case_steps_judgement_order_org == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_judgement_order_cc"
-                                                                                       name="case_steps_judgement_order_cc"
+                                                                                       name="case_steps_judgement_order_cc" {{ $edit_case_steps->case_steps_judgement_order_cc == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_judgement_order_copy"
-                                                                                       name="case_steps_judgement_order_copy"
+                                                                                       name="case_steps_judgement_order_copy" {{ $edit_case_steps->case_steps_judgement_order_copy == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                 @error('case_steps_judgement_order_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
@@ -2856,7 +2787,7 @@
                                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                                            onchange="setCorrect(this,'case_steps_summary_of_cases');">
                                                                                     <input type="text" id="case_steps_summary_of_cases" name="case_steps_summary_of_cases"
-                                                                                           value="dd-mm-yyyy" class="date_second_input_steps"
+                                                                                    @if ($edit_case_steps->case_steps_summary_of_cases) value="{{ $edit_case_steps->case_steps_summary_of_cases }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
                                                                                            tabindex="-1">
                                                                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                                                                 </span>
@@ -2867,44 +2798,34 @@
                                                                                 <input type="text" class="form-control"
                                                                                        id="case_steps_summary_of_cases_note"
                                                                                        name="case_steps_summary_of_cases_note"
-                                                                                       value="{{old('case_steps_summary_of_cases_note')}}">
+                                                                                       value="{{ $edit_case_steps->case_steps_summary_of_cases_note }}">
                                                                                 @error('case_steps_summary_of_cases_note')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>
                                                                                 <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_summary_of_cases_org"
-                                                                                       name="case_steps_summary_of_cases_org"
+                                                                                       name="case_steps_summary_of_cases_org" {{ $edit_case_steps->case_steps_summary_of_cases_org == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_summary_of_cases_cc"
-                                                                                       name="case_steps_summary_of_cases_cc"
+                                                                                       name="case_steps_summary_of_cases_cc" {{ $edit_case_steps->case_steps_summary_of_cases_cc == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                        <input type="checkbox" class="form-control col-sm-1"
                                                                                        id="case_steps_summary_of_cases_copy"
-                                                                                       name="case_steps_summary_of_cases_copy"
+                                                                                       name="case_steps_summary_of_cases_copy" {{ $edit_case_steps->case_steps_summary_of_cases_copy == '1' ? 'checked' : '' }}
                                                                                        >
                                                                                 @error('case_steps_summary_of_cases_yes_no')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             
                                                                         </div>
-                                                                        {{-- <div class="form-group row">
-                                                                            <label for="case_steps_summary_judgement_order"
-                                                                                   class="col-sm-4 col-form-label"> Summary of Case </label>
-                                                                            <div class="col-sm-8">
-                                                                            <textarea name="case_steps_summary_judgement_order" class="form-control"
-                                                                                      rows="3"
-                                                                                      placeholder="">{{old('case_steps_summary_judgement_order')}}</textarea>
-                                                                                @error('case_steps_summary_judgement_order')<span
-                                                                                    class="text-danger">{{$message}}</span>@enderror
-                                                                            </div>
-                                                                        </div> --}}
+                                                                        
                                                                         <div class="form-group row">
                                                                             <label for="case_steps_remarks"
                                                                                    class="col-sm-3 col-form-label"> Remarks </label>
                                                                             <div class="col-sm-9">
                                                                             <textarea name="case_steps_remarks" class="form-control"
                                                                                       rows="3"
-                                                                                      placeholder="">{{old('case_steps_remarks')}}</textarea>
+                                                                                      placeholder="">{{ $edit_case_steps->case_steps_remarks }}</textarea>
                                                                                 @error('case_steps_remarks')<span
                                                                                     class="text-danger">{{$message}}</span>@enderror
                                                                             </div>

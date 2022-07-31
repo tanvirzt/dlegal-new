@@ -46,7 +46,7 @@
                                     <td style="text-align: center; width:100%;" valign="top">
 
 
-                                        <span id="lblUnitName" class="HeaderStyle"><b>DLegal</b></span>
+                                        <span id="lblUnitName" class="HeaderStyle"><b>dLegal</b></span>
                                         <br/>
                                         <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag, Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
                                         <br/>

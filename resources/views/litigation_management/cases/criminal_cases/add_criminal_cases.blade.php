@@ -1047,7 +1047,8 @@
                                                         <div class="form-group row">
                                                             
                                                             <div class="col-sm-12">
-                                                                <div class="input-group hdtuto_received_documents control-group increment_received_documents">
+                                                                 <div class="input-group hdtuto_received_documents control-group increment_received_documents">
+                                                                    
                                                                     <input type="hidden" name="received_documents_sections[]"
                                                                            class="myfrm form-control mr-2" value="received_documents_sections">
                                                                     <select name="received_documents_id[]"
@@ -1932,16 +1933,29 @@
                                                 <h6 class="text-uppercase text-bold"><u> Letter / Notice / Reply </u></h6>
                                                 <h6 class="text-uppercase text-bold">
                                                     <div class="row">
+                                                        <div class="col-md-2"> Date </div>
+                                                        <div class="col-md-3">Document Name</div>
+                                                        <div class="col-md-3 ml-5">Particulars</div>
+                                                        <div class="col-md-1" style="margin-left:-35px;">ORG</div>
+                                                        <div class="col-md-1">CC</div>
+                                                        <div class="col-md-1" style="padding-left:1px;">Copy</div>
+                                                    </div>
+                                                </h6>
+                                                {{-- <h6 class="text-uppercase text-bold">
+                                                    <div class="row">
                                                         <div class="col-md-3"> Date </div>
                                                         <div class="col-md-3"> Document Name </div>
                                                         <div class="col-md-3"> Particulars </div>
                                                         <div class="col-md-1"> ORG </div>
-                                                        <div class="col-md-1"> PHT </div>
+                                                        <div class="col-md-1"> CC </div>
+                                                        <div class="col-md-1"> COPY </div>
                                                     </div>
-                                                </h6>
+                                                </h6> --}}
                                                         <div class="form-group row">
                                                             <div class="col-sm-12">
                                                                 <div class="input-group hdtuto_letter_notice control-group increment_letter_notice">
+                                                                    <input type="hidden" name="letter_notice_sections[]"
+                                                                           class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
                                                                     <input type="date" name="letter_notice_date[]"
                                                                            class="myfrm form-control mr-2 col-md-4">
                                                                     <select name="letter_notice_documents_id[]"
@@ -1953,20 +1967,15 @@
                                                                         @endforeach
                                                                     </select>
                                                                     <input type="text" name="letter_notice_documents_write[]"
-                                                                           class="myfrm form-control mr-2 col-md-4">
-                                                                    <select name="letter_notice_particulars_id[]"
-                                                                        class="form-control col-md-3 mr-2">
-                                                                        <option value="">Select</option>
-                                                                        @foreach($particulars as $item)
-                                                                            <option
-                                                                                value="{{ $item->particulars_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
-                                                                        @endforeach
-                                                                    </select>
+                                                                           class="myfrm form-control mr-2 col-md-4" placeholder="Document">
+                                                                    
                                                                     <input type="text" name="letter_notice_particulars_write[]"
-                                                                           class="myfrm form-control mr-2 col-md-4">
+                                                                           class="myfrm form-control mr-2 col-md-4" placeholder="Particulars">
                                                                     <input type="checkbox" name="letter_notice_org[]"
                                                                            class="myfrm col-md-1" >
-                                                                    <input type="checkbox" name="letter_notice_pht[]"
+                                                                    <input type="checkbox" name="letter_notice_cc[]"
+                                                                           class="myfrm mr-2 col-md-1" >
+                                                                    <input type="checkbox" name="letter_notice_copy[]"
                                                                            class="myfrm mr-2 col-md-1" >
 
                                                                     <div class="input-group-btn">
@@ -1979,6 +1988,8 @@
                                                                 <div class="clone_letter_notice hide">
                                                                     <div class="hdtuto_letter_notice control-group lst input-group"
                                                                          style="margin-top:10px">
+                                                                         <input type="hidden" name="letter_notice_sections[]"
+                                                                           class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
                                                                          <input type="date" name="letter_notice_date[]"
                                                                            class="myfrm form-control mr-2 col-md-4">
                                                                     <select name="letter_notice_documents_id[]"
@@ -1990,21 +2001,17 @@
                                                                         @endforeach
                                                                     </select>
                                                                     <input type="text" name="letter_notice_documents_write[]"
-                                                                           class="myfrm form-control mr-2 col-md-4">
-                                                                    <select name="letter_notice_particulars_id[]"
-                                                                        class="form-control col-md-3">
-                                                                        <option value="">Select</option>
-                                                                        @foreach($particulars as $item)
-                                                                            <option
-                                                                                value="{{ $item->particulars_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
-                                                                        @endforeach
-                                                                    </select>
+                                                                           class="myfrm form-control mr-2 col-md-4" placeholder="Document">
+                                                                    
                                                                     <input type="text" name="letter_notice_particulars_write[]"
-                                                                           class="myfrm form-control mr-2 col-md-4">
+                                                                           class="myfrm form-control mr-2 col-md-4" placeholder="Particulars">
                                                                     <input type="checkbox" name="letter_notice_org[]"
                                                                            class="myfrm form-control col-md-1" >
-                                                                    <input type="checkbox" name="letter_notice_pht[]"
+                                                                    <input type="checkbox" name="letter_notice_cc[]"
                                                                            class="myfrm form-control mr-2 col-md-1" >
+                                                                    <input type="checkbox" name="letter_notice_copy[]"
+                                                                           class="myfrm mr-2 col-md-1" >
+
                                                                         <div class="input-group-btn">
                                                                             <button class="btn btn-danger btn_danger_letter_notice"
                                                                                     type="button"><i
