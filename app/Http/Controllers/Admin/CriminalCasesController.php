@@ -184,8 +184,8 @@ class CriminalCasesController extends Controller
         // $key = array_key_last(($request->case_infos_complainant_informant_name));
         // $element[$key-1];
 
-       $data = json_decode(json_encode($request->all()));
-       echo "<pre>";print_r($data);die();
+    //    $data = json_decode(json_encode($request->all()));
+    //    echo "<pre>";print_r($data);die();
 
 
        $received_documents_sections = $request->received_documents_sections;
@@ -749,7 +749,7 @@ $case_no_data = DB::table('criminal_cases')
         $remove = !empty($required_wanting_documents_sections) ? array_pop($required_wanting_documents_sections) : '';  
 
         $letter_notice_sections = $request->letter_notice_sections;
-        $remove = array_pop($letter_notice_sections);  
+        $remove = !empty($letter_notice_sections) ? array_pop($letter_notice_sections) : ''; 
 
         if ($request->received_date != 'dd-mm-yyyy') {
             $received_date_explode = explode('-', $request->received_date);

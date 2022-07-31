@@ -1112,7 +1112,27 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h6 class="text-uppercase text-bold"><u> Letter / Notice / Reply </u></h6>
-                                                <h6 class="text-uppercase text-bold">
+
+
+                                                    <h6 class="text-uppercase text-bold">
+                                                        <div class="row">
+                                                            <div class="col-md-3"> Date </div>
+                                                            <div class="col-md-3">Document Name</div>
+                                                            <div class="col-md-3">Particulars</div>
+                                                            <div class="col-md-2" >Type</div>
+                                                            <div class="col-md-1">
+                                                                <button type="button"
+                                                                    class="btn btn-info btn-sm float-right"
+                                                                    data-toggle="modal" data-target="#modal-lg-letter-notice"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Update Case Steps"><i
+                                                                        class="fas fa-edit"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </h6>
+
+
+                                                {{-- <h6 class="text-uppercase text-bold">
                                                     <div class="row">
                                                         <div class="col-md-3"> Date </div>
                                                         <div class="col-md-2"> Document Name </div>
@@ -1130,24 +1150,28 @@
                                                                         class="fas fa-edit"></i></button>
                                                         </div>
                                                     </div>
-                                                </h6>
+                                                </h6> --}}
                                                     
                                                     <table class="table table-bordered">
                                                         <tbody>
                                                             @foreach ($letter_notice_explode as $value)
                                                             <tr>
-                                                                <td width="20%">{{ $value['letter_notice_date'] }}</td>
-                                                                <td width="20%">{{ $value['letter_notice_documents_id'] }}
+                                                                <td width="25%">{{ $value['letter_notice_date'] }}</td>
+                                                                <td width="25%">{{ $value['letter_notice_documents_id'] }} {{ $value['letter_notice_documents_write'] }}
                                                                      </td>
-                                                                <td width="20%">{{ $value['letter_notice_particulars_id'] }}
+                                                                <td width="25%">{{ $value['letter_notice_particulars_write'] }}
                                                                     </td>
-                                                                <td width="20%">{{ $value['letter_notice_org'] == '1' ? 'Yes' : 'No' }}
-                                                                </td>
-                                                                <td width="20%">{{ $value['letter_notice_pht'] == '1' ? 'Yes' : 'No' }}
+                                                                <td width="25%">
+                                                                    @if ($value['letter_notice_org'] == '1')
+                                                                        ORG
+                                                                    @elseif($value['letter_notice_cc'] == '1')
+                                                                        CC
+                                                                    @elseif($value['letter_notice_copy'] == '1')
+                                                                        COPY
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                             @endforeach
-                                                            
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -5427,7 +5451,7 @@
     </div>
 
     <div class="modal fade" id="modal-lg-letter-notice">
-        <div class="modal-dialog modal-md">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="card-title"> Edit Criminal Cases </h3>
@@ -5435,141 +5459,132 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('update-criminal-cases-status-column', $data->id) }}" method="post">
+                <form action="{{ route('update-criminal-cases', $data->id) }}" method="post">
                     @csrf
                     <div class="card-body">
                         <h6 class="text-uppercase text-bold"><u> Letter / Notice / Reply </u></h6>
-                                                                        <h6 class="text-uppercase text-bold">
-                                                                            <div class="row">
-                                                                                <div class="col-md-3"> Date </div>
-                                                                                <div class="col-md-3"> Document Name </div>
-                                                                                <div class="col-md-3"> Particulars </div>
-                                                                                <div class="col-md-1"> ORG </div>
-                                                                                <div class="col-md-1"> PHT </div>
-                                                                            </div>
-                                                                        </h6>
-                                                                        <div class="form-group row">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="input-group hdtuto_letter_notice control-group increment_letter_notice">
-                                                                                    <input type="date" name="letter_notice_date[]"
-                                                                                           class="myfrm form-control mr-2 col-md-4" value="{{ !empty($letter_notice_explode[0]['letter_notice_date']) ? $letter_notice_explode[0]['letter_notice_date'] : '' }}">
-                                                                                    <select name="letter_notice_documents_id[]"
-                                                                                        class="form-control mr-2 col-md-3">
-                                                                                        <option value="">Select</option>
-                                                                                        @foreach($documents as $item)
-                                                                                            <option
-                                                                                                value="{{ $item->documents_name }}" {{ !empty($letter_notice_explode[0]['letter_notice_documents_id']) && $letter_notice_explode[0]['letter_notice_documents_id']  == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                                                        @endforeach
-                                                                                    </select>
-                                                                                    <input type="text" name="letter_notice_documents_write[]"
-                                                                                           class="myfrm form-control mr-2 col-md-4" value="{{ !empty($letter_notice_explode[0]['letter_notice_documents_write']) ? $letter_notice_explode[0]['letter_notice_documents_write'] : '' }}">
-                                                                                    <select name="letter_notice_particulars_id[]"
-                                                                                        class="form-control col-md-3 mr-2">
-                                                                                        <option value="">Select</option>
-                                                                                        @foreach($particulars as $item)
-                                                                                            <option
-                                                                                                value="{{ $item->particulars_name }}" {{ !empty($letter_notice_explode[0]['letter_notice_particulars_id']) && $letter_notice_explode[0]['letter_notice_particulars_id']  == $item->particulars_name ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
-                                                                                        @endforeach
-                                                                                    </select>
-                                                                                    <input type="text" name="letter_notice_particulars_write[]"
-                                                                                           class="myfrm form-control mr-2 col-md-4" value="{{ !empty($letter_notice_explode[0]['letter_notice_particulars_write']) ? $letter_notice_explode[0]['letter_notice_particulars_write'] : '' }}">
-                                                                                    <input type="checkbox" name="letter_notice_org[]"
-                                                                                           class="myfrm form-control col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_org']) && $letter_notice_explode[0]['letter_notice_org'] == '1') checked @endif>
-                                                                                    <input type="checkbox" name="letter_notice_pht[]"
-                                                                                           class="myfrm form-control mr-2 col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_pht']) && $letter_notice_explode[0]['letter_notice_pht'] == '1') checked @endif>
-                                                                                    
-                                                                                    <div class="input-group-btn">
-                                                                                        <button class="btn btn-success btn_success_letter_notice"
-                                                                                                type="button"><i
-                                                                                                class="fldemo glyphicon glyphicon-plus"></i>+
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="clone_letter_notice hide">
-                                                                                    <div class="hdtuto_letter_notice control-group lst input-group"
-                                                                                         style="margin-top:10px">
-                                                                                         <input type="date" name="letter_notice_date[]"
-                                                                                           class="myfrm form-control mr-2 col-md-4">
-                                                                                    <select name="letter_notice_documents_id[]"
-                                                                                        class="form-control mr-2 col-md-3">
-                                                                                        <option value="">Select</option>
-                                                                                        @foreach($documents as $item)
-                                                                                            <option
-                                                                                                value="{{ $item->documents_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                                                        @endforeach
-                                                                                    </select>
-                                                                                    <input type="text" name="letter_notice_documents_write[]"
-                                                                                           class="myfrm form-control mr-2 col-md-4">
-                                                                                    <select name="letter_notice_particulars_id[]"
-                                                                                        class="form-control col-md-3 mr-2">
-                                                                                        <option value="">Select</option>
-                                                                                        @foreach($particulars as $item)
-                                                                                            <option
-                                                                                                value="{{ $item->particulars_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
-                                                                                        @endforeach
-                                                                                    </select>
-                                                                                    <input type="text" name="letter_notice_particulars_write[]"
-                                                                                           class="myfrm form-control mr-2 col-md-4">
-                                                                                    <input type="checkbox" name="letter_notice_org[]"
-                                                                                           class="myfrm form-control col-md-1">
-                                                                                    <input type="checkbox" name="letter_notice_pht[]"
-                                                                                           class="myfrm form-control mr-2 col-md-1">
-                                                                                        <div class="input-group-btn">
-                                                                                            <button class="btn btn-danger btn_danger_letter_notice"
-                                                                                                    type="button"><i
-                                                                                                    class="fldemo glyphicon glyphicon-remove"></i> -
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
+                        <h6 class="text-uppercase text-bold">
+                            <div class="row">
+                                <div class="col-md-2"> Date </div>
+                                <div class="col-md-4 text-center">Document Name</div>
+                                <div class="col-md-3 text-center">Particulars</div>
+                                <div class="col-md-1" style="margin-left:-30px;">ORG</div>
+                                <div class="col-md-1">CC</div>
+                                <div class="col-md-1" style="padding-left:1px;">Copy</div>
+                            </div>
+                        </h6>
 
-                                                                                <div class="clone_letter_notice @if(count($letter_notice_explode) <= 1) hide @endif">
-                                                                                    @php
-                                                                                        array_shift($letter_notice_explode);
-                                                                                    @endphp
-                                                                                    @foreach ( $letter_notice_explode as $datas)
-                                                                                    <div class="hdtuto_letter_notice control-group lst input-group"
-                                                                                         style="margin-top:10px">
-                                                                                         <input type="date" name="letter_notice_date[]"
-                                                                                           class="myfrm form-control mr-2 col-md-4" value="{{ $datas['letter_notice_date'] }}">
-                                                                                        <select name="letter_notice_documents_id[]"
-                                                                                            class="form-control mr-2 col-md-3">
-                                                                                            <option value="">Select</option>
-                                                                                            @foreach($documents as $item)
-                                                                                                <option
-                                                                                                    value="{{ $item->documents_name }}" {{ $datas['letter_notice_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                        <input type="text" name="letter_notice_documents_write[]"
-                                                                                           class="myfrm form-control mr-2 col-md-4" value="{{ $datas['letter_notice_documents_write'] }}">
-                                                                                        <select name="letter_notice_particulars_id[]"
-                                                                                            class="form-control col-md-3 mr-2">
-                                                                                            <option value="">Select</option>
-                                                                                            @foreach($particulars as $item)
-                                                                                                <option
-                                                                                                    value="{{ $item->particulars_name }}" {{ $datas['letter_notice_particulars_id'] == $item->particulars_name ? 'selected' : '' }}>{{ $item->particulars_name }}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                        <input type="text" name="letter_notice_particulars_write[]"
-                                                                                           class="myfrm form-control mr-2 col-md-4" value="{{ $datas['letter_notice_particulars_write'] }}">
-                                                                                        <input type="checkbox" name="letter_notice_org[]"
-                                                                                            class="myfrm form-control col-md-1" @if ($datas['letter_notice_org'] == '1') checked @endif >
-                                                                                        <input type="checkbox" name="letter_notice_pht[]"
-                                                                                            class="myfrm form-control mr-2 col-md-1" @if ($datas['letter_notice_pht'] == '1') checked @endif>
-                                                                                        <div class="input-group-btn">
-                                                                                            <button class="btn btn-danger btn_danger_letter_notice"
-                                                                                                    type="button"><i
-                                                                                                    class="fldemo glyphicon glyphicon-remove"></i> -
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    @endforeach
-                                                                                </div>
-                        
-                                                                                @error('case_infos_letter_notice_informant_name')<span
-                                                                                    class="text-danger">{{$message}}</span>@enderror
-                                                                            </div>
-                                                                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <div class="input-group hdtuto_letter_notice control-group increment_letter_notice">
+                                    <input type="hidden" name="letter_notice_sections[]"
+                                    class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
+                                    <input type="date" name="letter_notice_date[]"
+                                           class="myfrm form-control mr-2 col-md-4" value="{{ !empty($letter_notice_explode[0]['letter_notice_date']) ? $letter_notice_explode[0]['letter_notice_date'] : '' }}">
+                                    <select name="letter_notice_documents_id[]"
+                                        class="form-control mr-2 col-md-3">
+                                        <option value="">Select</option>
+                                        @foreach($documents as $item)
+                                            <option
+                                                value="{{ $item->documents_name }}" {{ !empty($letter_notice_explode[0]['letter_notice_documents_id']) && $letter_notice_explode[0]['letter_notice_documents_id']  == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="text" name="letter_notice_documents_write[]"
+                                           class="myfrm form-control mr-2 col-md-4" placeholder="Document" value="{{ !empty($letter_notice_explode[0]['letter_notice_documents_write']) ? $letter_notice_explode[0]['letter_notice_documents_write'] : '' }}">
+                                    
+                                    <input type="text" name="letter_notice_particulars_write[]"
+                                           class="myfrm form-control mr-2 col-md-4" placeholder="Particulars" value="{{ !empty($letter_notice_explode[0]['letter_notice_particulars_write']) ? $letter_notice_explode[0]['letter_notice_particulars_write'] : '' }}">
+                                    <input type="checkbox" name="letter_notice_org[]"
+                                           class="myfrm form-control col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_org']) && $letter_notice_explode[0]['letter_notice_org'] == '1') checked @endif>
+                                    <input type="checkbox" name="letter_notice_cc[]"
+                                           class="myfrm form-control mr-2 col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_cc']) && $letter_notice_explode[0]['letter_notice_cc'] == '1') checked @endif>
+                                    <input type="checkbox" name="letter_notice_copy[]"
+                                           class="myfrm mr-2 col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_copy']) && $letter_notice_explode[0]['letter_notice_copy'] == '1') checked @endif>
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-success btn_success_letter_notice_edit"
+                                                type="button"><i
+                                                class="fldemo glyphicon glyphicon-plus"></i>+
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="clone_letter_notice @if(count($letter_notice_explode) <= 1) hide @endif">
+                                    @php
+                                        array_shift($letter_notice_explode);
+                                    @endphp
+                                    @foreach ( $letter_notice_explode as $datas)
+                                    <div class="hdtuto_letter_notice control-group lst input-group"
+                                         style="margin-top:10px">
+                                         <input type="hidden" name="letter_notice_sections[]"
+                                            class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
+                                         <input type="date" name="letter_notice_date[]"
+                                           class="myfrm form-control mr-2 col-md-4" value="{{ $datas['letter_notice_date'] }}">
+                                        <select name="letter_notice_documents_id[]"
+                                            class="form-control mr-2 col-md-3">
+                                            <option value="">Select</option>
+                                            @foreach($documents as $item)
+                                                <option
+                                                    value="{{ $item->documents_name }}" {{ $datas['letter_notice_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <input type="text" name="letter_notice_documents_write[]"
+                                           class="myfrm form-control mr-2 col-md-4" placeholder="Document" value="{{ $datas['letter_notice_documents_write'] }}">
+                                        
+                                        <input type="text" name="letter_notice_particulars_write[]"
+                                           class="myfrm form-control mr-2 col-md-4" placeholder="Particulars" value="{{ $datas['letter_notice_particulars_write'] }}">
+                                        <input type="checkbox" name="letter_notice_org[]"
+                                            class="myfrm form-control col-md-1" @if ($datas['letter_notice_org'] == '1') checked @endif >
+                                        <input type="checkbox" name="letter_notice_cc[]"
+                                            class="myfrm form-control mr-2 col-md-1" @if ($datas['letter_notice_cc'] == '1') checked @endif>
+                                        <input type="checkbox" name="letter_notice_copy[]"
+                                            class="myfrm mr-2 col-md-1" @if ($datas['letter_notice_copy'] == '1') checked @endif>
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger btn_danger_letter_notice"
+                                                    type="button"><i
+                                                    class="fldemo glyphicon glyphicon-remove"></i> -
+                                            </button>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <div class="clone_letter_notice_edit hide">
+                                    <div class="hdtuto_letter_notice control-group lst input-group"
+                                         style="margin-top:10px">
+                                         <input type="hidden" name="letter_notice_sections[]"
+                                            class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
+                                         <input type="date" name="letter_notice_date[]"
+                                           class="myfrm form-control mr-2 col-md-4">
+                                    <select name="letter_notice_documents_id[]"
+                                        class="form-control mr-2 col-md-3">
+                                        <option value="">Select</option>
+                                        @foreach($documents as $item)
+                                            <option
+                                                value="{{ $item->documents_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="text" name="letter_notice_documents_write[]"
+                                           class="myfrm form-control mr-2 col-md-4" placeholder="Document">
+                                    
+                                    <input type="text" name="letter_notice_particulars_write[]"
+                                           class="myfrm form-control mr-2 col-md-4" placeholder="Particulars">
+                                    <input type="checkbox" name="letter_notice_org[]"
+                                           class="myfrm form-control col-md-1">
+                                    <input type="checkbox" name="letter_notice_cc[]"
+                                           class="myfrm form-control mr-2 col-md-1">
+                                    <input type="checkbox" name="letter_notice_copy[]"
+                                           class="myfrm mr-2 col-md-1">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger btn_danger_letter_notice"
+                                                    type="button"><i
+                                                    class="fldemo glyphicon glyphicon-remove"></i> -
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @error('case_infos_letter_notice_informant_name')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
 
 
                         <div class="modal-footer justify-content-between">

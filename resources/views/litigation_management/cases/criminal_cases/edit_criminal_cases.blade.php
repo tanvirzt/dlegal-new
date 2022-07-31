@@ -2282,7 +2282,7 @@
                                                                                     <div class="col-sm-12">
                                                                                         <div class="input-group hdtuto_letter_notice control-group increment_letter_notice">
                                                                                             <input type="hidden" name="letter_notice_sections[]"
-                                                                           class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
+                                                                                            class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
                                                                                             <input type="date" name="letter_notice_date[]"
                                                                                                    class="myfrm form-control mr-2 col-md-4" value="{{ !empty($letter_notice_explode[0]['letter_notice_date']) ? $letter_notice_explode[0]['letter_notice_date'] : '' }}">
                                                                                             <select name="letter_notice_documents_id[]"
@@ -2319,7 +2319,7 @@
                                                                                             <div class="hdtuto_letter_notice control-group lst input-group"
                                                                                                  style="margin-top:10px">
                                                                                                  <input type="hidden" name="letter_notice_sections[]"
-                                                                           class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
+                                                                                                    class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
                                                                                                  <input type="date" name="letter_notice_date[]"
                                                                                                    class="myfrm form-control mr-2 col-md-4" value="{{ $datas['letter_notice_date'] }}">
                                                                                                 <select name="letter_notice_documents_id[]"
@@ -2354,7 +2354,7 @@
                                                                                             <div class="hdtuto_letter_notice control-group lst input-group"
                                                                                                  style="margin-top:10px">
                                                                                                  <input type="hidden" name="letter_notice_sections[]"
-                                                                           class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
+                                                                                                    class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
                                                                                                  <input type="date" name="letter_notice_date[]"
                                                                                                    class="myfrm form-control mr-2 col-md-4">
                                                                                             <select name="letter_notice_documents_id[]"
