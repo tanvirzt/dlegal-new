@@ -619,6 +619,13 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-documents-setup/{id}','AdminSetupController@update_documents')->name('update-documents-setup');
         Route::post('delete-documents-setup/{id}','AdminSetupController@delete_documents')->name('delete-documents-setup');
 
+        Route::get('documents-type', 'AdminSetupController@documents_type')->name('documents-type');
+        Route::get('add-documents-type','AdminSetupController@add_documents_type')->name('add-documents-type');
+        Route::post('save-documents-type','AdminSetupController@save_documents_type')->name('save-documents-type');
+        Route::get('edit-documents-type/{id}','AdminSetupController@edit_documents_type')->name('edit-documents-type');
+        Route::post('update-documents-type/{id}','AdminSetupController@update_documents_type')->name('update-documents-type');
+        Route::post('delete-documents-type/{id}','AdminSetupController@delete_documents_type')->name('delete-documents-type');
+
         Route::get('case-title', 'AdminSetupController@case_title')->name('case-title');
         Route::get('add-case-title','AdminSetupController@add_case_title')->name('add-case-title');
         Route::post('save-case-title','AdminSetupController@save_case_title')->name('save-case-title');

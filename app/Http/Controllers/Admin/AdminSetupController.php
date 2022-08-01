@@ -75,7 +75,7 @@ use App\Models\Admin;
 use App\Models\SetupCabinet;
 use App\Models\SetupClientName;
 use App\Models\SetupParticulars;
-
+use App\Models\SetupDocumentsType;
 
 class AdminSetupController extends Controller
 {
@@ -5551,6 +5551,83 @@ public function find_case_category(Request $request)
         $data->save();
 
         session()->flash('success','Particulars Deleted Successfully.');
+        return redirect()->back();
+    }
+
+
+    //documents
+
+    public function documents_type()
+    {
+        $data = SetupDocumentsType::where('delete_status',0)->get();
+        return view('setup.documents_type.documents_type',compact('data'));
+    }
+
+    public function add_documents_type()
+    {
+        return view('setup.documents_type.add_documents_type');
+    }
+
+    public function save_documents_type(Request $request)
+    {
+        $rules = [
+            'documents_type_name' => 'required'
+        ];
+
+        $validMsg = [
+            'documents_type_name.required' => 'Document field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $documents_type = new SetupDocumentsType();
+        $documents_type->documents_type_name = $request->documents_type_name;
+        $documents_type->save();
+
+        session()->flash('success','Document Added Successfully.');
+        return redirect()->route('documents-type');
+    }
+
+    public function edit_documents_type($id)
+    {
+        $data = SetupDocumentsType::find($id);
+        return view('setup.documents_type.edit_documents_type',compact('data'));
+    }
+
+    public function update_documents_type(Request $request, $id)
+    {
+        $rules = [
+            'documents_type_name' => 'required'
+        ];
+
+        $validMsg = [
+            'documents_type_name.required' => 'Document Type field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $documents_type = SetupDocumentsType::find($id);
+        $documents_type->documents_type_name = $request->documents_type_name;
+        $documents_type->save();
+
+        session()->flash('success', 'Document Type Updated Successfully.');
+
+        return redirect()->route('documents-type');
+    }
+
+    public function delete_documents_type($id)
+    {
+        $data = SetupDocumentsType::find($id);
+        if ($data['delete_status'] == 0){
+            $delete_status = 1;
+        }else{
+            $delete_status = 0;
+        }
+
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success','Document Type Deleted Successfully');
         return redirect()->back();
     }
 

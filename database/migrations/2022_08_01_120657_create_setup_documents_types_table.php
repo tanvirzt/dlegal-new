@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCriminalCasesDocumentsRequiredsTable extends Migration
+class CreateSetupDocumentsTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateCriminalCasesDocumentsRequiredsTable extends Migration
      */
     public function up()
     {
-        Schema::create('criminal_cases_documents_requireds', function (Blueprint $table) {
+        Schema::create('setup_documents_types', function (Blueprint $table) {
             $table->id();
-            $table->integer('case_id')->nullable();
-            $table->string('required_wanting_documents_id')->nullable();
-            $table->string('required_wanting_documents')->nullable();
-            $table->string('required_wanting_documents_date')->nullable();
-            $table->string('required_wanting_documents_type_id')->nullable();
+            $table->string('documents_type_name')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
@@ -34,6 +30,6 @@ class CreateCriminalCasesDocumentsRequiredsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('criminal_cases_documents_requireds');
+        Schema::dropIfExists('setup_documents_types');
     }
 }

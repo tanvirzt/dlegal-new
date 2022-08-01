@@ -19,6 +19,7 @@ class CreateCriminalCasesDocumentsReceivedsTable extends Migration
             $table->string('received_documents_id')->nullable();
             $table->string('received_documents')->nullable();
             $table->string('received_documents_date')->nullable();
+            $table->string('received_documents_type_id')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

@@ -548,11 +548,12 @@
 
                                                     <table class="table table-bordered">
                                                         <tbody>
-                                                            @foreach ($received_documents_explode as $value)
+                                                            @foreach ($received_documents as $value)
                                                                 <tr>
-                                                                    <td width="50%">{{ $value['received_documents_id'] }}</td>
-                                                                    <td width="30%">{{ $value['received_documents'] }}</td>
-                                                                    <td width="20%">{{ !empty($value['received_documents_date']) ? date('d-m-Y', strtotime($value['received_documents_date'])) : '' }}</td>
+                                                                    <td width="30%">{{ $value->documents_name }}</td>
+                                                                    <td width="30%">{{ $value->received_documents }}</td>
+                                                                    <td width="30%">{{ !empty($value->received_documents_date) ? date('d-m-Y', strtotime($value->received_documents_date)) : '' }}</td>
+                                                                    <td width="10%">{{ $value->documents_type_name }}</td>
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
@@ -563,11 +564,12 @@
                                                     </h6>
                                                     <table class="table table-bordered">
                                                         <tbody>
-                                                            @foreach ($required_wanting_documents_explode as $value)
+                                                            @foreach ($required_wanting_documents as $value)
                                                                 <tr>
-                                                                    <td width="50%">{{ $value['required_wanting_documents_id'] }}</td>
-                                                                    <td width="30%">{{ $value['required_wanting_documents'] }}</td>
-                                                                    <td width="20%">{{ !empty($value['required_wanting_documents_date']) ? date('d-m-Y', strtotime($value['required_wanting_documents_date'])) : '' }}</td>
+                                                                    <td width="30%">{{ $value->documents_name }}</td>
+                                                                    <td width="30%">{{ $value->required_wanting_documents }}</td>
+                                                                    <td width="30%">{{ !empty($value->required_wanting_documents_date) ? date('d-m-Y', strtotime($value->required_wanting_documents_date)) : '' }}</td>
+                                                                    <td width="10%">{{ $value->documents_type_name }}</td>
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
@@ -1061,7 +1063,7 @@
                                                         <button type="button" class="btn btn-info btn-sm float-right"
                                                             data-toggle="modal" data-target="#modal-lg-status-of-the-case"
                                                             data-toggle="tooltip" data-placement="top"
-                                                            title="Update Lawyers Information"><i class="fas fa-edit"></i>
+                                                            title="Update Status of the Case"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </h6>
                                                     <table class="table table-bordered">
@@ -1086,7 +1088,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Next Date</td>
-                                                                <td> {{ date('d-m-Y', strtotime($data->next_date)) }}
+                                                                <td> {{ !empty($data->next_date) ? date('d-m-Y', strtotime($data->next_date)) : '' }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1117,9 +1119,9 @@
                                                     <h6 class="text-uppercase text-bold">
                                                         <div class="row">
                                                             <div class="col-md-3"> Date </div>
-                                                            <div class="col-md-3">Document Name</div>
-                                                            <div class="col-md-3">Particulars</div>
-                                                            <div class="col-md-2" >Type</div>
+                                                            <div class="col-md-3 text-center">Document Name</div>
+                                                            <div class="col-md-3 text-center">Particulars</div>
+                                                            <div class="col-md-2 text-center">Type</div>
                                                             <div class="col-md-1">
                                                                 <button type="button"
                                                                     class="btn btn-info btn-sm float-right"
@@ -1154,21 +1156,15 @@
                                                     
                                                     <table class="table table-bordered">
                                                         <tbody>
-                                                            @foreach ($letter_notice_explode as $value)
+                                                            @foreach ($letter_notice as $value)
                                                             <tr>
-                                                                <td width="25%">{{ $value['letter_notice_date'] }}</td>
-                                                                <td width="25%">{{ $value['letter_notice_documents_id'] }} {{ $value['letter_notice_documents_write'] }}
+                                                                <td width="26%">{{ $value->letter_notice_date }} </td>
+                                                                <td width="26%">{{ $value->documents_name }} {{ $value->letter_notice_documents_write }}
                                                                      </td>
-                                                                <td width="25%">{{ $value['letter_notice_particulars_write'] }}
+                                                                <td width="28%">{{ $value->letter_notice_particulars_write }}
                                                                     </td>
-                                                                <td width="25%">
-                                                                    @if ($value['letter_notice_org'] == '1')
-                                                                        ORG
-                                                                    @elseif($value['letter_notice_cc'] == '1')
-                                                                        CC
-                                                                    @elseif($value['letter_notice_copy'] == '1')
-                                                                        COPY
-                                                                    @endif
+                                                                <td width="20%">
+                                                                    {{ $value->documents_type_name }}
                                                                 </td>
                                                             </tr>
                                                             @endforeach
@@ -1596,23 +1592,23 @@
                                     <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                             <tr>
-                                                <th width="8%"> Date </th>
-                                                <th width="10%">Activity/Action</th>
-                                                <th width="10%">Progress</th>
-                                                <th width="10%">Mode</th>
-                                                <th width="10%">Time Spent</th>
-                                                <th width="10%">Engaged Lawyer</th>
-                                                <th width="10%">Forwarded To</th>
-                                                <th width="10%">Requirements</th>
-                                                <th width="10%">Note</th>
-                                                <th width="10%">Action</th>
-                                                <th width="10%">Update</th>
+                                                <th class="text-nowrap" style="width: 90px;"> Date </th>
+                                                <th class="text-nowrap" >Activity/Action</th>
+                                                <th class="text-nowrap" >Progress</th>
+                                                <th class="text-nowrap" >Mode</th>
+                                                <th class="text-nowrap" >Time Spent</th>
+                                                <th class="text-nowrap" >Engaged Lawyer</th>
+                                                <th class="text-nowrap" >Forwarded To</th>
+                                                <th class="text-nowrap" >Requirements</th>
+                                                <th class="text-nowrap" >Note</th>
+                                                <th class="text-nowrap" >Action</th>
+                                                <th class="text-nowrap" >Update</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($case_activity_log as $activity_log)
                                                 <tr>
-                                                    <td> {{ date('d-m-Y', strtotime($activity_log->activity_date)) }}
+                                                    <td style="width: 90px;"> {{ date('d-m-Y', strtotime($activity_log->activity_date)) }}
                                                     </td>
                                                     <td> {{\Illuminate\Support\Str::limit($activity_log->activity_action, 15)}} </td>
                                                     <td> {{\Illuminate\Support\Str::limit($activity_log->activity_progress, 15)}} </td>
@@ -4427,13 +4423,24 @@
                                             <option value="">Select</option>
                                             @foreach($documents as $item)
                                                 <option
-                                                    value="{{ $item->documents_name }}" {{ !empty($received_documents_explode[0]['received_documents_id']) && $received_documents_explode[0]['received_documents_id']  == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                    value="{{ $item->id }}" {{ !empty($received_documents_explode[0]['received_documents_id']) && $received_documents_explode[0]['received_documents_id']  == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                             @endforeach
                                         </select>
                                         <input type="text" name="received_documents[]"
                                             class="myfrm form-control mr-2" value="{{ !empty($received_documents_explode[0]['received_documents']) ? $received_documents_explode[0]['received_documents'] : '' }}">
                                         <input type="date" name="received_documents_date[]"
-                                            class="myfrm form-control ml-2" value="{{ !empty($received_documents_explode[0]['received_documents_date']) ? $received_documents_explode[0]['received_documents_date'] : '' }}">
+                                            class="myfrm form-control ml-2 mr-2" value="{{ !empty($received_documents_explode[0]['received_documents_date']) ? $received_documents_explode[0]['received_documents_date'] : '' }}">
+                                        
+                                        <select name="received_documents_type_id[]"
+                                            class="form-control mr-3 ml-2">
+                                            <option value="">Select</option>
+                                            @foreach($documents_type as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{ !empty($received_documents_explode[0]['received_documents_type_id']) && $received_documents_explode[0]['received_documents_type_id']  == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        
+                                        
                                         <div class="input-group-btn">
                                             <button class="btn btn-success btn_success_received_documents_edit"
                                                     type="button"><i
@@ -4457,13 +4464,21 @@
                                             <option value="">Select</option>
                                             @foreach($documents as $item)
                                                 <option
-                                                    value="{{ $item->documents_name }}" {{ $datas['received_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                    value="{{ $item->id }}" {{ $datas['received_documents_id'] == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                             @endforeach
                                         </select>
                                         <input type="text" name="received_documents[]"
                                                class="myfrm form-control mr-2" value="{{ $datas['received_documents'] }}">
                                         <input type="date" name="received_documents_date[]"
-                                               class="myfrm form-control ml-2" value="{{ $datas['received_documents_date'] }}">
+                                               class="myfrm form-control ml-2 mr-2" value="{{ $datas['received_documents_date'] }}">
+                                        <select name="received_documents_type_id[]"
+                                            class="form-control mr-3 ml-2">
+                                            <option value="">Select</option>
+                                            @foreach($documents_type as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{ !empty($datas['received_documents_type_id']) && $datas['received_documents_type_id']  == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                            @endforeach
+                                        </select>
                                         <div class="input-group-btn">
                                             <button class="btn btn-danger btn_danger_received_documents"
                                                     type="button"><i
@@ -4482,13 +4497,22 @@
                                             <option value="">Select</option>
                                             @foreach($documents as $item)
                                                 <option
-                                                    value="{{ $item->documents_name }}" {{ old('received_documents_id') == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                    value="{{ $item->id }}" {{ old('received_documents_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                             @endforeach
                                         </select>
                                         <input type="text" name="received_documents[]"
                                                class="myfrm form-control mr-2">
                                         <input type="date" name="received_documents_date[]"
-                                               class="myfrm form-control ml-2">
+                                               class="myfrm form-control ml-2 mr-2" value="dd/mm/yyyy">
+                                        <select name="received_documents_type_id[]"
+                                            class="form-control mr-3 ml-2">
+                                            <option value="">Select</option>
+                                            @foreach($documents_type as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{ old('received_documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                            @endforeach
+                                        </select>
+
                                         <div class="input-group-btn">
                                             <button class="btn btn-danger btn_danger_received_documents"
                                                     type="button"><i
@@ -4512,19 +4536,28 @@
                             <div class="col-sm-12">
                                 <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
                                     <input type="hidden" name="required_wanting_documents_sections[]"
-                   class="myfrm form-control mr-2" value="required_wanting_documents_sections">
+                                        class="myfrm form-control mr-2" value="required_wanting_documents_sections">
                                     <select name="required_wanting_documents_id[]"
                                         class="form-control mr-3">
                                         <option value="">Select</option>
                                         @foreach($documents as $item)
                                             <option
-                                                value="{{ $item->documents_name }}" {{ !empty($required_wanting_documents_explode[0]['required_wanting_documents_id']) && $required_wanting_documents_explode[0]['required_wanting_documents_id']  == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                value="{{ $item->id }}" {{ !empty($required_wanting_documents_explode[0]['required_wanting_documents_id']) && $required_wanting_documents_explode[0]['required_wanting_documents_id']  == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                         @endforeach
                                     </select>
                                     <input type="text" name="required_wanting_documents[]"
                                            class="myfrm form-control mr-2" value="{{ !empty($required_wanting_documents_explode[0]['required_wanting_documents']) ? $required_wanting_documents_explode[0]['required_wanting_documents'] : '' }}">
                                     <input type="date" name="required_wanting_documents_date[]"
                                            class="myfrm form-control ml-2" value="{{ !empty($required_wanting_documents_explode[0]['required_wanting_documents_date']) ? $required_wanting_documents_explode[0]['required_wanting_documents_date'] : '' }}">
+                                    <select name="required_wanting_documents_type_id[]"
+                                           class="form-control mr-3 ml-2">
+                                           <option value="">Select</option>
+                                           @foreach($documents_type as $item)
+                                               <option
+                                                   value="{{ $item->id }}" {{ !empty($required_wanting_documents_explode[0]['required_wanting_documents_type_id']) && $required_wanting_documents_explode[0]['required_wanting_documents_type_id'] == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                           @endforeach
+                                    </select>
+                                    
                                     <div class="input-group-btn">
                                         <button class="btn btn-success btn_success_required_wanting_documents_edit"
                                                 type="button"><i
@@ -4541,19 +4574,27 @@
                                     <div class="hdtuto_required_wanting_documents control-group input-group"
                                          style="margin-top:10px">
                                          <input type="hidden" name="required_wanting_documents_sections[]"
-                   class="myfrm form-control mr-2" value="required_wanting_documents_sections">
+                                        class="myfrm form-control mr-2" value="required_wanting_documents_sections">
                                          <select name="required_wanting_documents_id[]"
                                             class="form-control mr-3" >
                                             <option value="">Select</option>
                                             @foreach($documents as $item)
                                                 <option
-                                                    value="{{ $item->documents_name }}" {{ $datas['required_wanting_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                    value="{{ $item->id }}" {{ $datas['required_wanting_documents_id'] == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                             @endforeach
                                         </select>
                                         <input type="text" name="required_wanting_documents[]"
                                                class="myfrm form-control mr-2" value="{{ $datas['required_wanting_documents'] }}">
                                         <input type="date" name="required_wanting_documents_date[]"
                                                class="myfrm form-control ml-2" value="{{ $datas['required_wanting_documents_date'] }}">
+                                        <select name="required_wanting_documents_type_id[]"
+                                            class="form-control mr-3 ml-2">
+                                            <option value="">Select</option>
+                                            @foreach($documents_type as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{ !empty($datas['required_wanting_documents_type_id']) && $datas['required_wanting_documents_type_id'] == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                            @endforeach
+                                        </select>
                                         <div class="input-group-btn">
                                             <button class="btn btn-danger btn_danger_required_wanting_documents"
                                                     type="button"><i
@@ -4569,19 +4610,27 @@
                                     <div class="hdtuto_required_wanting_documents control-group input-group"
                                          style="margin-top:10px">
                                          <input type="hidden" name="required_wanting_documents_sections[]"
-                   class="myfrm form-control mr-2" value="required_wanting_documents_sections">
+                                        class="myfrm form-control mr-2" value="required_wanting_documents_sections">
                                          <select name="required_wanting_documents_id[]"
                                             class="form-control mr-3" >
                                             <option value="">Select</option>
                                             @foreach($documents as $item)
                                                 <option
-                                                    value="{{ $item->documents_name }}" {{ old('required_wanting_documents_id') == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                    value="{{ $item->id }}" {{ old('required_wanting_documents_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                             @endforeach
                                         </select>
                                         <input type="text" name="required_wanting_documents[]"
                                                class="myfrm form-control mr-2">
                                         <input type="date" name="required_wanting_documents_date[]"
                                                class="myfrm form-control ml-2">
+                                        <select name="required_wanting_documents_type_id[]"
+                                            class="form-control mr-3 ml-2">
+                                            <option value="">Select</option>
+                                            @foreach($documents_type as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{ old('required_wanting_documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                            @endforeach
+                                        </select>
                                         <div class="input-group-btn">
                                             <button class="btn btn-danger btn_danger_required_wanting_documents"
                                                     type="button"><i
@@ -5466,11 +5515,9 @@
                         <h6 class="text-uppercase text-bold">
                             <div class="row">
                                 <div class="col-md-2"> Date </div>
-                                <div class="col-md-4 text-center">Document Name</div>
+                                <div class="col-md-4 text-center ml-3">Document Name</div>
                                 <div class="col-md-3 text-center">Particulars</div>
-                                <div class="col-md-1" style="margin-left:-30px;">ORG</div>
-                                <div class="col-md-1">CC</div>
-                                <div class="col-md-1" style="padding-left:1px;">Copy</div>
+                                <div class="col-md-2">Type</div>
                             </div>
                         </h6>
 
@@ -5486,7 +5533,7 @@
                                         <option value="">Select</option>
                                         @foreach($documents as $item)
                                             <option
-                                                value="{{ $item->documents_name }}" {{ !empty($letter_notice_explode[0]['letter_notice_documents_id']) && $letter_notice_explode[0]['letter_notice_documents_id']  == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                value="{{ $item->id }}" {{ !empty($letter_notice_explode[0]['letter_notice_documents_id']) && $letter_notice_explode[0]['letter_notice_documents_id']  == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                         @endforeach
                                     </select>
                                     <input type="text" name="letter_notice_documents_write[]"
@@ -5494,12 +5541,15 @@
                                     
                                     <input type="text" name="letter_notice_particulars_write[]"
                                            class="myfrm form-control mr-2 col-md-4" placeholder="Particulars" value="{{ !empty($letter_notice_explode[0]['letter_notice_particulars_write']) ? $letter_notice_explode[0]['letter_notice_particulars_write'] : '' }}">
-                                    <input type="checkbox" name="letter_notice_org[]"
-                                           class="myfrm form-control col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_org']) && $letter_notice_explode[0]['letter_notice_org'] == '1') checked @endif>
-                                    <input type="checkbox" name="letter_notice_cc[]"
-                                           class="myfrm form-control mr-2 col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_cc']) && $letter_notice_explode[0]['letter_notice_cc'] == '1') checked @endif>
-                                    <input type="checkbox" name="letter_notice_copy[]"
-                                           class="myfrm mr-2 col-md-1" @if (!empty($letter_notice_explode[0]['letter_notice_copy']) && $letter_notice_explode[0]['letter_notice_copy'] == '1') checked @endif>
+                                           
+                                    <select name="letter_notice_type_id[]"
+                                           class="form-control mr-2">
+                                           <option value="">Select</option>
+                                           @foreach($documents_type as $item)
+                                               <option
+                                                   value="{{ $item->id }}" {{ !empty($letter_notice_explode[0]['letter_notice_type_id']) && $letter_notice_explode[0]['letter_notice_type_id']  == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                           @endforeach
+                                    </select>             
                                     <div class="input-group-btn">
                                         <button class="btn btn-success btn_success_letter_notice_edit"
                                                 type="button"><i
@@ -5523,7 +5573,7 @@
                                             <option value="">Select</option>
                                             @foreach($documents as $item)
                                                 <option
-                                                    value="{{ $item->documents_name }}" {{ $datas['letter_notice_documents_id'] == $item->documents_name ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                    value="{{ $item->id }}" {{ $datas['letter_notice_documents_id'] == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                             @endforeach
                                         </select>
                                         <input type="text" name="letter_notice_documents_write[]"
@@ -5531,12 +5581,14 @@
                                         
                                         <input type="text" name="letter_notice_particulars_write[]"
                                            class="myfrm form-control mr-2 col-md-4" placeholder="Particulars" value="{{ $datas['letter_notice_particulars_write'] }}">
-                                        <input type="checkbox" name="letter_notice_org[]"
-                                            class="myfrm form-control col-md-1" @if ($datas['letter_notice_org'] == '1') checked @endif >
-                                        <input type="checkbox" name="letter_notice_cc[]"
-                                            class="myfrm form-control mr-2 col-md-1" @if ($datas['letter_notice_cc'] == '1') checked @endif>
-                                        <input type="checkbox" name="letter_notice_copy[]"
-                                            class="myfrm mr-2 col-md-1" @if ($datas['letter_notice_copy'] == '1') checked @endif>
+                                        <select name="letter_notice_type_id[]"
+                                            class="form-control mr-2">
+                                            <option value="">Select</option>
+                                            @foreach($documents_type as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{ !empty($datas['letter_notice_type_id']) && $datas['letter_notice_type_id']  == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                            @endforeach
+                                        </select>
                                         <div class="input-group-btn">
                                             <button class="btn btn-danger btn_danger_letter_notice"
                                                     type="button"><i
@@ -5558,7 +5610,7 @@
                                         <option value="">Select</option>
                                         @foreach($documents as $item)
                                             <option
-                                                value="{{ $item->documents_name }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
+                                                value="{{ $item->id }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
                                         @endforeach
                                     </select>
                                     <input type="text" name="letter_notice_documents_write[]"
@@ -5566,12 +5618,14 @@
                                     
                                     <input type="text" name="letter_notice_particulars_write[]"
                                            class="myfrm form-control mr-2 col-md-4" placeholder="Particulars">
-                                    <input type="checkbox" name="letter_notice_org[]"
-                                           class="myfrm form-control col-md-1">
-                                    <input type="checkbox" name="letter_notice_cc[]"
-                                           class="myfrm form-control mr-2 col-md-1">
-                                    <input type="checkbox" name="letter_notice_copy[]"
-                                           class="myfrm mr-2 col-md-1">
+                                    <select name="letter_notice_type_id[]"
+                                           class="form-control mr-2">
+                                           <option value="">Select</option>
+                                           @foreach($documents_type as $item)
+                                               <option
+                                                   value="{{ $item->id }}" {{ old('letter_notice_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                           @endforeach
+                                    </select>
                                         <div class="input-group-btn">
                                             <button class="btn btn-danger btn_danger_letter_notice"
                                                     type="button"><i
