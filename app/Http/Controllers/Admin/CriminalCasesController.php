@@ -471,15 +471,21 @@ $created_case_id = 'LCR-000'.$sl;
         $steps->save();
 
         if ($request->hasfile('uploaded_document')) {
-            foreach ($request->file('uploaded_document') as $file) {
+            foreach ($request->file('uploaded_document') as $key=>$file) {
+
                 $original_name = $file->getClientOriginalName();
-                $name = $original_name;
+                $original_extension = $file->getClientOriginalExtension();
+                $name = Str::slug($original_name).'.'.$original_extension;
                 $file->move(public_path('files/criminal_cases'), $name);
-                $file = new CriminalCasesFile();
-                $file->case_id = $data->id;
-                $file->uploaded_document = $name;
-                $file->created_by = Auth::guard('admin')->user()->email;
-                $file->save();
+
+                $files = new CriminalCasesFile();
+                $files->case_id = $data->id;
+                $files->uploaded_date = $request->uploaded_date[$key];
+                $files->documents_type_id = $request->documents_type_id[$key];
+                $files->uploaded_document = $name;
+                $files->created_by = Auth::guard('admin')->user()->email;
+                $files->save();
+
             }
         }
 
@@ -1945,7 +1951,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             $next_date_implode = implode('-',$next_date_explode);
             $next_date = date('Y-m-d', strtotime($next_date_implode));
         } else {
-            $next_date = date('Y-m-d');
+            $next_date = null;
         }
         
         // dd($order_date);

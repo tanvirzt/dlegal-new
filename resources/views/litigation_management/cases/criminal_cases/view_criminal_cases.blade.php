@@ -1462,7 +1462,7 @@
                                                         @endif
                                                         {{ $logs->updated_court_order_write }}
                                                     </td>
-                                                    <td> {{ date('d-m-Y', strtotime($logs->updated_next_date)) }} </td>
+                                                    <td> {{ !empty($logs->updated_next_date) ? date('d-m-Y', strtotime($logs->updated_next_date)) : '' }} </td>
                                                     <td width="8%"> {{ $logs->index_next_date_reason_name }}
                                                         {{ $logs->updated_index_fixed_for_write }}</td>
 

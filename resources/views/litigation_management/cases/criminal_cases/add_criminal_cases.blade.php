@@ -2565,7 +2565,17 @@
                                         <label for="uploaded_document"> Document Upload </label>
                                         <div class="input-group hdtuto_files control-group increment_files">
                                             <input type="file" name="uploaded_document[]"
-                                                   class="myfrm form-control">
+                                                   class="myfrm form-control col-md-4 mr-2">
+                                            <input type="date" name="uploaded_date[]"
+                                                class="myfrm form-control mr-2 col-md-4" value="{{ old('uploaded_date') }}">
+                                            <select name="documents_type_id[]"
+                                                class="form-control col-md-4">
+                                                <option value="">Select</option>
+                                                @foreach($documents_type as $item)
+                                                    <option
+                                                        value="{{ $item->id }}" {{ old('documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                @endforeach
+                                            </select>
                                             <div class="input-group-btn">
                                                 <button class="btn btn-success btn_success_files"
                                                         type="button"><i
@@ -2577,7 +2587,18 @@
                                             <div class="hdtuto_files control-group lst input-group"
                                                  style="margin-top:10px">
                                                 <input type="file" name="uploaded_document[]"
-                                                       class="myfrm form-control">
+                                                       class="myfrm form-control col-md-4 mr-2">
+                                                <input type="date" name="uploaded_date[]"
+                                                    class="myfrm form-control mr-2 col-md-4" value="{{ old('uploaded_date') }}">
+                                                <select name="documents_type_id[]"
+                                                    class="form-control col-md-4">
+                                                    <option value="">Select</option>
+                                                    @foreach($documents_type as $item)
+                                                        <option
+                                                            value="{{ $item->id }}" {{ old('documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            <div class="input-group-btn">
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-danger btn_danger_files"
                                                             type="button"><i
@@ -2590,12 +2611,14 @@
                                 </div>
                             </div>
 
-
-                            <div class="float-right mt-4">
-                                <button type="submit" class="btn btn-primary text-uppercase"><i
-                                        class="fas fa-save"></i> Save
-                                </button>
+                            <div class="col-md-12">
+                                <div class="float-right mt-4">
+                                    <button type="submit" class="btn btn-primary text-uppercase"><i
+                                            class="fas fa-save"></i> Save
+                                    </button>
+                                </div>
                             </div>
+                            
                         </div>
 
                     </div>
