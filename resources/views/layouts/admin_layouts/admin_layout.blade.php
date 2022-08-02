@@ -151,8 +151,8 @@
             $(".data_table").DataTable({
                 "responsive": true,
                 "autoWidth": false,
-                columnDefs: [ { type: 'date', 'targets': [2] } ],
-                order: [[ 2, 'desc' ]]
+                "columnDefs": [ { type: 'date', 'targets': [2] } ],
+                "order": [[ 2, 'desc' ]]
 
 
 

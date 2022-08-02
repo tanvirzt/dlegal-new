@@ -16,7 +16,9 @@ class CreateCriminalCasesFilesTable extends Migration
         Schema::create('criminal_cases_files', function (Blueprint $table) {
             $table->id();
             $table->integer('case_id')->nullable();
-            $table->text('uploaded_document')->nullable();
+            $table->string('uploaded_document')->nullable();
+            $table->string('uploaded_date')->nullable();
+            $table->string('documents_type_id')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

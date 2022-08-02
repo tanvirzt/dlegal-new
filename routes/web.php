@@ -173,7 +173,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('add-criminal-cases','CriminalCasesController@add_criminal_cases')->name('add-criminal-cases');
         Route::post('save-criminal-cases','CriminalCasesController@save_criminal_cases')->name('save-criminal-cases');
         Route::post('upload-criminal-cases-files/{id}','CriminalCasesController@upload_criminal_cases_files')->name('upload-criminal-cases-files');
-        Route::post('update-criminal-cases-files','CriminalCasesController@update_criminal_cases_files')->name('update-criminal-cases-files');
+        Route::post('update-criminal-cases-files/{id}','CriminalCasesController@update_criminal_cases_files')->name('update-criminal-cases-files');
+        Route::get('edit-criminal-cases-files/{id}','CriminalCasesController@edit_criminal_cases_files')->name('edit-criminal-cases-files');
         Route::get('edit-criminal-cases/{id}','CriminalCasesController@edit_criminal_cases')->name('edit-criminal-cases');
         Route::post('update-criminal-cases/{id}','CriminalCasesController@update_criminal_cases')->name('update-criminal-cases');
         Route::post('update-criminal-case/{id}','CriminalCasesController@update_criminal_case')->name('update-criminal-case');

@@ -1158,7 +1158,7 @@
                                                         <tbody>
                                                             @foreach ($letter_notice as $value)
                                                             <tr>
-                                                                <td width="26%">{{ $value->letter_notice_date }} </td>
+                                                                <td width="26%">{{ date('d-m-Y', strtotime($value->letter_notice_date)) }} </td>
                                                                 <td width="26%">{{ $value->documents_name }} {{ $value->letter_notice_documents_write }}
                                                                      </td>
                                                                 <td width="28%">{{ $value->letter_notice_particulars_write }}
@@ -1197,17 +1197,18 @@
 
                                                     <h6 class="text-uppercase text-bold">
                                                         <div class="row">
-                                                            <div class="col-md-4"><u> Case Steps </u>
+                                                            <div class="col-md-3"><u> Case Steps </u>
                                                             </div>
-                                                            <div class="col-md-3">Date</div>
-                                                            <div class="col-md-2">Note</div>
-                                                            <div class="col-md-3">Type
+                                                            <div class="col-md-3 text-center">Date</div>
+                                                            <div class="col-md-3 text-center">Note</div>
+                                                            <div class="col-md-2 text-center">Type</div>
+                                                            <div class="col-md-1">
                                                                 <button type="button"
-                                                                    class="btn btn-info btn-sm float-right"
-                                                                    data-toggle="modal" data-target="#modal-lg-case-steps"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Update Case Steps"><i
-                                                                        class="fas fa-edit"></i></button>
+                                                                class="btn btn-info btn-sm float-right"
+                                                                data-toggle="modal" data-target="#modal-lg-case-steps"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Update Case Steps"><i
+                                                                    class="fas fa-edit"></i></button>
                                                             </div>
                                                         </div>
                                                     </h6>
@@ -1215,178 +1216,112 @@
                                                     <table class="table table-bordered">
                                                         <tbody>
                                                             <tr>
-                                                                <td width="30%">Filing Date</td>
+                                                                <td width="26%">Filing Date</td>
+                                                                <td width="26%">
+                                                                    {{ $case_steps->case_steps_filing }} </td>
+                                                                <td width="28%">
+                                                                    {{ $case_steps->case_steps_filing_note }} </td>
                                                                 <td width="20%">
-                                                                    {{ $edit_case_steps->case_steps_filing }} </td>
-                                                                <td width="20%">
-                                                                    {{ $edit_case_steps->case_steps_filing_note }} </td>
-                                                                <td width="30%">
-                                                                    @if ($edit_case_steps->case_steps_filing_org == '1')
-                                                                        ORG
-                                                                    @elseif($edit_case_steps->case_steps_filing_cc == '1')
-                                                                        CC
-                                                                    @elseif($edit_case_steps->case_steps_filing_copy == '1')
-                                                                        COPY
-                                                                    @endif 
+                                                                    {{ $case_steps->case_steps_filing_type_name }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Taking Cognizance</td>
-                                                                <td> {{ $edit_case_steps->taking_cognizance }} </td>
-                                                                <td> {{ $edit_case_steps->taking_cognizance_note }}
+                                                                <td> {{ $case_steps->taking_cognizance }} </td>
+                                                                <td> {{ $case_steps->taking_cognizance_note }}
                                                                 </td>
                                                                 <td> 
-                                                                    @if ($edit_case_steps->taking_cognizance_org == '1')
-                                                                        ORG
-                                                                    @elseif($edit_case_steps->taking_cognizance_cc == '1')
-                                                                        CC
-                                                                    @elseif($edit_case_steps->taking_cognizance_copy == '1')
-                                                                        COPY
-                                                                    @endif
+                                                                    {{ $case_steps->taking_cognizance_type_name }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Arrest/Surrender/C.W.</td>
-                                                                <td> {{ $edit_case_steps->arrest_surrender_cw }} </td>
-                                                                <td> {{ $edit_case_steps->arrest_surrender_cw_note }}
+                                                                <td> {{ $case_steps->arrest_surrender_cw }} </td>
+                                                                <td> {{ $case_steps->arrest_surrender_cw_note }}
                                                                 </td>
                                                                 <td>
-                                                                    @if ($edit_case_steps->arrest_surrender_cw_org == '1')
-                                                                        ORG
-                                                                    @elseif($edit_case_steps->arrest_surrender_cw_cc == '1')
-                                                                        CC
-                                                                    @elseif($edit_case_steps->arrest_surrender_cw_copy == '1')
-                                                                        COPY
-                                                                    @endif
+                                                                    {{ $case_steps->arrest_surrender_cw_type_name }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Bail</td>
-                                                                <td> {{ $edit_case_steps->case_steps_bail }} </td>
-                                                                <td> {{ $edit_case_steps->case_steps_bail_note }} </td>
+                                                                <td> {{ $case_steps->case_steps_bail }} </td>
+                                                                <td> {{ $case_steps->case_steps_bail_note }} </td>
                                                                 <td>
-                                                                    @if ($edit_case_steps->case_steps_bail_org == '1')
-                                                                        ORG
-                                                                    @elseif($edit_case_steps->case_steps_bail_cc == '1')
-                                                                        CC
-                                                                    @elseif($edit_case_steps->case_steps_bail_copy == '1')
-                                                                        COPY
-                                                                    @endif
+                                                                    {{ $case_steps->case_steps_bail_type_name }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Court Transfer</td>
-                                                                <td> {{ $edit_case_steps->case_steps_court_transfer }}
+                                                                <td> {{ $case_steps->case_steps_court_transfer }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_court_transfer_note }}
+                                                                <td> {{ $case_steps->case_steps_court_transfer_note }}
                                                                 </td>
                                                                 <td> 
-                                                                    @if ($edit_case_steps->case_steps_court_transfer_org == '1')
-                                                                        ORG
-                                                                    @elseif($edit_case_steps->case_steps_court_transfer_cc == '1')
-                                                                        CC
-                                                                    @elseif($edit_case_steps->case_steps_court_transfer_copy == '1')
-                                                                        COPY
-                                                                    @endif
+                                                                    {{ $case_steps->court_transfer_type_name }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Charge Framed</td>
-                                                                <td> {{ $edit_case_steps->case_steps_charge_framed }}
+                                                                <td> {{ $case_steps->case_steps_charge_framed }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_charge_framed_note }}
+                                                                <td> {{ $case_steps->case_steps_charge_framed_note }}
                                                                 </td>
                                                                 <td> 
-                                                                    @if ($edit_case_steps->case_steps_charge_framed_org == '1')
-                                                                        ORG
-                                                                    @elseif($edit_case_steps->case_steps_charge_framed_cc == '1')
-                                                                        CC
-                                                                    @elseif($edit_case_steps->case_steps_charge_framed_copy == '1')
-                                                                        COPY
-                                                                    @endif
+                                                                    {{ $case_steps->charge_framed_type_name }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Witness (From)</td>
-                                                                <td> {{ $edit_case_steps->case_steps_witness_from }}
+                                                                <td> {{ $case_steps->case_steps_witness_from }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_witness_from_note }}
+                                                                <td> {{ $case_steps->case_steps_witness_from_note }}
                                                                 </td>
                                                                 <td> 
-                                                                    @if ($edit_case_steps->case_steps_witness_from_org == '1')
-                                                                        ORG
-                                                                    @elseif($edit_case_steps->case_steps_witness_from_cc == '1')
-                                                                        CC
-                                                                    @elseif($edit_case_steps->case_steps_witness_from_copy == '1')
-                                                                        COPY
-                                                                    @endif
+                                                                    {{ $case_steps->witness_from_type_name }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Witness (To)</td>
-                                                                <td> {{ $edit_case_steps->case_steps_witness_to }} </td>
-                                                                <td> {{ $edit_case_steps->case_steps_witness_to_note }}
+                                                                <td> {{ $case_steps->case_steps_witness_to }} </td>
+                                                                <td> {{ $case_steps->case_steps_witness_to_note }}
                                                                 </td>
                                                                 <td>
-                                                                    @if ($edit_case_steps->case_steps_witness_to_org == '1')
-                                                                        ORG
-                                                                    @elseif($edit_case_steps->case_steps_witness_to_cc == '1')
-                                                                        CC
-                                                                    @elseif($edit_case_steps->case_steps_witness_to_copy == '1')
-                                                                        COPY
-                                                                    @endif
+                                                                    {{ $case_steps->witness_to_type_name }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Argument</td>
-                                                                <td> {{ $edit_case_steps->case_steps_argument }} </td>
-                                                                <td> {{ $edit_case_steps->case_steps_argument_note }}
+                                                                <td> {{ $case_steps->case_steps_argument }} </td>
+                                                                <td> {{ $case_steps->case_steps_argument_note }}
                                                                 </td>
                                                                 <td>
-                                                                    @if ($edit_case_steps->case_steps_argument_org == '1')
-                                                                        ORG
-                                                                    @elseif($edit_case_steps->case_steps_argument_cc == '1')
-                                                                        CC
-                                                                    @elseif($edit_case_steps->case_steps_argument_copy == '1')
-                                                                        COPY
-                                                                    @endif
+                                                                    {{ $case_steps->argument_type_name }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Judgement & Order</td>
-                                                                <td> {{ $edit_case_steps->case_steps_judgement_order }}
+                                                                <td> {{ $case_steps->case_steps_judgement_order }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_judgement_order_note }}
+                                                                <td> {{ $case_steps->case_steps_judgement_order_note }}
                                                                 </td>
                                                                 <td> 
-                                                                    @if ($edit_case_steps->case_steps_judgement_order_org == '1')
-                                                                        ORG
-                                                                    @elseif($edit_case_steps->case_steps_judgement_order_cc == '1')
-                                                                        CC
-                                                                    @elseif($edit_case_steps->case_steps_judgement_order_copy == '1')
-                                                                        COPY
-                                                                    @endif
+                                                                    {{ $case_steps->judgement_order_type_name }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Summary of Cases</td>
-                                                                <td> {{ $edit_case_steps->case_steps_summary_of_cases }}
+                                                                <td> {{ $case_steps->case_steps_summary_of_cases }}
                                                                 </td>
-                                                                <td> {{ $edit_case_steps->case_steps_summary_of_cases_note }}
+                                                                <td> {{ $case_steps->case_steps_summary_of_cases_note }}
                                                                 </td>
                                                                 <td>
-                                                                    @if ($edit_case_steps->case_steps_summary_of_cases_org == '1')
-                                                                        ORG
-                                                                    @elseif($edit_case_steps->case_steps_summary_of_cases_cc == '1')
-                                                                        CC
-                                                                    @elseif($edit_case_steps->case_steps_summary_of_cases_copy == '1')
-                                                                        COPY
-                                                                    @endif
+                                                                    {{ $case_steps->summary_of_cases_type_name }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Remarks</td>
-                                                                <td colspan="3"> {{ $edit_case_steps->case_steps_remarks }} </td>
+                                                                <td colspan="3"> {{ $case_steps->case_steps_remarks }} </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1592,17 +1527,17 @@
                                     <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                             <tr>
-                                                <th class="text-nowrap" style="width: 90px;"> Date </th>
-                                                <th class="text-nowrap" >Activity/Action</th>
-                                                <th class="text-nowrap" >Progress</th>
-                                                <th class="text-nowrap" >Mode</th>
-                                                <th class="text-nowrap" >Time Spent</th>
-                                                <th class="text-nowrap" >Engaged Lawyer</th>
-                                                <th class="text-nowrap" >Forwarded To</th>
-                                                <th class="text-nowrap" >Requirements</th>
-                                                <th class="text-nowrap" >Note</th>
-                                                <th class="text-nowrap" >Action</th>
-                                                <th class="text-nowrap" >Update</th>
+                                                <th width="10%"> Date </th>
+                                                <th width="9%">Activity/Action</th>
+                                                <th width="9%">Progress</th>
+                                                <th width="9%">Mode</th>
+                                                <th width="9%">Time Spent</th>
+                                                <th width="9%">Engaged Lawyer</th>
+                                                <th width="9%">Forwarded To</th>
+                                                <th width="9%">Requirements</th>
+                                                <th width="9%">Note</th>
+                                                <th width="9%">Action</th>
+                                                <th width="9%">Update</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1704,6 +1639,8 @@
                                             <tr>
                                                 <th class="hide" width="2%">SL</th>
                                                 <th>Document Uploaded</th>
+                                                <th>Document Date</th>
+                                                <th>Type</th>
                                                 <th>Uploaded By</th>
                                                 <th>Date & Time</th>
                                                 <th>Action</th>
@@ -1714,6 +1651,8 @@
                                                 <tr>
                                                     <td class="hide"> {{ $files->id }} </td>
                                                     <td>{{ $files->uploaded_document }} </td>
+                                                    <td>{{ $files->uploaded_date }} </td>
+                                                    <td>{{ $files->documents_type_name }} </td>
                                                     <td>{{ $files->created_by }} </td>
                                                     <td>{{ $files->created_at }} </td>
                                                     <td>
@@ -1723,13 +1662,22 @@
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 title="View Document"><i class="fas fa-eye"></i></button>
                                                         </a>
-                                                        <a>
+                                                        <a href="{{ route('edit-criminal-cases-files', $files->id) }}">
                                                             <button data-toggle="modal" data-target="#edit_document"
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 action={{ $files->id }}
                                                                 class="btn btn-outline-success btn-sm"
                                                                 title="Edit"><i class="fas fa-edit"></i></button>
                                                         </a>
+
+                                                        {{-- <a
+                                                            href="{{ route('edit-criminal-cases-activity', $files->id) }}">
+                                                            <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
+                                                                data-placement="top" title="Edit"><i
+                                                                    class="fas fa-edit"></i></button>
+                                                        </a> --}}
+
+
                                                         <form method="get"
                                                             action="{{ route('delete-criminal-cases-files', $files->id) }}"
                                                             class="delete-user btn btn-outline-danger btn-xs">
@@ -4684,15 +4632,11 @@
                         <h6 class="text-uppercase text-bold">
                             <div class="row">
                                 <div class="col-md-3"><u> Case Steps </u></div>
-                                <div class="col-md-3">Date</div>
-                                <div class="col-md-3">Note</div>
-                                <div class="col-md-1">ORG</div>
-                                <div class="col-md-1">CC</div>
-                                <div class="col-md-1" style="padding-left:1px;">Copy</div>
+                                <div class="col-md-3 text-center">Date</div>
+                                <div class="col-md-3 text-center">Note</div>
+                                <div class="col-md-3 text-center">Type</div>
                             </div>
                         </h6>
-
-
                         <div class="form-group row">
                             <label for="case_steps_filing" class="col-sm-3 col-form-label"> Filing
                                 Date </label>
@@ -4712,17 +4656,16 @@
                                 @error('case_steps_filing_note')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                                <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_filing_org"
-                                       name="case_steps_filing_org" {{ $edit_case_steps->case_steps_filing_org == '1' ? 'checked' : '' }} >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_filing_cc"
-                                       name="case_steps_filing_cc" {{ $edit_case_steps->case_steps_filing_cc == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_filing_copy"
-                                       name="case_steps_filing_copy" {{ $edit_case_steps->case_steps_filing_copy == '1' ? 'checked' : '' }}
-                                       >
+                            <div class="col-sm-3">
+                                <select name="case_steps_filing_type_id"
+                                        class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach($documents_type as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{ $edit_case_steps->case_steps_filing_type_id == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
                                 @error('case_steps_filing_copy')<span
                                     class="text-danger">{{$message}}</span>@enderror
                         </div>
@@ -4749,18 +4692,16 @@
                                 @error('taking_cognizance_note')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                                <input type="checkbox" class="form-control col-sm-1"
-                                       id="taking_cognizance_org"
-                                       name="taking_cognizance_org" {{ $edit_case_steps->taking_cognizance_org == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="taking_cognizance_cc"
-                                       name="taking_cognizance_cc" {{ $edit_case_steps->taking_cognizance_cc == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="taking_cognizance_copy"
-                                       name="taking_cognizance_copy" {{ $edit_case_steps->taking_cognizance_copy == '1' ? 'checked' : '' }}
-                                       >
+                            <div class="col-sm-3">
+                                <select name="taking_cognizance_type_id"
+                                        class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach($documents_type as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{ $edit_case_steps->taking_cognizance_type_id == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
                                 @error('taking_cognizance_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
@@ -4786,18 +4727,16 @@
                                 @error('arrest_surrender_cw_note')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                                <input type="checkbox" class="form-control col-sm-1"
-                                       id="arrest_surrender_cw_org"
-                                       name="arrest_surrender_cw_org" {{ $edit_case_steps->arrest_surrender_cw_org == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="arrest_surrender_cw_cc"
-                                       name="arrest_surrender_cw_cc" {{ $edit_case_steps->arrest_surrender_cw_cc == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="arrest_surrender_cw_copy"
-                                       name="arrest_surrender_cw_copy" {{ $edit_case_steps->arrest_surrender_cw_copy == '1' ? 'checked' : '' }}
-                                       >
+                            <div class="col-sm-3">
+                                <select name="arrest_surrender_cw_type_id"
+                                        class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach($documents_type as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{ $edit_case_steps->arrest_surrender_cw_type_id == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
                                 @error('arrest_surrender_cw_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             
@@ -4824,18 +4763,16 @@
                                 @error('case_steps_bail_note')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                                <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_bail_org"
-                                       name="case_steps_bail_org" {{ $edit_case_steps->case_steps_bail_org == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_bail_cc"
-                                       name="case_steps_bail_cc" {{ $edit_case_steps->case_steps_bail_cc == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_bail_copy"
-                                       name="case_steps_bail_copy" {{ $edit_case_steps->case_steps_bail_copy == '1' ? 'checked' : '' }}
-                                       >
+                            <div class="col-sm-3">
+                                <select name="case_steps_bail_type_id"
+                                        class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach($documents_type as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{ $edit_case_steps->case_steps_bail_type_id == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
                                 @error('case_steps_bail_copy')<span
                                     class="text-danger">{{$message}}</span>@enderror
                         </div>
@@ -4861,18 +4798,16 @@
                                 @error('case_steps_court_transfer_note')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                                <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_court_transfer_org"
-                                       name="case_steps_court_transfer_org" {{ $edit_case_steps->case_steps_court_transfer_org == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_court_transfer_cc"
-                                       name="case_steps_court_transfer_cc" {{ $edit_case_steps->case_steps_court_transfer_cc == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_court_transfer_copy"
-                                       name="case_steps_court_transfer_copy" {{ $edit_case_steps->case_steps_court_transfer_copy == '1' ? 'checked' : '' }}
-                                       >
+                            <div class="col-sm-3">
+                                <select name="case_steps_court_transfer_type_id"
+                                        class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach($documents_type as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{ $edit_case_steps->case_steps_court_transfer_type_id == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
                                 @error('case_steps_court_transfer_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
                            
@@ -4899,18 +4834,16 @@
                                 @error('case_steps_charge_framed_note')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                                <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_charge_framed_org"
-                                       name="case_steps_charge_framed_org" {{ $edit_case_steps->case_steps_charge_framed_org == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_charge_framed_cc"
-                                       name="case_steps_charge_framed_cc" {{ $edit_case_steps->case_steps_charge_framed_cc == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_charge_framed_copy"
-                                       name="case_steps_charge_framed_copy" {{ $edit_case_steps->case_steps_charge_framed_copy == '1' ? 'checked' : '' }}
-                                       >
+                            <div class="col-sm-3">
+                                <select name="case_steps_charge_framed_type_id"
+                                        class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach($documents_type as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{ $edit_case_steps->case_steps_charge_framed_type_id == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
                                 @error('case_steps_charge_framed_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             
@@ -4937,18 +4870,16 @@
                                 @error('case_steps_witness_from_note')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                                <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_witness_from_org"
-                                       name="case_steps_witness_from_org" {{ $edit_case_steps->case_steps_witness_from_org == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_witness_from_cc"
-                                       name="case_steps_witness_from_cc" {{ $edit_case_steps->case_steps_witness_from_cc == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_witness_from_copy"
-                                       name="case_steps_witness_from_copy" {{ $edit_case_steps->case_steps_witness_from_copy == '1' ? 'checked' : '' }}
-                                       >
+                            <div class="col-sm-3">
+                                <select name="case_steps_witness_from_type_id"
+                                        class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach($documents_type as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{ $edit_case_steps->case_steps_witness_from_type_id == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
                                 @error('case_steps_witness_from_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             
@@ -4975,18 +4906,16 @@
                                 @error('case_steps_witness_to_note')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                                <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_witness_to_org"
-                                       name="case_steps_witness_to_org" {{ $edit_case_steps->case_steps_witness_to_org == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_witness_to_cc"
-                                       name="case_steps_witness_to_cc" {{ $edit_case_steps->case_steps_witness_to_cc == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_witness_to_copy"
-                                       name="case_steps_witness_to_copy" {{ $edit_case_steps->case_steps_witness_to_copy == '1' ? 'checked' : '' }}
-                                       >
+                            <div class="col-sm-3">
+                                <select name="case_steps_witness_to_type_id"
+                                        class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach($documents_type as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{ $edit_case_steps->case_steps_witness_to_type_id == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
                                 @error('case_steps_witness_to_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             
@@ -5013,18 +4942,16 @@
                                 @error('case_steps_argument_note')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                                <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_argument_org"
-                                       name="case_steps_argument_org" {{ $edit_case_steps->case_steps_argument_org == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_argument_cc"
-                                       name="case_steps_argument_cc" {{ $edit_case_steps->case_steps_argument_cc == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_argument_copy"
-                                       name="case_steps_argument_copy" {{ $edit_case_steps->case_steps_argument_copy == '1' ? 'checked' : '' }}
-                                       >
+                            <div class="col-sm-3">
+                                <select name="case_steps_argument_type_id"
+                                        class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach($documents_type as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{ $edit_case_steps->case_steps_argument_type_id == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
                                 @error('case_steps_argument_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             
@@ -5052,18 +4979,16 @@
                                 @error('case_steps_judgement_order_note')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                                <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_judgement_order_org"
-                                       name="case_steps_judgement_order_org" {{ $edit_case_steps->case_steps_judgement_order_org == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_judgement_order_cc"
-                                       name="case_steps_judgement_order_cc" {{ $edit_case_steps->case_steps_judgement_order_cc == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_judgement_order_copy"
-                                       name="case_steps_judgement_order_copy" {{ $edit_case_steps->case_steps_judgement_order_copy == '1' ? 'checked' : '' }}
-                                       >
+                            <div class="col-sm-3">
+                                <select name="case_steps_judgement_order_type_id"
+                                        class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach($documents_type as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{ $edit_case_steps->case_steps_judgement_order_type_id == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
                                 @error('case_steps_judgement_order_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             
@@ -5091,18 +5016,16 @@
                                 @error('case_steps_summary_of_cases_note')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                                <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_summary_of_cases_org"
-                                       name="case_steps_summary_of_cases_org" {{ $edit_case_steps->case_steps_summary_of_cases_org == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_summary_of_cases_cc"
-                                       name="case_steps_summary_of_cases_cc" {{ $edit_case_steps->case_steps_summary_of_cases_cc == '1' ? 'checked' : '' }}
-                                       >
-                                       <input type="checkbox" class="form-control col-sm-1"
-                                       id="case_steps_summary_of_cases_copy"
-                                       name="case_steps_summary_of_cases_copy" {{ $edit_case_steps->case_steps_summary_of_cases_copy == '1' ? 'checked' : '' }}
-                                       >
+                            <div class="col-sm-3">
+                                <select name="case_steps_summary_of_cases_type_id"
+                                        class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach($documents_type as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{ $edit_case_steps->case_steps_summary_of_cases_type_id == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                        @endforeach
+                                </select>
+                            </div>
                                 @error('case_steps_summary_of_cases_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             
@@ -5118,16 +5041,7 @@
                                 @error('case_steps_remarks')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                        </div>
-
-
-
-                        
-
-
-
-
-
+                        </div>                       
 
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -5174,6 +5088,34 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="uploaded_document" class="col-sm-4 col-form-label">Document Date</label>
+                                <div class="col-sm-8">
+                                    <span class="date_span" style="width: 302px;">
+                                        <input type="date" class="xDateContainer date_first_input"
+                                               onchange="setCorrect(this,'uploaded_date');"><input type="text" id="uploaded_date" name="uploaded_date"
+                                                                                           value="dd-mm-yyyy"
+                                                                                           class="date_second_input"
+                                                                                           tabindex="-1"><span
+                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="documents_type_id" class="col-sm-4 col-form-label">Type</label>
+                                <div class="col-sm-8">
+                                    <select name="documents_type_id"
+                                        class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach($documents_type as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{ old('documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -5188,7 +5130,7 @@
             </div>
         </form>
     </div>
-    <div class="modal fade" id="edit_document" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    {{-- <div class="modal fade" id="edit_document" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <form method="post" action="{{ route('update-criminal-cases-files') }}" enctype="multipart/form-data">
             @csrf
@@ -5213,6 +5155,32 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="uploaded_document" class="col-sm-4 col-form-label">Document Date</label>
+                                <div class="col-sm-8">
+                                    <span class="date_span" style="width: 302px;">
+                                        <input type="date" class="xDateContainer date_first_input"
+                                               onchange="setCorrect(this,'uploaded_date');"><input type="text" id="uploaded_date" name="uploaded_date"
+                                                                                           value="dd-mm-yyyy"
+                                                                                           class="date_second_input"
+                                                                                           tabindex="-1"><span
+                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="documents_type_id" class="col-sm-4 col-form-label">Type</label>
+                                <div class="col-sm-8">
+                                    <select name="documents_type_id"
+                                        class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach($documents_type as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{ old('documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -5226,7 +5194,7 @@
                 </div>
             </div>
         </form>
-    </div>
+    </div> --}}
     {{-- documents add --}}
     {{-- case Information --}}
 

@@ -77,6 +77,7 @@ use App\Models\CriminalCasesLetterNotice;
 use App\Models\CriminalCasesSendMessage;
 use App\Mail\SendMessage;
 use App\Models\SetupDocumentsType;
+use Str;
 
 class CriminalCasesController extends Controller
 {
@@ -392,61 +393,43 @@ $created_case_id = 'LCR-000'.$sl;
         $steps->summary_facts = $request->summary_facts;
         $steps->case_info_remarks = $request->case_info_remarks;
 
+    //    $data = json_decode(json_encode($request->all()));
+    //    echo "<pre>";print_r($data);die();
+
+
         $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
         $steps->case_steps_filing_note = $request->case_steps_filing_note;
-        $steps->case_steps_filing_org = $request->case_steps_filing_org == 'on' ? '1' : '0';
-        $steps->case_steps_filing_cc = $request->case_steps_filing_cc == 'on' ? '1' : '0';
-        $steps->case_steps_filing_copy = $request->case_steps_filing_copy == 'on' ? '1' : '0';
+        $steps->case_steps_filing_type_id = $request->case_steps_filing_type_id;
         $steps->taking_cognizance = $request->taking_cognizance == 'dd-mm-yyyy' || $request->taking_cognizance == 'NaN-NaN-NaN' ? null : $request->taking_cognizance;
         $steps->taking_cognizance_note = $request->taking_cognizance_note;
-        $steps->taking_cognizance_org = $request->taking_cognizance_org  == 'on' ? '1' : '0';
-        $steps->taking_cognizance_cc = $request->taking_cognizance_cc  == 'on' ? '1' : '0';
-        $steps->taking_cognizance_copy = $request->taking_cognizance_copy == 'on' ? '1' : '0';
+        $steps->taking_cognizance_type_id = $request->taking_cognizance_type_id;
         $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd-mm-yyyy' || $request->arrest_surrender_cw == 'NaN-NaN-NaN' ? null : $request->arrest_surrender_cw;
         $steps->arrest_surrender_cw_note = $request->arrest_surrender_cw_note;
-        $steps->arrest_surrender_cw_org = $request->arrest_surrender_cw_org == 'on' ? '1' : '0';
-        $steps->arrest_surrender_cw_cc = $request->arrest_surrender_cw_cc == 'on' ? '1' : '0';
-        $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy == 'on' ? '1' : '0';
+        $steps->arrest_surrender_cw_type_id = $request->arrest_surrender_cw_type_id;
         $steps->case_steps_bail = $request->case_steps_bail == 'dd-mm-yyyy' || $request->case_steps_bail == 'NaN-NaN-NaN' ? null : $request->case_steps_bail;
         $steps->case_steps_bail_note = $request->case_steps_bail_note;
-        $steps->case_steps_bail_org = $request->case_steps_bail_org == 'on' ? '1' : '0';
-        $steps->case_steps_bail_cc = $request->case_steps_bail_cc == 'on' ? '1' : '0';
-        $steps->case_steps_bail_copy = $request->case_steps_bail_copy == 'on' ? '1' : '0';
+        $steps->case_steps_bail_type_id = $request->case_steps_bail_type_id;
         $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd-mm-yyyy' || $request->case_steps_court_transfer == 'NaN-NaN-NaN' ? null : $request->case_steps_court_transfer;
         $steps->case_steps_court_transfer_note = $request->case_steps_court_transfer_note;
-        $steps->case_steps_court_transfer_org = $request->case_steps_court_transfer_org == 'on' ? '1' : '0';
-        $steps->case_steps_court_transfer_cc = $request->case_steps_court_transfer_cc == 'on' ? '1' : '0';
-        $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy == 'on' ? '1' : '0';
+        $steps->case_steps_court_transfer_type_id = $request->case_steps_court_transfer_type_id;
         $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd-mm-yyyy' || $request->case_steps_charge_framed == 'NaN-NaN-NaN' ? null : $request->case_steps_charge_framed;
         $steps->case_steps_charge_framed_note = $request->case_steps_charge_framed_note;
-        $steps->case_steps_charge_framed_org = $request->case_steps_charge_framed_org == 'on' ? '1' : '0';
-        $steps->case_steps_charge_framed_cc = $request->case_steps_charge_framed_cc == 'on' ? '1' : '0';
-        $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy == 'on' ? '1' : '0';
+        $steps->case_steps_charge_framed_type_id = $request->case_steps_charge_framed_type_id;
         $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd-mm-yyyy' || $request->case_steps_witness_from == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_from;
         $steps->case_steps_witness_from_note = $request->case_steps_witness_from_note;
-        $steps->case_steps_witness_from_org = $request->case_steps_witness_from_org == 'on' ? '1' : '0';
-        $steps->case_steps_witness_from_cc = $request->case_steps_witness_from_cc == 'on' ? '1' : '0';
-        $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy == 'on' ? '1' : '0';
+        $steps->case_steps_witness_from_type_id = $request->case_steps_witness_from_type_id;
         $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd-mm-yyyy' || $request->case_steps_witness_to == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_to;
         $steps->case_steps_witness_to_note = $request->case_steps_witness_to_note;
-        $steps->case_steps_witness_to_org = $request->case_steps_witness_to_org == 'on' ? '1' : '0';
-        $steps->case_steps_witness_to_cc = $request->case_steps_witness_to_cc == 'on' ? '1' : '0';
-        $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy == 'on' ? '1' : '0';
+        $steps->case_steps_witness_to_type_id = $request->case_steps_witness_to_type_id;
         $steps->case_steps_argument = $request->case_steps_argument == 'dd-mm-yyyy' || $request->case_steps_argument == 'NaN-NaN-NaN' ? null : $request->case_steps_argument;
         $steps->case_steps_argument_note = $request->case_steps_argument_note;
-        $steps->case_steps_argument_org = $request->case_steps_argument_org == 'on' ? '1' : '0';
-        $steps->case_steps_argument_cc = $request->case_steps_argument_cc == 'on' ? '1' : '0';
-        $steps->case_steps_argument_copy = $request->case_steps_argument_copy == 'on' ? '1' : '0';
+        $steps->case_steps_argument_type_id = $request->case_steps_argument_type_id;
         $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN' ? null : $request->case_steps_judgement_order;
         $steps->case_steps_judgement_order_note = $request->case_steps_judgement_order_note;
-        $steps->case_steps_judgement_order_org = $request->case_steps_judgement_order_org == 'on' ? '1' : '0';
-        $steps->case_steps_judgement_order_cc = $request->case_steps_judgement_order_cc == 'on' ? '1' : '0';
-        $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy == 'on' ? '1' : '0';
+        $steps->case_steps_judgement_order_type_id = $request->case_steps_judgement_order_type_id;
         $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN' ? null : $request->case_steps_summary_of_cases;
         $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
-        $steps->case_steps_summary_of_cases_org = $request->case_steps_summary_of_cases_org == 'on' ? '1' : '0';
-        $steps->case_steps_summary_of_cases_cc = $request->case_steps_summary_of_cases_cc == 'on' ? '1' : '0';
-        $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy == 'on' ? '1' : '0';
+        $steps->case_steps_summary_of_cases_type_id = $request->case_steps_summary_of_cases_type_id;
         $steps->case_steps_remarks = $request->case_steps_remarks;
 
         // $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
@@ -924,60 +907,39 @@ $case_no_data = DB::table('criminal_cases')
 
             $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
             $steps->case_steps_filing_note = $request->case_steps_filing_note;
-            $steps->case_steps_filing_org = $request->case_steps_filing_org == 'on' ? '1' : '0';
-            $steps->case_steps_filing_cc = $request->case_steps_filing_cc == 'on' ? '1' : '0';
-            $steps->case_steps_filing_copy = $request->case_steps_filing_copy == 'on' ? '1' : '0';
+            $steps->case_steps_filing_type_id = $request->case_steps_filing_type_id;
             $steps->taking_cognizance = $request->taking_cognizance == 'dd-mm-yyyy' || $request->taking_cognizance == 'NaN-NaN-NaN' ? null : $request->taking_cognizance;
             $steps->taking_cognizance_note = $request->taking_cognizance_note;
-            $steps->taking_cognizance_org = $request->taking_cognizance_org  == 'on' ? '1' : '0';
-            $steps->taking_cognizance_cc = $request->taking_cognizance_cc  == 'on' ? '1' : '0';
-            $steps->taking_cognizance_copy = $request->taking_cognizance_copy == 'on' ? '1' : '0';
+            $steps->taking_cognizance_type_id = $request->taking_cognizance_type_id;
             $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd-mm-yyyy' || $request->arrest_surrender_cw == 'NaN-NaN-NaN' ? null : $request->arrest_surrender_cw;
             $steps->arrest_surrender_cw_note = $request->arrest_surrender_cw_note;
-            $steps->arrest_surrender_cw_org = $request->arrest_surrender_cw_org == 'on' ? '1' : '0';
-            $steps->arrest_surrender_cw_cc = $request->arrest_surrender_cw_cc == 'on' ? '1' : '0';
-            $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy == 'on' ? '1' : '0';
+            $steps->arrest_surrender_cw_type_id = $request->arrest_surrender_cw_type_id;
             $steps->case_steps_bail = $request->case_steps_bail == 'dd-mm-yyyy' || $request->case_steps_bail == 'NaN-NaN-NaN' ? null : $request->case_steps_bail;
             $steps->case_steps_bail_note = $request->case_steps_bail_note;
-            $steps->case_steps_bail_org = $request->case_steps_bail_org == 'on' ? '1' : '0';
-            $steps->case_steps_bail_cc = $request->case_steps_bail_cc == 'on' ? '1' : '0';
-            $steps->case_steps_bail_copy = $request->case_steps_bail_copy == 'on' ? '1' : '0';
+            $steps->case_steps_bail_type_id = $request->case_steps_bail_type_id;
             $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd-mm-yyyy' || $request->case_steps_court_transfer == 'NaN-NaN-NaN' ? null : $request->case_steps_court_transfer;
             $steps->case_steps_court_transfer_note = $request->case_steps_court_transfer_note;
-            $steps->case_steps_court_transfer_org = $request->case_steps_court_transfer_org == 'on' ? '1' : '0';
-            $steps->case_steps_court_transfer_cc = $request->case_steps_court_transfer_cc == 'on' ? '1' : '0';
-            $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy == 'on' ? '1' : '0';
+            $steps->case_steps_court_transfer_type_id = $request->case_steps_court_transfer_type_id;
             $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd-mm-yyyy' || $request->case_steps_charge_framed == 'NaN-NaN-NaN' ? null : $request->case_steps_charge_framed;
             $steps->case_steps_charge_framed_note = $request->case_steps_charge_framed_note;
-            $steps->case_steps_charge_framed_org = $request->case_steps_charge_framed_org == 'on' ? '1' : '0';
-            $steps->case_steps_charge_framed_cc = $request->case_steps_charge_framed_cc == 'on' ? '1' : '0';
-            $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy == 'on' ? '1' : '0';
+            $steps->case_steps_charge_framed_type_id = $request->case_steps_charge_framed_type_id;
             $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd-mm-yyyy' || $request->case_steps_witness_from == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_from;
             $steps->case_steps_witness_from_note = $request->case_steps_witness_from_note;
-            $steps->case_steps_witness_from_org = $request->case_steps_witness_from_org == 'on' ? '1' : '0';
-            $steps->case_steps_witness_from_cc = $request->case_steps_witness_from_cc == 'on' ? '1' : '0';
-            $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy == 'on' ? '1' : '0';
+            $steps->case_steps_witness_from_type_id = $request->case_steps_witness_from_type_id;
             $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd-mm-yyyy' || $request->case_steps_witness_to == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_to;
             $steps->case_steps_witness_to_note = $request->case_steps_witness_to_note;
-            $steps->case_steps_witness_to_org = $request->case_steps_witness_to_org == 'on' ? '1' : '0';
-            $steps->case_steps_witness_to_cc = $request->case_steps_witness_to_cc == 'on' ? '1' : '0';
-            $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy == 'on' ? '1' : '0';
+            $steps->case_steps_witness_to_type_id = $request->case_steps_witness_to_type_id;
             $steps->case_steps_argument = $request->case_steps_argument == 'dd-mm-yyyy' || $request->case_steps_argument == 'NaN-NaN-NaN' ? null : $request->case_steps_argument;
             $steps->case_steps_argument_note = $request->case_steps_argument_note;
-            $steps->case_steps_argument_org = $request->case_steps_argument_org == 'on' ? '1' : '0';
-            $steps->case_steps_argument_cc = $request->case_steps_argument_cc == 'on' ? '1' : '0';
-            $steps->case_steps_argument_copy = $request->case_steps_argument_copy == 'on' ? '1' : '0';
+            $steps->case_steps_argument_type_id = $request->case_steps_argument_type_id;
             $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN' ? null : $request->case_steps_judgement_order;
             $steps->case_steps_judgement_order_note = $request->case_steps_judgement_order_note;
-            $steps->case_steps_judgement_order_org = $request->case_steps_judgement_order_org == 'on' ? '1' : '0';
-            $steps->case_steps_judgement_order_cc = $request->case_steps_judgement_order_cc == 'on' ? '1' : '0';
-            $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy == 'on' ? '1' : '0';
+            $steps->case_steps_judgement_order_type_id = $request->case_steps_judgement_order_type_id;
             $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN' ? null : $request->case_steps_summary_of_cases;
             $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
-            $steps->case_steps_summary_of_cases_org = $request->case_steps_summary_of_cases_org == 'on' ? '1' : '0';
-            $steps->case_steps_summary_of_cases_cc = $request->case_steps_summary_of_cases_cc == 'on' ? '1' : '0';
-            $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy == 'on' ? '1' : '0';
+            $steps->case_steps_summary_of_cases_type_id = $request->case_steps_summary_of_cases_type_id;
             $steps->case_steps_remarks = $request->case_steps_remarks;
+    
             $steps->save();
 
             if ($request->hasfile('uploaded_document')) {
@@ -1215,60 +1177,39 @@ $case_no_data = DB::table('criminal_cases')
 
             $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
             $steps->case_steps_filing_note = $request->case_steps_filing_note;
-            $steps->case_steps_filing_org = $request->case_steps_filing_org == 'on' ? '1' : '0';
-            $steps->case_steps_filing_cc = $request->case_steps_filing_cc == 'on' ? '1' : '0';
-            $steps->case_steps_filing_copy = $request->case_steps_filing_copy == 'on' ? '1' : '0';
+            $steps->case_steps_filing_type_id = $request->case_steps_filing_type_id;
             $steps->taking_cognizance = $request->taking_cognizance == 'dd-mm-yyyy' || $request->taking_cognizance == 'NaN-NaN-NaN' ? null : $request->taking_cognizance;
             $steps->taking_cognizance_note = $request->taking_cognizance_note;
-            $steps->taking_cognizance_org = $request->taking_cognizance_org  == 'on' ? '1' : '0';
-            $steps->taking_cognizance_cc = $request->taking_cognizance_cc  == 'on' ? '1' : '0';
-            $steps->taking_cognizance_copy = $request->taking_cognizance_copy == 'on' ? '1' : '0';
+            $steps->taking_cognizance_type_id = $request->taking_cognizance_type_id;
             $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd-mm-yyyy' || $request->arrest_surrender_cw == 'NaN-NaN-NaN' ? null : $request->arrest_surrender_cw;
             $steps->arrest_surrender_cw_note = $request->arrest_surrender_cw_note;
-            $steps->arrest_surrender_cw_org = $request->arrest_surrender_cw_org == 'on' ? '1' : '0';
-            $steps->arrest_surrender_cw_cc = $request->arrest_surrender_cw_cc == 'on' ? '1' : '0';
-            $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy == 'on' ? '1' : '0';
+            $steps->arrest_surrender_cw_type_id = $request->arrest_surrender_cw_type_id;
             $steps->case_steps_bail = $request->case_steps_bail == 'dd-mm-yyyy' || $request->case_steps_bail == 'NaN-NaN-NaN' ? null : $request->case_steps_bail;
             $steps->case_steps_bail_note = $request->case_steps_bail_note;
-            $steps->case_steps_bail_org = $request->case_steps_bail_org == 'on' ? '1' : '0';
-            $steps->case_steps_bail_cc = $request->case_steps_bail_cc == 'on' ? '1' : '0';
-            $steps->case_steps_bail_copy = $request->case_steps_bail_copy == 'on' ? '1' : '0';
+            $steps->case_steps_bail_type_id = $request->case_steps_bail_type_id;
             $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd-mm-yyyy' || $request->case_steps_court_transfer == 'NaN-NaN-NaN' ? null : $request->case_steps_court_transfer;
             $steps->case_steps_court_transfer_note = $request->case_steps_court_transfer_note;
-            $steps->case_steps_court_transfer_org = $request->case_steps_court_transfer_org == 'on' ? '1' : '0';
-            $steps->case_steps_court_transfer_cc = $request->case_steps_court_transfer_cc == 'on' ? '1' : '0';
-            $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy == 'on' ? '1' : '0';
+            $steps->case_steps_court_transfer_type_id = $request->case_steps_court_transfer_type_id;
             $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd-mm-yyyy' || $request->case_steps_charge_framed == 'NaN-NaN-NaN' ? null : $request->case_steps_charge_framed;
             $steps->case_steps_charge_framed_note = $request->case_steps_charge_framed_note;
-            $steps->case_steps_charge_framed_org = $request->case_steps_charge_framed_org == 'on' ? '1' : '0';
-            $steps->case_steps_charge_framed_cc = $request->case_steps_charge_framed_cc == 'on' ? '1' : '0';
-            $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy == 'on' ? '1' : '0';
+            $steps->case_steps_charge_framed_type_id = $request->case_steps_charge_framed_type_id;
             $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd-mm-yyyy' || $request->case_steps_witness_from == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_from;
             $steps->case_steps_witness_from_note = $request->case_steps_witness_from_note;
-            $steps->case_steps_witness_from_org = $request->case_steps_witness_from_org == 'on' ? '1' : '0';
-            $steps->case_steps_witness_from_cc = $request->case_steps_witness_from_cc == 'on' ? '1' : '0';
-            $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy == 'on' ? '1' : '0';
+            $steps->case_steps_witness_from_type_id = $request->case_steps_witness_from_type_id;
             $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd-mm-yyyy' || $request->case_steps_witness_to == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_to;
             $steps->case_steps_witness_to_note = $request->case_steps_witness_to_note;
-            $steps->case_steps_witness_to_org = $request->case_steps_witness_to_org == 'on' ? '1' : '0';
-            $steps->case_steps_witness_to_cc = $request->case_steps_witness_to_cc == 'on' ? '1' : '0';
-            $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy == 'on' ? '1' : '0';
+            $steps->case_steps_witness_to_type_id = $request->case_steps_witness_to_type_id;
             $steps->case_steps_argument = $request->case_steps_argument == 'dd-mm-yyyy' || $request->case_steps_argument == 'NaN-NaN-NaN' ? null : $request->case_steps_argument;
             $steps->case_steps_argument_note = $request->case_steps_argument_note;
-            $steps->case_steps_argument_org = $request->case_steps_argument_org == 'on' ? '1' : '0';
-            $steps->case_steps_argument_cc = $request->case_steps_argument_cc == 'on' ? '1' : '0';
-            $steps->case_steps_argument_copy = $request->case_steps_argument_copy == 'on' ? '1' : '0';
+            $steps->case_steps_argument_type_id = $request->case_steps_argument_type_id;
             $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN' ? null : $request->case_steps_judgement_order;
             $steps->case_steps_judgement_order_note = $request->case_steps_judgement_order_note;
-            $steps->case_steps_judgement_order_org = $request->case_steps_judgement_order_org == 'on' ? '1' : '0';
-            $steps->case_steps_judgement_order_cc = $request->case_steps_judgement_order_cc == 'on' ? '1' : '0';
-            $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy == 'on' ? '1' : '0';
+            $steps->case_steps_judgement_order_type_id = $request->case_steps_judgement_order_type_id;
             $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN' ? null : $request->case_steps_summary_of_cases;
             $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
-            $steps->case_steps_summary_of_cases_org = $request->case_steps_summary_of_cases_org == 'on' ? '1' : '0';
-            $steps->case_steps_summary_of_cases_cc = $request->case_steps_summary_of_cases_cc == 'on' ? '1' : '0';
-            $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy == 'on' ? '1' : '0';
+            $steps->case_steps_summary_of_cases_type_id = $request->case_steps_summary_of_cases_type_id;
             $steps->case_steps_remarks = $request->case_steps_remarks;
+    
 
             $steps->save();
 
@@ -1513,60 +1454,39 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
 
             $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
             $steps->case_steps_filing_note = $request->case_steps_filing_note;
-            $steps->case_steps_filing_org = $request->case_steps_filing_org == 'on' ? '1' : '0';
-            $steps->case_steps_filing_cc = $request->case_steps_filing_cc == 'on' ? '1' : '0';
-            $steps->case_steps_filing_copy = $request->case_steps_filing_copy == 'on' ? '1' : '0';
+            $steps->case_steps_filing_type_id = $request->case_steps_filing_type_id;
             $steps->taking_cognizance = $request->taking_cognizance == 'dd-mm-yyyy' || $request->taking_cognizance == 'NaN-NaN-NaN' ? null : $request->taking_cognizance;
             $steps->taking_cognizance_note = $request->taking_cognizance_note;
-            $steps->taking_cognizance_org = $request->taking_cognizance_org  == 'on' ? '1' : '0';
-            $steps->taking_cognizance_cc = $request->taking_cognizance_cc  == 'on' ? '1' : '0';
-            $steps->taking_cognizance_copy = $request->taking_cognizance_copy == 'on' ? '1' : '0';
+            $steps->taking_cognizance_type_id = $request->taking_cognizance_type_id;
             $steps->arrest_surrender_cw = $request->arrest_surrender_cw == 'dd-mm-yyyy' || $request->arrest_surrender_cw == 'NaN-NaN-NaN' ? null : $request->arrest_surrender_cw;
             $steps->arrest_surrender_cw_note = $request->arrest_surrender_cw_note;
-            $steps->arrest_surrender_cw_org = $request->arrest_surrender_cw_org == 'on' ? '1' : '0';
-            $steps->arrest_surrender_cw_cc = $request->arrest_surrender_cw_cc == 'on' ? '1' : '0';
-            $steps->arrest_surrender_cw_copy = $request->arrest_surrender_cw_copy == 'on' ? '1' : '0';
+            $steps->arrest_surrender_cw_type_id = $request->arrest_surrender_cw_type_id;
             $steps->case_steps_bail = $request->case_steps_bail == 'dd-mm-yyyy' || $request->case_steps_bail == 'NaN-NaN-NaN' ? null : $request->case_steps_bail;
             $steps->case_steps_bail_note = $request->case_steps_bail_note;
-            $steps->case_steps_bail_org = $request->case_steps_bail_org == 'on' ? '1' : '0';
-            $steps->case_steps_bail_cc = $request->case_steps_bail_cc == 'on' ? '1' : '0';
-            $steps->case_steps_bail_copy = $request->case_steps_bail_copy == 'on' ? '1' : '0';
+            $steps->case_steps_bail_type_id = $request->case_steps_bail_type_id;
             $steps->case_steps_court_transfer = $request->case_steps_court_transfer == 'dd-mm-yyyy' || $request->case_steps_court_transfer == 'NaN-NaN-NaN' ? null : $request->case_steps_court_transfer;
             $steps->case_steps_court_transfer_note = $request->case_steps_court_transfer_note;
-            $steps->case_steps_court_transfer_org = $request->case_steps_court_transfer_org == 'on' ? '1' : '0';
-            $steps->case_steps_court_transfer_cc = $request->case_steps_court_transfer_cc == 'on' ? '1' : '0';
-            $steps->case_steps_court_transfer_copy = $request->case_steps_court_transfer_copy == 'on' ? '1' : '0';
+            $steps->case_steps_court_transfer_type_id = $request->case_steps_court_transfer_type_id;
             $steps->case_steps_charge_framed = $request->case_steps_charge_framed == 'dd-mm-yyyy' || $request->case_steps_charge_framed == 'NaN-NaN-NaN' ? null : $request->case_steps_charge_framed;
             $steps->case_steps_charge_framed_note = $request->case_steps_charge_framed_note;
-            $steps->case_steps_charge_framed_org = $request->case_steps_charge_framed_org == 'on' ? '1' : '0';
-            $steps->case_steps_charge_framed_cc = $request->case_steps_charge_framed_cc == 'on' ? '1' : '0';
-            $steps->case_steps_charge_framed_copy = $request->case_steps_charge_framed_copy == 'on' ? '1' : '0';
+            $steps->case_steps_charge_framed_type_id = $request->case_steps_charge_framed_type_id;
             $steps->case_steps_witness_from = $request->case_steps_witness_from == 'dd-mm-yyyy' || $request->case_steps_witness_from == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_from;
             $steps->case_steps_witness_from_note = $request->case_steps_witness_from_note;
-            $steps->case_steps_witness_from_org = $request->case_steps_witness_from_org == 'on' ? '1' : '0';
-            $steps->case_steps_witness_from_cc = $request->case_steps_witness_from_cc == 'on' ? '1' : '0';
-            $steps->case_steps_witness_from_copy = $request->case_steps_witness_from_copy == 'on' ? '1' : '0';
+            $steps->case_steps_witness_from_type_id = $request->case_steps_witness_from_type_id;
             $steps->case_steps_witness_to = $request->case_steps_witness_to == 'dd-mm-yyyy' || $request->case_steps_witness_to == 'NaN-NaN-NaN' ? null : $request->case_steps_witness_to;
             $steps->case_steps_witness_to_note = $request->case_steps_witness_to_note;
-            $steps->case_steps_witness_to_org = $request->case_steps_witness_to_org == 'on' ? '1' : '0';
-            $steps->case_steps_witness_to_cc = $request->case_steps_witness_to_cc == 'on' ? '1' : '0';
-            $steps->case_steps_witness_to_copy = $request->case_steps_witness_to_copy == 'on' ? '1' : '0';
+            $steps->case_steps_witness_to_type_id = $request->case_steps_witness_to_type_id;
             $steps->case_steps_argument = $request->case_steps_argument == 'dd-mm-yyyy' || $request->case_steps_argument == 'NaN-NaN-NaN' ? null : $request->case_steps_argument;
             $steps->case_steps_argument_note = $request->case_steps_argument_note;
-            $steps->case_steps_argument_org = $request->case_steps_argument_org == 'on' ? '1' : '0';
-            $steps->case_steps_argument_cc = $request->case_steps_argument_cc == 'on' ? '1' : '0';
-            $steps->case_steps_argument_copy = $request->case_steps_argument_copy == 'on' ? '1' : '0';
+            $steps->case_steps_argument_type_id = $request->case_steps_argument_type_id;
             $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN' ? null : $request->case_steps_judgement_order;
             $steps->case_steps_judgement_order_note = $request->case_steps_judgement_order_note;
-            $steps->case_steps_judgement_order_org = $request->case_steps_judgement_order_org == 'on' ? '1' : '0';
-            $steps->case_steps_judgement_order_cc = $request->case_steps_judgement_order_cc == 'on' ? '1' : '0';
-            $steps->case_steps_judgement_order_copy = $request->case_steps_judgement_order_copy == 'on' ? '1' : '0';
+            $steps->case_steps_judgement_order_type_id = $request->case_steps_judgement_order_type_id;
             $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN' ? null : $request->case_steps_summary_of_cases;
             $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
-            $steps->case_steps_summary_of_cases_org = $request->case_steps_summary_of_cases_org == 'on' ? '1' : '0';
-            $steps->case_steps_summary_of_cases_cc = $request->case_steps_summary_of_cases_cc == 'on' ? '1' : '0';
-            $steps->case_steps_summary_of_cases_copy = $request->case_steps_summary_of_cases_copy == 'on' ? '1' : '0';
+            $steps->case_steps_summary_of_cases_type_id = $request->case_steps_summary_of_cases_type_id;
             $steps->case_steps_remarks = $request->case_steps_remarks;
+    
             $steps->save();
 
             if ($request->hasfile('uploaded_document')) {
@@ -1863,7 +1783,13 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
     //    $edit_case_steps = json_decode(json_encode($edit_case_steps));
     //    echo "<pre>";print_r($edit_case_steps);die();
         //   dd($data);
-        $criminal_cases_files = CriminalCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
+        $criminal_cases_files = DB::table('criminal_cases_files')
+                                ->leftJoin('setup_documents_types','criminal_cases_files.documents_type_id','setup_documents_types.id')
+                                ->where(['criminal_cases_files.case_id' => $id, 'criminal_cases_files.delete_status' => 0])
+                                ->select('criminal_cases_files.*','setup_documents_types.documents_type_name')
+                                ->get();
+        // dd($criminal_cases_files);
+        // CriminalCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
 
         $case_logs = DB::table('criminal_case_status_logs')
             ->leftJoin('setup_case_statuses', 'criminal_case_status_logs.updated_case_status_id', '=', 'setup_case_statuses.id')
@@ -1953,8 +1879,27 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
                             ->select('criminal_cases_letter_notices.*','setup_documents.documents_name','setup_documents_types.documents_type_name')
                             ->get();    
 
-        // dd($required_wanting_documents);
-        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('documents_type','letter_notice','required_wanting_documents','received_documents','particulars','required_wanting_documents_explode','exist_court_short','data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode','edit_case_steps','existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','received_documents_explode','required_documents_explode','previous_activity','payment_mode','bill_schedule','bill_particulars','bill_type','bill_amount','payment_amount','due_amount','cabinet','exist_case_type','letter_notice_explode'));
+        $case_steps = DB::table('criminal_cases_case_steps')
+                    ->leftJoin('setup_documents_types','criminal_cases_case_steps.case_steps_filing_type_id','setup_documents_types.id')
+                    ->leftJoin('setup_documents_types as taking_cognizance','criminal_cases_case_steps.taking_cognizance_type_id','taking_cognizance.id')
+                    ->leftJoin('setup_documents_types as arrest_surrender_cw','criminal_cases_case_steps.arrest_surrender_cw_type_id','arrest_surrender_cw.id')
+                    ->leftJoin('setup_documents_types as case_steps_bail','criminal_cases_case_steps.case_steps_bail_type_id','case_steps_bail.id')
+                    ->leftJoin('setup_documents_types as court_transfer','criminal_cases_case_steps.case_steps_court_transfer_type_id','court_transfer.id')
+                    ->leftJoin('setup_documents_types as charge_framed','criminal_cases_case_steps.case_steps_charge_framed_type_id','charge_framed.id')
+                    ->leftJoin('setup_documents_types as witness_from','criminal_cases_case_steps.case_steps_witness_from_type_id','witness_from.id')
+                    ->leftJoin('setup_documents_types as witness_to','criminal_cases_case_steps.case_steps_witness_to_type_id','witness_to.id')
+                    ->leftJoin('setup_documents_types as argument','criminal_cases_case_steps.case_steps_argument_type_id','argument.id')
+                    ->leftJoin('setup_documents_types as judgement_order','criminal_cases_case_steps.case_steps_judgement_order_type_id','judgement_order.id')
+                    ->leftJoin('setup_documents_types as summary_of_cases','criminal_cases_case_steps.case_steps_summary_of_cases_type_id','summary_of_cases.id')
+                    ->where('criminal_case_id',$id)
+                    ->select('criminal_cases_case_steps.*','setup_documents_types.documents_type_name as case_steps_filing_type_name','taking_cognizance.documents_type_name as taking_cognizance_type_name','taking_cognizance.documents_type_name as taking_cognizance_type_name','arrest_surrender_cw.documents_type_name as arrest_surrender_cw_type_name','case_steps_bail.documents_type_name as case_steps_bail_type_name','court_transfer.documents_type_name as court_transfer_type_name','charge_framed.documents_type_name as charge_framed_type_name','witness_from.documents_type_name as witness_from_type_name','witness_to.documents_type_name as witness_to_type_name','argument.documents_type_name as argument_type_name','judgement_order.documents_type_name as judgement_order_type_name','summary_of_cases.documents_type_name as summary_of_cases_type_name')
+                    ->first(); 
+        
+        
+        // CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
+        // dd($case_steps);
+
+        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('case_steps','documents_type','letter_notice','required_wanting_documents','received_documents','particulars','required_wanting_documents_explode','exist_court_short','data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode','edit_case_steps','existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','received_documents_explode','required_documents_explode','previous_activity','payment_mode','bill_schedule','bill_particulars','bill_type','bill_amount','payment_amount','due_amount','cabinet','exist_case_type','letter_notice_explode'));
     }
 
     public function download_criminal_cases_file($id)
@@ -2508,14 +2453,22 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
 
     public function upload_criminal_cases_files(Request $request,$id)
     {
+        // dd($request->all());
         if ($request->hasfile('uploaded_document')) {
                 $file = $request->file('uploaded_document');
+                // $original_name = $file->getClientOriginalName();
+                // $original_extension = $file->getClientOriginalExtension();
+                // $name = Str::slug($original_name);
+
                 $original_name = $file->getClientOriginalName();
-                $name = $original_name;
+                $original_extension = $file->getClientOriginalExtension();
+                $name = Str::slug($original_name).'.'.$original_extension;
                 $file->move(public_path('files/criminal_cases'), $name);
 
                 $file = new CriminalCasesFile();
                 $file->case_id = $id;
+                $file->uploaded_date = $request->uploaded_date;
+                $file->documents_type_id = $request->documents_type_id;
                 $file->uploaded_document = $name;
                 $file->created_by = Auth::guard('admin')->user()->email;
                 $file->save();
@@ -2526,25 +2479,35 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
 
     }
 
-    public function update_criminal_cases_files(Request $request)
+    public function update_criminal_cases_files(Request $request, $id)
     {
         // dd($request->all());
 
-        $data = CriminalCasesFile::find($request->files_id);
+        $data = CriminalCasesFile::find($id);
 // dd($data);
         if (!empty($data['uploaded_document'])) {
+            // dd('asdfasdf');
             $image_path = 'files/criminal_cases/'.$data['uploaded_document'];
 // if file exists then remove it
-            if(file_exists($image_path)){
+            if($request->uploaded_document && file_exists($image_path)){
                 unlink($image_path);
             }
 
+            
             $file = $request->file('uploaded_document');
             $original_name = $file->getClientOriginalName();
-            $name = $original_name;
+            $original_extension = $file->getClientOriginalExtension();
+            $name = Str::slug($original_name).'.'.$original_extension;
             $file->move(public_path('files/criminal_cases'), $name);
 
-            $file = CriminalCasesFile::find($request->files_id);
+            // $original_name = $file->getClientOriginalName();
+            // $name = $original_name;
+            // $file->move(public_path('files/criminal_cases'), $name);
+
+            $file = CriminalCasesFile::find($id);
+            $file->case_id = $data->case_id;
+            $file->uploaded_date = $request->uploaded_date;
+            $file->documents_type_id = $request->documents_type_id;
             $file->uploaded_document = $name;
             $file->created_by = Auth::guard('admin')->user()->email;
             $file->save();
@@ -2552,7 +2515,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         }
 
         session()->flash('success', 'Documents Updated Successfully.');
-        return redirect()->back();
+        return redirect()->route('view-criminal-cases',$data->case_id);
     }
 
     public function case_porceedings_print_preview($id)
@@ -3074,6 +3037,16 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
 
         return redirect()->back();
 
+
+    }
+
+    public function edit_criminal_cases_files($id)
+    {
+        $data = CriminalCasesFile::find($id);
+        $documents_type = SetupDocumentsType::where('delete_status',0)->orderBy('documents_type_name','asc')->get();
+
+        // dd($data);
+        return view('litigation_management.cases.criminal_cases.criminal_cases_files_update',compact('data','documents_type'));
 
     }
 

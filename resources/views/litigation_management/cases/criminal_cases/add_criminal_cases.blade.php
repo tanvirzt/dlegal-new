@@ -2068,11 +2068,9 @@
                                                 <h6 class="text-uppercase text-bold">
                                                     <div class="row">
                                                         <div class="col-md-3"><u> Case Steps </u></div>
-                                                        <div class="col-md-3">Date</div>
-                                                        <div class="col-md-3">Note</div>
-                                                        <div class="col-md-1">ORG</div>
-                                                        <div class="col-md-1">CC</div>
-                                                        <div class="col-md-1" style="padding-left:1px;">Copy</div>
+                                                        <div class="col-md-3 text-center">Date</div>
+                                                        <div class="col-md-3 text-center">Note</div>
+                                                        <div class="col-md-3 text-center">Type</div>
                                                     </div>
                                                 </h6>
                                                 <div class="form-group row">
@@ -2094,18 +2092,16 @@
                                                         @error('case_steps_filing_note')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                        <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_filing_org"
-                                                               name="case_steps_filing_org"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_filing_cc"
-                                                               name="case_steps_filing_cc"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_filing_copy"
-                                                               name="case_steps_filing_copy"
-                                                               >
+                                                    <div class="col-sm-3">
+                                                        <select name="case_steps_filing_type_id"
+                                                                class="form-control">
+                                                                <option value="">Select</option>
+                                                                @foreach($documents_type as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{ old('case_steps_filing_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                                @endforeach
+                                                        </select>
+                                                    </div>
                                                         @error('case_steps_filing_copy')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                 </div>
@@ -2132,18 +2128,17 @@
                                                         @error('taking_cognizance_note')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                        <input type="checkbox" class="form-control col-sm-1"
-                                                               id="taking_cognizance_org"
-                                                               name="taking_cognizance_org"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="taking_cognizance_cc"
-                                                               name="taking_cognizance_cc"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="taking_cognizance_copy"
-                                                               name="taking_cognizance_copy"
-                                                               >
+                                                    <div class="col-sm-3">
+                                                        <select name="taking_cognizance_type_id"
+                                                                class="form-control">
+                                                                <option value="">Select</option>
+                                                                @foreach($documents_type as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{ old('taking_cognizance_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                                @endforeach
+                                                        </select>
+                                                    </div>
+
                                                         @error('taking_cognizance_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
@@ -2169,18 +2164,16 @@
                                                         @error('arrest_surrender_cw_note')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                        <input type="checkbox" class="form-control col-sm-1"
-                                                               id="arrest_surrender_cw_org"
-                                                               name="arrest_surrender_cw_org"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="arrest_surrender_cw_cc"
-                                                               name="arrest_surrender_cw_cc"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="arrest_surrender_cw_copy"
-                                                               name="arrest_surrender_cw_copy"
-                                                               >
+                                                    <div class="col-sm-3">
+                                                        <select name="arrest_surrender_cw_type_id"
+                                                                class="form-control">
+                                                                <option value="">Select</option>
+                                                                @foreach($documents_type as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{ old('arrest_surrender_cw_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                                @endforeach
+                                                        </select>
+                                                    </div>
                                                         @error('arrest_surrender_cw_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     
@@ -2207,18 +2200,16 @@
                                                         @error('case_steps_bail_note')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                        <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_bail_org"
-                                                               name="case_steps_bail_org"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_bail_cc"
-                                                               name="case_steps_bail_cc"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_bail_copy"
-                                                               name="case_steps_bail_copy"
-                                                               >
+                                                    <div class="col-sm-3">
+                                                        <select name="case_steps_bail_type_id"
+                                                                class="form-control">
+                                                                <option value="">Select</option>
+                                                                @foreach($documents_type as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{ old('case_steps_bail_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                                @endforeach
+                                                        </select>
+                                                    </div>
                                                         @error('case_steps_bail_copy')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                 </div>
@@ -2244,18 +2235,16 @@
                                                         @error('case_steps_court_transfer_note')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                        <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_court_transfer_org"
-                                                               name="case_steps_court_transfer_org"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_court_transfer_cc"
-                                                               name="case_steps_court_transfer_cc"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_court_transfer_copy"
-                                                               name="case_steps_court_transfer_copy"
-                                                               >
+                                                    <div class="col-sm-3">
+                                                        <select name="case_steps_court_transfer_type_id"
+                                                                class="form-control">
+                                                                <option value="">Select</option>
+                                                                @foreach($documents_type as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{ old('case_steps_court_transfer_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                                @endforeach
+                                                        </select>
+                                                    </div>
                                                         @error('case_steps_court_transfer_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                    
@@ -2282,18 +2271,16 @@
                                                         @error('case_steps_charge_framed_note')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                        <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_charge_framed_org"
-                                                               name="case_steps_charge_framed_org"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_charge_framed_cc"
-                                                               name="case_steps_charge_framed_cc"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_charge_framed_copy"
-                                                               name="case_steps_charge_framed_copy"
-                                                               >
+                                                    <div class="col-sm-3">
+                                                        <select name="case_steps_charge_framed_type_id"
+                                                                class="form-control">
+                                                                <option value="">Select</option>
+                                                                @foreach($documents_type as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{ old('case_steps_charge_framed_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                                @endforeach
+                                                        </select>
+                                                    </div>
                                                         @error('case_steps_charge_framed_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     
@@ -2320,18 +2307,16 @@
                                                         @error('case_steps_witness_from_note')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                        <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_witness_from_org"
-                                                               name="case_steps_witness_from_org"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_witness_from_cc"
-                                                               name="case_steps_witness_from_cc"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_witness_from_copy"
-                                                               name="case_steps_witness_from_copy"
-                                                               >
+                                                    <div class="col-sm-3">
+                                                        <select name="case_steps_witness_from_type_id"
+                                                                class="form-control">
+                                                                <option value="">Select</option>
+                                                                @foreach($documents_type as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{ old('case_steps_witness_from_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                                @endforeach
+                                                        </select>
+                                                    </div>
                                                         @error('case_steps_witness_from_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     
@@ -2358,18 +2343,16 @@
                                                         @error('case_steps_witness_to_note')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                        <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_witness_to_org"
-                                                               name="case_steps_witness_to_org"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_witness_to_cc"
-                                                               name="case_steps_witness_to_cc"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_witness_to_copy"
-                                                               name="case_steps_witness_to_copy"
-                                                               >
+                                                    <div class="col-sm-3">
+                                                        <select name="case_steps_witness_to_type_id"
+                                                                class="form-control">
+                                                                <option value="">Select</option>
+                                                                @foreach($documents_type as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{ old('case_steps_witness_to_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                                @endforeach
+                                                        </select>
+                                                    </div>
                                                         @error('case_steps_witness_to_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     
@@ -2396,18 +2379,16 @@
                                                         @error('case_steps_argument_note')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                        <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_argument_org"
-                                                               name="case_steps_argument_org"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_argument_cc"
-                                                               name="case_steps_argument_cc"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_argument_copy"
-                                                               name="case_steps_argument_copy"
-                                                               >
+                                                    <div class="col-sm-3">
+                                                        <select name="case_steps_argument_type_id"
+                                                                class="form-control">
+                                                                <option value="">Select</option>
+                                                                @foreach($documents_type as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{ old('case_steps_argument_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                                @endforeach
+                                                        </select>
+                                                    </div>
                                                         @error('case_steps_argument_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     
@@ -2435,18 +2416,16 @@
                                                         @error('case_steps_judgement_order_note')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                        <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_judgement_order_org"
-                                                               name="case_steps_judgement_order_org"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_judgement_order_cc"
-                                                               name="case_steps_judgement_order_cc"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_judgement_order_copy"
-                                                               name="case_steps_judgement_order_copy"
-                                                               >
+                                                    <div class="col-sm-3">
+                                                        <select name="case_steps_judgement_order_type_id"
+                                                                class="form-control">
+                                                                <option value="">Select</option>
+                                                                @foreach($documents_type as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{ old('case_steps_judgement_order_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                                @endforeach
+                                                        </select>
+                                                    </div>
                                                         @error('case_steps_judgement_order_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     
@@ -2474,18 +2453,16 @@
                                                         @error('case_steps_summary_of_cases_note')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                        <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_summary_of_cases_org"
-                                                               name="case_steps_summary_of_cases_org"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_summary_of_cases_cc"
-                                                               name="case_steps_summary_of_cases_cc"
-                                                               >
-                                                               <input type="checkbox" class="form-control col-sm-1"
-                                                               id="case_steps_summary_of_cases_copy"
-                                                               name="case_steps_summary_of_cases_copy"
-                                                               >
+                                                    <div class="col-sm-3">
+                                                        <select name="case_steps_summary_of_cases_type_id"
+                                                                class="form-control">
+                                                                <option value="">Select</option>
+                                                                @foreach($documents_type as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{ old('case_steps_summary_of_cases_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                                @endforeach
+                                                        </select>
+                                                    </div>
                                                         @error('case_steps_summary_of_cases_yes_no')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     
