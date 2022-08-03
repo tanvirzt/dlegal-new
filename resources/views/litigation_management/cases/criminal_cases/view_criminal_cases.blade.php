@@ -77,13 +77,10 @@
 
 
 
-                                <h3 id="mainMenuBar" class="card-title custom_h3 font-italic text-uppercase font_weight"
+                                <h3 id="mainMenuBar" class="card-title custom_h3 font-italic text-capitalize font_weight"
                                     style="color: #FF7034;z-index:99">Criminal Case
                                     No.
-                                    {{ $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . ' of ' . $data->case_infos_case_year : '' }}
-                                    @if ($data->sub_seq_case_title_name != null)
-                                        ,
-                                    @endif
+                                    {!! $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . '<span class="text-lowercase" style="font-size: 17px;"> of </span>' . $data->case_infos_case_year: '' !!}@if ($data->sub_seq_case_title_name != null),@endif
                                     {{ $data->sub_seq_case_title_name }}
                                     @php
                                         $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
@@ -94,7 +91,7 @@
                                         $key = array_key_last($case_infos_sub_seq_case_year);
                                         $last_case_no = $case_infos_sub_seq_case_year[$key];
                                         if ($last_case_no != null) {
-                                            echo ' of ' . $last_case_no;
+                                            echo '<span class="text-lowercase" style="font-size: 17px;"> of </span>' . $last_case_no;
                                         }
                                     @endphp
 
@@ -550,10 +547,9 @@
                                                         <tbody>
                                                             @foreach ($received_documents as $value)
                                                                 <tr>
-                                                                    <td width="30%">{{ $value->documents_name }}</td>
-                                                                    <td width="30%">{{ $value->received_documents }}</td>
-                                                                    <td width="30%">{{ !empty($value->received_documents_date) ? date('d-m-Y', strtotime($value->received_documents_date)) : '' }}</td>
-                                                                    <td width="10%">{{ $value->documents_type_name }}</td>
+                                                                    <td width="60%">{{ $value->documents_name }} {{ $value->received_documents }}</td>
+                                                                    <td width="25%">{{ !empty($value->received_documents_date) ? date('d-m-Y', strtotime($value->received_documents_date)) : '' }}</td>
+                                                                    <td width="15%">{{ $value->documents_type_name }}</td>
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
@@ -566,10 +562,9 @@
                                                         <tbody>
                                                             @foreach ($required_wanting_documents as $value)
                                                                 <tr>
-                                                                    <td width="30%">{{ $value->documents_name }}</td>
-                                                                    <td width="30%">{{ $value->required_wanting_documents }}</td>
-                                                                    <td width="30%">{{ !empty($value->required_wanting_documents_date) ? date('d-m-Y', strtotime($value->required_wanting_documents_date)) : '' }}</td>
-                                                                    <td width="10%">{{ $value->documents_type_name }}</td>
+                                                                    <td width="60%">{{ $value->documents_name }} {{ $value->required_wanting_documents }}</td>
+                                                                    <td width="25%">{{ !empty($value->required_wanting_documents_date) ? date('d-m-Y', strtotime($value->required_wanting_documents_date)) : '' }}</td>
+                                                                    <td width="15%">{{ $value->documents_type_name }}</td>
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
@@ -1158,7 +1153,7 @@
                                                         <tbody>
                                                             @foreach ($letter_notice as $value)
                                                             <tr>
-                                                                <td width="26%">{{ date('d-m-Y', strtotime($value->letter_notice_date)) }} </td>
+                                                                <td width="26%">{{ !empty($value->letter_notice_date) ? date('d-m-Y', strtotime($value->letter_notice_date)) : '' }} </td>
                                                                 <td width="26%">{{ $value->documents_name }} {{ $value->letter_notice_documents_write }}
                                                                      </td>
                                                                 <td width="28%">{{ $value->letter_notice_particulars_write }}
@@ -1462,7 +1457,33 @@
                                                         @endif
                                                         {{ $logs->updated_court_order_write }}
                                                     </td>
-                                                    <td> {{ !empty($logs->updated_next_date) ? date('d-m-Y', strtotime($logs->updated_next_date)) : '' }} </td>
+                                                    <td> 
+
+
+                                                        {{-- @php
+                                                        $not_updated = App\Models\CriminalCaseStatusLog::where(['case_id' => $data->id, 'delete_status' => 0])->latest()->first();
+                                                        // dd($not_updated);
+                                                        // if (!empty($not_updated->updated_next_date) && $not_updated->updated_next_date < date('Y-m-d')) {
+                                                        //     // dd($not_updated->updated_next_date);
+                                                        // }
+                                                        @endphp --}}
+                                                        
+                                                        {{-- @if (!empty($logs->updated_next_date))
+                                                            {{ date('d-m-Y', strtotime($logs->updated_next_date)) }}
+                                                        @elseif(!empty($not_updated->updated_next_date) && $not_updated->updated_next_date < date('Y-m-d'))
+                                                            <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>Missed</button>
+                                                        @else
+                                                            <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>Not Updated</button>
+                                                        @endif --}}
+
+                                                        @if (!empty($logs->updated_next_date) && $logs->updated_next_date < date('Y-m-d'))
+                                                            <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>{{ date('d-m-Y', strtotime($logs->updated_next_date)) }}</button>
+                                                        @elseif(!empty($logs->updated_next_date))
+                                                            {{ date('d-m-Y', strtotime($logs->updated_next_date)) }}
+                                                        @else
+                                                            <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>Not Updated</button>
+                                                        @endif
+                                                    </td>
                                                     <td width="8%"> {{ $logs->index_next_date_reason_name }}
                                                         {{ $logs->updated_index_fixed_for_write }}</td>
 
@@ -1481,7 +1502,11 @@
                                                         {{ $logs->updated_engaged_advocate_write }} </td>
                                                     <td>
 
-                                                        
+                                                        <a
+                                                            href="{{ route('view-criminal-cases-proceedings', $logs->id) }}">
+                                                            <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
+                                                                data-placement="top" title="View"><i class="fas fa-eye"></i></button>
+                                                        </a>
                                                         <a href="{{ route('edit-criminal-cases-status', $logs->id) }}">
                                                             <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
                                                                 data-placement="top" title="Edit"><i
@@ -1546,7 +1571,10 @@
                                                     <td style="width: 90px;"> {{ date('d-m-Y', strtotime($activity_log->activity_date)) }}
                                                     </td>
                                                     <td> {{\Illuminate\Support\Str::limit($activity_log->activity_action, 15)}} </td>
-                                                    <td> {{\Illuminate\Support\Str::limit($activity_log->activity_progress, 15)}} </td>
+                                                    <td> 
+                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_progress, 15, $end='...') }}
+                                                        {{-- {{\Illuminate\Support\Str::limit($activity_log->activity_progress, 15)}}  --}}
+                                                    </td>
                                                     <td> {{ $activity_log->mode_name }} </td>
                                                     <td> {{ $activity_log->total_time }} @if (!empty($activity_log->time_spend_manual)) / {{ $activity_log->time_spend_manual }} @endif </td>
                                                     <td>
@@ -1559,8 +1587,11 @@
                                                                 <li class="text-left">{{ $item }}</li>
                                                             @endforeach
                                                         @endif
-
-                                                        {{ $activity_log->activity_engaged_write }}
+                                                        @if (!empty($engaged))
+                                                            <li class="text-left">{{ $activity_log->activity_engaged_write }}</li>
+                                                        @else
+                                                            {{ $activity_log->activity_engaged_write }}
+                                                        @endif
                                                     </td>
                                                     <td>
                                                         @php
@@ -1638,12 +1669,12 @@
                                         <thead>
                                             <tr>
                                                 <th class="hide" width="2%">SL</th>
-                                                <th>Document Uploaded</th>
-                                                <th>Document Date</th>
-                                                <th>Type</th>
-                                                <th>Uploaded By</th>
-                                                <th>Date & Time</th>
-                                                <th>Action</th>
+                                                <th width="30%">Document Uploaded</th>
+                                                <th width="13%">Document Date</th>
+                                                <th width="6%">Type</th>
+                                                <th width="21%">Uploaded By</th>
+                                                <th width="15%">Action</th>
+                                                <th width="15%">Date & Time</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1654,7 +1685,6 @@
                                                     <td>{{ $files->uploaded_date }} </td>
                                                     <td>{{ $files->documents_type_name }} </td>
                                                     <td>{{ $files->created_by }} </td>
-                                                    <td>{{ $files->created_at }} </td>
                                                     <td>
                                                         <a href="{{ route('view-criminal-cases-files', $files->id) }}"
                                                             target="_blank">
@@ -1688,13 +1718,15 @@
                                                         </form>
 
                                                         {{-- <a href="{{ route('download-criminal-cases-files', $files->id) }}">
-                                                        <button
-                                                            class="btn btn-outline-success btn-sm" data-toggle="tooltip"
-                                                            data-placement="top" title="Download"><i class="fas fa-download"></i></button>
-                                                    </a> --}}
+                                                            <button
+                                                                class="btn btn-outline-success btn-sm" data-toggle="tooltip"
+                                                                data-placement="top" title="Download"><i class="fas fa-download"></i></button>
+                                                        </a> --}}
 
                                                         
                                                     </td>
+                                                    <td>{{ $files->created_at }} </td>
+
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -2167,8 +2199,6 @@
                 <form action="{{ route('update-criminal-cases-activity', $data->id) }}" method="post">
                     @csrf
                     <div class="card-body">
-
-
                         <input type="hidden" name="case_no"
                             value="{{ $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . ' of ' . $data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null) , @endif
                         {{ $data->sub_seq_case_title_name }}

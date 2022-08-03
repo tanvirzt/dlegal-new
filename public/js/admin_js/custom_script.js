@@ -340,8 +340,20 @@ window.onload =function(){
 //function to convert enterd date to any format
 function setCorrect(xObj,xTraget){
     var date = new Date(xObj.value);
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
+    var months = date.getMonth() + 1;
+    if(months<10){
+        var month = '0'+months;
+    }else{
+        var month = months;
+    }
+    var days = date.getDate();
+
+    if (days<10) {
+        var day = '0'+days;
+    } else {
+        var day = days;
+    }
+
     var year = date.getFullYear();
     if(month!='NaN'){
         document.getElementById(xTraget).value=day+"-"+month+"-"+year;

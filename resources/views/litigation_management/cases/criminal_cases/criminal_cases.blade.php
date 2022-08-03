@@ -410,9 +410,13 @@
                                                 {{ $datum->case_status_name }}
                                             </td>
                                             <td width="8%">
-                                              @if (!empty($datum->next_date))
-                                                {{ date('d-m-Y', strtotime($datum->next_date)) }}
-                                              @endif  
+                                                @if (!empty($datum->next_date) && $datum->next_date < date('Y-m-d'))
+                                                    <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>{{ date('d-m-Y', strtotime($datum->next_date)) }}</button>
+                                                @elseif(!empty($datum->next_date))
+                                                    {{ date('d-m-Y', strtotime($datum->next_date)) }}
+                                                @else
+                                                    <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase' style="line-height: 10px;">Not Updated</button>
+                                                @endif
                                             </td>
                                             <td>
                                                 {{ $datum->next_date_reason_name }}

@@ -42,19 +42,24 @@
                     <h3 class="mt-2" style="color: #FF7034;">
                         Criminal Case
                         No.
-                        {{ $case_no_data->case_infos_case_no ? $case_no_data->case_infos_case_title_name.' '.$case_no_data->case_infos_case_no.' of '.$case_no_data->case_infos_case_year : '' }}@if ($case_no_data->sub_seq_case_title_name != null),
-                        @endif
+                        
+                        {!! $case_no_data->case_infos_case_no ? $case_no_data->case_infos_case_title_name . ' ' . $case_no_data->case_infos_case_no . '<span class="text-lowercase" style="font-size: 17px;"> of </span>' . $case_no_data->case_infos_case_year: '' !!}@if ($case_no_data->sub_seq_case_title_name != null),@endif
                         {{ $case_no_data->sub_seq_case_title_name }}
                         @php
-                            $case_infos_sub_seq_case_no = explode(', ',trim($case_no_data->case_infos_sub_seq_case_no));
+                            $case_infos_sub_seq_case_no = explode(', ', trim($case_no_data->case_infos_sub_seq_case_no));
                             $key = array_key_last($case_infos_sub_seq_case_no);
                             echo $case_infos_sub_seq_case_no[$key];
-                            $case_infos_sub_seq_case_year = explode(', ',trim($case_no_data->case_infos_sub_seq_case_year));
+                            
+                            $case_infos_sub_seq_case_year = explode(', ', trim($case_no_data->case_infos_sub_seq_case_year));
                             $key = array_key_last($case_infos_sub_seq_case_year);
                             $last_case_no = $case_infos_sub_seq_case_year[$key];
                             if ($last_case_no != null) {
-                                echo ' of '.$last_case_no;
-                            }@endphp</h3>
+                                echo '<span class="text-lowercase" style="font-size: 17px;"> of </span>' . $last_case_no;
+                            }
+                        @endphp
+
+
+                            </h3>
                     <div class="card">
                         <div class="">
 
@@ -2943,7 +2948,17 @@
                                                                 <label for="uploaded_document"> Document Upload </label>
                                                                 <div class="input-group hdtuto_files control-group increment_files">
                                                                     <input type="file" name="uploaded_document[]"
-                                                                           class="myfrm form-control">
+                                                                           class="myfrm form-control mr-2">
+                                                                    <input type="date" name="uploaded_date[]"
+                                                                           class="myfrm form-control mr-2 col-md-4">
+                                                                    <select name="documents_type_id[]"
+                                                                        class="form-control col-md-4">
+                                                                        <option value="">Select</option>
+                                                                        @foreach($documents_type as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{ old('documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                                        @endforeach
+                                                                    </select>
                                                                     <div class="input-group-btn">
                                                                         <button class="btn btn-success btn_success_files"
                                                                                 type="button"><i
@@ -2955,7 +2970,17 @@
                                                                     <div class="hdtuto_files control-group lst input-group"
                                                                          style="margin-top:10px">
                                                                         <input type="file" name="uploaded_document[]"
-                                                                               class="myfrm form-control">
+                                                                               class="myfrm form-control mr-2">
+                                                                               <input type="date" name="uploaded_date[]"
+                                                                           class="myfrm form-control mr-2 col-md-4">
+                                                                    <select name="documents_type_id[]"
+                                                                        class="form-control col-md-4">
+                                                                        <option value="">Select</option>
+                                                                        @foreach($documents_type as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{ old('documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                                                        @endforeach
+                                                                    </select>
                                                                         <div class="input-group-btn">
                                                                             <button class="btn btn-danger btn_danger_files"
                                                                                     type="button"><i

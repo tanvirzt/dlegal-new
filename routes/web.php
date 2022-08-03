@@ -192,6 +192,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-criminal-cases-status-logs/{id}','CriminalCasesController@update_criminal_cases_status_logs')->name('update-criminal-cases-status-logs');
         Route::post('delete-criminal-cases-activity/{id}','CriminalCasesController@delete_criminal_cases_activity')->name('delete-criminal-cases-activity');
         Route::get('edit_criminal_cases_activity/{id}','CriminalCasesController@edit_criminal_cases_activity')->name('edit-criminal-cases-activity');
+        Route::get('view-criminal-cases-proceedings/{id}','CriminalCasesController@view_criminal_cases_proceedings')->name('view-criminal-cases-proceedings');
         Route::get('view-criminal-cases-activity/{id}','CriminalCasesController@view_criminal_cases_activity')->name('view-criminal-cases-activity');
         Route::post('update-criminal-cases-activity-logs/{id}','CriminalCasesController@update_criminal_cases_activity_logs')->name('update-criminal-cases-activity-logs');
         Route::get('case-porceedings-print-preview/{id}','CriminalCasesController@case_porceedings_print_preview')->name('case-porceedings-print-preview');

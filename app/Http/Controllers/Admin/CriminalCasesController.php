@@ -474,8 +474,11 @@ $created_case_id = 'LCR-000'.$sl;
             foreach ($request->file('uploaded_document') as $key=>$file) {
 
                 $original_name = $file->getClientOriginalName();
+                $explode = explode('.',$original_name);
+                array_pop($explode);
+                $implode = implode('-',$explode);
                 $original_extension = $file->getClientOriginalExtension();
-                $name = Str::slug($original_name).'.'.$original_extension;
+                $name = Str::slug($implode).'.'.$original_extension;
                 $file->move(public_path('files/criminal_cases'), $name);
 
                 $files = new CriminalCasesFile();
@@ -949,16 +952,24 @@ $case_no_data = DB::table('criminal_cases')
             $steps->save();
 
             if ($request->hasfile('uploaded_document')) {
-                foreach ($request->file('uploaded_document') as $file) {
-                    $original_name = $file->getClientOriginalName();
-                    $name = $original_name;
-                    $file->move(public_path('files/criminal_cases'), $name);
+                foreach ($request->file('uploaded_document') as $key=>$file) {
 
-                    $file = new CriminalCasesFile();
-                    $file->case_id = $data->id;
-                    $file->uploaded_document = $name;
-                    $file->created_by = Auth::guard('admin')->user()->email;
-                    $file->save();
+                $original_name = $file->getClientOriginalName();
+                $explode = explode('.',$original_name);
+                array_pop($explode);
+                $implode = implode('-',$explode);
+                $original_extension = $file->getClientOriginalExtension();
+                $name = Str::slug($implode).'.'.$original_extension;
+                $file->move(public_path('files/criminal_cases'), $name);
+
+                $files = new CriminalCasesFile();
+                $files->case_id = $data->id;
+                $files->uploaded_date = $request->uploaded_date[$key];
+                $files->documents_type_id = $request->documents_type_id[$key];
+                $files->uploaded_document = $name;
+                $files->created_by = Auth::guard('admin')->user()->email;
+                $files->save();
+
                 }
             }
 
@@ -1215,8 +1226,6 @@ $case_no_data = DB::table('criminal_cases')
             $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
             $steps->case_steps_summary_of_cases_type_id = $request->case_steps_summary_of_cases_type_id;
             $steps->case_steps_remarks = $request->case_steps_remarks;
-    
-
             $steps->save();
 
         }
@@ -1496,16 +1505,22 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             $steps->save();
 
             if ($request->hasfile('uploaded_document')) {
-                foreach ($request->file('uploaded_document') as $file) {
+                foreach ($request->file('uploaded_document') as $key=>$file) {
                     $original_name = $file->getClientOriginalName();
-                    $name = $original_name;
+                    $explode = explode('.',$original_name);
+                    array_pop($explode);
+                    $implode = implode('-',$explode);
+                    $original_extension = $file->getClientOriginalExtension();
+                    $name = Str::slug($implode).'.'.$original_extension;
                     $file->move(public_path('files/criminal_cases'), $name);
-
-                    $file = new CriminalCasesFile();
-                    $file->case_id = $data->id;
-                    $file->uploaded_document = $name;
-                    $file->created_by = Auth::guard('admin')->user()->email;
-                    $file->save();
+    
+                    $files = new CriminalCasesFile();
+                    $files->case_id = $data->id;
+                    $files->uploaded_date = $request->uploaded_date[$key];
+                    $files->documents_type_id = $request->documents_type_id[$key];
+                    $files->uploaded_document = $name;
+                    $files->created_by = Auth::guard('admin')->user()->email;
+                    $files->save();
                 }
             }
 
@@ -2462,13 +2477,13 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         // dd($request->all());
         if ($request->hasfile('uploaded_document')) {
                 $file = $request->file('uploaded_document');
-                // $original_name = $file->getClientOriginalName();
-                // $original_extension = $file->getClientOriginalExtension();
-                // $name = Str::slug($original_name);
 
                 $original_name = $file->getClientOriginalName();
+                $explode = explode('.',$original_name);
+                array_pop($explode);
+                $implode = implode('-',$explode);
                 $original_extension = $file->getClientOriginalExtension();
-                $name = Str::slug($original_name).'.'.$original_extension;
+                $name = Str::slug($implode).'.'.$original_extension;
                 $file->move(public_path('files/criminal_cases'), $name);
 
                 $file = new CriminalCasesFile();
@@ -2498,17 +2513,15 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             if($request->uploaded_document && file_exists($image_path)){
                 unlink($image_path);
             }
-
             
             $file = $request->file('uploaded_document');
             $original_name = $file->getClientOriginalName();
+            $explode = explode('.',$original_name);
+            array_pop($explode);
+            $implode = implode('-',$explode);
             $original_extension = $file->getClientOriginalExtension();
-            $name = Str::slug($original_name).'.'.$original_extension;
+            $name = Str::slug($implode).'.'.$original_extension;
             $file->move(public_path('files/criminal_cases'), $name);
-
-            // $original_name = $file->getClientOriginalName();
-            // $name = $original_name;
-            // $file->move(public_path('files/criminal_cases'), $name);
 
             $file = CriminalCasesFile::find($id);
             $file->case_id = $data->case_id;
@@ -3053,6 +3066,27 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
 
         // dd($data);
         return view('litigation_management.cases.criminal_cases.criminal_cases_files_update',compact('data','documents_type'));
+
+    }
+
+    public function view_criminal_cases_proceedings($id)
+    {
+        // dd($id);
+        $case_logs = DB::table('criminal_case_status_logs')
+            ->leftJoin('setup_case_statuses', 'criminal_case_status_logs.updated_case_status_id', '=', 'setup_case_statuses.id')
+            ->leftJoin('setup_next_date_reasons', 'criminal_case_status_logs.updated_fixed_for_id', '=', 'setup_next_date_reasons.id')
+            ->leftJoin('setup_court_proceedings', 'criminal_case_status_logs.court_proceedings_id', '=', 'setup_court_proceedings.id')
+            ->leftJoin('setup_court_last_orders', 'criminal_case_status_logs.updated_court_order_id', '=', 'setup_court_last_orders.id')
+            ->leftJoin('setup_day_notes', 'criminal_case_status_logs.updated_day_notes_id', '=', 'setup_day_notes.id')
+            ->leftJoin('setup_next_date_reasons as index_reason', 'criminal_case_status_logs.updated_index_fixed_for_id', '=', 'index_reason.id')
+            ->leftJoin('setup_external_council_associates', 'criminal_case_status_logs.updated_engaged_advocate_id', '=', 'setup_external_council_associates.id')
+            ->leftJoin('setup_next_day_presences', 'criminal_case_status_logs.updated_next_day_presence_id', '=', 'setup_next_day_presences.id')
+            ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name', 'setup_court_proceedings.court_proceeding_name', 'setup_court_last_orders.court_last_order_name', 'setup_day_notes.day_notes_name', 'setup_external_council_associates.first_name', 'setup_external_council_associates.middle_name', 'setup_external_council_associates.last_name', 'setup_next_day_presences.next_day_presence_name','index_reason.next_date_reason_name as index_next_date_reason_name')        
+            ->where(['criminal_case_status_logs.id' => $id, 'criminal_case_status_logs.delete_status' => 0])
+            ->orderBy('criminal_case_status_logs.updated_order_date','desc')
+            ->first();
+            // dd($case_logs);
+        return view('litigation_management.cases.criminal_cases.view_criminal_cases_proceedings',compact('case_logs'));
 
     }
 

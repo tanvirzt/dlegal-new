@@ -87,7 +87,7 @@ html, body {
 }
 
 tr:hover {
-    background-color: #d3ede9 !important;
+    background-color: rgba(252,252,179,.45) !important;
 }
 
 
@@ -701,4 +701,16 @@ th{
     /* margin: 0.5rem 0; */
     overflow: hidden;
     border-top: 1px solid #e9ecef;
+}
+
+.btn-danger-custom-next-date {
+    font-family: Raleway-SemiBold;
+    font-size: 10px;
+    color: rgba(217, 83, 78, 0.75);
+    /* letter-spacing: 1px; */
+    line-height: 20px;
+    border: 2px solid rgba(217, 83, 78, 0.75);
+    border-radius: 40px;
+    background: transparent;
+    transition: all 0.3s ease 0s;
 }
