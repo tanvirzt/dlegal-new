@@ -37,7 +37,7 @@
                         </p>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
+                <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-circle"></i>
                         <p>
@@ -68,16 +68,21 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('property-type') }}" class="nav-link">
+                                    <a href="{{ route('chamber') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Chamber Detail</p>
+                                        <p>Chamber</p>
                                     </a>
                                 </li>
                             </ul>
+                            <li class="nav-item">
+                                <a href="{{ route('property-type') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Internal Counsel</p>
+                                </a>
+                            </li>
                         </li>
-
                     </ul>
-                </li> --}}
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-circle"></i>

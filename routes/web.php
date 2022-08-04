@@ -200,7 +200,6 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('criminal-case-print-preview/{id}','CriminalCasesController@criminal_case_print_preview')->name('criminal-case-print-preview');
         Route::post('send-messages-for-criminal-cases/{id}','CriminalCasesController@send_messages_for_criminal_cases')->name('send-messages-for-criminal-cases');
 
-
         Route::post('update-criminal-cases-status-column/{id}','CriminalCasesController@update_criminal_cases_status_column')->name('update-criminal-cases-status-column');
         Route::get('view-criminal-cases-read-notifications/{id}','CriminalCasesController@view_criminal_cases_read_notifications')->name('view-criminal-cases-read-notifications');
         
@@ -715,6 +714,12 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-cabinet/{id}','AdminSetupController@update_cabinet')->name('update-cabinet');
         Route::post('delete-cabinet/{id}','AdminSetupController@delete_cabinet')->name('delete-cabinet');
 
+        Route::get('chamber', 'CounselLawyerController@index')->name('chamber');
+        Route::get('add-chamber','CounselLawyerController@create')->name('add-chamber');
+        // Route::post('save-chamber','AdminSetupController@save_chamber')->name('save-chamber');
+        // Route::get('edit-chamber/{id}','AdminSetupController@edit_chamber')->name('edit-chamber');
+        // Route::post('update-chamber/{id}','AdminSetupController@update_chamber')->name('update-chamber');
+        // Route::post('delete-chamber/{id}','AdminSetupController@delete_chamber')->name('delete-chamber');
 
     });
 

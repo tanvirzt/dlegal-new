@@ -312,6 +312,37 @@ $(document).ready(function () {
         $(this).parents(".hdtuto_sub_seq_court_short").remove();
     });
 
+    $(".btn_success_partner_of_chamber").click(function () {
+        var lsthmtl_partner_of_chamber = $(".clone_partner_of_chamber").html();
+        $(".increment_partner_of_chamber").after(lsthmtl_partner_of_chamber);
+    });
+    $("body").on("click", ".btn_danger_partner_of_chamber", function () {
+        $(this).parents(".hdtuto_partner_of_chamber").remove();
+    });
+
+    $(".btn_success_associate").click(function () {
+        var lsthmtl_associate = $(".clone_associate").html();
+        $(".increment_associate").after(lsthmtl_associate);
+    });
+    $("body").on("click", ".btn_danger_associate", function () {
+        $(this).parents(".hdtuto_associate").remove();
+    });
+
+    $(".btn_success_clerk").click(function () {
+        var lsthmtl_clerk = $(".clone_clerk").html();
+        $(".increment_clerk").after(lsthmtl_clerk);
+    });
+    $("body").on("click", ".btn_danger_clerk", function () {
+        $(this).parents(".hdtuto_clerk").remove();
+    });
+
+    $(".btn_success_support_staff").click(function () {
+        var lsthmtl_support_staff = $(".clone_support_staff").html();
+        $(".increment_support_staff").after(lsthmtl_support_staff);
+    });
+    $("body").on("click", ".btn_danger_support_staff", function () {
+        $(this).parents(".hdtuto_support_staff").remove();
+    });
 
 
 

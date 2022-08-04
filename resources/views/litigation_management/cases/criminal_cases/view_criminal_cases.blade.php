@@ -52,6 +52,14 @@
                             </button>
                         </div>
                     @endif
+                    @if (Session::has('warning'))
+                        <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+                            {{ Session::get('warning') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <div class="card">
                         <div class="card">
                             <div class="card-header">
@@ -1423,7 +1431,111 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($case_logs as $logs)
+                                                <tr>
+                                                    <td> {{ date('d-m-Y', strtotime($case_logs[0]->updated_order_date)) }} </td>
+                                                    <td width="10%"> {{ $case_logs[0]->next_date_reason_name }}
+                                                        {{ $case_logs[0]->updated_fixed_for_write }} </td>
+                                                    <td>
+                                                        @php
+                                                            $proceedings = explode(', ', $case_logs[0]->court_proceedings_id);
+                                                        @endphp
+
+                                                        @if ($case_logs[0]->court_proceedings_id)
+                                                            @if (count($proceedings) > 1)
+                                                                @foreach ($proceedings as $pro)
+                                                                    <li class="text-left">{{ $pro }}</li>
+                                                                @endforeach
+                                                            @else
+                                                                @foreach ($proceedings as $pro)
+                                                                    {{ $pro }}
+                                                                @endforeach
+                                                            @endif
+                                                        @endif
+                                                        {{ $case_logs[0]->court_proceedings_write }}
+                                                    </td>
+                                                    <td>
+                                                        @php
+                                                            $order = explode(', ', $case_logs[0]->updated_court_order_id);
+                                                        @endphp
+                                                        @if ($case_logs[0]->updated_court_order_id)
+                                                            @foreach ($order as $pro)
+                                                                <li class="text-left">{{ $pro }}</li>
+                                                            @endforeach
+                                                        @endif
+                                                        {{ $case_logs[0]->updated_court_order_write }}
+                                                    </td>
+                                                    <td> 
+
+
+                                                        {{-- @php
+                                                        $not_updated = App\Models\CriminalCaseStatusLog::where(['case_id' => $data->id, 'delete_status' => 0])->latest()->first();
+                                                        // dd($not_updated);
+                                                        // if (!empty($not_updated->updated_next_date) && $not_updated->updated_next_date < date('Y-m-d')) {
+                                                        //     // dd($not_updated->updated_next_date);
+                                                        // }
+                                                        @endphp --}}
+                                                        
+                                                        {{-- @if (!empty($case_logs[0]->updated_next_date))
+                                                            {{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}
+                                                        @elseif(!empty($not_updated->updated_next_date) && $not_updated->updated_next_date < date('Y-m-d'))
+                                                            <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>Missed</button>
+                                                        @else
+                                                            <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>Not Updated</button>
+                                                        @endif --}}
+
+                                                        @if (!empty($case_logs[0]->updated_next_date) && $case_logs[0]->updated_next_date < date('Y-m-d'))
+                                                            <span style="color: rgba(217, 83, 78, 0.75);">{{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}</span>
+                                                        @elseif(!empty($case_logs[0]->updated_next_date))
+                                                            {{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}
+                                                        @else
+                                                            <button type='button' class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not Updated</button>
+                                                        @endif
+                                                    </td>
+                                                    <td width="8%"> {{ $case_logs[0]->index_next_date_reason_name }}
+                                                        {{ $case_logs[0]->updated_index_fixed_for_write }}</td>
+
+                                                    <td>
+                                                        @php
+                                                            $notes = explode(', ', $case_logs[0]->updated_day_notes_id);
+                                                        @endphp
+                                                        @if ($case_logs[0]->updated_day_notes_id)
+                                                            @foreach ($notes as $pro)
+                                                                <li class="text-left">{{ $pro }}</li>
+                                                            @endforeach
+                                                        @endif
+                                                        {{ $case_logs[0]->updated_day_notes_write }}
+                                                    </td>
+                                                    <td> {{ $case_logs[0]->updated_engaged_advocate_id }}
+                                                        {{ $case_logs[0]->updated_engaged_advocate_write }} </td>
+                                                    <td>
+
+                                                        <a
+                                                            href="{{ route('view-criminal-cases-proceedings', $case_logs[0]->id) }}">
+                                                            <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
+                                                                data-placement="top" title="View"><i class="fas fa-eye"></i></button>
+                                                        </a>
+                                                        <a href="{{ route('edit-criminal-cases-status', $case_logs[0]->id) }}">
+                                                            <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
+                                                                data-placement="top" title="Edit"><i
+                                                                    class="fas fa-edit"></i></button>
+                                                        </a>
+                                                        <form method="POST"
+                                                            action="{{ route('delete-criminal-cases-status', $case_logs[0]->id) }}"
+                                                            class="delete-user btn btn-outline-danger btn-xs">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-sm"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Delete"><i class="fas fa-trash"></i></button>
+                                                        </form>
+                                                    </td>
+                                                    <td> {{ date('d-m-Y H:i:s', strtotime($case_logs[0]->created_at)) }} </td>
+                                                </tr>
+@php
+// $removed = array_shift($case_logs);
+// array_shift($case_logs);
+$case_logs->shift();
+@endphp
+                                                @foreach ($case_logs as $logs)
                                                 <tr>
                                                     <td> {{ date('d-m-Y', strtotime($logs->updated_order_date)) }} </td>
                                                     <td width="10%"> {{ $logs->next_date_reason_name }}
@@ -1476,13 +1588,8 @@
                                                             <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>Not Updated</button>
                                                         @endif --}}
 
-                                                        @if (!empty($logs->updated_next_date) && $logs->updated_next_date < date('Y-m-d'))
-                                                            <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>{{ date('d-m-Y', strtotime($logs->updated_next_date)) }}</button>
-                                                        @elseif(!empty($logs->updated_next_date))
-                                                            {{ date('d-m-Y', strtotime($logs->updated_next_date)) }}
-                                                        @else
-                                                            <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>Not Updated</button>
-                                                        @endif
+                                                        {{ !empty($logs->updated_next_date) ? date('d-m-Y', strtotime($logs->updated_next_date)) : '' }}
+                                                        
                                                     </td>
                                                     <td width="8%"> {{ $logs->index_next_date_reason_name }}
                                                         {{ $logs->updated_index_fixed_for_write }}</td>
@@ -1523,6 +1630,10 @@
                                                     </td>
                                                     <td> {{ date('d-m-Y H:i:s', strtotime($logs->created_at)) }} </td>
                                                 </tr>
+
+
+
+
                                             @endforeach
                                         </tbody>
                                     </table>

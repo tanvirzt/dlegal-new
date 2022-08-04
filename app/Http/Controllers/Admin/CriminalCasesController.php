@@ -1826,7 +1826,8 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             ->orderBy('criminal_case_status_logs.updated_order_date','desc')
             // ->orderByRaw("DATE_FORMAT('Y-m-d',criminal_case_status_logs.updated_order_date), 'desc'")
             ->get();
-    //    dd($case_logs);
+            // dd($case_logs);
+    //    dd($case_logs[0]->updated_next_date);
 
         $latest = DB::table('criminal_case_status_logs')
             ->leftJoin('setup_case_statuses', 'criminal_case_status_logs.updated_case_status_id', '=', 'setup_case_statuses.id')
@@ -2488,11 +2489,14 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
 
                 $file = new CriminalCasesFile();
                 $file->case_id = $id;
-                $file->uploaded_date = $request->uploaded_date;
+                $file->uploaded_date = $request->uploaded_date == 'dd-mm-yyyy' || $request->uploaded_date == 'NaN-NaN-NaN' ? null : $request->uploaded_date;
                 $file->documents_type_id = $request->documents_type_id;
                 $file->uploaded_document = $name;
                 $file->created_by = Auth::guard('admin')->user()->email;
                 $file->save();
+        }else{
+            session()->flash('warning', 'There is no documents to upload.');
+            return redirect()->back(); 
         }
 
         session()->flash('success', 'Documents Added Successfully.');
@@ -2506,32 +2510,36 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
 
         $data = CriminalCasesFile::find($id);
 // dd($data);
-        if (!empty($data['uploaded_document'])) {
+        // if (!empty($data['uploaded_document'])) {
             // dd('asdfasdf');
+
+
             $image_path = 'files/criminal_cases/'.$data['uploaded_document'];
 // if file exists then remove it
             if($request->uploaded_document && file_exists($image_path)){
                 unlink($image_path);
             }
             
-            $file = $request->file('uploaded_document');
-            $original_name = $file->getClientOriginalName();
-            $explode = explode('.',$original_name);
-            array_pop($explode);
-            $implode = implode('-',$explode);
-            $original_extension = $file->getClientOriginalExtension();
-            $name = Str::slug($implode).'.'.$original_extension;
-            $file->move(public_path('files/criminal_cases'), $name);
+            if (!empty($request->uploaded_document)) {
+                $file = $request->file('uploaded_document');
+                $original_name = $file->getClientOriginalName();
+                $explode = explode('.',$original_name);
+                array_pop($explode);
+                $implode = implode('-',$explode);
+                $original_extension = $file->getClientOriginalExtension();
+                $name = Str::slug($implode).'.'.$original_extension;
+                $file->move(public_path('files/criminal_cases'), $name);
+            }
 
             $file = CriminalCasesFile::find($id);
             $file->case_id = $data->case_id;
-            $file->uploaded_date = $request->uploaded_date;
+            $file->uploaded_date = $request->uploaded_date == 'dd-mm-yyyy' || $request->uploaded_date == 'NaN-NaN-NaN' ? null : $request->uploaded_date;
             $file->documents_type_id = $request->documents_type_id;
-            $file->uploaded_document = $name;
+            $file->uploaded_document = $request->uploaded_document ? $name : $data['uploaded_document'];
             $file->created_by = Auth::guard('admin')->user()->email;
             $file->save();
 
-        }
+        // }
 
         session()->flash('success', 'Documents Updated Successfully.');
         return redirect()->route('view-criminal-cases',$data->case_id);
