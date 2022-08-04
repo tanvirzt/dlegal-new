@@ -411,7 +411,9 @@
                                             </td>
                                             <td width="8%">
                                                 @if (!empty($datum->next_date) && $datum->next_date < date('Y-m-d'))
-                                                    <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>{{ date('d-m-Y', strtotime($datum->next_date)) }}</button>
+
+                                                <span style="color: rgba(217, 83, 78, 0.75);">{{ date('d-m-Y', strtotime($datum->next_date)) }}</span>
+
                                                 @elseif(!empty($datum->next_date))
                                                     {{ date('d-m-Y', strtotime($datum->next_date)) }}
                                                 @else

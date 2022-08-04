@@ -1431,6 +1431,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @if (!empty($case_logs[0]->updated_order_date))
+                                                
                                                 <tr>
                                                     <td> {{ date('d-m-Y', strtotime($case_logs[0]->updated_order_date)) }} </td>
                                                     <td width="10%"> {{ $case_logs[0]->next_date_reason_name }}
@@ -1530,11 +1532,17 @@
                                                     </td>
                                                     <td> {{ date('d-m-Y H:i:s', strtotime($case_logs[0]->created_at)) }} </td>
                                                 </tr>
+                                            @endif
+
 @php
 // $removed = array_shift($case_logs);
 // array_shift($case_logs);
 $case_logs->shift();
 @endphp
+
+@if (!empty($case_logs))
+    
+
                                                 @foreach ($case_logs as $logs)
                                                 <tr>
                                                     <td> {{ date('d-m-Y', strtotime($logs->updated_order_date)) }} </td>
@@ -1635,6 +1643,9 @@ $case_logs->shift();
 
 
                                             @endforeach
+
+                                            @endif
+
                                         </tbody>
                                     </table>
                                 </div>
