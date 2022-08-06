@@ -43,9 +43,31 @@ $(document).ready(function () {
             }
         })
 
-        // if (confirm('Are you sure you want to delete?')) {
-        //
-        // }
+    });
+
+    $('.delete-user-dropdown').click(function (e) {
+        e.preventDefault() // Don't post the form, unless confirmed
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $(e.target).closest('form').submit()
+                // Swal.fire(
+                //     'Deleted!',
+                //     'Your file has been deleted.',
+                //     'success'
+                // )
+            }
+        })
+
     });
 
     $('.retrive-user').click(function (e) {

@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Chamber </h1>
+                        <h1> Counsel </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Chamber </li>
+                            <li class="breadcrumb-item active"> Counsel </li>
                         </ol>
                     </div>
                 </div>
@@ -39,8 +39,8 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-chamber') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Chamber </button></a>
+                                    <a href="{{ route('add-counsel') }}"><button class="btn btn-sm
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Counsel </button></a>
                                 </div>
 
                             </div>

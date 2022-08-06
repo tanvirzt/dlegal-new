@@ -1962,12 +1962,12 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             $order_date = date('Y-m-d');
         }
 
-        if ($request->updated_next_date != 'dd-mm-yyyy') {
+        if ($request->updated_next_date == 'dd-mm-yyyy' || $request->updated_next_date == 'NaN-NaN-NaN') {
+            $next_date = null;
+        } else {
             $next_date_explode = explode('-', $request->updated_next_date);
             $next_date_implode = implode('-',$next_date_explode);
             $next_date = date('Y-m-d', strtotime($next_date_implode));
-        } else {
-            $next_date = null;
         }
         
         // dd($order_date);
@@ -2242,12 +2242,12 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             $order_date = date('Y-m-d');
         }
 
-        if ($request->updated_next_date != 'dd-mm-yyyy') {
-            $next_date_explode = explode('/', $request->updated_next_date);
+        if ($request->updated_next_date == 'dd-mm-yyyy' || $request->updated_next_date == 'NaN-NaN-NaN') {
+            $next_date = null;
+        } else {
+            $next_date_explode = explode('-', $request->updated_next_date);
             $next_date_implode = implode('-',$next_date_explode);
             $next_date = date('Y-m-d', strtotime($next_date_implode));
-        } else {
-            $next_date = date('Y-m-d');
         }
 
         $case_id = CriminalCaseStatusLog::find($id);

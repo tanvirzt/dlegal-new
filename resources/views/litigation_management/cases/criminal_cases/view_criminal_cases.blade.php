@@ -1420,13 +1420,13 @@
                                             <tr>
                                                 <th width="8%">Date</th>
                                                 <th width="10%">Fixed For</th>
-                                                <th width="10%">Court Proceeding</th>
-                                                <th width="10%">Court Order</th>
+                                                <th width="12%">Court Proceeding</th>
+                                                <th width="12%">Court Order</th>
                                                 <th width="10%">Next Date</th>
                                                 <th width="10%">Fixed For</th>
                                                 <th width="10%">Day Note</th>
                                                 <th width="10%">Engaged Advocates</th>
-                                                <th width="10%">Action</th>
+                                                <th width="6%">Action</th>
                                                 <th width="10%">Update</th>
                                             </tr>
                                         </thead>
@@ -1486,11 +1486,11 @@
                                                         @endif --}}
 
                                                         @if (!empty($case_logs[0]->updated_next_date) && $case_logs[0]->updated_next_date < date('Y-m-d'))
-                                                            <span style="color: rgba(217, 83, 78, 0.75);">{{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}</span>
+                                                            <span style="color: rgba(255, 0, 0, 1);font-size:11.5px;">{{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}</span>
                                                         @elseif(!empty($case_logs[0]->updated_next_date))
                                                             {{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}
                                                         @else
-                                                            <button type='button' class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not Updated</button>
+                                                            <button type='button' class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not Upd.</button>
                                                         @endif
                                                     </td>
                                                     <td width="8%"> {{ $case_logs[0]->index_next_date_reason_name }}
@@ -1510,25 +1510,27 @@
                                                     <td> {{ $case_logs[0]->updated_engaged_advocate_id }}
                                                         {{ $case_logs[0]->updated_engaged_advocate_write }} </td>
                                                     <td>
+                                                        <div class="dropdown">
+                                                            <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
 
-                                                        <a
-                                                            href="{{ route('view-criminal-cases-proceedings', $case_logs[0]->id) }}">
-                                                            <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
-                                                                data-placement="top" title="View"><i class="fas fa-eye"></i></button>
-                                                        </a>
-                                                        <a href="{{ route('edit-criminal-cases-status', $case_logs[0]->id) }}">
-                                                            <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit"><i
-                                                                    class="fas fa-edit"></i></button>
-                                                        </a>
-                                                        <form method="POST"
-                                                            action="{{ route('delete-criminal-cases-status', $case_logs[0]->id) }}"
-                                                            class="delete-user btn btn-outline-danger btn-xs">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-sm"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="Delete"><i class="fas fa-trash"></i></button>
-                                                        </form>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6" style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success" href="{{ route('view-criminal-cases-proceedings', $case_logs[0]->id) }}"><i class="fas fa-eye"></i> View</a>
+                                                                
+                                                                <a class="dropdown-item" href="{{ route('edit-criminal-cases-status', $case_logs[0]->id) }}"><i
+                                                                    class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <form class="delete-user-dropdown" method="POST"
+                                                                        action="{{ route('delete-criminal-cases-status', $case_logs[0]->id) }}"
+                                                                        class="delete-user btn btn-outline-danger">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i> Delete</button>
+                                                                    </form>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        
                                                     </td>
                                                     <td> {{ date('d-m-Y H:i:s', strtotime($case_logs[0]->created_at)) }} </td>
                                                 </tr>
@@ -1616,25 +1618,26 @@ $case_logs->shift();
                                                     <td> {{ $logs->updated_engaged_advocate_id }}
                                                         {{ $logs->updated_engaged_advocate_write }} </td>
                                                     <td>
+                                                        <div class="dropdown">
+                                                            <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
 
-                                                        <a
-                                                            href="{{ route('view-criminal-cases-proceedings', $logs->id) }}">
-                                                            <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
-                                                                data-placement="top" title="View"><i class="fas fa-eye"></i></button>
-                                                        </a>
-                                                        <a href="{{ route('edit-criminal-cases-status', $logs->id) }}">
-                                                            <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit"><i
-                                                                    class="fas fa-edit"></i></button>
-                                                        </a>
-                                                        <form method="POST"
-                                                            action="{{ route('delete-criminal-cases-status', $logs->id) }}"
-                                                            class="delete-user btn btn-outline-danger btn-xs">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-sm"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="Delete"><i class="fas fa-trash"></i></button>
-                                                        </form>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6" style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success" href="{{ route('view-criminal-cases-proceedings', $logs->id) }}"><i class="fas fa-eye"></i> View</a>
+                                                                
+                                                                <a class="dropdown-item" href="{{ route('edit-criminal-cases-status', $logs->id) }}"><i
+                                                                    class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <form class="delete-user-dropdown" method="POST"
+                                                                        action="{{ route('delete-criminal-cases-status', $logs->id) }}"
+                                                                        class="delete-user btn btn-outline-danger">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i> Delete</button>
+                                                                    </form>
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                     <td> {{ date('d-m-Y H:i:s', strtotime($logs->created_at)) }} </td>
                                                 </tr>
@@ -1678,12 +1681,12 @@ $case_logs->shift();
                                                 <th width="9%">Activity/Action</th>
                                                 <th width="9%">Progress</th>
                                                 <th width="9%">Mode</th>
-                                                <th width="9%">Time Spent</th>
+                                                <th width="12%">Time Spent</th>
                                                 <th width="9%">Engaged Lawyer</th>
                                                 <th width="9%">Forwarded To</th>
                                                 <th width="9%">Requirements</th>
                                                 <th width="9%">Note</th>
-                                                <th width="9%">Action</th>
+                                                <th width="6%">Action</th>
                                                 <th width="9%">Update</th>
                                             </tr>
                                         </thead>
@@ -1702,14 +1705,19 @@ $case_logs->shift();
                                                     <td>
                                                         @php
                                                             $engaged = explode(', ', $activity_log->activity_engaged_id);
+                                                            // dd($engaged);
                                                         @endphp
 
-                                                        @if ($activity_log->activity_engaged_id)
+                                                        @if (count($engaged)>1)
                                                             @foreach ($engaged as $item)
                                                                 <li class="text-left">{{ $item }}</li>
                                                             @endforeach
+                                                        @else
+                                                            @foreach ($engaged as $item)
+                                                                {{ $item }}
+                                                            @endforeach
                                                         @endif
-                                                        @if (!empty($engaged))
+                                                        @if (!empty($engaged) && count($engaged)>1)
                                                             <li class="text-left">{{ $activity_log->activity_engaged_write }}</li>
                                                         @else
                                                             {{ $activity_log->activity_engaged_write }}
@@ -1718,25 +1726,58 @@ $case_logs->shift();
                                                     <td>
                                                         @php
                                                             $forwarded = explode(', ', $activity_log->activity_forwarded_to_id);
+                                                            // dd($forwarded);
+                                                            $name = App\Models\SetupExternalCouncil::whereIn('id',$forwarded)->get();
+// dd($name);
                                                         @endphp
 
-                                                        @if ($activity_log->activity_forwarded_to_id)
-                                                            @foreach ($forwarded as $item)
-                                                            @php
+                                                        @if (count($forwarded)>1)
+                                                            @foreach ($name as $item)
+                                                            {{-- @php
                                                                 $name = App\Models\SetupExternalCouncil::where('id',$item)->first();
-                                                            @endphp
-                                                                <li class="text-left">{{  $name->first_name.' '.$name->last_name }}</li>
+                                                            @endphp --}}
+                                                                <li class="text-left">{{  $item->first_name.' '.$item->last_name }}</li>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($name as $item)
+                                                            {{-- @php
+                                                                $name = App\Models\SetupExternalCouncil::where('id',$item)->first();
+                                                            @endphp --}}
+                                                                {{  $item->first_name.' '.$item->last_name }}
                                                             @endforeach
                                                         @endif 
-
-                                                        {{ $activity_log->activity_forwarded_to_write }} </td>
+                                                        @if (!empty($forwarded) && count($forwarded)>1)
+                                                            <li class="text-left">{{ $activity_log->activity_forwarded_to_write }}</li>
+                                                        @else
+                                                            {{ $activity_log->activity_forwarded_to_write }}
+                                                        @endif
+                                                        </td>
                                                     <td> {{\Illuminate\Support\Str::limit($activity_log->activity_requirements, 15)}} </td>
 
                                                     <td> {{\Illuminate\Support\Str::limit($activity_log->activity_remarks, 15)}} </td>
                                                     <td>
 
-                                                       
-                                                        <a
+                                                        <div class="dropdown">
+                                                            <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6" style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success" href="{{ route('view-criminal-cases-activity', $activity_log->id) }}"><i class="fas fa-eye"></i> View</a>
+                                                                
+                                                                <a class="dropdown-item" href="{{ route('view-criminal-cases-activity', $activity_log->id) }}"><i
+                                                                    class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <form class="delete-user-dropdown" method="POST"
+                                                                        action="{{ route('delete-criminal-cases-activity', $activity_log->id) }}"
+                                                                        class="delete-user btn btn-outline-danger">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i> Delete</button>
+                                                                    </form>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        {{-- <a
                                                             href="{{ route('view-criminal-cases-activity', $activity_log->id) }}">
                                                             <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
                                                                 data-placement="top" title="View"><i class="fas fa-eye"></i></button>
@@ -1755,7 +1796,7 @@ $case_logs->shift();
                                                             <button type="submit" class="btn btn-sm"
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 title="Delete"><i class="fas fa-trash"></i></button>
-                                                        </form>
+                                                        </form> --}}
                                                     </td>
                                                     <td> {{ date('d-m-Y H:i:s', strtotime($activity_log->created_at)) }}
                                                     </td>

@@ -370,7 +370,7 @@
 
                                     <div class="card">
                                         <div class="card-body">
-                                            <h6 class="text-uppercase text-bold"><u> Chamber Person </u>
+                                            <h6 class="text-uppercase text-bold"><u> Chamber Letterhead </u>
                                             </h6>
                                             <div class="form-group row">
                                                 <label for="branch_office_address_one"

@@ -721,6 +721,22 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         // Route::post('update-chamber/{id}','AdminSetupController@update_chamber')->name('update-chamber');
         // Route::post('delete-chamber/{id}','AdminSetupController@delete_chamber')->name('delete-chamber');
 
+
+        Route::get('counsel', 'CounselLawyerController@counsel_index')->name('counsel');
+        Route::get('add-counsel','CounselLawyerController@counsel_create')->name('add-counsel');
+        // Route::post('save-counsel','AdminSetupController@save_counsel')->name('save-counsel');
+        // Route::get('edit-counsel/{id}','AdminSetupController@edit_counsel')->name('edit-counsel');
+        // Route::post('update-counsel/{id}','AdminSetupController@update_counsel')->name('update-counsel');
+        // Route::post('delete-counsel/{id}','AdminSetupController@delete_counsel')->name('delete-counsel');
+
+        Route::get('chamber-staff', 'CounselLawyerController@chamber_staff_index')->name('chamber-staff');
+        Route::get('add-chamber-staff','CounselLawyerController@chamber_staff_create')->name('add-chamber-staff');
+        // Route::post('save-chamber-staff','AdminSetupController@save_chamber-staff')->name('save-chamber-staff');
+        // Route::get('edit-chamber-staff/{id}','AdminSetupController@edit_chamber-staff')->name('edit-chamber-staff');
+        // Route::post('update-chamber-staff/{id}','AdminSetupController@update_chamber-staff')->name('update-chamber-staff');
+        // Route::post('delete-chamber-staff/{id}','AdminSetupController@delete_chamber-staff')->name('delete-chamber-staff');
+
+
     });
 
 });

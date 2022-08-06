@@ -56,13 +56,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('external-council') }}" class="nav-link">
+                                    <a href="{{ route('counsel') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Counsel</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('flat-number') }}" class="nav-link">
+                                    <a href="{{ route('chamber-staff') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Chamber Staff</p>
                                     </a>

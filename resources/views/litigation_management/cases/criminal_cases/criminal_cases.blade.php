@@ -411,13 +411,11 @@
                                             </td>
                                             <td width="8%">
                                                 @if (!empty($datum->next_date) && $datum->next_date < date('Y-m-d'))
-
-                                                <span style="color: rgba(217, 83, 78, 0.75);">{{ date('d-m-Y', strtotime($datum->next_date)) }}</span>
-
+                                                    <span style="color: rgba(255, 0, 0, 1);font-size:11.5px;">{{ date('d-m-Y', strtotime($datum->next_date)) }}</span>
                                                 @elseif(!empty($datum->next_date))
                                                     {{ date('d-m-Y', strtotime($datum->next_date)) }}
                                                 @else
-                                                    <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase' style="line-height: 10px;">Not Updated</button>
+                                                    <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase' style="padding:2px;line-height: 10px;">Not Upd.</button>
                                                 @endif
                                             </td>
                                             <td>
