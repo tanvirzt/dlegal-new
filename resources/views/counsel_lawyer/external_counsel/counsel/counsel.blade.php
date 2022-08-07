@@ -49,28 +49,36 @@
                                 <table class="table table-bordered table-striped data_table">
                                     <thead>
                                     <tr>
+                                        <th class="text-center"> Sl </th>
+                                        <th class="text-center"> Role </th>
                                         <th class="text-center"> Name </th>
-                                        <th class="text-center"> Logo </th>
-                                        <th class="text-center"> Telephone </th>
-                                        <th class="text-nowrap"> Mobile </th>
+                                        <th class="text-nowrap"> Bar Council Enrollment </th>
+                                        <th class="text-nowrap"> High Court Enrollment </th>
+                                        <th class="text-nowrap"> Date of Joining </th>
                                         <th class="text-center"> Status </th>
                                         <th width="13%">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody id="search_data">
-                                    @foreach($data as $datum)
+                                    @foreach($data as $key=>$datum)
                                         <tr>
                                             <td>
-                                                {{ $datum->case_year }}
+                                                {{ $key+1 }}
                                             </td>
                                             <td>
-                                                {{ $datum->alligation }}
+                                                {{ $datum->counsel_role_id }}
                                             </td>
                                             <td>
-                                                {{ $datum->second_party_name }}
+                                                {{ $datum->counsel_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_notes }}
+                                                {{ $datum->bar_council_enrollment_date }} {{ $datum->bar_council_enrollment_sanad_no }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->high_court_enrollment_date }} {{ $datum->high_court_enrollment_membership_number }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->date_of_joining }}
                                             </td>
 
                                             <td>
@@ -85,19 +93,15 @@
                                                 </span>
                                             </td>
                                             <td>
-                                            <a href="{{ route('view-labour-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                            {{-- <a href="{{ route('view-counsel',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                                 ><i class="fas fa-eye"></i></button></a>
-                                            <a href="{{ route('add-billing-labour-cases', $datum->id) }}"><button
-                                                class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                                data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
-                                            <a href="{{ route('edit-labour-cases',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                             --}}
+                                            <a href="{{ route('edit-counsel',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                 ><i class="fas fa-edit"></i></button></a>
-
-                                                <form method="POST" action="{{ route('delete-labour-cases',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                <form method="POST" action="{{ route('delete-counsel',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
-
                                             </td>
                                         </tr>
                                     @endforeach
