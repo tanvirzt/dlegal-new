@@ -435,7 +435,7 @@ h3{
 }
 
 .date_second_input{
-    border: none;height: 90%;padding-left: 9px;
+    border: none;height: 90%;padding-left: 9px;width: 90px;
 }
 .date_second_input_steps{
     border: none;height: 90%;padding-left: 8px;width: 80px;
@@ -729,4 +729,13 @@ th{
     border-radius: 40px;
     background: transparent;
     transition: all 0.3s ease 0s;
+}
+
+.date_span_counsel {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    height: 26px;
+    width: 152px;
+    border-radius: 4px;
 }

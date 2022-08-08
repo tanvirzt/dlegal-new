@@ -1763,7 +1763,7 @@ $case_logs->shift();
                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6" style="will-change: transform;">
                                                                 <a class="dropdown-item btn btn-outline-success" href="{{ route('view-criminal-cases-activity', $activity_log->id) }}"><i class="fas fa-eye"></i> View</a>
                                                                 
-                                                                <a class="dropdown-item" href="{{ route('view-criminal-cases-activity', $activity_log->id) }}"><i
+                                                                <a class="dropdown-item" href="{{ route('edit-criminal-cases-activity', $activity_log->id) }}"><i
                                                                     class="fas fa-edit"></i> Edit</a>
                                                                 <a class="dropdown-item" href="javascript:void(0);">
                                                                     <form class="delete-user-dropdown" method="POST"

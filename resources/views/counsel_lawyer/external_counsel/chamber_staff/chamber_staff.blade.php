@@ -52,8 +52,6 @@
                                         <th class="text-center"> Sl </th>
                                         <th class="text-center"> Role </th>
                                         <th class="text-center"> Name </th>
-                                        <th class="text-nowrap"> Bar Council Enrollment </th>
-                                        <th class="text-nowrap"> High Court Enrollment </th>
                                         <th class="text-nowrap"> Date of Joining </th>
                                         <th class="text-center"> Status </th>
                                         <th width="13%">Action</th>
@@ -70,12 +68,6 @@
                                             </td>
                                             <td>
                                                 {{ $datum->counsel_name }}
-                                            </td>
-                                            <td>
-                                                {{ $datum->bar_council_enrollment_date }} {{ $datum->bar_council_enrollment_sanad_no }}
-                                            </td>
-                                            <td>
-                                                {{ $datum->high_court_enrollment_date }} {{ $datum->high_court_enrollment_membership_number }}
                                             </td>
                                             <td>
                                                 {{ $datum->date_of_joining }}

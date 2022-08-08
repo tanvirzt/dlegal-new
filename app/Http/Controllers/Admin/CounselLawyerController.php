@@ -358,6 +358,7 @@ class CounselLawyerController extends Controller
     public function index_chamber_staff()
     {
         $data = ChamberStaff::get();
+        // dd($data);
         return view('counsel_lawyer.external_counsel.chamber_staff.chamber_staff',compact('data'));
     }
 

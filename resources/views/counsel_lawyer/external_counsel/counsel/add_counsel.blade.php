@@ -147,9 +147,14 @@
                                                 <div class="form-group row">
                                                     <label for="date_of_birth" class="col-sm-4 col-form-label">Date of Birth</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="date_of_birth"
-                                                               name="date_of_birth"
-                                                               value="{{old('date_of_birth')}}">
+                                                        <span class="date_span">
+                                                            <input type="date" class="xDateContainer date_first_input"
+                                                                   onchange="setCorrect(this,'date_of_birth');"><input type="text" id="date_of_birth"
+                                                                                                                name="date_of_birth" value="dd-mm-yyyy"
+                                                                                                                class="date_second_input"
+                                                                                                                tabindex="-1"><span
+                                                                class="date_second_span" tabindex="-1">&#9660;</span>
+                                                        </span>
                                                         @error('date_of_birth')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
@@ -305,10 +310,14 @@
                                             <div class="form-group row">
                                                 <label for="case_no" class="col-sm-4 col-form-label">Bar Council Enrollment</label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" class="form-control"
-                                                               id="bar_council_enrollment_date"
-                                                               name="bar_council_enrollment_date" placeholder="Date"
-                                                               value="{{old('bar_council_enrollment_date')}}">
+                                                        <span class="date_span_counsel">
+                                                            <input type="date" class="xDateContainer date_first_input"
+                                                                   onchange="setCorrect(this,'bar_council_enrollment_date');"><input type="text" id="bar_council_enrollment_date"
+                                                                                                                name="bar_council_enrollment_date" value="dd-mm-yyyy"
+                                                                                                                class="date_second_input"
+                                                                                                                tabindex="-1"><span
+                                                                class="date_second_span" tabindex="-1">&#9660;</span>
+                                                        </span>
                                                         @error('bar_council_enrollment_date')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
@@ -343,10 +352,14 @@
                                             <div class="form-group row">
                                                 <label for="case_no" class="col-sm-4 col-form-label">Practicing Bar</label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" class="form-control"
-                                                               id="practicing_bar_date"
-                                                               name="practicing_bar_date" placeholder="Date"
-                                                               value="{{old('practicing_bar_date')}}">
+                                                        <span class="date_span_counsel">
+                                                            <input type="date" class="xDateContainer date_first_input"
+                                                                   onchange="setCorrect(this,'practicing_bar_date');"><input type="text" id="practicing_bar_date"
+                                                                                                                name="practicing_bar_date" value="dd-mm-yyyy"
+                                                                                                                class="date_second_input"
+                                                                                                                tabindex="-1"><span
+                                                                class="date_second_span" tabindex="-1">&#9660;</span>
+                                                        </span>
                                                         @error('practicing_bar_date')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
@@ -362,10 +375,14 @@
                                             <div class="form-group row">
                                                 <label for="case_no" class="col-sm-4 col-form-label"> High Court Enrollment </label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" class="form-control"
-                                                               id="high_court_enrollment_date"
-                                                               name="high_court_enrollment_date" placeholder="Date"
-                                                               value="{{old('high_court_enrollment_date')}}">
+                                                        <span class="date_span_counsel">
+                                                            <input type="date" class="xDateContainer date_first_input"
+                                                                   onchange="setCorrect(this,'high_court_enrollment_date');"><input type="text" id="high_court_enrollment_date"
+                                                                                                                name="high_court_enrollment_date" value="dd-mm-yyyy"
+                                                                                                                class="date_second_input"
+                                                                                                                tabindex="-1"><span
+                                                                class="date_second_span" tabindex="-1">&#9660;</span>
+                                                        </span>
                                                         @error('high_court_enrollment_date')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
