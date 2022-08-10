@@ -147,10 +147,9 @@
 
 
                                     <a href="{{ route('edit-criminal-cases', $data->id) }}">
-                                        <button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top"
+                                        <button class="btn btn-info btn-sm" style="padding: 3px 5px 3px 5px;" data-toggle="tooltip" data-placement="top"
                                             title="Edit"><i class="fas fa-edit"></i></button>
                                     </a>
-
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                         title="Collapse">
                                         <i class="fas fa-minus"></i>
@@ -1490,7 +1489,7 @@
                                                         @elseif(!empty($case_logs[0]->updated_next_date))
                                                             {{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}
                                                         @else
-                                                            <button type='button' class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not Upd.</button>
+                                                            <button type='button' class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not Upd</button>
                                                         @endif
                                                     </td>
                                                     <td width="8%"> {{ $case_logs[0]->index_next_date_reason_name }}
@@ -1523,7 +1522,7 @@
                                                                         action="{{ route('delete-criminal-cases-status', $case_logs[0]->id) }}"
                                                                         class="delete-user btn btn-outline-danger">
                                                                         @csrf
-                                                                        <button type="submit" class="btn"
+                                                                        <button type="submit" class="btn" style="padding: 0px 1px 0px 0px;"
                                                                             data-toggle="tooltip" data-placement="top"
                                                                             title="Delete"><i class="fas fa-trash"></i> Delete</button>
                                                                     </form>
@@ -1631,7 +1630,7 @@ $case_logs->shift();
                                                                         action="{{ route('delete-criminal-cases-status', $logs->id) }}"
                                                                         class="delete-user btn btn-outline-danger">
                                                                         @csrf
-                                                                        <button type="submit" class="btn"
+                                                                        <button type="submit" class="btn" style="padding: 0px 1px 0px 0px;"
                                                                             data-toggle="tooltip" data-placement="top"
                                                                             title="Delete"><i class="fas fa-trash"></i> Delete</button>
                                                                     </form>
@@ -1770,7 +1769,7 @@ $case_logs->shift();
                                                                         action="{{ route('delete-criminal-cases-activity', $activity_log->id) }}"
                                                                         class="delete-user btn btn-outline-danger">
                                                                         @csrf
-                                                                        <button type="submit" class="btn"
+                                                                        <button type="submit" class="btn" style="padding: 0px 1px 0px 0px;"
                                                                             data-toggle="tooltip" data-placement="top"
                                                                             title="Delete"><i class="fas fa-trash"></i> Delete</button>
                                                                     </form>
@@ -1849,7 +1848,26 @@ $case_logs->shift();
                                                     <td>{{ $files->documents_type_name }} </td>
                                                     <td>{{ $files->created_by }} </td>
                                                     <td>
-                                                        <a href="{{ route('view-criminal-cases-files', $files->id) }}"
+                                                        <div class="dropdown">
+                                                            <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6" style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success" target="_blank" href="{{ route('view-criminal-cases-files', $files->id) }}"><i class="fas fa-eye"></i> View</a>
+                                                                
+                                                                <a class="dropdown-item" href="{{ route('edit-criminal-cases-files', $files->id) }}"><i
+                                                                    class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <form class="delete-user-dropdown" method="post"
+                                                                        action="{{ route('delete-criminal-cases-files', $files->id) }}"
+                                                                        class="delete-user btn btn-outline-danger">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn" style="padding: 0px 1px 0px 0px;"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i> Delete</button>
+                                                                    </form>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        {{-- <a href="{{ route('view-criminal-cases-files', $files->id) }}"
                                                             target="_blank">
                                                             <button class="btn btn-outline-success btn-sm"
                                                                 data-toggle="tooltip" data-placement="top"
@@ -1862,15 +1880,6 @@ $case_logs->shift();
                                                                 class="btn btn-outline-success btn-sm"
                                                                 title="Edit"><i class="fas fa-edit"></i></button>
                                                         </a>
-
-                                                        {{-- <a
-                                                            href="{{ route('edit-criminal-cases-activity', $files->id) }}">
-                                                            <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
-                                                                data-placement="top" title="Edit"><i
-                                                                    class="fas fa-edit"></i></button>
-                                                        </a> --}}
-
-
                                                         <form method="get"
                                                             action="{{ route('delete-criminal-cases-files', $files->id) }}"
                                                             class="delete-user btn btn-outline-danger btn-xs">
@@ -1878,15 +1887,7 @@ $case_logs->shift();
                                                             <button type="submit" class="btn  btn-sm"
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 title="Delete"><i class="fas fa-trash"></i></button>
-                                                        </form>
-
-                                                        {{-- <a href="{{ route('download-criminal-cases-files', $files->id) }}">
-                                                            <button
-                                                                class="btn btn-outline-success btn-sm" data-toggle="tooltip"
-                                                                data-placement="top" title="Download"><i class="fas fa-download"></i></button>
-                                                        </a> --}}
-
-                                                        
+                                                        </form>                                        --}}
                                                     </td>
                                                     <td>{{ $files->created_at }} </td>
 
@@ -1987,7 +1988,28 @@ $case_logs->shift();
 
                                                     </td>
                                                     <td>
-                                                        <a
+
+                                                        <div class="dropdown">
+                                                            <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6" style="will-change: transform;">
+                                                                {{-- <a class="dropdown-item btn btn-outline-success" href="{{ route('view-criminal-cases-activity', $bill_logs->id) }}"><i class="fas fa-eye"></i> View</a> --}}
+                                                                
+                                                                <a class="dropdown-item" href="{{ route('edit-criminal-cases-billing', $bill_logs->id) }}"><i
+                                                                    class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <form class="delete-user-dropdown" method="POST"
+                                                                        action="{{ route('delete-criminal-cases-billing', $bill_logs->id) }}"
+                                                                        class="delete-user btn btn-outline-danger">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn" style="padding: 0px 1px 0px 0px;"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i> Delete</button>
+                                                                    </form>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        {{-- <a
                                                             href="{{ route('edit-criminal-cases-billing', $bill_logs->id) }}">
                                                             <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
                                                                 data-placement="top" title="Edit"><i
@@ -2000,7 +2022,7 @@ $case_logs->shift();
                                                             <button type="submit" class="btn btn-sm"
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 title="Delete"><i class="fas fa-trash"></i></button>
-                                                        </form>
+                                                        </form> --}}
                                                     </td>
                                                 </tr>
                                             @endforeach

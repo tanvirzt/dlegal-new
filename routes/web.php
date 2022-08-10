@@ -182,7 +182,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('view-criminal-cases/{id}','CriminalCasesController@view_criminal_cases')->name('view-criminal-cases');
         Route::get('download-criminal-cases-files/{id}','CriminalCasesController@download_criminal_cases_file')->name('download-criminal-cases-files');
         Route::get('view-criminal-cases-files/{id}','CriminalCasesController@view_criminal_cases_file')->name('view-criminal-cases-files');
-        Route::get('delete-criminal-cases-files/{id}','CriminalCasesController@delete_criminal_cases_file')->name('delete-criminal-cases-files');
+        Route::post('delete-criminal-cases-files/{id}','CriminalCasesController@delete_criminal_cases_file')->name('delete-criminal-cases-files');
         Route::post('update-criminal-cases-status/{id}','CriminalCasesController@update_criminal_cases_status')->name('update-criminal-cases-status');
         Route::post('update-criminal-cases-activity/{id}','CriminalCasesController@update_criminal_cases_activity')->name('update-criminal-cases-activity');
         Route::post('search-criminal-cases','CriminalCasesController@search_criminal_cases')->name('search-criminal-cases');
@@ -697,6 +697,13 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-payment-mode/{id}','AdminSetupController@update_payment_mode')->name('update-payment-mode');
         Route::post('delete-payment-mode/{id}','AdminSetupController@delete_payment_mode')->name('delete-payment-mode');
 
+        Route::get('group', 'AdminSetupController@group')->name('group');
+        Route::get('add-group','AdminSetupController@add_group')->name('add-group');
+        Route::post('save-group','AdminSetupController@save_group')->name('save-group');
+        Route::get('edit-group/{id}','AdminSetupController@edit_group')->name('edit-group');
+        Route::post('update-group/{id}','AdminSetupController@update_group')->name('update-group');
+        Route::post('delete-group/{id}','AdminSetupController@delete_group')->name('delete-group');
+
         Route::get('litigation-calender-list','LitigationCalenderController@litigation_calender_list')->name('litigation-calender-list');
         Route::get('litigation-calender-short','LitigationCalenderController@litigation_calender_short')->name('litigation-calender-short');
         Route::post('search-litigation-calendar','LitigationCalenderController@search_litigation_calendar')->name('search-litigation-calendar');
@@ -716,7 +723,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 
         Route::get('chamber', 'CounselLawyerController@index')->name('chamber');
         Route::get('add-chamber','CounselLawyerController@create')->name('add-chamber');
-        // Route::post('save-chamber','AdminSetupController@save_chamber')->name('save-chamber');
+        Route::post('save-chamber','CounselLawyerController@store')->name('save-chamber');
         // Route::get('edit-chamber/{id}','AdminSetupController@edit_chamber')->name('edit-chamber');
         // Route::post('update-chamber/{id}','AdminSetupController@update_chamber')->name('update-chamber');
         // Route::post('delete-chamber/{id}','AdminSetupController@delete_chamber')->name('delete-chamber');

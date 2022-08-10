@@ -47,7 +47,8 @@ class CounselLawyerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = json_decode(json_encode($request->all()));
+        echo "<pre>";print_r($data);die;
     }
 
     /**

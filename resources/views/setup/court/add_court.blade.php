@@ -60,7 +60,7 @@
                                             <label for="case_class_id">Class of Cases</label>
                                             <select name="case_class_id" id="case_class_id"
                                                         class="form-control select2"
-                                                        action="{{ route('find-case-subcategory') }}">
+                                                        action="{{ route('find-case-category') }}">
                                                     <option value="">Select</option>
                                                     <option value="Civil"> Civil </option>
                                                     <option value="Criminal"> Criminal </option>
@@ -78,10 +78,10 @@
                                                         class="form-control select2"
                                                         action="{{ route('find-case-subcategory') }}">
                                                     <option value="">Select</option>
-                                                    @foreach($case_category as $item)
+                                                    {{-- @foreach($case_category as $item)
                                                         <option
                                                             value="{{ $item->id }}" {{(old('case_category_id') == $item->id ? 'selected':'')}}>{{ $item->case_category }}</option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                                 @error('case_category_id')<span
                                                     class="text-danger">{{$message}}</span>@enderror

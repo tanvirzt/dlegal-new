@@ -284,6 +284,12 @@
                                         <p>External Counsel</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('group') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Group</p>
+                                    </a>
+                                </li>
                                 {{-- <li class="nav-item">
                                     <a href="{{ route('external-council-associates') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>

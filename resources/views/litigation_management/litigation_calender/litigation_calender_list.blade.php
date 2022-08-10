@@ -199,6 +199,7 @@ class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
                                                                             ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
                                                                             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
                                                                             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+                                                                            ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
                                                                             ->select('criminal_cases.*',
                                                                             // 'criminal_cases_case_steps.another_claim',
                                                                             'setup_case_statuses.case_status_name',
@@ -211,7 +212,8 @@ class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
                                                                             'setup_external_councils.first_name',
                                                                             'setup_external_councils.middle_name',
                                                                             'setup_external_councils.last_name',
-                                                                            'case_infos_title.case_title_name as sub_seq_case_title_name')
+                                                                            'case_infos_title.case_title_name as sub_seq_case_title_name',
+                                                                            'setup_matters.matter_name')
                                                                             ->orderBy('criminal_cases.case_infos_sub_seq_court_short_id','asc')
                                                                             ->orderBy('criminal_cases.case_infos_court_short_id','asc')
                                                                             ->where(['criminal_cases.delete_status' => 0, 'next_date' => $datum->next_date])
@@ -252,15 +254,16 @@ class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
                                 <table class="table table-bordered table-striped calendar_list">
                                     <thead>
                                         <tr>
-                                            <th>SL</th>
-                                            <th>Court Name</th>
-                                            <th>Case No.</th>
-                                            <th>S. Case No.</th>
-                                            <th>Fixed For</th>
-                                            <th>1st Party/Complainant/ Petitioner/Plaintiff</th>
-                                            <th>2nd Party/Accused/ Oppositon/Defendant</th>
-                                            <th>Step to be taken</th>
-                                            <th>Previous Day Note</th>
+                                            <th width="2%">SL</th>
+                                            <th width="10%">Court Name</th>
+                                            <th width="10%">Case No.</th>
+                                            <th width="10%">S. Case No.</th>
+                                            <th width="10%">Fixed For</th>
+                                            <th width="15%">1st Party/Complainant/ Petitioner/Plaintiff</th>
+                                            <th width="15%">2nd Party/Accused/ Oppositon/Defendant</th>
+                                            <th width="8%">Case Matter</th>
+                                            <th width="10%">Step to be taken</th>
+                                            <th width="10%">Previous Day Note</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -482,6 +485,10 @@ class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
                                             @endif
                                         </td>
                                         
+                                        <td>
+                                            {{ $value->matter_name }}
+                                            {{ $value->matter_write }}
+                                        </td>
                                         <td>
                                             {{ $value->updated_remarks_or_steps_taken }}
                                         </td>

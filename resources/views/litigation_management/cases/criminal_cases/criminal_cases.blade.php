@@ -119,6 +119,7 @@
                                                             @enderror
                                                         </div>
                                                     </div>
+                                                    
                                                     <div class="form-group row">
                                                         <label for="client_id" class="col-sm-4 col-form-label">Client/Party</label>
                                                         <div class="col-sm-8">
@@ -148,24 +149,68 @@
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
+                                                    
                                                     <div class="form-group row">
-                                                        <label for="lawyer_advocate_id" class="col-sm-4 col-form-label">Panel
-                                                            Lawyer</label>
+                                                        <label for="client_category_id"
+                                                               class="col-sm-4 col-form-label">Client/Party
+                                                            Category</label>
                                                         <div class="col-sm-8">
-                                                            <select name="lawyer_advocate_id" id="lawyer_advocate_id" class="form-control select2"
-                                                                    >
+                                                            <select name="client_category_id"
+                                                                    class="form-control select2"
+                                                                    id="client_category_id"
+                                                                    action="{{ route('find-client-subcategory') }}">
                                                                 <option value="">Select</option>
-                                                                @foreach($external_council as $item)
-                                                                <option
-                                                                    value="{{ $item->id }}" {{( old('lawyer_advocate_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->last_name }}</option>
-                                                            @endforeach
+                                                                @foreach ($client_category as $item)
+                                                                    <option
+                                                                        value="{{ $item->id }}" {{(old('client_category_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->client_category_name) }}</option>
+                                                                @endforeach
                                                             </select>
-                                                            @error('lawyer_advocate_id')<span
+                                                            @error('client_category_id')<span
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
-                                                    
-
+                                                    <div class="form-group row">
+                                                        <label for="client_subcategory_id"
+                                                               class="col-sm-4 col-form-label">Client/Party
+                                                            Subcategory</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="client_subcategory_id"
+                                                                    class="form-control select2"
+                                                                    id="client_subcategory_id">
+                                                                <option value="">Select</option>
+    
+                                                            </select>
+                                                            @error('client_subcategory_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="client_group_id" class="col-sm-4 col-form-label">Client Group Name</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <select name="client_group_id"
+                                                                            id="client_group_id"
+                                                                            class="form-control select2">
+                                                                        <option value="">Select</option>
+                                                                        @foreach($client_name as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{  old('client_group_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" class="form-control"
+                                                                           id="client_group_write"
+                                                                           name="client_group_write"
+                                                                           placeholder="Client/Party"
+                                                                           value="{{ old('client_group_write') }}">
+                                                                </div>
+                                                            </div>
+                                                            @error('client_name')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
@@ -326,6 +371,19 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
+                                                        <label for="case_no" class="col-sm-4 col-form-label"> Next Date </label>
+                                                            <div class="col-sm-4">
+                                                                <span class="date_span_counsel">
+                                                                    <input type="date" class="xDateContainer date_first_input" onchange="setCorrect(this,'from_next_date');"><input type="text" id="from_next_date" name="from_next_date" placeholder="From" class="date_second_input" tabindex="-1"><span class="date_second_span" tabindex="-1">▼</span>
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <span class="date_span_counsel">
+                                                                    <input type="date" class="xDateContainer date_first_input" onchange="setCorrect(this,'to_next_date');"><input type="text" id="to_next_date" name="to_next_date" placeholder="To" class="date_second_input" tabindex="-1"><span class="date_second_span" tabindex="-1">▼</span>
+                                                                </span>
+                                                            </div>
+                                                    </div>
+                                                    <div class="form-group row">
                                                         <label for="next_date_fixed_id"
                                                                class="col-sm-4 col-form-label">
                                                             Next
@@ -343,6 +401,43 @@
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row">
+                                                        <label for="lawyer_advocate_id" class="col-sm-4 col-form-label">Panel
+                                                            Lawyer</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="lawyer_advocate_id" id="lawyer_advocate_id" class="form-control select2"
+                                                                    >
+                                                                <option value="">Select</option>
+                                                                @foreach($external_council as $item)
+                                                                <option
+                                                                    value="{{ $item->id }}" {{( old('lawyer_advocate_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->last_name }}</option>
+                                                            @endforeach
+                                                            </select>
+                                                            @error('lawyer_advocate_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    {{-- <div class="form-group row">
+                                                        <label for="from_date" class="col-sm-4 col-form-label">
+                                                            Next Date </label>
+                                                        <div class="col-sm-8">
+                                                            <span class="date_span_calendar">
+                                                                <input type="date" class="xDateContainer date_first_input"
+                                                                       onchange="setCorrect(this,'from_date');"><input type="text" id="from_date"
+                                                                                                                    name="from_date" placeholder="From Date"
+                                                                                                                    class="date_second_input" 
+                                                                                                                    tabindex="-1"><span
+                                                                    class="date_second_span" tabindex="-1">&#9660;</span>
+                                                            </span>
+                                                            @error('from_date')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div> --}}
+
+                                                    
+
+
+
                                                 </div>
                                             </div>
 
@@ -390,7 +485,7 @@
                                         <th class="text-center"> Complainant</th>
                                         <th class="text-center"> Accused Name</th>
                                         <th class="text-center"> Accused District</th>
-                                        <th class="text-center"> Case Type</th>
+                                        <th class="text-center"> Case Matter </th>
                                         <th class="text-center"> Lawyer</th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
@@ -415,7 +510,7 @@
                                                 @elseif(!empty($datum->next_date))
                                                     {{ date('d-m-Y', strtotime($datum->next_date)) }}
                                                 @else
-                                                    <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase' style="padding:2px;line-height: 10px;">Not Upd.</button>
+                                                    <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase' style="padding:2px;line-height: 10px;">Not Upd</button>
                                                 @endif
                                             </td>
                                             <td>
@@ -617,11 +712,14 @@
                                                 {{ $datum->accused_district_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_types_name }}
+                                                {{ $datum->matter_name }} {{ $datum->matter_write }}
                                             </td>
                                             <td>
 
-                                                {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }}
+                                                {{ $datum->first_name }} {{ $datum->last_name }}
+                                                {{ $datum->lawyer_advocate_write }}
+
+
 
 {{--                                                @if (!empty($datum->first_name) && !empty($datum->assigned_lawyer_id))--}}
 {{--                                                    <li class="text-left">{{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }}  </li> @if($datum->lawyer_advocate_write)--}}
@@ -673,23 +771,23 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('view-criminal-cases',$datum->id) }}">
-                                                    <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                                    <button class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                                     ><i class="fas fa-eye"></i></button>
                                                 </a>
                                                 <a href="{{ route('add-criminal-cases-billling', $datum->id) }}">
                                                     <button
-                                                        class="btn btn-warning btn-sm" data-toggle="tooltip"
+                                                        class="btn btn-outline-warning btn-sm" data-toggle="tooltip"
                                                         data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button>
                                                 </a>
                                                 <a href="{{ route('edit-criminal-cases',$datum->id) }}">
-                                                    <button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                    <button class="btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button>
                                                 </a>
 
                                                 <form method="POST" action="{{ route('delete-criminal-cases',$datum->id) }}"
-                                                      class="delete-user btn btn-danger btn-xs">
+                                                      class="delete-user btn btn-outline-danger btn-xs">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top"
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm" style="line-height: 1.4" data-toggle="tooltip" data-placement="top"
                                                             title="Delete"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>

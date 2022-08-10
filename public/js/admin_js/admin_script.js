@@ -1346,7 +1346,7 @@ $(document).ready(function () {
                 data: {"_token": "{{ csrf_token() }}", case_class_id: case_class_id},
                 dataType: "json",
                 success: function (data) {
-                    // console.log(data);
+                    console.log(data);
                     if (data) {
                         $('#case_category_id').empty();
                         $('#case_category_id').focus;

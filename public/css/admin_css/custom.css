@@ -57,7 +57,7 @@
     padding: 0 0 0 0;
 }
 .delete-user button{
-    padding: 2px 6px 2px 6px;
+    padding: 0px 1px 0px 1px;
 }
 .delete-user-dropdown button{
     padding: 2px 6px 2px 0px;
@@ -130,7 +130,7 @@ span{
 }
 
 .btn-outline-info{
-    border-radius: 5px;
+    border-radius: .2rem;
     padding: 1px 1px 3px 1px;
     margin-top: 1px;
 }
@@ -738,4 +738,12 @@ th{
     height: 26px;
     width: 152px;
     border-radius: 4px;
+}
+
+.dropdown{
+    color: blue;
+}
+
+a .btn{
+    padding: 0px 1px 0px 1px;
 }

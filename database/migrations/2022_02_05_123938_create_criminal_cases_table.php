@@ -46,6 +46,8 @@ class CreateCriminalCasesTable extends Migration
             $table->string('client_id')->nullable();
             $table->string('client_name_write')->nullable();
             $table->string('client_business_name')->nullable();
+            $table->mediumText('client_group_id')->nullable();
+            $table->mediumText('client_group_write')->nullable();
             $table->mediumText('client_address')->nullable();
             $table->string('client_mobile')->nullable();
             $table->string('client_email')->nullable();
@@ -68,6 +70,8 @@ class CreateCriminalCasesTable extends Migration
             $table->string('opposition_id')->nullable();
             $table->string('opposition_write')->nullable();
             $table->string('opposition_business_name')->nullable();
+            $table->mediumText('opposition_group_id')->nullable();
+            $table->mediumText('opposition_group_write')->nullable();
             $table->mediumText('opposition_address')->nullable();
             $table->string('opposition_mobile')->nullable();
             $table->string('opposition_email')->nullable();

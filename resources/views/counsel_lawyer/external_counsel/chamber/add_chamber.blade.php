@@ -34,7 +34,7 @@
 
         <section class="content">
             <div class="container-fluid py-2">
-                <form action="{{ route('save-criminal-cases') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('save-chamber') }}" method="post" enctype="multipart/form-data">
 
                     <!-- Default box -->
                     <div class="card">
@@ -63,7 +63,7 @@
                                                 <div class="form-group row">
                                                     <label for="chamber_logo" class="col-sm-4 col-form-label">Chamber Logo</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="chamber_logo"
+                                                        <input type="file" class="form-control" id="chamber_logo"
                                                                name="chamber_logo"
                                                                value="{{old('chamber_logo')}}">
                                                         @error('chamber_logo')<span
@@ -73,9 +73,9 @@
                                                 <div class="form-group row">
                                                     <label for="main_office_address" class="col-sm-4 col-form-label">Main Office Address</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="main_office_address"
-                                                               name="main_office_address"
-                                                               value="{{old('main_office_address')}}">
+                                                        <textarea name="main_office_address" class="form-control"
+                                                              rows="3"
+                                                              placeholder="">{{old('main_office_address')}}</textarea>
                                                         @error('main_office_address')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
@@ -373,24 +373,24 @@
                                             <h6 class="text-uppercase text-bold"><u> Chamber Letterhead </u>
                                             </h6>
                                             <div class="form-group row">
-                                                <label for="branch_office_address_one"
-                                                       class="col-sm-4 col-form-label"> Branch Office-1 Address </label>
+                                                <label for="letterhead_write_up"
+                                                       class="col-sm-4 col-form-label"> Letterhead Write-up </label>
                                                 <div class="col-sm-8">
-                                                <textarea name="branch_office_address_one" class="form-control"
+                                                <textarea name="letterhead_write_up" class="form-control"
                                                           rows="3"
-                                                          placeholder="">{{old('branch_office_address_one')}}</textarea>
-                                                    @error('branch_office_address_one')<span
+                                                          placeholder="">{{old('letterhead_write_up')}}</textarea>
+                                                    @error('letterhead_write_up')<span
                                                         class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="branch_office_address_two"
-                                                       class="col-sm-4 col-form-label"> Branch Office-2 Address </label>
+                                                <label for="letterhead_address"
+                                                       class="col-sm-4 col-form-label"> Letterhead Address </label>
                                                 <div class="col-sm-8">
-                                                <textarea name="branch_office_address_two" class="form-control"
+                                                <textarea name="letterhead_address" class="form-control"
                                                           rows="3"
-                                                          placeholder="">{{old('branch_office_address_two')}}</textarea>
-                                                    @error('branch_office_address_two')<span
+                                                          placeholder="">{{old('letterhead_address')}}</textarea>
+                                                    @error('letterhead_address')<span
                                                         class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -412,20 +412,20 @@
                                     <div class="form-group">
                                         <h6 class="text-uppercase text-bold">
                                             <div class="row">
-                                                <div class="col-md-3"> <u> Chamber Accounts </u></div>
+                                                <div class="col-md-3"> Chamber Accounts</div>
                                                 <div class="col-md-3 text-center">Account Name</div> 
                                                 <div class="col-md-3 text-center">Account Number</div> 
                                                 <div class="col-md-3 text-center">Bank Name</div> 
                                             </div>
                                         </h6>
                                         <div class="input-group hdtuto_files control-group increment_files">
-                                            <input type="text" name="uploaded_document[]"
+                                            <input type="text" name="chamber_accounts[]"
                                                    class="myfrm form-control col-md-3 mr-2">
-                                            <input type="text" name="uploaded_date[]"
+                                            <input type="text" name="account_name[]"
                                                 class="myfrm form-control mr-2 col-md-3" value="{{ old('uploaded_date') }}">
-                                            <input type="text" name="uploaded_document[]"
+                                            <input type="text" name="account_number[]"
                                                     class="myfrm form-control col-md-3 mr-2">
-                                            <input type="text" name="uploaded_date[]"
+                                            <input type="text" name="bank_name[]"
                                                 class="myfrm form-control mr-2 col-md-3" value="{{ old('uploaded_date') }}">
                                          
                                             <div class="input-group-btn">
@@ -438,13 +438,13 @@
                                         <div class="clone_files hide">
                                             <div class="hdtuto_files control-group lst input-group"
                                                  style="margin-top:10px">
-                                                 <input type="text" name="uploaded_document[]"
+                                                 <input type="text" name="chamber_accounts[]"
                                                         class="myfrm form-control col-md-3 mr-2">
-                                                <input type="text" name="uploaded_date[]"
+                                                <input type="text" name="account_name[]"
                                                     class="myfrm form-control mr-2 col-md-3" value="{{ old('uploaded_date') }}">
-                                                <input type="text" name="uploaded_document[]"
+                                                <input type="text" name="account_number[]"
                                                         class="myfrm form-control col-md-3 mr-2">
-                                                <input type="text" name="uploaded_date[]"
+                                                <input type="text" name="bank_name[]"
                                                     class="myfrm form-control mr-2 col-md-3" value="{{ old('uploaded_date') }}">
                                             <div class="input-group-btn">
                                                 <div class="input-group-btn">

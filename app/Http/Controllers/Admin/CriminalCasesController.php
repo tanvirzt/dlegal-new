@@ -89,7 +89,7 @@ class CriminalCasesController extends Controller
 // dd($data);
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
-        $court = SetupCourt::where(['case_type' => 'Criminal', 'delete_status' => 0])->get();
+        $court = SetupCourt::where(['case_class_id' => 'Criminal', 'delete_status' => 0])->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->get();
         $complainant = SetupComplainant::where('delete_status', 0)->orderBy('complainant_name', 'asc')->get();
         $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
@@ -97,6 +97,7 @@ class CriminalCasesController extends Controller
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
         $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
+        $client_category = SetupClientCategory::where('delete_status', 0)->orderBy('client_category_name','asc')->get();
 
         $data = DB::table('criminal_cases')
             // ->leftJoin('criminal_cases_case_steps', 'criminal_cases.id', 'criminal_cases_case_steps.criminal_case_id')
@@ -109,6 +110,8 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+            ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
+
             ->select('criminal_cases.*',
             // 'criminal_cases_case_steps.another_claim',
             'setup_case_statuses.case_status_name',
@@ -121,14 +124,15 @@ class CriminalCasesController extends Controller
             'setup_external_councils.first_name',
             'setup_external_councils.middle_name',
             'setup_external_councils.last_name',
-            'case_infos_title.case_title_name as sub_seq_case_title_name')
+            'case_infos_title.case_title_name as sub_seq_case_title_name',
+            'setup_matters.matter_name')
             ->where('criminal_cases.delete_status',0)
             ->orderBy('created_at','desc')
             ->get();
 
         // dd($data);
 
-        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('client_name','next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category','matter'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('client_category','client_name','next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category','matter'));
     }
 
     public function add_criminal_cases()
@@ -2163,19 +2167,18 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
 
         }
 
-        session()->flash('success', 'Case Status Updated Successfully');
+        session()->flash('success', 'Case Status Updated Successfully.');
         return redirect()->back();
 
     }
 
-    public function delete_criminal_cases_file($id)
+    public function delete_criminal_cases_file(Request $request, $id)
     {
         $file = CriminalCasesFile::findOrFail($id);
-
         unlink(public_path('/files/criminal_cases/' . $file->uploaded_document));
-
         $file->delete();
 
+        session()->flash('success', 'Documents Deleted Successfully.');
         return redirect()->back();
     }
 
@@ -2190,7 +2193,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         $data->delete_status = $delete_status;
         $data->save();
 
-        session()->flash('success', 'Criminal Cases Status Deleted');
+        session()->flash('success', 'Criminal Cases Status Deleted.');
         return redirect()->back();
     }
 
@@ -2205,7 +2208,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         $data->delete_status = $delete_status;
         $data->save();
 
-        session()->flash('success', 'Criminal Cases Activity Deleted');
+        session()->flash('success', 'Criminal Cases Activity Deleted.');
         return redirect()->back();
     }
 
@@ -2869,7 +2872,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
     //    dd($request->all());
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
-        $court = SetupCourt::where(['case_type' => 'Criminal', 'delete_status' => 0])->get();
+        $court = SetupCourt::where(['case_class_id' => 'Criminal', 'delete_status' => 0])->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->get();
         $complainant = SetupComplainant::where('delete_status', 0)->orderBy('complainant_name', 'asc')->get();
         $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
@@ -2878,14 +2881,23 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
         $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
+        $client_category = SetupClientCategory::where('delete_status', 0)->orderBy('client_category_name','asc')->get();
 
 
-        if ($request->received_date != "dd/mm/yyyy") {
-            $received_date_explode = explode('/', $request->received_date);
-            $received_date_implode = implode('-', $received_date_explode);
-            $received_date = date('Y-m-d', strtotime($received_date_implode));
-        } else if ($request->received_date == "dd/mm/yyyy") {
-            $received_date = null;
+        if ($request->from_next_date != "dd/mm/yyyy") {
+            $from_next_date_explode = explode('/', $request->from_next_date);
+            $from_next_date_implode = implode('-', $from_next_date_explode);
+            $from_next_date = date('Y-m-d', strtotime($from_next_date_implode));
+        } else if ($request->from_next_date == "dd/mm/yyyy") {
+            $from_next_date = null;
+        }
+
+        if ($request->to_next_date != "dd/mm/yyyy") {
+            $to_next_date_explode = explode('/', $request->to_next_date);
+            $to_next_date_implode = implode('-', $to_next_date_explode);
+            $to_next_date = date('Y-m-d', strtotime($to_next_date_implode));
+        } else if ($request->to_next_date == "dd/mm/yyyy") {
+            $to_next_date = null;
         }
 
 
@@ -2900,9 +2912,9 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             ->leftJoin('setup_districts as accused_district', 'criminal_cases.client_district_id', '=', 'accused_district.id')
             ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
-            ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id');
-
-
+            ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+            ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id');
+            
         switch ($request->isMethod('post')) {
             case $request->created_case_id:
                 $query2 = $query->where('criminal_cases.created_case_id', 'LIKE', "%{$request->created_case_id}%");
@@ -2966,6 +2978,29 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             case $request->next_date_fixed_id:
                 $query2 = $query->where('criminal_cases.next_date_fixed_id', $request->next_date_fixed_id);
                 break;
+            case $request->from_next_date && $request->to_next_date: 
+                $query2 = $query->where('next_date', '>=', $from_next_date)
+                                ->where('next_date', '<=', $to_next_date);
+                break;
+            case $request->from_next_date:
+                $query2 = $query->where('criminal_cases.next_date', $from_next_date);
+                break;
+            case $request->to_next_date:
+                $query2 = $query->where('criminal_cases.next_date', $to_next_date);
+                break;
+            case $request->client_category_id && $request->client_subcategory_id:
+                $query2 = $query->where('criminal_cases.client_category_id', $request->client_category_id)
+                                ->where('criminal_cases.client_subcategory_id', $request->client_subcategory_id);
+                break;
+            case $request->client_category_id:
+                $query2 = $query->where('criminal_cases.client_category_id', $request->client_category_id);
+                break;
+            case $request->client_group_id:
+                $query2 = $query->where('criminal_cases.client_group_id', $request->client_group_id);
+                break;
+            case $request->client_group_write:
+                $query2 = $query->where('criminal_cases.client_group_write', $request->client_group_write);
+                break;
             default:
                 $query2 = $query;
         }
@@ -2982,13 +3017,14 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             'setup_external_councils.first_name',
             'setup_external_councils.middle_name',
             'setup_external_councils.last_name',
-            'case_infos_title.case_title_name as sub_seq_case_title_name')
+            'case_infos_title.case_title_name as sub_seq_case_title_name',
+            'setup_matters.matter_name')
             ->where('criminal_cases.delete_status',0)
             ->get();
         $is_search = 'Searched';
 
 // dd($data);
-        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('is_search','client_name','next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('client_category','is_search','client_name','next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter'));
     }
 
     public function update_criminal_cases_status_column(Request $request, $id)
@@ -3096,6 +3132,13 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             // dd($case_logs);
         return view('litigation_management.cases.criminal_cases.view_criminal_cases_proceedings',compact('case_logs'));
 
+    }
+
+    public function find_case_subcategory(Request $request)
+    {
+        return $request->all();
+        $data = SetupCaseSubcategory::where(['case_category_id' => $request->case_category_id, 'delete_status' => 0])->get();
+        return response()->json($data);
     }
 
 }

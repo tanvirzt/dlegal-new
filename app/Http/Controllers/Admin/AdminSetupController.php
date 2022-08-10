@@ -76,6 +76,7 @@ use App\Models\SetupCabinet;
 use App\Models\SetupClientName;
 use App\Models\SetupParticulars;
 use App\Models\SetupDocumentsType;
+use App\Models\SetupGroup;
 
 class AdminSetupController extends Controller
 {
@@ -3149,37 +3150,42 @@ public function delete_case_subcategory($id)
 
 public function find_case_category(Request $request)
 {
-    // return $request->all();
-
-    if ($request->case_class_id == "Civil") {
-
-        $data = SetupCaseCategory::where(['case_type' => 'Civil', 'delete_status' => 0])->orderBy('case_category','asc')->get();
-
-    } else if($request->case_class_id == "Criminal"){
-
-       return $data = SetupCaseCategory::where(['case_type' => 'Criminal','delete_status' => 0])->orderBy('case_category','asc')->get();
-
-    }else if($request->case_class_id == "Labour Cases"){
-
-        $data = SetupCaseCategory::where(['case_type' => 'Labour Cases','delete_status' => 0])->orderBy('case_category','asc')->get();
-
-    }else if($request->case_class_id == "Special Quassi - Judicial Cases"){
-
-        $data = SetupCaseCategory::where(['case_type' => 'Special/Quassi - Judicial Cases','delete_status' => 0])->orderBy('case_category','asc')->get();
-
-    }else if($request->case_class_id == "High Court Division"){
-
-        $data = SetupCaseCategory::where(['case_type' => 'High Court Division','delete_status' => 0])->orderBy('case_category','asc')->get();
-
-    }else if($request->case_class_id == "Appellate Court Division"){
-
-        $data = SetupCaseCategory::where(['case_type' => 'Appellate Court Division','delete_status' => 0])->orderBy('case_category','asc')->get();
-
-    }
-
+    $data = SetupCaseCategory::where(['case_type' => $request->case_class_id, 'delete_status' => 0])->orderBy('case_category','asc')->get();
     return response()->json($data);
-
 }
+
+
+// public function find_case_category(Request $request)
+// {
+//     if ($request->case_class_id == "Civil") {
+
+//         $data = SetupCaseCategory::where(['case_type' => 'Civil', 'delete_status' => 0])->orderBy('case_category','asc')->get();
+
+//     } else if($request->case_class_id == "Criminal"){
+
+//        return $data = SetupCaseCategory::where(['case_type' => 'Criminal','delete_status' => 0])->orderBy('case_category','asc')->get();
+
+//     }else if($request->case_class_id == "Labour Cases"){
+
+//         $data = SetupCaseCategory::where(['case_type' => 'Labour Cases','delete_status' => 0])->orderBy('case_category','asc')->get();
+
+//     }else if($request->case_class_id == "Special Quassi - Judicial Cases"){
+
+//         $data = SetupCaseCategory::where(['case_type' => 'Special/Quassi - Judicial Cases','delete_status' => 0])->orderBy('case_category','asc')->get();
+
+//     }else if($request->case_class_id == "High Court Division"){
+
+//         $data = SetupCaseCategory::where(['case_type' => 'High Court Division','delete_status' => 0])->orderBy('case_category','asc')->get();
+
+//     }else if($request->case_class_id == "Appellate Court Division"){
+
+//         $data = SetupCaseCategory::where(['case_type' => 'Appellate Court Division','delete_status' => 0])->orderBy('case_category','asc')->get();
+
+//     }
+
+//     return response()->json($data);
+
+// }
 
 
 
@@ -5631,6 +5637,81 @@ public function find_case_category(Request $request)
         return redirect()->back();
     }
 
+//documents
 
+    public function group()
+    {
+        $data = SetupGroup::get();
+        // dd($data);
+        return view('setup.group.group',compact('data'));
+    }
+
+    public function add_group()
+    {
+        return view('setup.group.add_group');
+    }
+
+    public function save_group(Request $request)
+    {
+        $rules = [
+            'group_name' => 'required'
+        ];
+
+        $validMsg = [
+            'group_name.required' => 'Group field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $group = new SetupGroup();
+        $group->group_name = $request->group_name;
+        $group->save();
+
+        session()->flash('success','Group Added Successfully.');
+        return redirect()->route('group');
+    }
+
+    public function edit_group($id)
+    {
+        $data = SetupGroup::find($id);
+        return view('setup.group.edit_group',compact('data'));
+    }
+
+    public function update_group(Request $request, $id)
+    {
+        $rules = [
+            'group_name' => 'required'
+        ];
+
+        $validMsg = [
+            'group_name.required' => 'Group field is required.'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $group = SetupGroup::find($id);
+        $group->group_name = $request->group_name;
+        $group->save();
+
+        session()->flash('success', 'Group Updated Successfully.');
+
+        return redirect()->route('group');
+    }
+
+    public function delete_group($id)
+    {
+        $data = SetupGroup::find($id)->delete();
+        // if ($data['delete_status'] == 0){
+        //     $delete_status = 1;
+        // }else{
+        //     $delete_status = 0;
+        // }
+
+        // $data->delete_status = $delete_status;
+        // $data->save();
+
+        session()->flash('success','Group Deleted Successfully');
+        return redirect()->back();
+    }
 
 }
