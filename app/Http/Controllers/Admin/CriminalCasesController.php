@@ -77,6 +77,7 @@ use App\Models\CriminalCasesLetterNotice;
 use App\Models\CriminalCasesSendMessage;
 use App\Mail\SendMessage;
 use App\Models\SetupDocumentsType;
+use App\Models\SetupGroup;
 use Str;
 
 class CriminalCasesController extends Controller
@@ -98,6 +99,7 @@ class CriminalCasesController extends Controller
         $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
         $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
         $client_category = SetupClientCategory::where('delete_status', 0)->orderBy('client_category_name','asc')->get();
+        $group_name = SetupGroup::get();
 
         $data = DB::table('criminal_cases')
             // ->leftJoin('criminal_cases_case_steps', 'criminal_cases.id', 'criminal_cases_case_steps.criminal_case_id')
@@ -132,7 +134,7 @@ class CriminalCasesController extends Controller
 
         // dd($data);
 
-        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('client_category','client_name','next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category','matter'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('group_name','client_category','client_name','next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category','matter'));
     }
 
     public function add_criminal_cases()
@@ -2882,6 +2884,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name','asc')->get();
         $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
         $client_category = SetupClientCategory::where('delete_status', 0)->orderBy('client_category_name','asc')->get();
+        $group_name = SetupGroup::get();
 
 
         if ($request->from_next_date != "dd/mm/yyyy") {
@@ -3024,7 +3027,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         $is_search = 'Searched';
 
 // dd($data);
-        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('client_category','is_search','client_name','next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('group_name','client_category','is_search','client_name','next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter'));
     }
 
     public function update_criminal_cases_status_column(Request $request, $id)

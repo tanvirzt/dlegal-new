@@ -193,9 +193,9 @@
                                                                             id="client_group_id"
                                                                             class="form-control select2">
                                                                         <option value="">Select</option>
-                                                                        @foreach($client_name as $item)
+                                                                        @foreach($group_name as $item)
                                                                             <option
-                                                                                value="{{ $item->id }}" {{  old('client_group_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
+                                                                                value="{{ $item->id }}" {{  old('client_group_id') == $item->id ? 'selected' : '' }}>{{ $item->group_name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
