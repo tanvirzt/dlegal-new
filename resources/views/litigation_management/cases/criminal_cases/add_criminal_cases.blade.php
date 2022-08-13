@@ -514,6 +514,33 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
+                                                    <label for="client_group_id" class="col-sm-4 col-form-label">Client Group Name</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="client_group_id"
+                                                                        id="client_group_id"
+                                                                        class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($group_name as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{  old('client_group_id') == $item->id ? 'selected' : '' }}>{{ $item->group_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="client_group_write"
+                                                                       name="client_group_write"
+                                                                       placeholder="Client Group"
+                                                                       value="{{ old('client_group_write') }}">
+                                                            </div>
+                                                        </div>
+                                                        @error('client_name')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
                                                     <label for="client_address" class="col-sm-4 col-form-label">
                                                         Client
                                                         Address </label>
@@ -832,6 +859,33 @@
                                                                name="opposition_business_name"
                                                                value="{{ old('opposition_business_name') }}">
                                                         @error('opposition_business_name')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="opposition_group_id" class="col-sm-4 col-form-label">Opposition Group Name</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select name="opposition_group_id"
+                                                                        id="opposition_group_id"
+                                                                        class="form-control select2">
+                                                                    <option value="">Select</option>
+                                                                    @foreach($group_name as $item)
+                                                                        <option
+                                                                            value="{{ $item->id }}" {{  old('opposition_group_id') == $item->id ? 'selected' : '' }}>{{ $item->group_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control"
+                                                                       id="opposition_group_write"
+                                                                       name="opposition_group_write"
+                                                                       placeholder="Opposition Group"
+                                                                       value="{{ old('opposition_group_write') }}">
+                                                            </div>
+                                                        </div>
+                                                        @error('opposition_group_write')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>

@@ -75,7 +75,7 @@
                                 </li>
                             </ul>
                             <li class="nav-item">
-                                <a href="{{ route('property-type') }}" class="nav-link">
+                                <a href="{{ route('internal-counsel') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Internal Counsel</p>
                                 </a>

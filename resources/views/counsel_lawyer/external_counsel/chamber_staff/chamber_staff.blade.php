@@ -50,9 +50,12 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center"> Sl </th>
-                                        <th class="text-center"> Role </th>
                                         <th class="text-center"> Name </th>
-                                        <th class="text-nowrap"> Date of Joining </th>
+                                        <th class="text-center"> Role </th>
+                                        <th class="text-nowrap"> Chamber Joined </th>
+                                        <th class="text-nowrap"> Last Education </th>
+                                        <th class="text-nowrap"> Contact </th>
+                                        <th class="text-center"> Professional E-mail </th>
                                         <th class="text-center"> Status </th>
                                         <th width="13%">Action</th>
                                     </tr>
@@ -64,15 +67,23 @@
                                                 {{ $key+1 }}
                                             </td>
                                             <td>
-                                                {{ $datum->counsel_role_id }}
+                                                {{ $datum->counsel_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->counsel_name }}
+                                                {{ $datum->counsel_role_id }}
                                             </td>
                                             <td>
                                                 {{ $datum->date_of_joining }}
                                             </td>
-
+                                            <td>
+                                                {{ $datum->llb_year }} {{ $datum->llb_institution }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->emergency_contact }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->professional_email }}
+                                            </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)
                                                     <button type="button"

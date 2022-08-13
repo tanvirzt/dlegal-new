@@ -53,6 +53,7 @@
                         </div> --}}
                     </div>
                     <div class="col-sm-3">
+                    </form>
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">Dashboard v1</li>
@@ -83,14 +84,14 @@
                                             <i class="fas fa-times"></i>
                                         </button>
                                     </div>
-{{-- @if (!empty($is_searched))
-    <a href="{{ route('litigation-calendar-list-print-preview-search',['param1'=>$from_date,'param2'=>$to_date]) }}" target="_blank"
-    class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print </a>
-@else
-<a href="{{ route('litigation-calendar-list-print-preview') }}" target="_blank"
-class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
+                                    {{-- @if (!empty($is_searched))
+                                        <a href="{{ route('litigation-calendar-list-print-preview-search',['param1'=>$from_date,'param2'=>$to_date]) }}" target="_blank"
+                                        class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print </a>
+                                    @else
+                                    <a href="{{ route('litigation-calendar-list-print-preview') }}" target="_blank"
+                                    class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
 
-@endif --}}
+                                    @endif --}}
 
                                     {{-- <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
                                         <i class="fas fa-download"></i> Print
@@ -102,6 +103,83 @@ class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
                                         <form method="post" action="{{ route('search-litigation-calendar') }}">
                                             @csrf
                                             <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="lawyer_advocate_id" class="col-sm-4 col-form-label">Panel
+                                                            Lawyer</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="lawyer_advocate_id" id="lawyer_advocate_id" class="form-control select2"
+                                                                    >
+                                                                <option value="">Select</option>
+                                                                @foreach($external_council as $item)
+                                                                <option
+                                                                    value="{{ $item->id }}" {{( old('lawyer_advocate_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->last_name }}</option>
+                                                            @endforeach
+                                                            </select>
+                                                            @error('lawyer_advocate_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="client_id" class="col-sm-4 col-form-label">Client/Party</label>
+                                                        <div class="col-sm-8">
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <select name="client_id"
+                                                                            id="client_id"
+                                                                            class="form-control select2">
+                                                                        <option value="">Select</option>
+                                                                        @foreach($client_name as $item)
+                                                                            <option
+                                                                                value="{{ $item->client_name }}" {{  old('client_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" class="form-control"
+                                                                           id="client_name_write"
+                                                                           name="client_name_write"
+                                                                           placeholder="Client/Party"
+                                                                           value="{{ old('client_name_write') }}">
+                                                                </div>
+                                                            </div>
+
+                                                            @error('client_name')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <select name="matter_id"
+                                                                            id="matter_id"
+                                                                            class="form-control select2">
+                                                                        <option value="">Select</option>
+                                                                        @foreach($matter as $item)
+                                                                            <option
+                                                                                value="{{ $item->id }}" {{( old('matter_id') == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" class="form-control"
+                                                                           id="matter_write"
+                                                                           name="matter_write"
+                                                                           placeholder="Matter"
+                                                                           value="{{ old('matter_write') }}">
+                                                                </div>
+                                                            </div>
+    
+    
+                                                            @error('matter_id')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
                                                         <label for="from_date" class="col-sm-4 col-form-label">
@@ -119,8 +197,6 @@ class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
                                                     <div class="form-group row">
                                                         <label for="to_date" class="col-sm-4 col-form-label">
                                                             To Date </label>
@@ -158,6 +234,20 @@ class="btn btn-info btn-sm float-right"><i class="fas fa-print"></i> Print</a>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-4">
+                        <form method="POST" action="{{ route('calendar-list-arrow-up') }}" style="display: contents;">
+                            <input type="hidden" class="form-control" name="from_date" value="{{ date('Y-m-d', strtotime($criminal_cases[0]->next_date)) }}">
+                            <input type="submit" class="btn btn-info" name="arrow_up" value="" style="padding: 4px 12px 4px 12px;">
+                            <i class="fas fa-arrow-up" style="position: relative;
+                            right: 21px;"></i>  
+                        </form>
+                        <form action="{{ route('calendar-list-arrow-down') }}" method="post" style="display: contents;">
+                            <input type="hidden" class="form-control" name="to_date" value="{{ date('Y-m-d', strtotime($criminal_cases[0]->next_date)) }}">
+                            <input type="submit" class="btn btn-success" name="arrow_down" value="" style="padding: 4px 12px 4px 12px;">
+                            <i class="fas fa-arrow-down" style="position: relative;
+                            right: 21px;"></i>
+                        </form>
                     </div>
                 </div>
 

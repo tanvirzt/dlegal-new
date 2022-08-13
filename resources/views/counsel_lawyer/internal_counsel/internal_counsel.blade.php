@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Counsel </h1>
+                        <h1> Internal Counsel </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Counsel </li>
+                            <li class="breadcrumb-item active"> Internal Counsel </li>
                         </ol>
                     </div>
                 </div>
@@ -39,8 +39,8 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-counsel') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Counsel </button></a>
+                                    <a href="{{ route('add-internal-counsel') }}"><button class="btn btn-sm
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Internal Counsel </button></a>
                                 </div>
 
                             </div>
@@ -68,10 +68,10 @@
                                                 {{ $key+1 }}
                                             </td>
                                             <td>
-                                                {{ $datum->counsel_name }}
+                                                {{ $datum->internal_counsel_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->counsel_role_id }}
+                                                {{ $datum->internal_counsel_role_id }}
                                             </td>
                                             <td>
                                                 {{ $datum->date_of_joining }} 
@@ -100,12 +100,12 @@
                                                 </span>
                                             </td>
                                             <td>
-                                            {{-- <a href="{{ route('view-counsel',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                            {{-- <a href="{{ route('view-internal-counsel',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                                 ><i class="fas fa-eye"></i></button></a>
                                              --}}
-                                            <a href="{{ route('edit-counsel',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                <a href="{{ route('edit-internal-counsel',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                 ><i class="fas fa-edit"></i></button></a>
-                                                <form method="POST" action="{{ route('delete-counsel',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                <form method="POST" action="{{ route('delete-internal-counsel',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>

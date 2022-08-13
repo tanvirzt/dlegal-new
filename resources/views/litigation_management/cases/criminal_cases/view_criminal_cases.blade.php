@@ -339,6 +339,10 @@
                                                                 <td colspan="2">{{ $data->client_business_name }}</td>
                                                             </tr>
                                                             <tr>
+                                                                <td>Client Group Name</td>
+                                                                <td colspan="2">{{ $data->client_group_name }} {{ $data->client_group_write }}</td>
+                                                            </tr>
+                                                            <tr>
                                                                 <td>Client Address</td>
                                                                 <td colspan="2">{{ $data->client_address }}</td>
                                                             </tr>
@@ -468,8 +472,10 @@
                                                             <tr>
                                                                 <td>Opposition Business Name</td>
                                                                 <td colspan="2">{{ $data->opposition_business_name }}</td>
-                                                               
-
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Opposition Group Name</td>
+                                                                <td colspan="2">{{ $data->opposition_group_name }} {{ $data->opposition_group_write }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Opposition Address</td>
@@ -3111,6 +3117,33 @@ $case_logs->shift();
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="client_group_id" class="col-sm-4 col-form-label">Client Group Name</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="client_group_id"
+                                                id="client_group_id"
+                                                class="form-control select2">
+                                            <option value="">Select</option>
+                                            @foreach($group_name as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{  $data->client_group_id == $item->id ? 'selected' : '' }}>{{ $item->group_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="client_group_write"
+                                               name="client_group_write"
+                                               placeholder="Client Group"
+                                               value="{{ $data->client_group_write }}">
+                                    </div>
+                                </div>
+                                @error('client_name')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="client_address" class="col-sm-4 col-form-label">
                                 Client
                                 Address </label>
@@ -3461,6 +3494,33 @@ $case_logs->shift();
                                 @error('opposition_business_name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="opposition_group_id" class="col-sm-4 col-form-label">Opposition Group Name</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="opposition_group_id"
+                                                id="opposition_group_id"
+                                                class="form-control select2">
+                                            <option value="">Select</option>
+                                            @foreach($group_name as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{  $data->opposition_group_id == $item->id ? 'selected' : '' }}>{{ $item->group_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="opposition_group_write"
+                                               name="opposition_group_write"
+                                               placeholder="Opposition Group"
+                                               value="{{ $data->opposition_group_write }}">
+                                    </div>
+                                </div>
+                                @error('opposition_group_write')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
                         <div class="form-group row">

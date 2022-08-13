@@ -203,7 +203,7 @@
                                                                     <input type="text" class="form-control"
                                                                            id="client_group_write"
                                                                            name="client_group_write"
-                                                                           placeholder="Client/Party"
+                                                                           placeholder="Client Group"
                                                                            value="{{ old('client_group_write') }}">
                                                                 </div>
                                                             </div>

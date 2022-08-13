@@ -711,6 +711,8 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('search-case-pages','LitigationCalenderController@search_case_pages')->name('search-case-pages');
         Route::post('search-cases','LitigationCalenderController@search_cases')->name('search-cases');
         Route::post('calendar-short-next-previous', 'LitigationCalenderController@calendar_short_next_previous')->name('calendar-short-next-previous');
+        Route::post('calendar-list-arrow-up', 'LitigationCalenderController@calendar_list_arrow_up')->name('calendar-list-arrow-up');
+        Route::post('calendar-list-arrow-down', 'LitigationCalenderController@calendar_list_arrow_down')->name('calendar-list-arrow-down');
         Route::get('litigation-calendar-list-print-preview','LitigationCalenderController@litigation_calendar_list_print_preview')->name('litigation-calendar-list-print-preview');
         Route::get('litigation-calendar-list-print-preview-search/{param1}/{param2}','LitigationCalenderController@litigation_calendar_list_print_preview_search')->name('litigation-calendar-list-print-preview-search');
         
@@ -743,6 +745,12 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-chamber-staff/{id}','CounselLawyerController@update_chamber_staff')->name('update-chamber-staff');
         Route::post('delete-chamber-staff/{id}','CounselLawyerController@destroy_chamber_staff')->name('delete-chamber-staff');
 
+        Route::get('internal-counsel', 'CounselLawyerController@index_internal_counsel')->name('internal-counsel');
+        Route::get('add-internal-counsel','CounselLawyerController@create_internal_counsel')->name('add-internal-counsel');
+        Route::post('save-internal-counsel','CounselLawyerController@store_internal_counsel')->name('save-internal-counsel');
+        Route::get('edit-internal-counsel/{id}','CounselLawyerController@edit_internal_counsel')->name('edit-internal-counsel');
+        Route::post('update-internal-counsel/{id}','CounselLawyerController@update_internal_counsel')->name('update-internal-counsel');
+        Route::post('delete-internal-counsel/{id}','CounselLawyerController@destroy_internal_counsel')->name('delete-internal-counsel');
 
     });
 

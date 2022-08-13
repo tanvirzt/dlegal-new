@@ -13,6 +13,9 @@ use App\Models\CounselDocumentsRequired;
 use App\Models\ChamberStaffDocumentsReceived;
 use App\Models\ChamberStaffDocumentsRequired;
 use App\Models\ChamberStaff;
+use App\Models\InternalCounsel;
+use App\Models\InternalCounselDocumentsReceived;
+use App\Models\InternalCounselDocumentsRequired;
 
 class CounselLawyerController extends Controller
 {
@@ -566,5 +569,260 @@ class CounselLawyerController extends Controller
         session()->flash('success', 'Chamber Staff Deleted Successfully.');
         return redirect()->back();
     }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_internal_counsel()
+    {
+        $data = InternalCounsel::get();
+        // dd($data);
+        return view('counsel_lawyer.internal_counsel.internal_counsel',compact('data'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create_internal_counsel()
+    {
+        $documents = SetupDocument::where('delete_status', 0)->orderBy('documents_name','asc')->get();
+        $documents_type = SetupDocumentsType::where('delete_status',0)->orderBy('documents_type_name','asc')->get();
+        return view('counsel_lawyer.internal_counsel.add_internal_counsel',compact('documents_type','documents'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store_internal_counsel(Request $request)
+    {
+        // $data = json_decode(json_encode($request->all()));
+        // echo "<pre>";print_r($data);die;
+
+        $received_documents_sections = $request->received_documents_sections;
+        $remove = array_pop($received_documents_sections);  
+ 
+        $required_wanting_documents_sections = $request->required_wanting_documents_sections;
+        $remove = array_pop($required_wanting_documents_sections);  
+ 
+        $data = new InternalCounsel();
+        $data->chamber_name = $request->chamber_name;
+        $data->internal_counsel_role_id = $request->internal_counsel_role_id;
+        $data->internal_counsel_name = $request->internal_counsel_name;
+        $data->father_name = $request->father_name;
+        $data->mother_name = $request->mother_name;
+        $data->spouse_name = $request->spouse_name;
+        $data->present_address = $request->present_address;
+        $data->permanent_address = $request->permanent_address;
+        $data->date_of_birth = $request->date_of_birth == 'dd-mm-yyyy' || $request->date_of_birth == 'NaN-NaN-NaN' ? null : $request->date_of_birth;
+        $data->nid_number = $request->nid_number;
+        $data->mobile_number = $request->mobile_number;
+        $data->email = $request->email;
+        $data->emergency_contact = $request->emergency_contact;
+        $data->relation = $request->relation;
+        $data->professional_name = $request->professional_name;
+        $data->ssc_year = $request->ssc_year;
+        $data->ssc_institution = $request->ssc_institution;
+        $data->hsc_year = $request->hsc_year;
+        $data->hsc_institution = $request->hsc_institution;
+        $data->llb_year = $request->llb_year;
+        $data->llb_institution = $request->llb_institution;
+        $data->llm_year = $request->llm_year;
+        $data->llm_instution = $request->llm_instution;
+        $data->bar_council_enrollment_date = $request->bar_council_enrollment_date;
+        $data->bar_council_enrollment_sanad_no = $request->bar_council_enrollment_sanad_no;
+        $data->mother_bar_name = $request->mother_bar_name;
+        $data->mother_bar_membership_number = $request->mother_bar_membership_number;
+        $data->practicing_bar_date = $request->practicing_bar_date;
+        $data->practicing_bar_membership_number = $request->practicing_bar_membership_number;
+        $data->high_court_enrollment_date = $request->high_court_enrollment_date;
+        $data->high_court_enrollment_membership_number = $request->high_court_enrollment_membership_number;
+        $data->bar_council_fees = $request->bar_council_fees;
+        $data->bar_council_fees_write = $request->bar_council_fees_write;
+        $data->district_bar_mem_fee = $request->district_bar_mem_fee;
+        $data->district_bar_mem_write = $request->district_bar_mem_write;
+        $data->scba_memb_fee = $request->scba_memb_fee;
+        $data->scba_memb_fee_write = $request->scba_memb_fee_write;
+        $data->professional_contact_number = $request->professional_contact_number;
+        $data->professional_contact_number_write = $request->professional_contact_number_write;
+        $data->professional_email = $request->professional_email;
+        $data->professional_email_write = $request->professional_email_write;
+        $data->name_of_associates = $request->name_of_associates;
+        $data->name_of_associates_write = $request->name_of_associates_write;
+        $data->professional_experience_one = $request->professional_experience_one;
+        $data->professional_experience_two = $request->professional_experience_two;
+        $data->date_of_joining = $request->date_of_joining == 'dd-mm-yyyy' || $request->date_of_joining == 'NaN-NaN-NaN' ? null : $request->date_of_joining;
+        $data->save();
+
+        foreach ( array_filter($received_documents_sections) as $key => $value ){
+            $datum = new InternalCounselDocumentsReceived();
+            $datum->internal_counsel_id = $data->id;
+            $datum->received_documents_id = $request->received_documents_id[$key];
+            $datum->received_documents = $request->received_documents[$key];
+            $datum->received_documents_date = $request->received_documents_date[$key];
+            $datum->received_documents_type_id = $request->received_documents_type_id[$key];
+            $datum->save();
+        }
+
+
+        foreach ( array_filter($required_wanting_documents_sections) as $key => $value ){
+            $required = new InternalCounselDocumentsRequired();
+            $required->internal_counsel_id = $data->id;
+            $required->required_wanting_documents_id = $request->required_wanting_documents_id[$key];
+            $required->required_wanting_documents = $request->required_wanting_documents[$key];
+            $required->required_wanting_documents_date = $request->required_wanting_documents_date[$key];
+            $required->required_wanting_documents_type_id = $request->required_wanting_documents_type_id[$key];
+            $required->save();
+        }
+
+
+        session()->flash('success', 'Internal Counsel Added Successfully');
+        return redirect()->route('internal-counsel');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function internal_counsel_show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit_internal_counsel($id)
+    {
+
+        $documents = SetupDocument::where('delete_status', 0)->orderBy('documents_name','asc')->get();
+        $documents_type = SetupDocumentsType::where('delete_status',0)->orderBy('documents_type_name','asc')->get();
+        $data = InternalCounsel::find($id);
+        $received_documents_explode = InternalCounselDocumentsReceived::where('internal_counsel_id', $id)->get()->toArray();
+        $required_wanting_documents_explode = InternalCounselDocumentsRequired::where('internal_counsel_id', $id)->get()->toArray();
+        // dd($received_documents_explode);
+        return view('counsel_lawyer.internal_counsel.edit_internal_counsel',compact('required_wanting_documents_explode','received_documents_explode','documents_type','documents','data'));
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update_internal_counsel(Request $request, $id)
+    {
+        $received_documents_sections = $request->received_documents_sections;
+        $remove = array_pop($received_documents_sections);  
+ 
+        $required_wanting_documents_sections = $request->required_wanting_documents_sections;
+        $remove = array_pop($required_wanting_documents_sections);  
+ 
+        $data = InternalCounsel::find($id);
+        $data->chamber_name = $request->chamber_name;
+        $data->internal_counsel_role_id = $request->internal_counsel_role_id;
+        $data->internal_counsel_name = $request->internal_counsel_name;
+        $data->father_name = $request->father_name;
+        $data->mother_name = $request->mother_name;
+        $data->spouse_name = $request->spouse_name;
+        $data->present_address = $request->present_address;
+        $data->permanent_address = $request->permanent_address;
+        $data->date_of_birth = $request->date_of_birth == 'dd-mm-yyyy' || $request->date_of_birth == 'NaN-NaN-NaN' ? null : $request->date_of_birth;
+        $data->nid_number = $request->nid_number;
+        $data->mobile_number = $request->mobile_number;
+        $data->email = $request->email;
+        $data->emergency_contact = $request->emergency_contact;
+        $data->relation = $request->relation;
+        $data->professional_name = $request->professional_name;
+        $data->ssc_year = $request->ssc_year;
+        $data->ssc_institution = $request->ssc_institution;
+        $data->hsc_year = $request->hsc_year;
+        $data->hsc_institution = $request->hsc_institution;
+        $data->llb_year = $request->llb_year;
+        $data->llb_institution = $request->llb_institution;
+        $data->llm_year = $request->llm_year;
+        $data->llm_instution = $request->llm_instution;
+        $data->bar_council_enrollment_date = $request->bar_council_enrollment_date;
+        $data->bar_council_enrollment_sanad_no = $request->bar_council_enrollment_sanad_no;
+        $data->mother_bar_name = $request->mother_bar_name;
+        $data->mother_bar_membership_number = $request->mother_bar_membership_number;
+        $data->practicing_bar_date = $request->practicing_bar_date;
+        $data->practicing_bar_membership_number = $request->practicing_bar_membership_number;
+        $data->high_court_enrollment_date = $request->high_court_enrollment_date;
+        $data->high_court_enrollment_membership_number = $request->high_court_enrollment_membership_number;
+        $data->bar_council_fees = $request->bar_council_fees;
+        $data->bar_council_fees_write = $request->bar_council_fees_write;
+        $data->district_bar_mem_fee = $request->district_bar_mem_fee;
+        $data->district_bar_mem_write = $request->district_bar_mem_write;
+        $data->scba_memb_fee = $request->scba_memb_fee;
+        $data->scba_memb_fee_write = $request->scba_memb_fee_write;
+        $data->professional_contact_number = $request->professional_contact_number;
+        $data->professional_contact_number_write = $request->professional_contact_number_write;
+        $data->professional_email = $request->professional_email;
+        $data->professional_email_write = $request->professional_email_write;
+        $data->name_of_associates = $request->name_of_associates;
+        $data->name_of_associates_write = $request->name_of_associates_write;
+        $data->professional_experience_one = $request->professional_experience_one;
+        $data->professional_experience_two = $request->professional_experience_two;
+        $data->date_of_joining = $request->date_of_joining == 'dd-mm-yyyy' || $request->date_of_joining == 'NaN-NaN-NaN' ? null : $request->date_of_joining;
+        $data->save();
+
+        InternalCounselDocumentsReceived::where('internal_counsel_id', $id)->delete();
+
+        foreach ( array_filter($received_documents_sections) as $key => $value ){
+            $datum = new InternalCounselDocumentsReceived();
+            $datum->internal_counsel_id = $data->id;
+            $datum->received_documents_id = $request->received_documents_id[$key];
+            $datum->received_documents = $request->received_documents[$key];
+            $datum->received_documents_date = $request->received_documents_date[$key];
+            $datum->received_documents_type_id = $request->received_documents_type_id[$key];
+            $datum->save();
+        }
+
+        InternalCounselDocumentsRequired::where('internal_counsel_id', $id)->delete();
+
+        foreach ( array_filter($required_wanting_documents_sections) as $key => $value ){
+            $required = new InternalCounselDocumentsRequired();
+            $required->internal_counsel_id = $data->id;
+            $required->required_wanting_documents_id = $request->required_wanting_documents_id[$key];
+            $required->required_wanting_documents = $request->required_wanting_documents[$key];
+            $required->required_wanting_documents_date = $request->required_wanting_documents_date[$key];
+            $required->required_wanting_documents_type_id = $request->required_wanting_documents_type_id[$key];
+            $required->save();
+        }
+
+
+        session()->flash('success', 'Internal Counsel Updated Successfully.');
+        return redirect()->route('internal-counsel');
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy_internal_counsel($id)
+    {
+        InternalCounsel::find($id)->delete();
+        session()->flash('success', 'Internal Counsel Deleted Successfully.');
+        return redirect()->back();
+    }
+
 
 }

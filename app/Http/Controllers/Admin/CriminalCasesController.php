@@ -182,9 +182,10 @@ class CriminalCasesController extends Controller
         $cabinet = SetupCabinet::where('delete_status', 0)->orderBy('cabinet_name','asc')->get();
         $particulars = SetupParticulars::where('delete_status',0)->orderBy('particulars_name','asc')->get();
         $documents_type = SetupDocumentsType::where('delete_status',0)->orderBy('documents_type_name','asc')->get();
+        $group_name = SetupGroup::get();
 
 // dd($court);
-        return view('litigation_management.cases.criminal_cases.add_criminal_cases', compact('documents_type','person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'client_category', 'section', 'section', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'in_favour_of', 'mode', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title','user','complainant','accused','court_short','cabinet','particulars'));
+        return view('litigation_management.cases.criminal_cases.add_criminal_cases', compact('group_name','documents_type','person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'client_category', 'section', 'section', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'in_favour_of', 'mode', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title','user','complainant','accused','court_short','cabinet','particulars'));
     }
 
     public function save_criminal_cases(Request $request)
@@ -304,6 +305,8 @@ $created_case_id = 'LCR-000'.$sl;
         $data->client_subcategory_id = $request->client_subcategory_id;
         $data->client_id = $request->client_id ? implode(', ', $request->client_id) : null;
         $data->client_business_name = $request->client_business_name;
+        $data->client_group_id = $request->client_group_id;
+        $data->client_group_write = $request->client_group_write;
         $data->client_name_write = rtrim($client, ', ');
         $data->client_address = $request->client_address;
         $data->client_mobile = $request->client_mobile;
@@ -326,6 +329,8 @@ $created_case_id = 'LCR-000'.$sl;
         $data->opposition_subcategory_id = $request->opposition_subcategory_id;
         $data->opposition_id = $request->opposition_id ? implode(', ', $request->opposition_id) : null;
         $data->opposition_write = rtrim($opposition, ', ');
+        $data->opposition_group_id = $request->opposition_group_id;
+        $data->opposition_group_write = $request->opposition_group_write;
         $data->opposition_address = $request->opposition_address;
         $data->opposition_mobile = $request->opposition_mobile;
         $data->opposition_email = $request->opposition_email;
@@ -632,6 +637,7 @@ $created_case_id = 'LCR-000'.$sl;
         $previous_activity = CriminalCaseStatusLog::latest()->where(['case_id'=> $id, 'delete_status' => 0])->first();
         $particulars = SetupParticulars::where('delete_status',0)->orderBy('particulars_name','asc')->get();
         $documents_type = SetupDocumentsType::where('delete_status',0)->orderBy('documents_type_name','asc')->get();
+        $group_name = SetupGroup::get();
         
         // dd($previous_activity);
 //        dd($assigned_lawyer_explode);
@@ -735,7 +741,7 @@ $case_no_data = DB::table('criminal_cases')
         
         // dd($received_documents_explode);
 
-        return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('documents_type','required_wanting_documents_explode','received_documents_date_explode','received_documents_write_explode','exist_court_short','data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'received_documents_explode', 'required_documents_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','previous_activity','opposition_existing_district','opposition_existing_thana','cabinet','case_no_data','exist_case_type','particulars','letter_notice_explode'));
+        return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('group_name','documents_type','required_wanting_documents_explode','received_documents_date_explode','received_documents_write_explode','exist_court_short','data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'received_documents_explode', 'required_documents_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','previous_activity','opposition_existing_district','opposition_existing_thana','cabinet','case_no_data','exist_case_type','particulars','letter_notice_explode'));
     }
 
     public function update_criminal_cases(Request $request, $id)
@@ -825,6 +831,8 @@ $case_no_data = DB::table('criminal_cases')
             $data->client_id = $request->client_id ? implode(', ', $request->client_id) : null;
             $data->client_name_write = rtrim($client, ', ');
             $data->client_business_name = $request->client_business_name;
+            $data->client_group_id = $request->client_group_id;
+            $data->client_group_write = $request->client_group_write;
             $data->client_address = $request->client_address;
             $data->client_mobile = $request->client_mobile;
             $data->client_email = $request->client_email;
@@ -847,6 +855,8 @@ $case_no_data = DB::table('criminal_cases')
             $data->opposition_id = $request->opposition_id ? implode(', ', $request->opposition_id) : null;
             $data->opposition_write = rtrim($opposition, ', ');
             $data->opposition_business_name = $request->opposition_business_name;
+            $data->opposition_group_id = $request->opposition_group_id;
+            $data->opposition_group_write = $request->opposition_group_write;
             $data->opposition_address = $request->opposition_address;
             $data->opposition_mobile = $request->opposition_mobile;
             $data->opposition_email = $request->opposition_email;
@@ -1052,6 +1062,8 @@ $case_no_data = DB::table('criminal_cases')
             $data->client_id = $request->client_id ? implode(', ', $request->client_id) : null;
             $data->client_name_write = rtrim($client, ', ');
             $data->client_business_name = $request->client_business_name;
+            $data->client_group_id = $request->client_group_id;
+            $data->client_group_write = $request->client_group_write;
             $data->client_address = $request->client_address;
             $data->client_mobile = $request->client_mobile;
             $data->client_email = $request->client_email;
@@ -1078,6 +1090,8 @@ $case_no_data = DB::table('criminal_cases')
             $data->opposition_id = $request->opposition_id ? implode(', ', $request->opposition_id) : null;
             $data->opposition_write = rtrim($opposition, ', ');
             $data->opposition_business_name = $request->opposition_business_name;
+            $data->opposition_group_id = $request->opposition_group_id;
+            $data->opposition_group_write = $request->opposition_group_write;
             $data->opposition_address = $request->opposition_address;
             $data->opposition_mobile = $request->opposition_mobile;
             $data->opposition_email = $request->opposition_email;
@@ -1379,6 +1393,8 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             $data->client_id = $request->client_id ? implode(', ', $request->client_id) : null;
             $data->client_name_write = rtrim($client, ', ');
             $data->client_business_name = $request->client_business_name;
+            $data->client_group_id = $request->client_group_id;
+            $data->client_group_write = $request->client_group_write;
             $data->client_address = $request->client_address;
             $data->client_mobile = $request->client_mobile;
             $data->client_email = $request->client_email;
@@ -1401,6 +1417,8 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             $data->opposition_id = $request->opposition_id ? implode(', ', $request->opposition_id) : null;
             $data->opposition_write = rtrim($opposition, ', ');
             $data->opposition_business_name = $request->opposition_business_name;
+            $data->opposition_group_id = $request->opposition_group_id;
+            $data->opposition_group_write = $request->opposition_group_write;
             $data->opposition_address = $request->opposition_address;
             $data->opposition_mobile = $request->opposition_mobile;
             $data->opposition_email = $request->opposition_email;
@@ -1660,6 +1678,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         $cabinet = SetupCabinet::where('delete_status', 0)->orderBy('cabinet_name','asc')->get();
         $particulars = SetupParticulars::where('delete_status',0)->orderBy('particulars_name','asc')->get();
         $documents_type = SetupDocumentsType::where('delete_status',0)->orderBy('documents_type_name','asc')->get();
+        $group_name = SetupGroup::get();
 
 
         $data = DB::table('criminal_cases')
@@ -1705,6 +1724,8 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             ->leftJoin('admins', 'criminal_cases.received_by_id', '=', 'admins.id')
             ->leftJoin('setup_cabinets', 'criminal_cases.cabinet_id', '=', 'setup_cabinets.id')
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+            ->leftJoin('setup_groups as client_group', 'criminal_cases.client_group_id', '=', 'client_group.id')
+            ->leftJoin('setup_groups as opposition_group', 'criminal_cases.opposition_group_id', '=', 'opposition_group.id')
 
             ->select('criminal_cases.*',
                 'setup_legal_issues.legal_issue_name',
@@ -1750,12 +1771,14 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
                 'setup_allegations.allegation_name',
                 'admins.name',
                 'setup_cabinets.cabinet_name',
-                'case_infos_title.case_title_name as sub_seq_case_title_name')
+                'case_infos_title.case_title_name as sub_seq_case_title_name',
+                'client_group.group_name as client_group_name',
+                'opposition_group.group_name as opposition_group_name')
             ->where('criminal_cases.id', $id)
             ->first();
 
             $exist_case_inofs_district = SetupDistrict::where('id', $data->case_infos_district_id)->first();
-            // dd($exist_case_inofs_district);
+            // dd($data);
 
             if(!empty($exist_case_inofs_district)){
                 $exist_court_short = SetupCourt::where('applicable_district_id', 'like', "%{$exist_case_inofs_district->district_name}%")->where('delete_status',0)->orderBy('court_name','asc')->get();
@@ -1927,7 +1950,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         // CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
         // dd($case_steps);
 
-        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('case_steps','documents_type','letter_notice','required_wanting_documents','received_documents','particulars','required_wanting_documents_explode','exist_court_short','data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode','edit_case_steps','existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','received_documents_explode','required_documents_explode','previous_activity','payment_mode','bill_schedule','bill_particulars','bill_type','bill_amount','payment_amount','due_amount','cabinet','exist_case_type','letter_notice_explode'));
+        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('group_name','case_steps','documents_type','letter_notice','required_wanting_documents','received_documents','particulars','required_wanting_documents_explode','exist_court_short','data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order','day_notes','external_council', 'next_day_presence','case_status','mode','edit_case_steps','existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','received_documents_explode','required_documents_explode','previous_activity','payment_mode','bill_schedule','bill_particulars','bill_type','bill_amount','payment_amount','due_amount','cabinet','exist_case_type','letter_notice_explode'));
     }
 
     public function download_criminal_cases_file($id)
@@ -3002,7 +3025,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
                 $query2 = $query->where('criminal_cases.client_group_id', $request->client_group_id);
                 break;
             case $request->client_group_write:
-                $query2 = $query->where('criminal_cases.client_group_write', $request->client_group_write);
+                $query2 = $query->where('criminal_cases.client_group_write','like', "%{$request->client_group_write}%");
                 break;
             default:
                 $query2 = $query;
