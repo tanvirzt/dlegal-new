@@ -68,7 +68,7 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-                <h3 class="" id="heading">Litigation Calendar</h3>
+                <h3 class="" id="heading">Litigation Calendar <span style="color: red;font-size:15px;">{{ !empty($is_searched) ? '(Showing Searched Item)' : '' }}</span></h3>
                 <div class="row">
                     <div class="col-md-8">
                         <div class="card">
@@ -237,13 +237,13 @@
                     </div>
                     <div class="col-md-4">
                         <form method="POST" action="{{ route('calendar-list-arrow-up') }}" style="display: contents;">
-                            <input type="hidden" class="form-control" name="from_date" value="{{ date('Y-m-d', strtotime($criminal_cases[0]->next_date)) }}">
+                            <input type="hidden" class="form-control" name="from_date" value="{{ !empty($criminal_cases[0]->next_date) ? date('Y-m-d', strtotime($criminal_cases[0]->next_date)) : '' }}">
                             <input type="submit" class="btn btn-info" name="arrow_up" value="" style="padding: 4px 12px 4px 12px;">
                             <i class="fas fa-arrow-up" style="position: relative;
                             right: 21px;"></i>  
                         </form>
                         <form action="{{ route('calendar-list-arrow-down') }}" method="post" style="display: contents;">
-                            <input type="hidden" class="form-control" name="to_date" value="{{ date('Y-m-d', strtotime($criminal_cases[0]->next_date)) }}">
+                            <input type="hidden" class="form-control" name="to_date" value="{{ !empty($criminal_cases[0]->next_date) ? date('Y-m-d', strtotime($criminal_cases[0]->next_date)) : '' }}">
                             <input type="submit" class="btn btn-success" name="arrow_down" value="" style="padding: 4px 12px 4px 12px;">
                             <i class="fas fa-arrow-down" style="position: relative;
                             right: 21px;"></i>
@@ -251,6 +251,8 @@
                     </div>
                 </div>
 
+                @if (!empty($criminal_cases))
+                    
                 @foreach($criminal_cases as $key=>$datum)
                     @if (!empty($datum->next_date))
                         <div class="card">
@@ -609,6 +611,7 @@
                         </div>
                     @endif
                 @endforeach
+                @endif
         
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->

@@ -268,6 +268,24 @@ $(document).ready(function () {
         $(this).parents(".hdtuto_received_documents").remove();
     });
 
+    $(".btn_success_chamber_accounts").click(function () {
+        var lsthmtl_chamber_accounts = $(".clone_chamber_accounts").html();
+        $(".increment_chamber_accounts").after(lsthmtl_chamber_accounts);
+    });
+    $("body").on("click", ".btn_danger_chamber_accounts", function () {
+        $(this).parents(".hdtuto_chamber_accounts").remove();
+    });
+
+    // edit chamber accounts
+
+    $(".btn_success_chamber_accounts_edit").click(function () {
+        var lsthmtl_chamber_accounts_edit = $(".clone_chamber_accounts_edit").html();
+        $(".clone_chamber_accounts").after(lsthmtl_chamber_accounts_edit);
+    });
+    $("body").on("click", ".btn_danger_chamber_accounts_edit", function () {
+        $(this).parents(".hdtuto_chamber_accounts_edit").remove();
+    });
+
     // edit
 
     $(".btn_success_received_documents_edit").click(function () {
@@ -342,6 +360,18 @@ $(document).ready(function () {
         $(this).parents(".hdtuto_partner_of_chamber").remove();
     });
 
+//    edit partner of chamber
+
+
+    $(".btn_success_partner_of_chamber_edit").click(function () {
+        var lsthmtl_partner_of_chamber_edit = $(".clone_partner_of_chamber_edit").html();
+        $(".clone_partner_of_chamber").after(lsthmtl_partner_of_chamber_edit);
+    });
+    $("body").on("click", ".btn_danger_partner_of_chamber_edit", function () {
+        $(this).parents(".hdtuto_partner_of_chamber_edit").remove();
+    });
+
+
     $(".btn_success_associate").click(function () {
         var lsthmtl_associate = $(".clone_associate").html();
         $(".increment_associate").after(lsthmtl_associate);
@@ -350,12 +380,33 @@ $(document).ready(function () {
         $(this).parents(".hdtuto_associate").remove();
     });
 
+//edit associate
+
+    $(".btn_success_associate_edit").click(function () {
+        var lsthmtl_associate_edit = $(".clone_associate_edit").html();
+        $(".clone_associate").after(lsthmtl_associate_edit);
+    });
+    $("body").on("click", ".btn_danger_associate_edit", function () {
+        $(this).parents(".hdtuto_associate_edit").remove();
+    });
+
+
     $(".btn_success_clerk").click(function () {
         var lsthmtl_clerk = $(".clone_clerk").html();
         $(".increment_clerk").after(lsthmtl_clerk);
     });
     $("body").on("click", ".btn_danger_clerk", function () {
         $(this).parents(".hdtuto_clerk").remove();
+    });
+
+    // edit clerk
+
+    $(".btn_success_clerk_edit").click(function () {
+        var lsthmtl_clerk_edit = $(".clone_clerk_edit").html();
+        $(".clone_clerk").after(lsthmtl_clerk_edit);
+    });
+    $("body").on("click", ".btn_danger_clerk_edit", function () {
+        $(this).parents(".hdtuto_clerk_edit").remove();
     });
 
     $(".btn_success_support_staff").click(function () {
@@ -366,7 +417,15 @@ $(document).ready(function () {
         $(this).parents(".hdtuto_support_staff").remove();
     });
 
+ //   edit support staff
 
+    $(".btn_success_support_staff_edit").click(function () {
+        var lsthmtl_support_staff_edit = $(".clone_support_staff_edit").html();
+        $(".clone_support_staff").after(lsthmtl_support_staff_edit);
+    });
+    $("body").on("click", ".btn_danger_support_staff_edit", function () {
+        $(this).parents(".hdtuto_support_staff_edit").remove();
+    });
 
 
     $('#division_id').on('change', function () {

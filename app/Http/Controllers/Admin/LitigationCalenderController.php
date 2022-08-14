@@ -173,7 +173,7 @@ class LitigationCalenderController extends Controller
                 ->get(['next_date']);
             $from_date = date('Y-m-d');
             $to_date = date('Y-m-d');
-
+// dd($criminal_cases);
             return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter','client_name','external_council','criminal_cases', 'criminal_cases_count','is_searched','from_date','to_date'));
 
         }else if ($request->client_id) {

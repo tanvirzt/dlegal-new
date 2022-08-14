@@ -772,7 +772,7 @@ class AdminSetupController extends Controller
         ];
 
         $validMsg = [
-            'court_name.required' => 'Court field is required'
+            'court_name.required' => 'Court field is required.'
         ];
 
         $this->validate($request, $rules, $validMsg);

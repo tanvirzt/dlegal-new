@@ -16,6 +16,14 @@ use App\Models\ChamberStaff;
 use App\Models\InternalCounsel;
 use App\Models\InternalCounselDocumentsReceived;
 use App\Models\InternalCounselDocumentsRequired;
+use DB;
+use App\Models\Chamber;
+use App\Models\ChamberPartner;
+use App\Models\ChamberAssociate;
+use App\Models\ChamberClerk;
+use App\Models\ChamberSupportStaff;
+use App\Models\ChamberAccounts;
+use Str;
 
 class CounselLawyerController extends Controller
 {
@@ -27,7 +35,8 @@ class CounselLawyerController extends Controller
     public function index()
     {
         // dd('hello');
-        $data = SetupExternalCouncil::get();
+        $data = Chamber::get();
+        // dd($data);
         return view('counsel_lawyer.external_counsel.chamber.chamber',compact('data'));
 
     }
@@ -50,8 +59,110 @@ class CounselLawyerController extends Controller
      */
     public function store(Request $request)
     {
-        $data = json_decode(json_encode($request->all()));
-        echo "<pre>";print_r($data);die;
+        // dd($request->all());
+        // $data = json_decode(json_encode($request->all()));
+        // echo "<pre>";print_r($data);die;
+
+        $chamber_partner_sections = $request->chamber_partner_sections;
+        $remove = array_pop($chamber_partner_sections);  
+
+        $associate_sections = $request->associate_sections;
+        $remove = array_pop($associate_sections);  
+
+        $clerk_sections = $request->clerk_sections;
+        $remove = array_pop($clerk_sections);  
+
+        $support_staff_sections = $request->support_staff_sections;
+        $remove = array_pop($support_staff_sections);  
+
+        $chamber_account_sections = $request->chamber_account_sections;
+        $remove = array_pop($chamber_account_sections);  
+
+       
+        DB::beginTransaction();
+
+        $data = new Chamber();
+        $data->chamber_name = $request->chamber_name;
+
+        if ($request->hasfile('chamber_logo')) {
+            $file = $request->file('chamber_logo');
+            $original_name = $file->getClientOriginalName();
+            $explode = explode('.',$original_name);
+            array_pop($explode);
+            $implode = implode('-',$explode);
+            $original_extension = $file->getClientOriginalExtension();
+            $name = Str::slug($implode).'.'.$original_extension;
+            $file->move(public_path('files/chamber_logo'), $name);
+            $data->chamber_logo = $name;
+        }
+
+        $data->main_office_address = $request->main_office_address;
+        $data->chamber_telephone = $request->chamber_telephone;
+        $data->chamber_mobile_one = $request->chamber_mobile_one;
+        $data->chamber_mobile_two = $request->chamber_mobile_two;
+        $data->chamber_email_one = $request->chamber_email_one;
+        $data->chamber_email_two = $request->chamber_email_two;
+        $data->branch_office_address_one = $request->branch_office_address_one;
+        $data->branch_office_address_two = $request->branch_office_address_two;
+        $data->head_of_chamber = $request->head_of_chamber;
+        $data->head_of_chamber_signature = $request->head_of_chamber_signature;
+        $data->admin_of_chamber = $request->admin_of_chamber;
+        $data->admin_of_chamber_signature = $request->admin_of_chamber_signature;
+        $data->accountant = $request->accountant;
+        $data->accountant_signature = $request->accountant_signature;
+        $data->head_clerk = $request->head_clerk;
+        $data->head_clerk_signature = $request->head_clerk_signature;
+        $data->letterhead_write_up = $request->letterhead_write_up;
+        $data->letterhead_address = $request->letterhead_address;
+        $data->save();
+
+        foreach ( array_filter($chamber_partner_sections) as $key => $value ){
+            $datum = new ChamberPartner();
+            $datum->chamber_id = $data->id;
+            $datum->partner_of_chamber = $request->partner_of_chamber[$key];
+            $datum->partner_of_chamber_signature = $request->partner_of_chamber_signature[$key];
+            $datum->save();
+        }
+
+        foreach ( array_filter($associate_sections) as $key => $value ){
+            $datum = new ChamberAssociate();
+            $datum->chamber_id = $data->id;
+            $datum->associate = $request->associate[$key];
+            $datum->associate_signature = $request->associate_signature[$key];
+            $datum->save();
+        }
+
+        foreach ( array_filter($clerk_sections) as $key => $value ){
+            $datum = new ChamberClerk();
+            $datum->chamber_id = $data->id;
+            $datum->clerk = $request->clerk[$key];
+            $datum->clerk_signature = $request->clerk_signature[$key];
+            $datum->save();
+        }
+
+        foreach ( array_filter($support_staff_sections) as $key => $value ){
+            $datum = new ChamberSupportStaff();
+            $datum->chamber_id = $data->id;
+            $datum->support_staff = $request->support_staff[$key];
+            $datum->support_staff_signature = $request->support_staff_signature[$key];
+            $datum->save();
+        }
+
+        foreach ( array_filter($chamber_account_sections) as $key => $value ){
+            $datum = new ChamberAccounts();
+            $datum->chamber_id = $data->id;
+            $datum->chamber_accounts = $request->chamber_accounts[$key];
+            $datum->account_name = $request->account_name[$key];
+            $datum->account_number = $request->account_number[$key];
+            $datum->bank_name = $request->bank_name[$key];
+            $datum->save();
+        }
+
+        DB::commit();
+
+        session()->flash('success', 'Chamber Added Successfully.');
+        return redirect()->route('chamber');
+
     }
 
     /**
@@ -73,7 +184,17 @@ class CounselLawyerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Chamber::find($id);
+        $chamber_partner_explode = ChamberPartner::where('chamber_id', $id)->get()->toArray();
+        $chamber_associate_explode = ChamberAssociate::where('chamber_id', $id)->get()->toArray();
+        $chamber_clerk_explode = ChamberClerk::where('chamber_id', $id)->get()->toArray();
+        $chamber_support_staff_explode = ChamberSupportStaff::where('chamber_id', $id)->get()->toArray();
+        $chamber_accounts_explode = ChamberAccounts::where('chamber_id', $id)->get()->toArray();
+        // dd($data);
+
+        return view('counsel_lawyer.external_counsel.chamber.edit_chamber', compact('data','chamber_partner_explode','chamber_associate_explode','chamber_clerk_explode','chamber_support_staff_explode','chamber_accounts_explode'));
+
+
     }
 
     /**
@@ -85,7 +206,126 @@ class CounselLawyerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        // $data = json_decode(json_encode($request->all()));
+        // echo "<pre>";print_r($data);die;
+
+        $chamber_partner_sections = $request->chamber_partner_sections;
+        $remove = array_pop($chamber_partner_sections);  
+
+        $associate_sections = $request->associate_sections;
+        $remove = array_pop($associate_sections);  
+
+        $clerk_sections = $request->clerk_sections;
+        $remove = array_pop($clerk_sections);  
+
+        $support_staff_sections = $request->support_staff_sections;
+        $remove = array_pop($support_staff_sections);  
+
+        $chamber_account_sections = $request->chamber_account_sections;
+        $remove = array_pop($chamber_account_sections);  
+
+       
+        DB::beginTransaction();
+
+        $data = Chamber::find($id);
+        $data->chamber_name = $request->chamber_name;
+
+        $image_path = 'files/chamber_logo/'.$data['chamber_logo'];
+// if file exists then remove it
+        if($request->chamber_logo && file_exists($image_path)){
+            unlink($image_path);
+        }
+
+        if ($request->hasfile('chamber_logo')) {
+            $file = $request->file('chamber_logo');
+            $original_name = $file->getClientOriginalName();
+            $explode = explode('.',$original_name);
+            array_pop($explode);
+            $implode = implode('-',$explode);
+            $original_extension = $file->getClientOriginalExtension();
+            $name = Str::slug($implode).'.'.$original_extension;
+            $file->move(public_path('files/chamber_logo'), $name);
+            $data->chamber_logo = $name;
+        }
+
+        $data->main_office_address = $request->main_office_address;
+        $data->chamber_telephone = $request->chamber_telephone;
+        $data->chamber_mobile_one = $request->chamber_mobile_one;
+        $data->chamber_mobile_two = $request->chamber_mobile_two;
+        $data->chamber_email_one = $request->chamber_email_one;
+        $data->chamber_email_two = $request->chamber_email_two;
+        $data->branch_office_address_one = $request->branch_office_address_one;
+        $data->branch_office_address_two = $request->branch_office_address_two;
+        $data->head_of_chamber = $request->head_of_chamber;
+        $data->head_of_chamber_signature = $request->head_of_chamber_signature;
+        $data->admin_of_chamber = $request->admin_of_chamber;
+        $data->admin_of_chamber_signature = $request->admin_of_chamber_signature;
+        $data->accountant = $request->accountant;
+        $data->accountant_signature = $request->accountant_signature;
+        $data->head_clerk = $request->head_clerk;
+        $data->head_clerk_signature = $request->head_clerk_signature;
+        $data->letterhead_write_up = $request->letterhead_write_up;
+        $data->letterhead_address = $request->letterhead_address;
+        $data->save();
+
+        ChamberPartner::where('chamber_id', $id)->delete();
+
+        foreach ( array_filter($chamber_partner_sections) as $key => $value ){
+            $datum = new ChamberPartner();
+            $datum->chamber_id = $data->id;
+            $datum->partner_of_chamber = $request->partner_of_chamber[$key];
+            $datum->partner_of_chamber_signature = $request->partner_of_chamber_signature[$key];
+            $datum->save();
+        }
+
+        ChamberAssociate::where('chamber_id', $id)->delete();
+
+        foreach ( array_filter($associate_sections) as $key => $value ){
+            $datum = new ChamberAssociate();
+            $datum->chamber_id = $data->id;
+            $datum->associate = $request->associate[$key];
+            $datum->associate_signature = $request->associate_signature[$key];
+            $datum->save();
+        }
+
+        ChamberClerk::where('chamber_id', $id)->delete();
+
+        foreach ( array_filter($clerk_sections) as $key => $value ){
+            $datum = new ChamberClerk();
+            $datum->chamber_id = $data->id;
+            $datum->clerk = $request->clerk[$key];
+            $datum->clerk_signature = $request->clerk_signature[$key];
+            $datum->save();
+        }
+
+        ChamberSupportStaff::where('chamber_id', $id)->delete();
+        
+        foreach ( array_filter($support_staff_sections) as $key => $value ){
+            $datum = new ChamberSupportStaff();
+            $datum->chamber_id = $data->id;
+            $datum->support_staff = $request->support_staff[$key];
+            $datum->support_staff_signature = $request->support_staff_signature[$key];
+            $datum->save();
+        }
+
+        ChamberAccounts::where('chamber_id', $id)->delete();
+
+        foreach ( array_filter($chamber_account_sections) as $key => $value ){
+            $datum = new ChamberAccounts();
+            $datum->chamber_id = $data->id;
+            $datum->chamber_accounts = $request->chamber_accounts[$key];
+            $datum->account_name = $request->account_name[$key];
+            $datum->account_number = $request->account_number[$key];
+            $datum->bank_name = $request->bank_name[$key];
+            $datum->save();
+        }
+
+        DB::commit();
+
+        session()->flash('success', 'Chamber Updated Successfully.');
+        return redirect()->route('chamber');
+
     }
 
     /**

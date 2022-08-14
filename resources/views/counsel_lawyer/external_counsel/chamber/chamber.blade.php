@@ -49,10 +49,13 @@
                                 <table class="table table-bordered table-striped data_table">
                                     <thead>
                                     <tr>
-                                        <th class="text-center"> Name </th>
-                                        <th class="text-center"> Logo </th>
-                                        <th class="text-center"> Telephone </th>
-                                        <th class="text-nowrap"> Mobile </th>
+                                        <th class="text-center"> Name of Chamber </th>
+                                        <th class="text-center"> Head of Chamber </th>
+                                        <th class="text-center"> Contact Person </th>
+                                        <th class="text-nowrap"> Contact Number </th>
+                                        <th class="text-nowrap"> Chamber E-mail </th>
+                                        <th class="text-nowrap"> Chamber Address </th>
+                                        <th class="text-nowrap"> Engagement Date with Chamber </th>
                                         <th class="text-center"> Status </th>
                                         <th width="13%">Action</th>
                                     </tr>
@@ -61,18 +64,26 @@
                                     @foreach($data as $datum)
                                         <tr>
                                             <td>
-                                                {{ $datum->case_year }}
+                                                {{ $datum->chamber_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->alligation }}
+                                                {{ $datum->head_of_chamber }} {{ $datum->head_of_chamber_signature }}
                                             </td>
                                             <td>
-                                                {{ $datum->second_party_name }}
+                                                {{ $datum->admin_of_chamber }} {{ $datum->admin_of_chamber_signature }}
                                             </td>
                                             <td>
-                                                {{ $datum->case_notes }}
+                                                {{ $datum->chamber_telephone }} {{ $datum->chamber_mobile_one }} {{ $datum->chamber_mobile_two }}
                                             </td>
-
+                                            <td>
+                                                {{ $datum->chamber_email_one }} {{ $datum->chamber_email_two }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->main_office_address }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->created_at }}
+                                            </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)
                                                     <button type="button"
@@ -82,22 +93,13 @@
                                                     <button type="button"
                                                         class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                 @endif
-                                                </span>
                                             </td>
                                             <td>
-                                            <a href="{{ route('view-labour-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
-                                                ><i class="fas fa-eye"></i></button></a>
-                                            <a href="{{ route('add-billing-labour-cases', $datum->id) }}"><button
-                                                class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                                data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
-                                            <a href="{{ route('edit-labour-cases',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
-                                                ><i class="fas fa-edit"></i></button></a>
-
-                                                <form method="POST" action="{{ route('delete-labour-cases',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                            <a href="{{ route('edit-chamber',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></button></a>
+                                                <form method="POST" action="{{ route('delete-chamber',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
-
                                             </td>
                                         </tr>
                                     @endforeach

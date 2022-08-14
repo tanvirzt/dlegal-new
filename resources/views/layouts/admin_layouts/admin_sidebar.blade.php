@@ -206,6 +206,12 @@
                                     </a>
                                 </li> --}}
                                 <li class="nav-item">
+                                    <a href="{{ route('group') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Client Group</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('client-name') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Client Name</p>
@@ -284,12 +290,7 @@
                                         <p>External Counsel</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('group') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Group</p>
-                                    </a>
-                                </li>
+                                
                                 {{-- <li class="nav-item">
                                     <a href="{{ route('external-council-associates') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>

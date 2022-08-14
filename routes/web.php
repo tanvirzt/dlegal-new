@@ -726,9 +726,9 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('chamber', 'CounselLawyerController@index')->name('chamber');
         Route::get('add-chamber','CounselLawyerController@create')->name('add-chamber');
         Route::post('save-chamber','CounselLawyerController@store')->name('save-chamber');
-        // Route::get('edit-chamber/{id}','AdminSetupController@edit_chamber')->name('edit-chamber');
-        // Route::post('update-chamber/{id}','AdminSetupController@update_chamber')->name('update-chamber');
-        // Route::post('delete-chamber/{id}','AdminSetupController@delete_chamber')->name('delete-chamber');
+        Route::get('edit-chamber/{id}','CounselLawyerController@edit')->name('edit-chamber');
+        Route::post('update-chamber/{id}','CounselLawyerController@update')->name('update-chamber');
+        Route::post('delete-chamber/{id}','CounselLawyerController@destroy')->name('delete-chamber');
 
 
         Route::get('counsel', 'CounselLawyerController@index_counsel')->name('counsel');

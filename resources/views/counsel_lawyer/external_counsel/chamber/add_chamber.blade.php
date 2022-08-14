@@ -19,7 +19,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a  type="button" href="{{ route('criminal-cases') }}" aria-disabled="false"
+                                <a  type="button" href="{{ route('chamber') }}" aria-disabled="false"
                                     role="link" tabindex="-1">Back </a>
                             </li>
                         </ol>
@@ -63,13 +63,21 @@
                                                 <div class="form-group row">
                                                     <label for="chamber_logo" class="col-sm-4 col-form-label">Chamber Logo</label>
                                                     <div class="col-sm-8">
-                                                        <input type="file" class="form-control" id="chamber_logo"
+                                                        <input type="file" class="form-control" id="image"
                                                                name="chamber_logo"
                                                                value="{{old('chamber_logo')}}">
+                                                    <img id="preview-image" style="max-height: 250px;max-width:200px;">
+                                                               
                                                         @error('chamber_logo')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
+                                                {{-- <div class="form-group row"> --}}
+                                                    {{-- <label for="preview-image" class="col-sm-4 col-form-label"></label> --}}
+                                                {{-- </div> --}}
+
+
+
                                                 <div class="form-group row">
                                                     <label for="main_office_address" class="col-sm-4 col-form-label">Main Office Address</label>
                                                     <div class="col-sm-8">
@@ -187,6 +195,8 @@
                                                 <label for="case_no" class="col-sm-4 col-form-label">Partner of Chamber</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group hdtuto_partner_of_chamber control-group increment_partner_of_chamber">
+                                                        <input type="hidden" name="chamber_partner_sections[]"
+                                                                       class="myfrm form-control mr-2" value="chamber_partner_sections">
                                                         <input type="text" name="partner_of_chamber[]"
                                                             class="myfrm form-control col-md-7">
                                                         <input type="text" name="partner_of_chamber_signature[]"
@@ -201,6 +211,8 @@
                                                     <div class="clone_partner_of_chamber hide">
                                                         <div class="hdtuto_partner_of_chamber control-group lst input-group"
                                                             style="margin-top:10px">
+                                                            <input type="hidden" name="chamber_partner_sections[]"
+                                                                       class="myfrm form-control mr-2" value="chamber_partner_sections">
                                                             <input type="text" name="partner_of_chamber[]"
                                                                 class="myfrm form-control col-12">
                                                             <input type="text" name="partner_of_chamber_signature[]"
@@ -219,6 +231,8 @@
                                                 <label for="case_no" class="col-sm-4 col-form-label">Associate</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group hdtuto_associate control-group increment_associate">
+                                                        <input type="hidden" name="associate_sections[]"
+                                                                       class="myfrm form-control mr-2" value="associate_sections">
                                                         <input type="text" name="associate[]"
                                                             class="myfrm form-control col-md-7">
                                                         <input type="text" name="associate_signature[]"
@@ -233,6 +247,8 @@
                                                     <div class="clone_associate hide">
                                                         <div class="hdtuto_associate control-group lst input-group"
                                                             style="margin-top:10px">
+                                                            <input type="hidden" name="associate_sections[]"
+                                                                       class="myfrm form-control mr-2" value="associate_sections">
                                                             <input type="text" name="associate[]"
                                                                 class="myfrm form-control col-md-7">
                                                             <input type="text" name="associate_signature[]"
@@ -250,6 +266,7 @@
                                             <div class="form-group row">
                                                 <label for="case_no" class="col-sm-4 col-form-label">Admin of Chamber</label>
                                                     <div class="col-sm-8 input-group">
+                                                        
                                                         <input type="text" class="form-control col-sm-6"
                                                                id="admin_of_chamber"
                                                                name="admin_of_chamber"
@@ -305,6 +322,8 @@
                                                 <label for="case_no" class="col-sm-4 col-form-label">Clerk</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group hdtuto_clerk control-group increment_clerk">
+                                                        <input type="hidden" name="clerk_sections[]"
+                                                                       class="myfrm form-control mr-2" value="clerk_sections">
                                                         <input type="text" name="clerk[]"
                                                             class="myfrm form-control col-md-7">
                                                         <input type="text" name="clerk_signature[]"
@@ -319,6 +338,8 @@
                                                     <div class="clone_clerk hide">
                                                         <div class="hdtuto_clerk control-group lst input-group"
                                                             style="margin-top:10px">
+                                                            <input type="hidden" name="clerk_sections[]"
+                                                                       class="myfrm form-control mr-2" value="clerk_sections">
                                                             <input type="text" name="clerk[]"
                                                                 class="myfrm form-control col-md-7">
                                                             <input type="text" name="clerk_signature[]"
@@ -337,6 +358,8 @@
                                                 <label for="case_no" class="col-sm-4 col-form-label">Support Staff</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group hdtuto_support_staff control-group increment_support_staff">
+                                                        <input type="hidden" name="support_staff_sections[]"
+                                                                       class="myfrm form-control mr-2" value="support_staff_sections">
                                                         <input type="text" name="support_staff[]"
                                                             class="myfrm form-control col-md-7">
                                                         <input type="text" name="support_staff_signature[]"
@@ -351,6 +374,8 @@
                                                     <div class="clone_support_staff hide">
                                                         <div class="hdtuto_support_staff control-group lst input-group"
                                                             style="margin-top:10px">
+                                                            <input type="hidden" name="support_staff_sections[]"
+                                                                       class="myfrm form-control mr-2" value="support_staff_sections">
                                                             <input type="text" name="support_staff[]"
                                                                 class="myfrm form-control col-md-7">
                                                             <input type="text" name="support_staff_signature[]"
@@ -418,7 +443,9 @@
                                                 <div class="col-md-3 text-center">Bank Name</div> 
                                             </div>
                                         </h6>
-                                        <div class="input-group hdtuto_files control-group increment_files">
+                                        <div class="input-group hdtuto_chamber_accounts control-group increment_chamber_accounts">
+                                            <input type="hidden" name="chamber_account_sections[]"
+                                                                       class="myfrm form-control mr-2" value="chamber_account_sections">
                                             <input type="text" name="chamber_accounts[]"
                                                    class="myfrm form-control col-md-3 mr-2">
                                             <input type="text" name="account_name[]"
@@ -429,15 +456,17 @@
                                                 class="myfrm form-control mr-2 col-md-3" value="{{ old('uploaded_date') }}">
                                          
                                             <div class="input-group-btn">
-                                                <button class="btn btn-success btn_success_files"
+                                                <button class="btn btn-success btn_success_chamber_accounts"
                                                         type="button"><i
                                                         class="fldemo glyphicon glyphicon-plus"></i>+
                                                 </button>
                                             </div>
                                         </div>
-                                        <div class="clone_files hide">
-                                            <div class="hdtuto_files control-group lst input-group"
+                                        <div class="clone_chamber_accounts hide">
+                                            <div class="hdtuto_chamber_accounts control-group lst input-group"
                                                  style="margin-top:10px">
+                                                 <input type="hidden" name="chamber_account_sections[]"
+                                                                       class="myfrm form-control mr-2" value="chamber_account_sections">
                                                  <input type="text" name="chamber_accounts[]"
                                                         class="myfrm form-control col-md-3 mr-2">
                                                 <input type="text" name="account_name[]"
@@ -448,7 +477,7 @@
                                                     class="myfrm form-control mr-2 col-md-3" value="{{ old('uploaded_date') }}">
                                             <div class="input-group-btn">
                                                 <div class="input-group-btn">
-                                                    <button class="btn btn-danger btn_danger_files"
+                                                    <button class="btn btn-danger btn_danger_chamber_accounts"
                                                             type="button"><i
                                                             class="fldemo glyphicon glyphicon-remove"></i> -
                                                     </button>
