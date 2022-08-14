@@ -336,7 +336,9 @@ class CounselLawyerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Chamber::find($id)->delete();
+        session()->flash('success', 'Counsel Deleted Successfully.');
+        return redirect()->back();
     }
 
 
