@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminSetupController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +24,36 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//    return view('dashboard');
+//})->name('dashboard');
+
+
+
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
+//    Route::get('/dashboard','App\Http\Controllers\Admin\AdminController@dashboards')->name('dashboard');
+
+    Route::get('dashboard',[AdminController::class,'dashboard'])->name('dashboard');
+
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('products', ProductController::class);
+
+    Route::get('users.add-permissions/{id}',[UserController::class,'add_permissions'])->name('users.add-permissions');
+    Route::post('save-user-permissions/{id}',[UserController::class, 'save_users_permissions'])->name('users.save_permissions');
+
+    Route::get('designation', [AdminSetupController::class, 'designation'])->name('designation');
+    Route::get('add-designation',[AdminSetupController::class, 'add_designation'])->name('add-designation');
+    Route::post('save-designation',[AdminSetupController::class, 'save_designation'])->name('save-designation');
+    Route::get('edit-designation/{id}',[AdminSetupController::class, 'edit_designation'])->name('edit-designation');
+    Route::post('update-designation/{id}',[AdminSetupController::class, 'update_designation'])->name('update-designation');
+    Route::post('delete-designation/{id}',[AdminSetupController::class, 'delete_designation'])->name('delete-designation');
+
+});
+
+
+
+
 
 Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function(){
 
@@ -40,12 +74,6 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 //
 //        Route::match(['get','post'],'admin_details_update','AdminController@admin_details_update');
 
-        Route::get('designation', 'AdminSetupController@designation')->name('designation');
-        Route::get('add-designation','AdminSetupController@add_designation')->name('add-designation');
-        Route::post('save-designation','AdminSetupController@save_designation')->name('save-designation');
-        Route::get('edit-designation/{id}','AdminSetupController@edit_designation')->name('edit-designation');
-        Route::post('update-designation/{id}','AdminSetupController@update_designation')->name('update-designation');
-        Route::post('delete-designation/{id}','AdminSetupController@delete_designation')->name('delete-designation');
 
 //        Route::get('case-category','AdminSetupController@case_category')->name('case-category');
 //        Route::get('add-case-category','AdminSetupController@add_case_category')->name('add-case-category');
@@ -202,7 +230,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 
         Route::post('update-criminal-cases-status-column/{id}','CriminalCasesController@update_criminal_cases_status_column')->name('update-criminal-cases-status-column');
         Route::get('view-criminal-cases-read-notifications/{id}','CriminalCasesController@view_criminal_cases_read_notifications')->name('view-criminal-cases-read-notifications');
-        
+
 
         Route::get('labour-cases','LabourCasesController@labour_cases')->name('labour-cases');
         Route::get('add-labour-cases','LabourCasesController@add_labour_cases')->name('add-labour-cases');
@@ -426,7 +454,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('view-flat-information/{id}','FlatInfoController@view_flat_information')->name('view-flat-information');
         Route::get('download-flat-information-files/{id}','FlatInfoController@download_flat_information_files')->name('download-flat-information-files');
         Route::post('search-flat-information','FlatInfoController@search_flat_information')->name('search-flat-information');
-        
+
         Route::get('/find-thana','LandInfoController@find_thana')->name('find-thana');
         Route::get('/find-case-infos-thana','LandInfoController@find_case_infos_thana')->name('find-case-infos-thana');
         Route::get('/find-seller-details','LandInfoController@find_seller_details')->name('find-seller-details');
@@ -715,7 +743,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('calendar-list-arrow-down', 'LitigationCalenderController@calendar_list_arrow_down')->name('calendar-list-arrow-down');
         Route::get('litigation-calendar-list-print-preview','LitigationCalenderController@litigation_calendar_list_print_preview')->name('litigation-calendar-list-print-preview');
         Route::get('litigation-calendar-list-print-preview-search/{param1}/{param2}','LitigationCalenderController@litigation_calendar_list_print_preview_search')->name('litigation-calendar-list-print-preview-search');
-        
+
         Route::get('cabinet', 'AdminSetupController@cabinet')->name('cabinet');
         Route::get('add-cabinet','AdminSetupController@add_cabinet')->name('add-cabinet');
         Route::post('save-cabinet','AdminSetupController@save_cabinet')->name('save-cabinet');

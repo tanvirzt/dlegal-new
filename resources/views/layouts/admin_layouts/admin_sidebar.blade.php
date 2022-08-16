@@ -14,15 +14,13 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
 
-            <!-- <img src="{{ asset('images/admin_images/admin_profile/'.Auth::guard('admin')->user()->image) }}"
-                     class="img-circle elevation-2" alt="User Image"> -->
 
             </div>
 
-            <div class="info">
-                <a href="#"
-                   class="d-block">{{ ucfirst(Auth::guard('admin')->user()->name) }}</a>
-            </div>
+{{--            <div class="info">--}}
+{{--                <a href="#"--}}
+{{--                   class="d-block">{{ ucfirst(Auth::guard('admin')->user()->name) }}</a>--}}
+{{--            </div>--}}
         </div>
 
         <!-- Sidebar Menu -->
@@ -229,7 +227,7 @@
                                         <p>Complainant</p>
                                     </a>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a href="{{ route('coordinator') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -266,12 +264,14 @@
                                         <p>Day Notes</p>
                                     </a>
                                 </li>
+                                @can('designation')
                                 <li class="nav-item">
                                     <a href="{{ route('designation') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Designation</p>
                                     </a>
                                 </li>
+                                @endcan
                                 <li class="nav-item">
                                     <a href="{{ route('documents-setup') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -290,7 +290,7 @@
                                         <p>External Counsel</p>
                                     </a>
                                 </li>
-                                
+
                                 {{-- <li class="nav-item">
                                     <a href="{{ route('external-council-associates') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -327,7 +327,7 @@
                                         <p>Legal Service</p>
                                     </a>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a href="{{ route('mode') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -412,14 +412,14 @@
                                         <p>Section</p>
                                     </a>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a href="{{ route('person-title') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Title</p>
                                     </a>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a href="{{ route('region') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>

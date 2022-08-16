@@ -81,6 +81,22 @@ use App\Models\SetupGroup;
 class AdminSetupController extends Controller
 {
     //
+
+    function __construct()
+    {
+//        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','show']]);
+//        $this->middleware('permission:user-create', ['only' => ['create','store']]);
+//        $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+//        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+
+        $this->middleware('permission:designation|add-designation|edit-designation|delete-designation', ['only' => ['designation']]);
+        $this->middleware('permission:add-designation', ['only' => ['add_designation','save_designation']]);
+        $this->middleware('permission:edit-designation', ['only' => ['edit_designation','update_designation']]);
+        $this->middleware('permission:delete-designation', ['only' => ['delete_designation']]);
+
+
+    }
+
     public function designation()
     {
         $data = SetupDesignation::where('delete_status',0)->get();
@@ -1827,7 +1843,7 @@ public function delete_company($id)
         $data->is_associate = 'off';
         $data->whose_associate_id = null;
      }
-     
+
      $data->email = $request->email;
      $data->work_phone = $request->work_phone;
      $data->home_phone = $request->home_phone;

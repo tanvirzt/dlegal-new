@@ -19,6 +19,11 @@ class AdminController extends Controller
         return view('admin.admin_dashboard');
     }
 
+    public function dashboards()
+    {
+        return view('dashboard');
+    }
+
     public function login(Request $request)
     {
         if($request->isMethod('post')){
@@ -78,7 +83,7 @@ class AdminController extends Controller
                 }else{
                     Session::flash('error_message','Your new and confirm password is not same!');
                 }
-                
+
             }else{
                 Session::flash('error_message','Your current password is not correct!');
             }
@@ -90,7 +95,7 @@ class AdminController extends Controller
     public function admin_details_update(Request $request)
     {
         Session::put('page','admin_details_update');
-        
+
         if($request->isMethod('post')){
             $data = $request->all();
             // echo "<pre>";print_r($data);die();
@@ -110,7 +115,7 @@ class AdminController extends Controller
             $this->validate($request,$rules,$validMsg);
 
             if ($request->hasFile('image')) {
-                // get image tmp name 
+                // get image tmp name
                 $img_tmp = $request->file('image');
 // check whether the image exists or not
                     if (!empty($data['current_image'])) {
@@ -130,9 +135,9 @@ class AdminController extends Controller
 // declare the storage path where the file have to save
                     $image_path = 'images/admin_images/admin_profile/'.$img_name;
 // dave the file into the given path
-                    Image::make($img_tmp)->resize(200,200)->save($image_path);                   
-                    
-                }                
+                    Image::make($img_tmp)->resize(200,200)->save($image_path);
+
+                }
 // if the file is already exists and dont want to give an image again
             }else if(!empty($data['current_image'])){
 
@@ -143,8 +148,8 @@ class AdminController extends Controller
                 $img_name = "";
 
             }
-                    
-//save the data into database 
+
+//save the data into database
             Admin::where('email',Auth::guard('admin')->user()->email)->update(['name'=>$data['name'],'mobile'=>$data['mobile'],'image'=>$img_name]);
 // after saving the data give a flash message to the view
             session::flash('success_message','Admin Details updated successfully!');

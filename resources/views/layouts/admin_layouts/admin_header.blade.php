@@ -104,8 +104,8 @@
         /* .custom_ul li ul a:hover{
             background: #2A6CB1;
         } */
-        
-        
+
+
     </style>
 
 <ul class="custom_ul">
@@ -137,7 +137,7 @@
             <li><a href="{{ route('appellate-court-cases') }}">Appellate Court Division</a></li>
         </ul>
     </li>
-    
+
     <li><a href="#">Legal Service</a></li>
     <li><a href="#">Compliance MGT</a></li>
     <li><a href="#">Documents MGT</a></li>
@@ -147,7 +147,7 @@
 </ul>
 
     {{-- <ul class="navbar-nav">
-        
+
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" style="color:white;" class="nav-link">Compliance MGT</a>
         </li>
@@ -177,48 +177,34 @@
 
 
 
-@php
-    $notifications = \App\Models\CasesNotifications::where('received_by',Auth::guard('admin')->user()->email)->orderBy('created_at', 'desc')->get();
-@endphp
+{{--@php--}}
+{{--    $notifications = \App\Models\CasesNotifications::where('received_by',Auth::guard('admin')->user()->email)->orderBy('created_at', 'desc')->get();--}}
+{{--@endphp--}}
 
 
 <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
 
-        <li class="nav-item dropdown mr-2">
-            <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                <i class="far fa-bell custom_size"></i>
-                <span class="badge badge-warning navbar-badge navbar_badge_custom">{{ $notifications->count() }}</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
-                <span class="dropdown-item dropdown-header">{{ $notifications->count() }} Notifications</span>
-                @foreach($notifications as $data)
-                    <div class="dropdown-divider"></div>
-                    {{-- <a href="{{ route('view-criminal-cases', $data->case_id) }}" class="dropdown-item"> --}}
-                        <a href="{{ route('view-criminal-cases-read-notifications', $data->id) }}" @if ($data->is_read == "Yes")
-                            style="background:#fff;"
-                        @endif class="dropdown-item">
-                        
-                        
-                        <p> <b>
-                        <i class="fas fa-envelope mr-2"></i> {{ $data->case_type }} {{ $data->case_no }} </b> sent to you.</p>
-                        {{-- <span class="float-right text-muted text-sm"></span> --}}
-                    </a>
-                @endforeach
-                {{--                <div class="dropdown-divider"></div>--}}
-                {{--                <a href="#" class="dropdown-item">--}}
-                {{--                    <i class="fas fa-users mr-2"></i> 8 friend requests--}}
-                {{--                    <span class="float-right text-muted text-sm">12 hours</span>--}}
-                {{--                </a>--}}
-                {{--                <div class="dropdown-divider"></div>--}}
-                {{--                <a href="#" class="dropdown-item">--}}
-                {{--                    <i class="fas fa-file mr-2"></i> 3 new reports--}}
-                {{--                    <span class="float-right text-muted text-sm">2 days</span>--}}
-                {{--                </a>--}}
-                {{--                <div class="dropdown-divider"></div>--}}
-                {{--                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>--}}
-            </div>
-        </li>
+{{--        <li class="nav-item dropdown mr-2">--}}
+{{--            <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">--}}
+{{--                <i class="far fa-bell custom_size"></i>--}}
+{{--                <span class="badge badge-warning navbar-badge navbar_badge_custom">{{ $notifications->count() }}</span>--}}
+{{--            </a>--}}
+{{--            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">--}}
+{{--                <span class="dropdown-item dropdown-header">{{ $notifications->count() }} Notifications</span>--}}
+{{--                @foreach($notifications as $data)--}}
+{{--                    <div class="dropdown-divider"></div>--}}
+{{--                        <a href="{{ route('view-criminal-cases-read-notifications', $data->id) }}" @if ($data->is_read == "Yes")--}}
+{{--                            style="background:#fff;"--}}
+{{--                        @endif class="dropdown-item">--}}
+
+
+{{--                        <p> <b>--}}
+{{--                        <i class="fas fa-envelope mr-2"></i> {{ $data->case_type }} {{ $data->case_no }} </b> sent to you.</p>--}}
+{{--                    </a>--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
+{{--        </li>--}}
 
 
         <!-- Notifications Dropdown Menu -->
@@ -232,11 +218,24 @@
               <span class="dropdown-item dropdown-header">User info</span>
               <div class="dropdown-divider"></div>
             <div class="dropdown-divider"></div>
-            <a href="{{ route('admin.logout') }}" class="dropdown-item dropdown-footer">Logout</a>
+{{--            <a href="{{ route('admin.logout') }}" class="dropdown-item dropdown-footer">Logout</a>--}}
+
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                 onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                  {{ __('Logout') }}
+              </a>
+
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
+
+
         </div>
         </li>
 
-    
+
     </ul>
 </nav>
 <!-- /.navbar -->
@@ -341,8 +340,8 @@
         /* .custom_ul li ul a:hover{
             background: #2A6CB1;
         } */
-        
-        
+
+
     </style>
 
 <ul class="custom_ul">
@@ -374,7 +373,7 @@
             <li><a href="{{ route('appellate-court-cases') }}">Appellate Court Division</a></li>
         </ul>
     </li>
-    
+
     <li><a href="#">Legal Service</a></li>
     <li><a href="#">Compliance MGT</a></li>
     <li><a href="#">Documents MGT</a></li>
@@ -384,7 +383,7 @@
 </ul>
 
     {{-- <ul class="navbar-nav">
-        
+
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" style="color:white;" class="nav-link">Compliance MGT</a>
         </li>
@@ -414,48 +413,34 @@
 
 
 
-@php
-    $notifications = \App\Models\CasesNotifications::where('received_by',Auth::guard('admin')->user()->email)->orderBy('created_at', 'desc')->get();
-@endphp
+{{--@php--}}
+{{--    $notifications = \App\Models\CasesNotifications::where('received_by',Auth::guard('admin')->user()->email)->orderBy('created_at', 'desc')->get();--}}
+{{--@endphp--}}
 
 
 <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
 
-        <li class="nav-item dropdown mr-2">
-            <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                <i class="far fa-bell custom_size"></i>
-                <span class="badge badge-warning navbar-badge navbar_badge_custom">{{ $notifications->count() }}</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
-                <span class="dropdown-item dropdown-header">{{ $notifications->count() }} Notifications</span>
-                @foreach($notifications as $data)
-                    <div class="dropdown-divider"></div>
-                    {{-- <a href="{{ route('view-criminal-cases', $data->case_id) }}" class="dropdown-item"> --}}
-                        <a href="{{ route('view-criminal-cases-read-notifications', $data->id) }}" @if ($data->is_read == "Yes")
-                            style="background:#fff;"
-                        @endif class="dropdown-item">
-                        
-                        
-                        <p> <b>
-                        <i class="fas fa-envelope mr-2"></i> {{ $data->case_type }} {{ $data->case_no }} </b> sent to you.</p>
-                        {{-- <span class="float-right text-muted text-sm"></span> --}}
-                    </a>
-                @endforeach
-                {{--                <div class="dropdown-divider"></div>--}}
-                {{--                <a href="#" class="dropdown-item">--}}
-                {{--                    <i class="fas fa-users mr-2"></i> 8 friend requests--}}
-                {{--                    <span class="float-right text-muted text-sm">12 hours</span>--}}
-                {{--                </a>--}}
-                {{--                <div class="dropdown-divider"></div>--}}
-                {{--                <a href="#" class="dropdown-item">--}}
-                {{--                    <i class="fas fa-file mr-2"></i> 3 new reports--}}
-                {{--                    <span class="float-right text-muted text-sm">2 days</span>--}}
-                {{--                </a>--}}
-                {{--                <div class="dropdown-divider"></div>--}}
-                {{--                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>--}}
-            </div>
-        </li>
+{{--        <li class="nav-item dropdown mr-2">--}}
+{{--            <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">--}}
+{{--                <i class="far fa-bell custom_size"></i>--}}
+{{--                <span class="badge badge-warning navbar-badge navbar_badge_custom">{{ $notifications->count() }}</span>--}}
+{{--            </a>--}}
+{{--            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">--}}
+{{--                <span class="dropdown-item dropdown-header">{{ $notifications->count() }} Notifications</span>--}}
+{{--                @foreach($notifications as $data)--}}
+{{--                    <div class="dropdown-divider"></div>--}}
+{{--                        <a href="{{ route('view-criminal-cases-read-notifications', $data->id) }}" @if ($data->is_read == "Yes")--}}
+{{--                            style="background:#fff;"--}}
+{{--                        @endif class="dropdown-item">--}}
+
+
+{{--                        <p> <b>--}}
+{{--                        <i class="fas fa-envelope mr-2"></i> {{ $data->case_type }} {{ $data->case_no }} </b> sent to you.</p>--}}
+{{--                    </a>--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
+{{--        </li>--}}
 
 
         <!-- Notifications Dropdown Menu -->
@@ -469,11 +454,25 @@
               <span class="dropdown-item dropdown-header">User info</span>
               <div class="dropdown-divider"></div>
             <div class="dropdown-divider"></div>
-            <a href="{{ route('admin.logout') }}" class="dropdown-item dropdown-footer">Logout</a>
+{{--            <a href="{{ route('logout') }}" class="dropdown-item dropdown-footer">Logout</a>--}}
+
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                 onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                  {{ __('Logout') }}
+              </a>
+
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
+
+
+
         </div>
         </li>
 
-    
+
     </ul>
 </nav>
 <!-- /.navbar -->
