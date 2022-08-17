@@ -93,27 +93,13 @@
                         <p>Login into your pages account</p>
                     </div>
 
-
-{{--                    @if (session('status'))--}}
-{{--                        <div class="mb-4 font-medium text-sm text-green-600">--}}
-{{--                            {{ session('status') }}--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
-                <!-- Session Status -->
-{{--                    {{session('status')}}--}}
-                <!-- Session Status -->
-
-                    <!-- Error Status For Email -->
                     @if ($errors->has('email'))
                         <span class="error" style="color: red; font-weight:bold;">{{ $errors->first('email') }}</span>
                     @endif
-                <!-- Error Status For Email -->
 
-                    <!-- Error Status For Password -->
                     @if ($errors->has('password'))
                         <span class="error" style="color: red; font-weight:bold;">{{ $errors->first('password') }}</span>
-                @endif
-                <!-- Error Status For Password -->
+                    @endif
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

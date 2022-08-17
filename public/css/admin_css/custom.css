@@ -747,3 +747,7 @@ th{
 a .btn{
     padding: 0px 1px 0px 1px;
 }
+
+.user_permission{
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);padding-top: 10px;
+}

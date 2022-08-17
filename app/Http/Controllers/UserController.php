@@ -20,8 +20,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('data'))
+        $data = User::orderBy('id','DESC')->get();
+        return view('user_management.users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -33,7 +33,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles'));
+        return view('user_management.users.create',compact('roles'));
     }
 
     /**
@@ -85,7 +85,7 @@ class UserController extends Controller
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
 
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('user_management.users.edit',compact('user','roles','userRole'));
     }
 
     /**
@@ -138,7 +138,7 @@ class UserController extends Controller
     {
         $permission = Permission::get();
         $user = User::find($id);
-        return view('users.user_permissions',compact('permission','user'));
+        return view('user_management.users.user_permissions',compact('permission','user'));
 
     }
 

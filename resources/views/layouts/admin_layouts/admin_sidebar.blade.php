@@ -17,10 +17,10 @@
 
             </div>
 
-{{--            <div class="info">--}}
-{{--                <a href="#"--}}
-{{--                   class="d-block">{{ ucfirst(Auth::guard('admin')->user()->name) }}</a>--}}
-{{--            </div>--}}
+            <div class="info">
+                <a href="{{ route('dashboard') }}"
+                   class="d-block">{{ ucfirst(Auth::user()->name) }}</a>
+            </div>
         </div>
 
         <!-- Sidebar Menu -->
@@ -34,6 +34,29 @@
                             Dashboard
                         </p>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-circle"></i>
+                        <p>
+                            User Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('users.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('roles.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Role</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
