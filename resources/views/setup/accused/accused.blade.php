@@ -39,10 +39,11 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('add-accused') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Accused </button></a>
+                                    @can('accused-add')
+                                        <a href="{{ route('add-accused') }}"><button class="btn btn-sm
+                                        btn-success add_btn"><i class="fas fa-plus"></i> Add Accused </button></a>
+                                    @endcan
                                 </div>
-
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -85,15 +86,16 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">
-
+                                                @can('accused-edit')
                                                 <a href="{{ route('edit-accused',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
-                                                <form method="POST" action="{{ route('delete-accused',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
-                                                </form>
-
-
+                                                @endcan
+                                                @can('accused-delete')
+                                                    <form method="POST" action="{{ route('delete-accused',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+                                                    </form>
+                                               @endcan
                                             </td>
                                         </tr>
                                     @endforeach

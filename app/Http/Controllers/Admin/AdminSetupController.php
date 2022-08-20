@@ -89,10 +89,15 @@ class AdminSetupController extends Controller
 //        $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
 //        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
 
-        $this->middleware('permission:designation|add-designation|edit-designation|delete-designation', ['only' => ['designation']]);
-        $this->middleware('permission:add-designation', ['only' => ['add_designation','save_designation']]);
-        $this->middleware('permission:edit-designation', ['only' => ['edit_designation','update_designation']]);
-        $this->middleware('permission:delete-designation', ['only' => ['delete_designation']]);
+//        $this->middleware('permission:designation|add-designation|edit-designation|delete-designation', ['only' => ['designation']]);
+//        $this->middleware('permission:add-designation', ['only' => ['add_designation','save_designation']]);
+//        $this->middleware('permission:edit-designation', ['only' => ['edit_designation','update_designation']]);
+//        $this->middleware('permission:delete-designation', ['only' => ['delete_designation']]);
+
+        $this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['designation','show']]);
+        $this->middleware('permission:product-create', ['only' => ['create','store']]);
+        $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:product-delete', ['only' => ['destroy']]);
 
 
     }

@@ -76,32 +76,40 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                @can('counsel-list')
                                 <li class="nav-item">
                                     <a href="{{ route('counsel') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Counsel</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('chamber-staff-list')
                                 <li class="nav-item">
                                     <a href="{{ route('chamber-staff') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Chamber Staff</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('chamber-list')
                                 <li class="nav-item">
                                     <a href="{{ route('chamber') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Chamber</p>
                                     </a>
                                 </li>
+                                @endcan
                             </ul>
-                            <li class="nav-item">
+                        @can('chamber-list')
+                        <li class="nav-item">
                                 <a href="{{ route('internal-counsel') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Internal Counsel</p>
                                 </a>
                             </li>
                         </li>
+                        @endcan
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -122,19 +130,22 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                @can('accused-list')
                                 <li class="nav-item">
                                     <a href="{{ route('accused') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Accused</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('allegation-claim-list')
                                 <li class="nav-item">
                                     <a href="{{ route('allegation') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Allegation/Claim</p>
                                     </a>
                                 </li>
-
+                                @endcan
                                 <li class="nav-item">
                                     <a href="{{ route('area') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -287,7 +298,7 @@
                                         <p>Day Notes</p>
                                     </a>
                                 </li>
-                                @can('designation')
+                                @can('product-list')
                                 <li class="nav-item">
                                     <a href="{{ route('designation') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>

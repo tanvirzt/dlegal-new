@@ -74,7 +74,8 @@
                                             <td class="text-center">
                                                 @if(!empty($user->getRoleNames()))
                                                     @foreach($user->getRoleNames() as $v)
-                                                        <label class="badge badge-success">{{ $v }}</label>
+                                                        <button type="button" class="btn-custom btn-success-custom text-uppercase"> {{ $v }}
+                                                        </button>
                                                     @endforeach
                                                 @endif
                                             </td>

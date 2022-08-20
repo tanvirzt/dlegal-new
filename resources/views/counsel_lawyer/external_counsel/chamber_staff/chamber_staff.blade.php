@@ -39,8 +39,10 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('chamber-staff-add')
                                     <a href="{{ route('create-chamber-staff') }}"><button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add Chamber Staff </button></a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -99,12 +101,17 @@
                                             {{-- <a href="{{ route('view-counsel',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                                 ><i class="fas fa-eye"></i></button></a>
                                              --}}
-                                            <a href="{{ route('edit-chamber-staff',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                @can('chamber-staff-edit')
+
+                                                <a href="{{ route('edit-chamber-staff',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                 ><i class="fas fa-edit"></i></button></a>
+                                                @endcan
+                                                @can('chamber-staff-delete')
                                                 <form method="POST" action="{{ route('delete-chamber-staff',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

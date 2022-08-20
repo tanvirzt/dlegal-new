@@ -44,8 +44,8 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('roles.add-role') }}"><button class="btn btn-sm
-                                        btn-success add_btn"><i class="fas fa-plus"></i> Add Role Design </button></a>
+{{--                                    <a href="{{ route('roles.add-role') }}"><button class="btn btn-sm--}}
+{{--                                        btn-success add_btn"><i class="fas fa-plus"></i> Add Role Design </button></a>--}}
                                     @can('role-create')
                                         <a href="{{ route('roles.create') }}"><button class="btn btn-sm
                                         btn-success add_btn"><i class="fas fa-plus"></i> Add Role </button></a>

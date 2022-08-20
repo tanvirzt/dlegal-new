@@ -82,23 +82,69 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="col-md-12 col-form-label">Permission</label>
-                                                @foreach($permission as $value)
-                                                    <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                                                        {{ $value->name }}</label>
-                                                    <br/>
-                                                @endforeach
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-md-12">--}}
+{{--                                            <div class="form-group">--}}
+{{--                                                <label class="col-md-12 col-form-label">Permission</label>--}}
+{{--                                                @foreach($permission as $value)--}}
+{{--                                                    <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}--}}
+{{--                                                        {{ $value->name }}</label>--}}
+{{--                                                    <br/>--}}
+{{--                                                @endforeach--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
+
+                                    <label for="case_no" class="col-sm-4 col-form-label mb-3">Permission</label>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group row user_permission">
+                                            <div class="form-group col-md-3">
+                                                <div class="icheck-success d-inline">
+                                                    <input type="checkbox" id="check_all_permission" {{ count($all_permissions) == count($user->getAllPermissions()->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                                    <label for="check_all_permission">All
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
+                                        @php $i = 1; @endphp
+                                        @foreach($permission_groups as $group)
+                                            @php
+                                                $permissions = \App\Models\User::getpermissionByGroupName($group->name);
+                                                  $j = 1;
+                                            @endphp
+                                            <div class="form-group row user_permission">
+                                                <div class="form-group col-md-3">
+                                                    <div class="icheck-success d-inline">
+                                                        <input type="checkbox" id="{{ $i }}Management" onclick="checkPermissionByGroup('role-{{ $i }}-management-checkbox', this)"
+                                                               {{ count($permissions) == count($user->getAllPermissions()->where('group_name',$group->name)->toArray()) ? 'checked' : '' }}
+
+                                                               value="{{ $group->name }}">
+                                                        <label for="{{ $i }}Management">{{ $group->name }}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9 row role-{{ $i }}-management-checkbox">
+
+                                                    @foreach($permissions as $permission)
+                                                        <div class="form-group col-md-3">
+                                                            <div class="icheck-success d-inline">
+                                                                <input type="checkbox" id="checkPermission{{ $permission->id }}" onclick="checkSinglePermission('role-{{ $i }}-management-checkbox', '{{ $i }}Management', {{ count($permissions) }})"
+                                                                       value="{{ $permission->id }}" name="permission[]" {{ in_array($permission->id, $user->getAllPermissions()->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                                                <label for="checkPermission{{ $permission->id }}">{{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        @php $j++; @endphp
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            @php $i++; @endphp
+                                        @endforeach
+                                        <button type="submit" class="btn btn-primary float-right text-uppercase"><i class="fas fa-save"></i> Update </button>
+
                                     </div>
-
-
-
-
 
 
 {{--                                    <div class="form-group">--}}
@@ -107,7 +153,6 @@
 {{--                                    </div>--}}
 
 
-                                    <button type="submit" class="btn btn-primary float-end mb-4 text-uppercase"> <i class="fa fa-save" data-bs-toggle="tooltip" title="fa fa-plus"></i> Save</button>
                                 </div>
                             </form>
 
@@ -201,3 +246,20 @@
 {{--    </form>--}}
 {{--    <p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>--}}
 {{--@endsection--}}
+
+<script>
+    function implementAllChecked(){
+        const countPermissions = {{ count($all_permissions)}};
+        const countPermissionGroups = {{ count($permission_groups)}};
+
+        console.log(countPermissions + countPermissionGroups);
+        console.log($('input[type="checkbox"]:checked').length);
+
+        if ($('input[type="checkbox"]:checked').length >= (countPermissions + countPermissionGroups)){
+            $("#check_all_permission").prop('checked', true);
+        }else{
+            $("#check_all_permission").prop('checked', false);
+        }
+
+    }
+</script>

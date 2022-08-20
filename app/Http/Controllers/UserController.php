@@ -136,9 +136,11 @@ class UserController extends Controller
 
     public function add_permissions($id)
     {
+        $all_permissions = Permission::get();
         $permission = Permission::get();
         $user = User::find($id);
-        return view('user_management.users.user_permissions',compact('permission','user'));
+        $permission_groups = User::getPermissionGroups();
+        return view('user_management.users.user_permissions',compact('permission_groups','all_permissions','permission','user'));
 
     }
 
