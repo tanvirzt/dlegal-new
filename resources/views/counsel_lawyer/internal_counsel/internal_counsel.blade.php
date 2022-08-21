@@ -39,8 +39,10 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('internal-counsel-add')
                                     <a href="{{ route('add-internal-counsel') }}"><button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add Internal Counsel </button></a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -74,7 +76,7 @@
                                                 {{ $datum->internal_counsel_role_id }}
                                             </td>
                                             <td>
-                                                {{ $datum->date_of_joining }} 
+                                                {{ $datum->date_of_joining }}
                                             </td>
                                             <td>
                                                 {{ $datum->bar_council_enrollment_date }} {{ $datum->bar_council_enrollment_sanad_no }}
@@ -83,10 +85,10 @@
                                                 {{ $datum->high_court_enrollment_date }} {{ $datum->high_court_enrollment_membership_number }}
                                             </td>
                                             <td>
-                                                {{ $datum->professional_contact_number }} {{ $datum->professional_contact_number_write }} 
+                                                {{ $datum->professional_contact_number }} {{ $datum->professional_contact_number_write }}
                                             </td>
                                             <td>
-                                                {{ $datum->professional_email }} {{ $datum->professional_email_write }} 
+                                                {{ $datum->professional_email }} {{ $datum->professional_email_write }}
                                             </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)
@@ -103,12 +105,16 @@
                                             {{-- <a href="{{ route('view-internal-counsel',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                                 ><i class="fas fa-eye"></i></button></a>
                                              --}}
+                                                @can('internal-counsel-edit')
                                                 <a href="{{ route('edit-internal-counsel',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                 ><i class="fas fa-edit"></i></button></a>
+                                                @endcan
+                                                @can('internal-counsel-delete')
                                                 <form method="POST" action="{{ route('delete-internal-counsel',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

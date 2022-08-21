@@ -94,10 +94,10 @@ class AdminSetupController extends Controller
 //        $this->middleware('permission:edit-designation', ['only' => ['edit_designation','update_designation']]);
 //        $this->middleware('permission:delete-designation', ['only' => ['delete_designation']]);
 
-        $this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['designation','show']]);
-        $this->middleware('permission:product-create', ['only' => ['create','store']]);
-        $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:product-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:accused-list|accused-create|accused-edit|accused-delete', ['only' => ['accused']]);
+        $this->middleware('permission:accused-create', ['only' => ['add_accused','save_accused']]);
+        $this->middleware('permission:accused-edit', ['only' => ['edit_accused','update_accused']]);
+        $this->middleware('permission:accused-delete', ['only' => ['delete_accused']]);
 
 
     }

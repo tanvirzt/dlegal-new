@@ -32,11 +32,35 @@ class CounselLawyerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct(){
+
+        $this->middleware('permission:counsel-list|counsel-create|counsel-edit|counsel-delete', ['only' => ['index_counsel']]);
+        $this->middleware('permission:counsel-create', ['only' => ['create_counsel','store_counsel']]);
+        $this->middleware('permission:counsel-edit', ['only' => ['edit_counsel','update_counsel']]);
+        $this->middleware('permission:counsel-delete', ['only' => ['destroy_counsel']]);
+
+        $this->middleware('permission:chamber-staff-list|chamber-staff-create|chamber-staff-edit|chamber-staff-delete', ['only' => ['index_chamber_staff']]);
+        $this->middleware('permission:chamber-staff-create', ['only' => ['create_chamber_staff','store_chamber_staff']]);
+        $this->middleware('permission:chamber-staff-edit', ['only' => ['edit_chamber_staff','update_chamber_staff']]);
+        $this->middleware('permission:chamber-staff-delete', ['only' => ['destroy_chamber_staff']]);
+
+        $this->middleware('permission:chamber-list|chamber-create|chamber-edit|chamber-delete', ['only' => ['index_chamber']]);
+        $this->middleware('permission:chamber-create', ['only' => ['create_chamber','store_chamber']]);
+        $this->middleware('permission:chamber-edit', ['only' => ['edit_chamber','update_chamber']]);
+        $this->middleware('permission:chamber-delete', ['only' => ['destroy_chamber']]);
+
+        $this->middleware('permission:internal-counsel-list|internal-counsel-create|internal-counsel-edit|internal-counsel-delete', ['only' => ['index_internal_counsel']]);
+        $this->middleware('permission:internal-counsel-create', ['only' => ['create_internal_counsel','store_internal_counsel']]);
+        $this->middleware('permission:internal-counsel-edit', ['only' => ['edit_internal_counsel','update_internal_counsel']]);
+        $this->middleware('permission:internal-counsel-delete', ['only' => ['destroy_internal_counsel']]);
+
+    }
+
+
     public function index()
     {
-        // dd('hello');
         $data = Chamber::get();
-        // dd($data);
         return view('counsel_lawyer.external_counsel.chamber.chamber',compact('data'));
 
     }
@@ -64,21 +88,21 @@ class CounselLawyerController extends Controller
         // echo "<pre>";print_r($data);die;
 
         $chamber_partner_sections = $request->chamber_partner_sections;
-        $remove = array_pop($chamber_partner_sections);  
+        $remove = array_pop($chamber_partner_sections);
 
         $associate_sections = $request->associate_sections;
-        $remove = array_pop($associate_sections);  
+        $remove = array_pop($associate_sections);
 
         $clerk_sections = $request->clerk_sections;
-        $remove = array_pop($clerk_sections);  
+        $remove = array_pop($clerk_sections);
 
         $support_staff_sections = $request->support_staff_sections;
-        $remove = array_pop($support_staff_sections);  
+        $remove = array_pop($support_staff_sections);
 
         $chamber_account_sections = $request->chamber_account_sections;
-        $remove = array_pop($chamber_account_sections);  
+        $remove = array_pop($chamber_account_sections);
 
-       
+
         DB::beginTransaction();
 
         $data = new Chamber();
@@ -206,26 +230,26 @@ class CounselLawyerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         // $data = json_decode(json_encode($request->all()));
         // echo "<pre>";print_r($data);die;
 
         $chamber_partner_sections = $request->chamber_partner_sections;
-        $remove = array_pop($chamber_partner_sections);  
+        $remove = array_pop($chamber_partner_sections);
 
         $associate_sections = $request->associate_sections;
-        $remove = array_pop($associate_sections);  
+        $remove = array_pop($associate_sections);
 
         $clerk_sections = $request->clerk_sections;
-        $remove = array_pop($clerk_sections);  
+        $remove = array_pop($clerk_sections);
 
         $support_staff_sections = $request->support_staff_sections;
-        $remove = array_pop($support_staff_sections);  
+        $remove = array_pop($support_staff_sections);
 
         $chamber_account_sections = $request->chamber_account_sections;
-        $remove = array_pop($chamber_account_sections);  
+        $remove = array_pop($chamber_account_sections);
 
-       
+
         DB::beginTransaction();
 
         $data = Chamber::find($id);
@@ -300,7 +324,7 @@ class CounselLawyerController extends Controller
         }
 
         ChamberSupportStaff::where('chamber_id', $id)->delete();
-        
+
         foreach ( array_filter($support_staff_sections) as $key => $value ){
             $datum = new ChamberSupportStaff();
             $datum->chamber_id = $data->id;
@@ -379,11 +403,11 @@ class CounselLawyerController extends Controller
 
 
         $received_documents_sections = $request->received_documents_sections;
-        $remove = array_pop($received_documents_sections);  
- 
+        $remove = array_pop($received_documents_sections);
+
         $required_wanting_documents_sections = $request->required_wanting_documents_sections;
-        $remove = array_pop($required_wanting_documents_sections);  
- 
+        $remove = array_pop($required_wanting_documents_sections);
+
         $data = new Counsel();
         $data->chamber_name = $request->chamber_name;
         $data->counsel_role_id = $request->counsel_role_id;
@@ -499,11 +523,11 @@ class CounselLawyerController extends Controller
     public function update_counsel(Request $request, $id)
     {
         $received_documents_sections = $request->received_documents_sections;
-        $remove = array_pop($received_documents_sections);  
- 
+        $remove = array_pop($received_documents_sections);
+
         $required_wanting_documents_sections = $request->required_wanting_documents_sections;
-        $remove = array_pop($required_wanting_documents_sections);  
- 
+        $remove = array_pop($required_wanting_documents_sections);
+
         $data = Counsel::find($id);
         $data->chamber_name = $request->chamber_name;
         $data->counsel_role_id = $request->counsel_role_id;
@@ -631,44 +655,44 @@ class CounselLawyerController extends Controller
         // dd($request->all());
         // $data = json_decode(json_encode($request->all()));
         // echo "<pre>";print_r($data);die;
-        
+
         $received_documents_sections = $request->received_documents_sections;
-        $remove = array_pop($received_documents_sections);  
- 
+        $remove = array_pop($received_documents_sections);
+
         $required_wanting_documents_sections = $request->required_wanting_documents_sections;
-        $remove = array_pop($required_wanting_documents_sections);  
+        $remove = array_pop($required_wanting_documents_sections);
 
         $data = new ChamberStaff();
-        $data->chamber_name = $request->chamber_name;  
-        $data->counsel_role_id = $request->counsel_role_id;  
-        $data->counsel_name = $request->counsel_name;  
-        $data->father_name = $request->father_name;  
-        $data->mother_name = $request->mother_name;  
-        $data->spouse_name = $request->spouse_name;  
-        $data->present_address = $request->present_address;  
-        $data->permanent_address = $request->permanent_address;  
+        $data->chamber_name = $request->chamber_name;
+        $data->counsel_role_id = $request->counsel_role_id;
+        $data->counsel_name = $request->counsel_name;
+        $data->father_name = $request->father_name;
+        $data->mother_name = $request->mother_name;
+        $data->spouse_name = $request->spouse_name;
+        $data->present_address = $request->present_address;
+        $data->permanent_address = $request->permanent_address;
         $data->date_of_birth = $request->date_of_birth == 'dd-mm-yyyy' || $request->date_of_birth == 'NaN-NaN-NaN' ? null : $request->date_of_birth;
-        $data->nid_number = $request->nid_number;  
-        $data->mobile_number = $request->mobile_number;  
-        $data->email = $request->email;  
-        $data->emergency_contact = $request->emergency_contact;  
-        $data->relation = $request->relation;  
-        $data->professional_name = $request->professional_name;  
-        $data->ssc_year = $request->ssc_year;  
-        $data->ssc_institution = $request->ssc_institution;  
-        $data->hsc_year = $request->hsc_year;  
-        $data->hsc_institution = $request->hsc_institution;  
-        $data->llb_year = $request->llb_year;  
-        $data->llb_institution = $request->llb_institution;  
-        $data->professional_contact_number = $request->professional_contact_number;  
-        $data->professional_contact_number_write = $request->professional_contact_number_write;  
-        $data->professional_email = $request->professional_email;  
-        $data->professional_email_write = $request->professional_email_write;  
-        $data->professional_experience_one = $request->professional_experience_one;  
-        $data->professional_experience_two = $request->professional_experience_two;  
+        $data->nid_number = $request->nid_number;
+        $data->mobile_number = $request->mobile_number;
+        $data->email = $request->email;
+        $data->emergency_contact = $request->emergency_contact;
+        $data->relation = $request->relation;
+        $data->professional_name = $request->professional_name;
+        $data->ssc_year = $request->ssc_year;
+        $data->ssc_institution = $request->ssc_institution;
+        $data->hsc_year = $request->hsc_year;
+        $data->hsc_institution = $request->hsc_institution;
+        $data->llb_year = $request->llb_year;
+        $data->llb_institution = $request->llb_institution;
+        $data->professional_contact_number = $request->professional_contact_number;
+        $data->professional_contact_number_write = $request->professional_contact_number_write;
+        $data->professional_email = $request->professional_email;
+        $data->professional_email_write = $request->professional_email_write;
+        $data->professional_experience_one = $request->professional_experience_one;
+        $data->professional_experience_two = $request->professional_experience_two;
         $data->date_of_joining = $request->date_of_joining == 'dd-mm-yyyy' || $request->date_of_joining == 'NaN-NaN-NaN' ? null : $request->date_of_joining;
         $data->save();
-        
+
         foreach ( array_filter($received_documents_sections) as $key => $value ){
             $datum = new ChamberStaffDocumentsReceived();
             $datum->chamber_staff_id = $data->id;
@@ -734,42 +758,42 @@ class CounselLawyerController extends Controller
     public function update_chamber_staff(Request $request, $id)
     {
         $received_documents_sections = $request->received_documents_sections;
-        $remove = array_pop($received_documents_sections);  
- 
+        $remove = array_pop($received_documents_sections);
+
         $required_wanting_documents_sections = $request->required_wanting_documents_sections;
-        $remove = array_pop($required_wanting_documents_sections);  
+        $remove = array_pop($required_wanting_documents_sections);
 
         $data = ChamberStaff::find($id);
-        $data->chamber_name = $request->chamber_name;  
-        $data->counsel_role_id = $request->counsel_role_id;  
-        $data->counsel_name = $request->counsel_name;  
-        $data->father_name = $request->father_name;  
-        $data->mother_name = $request->mother_name;  
-        $data->spouse_name = $request->spouse_name;  
-        $data->present_address = $request->present_address;  
-        $data->permanent_address = $request->permanent_address;  
+        $data->chamber_name = $request->chamber_name;
+        $data->counsel_role_id = $request->counsel_role_id;
+        $data->counsel_name = $request->counsel_name;
+        $data->father_name = $request->father_name;
+        $data->mother_name = $request->mother_name;
+        $data->spouse_name = $request->spouse_name;
+        $data->present_address = $request->present_address;
+        $data->permanent_address = $request->permanent_address;
         $data->date_of_birth = $request->date_of_birth == 'dd-mm-yyyy' || $request->date_of_birth == 'NaN-NaN-NaN' ? null : $request->date_of_birth;
-        $data->nid_number = $request->nid_number;  
-        $data->mobile_number = $request->mobile_number;  
-        $data->email = $request->email;  
-        $data->emergency_contact = $request->emergency_contact;  
-        $data->relation = $request->relation;  
-        $data->professional_name = $request->professional_name;  
-        $data->ssc_year = $request->ssc_year;  
-        $data->ssc_institution = $request->ssc_institution;  
-        $data->hsc_year = $request->hsc_year;  
-        $data->hsc_institution = $request->hsc_institution;  
-        $data->llb_year = $request->llb_year;  
-        $data->llb_institution = $request->llb_institution;  
-        $data->professional_contact_number = $request->professional_contact_number;  
-        $data->professional_contact_number_write = $request->professional_contact_number_write;  
-        $data->professional_email = $request->professional_email;  
-        $data->professional_email_write = $request->professional_email_write;  
-        $data->professional_experience_one = $request->professional_experience_one;  
-        $data->professional_experience_two = $request->professional_experience_two;  
+        $data->nid_number = $request->nid_number;
+        $data->mobile_number = $request->mobile_number;
+        $data->email = $request->email;
+        $data->emergency_contact = $request->emergency_contact;
+        $data->relation = $request->relation;
+        $data->professional_name = $request->professional_name;
+        $data->ssc_year = $request->ssc_year;
+        $data->ssc_institution = $request->ssc_institution;
+        $data->hsc_year = $request->hsc_year;
+        $data->hsc_institution = $request->hsc_institution;
+        $data->llb_year = $request->llb_year;
+        $data->llb_institution = $request->llb_institution;
+        $data->professional_contact_number = $request->professional_contact_number;
+        $data->professional_contact_number_write = $request->professional_contact_number_write;
+        $data->professional_email = $request->professional_email;
+        $data->professional_email_write = $request->professional_email_write;
+        $data->professional_experience_one = $request->professional_experience_one;
+        $data->professional_experience_two = $request->professional_experience_two;
         $data->date_of_joining = $request->date_of_joining == 'dd-mm-yyyy' || $request->date_of_joining == 'NaN-NaN-NaN' ? null : $request->date_of_joining;
         $data->save();
-        
+
         ChamberStaffDocumentsReceived::where('chamber_staff_id', $id)->delete();
 
         foreach ( array_filter($received_documents_sections) as $key => $value ){
@@ -849,11 +873,11 @@ class CounselLawyerController extends Controller
         // echo "<pre>";print_r($data);die;
 
         $received_documents_sections = $request->received_documents_sections;
-        $remove = array_pop($received_documents_sections);  
- 
+        $remove = array_pop($received_documents_sections);
+
         $required_wanting_documents_sections = $request->required_wanting_documents_sections;
-        $remove = array_pop($required_wanting_documents_sections);  
- 
+        $remove = array_pop($required_wanting_documents_sections);
+
         $data = new InternalCounsel();
         $data->chamber_name = $request->chamber_name;
         $data->internal_counsel_role_id = $request->internal_counsel_role_id;
@@ -969,11 +993,11 @@ class CounselLawyerController extends Controller
     public function update_internal_counsel(Request $request, $id)
     {
         $received_documents_sections = $request->received_documents_sections;
-        $remove = array_pop($received_documents_sections);  
- 
+        $remove = array_pop($received_documents_sections);
+
         $required_wanting_documents_sections = $request->required_wanting_documents_sections;
-        $remove = array_pop($required_wanting_documents_sections);  
- 
+        $remove = array_pop($required_wanting_documents_sections);
+
         $data = InternalCounsel::find($id);
         $data->chamber_name = $request->chamber_name;
         $data->internal_counsel_role_id = $request->internal_counsel_role_id;
