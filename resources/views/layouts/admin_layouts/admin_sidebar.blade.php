@@ -136,7 +136,7 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                @canany(['accused-list', 'allegation-claim-list', 'area-list', 'area-list', 'bank-list', 'bank-branch-list', 'bill-type-list', 'bill-particulars-list', 'bill-schedule-list', 'branch-list', 'cabinet-list','case-status-list','case-title-list'])
+                                @canany(['accused-list', 'allegation-claim-list', 'area-list', 'area-list', 'bank-list', 'bank-branch-list', 'bill-type-list', 'bill-particulars-list', 'bill-schedule-list', 'branch-list', 'cabinet-list','case-status-list','case-title-list','case-category-list', 'case-matter-list', 'case-type-list', 'client-group-list', 'client-name-list', 'client-which-party-list', 'complainant-list', 'coordinator-or-tadbirkar-list', 'court-name-list', 'court-order-list', 'court-proceeding-list', 'day-notes-list', 'designation-list', 'documents-list', 'documents-type-list', 'external-council-list'])
 
                                 @can('accused-list')
                                     <li class="nav-item">
