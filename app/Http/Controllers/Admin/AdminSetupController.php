@@ -84,20 +84,310 @@ class AdminSetupController extends Controller
 
     function __construct()
     {
-//        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','show']]);
-//        $this->middleware('permission:user-create', ['only' => ['create','store']]);
-//        $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
-//        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
-
-//        $this->middleware('permission:designation|add-designation|edit-designation|delete-designation', ['only' => ['designation']]);
-//        $this->middleware('permission:add-designation', ['only' => ['add_designation','save_designation']]);
-//        $this->middleware('permission:edit-designation', ['only' => ['edit_designation','update_designation']]);
-//        $this->middleware('permission:delete-designation', ['only' => ['delete_designation']]);
-
         $this->middleware('permission:accused-list|accused-create|accused-edit|accused-delete', ['only' => ['accused']]);
         $this->middleware('permission:accused-create', ['only' => ['add_accused','save_accused']]);
         $this->middleware('permission:accused-edit', ['only' => ['edit_accused','update_accused']]);
         $this->middleware('permission:accused-delete', ['only' => ['delete_accused']]);
+
+        $this->middleware('permission:allegation-claim-list|allegation-claim-create|allegation-claim-edit|allegation-claim-delete', ['only' => ['allegation_claim']]);
+        $this->middleware('permission:allegation-claim-create', ['only' => ['add_allegation_claim','save_allegation_claim']]);
+        $this->middleware('permission:allegation-claim-edit', ['only' => ['edit_allegation_claim','update_allegation_claim']]);
+        $this->middleware('permission:allegation-claim-delete', ['only' => ['delete_allegation_claim']]);
+
+        $this->middleware('permission:area-list|area-create|area-edit|area-delete', ['only' => ['area']]);
+        $this->middleware('permission:area-create', ['only' => ['add_area','save_area']]);
+        $this->middleware('permission:area-edit', ['only' => ['edit_area','update_area']]);
+        $this->middleware('permission:area-delete', ['only' => ['delete_area']]);
+
+        $this->middleware('permission:bank-list|bank-create|bank-edit|bank-delete', ['only' => ['bank']]);
+        $this->middleware('permission:bank-create', ['only' => ['add_bank','save_bank']]);
+        $this->middleware('permission:bank-edit', ['only' => ['edit_bank','update_bank']]);
+        $this->middleware('permission:bank-delete', ['only' => ['delete_bank']]);
+
+        $this->middleware('permission:bank-branch-list|bank-branch-create|bank-branch-edit|bank-branch-delete', ['only' => ['bank_branch']]);
+        $this->middleware('permission:bank-branch-create', ['only' => ['add_bank_branch','save_bank_branch']]);
+        $this->middleware('permission:bank-branch-edit', ['only' => ['edit_bank_branch','update_bank_branch']]);
+        $this->middleware('permission:bank-branch-delete', ['only' => ['delete_bank_branch']]);
+
+        $this->middleware('permission:bill-type-list|bill-type-create|bill-type-edit|bill-type-delete', ['only' => ['bill_type']]);
+        $this->middleware('permission:bill-type-create', ['only' => ['add_bill_type','save_bill_type']]);
+        $this->middleware('permission:bill-type-edit', ['only' => ['edit_bill_type','update_bill_type']]);
+        $this->middleware('permission:bill-type-delete', ['only' => ['delete_bill_type']]);
+
+        $this->middleware('permission:bill-particulars-list|bill-particulars-create|bill-particulars-edit|bill-particulars-delete', ['only' => ['bill_particulars']]);
+        $this->middleware('permission:bill-particulars-create', ['only' => ['add_bill_particulars','save_bill_particulars']]);
+        $this->middleware('permission:bill-particulars-edit', ['only' => ['edit_bill_particulars','update_bill_particulars']]);
+        $this->middleware('permission:bill-particulars-delete', ['only' => ['delete_bill_particulars']]);
+
+        $this->middleware('permission:bill-schedules-list|bill-schedules-create|bill-schedules-edit|bill-schedules-delete', ['only' => ['bill_schedules']]);
+        $this->middleware('permission:bill-schedules-create', ['only' => ['add_bill_schedules','save_bill_schedules']]);
+        $this->middleware('permission:bill-schedules-edit', ['only' => ['edit_bill_schedules','update_bill_schedules']]);
+        $this->middleware('permission:bill-schedules-delete', ['only' => ['delete_bill_schedules']]);
+
+        $this->middleware('permission:branch-list|branch-create|branch-edit|branch-delete', ['only' => ['branch']]);
+        $this->middleware('permission:branch-create', ['only' => ['add_branch','save_branch']]);
+        $this->middleware('permission:branch-edit', ['only' => ['edit_branch','update_branch']]);
+        $this->middleware('permission:branch-delete', ['only' => ['delete_branch']]);
+
+        $this->middleware('permission:cabinet-list|cabinet-create|cabinet-edit|cabinet-delete', ['only' => ['cabinet']]);
+        $this->middleware('permission:cabinet-create', ['only' => ['add_cabinet','save_cabinet']]);
+        $this->middleware('permission:cabinet-edit', ['only' => ['edit_cabinet','update_cabinet']]);
+        $this->middleware('permission:cabinet-delete', ['only' => ['delete_cabinet']]);
+
+        $this->middleware('permission:case-status-list|case-status-create|case-status-edit|case-status-delete', ['only' => ['case_status']]);
+        $this->middleware('permission:case-status-create', ['only' => ['add_case_status','save_case_status']]);
+        $this->middleware('permission:case-status-edit', ['only' => ['edit_case_status','update_case_status']]);
+        $this->middleware('permission:case-status-delete', ['only' => ['delete_case_status']]);
+
+        $this->middleware('permission:case-title-list|case-title-create|case-title-edit|case-title-delete', ['only' => ['case_title']]);
+        $this->middleware('permission:case-title-create', ['only' => ['add_case_title','save_case_title']]);
+        $this->middleware('permission:case-title-edit', ['only' => ['edit_case_title','update_case_title']]);
+        $this->middleware('permission:case-title-delete', ['only' => ['delete_case_title']]);
+
+        $this->middleware('permission:case-category-list|case-category-create|case-category-edit|case-category-delete', ['only' => ['case_category']]);
+        $this->middleware('permission:case-category-create', ['only' => ['add_case_category','save_case_category']]);
+        $this->middleware('permission:case-category-edit', ['only' => ['edit_case_category','update_case_category']]);
+        $this->middleware('permission:case-category-delete', ['only' => ['delete_case_category']]);
+
+        $this->middleware('permission:case-matter-list|case-matter-create|case-matter-edit|case-matter-delete', ['only' => ['case_matter']]);
+        $this->middleware('permission:case-matter-create', ['only' => ['add_case_matter','save_case_matter']]);
+        $this->middleware('permission:case-matter-edit', ['only' => ['edit_case_matter','update_case_matter']]);
+        $this->middleware('permission:case-matter-delete', ['only' => ['delete_case_matter']]);
+
+        $this->middleware('permission:case-type-list|case-type-create|case-type-edit|case-type-delete', ['only' => ['case_type']]);
+        $this->middleware('permission:case-type-create', ['only' => ['add_case_type','save_case_type']]);
+        $this->middleware('permission:case-type-edit', ['only' => ['edit_case_type','update_case_type']]);
+        $this->middleware('permission:case-type-delete', ['only' => ['delete_case_type']]);
+
+        $this->middleware('permission:client-group-list|client-group-create|client-group-edit|client-group-delete', ['only' => ['client_group']]);
+        $this->middleware('permission:client-group-create', ['only' => ['add_client_group','save_client_group']]);
+        $this->middleware('permission:client-group-edit', ['only' => ['edit_client_group','update_client_group']]);
+        $this->middleware('permission:client-group-delete', ['only' => ['delete_client_group']]);
+
+        $this->middleware('permission:client-name-list|client-name-create|client-name-edit|client-name-delete', ['only' => ['client_name']]);
+        $this->middleware('permission:client-name-create', ['only' => ['add_client_name','save_client_name']]);
+        $this->middleware('permission:client-name-edit', ['only' => ['edit_client_name','update_client_name']]);
+        $this->middleware('permission:client-name-delete', ['only' => ['delete_client_name']]);
+
+        $this->middleware('permission:client-which-party-list|client-which-party-create|client-which-party-edit|client-which-party-delete', ['only' => ['client_which_party']]);
+        $this->middleware('permission:client-which-party-create', ['only' => ['add_client_which_party','save_client_which_party']]);
+        $this->middleware('permission:client-which-party-edit', ['only' => ['edit_client_which_party','update_client_which_party']]);
+        $this->middleware('permission:client-which-party-delete', ['only' => ['delete_client_which_party']]);
+
+        $this->middleware('permission:complainant-list|complainant-create|complainant-edit|complainant-delete', ['only' => ['complainant']]);
+        $this->middleware('permission:complainant-create', ['only' => ['add_complainant','save_complainant']]);
+        $this->middleware('permission:complainant-edit', ['only' => ['edit_complainant','update_complainant']]);
+        $this->middleware('permission:complainant-delete', ['only' => ['delete_complainant']]);
+
+        $this->middleware('permission:coordinator-or-tadbirkar-list|coordinator-or-tadbirkar-create|coordinator-or-tadbirkar-edit|coordinator-or-tadbirkar-delete', ['only' => ['coordinator']]);
+        $this->middleware('permission:coordinator-or-tadbirkar-create', ['only' => ['add_coordinator','save_coordinator']]);
+        $this->middleware('permission:coordinator-or-tadbirkar-edit', ['only' => ['edit_coordinator','update_coordinator']]);
+        $this->middleware('permission:coordinator-or-tadbirkar-delete', ['only' => ['delete_coordinator']]);
+
+        $this->middleware('permission:court-name-list|court-name-create|court-name-edit|court-name-delete', ['only' => ['court_name']]);
+        $this->middleware('permission:court-name-create', ['only' => ['add_court_name','save_court_name']]);
+        $this->middleware('permission:court-name-edit', ['only' => ['edit_court_name','update_court_name']]);
+        $this->middleware('permission:court-name-delete', ['only' => ['delete_court_name']]);
+
+        $this->middleware('permission:court-order-list|court-order-create|court-order-edit|court-order-delete', ['only' => ['court_order']]);
+        $this->middleware('permission:court-order-create', ['only' => ['add_court_order','save_court_order']]);
+        $this->middleware('permission:court-order-edit', ['only' => ['edit_court_order','update_court_order']]);
+        $this->middleware('permission:court-order-delete', ['only' => ['delete_court_order']]);
+
+        $this->middleware('permission:court-proceeding-list|court-proceeding-create|court-proceeding-edit|court-proceeding-delete', ['only' => ['court_proceeding']]);
+        $this->middleware('permission:court-proceeding-create', ['only' => ['add_court_proceeding','save_court_proceeding']]);
+        $this->middleware('permission:court-proceeding-edit', ['only' => ['edit_court_proceeding','update_court_proceeding']]);
+        $this->middleware('permission:court-proceeding-delete', ['only' => ['delete_court_proceeding']]);
+
+        $this->middleware('permission:day-notes-list|day-notes-create|day-notes-edit|day-notes-delete', ['only' => ['day_notes']]);
+        $this->middleware('permission:day-notes-create', ['only' => ['add_day_notes','save_day_notes']]);
+        $this->middleware('permission:day-notes-edit', ['only' => ['edit_day_notes','update_day_notes']]);
+        $this->middleware('permission:day-notes-delete', ['only' => ['delete_day_notes']]);
+
+        $this->middleware('permission:designation-list|designation-create|designation-edit|designation-delete', ['only' => ['designation']]);
+        $this->middleware('permission:designation-create', ['only' => ['add_designation','save_designation']]);
+        $this->middleware('permission:designation-edit', ['only' => ['edit_designation','update_designation']]);
+        $this->middleware('permission:designation-delete', ['only' => ['delete_designation']]);
+
+        $this->middleware('permission:documents-list|documents-create|documents-edit|documents-delete', ['only' => ['documents']]);
+        $this->middleware('permission:documents-create', ['only' => ['add_documents','save_documents']]);
+        $this->middleware('permission:documents-edit', ['only' => ['edit_documents','update_documents']]);
+        $this->middleware('permission:documents-delete', ['only' => ['delete_documents']]);
+
+        $this->middleware('permission:documents-type-list|documents-type-create|documents-type-edit|documents-type-delete', ['only' => ['documents_type']]);
+        $this->middleware('permission:documents-type-create', ['only' => ['add_documents_type','save_documents_type']]);
+        $this->middleware('permission:documents-type-edit', ['only' => ['edit_documents_type','update_documents_type']]);
+        $this->middleware('permission:documents-type-delete', ['only' => ['delete_documents_type']]);
+
+        $this->middleware('permission:external-council-list|external-council-create|external-council-edit|external-council-delete', ['only' => ['external_council']]);
+        $this->middleware('permission:external-council-create', ['only' => ['add_external_council','save_external_council']]);
+        $this->middleware('permission:external-council-edit', ['only' => ['edit_external_council','update_external_council']]);
+        $this->middleware('permission:external-council-delete', ['only' => ['delete_external_council']]);
+
+        $this->middleware('permission:internal-council-list|internal-council-create|internal-council-edit|internal-council-delete', ['only' => ['internal_council']]);
+        $this->middleware('permission:internal-council-create', ['only' => ['add_internal_council','save_internal_council']]);
+        $this->middleware('permission:internal-council-edit', ['only' => ['edit_internal_council','update_internal_council']]);
+        $this->middleware('permission:internal-council-delete', ['only' => ['delete_internal_council']]);
+
+        $this->middleware('permission:in-favour-of-list|in-favour-of-create|in-favour-of-edit|in-favour-of-delete', ['only' => ['in_favour_of']]);
+        $this->middleware('permission:in-favour-of-create', ['only' => ['add_in_favour_of','save_in_favour_of']]);
+        $this->middleware('permission:in-favour-of-edit', ['only' => ['edit_in_favour_of','update_in_favour_of']]);
+        $this->middleware('permission:in-favour-of-delete', ['only' => ['delete_in_favour_of']]);
+
+        $this->middleware('permission:law-list|law-create|law-edit|law-delete', ['only' => ['law']]);
+        $this->middleware('permission:law-create', ['only' => ['add_law','save_law']]);
+        $this->middleware('permission:law-edit', ['only' => ['edit_law','update_law']]);
+        $this->middleware('permission:law-delete', ['only' => ['delete_law']]);
+
+        $this->middleware('permission:legal-issue-list|legal-issue-create|legal-issue-edit|legal-issue-delete', ['only' => ['legal_issue']]);
+        $this->middleware('permission:legal-issue-create', ['only' => ['add_legal_issue','save_legal_issue']]);
+        $this->middleware('permission:legal-issue-edit', ['only' => ['edit_legal_issue','update_legal_issue']]);
+        $this->middleware('permission:legal-issue-delete', ['only' => ['delete_legal_issue']]);
+
+        $this->middleware('permission:legal-service-list|legal-service-create|legal-service-edit|legal-service-delete', ['only' => ['legal_service']]);
+        $this->middleware('permission:legal-service-create', ['only' => ['add_legal_service','save_legal_service']]);
+        $this->middleware('permission:legal-service-edit', ['only' => ['edit_legal_service','update_legal_service']]);
+        $this->middleware('permission:legal-service-delete', ['only' => ['delete_legal_service']]);
+
+        $this->middleware('permission:mode-of-received-list|mode-of-received-create|mode-of-received-edit|mode-of-received-delete', ['only' => ['mode']]);
+        $this->middleware('permission:mode-of-received-create', ['only' => ['add_mode','save_mode']]);
+        $this->middleware('permission:mode-of-received-edit', ['only' => ['edit_mode','update_mode']]);
+        $this->middleware('permission:mode-of-received-delete', ['only' => ['delete_mode']]);
+
+        $this->middleware('permission:mode-of-received-list|mode-of-received-create|mode-of-received-edit|mode-of-received-delete', ['only' => ['mode']]);
+        $this->middleware('permission:mode-of-received-create', ['only' => ['add_mode','save_mode']]);
+        $this->middleware('permission:mode-of-received-edit', ['only' => ['edit_mode','update_mode']]);
+        $this->middleware('permission:mode-of-received-delete', ['only' => ['delete_mode']]);
+
+        $this->middleware('permission:next-date-fixed-for-list|next-date-fixed-for-create|next-date-fixed-for-edit|next_date_fixed_for_delete', ['only' => ['next_date_reason']]);
+        $this->middleware('permission:next-date-fixed-for-create', ['only' => ['add_next_date_reason','save_next_date_reason']]);
+        $this->middleware('permission:next-date-fixed-for-edit', ['only' => ['edit_next_date_reason','update_next_date_reason']]);
+        $this->middleware('permission:next-date-fixed-for-delete', ['only' => ['delete_next_date_reason']]);
+
+        $this->middleware('permission:next-day-presence-list|next-day-presence-create|next-day-presence-edit|next_date_fixed_for_delete', ['only' => ['next_day_presence']]);
+        $this->middleware('permission:next-day-presence-create', ['only' => ['add_next_day_presence','save_next_day_presence']]);
+        $this->middleware('permission:next-day-presence-edit', ['only' => ['edit_next_day_presence','update_next_day_presence']]);
+        $this->middleware('permission:next-day-presence-delete', ['only' => ['delete_next_day_presence']]);
+
+        $this->middleware('permission:opposition-which-party-list|opposition-which-party-create|opposition-which-party-edit|opposition-which-party-delete', ['only' => ['opposition_which_party']]);
+        $this->middleware('permission:opposition-which-party-create', ['only' => ['add_opposition_which_party','save_opposition_which_party']]);
+        $this->middleware('permission:opposition-which-party-edit', ['only' => ['edit_opposition_which_party','update_opposition_which_party']]);
+        $this->middleware('permission:opposition-which-party-delete', ['only' => ['delete_opposition_which_party']]);
+
+        $this->middleware('permission:particulars-list|particulars-create|particulars-edit|particulars-delete', ['only' => ['particulars']]);
+        $this->middleware('permission:particulars-create', ['only' => ['add_particulars','save_particulars']]);
+        $this->middleware('permission:particulars-edit', ['only' => ['edit_particulars','update_particulars']]);
+        $this->middleware('permission:particulars-delete', ['only' => ['delete_particulars']]);
+
+        $this->middleware('permission:party-category-list|party-category-create|party-category-edit|party-category-delete', ['only' => ['client_category']]);
+        $this->middleware('permission:party-category-create', ['only' => ['add_client_category','save_client_category']]);
+        $this->middleware('permission:party-category-edit', ['only' => ['edit_client_category','update_client_category']]);
+        $this->middleware('permission:party-category-delete', ['only' => ['delete_client_category']]);
+
+        $this->middleware('permission:party-subcategory-list|party-subcategory-create|party-subcategory-edit|party-subcategory-delete', ['only' => ['client_subcategory']]);
+        $this->middleware('permission:party-subcategory-create', ['only' => ['add_client_subcategory','save_client_subcategory']]);
+        $this->middleware('permission:party-subcategory-edit', ['only' => ['edit_client_subcategory','update_client_subcategory']]);
+        $this->middleware('permission:party-subcategory-delete', ['only' => ['delete_client_subcategory']]);
+
+        $this->middleware('permission:payment-type-list|payment-type-create|payment-type-edit|payment-type-delete', ['only' => ['digital_payment_type']]);
+        $this->middleware('permission:payment-type-create', ['only' => ['add_digital_payment_type','save_digital_payment_type']]);
+        $this->middleware('permission:payment-type-edit', ['only' => ['edit_digital_payment_type','update_digital_payment_type']]);
+        $this->middleware('permission:payment-type-delete', ['only' => ['delete_digital_payment_type']]);
+
+        $this->middleware('permission:payment-mode-list|payment-mode-create|payment-mode-edit|payment-mode-delete', ['only' => ['payment_mode']]);
+        $this->middleware('permission:payment-mode-create', ['only' => ['add_payment_mode','save_payment_mode']]);
+        $this->middleware('permission:payment-mode-edit', ['only' => ['edit_payment_mode','update_payment_mode']]);
+        $this->middleware('permission:payment-mode-delete', ['only' => ['delete_payment_mode']]);
+
+        $this->middleware('permission:profession-list|profession-create|profession-edit|profession-delete', ['only' => ['profession']]);
+        $this->middleware('permission:profession-create', ['only' => ['add_profession','save_profession']]);
+        $this->middleware('permission:profession-edit', ['only' => ['edit_profession','update_profession']]);
+        $this->middleware('permission:profession-delete', ['only' => ['delete_profession']]);
+
+        $this->middleware('permission:program-list|program-create|program-edit|program-delete', ['only' => ['program']]);
+        $this->middleware('permission:program-create', ['only' => ['add_program','save_program']]);
+        $this->middleware('permission:program-edit', ['only' => ['edit_program','update_program']]);
+        $this->middleware('permission:program-delete', ['only' => ['delete_program']]);
+
+        $this->middleware('permission:progress-list|progress-create|progress-edit|progress-delete', ['only' => ['progress']]);
+        $this->middleware('permission:progress-create', ['only' => ['add_progress','save_progress']]);
+        $this->middleware('permission:progress-edit', ['only' => ['edit_progress','update_progress']]);
+        $this->middleware('permission:progress-delete', ['only' => ['delete_progress']]);
+
+        $this->middleware('permission:referrer-list|referrer-create|referrer-edit|referrer-delete', ['only' => ['referrer']]);
+        $this->middleware('permission:referrer-create', ['only' => ['add_referrer','save_referrer']]);
+        $this->middleware('permission:referrer-edit', ['only' => ['edit_referrer','update_referrer']]);
+        $this->middleware('permission:referrer-delete', ['only' => ['delete_referrer']]);
+
+        $this->middleware('permission:section-list|section-create|section-edit|section-delete', ['only' => ['section']]);
+        $this->middleware('permission:section-create', ['only' => ['add_section','save_section']]);
+        $this->middleware('permission:section-edit', ['only' => ['edit_section','update_section']]);
+        $this->middleware('permission:section-delete', ['only' => ['delete_section']]);
+
+        $this->middleware('permission:title-list|title-create|title-edit|title-delete', ['only' => ['person_title']]);
+        $this->middleware('permission:title-create', ['only' => ['add_person_title','save_person_title']]);
+        $this->middleware('permission:title-edit', ['only' => ['edit_person_title','update_person_title']]);
+        $this->middleware('permission:title-delete', ['only' => ['delete_person_title']]);
+
+        $this->middleware('permission:zone-list|zone-create|zone-edit|zone-delete', ['only' => ['zone']]);
+        $this->middleware('permission:zone-create', ['only' => ['add_zone','save_zone']]);
+        $this->middleware('permission:zone-edit', ['only' => ['edit_zone','update_zone']]);
+        $this->middleware('permission:zone-delete', ['only' => ['delete_zone']]);
+
+        $this->middleware('permission:division-list|division-create|division-edit|division-delete', ['only' => ['division']]);
+        $this->middleware('permission:division-create', ['only' => ['add_division','save_division']]);
+        $this->middleware('permission:division-edit', ['only' => ['edit_division','update_division']]);
+        $this->middleware('permission:division-delete', ['only' => ['delete_division']]);
+
+        $this->middleware('permission:district-list|district-create|district-edit|district-delete', ['only' => ['district']]);
+        $this->middleware('permission:district-create', ['only' => ['add_district','save_district']]);
+        $this->middleware('permission:district-edit', ['only' => ['edit_district','update_district']]);
+        $this->middleware('permission:district-delete', ['only' => ['delete_district']]);
+
+        $this->middleware('permission:thana-list|thana-create|thana-edit|thana-delete', ['only' => ['thana']]);
+        $this->middleware('permission:thana-create', ['only' => ['add_thana','save_thana']]);
+        $this->middleware('permission:thana-edit', ['only' => ['edit_thana','update_thana']]);
+        $this->middleware('permission:thana-delete', ['only' => ['delete_thana']]);
+
+        $this->middleware('permission:floor-list|floor-create|floor-edit|floor-delete', ['only' => ['floor']]);
+        $this->middleware('permission:floor-create', ['only' => ['add_floor','save_floor']]);
+        $this->middleware('permission:floor-edit', ['only' => ['edit_floor','update_floor']]);
+        $this->middleware('permission:floor-delete', ['only' => ['delete_floor']]);
+
+        $this->middleware('permission:flat-number-list|flat-number-create|flat-number-edit|flat-number-delete', ['only' => ['flat_number']]);
+        $this->middleware('permission:flat-number-create', ['only' => ['add_flat_number','save_flat_number']]);
+        $this->middleware('permission:flat-number-edit', ['only' => ['edit_flat_number','update_flat_number']]);
+        $this->middleware('permission:flat-number-delete', ['only' => ['delete_flat_number']]);
+
+        $this->middleware('permission:property-type-list|property-type-create|property-type-edit|property-type-delete', ['only' => ['property_type']]);
+        $this->middleware('permission:property-type-create', ['only' => ['add_property_type','save_property_type']]);
+        $this->middleware('permission:property-type-edit', ['only' => ['edit_property_type','update_property_type']]);
+        $this->middleware('permission:property-type-delete', ['only' => ['delete_property_type']]);
+
+        $this->middleware('permission:seller-or-buyer-list|seller-or-buyer-create|seller-or-buyer-edit|seller-or-buyer-delete', ['only' => ['seller_buyer']]);
+        $this->middleware('permission:seller-or-buyer-create', ['only' => ['add_seller_buyer','save_seller_buyer']]);
+        $this->middleware('permission:seller-or-buyer-edit', ['only' => ['edit_seller_buyer','update_seller_buyer']]);
+        $this->middleware('permission:seller-or-buyer-delete', ['only' => ['delete_seller_buyer']]);
+
+        $this->middleware('permission:compliance-category-list|compliance-category-create|compliance-category-edit|compliance-category-delete', ['only' => ['compliance_category']]);
+        $this->middleware('permission:compliance-category-create', ['only' => ['add_compliance_category','save_compliance_category']]);
+        $this->middleware('permission:compliance-category-edit', ['only' => ['edit_compliance_category','update_compliance_category']]);
+        $this->middleware('permission:compliance-category-delete', ['only' => ['delete_compliance_category']]);
+
+        $this->middleware('permission:compliance-type-list|compliance-type-create|compliance-type-edit|compliance-type-delete', ['only' => ['compliance_type']]);
+        $this->middleware('permission:compliance-type-create', ['only' => ['add_compliance_type','save_compliance_type']]);
+        $this->middleware('permission:compliance-type-edit', ['only' => ['edit_compliance_type','update_compliance_type']]);
+        $this->middleware('permission:compliance-type-delete', ['only' => ['delete_compliance_type']]);
+
+        $this->middleware('permission:company-type-list|company-type-create|company-type-edit|company-type-delete', ['only' => ['company_type']]);
+        $this->middleware('permission:company-type-create', ['only' => ['add_company_type','save_company_type']]);
+        $this->middleware('permission:company-type-edit', ['only' => ['edit_company_type','update_company_type']]);
+        $this->middleware('permission:company-type-delete', ['only' => ['delete_company_type']]);
+
+        $this->middleware('permission:company-list|company-create|company-edit|company-delete', ['only' => ['company']]);
+        $this->middleware('permission:company-create', ['only' => ['add_company','save_company']]);
+        $this->middleware('permission:company-edit', ['only' => ['edit_company','update_company']]);
+        $this->middleware('permission:company-delete', ['only' => ['delete_company']]);
 
 
     }

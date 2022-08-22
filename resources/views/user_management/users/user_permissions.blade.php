@@ -103,7 +103,7 @@
                                             <div class="form-group col-md-3">
                                                 <div class="icheck-success d-inline">
                                                     <input type="checkbox" id="check_all_permission" {{ count($all_permissions) == count($user->getAllPermissions()->pluck('id')->toArray()) ? 'checked' : '' }}>
-                                                    <label for="check_all_permission">All
+                                                    <label for="check_all_permission" style="color: #118ce3;">All
                                                     </label>
                                                 </div>
                                             </div>
@@ -121,7 +121,7 @@
                                                                {{ count($permissions) == count($user->getAllPermissions()->where('group_name',$group->name)->toArray()) ? 'checked' : '' }}
 
                                                                value="{{ $group->name }}">
-                                                        <label for="{{ $i }}Management">{{ $group->name }}
+                                                        <label for="{{ $i }}Management" style="color: #32b14f;">{{ ucwords(str_replace('-', ' ', $group->name)) }}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -132,7 +132,7 @@
                                                             <div class="icheck-success d-inline">
                                                                 <input type="checkbox" id="checkPermission{{ $permission->id }}" onclick="checkSinglePermission('role-{{ $i }}-management-checkbox', '{{ $i }}Management', {{ count($permissions) }})"
                                                                        value="{{ $permission->id }}" name="permission[]" {{ in_array($permission->id, $user->getAllPermissions()->pluck('id')->toArray()) ? 'checked' : '' }}>
-                                                                <label for="checkPermission{{ $permission->id }}">{{ $permission->name }}
+                                                                <label for="checkPermission{{ $permission->id }}">{{ ucwords(str_replace('-', ' ', $permission->name)) }}
                                                                 </label>
                                                             </div>
                                                         </div>
