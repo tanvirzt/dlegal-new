@@ -39,7 +39,7 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    @can('accused-add')
+                                    @can('accused-create')
                                         <a href="{{ route('add-accused') }}"><button class="btn btn-sm
                                         btn-success add_btn"><i class="fas fa-plus"></i> Add Accused </button></a>
                                     @endcan

@@ -242,7 +242,7 @@
 
 @endif
 
-<nav class="main-header navbar navbar-expand navbar-white navbar-light links_custom @if(url()->current() != 'http://localhost/dlegal-software/public/admin/dashboard') links_custom @endif" style="padding: 0px;background: #2A6CB1;position:fixed;padding-right:89px;z-index:1020;@if(url()->current() == 'http://localhost/dlegal-software/public/admin/dashboard') margin-top:0px; @endif">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light links_custom @if(url()->current() != 'http://localhost/dlegal-software/public/admin/dashboard') links_custom @endif" style="padding: 0px;background: #2A6CB1;position:fixed;padding-right:130px;z-index:1020;@if(url()->current() == 'http://localhost/dlegal-software/public/admin/dashboard') margin-top:0px; @endif">
     {{-- style="background: #2A6CB1;" --}}
     <!-- Left navbar links -->
     {{-- <ul class="navbar-nav">

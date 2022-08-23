@@ -40,9 +40,11 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('document-management-create')
                                     <a href="{{ route('add-documents') }}"><button
                                             class="btn btn-sm btn-success add_btn"><i class="fas fa-plus"></i> Add
                                             Document Management </button></a>
+                                    @endcan
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -360,7 +362,7 @@
                                         @endforeach
                                     @endforeach
 
-                                    
+
 
                                     <tr data-node-id="211.2" data-node-pid="1">
                                         <td> External Document </td>

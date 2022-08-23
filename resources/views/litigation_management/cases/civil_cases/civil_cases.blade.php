@@ -158,6 +158,7 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('civil-cases-create')
                                     <a href="{{ route('add-civil-cases') }}">
                                         <button
                                             class="btn btn-sm
@@ -165,6 +166,7 @@
                                                 class="fas fa-plus"></i> Add Civil Cases
                                         </button>
                                     </a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -228,6 +230,7 @@
                                             </td>
 
                                             <td>
+                                                @can('civil-cases-view')
 
                                                     <a href="{{ route('view-civil-cases', $datum->id) }}">
                                                         <button
@@ -235,12 +238,17 @@
                                                             data-placement="top" title="Details"><i
                                                                 class="fas fa-eye"></i></button>
                                                     </a>
+                                                @endcan
+                                                    @can('civil-cases-add-billing')
+
                                                     <a href="{{ route('add-billing-civil-cases', $datum->id) }}">
                                                         <button
                                                             class="btn btn-warning btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Bill Entry"><i
                                                                 class="fas fa-money-bill"></i></button>
                                                     </a>
+                                                    @endcan
+                                                    @can('civil-cases-edit')
 
                                                     <a href="{{ route('edit-civil-cases', $datum->id) }}">
                                                         <button
@@ -248,6 +256,8 @@
                                                             data-placement="top" title="Edit"><i
                                                                 class="fas fa-edit"></i></button>
                                                     </a>
+                                                    @endcan
+                                                    @can('civil-cases-delete')
                                                     <form method="POST"
                                                           action="{{ route('delete-civil-cases', $datum->id) }}"
                                                           class="delete-user btn btn-danger btn-xs">
@@ -257,6 +267,7 @@
                                                                 title="Delete"><i
                                                                 class="fas fa-trash"></i></button>
                                                     </form>
+                                                    @endcan
 
 
                                             </td>

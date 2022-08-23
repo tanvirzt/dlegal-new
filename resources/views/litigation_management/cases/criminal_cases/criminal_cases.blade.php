@@ -119,7 +119,7 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="form-group row">
                                                         <label for="client_id" class="col-sm-4 col-form-label">Client/Party</label>
                                                         <div class="col-sm-8">
@@ -149,7 +149,7 @@
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="form-group row">
                                                         <label for="client_category_id"
                                                                class="col-sm-4 col-form-label">Client/Party
@@ -178,7 +178,7 @@
                                                                     class="form-control select2"
                                                                     id="client_subcategory_id">
                                                                 <option value="">Select</option>
-    
+
                                                             </select>
                                                             @error('client_subcategory_id')<span
                                                                 class="text-danger">{{$message}}</span>@enderror
@@ -425,7 +425,7 @@
                                                                 <input type="date" class="xDateContainer date_first_input"
                                                                        onchange="setCorrect(this,'from_date');"><input type="text" id="from_date"
                                                                                                                     name="from_date" placeholder="From Date"
-                                                                                                                    class="date_second_input" 
+                                                                                                                    class="date_second_input"
                                                                                                                     tabindex="-1"><span
                                                                     class="date_second_span" tabindex="-1">&#9660;</span>
                                                             </span>
@@ -434,7 +434,7 @@
                                                         </div>
                                                     </div> --}}
 
-                                                    
+
 
 
 
@@ -461,11 +461,13 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List <span style="color: red;font-size:15px;">{{ !empty($is_search) ? '(Showing Searched Item)' : '' }}</span></h3>
                                 <div class="float-right">
+                                    @can('criminal-cases-create')
                                     <a href="{{ route('add-criminal-cases') }}">
                                         <button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add Criminal Cases
                                         </button>
                                     </a>
+                                    @endcan
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -536,10 +538,10 @@
                                             </td>
                                             <td>
 
-                                                
+
                                                 @if (!empty($datum->case_infos_sub_seq_court_short_id) || !empty($datum->sub_seq_court_short_write))
-                                                    
-                                                
+
+
                                                 @php
                                                     $notes = explode(', ',$datum->case_infos_sub_seq_court_short_id);
                                                 @endphp
@@ -770,26 +772,36 @@
                                                 @endif
                                             </td>
                                             <td>
+                                                @can('criminal-cases-edit')
+
                                                 <a href="{{ route('view-criminal-cases',$datum->id) }}">
                                                     <button class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                                     ><i class="fas fa-eye"></i></button>
                                                 </a>
-                                                <a href="{{ route('add-criminal-cases-billling', $datum->id) }}">
+                                                @endcan
+                                                @can('criminal-cases-add-billing')
+                                                    <a href="{{ route('add-criminal-cases-billling', $datum->id) }}">
                                                     <button
                                                         class="btn btn-outline-warning btn-sm" data-toggle="tooltip"
                                                         data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button>
                                                 </a>
-                                                <a href="{{ route('edit-criminal-cases',$datum->id) }}">
+                                                    @endcan
+                                                    @can('criminal-cases-edit')
+
+                                                    <a href="{{ route('edit-criminal-cases',$datum->id) }}">
                                                     <button class="btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button>
                                                 </a>
+                                                    @endcan
+                                                    @can('criminal-cases-delete')
 
-                                                <form method="POST" action="{{ route('delete-criminal-cases',$datum->id) }}"
+                                                    <form method="POST" action="{{ route('delete-criminal-cases',$datum->id) }}"
                                                       class="delete-user btn btn-outline-danger btn-xs">
                                                     @csrf
                                                     <button type="submit" class="btn btn-outline-danger btn-sm" style="line-height: 1.4" data-toggle="tooltip" data-placement="top"
                                                             title="Delete"><i class="fas fa-trash"></i></button>
                                                 </form>
+                                                    @endcan
                                             </td>
                                         </tr>
                                     @endforeach

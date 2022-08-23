@@ -17,6 +17,13 @@ class PermissionTableSeeder extends Seeder
         $permissions = [
 
             [
+                'group_name' => 'litigation-calendar',
+                'permissions' => [
+                    'litigation-calendar-list',
+                    'litigation-calendar-short',
+                ]
+            ],
+            [
                 'group_name' => 'role',
                 'permissions' => [
                     'role-list',
@@ -32,6 +39,7 @@ class PermissionTableSeeder extends Seeder
                     'user-create',
                     'user-edit',
                     'user-delete',
+                    'individual-users-permission',
                 ]
             ],
             [

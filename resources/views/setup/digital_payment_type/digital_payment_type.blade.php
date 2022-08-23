@@ -38,8 +38,10 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('payment-type-create')
                                     <a href="{{ route('add-digital-payment-type') }}"><button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add Digital Payment Type </button></a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -76,13 +78,17 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
-
+                                                @can('payment-type-edit')
                                                     <a href="{{ route('edit-digital-payment-type',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
+                                                @endcan
+                                                    @can('payment-type-delete')
+
                                                     <form method="POST" action="{{ route('delete-digital-payment-type',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                     </form>
+                                                    @endcan
 
                                             </td>
                                         </tr>

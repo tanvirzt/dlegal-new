@@ -38,8 +38,10 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('client-which-party-create')
                                     <a href="{{ route('add-client') }}"><button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add Client </button></a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -84,14 +86,16 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">
-
+                                                @can('client-which-party-edit')
                                                 <a href="{{ route('edit-client',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
+                                                @endcan
+                                                @can('client-which-party-delete')
                                                 <form method="POST" action="{{ route('delete-client',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
-
+                                                @endcan
 
                                             </td>
                                         </tr>

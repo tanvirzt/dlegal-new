@@ -16,7 +16,16 @@ use DB;
 
 class LandInfoController extends Controller
 {
-    //
+
+
+    function __construct()
+    {
+        $this->middleware('permission:land-information-list|land-information-create|land-information-edit|land-information-delete|land-information-view', ['only' => ['land_information']]);
+        $this->middleware('permission:land-information-create', ['only' => ['add_land_information','save_land_information']]);
+        $this->middleware('permission:land-information-edit', ['only' => ['edit_land_information','update_land_information']]);
+        $this->middleware('permission:land-information-delete', ['only' => ['delete_land_information']]);
+        $this->middleware('permission:land-information-view', ['only' => ['view_land_information']]);
+    }
 
     public function land_information()
     {
@@ -60,7 +69,7 @@ class LandInfoController extends Controller
     {
         $thana = SetupThana::where('district_id',$request->district_id)->orderBy('thana_name','asc')->get();
         $district = SetupDistrict::where('id',$request->district_id)->first();
-    //   dd($district);  
+    //   dd($district);
         $court = SetupCourt::where('applicable_district_id', 'like', "%{$district->district_name}%")->where('delete_status',0)->orderBy('court_name','asc')->get();
         return response()->json([
             'thana' => $thana,

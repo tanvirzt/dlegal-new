@@ -38,8 +38,10 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('referrer-create')
                                     <a href="{{ route('add-referrer') }}"><button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add Referrer </button></a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -84,14 +86,16 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">
-
+                                                @can('referrer-edit')
                                                 <a href="{{ route('edit-referrer',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
+                                                @endcan
+                                                @can('referrer-delete')
                                                 <form method="POST" action="{{ route('delete-referrer',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
-
+                                                @endcan
 
                                             </td>
                                         </tr>

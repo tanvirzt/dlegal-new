@@ -751,3 +751,11 @@ a .btn{
 .user_permission{
     box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);padding-top: 10px;
 }
+
+.permission_all{
+    color: #3AAFA9;
+}
+
+.check_permission_group{
+    color: #118ce3;
+}

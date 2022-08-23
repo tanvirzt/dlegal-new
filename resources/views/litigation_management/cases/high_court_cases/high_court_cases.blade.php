@@ -167,11 +167,13 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('high-court-cases-create')
                                     <a href="{{ route('add-high-court-cases') }}">
                                         <button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add High Court of Bangladesh
                                         </button>
                                     </a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -226,22 +228,29 @@
                                                 @endif
                                             </td>
                                             <td>
+                                                @can('high-court-cases-view')
                                                 <a href="{{ route('view-high-court-cases',$datum->id) }}">
                                                     <button class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Details"
                                                     ><i class="fas fa-eye"></i></button>
                                                 </a>
+                                                @endcan
+                                                @can('high-court-cases-add-billing')
                                                 <a href="{{ route('add-billing-high-court-cases', $datum->id) }}">
                                                     <button
                                                         class="btn btn-warning btn-sm" data-toggle="tooltip"
                                                         data-placement="top" title="Bill Entry"><i
                                                             class="fas fa-money-bill"></i></button>
                                                 </a>
+                                                @endcan
+                                                @can('high-court-cases-edit')
                                                 <a href="{{ route('edit-high-court-cases',$datum->id) }}">
                                                     <button class="btn btn-info btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button>
                                                 </a>
+                                                @endcan
+                                                @can('high-court-cases-delete')
                                                 <form method="POST"
                                                       action="{{ route('delete-high-court-cases',$datum->id) }}"
                                                       class="delete-user btn btn-danger btn-xs">
@@ -250,6 +259,7 @@
                                                             data-toggle="tooltip" data-placement="top" title="Delete"><i
                                                             class="fas fa-trash"></i></button>
                                                 </form>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

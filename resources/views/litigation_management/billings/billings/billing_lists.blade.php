@@ -73,7 +73,7 @@
                                                                 <option value="Supreme Court of Bangladesh"> Supreme Court of Bangladesh </option>
                                                                 <option value="High Court Division"> High Court Division </option>
                                                                 <option value="Appellate Court Division"> Appellate Court Division </option>
-                                                            </select>       
+                                                            </select>
                                                             @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
@@ -82,8 +82,8 @@
                                                         <div class="col-sm-8">
                                                             <select name="case_no" class="form-control select2" id="case_no">
                                                                 <option value=""> Select </option>
-    
-                                                            </select>       
+
+                                                            </select>
                                                             @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
@@ -100,7 +100,7 @@
                                                                 </select>
                                                                 @error('panel_lawyer_id')<span class="text-danger">{{$message}}</span>@enderror
                                                         </div>
-                                                    </div>                                                    
+                                                    </div>
                                                     <div class="form-group row">
                                                         <label for="date_of_billing" class="col-sm-4 col-form-label">Date of the Billing</label>
                                                         <div class="col-sm-8">
@@ -134,10 +134,12 @@
                                 <div class="card-header">
                                     <h3 class="card-title"> Billings </h3>
                                     <div class="float-right">
+                                        @can('billing-add')
                                         <a href="{{ route('add-billing') }}"><button
                                                 class="btn btn-sm
                                         btn-success add_btn"><i
                                                     class="fas fa-plus"></i> Add Billings </button></a>
+                                        @endcan
                                     </div>
                                 </div>
 
@@ -147,9 +149,9 @@
                                 @foreach ($data as $datum)
                                 <div class="col-md-3">
                                     <div class="card">
-                                        <div class="">  
+                                        <div class="">
                                             <div class="float-right">
-                                                @if ($datum->is_approved == null)                                                    
+                                                @if ($datum->is_approved == null)
                                                     <a href="{{ route('edit-billing',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
                                                     <form method="POST"
@@ -172,17 +174,17 @@
                                                         <p class="text-muted text-sm"><b>Case No: </b> {{ $datum->case_no }}  </p>
                                                         <p class="text-muted text-sm"><b>Panel Lawyer: </b> {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }} </p>
                                                         <p class="text-muted text-sm"><b>Bill Amount: </b> {{ $datum->bill_amount }}  </p>
-                                                        <p class="text-muted text-sm"><b>Date of Billing: </b> {{ $datum->date_of_billing }}  </p>                                                        
-                                                        <p class="text-muted text-sm"><b>Bank: </b> {{ $datum->bank_name }} </p>                                                        
-                                                        <p class="text-muted text-sm"><b>Branch: </b> {{ $datum->bank_branch_name }} </p>                                                        
-                                                        <p class="text-muted text-sm"><b>Cheque No: </b> {{ $datum->cheque_no }}  </p>                                                        
-                                                        <p class="text-muted text-sm"><b>Payment Amount: </b> {{ $datum->payment_amount }}  </p>                                                        
-                                                        <p class="text-muted text-sm"><b>Digital Payment Type: </b> {{ $datum->digital_payment_type_name }}  </p>                                                        
-                                                        <p class="text-muted text-sm"><b>Approval: </b> {{ $datum->is_approved }} </p>                                         
+                                                        <p class="text-muted text-sm"><b>Date of Billing: </b> {{ $datum->date_of_billing }}  </p>
+                                                        <p class="text-muted text-sm"><b>Bank: </b> {{ $datum->bank_name }} </p>
+                                                        <p class="text-muted text-sm"><b>Branch: </b> {{ $datum->bank_branch_name }} </p>
+                                                        <p class="text-muted text-sm"><b>Cheque No: </b> {{ $datum->cheque_no }}  </p>
+                                                        <p class="text-muted text-sm"><b>Payment Amount: </b> {{ $datum->payment_amount }}  </p>
+                                                        <p class="text-muted text-sm"><b>Digital Payment Type: </b> {{ $datum->digital_payment_type_name }}  </p>
+                                                        <p class="text-muted text-sm"><b>Approval: </b> {{ $datum->is_approved }} </p>
                                                     </div>
-                
+
                                                 </div>
-                
+
                                         </div>
                                     </div>
                                 </div>

@@ -38,6 +38,16 @@ use Illuminate\Support\Facades\DB;
 
 class HighCourtCasesController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('permission:high-court-cases-list|high-court-cases-create|high-court-cases-edit|high-court-cases-delete|high-court-cases-view', ['only' => ['high_court_cases']]);
+        $this->middleware('permission:high-court-cases-create', ['only' => ['add_high_court_cases','save_high_court_cases']]);
+        $this->middleware('permission:high-court-cases-edit', ['only' => ['edit_high_court_cases','update_high_court_cases']]);
+        $this->middleware('permission:high-court-cases-delete', ['only' => ['delete_high_court_cases']]);
+        $this->middleware('permission:high-court-cases-view', ['only' => ['view_high_court_cases']]);
+    }
+
     public function high_court_cases()
     {
         $data = DB::table('high_court_cases')

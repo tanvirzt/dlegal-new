@@ -31,7 +31,7 @@
                     </div>
                 @endif
                 <div class="row">
-                    
+
                     <div class="col-md-8">
                         <div class="card">
                             <div id="accordion">
@@ -61,7 +61,7 @@
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    
+
                                                     <div class="form-group row">
                                                         <label for="compliance_category_id"
                                                             class="col-sm-4 col-form-label">Category </label>
@@ -111,7 +111,7 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                    
+
 
                                                 </div>
                                             </div>
@@ -135,8 +135,10 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('regulatory-compliance-info-create')
                                     <a href="{{ route('add-regulatory-compliance') }}"><button class="btn btn-sm btn-success add_btn"><i
                                                 class="fas fa-plus"></i> Add Regulatory Compliance </button></a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -160,7 +162,7 @@
                                         @foreach ($data as $datum)
                                             <tr>
                                                 <td class="text-center">
-                                                    {{ $datum->certificates_name }} 
+                                                    {{ $datum->certificates_name }}
                                                 </td>
                                                 <td class="text-center">
                                                     {{ $datum->compliance_category_name }}
@@ -180,8 +182,8 @@
                                                 <td class="text-center">
                                                     {{ $datum->certificates_renew }}
                                                 </td>
-                                                
-                                                
+
+
                                                 <td class="text-center">
                                                     @if ($datum->delete_status == 0)
                                                         <button type="button"
@@ -194,15 +196,20 @@
                                                     </span>
                                                 </td>
                                                 <td class="text-center">
+                                                    @can('regulatory-compliance-info-view')
                                                     <a href="{{ route('view-regulatory-compliance', $datum->id) }}"><button
                                                             class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Details"><i
                                                                 class="fas fa-eye"></i></button></a>
+                                                    @endcan
+                                                    @can('regulatory-compliance-info-edit')
                                                     <a href="{{ route('edit-regulatory-compliance', $datum->id) }}"><button
                                                             class="btn btn-info btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"><i
                                                                 class="fas fa-edit"></i></button></a>
-                                                    <form method="POST"
+                                                        @endcan
+                                                        @can('regulatory-compliance-info-delete')
+                                                        <form method="POST"
                                                         action="{{ route('delete-regulatory-compliance', $datum->id) }}"
                                                         class="delete-user btn btn-danger btn-xs">
                                                         @csrf
@@ -210,6 +217,7 @@
                                                             data-toggle="tooltip" data-placement="top" title="Delete"><i
                                                                 class="fas fa-trash"></i> </button>
                                                     </form>
+                                                        @endcan
                                                 </td>
                                             </tr>
                                         @endforeach

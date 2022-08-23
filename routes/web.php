@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
 
-    Route::get('users.add-permissions/{id}',[UserController::class,'add_permissions'])->name('users.add-permissions');
+    Route::get('individual-users-permission/{id}',[UserController::class,'add_permissions'])->name('users.add-permissions');
     Route::post('save-user-permissions/{id}',[UserController::class, 'save_users_permissions'])->name('users.save_permissions');
 
     Route::get('designation', [AdminSetupController::class, 'designation'])->name('designation');

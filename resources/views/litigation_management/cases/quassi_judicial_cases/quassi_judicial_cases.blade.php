@@ -160,11 +160,13 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('quassi-judicial-cases-create')
                                     <a href="{{ route('add-quassi-judicial-cases') }}">
                                         <button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add Special / Quassi-Judicial Cases
                                         </button>
                                     </a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -224,22 +226,29 @@
                                                     </span>
                                             </td>
                                             <td>
+                                                @can('quassi-judicial-cases-view')
                                                 <a href="{{ route('view-quassi-judicial-cases',$datum->id) }}">
                                                     <button class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Details"
                                                     ><i class="fas fa-eye"></i></button>
                                                 </a>
+                                                @endcan
+                                                @can('quassi-judicial-cases-add-billing')
                                                 <a href="{{ route('add-billing-quassi-judicial-cases', $datum->id) }}">
                                                     <button
                                                         class="btn btn-warning btn-sm" data-toggle="tooltip"
                                                         data-placement="top" title="Bill Entry"><i
                                                             class="fas fa-money-bill"></i></button>
                                                 </a>
+                                                    @endcan
+                                                @can('quassi-judicial-cases-edit')
                                                 <a href="{{ route('edit-quassi-judicial-cases',$datum->id) }}">
                                                     <button class="btn btn-info btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button>
                                                 </a>
+                                                @endcan
+                                                    @can('quassi-judicial-cases-delete')
                                                 <form method="POST"
                                                       action="{{ route('delete-quassi-judicial-cases',$datum->id) }}"
                                                       class="delete-user btn btn-danger btn-xs">
@@ -248,6 +257,7 @@
                                                             data-toggle="tooltip" data-placement="top" title="Delete"><i
                                                             class="fas fa-trash"></i></button>
                                                 </form>
+                                                    @endcan
                                             </td>
                                         </tr>
                                     @endforeach

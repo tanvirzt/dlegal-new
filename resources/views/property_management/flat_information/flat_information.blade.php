@@ -31,7 +31,7 @@
                     </div>
                 @endif
                 <div class="row">
-                    
+
                     <div class="col-md-8">
                         <div class="card">
                             <div id="accordion">
@@ -90,14 +90,14 @@
                                                         <div class="col-sm-8">
                                                             <select name="thana_id" class="form-control select2" id="thana_id">
                                                                 <option value=""> Select </option>
-        
-                                                            </select>  
+
+                                                            </select>
                                                             @error('thana_id')<span class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    
+
                                                     <div class="form-group row">
                                                         <label for="seller_id" class="col-sm-4 col-form-label">Seller Name</label>
                                                         <div class="col-sm-8">
@@ -146,10 +146,12 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('flat-information-create')
                                     <a href="{{ route('add-flat-information') }}"><button
                                             class="btn btn-sm
                                     btn-success add_btn"><i
                                                 class="fas fa-plus"></i> Add Flat Information </button></a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -175,7 +177,7 @@
                                         @foreach ($data as $datum)
                                             <tr>
                                                 <td>
-                                                    {{ $datum->property_type_name }} 
+                                                    {{ $datum->property_type_name }}
                                                 </td>
                                                 <td>
                                                     {{ $datum->district_name }}
@@ -213,15 +215,21 @@
                                                     </span>
                                                 </td>
                                                 <td>
+                                                    @can('flat-information-view')
                                                     <a href="{{ route('view-flat-information', $datum->id) }}"><button
                                                             class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Details"><i
                                                                 class="fas fa-eye"></i></button></a>
+                                                    @endcan
+                                                    @can('flat-information-edit')
                                                     <a href="{{ route('edit-flat-information', $datum->id) }}"><button
                                                             class="btn btn-info btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"><i
                                                                 class="fas fa-edit"></i></button></a>
-                                                    <form method="POST"
+                                                        @endcan
+                                                        @can('flat-information-delete')
+
+                                                        <form method="POST"
                                                         action="{{ route('delete-flat-information', $datum->id) }}"
                                                         class="delete-user btn btn-danger btn-xs">
                                                         @csrf
@@ -229,6 +237,7 @@
                                                             data-toggle="tooltip" data-placement="top" title="Delete"><i
                                                                 class="fas fa-trash"></i> </button>
                                                     </form>
+                                                        @endcan
                                                 </td>
                                             </tr>
                                         @endforeach

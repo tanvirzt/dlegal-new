@@ -37,6 +37,16 @@ use App\Models\QuassiJudicialCaseStatusLog;
 class QuassiJudicialCasesController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware('permission:quassi-judicial-cases-list|quassi-judicial-cases-create|quassi-judicial-cases-edit|quassi-judicial-cases-delete|quassi-judicial-cases-view', ['only' => ['quassi_judicial_cases']]);
+        $this->middleware('permission:quassi-judicial-cases-create', ['only' => ['add_quassi_judicial_cases','save_quassi_judicial_cases']]);
+        $this->middleware('permission:quassi-judicial-cases-edit', ['only' => ['edit_quassi_judicial_cases','update_quassi_judicial_cases']]);
+        $this->middleware('permission:quassi-judicial-cases-delete', ['only' => ['delete_quassi_judicial_cases']]);
+        $this->middleware('permission:quassi-judicial-cases-view', ['only' => ['view_quassi_judicial_cases']]);
+    }
+
+
     public function quassi_judicial_cases()
     {
         $case_category = SetupCaseCategory::where(['case_type' => 'Special Quassi - Judicial Cases', 'delete_status' => 0])->get();

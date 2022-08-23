@@ -14,7 +14,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> User </li>
+                            <li class="breadcrumb-item active"> User</li>
                         </ol>
                     </div>
                 </div>
@@ -39,8 +39,13 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('users.create') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add User </button></a>
+                                    @can('user-create')
+                                        <a href="{{ route('users.create') }}">
+                                            <button class="btn btn-sm
+                                    btn-success add_btn"><i class="fas fa-plus"></i> Add User
+                                            </button>
+                                        </a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -82,21 +87,28 @@
 
 
                                             <td class="text-center">
-{{--                                                @can('user-edit')--}}
-                                                    <a href="{{ route('users.edit',$user->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
-                                                    ><i class="fas fa-edit"></i></button></a>
-{{--                                                @endcan--}}
-
-                                                <a href="{{ route('users.add-permissions',$user->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Permission"
-                                                    ><i class="fas fa-check"></i></button></a>
-
-{{--                                              @can('user-delete')--}}
-                                                <form method="POST" action="{{ route('users.destroy',$user->id) }}" class="delete-user btn btn-danger btn-xs">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
-                                                </form>
-{{--                                              @endcan--}}
+                                                @can('user-edit')
+                                                    <a href="{{ route('users.edit',$user->id) }}">
+                                                        <button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                        ><i class="fas fa-edit"></i></button>
+                                                    </a>
+                                                @endcan
+                                                @can('individual-users-permission')
+                                                    <a href="{{ route('users.add-permissions',$user->id) }}">
+                                                        <button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top"
+                                                                title="Permission"
+                                                        ><i class="fas fa-check"></i></button>
+                                                    </a>
+                                                @endcan
+                                                @can('user-delete')
+                                                    <form method="POST" action="{{ route('users.destroy',$user->id) }}"
+                                                          class="delete-user btn btn-danger btn-xs">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top"
+                                                                title="Delete"><i class="fas fa-trash"></i></button>
+                                                    </form>
+                                                @endcan
 
 
                                             </td>

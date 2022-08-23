@@ -39,6 +39,15 @@ use Illuminate\Support\Facades\DB;
 class AppellateCourtCasesController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware('permission:appellate-court-cases-list|appellate-court-cases-create|appellate-court-cases-edit|appellate-court-cases-delete|appellate-court-cases-view', ['only' => ['appellate_court_cases']]);
+        $this->middleware('permission:appellate-court-cases-create', ['only' => ['add_appellate_court_cases','save_appellate_court_cases']]);
+        $this->middleware('permission:appellate-court-cases-edit', ['only' => ['edit_appellate_court_cases','update_appellate_court_cases']]);
+        $this->middleware('permission:appellate-court-cases-delete', ['only' => ['delete_appellate_court_cases']]);
+        $this->middleware('permission:appellate-court-cases-view', ['only' => ['view_appellate_court_cases']]);
+    }
+
     public function appellate_court_cases()
     {
         $court = SetupCourt::where('delete_status', 0)->get();

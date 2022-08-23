@@ -38,8 +38,10 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('seller-or-buyer-create')
                                     <a href="{{ route('add-seller-buyer') }}"><button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add Seller / Buyer </button></a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -81,7 +83,7 @@
                                                 @if ($datum->image)
                                                     <img src="{{ asset('files/seller_buyer/'.$datum->image) }}" style="max-height: 50px; max-width:50px;">
                                                 @else
-                                                    
+
                                                 @endif
 
                                             </td>
@@ -97,14 +99,16 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
-                                                
+                                                @can('seller-or-buyer-edit')
                                                 <a href="{{ route('edit-seller-buyer',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
-                                                <form method="POST" action="{{ route('delete-seller-buyer',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                @endcan
+                                                @can('seller-or-buyer-delete')
+                                                    <form method="POST" action="{{ route('delete-seller-buyer',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>     
+                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
-
+                                                    @endcan
 
                                             </td>
                                         </tr>

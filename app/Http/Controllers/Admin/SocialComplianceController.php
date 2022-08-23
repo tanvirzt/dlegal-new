@@ -8,7 +8,15 @@ use Illuminate\Support\Facades\DB;
 use App\Models\SocialCompliance;
 class SocialComplianceController extends Controller
 {
-    //
+
+    function __construct()
+    {
+        $this->middleware('permission:social-compliance-info-list|social-compliance-info-create|social-compliance-info-edit|social-compliance-info-delete|social-compliance-info-view', ['only' => ['social_compliance']]);
+        $this->middleware('permission:social-compliance-info-create', ['only' => ['add_social_compliance','save_social_compliance']]);
+        $this->middleware('permission:social-compliance-info-edit', ['only' => ['edit_social_compliance','update_social_compliance']]);
+        $this->middleware('permission:social-compliance-info-delete', ['only' => ['delete_social_compliance']]);
+        $this->middleware('permission:social-compliance-info-view', ['only' => ['view_social_compliance']]);
+    }
 
     public function social_compliance()
     {

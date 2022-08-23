@@ -38,8 +38,10 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('court-name-create')
                                     <a href="{{ route('add-court') }}"><button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add Court </button></a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -100,14 +102,16 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
-
+                                                @can('court-name-edit')
                                                 <a href="{{ route('edit-court',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
+                                                @endcan
+                                                @can('court-name-delete')
                                                     <form method="POST" action="{{ route('delete-court',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                     </form>
-
+                                                 @endcan
                                             </td>
                                         </tr>
                                     @endforeach

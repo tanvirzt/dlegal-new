@@ -40,8 +40,16 @@ use Illuminate\Support\Facades\DB;
 
 class CivilCasesController extends Controller
 {
-    //civil cases setup
+    function __construct()
+    {
+        $this->middleware('permission:civil-cases-list|civil-cases-create|civil-cases-edit|civil-cases-delete|civil-cases-view', ['only' => ['civil_cases']]);
+        $this->middleware('permission:civil-cases-create', ['only' => ['add_civil_cases','save_civil_cases']]);
+        $this->middleware('permission:civil-cases-edit', ['only' => ['edit_civil_cases','update_civil_cases']]);
+        $this->middleware('permission:civil-cases-delete', ['only' => ['delete_civil_cases']]);
+        $this->middleware('permission:civil-cases-view', ['only' => ['view_civil_cases']]);
+    }
 
+    //civil cases setup
     public function civil_cases()
     {
 //        $data = CivilCases::all();

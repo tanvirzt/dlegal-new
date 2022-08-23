@@ -38,7 +38,15 @@ use DB;
 
 class LabourCasesController extends Controller
 {
-    //
+
+    function __construct()
+    {
+        $this->middleware('permission:service-matter-list|service-matter-create|service-matter-edit|service-matter-delete|service-matter-view', ['only' => ['labour_cases']]);
+        $this->middleware('permission:service-matter-create', ['only' => ['add_labour_cases','save_labour_cases']]);
+        $this->middleware('permission:service-matter-edit', ['only' => ['edit_labour_cases','update_labour_cases']]);
+        $this->middleware('permission:service-matter-delete', ['only' => ['delete_labour_cases']]);
+        $this->middleware('permission:service-matter-view', ['only' => ['view_labour_cases']]);
+    }
 
     public function labour_cases()
     {

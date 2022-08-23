@@ -84,6 +84,15 @@ class CriminalCasesController extends Controller
 {
     //
 
+    function __construct()
+    {
+        $this->middleware('permission:criminal-cases-list|criminal-cases-create|criminal-cases-edit|criminal-cases-delete|criminal-cases-view', ['only' => ['criminal_cases']]);
+        $this->middleware('permission:criminal-cases-create', ['only' => ['add_criminal_cases','save_criminal_cases']]);
+        $this->middleware('permission:criminal-cases-edit', ['only' => ['edit_criminal_cases','update_criminal_cases']]);
+        $this->middleware('permission:criminal-cases-delete', ['only' => ['delete_criminal_cases']]);
+        $this->middleware('permission:criminal-cases-view', ['only' => ['view_criminal_cases']]);
+    }
+
     public function criminal_cases()
     {
         //   $data = CriminalCase::all();
@@ -117,11 +126,11 @@ class CriminalCasesController extends Controller
             ->select('criminal_cases.*',
             // 'criminal_cases_case_steps.another_claim',
             'setup_case_statuses.case_status_name',
-            'setup_case_titles.case_title_name', 
-            'setup_next_date_reasons.next_date_reason_name', 
-            'setup_courts.court_name', 
+            'setup_case_titles.case_title_name',
+            'setup_next_date_reasons.next_date_reason_name',
+            'setup_courts.court_name',
             'setup_districts.district_name',
-            'accused_district.district_name as accused_district_name', 
+            'accused_district.district_name as accused_district_name',
             'setup_case_types.case_types_name',
             'setup_external_councils.first_name',
             'setup_external_councils.middle_name',
@@ -199,13 +208,13 @@ class CriminalCasesController extends Controller
 
 
        $received_documents_sections = $request->received_documents_sections;
-       $remove = array_pop($received_documents_sections);  
+       $remove = array_pop($received_documents_sections);
 
        $required_wanting_documents_sections = $request->required_wanting_documents_sections;
-       $remove = array_pop($required_wanting_documents_sections);  
+       $remove = array_pop($required_wanting_documents_sections);
 
        $letter_notice_sections = $request->letter_notice_sections;
-       $remove = array_pop($letter_notice_sections);  
+       $remove = array_pop($letter_notice_sections);
 
 // dd($letter_notice_sections);
 
@@ -249,7 +258,7 @@ $created_case_id = 'LCR-000'.$sl;
         } else {
             $next_date = '';
         }
-        
+
         $complainant = $request->case_infos_complainant_informant_name ? implode(', ', $request->case_infos_complainant_informant_name) : null;
         $accused = $request->case_infos_accused_name ? implode(', ', $request->case_infos_accused_name) : null;
         $client = $request->client_name_write ? implode(', ', $request->client_name_write) : null;
@@ -359,7 +368,7 @@ $created_case_id = 'LCR-000'.$sl;
         // $data->required_wanting_documents_id = rtrim($required_wanting_documents_id,', ');
         // $data->required_wanting_documents = $required_wanting_documents;
         // $data->required_wanting_documents_date = rtrim($required_wanting_documents_date,', ');
-        
+
         $data->case_infos_division_id = $request->case_infos_division_id;
         $data->case_infos_district_id = $request->case_infos_district_id;
         $data->case_infos_thana_id = $request->case_infos_thana_id;
@@ -600,7 +609,7 @@ $created_case_id = 'LCR-000'.$sl;
         $opposition_existing_district = SetupDistrict::where('division_id', $data->opposition_division_id)->orderBy('district_name','asc')->get();
         $opposition_existing_thana = SetupThana::where(['district_id' => $data->opposition_district_id, 'delete_status' => 0])->orderBy('thana_name','asc')->get();
         $existing_assignend_external_council = SetupExternalCouncilAssociate::where(['external_council_id' => $data->lawyer_advocate_id, 'delete_status' => 0])->orderBy('first_name','asc')->get();
-        // dd($data);       
+        // dd($data);
 
         $exist_case_inofs_district = SetupDistrict::where('id', $data->case_infos_district_id)->first();
 // dd($exist_case_inofs_district);
@@ -638,7 +647,7 @@ $created_case_id = 'LCR-000'.$sl;
         $particulars = SetupParticulars::where('delete_status',0)->orderBy('particulars_name','asc')->get();
         $documents_type = SetupDocumentsType::where('delete_status',0)->orderBy('documents_type_name','asc')->get();
         $group_name = SetupGroup::get();
-        
+
         // dd($previous_activity);
 //        dd($assigned_lawyer_explode);
 
@@ -738,7 +747,7 @@ $case_no_data = DB::table('criminal_cases')
         $received_documents_explode = CriminalCasesDocumentsReceived::where('case_id',$id)->get()->toArray();
         $required_wanting_documents_explode = CriminalCasesDocumentsRequired::where('case_id',$id)->get()->toArray();
         $letter_notice_explode = CriminalCasesLetterNotice::where('case_id',$id)->get()->toArray();
-        
+
         // dd($received_documents_explode);
 
         return view('litigation_management.cases.criminal_cases.edit_criminal_cases', compact('group_name','documents_type','required_wanting_documents_explode','received_documents_date_explode','received_documents_write_explode','exist_court_short','data', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'existing_ext_coun_associates', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana','existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'received_documents_explode', 'required_documents_explode','user','complainant','accused','court_short','edit_case_steps','exist_engaged_advocate','exist_engaged_advocate_associates','court_short_explode','sub_seq_court_short_explode','previous_activity','opposition_existing_district','opposition_existing_thana','cabinet','case_no_data','exist_case_type','particulars','letter_notice_explode'));
@@ -750,13 +759,13 @@ $case_no_data = DB::table('criminal_cases')
 // dd($request->all());
 
         $received_documents_sections = $request->received_documents_sections;
-        $remove = !empty($received_documents_sections) ? array_pop($received_documents_sections) : '';  
+        $remove = !empty($received_documents_sections) ? array_pop($received_documents_sections) : '';
 
         $required_wanting_documents_sections = $request->required_wanting_documents_sections;
-        $remove = !empty($required_wanting_documents_sections) ? array_pop($required_wanting_documents_sections) : '';  
+        $remove = !empty($required_wanting_documents_sections) ? array_pop($required_wanting_documents_sections) : '';
 
         $letter_notice_sections = $request->letter_notice_sections;
-        $remove = !empty($letter_notice_sections) ? array_pop($letter_notice_sections) : ''; 
+        $remove = !empty($letter_notice_sections) ? array_pop($letter_notice_sections) : '';
 
         if ($request->received_date != 'dd-mm-yyyy') {
             $received_date_explode = explode('-', $request->received_date);
@@ -964,7 +973,7 @@ $case_no_data = DB::table('criminal_cases')
             $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
             $steps->case_steps_summary_of_cases_type_id = $request->case_steps_summary_of_cases_type_id;
             $steps->case_steps_remarks = $request->case_steps_remarks;
-    
+
             $steps->save();
 
             if ($request->hasfile('uploaded_document')) {
@@ -992,7 +1001,7 @@ $case_no_data = DB::table('criminal_cases')
 
             $received_documents = CriminalCasesDocumentsReceived::where('case_id', $id)->delete();
             // dd($received_documents);
-            
+
             foreach ( array_filter($received_documents_sections) as $key => $value ){
                 $datum = new CriminalCasesDocumentsReceived();
                 $datum->case_id = $data->id;
@@ -1002,7 +1011,7 @@ $case_no_data = DB::table('criminal_cases')
                 $datum->received_documents_type_id = $request->received_documents_type_id[$key];
                 $datum->save();
             }
-    
+
             $required_wanting_documents = CriminalCasesDocumentsRequired::where('case_id', $id)->delete();
 
             foreach ( array_filter($required_wanting_documents_sections) as $key => $value ){
@@ -1014,7 +1023,7 @@ $case_no_data = DB::table('criminal_cases')
                 $required->required_wanting_documents_type_id = $request->required_wanting_documents_type_id[$key];
                 $required->save();
             }
-            
+
             $letter_notice = CriminalCasesLetterNotice::where('case_id', $id)->delete();
 
             foreach ( array_filter($letter_notice_sections) as $key => $value ){
@@ -1055,7 +1064,7 @@ $case_no_data = DB::table('criminal_cases')
             $data->save();
 
         }else if ($request->client_information) {
-            
+
             $data->client_party_id = $request->client_party_id;
             $data->client_category_id = $request->client_category_id;
             $data->client_subcategory_id = $request->client_subcategory_id;
@@ -1122,7 +1131,7 @@ $case_no_data = DB::table('criminal_cases')
 
             $received_documents = CriminalCasesDocumentsReceived::where('case_id', $id)->delete();
             // dd($received_documents);
-            
+
             foreach ( array_filter($received_documents_sections) as $key => $value ){
                 $datum = new CriminalCasesDocumentsReceived();
                 $datum->case_id = $data->id;
@@ -1132,7 +1141,7 @@ $case_no_data = DB::table('criminal_cases')
                 $datum->received_documents_type_id = $request->received_documents_type_id[$key];
                 $datum->save();
             }
-    
+
             $required_wanting_documents = CriminalCasesDocumentsRequired::where('case_id', $id)->delete();
 
             foreach ( array_filter($required_wanting_documents_sections) as $key => $value ){
@@ -1144,7 +1153,7 @@ $case_no_data = DB::table('criminal_cases')
                 $required->required_wanting_documents_type_id = $request->required_wanting_documents_type_id[$key];
                 $required->save();
             }
-            
+
         }else if ($request->letter_notice_date) {
 
             $letter_notice = CriminalCasesLetterNotice::where('case_id', $id)->delete();
@@ -1209,7 +1218,7 @@ $case_no_data = DB::table('criminal_cases')
 // dd('asdfadf');
 
         }else if ($request->case_steps) {
-            
+
             $steps = CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
 
             $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
@@ -1268,7 +1277,7 @@ $case_no_data = DB::table('criminal_cases')
         // $letter_notice->letter_notice_documents_id = $request->letter_notice_documents_id[$key];
         // $letter_notice->letter_notice_particulars_id = $request->letter_notice_particulars_id[$key];
         // $letter_notice->letter_notice_org = $request->letter_notice_org[$key];
-        // $letter_notice->letter_notice_pht 
+        // $letter_notice->letter_notice_pht
 
 
 
@@ -1277,15 +1286,15 @@ $case_no_data = DB::table('criminal_cases')
 // $letter_notice_particulars_id =  array_filter($request->letter_notice_particulars_id);
 // $letter_notice_org =  array_filter($request->letter_notice_org);
 // $letter_notice_pht =  array_filter($request->letter_notice_pht);
-        
+
 $received_documents_sections = $request->received_documents_sections;
-$remove = $received_documents_sections ? array_pop($received_documents_sections) : '';  
+$remove = $received_documents_sections ? array_pop($received_documents_sections) : '';
 
 $required_wanting_documents_sections = $request->required_wanting_documents_sections;
-$remove = $required_wanting_documents_sections ? array_pop($required_wanting_documents_sections) : '';  
+$remove = $required_wanting_documents_sections ? array_pop($required_wanting_documents_sections) : '';
 
 $letter_notice_sections = $request->letter_notice_sections;
-$remove = $letter_notice_sections ? array_pop($letter_notice_sections) : '';  
+$remove = $letter_notice_sections ? array_pop($letter_notice_sections) : '';
 
 // dd($required_wanting_documents_sections);
 
@@ -1525,7 +1534,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
             $steps->case_steps_summary_of_cases_type_id = $request->case_steps_summary_of_cases_type_id;
             $steps->case_steps_remarks = $request->case_steps_remarks;
-    
+
             $steps->save();
 
             if ($request->hasfile('uploaded_document')) {
@@ -1537,7 +1546,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
                     $original_extension = $file->getClientOriginalExtension();
                     $name = Str::slug($implode).'.'.$original_extension;
                     $file->move(public_path('files/criminal_cases'), $name);
-    
+
                     $files = new CriminalCasesFile();
                     $files->case_id = $data->id;
                     $files->uploaded_date = $request->uploaded_date[$key];
@@ -1560,7 +1569,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
                 $datum->received_documents_type_id = $request->received_documents_type_id[$key];
                 $datum->save();
             }
-    
+
             $required_wanting_documents = CriminalCasesDocumentsRequired::where('case_id', $id)->delete();
 
             foreach ( array_filter($required_wanting_documents_sections) as $key => $value ){
@@ -1786,7 +1795,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
                 $exist_court_short = [];
             }
 
-            
+
 // dd($data);
 
         $existing_district = SetupDistrict::where('division_id', $data->client_division_id)->orderBy('district_name','asc')->get();
@@ -1850,7 +1859,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             ->leftJoin('setup_next_date_reasons as index_reason', 'criminal_case_status_logs.updated_index_fixed_for_id', '=', 'index_reason.id')
             ->leftJoin('setup_external_council_associates', 'criminal_case_status_logs.updated_engaged_advocate_id', '=', 'setup_external_council_associates.id')
             ->leftJoin('setup_next_day_presences', 'criminal_case_status_logs.updated_next_day_presence_id', '=', 'setup_next_day_presences.id')
-            ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name', 'setup_court_proceedings.court_proceeding_name', 'setup_court_last_orders.court_last_order_name', 'setup_day_notes.day_notes_name', 'setup_external_council_associates.first_name', 'setup_external_council_associates.middle_name', 'setup_external_council_associates.last_name', 'setup_next_day_presences.next_day_presence_name','index_reason.next_date_reason_name as index_next_date_reason_name')        
+            ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name', 'setup_court_proceedings.court_proceeding_name', 'setup_court_last_orders.court_last_order_name', 'setup_day_notes.day_notes_name', 'setup_external_council_associates.first_name', 'setup_external_council_associates.middle_name', 'setup_external_council_associates.last_name', 'setup_next_day_presences.next_day_presence_name','index_reason.next_date_reason_name as index_next_date_reason_name')
             ->where(['criminal_case_status_logs.case_id' => $id, 'criminal_case_status_logs.delete_status' => 0])
             ->orderBy('criminal_case_status_logs.updated_order_date','desc')
             // ->orderByRaw("DATE_FORMAT('Y-m-d',criminal_case_status_logs.updated_order_date), 'desc'")
@@ -1928,7 +1937,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
                             ->leftJoin('setup_documents_types','criminal_cases_letter_notices.letter_notice_type_id','setup_documents_types.id')
                             ->where('case_id',$id)
                             ->select('criminal_cases_letter_notices.*','setup_documents.documents_name','setup_documents_types.documents_type_name')
-                            ->get();    
+                            ->get();
 
         $case_steps = DB::table('criminal_cases_case_steps')
                     ->leftJoin('setup_documents_types','criminal_cases_case_steps.case_steps_filing_type_id','setup_documents_types.id')
@@ -1944,9 +1953,9 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
                     ->leftJoin('setup_documents_types as summary_of_cases','criminal_cases_case_steps.case_steps_summary_of_cases_type_id','summary_of_cases.id')
                     ->where('criminal_case_id',$id)
                     ->select('criminal_cases_case_steps.*','setup_documents_types.documents_type_name as case_steps_filing_type_name','taking_cognizance.documents_type_name as taking_cognizance_type_name','taking_cognizance.documents_type_name as taking_cognizance_type_name','arrest_surrender_cw.documents_type_name as arrest_surrender_cw_type_name','case_steps_bail.documents_type_name as case_steps_bail_type_name','court_transfer.documents_type_name as court_transfer_type_name','charge_framed.documents_type_name as charge_framed_type_name','witness_from.documents_type_name as witness_from_type_name','witness_to.documents_type_name as witness_to_type_name','argument.documents_type_name as argument_type_name','judgement_order.documents_type_name as judgement_order_type_name','summary_of_cases.documents_type_name as summary_of_cases_type_name')
-                    ->first(); 
-        
-        
+                    ->first();
+
+
         // CriminalCasesCaseSteps::where('criminal_case_id',$id)->first();
         // dd($case_steps);
 
@@ -1986,7 +1995,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         if ($request->updated_order_date != 'dd-mm-yyyy') {
             $order_date_explode = explode('/', $request->updated_order_date);
             $order_date_implode = implode('-',$order_date_explode);
-            $order_date = date('Y-m-d', strtotime($order_date_implode)); 
+            $order_date = date('Y-m-d', strtotime($order_date_implode));
         } else {
             $order_date = date('Y-m-d');
         }
@@ -1998,7 +2007,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             $next_date_implode = implode('-',$next_date_explode);
             $next_date = date('Y-m-d', strtotime($next_date_implode));
         }
-        
+
         // dd($order_date);
 
         $updated_day_notes_id = $request->updated_day_notes_id ? implode(', ',$request->updated_day_notes_id) : null;
@@ -2120,7 +2129,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
 
     //    $data = json_decode(json_encode($request->all()));
     //    echo "<pre>";print_r($data);die();
-       
+
 // dd($id);
 
 // return $arr = array('Hello','World!','Beautiful','Day!');
@@ -2265,7 +2274,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         if ($request->updated_order_date != 'dd-mm-yyyy') {
             $order_date_explode = explode('/', $request->updated_order_date);
             $order_date_implode = implode('-',$order_date_explode);
-            $order_date = date('Y-m-d', strtotime($order_date_implode));    
+            $order_date = date('Y-m-d', strtotime($order_date_implode));
         } else {
             $order_date = date('Y-m-d');
         }
@@ -2324,7 +2333,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         $exist_engaged_advocate_associates_explode = explode(', ', $data->activity_engaged_id);
         $exist_activity_forwarded_explode = explode(', ', $data->activity_forwarded_to_id);
         // dd($data);
-     
+
         $activity_data = DB::table('criminal_cases')
         ->leftJoin('setup_legal_issues', 'criminal_cases.legal_issue_id', '=', 'setup_legal_issues.id')
         ->leftJoin('setup_legal_services', 'criminal_cases.legal_service_id', '=', 'setup_legal_services.id')
@@ -2414,7 +2423,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             'case_infos_title.case_title_name as sub_seq_case_title_name')
         ->where('criminal_cases.id', $data->case_id)
         ->first();
-     
+
         return view('litigation_management.cases.criminal_cases.criminal_cases_activity_update',compact('exist_activity_forwarded_explode','data','mode','exist_engaged_advocate_associates','external_council','exist_engaged_advocate_associates_explode','activity_data'));
     }
 
@@ -2446,7 +2455,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
         } else {
             $activity_date = date('Y-m-d');
         }
-        
+
         $case_id = CriminalCaseActivityLog::find($id);
 
         DB::beginTransaction();
@@ -2524,7 +2533,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
                 $file->save();
         }else{
             session()->flash('warning', 'There is no documents to upload.');
-            return redirect()->back(); 
+            return redirect()->back();
         }
 
         session()->flash('success', 'Documents Added Successfully.');
@@ -2547,7 +2556,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             if($request->uploaded_document && file_exists($image_path)){
                 unlink($image_path);
             }
-            
+
             if (!empty($request->uploaded_document)) {
                 $file = $request->file('uploaded_document');
                 $original_name = $file->getClientOriginalName();
@@ -2676,7 +2685,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             ->leftJoin('setup_next_date_reasons as index_reason', 'criminal_case_status_logs.updated_index_fixed_for_id', '=', 'index_reason.id')
             ->leftJoin('setup_external_council_associates', 'criminal_case_status_logs.updated_engaged_advocate_id', '=', 'setup_external_council_associates.id')
             ->leftJoin('setup_next_day_presences', 'criminal_case_status_logs.updated_next_day_presence_id', '=', 'setup_next_day_presences.id')
-            ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name', 'setup_court_proceedings.court_proceeding_name', 'setup_court_last_orders.court_last_order_name', 'setup_day_notes.day_notes_name', 'setup_external_council_associates.first_name', 'setup_external_council_associates.middle_name', 'setup_external_council_associates.last_name', 'setup_next_day_presences.next_day_presence_name','index_reason.next_date_reason_name as index_next_date_reason_name')        
+            ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name', 'setup_court_proceedings.court_proceeding_name', 'setup_court_last_orders.court_last_order_name', 'setup_day_notes.day_notes_name', 'setup_external_council_associates.first_name', 'setup_external_council_associates.middle_name', 'setup_external_council_associates.last_name', 'setup_next_day_presences.next_day_presence_name','index_reason.next_date_reason_name as index_next_date_reason_name')
             ->where(['criminal_case_status_logs.case_id' => $id, 'criminal_case_status_logs.delete_status' => 0])
             ->orderBy('criminal_case_status_logs.created_at','asc')
             // ->orderByRaw("DATE_FORMAT('d-m-Y',criminal_case_status_logs.updated_order_date), 'ASC'")
@@ -2836,7 +2845,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
                 ->leftJoin('admins', 'criminal_cases.received_by_id', '=', 'admins.id')
                 ->leftJoin('setup_cabinets', 'criminal_cases.cabinet_id', '=', 'setup_cabinets.id')
                 ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
-                
+
 
                 ->select('criminal_cases.*',
                     'setup_legal_issues.legal_issue_name',
@@ -2940,7 +2949,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
             ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id');
-            
+
         switch ($request->isMethod('post')) {
             case $request->created_case_id:
                 $query2 = $query->where('criminal_cases.created_case_id', 'LIKE', "%{$request->created_case_id}%");
@@ -3004,7 +3013,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             case $request->next_date_fixed_id:
                 $query2 = $query->where('criminal_cases.next_date_fixed_id', $request->next_date_fixed_id);
                 break;
-            case $request->from_next_date && $request->to_next_date: 
+            case $request->from_next_date && $request->to_next_date:
                 $query2 = $query->where('next_date', '>=', $from_next_date)
                                 ->where('next_date', '<=', $to_next_date);
                 break;
@@ -3151,7 +3160,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
             ->leftJoin('setup_next_date_reasons as index_reason', 'criminal_case_status_logs.updated_index_fixed_for_id', '=', 'index_reason.id')
             ->leftJoin('setup_external_council_associates', 'criminal_case_status_logs.updated_engaged_advocate_id', '=', 'setup_external_council_associates.id')
             ->leftJoin('setup_next_day_presences', 'criminal_case_status_logs.updated_next_day_presence_id', '=', 'setup_next_day_presences.id')
-            ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name', 'setup_court_proceedings.court_proceeding_name', 'setup_court_last_orders.court_last_order_name', 'setup_day_notes.day_notes_name', 'setup_external_council_associates.first_name', 'setup_external_council_associates.middle_name', 'setup_external_council_associates.last_name', 'setup_next_day_presences.next_day_presence_name','index_reason.next_date_reason_name as index_next_date_reason_name')        
+            ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name', 'setup_court_proceedings.court_proceeding_name', 'setup_court_last_orders.court_last_order_name', 'setup_day_notes.day_notes_name', 'setup_external_council_associates.first_name', 'setup_external_council_associates.middle_name', 'setup_external_council_associates.last_name', 'setup_next_day_presences.next_day_presence_name','index_reason.next_date_reason_name as index_next_date_reason_name')
             ->where(['criminal_case_status_logs.id' => $id, 'criminal_case_status_logs.delete_status' => 0])
             ->orderBy('criminal_case_status_logs.updated_order_date','desc')
             ->first();

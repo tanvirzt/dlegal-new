@@ -35,6 +35,7 @@
                         </p>
                     </a>
                 </li>
+                @canany(['role-list', 'user-list'])
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fas fa-users"></i>
@@ -44,21 +45,25 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-
+                        @can('role-list')
                         <li class="nav-item">
                             <a href="{{ route('roles.index') }}" class="nav-link">
                                 <i class="fas fa-user-tag nav-icon"></i>
                                 <p>Role</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('user-list')
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}" class="nav-link">
                                 <i class="fas fa-user nav-icon"></i>
                                 <p>User</p>
                             </a>
                         </li>
+                        @endcan
                     </ul>
                 </li>
+                @endcanany
                 @canany(['counsel-list', 'chamber-staff-list', 'chamber-list', 'internal-counsel-list'])
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -684,7 +689,7 @@
                 </li>
                 @endcanany
 
-
+                @can(['civil-cases-list', 'criminal-cases-list', 'service-matter-list', 'quassi-judicial-cases-list', 'high-court-cases-list', 'appellate-court-cases-list', 'search-wizard-list', 'billing-list'])
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-circle"></i>
@@ -694,6 +699,7 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @can(['civil-cases-list', 'criminal-cases-list', 'service-matter-list', 'quassi-judicial-cases-list', 'high-court-cases-list', 'appellate-court-cases-list'])
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -703,31 +709,39 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+                                @can('civil-cases-list')
                                 <li class="nav-item">
                                     <a href="{{ route('civil-cases') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Civil</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('criminal-cases-list')
                                 <li class="nav-item">
                                     <a href="{{ route('criminal-cases') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Criminal</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('service-matter-list')
                                 <li class="nav-item">
                                     <a href="{{ route('labour-cases') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Service Matter</p>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('quassi-judicial-cases-list')
                                 <li class="nav-item">
                                     <a href="{{ route('quassi-judicial-cases') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Special/Quassi-Judicial Cases</p>
                                     </a>
                                 </li>
-
+                                @endcan
+                                @canany(['high-court-cases-list', 'appellate-court-cases-list'])
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -737,23 +751,29 @@
                                         </p>
                                     </a>
                                     <ul class="nav nav-treeview">
+                                        @can('high-court-cases-list')
                                         <li class="nav-item">
                                             <a href="{{ route('high-court-cases') }}" class="nav-link">
                                                 <i class="far fa-dot-circle nav-icon"></i>
                                                 <p>High Court Division</p>
                                             </a>
                                         </li>
+                                        @endcan
+                                        @can('appellate-court-cases-list')
                                         <li class="nav-item">
                                             <a href="{{ route('appellate-court-cases') }}" class="nav-link">
                                                 <i class="far fa-dot-circle nav-icon"></i>
                                                 <p>Appellate Court Division</p>
                                             </a>
                                         </li>
+                                        @endcan
                                     </ul>
                                 </li>
-
+                                @endcanany
                             </ul>
                         </li>
+                        @endcanany
+                        @canany(['search-wizard-list'])
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -762,6 +782,7 @@
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            @can('search-wizard-list')
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('search-case-pages') }}" class="nav-link">
@@ -770,7 +791,10 @@
                                     </a>
                                 </li>
                             </ul>
+                            @endcan
                         </li>
+                        @endcanany
+                        @canany(['billing-list'])
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -779,6 +803,7 @@
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            @can('billing-list')
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('billing') }}" class="nav-link">
@@ -787,11 +812,14 @@
                                     </a>
                                 </li>
                             </ul>
+                            @endcan
                         </li>
+                        @endcanany
 
                     </ul>
                 </li>
-
+                @endcanany
+                @canany(['land-information-list', 'flat-information-list'])
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="fas fa-couch nav-icon"></i>
@@ -801,20 +829,26 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @can('land-information-list')
                         <li class="nav-item">
                             <a href="{{ route('land-information') }}" class="nav-link">
                                 <i class="ml-left"></i>
                                 <p>Land Information</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('flat-information-list')
                         <li class="nav-item">
                             <a href="{{ route('flat-information') }}" class="nav-link">
                                 <i class="ml-left"></i>
                                 <p>Flat Information</p>
                             </a>
                         </li>
+                        @endcan
                     </ul>
                 </li>
+                @endcanany
+                @canany(['regulatory-compliance-info-list', 'social-compliance-info-list'])
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="fas fa-print nav-icon"></i>
@@ -824,20 +858,25 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @can('regulatory-compliance-info-list')
                         <li class="nav-item">
                             <a href="{{ route('regulatory-compliance') }}" class="nav-link">
                                 <i class="ml-left"></i>
                                 <p> Regulatory Compliance Info </p>
                             </a>
                         </li>
+                        @endcan
+                        @can('social-compliance-info-list')
                         <li class="nav-item">
                             <a href="{{ route('social-compliance') }}" class="nav-link">
                                 <i class="ml-left"></i>
                                 <p>Social Compliance</p>
                             </a>
                         </li>
+                        @endcan
                     </ul>
                 </li>
+                @endcanany
                 {{-- <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="fas fa-hammer nav-icon"></i>
@@ -847,7 +886,7 @@
                         </p>
                     </a>
                 </li> --}}
-
+                @canany(['document-management-list', 'external-document-list'])
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="fas fa-file-archive nav-icon"></i>
@@ -857,22 +896,25 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @can('document-management-list')
                         <li class="nav-item">
                             <a href="{{ route('document-management') }}" class="nav-link">
                                 <i class="ml-left"></i>
                                 <p> Document Management </p>
                             </a>
                         </li>
-
+                        @endcan
+                        @can('external-document-list')
                         <li class="nav-item">
                             <a href="{{ route('external-document') }}" class="nav-link">
                                 <i class="ml-left"></i>
                                 <p>External Document</p>
                             </a>
                         </li>
-
+                        @endcan
                     </ul>
                 </li>
+                @endcanany
                 {{-- <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="fas fa-hammer nav-icon"></i>

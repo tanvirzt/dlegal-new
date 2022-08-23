@@ -25,6 +25,13 @@ class LitigationCalenderController extends Controller
 {
     //
 
+    function __construct()
+    {
+        $this->middleware('permission:search-wizard-list', ['only' => ['search_case_pages']]);
+    }
+
+//
+
     public function litigation_calender_list()
     {
 // dd('adsfsdf');
@@ -377,7 +384,7 @@ class LitigationCalenderController extends Controller
             case $request->next_date_fixed_id:
                 $query2 = $query->where('criminal_cases.next_date_fixed_id', $request->next_date_fixed_id);
                 break;
-            case $request->from_next_date && $request->to_next_date: 
+            case $request->from_next_date && $request->to_next_date:
                 $query2 = $query->where('next_date', '>=', $from_next_date)
                                 ->where('next_date', '<=', $to_next_date);
                 break;
@@ -475,7 +482,7 @@ public function calendar_short_next_previous(Request $request)
         $date = date('F, Y',strtotime(' - 1 months',$time));
         // dd($date);
     }
-// dd($date);    
+// dd($date);
     $search_month = explode('-', $request->from_date);
 
     $month = $search_month[0].'-'.($search_month[1]);
@@ -615,7 +622,7 @@ public function calendar_short_next_previous(Request $request)
             ->where('next_date', '<=', $request->from_date)
             ->get(['next_date'])->last()->next_date;
         }
-        
+
 
             // dd($criminal_cases_search);
         $criminal_cases = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where(['delete_status' => 0])->where('next_date', '>=', date('Y-m-d'))->orWhere('next_date', $criminal_cases_search)->get(['next_date']);

@@ -11,7 +11,16 @@ use DB;
 
 class RegulatoryComplianceController extends Controller
 {
-    //
+
+    function __construct()
+    {
+        $this->middleware('permission:regulatory-compliance-info-list|regulatory-compliance-info-create|regulatory-compliance-info-edit|regulatory-compliance-info-delete|regulatory-compliance-info-view', ['only' => ['regulatory_compliance']]);
+        $this->middleware('permission:regulatory-compliance-info-create', ['only' => ['add_regulatory_compliance','save_regulatory_compliance']]);
+        $this->middleware('permission:regulatory-compliance-info-edit', ['only' => ['edit_regulatory_compliance','update_regulatory_compliance']]);
+        $this->middleware('permission:regulatory-compliance-info-delete', ['only' => ['delete_regulatory_compliance']]);
+        $this->middleware('permission:regulatory-compliance-info-view', ['only' => ['view_regulatory_compliance']]);
+    }
+
 
     public function regulatory_compliance()
     {

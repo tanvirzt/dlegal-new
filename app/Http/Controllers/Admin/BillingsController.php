@@ -28,6 +28,13 @@ class BillingsController extends Controller
 {
     //
 
+    function __construct()
+    {
+        $this->middleware('permission:billing-list', ['only' => ['billing']]);
+        $this->middleware('permission:billing-add', ['only' => ['add_billing']]);
+    }
+
+
     public function billing()
     {
         $data = DB::table('case_billings')

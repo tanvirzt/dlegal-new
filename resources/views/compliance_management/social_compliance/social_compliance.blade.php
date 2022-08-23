@@ -31,7 +31,7 @@
                     </div>
                 @endif
                 <div class="row">
-                    
+
                     <div class="col-md-8">
                         <div class="card">
                             <div id="accordion">
@@ -61,7 +61,7 @@
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    
+
                                                     <div class="form-group row">
                                                         <label for="employment_condition"
                                                             class="col-sm-4 col-form-label">Employment
@@ -92,7 +92,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                                                                       
+
                                                     <div class="form-group row">
                                                         <label for="international_standard"
                                                             class="col-sm-4 col-form-label">International Standard
@@ -130,8 +130,11 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('social-compliance-info-create')
+
                                     <a href="{{ route('add-social-compliance') }}"><button class="btn btn-sm btn-success add_btn"><i
                                                 class="fas fa-plus"></i> Add Social Compliance </button></a>
+                                    @endcan
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -153,7 +156,7 @@
                                         @foreach ($data as $datum)
                                             <tr>
                                                 <td class="text-center">
-                                                    {{ $datum->employment_condition }} 
+                                                    {{ $datum->employment_condition }}
                                                 </td>
                                                 <td class="text-center">
                                                     {{ $datum->working_hour_leave }}
@@ -170,7 +173,7 @@
                                                 <td class="text-center">
                                                     {{ $datum->industrial_relation }}
                                                 </td>
-                                                
+
                                                 <td class="text-center">
                                                     @if ($datum->delete_status == 0)
                                                         <button type="button"
@@ -183,14 +186,19 @@
                                                     </span>
                                                 </td>
                                                 <td class="text-center">
+                                                    @can('social-compliance-info-view')
                                                     <a href="{{ route('view-social-compliance', $datum->id) }}"><button
                                                             class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Details"><i
                                                                 class="fas fa-eye"></i></button></a>
+                                                    @endcan
+                                                    @can('social-compliance-info-edit')
                                                     <a href="{{ route('edit-social-compliance', $datum->id) }}"><button
                                                             class="btn btn-info btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"><i
                                                                 class="fas fa-edit"></i></button></a>
+                                                        @endcan
+                                                    @can('social-compliance-info-delete')
                                                     <form method="POST"
                                                         action="{{ route('delete-social-compliance', $datum->id) }}"
                                                         class="delete-user btn btn-danger btn-xs">
@@ -199,6 +207,7 @@
                                                             data-toggle="tooltip" data-placement="top" title="Delete"><i
                                                                 class="fas fa-trash"></i> </button>
                                                     </form>
+                                                        @endcan
                                                 </td>
                                             </tr>
                                         @endforeach

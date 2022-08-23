@@ -106,7 +106,7 @@
                                             <div class="form-group col-md-3">
                                                 <div class="icheck-success d-inline">
                                                     <input type="checkbox" id="check_all_permission">
-                                                    <label for="check_all_permission" style="color: #118ce3;">All
+                                                    <label for="check_all_permission" class="permission_all">All
                                                     </label>
                                                 </div>
                                             </div>
@@ -121,7 +121,7 @@
                                                 <div class="form-group col-md-3">
                                                     <div class="icheck-success d-inline">
                                                         <input type="checkbox" id="{{ $i }}Management" onclick="checkPermissionByGroup('role-{{ $i }}-management-checkbox', this)" value="{{ $group->name }}">
-                                                        <label for="{{ $i }}Management" style="color: #32b14f;"> {{ ucwords(str_replace('-', ' ', $group->name)) }}
+                                                        <label for="{{ $i }}Management" class="check_permission_group"> {{ ucwords(str_replace('-', ' ', $group->name)) }}
                                                         </label>
                                                     </div>
                                                 </div>

@@ -32,7 +32,12 @@ use App\Models\ExternalFile;
 
 class DocManagementController extends Controller
 {
-    //
+    function __construct()
+    {
+        $this->middleware('permission:document-management-list', ['only' => ['document_management']]);
+        $this->middleware('permission:document-management-create', ['only' => ['add_documents','save_document']]);
+        $this->middleware('permission:external-document-list', ['only' => ['external_document']]);
+    }
 
     public function document_management()
     {

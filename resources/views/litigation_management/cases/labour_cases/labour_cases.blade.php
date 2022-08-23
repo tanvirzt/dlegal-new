@@ -154,8 +154,10 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
+                                    @can('service-matter-create')
                                     <a href="{{ route('add-labour-cases') }}"><button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add Labour Cases </button></a>
+                                    @endcan
                                 </div>
 
                             </div>
@@ -212,19 +214,27 @@
                                                 </span>
                                             </td>
                                             <td>
-                                            <a href="{{ route('view-labour-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
+                                                @can('service-matter-view')
+                                                <a href="{{ route('view-labour-cases',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                                 ><i class="fas fa-eye"></i></button></a>
-                                            <a href="{{ route('add-billing-labour-cases', $datum->id) }}"><button
+                                                @endcan
+                                                    @can('service-matter-add-billing')
+
+                                                    <a href="{{ route('add-billing-labour-cases', $datum->id) }}"><button
                                                 class="btn btn-warning btn-sm" data-toggle="tooltip"
                                                 data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button></a>
-                                            <a href="{{ route('edit-labour-cases',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                    @endcan
+                                                    @can('service-matter-edit')
+
+                                                    <a href="{{ route('edit-labour-cases',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                 ><i class="fas fa-edit"></i></button></a>
-
-                                                <form method="POST" action="{{ route('delete-labour-cases',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
-                                                </form>
-
+                                                    @endcan
+                                                    @can('service-matter-delete')
+                                                        <form method="POST" action="{{ route('delete-labour-cases',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+                                                        </form>
+                                                    @endcan
                                             </td>
                                         </tr>
                                     @endforeach

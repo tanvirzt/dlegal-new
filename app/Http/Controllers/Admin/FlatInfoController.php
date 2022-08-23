@@ -16,7 +16,14 @@ use DB;
 
 class FlatInfoController extends Controller
 {
-    //
+    function __construct()
+    {
+        $this->middleware('permission:flat-information-list|flat-information-create|flat-information-edit|flat-information-delete|flat-information-view', ['only' => ['flat_information']]);
+        $this->middleware('permission:flat-information-create', ['only' => ['add_flat_information','save_flat_information']]);
+        $this->middleware('permission:flat-information-edit', ['only' => ['edit_flat_information','update_flat_information']]);
+        $this->middleware('permission:flat-information-delete', ['only' => ['delete_flat_information']]);
+        $this->middleware('permission:flat-information-view', ['only' => ['view_flat_information']]);
+    }
 
     public function flat_information()
     {

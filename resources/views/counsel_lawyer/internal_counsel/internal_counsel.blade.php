@@ -39,7 +39,7 @@
                             <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
-                                    @can('internal-counsel-add')
+                                    @can('internal-council-create')
                                     <a href="{{ route('add-internal-counsel') }}"><button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add Internal Counsel </button></a>
                                     @endcan
@@ -105,7 +105,7 @@
                                             {{-- <a href="{{ route('view-internal-counsel',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
                                                 ><i class="fas fa-eye"></i></button></a>
                                              --}}
-                                                @can('internal-counsel-edit')
+                                                @can('internal-council-edit')
                                                 <a href="{{ route('edit-internal-counsel',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                 ><i class="fas fa-edit"></i></button></a>
                                                 @endcan

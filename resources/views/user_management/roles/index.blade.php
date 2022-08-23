@@ -34,11 +34,6 @@
                                 </button>
                             </div>
                         @endif
-{{--                            @if ($message = Session::get('success'))--}}
-{{--                                <div class="alert alert-success">--}}
-{{--                                    <p>{{ $message }}</p>--}}
-{{--                                </div>--}}
-{{--                            @endif--}}
 
                         <div class="card">
                             <div class="card-header">
@@ -77,10 +72,10 @@
 
 
                                             <td class="text-center">
-                                                {{--                                                @can('role-edit')--}}
+                                              @can('role-edit')
                                                 <a href="{{ route('roles.edit',$role->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-edit"></i></button></a>
-                                                {{--                                                @endcan--}}
+                                              @endcan
 {{--                                                @can('role-delete')--}}
 {{--                                                    {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}--}}
 {{--                                                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}--}}
