@@ -297,7 +297,7 @@ $(document).ready(function () {
     });
 
     // edit
-  
+
     $(".btn_success_letter_notice").click(function () {
         var lsthmtl_letter_notice = $(".clone_letter_notice").html();
         $(".increment_letter_notice").after(lsthmtl_letter_notice);
@@ -1651,8 +1651,8 @@ $(document).ready(function () {
                         $('#case_infos_court_short_id').empty();
                         $('#case_infos_sub_seq_court_id').empty();
                         $('#case_infos_sub_seq_court_short_id').empty();
-                        
-                        
+
+
                         $('#case_infos_court_id').focus;
                         $('#case_infos_court_short_id').focus;
                         $('#case_infos_sub_seq_court_id').focus;
@@ -1675,7 +1675,7 @@ $(document).ready(function () {
                         $('#case_infos_sub_seq_court_id').empty();
                         $('#case_infos_sub_seq_court_short_id').empty();
                     }
-                    
+
                 }
             });
         } else {
@@ -2013,7 +2013,7 @@ $( '.links a' ).on( 'click', function(e){
   $('#is_associate').on('click', function(){
     $('#external_counsel').toggle();
   });
-  
+
 
       // Cache selectors for faster performance.
     var $window = $(window),
@@ -2044,7 +2044,7 @@ $( '.links a' ).on( 'click', function(e){
   $('#send_mail').on('click', function(){
     $('#mail').toggle();
   });
-  
+
 
   $('.checkbox1_checkbox').on('change', function(e){
     alert('asdfasd');
@@ -2055,6 +2055,10 @@ $( '.links a' ).on( 'click', function(e){
         $(this).next().val(0);
     }
 });
+
+  $("#group_of_company").on('change', function (){
+     $(".company_id").toggle();
+  });
 
 
 });

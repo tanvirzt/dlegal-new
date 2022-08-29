@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SetupCompany;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -33,7 +34,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        return view('user_management.users.create',compact('roles'));
+        $company = SetupCompany::pluck('company_name', 'id')->all();
+        return view('user_management.users.create',compact('roles','company'));
     }
 
     /**
@@ -44,6 +46,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+//        request_array($request->all());
+
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -54,7 +58,22 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
 
+        if ($request->hasfile('profile_photo_path')) {
+            $file = $request->file('profile_photo_path');
+            $original_name = $file->getClientOriginalName();
+            $name = time() . rand(1, 100) . $original_name;
+            $file->move(public_path('files/profile_photo_path'), $name);
+            $input['profile_photo_path'] = $name;
+        }
+
+        $input['is_owner_admin'] = !empty($request->is_owner_admin) ? 1 : 0;
+        $input['is_companies_superadmin'] = !empty($request->is_companies_superadmin) ? 1 : 0;
+        $input['is_companies_admin'] = !empty($request->is_companies_admin) ? 1 : 0;
+
+//        request_array($input['profile_photo_path']);
+
         $user = User::create($input);
+
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')

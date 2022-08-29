@@ -30,6 +30,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'company_id',
+        'is_owner_admin',
+        'is_companies_superadmin',
+        'is_companies_admin',
+        'profile_photo_path',
     ];
 
     /**

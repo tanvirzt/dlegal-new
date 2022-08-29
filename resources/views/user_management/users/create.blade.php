@@ -63,7 +63,7 @@
 
 
 
-                            {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
+                            {!! Form::open(array('route' => 'users.store','method'=>'POST', 'enctype' => 'multipart/form-data')) !!}
 
                             <div class="card-body">
                                 <div class="row">
@@ -76,24 +76,6 @@
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="trial_court" class="col-sm-4 col-form-label">Password</label>
-                                            <div class="col-sm-8">
-                                                {!! Form::password('password', array('class' => 'form-control')) !!}
-                                                @error('trial_court')<span
-                                                    class="text-danger">{{$message}}</span>@enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="case_subcategory_id" class="col-sm-4 col-form-label">Role</label>
-                                            <div class="col-sm-8">
-                                                {!! Form::select('roles[]', $roles,[], array('data-placeholder' => 'Select','class' => 'form-control select2','multiple')) !!}
-
-                                                @error('case_subcategory_id')<span
-                                                    class="text-danger">{{$message}}</span>@enderror
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
@@ -104,6 +86,18 @@
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="trial_court" class="col-sm-4 col-form-label">Password</label>
+                                            <div class="col-sm-8">
+                                                {!! Form::password('password', array('class' => 'form-control')) !!}
+                                                @error('trial_court')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="total_legal_bill_amount" class="col-sm-4 col-form-label">Confirm Password</label>
                                             <div class="col-sm-8">
@@ -113,6 +107,94 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="case_subcategory_id" class="col-sm-4 col-form-label">Role</label>
+                                            <div class="col-sm-8">
+                                                {!! Form::select('roles[]', $roles,[], array('data-placeholder' => 'Select','class' => 'form-control select2','multiple')) !!}
+                                                @error('case_subcategory_id')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="group_of_company" class="col-sm-4 col-form-label mt-1">Group of Company</label>
+                                            <div class="icheck-success d-inline col-sm-8">
+                                                <input type="checkbox" id="group_of_company">
+                                                <label for="group_of_company">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 company_id" style="display: none;">
+                                        <div class="form-group row">
+                                            <label for="company_id" class="col-sm-4 col-form-label">Company</label>
+                                            <div class="col-sm-8">
+                                                {!! Form::select('company_id', [null => 'Select'] + $company, null, ['class' => 'form-control select2']) !!}
+                                                @error('company_id')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="is_owner_admin" class="col-sm-4 col-form-label mt-1">Owner Admin</label>
+                                            <div class="icheck-success d-inline col-sm-8">
+                                                <input type="checkbox" name="is_owner_admin" id="is_owner_admin">
+                                                <label for="is_owner_admin">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                                <label for="is_companies_superadmin" class="col-sm-4 col-form-label mt-1">Super Admin</label>
+                                                <div class="icheck-success d-inline col-sm-8">
+                                                    <input type="checkbox" name="is_companies_superadmin" id="is_companies_superadmin">
+                                                    <label for="is_companies_superadmin">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="is_companies_admin" class="col-sm-4 col-form-label mt-1">Companies Admin</label>
+                                            <div class="icheck-success d-inline col-sm-8">
+                                                <input type="checkbox" name="is_companies_admin" id="is_companies_admin">
+                                                <label for="is_companies_admin">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="profile_photo_path" class="col-sm-4 col-form-label">Photo</label>
+                                            <div class="col-sm-8">
+                                                <input type="file" class="form-control" id="image" name="profile_photo_path">
+                                                @error('profile_photo_path')<span class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="preview-image" class="col-sm-4 col-form-label"></label>
+                                            <img id="preview-image" style="max-height: 250px;max-width:200px;">
+                                        </div>
+
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="case_no" class="col-sm-4 col-form-label">Photo</label>--}}
+{{--                                            <div class="col-sm-8">--}}
+{{--                                                {!! Form::file('name', null, array('class' => 'form-control', 'id' => 'image')) !!}--}}
+{{--                                                @error('case_no')<span--}}
+{{--                                                    class="text-danger">{{$message}}</span>@enderror--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+                                    </div>
+
+
                                 </div>
                                 <div class="float-right mt-4">
                                     <button type="submit" class="btn btn-primary text-uppercase"><i

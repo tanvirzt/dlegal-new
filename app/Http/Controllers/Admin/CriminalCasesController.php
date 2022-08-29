@@ -203,9 +203,7 @@ class CriminalCasesController extends Controller
         // $key = array_key_last(($request->case_infos_complainant_informant_name));
         // $element[$key-1];
 
-    //    $data = json_decode(json_encode($request->all()));
-    //    echo "<pre>";print_r($data);die();
-
+//request_array($request->all());
 
        $received_documents_sections = $request->received_documents_sections;
        $remove = array_pop($received_documents_sections);
@@ -401,6 +399,7 @@ $created_case_id = 'LCR-000'.$sl;
         $data->case_infos_accused_representative = rtrim($case_infos_accused_representative, ', ');
         $data->prosecution_witness = $request->prosecution_witness;
         $data->defense_witness = $request->defense_witness;
+        $data->created_by = auth_id();
         $data->save();
 
         $steps = new CriminalCasesCaseSteps();
