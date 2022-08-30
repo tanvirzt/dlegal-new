@@ -110,8 +110,7 @@ class CriminalCasesController extends Controller
         $client_category = SetupClientCategory::where('delete_status', 0)->orderBy('client_category_name','asc')->get();
         $group_name = SetupGroup::get();
 
-        $data = DB::table('criminal_cases')
-            // ->leftJoin('criminal_cases_case_steps', 'criminal_cases.id', 'criminal_cases_case_steps.criminal_case_id')
+        $query = DB::table('criminal_cases')
             ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', 'setup_next_date_reasons.id')
             ->leftJoin('setup_case_statuses', 'criminal_cases.case_status_id', 'setup_case_statuses.id')
             ->leftJoin('setup_case_titles', 'criminal_cases.case_infos_case_title_id', 'setup_case_titles.id')
@@ -121,10 +120,23 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
-            ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
+            ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id');
 
-            ->select('criminal_cases.*',
-            // 'criminal_cases_case_steps.another_claim',
+        if (Auth::user()->is_companies_superadmin == '1') {
+
+            $query2 = $query;
+
+        }else if (Auth::user()->is_companies_admin == '1') {
+
+            $query2 = $query->whereIn('criminal_cases.created_by', companies_all_users());
+
+        } else {
+
+            $query2 = $query->where(['criminal_cases.created_by' => auth_id()]);
+
+        }
+
+        $data = $query2->select('criminal_cases.*',
             'setup_case_statuses.case_status_name',
             'setup_case_titles.case_title_name',
             'setup_next_date_reasons.next_date_reason_name',
@@ -137,11 +149,7 @@ class CriminalCasesController extends Controller
             'setup_external_councils.last_name',
             'case_infos_title.case_title_name as sub_seq_case_title_name',
             'setup_matters.matter_name')
-            ->where('criminal_cases.delete_status',0)
-            ->orderBy('created_at','desc')
             ->get();
-
-        // dd($data);
 
         return view('litigation_management.cases.criminal_cases.criminal_cases', compact('group_name','client_category','client_name','next_date_reason','case_status','external_council','data', 'division', 'case_types', 'court', 'case_category','matter'));
     }
@@ -552,6 +560,9 @@ $created_case_id = 'LCR-000'.$sl;
 
     public function edit_criminal_cases($id)
     {
+
+//        dd(Auth::user()->id);
+
         $law = SetupLaw::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->orderBy('law_name','asc')->get();
         $court = SetupCourt::where(['case_class_id' => 'Criminal', 'delete_status' => 0])->orderBy('court_name','asc')->get();
         $designation = SetupDesignation::where('delete_status', 0)->orderBy('designation_name','asc')->get();
@@ -591,7 +602,7 @@ $created_case_id = 'LCR-000'.$sl;
         $accused = SetupAccused::where('delete_status', 0)->orderBy('accused_name','asc')->get();
         $court_short = SetupCourt::where('delete_status', 0)->orderBy('court_short_name','asc')->get();
         $cabinet = SetupCabinet::where('delete_status', 0)->orderBy('cabinet_name','asc')->get();
-// dd($court_short);
+
         $data = CriminalCase::find($id);
         $existing_district = SetupDistrict::where('division_id', $data->client_division_id)->orderBy('district_name','asc')->get();
         $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_name_id)->orderBy('first_name','asc')->get();

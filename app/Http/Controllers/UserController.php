@@ -70,8 +70,6 @@ class UserController extends Controller
         $input['is_companies_superadmin'] = !empty($request->is_companies_superadmin) ? 1 : 0;
         $input['is_companies_admin'] = !empty($request->is_companies_admin) ? 1 : 0;
 
-//        request_array($input['profile_photo_path']);
-
         $user = User::create($input);
 
         $user->assignRole($request->input('roles'));
