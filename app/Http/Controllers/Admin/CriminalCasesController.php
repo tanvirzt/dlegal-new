@@ -561,7 +561,22 @@ $created_case_id = 'LCR-000'.$sl;
     public function edit_criminal_cases($id)
     {
 
-//        dd(Auth::user()->id);
+        $query = DB::table('criminal_cases');
+        if (Auth::user()->is_companies_superadmin == '1') {
+            $query2 = $query;
+        }else if (Auth::user()->is_companies_admin == '1') {
+            $query2 = $query->whereIn('criminal_cases.created_by', companies_all_users());
+        } else {
+            $query2 = $query->where(['criminal_cases.created_by' => auth_id()]);
+        }
+
+        $permissions_data = $query2->where('id', $id)->count();
+
+        if ($permissions_data == 1){
+            $data = CriminalCase::find($id);
+        }else{
+            return view('errors.403');
+        }
 
         $law = SetupLaw::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->orderBy('law_name','asc')->get();
         $court = SetupCourt::where(['case_class_id' => 'Criminal', 'delete_status' => 0])->orderBy('court_name','asc')->get();
@@ -603,7 +618,6 @@ $created_case_id = 'LCR-000'.$sl;
         $court_short = SetupCourt::where('delete_status', 0)->orderBy('court_short_name','asc')->get();
         $cabinet = SetupCabinet::where('delete_status', 0)->orderBy('cabinet_name','asc')->get();
 
-        $data = CriminalCase::find($id);
         $existing_district = SetupDistrict::where('division_id', $data->client_division_id)->orderBy('district_name','asc')->get();
         $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_name_id)->orderBy('first_name','asc')->get();
         $existing_client_subcategory = SetupClientSubcategory::where(['client_category_id' => $data->client_category_id, 'delete_status' => 0])->orderBy('client_subcategory_name','asc')->get();
@@ -1640,10 +1654,24 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
 
     public function view_criminal_cases($id)
     {
-    //    $data = CriminalCase::find($id);
-//
-//        $data = json_decode(json_encode($data));
-//        echo "<pre>";print_r($data);die();
+
+        $query = DB::table('criminal_cases');
+        if (Auth::user()->is_companies_superadmin == '1') {
+            $query2 = $query;
+        }else if (Auth::user()->is_companies_admin == '1') {
+            $query2 = $query->whereIn('criminal_cases.created_by', companies_all_users());
+        } else {
+            $query2 = $query->where(['criminal_cases.created_by' => auth_id()]);
+        }
+
+        $permissions_data = $query2->where('id', $id)->count();
+
+        if ($permissions_data == 1){
+//            $data = CriminalCase::find($id);
+        }else{
+            return view('errors.403');
+        }
+
 
         $court_proceeding = SetupCourtProceeding::where('delete_status', 0)->get();
         $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();

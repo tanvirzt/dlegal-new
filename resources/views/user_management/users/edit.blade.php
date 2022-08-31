@@ -54,7 +54,7 @@
                                 <h3 class="card-title" id="heading">Edit User</h3>
                             </div>
 
-                            {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
+                            {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['users.update', $user->id]]) !!}
 
                             <div class="card-body">
                                 <div class="row">
@@ -67,6 +67,18 @@
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="case_notes" class="col-sm-4 col-form-label"> Email </label>
+                                            <div class="col-sm-8">
+                                                {!! Form::text('email', null, array('class' => 'form-control')) !!}
+                                                @error('case_notes')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="trial_court" class="col-sm-4 col-form-label">Password</label>
                                             <div class="col-sm-8">
@@ -75,6 +87,18 @@
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="total_legal_bill_amount" class="col-sm-4 col-form-label">Confirm Password</label>
+                                            <div class="col-sm-8">
+                                                {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+                                                @error('total_legal_bill_amount')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="case_subcategory_id" class="col-sm-4 col-form-label">Role</label>
                                             <div class="col-sm-8">
@@ -88,22 +112,77 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="case_notes" class="col-sm-4 col-form-label"> Email </label>
-                                            <div class="col-sm-8">
-                                                {!! Form::text('email', null, array('class' => 'form-control')) !!}
-                                                @error('case_notes')<span
-                                                    class="text-danger">{{$message}}</span>@enderror
+                                            <label for="group_of_company" class="col-sm-4 col-form-label mt-1">Group of Company</label>
+                                            <div class="icheck-success d-inline col-sm-8">
+                                                <input type="checkbox" id="group_of_company" {{ $user->company_id != null ? 'checked' : '' }}>
+                                                <label for="group_of_company">
+                                                    Yes
+                                                </label>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6 company_id" {{ $user->company_id != null ? '' : 'style="display: none;"' }}>
                                         <div class="form-group row">
-                                            <label for="total_legal_bill_amount" class="col-sm-4 col-form-label">Confirm Password</label>
+                                            <label for="company_id" class="col-sm-4 col-form-label">Company</label>
                                             <div class="col-sm-8">
-                                                {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-                                                @error('total_legal_bill_amount')<span
+                                                {!! Form::select('company_id', [null => 'Select'] + $company, null, ['class' => 'form-control select2']) !!}
+                                                @error('company_id')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
                                     </div>
+                                    @if(Auth::user()->is_owner_admin == 1)
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="is_owner_admin" class="col-sm-4 col-form-label mt-1">Owner Admin</label>
+                                                <div class="icheck-success d-inline col-sm-8">
+                                                    <input type="checkbox" name="is_owner_admin" id="is_owner_admin" {{ $user->is_owner_admin == '1' ? 'checked' : '' }}>
+                                                    <label for="is_owner_admin">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="is_companies_superadmin" class="col-sm-4 col-form-label mt-1">Super Admin</label>
+                                            <div class="icheck-success d-inline col-sm-8">
+                                                <input type="checkbox" name="is_companies_superadmin" id="is_companies_superadmin" {{ $user->is_companies_superadmin == '1' ? 'checked' : '' }}>
+                                                <label for="is_companies_superadmin">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="is_companies_admin" class="col-sm-4 col-form-label mt-1">Companies Admin</label>
+                                            <div class="icheck-success d-inline col-sm-8">
+                                                <input type="checkbox" name="is_companies_admin" id="is_companies_admin" {{ $user->is_companies_admin == '1' ? 'checked' : '' }}>
+                                                <label for="is_companies_admin">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="profile_photo_path" class="col-sm-4 col-form-label">Photo</label>
+                                            <div class="col-sm-8">
+                                                <input type="file" class="form-control" id="image" name="profile_photo_path">
+                                                @error('profile_photo_path')<span class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="preview-image" class="col-sm-4 col-form-label"></label>
+                                            <img @if ($user->profile_photo_path) src="{{ asset('files/profile_photo_path/'.$user->profile_photo_path) }}" @endif id="preview-image" style="max-height: 250px;max-width:200px;">
+                                        </div>
+                                    </div>
+
+
+
+
                                 </div>
                                 <div class="float-right mt-4">
                                     <button type="submit" class="btn btn-primary text-uppercase"><i

@@ -6,6 +6,7 @@ use App\Models\SetupCompany;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use DB;
@@ -21,7 +22,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->get();
+        if (Auth::user()->is_owner_admin == '1') {
+            $data = User::orderBy('id','DESC')->get();
+        } else {
+            $data = User::where('is_owner_admin','!=','1')->orderBy('id','DESC')->get();
+        }
         return view('user_management.users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -52,7 +57,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+//            'roles' => 'required'
         ]);
 
         $input = $request->all();
@@ -98,11 +103,27 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+
+        $query = DB::table('users');
+        if (Auth::user()->is_owner_admin == '1') {
+            $query2 = $query;
+        } else {
+            $query2 = $query->where('is_owner_admin','!=','1');
+        }
+
+        $permissions_data = $query2->where('id', $id)->count();
+
+        if ($permissions_data == 1){
+            $user = User::find($id);
+        }else{
+            return view('errors.403');
+        }
+
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
+        $company = SetupCompany::pluck('company_name', 'id')->all();
 
-        return view('user_management.users.edit',compact('user','roles','userRole'));
+        return view('user_management.users.edit',compact('user','roles','userRole', 'company'));
     }
 
     /**
@@ -118,7 +139,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
-            'roles' => 'required'
+//            'roles' => 'required'
         ]);
 
         $input = $request->all();
@@ -128,7 +149,29 @@ class UserController extends Controller
             $input = Arr::except($input,array('password'));
         }
 
+        $input['is_owner_admin'] = !empty($request->is_owner_admin) ? 1 : 0;
+        $input['is_companies_superadmin'] = !empty($request->is_companies_superadmin) ? 1 : 0;
+        $input['is_companies_admin'] = !empty($request->is_companies_admin) ? 1 : 0;
+
         $user = User::find($id);
+
+        if ($request->hasfile('profile_photo_path')) {
+
+            if($user->profile_photo_path != null){
+                $file_path = 'files/profile_photo_path/'.$user->profile_photo_path;
+                if(file_exists($file_path)){
+                    unlink($file_path);
+                }
+            }
+
+            $file = $request->file('profile_photo_path');
+            $original_name = $file->getClientOriginalName();
+            $name = time() . rand(1, 100) . $original_name;
+            $file->move(public_path('files/profile_photo_path'), $name);
+            $input['profile_photo_path'] = $name;
+        }
+
+
         $user->update($input);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
 
@@ -153,9 +196,25 @@ class UserController extends Controller
 
     public function add_permissions($id)
     {
+        $query = DB::table('users');
+        if (Auth::user()->is_owner_admin == '1') {
+            $query2 = $query;
+        } else {
+            $query2 = $query->where('is_owner_admin','!=','1');
+        }
+
+        $permissions_data = $query2->where('id', $id)->count();
+
+        if ($permissions_data == 1){
+            $user = User::find($id);
+        }else{
+            return view('errors.403');
+        }
+
+
         $all_permissions = Permission::get();
         $permission = Permission::get();
-        $user = User::find($id);
+//        $user = User::find($id);
         $permission_groups = User::getPermissionGroups();
         return view('user_management.users.user_permissions',compact('permission_groups','all_permissions','permission','user'));
 

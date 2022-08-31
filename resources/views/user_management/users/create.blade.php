@@ -60,9 +60,6 @@
                                 <h3 class="card-title" id="heading">Add User</h3>
                             </div>
 
-
-
-
                             {!! Form::open(array('route' => 'users.store','method'=>'POST', 'enctype' => 'multipart/form-data')) !!}
 
                             <div class="card-body">
@@ -138,6 +135,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @if(Auth::user()->is_owner_admin == 1)
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="is_owner_admin" class="col-sm-4 col-form-label mt-1">Owner Admin</label>
@@ -149,6 +147,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                                 <label for="is_companies_superadmin" class="col-sm-4 col-form-label mt-1">Super Admin</label>
@@ -183,15 +182,6 @@
                                             <label for="preview-image" class="col-sm-4 col-form-label"></label>
                                             <img id="preview-image" style="max-height: 250px;max-width:200px;">
                                         </div>
-
-{{--                                        <div class="form-group row">--}}
-{{--                                            <label for="case_no" class="col-sm-4 col-form-label">Photo</label>--}}
-{{--                                            <div class="col-sm-8">--}}
-{{--                                                {!! Form::file('name', null, array('class' => 'form-control', 'id' => 'image')) !!}--}}
-{{--                                                @error('case_no')<span--}}
-{{--                                                    class="text-danger">{{$message}}</span>@enderror--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
                                     </div>
 
 
