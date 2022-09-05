@@ -4451,7 +4451,7 @@ $case_logs->shift();
                                 Money</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="amount_of_money"
-                                    name="amount_of_money" value="{{ $edit_case_steps->amount_of_money }}">
+                                    name="amount_of_money" value="{{ !empty($edit_case_steps->amount_of_money) ? number_format($edit_case_steps->amount_of_money, 0).'/-': '' }}">
                                 @error('amount_of_money')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror

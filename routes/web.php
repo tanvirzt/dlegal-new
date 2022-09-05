@@ -22,6 +22,8 @@ use App\Http\Controllers\Admin\SocialComplianceController;
 use App\Http\Controllers\Admin\DocManagementController;
 use App\Http\Controllers\Admin\LitigationCalenderController;
 use App\Http\Controllers\Admin\CounselLawyerController;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\DomainSetupController;
 
 
 /*
@@ -34,6 +36,25 @@ use App\Http\Controllers\Admin\CounselLawyerController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+
+// Clear cache
+Route::get('/clear', function () {
+    Artisan::call('cache:forget spatie.permission.cache');
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    return "All Cleared!";
+});
+
+
+
+
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,6 +76,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('domain-setup', DomainSetupController::class);
 
     Route::get('individual-users-permission/{id}',[UserController::class,'add_permissions'])->name('users.add-permissions');
     Route::post('save-user-permissions/{id}',[UserController::class, 'save_users_permissions'])->name('users.save_permissions');

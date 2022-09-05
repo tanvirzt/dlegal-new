@@ -762,6 +762,15 @@ class PermissionTableSeeder extends Seeder
                     'external-document-list',
                 ]
             ],
+            [
+                'group_name' => 'domain-setup',
+                'permissions' => [
+                    'domain-setup-list',
+                    'domain-setup-create',
+                    'domain-setup-edit',
+                    'domain-setup-delete',
+                ]
+            ],
 
 
 

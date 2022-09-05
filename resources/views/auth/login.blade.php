@@ -69,6 +69,18 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('login_assets/style.css') }}">
+    <style>
+        .fxt-template-layout14:before {
+            content: "";
+            height: 100%;
+            width: 100%;
+            background-color: rgb(4 4 14 / 52%);
+            left: 0;
+            top: 0;
+            position: absolute;
+            z-index: -1;
+        }
+    </style>
 </head>
 
 <body>

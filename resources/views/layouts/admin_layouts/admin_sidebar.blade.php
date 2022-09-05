@@ -45,6 +45,14 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+{{--                            @can('domain-setup')--}}
+                                <li class="nav-item">
+                                    <a href="{{ route('domain-setup.index') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Domain Setup</p>
+                                    </a>
+                                </li>
+{{--                            @endcan--}}
                             @can('company-type-list')
                                 <li class="nav-item">
                                     <a href="{{ route('company-type') }}" class="nav-link">
