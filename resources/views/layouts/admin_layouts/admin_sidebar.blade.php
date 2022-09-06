@@ -45,6 +45,8 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+                            @if(Auth::user()->is_owner_admin == '1')
+
 {{--                            @can('domain-setup')--}}
                                 <li class="nav-item">
                                     <a href="{{ route('domain-setup.index') }}" class="nav-link">
@@ -53,7 +55,10 @@
                                     </a>
                                 </li>
 {{--                            @endcan--}}
-                            @can('company-type-list')
+                            @endif
+                        @if(Auth::user()->is_owner_admin == '1' || Auth::user()->is_companies_superadmin == '1')
+
+                        @can('company-type-list')
                                 <li class="nav-item">
                                     <a href="{{ route('company-type') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
@@ -69,7 +74,8 @@
                                     </a>
                                 </li>
                             @endcan
-                            @can('role-list')
+                        @endif
+                        @can('role-list')
                                 <li class="nav-item">
                                     <a href="{{ route('roles.index') }}" class="nav-link">
                                         <i class="fas fa-user-tag nav-icon"></i>

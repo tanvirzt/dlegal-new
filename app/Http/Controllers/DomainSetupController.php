@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDomainSetupRequest;
 use App\Http\Requests\UpdateDomainSetupRequest;
 use App\Models\SetupCompany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DomainSetupController extends Controller
 {
@@ -26,7 +27,10 @@ class DomainSetupController extends Controller
      */
     public function index()
     {
-        $data = DomainSetup::orderBy('id', 'DESC')->get();
+        $data = DB::table('domain_setups')
+                ->leftJoin('setup_companies','domain_setups.company_id','setup_companies.id')
+                ->select('domain_setups.*','setup_companies.company_name')
+                ->get();
         return view('user_management.domain_setup.index',compact('data'));
 
     }
