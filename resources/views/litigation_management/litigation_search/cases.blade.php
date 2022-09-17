@@ -72,13 +72,17 @@
                                                     <div class="form-group row">
                                                         <label for="case_infos_case_no" class="col-sm-4 col-form-label">Case
                                                             No.</label>
-                                                        <div class="col-sm-8">
-                                                            <input type="text" class="form-control" id="case_infos_case_no"
-                                                                   name="case_infos_case_no" value="{{ old('case_infos_case_no') }}">
+                                                            <div class="col-sm-4">
+                                                               <input type="text" class="form-control" id="case_infos_case_no" name="case_infos_case_no" placeholder="Case No." value="{{ old('case_infos_case_no') }}">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" class="form-control" id="case_infos_case_year"
+                                                                       name="case_infos_case_year" placeholder="Year" value="{{ old('case_infos_case_year') }}">
+                                                            </div>
+
                                                             @error('case_infos_case_no')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
-                                                        </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="name_of_the_court_id" class="col-sm-4 col-form-label">
@@ -174,7 +178,7 @@
                                                                     class="form-control select2"
                                                                     id="client_subcategory_id">
                                                                 <option value="">Select</option>
-    
+
                                                             </select>
                                                             @error('client_subcategory_id')<span
                                                                 class="text-danger">{{$message}}</span>@enderror
@@ -207,8 +211,8 @@
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
-                                                    
-                                                    
+
+
 
                                                 </div>
                                                 <div class="col-md-6">

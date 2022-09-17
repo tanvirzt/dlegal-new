@@ -35,7 +35,7 @@
             <a href="#section2" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top"
                 title="Activity Log"><i class="fas fa-chart-line"></i></a>
             <a href="#section3" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top"
-                title="Documents Log"><i class="fas fa-file-archive nav-icon"></i></a>
+                title="Case Documents Log"><i class="fas fa-file-archive nav-icon"></i></a>
             <a href="#section4" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top"
                 title="Billings Log"><i class="fas fa-money-bill"></i></a>
         </div>
@@ -74,8 +74,8 @@
 
                                 <div id="mainMenuBarAnchor"></div>
                                 {{-- <div id="mainMenuBar" style="width: 100%; height: 30px; background: #999; margin: 0;">Sticky Panel</div> --}}
-                                
-                              
+
+
 
 
 
@@ -94,7 +94,7 @@
                                         $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
                                         $key = array_key_last($case_infos_sub_seq_case_no);
                                         echo $case_infos_sub_seq_case_no[$key];
-                                        
+
                                         $case_infos_sub_seq_case_year = explode(', ', trim($data->case_infos_sub_seq_case_year));
                                         $key = array_key_last($case_infos_sub_seq_case_year);
                                         $last_case_no = $case_infos_sub_seq_case_year[$key];
@@ -116,7 +116,7 @@
                                         $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
                                         $key = array_key_last($case_infos_sub_seq_case_no);
                                         echo $case_infos_sub_seq_case_no[$key];
-                                        
+
                                         $case_infos_sub_seq_case_year = explode(', ', trim($data->case_infos_sub_seq_case_year));
                                         $key = array_key_last($case_infos_sub_seq_case_year);
                                         $last_case_no = $case_infos_sub_seq_case_year[$key];
@@ -127,8 +127,8 @@
 
                                 </h3> --}}
                                 <div class="card-tools">
-                                    
-                                    
+
+
                                     <a href="{{ route('criminal-case-print-preview', $data->id) }}" target="_blank"
                                         class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
                                         {{-- <i class="far fa-bell"></i> --}}
@@ -361,19 +361,19 @@
                                                             </tr>
                                                             <tr>
                                                                 <td width="50%">Division/Zone</td>
-                                                                <td width="25%">{{ $data->client_division_name }} @if ($data->client_division_name && $data->client_divisoin_write) @endif 
+                                                                <td width="25%">{{ $data->client_division_name }} @if ($data->client_division_name && $data->client_divisoin_write) @endif
                                                                     </td>
                                                                     <td width="25%">{{ $data->client_divisoin_write }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>District/Area</td>
-                                                                <td>{{ $data->client_district_name }} @if ($data->client_district_name && $data->client_district_write) @endif 
+                                                                <td>{{ $data->client_district_name }} @if ($data->client_district_name && $data->client_district_write) @endif
                                                                     </td>
                                                                     <td>{{ $data->client_district_write }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Thana/Branch</td>
-                                                                <td>{{ $data->client_thana_name }} @if ($data->client_thana_name && $data->client_thana_write) @endif 
+                                                                <td>{{ $data->client_thana_name }} @if ($data->client_thana_name && $data->client_thana_write) @endif
                                                                     </td>
                                                                     <td>{{ $data->client_thana_write }}</td>
                                                             </tr>
@@ -417,18 +417,18 @@
                                                                 <td>Opposition(Which Party)</td>
                                                                 <td colspan="2"> {{ $data->oppsition_party_name }}
                                                                 </td>
-                                                                
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Opposition Category</td>
                                                                 <td colspan="2"> {{ $data->opposition_category_name }} </td>
-                                                                
+
 
                                                             </tr>
                                                             <tr>
                                                                 <td>Opposition Subcategory</td>
                                                                 <td colspan="2">{{ $data->opposition_subcategory_name }}</td>
-                                                                
+
 
                                                             </tr>
                                                             <tr>
@@ -466,7 +466,7 @@
                                                                     @endif
 
                                                                 </td>
-                                                                
+
 
                                                             </tr>
                                                             <tr>
@@ -480,41 +480,41 @@
                                                             <tr>
                                                                 <td>Opposition Address</td>
                                                                 <td colspan="2">{{ $data->opposition_address }}</td>
-                                                                
+
 
                                                             </tr>
                                                             <tr>
                                                                 <td>Opposition Mobile</td>
                                                                 <td colspan="2">{{ $data->opposition_mobile }}</td>
-                                                            
+
 
                                                             </tr>
                                                             <tr>
                                                                 <td>Opposition Email</td>
                                                                 <td colspan="2">{{ $data->opposition_email }}</td>
-                                                            
+
 
                                                             </tr>
                                                             <tr>
                                                                 <td>Profession/Type</td>
                                                                 <td colspan="2">{{ $data->opposition_profession_name }}
                                                                     {{ $data->opposition_profession_write }}</td>
-                                                                
+
 
                                                             </tr>
                                                             <tr>
                                                                 <td width="50%">Division/Zone</td>
-                                                                <td width="25%"> {{ $data->opposition_division_name }} @if ($data->opposition_division_name && $data->opposition_divisoin_write) @endif 
+                                                                <td width="25%"> {{ $data->opposition_division_name }} @if ($data->opposition_division_name && $data->opposition_divisoin_write) @endif
                                                                     </td>
                                                                 <td width="25%">{{ $data->opposition_divisoin_write }}</td>
 
                                                             </tr>
                                                             <tr>
                                                                 <td>District/Area</td>
-                                                                <td>{{ $data->opposition_district_name }} @if ($data->opposition_district_name && $data->opposition_district_write) @endif 
+                                                                <td>{{ $data->opposition_district_name }} @if ($data->opposition_district_name && $data->opposition_district_write) @endif
                                                                     </td>
                                                                     <td>{{ $data->opposition_district_write }}</td>
-                                                                
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Thana/Branch</td>
@@ -711,12 +711,12 @@
                                                                 <td>Sub Seq. Case No.</td>
                                                                 <td>
 
-                                                                    
+
                                                                     @php
                                                                         $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
                                                                         $key = array_key_last($case_infos_sub_seq_case_no);
                                                                         echo $case_infos_sub_seq_case_no[$key];
-                                                                        
+
                                                                         $case_infos_sub_seq_case_year = explode(', ', trim($data->case_infos_sub_seq_case_year));
                                                                         $key = array_key_last($case_infos_sub_seq_case_year);
                                                                         $last_case_no = $case_infos_sub_seq_case_year[$key];
@@ -726,7 +726,7 @@
                                                                     @endphp
 
 
-                                                                    
+
                                                                     {{-- @php
                                                                         $case_infos_sub_seq_case_no = explode(', ', $data->case_infos_sub_seq_case_no);
                                                                     @endphp
@@ -1062,7 +1062,7 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                            
+
 
 
                                             <div class="card">
@@ -1148,8 +1148,8 @@
                                                         <div class="col-md-2"> Document Name </div>
                                                         <div class="col-md-3"> Particulars </div>
                                                         <div class="col-md-2"> ORG </div>
-                                                        <div class="col-md-1"> PHT 
-                                                            
+                                                        <div class="col-md-1"> PHT
+
                                                         </div>
                                                         <div class="col-md-1">
                                                             <button type="button"
@@ -1161,7 +1161,7 @@
                                                         </div>
                                                     </div>
                                                 </h6> --}}
-                                                    
+
                                                     <table class="table table-bordered">
                                                         <tbody>
                                                             @foreach ($letter_notice as $value)
@@ -1238,7 +1238,7 @@
                                                                 <td> {{ $case_steps->taking_cognizance }} </td>
                                                                 <td> {{ $case_steps->taking_cognizance_note }}
                                                                 </td>
-                                                                <td> 
+                                                                <td>
                                                                     {{ $case_steps->taking_cognizance_type_name }}
                                                                 </td>
                                                             </tr>
@@ -1265,7 +1265,7 @@
                                                                 </td>
                                                                 <td> {{ $case_steps->case_steps_court_transfer_note }}
                                                                 </td>
-                                                                <td> 
+                                                                <td>
                                                                     {{ $case_steps->court_transfer_type_name }}
                                                                 </td>
                                                             </tr>
@@ -1275,7 +1275,7 @@
                                                                 </td>
                                                                 <td> {{ $case_steps->case_steps_charge_framed_note }}
                                                                 </td>
-                                                                <td> 
+                                                                <td>
                                                                     {{ $case_steps->charge_framed_type_name }}
                                                                 </td>
                                                             </tr>
@@ -1285,7 +1285,7 @@
                                                                 </td>
                                                                 <td> {{ $case_steps->case_steps_witness_from_note }}
                                                                 </td>
-                                                                <td> 
+                                                                <td>
                                                                     {{ $case_steps->witness_from_type_name }}
                                                                 </td>
                                                             </tr>
@@ -1313,7 +1313,7 @@
                                                                 </td>
                                                                 <td> {{ $case_steps->case_steps_judgement_order_note }}
                                                                 </td>
-                                                                <td> 
+                                                                <td>
                                                                     {{ $case_steps->judgement_order_type_name }}
                                                                 </td>
                                                             </tr>
@@ -1437,7 +1437,7 @@
                                         </thead>
                                         <tbody>
                                             @if (!empty($case_logs[0]->updated_order_date))
-                                                
+
                                                 <tr>
                                                     <td> {{ date('d-m-Y', strtotime($case_logs[0]->updated_order_date)) }} </td>
                                                     <td width="10%"> {{ $case_logs[0]->next_date_reason_name }}
@@ -1471,7 +1471,7 @@
                                                         @endif
                                                         {{ $case_logs[0]->updated_court_order_write }}
                                                     </td>
-                                                    <td> 
+                                                    <td>
 
 
                                                         {{-- @php
@@ -1481,7 +1481,7 @@
                                                         //     // dd($not_updated->updated_next_date);
                                                         // }
                                                         @endphp --}}
-                                                        
+
                                                         {{-- @if (!empty($case_logs[0]->updated_next_date))
                                                             {{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}
                                                         @elseif(!empty($not_updated->updated_next_date) && $not_updated->updated_next_date < date('Y-m-d'))
@@ -1520,7 +1520,7 @@
 
                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6" style="will-change: transform;">
                                                                 <a class="dropdown-item btn btn-outline-success" href="{{ route('view-criminal-cases-proceedings', $case_logs[0]->id) }}"><i class="fas fa-eye"></i> View</a>
-                                                                
+
                                                                 <a class="dropdown-item" href="{{ route('edit-criminal-cases-status', $case_logs[0]->id) }}"><i
                                                                     class="fas fa-edit"></i> Edit</a>
                                                                 <a class="dropdown-item" href="javascript:void(0);">
@@ -1535,7 +1535,7 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        
+
                                                     </td>
                                                     <td> {{ date('d-m-Y H:i:s', strtotime($case_logs[0]->created_at)) }} </td>
                                                 </tr>
@@ -1548,7 +1548,7 @@ $case_logs->shift();
 @endphp
 
 @if (!empty($case_logs))
-    
+
 
                                                 @foreach ($case_logs as $logs)
                                                 <tr>
@@ -1584,7 +1584,7 @@ $case_logs->shift();
                                                         @endif
                                                         {{ $logs->updated_court_order_write }}
                                                     </td>
-                                                    <td> 
+                                                    <td>
 
 
                                                         {{-- @php
@@ -1594,7 +1594,7 @@ $case_logs->shift();
                                                         //     // dd($not_updated->updated_next_date);
                                                         // }
                                                         @endphp --}}
-                                                        
+
                                                         {{-- @if (!empty($logs->updated_next_date))
                                                             {{ date('d-m-Y', strtotime($logs->updated_next_date)) }}
                                                         @elseif(!empty($not_updated->updated_next_date) && $not_updated->updated_next_date < date('Y-m-d'))
@@ -1604,7 +1604,7 @@ $case_logs->shift();
                                                         @endif --}}
 
                                                         {{ !empty($logs->updated_next_date) ? date('d-m-Y', strtotime($logs->updated_next_date)) : '' }}
-                                                        
+
                                                     </td>
                                                     <td width="8%"> {{ $logs->index_next_date_reason_name }}
                                                         {{ $logs->updated_index_fixed_for_write }}</td>
@@ -1628,7 +1628,7 @@ $case_logs->shift();
 
                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6" style="will-change: transform;">
                                                                 <a class="dropdown-item btn btn-outline-success" href="{{ route('view-criminal-cases-proceedings', $logs->id) }}"><i class="fas fa-eye"></i> View</a>
-                                                                
+
                                                                 <a class="dropdown-item" href="{{ route('edit-criminal-cases-status', $logs->id) }}"><i
                                                                     class="fas fa-edit"></i> Edit</a>
                                                                 <a class="dropdown-item" href="javascript:void(0);">
@@ -1701,7 +1701,7 @@ $case_logs->shift();
                                                     <td style="width: 90px;"> {{ date('d-m-Y', strtotime($activity_log->activity_date)) }}
                                                     </td>
                                                     <td> {{\Illuminate\Support\Str::limit($activity_log->activity_action, 15)}} </td>
-                                                    <td> 
+                                                    <td>
                                                         {{ \Illuminate\Support\Str::limit($activity_log->activity_progress, 15, $end='...') }}
                                                         {{-- {{\Illuminate\Support\Str::limit($activity_log->activity_progress, 15)}}  --}}
                                                     </td>
@@ -1750,7 +1750,7 @@ $case_logs->shift();
                                                             @endphp --}}
                                                                 {{  $item->first_name.' '.$item->last_name }}
                                                             @endforeach
-                                                        @endif 
+                                                        @endif
                                                         @if (!empty($forwarded) && count($forwarded)>1)
                                                             <li class="text-left">{{ $activity_log->activity_forwarded_to_write }}</li>
                                                         @else
@@ -1767,7 +1767,7 @@ $case_logs->shift();
 
                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6" style="will-change: transform;">
                                                                 <a class="dropdown-item btn btn-outline-success" href="{{ route('view-criminal-cases-activity', $activity_log->id) }}"><i class="fas fa-eye"></i> View</a>
-                                                                
+
                                                                 <a class="dropdown-item" href="{{ route('edit-criminal-cases-activity', $activity_log->id) }}"><i
                                                                     class="fas fa-edit"></i> Edit</a>
                                                                 <a class="dropdown-item" href="javascript:void(0);">
@@ -1793,7 +1793,7 @@ $case_logs->shift();
                                                                 data-placement="top" title="Edit"><i
                                                                     class="fas fa-edit"></i></button>
                                                         </a>
-                                                        
+
                                                         <form method="POST"
                                                             action="{{ route('delete-criminal-cases-activity', $activity_log->id) }}"
                                                             class="delete-user btn btn-outline-danger btn-xs">
@@ -1816,7 +1816,7 @@ $case_logs->shift();
                             <div class="card" id="section3">
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
-                                        id="heading">Documents Log
+                                        id="heading">Case Documents Log
 
                                     </h3>
                                     <div class="card-tools">
@@ -1858,7 +1858,7 @@ $case_logs->shift();
                                                             <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6" style="will-change: transform;">
                                                                 <a class="dropdown-item btn btn-outline-success" target="_blank" href="{{ route('view-criminal-cases-files', $files->id) }}"><i class="fas fa-eye"></i> View</a>
-                                                                
+
                                                                 <a class="dropdown-item" href="{{ route('edit-criminal-cases-files', $files->id) }}"><i
                                                                     class="fas fa-edit"></i> Edit</a>
                                                                 <a class="dropdown-item" href="javascript:void(0);">
@@ -1873,37 +1873,109 @@ $case_logs->shift();
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        {{-- <a href="{{ route('view-criminal-cases-files', $files->id) }}"
-                                                            target="_blank">
-                                                            <button class="btn btn-outline-success btn-sm"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="View Document"><i class="fas fa-eye"></i></button>
-                                                        </a>
-                                                        <a href="{{ route('edit-criminal-cases-files', $files->id) }}">
-                                                            <button data-toggle="modal" data-target="#edit_document"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                action={{ $files->id }}
-                                                                class="btn btn-outline-success btn-sm"
-                                                                title="Edit"><i class="fas fa-edit"></i></button>
-                                                        </a>
-                                                        <form method="get"
-                                                            action="{{ route('delete-criminal-cases-files', $files->id) }}"
-                                                            class="delete-user btn btn-outline-danger btn-xs">
-                                                            @csrf
-                                                            <button type="submit" class="btn  btn-sm"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="Delete"><i class="fas fa-trash"></i></button>
-                                                        </form>                                        --}}
                                                     </td>
                                                     <td>{{ $files->created_at }} </td>
-
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
+                            <div class="card" id="section3">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Case Documents Log
+
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                                data-target="#exampleModal" data-toggle="tooltip" data-placement="top"
+                                                title="Add Documents"><i class="fas fa-file-archive nav-icon"></i></button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped data_table">
+                                        <thead>
+                                        <tr>
+                                            <th class="hide" width="2%">SL</th>
+                                            <th width="30%">Document Uploaded</th>
+                                            <th width="13%">Document Date</th>
+                                            <th width="6%">Type</th>
+                                            <th width="21%">Uploaded By</th>
+                                            <th width="15%">Action</th>
+                                            <th width="15%">Date & Time</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($criminal_cases_files as $files)
+                                            <tr>
+                                                <td class="hide"> {{ $files->id }} </td>
+                                                <td>{{ $files->uploaded_document }} </td>
+                                                <td>{{ $files->uploaded_date }} </td>
+                                                <td>{{ $files->documents_type_name }} </td>
+                                                <td>{{ $files->created_by }} </td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6" style="will-change: transform;">
+                                                            <a class="dropdown-item btn btn-outline-success" target="_blank" href="{{ route('view-criminal-cases-files', $files->id) }}"><i class="fas fa-eye"></i> View</a>
+
+                                                            <a class="dropdown-item" href="{{ route('edit-criminal-cases-files', $files->id) }}"><i
+                                                                    class="fas fa-edit"></i> Edit</a>
+                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                                <form class="delete-user-dropdown" method="post"
+                                                                      action="{{ route('delete-criminal-cases-files', $files->id) }}"
+                                                                      class="delete-user btn btn-outline-danger">
+                                                                    @csrf
+                                                                    <button type="submit" class="btn" style="padding: 0px 1px 0px 0px;"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i> Delete</button>
+                                                                </form>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>{{ $files->created_at }} </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div id="accordion">
+                                    <div class="card-header" id="headingTwo">
+                                        <h3 class="card-title"> Cases :: Search </h3>
+                                        <div class="card-tools">
+                                            <button type="button" class="btn collapsed" data-toggle="collapse"
+                                                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                         data-parent="#accordion">
+                                        <div class="card-body">
+                                            asfasdf
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
 
                             <div class="card" id="section4">
                                 <div class="card-header">
@@ -2000,7 +2072,7 @@ $case_logs->shift();
 
                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6" style="will-change: transform;">
                                                                 {{-- <a class="dropdown-item btn btn-outline-success" href="{{ route('view-criminal-cases-activity', $bill_logs->id) }}"><i class="fas fa-eye"></i> View</a> --}}
-                                                                
+
                                                                 <a class="dropdown-item" href="{{ route('edit-criminal-cases-billing', $bill_logs->id) }}"><i
                                                                     class="fas fa-edit"></i> Edit</a>
                                                                 <a class="dropdown-item" href="javascript:void(0);">
@@ -2516,7 +2588,7 @@ $case_logs->shift();
 
 
                             <div class="col-md-6">
-                                
+
                                 <div class="form-group row">
                                     <label for="activity_engaged_id" class="col-md-4 col-form-label"> Engaged
                                     </label>
@@ -2596,7 +2668,7 @@ $case_logs->shift();
                                         @enderror
                                     </div>
                                 </div>
-                                
+
 
                             </div>
 
@@ -4653,7 +4725,7 @@ $case_logs->shift();
                                             class="myfrm form-control mr-2" value="{{ !empty($received_documents_explode[0]['received_documents']) ? $received_documents_explode[0]['received_documents'] : '' }}">
                                         <input type="date" name="received_documents_date[]"
                                             class="myfrm form-control ml-2 mr-2" value="{{ !empty($received_documents_explode[0]['received_documents_date']) ? $received_documents_explode[0]['received_documents_date'] : '' }}">
-                                        
+
                                         <select name="received_documents_type_id[]"
                                             class="form-control mr-3 ml-2">
                                             <option value="">Select</option>
@@ -4662,8 +4734,8 @@ $case_logs->shift();
                                                     value="{{ $item->id }}" {{ !empty($received_documents_explode[0]['received_documents_type_id']) && $received_documents_explode[0]['received_documents_type_id']  == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
                                             @endforeach
                                         </select>
-                                        
-                                        
+
+
                                         <div class="input-group-btn">
                                             <button class="btn btn-success btn_success_received_documents_edit"
                                                     type="button"><i
@@ -4671,7 +4743,7 @@ $case_logs->shift();
                                             </button>
                                         </div>
                                     </span>
-                                    
+
                                 </div>
                                 <div class="clone_received_documents @if(count($received_documents_explode) <= 1) hide @endif">
                                     @php
@@ -4744,8 +4816,8 @@ $case_logs->shift();
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
+
+
 
                                 @error('case_infos_received_documents_informant_name')<span
                                     class="text-danger">{{$message}}</span>@enderror
@@ -4780,7 +4852,7 @@ $case_logs->shift();
                                                    value="{{ $item->id }}" {{ !empty($required_wanting_documents_explode[0]['required_wanting_documents_type_id']) && $required_wanting_documents_explode[0]['required_wanting_documents_type_id'] == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
                                            @endforeach
                                     </select>
-                                    
+
                                     <div class="input-group-btn">
                                         <button class="btn btn-success btn_success_required_wanting_documents_edit"
                                                 type="button"><i
@@ -4826,7 +4898,7 @@ $case_logs->shift();
                                         </div>
                                     </div>
                                     @endforeach
-                                    
+
 
                                 </div>
                                 <div class="clone_required_wanting_documents_edit hide">
@@ -4951,8 +5023,8 @@ $case_logs->shift();
                                 <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'taking_cognizance');">
-                                    <input type="text" id="taking_cognizance" name="taking_cognizance" 
-                                         class="date_second_input_steps" @if ($edit_case_steps->taking_cognizance) value="{{ $edit_case_steps->taking_cognizance }}" @else value="dd-mm-yyyy" @endif 
+                                    <input type="text" id="taking_cognizance" name="taking_cognizance"
+                                         class="date_second_input_steps" @if ($edit_case_steps->taking_cognizance) value="{{ $edit_case_steps->taking_cognizance }}" @else value="dd-mm-yyyy" @endif
                                            tabindex="-1">
                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                 </span>
@@ -4987,7 +5059,7 @@ $case_logs->shift();
                                     <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'arrest_surrender_cw');">
                                     <input type="text" id="arrest_surrender_cw" name="arrest_surrender_cw"
-                                    @if ($edit_case_steps->arrest_surrender_cw) value="{{ $edit_case_steps->arrest_surrender_cw }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps" 
+                                    @if ($edit_case_steps->arrest_surrender_cw) value="{{ $edit_case_steps->arrest_surrender_cw }}" @else value="dd-mm-yyyy" @endif class="date_second_input_steps"
                                            tabindex="-1">
                                     <span class="date_second_span" tabindex="-1">&#9660;</span>
                                 </span>
@@ -5014,7 +5086,7 @@ $case_logs->shift();
                             </div>
                                 @error('arrest_surrender_cw_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
-                            
+
                         </div>
                         <div class="form-group row">
                             <label for="case_steps_bail" class="col-sm-3 col-form-label"> Bail </label>
@@ -5085,7 +5157,7 @@ $case_logs->shift();
                             </div>
                                 @error('case_steps_court_transfer_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
-                           
+
                         </div>
                         <div class="form-group row">
                             <label for="case_steps_charge_framed" class="col-sm-3 col-form-label"> Charge Framed </label>
@@ -5121,7 +5193,7 @@ $case_logs->shift();
                             </div>
                                 @error('case_steps_charge_framed_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
-                            
+
                         </div>
                         <div class="form-group row">
                             <label for="case_steps_witness_from" class="col-sm-3 col-form-label"> Witness (From) </label>
@@ -5157,7 +5229,7 @@ $case_logs->shift();
                             </div>
                                 @error('case_steps_witness_from_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
-                            
+
                         </div>
                         <div class="form-group row">
                             <label for="case_steps_witness_to" class="col-sm-3 col-form-label"> Witness (To) </label>
@@ -5193,7 +5265,7 @@ $case_logs->shift();
                             </div>
                                 @error('case_steps_witness_to_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
-                            
+
                         </div>
                         <div class="form-group row">
                             <label for="case_steps_argument" class="col-sm-3 col-form-label"> Argument </label>
@@ -5229,7 +5301,7 @@ $case_logs->shift();
                             </div>
                                 @error('case_steps_argument_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
-                            
+
                         </div>
                         <div class="form-group row">
                             <label for="case_steps_judgement_order" class="col-sm-3 col-form-label"> Judgement &
@@ -5266,7 +5338,7 @@ $case_logs->shift();
                             </div>
                                 @error('case_steps_judgement_order_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
-                            
+
                         </div>
 
                         <div class="form-group row">
@@ -5303,9 +5375,9 @@ $case_logs->shift();
                             </div>
                                 @error('case_steps_summary_of_cases_yes_no')<span
                                     class="text-danger">{{$message}}</span>@enderror
-                            
+
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="case_steps_remarks"
                                    class="col-sm-3 col-form-label"> Remarks </label>
@@ -5316,7 +5388,7 @@ $case_logs->shift();
                                 @error('case_steps_remarks')<span
                                     class="text-danger">{{$message}}</span>@enderror
                             </div>
-                        </div>                       
+                        </div>
 
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -5781,10 +5853,10 @@ $case_logs->shift();
                                     </select>
                                     <input type="text" name="letter_notice_documents_write[]"
                                            class="myfrm form-control mr-2 col-md-4" placeholder="Document" value="{{ !empty($letter_notice_explode[0]['letter_notice_documents_write']) ? $letter_notice_explode[0]['letter_notice_documents_write'] : '' }}">
-                                    
+
                                     <input type="text" name="letter_notice_particulars_write[]"
                                            class="myfrm form-control mr-2 col-md-4" placeholder="Particulars" value="{{ !empty($letter_notice_explode[0]['letter_notice_particulars_write']) ? $letter_notice_explode[0]['letter_notice_particulars_write'] : '' }}">
-                                           
+
                                     <select name="letter_notice_type_id[]"
                                            class="form-control mr-2">
                                            <option value="">Select</option>
@@ -5792,7 +5864,7 @@ $case_logs->shift();
                                                <option
                                                    value="{{ $item->id }}" {{ !empty($letter_notice_explode[0]['letter_notice_type_id']) && $letter_notice_explode[0]['letter_notice_type_id']  == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
                                            @endforeach
-                                    </select>             
+                                    </select>
                                     <div class="input-group-btn">
                                         <button class="btn btn-success btn_success_letter_notice_edit"
                                                 type="button"><i
@@ -5821,7 +5893,7 @@ $case_logs->shift();
                                         </select>
                                         <input type="text" name="letter_notice_documents_write[]"
                                            class="myfrm form-control mr-2 col-md-4" placeholder="Document" value="{{ $datas['letter_notice_documents_write'] }}">
-                                        
+
                                         <input type="text" name="letter_notice_particulars_write[]"
                                            class="myfrm form-control mr-2 col-md-4" placeholder="Particulars" value="{{ $datas['letter_notice_particulars_write'] }}">
                                         <select name="letter_notice_type_id[]"
@@ -5858,7 +5930,7 @@ $case_logs->shift();
                                     </select>
                                     <input type="text" name="letter_notice_documents_write[]"
                                            class="myfrm form-control mr-2 col-md-4" placeholder="Document">
-                                    
+
                                     <input type="text" name="letter_notice_particulars_write[]"
                                            class="myfrm form-control mr-2 col-md-4" placeholder="Particulars">
                                     <select name="letter_notice_type_id[]"

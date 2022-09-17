@@ -35,25 +35,25 @@ class CounselLawyerController extends Controller
 
     function __construct(){
 
-        $this->middleware('permission:counsel-list|counsel-create|counsel-edit|counsel-delete', ['only' => ['index_counsel']]);
-        $this->middleware('permission:counsel-create', ['only' => ['create_counsel','store_counsel']]);
-        $this->middleware('permission:counsel-edit', ['only' => ['edit_counsel','update_counsel']]);
-        $this->middleware('permission:counsel-delete', ['only' => ['destroy_counsel']]);
+        // $this->middleware('permission:counsel-list|counsel-create|counsel-edit|counsel-delete', ['only' => ['index_counsel']]);
+        // $this->middleware('permission:counsel-create', ['only' => ['create_counsel','store_counsel']]);
+        // $this->middleware('permission:counsel-edit', ['only' => ['edit_counsel','update_counsel']]);
+        // $this->middleware('permission:counsel-delete', ['only' => ['destroy_counsel']]);
 
-        $this->middleware('permission:chamber-staff-list|chamber-staff-create|chamber-staff-edit|chamber-staff-delete', ['only' => ['index_chamber_staff']]);
-        $this->middleware('permission:chamber-staff-create', ['only' => ['create_chamber_staff','store_chamber_staff']]);
-        $this->middleware('permission:chamber-staff-edit', ['only' => ['edit_chamber_staff','update_chamber_staff']]);
-        $this->middleware('permission:chamber-staff-delete', ['only' => ['destroy_chamber_staff']]);
+        // $this->middleware('permission:chamber-staff-list|chamber-staff-create|chamber-staff-edit|chamber-staff-delete', ['only' => ['index_chamber_staff']]);
+        // $this->middleware('permission:chamber-staff-create', ['only' => ['create_chamber_staff','store_chamber_staff']]);
+        // $this->middleware('permission:chamber-staff-edit', ['only' => ['edit_chamber_staff','update_chamber_staff']]);
+        // $this->middleware('permission:chamber-staff-delete', ['only' => ['destroy_chamber_staff']]);
 
-        $this->middleware('permission:chamber-list|chamber-create|chamber-edit|chamber-delete', ['only' => ['index_chamber']]);
-        $this->middleware('permission:chamber-create', ['only' => ['create_chamber','store_chamber']]);
-        $this->middleware('permission:chamber-edit', ['only' => ['edit_chamber','update_chamber']]);
-        $this->middleware('permission:chamber-delete', ['only' => ['destroy_chamber']]);
+        // $this->middleware('permission:chamber-list|chamber-create|chamber-edit|chamber-delete', ['only' => ['index_chamber']]);
+        // $this->middleware('permission:chamber-create', ['only' => ['create_chamber','store_chamber']]);
+        // $this->middleware('permission:chamber-edit', ['only' => ['edit_chamber','update_chamber']]);
+        // $this->middleware('permission:chamber-delete', ['only' => ['destroy_chamber']]);
 
-        $this->middleware('permission:internal-counsel-list|internal-counsel-create|internal-counsel-edit|internal-counsel-delete', ['only' => ['index_internal_counsel']]);
-        $this->middleware('permission:internal-counsel-create', ['only' => ['create_internal_counsel','store_internal_counsel']]);
-        $this->middleware('permission:internal-counsel-edit', ['only' => ['edit_internal_counsel','update_internal_counsel']]);
-        $this->middleware('permission:internal-counsel-delete', ['only' => ['destroy_internal_counsel']]);
+        // $this->middleware('permission:internal-counsel-list|internal-counsel-create|internal-counsel-edit|internal-counsel-delete', ['only' => ['index_internal_counsel']]);
+        // $this->middleware('permission:internal-counsel-create', ['only' => ['create_internal_counsel','store_internal_counsel']]);
+        // $this->middleware('permission:internal-counsel-edit', ['only' => ['edit_internal_counsel','update_internal_counsel']]);
+        // $this->middleware('permission:internal-counsel-delete', ['only' => ['destroy_internal_counsel']]);
 
     }
 

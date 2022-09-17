@@ -328,6 +328,9 @@ class LitigationCalenderController extends Controller
             case $request->case_infos_case_no:
                 $query2 = $query->where('criminal_cases.case_infos_case_no', 'LIKE', "%{$request->case_infos_case_no}%");
                 break;
+            case $request->case_infos_case_year:
+                $query2 = $query->where('criminal_cases.case_infos_case_year', 'LIKE', "%{$request->case_infos_case_year}%");
+                break;
             case $request->name_of_the_court_id:
                 $query2 = $query->where('criminal_cases.name_of_the_court_id', $request->name_of_the_court_id);
                 break;

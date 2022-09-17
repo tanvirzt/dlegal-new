@@ -2567,7 +2567,7 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
                 $file->uploaded_date = $request->uploaded_date == 'dd-mm-yyyy' || $request->uploaded_date == 'NaN-NaN-NaN' ? null : $request->uploaded_date;
                 $file->documents_type_id = $request->documents_type_id;
                 $file->uploaded_document = $name;
-                $file->created_by = Auth::guard('admin')->user()->email;
+                $file->created_by = Auth::user()->email;
                 $file->save();
         }else{
             session()->flash('warning', 'There is no documents to upload.');
@@ -2994,6 +2994,9 @@ $letter_notice_pht_explode = explode(', ',$letter_notice_pht);
                 break;
             case $request->case_infos_case_no:
                 $query2 = $query->where('criminal_cases.case_infos_case_no', 'LIKE', "%{$request->case_infos_case_no}%");
+                break;
+            case $request->case_infos_case_year:
+                $query2 = $query->where('criminal_cases.case_infos_case_year', 'LIKE', "%{$request->case_infos_case_year}%");
                 break;
             case $request->name_of_the_court_id:
                 $query2 = $query->where('criminal_cases.name_of_the_court_id', $request->name_of_the_court_id);
