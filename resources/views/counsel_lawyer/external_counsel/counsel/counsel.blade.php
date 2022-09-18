@@ -55,8 +55,8 @@
                                         <th class="text-center"> Name </th>
                                         <th class="text-center"> Role </th>
                                         <th class="text-center"> Chamber Joined </th>
-                                        <th class="text-nowrap"> Bar Council Enrollment </th>
-                                        <th class="text-nowrap"> High Court Enrollment </th>
+                                        <th class="text-nowrap" colspan="2"> Bar Council Enrollment </th>
+                                        <th class="text-nowrap" colspan="2"> High Court Enrollment </th>
                                         <th class="text-nowrap"> Professional Contact Number </th>
                                         <th class="text-center"> Professional E-mail </th>
                                         <th class="text-center"> Status </th>
@@ -79,10 +79,16 @@
                                                 {{ $datum->date_of_joining }}
                                             </td>
                                             <td>
-                                                {{ $datum->bar_council_enrollment_date }} {{ $datum->bar_council_enrollment_sanad_no }}
+                                                {{ $datum->bar_council_enrollment_date }}
                                             </td>
                                             <td>
-                                                {{ $datum->high_court_enrollment_date }} {{ $datum->high_court_enrollment_membership_number }}
+                                                {{ $datum->bar_council_enrollment_sanad_no }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->high_court_enrollment_date }}
+                                            </td>
+                                            <td>
+                                                {{ $datum->high_court_enrollment_membership_number }}
                                             </td>
                                             <td>
                                                 {{ $datum->professional_contact_number }} {{ $datum->professional_contact_number_write }}
@@ -99,12 +105,8 @@
                                                     <button type="button"
                                                         class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
                                                 @endif
-                                                </span>
                                             </td>
                                             <td>
-                                            {{-- <a href="{{ route('view-counsel',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
-                                                ><i class="fas fa-eye"></i></button></a>
-                                             --}}
                                                 @can('counsel-edit')
                                                 <a href="{{ route('edit-counsel',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                 ><i class="fas fa-edit"></i></button></a>

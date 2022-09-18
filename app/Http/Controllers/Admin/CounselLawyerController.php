@@ -845,7 +845,6 @@ class CounselLawyerController extends Controller
     public function index_internal_counsel()
     {
         $data = InternalCounsel::get();
-        // dd($data);
         return view('counsel_lawyer.internal_counsel.internal_counsel',compact('data'));
     }
 
