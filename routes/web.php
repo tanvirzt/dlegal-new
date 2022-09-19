@@ -588,7 +588,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('download-criminal-cases-working-doc/{id}',[CriminalCasesController::class, 'download_criminal_cases_working_doc'])->name('download-criminal-cases-working-doc');
     Route::get('view-criminal-cases-files/{id}',[CriminalCasesController::class, 'view_criminal_cases_file'])->name('view-criminal-cases-files');
     Route::get('view-criminal-cases-working-docs/{id}',[CriminalCasesController::class, 'view_criminal_cases_working_docs'])->name('view-criminal-cases-working-docs');
-    Route::get('delete-criminal-cases-working-docs/{id}',[CriminalCasesController::class, 'delete_criminal_cases_working_docs'])->name('delete-criminal-cases-working-docs');
+    Route::post('delete-criminal-cases-working-docs/{id}',[CriminalCasesController::class, 'delete_criminal_cases_working_docs'])->name('delete-criminal-cases-working-docs');
     Route::post('delete-criminal-cases-files/{id}',[CriminalCasesController::class, 'delete_criminal_cases_file'])->name('delete-criminal-cases-files');
     Route::post('update-criminal-cases-status/{id}',[CriminalCasesController::class, 'update_criminal_cases_status'])->name('update-criminal-cases-status');
     Route::post('update-criminal-cases-activity/{id}',[CriminalCasesController::class, 'update_criminal_cases_activity'])->name('update-criminal-cases-activity');
@@ -750,6 +750,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('search-case-pages',[LitigationCalenderController::class, 'search_case_pages'])->name('search-case-pages');
     Route::post('search-cases',[LitigationCalenderController::class, 'search_cases'])->name('search-cases');
     Route::post('calendar-short-next-previous', [LitigationCalenderController::class, 'calendar_short_next_previous'])->name('calendar-short-next-previous');
+    Route::post('calendar-short-next', [LitigationCalenderController::class, 'calendar_short_next'])->name('calendar-short-next');
     Route::post('calendar-list-arrow-up', [LitigationCalenderController::class, 'calendar_list_arrow_up'])->name('calendar-list-arrow-up');
     Route::post('calendar-list-arrow-down', [LitigationCalenderController::class, 'calendar_list_arrow_down'])->name('calendar-list-arrow-down');
     Route::get('litigation-calendar-list-print-preview',[LitigationCalenderController::class, 'litigation_calendar_list_print_preview'])->name('litigation-calendar-list-print-preview');

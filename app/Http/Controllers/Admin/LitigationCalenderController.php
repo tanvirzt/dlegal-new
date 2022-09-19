@@ -474,18 +474,43 @@ public function calendar_short_next_previous(Request $request)
 
     $time = strtotime($request->from_date);
 
-    if ($request->arrow_up) {
+    // if ($request->arrow_up) {
+    //     $date = date('F, Y',strtotime("+1 month",$time));
+    // } else {
+    //     $date = date('F, Y',strtotime(' - 1 months',$time));
+    // }
+    $date = date('F, Y',strtotime(' - 1 months',$time));
 
-// dd('arrow_up');
-        $date = date('F, Y',strtotime("+1 month",$time));
+    $search_month = explode('-', $request->from_date);
 
-    } else {
-
-// dd('arrow_down');
-        $date = date('F, Y',strtotime(' - 1 months',$time));
-        // dd($date);
+    $month = $search_month[0].'-'.($search_month[1]);
+    $start = Carbon::parse($month)->startOfMonth();
+    $end = Carbon::parse($month)->endOfMonth();
+    $dates = [];
+    while ($start->lte($end)) {
+        $dates[] = $start->copy();
+        $start->addDay();
     }
-// dd($date);
+
+    return view('litigation_management.litigation_calender.litigation_calender_short', compact('dates','date'));
+
+}
+
+public function calendar_short_next(Request $request)
+{
+
+    // dd($request->all());
+
+    $time = strtotime($request->from_date);
+
+    // if ($request->arrow_up) {
+    //     $date = date('F, Y',strtotime("+1 month",$time));
+    // } else {
+    //     $date = date('F, Y',strtotime(' - 1 months',$time));
+    // }
+    // $date = date('F, Y',strtotime(' - 1 months',$time));
+    $date = date('F, Y',strtotime("+1 month",$time));
+
     $search_month = explode('-', $request->from_date);
 
     $month = $search_month[0].'-'.($search_month[1]);

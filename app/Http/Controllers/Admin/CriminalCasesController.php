@@ -1885,7 +1885,8 @@ class CriminalCasesController extends Controller
 
         $criminal_cases_working_docs = DB::table('criminal_cases_working_docs')
             ->leftJoin('setup_documents_types', 'criminal_cases_working_docs.documents_type_id', 'setup_documents_types.id')
-            ->where(['criminal_cases_working_docs.case_id' => $id, 'criminal_cases_working_docs.delete_status' => 0])
+            ->where(['criminal_cases_working_docs.case_id' => $id])
+            ->whereNull('criminal_cases_working_docs.deleted_at')
             ->select('criminal_cases_working_docs.*', 'setup_documents_types.documents_type_name')
             ->get();
 
@@ -2269,7 +2270,7 @@ class CriminalCasesController extends Controller
     public function delete_criminal_cases_working_docs(Request $request, $id)
     {
         $file = CriminalCasesWorkingDoc::findOrFail($id);
-        unlink(public_path('/files/criminal_cases/' . $file->uploaded_document));
+        // unlink(public_path('/files/criminal_cases/' . $file->uploaded_document));
         $file->delete();
 
         session()->flash('success', 'Documents Deleted Successfully.');
