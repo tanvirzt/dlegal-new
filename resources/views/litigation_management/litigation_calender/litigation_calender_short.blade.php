@@ -55,19 +55,6 @@
                         </div> --}}
                     </div>
                     <div class="col-sm-3">
-
-                        <form action="{{ route('calendar-short-next-previous') }}" method="POST">
-                            <input type="text" class="form-control" name="from_date" value="{{ date('Y-m-d', strtotime($date)) }}">
-                            <input type="submit" class="btn btn-success" name="arrow_down" value="" style="padding: 4px 12px 4px 12px;">
-                            <i class="fas fa-arrow-up" style="position: relative;right: 21px;"></i>
-                        </form>
-
-                        <form action="{{ route('calendar-short-next') }}" method="POST">
-                            <input type="text" class="form-control" name="from_date" value="{{ date('Y-m-d', strtotime($date)) }}">
-                            <input type="submit" class="btn btn-info" name="arrow_down" value="" style="padding: 4px 12px 4px 12px;">
-                                <i class="fas fa-arrow-down" style="position: relative;right: 21px;"></i>
-                        </form>
-
                         {{-- <form method="POST" action="{{ route('calendar-short-next-previous') }}" style="display: contents;">
                             <input type="text" class="form-control" name="from_date" value="{{ date('Y-m-d', strtotime($date)) }}">
                             <input type="submit" class="btn btn-info" name="arrow_up" value="" style="padding: 4px 12px 4px 12px;">
@@ -78,7 +65,6 @@
                                 <i class="fas fa-arrow-down" style="position: relative;
                                 right: 21px;"></i>
                         </form> --}}
-
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">Dashboard v1</li>
@@ -140,6 +126,18 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <form action="{{ route('calendar-short-next-previous') }}" method="POST" style="display: contents;">
+                            <input type="hidden" class="form-control" name="from_date" value="{{ date('Y-m-d', strtotime($date)) }}">
+                            <input type="submit" class="btn btn-success" name="arrow_down" value="" style="padding: 4px 12px 4px 12px;">
+                            <i class="fas fa-arrow-up" style="position: relative;right: 21px;"></i>
+                        </form>
+                        <form action="{{ route('calendar-short-next') }}" method="POST" style="display: contents;">
+                            <input type="hidden" class="form-control" name="from_date" value="{{ date('Y-m-d', strtotime($date)) }}">
+                            <input type="submit" class="btn btn-info" name="arrow_down" value="" style="padding: 4px 12px 4px 12px;">
+                                <i class="fas fa-arrow-down" style="position: relative;right: 21px;"></i>
+                        </form>
                     </div>
                 </div>
                 <div class="row">

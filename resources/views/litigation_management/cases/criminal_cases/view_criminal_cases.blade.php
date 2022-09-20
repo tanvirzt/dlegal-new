@@ -1683,9 +1683,16 @@
                                                             $order = explode(', ', $logs->updated_court_order_id);
                                                         @endphp
                                                         @if ($logs->updated_court_order_id)
-                                                            @foreach ($order as $pro)
-                                                                <li class="text-left">{{ $pro }}</li>
-                                                            @endforeach
+                                                            <details>
+                                                                <summary>
+                                                                    <p id="main_more">{{ $order[0] }}</p>
+                                                                    <span id="open">read more</span>
+                                                                    <span id="close">read less</span>
+                                                                </summary>
+                                                                @foreach ($order as $pro)
+                                                                    <li class="text-left"> {{ $pro }} </li>
+                                                                @endforeach
+                                                            </details>
                                                         @endif
                                                         {{ $logs->updated_court_order_write }}
                                                     </td>

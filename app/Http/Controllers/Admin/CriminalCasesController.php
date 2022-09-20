@@ -2235,14 +2235,14 @@ class CriminalCasesController extends Controller
                 $notifications->case_id = $id;
                 $notifications->case_type = "Criminal Cases";
                 $notifications->case_no = $request->case_no;
-                $notifications->send_by = Auth::guard('admin')->user()->email;
+                $notifications->send_by = Auth::user()->email;
                 $notifications->received_by = $value->email;
                 $notifications->save();
 
                 $details = [
                     'name' => $value->first_name . ' ' . $value->last_name,
                     'case_id' => 'Criminal Cases No: ' . $request->case_no,
-                    'messages' => Auth::guard('admin')->user()->name . ' has sent this case to you.',
+                    'messages' => Auth::user()->name . ' has sent this case to you.',
                 ];
 
                 Mail::to($value->email)->send(new CaseForwardedMail($details));

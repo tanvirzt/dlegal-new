@@ -472,6 +472,8 @@ public function calendar_short_next_previous(Request $request)
 
     // dd($request->all());
 
+// return $request->all();
+
     $time = strtotime($request->from_date);
 
     // if ($request->arrow_up) {
@@ -479,10 +481,11 @@ public function calendar_short_next_previous(Request $request)
     // } else {
     //     $date = date('F, Y',strtotime(' - 1 months',$time));
     // }
-    $date = date('F, Y',strtotime(' - 1 months',$time));
+    $date = date('F d, Y',strtotime(' - 1 months',$time));
 
     $search_month = explode('-', $request->from_date);
 
+    
     $month = $search_month[0].'-'.($search_month[1]);
     $start = Carbon::parse($month)->startOfMonth();
     $end = Carbon::parse($month)->endOfMonth();
@@ -509,7 +512,7 @@ public function calendar_short_next(Request $request)
     //     $date = date('F, Y',strtotime(' - 1 months',$time));
     // }
     // $date = date('F, Y',strtotime(' - 1 months',$time));
-    $date = date('F, Y',strtotime("+1 month",$time));
+    $date = date('F d, Y',strtotime("+1 month",$time));
 
     $search_month = explode('-', $request->from_date);
 
