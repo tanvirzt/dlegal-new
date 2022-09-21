@@ -316,10 +316,31 @@
                                             <div class="form-group row">
                                                 <label for="case_no" class="col-sm-4 col-form-label">Bar Council Enrollment</label>
                                                     <div class="col-sm-4">
+                                                        <span class="date_span_counsel">
+                                                            <input type="date" class="xDateContainer date_first_input"
+                                                                   onchange="setCorrect(this,'bar_council_enrollment_date');"><input type="text" id="bar_council_enrollment_date"
+                                                                                                                name="bar_council_enrollment_date" @if($data->bar_council_enrollment_date != null) value="{{ $data->bar_council_enrollment_date }}" @else value="dd-mm-yyyy" @endif
+                                                                                                                class="date_second_input"
+                                                                                                                tabindex="-1"><span
+                                                                class="date_second_span" tabindex="-1">&#9660;</span>
+                                                        </span>
+
+
+                                                        {{-- <span class="date_span">
+                                                            <input type="date" class="xDateContainer date_first_input"
+                                                                   onchange="setCorrect(this,'bar_council_enrollment_date');"><input type="text" id="bar_council_enrollment_date"
+                                                                                                                name="bar_council_enrollment_date" @if($data->bar_council_enrollment_date != null) value="{{ $data->bar_council_enrollment_date }}" @else value="dd-mm-yyyy" @endif
+                                                                                                                class="date_second_input"
+                                                                                                                tabindex="-1"><span
+                                                                class="date_second_span" tabindex="-1">&#9660;</span>
+                                                        </span> --}}
+
+{{-- 
+
                                                         <input type="text" class="form-control"
                                                                id="bar_council_enrollment_date"
                                                                name="bar_council_enrollment_date" placeholder="Date"
-                                                               value="{{ $data->bar_council_enrollment_date }}">
+                                                               value="{{ $data->bar_council_enrollment_date }}"> --}}
                                                         @error('bar_council_enrollment_date')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
