@@ -1569,9 +1569,21 @@
                                                         $notes = explode(', ', $case_logs[0]->updated_day_notes_id);
                                                     @endphp
                                                     @if ($case_logs[0]->updated_day_notes_id)
+                                                    <details>
+                                                        <summary>
+                                                            <p id="main_more">{{ $notes[0] }}</p>
+                                                            <span id="open">read more</span>
+                                                            <span id="close">read less</span>
+                                                        </summary>
                                                         @foreach ($notes as $pro)
-                                                            <li class="text-left">{{ $pro }}</li>
+                                                            <li class="text-left"> {{ $pro }} </li>
                                                         @endforeach
+                                                    </details>
+
+
+                                                        {{-- @foreach ($notes as $pro)
+                                                            <li class="text-left">{{ $pro }}</li>
+                                                        @endforeach --}}
                                                     @endif
                                                     {{ $case_logs[0]->updated_day_notes_write }}
                                                 </td>
@@ -1726,9 +1738,23 @@
                                                             $notes = explode(', ', $logs->updated_day_notes_id);
                                                         @endphp
                                                         @if ($logs->updated_day_notes_id)
+
+                                                        <details>
+                                                            <summary>
+                                                                <p id="main_more">{{ $notes[0] }}</p>
+                                                                <span id="open">read more</span>
+                                                                <span id="close">read less</span>
+                                                            </summary>
                                                             @foreach ($notes as $pro)
-                                                                <li class="text-left">{{ $pro }}</li>
+                                                                <li class="text-left"> {{ $pro }} </li>
                                                             @endforeach
+                                                        </details>
+    
+
+
+                                                            {{-- @foreach ($notes as $pro)
+                                                                <li class="text-left">{{ $pro }}</li>
+                                                            @endforeach --}}
                                                         @endif
                                                         {{ $logs->updated_day_notes_write }}
                                                     </td>
@@ -1825,10 +1851,29 @@
                                             <tr>
                                                 <td style="width: 90px;"> {{ date('d-m-Y', strtotime($activity_log->activity_date)) }}
                                                 </td>
-                                                <td> {{\Illuminate\Support\Str::limit($activity_log->activity_action, 15)}} </td>
                                                 <td>
-                                                    {{ \Illuminate\Support\Str::limit($activity_log->activity_progress, 15, $end='...') }}
-                                                    {{-- {{\Illuminate\Support\Str::limit($activity_log->activity_progress, 15)}}  --}}
+                                                    @if (!empty($activity_log->activity_action))
+                                                    <details>
+                                                        <summary>
+                                                            <p id="main_more">{{\Illuminate\Support\Str::limit($activity_log->activity_action, 15)}}</p>
+                                                            <span id="open">read more</span>
+                                                            <span id="close">read less</span>
+                                                        </summary>
+                                                        {{ $activity_log->activity_action }}
+                                                    </details>              
+                                                    @endif                                  
+                                                </td>
+                                                <td>
+                                                    @if (!empty($activity_log->activity_progress))
+                                                    <details>
+                                                        <summary>
+                                                            <p id="main_more">{{ \Illuminate\Support\Str::limit($activity_log->activity_progress, 15, $end='...') }}</p>
+                                                            <span id="open">read more</span>
+                                                            <span id="close">read less</span>
+                                                        </summary>
+                                                        {{ $activity_log->activity_progress }}
+                                                    </details>
+                                                    @endif
                                                 </td>
                                                 <td> {{ $activity_log->mode_name }} </td>
                                                 <td> {{ $activity_log->total_time }} @if (!empty($activity_log->time_spend_manual))
@@ -1883,9 +1928,32 @@
                                                         {{ $activity_log->activity_forwarded_to_write }}
                                                     @endif
                                                 </td>
-                                                <td> {{\Illuminate\Support\Str::limit($activity_log->activity_requirements, 15)}} </td>
+                                                <td>
+                                                    @if (!empty($activity_log->activity_requirements))
+                                                    <details>
+                                                        <summary>
+                                                            <p id="main_more">{{\Illuminate\Support\Str::limit($activity_log->activity_requirements, 15)}}</p>
+                                                            <span id="open">read more</span>
+                                                            <span id="close">read less</span>
+                                                        </summary>
+                                                        {{ $activity_log->activity_requirements }}
+                                                    </details>
+                                                    @endif
+                                                </td>
 
-                                                <td> {{\Illuminate\Support\Str::limit($activity_log->activity_remarks, 15)}} </td>
+                                                <td> 
+                                                    @if (!empty($activity_log->activity_remarks))
+                                                    <details>
+                                                        <summary>
+                                                            <p id="main_more">{{\Illuminate\Support\Str::limit($activity_log->activity_remarks, 15)}}</p>
+                                                            <span id="open">read more</span>
+                                                            <span id="close">read less</span>
+                                                        </summary>
+                                                        {{ $activity_log->activity_remarks }}
+                                                    </details>
+                                                    @endif
+
+                                                </td>
                                                 <td>
 
                                                     <div class="dropdown">

@@ -242,7 +242,7 @@
 
 @endif
 
-<nav class="main-header navbar navbar-expand navbar-white navbar-light links_custom @if(url()->current() != 'http://localhost/dlegal-software/public/admin/dashboard') links_custom @endif" style="padding: 0px;background: #2A6CB1;position:fixed;padding-right:130px;z-index:1020;@if(url()->current() == 'http://localhost/dlegal-software/public/admin/dashboard') margin-top:0px; @endif">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light links_custom @if(url()->current() != 'http://localhost/dlegal-software/public/dashboard') links_custom @endif" style="padding: 0px;background: #2A6CB1;position:fixed;z-index:1020;@if(url()->current() == 'http://localhost/dlegal-software/public/dashboard') margin-top:0px; @endif">
     {{-- style="background: #2A6CB1;" --}}
     <!-- Left navbar links -->
     {{-- <ul class="navbar-nav">
@@ -349,31 +349,51 @@
         <a class="nav-link colapse_left" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+    @canany(['litigation-calendar-list', 'litigation-calendar-short'])
     <li>
         <a href="#">Litigation Calendar &#9662;</a>
         <ul class="dropdown" style="background:#c3c9cf;">
-            <li><a href="{{ route('litigation-calender-list') }}">Litigation Calendar (List)</a></li>
-            <div class="dropdown-divider-custom"></div>
-            <li><a href="{{ route('litigation-calender-short') }}">Litigation Calendar (Short)</a></li>
+            @can('litigation-calendar-list')
+                <li><a href="{{ route('litigation-calender-list') }}">Litigation Calendar (List)</a></li>
+            @endcan
+            @can('litigation-calendar-short')
+                <div class="dropdown-divider-custom"></div>
+                <li><a href="{{ route('litigation-calender-short') }}">Litigation Calendar (Short)</a></li>
+            @endcan
         </ul>
     </li>
+    @endcanany
+
+    @canany(['civil-cases-list', 'criminal-cases-list', 'service-matter-list', 'quassi-judicial-cases-list', 'high-court-cases-list', 'appellate-court-cases-list'])
     <li>
         <a href="#">Case Dashboard &#9662;</a>
         <ul class="dropdown" style="background:#c3c9cf;">
+            @can('civil-cases-list')
             <li><a href="{{ route('civil-cases') }}">Civil</a></li>
+            @endcan
+            @can('criminal-cases-list')
             <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('criminal-cases') }}">Criminal</a></li>
+            @endcan
+            @can('service-matter-list')
             <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('labour-cases') }}">Service Matter</a></li>
+            @endcan
+            @can('quassi-judicial-cases-list')
             <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('quassi-judicial-cases') }}">Special/Quassi-Judicial Cases</a></li>
+            @endcan
+            @can('high-court-cases-list')
             <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('high-court-cases') }}">High Court Division</a></li>
+            @endcan
+            @can('appellate-court-cases-list')
             <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('appellate-court-cases') }}">Appellate Court Division</a></li>
+            @endcan
         </ul>
     </li>
-
+    @endcanany
     <li><a href="#">Legal Service</a></li>
     <li><a href="#">Compliance MGT</a></li>
     <li><a href="#">Documents MGT</a></li>
@@ -413,37 +433,31 @@
 
 
 
-{{--@php--}}
-{{--    $notifications = \App\Models\CasesNotifications::where('received_by',Auth::guard('admin')->user()->email)->orderBy('created_at', 'desc')->get();--}}
-{{--@endphp--}}
+@php
+    $notifications = \App\Models\CasesNotifications::where('received_by',Auth::user()->email)->orderBy('created_at', 'desc')->get();
+@endphp
 
 
 <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
 
-{{--        <li class="nav-item dropdown mr-2">--}}
-{{--            <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">--}}
-{{--                <i class="far fa-bell custom_size"></i>--}}
-{{--                <span class="badge badge-warning navbar-badge navbar_badge_custom">{{ $notifications->count() }}</span>--}}
-{{--            </a>--}}
-{{--            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">--}}
-{{--                <span class="dropdown-item dropdown-header">{{ $notifications->count() }} Notifications</span>--}}
-{{--                @foreach($notifications as $data)--}}
-{{--                    <div class="dropdown-divider"></div>--}}
-{{--                        <a href="{{ route('view-criminal-cases-read-notifications', $data->id) }}" @if ($data->is_read == "Yes")--}}
-{{--                            style="background:#fff;"--}}
-{{--                        @endif class="dropdown-item">--}}
-
-
-{{--                        <p> <b>--}}
-{{--                        <i class="fas fa-envelope mr-2"></i> {{ $data->case_type }} {{ $data->case_no }} </b> sent to you.</p>--}}
-{{--                    </a>--}}
-{{--                @endforeach--}}
-{{--            </div>--}}
-{{--        </li>--}}
-
-
-        <!-- Notifications Dropdown Menu -->
+        <li class="nav-item dropdown mr-2">
+            <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+                <i class="far fa-bell custom_size"></i>
+                <span class="badge badge-warning navbar-badge navbar_badge_custom">{{ $notifications->count() }}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
+                <span class="dropdown-item dropdown-header">{{ $notifications->count() }} Notifications</span>
+                @foreach($notifications as $data)
+                    <div class="dropdown-divider"></div>
+                        <a href="{{ route('view-criminal-cases-read-notifications', $data->id) }}" @if ($data->is_read == "Yes")
+                            style="background:#fff;"
+                        @endif class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> {{ $data->case_type }} {{ $data->case_no }} </b> sent to you.</p>
+                    </a>
+                @endforeach
+            </div>
+        </li>
 
         <li class="nav-item dropdown float-right">
             <a class="nav-link" data-toggle="dropdown" href="#">
@@ -454,15 +468,11 @@
               <span class="dropdown-item dropdown-header">User info</span>
               <div class="dropdown-divider"></div>
             <div class="dropdown-divider"></div>
-{{--            <a href="{{ route('logout') }}" class="dropdown-item dropdown-footer">Logout</a>--}}
-
               <a class="dropdown-item" href="{{ route('logout') }}"
                  onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                   {{ __('Logout') }}
               </a>
-
-
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
               </form>

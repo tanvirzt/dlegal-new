@@ -407,12 +407,6 @@
                                                                 class="date_second_span" tabindex="-1">&#9660;</span>
                                                         </span>
 
-
-
-                                                        {{-- <input type="text" class="form-control"
-                                                               id="bar_council_fees"
-                                                               name="bar_council_fees"
-                                                               value="{{old('bar_council_fees')}}"> --}}
                                                         @error('bar_council_fees')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>

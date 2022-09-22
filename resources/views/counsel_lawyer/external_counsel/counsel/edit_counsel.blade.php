@@ -375,10 +375,19 @@
                                             <div class="form-group row">
                                                 <label for="case_no" class="col-sm-4 col-form-label">Practicing Bar</label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" class="form-control"
+                                                        <span class="date_span_counsel">
+                                                            <input type="date" class="xDateContainer date_first_input"
+                                                                   onchange="setCorrect(this,'practicing_bar_date');"><input type="text" id="practicing_bar_date"
+                                                                                                                name="practicing_bar_date" @if($data->practicing_bar_date != null) value="{{ $data->practicing_bar_date }}" @else value="dd-mm-yyyy" @endif
+                                                                                                                class="date_second_input"
+                                                                                                                tabindex="-1"><span
+                                                                class="date_second_span" tabindex="-1">&#9660;</span>
+                                                        </span>
+
+                                                        {{-- <input type="text" class="form-control"
                                                                id="practicing_bar_date"
                                                                name="practicing_bar_date" placeholder="Date"
-                                                               value="{{ $data->practicing_bar_date }}">
+                                                               value="{{ $data->practicing_bar_date }}"> --}}
                                                         @error('practicing_bar_date')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
@@ -394,10 +403,19 @@
                                             <div class="form-group row">
                                                 <label for="case_no" class="col-sm-4 col-form-label"> High Court Enrollment </label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" class="form-control"
+                                                        <span class="date_span_counsel">
+                                                            <input type="date" class="xDateContainer date_first_input"
+                                                                   onchange="setCorrect(this,'high_court_enrollment_date');"><input type="text" id="high_court_enrollment_date"
+                                                                                                                name="high_court_enrollment_date" @if($data->high_court_enrollment_date != null) value="{{ $data->high_court_enrollment_date }}" @else value="dd-mm-yyyy" @endif
+                                                                                                                class="date_second_input"
+                                                                                                                tabindex="-1"><span
+                                                                class="date_second_span" tabindex="-1">&#9660;</span>
+                                                        </span>
+
+                                                        {{-- <input type="text" class="form-control"
                                                                id="high_court_enrollment_date"
                                                                name="high_court_enrollment_date" placeholder="Date"
-                                                               value="{{ $data->high_court_enrollment_date }}">
+                                                               value="{{ $data->high_court_enrollment_date }}"> --}}
                                                         @error('high_court_enrollment_date')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
@@ -413,10 +431,19 @@
                                             <div class="form-group row">
                                                 <label for="case_no" class="col-sm-4 col-form-label"> Bar Council Fees (Latest) </label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" class="form-control"
+                                                        <span class="date_span_counsel">
+                                                            <input type="date" class="xDateContainer date_first_input"
+                                                                   onchange="setCorrect(this,'bar_council_fees');"><input type="text" id="bar_council_fees"
+                                                                                                                name="bar_council_fees" @if($data->bar_council_fees != null) value="{{ $data->bar_council_fees }}" @else value="dd-mm-yyyy" @endif
+                                                                                                                class="date_second_input"
+                                                                                                                tabindex="-1"><span
+                                                                class="date_second_span" tabindex="-1">&#9660;</span>
+                                                        </span>
+
+                                                        {{-- <input type="text" class="form-control"
                                                                id="bar_council_fees"
                                                                name="bar_council_fees"
-                                                               value="{{ $data->bar_council_fees }}">
+                                                               value="{{ $data->bar_council_fees }}"> --}}
                                                         @error('bar_council_fees')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
@@ -432,10 +459,19 @@
                                             <div class="form-group row">
                                                 <label for="case_no" class="col-sm-4 col-form-label"> District Bar Mem. Fee (Update) </label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" class="form-control"
+                                                        <span class="date_span_counsel">
+                                                            <input type="date" class="xDateContainer date_first_input"
+                                                                   onchange="setCorrect(this,'district_bar_mem_fee');"><input type="text" id="district_bar_mem_fee"
+                                                                                                                name="district_bar_mem_fee" @if($data->district_bar_mem_fee != null) value="{{ $data->district_bar_mem_fee }}" @else value="dd-mm-yyyy" @endif
+                                                                                                                class="date_second_input"
+                                                                                                                tabindex="-1"><span
+                                                                class="date_second_span" tabindex="-1">&#9660;</span>
+                                                        </span>
+
+                                                        {{-- <input type="text" class="form-control"
                                                                id="district_bar_mem_fee"
                                                                name="district_bar_mem_fee"
-                                                               value="{{ $data->district_bar_mem_fee }}">
+                                                               value="{{ $data->district_bar_mem_fee }}"> --}}
                                                         @error('district_bar_mem_fee')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
@@ -451,10 +487,19 @@
                                             <div class="form-group row">
                                                 <label for="case_no" class="col-sm-4 col-form-label"> SCBA Memb. Fee (Update) </label>
                                                     <div class="col-sm-4">
-                                                        <input type="text" class="form-control"
+                                                        <span class="date_span_counsel">
+                                                            <input type="date" class="xDateContainer date_first_input"
+                                                                   onchange="setCorrect(this,'scba_memb_fee');"><input type="text" id="scba_memb_fee"
+                                                                                                                name="scba_memb_fee" @if($data->scba_memb_fee != null) value="{{ $data->scba_memb_fee }}" @else value="dd-mm-yyyy" @endif
+                                                                                                                class="date_second_input"
+                                                                                                                tabindex="-1"><span
+                                                                class="date_second_span" tabindex="-1">&#9660;</span>
+                                                        </span>
+
+                                                        {{-- <input type="text" class="form-control"
                                                                id="scba_memb_fee"
                                                                name="scba_memb_fee"
-                                                               value="{{ $data->scba_memb_fee }}">
+                                                               value="{{ $data->scba_memb_fee }}"> --}}
                                                         @error('scba_memb_fee')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>

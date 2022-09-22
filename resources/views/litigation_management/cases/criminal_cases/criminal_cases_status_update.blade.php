@@ -102,7 +102,7 @@
                                                             <div class="col-sm-8">
                                                                 <span class="date_span_status">
                                                                     <input type="date" class="xDateContainer date_first_input"
-                                                                           onchange="setCorrect(this,'updated_order_date');"><input type="text" id="updated_order_date" name="updated_order_date" value="{{ date('d/m/Y', strtotime($data->updated_next_date)) }}"
+                                                                           onchange="setCorrect(this,'updated_order_date');"><input type="text" id="updated_order_date" name="updated_order_date" value="{{ date('d/m/Y', strtotime($data->updated_order_date)) }}"
                                                                                                                         value="dd/mm/yyyy"
                                                                                                                        class="date_second_input"
                                                                                                                        tabindex="-1"><span
@@ -216,7 +216,7 @@
                                                                 <span class="date_span_status">
                                                                     <input type="date" class="xDateContainer date_first_input"
                                                                            onchange="setCorrect(this,'updated_next_date');"><input type="text" id="updated_next_date" name="updated_next_date"
-                                                                                                                                    value="{{ date('d/m/Y', strtotime($data->updated_next_date)) }}"
+                                                                                                                                    value="{{ !empty($data->updated_next_date) ? date('d/m/Y', strtotime($data->updated_next_date)) : 'dd/mm/yyyy' }}"
                                                                                                                                    class="date_second_input"
                                                                                                                                    tabindex="-1"><span
                                                                         class="date_second_span" tabindex="-1">&#9660;</span>

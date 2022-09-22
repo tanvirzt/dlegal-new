@@ -28,6 +28,8 @@ class LitigationCalenderController extends Controller
     function __construct()
     {
         $this->middleware('permission:search-wizard-list', ['only' => ['search_case_pages']]);
+        $this->middleware('permission:litigation-calendar-list', ['only' => ['litigation_calender_list','search_litigation_calendar', 'litigation_calendar_list_print_preview_search', 'calendar_list_arrow_up', 'calendar_list_arrow_down']]);
+        $this->middleware('permission:litigation-calendar-short', ['only' => ['litigation_calender_short','search_litigation_calendar_short', 'calendar_short_next_previous','calendar_short_next']]);
     }
 
 //

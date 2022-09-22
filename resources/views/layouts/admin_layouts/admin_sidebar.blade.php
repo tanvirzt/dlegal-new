@@ -35,7 +35,7 @@
                         </p>
                     </a>
                 </li>
-                @canany(['role-list', 'user-list'])
+                @canany(['role-list', 'user-list', 'domain-setup-list','company-type-list', 'company-list'])
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="fas fa-users"></i>
@@ -47,14 +47,14 @@
                         <ul class="nav nav-treeview">
                             @if(Auth::user()->is_owner_admin == '1')
 
-{{--                            @can('domain-setup')--}}
+                           @can('domain-setup-list')
                                 <li class="nav-item">
                                     <a href="{{ route('domain-setup.index') }}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Domain Setup</p>
                                     </a>
                                 </li>
-{{--                            @endcan--}}
+                           @endcan
                             @endif
                         @if(Auth::user()->is_owner_admin == '1' || Auth::user()->is_companies_superadmin == '1')
 
