@@ -451,10 +451,10 @@
                 @foreach($notifications as $data)
                     <div class="dropdown-divider"></div>
                         <a href="{{ route('view-criminal-cases-read-notifications', $data->id) }}" @if ($data->is_read == "Yes")
-                            style="background:#fff;"
-                        @endif class="dropdown-item">
-                        <i class="fas fa-envelope mr-2"></i> {{ $data->case_type }} {{ $data->case_no }} </b> sent to you.</p>
-                    </a>
+                                style="background:#fff;"
+                            @endif class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> {{ $data->case_type }} {{ $data->case_no }} </b> sent to you.</p>
+                        </a>
                 @endforeach
             </div>
         </li>

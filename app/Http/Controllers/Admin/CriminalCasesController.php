@@ -121,7 +121,8 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
-            ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id');
+            ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
+            ->where('criminal_cases.delete_status',0);
 
         if (Auth::user()->is_companies_superadmin == '1') {
 
