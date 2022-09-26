@@ -459,19 +459,46 @@
                         </div>
                     </div>
 
+                    <script type="text/javascript" src="{{ URL::asset('plugins/jquery/jquery.min.js') }}"></script>
 
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title"> List <span style="color: red;font-size:15px;">{{ !empty($is_search) ? '(Showing Searched Item)' : '' }}</span></h3>
-                                <div class="float-right">
-                                    @can('criminal-cases-create')
-                                    <a href="{{ route('add-criminal-cases') }}">
-                                        <button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Criminal Cases
-                                        </button>
-                                    </a>
-                                    @endcan
+
+                                <div class="row ">
+                                    <div class="col-sm-3">
+                                        <h3 class="card-title"> List <span style="color: red;font-size:15px;">{{ !empty($is_search) ? '(Showing Searched Item)' : '' }}</span> </h3>
+                                    </div>
+                                    <div class="col-sm-2 text-right">
+                                        <div class="icheck-success d-inline">
+                                            <input type="checkbox" id="select-all" >
+                                            <label for="select-all">Select All
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <select name="lawyer_advocate_id" id="lawyer_advocate_id" class="form-control select2">
+                                            <option value="">Select</option>
+                                            @foreach($user as $item)
+                                            <option
+                                                value="{{ $item->id }}" {{( old('lawyer_advocate_id') == $item->id ? 'selected':'')}}>{{ $item->name }} {{ $item->last_name }}</option>
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-primary text-uppercase"><i class="fas fa-paper-plane"></i> Send </button>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="float-right">
+                                            @can('criminal-cases-create')
+                                            <a href="{{ route('add-criminal-cases') }}">
+                                                <button class="btn btn-sm
+                                            btn-success add_btn"><i class="fas fa-plus"></i> Add Criminal Cases
+                                                </button>
+                                            </a>
+                                            @endcan
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -480,6 +507,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center"> Sl</th>
+                                        <th class="text-center"> Chk </th>
                                         <th class="text-center"> ID</th>
                                         <th class="text-center"> Status</th>
                                         <th class="text-center"> Next Date</th>
@@ -504,6 +532,8 @@
                                             <td>
                                                 {{ $key+1 }}
                                             </td>
+                                            <td>
+                                                <input type="checkbox" name="id[]" value="{{$datum->id}}"/></td>
                                             <td>
                                                 {{ $datum->created_case_id }}
                                             </td>

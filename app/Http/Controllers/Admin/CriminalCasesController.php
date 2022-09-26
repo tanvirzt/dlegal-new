@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CriminalCasesWorkingDoc;
+use App\Models\User;
 use Illuminate\Support\Facades\Http;
 use App\Models\Admin;
 use App\Models\CriminalCase;
@@ -98,6 +99,7 @@ class CriminalCasesController extends Controller
     {
         //   $data = CriminalCase::all();
 // dd($data);
+        $user = User::all();
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
         $court = SetupCourt::where(['case_class_id' => 'Criminal', 'delete_status' => 0])->get();
@@ -153,7 +155,7 @@ class CriminalCasesController extends Controller
             'setup_matters.matter_name')
             ->get();
 
-        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user','group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter'));
     }
 
     public function add_criminal_cases()
