@@ -638,7 +638,7 @@ class PermissionTableSeeder extends Seeder
                     'criminal-cases-delete',
                     'criminal-cases-view',
                     'criminal-cases-add-billing',
-//                    'criminal-cases-info-print-preview',
+                    'criminal-cases-switch-cases',
 //                    'criminal-cases-send-messages-email',
 //                    'criminal-cases-proceedings-log',
 //                    'criminal-cases-activity-log',

@@ -1709,24 +1709,6 @@
                                                         {{ $logs->updated_court_order_write }}
                                                     </td>
                                                     <td>
-
-
-                                                        {{-- @php
-                                                        $not_updated = App\Models\CriminalCaseStatusLog::where(['case_id' => $data->id, 'delete_status' => 0])->latest()->first();
-                                                        // dd($not_updated);
-                                                        // if (!empty($not_updated->updated_next_date) && $not_updated->updated_next_date < date('Y-m-d')) {
-                                                        //     // dd($not_updated->updated_next_date);
-                                                        // }
-                                                        @endphp --}}
-
-                                                        {{-- @if (!empty($logs->updated_next_date))
-                                                            {{ date('d-m-Y', strtotime($logs->updated_next_date)) }}
-                                                        @elseif(!empty($not_updated->updated_next_date) && $not_updated->updated_next_date < date('Y-m-d'))
-                                                            <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>Missed</button>
-                                                        @else
-                                                            <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>Not Updated</button>
-                                                        @endif --}}
-
                                                         {{ !empty($logs->updated_next_date) ? date('d-m-Y', strtotime($logs->updated_next_date)) : '' }}
 
                                                     </td>
@@ -1749,12 +1731,6 @@
                                                                 <li class="text-left"> {{ $pro }} </li>
                                                             @endforeach
                                                         </details>
-    
-
-
-                                                            {{-- @foreach ($notes as $pro)
-                                                                <li class="text-left">{{ $pro }}</li>
-                                                            @endforeach --}}
                                                         @endif
                                                         {{ $logs->updated_day_notes_write }}
                                                     </td>
@@ -2318,6 +2294,45 @@
                                 </div>
 
                             </div>
+
+                            @can('criminal-cases-switch-cases')
+                            <div class="card" id="section4">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Switch Log</h3>
+                                    <div class="card-tools">
+                                        <a href="{{ route('switch-log-print-preview', $data->id) }}" target="_blank"
+                                           class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Switched By</th>
+                                            <th>Switched To</th>
+                                            <th>Switched Time</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($switch_records as $switch)
+                                            <tr>                                                
+                                                <td> {{ user_details($switch->switched_by_id)->name }} ({{ user_details($switch->switched_by_id)->email }}) </td>
+                                                <td> {{ user_details($switch->switched_to_id)->name }} ({{ user_details($switch->switched_to_id)->email }})</td>
+                                                <td> {{ $switch->created_at }} </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            @endcan
 
 
                         </div>

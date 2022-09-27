@@ -20,6 +20,12 @@ if (!function_exists('auth_id')){
     }
 }
 
+if (!function_exists('user_details')){
+    function user_details($id){
+       return \App\Models\User::where('id', $id)->first();
+    }
+}
+
 if (!function_exists('companies_all_users')){
     function companies_all_users(){
         return \App\Models\User::where('company_id', Auth::user()->company_id)->pluck('id');

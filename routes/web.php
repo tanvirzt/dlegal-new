@@ -604,8 +604,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::post('update-criminal-cases-activity-logs/{id}',[CriminalCasesController::class, 'update_criminal_cases_activity_logs'])->name('update-criminal-cases-activity-logs');
     Route::get('case-porceedings-print-preview/{id}',[CriminalCasesController::class, 'case_porceedings_print_preview'])->name('case-porceedings-print-preview');
     Route::get('billings-log-print-preview/{id}',[CriminalCasesController::class, 'billings_log_print_preview'])->name('billings-log-print-preview');
+    Route::get('switch-log-print-preview/{id}',[CriminalCasesController::class, 'switch_log_print_preview'])->name('switch-log-print-preview');
     Route::get('criminal-case-print-preview/{id}',[CriminalCasesController::class, 'criminal_case_print_preview'])->name('criminal-case-print-preview');
     Route::post('send-messages-for-criminal-cases/{id}',[CriminalCasesController::class, 'send_messages_for_criminal_cases'])->name('send-messages-for-criminal-cases');
+    Route::post('criminal-cases-switch',[CriminalCasesController::class, 'criminal_cases_switch'])->name('criminal-cases-switch');
 
     Route::post('update-criminal-cases-status-column/{id}',[CriminalCasesController::class, 'update_criminal_cases_status_column'])->name('update-criminal-cases-status-column');
     Route::get('view-criminal-cases-read-notifications/{id}',[CriminalCasesController::class, 'view_criminal_cases_read_notifications'])->name('view-criminal-cases-read-notifications');
