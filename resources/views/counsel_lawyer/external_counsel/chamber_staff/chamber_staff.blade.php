@@ -98,13 +98,12 @@
                                                 </span>
                                             </td>
                                             <td>
-                                            {{-- <a href="{{ route('view-counsel',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
-                                                ><i class="fas fa-eye"></i></button></a>
-                                             --}}
                                                 @can('chamber-staff-edit')
-
-                                                <a href="{{ route('edit-chamber-staff',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
-                                                ><i class="fas fa-edit"></i></button></a>
+                                                <a href="{{ route('view-chamber-staff',$datum->id) }}">
+                                                    <button class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"><i class="fas fa-eye"></i></button>
+                                                </a>
+                                                    <a href="{{ route('edit-chamber-staff',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                    ><i class="fas fa-edit"></i></button></a>
                                                 @endcan
                                                 @can('chamber-staff-delete')
                                                 <form method="POST" action="{{ route('delete-chamber-staff',$datum->id) }}" class="delete-user btn btn-danger btn-xs">

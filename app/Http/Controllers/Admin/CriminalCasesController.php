@@ -1655,6 +1655,21 @@ class CriminalCasesController extends Controller
         return redirect()->back();
     }
 
+    public function delete_criminal_cases_latest($id)
+    {
+        $data = CriminalCase::find($id);
+        if ($data['delete_status'] == 1) {
+            $delete_status = 0;
+        } else {
+            $delete_status = 1;
+        }
+        $data->delete_status = $delete_status;
+        $data->save();
+
+        session()->flash('success', 'Criminal Cases Deleted');
+        return redirect()->back();
+    }   
+
     public function view_criminal_cases($id)
     {
 

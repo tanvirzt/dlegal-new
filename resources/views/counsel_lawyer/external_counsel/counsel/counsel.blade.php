@@ -48,19 +48,19 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-bordered table-striped data_table">
+                                <table id="data_table" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th class="text-center"> Sl </th>
                                         <th class="text-center"> Name </th>
                                         <th class="text-center"> Role </th>
                                         <th class="text-center"> Chamber Joined </th>
-                                        <th class="text-nowrap" colspan="2"> Bar Council Enrollment </th>
-                                        <th class="text-nowrap" colspan="2"> High Court Enrollment </th>
-                                        <th class="text-nowrap"> Professional Contact Number </th>
+                                        <th colspan="2"> Bar Council Enrollment </th>
+                                        <th colspan="2"> High Court Enrollment </th>
+                                        <th> Professional Contact Number </th>
                                         <th class="text-center"> Professional E-mail </th>
                                         <th class="text-center"> Status </th>
-                                        <th width="13%">Action</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody id="search_data">
@@ -108,8 +108,11 @@
                                             </td>
                                             <td>
                                                 @can('counsel-edit')
+                                                <a href="{{ route('view-counsel',$datum->id) }}">
+                                                    <button class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"><i class="fas fa-eye"></i></button>
+                                                </a>
                                                 <a href="{{ route('edit-counsel',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
-                                                ><i class="fas fa-edit"></i></button></a>
+                                                    ><i class="fas fa-edit"></i></button></a>
                                                 @endcan
                                                 @can('counsel-delete')
                                                 <form method="POST" action="{{ route('delete-counsel',$datum->id) }}" class="delete-user btn btn-danger btn-xs">

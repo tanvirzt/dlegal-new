@@ -583,6 +583,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::post('update-criminal-cases/{id}',[CriminalCasesController::class, 'update_criminal_cases'])->name('update-criminal-cases');
     Route::post('update-criminal-case/{id}',[CriminalCasesController::class, 'update_criminal_case'])->name('update-criminal-case');
     Route::post('delete-criminal-cases/{id}',[CriminalCasesController::class, 'delete_criminal_cases'])->name('delete-criminal-cases');
+    Route::get('delete-criminal-cases-latest/{id}',[CriminalCasesController::class, 'delete_criminal_cases_latest'])->name('delete-criminal-cases-latest');
     Route::get('view-criminal-cases/{id}',[CriminalCasesController::class, 'view_criminal_cases'])->name('view-criminal-cases');
     Route::get('download-criminal-cases-files/{id}',[CriminalCasesController::class, 'download_criminal_cases_file'])->name('download-criminal-cases-files');
     Route::get('download-criminal-cases-working-doc/{id}',[CriminalCasesController::class, 'download_criminal_cases_working_doc'])->name('download-criminal-cases-working-doc');
@@ -772,6 +773,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('edit-counsel/{id}',[CounselLawyerController::class, 'edit_counsel'])->name('edit-counsel');
     Route::post('update-counsel/{id}',[CounselLawyerController::class, 'update_counsel'])->name('update-counsel');
     Route::post('delete-counsel/{id}',[CounselLawyerController::class, 'destroy_counsel'])->name('delete-counsel');
+    Route::get('view-counsel/{id}', [CounselLawyerController::class, 'show_counsel'])->name('view-counsel');
 
     Route::get('chamber-staff', [CounselLawyerController::class, 'index_chamber_staff'])->name('chamber-staff');
     Route::get('create-chamber-staff',[CounselLawyerController::class, 'create_chamber_staff'])->name('create-chamber-staff');
@@ -779,6 +781,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('edit-chamber-staff/{id}',[CounselLawyerController::class, 'edit_chamber_staff'])->name('edit-chamber-staff');
     Route::post('update-chamber-staff/{id}',[CounselLawyerController::class, 'update_chamber_staff'])->name('update-chamber-staff');
     Route::post('delete-chamber-staff/{id}',[CounselLawyerController::class, 'destroy_chamber_staff'])->name('delete-chamber-staff');
+    Route::get('view-chamber-staff/{id}', [CounselLawyerController::class, 'show_chamber_staff'])->name('view-chamber-staff');
 
     Route::get('internal-counsel', [CounselLawyerController::class, 'index_internal_counsel'])->name('internal-counsel');
     Route::get('add-internal-counsel',[CounselLawyerController::class, 'create_internal_counsel'])->name('add-internal-counsel');

@@ -489,9 +489,11 @@ class CounselLawyerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function counsel_show($id)
+    public function show_counsel($id)
     {
-        //
+        $data = Counsel::with('documents_received','documents_required')->find($id);
+        // data_array($data);
+        return view('counsel_lawyer.external_counsel.counsel.show_counsel',compact('data'));
     }
 
     /**
@@ -502,15 +504,12 @@ class CounselLawyerController extends Controller
      */
     public function edit_counsel($id)
     {
-
         $documents = SetupDocument::where('delete_status', 0)->orderBy('documents_name','asc')->get();
         $documents_type = SetupDocumentsType::where('delete_status',0)->orderBy('documents_type_name','asc')->get();
         $data = Counsel::find($id);
         $received_documents_explode = CounselDocumentsReceived::where('counsel_id', $id)->get()->toArray();
         $required_wanting_documents_explode = CounselDocumentsRequired::where('counsel_id', $id)->get()->toArray();
-        // dd($received_documents_explode);
         return view('counsel_lawyer.external_counsel.counsel.edit_counsel',compact('required_wanting_documents_explode','received_documents_explode','documents_type','documents','data'));
-
     }
 
     /**
@@ -726,9 +725,11 @@ class CounselLawyerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function chamber_staff_show($id)
+    public function show_chamber_staff($id)
     {
-        //
+        $data = ChamberStaff::with('documents_received','documents_required')->find($id);
+        // data_array($data);
+        return view('counsel_lawyer.external_counsel.chamber_staff.show_chamber_staff',compact('data'));
     }
 
     /**

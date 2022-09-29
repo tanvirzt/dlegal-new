@@ -32,3 +32,17 @@ if (!function_exists('companies_all_users')){
     }
 }
 
+if (!function_exists('received_documents')) {
+    function received_documents($id)
+    {
+        return \App\Models\SetupDocument::where('id',$id)->first();
+    }
+}
+
+if (!function_exists('received_documents_type')) {
+    function received_documents_type($id)
+    {
+        return \App\Models\SetupDocumentsType::where('id',$id)->first();
+    }
+}
+

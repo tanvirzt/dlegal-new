@@ -702,14 +702,14 @@
                                                 @can('criminal-cases-edit')
 
                                                     <a href="{{ route('view-criminal-cases',$datum->id) }}">
-                                                        <button class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top"
+                                                        <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip" data-placement="top"
                                                                 title="Details"
                                                         ><i class="fas fa-eye"></i></button>
                                                     </a>
                                                 @endcan
                                                 @can('criminal-cases-add-billing')
                                                     <a href="{{ route('add-criminal-cases-billling', $datum->id) }}">
-                                                        <button
+                                                        <button type="button"
                                                             class="btn btn-outline-warning btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Bill Entry"><i class="fas fa-money-bill"></i></button>
                                                     </a>
@@ -717,20 +717,30 @@
                                                 @can('criminal-cases-edit')
 
                                                     <a href="{{ route('edit-criminal-cases',$datum->id) }}">
-                                                        <button class="btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top"
+                                                        <button type="button" class="btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top"
                                                                 title="Edit"
                                                         ><i class="fas fa-edit"></i></button>
                                                     </a>
                                                 @endcan
                                                 @can('criminal-cases-delete')
+                                                    <a href="{{ route('delete-criminal-cases-latest',$datum->id) }}">
+                                                        <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top"
+                                                                title="Edit"
+                                                        ><i class="fas fa-edit"></i></button>
+                                                    </a>
 
-                                                    <form method="POST" action="{{ route('delete-criminal-cases',$datum->id) }}"
+                                                {{-- {{ Form::open(array('method' => 'post', 'route' => array('delete-criminal-cases', $datum->id), 'class' => 'delete-form')) }}
+                                                    {{ Form::submit('Delete', array('class' => 'btn btn-danger', 'role' => 'button')) }}
+                                                {{ Form::close() }} --}}
+
+                                                    {{-- <form method="POST" action="{{ route('delete-criminal-cases',$datum->id) }}"
                                                           class="delete-user btn btn-outline-danger btn-xs">
                                                         @csrf
                                                         <button type="submit" class="btn btn-outline-danger btn-sm" style="line-height: 1.4"
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 title="Delete"><i class="fas fa-trash"></i></button>
-                                                    </form>
+                                                    </form> --}}
+
                                                 @endcan
                                             </td>
                                         </tr>

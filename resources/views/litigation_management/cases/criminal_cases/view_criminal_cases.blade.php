@@ -2321,13 +2321,16 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($switch_records as $switch)
-                                            <tr>                                                
-                                                <td> {{ user_details($switch->switched_by_id)->name }} ({{ user_details($switch->switched_by_id)->email }}) </td>
-                                                <td> {{ user_details($switch->switched_to_id)->name }} ({{ user_details($switch->switched_to_id)->email }})</td>
-                                                <td> {{ $switch->created_at }} </td>
-                                            </tr>
-                                        @endforeach
+                                            @if (!empty($switch_records))
+                                                @foreach ($switch_records as $switch)
+                                                    <tr>                                                
+                                                        <td> {{ user_details($switch->switched_by_id)->name }} ({{ user_details($switch->switched_by_id)->email }}) </td>
+                                                        <td> {{ user_details($switch->switched_to_id)->name }} ({{ user_details($switch->switched_to_id)->email }})</td>
+                                                        <td> {{ $switch->created_at }} </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
+
                                         </tbody>
                                     </table>
                                 </div>
