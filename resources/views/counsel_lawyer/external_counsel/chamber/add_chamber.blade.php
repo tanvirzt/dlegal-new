@@ -183,7 +183,7 @@
                                                                value="{{old('head_of_chamber')}}">
                                                         @error('head_of_chamber')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                        <input type="text" class="form-control col-sm-5"
+                                                        <input type="file" class="form-control col-sm-5"
                                                                id="head_of_chamber_signature"
                                                                name="head_of_chamber_signature"
                                                                value="{{old('head_of_chamber_signature')}}">
@@ -199,7 +199,7 @@
                                                                        class="myfrm form-control mr-2" value="chamber_partner_sections">
                                                         <input type="text" name="partner_of_chamber[]"
                                                             class="myfrm form-control col-md-7">
-                                                        <input type="text" name="partner_of_chamber_signature[]"
+                                                        <input type="file" name="partner_of_chamber_signature[]"
                                                             class="myfrm form-control col-md-5">
                                                         <div class="input-group-btn">
                                                             <button class="btn btn-success btn_success_partner_of_chamber"
@@ -215,7 +215,7 @@
                                                                        class="myfrm form-control mr-2" value="chamber_partner_sections">
                                                             <input type="text" name="partner_of_chamber[]"
                                                                 class="myfrm form-control col-12">
-                                                            <input type="text" name="partner_of_chamber_signature[]"
+                                                            <input type="file" name="partner_of_chamber_signature[]"
                                                                 class="myfrm form-control col-md-5">
                                                             <div class="input-group-btn">
                                                                 <button class="btn btn-danger btn_danger_partner_of_chamber"
@@ -235,7 +235,7 @@
                                                                        class="myfrm form-control mr-2" value="associate_sections">
                                                         <input type="text" name="associate[]"
                                                             class="myfrm form-control col-md-7">
-                                                        <input type="text" name="associate_signature[]"
+                                                        <input type="file" name="associate_signature[]"
                                                             class="myfrm form-control col-md-5">
                                                         <div class="input-group-btn">
                                                             <button class="btn btn-success btn_success_associate"
@@ -251,7 +251,7 @@
                                                                        class="myfrm form-control mr-2" value="associate_sections">
                                                             <input type="text" name="associate[]"
                                                                 class="myfrm form-control col-md-7">
-                                                            <input type="text" name="associate_signature[]"
+                                                            <input type="file" name="associate_signature[]"
                                                                 class="myfrm form-control col-md-5">
                                                             <div class="input-group-btn">
                                                                 <button class="btn btn-danger btn_danger_associate"
@@ -274,7 +274,7 @@
                                                         @error('admin_of_chamber')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     
-                                                        <input type="text" class="form-control col-sm-5"
+                                                        <input type="file" class="form-control col-sm-5"
                                                                id="admin_of_chamber_signature"
                                                                name="admin_of_chamber_signature"
                                                                value="{{old('admin_of_chamber_signature')}}">
@@ -292,7 +292,7 @@
                                                         @error('accountant')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     
-                                                        <input type="text" class="form-control col-sm-5"
+                                                        <input type="file" class="form-control col-sm-5"
                                                                id="accountant_signature"
                                                                name="accountant_signature"
                                                                value="{{old('accountant_signature')}}">
@@ -310,7 +310,7 @@
                                                         @error('head_clerk')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     
-                                                        <input type="text" class="form-control col-sm-5"
+                                                        <input type="file" class="form-control col-sm-5"
                                                                id="head_clerk_signature"
                                                                name="head_clerk_signature"
                                                                value="{{old('head_clerk_signature')}}">
@@ -326,7 +326,7 @@
                                                                        class="myfrm form-control mr-2" value="clerk_sections">
                                                         <input type="text" name="clerk[]"
                                                             class="myfrm form-control col-md-7">
-                                                        <input type="text" name="clerk_signature[]"
+                                                        <input type="file" name="clerk_signature[]"
                                                             class="myfrm form-control col-md-5">
                                                         <div class="input-group-btn">
                                                             <button class="btn btn-success btn_success_clerk"
@@ -342,7 +342,7 @@
                                                                        class="myfrm form-control mr-2" value="clerk_sections">
                                                             <input type="text" name="clerk[]"
                                                                 class="myfrm form-control col-md-7">
-                                                            <input type="text" name="clerk_signature[]"
+                                                            <input type="file" name="clerk_signature[]"
                                                                 class="myfrm form-control col-md-5">
                                                             <div class="input-group-btn">
                                                                 <button class="btn btn-danger btn_danger_clerk"
@@ -362,7 +362,7 @@
                                                                        class="myfrm form-control mr-2" value="support_staff_sections">
                                                         <input type="text" name="support_staff[]"
                                                             class="myfrm form-control col-md-7">
-                                                        <input type="text" name="support_staff_signature[]"
+                                                        <input type="file" name="support_staff_signature[]"
                                                             class="myfrm form-control col-md-5">
                                                         <div class="input-group-btn">
                                                             <button class="btn btn-success btn_success_support_staff"
@@ -378,7 +378,7 @@
                                                                        class="myfrm form-control mr-2" value="support_staff_sections">
                                                             <input type="text" name="support_staff[]"
                                                                 class="myfrm form-control col-md-7">
-                                                            <input type="text" name="support_staff_signature[]"
+                                                            <input type="file" name="support_staff_signature[]"
                                                                 class="myfrm form-control col-md-5">
                                                             <div class="input-group-btn">
                                                                 <button class="btn btn-danger btn_danger_support_staff"

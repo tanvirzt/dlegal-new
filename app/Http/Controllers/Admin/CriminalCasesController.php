@@ -128,7 +128,7 @@ class CriminalCasesController extends Controller
             ->where('criminal_cases.delete_status', 0)
             ->orderBy('criminal_cases.created_at', 'desc');
 
-        if (Auth::user()->is_companies_superadmin == '1') {
+        if (Auth::user()->is_companies_superadmin == '1' || Auth::user()->is_owner_admin == '1') {
 
             $query2 = $query;
 

@@ -115,6 +115,9 @@
                                                 ><i class="fas fa-eye"></i></button></a>
                                              --}}
                                                 @can('internal-council-edit')
+                                                <a href="{{ route('view-internal-counsel',$datum->id) }}">
+                                                    <button class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"><i class="fas fa-eye"></i></button>
+                                                </a>
                                                 <a href="{{ route('edit-internal-counsel',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                 ><i class="fas fa-edit"></i></button></a>
                                                 @endcan

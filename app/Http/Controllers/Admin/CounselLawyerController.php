@@ -129,13 +129,44 @@ class CounselLawyerController extends Controller
         $data->branch_office_address_one = $request->branch_office_address_one;
         $data->branch_office_address_two = $request->branch_office_address_two;
         $data->head_of_chamber = $request->head_of_chamber;
-        $data->head_of_chamber_signature = $request->head_of_chamber_signature;
+
+        // $data->head_of_chamber_signature = $request->head_of_chamber_signature;
+        if ($request->hasfile('head_of_chamber_signature')) {
+            $file = $request->file('head_of_chamber_signature');
+            $original_name = $file->getClientOriginalName();
+            $file_name = time().rand(1,0).$original_name;
+            $file->move(public_path('files/chamber/head_of_chamber_signature'),$file_name);
+            $data->head_of_chamber_signature = $file_name;
+         } 
         $data->admin_of_chamber = $request->admin_of_chamber;
-        $data->admin_of_chamber_signature = $request->admin_of_chamber_signature;
+        if ($request->hasfile('admin_of_chamber_signature')) {
+            $file = $request->file('admin_of_chamber_signature');
+            $original_name = $file->getClientOriginalName();
+            $file_name = time().rand(1,0).$original_name;
+            $file->move(public_path('files/chamber/admin_of_chamber_signature'),$file_name);
+            $data->admin_of_chamber_signature = $file_name;
+         }
+
+        // $data->admin_of_chamber_signature = $request->admin_of_chamber_signature;
         $data->accountant = $request->accountant;
-        $data->accountant_signature = $request->accountant_signature;
+        // $data->accountant_signature = $request->accountant_signature;
+        if ($request->hasfile('accountant_signature')) {
+            $file = $request->file('accountant_signature');
+            $original_name = $file->getClientOriginalName();
+            $file_name = time().rand(1,0).$original_name;
+            $file->move(public_path('files/chamber/accountant_signature'),$file_name);
+            $data->accountant_signature = $file_name;
+         }
         $data->head_clerk = $request->head_clerk;
-        $data->head_clerk_signature = $request->head_clerk_signature;
+        // $data->head_clerk_signature = $request->head_clerk_signature;
+        if ($request->hasfile('head_clerk_signature')) {
+            $file = $request->file('head_clerk_signature');
+            $original_name = $file->getClientOriginalName();
+            $file_name = time().rand(1,0).$original_name;
+            $file->move(public_path('files/chamber/head_clerk_signature'),$file_name);
+            $data->head_clerk_signature = $file_name;
+         }
+
         $data->letterhead_write_up = $request->letterhead_write_up;
         $data->letterhead_address = $request->letterhead_address;
         $data->save();
@@ -145,6 +176,15 @@ class CounselLawyerController extends Controller
             $datum->chamber_id = $data->id;
             $datum->partner_of_chamber = $request->partner_of_chamber[$key];
             $datum->partner_of_chamber_signature = $request->partner_of_chamber_signature[$key];
+
+            // if ($request->hasfile('partner_of_chamber_signature')) {
+            //     $file = $request->file('partner_of_chamber_signature');
+            //     $original_name = $file->getClientOriginalName();
+            //     $file_name = time().rand(1,0).$original_name;
+            //     $file->move(public_path('files/chamber/partner_of_chamber_signature'),$file_name);
+            //     $datum->partner_of_chamber_signature = $file_name[$key];
+            //  }
+    
             $datum->save();
         }
 
@@ -959,9 +999,11 @@ class CounselLawyerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function internal_counsel_show($id)
+    public function show_internal_counsel($id)
     {
-        //
+        $data = InternalCounsel::with('documents_received','documents_required')->find($id);
+        // data_array($data);
+        return view('counsel_lawyer.internal_counsel.show_internal_counsel',compact('data'));
     }
 
     /**

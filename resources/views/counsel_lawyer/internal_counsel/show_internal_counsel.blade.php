@@ -17,7 +17,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a  type="button" href="{{ route('counsel') }}" aria-disabled="false"
+                                <a  type="button" href="{{ route('internal-counsel') }}" aria-disabled="false"
                                     role="link" tabindex="-1">Back </a>
                             </li>
                         </ol>

@@ -789,6 +789,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('edit-internal-counsel/{id}',[CounselLawyerController::class, 'edit_internal_counsel'])->name('edit-internal-counsel');
     Route::post('update-internal-counsel/{id}',[CounselLawyerController::class, 'update_internal_counsel'])->name('update-internal-counsel');
     Route::post('delete-internal-counsel/{id}',[CounselLawyerController::class, 'destroy_internal_counsel'])->name('delete-internal-counsel');
+    Route::get('view-internal-counsel/{id}', [CounselLawyerController::class, 'show_internal_counsel'])->name('view-internal-counsel');
 
 
 });
