@@ -1674,7 +1674,24 @@ class CriminalCasesController extends Controller
     {
 
         $query = DB::table('criminal_cases');
-        if (Auth::user()->is_companies_superadmin == '1') {
+
+
+        // if (Auth::user()->is_companies_superadmin == '1' || Auth::user()->is_owner_admin == '1') {
+
+        //     $query2 = $query;
+
+        // } else if (Auth::user()->is_companies_admin == '1') {
+
+        //     $query2 = $query->whereIn('criminal_cases.created_by', companies_all_users());
+
+        // } else {
+
+        //     $query2 = $query->where(['criminal_cases.created_by' => auth_id()]);
+
+        // }
+
+
+        if (Auth::user()->is_companies_superadmin == '1' || Auth::user()->is_owner_admin == '1') {
             $query2 = $query;
         } else if (Auth::user()->is_companies_admin == '1') {
             $query2 = $query->whereIn('criminal_cases.created_by', companies_all_users());
@@ -3425,3 +3442,13 @@ class CriminalCasesController extends Controller
     }
 
 }
+
+
+
+
+
+
+
+
+
+

@@ -487,7 +487,7 @@
                                         <div class="float-right">
                                             @can('criminal-cases-create')
                                                 <a href="{{ route('add-criminal-cases') }}">
-                                                    <button class="btn btn-sm
+                                                    <button type="button" class="btn btn-sm
                                             btn-success add_btn"><i class="fas fa-plus"></i> Add Criminal Cases
                                                     </button>
                                                 </a>
