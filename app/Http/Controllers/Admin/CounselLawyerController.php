@@ -531,7 +531,7 @@ class CounselLawyerController extends Controller
      */
     public function show_counsel($id)
     {
-        $data = Counsel::with('documents_received','documents_required')->find($id);
+        $data = Counsel::with('documents_received.received_documents_name','documents_received.received_documents_type_name','documents_required.required_wanting_documents_name','documents_required.required_wanting_documents_type_name')->find($id);
         // data_array($data);
         return view('counsel_lawyer.external_counsel.counsel.show_counsel',compact('data'));
     }

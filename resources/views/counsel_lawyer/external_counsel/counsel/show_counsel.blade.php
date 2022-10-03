@@ -241,10 +241,10 @@
                                                         @if (count($data->documents_received)>1)
                                                             @foreach ($data->documents_received as $item)
                                                                 <tr>
-                                                                    <td>{{ !empty($item->received_documents_id) ? received_documents($item->received_documents_id)->documents_name : '' }}</td>
+                                                                    <td>{{ $item->received_documents_name->documents_name }}</td>
                                                                     <td>{{ $item->received_documents }}</td>
                                                                     <td>{{ $item->received_documents_date }}</td>
-                                                                    <td>{{ !empty($item->received_documents_type_id) ? received_documents_type($item->received_documents_type_id)->documents_type_name : '' }}</td>
+                                                                    <td>{{ $item->received_documents_type_name->documents_type_name }}</td>
                                                                 </tr>
                                                             @endforeach
                                                         @endif
@@ -260,16 +260,16 @@
                                                 <table class="table table-bordered">
 
                                                     <tbody>
-
-                                                    @foreach ($data->documents_required as $item)
-                                                        <tr>
-                                                            <td>{{ received_documents($item->required_wanting_documents_id)->documents_name }}</td>
-                                                            <td>{{ $item->required_wanting_documents }}</td>
-                                                            <td>{{ $item->required_wanting_documents_date }}</td>
-                                                            <td>{{ received_documents_type($item->required_wanting_documents_type_id)->documents_type_name }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                    
+                                                        @if (count($data->documents_required)>1)
+                                                            @foreach ($data->documents_required as $item)
+                                                                <tr>
+                                                                    <td>{{ $item->required_wanting_documents_name->documents_name }}</td>
+                                                                    <td>{{ $item->required_wanting_documents }}</td>
+                                                                    <td>{{ $item->required_wanting_documents_date }}</td>
+                                                                    <td>{{ $item->required_wanting_documents_type_name->documents_type_name }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @endif
                                                     </tbody>
                                                 </table>
                                             </div>

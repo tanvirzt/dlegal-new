@@ -376,7 +376,7 @@ window.onload =function(){
 }
 //function to convert enterd date to any format
 function setCorrect(xObj,xTraget){
-    alert('test process');
+    // alert('test process');
     var date = new Date(xObj.value);
     var months = date.getMonth() + 1;
     if(months<10){
