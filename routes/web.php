@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\SocialComplianceController;
 use App\Http\Controllers\Admin\DocManagementController;
 use App\Http\Controllers\Admin\LitigationCalenderController;
 use App\Http\Controllers\Admin\CounselLawyerController;
+use App\Http\Controllers\Admin\ReportController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\DomainSetupController;
 
@@ -784,6 +785,17 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::post('update-internal-counsel/{id}',[CounselLawyerController::class, 'update_internal_counsel'])->name('update-internal-counsel');
     Route::post('delete-internal-counsel/{id}',[CounselLawyerController::class, 'destroy_internal_counsel'])->name('delete-internal-counsel');
     Route::get('view-internal-counsel/{id}', [CounselLawyerController::class, 'show_internal_counsel'])->name('view-internal-counsel');
+
+
+
+    ///////////////////// Report Managenent Start /////////////////////
+
+    //Litigation report
+    Route::get('litigation/report', [ReportController::class, 'litigation_report'])->name('litigation.report');
+
+    Route::post('litigation/report/result', [ReportController::class, 'litigation_report_result'])->name('litigation.report.result');
+
+    ///////////////////// Report Managenent End /////////////////////
 
 
 });
