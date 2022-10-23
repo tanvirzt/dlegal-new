@@ -120,7 +120,7 @@ class CreateCriminalCasesTable extends Migration
             $table->string('section_id')->nullable();
             $table->string('section_write')->nullable();
             $table->string('date_of_filing')->nullable();
-            $table->integer('case_status_id')->nullable();
+            $table->string('case_status_id')->nullable();
             $table->integer('matter_id')->nullable();
             $table->string('matter_write')->nullable();
             $table->integer('case_type_id')->nullable();

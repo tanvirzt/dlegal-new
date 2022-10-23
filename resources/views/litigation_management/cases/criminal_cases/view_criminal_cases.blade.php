@@ -1128,14 +1128,20 @@
                                                     </h6>
                                                     <table class="table table-bordered">
 
+
+
                                                         <tbody>
 
                                                         <tr>
                                                             <td width="50%">Status</td>
                                                             <td width="50%">
-                                                                {{-- @if (!empty($latest)) --}}
+
+                                                            @if (Is_numeric($data->case_status_id))
                                                                 {{ $data->case_status_name }}
-                                                                {{-- @endif --}}
+                                                            @else
+                                                                {{ $data->case_status_id }}
+                                                            @endif
+
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -1668,12 +1674,12 @@
                                                                             <span id="open">read more</span>
                                                                             <span id="close">read less</span>
                                                                         </summary> --}}
-                                                                        
+
                                                                 @foreach ($proceedings as $pro)
-                                                                             {{ $pro }} 
+                                                                             {{ $pro }}
                                                                 @endforeach
 
-                                                                        
+
                                                                     {{-- </details> --}}
                                                             @endif
                                                         @endif
@@ -1836,8 +1842,8 @@
                                                             <span id="close">read less</span>
                                                         </summary>
                                                         {{ $activity_log->activity_action }}
-                                                    </details>              
-                                                    @endif                                  
+                                                    </details>
+                                                    @endif
                                                 </td>
                                                 <td>
                                                     @if (!empty($activity_log->activity_progress))
@@ -1917,7 +1923,7 @@
                                                     @endif
                                                 </td>
 
-                                                <td> 
+                                                <td>
                                                     @if (!empty($activity_log->activity_remarks))
                                                     <details>
                                                         <summary>
@@ -2323,7 +2329,7 @@
                                         <tbody>
                                             @if (!empty($switch_records))
                                                 @foreach ($switch_records as $switch)
-                                                    <tr>                                                
+                                                    <tr>
                                                         <td> {{ user_details($switch->switched_by_id)->name }} ({{ user_details($switch->switched_by_id)->email }}) </td>
                                                         <td> {{ user_details($switch->switched_to_id)->name }} ({{ user_details($switch->switched_to_id)->email }})</td>
                                                         <td> {{ $switch->created_at }} </td>
@@ -6069,11 +6075,15 @@
                                 <select name="updated_case_status_id" id="updated_case_status_id"
                                         class="form-control select2">
                                     <option value="">Select</option>
+                                    <option value="Disposed"
+                                            {{ old('updated_case_status_id') == 'Disposed' ? 'selected' : '' }}>
+                                            Disposed Cases</option>
                                     @foreach ($case_status as $item)
                                         <option value="{{ $item->id }}"
                                             {{ old('updated_case_status_id') == $item->id ? 'selected' : '' }}>
                                             {{ $item->case_status_name }}</option>
                                     @endforeach
+
                                 </select>
                                 @error('updated_case_status_id')
                                 <span class="text-danger">{{ $message }}</span>

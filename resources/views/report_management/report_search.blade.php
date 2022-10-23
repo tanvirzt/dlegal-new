@@ -64,18 +64,24 @@
                                                         <option value="">Select Case Type</option>
 
                                                         <option value="civil"
-                                                            {{ old('case_type') == 'civil' ? 'selected' : '' }}>Civil</option>
-                                                            <option value="criminal"
-                                                            {{ old('case_type') == 'criminal' ? 'selected' : '' }}>Criminal</option>
-                                                            <option value="service_matter"
-                                                            {{ old('case_type') == 'service_matter' ? 'selected' : '' }}>Service Matter</option>
-                                                            <option value="special"
-                                                            {{ old('case_type') == 'special' ? 'selected' : '' }}>Special/Quassi-Judicial Cases</option>
+                                                            {{ old('case_type') == 'civil' ? 'selected' : '' }}>Civil
+                                                        </option>
+                                                        <option value="criminal"
+                                                            {{ old('case_type') == 'criminal' ? 'selected' : '' }}>Criminal
+                                                        </option>
+                                                        <option value="service_matter"
+                                                            {{ old('case_type') == 'service_matter' ? 'selected' : '' }}>
+                                                            Service Matter</option>
+                                                        <option value="special"
+                                                            {{ old('case_type') == 'special' ? 'selected' : '' }}>
+                                                            Special/Quassi-Judicial Cases</option>
 
-                                                            <option value="high_court"
-                                                            {{ old('case_type') == 'high_court' ? 'selected' : '' }}>High Court Division</option>
-                                                            <option value="high_court"
-                                                            {{ old('case_type') == 'appellate_court' ? 'selected' : '' }}>Appellate Court Division</option>
+                                                        <option value="high_court"
+                                                            {{ old('case_type') == 'high_court' ? 'selected' : '' }}>High
+                                                            Court Division</option>
+                                                        <option value="high_court"
+                                                            {{ old('case_type') == 'appellate_court' ? 'selected' : '' }}>
+                                                            Appellate Court Division</option>
                                                     </select>
                                                     @error('case_type_id')
                                                         <span class="text-danger">{{ $message }}</span>
@@ -84,32 +90,86 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="case_type_id" class="col-sm-4 col-form-label">Report Type </label>
+                                                <label for="case_type_id" class="col-sm-4 col-form-label">Report Type
+                                                </label>
                                                 <div class="col-sm-8">
-                                                    <select name="report_type" class="form-control select2" required>
+                                                    <select name="report_type" id="report_type" class="form-control select2"
+                                                        required>
                                                         <option value="">Select Report Type</option>
 
                                                         <option value="daily"
-                                                            {{ old('report_type') == 'daily' ? 'selected' : '' }}>Daily Report</option>
+                                                            {{ old('report_type') == 'daily' ? 'selected' : '' }}>Daily
+                                                            Report</option>
 
-                                                            <option value="next_week"
-                                                            {{ old('report_type') == 'next_week' ? 'selected' : '' }}>Next Week Report</option>
-
-
-                                                            <option value="next_month"
-                                                            {{ old('report_type') == 'next_month' ? 'selected' : '' }}>Next Month Report</option>
+                                                        <option value="next_week"
+                                                            {{ old('report_type') == 'next_week' ? 'selected' : '' }}>Next
+                                                            Week Report</option>
 
 
-                                                            <option value="not_updated"
-                                                            {{ old('report_type') == 'not_updated' ? 'selected' : '' }}>Next Date Not Updated Report</option>
+                                                        <option value="next_month"
+                                                            {{ old('report_type') == 'next_month' ? 'selected' : '' }}>Next
+                                                            Month Report</option>
 
-                                                            <option value="disposed"
-                                                            {{ old('report_type') == 'disposed' ? 'selected' : '' }}>Disposed of Case Report</option>
+                                                        <option value="custom_date"
+                                                            {{ old('report_type') == 'custom_date' ? 'selected' : '' }}>
+                                                            Custom Date Report</option>
+
+
+                                                        <option value="not_updated"
+                                                            {{ old('report_type') == 'not_updated' ? 'selected' : '' }}>
+                                                            Next Date Not Updated Report</option>
+
+                                                        <option value="disposed"
+                                                            {{ old('report_type') == 'disposed' ? 'selected' : '' }}>
+                                                            Disposed of Case Report</option>
+
+
 
                                                     </select>
-                                                    @error('case_type_id')
+                                                    @error('report_type')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
+
+                                                    <div class="report_type_box mt-3"
+                                                        @if (old('report_type') == 'from_to' || old('report_type') == 'disposed') style="display:block;" @else style="display:none;" @endif>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label" for="">From
+                                                                        Date</label>
+                                                                    <input type="date" name="from_next_date"
+                                                                        class="form-control @error('from_next_date') is-invalid @enderror"
+                                                                        value="{{ old('from_next_date') }}">
+
+                                                                    @error('from_next_date')
+                                                                        <div class="invalid-feedback">{{ $message }}
+                                                                        </div>
+                                                                    @enderror
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <div class="mb-1">
+                                                                    <label class="form-label" for="">To
+                                                                        Date</label>
+                                                                    <input type="date" name="to_next_date"
+                                                                        class="form-control @error('to_next_date') is-invalid @enderror"
+                                                                        value="{{ old('to_next_date') }}">
+
+                                                                    @error('to_next_date')
+                                                                        <div class="invalid-feedback">{{ $message }}
+                                                                        </div>
+                                                                    @enderror
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -136,12 +196,18 @@
                                 <h3 class="card-title"> List <span
                                         style="color: red;font-size:15px;">{{ !empty($is_search) ? '(Showing Searched Item)' : '' }}</span>
                                 </h3>
-                                <div class="float-right">
-                                    {{-- <a href="{{ route('add-cases') }}">
-                                        <button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Cases
-                                        </button>
-                                    </a> --}}
+                                <div class="card-tools">
+
+
+                                    <a href="http://dlegal-software.test/criminal-case-print-preview/112" target="_blank" class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
+
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
                                 </div>
 
                             </div>
@@ -179,7 +245,16 @@
                                                         {{ $datum->case_status_name }}
                                                     </td>
                                                     <td width="8%">
-                                                        {{ date('d-m-Y', strtotime($datum->next_date)) }}
+                                                        @if (!empty($datum->next_date) && $datum->next_date < date('Y-m-d'))
+                                                    <span
+                                                        style="color: rgba(255, 0, 0, 1);font-size:11.5px;">{{ date('d-m-Y', strtotime($datum->next_date)) }}</span>
+                                                @elseif(!empty($datum->next_date))
+                                                    {{ date('d-m-Y', strtotime($datum->next_date)) }}
+                                                @else
+                                                    <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'
+                                                            style="padding:2px;line-height: 10px;">Not Upd
+                                                    </button>
+                                                @endif
                                                     </td>
                                                     <td>
                                                         {{ $datum->next_date_reason_name }}
@@ -352,7 +427,8 @@
                                                     <td>
                                                         @if ($datum->delete_status == 0)
                                                             <button type="button"
-                                                                class="btn-custom btn-success-custom text-uppercase"> Active
+                                                                class="btn-custom btn-success-custom text-uppercase">
+                                                                Active
                                                             </button>
                                                         @else
                                                             <button type="button"
@@ -405,4 +481,17 @@
     </div>
     <!-- /.content-wrapper -->
 
+@section('scripts')
+    <script>
+        $(function() {
+            $('#report_type').change(function() {
+                if ($('#report_type').val() == 'custom_date' || $('#report_type').val() == 'disposed') {
+                    $('.report_type_box').show();
+                } else {
+                    $('.report_type_box').hide();
+                }
+            });
+        });
+    </script>
+@endsection
 @endsection

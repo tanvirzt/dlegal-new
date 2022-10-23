@@ -19,14 +19,15 @@ use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
-    public function litigation_report(){
+    public function litigation_report()
+    {
 
         return view('report_management.report_search');
     }
 
     public function litigation_report_result(Request $request)
     {
-    //    dd($request->all());
+        //    dd($request->all());
 
         if ($request->from_next_date != "dd/mm/yyyy") {
             $from_next_date_explode = explode('/', $request->from_next_date);
@@ -52,7 +53,8 @@ class ReportController extends Controller
         $date->modify('last day of this month');
         $next_month_end = $date->format('Y-m-d');
 
-        $next_week_start = date('Y-m-d',
+        $next_week_start = date(
+            'Y-m-d',
             strtotime("sunday 0 week")
         );
 
@@ -84,91 +86,24 @@ class ReportController extends Controller
             case $request->report_type == 'next_month':
                 $query2 = $query->whereBetween('next_date', array($next_month_start, $next_month_end));
                 break;
-            case $request->name_of_the_court_id:
-                $query2 = $query->where('criminal_cases.name_of_the_court_id', $request->name_of_the_court_id);
+            case $request->report_type == 'custom_date':
+                $query2 = $query->whereBetween('next_date', array($from_next_date, $to_next_date));
+            break;case $request->report_type == 'not_updated':
+                $query2 = $query->whereNull('next_date');
                 break;
-            case $request->case_infos_complainant_informant_name:
-                $query2 = $query->where('criminal_cases.case_infos_complainant_informant_name', 'LIKE', "%{$request->case_infos_complainant_informant_name}%");
+            break;case $request->report_type == 'not_updated':
+                $query2 = $query->whereNull('next_date');
                 break;
-            case $request->case_infos_accused_name:
-                $query2 = $query->where('criminal_cases.case_infos_accused_name', 'LIKE', "%{$request->case_infos_accused_name}%");
-                break;
-            case $request->case_type_id:
-                $query2 = $query->where('criminal_cases.case_type_id', $request->case_type_id);
-                break;
-            case $request->matter_id:
-                $query2 = $query->where('criminal_cases.matter_id', $request->matter_id);
-                break;
-            case $request->case_category_id:
-                $query2 = $query->where('criminal_cases.case_category_id', $request->case_category_id);
-                break;
-            case $request->case_subcategory_id:
-                $query2 = $query->where('criminal_cases.case_subcategory_id', 'LIKE', "%{$request->case_subcategory_id}%");
-                break;
-            case $request->client_division_id:
-                $query2 = $query->where('criminal_cases.client_division_id', $request->client_division_id);
-                break;
-            case $request->client_divisoin_write:
-                $query2 = $query->where('criminal_cases.client_divisoin_write', 'LIKE', "%{$request->client_divisoin_write}%");
-                break;
-            case $request->client_district_id:
-                $query2 = $query->where('criminal_cases.client_district_id', $request->client_district_id);
-                break;
-            case $request->client_district_write:
-                $query2 = $query->where('criminal_cases.client_district_write', 'LIKE', "%{$request->client_district_write}%");
-                break;
-            case $request->client_thana_id:
-                $query2 = $query->where('criminal_cases.client_thana_id', $request->client_thana_id);
-                break;
-            case $request->client_thana_write:
-                $query2 = $query->where('criminal_cases.client_thana_write', 'LIKE', "%{$request->client_thana_write}%");
-                break;
-            case $request->client_id:
-                $query2 = $query->where('criminal_cases.case_infos_complainant_informant_name', 'LIKE', "%{$request->client_id}%")
-                                ->orWhere('criminal_cases.case_infos_accused_name', 'like', "%{$request->client_id}%");
-                break;
-            case $request->client_name_write:
-                $query2 = $query->where('criminal_cases.case_infos_complainant_informant_name', 'LIKE', "%{$request->client_name_write}%")
-                                ->orWhere('criminal_cases.case_infos_accused_name', 'like', "%{$request->client_name_write}%");
-                break;
-            case $request->lawyer_advocate_id:
-                $query2 = $query->where('criminal_cases.lawyer_advocate_id', $request->lawyer_advocate_id);
-                break;
-            case $request->case_status_id:
-                $query2 = $query->where('criminal_cases.case_status_id', $request->case_status_id);
-                break;
-            case $request->next_date_fixed_id:
-                $query2 = $query->where('criminal_cases.next_date_fixed_id', $request->next_date_fixed_id);
-                break;
-            case $request->from_next_date && $request->to_next_date:
-                $query2 = $query->where('next_date', '>=', $from_next_date)
-                                ->where('next_date', '<=', $to_next_date);
-                break;
-            case $request->from_next_date:
-                $query2 = $query->where('criminal_cases.next_date', $from_next_date);
-                break;
-            case $request->to_next_date:
-                $query2 = $query->where('criminal_cases.next_date', $to_next_date);
-                break;
-            case $request->client_category_id && $request->client_subcategory_id:
-                $query2 = $query->where('criminal_cases.client_category_id', $request->client_category_id)
-                                ->where('criminal_cases.client_subcategory_id', $request->client_subcategory_id);
-                break;
-            case $request->client_category_id:
-                $query2 = $query->where('criminal_cases.client_category_id', $request->client_category_id);
-                break;
-            case $request->client_group_id:
-                $query2 = $query->where('criminal_cases.client_group_id', $request->client_group_id);
-                break;
-            case $request->client_group_write:
-                $query2 = $query->where('criminal_cases.client_group_write','like', "%{$request->client_group_write}%");
+            break;case $request->report_type == 'disposed':
+                $query2 = $query->where('case_status_id','Disposed')->whereBetween('next_date', array($from_next_date, $to_next_date));
                 break;
             default:
                 $query2 = $query;
         }
 
 
-        $data = $query2->select('criminal_cases.*',
+        $data = $query2->select(
+            'criminal_cases.*',
             'setup_case_statuses.case_status_name',
             'setup_case_titles.case_title_name',
             'setup_next_date_reasons.next_date_reason_name',
@@ -180,8 +115,9 @@ class ReportController extends Controller
             'setup_external_councils.middle_name',
             'setup_external_councils.last_name',
             'case_infos_title.case_title_name as sub_seq_case_title_name',
-            'setup_matters.matter_name')
-            ->where('criminal_cases.delete_status',0)
+            'setup_matters.matter_name'
+        )
+            ->where('criminal_cases.delete_status', 0)
             ->get();
 
         $is_search = 'Searched';

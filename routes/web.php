@@ -795,6 +795,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
     Route::post('litigation/report/result', [ReportController::class, 'litigation_report_result'])->name('litigation.report.result');
 
+    Route::post('litigation/report/print', [ReportController::class, 'litigation_report_print'])->name('litigation.report.print');
+
     ///////////////////// Report Managenent End /////////////////////
 
 

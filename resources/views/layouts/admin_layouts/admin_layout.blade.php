@@ -68,7 +68,7 @@
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
-        
+
 
     </div>
     <!-- ./wrapper -->
@@ -196,6 +196,8 @@
 
          });
     </script>
+
+    @yield('scripts')
 
 
 </body>

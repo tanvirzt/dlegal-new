@@ -16,7 +16,7 @@ class CreateCriminalCaseStatusLogsTable extends Migration
         Schema::create('criminal_case_status_logs', function (Blueprint $table) {
             $table->id();
             $table->integer('case_id')->nullable();
-            $table->integer('updated_case_status_id')->nullable();
+            $table->string('updated_case_status_id')->nullable();
             $table->string('updated_case_status_write')->nullable();
             $table->string('updated_order_date')->nullable();
             $table->integer('updated_fixed_for_id')->nullable();
