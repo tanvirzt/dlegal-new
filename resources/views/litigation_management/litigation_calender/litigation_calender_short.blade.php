@@ -6,6 +6,11 @@
         .fc {
             font-size: 13px;
         }
+
+        .fc th {
+
+            color: #fff;
+        }
     </style>
 @endsection
 
