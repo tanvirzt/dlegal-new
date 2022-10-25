@@ -2,6 +2,11 @@
 @section('content')
 @section('styles')
     <link href="{{ asset('custom/celendar/main.css') }}" rel="stylesheet" />
+    <style>
+        .fc {
+            font-size: 13px;
+        }
+    </style>
 @endsection
 
 
