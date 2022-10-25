@@ -83,7 +83,7 @@ class LitigationCalenderController extends Controller
     public function litigation_calender_short()
     {
 
-
+        $redirect_url =  url('litigation-calender-list');
         //Criminal Case
         $criminal_cases = \App\Models\CriminalCase::select('next_date')->where(['delete_status' => 0])->groupBy('next_date')->get();
         $criminal_events = array();
@@ -92,7 +92,7 @@ class LitigationCalenderController extends Controller
 
             $criminal_events[] = [
                 'title' => "Criminal: $case_count",
-                'url' => "http://google.com/",
+                'url' => "$redirect_url",
                 'start' => $case->next_date,
                 'display' => 'list-item',
                 'backgroundColor' => 'pink',
@@ -107,7 +107,7 @@ class LitigationCalenderController extends Controller
 
             $civil_events[] = [
                 'title' => "Civil: $case_count",
-                'url' => "http://google.com/",
+                'url' => "$redirect_url",
                 'start' => $case->next_date,
                 'display' => 'list-item',
                 'backgroundColor' => 'orange'
@@ -122,7 +122,7 @@ class LitigationCalenderController extends Controller
 
             $labour_events[] = [
                 'title' => "Service: $case_count",
-                'url' => "http://google.com/",
+                'url' => "$redirect_url",
                 'start' => $case->next_date,
                 'display' => 'list-item',
                 'backgroundColor' => 'gray'
@@ -138,7 +138,7 @@ class LitigationCalenderController extends Controller
 
             $quassi_judicial_events[] = [
                 'title' => "Others: $case_count",
-                'url' => "http://google.com/",
+                'url' => "$redirect_url",
                 'start' => $case->next_date,
                 'display' => 'list-item',
                 'backgroundColor' => 'green'
@@ -153,7 +153,7 @@ class LitigationCalenderController extends Controller
 
             $high_court_events[] = [
                 'title' => "HCD: $case_count",
-                'url' => "http://google.com/",
+                'url' => "$redirect_url",
                 'start' => $case->order_date,
                 'display' => 'list-item',
                 'backgroundColor' => 'blue'
@@ -168,7 +168,7 @@ class LitigationCalenderController extends Controller
 
             $appellate_court_events[] = [
                 'title' => "AD: $case_count",
-                'url' => "http://google.com/",
+                'url' => "$redirect_url",
                 'start' => $case->order_date,
                 'display' => 'list-item',
                 'backgroundColor' => 'blue'
