@@ -1055,7 +1055,7 @@
 
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                    <i class="fas fa-couch nav-icon"></i>
+                    <i class="fas fa-file nav-icon"></i>
                     <p>
                         Report Managenent
                         <i class="right fas fa-angle-left"></i>
@@ -1070,6 +1070,44 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user nav-icon"></i>
+                    <p>
+                        HR Managenent
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="#!" class="nav-link">
+                            <i class="ml-left"></i>
+                            <p>HR Managenent</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-balance-scale nav-icon"></i>
+                    <p>
+                        Accounts Managenent
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="#!" class="nav-link">
+                            <i class="ml-left"></i>
+                            <p>Accounts Managenent</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
             {{-- <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="fas fa-hammer nav-icon"></i>
