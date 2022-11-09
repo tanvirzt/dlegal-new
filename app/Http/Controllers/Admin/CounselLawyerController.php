@@ -83,7 +83,7 @@ class CounselLawyerController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         // $data = json_decode(json_encode($request->all()));
         // echo "<pre>";print_r($data);die;
 
@@ -137,7 +137,7 @@ class CounselLawyerController extends Controller
             $file_name = time().rand(1,0).$original_name;
             $file->move(public_path('files/chamber/head_of_chamber_signature'),$file_name);
             $data->head_of_chamber_signature = $file_name;
-         } 
+         }
         $data->admin_of_chamber = $request->admin_of_chamber;
         if ($request->hasfile('admin_of_chamber_signature')) {
             $file = $request->file('admin_of_chamber_signature');
@@ -176,15 +176,6 @@ class CounselLawyerController extends Controller
             $datum->chamber_id = $data->id;
             $datum->partner_of_chamber = $request->partner_of_chamber[$key];
             $datum->partner_of_chamber_signature = $request->partner_of_chamber_signature[$key];
-
-            // if ($request->hasfile('partner_of_chamber_signature')) {
-            //     $file = $request->file('partner_of_chamber_signature');
-            //     $original_name = $file->getClientOriginalName();
-            //     $file_name = time().rand(1,0).$original_name;
-            //     $file->move(public_path('files/chamber/partner_of_chamber_signature'),$file_name);
-            //     $datum->partner_of_chamber_signature = $file_name[$key];
-            //  }
-    
             $datum->save();
         }
 

@@ -10,47 +10,6 @@
                         <h1 class="m-0 text-dark">Dashboard</h1>
                     </div>
                     <div class="col-sm-6">
-                        {{-- <div class="row">
-                            <div class="col-md-6">
-                                <div class="dropdown">
-                                    <button class="btn bg-gradient-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Litigation Calendar
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{{ route('civil-cases') }}">Civil</a>
-                                        <a class="dropdown-item" href="{{ route('criminal-cases') }}">Criminal</a>
-                                        <a class="dropdown-item" href="{{ route('labour-cases') }}">Service Matter</a>
-                                        <a class="dropdown-item" href="{{ route('quassi-judicial-cases') }}">Special/Quassi-Judicial Cases</a>
-                                        <a class="dropdown-item" href="{{ route('high-court-cases') }}">High Court Division</a>
-                                        <a class="dropdown-item" href="{{ route('appellate-court-cases') }}">Appellate Court Division</a>
-                                    </div>
-                                  </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="dropdown">
-                                    <button class="btn bg-gradient-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Litigation Calendar
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" href="{{ route('litigation-calender-list') }}">Litigation Calendar(List)</a>
-                                      <a class="dropdown-item" href="{{ route('litigation-calender-short') }}">Litigation Calendar(Short)</a>
-                                    </div>
-                                  </div>
-                            </div>
-                        </div> --}}
-                          
-                        {{-- <div class="row">
-                        <div class="col-md-6">
-                            <a href="{{ route('litigation-calender-list') }}">
-                                <button type="button" class="btn btn-block bg-gradient-info">Litigation Calendar(List)</button>
-                            </a>
-                        </div>
-                       <div class="col-md-6">
-                           <a href="{{ route('litigation-calender-short') }}">
-                               <button type="button" class="btn btn-block bg-gradient-success">Litigation Calendar(Short)</button>
-                           </a>
-                       </div>
-                        </div> --}}
                     </div>
                     <div class="col-sm-3">
                     </form>
@@ -172,13 +131,13 @@
                                                                            value="{{ old('matter_write') }}">
                                                                 </div>
                                                             </div>
-    
-    
+
+
                                                             @error('matter_id')<span
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
@@ -215,7 +174,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="float-right">
 
                                                 @if (!empty($is_searched))
@@ -240,7 +199,7 @@
                             <input type="hidden" class="form-control" name="from_date" value="{{ !empty($criminal_cases[0]->next_date) ? date('Y-m-d', strtotime($criminal_cases[0]->next_date)) : '' }}">
                             <input type="submit" class="btn btn-info" name="arrow_up" value="" style="padding: 4px 12px 4px 12px;">
                             <i class="fas fa-arrow-up" style="position: relative;
-                            right: 21px;"></i>  
+                            right: 21px;"></i>
                         </form>
                         <form action="{{ route('calendar-list-arrow-down') }}" method="post" style="display: contents;">
                             <input type="hidden" class="form-control" name="to_date" value="{{ !empty($criminal_cases[0]->next_date) ? date('Y-m-d', strtotime($criminal_cases[0]->next_date)) : '' }}">
@@ -252,7 +211,7 @@
                 </div>
 
                 @if (!empty($criminal_cases))
-                    
+
                 @foreach($criminal_cases as $key=>$datum)
                     @if (!empty($datum->next_date))
                         <div class="card">
@@ -275,9 +234,9 @@
                                         <div class="col-md-1 border pt-1 mr-1">
                                             <h6 class="info-box-text text-center text-muted text-bold" style="font-size:12.5px;">Total</h6>
                                                     <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:12.5px;">
-                                                        
+
                                                         @php
-                                                            
+
                                                             $calendar_count = DB::table('criminal_cases')->where(['criminal_cases.delete_status' => 0, 'next_date' => $datum->next_date])
                                                                             ->count();
                                                         $calendar_wise_data = DB::table('criminal_cases')
@@ -295,11 +254,11 @@
                                                                             ->select('criminal_cases.*',
                                                                             // 'criminal_cases_case_steps.another_claim',
                                                                             'setup_case_statuses.case_status_name',
-                                                                            'setup_case_titles.case_title_name', 
-                                                                            'setup_next_date_reasons.next_date_reason_name', 
-                                                                            'setup_courts.court_name', 
+                                                                            'setup_case_titles.case_title_name',
+                                                                            'setup_next_date_reasons.next_date_reason_name',
+                                                                            'setup_courts.court_name',
                                                                             'setup_districts.district_name',
-                                                                            'accused_district.district_name as accused_district_name', 
+                                                                            'accused_district.district_name as accused_district_name',
                                                                             'setup_case_types.case_types_name',
                                                                             'setup_external_councils.first_name',
                                                                             'setup_external_councils.middle_name',
@@ -327,7 +286,7 @@
                                             <h6 class="info-box-text text-center text-muted text-bold" style="font-size:12.5px;">Others</h6>
                                             <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:12.5px;">0</p>
                                         </div>
-                                        
+
                                     </div>
 
                                 {{-- </h3> --}}
@@ -360,14 +319,14 @@
                                     </thead>
                                     <tbody>
                                     @if (!empty($calendar_wise_data))
-                                    @foreach ($calendar_wise_data as $keys=>$value) 
+                                    @foreach ($calendar_wise_data as $keys=>$value)
                                     <tr>
                                         <td>{{ $keys+1 }}</td>
                                         <td>
-                                                
+
                                             @if (!empty($value->case_infos_sub_seq_court_short_id) || !empty($value->sub_seq_court_short_write))
-                                                    
-                                                
+
+
                                             @php
                                                 $notes = explode(', ',$value->case_infos_sub_seq_court_short_id);
                                             @endphp
@@ -435,65 +394,6 @@
 
 
                                             @endif
-                                            {{-- @if (!empty($value->case_infos_sub_seq_court_short_id || $value->sub_seq_court_short_write) )
-                                                @php
-                                                    $court_name = explode(', ',$value->case_infos_sub_seq_court_short_id);
-                                                @endphp
-                                                @if($value->case_infos_sub_seq_court_short_id)
-                                                    @if (count($court_name)> 1)
-                                                        @foreach ($court_name as $pro)
-                                                            <li class="text-left">{{ $pro }}</li>
-                                                        @endforeach
-                                                    @else
-                                                        @foreach ($court_name as $pro)
-                                                            {{ $pro }}
-                                                        @endforeach
-                                                    @endif
-                                                @endif
-                                                @php
-                                                    $sub_seq_court_short_write = explode(', ',$value->sub_seq_court_short_write);
-                                                @endphp
-                                                @if($value->sub_seq_court_short_write)
-                                                    @if (count($sub_seq_court_short_write)> 1)
-                                                        @foreach ($sub_seq_court_short_write as $pro)
-                                                            <li class="text-left">{{ $pro }}</li>
-                                                        @endforeach
-                                                    @else
-                                                        @foreach ($sub_seq_court_short_write as $pro)
-                                                            {{ $pro }}
-                                                        @endforeach
-                                                    @endif
-                                                @endif
-                                            @else
-                                                @php
-                                                    $court_name = explode(', ',$value->case_infos_court_short_id);
-                                                @endphp
-                                                @if($value->case_infos_court_short_id)
-                                                    @if (count($court_name)> 1)
-                                                        @foreach ($court_name as $pro)
-                                                            <li class="text-left">{{ $pro }}</li>
-                                                        @endforeach
-                                                    @else
-                                                        @foreach ($court_name as $pro)
-                                                            {{ $pro }}
-                                                        @endforeach
-                                                    @endif
-                                                @endif
-                                                @php
-                                                    $court_short_write = explode(', ',$value->court_short_write);
-                                                @endphp
-                                                @if($value->court_short_write)
-                                                    @if (count($court_short_write)> 1)
-                                                        @foreach ($court_short_write as $pro)
-                                                            <li class="text-left">{{ $pro }}</li>
-                                                        @endforeach
-                                                    @else
-                                                        @foreach ($court_short_write as $pro)
-                                                            {{ $pro }}
-                                                        @endforeach
-                                                    @endif
-                                                @endif
-                                            @endif --}}
 
                                         </td>
                                         <td><a href="{{ route('view-criminal-cases', $value->id) }}"> {{ $value->case_infos_case_no ? $value->case_title_name.' '.$value->case_infos_case_no.'/'.$value->case_infos_case_year : '' }} </a></td>
@@ -502,7 +402,7 @@
                                                 $case_infos_sub_seq_case_no = explode(', ', $value->case_infos_sub_seq_case_no);
                                             @endphp
 
-                                            {{ last($case_infos_sub_seq_case_no) }} 
+                                            {{ last($case_infos_sub_seq_case_no) }}
 
                                             @php
                                             if (!empty($value->case_infos_sub_seq_case_no) && !empty($value->case_infos_sub_seq_case_year)) {
@@ -511,35 +411,7 @@
                                                 $case_infos_sub_seq_case_year = explode(', ', $value->case_infos_sub_seq_case_year);
                                             @endphp
 
-                                            {{ last($case_infos_sub_seq_case_year) }} 
-
-                                            {{-- @if ($value->case_infos_sub_seq_case_no)
-                                                @if (count($case_infos_sub_seq_case_no) > 1)
-                                                    @foreach ($case_infos_sub_seq_case_no as $pro)
-                                                        <li class="text-left">{{ $pro }}
-                                                        </li>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($case_infos_sub_seq_case_no as $pro)
-                                                        {{ $pro }}
-                                                    @endforeach
-                                                @endif
-                                            @endif --}}
-                                            {{-- @php
-                                                $case_infos_sub_seq_case_year = explode(', ', $value->case_infos_sub_seq_case_year);
-                                            @endphp
-                                            @if ($value->case_infos_sub_seq_case_year)
-                                                @if (count($case_infos_sub_seq_case_year) > 1)
-                                                    @foreach ($case_infos_sub_seq_case_year as $pro)
-                                                        <li class="text-left">{{ $pro }}
-                                                        </li>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($case_infos_sub_seq_case_year as $pro)
-                                                        {{ $pro }}
-                                                    @endforeach
-                                                @endif
-                                            @endif --}}
+                                            {{ last($case_infos_sub_seq_case_year) }}
 
                                         </td>
                                         <td>{{ $value->next_date_reason_name }}</td>
@@ -557,7 +429,7 @@
                                                             {{ $pro }}
                                                     @endforeach
                                                 @endif
-                                                
+
                                             @endif
                                         </td>
                                         <td>
@@ -576,7 +448,7 @@
                                                 @endif
                                             @endif
                                         </td>
-                                        
+
                                         <td>
                                             {{ $value->matter_name }}
                                             {{ $value->matter_write }}
@@ -586,14 +458,16 @@
                                         </td>
                                         <td>
                                             @php
-                                                $updated_day_notes = explode(', ', trim($value->updated_day_notes_id));
+                                                $updated_day_notes = explode(',', trim($value->updated_day_notes_id));
                                                 // dd($updated_day_notes);
                                             @endphp
                                             @if($value->updated_day_notes_id)
                                                 @if (count($updated_day_notes) >1)
                                                     @foreach ($updated_day_notes as $pro)
-                                                        <li class="text-left">{{ $pro }}</li>
-                                                    @endforeach    
+                                                    @if ($pro)
+                                                    <li class="text-left">{{ $pro }}</li>
+                                                    @endif
+                                                    @endforeach
                                                 @else
                                                     @foreach ($updated_day_notes as $pro)
                                                         {{ $pro }}
@@ -612,7 +486,7 @@
                     @endif
                 @endforeach
                 @endif
-        
+
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
         </section>

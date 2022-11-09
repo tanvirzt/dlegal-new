@@ -67,7 +67,7 @@
                                                                name="chamber_logo"
                                                                value="{{old('chamber_logo')}}">
                                                     <img id="preview-image" style="max-height: 250px;max-width:200px;">
-                                                               
+
                                                         @error('chamber_logo')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
@@ -163,7 +163,7 @@
 
                                             </div>
                                         </div>
-                                        
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card">
@@ -171,7 +171,7 @@
                                             <h6 class="text-uppercase text-bold">
                                                 <div class="row">
                                                     <div class="col-md-7"><u> Chamber Person </u></div>
-                                                    <div class="col-md-5 text-center">Signature</div> 
+                                                    <div class="col-md-5 text-center">Signature</div>
                                                 </div>
                                             </h6>
                                             <div class="form-group row">
@@ -266,14 +266,14 @@
                                             <div class="form-group row">
                                                 <label for="case_no" class="col-sm-4 col-form-label">Admin of Chamber</label>
                                                     <div class="col-sm-8 input-group">
-                                                        
+
                                                         <input type="text" class="form-control col-sm-6"
                                                                id="admin_of_chamber"
                                                                name="admin_of_chamber"
                                                                value="{{old('admin_of_chamber')}}">
                                                         @error('admin_of_chamber')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                    
+
                                                         <input type="file" class="form-control col-sm-5"
                                                                id="admin_of_chamber_signature"
                                                                name="admin_of_chamber_signature"
@@ -291,7 +291,7 @@
                                                                value="{{old('accountant')}}">
                                                         @error('accountant')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                    
+
                                                         <input type="file" class="form-control col-sm-5"
                                                                id="accountant_signature"
                                                                name="accountant_signature"
@@ -309,7 +309,7 @@
                                                                value="{{old('head_clerk')}}">
                                                         @error('head_clerk')<span
                                                             class="text-danger">{{$message}}</span>@enderror
-                                                    
+
                                                         <input type="file" class="form-control col-sm-5"
                                                                id="head_clerk_signature"
                                                                name="head_clerk_signature"
@@ -422,25 +422,19 @@
 
                                         </div>
                                     </div>
-
-
-
-
-
-
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    
+
                                     <div class="form-group">
                                         <h6 class="text-uppercase text-bold">
                                             <div class="row">
                                                 <div class="col-md-3"> Chamber Accounts</div>
-                                                <div class="col-md-3 text-center">Account Name</div> 
-                                                <div class="col-md-3 text-center">Account Number</div> 
-                                                <div class="col-md-3 text-center">Bank Name</div> 
+                                                <div class="col-md-3 text-center">Account Name</div>
+                                                <div class="col-md-3 text-center">Account Number</div>
+                                                <div class="col-md-3 text-center">Bank Name</div>
                                             </div>
                                         </h6>
                                         <div class="input-group hdtuto_chamber_accounts control-group increment_chamber_accounts">
@@ -454,7 +448,7 @@
                                                     class="myfrm form-control col-md-3 mr-2">
                                             <input type="text" name="bank_name[]"
                                                 class="myfrm form-control mr-2 col-md-3" value="{{ old('uploaded_date') }}">
-                                         
+
                                             <div class="input-group-btn">
                                                 <button class="btn btn-success btn_success_chamber_accounts"
                                                         type="button"><i
@@ -495,7 +489,7 @@
                                     </button>
                                 </div>
                             </div>
-                            
+
                         </div>
 
                     </div>

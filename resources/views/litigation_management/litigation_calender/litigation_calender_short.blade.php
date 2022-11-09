@@ -5,6 +5,12 @@
     <style>
         .fc {
             font-size: 13px;
+            background: #fff;
+        }
+
+        .fc th {
+
+            color: #fff;
         }
     </style>
 @endsection

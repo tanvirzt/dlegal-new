@@ -50,7 +50,7 @@
                                 </div>
 
 
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
                                      data-parent="#accordion">
                                     <div class="card-body">
 
