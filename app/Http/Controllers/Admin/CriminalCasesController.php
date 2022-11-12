@@ -518,7 +518,7 @@ class CriminalCasesController extends Controller
                 $files->uploaded_date = $request->uploaded_date[$key];
                 $files->documents_type_id = $request->documents_type_id[$key];
                 $files->uploaded_document = $name;
-                $files->created_by = Auth::guard('admin')->user()->email;
+                $files->created_by = Auth::user()->email;
                 $files->save();
 
             }
@@ -1579,7 +1579,7 @@ class CriminalCasesController extends Controller
                 $files->uploaded_date = $request->uploaded_date[$key];
                 $files->documents_type_id = $request->documents_type_id[$key];
                 $files->uploaded_document = $name;
-                $files->created_by = Auth::guard('admin')->user()->email;
+                $files->created_by = Auth::user()->email;
                 $files->save();
             }
         }
