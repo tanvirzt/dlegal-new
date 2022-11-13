@@ -1089,7 +1089,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Amount of Money</td>
-                                                            <td>{{ number_format($edit_case_steps->amount_of_money, 0) }}
+                                                            <td>{{ !empty($edit_case_steps->amount_of_money) ? number_format($edit_case_steps->amount_of_money, 0).'/-': '' }}
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -1119,7 +1119,7 @@
 
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Status of the Case </u>
+                                                    <h6 class="text-uppercase text-bold"><u> Case Status </u>
                                                         <button type="button" class="btn btn-info btn-sm float-right"
                                                                 data-toggle="modal" data-target="#modal-lg-status-of-the-case"
                                                                 data-toggle="tooltip" data-placement="top"
@@ -1285,8 +1285,9 @@
                                                             <td width="26%">Filing Date</td>
                                                             <td width="26%">
                                                                 {{ $case_steps->case_steps_filing }} </td>
-                                                            <td width="28%">
-                                                                {{ $case_steps->case_steps_filing_note }} </td>
+                                                            <td width="28%" class="letters">
+                                                                {{ $case_steps->case_steps_filing_note }} 
+                                                            </td>
                                                             <td width="20%">
                                                                 {{ $case_steps->case_steps_filing_type_name }}
                                                             </td>
@@ -1294,7 +1295,7 @@
                                                         <tr>
                                                             <td>Taking Cognizance</td>
                                                             <td> {{ $case_steps->taking_cognizance }} </td>
-                                                            <td> {{ $case_steps->taking_cognizance_note }}
+                                                            <td class="letters"> {{ $case_steps->taking_cognizance_note }}
                                                             </td>
                                                             <td>
                                                                 {{ $case_steps->taking_cognizance_type_name }}
@@ -1303,7 +1304,7 @@
                                                         <tr>
                                                             <td>Arrest/Surrender/C.W.</td>
                                                             <td> {{ $case_steps->arrest_surrender_cw }} </td>
-                                                            <td> {{ $case_steps->arrest_surrender_cw_note }}
+                                                            <td class="letters"> {{ $case_steps->arrest_surrender_cw_note }}
                                                             </td>
                                                             <td>
                                                                 {{ $case_steps->arrest_surrender_cw_type_name }}
@@ -1312,7 +1313,7 @@
                                                         <tr>
                                                             <td>Bail</td>
                                                             <td> {{ $case_steps->case_steps_bail }} </td>
-                                                            <td> {{ $case_steps->case_steps_bail_note }} </td>
+                                                            <td class="letters"> {{ $case_steps->case_steps_bail_note }} </td>
                                                             <td>
                                                                 {{ $case_steps->case_steps_bail_type_name }}
                                                             </td>
@@ -1321,7 +1322,7 @@
                                                             <td>Court Transfer</td>
                                                             <td> {{ $case_steps->case_steps_court_transfer }}
                                                             </td>
-                                                            <td> {{ $case_steps->case_steps_court_transfer_note }}
+                                                            <td class="letters"> {{ $case_steps->case_steps_court_transfer_note }}
                                                             </td>
                                                             <td>
                                                                 {{ $case_steps->court_transfer_type_name }}
@@ -1331,7 +1332,7 @@
                                                             <td>Charge Framed</td>
                                                             <td> {{ $case_steps->case_steps_charge_framed }}
                                                             </td>
-                                                            <td> {{ $case_steps->case_steps_charge_framed_note }}
+                                                            <td class="letters"> {{ $case_steps->case_steps_charge_framed_note }}
                                                             </td>
                                                             <td>
                                                                 {{ $case_steps->charge_framed_type_name }}
@@ -1341,7 +1342,7 @@
                                                             <td>Witness (From)</td>
                                                             <td> {{ $case_steps->case_steps_witness_from }}
                                                             </td>
-                                                            <td> {{ $case_steps->case_steps_witness_from_note }}
+                                                            <td class="letters"> {{ $case_steps->case_steps_witness_from_note }}
                                                             </td>
                                                             <td>
                                                                 {{ $case_steps->witness_from_type_name }}
@@ -1350,7 +1351,7 @@
                                                         <tr>
                                                             <td>Witness (To)</td>
                                                             <td> {{ $case_steps->case_steps_witness_to }} </td>
-                                                            <td> {{ $case_steps->case_steps_witness_to_note }}
+                                                            <td class="letters"> {{ $case_steps->case_steps_witness_to_note }}
                                                             </td>
                                                             <td>
                                                                 {{ $case_steps->witness_to_type_name }}
@@ -1359,7 +1360,7 @@
                                                         <tr>
                                                             <td>Argument</td>
                                                             <td> {{ $case_steps->case_steps_argument }} </td>
-                                                            <td> {{ $case_steps->case_steps_argument_note }}
+                                                            <td class="letters"> {{ $case_steps->case_steps_argument_note }}
                                                             </td>
                                                             <td>
                                                                 {{ $case_steps->argument_type_name }}
@@ -1369,7 +1370,7 @@
                                                             <td>Judgement & Order</td>
                                                             <td> {{ $case_steps->case_steps_judgement_order }}
                                                             </td>
-                                                            <td> {{ $case_steps->case_steps_judgement_order_note }}
+                                                            <td class="letters"> {{ $case_steps->case_steps_judgement_order_note }}
                                                             </td>
                                                             <td>
                                                                 {{ $case_steps->judgement_order_type_name }}
@@ -1379,7 +1380,7 @@
                                                             <td>Summary of Cases</td>
                                                             <td> {{ $case_steps->case_steps_summary_of_cases }}
                                                             </td>
-                                                            <td> {{ $case_steps->case_steps_summary_of_cases_note }}
+                                                            <td class="letters"> {{ $case_steps->case_steps_summary_of_cases_note }}
                                                             </td>
                                                             <td>
                                                                 {{ $case_steps->summary_of_cases_type_name }}
@@ -1486,7 +1487,7 @@
                                             <th width="12%">Court Proceeding</th>
                                             <th width="12%">Court Order</th>
                                             <th width="10%">Next Date</th>
-                                            <th width="10%">Fixed For</th>
+                                            <th width="10%">N.D. Fixed For</th>
                                             <th width="10%">Day Note</th>
                                             <th width="10%">Engaged Advocates</th>
                                             <th width="6%">Action</th>
@@ -2096,6 +2097,8 @@
                                                     data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                                 <i class="fas fa-plus"></i>
                                             </button>
+
+                                            
                                             <button type="button" class="btn btn-tool" data-card-widget="remove">
                                                 <i class="fas fa-times"></i>
                                             </button>
@@ -2169,6 +2172,10 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+                            
 
 
                             <div class="card" id="section4">
@@ -2413,9 +2420,14 @@
                                                 <input type="date" class="xDateContainer date_first_input"
                                                        onchange="setCorrect(this,'updated_order_date');"><input
                                                     type="text" id="updated_order_date" name="updated_order_date"
-                                                    @if (!empty($previous_activity->updated_order_date)) value="{{ date('d/m/Y', strtotime($previous_activity->updated_next_date)) }}"
+
+                                                    @if (!empty($previous_activity->updated_next_date) && $previous_activity->updated_next_date != null)
+                                                        value="{{ date('d/m/Y', strtotime($previous_activity->updated_next_date)) }}"
+                                                    @else
+                                                        value="dd-mm-yyyy"
                                                     @endif
-                                                    value="dd-mm-yyyy" class="date_second_input" tabindex="-1"><span
+
+                                                    class="date_second_input" tabindex="-1"><span
                                                     class="date_second_span" tabindex="-1">&#9660;</span>
                                             </span>
                                             @error('updated_order_date')
@@ -4774,9 +4786,9 @@
                                 of
                                 Money</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="amount_of_money"
+                                <input type="number" class="form-control" id="amount_of_money"
                                        name="amount_of_money"
-                                       value="{{ !empty($edit_case_steps->amount_of_money) ? number_format($edit_case_steps->amount_of_money, 0).'/-': '' }}">
+                                       value="{{ $edit_case_steps->amount_of_money }}">
                                 @error('amount_of_money')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror

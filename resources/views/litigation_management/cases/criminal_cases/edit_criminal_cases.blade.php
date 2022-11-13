@@ -2941,7 +2941,7 @@
                                                                             of
                                                                             Money</label>
                                                                         <div class="col-sm-8">
-                                                                            <input type="text" class="form-control"
+                                                                            <input type="number" class="form-control"
                                                                                 id="amount_of_money"
                                                                                 name="amount_of_money"
                                                                                 value="{{ $edit_case_steps->amount_of_money }}">

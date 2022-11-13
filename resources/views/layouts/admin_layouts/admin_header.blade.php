@@ -118,7 +118,7 @@
         <ul class="dropdown" style="background:#c3c9cf;">
             <li><a href="{{ route('litigation-calender-list') }}">Litigation Calendar (List)</a></li>
             <div class="dropdown-divider-custom"></div>
-            <li><a href="{{ route('litigation-calender-short') }}">Litigation Calendar (Short)</a></li>
+            <li><a href="{{ route('litigation-calender-short') }}">Litigation Calendar</a></li>
         </ul>
     </li>
     <li>
@@ -358,7 +358,7 @@
             @endcan
             @can('litigation-calendar-short')
                 <div class="dropdown-divider-custom"></div>
-                <li><a href="{{ route('litigation-calender-short') }}">Litigation Calendar (Short)</a></li>
+                <li><a href="{{ route('litigation-calender-short') }}">Litigation Calendar</a></li>
             @endcan
         </ul>
     </li>

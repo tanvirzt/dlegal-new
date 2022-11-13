@@ -762,7 +762,7 @@
                                                             <a href="{{ route('delete-criminal-cases-latest', $datum->id) }}">
                                                                 <button type="button" class="btn btn-outline-danger btn-sm"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Edit"><i class="fas fa-edit"></i></button>
+                                                                    title="Edit"><i class="fas fa-trash"></i></button>
                                                             </a>
 
                                                             {{-- {{ Form::open(array('method' => 'post', 'route' => array('delete-criminal-cases', $datum->id), 'class' => 'delete-form')) }}

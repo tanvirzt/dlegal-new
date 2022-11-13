@@ -10,47 +10,26 @@
                         <h1 class="m-0 text-dark">Dashboard</h1>
                     </div>
                     <div class="col-sm-6">
-                        {{-- <div class="row">
-                            <div class="col-md-6">
-                                <div class="dropdown">
-                                    <button class="btn bg-gradient-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Classes of Cases
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" href="{{ route('civil-cases') }}">Civil</a>
-                                      <a class="dropdown-item" href="{{ route('criminal-cases') }}">Criminal</a>
-                                      <a class="dropdown-item" href="{{ route('labour-cases') }}">Service Matter</a>
-                                      <a class="dropdown-item" href="{{ route('quassi-judicial-cases') }}">Special/Quassi-Judicial Cases</a>
-                                      <a class="dropdown-item" href="{{ route('high-court-cases') }}">High Court Division</a>
-                                      <a class="dropdown-item" href="{{ route('appellate-court-cases') }}">Appellate Court Division</a>
-                                    </div>
-                                  </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="dropdown">
-                                    <button class="btn bg-gradient-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Litigation Calendar
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" href="{{ route('litigation-calender-list') }}">Litigation Calendar(List)</a>
-                                      <a class="dropdown-item" href="{{ route('litigation-calender-short') }}">Litigation Calendar(Short)</a>
-                                    </div>
-                                  </div>
-                            </div>
-                        </div> --}}
-                          
-                        {{-- <div class="row">
-                        <div class="col-md-6">
-                            <a href="{{ route('litigation-calender-list') }}">
-                                <button type="button" class="btn btn-block bg-gradient-info">Litigation Calendar(List)</button>
-                            </a>
-                        </div>
-                       <div class="col-md-6">
-                           <a href="{{ route('litigation-calender-short') }}">
-                               <button type="button" class="btn btn-block bg-gradient-success">Litigation Calendar(Short)</button>
-                           </a>
-                       </div>
-                        </div> --}}
+                        
+
+                        @php
+
+
+                            $civil_case = App\Models\CivilCases::where('delete_status', 0)->count();
+                            $criminal_case = App\Models\CriminalCase::where('delete_status', 0)->count();
+                            $quassi_case = App\Models\QuassiJudicialCase::where('delete_status', 0)->count();
+                            $labour_case = App\Models\LabourCase::where('delete_status', 0)->count();
+                            $supreme_case = App\Models\SupremeCourtCase::where('delete_status', 0)->count();
+                            $high_case = App\Models\HighCourtCase::where('delete_status', 0)->count();
+
+
+                            $total_cases = $civil_case + $criminal_case + $quassi_case + $labour_case + $supreme_case + $high_case ;
+
+                        // dd($total_cases);
+
+                        @endphp
+
+
                     </div>
                     <div class="col-sm-3">
                         <ol class="breadcrumb float-sm-right">
@@ -72,9 +51,9 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
+                                <h3>{{ $total_cases }}</h3>
 
-                                <p>New Orders</p>
+                                <p>Total Case</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
@@ -87,9 +66,9 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                                <h3>53<sup style="font-size: 20px"></sup></h3>
 
-                                <p>Bounce Rate</p>
+                                <p>Pending Case</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
@@ -104,7 +83,7 @@
                             <div class="inner">
                                 <h3>44</h3>
 
-                                <p>User Registrations</p>
+                                <p>Solved Case</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
@@ -119,7 +98,7 @@
                             <div class="inner">
                                 <h3>65</h3>
 
-                                <p>Unique Visitors</p>
+                                <p>Close Case</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
@@ -139,15 +118,15 @@
                             <div class="card-header">
                                 <h3 class="card-title">
                                     <i class="fas fa-chart-pie mr-1"></i>
-                                    Sales
+                                    Summary
                                 </h3>
                                 <div class="card-tools">
                                     <ul class="nav nav-pills ml-auto">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                                            <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Company</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                                            <a class="nav-link" href="#sales-chart" data-toggle="tab">Individual</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -513,7 +492,7 @@
                             <div class="card-header border-0">
                                 <h3 class="card-title">
                                     <i class="fas fa-map-marker-alt mr-1"></i>
-                                    Visitors
+                                    Documents Management
                                 </h3>
                                 <!-- card tools -->
                                 <div class="card-tools">

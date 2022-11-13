@@ -866,7 +866,7 @@
                                         <li class="nav-item">
                                             <a href="{{ route('labour-cases') }}" class="nav-link">
                                                 <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Service Matter</p>
+                                                <p>Employee Case</p>
                                             </a>
                                         </li>
                                     @endcan
@@ -874,7 +874,7 @@
                                         <li class="nav-item">
                                             <a href="{{ route('quassi-judicial-cases') }}" class="nav-link">
                                                 <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Special/Quassi-Judicial Cases</p>
+                                                <p>Special Case</p>
                                             </a>
                                         </li>
                                     @endcan
@@ -1065,7 +1065,7 @@
                     <li class="nav-item">
                         <a href="{{ route('litigation.report') }}" class="nav-link">
                             <i class="ml-left"></i>
-                            <p>Litigation Report</p>
+                            <p>Litigation Summary & Report</p>
                         </a>
                     </li>
                 </ul>

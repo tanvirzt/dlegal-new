@@ -743,7 +743,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
     Route::get('litigation-calender-list',[LitigationCalenderController::class, 'litigation_calender_list'])->name('litigation-calender-list');
     Route::get('litigation-calender-short',[LitigationCalenderController::class, 'litigation_calender_short'])->name('litigation-calender-short');
-    Route::post('search-litigation-calendar',[LitigationCalenderController::class, 'search_litigation_calendar'])->name('search-litigation-calendar');
+    Route::get('search-litigation-calendar',[LitigationCalenderController::class, 'search_litigation_calendar'])->name('search-litigation-calendar');
     Route::post('search-litigation-calendar-short',[LitigationCalenderController::class, 'search_litigation_calendar_short'])->name('search-litigation-calendar-short');
     Route::get('search-case-pages',[LitigationCalenderController::class, 'search_case_pages'])->name('search-case-pages');
     Route::post('search-cases',[LitigationCalenderController::class, 'search_cases'])->name('search-cases');

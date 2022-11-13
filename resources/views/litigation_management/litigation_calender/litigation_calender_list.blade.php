@@ -27,7 +27,7 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-                <h3 class="" id="heading">Litigation Calendar <span style="color: red;font-size:15px;">{{ !empty($is_searched) ? '(Showing Searched Item)' : '' }}</span></h3>
+                <h3 class="" id="heading">Litigation Cause List <span style="color: red;font-size:15px;">{{ !empty($is_searched) ? '(Showing Searched Item)' : '' }}</span></h3>
                 <div class="row">
                     <div class="col-md-8">
                         <div class="card">
@@ -59,7 +59,7 @@
                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                     data-parent="#accordion">
                                     <div class="card-body">
-                                        <form method="post" action="{{ route('search-litigation-calendar') }}">
+                                        <form method="get" action="{{ route('search-litigation-calendar') }}">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -172,6 +172,20 @@
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row">
+                                                        <div class="icheck-success d-inline col-sm-6">
+                                                            <input type="checkbox" name="todays_case" id="todays_case">
+                                                            <label for="todays_case">
+                                                                Todays Case
+                                                            </label>
+                                                        </div>
+                                                        <div class="icheck-success d-inline col-sm-6">
+                                                            <input type="checkbox" name="tomorrows_case" id="tomorrows_case">
+                                                            <label for="tomorrows_case">
+                                                                Tomorrow Case
+                                                            </label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -218,12 +232,12 @@
 
                             <div class="card-header">
                                 {{-- <h3 class="card-title"> --}}
-                                    <div class="row" style="margin-bottom: -20px;">
-                                        <div class="col-md-1 border pt-1 mr-1">
-                                            <span class="info-box-text text-center text-bold h6 text-text-warning" style="color: #FF7034;font-size:13px;">
+                                    <div class="row w-75" style="margin-bottom: -20px;">
+                                        <div class="col-md-2 border pt-1 mr-1">
+                                            <span class="info-box-text text-center text-bold h6 text-text-warning" style="color: #FF7034;font-size:15px;">
                                                 {{ $calendar_date = date('d-m-Y', strtotime($datum->next_date)) }}
                                             </span>
-                                            <span class="info-box-number text-center mb-0 text-bold h6" style="color: #FF7034;font-size:12.5px;">
+                                            <span class="info-box-number text-center mb-0 text-bold h6" style="color: #FF7034;font-size:17px;">
                                                 @php
                                                     $date = $datum->next_date;
                                                     $time = date('l', strtotime($date));
@@ -231,9 +245,9 @@
                                                 @endphp
                                             </span>
                                         </div>
-                                        <div class="col-md-1 border pt-1 mr-1">
-                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:12.5px;">Total</h6>
-                                                    <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:12.5px;">
+                                        <div class="col-md-2 border pt-1 mr-1">
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:15px;">Total</h6>
+                                                    <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">
 
                                                         @php
 
@@ -251,6 +265,7 @@
                                                                             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
                                                                             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
                                                                             ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
+                                                                            ->leftJoin('setup_thanas', 'criminal_cases.case_infos_thana_id', '=', 'setup_thanas.id')
                                                                             ->select('criminal_cases.*',
                                                                             // 'criminal_cases_case_steps.another_claim',
                                                                             'setup_case_statuses.case_status_name',
@@ -263,6 +278,7 @@
                                                                             'setup_external_councils.first_name',
                                                                             'setup_external_councils.middle_name',
                                                                             'setup_external_councils.last_name',
+                                                                            'setup_thanas.thana_name',
                                                                             'case_infos_title.case_title_name as sub_seq_case_title_name',
                                                                             'setup_matters.matter_name')
                                                                             ->orderBy('criminal_cases.case_infos_sub_seq_court_short_id','asc')
@@ -274,17 +290,17 @@
                                                                 @endphp
                                                         {{ $calendar_count }}</p>
                                         </div>
-                                        <div class="col-md-1 border pt-1 mr-1">
-                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:12.5px;">Civil Cases</h6>
-                                                    <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:12.5px;">0</p>
+                                        <div class="col-md-2 border pt-1 mr-1">
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:15px;">Civil Cases</h6>
+                                                    <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">0</p>
                                         </div>
-                                        <div class="col-md-1 border pt-1 mr-1">
-                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:12.5px;">Criminal Cases</h6>
-                                            <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:12.5px;">{{ $calendar_count }}</p>
+                                        <div class="col-md-2 border pt-1 mr-1">
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:15px;">Criminal Cases</h6>
+                                            <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">{{ $calendar_count }}</p>
                                         </div>
-                                        <div class="col-md-1 border pt-1 mr-1">
-                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:12.5px;">Others</h6>
-                                            <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:12.5px;">0</p>
+                                        <div class="col-md-2 border pt-1 mr-1">
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:15px;">Others</h6>
+                                            <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">0</p>
                                         </div>
 
                                     </div>
@@ -309,12 +325,12 @@
                                             <th width="10%">Court Name</th>
                                             <th width="10%">Case No.</th>
                                             <th width="10%">S. Case No.</th>
+                                            <th width="10%">Police Station</th>
                                             <th width="10%">Fixed For</th>
                                             <th width="15%">1st Party/Complainant/ Petitioner/Plaintiff</th>
                                             <th width="15%">2nd Party/Accused/ Oppositon/Defendant</th>
                                             <th width="8%">Case Matter</th>
-                                            <th width="10%">Step to be taken</th>
-                                            <th width="10%">Previous Day Note</th>
+                                            <th width="10%">Steps & Note</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -414,6 +430,7 @@
                                             {{ last($case_infos_sub_seq_case_year) }}
 
                                         </td>
+                                        <td>{{ $value->thana_name }}</td>
                                         <td>{{ $value->next_date_reason_name }}</td>
                                         <td>
                                             @php
@@ -455,8 +472,7 @@
                                         </td>
                                         <td>
                                             {{ $value->updated_remarks_or_steps_taken }}
-                                        </td>
-                                        <td>
+                                        
                                             @php
                                                 $updated_day_notes = explode(',', trim($value->updated_day_notes_id));
                                                 // dd($updated_day_notes);

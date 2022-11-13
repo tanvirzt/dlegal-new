@@ -311,9 +311,9 @@ h3{
     outline: 0px auto -webkit-focus-ring-color;
    }
 
-  .btn-success-custom {
+ .btn-success-custom {
     font-family: Raleway-SemiBold;
-    font-size: 12px;
+    font-size: 11px;
     color: rgba(103, 192, 103, 0.75);
     letter-spacing: 1px;
     line-height: 15px;
@@ -321,9 +321,8 @@ h3{
     border-radius: 40px;
     background: transparent;
     transition: all 0.3s ease 0s;
-    padding: 2px 4px 0px 5px;
-  }
-
+    padding: 0px 2px 0px 2px;
+}
   /* .btn-success:hover {
     color: #FFF;
     background: rgb(103, 192, 103, 0.75);
@@ -758,4 +757,18 @@ a .btn{
 
 .check_permission_group{
     color: #118ce3;
+}
+
+.letters {
+    word-break: break-all;
+}
+
+.accordion-custom .card-header-custom:after {
+    font-family: 'FontAwesome';  
+    content: "\f068";
+    float: right; 
+}
+.accordion-custom .card-header-custom.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\f067"; 
 }

@@ -176,7 +176,7 @@
                                             <div class="float-right">
                                                 <button type="submit" id="submit"
                                                     class="btn btn-primary text-uppercase"><i class="fas fa-search"></i>
-                                                    Get Report
+                                                    Search
                                                 </button>
                                             </div>
 
@@ -205,7 +205,7 @@
                                                         border-color: #eeeeee;
                                                     }
                                                     #divToPrint{
-                                                        font-family: 'Apple', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                                                        font-family: 'Calibri', 'Helvetica Neue', Helvetica, Arial, sans-serif;
                                                     }
 
                                                     @media print {

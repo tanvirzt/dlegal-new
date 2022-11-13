@@ -2020,7 +2020,7 @@ class CriminalCasesController extends Controller
 
         $switch_records = CriminalCasesSwitchRecord::where('case_id', $id)->get();
 
-        //    request_array($switch_records);
+        //    dd($previous_activity);
 
         return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('switch_records', 'group_name', 'case_steps', 'documents_type', 'letter_notice', 'required_wanting_documents', 'received_documents', 'particulars', 'required_wanting_documents_explode', 'exist_court_short', 'data', 'criminal_cases_files', 'case_logs', 'bill_history', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order', 'day_notes', 'external_council', 'next_day_presence', 'case_status', 'mode', 'edit_case_steps', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana', 'existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'user', 'complainant', 'accused', 'court_short', 'edit_case_steps', 'exist_engaged_advocate', 'exist_engaged_advocate_associates', 'court_short_explode', 'sub_seq_court_short_explode', 'received_documents_explode', 'required_documents_explode', 'previous_activity', 'payment_mode', 'bill_schedule', 'bill_particulars', 'bill_type', 'bill_amount', 'payment_amount', 'due_amount', 'cabinet', 'exist_case_type', 'letter_notice_explode', 'criminal_cases_working_docs'));
     }
@@ -2352,6 +2352,8 @@ class CriminalCasesController extends Controller
     public function update_criminal_cases_status_logs(Request $request, $id)
     {
 
+        // request_array($request->all());
+
         if ($request->updated_order_date != 'dd-mm-yyyy') {
             $order_date_explode = explode('/', $request->updated_order_date);
             $order_date_implode = implode('-', $order_date_explode);
@@ -2360,7 +2362,7 @@ class CriminalCasesController extends Controller
             $order_date = date('Y-m-d');
         }
 
-        if ($request->updated_next_date == 'dd-mm-yyyy' || $request->updated_next_date == 'NaN-NaN-NaN') {
+        if ($request->updated_next_date == 'dd/mm/yyyy' || $request->updated_next_date == 'NaN-NaN-NaN') {
             $next_date = null;
         } else {
             $next_date_explode = explode('-', $request->updated_next_date);

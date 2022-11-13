@@ -287,11 +287,46 @@ class LitigationCalenderController extends Controller
             $to_date = date('Y-m-d');
 
             return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+        } else if ($request->todays_case) {
+
+            $from_date = date('Y-m-d');
+
+            $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
+
+            $criminal_cases = DB::table('criminal_cases')
+                ->distinct()->orderBy('next_date', 'asc')
+                ->where(['delete_status' => 0])
+                // ->where('next_date','>=',date('Y-m-d'))
+                ->where('next_date', '=', $from_date)
+                ->get(['next_date']);
+            $to_date = $from_date;
+
+            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+        }else if ($request->tomorrows_case) {
+            
+            // $curr_date = date('Y-m-d');
+
+            $from_date = date("Y-m-d", strtotime("tomorrow"));
+
+
+            $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
+
+            $criminal_cases = DB::table('criminal_cases')
+                ->distinct()->orderBy('next_date', 'asc')
+                ->where(['delete_status' => 0])
+                // ->where('next_date','>=',date('Y-m-d'))
+                ->where('next_date', '=', $from_date)
+                ->get(['next_date']);
+            $to_date = $from_date;
+
+            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         } else {
+            $from_date = date('Y-m-d');
+            $to_date = date('Y-m-d');
 
             $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
             $criminal_cases = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where(['delete_status' => 0])->where('next_date', '>=', date('Y-m-d'))->get(['next_date']);
-            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched'));
+            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         }
     }
 

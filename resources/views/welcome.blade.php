@@ -53,7 +53,7 @@
             <div class="col-xl-4 col-lg-7 col-sm-12 col-12 fxt-bg-color">
                 <div class="fxt-content">
                     <div class="fxt-header">
-                        <a href="{{ route('login') }}" class="fxt-logo"><img src="{{ asset('login_assets/img/rsz_1d_legal_logo.png') }}" alt="Logo"></a>
+                        <a href="#" class="fxt-logo"><img src="{{ asset('login_assets/img/rsz_1d_legal_logo.png') }}" alt="Logo"></a>
                         <p>Login into your pages account</p>
                     </div>
 
