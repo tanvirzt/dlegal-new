@@ -50,7 +50,7 @@
   @yield('styles')
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini sidebar-collapse">
     <div class="wrapper">
 
         @include('layouts.admin_layouts.admin_header')

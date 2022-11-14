@@ -21,13 +21,21 @@ class ReportController extends Controller
 {
     public function litigation_report()
     {
-
-        return view('report_management.report_search');
+        $request_data = [
+            'from_next_date' => '',
+            'case_type' => '',
+            'from_next_date' => '',
+            'from_next_date' => '',
+            'report_type' => '',
+        ];
+        return view('report_management.report_search', compact('request_data'));
     }
 
     public function litigation_report_result(Request $request)
     {
-        //    dd($request->all());
+        // dd($request->all());
+
+        $request_data = $request->all();
 
         if ($request->from_next_date != "dd/mm/yyyy") {
             $from_next_date_explode = explode('/', $request->from_next_date);
@@ -123,7 +131,7 @@ class ReportController extends Controller
         $is_search = 'Searched';
 
 
-        return view('report_management.report_search', compact('data'));
+        return view('report_management.report_search', compact('data', 'request_data'));
 
 
         // $court = SetupCourt::where(['case_class_id' => 'Criminal', 'delete_status' => 0])->get();

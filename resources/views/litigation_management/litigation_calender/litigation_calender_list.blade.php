@@ -237,7 +237,7 @@
                                             <span class="info-box-text text-center text-bold h6 text-text-warning" style="color: #FF7034;font-size:15px;">
                                                 {{ $calendar_date = date('d-m-Y', strtotime($datum->next_date)) }}
                                             </span>
-                                            <span class="info-box-number text-center mb-0 text-bold h6" style="color: #FF7034;font-size:17px;">
+                                            <span class="info-box-number text-center mb-0 text-bold h6" style="color: #FF7034;font-size:13px;">
                                                 @php
                                                     $date = $datum->next_date;
                                                     $time = date('l', strtotime($date));
@@ -246,7 +246,7 @@
                                             </span>
                                         </div>
                                         <div class="col-md-2 border pt-1 mr-1">
-                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:15px;">Total</h6>
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Total</h6>
                                                     <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">
 
                                                         @php
@@ -291,15 +291,15 @@
                                                         {{ $calendar_count }}</p>
                                         </div>
                                         <div class="col-md-2 border pt-1 mr-1">
-                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:15px;">Civil Cases</h6>
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Civil Cases</h6>
                                                     <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">0</p>
                                         </div>
                                         <div class="col-md-2 border pt-1 mr-1">
-                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:15px;">Criminal Cases</h6>
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Criminal Cases</h6>
                                             <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">{{ $calendar_count }}</p>
                                         </div>
                                         <div class="col-md-2 border pt-1 mr-1">
-                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:15px;">Others</h6>
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Others</h6>
                                             <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">0</p>
                                         </div>
 
@@ -324,8 +324,8 @@
                                             <th width="2%">SL</th>
                                             <th width="10%">Court Name</th>
                                             <th width="10%">Case No.</th>
-                                            <th width="10%">S. Case No.</th>
                                             <th width="10%">Police Station</th>
+                                            <th width="10%">Previous Case Date</th>
                                             <th width="10%">Fixed For</th>
                                             <th width="15%">1st Party/Complainant/ Petitioner/Plaintiff</th>
                                             <th width="15%">2nd Party/Accused/ Oppositon/Defendant</th>
@@ -412,8 +412,28 @@
                                             @endif
 
                                         </td>
-                                        <td><a href="{{ route('view-criminal-cases', $value->id) }}"> {{ $value->case_infos_case_no ? $value->case_title_name.' '.$value->case_infos_case_no.'/'.$value->case_infos_case_year : '' }} </a></td>
-                                        <td>
+                                        <td><a href="{{ route('view-criminal-cases', $value->id) }}"> 
+                                            @php
+                                                $case_infos_sub_seq_case_no = explode(', ', $value->case_infos_sub_seq_case_no);
+                                                // dd(count($case_infos_sub_seq_case_no));
+                                            @endphp
+                                            @if (count($case_infos_sub_seq_case_no)>1)
+                                                {{ last($case_infos_sub_seq_case_no) }}
+
+                                                @php
+                                                if (!empty($value->case_infos_sub_seq_case_no) && !empty($value->case_infos_sub_seq_case_year)) {
+                                                    echo "/";
+                                                }
+                                                    $case_infos_sub_seq_case_year = explode(', ', $value->case_infos_sub_seq_case_year);
+                                                @endphp
+
+                                                {{ last($case_infos_sub_seq_case_year) }}
+                                            @else
+                                                {{ $value->case_infos_case_no ? $value->case_title_name.' '.$value->case_infos_case_no.'/'.$value->case_infos_case_year : '' }}
+                                            @endif
+                                        
+                                        </a></td>
+                                        {{-- <td>
                                             @php
                                                 $case_infos_sub_seq_case_no = explode(', ', $value->case_infos_sub_seq_case_no);
                                             @endphp
@@ -429,9 +449,20 @@
 
                                             {{ last($case_infos_sub_seq_case_year) }}
 
-                                        </td>
+                                        </td> --}}
                                         <td>{{ $value->thana_name }}</td>
-                                        <td>{{ $value->next_date_reason_name }}</td>
+@php
+    $proceedings = \App\Models\CriminalCaseStatusLog::select('updated_next_date')->where(['case_id' => $value->id ,'delete_status' => 0])->groupBy('updated_next_date')->first();
+
+@endphp
+<td>
+    @if (!empty($proceedings->updated_next_date) && $proceedings->updated_next_date !== null)
+        {{ $proceedings->updated_next_date }}
+    @endif
+</td>
+
+<td>{{ $value->next_date_reason_name }}</td>
+
                                         <td>
                                             @php
                                                 $notes = explode(', ',$value->case_infos_complainant_informant_name);

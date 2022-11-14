@@ -556,6 +556,11 @@ class CriminalCasesController extends Controller
             $required->save();
         }
 
+        $ccsl = new CriminalCaseStatusLog();
+        $ccsl->case_id = $data->id;
+        $ccsl->updated_next_date = $next_date;
+        $ccsl->save();
+
         DB::commit();
 
         session()->flash('success', 'Criminal Cases Added Successfully');

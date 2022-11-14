@@ -53,15 +53,15 @@ class LitigationCalenderController extends Controller
 
         $redirect_url =  url('litigation-calender-list');
         //Criminal Case
-        $criminal_cases = \App\Models\CriminalCase::select('next_date')->where(['delete_status' => 0])->groupBy('next_date')->get();
+        $criminal_cases = \App\Models\CriminalCaseStatusLog::select('updated_next_date')->where(['delete_status' => 0])->groupBy('updated_next_date')->get();
         $criminal_events = array();
         foreach ($criminal_cases as $case) {
-            $case_count = \App\Models\CriminalCase::where(['next_date' => $case->next_date, 'delete_status' => 0])->count();
+            $case_count = \App\Models\CriminalCaseStatusLog::where(['updated_next_date' => $case->updated_next_date, 'delete_status' => 0])->count();
 
             $criminal_events[] = [
                 'title' => "Criminal: $case_count",
                 'url' => "$redirect_url",
-                'start' => $case->next_date,
+                'start' => $case->updated_next_date,
                 'display' => 'list-item',
                 'backgroundColor' => 'pink',
             ];

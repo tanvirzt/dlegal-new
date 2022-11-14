@@ -37,7 +37,13 @@
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> Litigation :: Report </h3>
+                                    <h3 class="card-title"> Litigation :: Report
+                                        
+                                         @if (!empty($data))
+                                             <span style="color: red;font-size:15px;">(Showing Searched Item)</span>
+                                         @endif
+                                        
+                                        </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -60,27 +66,30 @@
                                             <div class="form-group row">
                                                 <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
                                                 <div class="col-sm-8">
+                                                    @php
+                                                        // dd($request_data['case_type']);
+                                                    @endphp
                                                     <select name="case_type" class="form-control select2" required>
                                                         <option value="">Select Case Type</option>
 
                                                         <option value="civil"
-                                                            {{ old('case_type') == 'civil' ? 'selected' : '' }}>Civil
+                                                            {{ old('case_type') || $request_data['case_type'] == 'civil' ? 'selected' : '' }}>Civil
                                                         </option>
                                                         <option value="criminal"
-                                                            {{ old('case_type') == 'criminal' ? 'selected' : '' }}>Criminal
+                                                            {{ old('case_type') || $request_data['case_type'] == 'criminal' ? 'selected' : '' }}>Criminal
                                                         </option>
                                                         <option value="service_matter"
-                                                            {{ old('case_type') == 'service_matter' ? 'selected' : '' }}>
+                                                            {{ old('case_type') || $request_data['case_type'] == 'service_matter' ? 'selected' : '' }}>
                                                             Service Matter</option>
                                                         <option value="special"
-                                                            {{ old('case_type') == 'special' ? 'selected' : '' }}>
+                                                            {{ old('case_type') || $request_data['case_type'] == 'special' ? 'selected' : '' }}>
                                                             Special/Quassi-Judicial Cases</option>
 
                                                         <option value="high_court"
-                                                            {{ old('case_type') == 'high_court' ? 'selected' : '' }}>High
+                                                            {{ old('case_type') || $request_data['case_type'] == 'high_court' ? 'selected' : '' }}>High
                                                             Court Division</option>
                                                         <option value="high_court"
-                                                            {{ old('case_type') == 'appellate_court' ? 'selected' : '' }}>
+                                                            {{ old('case_type') || $request_data['case_type'] == 'appellate_court' ? 'selected' : '' }}>
                                                             Appellate Court Division</option>
                                                     </select>
                                                     @error('case_type_id')
@@ -98,29 +107,29 @@
                                                         <option value="">Select Report Type</option>
 
                                                         <option value="daily"
-                                                            {{ old('report_type') == 'daily' ? 'selected' : '' }}>Today
+                                                            {{ old('report_type') || $request_data['report_type'] == 'daily' ? 'selected' : '' }}>Today
                                                             Report</option>
 
                                                             <option value="custom_date"
-                                                            {{ old('report_type') == 'custom_date' ? 'selected' : '' }}>
+                                                            {{ old('report_type') || $request_data['report_type']   == 'custom_date' ? 'selected' : '' }}>
                                                             Custom Date Report</option>
 
                                                         <option value="next_week"
-                                                            {{ old('report_type') == 'next_week' ? 'selected' : '' }}>Next
+                                                            {{ old('report_type') || $request_data['report_type']  == 'next_week' ? 'selected' : '' }}>Next
                                                             Week Report</option>
 
 
                                                         <option value="next_month"
-                                                            {{ old('report_type') == 'next_month' ? 'selected' : '' }}>Next
+                                                            {{ old('report_type') || $request_data['report_type']  == 'next_month' ? 'selected' : '' }}>Next
                                                             Month Report</option>
 
 
                                                         <option value="not_updated"
-                                                            {{ old('report_type') == 'not_updated' ? 'selected' : '' }}>
-                                                            Next Date Not Updated Report</option>
+                                                            {{ old('report_type') || $request_data['report_type']  == 'not_updated' ? 'selected' : '' }}>
+                                                            NOT UPD Report</option>
 
                                                         <option value="disposed"
-                                                            {{ old('report_type') == 'disposed' ? 'selected' : '' }}>
+                                                            {{ old('report_type') || $request_data['report_type']  == 'disposed' ? 'selected' : '' }}>
                                                             Disposed of Case Report</option>
 
 
@@ -131,7 +140,7 @@
                                                     @enderror
 
                                                     <div class="report_type_box mt-3"
-                                                        @if (old('report_type') == 'from_to' || old('report_type') == 'disposed') style="display:block;" @else style="display:none;" @endif>
+                                                        @if (old('report_type') == 'from_to' || old('report_type') == 'disposed' || $request_data['report_type'] ==  'disposed' || $request_data['report_type'] ==  'custom_date' ) style="display:block;" @else style="display:none;" @endif>
 
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -140,7 +149,7 @@
                                                                         Date</label>
                                                                     <input type="date" name="from_next_date"
                                                                         class="form-control @error('from_next_date') is-invalid @enderror"
-                                                                        value="{{ old('from_next_date') }}">
+                                                                        value="{{ !empty($request_data['from_next_date']) ? $request_data['from_next_date'] :  old('from_next_date') }}">
 
                                                                     @error('from_next_date')
                                                                         <div class="invalid-feedback">{{ $message }}
@@ -156,7 +165,7 @@
                                                                         Date</label>
                                                                     <input type="date" name="to_next_date"
                                                                         class="form-control @error('to_next_date') is-invalid @enderror"
-                                                                        value="{{ old('to_next_date') }}">
+                                                                        value="{{ !empty($request_data['to_next_date']) ? $request_data['to_next_date'] : old('to_next_date') }}">
 
                                                                     @error('to_next_date')
                                                                         <div class="invalid-feedback">{{ $message }}

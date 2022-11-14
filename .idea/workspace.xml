@@ -5,17 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CriminalCasesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CriminalCasesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/LitigationCalenderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/LitigationCalenderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/admin_css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/admin_css/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/admin_dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/admin_dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin_layouts/admin_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin_layouts/admin_sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/litigation_management/cases/criminal_cases/add_criminal_cases.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/litigation_management/cases/criminal_cases/add_criminal_cases.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/litigation_management/cases/criminal_cases/criminal_cases.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/litigation_management/cases/criminal_cases/criminal_cases.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/litigation_management/cases/criminal_cases/edit_criminal_cases.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/litigation_management/cases/criminal_cases/edit_criminal_cases.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/litigation_management/cases/criminal_cases/view_criminal_cases.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/litigation_management/cases/criminal_cases/view_criminal_cases.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin_layouts/admin_header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin_layouts/admin_header.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/litigation_management/litigation_calender/litigation_calender_list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/litigation_management/litigation_calender/litigation_calender_list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/report_management/report_search.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/report_management/report_search.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,6 +327,8 @@
       <workItem from="1668331046785" duration="604000" />
       <workItem from="1668341994493" duration="4000" />
       <workItem from="1668342018455" duration="9000" />
+      <workItem from="1668395158339" duration="7000" />
+      <workItem from="1668416448293" duration="15000" />
     </task>
     <servers />
   </component>
