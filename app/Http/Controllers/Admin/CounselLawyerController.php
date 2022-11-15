@@ -1123,5 +1123,6 @@ class CounselLawyerController extends Controller
         return redirect()->back();
     }
 
+    
 
 }

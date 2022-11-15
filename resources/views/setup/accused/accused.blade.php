@@ -47,7 +47,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="data_table" class="table dataTable no-footer dtr-inline">
+                                <table id="data_table" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th class="text-center text-nowrap">ID</th>
@@ -118,5 +118,4 @@
     <!-- /.content-wrapper -->
 
 @endsection
-
 

@@ -251,10 +251,44 @@
 
                                                         @php
 
-                                                            $calendar_count = DB::table('criminal_cases')->where(['criminal_cases.delete_status' => 0, 'next_date' => $datum->next_date])
+                                                            $calendar_count = DB::table('criminal_case_status_logs')->where(['criminal_case_status_logs.delete_status' => 0, 'updated_next_date' => $datum->next_date])
                                                                             ->count();
-                                                        $calendar_wise_data = DB::table('criminal_cases')
-                                                                            // ->leftJoin('criminal_cases_case_steps', 'criminal_cases.id', 'criminal_cases_case_steps.criminal_case_id')
+                                                        // $calendar_wise_data = DB::table('criminal_cases')
+                                                        //                     ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', 'setup_next_date_reasons.id')
+                                                        //                     ->leftJoin('setup_case_statuses', 'criminal_cases.case_status_id', 'setup_case_statuses.id')
+                                                        //                     ->leftJoin('setup_case_titles', 'criminal_cases.case_infos_case_title_id', 'setup_case_titles.id')
+                                                        //                     ->leftJoin('setup_courts', 'criminal_cases.name_of_the_court_id', '=', 'setup_courts.id')
+                                                        //                     ->leftJoin('setup_districts', 'criminal_cases.case_infos_district_id', '=', 'setup_districts.id')
+                                                        //                     ->leftJoin('setup_districts as accused_district', 'criminal_cases.client_district_id', '=', 'accused_district.id')
+                                                        //                     ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
+                                                        //                     ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
+                                                        //                     ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+                                                        //                     ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
+                                                        //                     ->leftJoin('setup_thanas', 'criminal_cases.case_infos_thana_id', '=', 'setup_thanas.id')
+                                                        //                     ->select('criminal_cases.*',
+                                                        //                     'setup_case_statuses.case_status_name',
+                                                        //                     'setup_case_titles.case_title_name',
+                                                        //                     'setup_next_date_reasons.next_date_reason_name',
+                                                        //                     'setup_courts.court_name',
+                                                        //                     'setup_districts.district_name',
+                                                        //                     'accused_district.district_name as accused_district_name',
+                                                        //                     'setup_case_types.case_types_name',
+                                                        //                     'setup_external_councils.first_name',
+                                                        //                     'setup_external_councils.middle_name',
+                                                        //                     'setup_external_councils.last_name',
+                                                        //                     'setup_thanas.thana_name',
+                                                        //                     'case_infos_title.case_title_name as sub_seq_case_title_name',
+                                                        //                     'setup_matters.matter_name')
+                                                        //                     ->orderBy('criminal_cases.case_infos_sub_seq_court_short_id','asc')
+                                                        //                     ->orderBy('criminal_cases.case_infos_court_short_id','asc')
+                                                        //                     ->where(['criminal_cases.delete_status' => 0, 'next_date' => $datum->next_date])
+                                                        //                     ->get();
+
+
+                                                        $calendar_wise_data = DB::table('criminal_case_status_logs')
+                                                                            ->leftJoin('criminal_cases', 'criminal_cases.id', 'criminal_case_status_logs.case_id')
+                                                                           
+
                                                                             ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', 'setup_next_date_reasons.id')
                                                                             ->leftJoin('setup_case_statuses', 'criminal_cases.case_status_id', 'setup_case_statuses.id')
                                                                             ->leftJoin('setup_case_titles', 'criminal_cases.case_infos_case_title_id', 'setup_case_titles.id')
@@ -266,8 +300,11 @@
                                                                             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
                                                                             ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
                                                                             ->leftJoin('setup_thanas', 'criminal_cases.case_infos_thana_id', '=', 'setup_thanas.id')
-                                                                            ->select('criminal_cases.*',
-                                                                            // 'criminal_cases_case_steps.another_claim',
+
+
+                                                                            ->select('criminal_cases.*', 'criminal_case_status_logs.case_id',
+                                                                            
+
                                                                             'setup_case_statuses.case_status_name',
                                                                             'setup_case_titles.case_title_name',
                                                                             'setup_next_date_reasons.next_date_reason_name',
@@ -280,11 +317,17 @@
                                                                             'setup_external_councils.last_name',
                                                                             'setup_thanas.thana_name',
                                                                             'case_infos_title.case_title_name as sub_seq_case_title_name',
-                                                                            'setup_matters.matter_name')
+                                                                            'setup_matters.matter_name'
+
+
+                                                                        
+                                                                            )
                                                                             ->orderBy('criminal_cases.case_infos_sub_seq_court_short_id','asc')
                                                                             ->orderBy('criminal_cases.case_infos_court_short_id','asc')
-                                                                            ->where(['criminal_cases.delete_status' => 0, 'next_date' => $datum->next_date])
+                                                                            ->where(['criminal_case_status_logs.delete_status' => 0, 'criminal_case_status_logs.updated_next_date' => $datum->next_date])
                                                                             ->get();
+
+
 
                                                                             // dd($calendar_wise_data);
                                                                 @endphp
@@ -325,12 +368,12 @@
                                             <th width="10%">Court Name</th>
                                             <th width="10%">Case No.</th>
                                             <th width="10%">Police Station</th>
-                                            <th width="10%">Previous Case Date</th>
+                                            {{-- <th width="10%">Previous Case Date</th> --}}
                                             <th width="10%">Fixed For</th>
-                                            <th width="15%">1st Party/Complainant/ Petitioner/Plaintiff</th>
-                                            <th width="15%">2nd Party/Accused/ Oppositon/Defendant</th>
-                                            <th width="8%">Case Matter</th>
-                                            <th width="10%">Steps & Note</th>
+                                            <th width="17%">1st Party/Complainant/ Petitioner/Plaintiff</th>
+                                            <th width="17%">2nd Party/Accused/ Oppositon/Defendant</th>
+                                            <th width="9%">Case Matter</th>
+                                            <th width="15%">Steps & Note</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -451,7 +494,7 @@
 
                                         </td> --}}
                                         <td>{{ $value->thana_name }}</td>
-@php
+{{-- @php
     $proceedings = \App\Models\CriminalCaseStatusLog::select('updated_next_date')->where(['case_id' => $value->id ,'delete_status' => 0])->groupBy('updated_next_date')->first();
 
 @endphp
@@ -459,7 +502,7 @@
     @if (!empty($proceedings->updated_next_date) && $proceedings->updated_next_date !== null)
         {{ $proceedings->updated_next_date }}
     @endif
-</td>
+</td> --}}
 
 <td>{{ $value->next_date_reason_name }}</td>
 

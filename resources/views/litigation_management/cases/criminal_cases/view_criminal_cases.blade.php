@@ -1449,16 +1449,15 @@
 
                         </div>
 
-                        <style>
+                        {{-- <style>
                             .accordion .card-header:after {
-    font-family: 'FontAwesome';  
-    content: "+";
-    float: right; 
-}
-.accordion .card-header.collapsed:after {
-    /* symbol for "collapsed" panels */
-    content: "-"; 
-}
+                                font-family: 'FontAwesome';  
+                                content: "+";
+                                float: right; 
+                            }
+                            .accordion .card-header.collapsed:after {
+                                content: "-"; 
+                            }
                         </style>
 
                         <div class="container">
@@ -1484,7 +1483,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
 
                         <div>
@@ -2122,7 +2121,108 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="card">
+
+
+
+                            <div class="card" id="section3">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Working Documents Log
+
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                                    data-target="#working_documents_modal" data-toggle="tooltip" data-placement="top"
+                                                    title="Add Case Documents"><i class="fas fa-file-word nav-icon"></i></button>
+                                        
+                                        
+                                                    <button type="button" class="btn btn-tool collapsed" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+
+
+
+
+                                        {{-- <button type="button" class="btn collapsed" data-toggle="collapse"
+                                                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                <i class="fas fa-plus"></i>
+                                            </button> --}}
+
+
+
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped data_table">
+                                        <thead>
+                                        <tr>
+                                            <th class="hide" width="2%">SL</th>
+                                            <th width="24%">Document Uploaded</th>
+                                            <th width="13%">Document Date</th>
+                                            <th width="11%">Version</th>
+                                            <th width="6%">Type</th>
+                                            <th width="21%">Uploaded By</th>
+                                            <th width="10%">Action</th>
+                                            <th width="15%">Date & Time</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($criminal_cases_working_docs as $files)
+                                            <tr>
+                                                <td class="hide"> {{ $files->id }} </td>
+                                                <td>{{ $files->uploaded_document }} </td>
+                                                <td>{{ $files->uploaded_date }} </td>
+                                                <td>{{ $files->doc_version }} </td>
+                                                <td>{{ $files->documents_type_name }} </td>
+                                                <td>{{ $files->created_by }} </td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6"
+                                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                             stroke-linejoin="round" class="feather feather-more-horizontal">
+                                                            <circle cx="12" cy="12" r="1"></circle>
+                                                            <circle cx="19" cy="12" r="1"></circle>
+                                                            <circle cx="5" cy="12" r="1"></circle>
+                                                        </svg>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                             style="will-change: transform;">
+                                                            <a class="dropdown-item btn btn-outline-success" target="_blank"
+                                                               href="{{ route('view-criminal-cases-working-docs', $files->id) }}"><i
+                                                                    class="fas fa-eye"></i> View</a>
+
+                                                            <a class="dropdown-item"
+                                                               href="{{ route('edit-criminal-cases-working-docs', $files->id) }}"><i
+                                                                    class="fas fa-edit"></i> Edit</a>
+                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                                <form class="delete-user-dropdown" method="post"
+                                                                      action="{{ route('delete-criminal-cases-working-docs', $files->id) }}"
+                                                                      class="delete-user btn btn-outline-danger">
+                                                                    @csrf
+                                                                    <button type="submit" class="btn" style="padding: 0px 1px 0px 0px;"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i> Delete
+                                                                    </button>
+                                                                </form>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>{{ $files->created_at }} </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                            {{-- <div class="card">
                                 <div id="accordion">
                                     <div class="card-header" id="headingTwo">
                                         <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
@@ -2132,11 +2232,11 @@
                                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                                     data-target="#working_documents_modal" data-toggle="tooltip" data-placement="top"
                                                     title="Add Case Documents"><i class="fas fa-file-word nav-icon"></i></button>
+                                            
                                             <button type="button" class="btn collapsed" data-toggle="collapse"
                                                     data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                                 <i class="fas fa-plus"></i>
                                             </button>
-
                                             
                                             <button type="button" class="btn btn-tool" data-card-widget="remove">
                                                 <i class="fas fa-times"></i>
@@ -2210,7 +2310,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
 

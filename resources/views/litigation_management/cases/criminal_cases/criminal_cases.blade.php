@@ -475,13 +475,9 @@
                         </div>
                     </div>
 
-                    <script type="text/javascript" src="{{ URL::asset('plugins/jquery/jquery.min.js') }}"></script>
-
                     <div class="col-12">
-                        <form action="{{ route('criminal-cases-switch') }}" method="post">
                             <div class="card">
                                 <div class="card-header">
-
                                     <div class="row ">
                                         <div class="col-sm-3">
                                             <h3 class="card-title"> List <span
@@ -489,33 +485,13 @@
                                             </h3>
                                         </div>
                                         <div class="col-sm-2 text-right">
-                                            @can('criminal-cases-switch-cases')
-                                                <div class="icheck-success d-inline">
-                                                    <input type="checkbox" id="select-all">
-                                                    <label for="select-all">Select All
-                                                    </label>
-                                                </div>
-                                            @endcan
+                                            
                                         </div>
                                         <div class="col-sm-2">
-                                            @can('criminal-cases-switch-cases')
-                                                <select name="user_id" id="user_id" class="form-control select2">
-                                                    <option value="">Select User</option>
-                                                    @foreach ($user as $item)
-                                                        <option value="{{ $item->id }}"
-                                                            {{ old('user_id') == $item->id ? 'selected' : '' }}>
-                                                            {{ $item->name }}
-                                                            ({{ $item->email }})
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            @endcan
+                                            
                                         </div>
                                         <div class="col-sm-2">
-                                            @can('criminal-cases-switch-cases')
-                                                <button class="btn btn-primary text-uppercase"><i
-                                                        class="fas fa-paper-plane"></i> Send</button>
-                                            @endcan
+                                            
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="float-right">
@@ -533,13 +509,11 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <table id="data_table" class="table table-bordered table-striped">
+                                <table id="example1" class="table table-bordered table-striped">
+
                                         <thead>
                                             <tr>
                                                 <th class="text-center"> Sl</th>
-                                                @can('criminal-cases-switch-cases')
-                                                    <th class="text-center"> Chk</th>
-                                                @endcan
                                                 <th class="text-center"> ID</th>
                                                 <th class="text-center"> Status</th>
                                                 <th class="text-center"> Next Date</th>
@@ -563,12 +537,7 @@
                                                     <td>
                                                         {{ $key + 1 }}
                                                     </td>
-                                                    @can('criminal-cases-switch-cases')
-                                                        <td>
-                                                            <input type="checkbox" name="id[]"
-                                                                value="{{ $datum->id }}" />
-                                                        </td>
-                                                    @endcan
+                                                   
                                                     <td>
                                                         {{ $datum->created_case_id }}
                                                     </td>
@@ -759,23 +728,22 @@
                                                             </a>
                                                         @endcan
                                                         @can('criminal-cases-delete')
-                                                            <a href="{{ route('delete-criminal-cases-latest', $datum->id) }}">
+                                                            {{-- <a href="{{ route('delete-criminal-cases-latest', $datum->id) }}">
                                                                 <button type="button" class="btn btn-outline-danger btn-sm"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Edit"><i class="fas fa-trash"></i></button>
-                                                            </a>
+                                                            </a> --}}
 
                                                             {{-- {{ Form::open(array('method' => 'post', 'route' => array('delete-criminal-cases', $datum->id), 'class' => 'delete-form')) }}
                                                     {{ Form::submit('Delete', array('class' => 'btn btn-danger', 'role' => 'button')) }}
                                                 {{ Form::close() }} --}}
 
-                                                            {{-- <form method="POST" action="{{ route('delete-criminal-cases',$datum->id) }}"
-                                                          class="delete-user btn btn-outline-danger btn-xs">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-outline-danger btn-sm" style="line-height: 1.4"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="Delete"><i class="fas fa-trash"></i></button>
-                                                    </form> --}}
+                                                            <form method="POST" action="{{ route('delete-criminal-cases',$datum->id) }}" class="delete-user btn btn-outline-danger btn-xs">
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-outline-danger btn-sm" style="line-height: 1.4"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="Delete"><i class="fas fa-trash"></i></button>
+                                                            </form>
                                                         @endcan
                                                     </td>
                                                 </tr>
@@ -786,7 +754,6 @@
                                 </div>
                                 <!-- /.card-body -->
                             </div>
-                        </form>
                         <!-- /.card -->
                     </div>
                     <!-- /.col -->

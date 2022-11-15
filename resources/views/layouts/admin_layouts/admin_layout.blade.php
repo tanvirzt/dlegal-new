@@ -25,8 +25,10 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css')}}">
     <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+
+  {{-- <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}"> --}}
+  {{-- <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}"> --}}
+
   <!-- Select2 -->
   <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
@@ -45,7 +47,29 @@
     <script src="{{ asset('plugins/fullcalendar-interaction/main.min.js') }}"></script>
     <script src="{{ asset('plugins/fullcalendar-bootstrap/main.min.js') }}"></script>
   <!-- Theme style -->
-  {{-- <link rel="stylesheet" href="{{ asset('new/dist/css/adminlte.min.css') }}"> --}}
+
+
+
+
+
+
+
+    <!-- Font Awesome -->
+    {{-- <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}"> --}}
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <!-- Theme style -->
+    {{-- <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}"> --}}
+
+
+
+
+
+
+
+
 
   @yield('styles')
 
@@ -120,12 +144,13 @@
   <!-- Select2 -->
 <script src="{{ asset('plugins/select2/js/select2.full.min.js')}}"></script>
     <!-- DataTables -->
-    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+
+    {{-- <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script> --}}
 
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="{{ asset('js/admin_js/swal.js')}}"></script>
 
     <script src="{{ asset('plugins/fullcalendar/main.min.js') }}"></script>
     <script src="{{ asset('plugins/fullcalendar-daygrid/main.min.js') }}"></script>
@@ -138,7 +163,7 @@
 
 
 
-    <script>
+    {{-- <script>
         $(function () {
             $("#example1").DataTable({
                 "responsive": true,
@@ -155,30 +180,6 @@
                 "autoWidth": false,
                 "columnDefs": [ { type: 'date', 'targets': [2] } ],
                 "order": [[ 2, 'desc' ]]
-
-
-
-
-
-
-
-                // "orderFixed": [0, 'desc'],
-
-            //     columns: [
-            //     {data: 'id', name: 'id'},
-            //     {data: 'name', name: 'name'},
-            //     {data: 'email', name: 'email'},
-            //     {
-            //         data: 'created_at',
-            //         type: 'num',
-            //         render: {
-            //             _: 'display',
-            //             sort: 'timestamp'
-            //        }
-            //     },
-            // ]
-
-
 
             });
 
@@ -197,7 +198,88 @@
             $('.select2').select2()
 
          });
-    </script>
+    </script> --}}
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- jQuery -->
+{{-- <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script> --}}
+<!-- Bootstrap 4 -->
+{{-- <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<!-- AdminLTE App -->
+{{-- <script src="{{ asset('dist/js/adminlte.min.js') }}"></script> --}}
+<!-- AdminLTE for demo purposes -->
+{{-- <script src="{{ asset('dist/js/demo.js') }}"></script> --}}
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+
+            $("#data_table").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                // "orderFixed": [0, 'desc'],
+            });
+            $(".data_table").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "columnDefs": [ { type: 'date', 'targets': [2] } ],
+                "order": [[ 2, 'desc' ]]
+            });
+            $("#table_logs_text_center").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "orderFixed": [0, 'desc'],
+            });
+            $("#table_bill_logs_text_center").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "orderFixed": [0, 'desc'],
+            });
+            $('.select2').select2()
+    
+  });
+
+  
+
+
+</script>
+
+
 
     @yield('scripts')
 

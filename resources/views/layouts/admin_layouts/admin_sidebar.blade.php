@@ -846,39 +846,60 @@
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
-                                    @can('civil-cases-list')
+                                    {{-- @can('civil-cases-list')
                                         <li class="nav-item">
                                             <a href="{{ route('civil-cases') }}" class="nav-link">
                                                 <i class="far fa-dot-circle nav-icon"></i>
                                                 <p>Civil</p>
                                             </a>
                                         </li>
-                                    @endcan
+                                    @endcan --}}
                                     @can('criminal-cases-list')
                                         <li class="nav-item">
                                             <a href="{{ route('criminal-cases') }}" class="nav-link">
                                                 <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Criminal</p>
+                                                <p>District Court</p>
                                             </a>
                                         </li>
                                     @endcan
-                                    @can('service-matter-list')
+                                    {{-- @can('service-matter-list')
                                         <li class="nav-item">
                                             <a href="{{ route('labour-cases') }}" class="nav-link">
                                                 <i class="far fa-dot-circle nav-icon"></i>
                                                 <p>Employee Case</p>
                                             </a>
                                         </li>
-                                    @endcan
+                                    @endcan --}}
                                     @can('quassi-judicial-cases-list')
                                         <li class="nav-item">
                                             <a href="{{ route('quassi-judicial-cases') }}" class="nav-link">
                                                 <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Special Case</p>
+                                                <p>Special Court</p>
                                             </a>
                                         </li>
                                     @endcan
-                                    @canany(['high-court-cases-list', 'appellate-court-cases-list'])
+
+                                    @can('high-court-cases-list')
+                                        <li class="nav-item">
+                                            <a href="{{ route('high-court-cases') }}" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>High Court Division</p>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('appellate-court-cases-list')
+                                    <li class="nav-item">
+                                        <a href="{{ route('appellate-court-cases') }}" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon"></i>
+                                            <p>Appellate Court Division</p>
+                                        </a>
+                                    </li>
+                                @endcan
+
+
+
+
+                                    {{-- @canany(['high-court-cases-list', 'appellate-court-cases-list'])
                                         <li class="nav-item">
                                             <a href="#" class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
@@ -906,7 +927,7 @@
                                                 @endcan
                                             </ul>
                                         </li>
-                                    @endcanany
+                                    @endcanany --}}
                                 </ul>
                             </li>
                         @endcanany

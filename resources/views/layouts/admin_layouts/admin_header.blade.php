@@ -368,20 +368,20 @@
     <li>
         <a href="#">Case Dashboard &#9662;</a>
         <ul class="dropdown" style="background:#c3c9cf;">
-            @can('civil-cases-list')
+            {{-- @can('civil-cases-list')
             <li><a href="{{ route('civil-cases') }}">Civil</a></li>
-            @endcan
+            @endcan --}}
             @can('criminal-cases-list')
             <div class="dropdown-divider-custom"></div>
-            <li><a href="{{ route('criminal-cases') }}">Criminal</a></li>
+            <li><a href="{{ route('criminal-cases') }}">District Court</a></li>
             @endcan
-            @can('service-matter-list')
+            {{-- @can('service-matter-list')
             <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('labour-cases') }}">Service Matter</a></li>
-            @endcan
+            @endcan --}}
             @can('quassi-judicial-cases-list')
             <div class="dropdown-divider-custom"></div>
-            <li><a href="{{ route('quassi-judicial-cases') }}">Special/Quassi-Judicial Cases</a></li>
+            <li><a href="{{ route('quassi-judicial-cases') }}">Special Court</a></li>
             @endcan
             @can('high-court-cases-list')
             <div class="dropdown-divider-custom"></div>
