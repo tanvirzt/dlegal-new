@@ -772,3 +772,36 @@ a .btn{
     /* symbol for "collapsed" panels */
     content: "\f067"; 
 }
+
+#example1_wrapper .flex-wrap{
+    float: right;
+}
+
+.btn-info {
+    color: black;
+    background-color: #fff;
+    border: none;
+    box-shadow: none;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #3db2b5;
+}
+.dropdown-toggle {
+    color: #fff;
+    background-color: #6c757d8f;
+    border: none;
+    box-shadow: none;
+}
+.dropdown-toggle:hover {
+    color: #fff;
+    background-color: #3db2b5;
+    border: none;
+}
+
+.lit_calender{
+    width: 156px;
+
+}

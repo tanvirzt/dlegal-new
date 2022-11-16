@@ -68,7 +68,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"> Criminal Cases </h1>
+                        <h1 class="m-0 text-dark"> District Court </h1>
                     </div><!-- /.col -->
 
                     <div class="col-sm-6">
@@ -137,7 +137,7 @@
 
 
                                 <h3 id="mainMenuBar" class="card-title custom_h3 font-italic text-capitalize font_weight"
-                                    style="color: #FF7034;z-index:99">Criminal Case
+                                    style="color: #FF7034;z-index:99">District Court
                                     No.
                                     {!! $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . '<span class="text-lowercase" style="font-size: 17px;"> of </span>' . $data->case_infos_case_year: '' !!}@if ($data->sub_seq_case_title_name != null)
                                         ,@endif
@@ -157,7 +157,7 @@
 
                                 </h3>
                                 {{-- <h3 class="card-title custom_h3 font-italic text-uppercase font_weight header_links">
-                                    Criminal Case
+                                    District Court
                                     No.
                                     {{ $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . ' of ' . $data->case_infos_case_year : '' }}
                                     @if ($data->sub_seq_case_title_name != null)
@@ -2507,7 +2507,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Update Criminal Case Status </h3>
+                    <h3 class="card-title"> Update District Court Status </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -3093,7 +3093,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit Criminal Cases </h3>
+                    <h3 class="card-title"> Edit District Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -3460,7 +3460,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit Criminal Cases </h3>
+                    <h3 class="card-title"> Edit District Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -3839,7 +3839,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit Criminal Cases </h3>
+                    <h3 class="card-title"> Edit District Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -4215,7 +4215,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit Criminal Cases </h3>
+                    <h3 class="card-title"> Edit District Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -5006,7 +5006,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit Criminal Cases </h3>
+                    <h3 class="card-title"> Edit District Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -5104,7 +5104,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit Criminal Cases </h3>
+                    <h3 class="card-title"> Edit District Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -5378,7 +5378,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit Criminal Cases </h3>
+                    <h3 class="card-title"> Edit District Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -6265,7 +6265,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit Criminal Cases </h3>
+                    <h3 class="card-title"> Edit District Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

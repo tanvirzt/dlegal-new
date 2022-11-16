@@ -891,7 +891,7 @@
                                     <li class="nav-item">
                                         <a href="{{ route('appellate-court-cases') }}" class="nav-link">
                                             <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Appellate Court Division</p>
+                                            <p>Appellate Division</p>
                                         </a>
                                     </li>
                                 @endcan

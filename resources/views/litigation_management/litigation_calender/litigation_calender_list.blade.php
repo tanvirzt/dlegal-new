@@ -29,7 +29,7 @@
                 <!-- Small boxes (Stat box) -->
                 <h3 class="" id="heading">Litigation Cause List <span style="color: red;font-size:15px;">{{ !empty($is_searched) ? '(Showing Searched Item)' : '' }}</span></h3>
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-10">
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
@@ -173,16 +173,22 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <div class="icheck-success d-inline col-sm-6">
-                                                            <input type="checkbox" name="todays_case" id="todays_case">
+                                                        <div class="icheck-success d-inline col-sm-4">
+                                                            {{-- <input type="checkbox" name="todays_case" id="todays_case">
                                                             <label for="todays_case">
                                                                 Todays Case
+                                                            </label> --}}
+                                                        </div>
+                                                        <div class="icheck-success d-inline col-sm-3">
+                                                            <input type="checkbox" name="todays_case" id="todays_case">
+                                                            <label for="todays_case">
+                                                                Today
                                                             </label>
                                                         </div>
-                                                        <div class="icheck-success d-inline col-sm-6">
+                                                        <div class="icheck-success d-inline col-sm-5">
                                                             <input type="checkbox" name="tomorrows_case" id="tomorrows_case">
                                                             <label for="tomorrows_case">
-                                                                Tomorrow Case
+                                                                Tomorrow
                                                             </label>
                                                         </div>
                                                     </div>
@@ -208,19 +214,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <form method="POST" action="{{ route('calendar-list-arrow-up') }}" style="display: contents;">
                             <input type="hidden" class="form-control" name="from_date" value="{{ !empty($criminal_cases[0]->next_date) ? date('Y-m-d', strtotime($criminal_cases[0]->next_date)) : '' }}">
                             <input type="submit" class="btn btn-info" name="arrow_up" value="" style="padding: 4px 12px 4px 12px;">
-                            <i class="fas fa-arrow-up" style="position: relative;
+                            
+                            <i class="fas fa-angle-left" style="position: relative;
                             right: 21px;"></i>
                         </form>
                         <form action="{{ route('calendar-list-arrow-down') }}" method="post" style="display: contents;">
                             <input type="hidden" class="form-control" name="to_date" value="{{ !empty($criminal_cases[0]->next_date) ? date('Y-m-d', strtotime($criminal_cases[0]->next_date)) : '' }}">
-                            <input type="submit" class="btn btn-success" name="arrow_down" value="" style="padding: 4px 12px 4px 12px;">
-                            <i class="fas fa-arrow-down" style="position: relative;
+                            <input type="submit" class="btn btn-info" name="arrow_down" value="" style="padding: 4px 12px 4px 12px;">
+                            <i class="fas fa-angle-right" style="position: relative;
                             right: 21px;"></i>
                         </form>
+                        <a class="btn btn-info " href="{{ route('litigation-calender-list') }}"> Todays Case </a>
+
+                        <a class="btn btn-info mt-1 lit_calender" href="{{ route('litigation-calender-short') }}"> Litigation Calendar </a>
+
                     </div>
                 </div>
 
@@ -370,8 +381,8 @@
                                             <th width="10%">Police Station</th>
                                             {{-- <th width="10%">Previous Case Date</th> --}}
                                             <th width="10%">Fixed For</th>
-                                            <th width="17%">1st Party/Complainant/ Petitioner/Plaintiff</th>
-                                            <th width="17%">2nd Party/Accused/ Oppositon/Defendant</th>
+                                            <th width="17%">1st Party</th>
+                                            <th width="17%">2nd Party</th>
                                             <th width="9%">Case Matter</th>
                                             <th width="15%">Steps & Note</th>
                                         </tr>

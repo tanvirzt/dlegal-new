@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Criminal Cases</h1>
+                        <h1 class="m-0 text-dark">District Court</h1>
 
                     </div><!-- /.col -->
 
@@ -40,7 +40,7 @@
                     </div>
                 @endif
                 <h3 class="mt-2" style="color: #FF7034;">
-                    Criminal Case
+                    District Court
                     No.
 
                     {!! $case_no_data->case_infos_case_no
@@ -77,7 +77,7 @@
                                 <h3 class="card-title">
                                     <ul class="nav custom_top_tab">
                                         <li class="">
-                                            <a data-toggle="tab" href="#home" class="active">Edit Criminal Cases</a>
+                                            <a data-toggle="tab" href="#home" class="active">Edit District Court</a>
                                         </li>
                                         <li class="">
                                             <a data-toggle="tab" href="#about"> Update Status </a>
@@ -102,7 +102,7 @@
                                     <div id="home" class="tab-pane active">
 
                                         <div class="card-header">
-                                            <h3 class="card-title" id="heading">Edit Criminal Cases</h3>
+                                            <h3 class="card-title" id="heading">Edit District Court</h3>
 
                                         </div>
 
@@ -3948,7 +3948,7 @@
                                                 <div id="home" class="tab-pane active">
 
                                                     <div class="card-header">
-                                                        <h3 class="card-title" id="heading">Update Criminal Case
+                                                        <h3 class="card-title" id="heading">Update District Court
                                                             Status</h3>
 
                                                     </div>

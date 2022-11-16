@@ -786,6 +786,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::post('delete-internal-counsel/{id}',[CounselLawyerController::class, 'destroy_internal_counsel'])->name('delete-internal-counsel');
     Route::get('view-internal-counsel/{id}', [CounselLawyerController::class, 'show_internal_counsel'])->name('view-internal-counsel');
 
+    Route::get('print-report-search', [ReportController::class, 'print_report_search'])->name('print-report-search');
 
 
     ///////////////////// Report Managenent Start /////////////////////

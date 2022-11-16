@@ -385,11 +385,11 @@
             @endcan
             @can('high-court-cases-list')
             <div class="dropdown-divider-custom"></div>
-            <li><a href="{{ route('high-court-cases') }}">High Court Division</a></li>
+            <li><a href="{{ route('high-court-cases') }}">High Court</a></li>
             @endcan
             @can('appellate-court-cases-list')
             <div class="dropdown-divider-custom"></div>
-            <li><a href="{{ route('appellate-court-cases') }}">Appellate Court Division</a></li>
+            <li><a href="{{ route('appellate-court-cases') }}">Appellate Court </a></li>
             @endcan
         </ul>
     </li>

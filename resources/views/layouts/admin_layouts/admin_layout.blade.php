@@ -75,6 +75,12 @@
 
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse">
+
+
+  {{-- hold-transition sidebar-mini layout-fixed --}}
+
+
+
     <div class="wrapper">
 
         @include('layouts.admin_layouts.admin_header')
@@ -236,9 +242,9 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      "responsive": true, "lengthChange": false, "autoWidth": false,"lengthChange": true, 
+      "buttons": ["colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(1)');
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,

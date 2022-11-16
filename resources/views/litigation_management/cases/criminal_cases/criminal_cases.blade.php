@@ -6,13 +6,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Criminal Cases </h1>
+                        <h1> District Court </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Criminal Cases</li>
+                            <li class="breadcrumb-item active"> District Court</li>
                         </ol>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> Criminal Cases :: Search </h3>
+                                    <h3 class="card-title"> District Court :: Search </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -500,7 +500,7 @@
                                                         <button type="button"
                                                             class="btn btn-sm
                                             btn-success add_btn"><i
-                                                                class="fas fa-plus"></i> Add Criminal Cases
+                                                                class="fas fa-plus"></i> Add District Court
                                                         </button>
                                                     </a>
                                                 @endcan
@@ -518,14 +518,14 @@
                                                 <th class="text-center"> Status</th>
                                                 <th class="text-center"> Next Date</th>
                                                 <th class="text-center"> Fixed for</th>
-                                                <th class="text-center"> Case No</th>
+                                                <th class="text-center"> Case No.</th>
                                                 <th class="text-center"> S.Case No</th>
-                                                <th class="text-center"> Court Name</th>
-                                                <th class="text-center"> Complainant District</th>
-                                                <th class="text-center"> Complainant</th>
-                                                <th class="text-center"> Accused Name</th>
-                                                <th class="text-center"> Accused District</th>
-                                                <th class="text-center"> Case Matter</th>
+                                                <th class="text-center"> Court </th>
+                                                <th class="text-center"> 1st Party District</th>
+                                                <th class="text-center"> 1st Party</th>
+                                                <th class="text-center"> 2nd Party</th>
+                                                <th class="text-center"> 2nd Party District</th>
+                                                <th class="text-center"> Matter</th>
                                                 <th class="text-center"> Lawyer</th>
                                                 <th class="text-center">Status</th>
                                                 <th class="text-center">Action</th>
@@ -712,14 +712,14 @@
                                                                     title="Details"><i class="fas fa-eye"></i></button>
                                                             </a>
                                                         @endcan
-                                                        @can('criminal-cases-add-billing')
+                                                        {{-- @can('criminal-cases-add-billing')
                                                             <a href="{{ route('add-criminal-cases-billling', $datum->id) }}">
                                                                 <button type="button" class="btn btn-outline-warning btn-sm"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Bill Entry"><i
                                                                         class="fas fa-money-bill"></i></button>
                                                             </a>
-                                                        @endcan
+                                                        @endcan --}}
                                                         @can('criminal-cases-edit')
                                                             <a href="{{ route('edit-criminal-cases', $datum->id) }}">
                                                                 <button type="button" class="btn btn-outline-info btn-sm"
