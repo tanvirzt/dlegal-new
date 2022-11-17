@@ -1487,7 +1487,7 @@
 
 
                         <div>
-                            <div class="card" id="section1">
+                            <div class="card" id="section1" name="section1">
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Case Proceedings Log
@@ -6522,6 +6522,5 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-
 
 @endsection

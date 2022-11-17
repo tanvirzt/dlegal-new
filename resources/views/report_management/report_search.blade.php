@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Litigation Report </h1>
+                        <h1>Litigation Summary & Report </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Litigation Report</li>
+                            <li class="breadcrumb-item active"> Litigation Summary & Report</li>
                         </ol>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> Litigation :: Report
+                                    <h3 class="card-title"> Litigation :: Summary & Report
                                         
                                          @if (!empty($data))
                                              <span style="color: red;font-size:15px;">(Showing Searched Item)</span>
@@ -275,7 +275,11 @@
                                                     {{ $datum->next_date_reason_name }}
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('view-criminal-cases', $datum->id) }}"> {{ $datum->case_infos_case_no ? $datum->case_title_name.' '.$datum->case_infos_case_no.'/'.$datum->case_infos_case_year : '' }} </a>
+                                                    <a href="{{ route('view-criminal-cases', $datum->id) }}"> 
+                                                        {{ $datum->case_infos_case_no ? $datum->case_title_name.' '.$datum->case_infos_case_no.'/'.$datum->case_infos_case_year : '' }} 
+                                                    
+                                                    
+                                                    </a>
                                                 </td>
                                                 <td>
                                                     {{ $datum->sub_seq_case_title_name }}

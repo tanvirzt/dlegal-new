@@ -18,6 +18,7 @@
                             <li class="breadcrumb-item active">Dashboard v1</li>
                         </ol>
                     </div><!-- /.col -->
+                    
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
@@ -30,6 +31,7 @@
                 <h3 class="" id="heading">Litigation Cause List <span style="color: red;font-size:15px;">{{ !empty($is_searched) ? '(Showing Searched Item)' : '' }}</span></h3>
                 <div class="row">
                     <div class="col-md-10">
+                        
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
@@ -198,8 +200,21 @@
                                             <div class="float-right">
 
                                                 @if (!empty($is_searched))
+                                                        <button type="button" class="btn btn-info btn-sm float-right"
+                                                                data-toggle="modal" data-target="#modal-lg-status-of-the-case"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Update Status of the Case"><i class="fas fa-mail"></i> Email
+                                                        </button>
+
+
+                                                        {{-- <a href="{{ route('send-email-pdf',['param1'=>$from_date,'param2'=>$to_date]) }}"
+                                                            class="btn btn-info"><i class="fas fa-print"></i> Send Mail </a>     --}}
+
+
+                                                    {{-- <a href="{{ route('litigation-calendar-list-print-preview-search',['param1'=>$from_date,'param2'=>$to_date]) }}" target="_blank"
+                                                        class="btn btn-info"><i class="fas fa-print"></i> Print </a> --}}
                                                     <a href="{{ route('litigation-calendar-list-print-preview-search',['param1'=>$from_date,'param2'=>$to_date]) }}" target="_blank"
-                                                    class="btn btn-info"><i class="fas fa-print"></i> Print </a>
+                                                        class="btn btn-info"><i class="fas fa-print"></i> Print </a>
                                                 @endif
 
                                                 <button type="submit" id="submit" class="btn btn-primary text-uppercase"><i
@@ -209,6 +224,66 @@
 
                                         </form>
 
+                                        <div class="modal fade" id="modal-lg-status-of-the-case">
+                                            <div class="modal-dialog modal-md">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h3 class="card-title"> Send Cause List </h3>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{ route('send-cause-list-pdf-to-mail') }}" method="post">
+                                                        @csrf
+                                                        <div class="card-body">
+                                                            <div class="form-group row">
+                                                                <label for="updated_case_status_id" class="col-sm-4 col-form-label"> Own </label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="hidden" name="param1" class="form-control" value="{{ !empty($is_searched) ? $from_date : '' }}">
+                                                                    <input type="hidden" name="param2" class="form-control" value="{{ !empty($is_searched) ? $to_date : '' }}">
+                                                                    <input type="checkbox" name="own_mail" class="form-control">
+                                                                    @error('updated_case_status_id')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label for="updated_case_status_id" class="col-sm-4 col-form-label"> Others </label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="checkbox" id="send_mail" class="form-control">
+                                                                    @error('updated_case_status_id')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row" id="mail" style="display: none;">
+                                                                <label for="updated_case_status_id" class="col-sm-4 col-form-label"> Email </label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="text" name="others_email" class="form-control">
+                                                                    @error('updated_case_status_id')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                    
+                                    
+                                                            <div class="modal-footer justify-content-between">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                <div class="float-right">
+                                                                    <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-paper-plane"></i> Send
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                    
+                                                        </div>
+                                                    </form>
+                                    
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -217,24 +292,31 @@
                     <div class="col-md-2">
                         <form method="POST" action="{{ route('calendar-list-arrow-up') }}" style="display: contents;">
                             <input type="hidden" class="form-control" name="from_date" value="{{ !empty($criminal_cases[0]->next_date) ? date('Y-m-d', strtotime($criminal_cases[0]->next_date)) : '' }}">
-                            <input type="submit" class="btn btn-info" name="arrow_up" value="" style="padding: 4px 12px 4px 12px;">
+                            <input type="submit" class="btn btn-info-cause" name="arrow_up" value="" style="padding: 4px 12px 4px 12px;">
                             
                             <i class="fas fa-angle-left" style="position: relative;
                             right: 21px;"></i>
                         </form>
                         <form action="{{ route('calendar-list-arrow-down') }}" method="post" style="display: contents;">
                             <input type="hidden" class="form-control" name="to_date" value="{{ !empty($criminal_cases[0]->next_date) ? date('Y-m-d', strtotime($criminal_cases[0]->next_date)) : '' }}">
-                            <input type="submit" class="btn btn-info" name="arrow_down" value="" style="padding: 4px 12px 4px 12px;">
+                            <input type="submit" class="btn btn-info-cause" name="arrow_down" value="" style="padding: 4px 12px 4px 12px;">
                             <i class="fas fa-angle-right" style="position: relative;
                             right: 21px;"></i>
                         </form>
-                        <a class="btn btn-info " href="{{ route('litigation-calender-list') }}"> Todays Case </a>
+                        <a class="btn btn-info-cause" href="{{ route('litigation-calender-list') }}"> Todays Case </a>
 
-                        <a class="btn btn-info mt-1 lit_calender" href="{{ route('litigation-calender-short') }}"> Litigation Calendar </a>
+                        <a class="btn btn-info-cause mt-1 lit_calender" href="{{ route('litigation-calender-short') }}"> Litigation Calendar </a>
 
                     </div>
                 </div>
-
+                @if(Session::has('success'))
+                <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                    {{Session::get('success')}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
                 @if (!empty($criminal_cases))
 
                 @foreach($criminal_cases as $key=>$datum)
@@ -471,8 +553,8 @@
                                                 $case_infos_sub_seq_case_no = explode(', ', $value->case_infos_sub_seq_case_no);
                                                 // dd(count($case_infos_sub_seq_case_no));
                                             @endphp
-                                            @if (count($case_infos_sub_seq_case_no)>1)
-                                                {{ last($case_infos_sub_seq_case_no) }}
+                                            @if (!empty($value->case_infos_sub_seq_case_no))
+                                                {{ $value->sub_seq_case_title_name }} {{ last($case_infos_sub_seq_case_no) }}
 
                                                 @php
                                                 if (!empty($value->case_infos_sub_seq_case_no) && !empty($value->case_infos_sub_seq_case_year)) {

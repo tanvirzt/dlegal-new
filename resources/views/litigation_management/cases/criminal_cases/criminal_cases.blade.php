@@ -712,6 +712,13 @@
                                                                     title="Details"><i class="fas fa-eye"></i></button>
                                                             </a>
                                                         @endcan
+                                                        @can('criminal-cases-edit')
+                                                            <a href="{{ route('view-criminal-cases', $datum->id) }}#section1">
+                                                                <button class="btn btn-outline-primary btn-sm" type="button"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Details"><i class="fas fa-signal"></i></button>
+                                                            </a>
+                                                        @endcan
                                                         {{-- @can('criminal-cases-add-billing')
                                                             <a href="{{ route('add-criminal-cases-billling', $datum->id) }}">
                                                                 <button type="button" class="btn btn-outline-warning btn-sm"
@@ -720,13 +727,13 @@
                                                                         class="fas fa-money-bill"></i></button>
                                                             </a>
                                                         @endcan --}}
-                                                        @can('criminal-cases-edit')
+                                                        {{-- @can('criminal-cases-edit')
                                                             <a href="{{ route('edit-criminal-cases', $datum->id) }}">
                                                                 <button type="button" class="btn btn-outline-info btn-sm"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Edit"><i class="fas fa-edit"></i></button>
                                                             </a>
-                                                        @endcan
+                                                        @endcan --}}
                                                         @can('criminal-cases-delete')
                                                             {{-- <a href="{{ route('delete-criminal-cases-latest', $datum->id) }}">
                                                                 <button type="button" class="btn btn-outline-danger btn-sm"

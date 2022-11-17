@@ -796,6 +796,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
     Route::get('litigation/report/result', [ReportController::class, 'litigation_report_result'])->name('litigation.report.result');
 
+    // Route::post('send-cause-list-pdf-to-mail', [LitigationCalenderController::class, 'send_cause_list_pdf_to_mail'])->name('send-cause-list-pdf-to-mail');
+
+    Route::post('send-cause-list-pdf-to-mail', [LitigationCalenderController::class, 'send_cause_list_pdf_to_mail'])->name('send-cause-list-pdf-to-mail');
+
     ///////////////////// Report Managenent End /////////////////////
 
 

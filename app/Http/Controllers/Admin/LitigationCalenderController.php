@@ -20,6 +20,9 @@ use App\Models\SetupNextDateReason;
 use App\Models\SetupClientCategory;
 use App\Models\SetupGroup;
 use Session;
+use PDF;
+use Mail;
+use Illuminate\Support\Facades\Auth;
 
 class LitigationCalenderController extends Controller
 {
@@ -153,6 +156,9 @@ class LitigationCalenderController extends Controller
     public function search_litigation_calendar(Request $request)
     {
         // dd($request->all());
+
+        $request_data = $request->all();
+
         $is_searched = 'Searched';
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $client_name = SetupClientName::where('delete_status', 0)->get();
@@ -177,7 +183,7 @@ class LitigationCalenderController extends Controller
                 ->where('next_date', '<=', $to_date)->get(['next_date']);
 
 
-            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+            // return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         } else if ($request->from_date != "dd/mm/yyyy") {
 
             $from_date_explode = explode('/', $request->from_date);
@@ -198,7 +204,7 @@ class LitigationCalenderController extends Controller
                 ->get(['next_date']);
             $to_date = $from_date;
 
-            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+            // return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         } else if ($request->to_date != "dd/mm/yyyy") {
 
             $to_date_explode = explode('/', $request->to_date);
@@ -219,7 +225,7 @@ class LitigationCalenderController extends Controller
                 ->get(['next_date']);
             $from_date = $to_date;
 
-            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+            // return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         } else if ($request->lawyer_advocate_id) {
 
             $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
@@ -232,7 +238,7 @@ class LitigationCalenderController extends Controller
             $from_date = date('Y-m-d');
             $to_date = date('Y-m-d');
             // dd($criminal_cases);
-            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+            // return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         } else if ($request->client_id) {
 
             $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
@@ -246,7 +252,7 @@ class LitigationCalenderController extends Controller
             $from_date = date('Y-m-d');
             $to_date = date('Y-m-d');
 
-            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+            // return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         } else if ($request->client_name_write) {
 
             $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
@@ -260,7 +266,7 @@ class LitigationCalenderController extends Controller
             $from_date = date('Y-m-d');
             $to_date = date('Y-m-d');
 
-            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+            // return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         } else if ($request->matter_id) {
 
             $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
@@ -273,7 +279,7 @@ class LitigationCalenderController extends Controller
             $from_date = date('Y-m-d');
             $to_date = date('Y-m-d');
             // dd($criminal_cases);
-            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+            // return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         } else if ($request->matter_write) {
 
             $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
@@ -286,7 +292,7 @@ class LitigationCalenderController extends Controller
             $from_date = date('Y-m-d');
             $to_date = date('Y-m-d');
 
-            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+            // return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         } else if ($request->todays_case) {
 
             $from_date = date('Y-m-d');
@@ -301,7 +307,7 @@ class LitigationCalenderController extends Controller
                 ->get(['next_date']);
             $to_date = $from_date;
 
-            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+            // return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         }else if ($request->tomorrows_case) {
             
             // $curr_date = date('Y-m-d');
@@ -319,15 +325,16 @@ class LitigationCalenderController extends Controller
                 ->get(['next_date']);
             $to_date = $from_date;
 
-            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+            // return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         } else {
             $from_date = date('Y-m-d');
             $to_date = date('Y-m-d');
 
             $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
             $criminal_cases = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where(['delete_status' => 0])->where('next_date', '>=', date('Y-m-d'))->get(['next_date']);
-            return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         }
+        return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+
     }
 
     public function search_case_pages()
@@ -777,4 +784,54 @@ class LitigationCalenderController extends Controller
         $is_searched = 'Searched';
         return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
     }
+
+    // public function send_cause_list_pdf_to_mail(Request $request)
+    // {
+    //     dd($request->all());
+    // }
+
+    public function send_cause_list_pdf_to_mail(Request $request)
+    {
+
+        // return $request->all();
+        $param1 = $request->param1;
+        $param2 = $request->param2;
+        // dd($param1);
+        $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
+        // $criminal_cases = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where(['delete_status' => 0])->where('next_date', '>=', date('Y-m-d'))->get(['next_date']);
+        // dd($criminal_cases);
+
+        $criminal_cases = DB::table('criminal_cases')
+            ->distinct()->orderBy('next_date', 'asc')
+            ->where(['delete_status' => 0])
+            // ->where('next_date','>=',date('Y-m-d'))
+            ->where('next_date', '>=', $param1)
+            ->where('next_date', '<=', $param2)->get(['next_date']);
+
+        if ($request->others_email) {
+            $data["email"] = $request->others_email;
+        }else{
+            $data["email"] = Auth::user()->email;
+        }
+
+        $data["title"] = "From ItSolutionStuff.com";
+        $data["body"] = "This is Demo";
+
+        $data["criminal_cases_count"] = $criminal_cases_count;
+        $data["criminal_cases"] = $criminal_cases;
+  
+
+        $pdf = PDF::loadView('emails.myTestMail', $data);
+  
+        Mail::send('emails.myTestMail', $data, function($message)use($data, $pdf) {
+            $message->to($data["email"], "imran.zaimahtech@gmail.com")
+                    ->subject($data["title"])
+                    ->attachData($pdf->output(), "text.pdf");
+        });
+
+        session()->flash('success','Cause List sends to the user successfully.');
+        return redirect()->back();
+    
+    }
+
 }
