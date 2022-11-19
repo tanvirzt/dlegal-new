@@ -137,8 +137,8 @@
 
 
                                 <h3 id="mainMenuBar" class="card-title custom_h3 font-italic text-capitalize font_weight"
-                                    style="color: #FF7034;z-index:99">District Court
-                                    No.
+                                    style="color: #FF7034;z-index:99">Case
+                                    No::
                                     {!! $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . '<span class="text-lowercase" style="font-size: 17px;"> of </span>' . $data->case_infos_case_year: '' !!}@if ($data->sub_seq_case_title_name != null)
                                         ,@endif
                                     {{ $data->sub_seq_case_title_name }}
@@ -181,7 +181,7 @@
                                 <div class="card-tools">
 
 
-                                    <a href="{{ route('criminal-case-print-preview', $data->id) }}" target="_blank"
+                                    <a href="{{ route('criminal-case-print-preview', $data->id) }}" title="Print Case Info" target="_blank"
                                        class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
                                     {{-- <i class="far fa-bell"></i> --}}
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
@@ -201,7 +201,7 @@
                                     <a href="{{ route('edit-criminal-cases', $data->id) }}">
                                         <button class="btn btn-info btn-sm" style="padding: 3px 5px 3px 5px;" data-toggle="tooltip"
                                                 data-placement="top"
-                                                title="Edit"><i class="fas fa-edit"></i></button>
+                                                title="Edit Case Info"><i class="fas fa-edit"></i></button>
                                     </a>
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                             title="Collapse">
@@ -673,7 +673,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>Case Category</td>
-                                                            <td>{{ $data->case_category }}</td>
+                                                            <td>{{ $data->case_category_id }}</td>
                                                         </tr>
                                                         {{-- <tr>
                                                         <td>Case Subcategory</td>
@@ -1179,15 +1179,15 @@
                                             </div>
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h6 class="text-uppercase text-bold"><u> Letter / Notice / Reply </u></h6>
+                                                    <h6 class="text-uppercase text-bold"><u> Case Events & Incidents </u></h6>
 
 
                                                     <h6 class="text-uppercase text-bold">
                                                         <div class="row">
                                                             <div class="col-md-3"> Date</div>
-                                                            <div class="col-md-3 text-center">Document Name</div>
-                                                            <div class="col-md-3 text-center">Particulars</div>
-                                                            <div class="col-md-2 text-center">Type</div>
+                                                            <div class="col-md-3 text-center">Title</div>
+                                                            <div class="col-md-3 text-center">Description</div>
+                                                            <div class="col-md-2 text-center">Evidence</div>
                                                             <div class="col-md-1">
                                                                 <button type="button"
                                                                         class="btn btn-info btn-sm float-right"
@@ -1267,7 +1267,7 @@
                                                             </div>
                                                             <div class="col-md-3 text-center">Date</div>
                                                             <div class="col-md-3 text-center">Note</div>
-                                                            <div class="col-md-2 text-center">Type</div>
+                                                            <div class="col-md-2 text-center">Evidence</div>
                                                             <div class="col-md-1">
                                                                 <button type="button"
                                                                         class="btn btn-info btn-sm float-right"
@@ -1282,7 +1282,7 @@
                                                     <table class="table table-bordered">
                                                         <tbody>
                                                         <tr>
-                                                            <td width="26%">Filing Date</td>
+                                                            <td width="26%">Case Filed</td>
                                                             <td width="26%">
                                                                 {{ $case_steps->case_steps_filing }} </td>
                                                             <td width="28%" class="letters">
@@ -1504,7 +1504,7 @@
                                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                                 data-target="#modal-lg" data-toggle="tooltip" data-placement="top"
                                                 title="Update Status"><i class="fas fa-signal"></i></button>
-                                        <a href="{{ route('case-porceedings-print-preview', $data->id) }}"
+                                        <a href="{{ route('case-porceedings-print-preview', $data->id) }}" title="Print CPL"
                                            target="_blank" class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
 
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -1520,14 +1520,14 @@
                                     <table class="table view_table table-bordered table-striped data_table">
                                         <thead>
                                         <tr>
-                                            <th width="8%">Date</th>
+                                            <th width="8%">Case Date</th>
                                             <th width="10%">Fixed For</th>
                                             <th width="12%">Court Proceeding</th>
                                             <th width="12%">Court Order</th>
                                             <th width="10%">Next Date</th>
                                             <th width="10%">N.D. Fixed For</th>
                                             <th width="10%">Day Note</th>
-                                            <th width="10%">Engaged Advocates</th>
+                                            <th width="10%">Engaged Advocate</th>
                                             <th width="6%">Action</th>
                                             <th width="10%">Update</th>
                                         </tr>
@@ -2329,7 +2329,7 @@
                                         <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
                                                 data-target="#modal-bill" data-toggle="tooltip" data-placement="top"
                                                 title="Bill Entry"><i class="fas fa-money-bill"></i></button>
-                                        <a href="{{ route('billings-log-print-preview', $data->id) }}" target="_blank"
+                                        <a href="{{ route('billings-log-print-preview', $data->id) }}" title="Print Bill Log" target="_blank"
                                            class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
 
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -2453,7 +2453,7 @@
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Switch Log</h3>
                                     <div class="card-tools">
-                                        <a href="{{ route('switch-log-print-preview', $data->id) }}" target="_blank"
+                                        <a href="{{ route('switch-log-print-preview', $data->id) }}" title="Print Switch Log" target="_blank"
                                            class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
@@ -4286,11 +4286,16 @@
                                 <select name="case_category_id" id="case_category_id" class="form-control select2"
                                         action="{{ route('find-case-type') }}">
                                     <option value="">Select</option>
-                                    @foreach ($case_category as $item)
+                                    <option value="Civil" {{ $data->case_category_id == 'Civil' ? 'selected' : '' }}>Civil</option>
+                                    <option value="Criminal" {{ $data->case_category_id == 'Criminal' ? 'selected' : '' }}>Criminal</option>
+
+
+
+                                    {{-- @foreach ($case_category as $item)
                                         <option value="{{ $item->id }}"
                                             {{ $data->case_category_id == $item->id ? 'selected' : '' }}>
                                             {{ $item->case_category }}</option>
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
                                 @error('case_category_id')
                                 <span class="text-danger">{{ $message }}</span>
@@ -6262,7 +6267,7 @@
     </div>
 
     <div class="modal fade" id="modal-lg-letter-notice">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="card-title"> Edit District Court </h3>
@@ -6273,13 +6278,13 @@
                 <form action="{{ route('update-criminal-cases', $data->id) }}" method="post">
                     @csrf
                     <div class="card-body">
-                        <h6 class="text-uppercase text-bold"><u> Letter / Notice / Reply </u></h6>
+                        <h6 class="text-uppercase text-bold"><u> Case Events & Incidents </u></h6>
                         <h6 class="text-uppercase text-bold">
                             <div class="row">
                                 <div class="col-md-2"> Date</div>
-                                <div class="col-md-4 text-center ml-3">Document Name</div>
-                                <div class="col-md-3 text-center">Particulars</div>
-                                <div class="col-md-2">Type</div>
+                                <div class="col-md-4 text-center ml-3">Title</div>
+                                <div class="col-md-3 text-center">Description</div>
+                                <div class="col-md-2">Evidence</div>
                             </div>
                         </h6>
 

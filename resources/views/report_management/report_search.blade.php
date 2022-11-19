@@ -40,7 +40,13 @@
                                     <h3 class="card-title"> Litigation :: Summary & Report
                                         
                                          @if (!empty($data))
-                                             <span style="color: red;font-size:15px;">(Showing Searched Item)</span>
+                                             <span style="color: red;font-size:15px;">(Showing:
+                                                {{ $request_data['report_type'] == 'not_updated' ? 'NOT UPD Report' : '' }}    
+                                                
+                                                )
+                                                                                        
+                                            
+                                            </span>
                                          @endif
                                         
                                         </h3>

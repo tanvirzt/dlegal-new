@@ -589,7 +589,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::post('update-criminal-cases-status/{id}',[CriminalCasesController::class, 'update_criminal_cases_status'])->name('update-criminal-cases-status');
     Route::post('update-criminal-cases-activity/{id}',[CriminalCasesController::class, 'update_criminal_cases_activity'])->name('update-criminal-cases-activity');
     Route::post('search-criminal-cases',[CriminalCasesController::class, 'search_criminal_cases'])->name('search-criminal-cases');
-    Route::post('advanced-search-criminal-cases',[CriminalCasesController::class, 'advanced_search_criminal_cases'])->name('advanced-search-criminal-cases');
+    Route::get('advanced-search-criminal-cases',[CriminalCasesController::class, 'advanced_search_criminal_cases'])->name('advanced-search-criminal-cases');
     Route::post('delete-criminal-cases-status/{id}',[CriminalCasesController::class, 'delete_criminal_cases_status'])->name('delete-criminal-cases-status');
     Route::get('edit_criminal_cases_status/{id}',[CriminalCasesController::class, 'edit_criminal_cases_status'])->name('edit-criminal-cases-status');
     Route::post('update-criminal-cases-status-logs/{id}',[CriminalCasesController::class, 'update_criminal_cases_status_logs'])->name('update-criminal-cases-status-logs');
@@ -746,7 +746,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('search-litigation-calendar',[LitigationCalenderController::class, 'search_litigation_calendar'])->name('search-litigation-calendar');
     Route::post('search-litigation-calendar-short',[LitigationCalenderController::class, 'search_litigation_calendar_short'])->name('search-litigation-calendar-short');
     Route::get('search-case-pages',[LitigationCalenderController::class, 'search_case_pages'])->name('search-case-pages');
-    Route::post('search-cases',[LitigationCalenderController::class, 'search_cases'])->name('search-cases');
+    Route::get('search-cases',[LitigationCalenderController::class, 'search_cases'])->name('search-cases');
     Route::post('calendar-short-next-previous', [LitigationCalenderController::class, 'calendar_short_next_previous'])->name('calendar-short-next-previous');
     Route::post('calendar-short-next', [LitigationCalenderController::class, 'calendar_short_next'])->name('calendar-short-next');
     Route::post('calendar-list-arrow-up', [LitigationCalenderController::class, 'calendar_list_arrow_up'])->name('calendar-list-arrow-up');
@@ -802,6 +802,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
     ///////////////////// Report Managenent End /////////////////////
 
+
+    // Criminal cases latest list
+
+    Route::get('criminal-cases-latest',[CriminalCasesController::class, 'criminal_cases_latest'])->name('criminal-cases-latest');
+    Route::get('civil-cases-latest',[CriminalCasesController::class, 'civil_cases_latest'])->name('civil-cases-latest');
+
+    // criminal cases latest list
 
 });
 

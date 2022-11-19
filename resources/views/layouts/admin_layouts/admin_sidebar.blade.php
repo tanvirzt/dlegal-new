@@ -3,7 +3,6 @@
 
     <a href="#" class="brand-link">
         <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="AdminLTE Logo" class="brand-image" style="opacity:1">
-        {{--        <h2 class="font-weight-light text-center">dLegal</h2> --}}
     </a>
 
     <!-- Sidebar -->

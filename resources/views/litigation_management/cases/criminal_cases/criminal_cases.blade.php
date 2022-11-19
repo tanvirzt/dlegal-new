@@ -6,13 +6,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> District Court </h1>
+                        <h1> District Court Cases </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> District Court</li>
+                            <li class="breadcrumb-item active"> District Court Cases</li>
                         </ol>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> District Court :: Search </h3>
+                                    <h3 class="card-title"> District Court Cases :: Search </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -59,7 +59,7 @@
                                     <div class="card-body">
 
 
-                                        <form method="post" action="{{ route('advanced-search-criminal-cases') }}">
+                                        <form method="get" action="{{ route('advanced-search-criminal-cases') }}">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -242,11 +242,13 @@
                                                             <select name="case_category_id" id="case_category_id"
                                                                 class="form-control select2">
                                                                 <option value="">Select</option>
-                                                                @foreach ($case_category as $item)
+                                                                <option value="Civil">Civil</option>
+                                                                <option value="Criminal">Criminal</option>
+                                                                {{-- @foreach ($case_category as $item)
                                                                     <option value="{{ $item->id }}"
                                                                         {{ old('case_category_id') == $item->id ? 'selected' : '' }}>
                                                                         {{ $item->case_category }}</option>
-                                                                @endforeach
+                                                                @endforeach --}}
                                                             </select>
                                                             @error('case_category_id')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -479,28 +481,65 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="row ">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-5">
                                             <h3 class="card-title"> List <span
-                                                    style="color: red;font-size:15px;">{{ !empty($is_search) ? '(Showing Searched Item)' : '' }}</span>
+                                                    style="color: red;font-size:15px;">
+                                                    {{-- {{ !empty($is_search) ? '(Showing Searched Item)' : '' }} --}}
+                                                
+                                                    @if (!empty($is_search))
+                                                        
+                                                        (Showing Searched Item : 
+                                                        
+                                                        {{ $request_data['created_case_id'] != null ? 'Case ID' : '' }}
+                                                        {{ $request_data['case_infos_case_no'] != null ? 'Case No' : '' }}
+                                                        {{ $request_data['case_infos_case_year'] != null ? 'Year' : '' }}
+                                                        {{ $request_data['name_of_the_court_id'] != null ? 'Name of the Court' : '' }}
+                                                        {{ $request_data['case_infos_complainant_informant_name'] != null ? '1st Party/Complainant/Petitioner/Plaintiff' : '' }}
+                                                        {{ $request_data['case_infos_accused_name'] != null ? '2nd Party/Accused/Opposition/Defendent' : '' }}
+                                                        {{ $request_data['client_id'] != null ? 'Client/Party' : '' }}
+                                                        {{ $request_data['client_name_write'] != null ? 'Client/Party' : '' }}
+                                                        {{ $request_data['client_category_id'] != null ? 'Client/Party Category' : '' }}
+                                                        {{ $request_data['client_subcategory_id'] != null ? 'Client/Party Subcategory' : '' }}
+                                                        {{ $request_data['client_group_id'] != null ? 'Client Group Name' : '' }}
+                                                        {{ $request_data['client_group_write'] != null ? 'Client Group Name' : '' }}
+                                                        {{ $request_data['case_category_id'] != null ? 'Case Category ' : '' }}
+                                                        {{ $request_data['case_type_id'] != null ? 'Case Type' : '' }}
+                                                        {{ $request_data['matter_id'] != null ? 'Case Matter' : '' }}
+                                                        {{ $request_data['client_division_id'] != null ? 'Division/Zone' : '' }}
+                                                        {{ $request_data['client_divisoin_write'] != null ? 'Division/Zone' : '' }}
+                                                        {{ $request_data['client_district_id'] != null ? 'District/Area' : '' }}
+                                                        {{ $request_data['client_district_write'] != null ? 'District/Area' : '' }}
+                                                        {{ $request_data['client_thana_id'] != null ? 'Thana/Branch' : '' }}
+                                                        {{ $request_data['client_thana_write'] != null ? 'Thana/Branch' : '' }}
+                                                        {{ $request_data['case_status_id'] != null ? 'Status of the Case' : '' }}
+                                                        {{ $request_data['from_next_date'] != null ? 'Next Date From' : '' }}
+                                                        {{ $request_data['to_next_date'] != null ? 'Next Date To' : '' }}
+                                                        {{ $request_data['next_date_fixed_id'] != null ? 'Next Date Fixed For' : '' }}
+                                                        {{ $request_data['lawyer_advocate_id'] != null ? 'Panel Lawyer' : '' }})
+                                                    @else
+
+
+                                                    @endif
+                                                
+                                                
+                                                </span>
                                             </h3>
                                         </div>
-                                        <div class="col-sm-2 text-right">
-                                            
-                                        </div>
                                         <div class="col-sm-2">
-                                            
+                                            <a href="{{ route('civil-cases-latest') }}" class="btn civil_btn" ><span>Civil</span></a>   
+                                            <a href="{{ route('criminal-cases-latest') }}" class="btn civil_btn" style="margin-left: 6px;" ><span>Criminal</span></a>
+
                                         </div>
-                                        <div class="col-sm-2">
-                                            
-                                        </div>
-                                        <div class="col-sm-3">
+                                        {{-- <div class="col-sm-1">
+                                        </div> --}}
+                                        <div class="col-sm-5">
                                             <div class="float-right">
                                                 @can('criminal-cases-create')
                                                     <a href="{{ route('add-criminal-cases') }}">
                                                         <button type="button"
                                                             class="btn btn-sm
                                             btn-success add_btn"><i
-                                                                class="fas fa-plus"></i> Add District Court
+                                                                class="fas fa-plus"></i> Add District Court Case
                                                         </button>
                                                     </a>
                                                 @endcan
@@ -519,12 +558,12 @@
                                                 <th class="text-center"> Next Date</th>
                                                 <th class="text-center"> Fixed for</th>
                                                 <th class="text-center"> Case No.</th>
-                                                <th class="text-center"> S.Case No</th>
+                                                <th class="text-center"> Sub. Case </th>
                                                 <th class="text-center"> Court </th>
-                                                <th class="text-center"> 1st Party District</th>
+                                                <th class="text-center"> District (P-1)</th>
                                                 <th class="text-center"> 1st Party</th>
                                                 <th class="text-center"> 2nd Party</th>
-                                                <th class="text-center"> 2nd Party District</th>
+                                                <th class="text-center"> District (P-2)</th>
                                                 <th class="text-center"> Matter</th>
                                                 <th class="text-center"> Lawyer</th>
                                                 <th class="text-center">Status</th>
@@ -707,7 +746,7 @@
                                                     <td>
                                                         @can('criminal-cases-edit')
                                                             <a href="{{ route('view-criminal-cases', $datum->id) }}">
-                                                                <button class="btn btn-outline-primary btn-sm" type="button"
+                                                                <button class="btn btn-outline-info btn-sm" type="button"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Details"><i class="fas fa-eye"></i></button>
                                                             </a>
@@ -716,7 +755,7 @@
                                                             <a href="{{ route('view-criminal-cases', $datum->id) }}#section1">
                                                                 <button class="btn btn-outline-primary btn-sm" type="button"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Details"><i class="fas fa-signal"></i></button>
+                                                                    title="Proceedings"><i class="fas fa-signal"></i></button>
                                                             </a>
                                                         @endcan
                                                         {{-- @can('criminal-cases-add-billing')

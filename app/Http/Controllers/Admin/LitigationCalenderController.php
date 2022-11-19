@@ -333,7 +333,7 @@ class LitigationCalenderController extends Controller
             $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
             $criminal_cases = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where(['delete_status' => 0])->where('next_date', '>=', date('Y-m-d'))->get(['next_date']);
         }
-        return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+        return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date', 'request_data'));
 
     }
 
@@ -360,6 +360,8 @@ class LitigationCalenderController extends Controller
 
     public function search_cases(Request $request)
     {
+        $request_data = $request->all();
+
         //    dd($request->all());
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
@@ -524,7 +526,7 @@ class LitigationCalenderController extends Controller
 
         $is_search = 'Searched';
         // dd($data);
-        return view('litigation_management.litigation_search.cases', compact('group_name', 'client_category', 'is_search', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter', 'client', 'client_name'));
+        return view('litigation_management.litigation_search.cases', compact('group_name', 'client_category', 'is_search', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter', 'client', 'client_name', 'request_data'));
     }
 
     public function search_litigation_calendar_short(Request $request)

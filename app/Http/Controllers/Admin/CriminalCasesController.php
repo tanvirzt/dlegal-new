@@ -563,8 +563,9 @@ class CriminalCasesController extends Controller
 
         DB::commit();
 
-        session()->flash('success', 'Criminal Cases Added Successfully');
-        return redirect()->route('criminal-cases');
+        session()->flash('success', 'District Court Added Successfully.');
+
+        return redirect()->route('criminal-cases-latest');
 
     }
 
@@ -3109,6 +3110,9 @@ class CriminalCasesController extends Controller
     public function advanced_search_criminal_cases(Request $request)
     {
         //    dd($request->all());
+
+        $request_data = $request->all();
+
         $user = User::all();
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
@@ -3155,7 +3159,7 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
             ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id');
 
-        switch ($request->isMethod('post')) {
+        switch ($request->isMethod('get')) {
             case $request->created_case_id:
                 $query2 = $query->where('criminal_cases.created_case_id', 'LIKE', "%{$request->created_case_id}%");
                 break;
@@ -3267,7 +3271,7 @@ class CriminalCasesController extends Controller
         $is_search = 'Searched';
 
 // dd($data);
-        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'is_search', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'is_search', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'complainant', 'matter', 'request_data'));
     }
 
     public function update_criminal_cases_status_column(Request $request, $id)
@@ -3446,6 +3450,134 @@ class CriminalCasesController extends Controller
             return redirect()->back();
         }
 
+    }
+
+    public function civil_cases_latest()
+    {
+        //   $data = CriminalCase::all();
+// dd($data);
+        $user = User::all();
+        $division = DB::table("setup_divisions")->get();
+        $case_types = SetupCaseTypes::where('delete_status', 0)->get();
+        $court = SetupCourt::where(['case_class_id' => 'Criminal', 'delete_status' => 0])->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->get();
+        $complainant = SetupComplainant::where('delete_status', 0)->orderBy('complainant_name', 'asc')->get();
+        $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
+        $client_name = SetupClientName::where('delete_status', 0)->get();
+        $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
+        $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
+        $client_category = SetupClientCategory::where('delete_status', 0)->orderBy('client_category_name', 'asc')->get();
+        $group_name = SetupGroup::get();
+
+        $query = DB::table('criminal_cases')
+            ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', 'setup_next_date_reasons.id')
+            ->leftJoin('setup_case_statuses', 'criminal_cases.case_status_id', 'setup_case_statuses.id')
+            ->leftJoin('setup_case_titles', 'criminal_cases.case_infos_case_title_id', 'setup_case_titles.id')
+            ->leftJoin('setup_courts', 'criminal_cases.name_of_the_court_id', '=', 'setup_courts.id')
+            ->leftJoin('setup_districts', 'criminal_cases.client_district_id', '=', 'setup_districts.id')
+            ->leftJoin('setup_districts as accused_district', 'criminal_cases.opposition_district_id', '=', 'accused_district.id')
+            ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
+            ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
+            ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+            ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
+            ->where(['criminal_cases.delete_status' => 0, 'criminal_cases.case_category_id' => 'Civil'])
+            ->orderBy('criminal_cases.created_at', 'desc');
+
+        if (Auth::user()->is_companies_superadmin == '1' || Auth::user()->is_owner_admin == '1') {
+
+            $query2 = $query;
+
+        } else if (Auth::user()->is_companies_admin == '1') {
+
+            $query2 = $query->whereIn('criminal_cases.created_by', companies_all_users());
+
+        } else {
+
+            $query2 = $query->where(['criminal_cases.created_by' => auth_id()]);
+
+        }
+
+        $data = $query2->select('criminal_cases.*',
+            'setup_case_statuses.case_status_name',
+            'setup_case_titles.case_title_name',
+            'setup_next_date_reasons.next_date_reason_name',
+            'setup_courts.court_name',
+            'setup_districts.district_name',
+            'accused_district.district_name as accused_district_name',
+            'setup_case_types.case_types_name',
+            'setup_external_councils.first_name',
+            'setup_external_councils.middle_name',
+            'setup_external_councils.last_name',
+            'case_infos_title.case_title_name as sub_seq_case_title_name',
+            'setup_matters.matter_name')
+            ->get();
+
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter'));
+    }
+
+    public function criminal_cases_latest()
+    {
+        //   $data = CriminalCase::all();
+// dd($data);
+        $user = User::all();
+        $division = DB::table("setup_divisions")->get();
+        $case_types = SetupCaseTypes::where('delete_status', 0)->get();
+        $court = SetupCourt::where(['case_class_id' => 'Criminal', 'delete_status' => 0])->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->get();
+        $complainant = SetupComplainant::where('delete_status', 0)->orderBy('complainant_name', 'asc')->get();
+        $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
+        $client_name = SetupClientName::where('delete_status', 0)->get();
+        $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
+        $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
+        $client_category = SetupClientCategory::where('delete_status', 0)->orderBy('client_category_name', 'asc')->get();
+        $group_name = SetupGroup::get();
+
+        $query = DB::table('criminal_cases')
+            ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', 'setup_next_date_reasons.id')
+            ->leftJoin('setup_case_statuses', 'criminal_cases.case_status_id', 'setup_case_statuses.id')
+            ->leftJoin('setup_case_titles', 'criminal_cases.case_infos_case_title_id', 'setup_case_titles.id')
+            ->leftJoin('setup_courts', 'criminal_cases.name_of_the_court_id', '=', 'setup_courts.id')
+            ->leftJoin('setup_districts', 'criminal_cases.client_district_id', '=', 'setup_districts.id')
+            ->leftJoin('setup_districts as accused_district', 'criminal_cases.opposition_district_id', '=', 'accused_district.id')
+            ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
+            ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
+            ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+            ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
+            ->where(['criminal_cases.delete_status' => 0, 'criminal_cases.case_category_id' => 'Criminal'])
+            ->orderBy('criminal_cases.created_at', 'desc');
+
+        if (Auth::user()->is_companies_superadmin == '1' || Auth::user()->is_owner_admin == '1') {
+
+            $query2 = $query;
+
+        } else if (Auth::user()->is_companies_admin == '1') {
+
+            $query2 = $query->whereIn('criminal_cases.created_by', companies_all_users());
+
+        } else {
+
+            $query2 = $query->where(['criminal_cases.created_by' => auth_id()]);
+
+        }
+
+        $data = $query2->select('criminal_cases.*',
+            'setup_case_statuses.case_status_name',
+            'setup_case_titles.case_title_name',
+            'setup_next_date_reasons.next_date_reason_name',
+            'setup_courts.court_name',
+            'setup_districts.district_name',
+            'accused_district.district_name as accused_district_name',
+            'setup_case_types.case_types_name',
+            'setup_external_councils.first_name',
+            'setup_external_councils.middle_name',
+            'setup_external_councils.last_name',
+            'case_infos_title.case_title_name as sub_seq_case_title_name',
+            'setup_matters.matter_name')
+            ->get();
+
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter'));
     }
 
 }

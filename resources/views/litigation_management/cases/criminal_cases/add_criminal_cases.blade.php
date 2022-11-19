@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">District Court</h1>
+                        <h1 class="m-0 text-dark">District Court Cases</h1>
 
                     </div><!-- /.col -->
 
@@ -40,7 +40,7 @@
                     <div class="card">
 
                         <div class="card-header">
-                            <h3 class="card-title"> Add District Court </h3>
+                            <h3 class="card-title"> Add District Court Case </h3>
                         </div>
 
                         <div class="card-body">
@@ -1313,12 +1313,16 @@
                                                     <div class="col-sm-8">
                                                         <select name="case_category_id" id="case_category_id"
                                                                 class="form-control select2"
-                                                                action="{{ route('find-case-type') }}">
+                                                                {{-- action="{{ route('find-case-type') }}" --}}
+
+                                                                >
                                                             <option value="">Select</option>
-                                                            @foreach($case_category as $item)
+                                                            <option value="Civil">Civil</option>
+                                                            <option value="Criminal">Criminal</option>
+                                                            {{-- @foreach($case_category as $item)
                                                                 <option
                                                                     value="{{ $item->id }}" {{(old('case_category_id') == $item->id ? 'selected':'')}}>{{ $item->case_category }}</option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                         @error('case_category_id')<span
                                                             class="text-danger">{{$message}}</span>@enderror
@@ -2017,7 +2021,7 @@
 
                                         <div class="card">
                                             <div class="card-body">
-                                                <h6 class="text-uppercase text-bold"><u> Letter / Notice / Reply </u></h6>
+                                                <h6 class="text-uppercase text-bold"><u> Case Events & Incidents </u></h6>
                                                 <h6 class="text-uppercase text-bold">
                                                     <div class="row">
                                                         <div class="col-md-2"> Date </div>

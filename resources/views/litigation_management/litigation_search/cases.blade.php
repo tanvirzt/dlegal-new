@@ -55,7 +55,7 @@
                                     <div class="card-body">
 
 
-                                        <form method="post" action="{{ route('search-cases') }}">
+                                        <form method="get" action="{{ route('search-cases') }}">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -219,16 +219,12 @@
                                                     <div class="form-group row">
                                                         <label for="case_category_id" class="col-sm-4 col-form-label">Case Category</label>
                                                         <div class="col-sm-8">
-
                                                             <select name="case_category_id" id="case_category_id" class="form-control select2">
                                                                 <option value="">Select</option>
-                                                                @foreach($case_category as $item)
-                                                                    <option
-                                                                        value="{{ $item->id }}" {{(old('case_category_id') == $item->id ? 'selected':'')}}>{{ $item->case_category }}</option>
-                                                                @endforeach
+                                                                <option value="Civil">Civil</option>
+                                                                <option value="Criminal">Criminal</option>
                                                             </select>
                                                             @error('case_category_id')<span class="text-danger">{{$message}}</span>@enderror
-
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -442,13 +438,64 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title"> List <span style="color: red;font-size:15px;">{{ !empty($is_search) ? '(Showing Searched Item)' : '' }}</span> </h3>
+                                <h3 class="card-title"> List <span style="color: red;font-size:15px;">
+                                    
+                                    {{-- {{ !empty($is_search) ? '(Showing Searched Item)' : '' }} --}}
+                                
+                                
+
+
+                                    @if (!empty($is_search))
+                                                        
+                                                        (Showing Searched Item : 
+                                                        
+                                                        {{ $request_data['created_case_id'] != null ? 'Case ID' : '' }}
+                                                        {{ $request_data['case_infos_case_no'] != null ? 'Case No' : '' }}
+                                                        {{ $request_data['case_infos_case_year'] != null ? 'Year' : '' }}
+                                                        {{ $request_data['name_of_the_court_id'] != null ? 'Name of the Court' : '' }}
+                                                        {{ $request_data['case_infos_complainant_informant_name'] != null ? '1st Party/Complainant/Petitioner/Plaintiff' : '' }}
+                                                        {{ $request_data['case_infos_accused_name'] != null ? '2nd Party/Accused/Opposition/Defendent' : '' }}
+                                                        {{ $request_data['client_id'] != null ? 'Client/Party' : '' }}
+                                                        {{ $request_data['client_name_write'] != null ? 'Client/Party' : '' }}
+                                                        {{ $request_data['client_category_id'] != null ? 'Client/Party Category' : '' }}
+                                                        {{ $request_data['client_subcategory_id'] != null ? 'Client/Party Subcategory' : '' }}
+                                                        {{ $request_data['client_group_id'] != null ? 'Client Group Name' : '' }}
+                                                        {{ $request_data['client_group_write'] != null ? 'Client Group Name' : '' }}
+                                                        {{ $request_data['case_category_id'] != null ? 'Case Category ' : '' }}
+                                                        {{ $request_data['case_type_id'] != null ? 'Case Type' : '' }}
+                                                        {{ $request_data['matter_id'] != null ? 'Case Matter' : '' }}
+                                                        {{ $request_data['client_division_id'] != null ? 'Division/Zone' : '' }}
+                                                        {{ $request_data['client_divisoin_write'] != null ? 'Division/Zone' : '' }}
+                                                        {{ $request_data['client_district_id'] != null ? 'District/Area' : '' }}
+                                                        {{ $request_data['client_district_write'] != null ? 'District/Area' : '' }}
+                                                        {{ $request_data['client_thana_id'] != null ? 'Thana/Branch' : '' }}
+                                                        {{ $request_data['client_thana_write'] != null ? 'Thana/Branch' : '' }}
+                                                        {{ $request_data['case_status_id'] != null ? 'Status of the Case' : '' }}
+                                                        {{ $request_data['from_next_date'] != null ? 'Next Date From' : '' }}
+                                                        {{ $request_data['to_next_date'] != null ? 'Next Date To' : '' }}
+                                                        {{ $request_data['next_date_fixed_id'] != null ? 'Next Date Fixed For' : '' }}
+                                                        {{ $request_data['lawyer_advocate_id'] != null ? 'Panel Lawyer' : '' }})
+                                                    @else
+
+
+                                                    @endif
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                </span> </h3>
                                 <div class="float-right">
                                     {{-- <a href="{{ route('add-cases') }}">
                                         <button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add Cases
                                         </button>
                                     </a> --}}
+
+
+
                                 </div>
 
                             </div>

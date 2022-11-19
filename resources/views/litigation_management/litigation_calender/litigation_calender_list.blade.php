@@ -6,10 +6,33 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-3">
-                        <h1 class="m-0 text-dark">Dashboard</h1>
-                    </div>
                     <div class="col-sm-6">
+                        <h1 class="m-0 text-dark" id="heading">Litigation Cause List <span style="color: red;font-size:15px;">
+                            {{ !empty($is_searched) ? '(Showing Searched Item)' : '' }}
+                        
+                        
+                            {{ !empty($request_data['lawyer_advocate_id']) && $request_data['lawyer_advocate_id'] != null ? 'Panel Lawyer' : '' }}
+                            {{ !empty($request_data['client_id']) && $request_data['client_id'] != null ? 'Client Party' : '' }}
+                            {{ !empty($request_data['client_name_write']) && $request_data['client_name_write'] != null ? 'Client Party' : '' }}
+                            {{ !empty($request_data['matter_id']) && $request_data['matter_id'] != null ? 'Case Matter' : '' }}
+                            {{ !empty($request_data['matter_write']) && $request_data['matter_write'] != null ? 'Case Matter' : '' }}
+                            {{ !empty($request_data['from_date']) && $request_data['from_date'] != 'dd/mm/yyyy' && $request_data['from_date'] != null ? 'From Date' : '' }}
+                            {{ !empty($request_data['to_date']) && $request_data['to_date'] != 'dd/mm/yyyy' && $request_data['to_date'] != null ? 'To Date' : '' }}
+                            {{ !empty($request_data['todays_case']) && $request_data['todays_case'] != null ? 'Today' : '' }}
+                            {{ !empty($request_data['tomorrows_case']) && $request_data['tomorrows_case'] != null ? 'Tomorrow' : '' }}
+
+                            {{-- {{ $request_data['today'] != null ? 'Today' : '' }} --}}
+                            {{-- {{ $request_data['to_date'] != null ? 'Tomorrow' : '' }} --}}
+                        
+                        
+                        </span></h1>
+
+
+
+
+                    </div>
+                    <div class="col-sm-3">
+
                     </div>
                     <div class="col-sm-3">
                     </form>
@@ -17,9 +40,8 @@
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">Dashboard v1</li>
                         </ol>
-                    </div><!-- /.col -->
-                    
-                </div><!-- /.row -->
+                    </div>
+                </div>
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
@@ -28,7 +50,19 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-                <h3 class="" id="heading">Litigation Cause List <span style="color: red;font-size:15px;">{{ !empty($is_searched) ? '(Showing Searched Item)' : '' }}</span></h3>
+                {{-- <h3 class="" id="heading">Litigation Cause List <span style="color: red;font-size:15px;">
+                    {{ !empty($is_searched) ? '(Showing Searched Item)' : '' }}
+                
+                
+                    {{ !empty($request_data['lawyer_advocate_id']) && $request_data['lawyer_advocate_id'] != null ? 'Panel Lawyer' : '' }}
+                    {{ !empty($request_data['client_id']) && $request_data['client_id'] != null ? 'Client Party' : '' }}
+                    {{ !empty($request_data['client_name_write']) && $request_data['client_name_write'] != null ? 'Client Party' : '' }}
+                    {{ !empty($request_data['matter_id']) && $request_data['matter_id'] != null ? 'Case Matter' : '' }}
+                    {{ !empty($request_data['matter_write']) && $request_data['matter_write'] != null ? 'Case Matter' : '' }}
+                    {{ !empty($request_data['from_date']) && $request_data['from_date'] != null ? 'From Date' : '' }}
+                    {{ !empty($request_data['to_date']) && $request_data['to_date'] != null ? 'To Date' : '' }}
+                
+                </span></h3> --}}
                 <div class="row">
                     <div class="col-md-10">
                         
@@ -200,11 +234,7 @@
                                             <div class="float-right">
 
                                                 @if (!empty($is_searched))
-                                                        <button type="button" class="btn btn-info btn-sm float-right"
-                                                                data-toggle="modal" data-target="#modal-lg-status-of-the-case"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="Update Status of the Case"><i class="fas fa-mail"></i> Email
-                                                        </button>
+                                                        
 
 
                                                         {{-- <a href="{{ route('send-email-pdf',['param1'=>$from_date,'param2'=>$to_date]) }}"
@@ -215,6 +245,11 @@
                                                         class="btn btn-info"><i class="fas fa-print"></i> Print </a> --}}
                                                     <a href="{{ route('litigation-calendar-list-print-preview-search',['param1'=>$from_date,'param2'=>$to_date]) }}" target="_blank"
                                                         class="btn btn-info"><i class="fas fa-print"></i> Print </a>
+                                                        <button type="button" class="btn btn-info"
+                                                                data-toggle="modal" data-target="#modal-lg-status-of-the-case"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Update Status of the Case"><i class="fas fa-paper-plane"></i> Email
+                                                        </button>
                                                 @endif
 
                                                 <button type="submit" id="submit" class="btn btn-primary text-uppercase"><i
@@ -318,6 +353,11 @@
                 </div>
             @endif
                 @if (!empty($criminal_cases))
+@php
+
+// dd($request_data);
+
+@endphp
 
                 @foreach($criminal_cases as $key=>$datum)
                     @if (!empty($datum->next_date))
@@ -458,14 +498,14 @@
                                     <thead>
                                         <tr>
                                             <th width="2%">SL</th>
-                                            <th width="10%">Court Name</th>
+                                            <th width="10%">Court</th>
                                             <th width="10%">Case No.</th>
                                             <th width="10%">Police Station</th>
                                             {{-- <th width="10%">Previous Case Date</th> --}}
                                             <th width="10%">Fixed For</th>
-                                            <th width="17%">1st Party</th>
-                                            <th width="17%">2nd Party</th>
-                                            <th width="9%">Case Matter</th>
+                                            <th width="28%">Party</th>
+                                            {{-- <th width="17%">2nd Party</th> --}}
+                                            <th width="15%">Matter</th>
                                             <th width="15%">Steps & Note</th>
                                         </tr>
                                     </thead>
@@ -615,8 +655,9 @@
                                                 @endif
 
                                             @endif
-                                        </td>
-                                        <td>
+
+                                            Vs.
+                                            
                                             @php
                                                 $accused = explode(', ',$value->case_infos_accused_name);
                                             @endphp
@@ -631,7 +672,11 @@
                                                     @endforeach
                                                 @endif
                                             @endif
+
                                         </td>
+                                        {{-- <td>
+                                            
+                                        </td> --}}
 
                                         <td>
                                             {{ $value->matter_name }}
