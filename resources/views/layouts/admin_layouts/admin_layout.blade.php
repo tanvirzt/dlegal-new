@@ -244,7 +244,7 @@
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,"lengthChange": true, 
       "buttons": ["colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(1)');
+    }).buttons().container().appendTo('#example1_wrapper #example1_filter');
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,

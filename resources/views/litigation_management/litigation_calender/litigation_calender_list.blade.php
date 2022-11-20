@@ -367,10 +367,10 @@
                                 {{-- <h3 class="card-title"> --}}
                                     <div class="row w-75" style="margin-bottom: -20px;">
                                         <div class="col-md-2 border pt-1 mr-1">
-                                            <span class="info-box-text text-center text-bold h6 text-text-warning" style="color: #FF7034;font-size:15px;">
+                                            <span class="info-box-text text-center text-bold h6 text-text-warning" style="color: #FF7034;font-size:15px;display:block;">
                                                 {{ $calendar_date = date('d-m-Y', strtotime($datum->next_date)) }}
                                             </span>
-                                            <span class="info-box-number text-center mb-0 text-bold h6" style="color: #FF7034;font-size:13px;">
+                                            <span class="info-box-number text-center mb-0 text-bold h6" style="color: #FF7034;font-size:13px;display:block;">
                                                 @php
                                                     $date = $datum->next_date;
                                                     $time = date('l', strtotime($date));
@@ -378,7 +378,7 @@
                                                 @endphp
                                             </span>
                                         </div>
-                                        <div class="col-md-2 border pt-1 mr-1">
+                                        <div class="col-md-1 border pt-1 mr-1">
                                             <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Total</h6>
                                                     <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">
 
@@ -474,8 +474,18 @@
                                             <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Criminal Cases</h6>
                                             <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">{{ $calendar_count }}</p>
                                         </div>
-                                        <div class="col-md-2 border pt-1 mr-1">
+                                        <div class="col-md-1 border pt-1 mr-1">
                                             <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Others</h6>
+                                            <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">0</p>
+                                        </div>
+
+                                        <div class="col-md-1 border pt-1 mr-1">
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Appeal</h6>
+                                            <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">0</p>
+                                        </div>
+
+                                        <div class="col-md-1 border pt-1 mr-1">
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Revision</h6>
                                             <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">0</p>
                                         </div>
 

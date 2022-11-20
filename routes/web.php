@@ -807,7 +807,14 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
     Route::get('criminal-cases-latest',[CriminalCasesController::class, 'criminal_cases_latest'])->name('criminal-cases-latest');
     Route::get('civil-cases-latest',[CriminalCasesController::class, 'civil_cases_latest'])->name('civil-cases-latest');
+    Route::get('documents-list',[CriminalCasesController::class, 'documents_list'])->name('documents-list');
+    Route::get('add-documents-list',[CriminalCasesController::class, 'add_documents_list'])->name('add-documents-list');
+    Route::post('save-document-list',[CriminalCasesController::class, 'save_document_list'])->name('save-document-list');
+    Route::get('edit-documents-list/{id}',[CriminalCasesController::class, 'edit_documents_list'])->name('edit-documents-list');
+    Route::post('update-documents-list/{id}',[CriminalCasesController::class, 'update_documents_list'])->name('update-documents-list');
+    Route::get('delete-documents-list',[CriminalCasesController::class, 'delete_documents_list'])->name('delete-documents-list');
 
+    
     // criminal cases latest list
 
 });

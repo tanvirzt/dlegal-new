@@ -22,10 +22,7 @@
                             $supreme_case = App\Models\SupremeCourtCase::where('delete_status', 0)->count();
                             $high_case = App\Models\HighCourtCase::where('delete_status', 0)->count();
 
-
                             $total_cases = $civil_case + $criminal_case + $quassi_case + $labour_case + $supreme_case + $high_case ;
-
-                        // dd($total_cases);
 
                         @endphp
 
@@ -486,15 +483,14 @@
                     <!-- /.Left col -->
                     <!-- right col (We are only adding the ID to make the widgets sortable)-->
                     <section class="col-lg-5 connectedSortable">
-
+                        <a class="btn btn-outline-info d-block mb-2 btn-doc" href="{{ route('documents-list') }}">Documents Management</a>
                         <!-- Map card -->
-                        <div class="card bg-gradient-primary">
+                        {{-- <div class="card bg-gradient-primary">
                             <div class="card-header border-0">
                                 <h3 class="card-title">
                                     <i class="fas fa-map-marker-alt mr-1"></i>
                                     Documents Management
                                 </h3>
-                                <!-- card tools -->
                                 <div class="card-tools">
                                     <button type="button"
                                             class="btn btn-primary btn-sm daterange"
@@ -510,36 +506,28 @@
                                         <i class="fas fa-minus"></i>
                                     </button>
                                 </div>
-                                <!-- /.card-tools -->
                             </div>
                             <div class="card-body">
                                 <div id="world-map" style="height: 250px; width: 100%;"></div>
                             </div>
-                            <!-- /.card-body-->
                             <div class="card-footer bg-transparent">
                                 <div class="row">
                                     <div class="col-4 text-center">
                                         <div id="sparkline-1"></div>
                                         <div class="text-white">Visitors</div>
                                     </div>
-                                    <!-- ./col -->
                                     <div class="col-4 text-center">
                                         <div id="sparkline-2"></div>
                                         <div class="text-white">Online</div>
                                     </div>
-                                    <!-- ./col -->
                                     <div class="col-4 text-center">
                                         <div id="sparkline-3"></div>
                                         <div class="text-white">Sales</div>
                                     </div>
-                                    <!-- ./col -->
                                 </div>
-                                <!-- /.row -->
                             </div>
-                        </div>
-                        <!-- /.card -->
+                        </div> --}}
 
-                        <!-- solid sales graph -->
                         <div class="card bg-gradient-info">
                             <div class="card-header border-0">
                                 <h3 class="card-title">

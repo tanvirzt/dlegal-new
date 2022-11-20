@@ -809,22 +809,22 @@ a .btn{
 }
 
 
-/* .dropdown-item.active, .dropdown-item:active {
+.dt-buttons .dropdown-item.active, .dt-buttons .dropdown-item:active {
     color: #fff;
     text-decoration: none;
     background-color: #3db2b5;
 }
-.dropdown-toggle {
+.dt-buttons .dropdown-toggle {
     color: #fff;
     background-color: #6c757d8f;
     border: none;
     box-shadow: none;
 }
-.dropdown-toggle:hover {
+.dt-buttons .dropdown-toggle:hover {
     color: #fff;
     background-color: #3db2b5;
     border: none;
-} */
+}
 
 .lit_calender{
     width: 156px;
@@ -838,4 +838,23 @@ a .btn{
 }
 .sidebar-mini{
     margin-top: -25px;
+}
+.civil_btn {
+    color: #fff;
+    background-color: #545b625e !important;
+    border: none;
+    min-width: 65px;
+}
+.civil_active_btn {
+    color: #fff;
+    background-color: #17a2b8;
+    border: none;
+    min-width: 65px;
+}
+#example1_wrapper .flex-wrap {
+    float: none !important;
+    margin-left: 5px;
+}
+.btn-doc{
+    padding-bottom: 0px !important;
 }

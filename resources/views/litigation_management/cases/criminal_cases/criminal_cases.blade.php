@@ -1,6 +1,10 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
-
+@php
+if (empty($case_cat)) {
+    $case_cat = '';
+}
+@endphp
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -526,8 +530,8 @@
                                             </h3>
                                         </div>
                                         <div class="col-sm-2">
-                                            <a href="{{ route('civil-cases-latest') }}" class="btn civil_btn" ><span>Civil</span></a>   
-                                            <a href="{{ route('criminal-cases-latest') }}" class="btn civil_btn" style="margin-left: 6px;" ><span>Criminal</span></a>
+                                            <a href="{{ route('civil-cases-latest') }}" class="btn {{ $case_cat == 'Civil' ? 'civil_active_btn' : 'civil_btn' }}" ><span>Civil</span></a>   
+                                            <a href="{{ route('criminal-cases-latest') }}" class="btn {{ $case_cat == 'Criminal' ? 'civil_active_btn' : 'civil_btn' }}" style="margin-left: 6px;" ><span>Criminal</span></a>
 
                                         </div>
                                         {{-- <div class="col-sm-1">

@@ -2025,8 +2025,8 @@
                                                 <h6 class="text-uppercase text-bold">
                                                     <div class="row">
                                                         <div class="col-md-2"> Date </div>
-                                                        <div class="col-md-4 text-center ml-3">Document Name</div>
-                                                        <div class="col-md-3 text-center">Particulars</div>
+                                                        <div class="col-md-4 text-center ml-3">Title</div>
+                                                        <div class="col-md-3 text-center">Description</div>
                                                         <div class="col-md-2">Type</div>
                                                     </div>
                                                 </h6>

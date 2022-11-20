@@ -1069,6 +1069,14 @@
                                 </a>
                             </li>
                         @endcan
+                        @can('external-document-list')
+                            <li class="nav-item">
+                                <a href="{{ route('documents-list') }}" class="nav-link">
+                                    <i class="ml-left"></i>
+                                    <p>Documents</p>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
             @endcanany

@@ -81,6 +81,7 @@ use App\Models\CriminalCasesSendMessage;
 use App\Mail\SendMessage;
 use App\Models\SetupDocumentsType;
 use App\Models\SetupGroup;
+use App\Models\DocumentLatest;
 use Str;
 
 class CriminalCasesController extends Controller
@@ -113,6 +114,7 @@ class CriminalCasesController extends Controller
         $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
         $client_category = SetupClientCategory::where('delete_status', 0)->orderBy('client_category_name', 'asc')->get();
         $group_name = SetupGroup::get();
+        $case_cat = '';
 
         $query = DB::table('criminal_cases')
             ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', 'setup_next_date_reasons.id')
@@ -157,7 +159,7 @@ class CriminalCasesController extends Controller
             'setup_matters.matter_name')
             ->get();
 
-        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter', 'case_cat'));
     }
 
     public function add_criminal_cases()
@@ -3456,6 +3458,8 @@ class CriminalCasesController extends Controller
     {
         //   $data = CriminalCase::all();
 // dd($data);
+        $case_cat = 'Civil';
+
         $user = User::all();
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
@@ -3513,12 +3517,13 @@ class CriminalCasesController extends Controller
             'setup_matters.matter_name')
             ->get();
 
-        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter', 'case_cat'));
     }
 
     public function criminal_cases_latest()
     {
         //   $data = CriminalCase::all();
+        $case_cat = 'Criminal';
 // dd($data);
         $user = User::all();
         $division = DB::table("setup_divisions")->get();
@@ -3577,9 +3582,76 @@ class CriminalCasesController extends Controller
             'setup_matters.matter_name')
             ->get();
 
-        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter'));
+        return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter', 'case_cat'));
     }
 
+    public function documents_list()
+    {
+        $data = DocumentLatest::get();
+        return view('document_management.documents.documents_list', compact('data'));
+        
+    }
+
+    public function add_documents_list()
+    {
+
+        return view('document_management.documents.add_documents_list');
+    }
+
+    public function save_document_list(Request $request)
+    {
+        // dd($request->all());
+
+        $data = new DocumentLatest();
+        $data->folder_name = $request->folder_name;
+
+        if ($request->hasfile('file_document_name')) {
+            $file = $request->file('file_document_name');
+            $original_name = $file->getClientOriginalName();
+            $file_name = time().rand(1,0).$original_name;
+            $file->move(public_path('files/file_document_name'),$file_name);
+            $data->file_document_name = $file_name;
+         }
+
+        $data->save();
+
+        session()->flash('success', 'Data Saved Successfully.');
+        return redirect()->route('documents-list');
+
+    }
+
+    public function edit_documents_list($id)
+    {
+        $data = DocumentLatest::find($id);
+        return view('document_management.documents.edit_documents_list', compact('data'));
+    }
+
+    public function update_documents_list(Request $request, $id)
+    {
+        $data = DocumentLatest::find($id);
+        $data->folder_name = $request->folder_name;
+
+        if ($request->hasfile('file_document_name')) {
+
+            if($data->file_document_name != null){
+                $file_path = 'files/file_document_name/'.$data->file_document_name;
+                if(file_exists($file_path)){
+                    unlink($file_path);
+                }
+            }
+    
+            $file = $request->file('file_document_name');
+            $original_name = $file->getClientOriginalName();
+            $file_name = time().rand(1,0).$original_name;
+            $file->move(public_path('files/file_document_name'),$file_name);
+            $data->file_document_name = $file_name;
+         }
+
+        $data->save();
+
+        session()->flash('success', 'Data Saved Successfully.');
+        return redirect()->route('documents-list');
+    }
 }
 
 
