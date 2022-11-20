@@ -363,7 +363,7 @@
                     @if (!empty($datum->next_date))
                         <div class="card">
 
-                            <div class="card-header">
+                            <div class="card-header" id="{{ $datum->next_date }}">
                                 {{-- <h3 class="card-title"> --}}
                                     <div class="row w-75" style="margin-bottom: -20px;">
                                         <div class="col-md-2 border pt-1 mr-1">
@@ -504,7 +504,7 @@
 
                             </div>
 
-                            <div class="card-body" style="padding: 0.52rem;">
+                            <div class="card-body" style="padding: 0.52rem;" >
                                 <table class="table table-bordered table-striped calendar_list">
                                     <thead>
                                         <tr>

@@ -63,7 +63,7 @@ class LitigationCalenderController extends Controller
 
             $criminal_events[] = [
                 'title' => "Criminal: $case_count",
-                'url' => "$redirect_url",
+                'url' => "$redirect_url#$case->updated_next_date",
                 'start' => $case->updated_next_date,
                 'display' => 'list-item',
                 'backgroundColor' => 'pink',
