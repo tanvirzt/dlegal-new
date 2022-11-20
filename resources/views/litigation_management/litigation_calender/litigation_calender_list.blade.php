@@ -377,6 +377,7 @@
                                                     echo $time;
                                                 @endphp
                                             </span>
+                                            
                                         </div>
                                         <div class="col-md-1 border pt-1 mr-1">
                                             <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Total</h6>
