@@ -8,18 +8,18 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark" id="heading">Litigation Cause List <span style="color: red;font-size:15px;">
-                            {{ !empty($is_searched) ? '(Showing Searched Item)' : '' }}
+                            {{-- {{ !empty($is_searched) ? '(Showing Searched Item)' : '' }} --}}
                         
                         
-                            {{ !empty($request_data['lawyer_advocate_id']) && $request_data['lawyer_advocate_id'] != null ? 'Panel Lawyer' : '' }}
-                            {{ !empty($request_data['client_id']) && $request_data['client_id'] != null ? 'Client Party' : '' }}
-                            {{ !empty($request_data['client_name_write']) && $request_data['client_name_write'] != null ? 'Client Party' : '' }}
-                            {{ !empty($request_data['matter_id']) && $request_data['matter_id'] != null ? 'Case Matter' : '' }}
-                            {{ !empty($request_data['matter_write']) && $request_data['matter_write'] != null ? 'Case Matter' : '' }}
-                            {{ !empty($request_data['from_date']) && $request_data['from_date'] != 'dd/mm/yyyy' && $request_data['from_date'] != null ? 'From Date' : '' }}
-                            {{ !empty($request_data['to_date']) && $request_data['to_date'] != 'dd/mm/yyyy' && $request_data['to_date'] != null ? 'To Date' : '' }}
-                            {{ !empty($request_data['todays_case']) && $request_data['todays_case'] != null ? 'Today' : '' }}
-                            {{ !empty($request_data['tomorrows_case']) && $request_data['tomorrows_case'] != null ? 'Tomorrow' : '' }}
+                            {{ !empty($request_data['lawyer_advocate_id']) && $request_data['lawyer_advocate_id'] != null ? '(Showing : Panel Lawyer)' : '' }}
+                            {{ !empty($request_data['client_id']) && $request_data['client_id'] != null ? '(Showing : Client Party)' : '' }}
+                            {{ !empty($request_data['client_name_write']) && $request_data['client_name_write'] != null ? '(Showing : Client Party)' : '' }}
+                            {{ !empty($request_data['matter_id']) && $request_data['matter_id'] != null ? '(Showing : Case Matter)' : '' }}
+                            {{ !empty($request_data['matter_write']) && $request_data['matter_write'] != null ? '(Showing : Case Matter)' : '' }}
+                            {{ !empty($request_data['from_date']) && $request_data['from_date'] != 'dd/mm/yyyy' && $request_data['from_date'] != null ? '(Showing : From Date)' : '' }}
+                            {{ !empty($request_data['to_date']) && $request_data['to_date'] != 'dd/mm/yyyy' && $request_data['to_date'] != null ? '(Showing : To Date)' : '' }}
+                            {{ !empty($request_data['todays_case']) && $request_data['todays_case'] != null ? '(Showing : Today)' : '' }}
+                            {{ !empty($request_data['tomorrows_case']) && $request_data['tomorrows_case'] != null ? '(Showing : Tomorrow)' : '' }}
 
                             {{-- {{ $request_data['today'] != null ? 'Today' : '' }} --}}
                             {{-- {{ $request_data['to_date'] != null ? 'Tomorrow' : '' }} --}}
@@ -70,6 +70,7 @@
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
                                     <h3 class="card-title"> Search </h3>
+                                    
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                                 data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -313,11 +314,8 @@
                                     
                                                         </div>
                                                     </form>
-                                    
                                                 </div>
-                                                <!-- /.modal-content -->
                                             </div>
-                                            <!-- /.modal-dialog -->
                                         </div>
                                     </div>
                                 </div>
@@ -338,10 +336,53 @@
                             <i class="fas fa-angle-right" style="position: relative;
                             right: 21px;"></i>
                         </form>
-                        <a class="btn btn-info-cause" href="{{ route('litigation-calender-list') }}"> Todays Case </a>
+                        <a class="btn btn-info-cause" href="{{ route('litigation-calender-list') }}" style="width: 126px;"> Todays Case </a>
 
                         <a class="btn btn-info-cause mt-1 lit_calender" href="{{ route('litigation-calender-short') }}"> Litigation Calendar </a>
+{{-- <input type="checkbox" class="steps"> --}}
 
+
+
+<div class="dropdown float-right">
+    <button class="btn btn-secondary btn-info-cause mt-1 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Columns
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">
+        <input type="checkbox" checked class="sl_no" name="sl_no">            
+        <label for="sl_no" class="sl_no">SL </label>
+      </a>
+      <a class="dropdown-item" href="#">
+        <input type="checkbox" checked class="court" name="court">            
+        <label for="court" class="court"> Court </label>
+      </a>
+      <a class="dropdown-item" href="#">
+        <input type="checkbox" checked class="case_no" name="case_no">            
+        <label for="case_no" class="case_no"> Case No. </label>
+      </a>
+      <a class="dropdown-item" href="#">
+        <input type="checkbox" checked class="police_station" name="police_station">            
+        <label for="police_station" class="police_station"> Police Station </label>
+      </a>
+      <a class="dropdown-item" href="#">
+        <input type="checkbox" checked class="fixed_for" name="fixed_for">            
+        <label for="fixed_for" class="fixed_for"> Fixed For </label>
+      </a>
+
+      <a class="dropdown-item" href="#">
+        <input type="checkbox" checked class="party" name="party">            
+        <label for="party" class="party"> Party </label>
+      </a>
+      <a class="dropdown-item" href="#">
+        <input type="checkbox" checked class="matter" name="matter">            
+        <label for="matter" class="matter"> Matter </label>
+      </a>
+      <a class="dropdown-item" href="#">
+        <input type="checkbox" checked class="steps_notes" name="steps_notes">            
+        <label for="steps_notes" class="steps_notes"> Steps & Notes </label>
+      </a>
+    </div>
+  </div>
                     </div>
                 </div>
                 @if(Session::has('success'))
@@ -359,12 +400,16 @@
 
 @endphp
 
+
+
+
                 @foreach($criminal_cases as $key=>$datum)
                     @if (!empty($datum->next_date))
                         <div class="card">
-
                             <div class="card-header" id="{{ $datum->next_date }}">
-                                {{-- <h3 class="card-title"> --}}
+                                
+                                
+
                                     <div class="row w-75" style="margin-bottom: -20px;">
                                         <div class="col-md-2 border pt-1 mr-1">
                                             <span class="info-box-text text-center text-bold h6 text-text-warning" style="color: #FF7034;font-size:15px;display:block;">
@@ -461,9 +506,6 @@
                                                                             ->where(['criminal_case_status_logs.delete_status' => 0, 'criminal_case_status_logs.updated_next_date' => $datum->next_date])
                                                                             ->get();
 
-
-
-                                                                            // dd($calendar_wise_data);
                                                                 @endphp
                                                         {{ $calendar_count }}</p>
                                         </div>
@@ -475,10 +517,10 @@
                                             <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Criminal Cases</h6>
                                             <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">{{ $calendar_count }}</p>
                                         </div>
-                                        <div class="col-md-1 border pt-1 mr-1">
+                                        {{-- <div class="col-md-1 border pt-1 mr-1">
                                             <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Others</h6>
                                             <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">0</p>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="col-md-1 border pt-1 mr-1">
                                             <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Appeal</h6>
@@ -508,24 +550,24 @@
                                 <table class="table table-bordered table-striped calendar_list">
                                     <thead>
                                         <tr>
-                                            <th width="2%">SL</th>
-                                            <th width="10%">Court</th>
-                                            <th width="10%">Case No.</th>
-                                            <th width="10%">Police Station</th>
+                                            <th class="sl_no_column" width="2%">SL</th>
+                                            <th class="court_column" width="10%">Court</th>
+                                            <th class="case_no_column" width="10%">Case No.</th>
+                                            <th class="police_station_column" width="10%">Police Station</th>
                                             {{-- <th width="10%">Previous Case Date</th> --}}
-                                            <th width="10%">Fixed For</th>
-                                            <th width="28%">Party</th>
+                                            <th class="fixed_for_column" width="10%">Fixed For</th>
+                                            <th class="party_column" width="28%">Party</th>
                                             {{-- <th width="17%">2nd Party</th> --}}
-                                            <th width="15%">Matter</th>
-                                            <th width="15%">Steps & Note</th>
+                                            <th class="matter_column" width="15%">Matter</th>
+                                            <th class="steps_notes_column" width="15%">Steps & Note</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     @if (!empty($calendar_wise_data))
                                     @foreach ($calendar_wise_data as $keys=>$value)
                                     <tr>
-                                        <td>{{ $keys+1 }}</td>
-                                        <td>
+                                        <td class="sl_no_column">{{ $keys+1 }}</td>
+                                        <td class="court_column">
 
                                             @if (!empty($value->case_infos_sub_seq_court_short_id) || !empty($value->sub_seq_court_short_write))
 
@@ -599,7 +641,7 @@
                                             @endif
 
                                         </td>
-                                        <td><a href="{{ route('view-criminal-cases', $value->id) }}"> 
+                                        <td class="case_no_column"><a href="{{ route('view-criminal-cases', $value->id) }}"> 
                                             @php
                                                 $case_infos_sub_seq_case_no = explode(', ', $value->case_infos_sub_seq_case_no);
                                                 // dd(count($case_infos_sub_seq_case_no));
@@ -637,7 +679,7 @@
                                             {{ last($case_infos_sub_seq_case_year) }}
 
                                         </td> --}}
-                                        <td>{{ $value->thana_name }}</td>
+                                        <td class="police_station_column">{{ $value->thana_name }}</td>
 {{-- @php
     $proceedings = \App\Models\CriminalCaseStatusLog::select('updated_next_date')->where(['case_id' => $value->id ,'delete_status' => 0])->groupBy('updated_next_date')->first();
 
@@ -648,9 +690,9 @@
     @endif
 </td> --}}
 
-<td>{{ $value->next_date_reason_name }}</td>
+<td class="fixed_for_column">{{ $value->next_date_reason_name }}</td>
 
-                                        <td>
+                                        <td class="party_column">
                                             @php
                                                 $notes = explode(', ',$value->case_infos_complainant_informant_name);
                                             @endphp
@@ -689,11 +731,11 @@
                                             
                                         </td> --}}
 
-                                        <td>
+                                        <td class="matter_column">
                                             {{ $value->matter_name }}
                                             {{ $value->matter_write }}
                                         </td>
-                                        <td>
+                                        <td class="steps_notes_column">
                                             {{ $value->updated_remarks_or_steps_taken }}
                                         
                                             @php
@@ -714,7 +756,48 @@
                                                 @endif
                                             @endif
                                         </td>
+                                        
                                     </tr>
+
+
+                                    
+
+
+@section('scripts')
+<script>
+    $(".sl_no").on('click', function () {
+        $(".sl_no_column").toggle();
+    });
+    $(".court").on('click', function () {
+        $(".court_column").toggle();
+    });
+    $(".case_no").on('click', function () {
+        $(".case_no_column").toggle();
+    });
+    $(".police_station").on('click', function () {
+        $(".police_station_column").toggle();
+    });
+    $(".fixed_for").on('click', function () {
+        $(".fixed_for_column").toggle();
+    });
+    $(".party").on('click', function () {
+        $(".party_column").toggle();
+    });
+    $(".matter").on('click', function () {
+        $(".matter_column").toggle();
+    });
+    $(".steps_notes").on('click', function () {
+        $(".steps_notes_column").toggle();
+    });
+
+</script>
+@endsection
+
+
+
+
+
+
                                     @endforeach
                                     @endif
                                     </tbody>
@@ -725,12 +808,12 @@
                     @endif
                 @endforeach
                 @endif
-
-                <!-- /.row (main row) -->
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
+
+
+    
+    
 
 @endsection

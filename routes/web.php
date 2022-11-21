@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\CounselLawyerController;
 use App\Http\Controllers\Admin\ReportController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\DomainSetupController;
+use App\Http\Controllers\EmployeeController;
 
 
 /*
@@ -815,6 +816,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('delete-documents-list',[CriminalCasesController::class, 'delete_documents_list'])->name('delete-documents-list');
 
     
+    Route::resource('employee', EmployeeController::class);
+
     // criminal cases latest list
 
 });
