@@ -170,7 +170,7 @@
     </li>
     <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
     <li>
-        <a href="#">Litigation Tracking &#9662;</a>
+        <a href="#" style="width: 144px;">Litigation Tracker &#9662;</a>
         <ul class="dropdown" style="background:#c3c9cf;">
             <li><a href="{{ route('litigation-calender-list') }}">Litigation Calendar (List)</a></li>
             <div class="dropdown-divider-custom"></div>
@@ -292,7 +292,7 @@
     <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
     @canany(['litigation-calendar-list', 'litigation-calendar-short'])
     <li>
-        <a href="#">Litigation Tracking &#9662;</a>
+        <a href="#" style="width: 144px;">Litigation Tracker &#9662;</a>
         <ul class="dropdown" style="background:#c3c9cf;">
             @can('litigation-calendar-list')
                 <li><a href="{{ route('litigation-calender-list') }}">Litigation Cause List</a></li>

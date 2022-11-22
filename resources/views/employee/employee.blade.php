@@ -40,7 +40,7 @@
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
                                     @can('civil-cases-create')
-                                    <a href="#">
+                                    <a href="{{ route('employee.create') }}">
                                         <button
                                             class="btn btn-sm
                                     btn-success add_btn"><i
@@ -57,44 +57,42 @@
                                     <thead>
                                     <tr>
                                         <th class="text-nowrap text-center">ID</th>
-                                        <th class="text-nowrap text-center">Case No</th>
-                                        <th class="text-center">Next Date</th>
-                                        <th class="text-center">Received Date</th>
-                                        <th class="text-nowrap"> Amount </th>
-                                        <th class="text-center">Client</th>
-                                        <th class="text-nowrap">Client Address</th>
-                                        <th class="text-nowrap">Allegation Claim</th>
+                                        <th class="text-nowrap text-center">Image</th>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Address</th>
+                                        <th class="text-nowrap"> Mobile  </th>
+                                        <th class="text-center">Email Address</th>
+                                        <th class="text-nowrap">NID/Passport No</th>
                                         <th class="text-center">Status</th>
                                         <th width="13%">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody id="search_data">
-                                    {{-- @foreach ($data as $datum)
+                                    @foreach ($data as $datum)
                                         <tr>
                                             <td>
                                                     {{ $datum->id }}
                                             </td>
+                                            
                                             <td>
-                                                <a href="{{ route('view-civil-cases', $datum->id) }}">
-                                                    {{ $datum->case_no }} </a>
+                                                <img @if ($datum->employee_image) src="{{ asset('files/employee_image/'.$datum->employee_image) }}" @endif id="preview-image" style="max-height: 150px;max-width:150px;">
+
+                                                    {{-- {{ $datum->employee_image }} --}}
                                             </td>
                                             <td>
-                                                    {{ $datum->next_date }}
+                                                {{ $datum->employee_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->received_date }}
+                                                {{ $datum->address }}
                                             </td>
                                             <td>
-                                                {{ $datum->amount_of_money }}
+                                                {{ $datum->mobile_number }}
                                             </td>
                                             <td>
-                                                {{ $datum->client }}
+                                                {{ $datum->email_address }}
                                             </td>
                                             <td>
-                                                {{ $datum->client_address }}
-                                            </td>
-                                            <td>
-                                                {{ $datum->allegation_claim }}
+                                                {{ $datum->nid_passport }}
                                             </td>
                                             <td>
                                                 @if ($datum->delete_status == 0)
@@ -120,18 +118,10 @@
                                                                 class="fas fa-eye"></i></button>
                                                     </a>
                                                 @endcan
-                                                    @can('civil-cases-add-billing')
-
-                                                    <a href="{{ route('add-billing-civil-cases', $datum->id) }}">
-                                                        <button
-                                                            class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                                            data-placement="top" title="Bill Entry"><i
-                                                                class="fas fa-money-bill"></i></button>
-                                                    </a>
-                                                    @endcan
+                                                   
                                                     @can('civil-cases-edit')
 
-                                                    <a href="{{ route('edit-civil-cases', $datum->id) }}">
+                                                    <a href="{{ route('employee.edit', $datum->id) }}">
                                                         <button
                                                             class="btn btn-info btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"><i
@@ -153,7 +143,7 @@
 
                                             </td>
                                         </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                     </tbody>
 
                                 </table>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class EmployeeController extends Controller
 {
@@ -25,7 +26,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('employee.add_employee');
     }
 
     /**
@@ -36,7 +37,26 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // request_array($request->all());
+
+        $data = $request->all();
+
+        if ($request->hasfile('employee_image')) {
+            $file = $request->file('employee_image');
+            $img_ext = $file->getClientOriginalExtension();
+            $img_name = time().rand(111,99999).'.'.$img_ext;
+            $image_path = 'files/employee_image/'.$img_name;
+            Image::make($file)->resize(150,150)->save($image_path);
+            $data['employee_image'] = $img_name;
+        }else{
+            $data['employee_image'] = null;
+        }
+
+        Employee::create($data);
+
+        session()->flash('success', 'Data Saved Successfully.');
+        return redirect()->route('employee.index');
+
     }
 
     /**
@@ -56,9 +76,10 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        //
+        $data = Employee::find($id);
+        return view('employee.edit_employee', compact('data'));
     }
 
     /**

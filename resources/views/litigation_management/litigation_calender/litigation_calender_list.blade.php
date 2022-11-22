@@ -709,7 +709,7 @@
 
                                             @endif
 
-                                            Vs.
+                                           <span style="color:blue;"> Vs.</span>
                                             
                                             @php
                                                 $accused = explode(', ',$value->case_infos_accused_name);
