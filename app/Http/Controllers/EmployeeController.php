@@ -15,7 +15,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $data = Employee::get();
+        $data = Employee::orderBy('id','DESC')->get();
         return view('employee.employee', compact('data'));
     }
 
@@ -89,9 +89,36 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-        //
+
+        $brand = Employee::find($id);
+
+        $data = $request->all();
+
+        if ($request->hasfile('employee_image')) {
+                if ($brand->employee_image != null) {
+                    $file_path = 'files/employee_image/'.$brand->employee_image;
+                    if(file_exists($file_path)){
+                        unlink($file_path);
+                    }
+                }
+
+                $file = $request->file('employee_image');
+                $img_ext = $file->getClientOriginalExtension();
+                $img_name = time().rand(111,99999).'.'.$img_ext;
+                $image_path = 'files/employee_image/'.$img_name;
+                Image::make($file)->resize(982,500)->save($image_path);
+                $data['employee_image'] = $img_name;
+        }else{
+            $data['employee_image'] = $brand->employee_image;
+        }
+
+        $brand->fill($data)->save();
+
+        session()->flash('success', 'Data Updated Successfully.');
+        return redirect()->route('employee.index');
+
     }
 
     /**
@@ -100,8 +127,11 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-        //
+        // dd($id);
+        Employee::find($id)->delete();
+        return redirect()->route('employee.index')
+            ->with('success','Employee deleted successfully');
     }
 }

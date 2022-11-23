@@ -26,6 +26,8 @@ use App\Http\Controllers\Admin\ReportController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\DomainSetupController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\LedgerCategoryController;
+use App\Http\Controllers\LedgerHeadController;
 
 
 /*
@@ -684,6 +686,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('add-billing-high-court-cases/{id}',[BillingsController::class, 'add_billing_high_court_cases'])->name('add-billing-high-court-cases');
     Route::get('add-billing-appellate-court-cases/{id}',[BillingsController::class, 'add_billing_appellate_court_cases'])->name('add-billing-appellate-court-cases');
     Route::post('search-case-billings',[BillingsController::class, 'search_case_billings'])->name('search-case-billings');
+    Route::get('billings',[BillingsController::class, 'billings'])->name('billings');
+    Route::get('view-billing/{id}',[BillingsController::class, 'view_billing'])->name('view-billing');
+
 // thana setup
 
     Route::get('land-information',[LandInfoController::class, 'land_information'])->name('land-information');
@@ -817,6 +822,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
     
     Route::resource('employee', EmployeeController::class);
+    Route::resource('ledger-category', LedgerCategoryController::class);
+    Route::resource('ledger-head', LedgerHeadController::class);
 
     // criminal cases latest list
 

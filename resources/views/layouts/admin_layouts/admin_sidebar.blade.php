@@ -1117,7 +1117,39 @@
                 </ul>
             </li>
 
+
             <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user nav-icon"></i>
+                    <p>
+                        Accounts Managenent
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('billings') }}" class="nav-link">
+                            <i class="ml-left"></i>
+                            <p>Billings</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('ledger-category.index') }}" class="nav-link">
+                            <i class="ml-left"></i>
+                            <p>Ledger Category</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('ledger-head.index') }}" class="nav-link">
+                            <i class="ml-left"></i>
+                            <p>Ledger Head</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+
+            {{-- <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="fas fa-balance-scale nav-icon"></i>
                     <p>
@@ -1133,7 +1165,7 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
 
             {{-- <li class="nav-item has-treeview">

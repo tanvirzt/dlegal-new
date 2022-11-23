@@ -57,10 +57,15 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Add Employee</h3>
+                                <h3 class="card-title" id="heading">Edit Employee</h3>
                             </div>
 
-                            {!! Form::open(array('route' => 'employee.store','method'=>'POST', 'enctype' => 'multipart/form-data')) !!}
+                            {{-- {!! Form::open(array('route' => 'employee.store','method'=>'POST', 'enctype' => 'multipart/form-data')) !!} --}}
+
+
+                            {{-- {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['users.update', $user->id]]) !!} --}}
+
+                            {!! Form::model($data, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['employee.update', $data->id]]) !!}
 
                             <div class="card-body">
                                 <div class="row">
@@ -68,7 +73,7 @@
                                         <div class="form-group row">
                                             <label for="employee_name" class="col-sm-4 col-form-label">Employee Name</label>
                                             <input type="text" class="form-control col-sm-8" name="employee_name"
-                                                   id="employee_name">
+                                                   id="employee_name" value="{{ $data->employee_name }}">
                                             @error('employee_name')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -76,7 +81,7 @@
                                         <div class="form-group row">
                                             <label for="address" class="col-sm-4 col-form-label">Address</label>
                                             <input type="text" class="form-control col-sm-8" name="address"
-                                                   id="address">
+                                                   id="address" value="{{ $data->address }}">
                                             @error('address')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -84,7 +89,7 @@
                                         <div class="form-group row">
                                             <label for="nid_passport" class="col-sm-4 col-form-label">NID/Passport Number</label>
                                             <input type="text" class="form-control col-sm-8" name="nid_passport"
-                                                   id="nid_passport">
+                                                   id="nid_passport" value="{{ $data->nid_passport }}">
                                             @error('nid_passport')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -92,7 +97,7 @@
                                         <div class="form-group row">
                                             <label for="phone_number" class="col-sm-4 col-form-label">Phone Number</label>
                                             <input type="text" class="form-control col-sm-8" name="phone_number"
-                                                   id="phone_number">
+                                                   id="phone_number" value="{{ $data->phone_number }}">
                                             @error('phone_number')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -100,7 +105,7 @@
                                         <div class="form-group row">
                                             <label for="mobile_number" class="col-sm-4 col-form-label">Mobile Number</label>
                                             <input type="text" class="form-control col-sm-8" name="mobile_number"
-                                                   id="mobile_number">
+                                                   id="mobile_number" value="{{ $data->mobile_number }}">
                                             @error('mobile_number')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -108,7 +113,7 @@
                                         <div class="form-group row">
                                             <label for="fax" class="col-sm-4 col-form-label">Fax</label>
                                             <input type="text" class="form-control col-sm-8" name="fax"
-                                                   id="fax">
+                                                   id="fax" value="{{ $data->fax }}">
                                             @error('fax')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -116,7 +121,7 @@
                                         <div class="form-group row">
                                             <label for="email_address" class="col-sm-4 col-form-label">Email Address</label>
                                             <input type="text" class="form-control col-sm-8" name="email_address"
-                                                   id="email_address">
+                                                   id="email_address" value="{{ $data->email_address }}">
                                             @error('email_address')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -124,7 +129,7 @@
                                         <div class="form-group row">
                                             <label for="contact_person" class="col-sm-4 col-form-label">Contact Person</label>
                                             <input type="text" class="form-control col-sm-8" name="contact_person"
-                                                   id="contact_person">
+                                                   id="contact_person" value="{{ $data->contact_person }}">
                                             @error('contact_person')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -132,7 +137,7 @@
                                         <div class="form-group row">
                                             <label for="short_name" class="col-sm-4 col-form-label">Short Name</label>
                                             <input type="text" class="form-control col-sm-8" name="short_name"
-                                                   id="short_name">
+                                                   id="short_name" value="{{ $data->short_name }}">
                                             @error('short_name')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -140,7 +145,7 @@
                                         <div class="form-group row">
                                             <label for="credit_sale_limit" class="col-sm-4 col-form-label">Credit Sale Limit</label>
                                             <input type="text" class="form-control col-sm-8" name="credit_sale_limit"
-                                                   id="credit_sale_limit">
+                                                   id="credit_sale_limit" value="{{ $data->credit_sale_limit }}">
                                             @error('credit_sale_limit')<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -153,7 +158,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label for="preview-image" class="col-sm-4 col-form-label"></label>
-                                            <img id="preview-image" style="max-height: 250px;max-width:200px;">
+                                            <img @if ($data->employee_image) src="{{ asset('files/employee_image/'.$data->employee_image) }}" @endif id="preview-image" style="max-height: 250px;max-width:200px;">
                                         </div>
                                     </div>
                                                                      

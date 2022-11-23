@@ -52,6 +52,25 @@ class BillingsController extends Controller
         return view('litigation_management.billings.billings.billing_lists',compact('data','external_council'));
     }
 
+    public function billings()
+    {
+        $data = DB::table('case_billings')
+                ->leftJoin('setup_bill_types','case_billings.bill_type_id','=','setup_bill_types.id')
+                ->leftJoin('setup_districts','case_billings.district_id','=','setup_districts.id')
+                ->leftJoin('setup_external_councils','case_billings.panel_lawyer_id','=','setup_external_councils.id')
+                ->leftJoin('setup_banks','case_billings.bank_id','=','setup_banks.id')
+                ->leftJoin('setup_bank_branches','case_billings.branch_id','=','setup_bank_branches.id')
+                ->leftJoin('setup_digital_payments','case_billings.digital_payment_type_id','=','setup_digital_payments.id')
+                ->where('case_billings.delete_status',0)
+                ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
+                ->get();
+        $external_council = SetupExternalCouncil::where('delete_status',0)->get();
+
+        // data_array($data);
+
+        return view('litigation_management.billings.billings.billings',compact('data','external_council'));
+    }
+
     public function add_billing()
     {
         $bill_type = SetupBillType::where('delete_status',0)->get();
@@ -550,6 +569,23 @@ class BillingsController extends Controller
 
         session()->flash('success', 'Criminal Cases Deleted');
         return redirect()->back();
+    }
+
+    public function view_billing($id)
+    {
+        $data = DB::table('case_billings')
+                ->leftJoin('setup_bill_types','case_billings.bill_type_id','=','setup_bill_types.id')
+                ->leftJoin('setup_districts','case_billings.district_id','=','setup_districts.id')
+                ->leftJoin('setup_external_councils','case_billings.panel_lawyer_id','=','setup_external_councils.id')
+                ->leftJoin('setup_banks','case_billings.bank_id','=','setup_banks.id')
+                ->leftJoin('setup_bank_branches','case_billings.branch_id','=','setup_bank_branches.id')
+                ->leftJoin('setup_digital_payments','case_billings.digital_payment_type_id','=','setup_digital_payments.id')
+                ->where('case_billings.id', $id)
+                ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
+                ->first();
+                // dd($data);
+        return view('litigation_management.billings.billings.view_billing',compact('data'));
+
     }
 
 }

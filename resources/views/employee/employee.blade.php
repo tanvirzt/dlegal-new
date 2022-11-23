@@ -68,16 +68,16 @@
                                     </tr>
                                     </thead>
                                     <tbody id="search_data">
-                                    @foreach ($data as $datum)
+                                    @foreach ($data as $key=>$datum)
                                         <tr>
                                             <td>
-                                                    {{ $datum->id }}
+                                                    {{ $key+1 }}
                                             </td>
                                             
                                             <td>
-                                                <img @if ($datum->employee_image) src="{{ asset('files/employee_image/'.$datum->employee_image) }}" @endif id="preview-image" style="max-height: 150px;max-width:150px;">
-
-                                                    {{-- {{ $datum->employee_image }} --}}
+    <div class="card" style="width: 80%;">
+        <img class="img-fluid" @if ($datum->employee_image) src="{{ asset('files/employee_image/'.$datum->employee_image) }}" @endif id="preview-image" style="padding:10px;width:120px;">
+    </div>
                                             </td>
                                             <td>
                                                 {{ $datum->employee_name }}
@@ -109,7 +109,7 @@
                                             </td>
 
                                             <td>
-                                                @can('civil-cases-view')
+                                                {{-- @can('civil-cases-view')
 
                                                     <a href="{{ route('view-civil-cases', $datum->id) }}">
                                                         <button
@@ -117,7 +117,7 @@
                                                             data-placement="top" title="Details"><i
                                                                 class="fas fa-eye"></i></button>
                                                     </a>
-                                                @endcan
+                                                @endcan --}}
                                                    
                                                     @can('civil-cases-edit')
 
@@ -129,15 +129,26 @@
                                                     </a>
                                                     @endcan
                                                     @can('civil-cases-delete')
-                                                    <form method="POST"
-                                                          action="{{ route('delete-civil-cases', $datum->id) }}"
-                                                          class="delete-user btn btn-danger btn-xs">
+
+
+                                                    <form method="POST" action="{{ route('employee.destroy',$datum->id) }}"
+                                                        class="delete-user btn btn-danger btn-xs">
+                                                      @csrf
+                                                      @method('DELETE')
+                                                      <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top"
+                                                              title="Delete"><i class="fas fa-trash"></i></button>
+                                                  </form>
+
+
+                                                    {{-- <form method="delete"
+                                                          action="{{ route('employee.destroy', $datum->id) }}"
+                                                          class="btn btn-danger btn-xs">
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger btn-sm"
                                                                 data-toggle="tooltip" data-placement="top"
                                                                 title="Delete"><i
                                                                 class="fas fa-trash"></i></button>
-                                                    </form>
+                                                    </form> --}}
                                                     @endcan
 
 
