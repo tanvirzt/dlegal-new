@@ -52,12 +52,58 @@ class CreateCriminalCasesCaseStepsTable extends Migration
             $table->string('case_steps_argument')->nullable();
             $table->string('case_steps_argument_note')->nullable();
             $table->string('case_steps_argument_type_id')->nullable();
+
             $table->string('case_steps_judgement_order')->nullable();
             $table->string('case_steps_judgement_order_note')->nullable();
             $table->string('case_steps_judgement_order_type_id')->nullable();
             $table->string('case_steps_summary_of_cases')->nullable();
             $table->string('case_steps_summary_of_cases_note')->nullable();
             $table->string('case_steps_summary_of_cases_type_id')->nullable();
+
+
+//newData
+
+            $table->string('case_steps_subsequent_status')->nullable();
+            $table->string('case_steps_subsequent_status_note')->nullable();
+            $table->string('case_steps_subsequent_status_type_id')->nullable();
+
+
+            $table->string('case_steps_servicr_return')->nullable();
+            $table->string('case_steps_servicr_return_note')->nullable();
+            $table->string('case_steps_servicr_return_type_id')->nullable();
+
+            $table->string('case_steps_sr_completed')->nullable();
+            $table->string('case_steps_sr_completed_note')->nullable();
+            $table->string('case_steps_sr_completed_type_id')->nullable();
+
+            $table->string('case_steps_set_off')->nullable();
+            $table->string('case_steps_set_off_note')->nullable();
+            $table->string('case_steps_set_off_type_id')->nullable();
+
+            $table->string('case_steps_issue_frame')->nullable();
+            $table->string('case_steps_issue_frame_note')->nullable();
+            $table->string('case_steps_issue_frame_type_id')->nullable();
+
+            $table->string('case_steps_ph')->nullable();
+            $table->string('case_steps_ph_note')->nullable();
+            $table->string('case_steps_ph_type_id')->nullable();
+
+            $table->string('case_steps_fph')->nullable();
+            $table->string('case_steps_fph_note')->nullable();
+            $table->string('case_steps_fph_type_id')->nullable();
+
+          
+            // newData
+            $table->integer('case_prayer_id')->nullable();
+            $table->string('case_nature_write')->nullable();
+            $table->integer('case_nature_id')->nullable();
+            $table->integer('case_infos_case_titel_sort_id')->nullable();
+            $table->integer('case_infos_sub_seq_case_title_sort_id')->nullable();
+
+
+
+
+
             $table->mediumText('case_steps_remarks')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();

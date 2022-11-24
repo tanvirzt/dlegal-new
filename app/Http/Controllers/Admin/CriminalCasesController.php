@@ -219,7 +219,7 @@ class CriminalCasesController extends Controller
         // $key = array_key_last(($request->case_infos_complainant_informant_name));
         // $element[$key-1];
 
-//request_array($request->all());
+// request_array($request->all());
 
         $received_documents_sections = $request->received_documents_sections;
         $remove = array_pop($received_documents_sections);
@@ -414,10 +414,16 @@ class CriminalCasesController extends Controller
         $data->case_infos_accused_representative = rtrim($case_infos_accused_representative, ', ');
         $data->prosecution_witness = $request->prosecution_witness;
         $data->defense_witness = $request->defense_witness;
-        $data->created_by = auth_id();
+        $data->created_by = auth_id(); 
         $data->save();
 
         $steps = new CriminalCasesCaseSteps();
+        $steps->case_prayer_id = $request->case_prayer_id;
+        $steps->case_nature_id = $request->case_nature_id;
+        $steps->case_nature_write = $request->case_nature_write;
+        $steps->case_infos_case_titel_sort_id = $request->case_infos_case_titel_sort_id;
+        $steps->case_infos_sub_seq_case_title_sort_id = $request->case_infos_sub_seq_case_title_sort_id;
+
         $steps->criminal_case_id = $data->id;
         $steps->case_infos_allegation_claim_id = $request->case_infos_allegation_claim_id;
         $steps->case_infos_allegation_claim_write = $request->case_infos_allegation_claim_write;
@@ -458,13 +464,47 @@ class CriminalCasesController extends Controller
         $steps->case_steps_argument = $request->case_steps_argument == 'dd-mm-yyyy' || $request->case_steps_argument == 'NaN-NaN-NaN' ? null : $request->case_steps_argument;
         $steps->case_steps_argument_note = $request->case_steps_argument_note;
         $steps->case_steps_argument_type_id = $request->case_steps_argument_type_id;
-        $steps->case_steps_judgement_order = $request->case_steps_judgement_order == 'dd-mm-yyyy' || $request->case_steps_judgement_order == 'NaN-NaN-NaN' ? null : $request->case_steps_judgement_order;
-        $steps->case_steps_judgement_order_note = $request->case_steps_judgement_order_note;
-        $steps->case_steps_judgement_order_type_id = $request->case_steps_judgement_order_type_id;
+       
+
         $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN' ? null : $request->case_steps_summary_of_cases;
         $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
         $steps->case_steps_summary_of_cases_type_id = $request->case_steps_summary_of_cases_type_id;
         $steps->case_steps_remarks = $request->case_steps_remarks;
+
+
+
+        $steps->case_steps_subsequent_status = $request->case_steps_subsequent_status == 'dd-mm-yyyy' || $request->case_steps_subsequent_status == 'NaN-NaN-NaN' ? null : $request->case_steps_subsequent_status;
+        $steps->case_steps_subsequent_status_note = $request->case_steps_subsequent_status_note;
+        $steps->case_steps_subsequent_status_type_id = $request->case_steps_subsequent_status_type_id;
+       
+        $steps->case_steps_servicr_return = $request->case_steps_servicr_return == 'dd-mm-yyyy' || $request->case_steps_servicr_return == 'NaN-NaN-NaN' ? null : $request->case_steps_servicr_return;
+        $steps->case_steps_servicr_return_note = $request->case_steps_servicr_return_note;
+        $steps->case_steps_servicr_return_type_id = $request->case_steps_servicr_return_type_id;
+       
+       
+        $steps->case_steps_sr_completed = $request->case_steps_sr_completed == 'dd-mm-yyyy' || $request->case_steps_sr_completed == 'NaN-NaN-NaN' ? null : $request->case_steps_sr_completed;
+        $steps->case_steps_sr_completed_note = $request->case_steps_sr_completed_note;
+        $steps->case_steps_sr_completed_type_id = $request->case_steps_sr_completed_type_id;
+       
+       
+        $steps->case_steps_set_off = $request->case_steps_set_off == 'dd-mm-yyyy' || $request->case_steps_set_off == 'NaN-NaN-NaN' ? null : $request->case_steps_set_off;
+        $steps->case_steps_set_off_note = $request->case_steps_set_off_note;
+        $steps->case_steps_set_off_type_id = $request->case_steps_set_off_type_id;
+       
+        $steps->case_steps_issue_frame = $request->case_steps_issue_frame == 'dd-mm-yyyy' || $request->case_steps_issue_frame == 'NaN-NaN-NaN' ? null : $request->case_steps_issue_frame;
+        $steps->case_steps_issue_frame_note = $request->case_steps_issue_frame_note;
+        $steps->case_steps_issue_frame_type_id = $request->case_steps_issue_frame_type_id;
+       
+       
+        $steps->case_steps_ph = $request->case_steps_ph == 'dd-mm-yyyy' || $request->case_steps_ph == 'NaN-NaN-NaN' ? null : $request->case_steps_ph;
+        $steps->case_steps_ph_note = $request->case_steps_ph_note;
+        $steps->case_steps_ph_type_id = $request->case_steps_ph_type_id;
+   
+        $steps->case_steps_fph = $request->case_steps_fph == 'dd-mm-yyyy' || $request->case_steps_fph == 'NaN-NaN-NaN' ? null : $request->case_steps_fph;
+        $steps->case_steps_fph_note = $request->case_steps_fph_note;
+        $steps->case_steps_fph_type_id = $request->case_steps_fph_type_id;
+       
+
 
         // $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
         // $steps->case_steps_filing_copy = $request->case_steps_filing_copy;
