@@ -584,6 +584,38 @@ $(document).ready(function () {
         }
     });
 
+    $('#class_of_cases').on('change', function () {
+        var class_of_cases = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        // $('#case_no').append('<option value="">Select</option>');
+        if (class_of_cases) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", class_of_cases: class_of_cases},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#case_no').empty();
+                        $('#case_no').append('<option value="">Select</option>');
+                        $('#case_no').focus;
+                        $.each(data, function (key, value) {
+                            $('select[name="case_no"]').append('<option value="' + value.id + '">' + value.case_no + '</option>');
+                        });
+                    } else {
+                        $('#case_no').empty();
+                    }
+                }
+            });
+        } else {
+            $('#case_no').empty();
+            $('#case_no').append('<option value="">Select</option>');
+
+        }
+    });
+
 
     $('#form_data').submit(function (e) {
         $('#submit').html('<i class="fas fa-search"></i> Searching');

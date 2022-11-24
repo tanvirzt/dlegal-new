@@ -22,6 +22,7 @@ use App\Models\SupremeCourtCase;
 use App\Models\HighCourtCase;
 use App\Models\AppellateCourtCase;
 use App\Models\CaseBilling;
+use App\Models\SetupCaseTypes;
 use DB;
 
 class BillingsController extends Controller
@@ -78,8 +79,9 @@ class BillingsController extends Controller
         $bank = SetupBank::where('delete_status',0)->get();
         $digital_payment_type = SetupDigitalPayment::where('delete_status',0)->get();
         $district = SetupDistrict::where('delete_status',0)->get();
+        $case_types = SetupCaseTypes::where('delete_status', 0)->get();
 
-        return view('litigation_management.billings.billings.add_billing',compact('external_council','bill_type','bank','digital_payment_type','district'));
+        return view('litigation_management.billings.billings.add_billing',compact('external_council','bill_type','bank','digital_payment_type','district', 'case_types'));
     }
 
     public function find_bank_branch(Request $request)
@@ -91,31 +93,21 @@ class BillingsController extends Controller
 
     public function find_case_no(Request $request)
     {
-        if ($request->case_type == "Civil Cases") {
+        // return $request->all();
 
-            $case = CivilCases::where('delete_status',0)->get();
-
-        }else if ($request->case_type == "Criminal Cases"){
+        if ($request->class_of_cases == "District Court") {
 
             $case = CriminalCase::where('delete_status',0)->get();
 
-        }else if ($request->case_type == "Labour Cases"){
+        }else if ($request->class_of_cases == "Special Court"){
 
             $case = LabourCase::where('delete_status',0)->get();
 
-        }else if ($request->case_type == "Special Quassi - Judicial Cases"){
-
-            $case = QuassiJudicialCase::where('delete_status',0)->get();
-
-        }else if ($request->case_type == "Supreme Court of Bangladesh"){
-
-            $case = SupremeCourtCase::where('delete_status',0)->get();
-
-        }else if ($request->case_type == "High Court Division"){
+        }else if ($request->class_of_cases == "High Court Division"){
 
             $case = HighCourtCase::where('delete_status',0)->get();
 
-        }else if ($request->case_type == "Appellate Court Division"){
+        }else if ($request->class_of_cases == "Appellate Division"){
 
             $case = AppellateCourtCase::where('delete_status',0)->get();
 
@@ -145,17 +137,36 @@ class BillingsController extends Controller
 //        ];
 //
 //        $this->validate($request, $rules, $validMsg);
+        $latest = CaseBilling::latest()->first();
+// data_array($latest);
+        if ($latest != null) {
+            $latest_no = explode('-', $latest->billing_no);
+            $sl = $latest_no[1] + 1;
+        } else {
+            $sl = +1;
+        }
+        $billing_no = 'BL-000' . $sl;
+
+        if ($request->date_of_billing != 'dd-mm-yyyy') {
+            $date_of_billing_explode = explode('-', $request->date_of_billing);
+            $date_of_billing_implode = implode('-', $date_of_billing_explode);
+            $date_of_billing = date('Y-m-d', strtotime($date_of_billing_implode));
+        } else {
+            $date_of_billing = date('Y-m-d');
+        }
 
 
         $data = new CaseBilling();
+        $data->billing_no = $billing_no;
         $data->bill_type_id = $request->bill_type_id;
         $data->payment_type = $request->payment_type;
         $data->district_id = $request->district_id;
-        $data->case_type = $request->case_type;
+        $data->case_type_id = $request->case_type_id;
+        $data->class_of_cases = $request->class_of_cases;
         $data->case_no = $request->case_no;
         $data->panel_lawyer_id = $request->panel_lawyer_id;
         $data->bill_amount = $request->bill_amount;
-        $data->date_of_billing = $request->date_of_billing;
+        $data->date_of_billing = $date_of_billing;
         $data->bank_id = $request->bank_id;
         $data->branch_id = $request->branch_id;
         $data->cheque_no = $request->cheque_no;
@@ -165,39 +176,41 @@ class BillingsController extends Controller
 
         session()->flash('success','Bill Added Successfully');
 
-        if ($request->redirect_to == "Civil Cases") {
+        // if ($request->redirect_to == "Civil Cases") {
 
-            return redirect()->route('civil-cases');
+        //     return redirect()->route('civil-cases');
 
-        } else if ($request->redirect_to == "Criminal Cases"){
+        // } else if ($request->redirect_to == "Criminal Cases"){
 
-            return redirect()->route('criminal-cases');
+        //     return redirect()->route('criminal-cases');
 
-        }else if ($request->redirect_to == "Labour Cases"){
+        // }else if ($request->redirect_to == "Labour Cases"){
 
-            return redirect()->route('labour-cases');
+        //     return redirect()->route('labour-cases');
 
-        }else if ($request->redirect_to == "Special Quassi - Judicial Cases"){
+        // }else if ($request->redirect_to == "Special Quassi - Judicial Cases"){
 
-            return redirect()->route('quassi-judicial-cases');
+        //     return redirect()->route('quassi-judicial-cases');
 
-        }else if ($request->redirect_to == "Supreme Court of Bangladesh"){
+        // }else if ($request->redirect_to == "Supreme Court of Bangladesh"){
 
-            return redirect()->route('supreme-court-cases');
+        //     return redirect()->route('supreme-court-cases');
 
-        }else if ($request->redirect_to == "High Court Division"){
+        // }else if ($request->redirect_to == "High Court Division"){
 
-            return redirect()->route('high-court-cases');
+        //     return redirect()->route('high-court-cases');
 
-        }else if ($request->redirect_to == "Appellate Court Division"){
+        // }else if ($request->redirect_to == "Appellate Court Division"){
 
-            return redirect()->route('appellate-court-cases');
+        //     return redirect()->route('appellate-court-cases');
 
-        }else {
+        // }else {
 
-            return redirect()->route('billing');
+        //     return redirect()->route('billing');
 
-        }
+        // }
+
+            return redirect()->route('billings');
 
     }
 
@@ -271,7 +284,8 @@ class BillingsController extends Controller
         $data->bill_type_id = $request->bill_type_id;
         $data->payment_type = $request->payment_type;
         $data->district_id = $request->district_id;
-        $data->case_type = $request->case_type;
+        $data->case_type_id = $request->case_type_id;
+        $data->class_of_cases = $request->class_of_cases;
         $data->case_no = $request->case_no;
         $data->panel_lawyer_id = $request->panel_lawyer_id;
         $data->bill_amount = $request->bill_amount;
@@ -304,7 +318,7 @@ class BillingsController extends Controller
         $data->save();
 
         session()->flash('success','Bill Updated Successfully');
-        return redirect()->back();
+        return redirect()->route('billings');
 
     }
 
@@ -580,12 +594,47 @@ class BillingsController extends Controller
                 ->leftJoin('setup_banks','case_billings.bank_id','=','setup_banks.id')
                 ->leftJoin('setup_bank_branches','case_billings.branch_id','=','setup_bank_branches.id')
                 ->leftJoin('setup_digital_payments','case_billings.digital_payment_type_id','=','setup_digital_payments.id')
+                ->leftJoin('setup_case_types','case_billings.case_type_id','=','setup_case_types.id')
                 ->where('case_billings.id', $id)
-                ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
+                ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name', 'setup_case_types.case_types_name')
                 ->first();
                 // dd($data);
         return view('litigation_management.billings.billings.view_billing',compact('data'));
 
+    }
+
+
+    public function edit_billings($id)
+    {
+        $bill_type = SetupBillType::where('delete_status',0)->get();
+        $external_council = SetupExternalCouncil::where('delete_status',0)->get();
+        $bank = SetupBank::where('delete_status',0)->get();
+        $digital_payment_type = SetupDigitalPayment::where('delete_status',0)->get();
+        $district = SetupDistrict::where('delete_status',0)->get();
+        $bank_branch = SetupBankBranch::where('delete_status',0)->get();
+        $case_types = SetupCaseTypes::where('delete_status', 0)->get();
+        $data = CaseBilling::find($id);
+
+
+        if ($data->class_of_cases == "District Court") {
+
+            $case = CriminalCase::where('delete_status',0)->get();
+
+        }else if ($data->class_of_cases == "Special Court"){
+
+            $case = LabourCase::where('delete_status',0)->get();
+
+        }else if ($data->class_of_cases == "High Court Division"){
+
+            $case = HighCourtCase::where('delete_status',0)->get();
+
+        }else if ($data->class_of_cases == "Appellate Division"){
+
+            $case = AppellateCourtCase::where('delete_status',0)->get();
+
+        }
+
+        return view('litigation_management.billings.billings.edit_billing',compact('data','external_council','bill_type','bank','digital_payment_type','district','case','bank_branch','case_types'));
     }
 
 }

@@ -15,29 +15,77 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">
-                                <a  type="button" href="{{ route('billings') }}" aria-disabled="false"
-                                    role="link" tabindex="-1">Back </a>
-                            </li>
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+
+                            <li class="breadcrumb-item active">Billing</li>
                         </ol>
                     </div>
-                    
                 </div>
-
             </div>
-
         </div>
 
-        <section class="content" id="section1st">
-
-            <div class="container-fluid py-2">
-
-                <div class="col-md-12">
-
+        <div class="row">
+            <div class="col-md-11 mx-auto">
                 <div class="card">
-                    
                     <div>
+                        <div class="card-header">
+                            <style>
+                                .data td, th, .data{
+                                    border: 1px solid #eeeeee;
+                                }
+                                .data th{
+                                    font-weight: 600;
+                                    background: #d3d3d3;
+                                }
+                            </style>
+                            <table style="width: 100%;z-index:99;" width="100%">
+
+                                <tr>
+
+
+                                    <td style="text-align: center; width:100%;" valign="top">
+
+
+                                        <span id="lblUnitName" class="HeaderStyle"><b>dLegal</b></span>
+                                        <br/>
+                                        <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag, Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
+                                        <br/>
+                                        <span id="lblUnitAddress" class="HeaderStyle2"> Cell:01717406688 </span>
+                                        <br/>
+                                        <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688 </span>
+                                        <br/>
+                                        <span id="lblUnitAddress" class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
+                                            <span id="lblVoucherType" class="VoucherStyle">
+                                        <br/>
+                                            {{-- <u><span style="padding: 5px;">Criminal Case No. 
+                                            
+                                                {{ $data->case_infos_case_no ? $data->case_infos_case_title_name.' '.$data->case_infos_case_no.' of '.$data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null),
+                                                @endif
+                                                {{ $data->sub_seq_case_title_name }}
+                                                @php
+                                                    $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+                                                    $key = array_key_last($case_infos_sub_seq_case_no);
+                                                    echo $case_infos_sub_seq_case_no[$key];
+                
+                                                    $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
+                                                    $key = array_key_last($case_infos_sub_seq_case_year);
+                                                    $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                                    if ($last_case_no != null) {
+                                                        echo ' of '.$last_case_no;
+                                                    }
+                                                @endphp                                            
+                                            
+                                            
+                                            </span></u> --}}
+                                        <br/>
+
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                        </div>
+
                         <div class="card-body">
                             
                             <div class="row">
@@ -73,22 +121,21 @@
                                                         <td>
                                                             @php
 
-                                                if ($data->class_of_cases == 'District Court') {
-                                                    $case = App\Models\CriminalCase::where('id',$data->case_no)->first();
-                                                }else if($data->class_of_cases == 'Special Court'){
-                                                    $case = App\Models\LabourCase::where('id',$data->case_no)->first();
-                                                }else if($data->class_of_cases == 'High Court Division'){
-                                                    $case = App\Models\HighCourtCase::where('id',$data->case_no)->first();
-                                                }else if($data->class_of_cases == 'Appellate Division'){
-                                                    $case = App\Models\AppellateCourtCase::where('id',$data->case_no)->first();
-                                                }
-
-                                                @endphp
-
-                                                {{ !empty($case->case_no) ? $case->case_no : '' }}
-                                                            
-                                                            {{-- {{ $data->case_no }} --}}
+                                                            if ($data->class_of_cases == 'District Court') {
+                                                                $case = App\Models\CriminalCase::where('id',$data->case_no)->first();
+                                                            }else if($data->class_of_cases == 'Special Court'){
+                                                                $case = App\Models\LabourCase::where('id',$data->case_no)->first();
+                                                            }else if($data->class_of_cases == 'High Court Division'){
+                                                                $case = App\Models\HighCourtCase::where('id',$data->case_no)->first();
+                                                            }else if($data->class_of_cases == 'Appellate Division'){
+                                                                $case = App\Models\AppellateCourtCase::where('id',$data->case_no)->first();
+                                                            }
+            
+                                                            @endphp
+            
+                                                            {{ !empty($case->case_no) ? $case->case_no : '' }}                                                   
                                                         
+                                                    
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -151,9 +198,9 @@
                                                 </table>
                                             </div>
                                         </div>
-
-                                        <a href="{{ route('billings-print-preview', $data->id) }}" title="Print Case Info" target="_blank"
-                                            class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a>
+                                        
+                                        {{-- <a href="{{ route('billings-print-preview', $data->id) }}" title="Print Case Info" target="_blank"
+                                            class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a> --}}
 
                                     </div>
                                 </div>
@@ -168,12 +215,15 @@
                     </div>
                 </div>
 
-                </div>
             </div>
-            </section>
+        </div>
+
 
 
     </div>
+    <script type="text/javascript"> 
+      window.addEventListener("load", window.print());
+    </script>
 
 @endsection
 

@@ -951,7 +951,7 @@
                                 @endcan
                             </li>
                         @endcanany
-                        @canany(['billing-list'])
+                        {{-- @canany(['billing-list'])
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
@@ -971,7 +971,7 @@
                                     </ul>
                                 @endcan
                             </li>
-                        @endcanany
+                        @endcanany --}}
 
                     </ul>
                 </li>

@@ -21,23 +21,7 @@
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
                                 <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button"
-                                @if (!empty($civil_case))
-                                    href="{{ route('civil-cases') }}"
-                                @elseif (!empty($criminal_case))
-                                    href="{{ route('criminal-cases') }}"
-                                @elseif (!empty($labour_case))
-                                    href="{{ route('labour-cases') }}"
-                                @elseif (!empty($quassi_judicial_case))
-                                    href="{{ route('quassi-judicial-cases') }}"
-                                @elseif (!empty($supreme_court_case))
-                                    href="{{ route('supreme-court-cases') }}"
-                                @elseif (!empty($high_court_case))
-                                    href="{{ route('high-court-cases') }}"
-                                @elseif (!empty($appellate_court_case))
-                                    href="{{ route('appellate-court-cases') }}"
-                                @else
-                                    href="{{ route('billing') }}"
-                                @endif
+                                    href="{{ route('billings') }}"
                                 aria-disabled="false" role="link" tabindex="-1">Back</a>
                             </li>
                         </ol>
@@ -109,190 +93,30 @@
                                                 </div>
                                             </div>
 
-                                            @if (!empty($civil_case))
-
                                                 <div class="form-group row">
-                                                    <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
+                                                    <label for="case_type_id" class="col-sm-4 col-form-label"> Case Type </label>
                                                     <div class="col-sm-8">
-                                                        <input type="hidden" name="case_type" value="Civil Cases">
-                                                        <input type="hidden" name="redirect_to" value="Civil Cases">
-                                                        <select name="case_type" class="form-control select2" id="case_type" disabled>
-                                                            <option value="Civil Cases"> Civil Cases </option>
-                                                        </select>
-                                                        @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="case_id" class="col-sm-4 col-form-label"> Case No </label>
-                                                    <div class="col-sm-8">
-                                                        <input type="hidden" name="case_no" value="{{  $civil_case->case_no }}">
-                                                        <select name="case_no" class="form-control select2" id="case_no" disabled>
-                                                            <option value="{{ $civil_case->case_no }}"> {{ $civil_case->case_no }} </option>
-                                                        </select>
-                                                        @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-
-                                            @elseif (!empty($criminal_case))
-
-                                            <div class="form-group row">
-                                                <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
-                                                <div class="col-sm-8">
-                                                    <input type="hidden" name="case_type" value="Criminal Cases">
-                                                    <input type="hidden" name="redirect_to" value="Criminal Cases">
-                                                    <select name="case_type" class="form-control select2" id="case_type" disabled>
-                                                        <option value="Criminal Cases"> Criminal Cases </option>
-                                                    </select>
-                                                    @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="case_id" class="col-sm-4 col-form-label"> Case No </label>
-                                                <div class="col-sm-8">
-                                                    <input type="hidden" name="case_no" value="{{  $criminal_case->case_no }}">
-                                                    <select name="case_no" class="form-control select2" id="case_no" disabled>
-                                                        <option value="{{ $criminal_case->case_no }}"> {{ $criminal_case->case_no }} </option>
-                                                    </select>
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-
-                                            @elseif (!empty($labour_case))
-
-                                            <div class="form-group row">
-                                                <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
-                                                <div class="col-sm-8">
-                                                    <input type="hidden" name="case_type" value="Labour Cases">
-                                                    <input type="hidden" name="redirect_to" value="Labour Cases">
-                                                    <select name="case_type" class="form-control select2" id="case_type" disabled>
-                                                        <option value="Labour Cases"> Labour Cases </option>
-                                                    </select>
-                                                    @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="case_id" class="col-sm-4 col-form-label"> Case No </label>
-                                                <div class="col-sm-8">
-                                                    <input type="hidden" name="case_no" value="{{  $labour_case->case_no }}">
-                                                    <select name="case_no" class="form-control select2" id="case_no" disabled>
-                                                        <option value="{{ $labour_case->case_no }}"> {{ $labour_case->case_no }} </option>
-                                                    </select>
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-
-                                            @elseif (!empty($quassi_judicial_case))
-
-                                            <div class="form-group row">
-                                                <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
-                                                <div class="col-sm-8">
-                                                    <input type="hidden" name="case_type" value="Special Quassi - Judicial Cases">
-                                                    <input type="hidden" name="redirect_to" value="Special Quassi - Judicial Cases">
-                                                    <select name="case_type" class="form-control select2" id="case_type" disabled>
-                                                        <option value="Special Quassi - Judicial Cases"> Special Quassi - Judicial Cases </option>
-                                                    </select>
-                                                    @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="case_id" class="col-sm-4 col-form-label"> Case No </label>
-                                                <div class="col-sm-8">
-                                                    <input type="hidden" name="case_no" value="{{  $quassi_judicial_case->case_no }}">
-                                                    <select name="case_no" class="form-control select2" id="case_no" disabled>
-                                                        <option value="{{ $quassi_judicial_case->case_no }}"> {{ $quassi_judicial_case->case_no }} </option>
-                                                    </select>
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-
-                                            @elseif (!empty($supreme_court_case))
-
-                                            <div class="form-group row">
-                                                <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
-                                                <div class="col-sm-8">
-                                                    <input type="hidden" name="case_type" value="Supreme Court of Bangladesh">
-                                                    <input type="hidden" name="redirect_to" value="Supreme Court of Bangladesh">
-                                                    <select name="case_type" class="form-control select2" id="case_type" disabled>
-                                                        <option value="Supreme Court of Bangladesh"> Supreme Court of Bangladesh </option>
-                                                    </select>
-                                                    @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="case_id" class="col-sm-4 col-form-label"> Case No </label>
-                                                <div class="col-sm-8">
-                                                    <input type="hidden" name="case_no" value="{{  $supreme_court_case->case_no }}">
-                                                    <select name="case_no" class="form-control select2" id="case_no" disabled>
-                                                        <option value="{{ $supreme_court_case->case_no }}"> {{ $supreme_court_case->case_no }} </option>
-                                                    </select>
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-
-                                            @elseif (!empty($high_court_case))
-
-                                            <div class="form-group row">
-                                                <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
-                                                <div class="col-sm-8">
-                                                    <input type="hidden" name="case_type" value="High Court Division">
-                                                    <input type="hidden" name="redirect_to" value="High Court Division">
-                                                    <select name="case_type" class="form-control select2" id="case_type" disabled>
-                                                        <option value="High Court Division"> High Court Division </option>
-                                                    </select>
-                                                    @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="case_id" class="col-sm-4 col-form-label"> Case No </label>
-                                                <div class="col-sm-8">
-                                                    <input type="hidden" name="case_no" value="{{  $high_court_case->case_no }}">
-                                                    <select name="case_no" class="form-control select2" id="case_no" disabled>
-                                                        <option value="{{ $high_court_case->case_no }}"> {{ $high_court_case->case_no }} </option>
-                                                    </select>
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-
-                                            @elseif (!empty($appellate_court_case))
-
-                                            <div class="form-group row">
-                                                <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
-                                                <div class="col-sm-8">
-                                                    <input type="hidden" name="case_type" value="Appellate Court Division">
-                                                    <input type="hidden" name="redirect_to" value="Appellate Court Division">
-                                                    <select name="case_type" class="form-control select2" id="case_type" disabled>
-                                                        <option value="Appellate Court Division"> Appellate Court Division </option>
-                                                    </select>
-                                                    @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="case_id" class="col-sm-4 col-form-label"> Case No </label>
-                                                <div class="col-sm-8">
-                                                    <input type="hidden" name="case_no" value="{{  $appellate_court_case->case_no }}">
-                                                    <select name="case_no" class="form-control select2" id="case_no" disabled>
-                                                        <option value="{{ $appellate_court_case->case_no }}"> {{ $appellate_court_case->case_no }} </option>
-                                                    </select>
-                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>
-                                            </div>
-
-                                            @else
-
-                                                <div class="form-group row">
-                                                    <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
-                                                    <div class="col-sm-8">
-                                                        <select name="case_type" class="form-control select2" id="case_type" action="{{ route('find-case-no') }}">
+                                                        <select name="case_type_id" class="form-control select2" id="case_type_id" action="{{ route('find-case-no') }}">
                                                             <option value=""> Select </option>
-                                                            <option value="Civil Cases"> Civil Cases </option>
-                                                            <option value="Criminal Cases"> Criminal Cases </option>
-                                                            <option value="Labour Cases"> Labour Cases </option>
-                                                            <option value="Special Quassi - Judicial Cases"> Special Quassi - Judicial Cases </option>
-                                                            <option value="Supreme Court of Bangladesh"> Supreme Court of Bangladesh </option>
-                                                            <option value="High Court Division"> High Court Division </option>
-                                                            <option value="Appellate Court Division"> Appellate Court Division </option>
+                                                            @foreach($case_types as $item)
+                                                                <option
+                                                                    value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
+                                                            @endforeach
                                                         </select>
                                                         @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="class_of_cases" class="col-sm-4 col-form-label"> Class of Cases </label>
+                                                    <div class="col-sm-8">
+                                                        <select name="class_of_cases" class="form-control select2" id="class_of_cases" action="{{ route('find-case-no') }}">
+                                                            <option value=""> Select </option>
+                                                            <option value="District Court"> District Court </option>
+                                                            <option value="Special Court"> Special Court </option>
+                                                            <option value="High Court Division"> High Court Division </option>
+                                                            <option value="Appellate Division"> Appellate Division </option>
+                                                        </select>
+                                                        @error('class_of_cases')<span class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -305,8 +129,6 @@
                                                         @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
-
-                                            @endif
 
                                             <div class="form-group row">
                                                 <label for="panel_lawyer_id" class="col-sm-4 col-form-label">Panel Lawyer</label>
@@ -332,7 +154,16 @@
                                             <div class="form-group row">
                                                 <label for="date_of_billing" class="col-sm-4 col-form-label">Date of the Billing</label>
                                                 <div class="col-sm-8">
-                                                    <input type="date" class="form-control" id="date_of_billing" name="date_of_billing" value="{{old('date_of_billing')}}">
+
+                                                    <span class="date_span" style="width: 404px;">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                               onchange="setCorrect(this,'xTime4');"><input type="text" id="xTime4"
+                                                                                                            name="date_of_billing" value="dd-mm-yyyy"
+                                                                                                            class="date_second_input"
+                                                                                                            tabindex="-1"><span
+                                                            class="date_second_span" tabindex="-1">&#9660;</span>
+                                                    </span>
+
                                                     @error('date_of_billing')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -365,13 +196,13 @@
                                                     @error('cheque_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                            <div class="form-group row" id="payment_amounts">
+                                            {{-- <div class="form-group row" id="payment_amounts">
                                                 <label for="payment_amount" class="col-sm-4 col-form-label">Payment Amount</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="payment_amount" name="payment_amount" value="{{old('payment_amount')}}">
                                                     @error('payment_amount')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="form-group row" id="digital_payment_type" style="display: none;">
                                                 <label for="digital_payment_type_id" class="col-sm-4 col-form-label"> Digital Payment Type </label>
                                                 <div class="col-sm-8">

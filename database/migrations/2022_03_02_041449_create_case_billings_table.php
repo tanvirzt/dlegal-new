@@ -16,9 +16,11 @@ class CreateCaseBillingsTable extends Migration
         Schema::create('case_billings', function (Blueprint $table) {
             $table->id();
             $table->integer('bill_type_id')->nullable();
+            $table->integer('billing_no')->nullable();
             $table->string('payment_type')->nullable();
             $table->integer('district_id')->nullable();
-            $table->string('case_type')->nullable();
+            $table->integer('case_type_id')->nullable();
+            $table->string('class_of_cases')->nullable();
             $table->string('case_no')->nullable();
             $table->integer('panel_lawyer_id')->nullable();
             $table->string('bill_amount')->nullable();

@@ -605,6 +605,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('billings-log-print-preview/{id}',[CriminalCasesController::class, 'billings_log_print_preview'])->name('billings-log-print-preview');
     Route::get('switch-log-print-preview/{id}',[CriminalCasesController::class, 'switch_log_print_preview'])->name('switch-log-print-preview');
     Route::get('criminal-case-print-preview/{id}',[CriminalCasesController::class, 'criminal_case_print_preview'])->name('criminal-case-print-preview');
+    Route::get('billings-print-preview/{id}',[CriminalCasesController::class, 'billings_print_preview'])->name('billings-print-preview');
     Route::post('send-messages-for-criminal-cases/{id}',[CriminalCasesController::class, 'send_messages_for_criminal_cases'])->name('send-messages-for-criminal-cases');
     Route::post('criminal-cases-switch',[CriminalCasesController::class, 'criminal_cases_switch'])->name('criminal-cases-switch');
 
@@ -688,6 +689,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::post('search-case-billings',[BillingsController::class, 'search_case_billings'])->name('search-case-billings');
     Route::get('billings',[BillingsController::class, 'billings'])->name('billings');
     Route::get('view-billing/{id}',[BillingsController::class, 'view_billing'])->name('view-billing');
+    Route::get('/edit-billings/{id}',[BillingsController::class, 'edit_billings'])->name('edit-billings');
+    
 
 // thana setup
 

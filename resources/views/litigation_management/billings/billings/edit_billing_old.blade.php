@@ -20,9 +20,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button"
-                                    href="{{ route('billings') }}"
-                                aria-disabled="false" role="link" tabindex="-1">Back</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('billing') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
                             </li>
                         </ol>
                     </div>
@@ -47,10 +45,10 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading"> Add Billing </h3>
+                                <h3 class="card-title" id="heading">Edit Billing</h3>
                             </div>
 
-                            <form action="{{ route('update-billing', $data->id) }}" method="post">
+                            <form action="{{ route('update-billing',$data->id) }}" method="post">
                                 @csrf
                                 <div class="card-body">
 
@@ -62,9 +60,9 @@
                                                     <select name="bill_type_id" class="form-control select2" id="bill_type_id">
                                                         <option value=""> Select </option>
                                                             @foreach($bill_type as $item)
-                                                                <option value="{{ $item->id }}" {{( $data->bill_type_id == $item->id ? 'selected':'')}}>{{ $item->bill_type_name }}</option>
+                                                                <option value="{{ $item->id }}" {{($data->bill_type_id == $item->id ? 'selected':'')}}>{{ $item->bill_type_name }}</option>
                                                             @endforeach
-                                                    </select>
+                                                    </select>       
                                                     @error('bill_type_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -73,10 +71,10 @@
                                                 <div class="col-sm-8">
                                                     <select name="payment_type" class="form-control select2" id="payment_type">
                                                         <option value=""> Select </option>
-                                                        <option value="Cash Payment" {{ $data->payment_type == 'Cash Payment' ? 'selected' : '' }}> Cash Payment </option>
-                                                        <option value="Bank Payment" {{ $data->payment_type == 'Bank Payment' ? 'selected' : '' }}> Bank Payment </option>
-                                                        <option value="Digital Payment" {{ $data->payment_type == 'Digital Payment' ? 'selected' : '' }}> Digital Payment </option>
-                                                    </select>
+                                                        <option @if ($data->payment_type == "Cash Payment") selected @endif value="Cash Payment"> Cash Payment </option>
+                                                        <option @if ($data->payment_type == "Bank Payment") selected @endif value="Bank Payment"> Bank Payment </option>
+                                                        <option @if ($data->payment_type == "Digital Payment") selected @endif value="Digital Payment"> Digital Payment </option>
+                                                    </select>       
                                                     @error('payment_type')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -86,60 +84,47 @@
                                                     <select name="district_id" class="form-control select2" id="district_id">
                                                         <option value=""> Select </option>
                                                         @foreach($district as $item)
-                                                            <option value="{{ $item->id }}" {{( $data->district_id == $item->id ? 'selected':'')}}>{{ $item->district_name }}</option>
+                                                            <option value="{{ $item->id }}" {{($data->district_id == $item->id ? 'selected':'')}}>{{ $item->district_name }}</option>
                                                         @endforeach
-                                                    </select>
+                                                    </select>       
                                                     @error('district_id')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-
-                                                <div class="form-group row">
-                                                    <label for="case_type_id" class="col-sm-4 col-form-label"> Case Type </label>
-                                                    <div class="col-sm-8">
-                                                        <select name="case_type_id" class="form-control select2" id="case_type_id" action="{{ route('find-case-no') }}">
-                                                            <option value=""> Select </option>
-                                                            @foreach($case_types as $item)
-                                                                <option
-                                                                    value="{{ $item->id }}" {{( $data->case_type_id == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
+                                            <div class="form-group row">
+                                                <label for="case_type" class="col-sm-4 col-form-label"> Case Type </label>
+                                                <div class="col-sm-8">
+                                                    <select name="case_type" class="form-control select2" id="case_type" action="{{ route('find-case-no') }}">
+                                                        <option value=""> Select </option>
+                                                        <option @if ($data->case_type == "Civil Cases") selected @endif value="Civil Cases"> Civil Cases </option>
+                                                        <option @if ($data->case_type == "Criminal Cases") selected @endif value="Criminal Cases"> Criminal Cases </option>
+                                                        <option @if ($data->case_type == "Labour Cases") selected @endif value="Labour Cases"> Labour Cases </option>
+                                                        <option @if ($data->case_type == "Special Quassi - Judicial Cases") selected @endif value="Special Quassi - Judicial Cases"> Special Quassi - Judicial Cases </option>
+                                                        <option @if ($data->case_type == "Supreme Court of Bangladesh") selected @endif value="Supreme Court of Bangladesh"> Supreme Court of Bangladesh </option>
+                                                        <option @if ($data->case_type == "High Court Division") selected @endif value="High Court Division"> High Court Division </option>
+                                                        <option @if ($data->case_type == "Appellate Court Division") selected @endif value="Appellate Court Division"> Appellate Court Division </option>
+                                                    </select>       
+                                                    @error('case_type')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label for="class_of_cases" class="col-sm-4 col-form-label"> Class of Cases </label>
-                                                    <div class="col-sm-8">
-                                                        <select name="class_of_cases" class="form-control select2" id="class_of_cases" action="{{ route('find-case-no') }}">
-                                                            <option value=""> Select </option>
-                                                            <option value="District Court" {{ $data->class_of_cases == 'District Court' ? 'selected' : '' }}> District Court </option>
-                                                            <option value="Special Court" {{ $data->class_of_cases == 'Special Court' ? 'selected' : '' }}> Special Court </option>
-                                                            <option value="High Court Division" {{ $data->class_of_cases == 'High Court Division' ? 'selected' : '' }}> High Court Division </option>
-                                                            <option value="Appellate Division" {{ $data->class_of_cases == 'Appellate Division' ? 'selected' : '' }}> Appellate Division </option>
-                                                        </select>
-                                                        @error('class_of_cases')<span class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="case_no" class="col-sm-4 col-form-label"> Case No </label>
+                                                <div class="col-sm-8">
+                                                    <select name="case_no" class="form-control select2" id="case_no">
+                                                        <option value=""> Select </option>
+                                                        @foreach($case_no as $item)
+                                                            <option value="{{ $item->case_no }}" {{($data->case_no == $item->case_no ? 'selected':'')}}>{{ $item->case_no }}</option>
+                                                        @endforeach
+                                                    </select>       
+                                                    @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label for="case_id" class="col-sm-4 col-form-label"> Case No </label>
-                                                    <div class="col-sm-8">
-                                                        <select name="case_no" class="form-control select2" id="case_no">
-                                                            <option value=""> Select </option>
-                                                            @foreach($case as $item)
-                                                                <option
-                                                                    value="{{ $item->id }}" {{( $data->case_no == $item->id ? 'selected':'')}}>{{ $item->case_no }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
-                                                    </div>
-                                                </div>
-
+                                            </div>
                                             <div class="form-group row">
                                                 <label for="panel_lawyer_id" class="col-sm-4 col-form-label">Panel Lawyer</label>
                                                 <div class="col-sm-8">
                                                         <select name="panel_lawyer_id" class="form-control select2">
                                                             <option value="">Select</option>
                                                             @foreach($external_council as $item)
-                                                                <option value="{{ $item->id }}" {{( $data->panel_lawyer_id == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                                <option value="{{ $item->id }}" {{($data->panel_lawyer_id == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('panel_lawyer_id')<span class="text-danger">{{$message}}</span>@enderror
@@ -157,21 +142,7 @@
                                             <div class="form-group row">
                                                 <label for="date_of_billing" class="col-sm-4 col-form-label">Date of the Billing</label>
                                                 <div class="col-sm-8">
-
-
-                                                    <span class="date_span_status" style="width: 404px;">
-                                                        <input type="date" class="xDateContainer date_first_input"
-                                                               onchange="setCorrect(this,'date_of_billing');"><input type="text" id="date_of_billing" name="date_of_billing" value="{{ date('d/m/Y', strtotime($data->date_of_billing)) }}"
-                                                                                                            value="dd/mm/yyyy"
-                                                                                                           class="date_second_input"
-                                                                                                           tabindex="-1"><span
-                                                                                        class="date_second_span" tabindex="-1">&#9660;</span>
-                                                    </span>
-
-
-
-
-                                                    {{-- <input type="date" class="form-control" id="date_of_billing" name="date_of_billing" value="{{ $data->date_of_billing }}"> --}}
+                                                    <input type="date" class="form-control" id="date_of_billing" name="date_of_billing" value="{{ $data->date_of_billing }}">
                                                     @error('date_of_billing')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
@@ -206,13 +177,13 @@
                                                     @error('cheque_no')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                            {{-- <div class="form-group row" id="payment_amounts" @if ($data->payment_amount == "") style="display:none;" @endif>
+                                            <div class="form-group row" id="payment_amounts" @if ($data->payment_amount == "") style="display:none;" @endif>
                                                 <label for="payment_amount" class="col-sm-4 col-form-label">Payment Amount</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="payment_amount" name="payment_amount" value="{{ $data->payment_amount }}">
                                                     @error('payment_amount')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                             <div class="form-group row" id="digital_payment_type" @if ($data->digital_payment_type_id == "") style="display:none;" @endif >
                                                 <label for="digital_payment_type_id" class="col-sm-4 col-form-label"> Digital Payment Type </label>
                                                 <div class="col-sm-8">
@@ -229,7 +200,7 @@
                                         </div>
                                     </div>
                                     <div class="float-right mt-4">
-                                        <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update</button>
+                                        <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Update </button>
                                     </div>
                                 </div>
                             </form>
