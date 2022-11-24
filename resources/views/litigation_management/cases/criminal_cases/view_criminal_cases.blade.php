@@ -277,6 +277,15 @@
                                                                 <td>{{ $data->case_types_name }}</td>
                                                             </tr>
                                                             <tr>
+                                                                <td>Case Prayer</td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case Nature</td>
+                                                                <td> {{ $data->case_nature_write }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
                                                                 <td>Case Matter</td>
                                                                 <td>{{ $data->matter_name }} {{ $data->matter_write }}
                                                                 </td>
@@ -284,6 +293,10 @@
         
                                                             <tr class="trHide">
                                                                 <td>Case Title</td>
+                                                                <td>{{ $data->case_infos_case_title_name }}</td>
+                                                            </tr>
+                                                            <tr >
+                                                                <td>Case Title (Short)</td>
                                                                 <td>{{ $data->case_infos_case_title_name }}</td>
                                                             </tr>
                                                             <tr>
@@ -1177,7 +1190,7 @@
     
                                                             <tbody>
                                                             <tr>
-                                                                <td>Client(Which Party)</td>
+                                                                <td>Client(on behalf of)</td>
                                                                 <td colspan="2"> {{ $data->client_party_name }} </td>
                                                             </tr>
                                                             <tr>
@@ -1185,7 +1198,7 @@
                                                                 <td colspan="2"> {{ $data->client_category_name }} </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Client Subcategory</td>
+                                                                <td>Client Sub-category</td>
                                                                 <td colspan="2">{{ $data->client_subcategory_name }}</td>
                                                             </tr>
                                                             <tr>
@@ -1224,15 +1237,15 @@
                                                                 @endif
     
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Client Business Name</td>
                                                                 <td colspan="2">{{ $data->client_business_name }}</td>
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Client Group Name</td>
                                                                 <td colspan="2">{{ $data->client_group_name }} {{ $data->client_group_write }}</td>
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Client Address</td>
                                                                 <td colspan="2">{{ $data->client_address }}</td>
                                                             </tr>
@@ -1240,11 +1253,11 @@
                                                                 <td>Client Mobile</td>
                                                                 <td colspan="2">{{ $data->client_mobile }}</td>
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Client Email</td>
                                                                 <td colspan="2">{{ $data->client_email }}</td>
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Profession/Type</td>
                                                                 <td colspan="2">{{ $data->profession_name }}
                                                                     {{ $data->client_profession_write }}</td>
@@ -1267,11 +1280,11 @@
                                                                 </td>
                                                                 <td>{{ $data->client_thana_write }}</td>
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Representative Name</td>
                                                                 <td colspan="2">{{ $data->client_representative_name }} </td>
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Representative Details</td>
                                                                 <td colspan="2">{{ $data->client_representative_details }}</td>
                                                             </tr>
@@ -1305,7 +1318,7 @@
     
                                                             <tbody>
                                                             <tr>
-                                                                <td>Opposition(Which Party)</td>
+                                                                <td>Opposition(on behalf of)</td>
                                                                 <td colspan="2"> {{ $data->oppsition_party_name }}
                                                                 </td>
     
@@ -1360,33 +1373,33 @@
     
     
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Opposition Business Name</td>
                                                                 <td colspan="2">{{ $data->opposition_business_name }}</td>
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Opposition Group Name</td>
                                                                 <td colspan="2">{{ $data->opposition_group_name }} {{ $data->opposition_group_write }}</td>
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Opposition Address</td>
                                                                 <td colspan="2">{{ $data->opposition_address }}</td>
     
     
                                                             </tr>
-                                                            <tr>
+                                                            <tr >
                                                                 <td>Opposition Mobile</td>
                                                                 <td colspan="2">{{ $data->opposition_mobile }}</td>
     
     
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Opposition Email</td>
                                                                 <td colspan="2">{{ $data->opposition_email }}</td>
     
     
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Profession/Type</td>
                                                                 <td colspan="2">{{ $data->opposition_profession_name }}
                                                                     {{ $data->opposition_profession_write }}</td>
@@ -1413,11 +1426,11 @@
                                                                 </td>
                                                                 <td>{{ $data->opposition_thana_write }}</td>
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Representative Name</td>
                                                                 <td colspan="2">{{ $data->opposition_representative_name }} </td>
                                                             </tr>
-                                                            <tr>
+                                                            <tr class="trHide">
                                                                 <td>Representative Details</td>
                                                                 <td colspan="2">{{ $data->opposition_representative_details }}</td>
                                                             </tr>

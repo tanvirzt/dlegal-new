@@ -135,6 +135,10 @@ class CreateCriminalCasesTable extends Migration
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
+
+
+
+
             $table->timestamps();
         });
     }
