@@ -124,7 +124,7 @@
                                                     <form method="POST" action="{{ route('delete-billing',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                         @csrf
                                                         {{-- @method('DELETE') --}}
-                                                        
+
                                                         <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                     </form>
                                                
@@ -147,7 +147,6 @@
         </section>
         <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
 
 @endsection
 
