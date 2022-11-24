@@ -282,7 +282,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Case Nature</td>
-                                                                <td> {{ $data->case_nature_write }}
+                                                                <td> 
                                                                 </td>
                                                             </tr>
                                                             <tr>
