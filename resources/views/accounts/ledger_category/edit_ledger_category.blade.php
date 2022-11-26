@@ -51,7 +51,7 @@
                                 <h3 class="card-title" id="heading">Edit Ledger Category</h3>
                             </div>
 
-                            <form action="{{ route('ledger-head.update',$ledger_category->id) }}" method="post">
+                            <form action="{{ route('ledger-category.update',$ledger_category->id) }}" method="post">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">

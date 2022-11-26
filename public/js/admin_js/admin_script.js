@@ -1231,6 +1231,12 @@ $(document).ready(function () {
 
     });
 
+    $("#payment_against_bill").on('click', function () {
+
+        $("#bill_no").toggle();
+
+    });
+
 
     $('#floor_id').on('change', function () {
         var floor_id = $(this).val();

@@ -13,6 +13,8 @@ use App\Models\SetupExternalCouncil;
 use App\Models\SetupGroup;
 use App\Models\SetupMatter;
 use App\Models\SetupNextDateReason;
+use App\Models\LedgerEntry;
+use App\Models\LedgerHead;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -250,6 +252,106 @@ class ReportController extends Controller
         $is_search = 'Searched';
 
         return view('report_management.litigation_report_print', compact('data', 'request_data'));
+    }
+
+    public function ledger_report()
+    {
+        $request_data = [
+            'ledger_head_id' => '',
+            'from_date' => '',
+            'to_date' => '',
+        ];
+        $data = LedgerEntry::with('ledger_head_bill')->orderBy('id', 'DESC')->get();
+        $ledger_head = LedgerHead::all();
+        // data_array($data);
+
+        return view('report_management.accounts.ledger_report', compact('data', 'request_data','ledger_head'));
+    }
+
+    public function ledger_report_search(Request $request)
+    {
+        $request_data = $request->all();
+
+        // request_array($request_data);
+
+        if ($request->from_date != "dd/mm/yyyy") {
+            $from_next_date_explode = explode('/', $request->from_date);
+            $from_next_date_implode = implode('-', $from_next_date_explode);
+            $from_next_date = date('Y-m-d', strtotime($from_next_date_implode));
+        } else if ($request->from_next_date == "dd/mm/yyyy") {
+            $from_next_date = null;
+        }
+
+        if ($request->to_date != "dd/mm/yyyy") {
+            $to_next_date_explode = explode('/', $request->to_date);
+            $to_next_date_implode = implode('-', $to_next_date_explode);
+            $to_next_date = date('Y-m-d', strtotime($to_next_date_implode));
+        } else if ($request->to_next_date == "dd/mm/yyyy") {
+            $to_next_date = null;
+        }
+
+        $query = LedgerEntry::with('ledger_head_bill');
+        
+        switch ($request->isMethod('get')) {
+            case $request->ledger_head_id != null:
+                $query2 = $query->where('ledger_head_bill_id', $request->ledger_head_id);
+                break;
+            case $request->from_date != null && $request->to_date != null:
+                $query2 = $query->whereBetween('ledger_date',array($from_next_date, $to_next_date));
+                break;
+            default:
+                $query2 = $query;
+        }
+
+        $data = $query2->orderBy('id', 'DESC')->get();
+        $ledger_head = LedgerHead::all();
+        $is_search = 'Searched';
+
+        return view('report_management.accounts.ledger_report', compact('data', 'request_data','ledger_head', 'is_search'));
+    }
+
+    public function print_ledger_report(Request $request)
+    {
+
+        $request_data = $request->all();
+
+        // request_array($request_data);
+
+        if ($request->from_date != "dd/mm/yyyy") {
+            $from_next_date_explode = explode('/', $request->from_date);
+            $from_next_date_implode = implode('-', $from_next_date_explode);
+            $from_next_date = date('Y-m-d', strtotime($from_next_date_implode));
+        } else if ($request->from_next_date == "dd/mm/yyyy") {
+            $from_next_date = null;
+        }
+
+        if ($request->to_date != "dd/mm/yyyy") {
+            $to_next_date_explode = explode('/', $request->to_date);
+            $to_next_date_implode = implode('-', $to_next_date_explode);
+            $to_next_date = date('Y-m-d', strtotime($to_next_date_implode));
+        } else if ($request->to_next_date == "dd/mm/yyyy") {
+            $to_next_date = null;
+        }
+
+        $query = LedgerEntry::with('ledger_head_bill');
+        
+        switch ($request->isMethod('get')) {
+            case $request->ledger_head_id != null:
+                $query2 = $query->where('ledger_head_bill_id', $request->ledger_head_id);
+                break;
+            case $request->from_date != null && $request->to_date != null:
+                $query2 = $query->whereBetween('ledger_date',array($from_next_date, $to_next_date));
+                break;
+            default:
+                $query2 = $query;
+        }
+
+        $data = $query2->orderBy('id', 'DESC')->get();
+        $ledger_head = LedgerHead::all();
+        $is_search = 'Searched';
+
+        return view('report_management.accounts.print_ledger_report', compact('data', 'request_data','ledger_head', 'is_search'));
+
     }
 
 }

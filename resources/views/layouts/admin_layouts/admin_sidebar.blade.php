@@ -1145,12 +1145,18 @@
                             <p>Ledger Head</p>
                         </a>
                     </li>
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a href="{{ route('ledger-entry.index') }}" class="nav-link">
                             <i class="ml-left"></i>
                             <p>Ledger Entry</p>
                         </a>
-                    </li> --}}
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('ledger-report') }}" class="nav-link">
+                            <i class="ml-left"></i>
+                            <p>Ledger Report</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
             

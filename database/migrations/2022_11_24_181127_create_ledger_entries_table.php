@@ -15,6 +15,20 @@ class CreateLedgerEntriesTable extends Migration
     {
         Schema::create('ledger_entries', function (Blueprint $table) {
             $table->id();
+
+            $table->string('transaction_no')->nullable(); 
+            $table->string('job_no')->nullable(); 
+            $table->string('payment_against_bill')->nullable();
+            $table->string('bill_id')->nullable(); 
+            $table->string('ledger_date')->nullable(); 
+            $table->string('payment_type')->nullable(); 
+            $table->string('ledger_head_bill_id')->nullable(); 
+            $table->string('bill_amount')->nullable(); 
+            $table->string('remarks')->nullable(); 
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }

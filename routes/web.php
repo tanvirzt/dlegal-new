@@ -28,6 +28,7 @@ use App\Http\Controllers\DomainSetupController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LedgerCategoryController;
 use App\Http\Controllers\LedgerHeadController;
+use App\Http\Controllers\LedgerEntryController;
 
 
 /*
@@ -827,6 +828,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::resource('employee', EmployeeController::class);
     Route::resource('ledger-category', LedgerCategoryController::class);
     Route::resource('ledger-head', LedgerHeadController::class);
+    Route::resource('ledger-entry', LedgerEntryController::class);
+
+    Route::get('ledger-report', [ReportController::class, 'ledger_report'])->name('ledger-report');
+    Route::get('ledger-report-search', [ReportController::class, 'ledger_report_search'])->name('ledger-report-search');
+    Route::get('print-ledger-report', [ReportController::class, 'print_ledger_report'])->name('print-ledger-report');
 
     // criminal cases latest list
 
