@@ -834,6 +834,16 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('ledger-report-search', [ReportController::class, 'ledger_report_search'])->name('ledger-report-search');
     Route::get('print-ledger-report', [ReportController::class, 'print_ledger_report'])->name('print-ledger-report');
 
+    Route::get('ledger-head-report-list', [ReportController::class, 'ledger_head_report_list'])->name('ledger-head-report-list');
+    Route::get('ledger-head-report-list-search', [ReportController::class, 'ledger_head_report_list_search'])->name('ledger-head-report-list-search');
+    Route::get('print-ledger-head-report-list', [ReportController::class, 'print_ledger_head_report_list'])->name('print-ledger-head-report-list');
+
+    Route::get('income-expense-report', [ReportController::class, 'income_expense_report'])->name('income-expense-report');
+    Route::get('income-expense-report-search', [ReportController::class, 'income_expense_report_search'])->name('income-expense-report-search');
+    Route::get('print-income-expense-report', [ReportController::class, 'print_income_expense_report'])->name('print-income-expense-report');
+
+    Route::get('/find-bill',[BillingsController::class, 'find_bill'])->name('find-bill');
+
     // criminal cases latest list
 
 });

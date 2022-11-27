@@ -50,6 +50,7 @@
                                     <tr>
                                         <th class="text-center text-nowrap">ID</th>
                                         <th class="text-center text-nowrap">Ledger Category</th>
+                                        <th class="text-center text-nowrap">Ledger Code</th>
                                         <th class="text-center text-nowrap">Ledger Head</th>
                                         <th class="text-center text-nowrap">Status</th>
                                         <th class="text-center text-nowrap">Action</th>
@@ -71,6 +72,9 @@
                                                 
                                                     {{-- @endforeach --}}
                                                 {{-- {{ $datum->ledger_category_id }} --}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{$datum->ledger_code}}
                                             </td>
                                             <td class="text-center">
                                                 {{$datum->ledger_head_name}}

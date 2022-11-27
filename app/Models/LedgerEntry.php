@@ -13,9 +13,11 @@ class LedgerEntry extends Model
     protected $fillable = [
         'transaction_no', 
         'job_no', 
+        'ledger_type', 
         'payment_against_bill',
         'bill_id', 
         'ledger_date', 
+        'paid_amount', 
         'payment_type', 
         'ledger_head_bill_id', 
         'bill_amount', 

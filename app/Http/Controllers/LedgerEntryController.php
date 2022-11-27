@@ -55,11 +55,20 @@ class LedgerEntryController extends Controller
 
         $request->validate([
             'transaction_no' => 'required',
-            // 'job_no' => 'required',
             'payment_type' => 'required',
         ]);
 
-        LedgerEntry::create($request->post());
+        $data = $request->all();
+        
+        if ($request->ledger_date != "dd/mm/yyyy") {
+            $from_next_date_explode = explode('/', $request->ledger_date);
+            $from_next_date_implode = implode('-', $from_next_date_explode);
+            $data['ledger_date'] = date('Y-m-d', strtotime($from_next_date_implode));
+        } else if ($request->ledger_date == "dd/mm/yyyy") {
+            $data['ledger_date'] = null;
+        }
+
+        LedgerEntry::create($data);
 
         return redirect()->route('ledger-entry.index')->with('success','Ledger Entry has been created successfully.');
     }

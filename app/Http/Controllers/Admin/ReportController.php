@@ -354,4 +354,138 @@ class ReportController extends Controller
 
     }
 
+
+    public function ledger_head_report_list()
+    {
+        $request_data = [
+            'ledger_type' => '',
+        ];
+        $data = LedgerEntry::with('ledger_head_bill')->orderBy('id', 'DESC')->get();
+        $ledger_head = LedgerHead::all();
+
+        return view('report_management.accounts.ledger_head_report_list', compact('data', 'request_data','ledger_head'));
+    }
+
+    public function ledger_head_report_list_search(Request $request)
+    {
+        $request_data = $request->all();
+
+        $data = LedgerEntry::with('ledger_head_bill')->where('ledger_type', $request->ledger_type)->orderBy('id', 'DESC')->get();
+        $ledger_head = LedgerHead::all();
+        $is_search = 'Searched';
+
+        return view('report_management.accounts.ledger_head_report_list', compact('data', 'request_data','ledger_head', 'is_search'));
+    }
+
+    public function print_ledger_head_report_list(Request $request)
+    {
+
+        $request_data = $request->all();
+
+        $data = LedgerEntry::with('ledger_head_bill')->where('ledger_type', $request->ledger_type)->orderBy('id', 'DESC')->get();
+        $ledger_head = LedgerHead::all();
+        $is_search = 'Searched';
+
+        return view('report_management.accounts.print_ledger_head_report_list', compact('data', 'request_data','ledger_head', 'is_search'));
+
+    }
+
+    public function income_expense_report()
+    {
+        $request_data = [
+            'ledger_type' => '',
+            'from_date' => '',
+            'to_date' => '',
+        ];
+        $data = LedgerEntry::with('ledger_head_bill')->orderBy('id', 'DESC')->get();
+        $ledger_head = LedgerHead::all();
+        // data_array($data);
+
+        return view('report_management.accounts.income_expense_report', compact('data', 'request_data','ledger_head'));
+    }
+
+    public function income_expense_report_search(Request $request)
+    {
+        $request_data = $request->all();
+
+        // request_array($request_data);
+
+        if ($request->from_date != "dd/mm/yyyy") {
+            $from_next_date_explode = explode('/', $request->from_date);
+            $from_next_date_implode = implode('-', $from_next_date_explode);
+            $from_next_date = date('Y-m-d', strtotime($from_next_date_implode));
+        } else if ($request->from_next_date == "dd/mm/yyyy") {
+            $from_next_date = null;
+        }
+
+        if ($request->to_date != "dd/mm/yyyy") {
+            $to_next_date_explode = explode('/', $request->to_date);
+            $to_next_date_implode = implode('-', $to_next_date_explode);
+            $to_next_date = date('Y-m-d', strtotime($to_next_date_implode));
+        } else if ($request->to_next_date == "dd/mm/yyyy") {
+            $to_next_date = null;
+        }
+// dd($from_next_date);
+        $query = LedgerEntry::with('ledger_head_bill');
+        
+        switch ($request->isMethod('get')) {
+            case $request->ledger_type != null:
+                $query2 = $query->where('ledger_type', $request->ledger_type);
+                break;
+            case $request->from_date != null && $request->to_date != null:
+                $query2 = $query->whereBetween('ledger_date',array($from_next_date, $to_next_date));
+                break;
+            default:
+                $query2 = $query;
+        }
+
+        $data = $query2->orderBy('id', 'DESC')->get();
+        $ledger_head = LedgerHead::all();
+        $is_search = 'Searched';
+// dd($data);
+        return view('report_management.accounts.income_expense_report', compact('data', 'request_data','ledger_head', 'is_search'));
+    }
+
+    public function print_income_expense_report(Request $request)
+    {
+
+        $request_data = $request->all();
+
+        if ($request->from_date != "dd/mm/yyyy") {
+            $from_next_date_explode = explode('/', $request->from_date);
+            $from_next_date_implode = implode('-', $from_next_date_explode);
+            $from_next_date = date('Y-m-d', strtotime($from_next_date_implode));
+        } else if ($request->from_next_date == "dd/mm/yyyy") {
+            $from_next_date = null;
+        }
+
+        if ($request->to_date != "dd/mm/yyyy") {
+            $to_next_date_explode = explode('/', $request->to_date);
+            $to_next_date_implode = implode('-', $to_next_date_explode);
+            $to_next_date = date('Y-m-d', strtotime($to_next_date_implode));
+        } else if ($request->to_next_date == "dd/mm/yyyy") {
+            $to_next_date = null;
+        }
+
+        $query = LedgerEntry::with('ledger_head_bill');
+        
+        switch ($request->isMethod('get')) {
+            case $request->ledger_type != null:
+                $query2 = $query->where('ledger_type', $request->ledger_type);
+                break;
+            case $request->from_date != null && $request->to_date != null:
+                $query2 = $query->whereBetween('ledger_date',array($from_next_date, $to_next_date));
+                break;
+            default:
+                $query2 = $query;
+        }
+
+        $data = $query2->orderBy('id', 'DESC')->get();
+        $ledger_head = LedgerHead::all();
+        $is_search = 'Searched';
+
+        return view('report_management.accounts.print_income_expense_report', compact('data', 'request_data','ledger_head', 'is_search'));
+
+    }
+
 }

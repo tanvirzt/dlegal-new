@@ -12,6 +12,7 @@ class LedgerHead extends Model
 
     protected $fillable = [
         'ledger_head_name',
+        'ledger_code',
         'ledger_category_id',
     ];
 

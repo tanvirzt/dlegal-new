@@ -73,6 +73,12 @@
                                             
                                         </div>
                                         <div class="form-group">
+                                            <label for="ledger_code">Ledger Code</label>
+                                            <input type="text" class="form-control" name="ledger_code"
+                                                   id="ledger_code">
+                                            @error('ledger_code')<span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                        <div class="form-group">
                                             <label for="ledger_head_name">Ledger Head</label>
                                             <input type="text" class="form-control" name="ledger_head_name"
                                                    id="ledger_head_name">

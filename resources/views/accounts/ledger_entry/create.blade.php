@@ -84,7 +84,20 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="ledger_type" class="col-sm-4 col-form-label">Ledger Type</label>
+                                            <div class="col-sm-8">
+                                                <select name="ledger_type" class="form-control select2" id="ledger_type">
+                                                    <option value=""> Select </option>
+                                                    <option value="Income"> Income </option>
+                                                    <option value="Expense"> Expense </option>
+                                                </select>
+                                                @error('ledger_type')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="payment_against_bill" class="col-sm-4 col-form-label mt-1">Payment Against Bill</label>
@@ -112,13 +125,12 @@
                                         <div class="form-group row">
                                             <label for="bill_id" class="col-sm-4 col-form-label">Bill No</label>
                                             <div class="col-sm-8">
-                                                <select name="bill_id" class="form-control select2" id="bill_id">
+                                                <select name="bill_id" class="form-control select2" id="bill_id" action="{{ route('find-bill') }}">
                                                     <option value=""> Select </option>
                                                     @foreach($bill_no as $item)
                                                         <option value="{{ $item->id }}" {{(old('bill_id') == $item->id ? 'selected':'')}}>{{ $item->billing_no }}</option>
                                                     @endforeach
                                                 </select>
-                                                {{-- {!! Form::select('company_id', [null => 'Select'] + $bill_no, null, ['class' => 'form-control select2']) !!} --}}
                                                 @error('bill_id')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
@@ -161,7 +173,6 @@
                                                     <option value="Bank Payment"> Bank Payment </option>
                                                     <option value="Digital Payment"> Digital Payment </option>
                                                 </select>
-                                                {{-- {!! Form::select('payment_type', [null => 'Select'] + $payment_type, null, ['class' => 'form-control select2']) !!} --}}
                                                 @error('payment_type')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
@@ -185,13 +196,18 @@
                                         </div>
                                     </div>
 
+                                    
+
+                                    <div class="col-md-6" id="bill_amount">
+                                        
+                                    </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="bill_amount" class="col-sm-4 col-form-label">Bill Amount</label>
+                                            <label for="bill_amount" class="col-sm-4 col-form-label">Payment Amount</label>
                                             <div class="col-sm-8">
                                                 {!! Form::text('bill_amount', null, array('class' => 'form-control')) !!}
 
-                                                {{-- {!! Form::text('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!} --}}
                                                 @error('bill_amount')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>

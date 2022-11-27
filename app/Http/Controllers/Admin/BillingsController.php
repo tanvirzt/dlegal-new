@@ -598,7 +598,7 @@ class BillingsController extends Controller
                 ->where('case_billings.id', $id)
                 ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name', 'setup_case_types.case_types_name')
                 ->first();
-                // dd($data);
+                // dd($data);e
         return view('litigation_management.billings.billings.view_billing',compact('data'));
 
     }
@@ -636,5 +636,13 @@ class BillingsController extends Controller
 
         return view('litigation_management.billings.billings.edit_billing',compact('data','external_council','bill_type','bank','digital_payment_type','district','case','bank_branch','case_types'));
     }
+
+    public function find_bill(Request $request)
+    {
+        // return $request->all();
+        $data = CaseBilling::where(['id' => $request->bill_id, 'delete_status' => 0])->first();
+        return response()->json($data);
+    }
+
 
 }

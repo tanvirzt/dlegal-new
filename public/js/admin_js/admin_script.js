@@ -1269,6 +1269,46 @@ $(document).ready(function () {
         }
     });
 
+    $('#bill_id').on('change', function () {
+        var bill_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if (bill_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", bill_id: bill_id},
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    if (data) {
+                        $('#bill_amount').empty();
+                        $('#bill_amount').focus;
+
+                        $('#bill_amount').append(`
+                        <div class="form-group row">
+                            <label for="bill_amount" class="col-sm-4 col-form-label">Bill Amount</label>
+                            <div class="col-sm-8" >
+                            <input type="text" class="form-control" readonly name="bill_amount" value="`+data.bill_amount+`">
+                    
+                            </div>
+                        </div>`
+                        
+                        );
+
+
+                    } else {
+                        $('#bill_amount').empty();
+                    }
+                }
+            });
+        } else {
+            $('#bill_amount').empty();
+            $('#bill_amount').append('<option value="">Select</option>');
+
+        }
+    });
+
     $('#document_type').on('change', function () {
 
         var document_type = $(this).val();

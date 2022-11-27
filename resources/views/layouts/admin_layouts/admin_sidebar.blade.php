@@ -1157,6 +1157,18 @@
                             <p>Ledger Report</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('ledger-head-report-list') }}" class="nav-link">
+                            <i class="ml-left"></i>
+                            <p>Ledger Head Report List</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('income-expense-report') }}" class="nav-link">
+                            <i class="ml-left"></i>
+                            <p>Income Expense Report</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
             

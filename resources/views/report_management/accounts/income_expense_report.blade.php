@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Ledger Report </h1>
+                        <h1>Income Expense Report </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Ledger Report</li>
+                            <li class="breadcrumb-item active"> Income Expense Report</li>
                         </ol>
                     </div>
                 </div>
@@ -37,11 +37,11 @@
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> Ledger :: Report
+                                    <h3 class="card-title"> Income Expense :: Report
                                         
                                          @if (!empty($is_search))
                                              <span style="color: red;font-size:15px;">(Showing:
-                                                {{ $request_data['ledger_head_id'] != null ? 'Ledger Head' : '' }}    
+                                                {{ $request_data['ledger_type'] != null ? 'Income Expense' : '' }}    
                                                 
                                                 )
                                                                                         
@@ -67,24 +67,20 @@
                                     <div class="card-body">
 
 
-                                        <form method="get" action="{{ route('ledger-report-search') }}">
+                                        <form method="get" action="{{ route('income-expense-report-search') }}">
                                             {{-- @csrf --}}
                                             <div class="row">
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
-                                                        <label for="ledger_head_id" class="col-form-label">Ledger Head </label>
-                                                        <div class="">
-                                                            
-                                                            <select name="ledger_head_id" class="form-control select2">
-                                                                <option value="">Select Case Type</option>
-        
-                                                                @foreach($ledger_head as $item)
-                                                                    <option value="{{ $item->id }}" {{( $request_data['ledger_head_id'] == $item->id ? 'selected':'')}}>{{ $item->ledger_head_name }}</option>
-                                                                @endforeach
+                                                        <label for="ledger_type" class="col-form-label">Ledger Type</label>
+                                                        <div>
+                                                            <select name="ledger_type" class="form-control select2" id="ledger_type">
+                                                                <option value=""> Select </option>
+                                                                <option value="Income" {{ old('ledger_type') || $request_data['ledger_type'] == 'Income' ? 'selected' : '' }}> Income </option>
+                                                                <option value="Expense" {{ old('ledger_type') || $request_data['ledger_type'] == 'Expense' ? 'selected' : '' }}> Expense </option>
                                                             </select>
-                                                            @error('ledger_head_id')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
+                                                            @error('ledger_type')<span
+                                                                class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -92,7 +88,6 @@
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
-                                                            
                                                             <span class="date_span" style="width: 404px;">
                                                                 <input type="date" class="xDateContainer date_first_input"
                                                                        onchange="setCorrect(this,'from_date');"><input type="text" id="from_date"
@@ -101,30 +96,6 @@
                                                                                                                     tabindex="-1"><span
                                                                     class="date_second_span" tabindex="-1">&#9660;</span>
                                                             </span>
-
-                                                            {{-- <select name="case_type" class="form-control select2" required>
-                                                                <option value="">Select Case Type</option>
-        
-                                                                <option value="civil"
-                                                                    {{ old('case_type') || $request_data['case_type'] == 'civil' ? 'selected' : '' }}>Civil
-                                                                </option>
-                                                                <option value="criminal"
-                                                                    {{ old('case_type') || $request_data['case_type'] == 'criminal' ? 'selected' : '' }}>Criminal
-                                                                </option>
-                                                                <option value="service_matter"
-                                                                    {{ old('case_type') || $request_data['case_type'] == 'service_matter' ? 'selected' : '' }}>
-                                                                    Service Matter</option>
-                                                                <option value="special"
-                                                                    {{ old('case_type') || $request_data['case_type'] == 'special' ? 'selected' : '' }}>
-                                                                    Special/Quassi-Judicial Cases</option>
-        
-                                                                <option value="high_court"
-                                                                    {{ old('case_type') || $request_data['case_type'] == 'high_court' ? 'selected' : '' }}>High
-                                                                    Court Division</option>
-                                                                <option value="high_court"
-                                                                    {{ old('case_type') || $request_data['case_type'] == 'appellate_court' ? 'selected' : '' }}>
-                                                                    Appellate Court Division</option>
-                                                            </select> --}}
                                                             @error('case_type_id')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
@@ -168,7 +139,7 @@
 
                     @if(!empty($data))
                         <div class="col-md-12">
-                            <div class="card">
+                            <div class="card" style="min-height: 480px;">
                                 <div class="card-header">
                                     <h3 class="card-title"> List <span style="color: red;font-size:15px;">{{ !empty($is_search) ? '(Showing Searched Item)' : '' }}</span> </h3>
                                     <div class="float-right">
@@ -177,7 +148,7 @@
                                             @csrf
 
 
-                                                <input type="hidden" name="ledger_head_id" value="{{ $request_data['ledger_head_id'] }}">
+                                                <input type="hidden" name="ledger_type" value="{{ $request_data['ledger_type'] }}">
                                                 <input type="hidden" name="from_date" value="{{ $request_data['from_date'] }}">
                                                 <input type="hidden" name="to_date" value="{{ $request_data['to_date'] }}">
                                                 
