@@ -157,7 +157,7 @@
                                     title="Case Info">Case Info</a>
                                     <a href="#sectionClientInfo" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top"
                                     title="Client Info">Clinet Info</a>
-                                    <a href="#section2" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top"
+                                    <a href="#section1" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top"
                                     title="Log">Log</a>
 
                                     <a  class="btn btn-info btn-sm" style="color:white" data-toggle="tooltip" data-placement="top"
@@ -282,7 +282,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Case Nature</td>
-                                                                <td> 
+                                                                <td>{{$case_steps->case_nature_write}}
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -734,14 +734,15 @@
                                                             </button>
                                                         </h6>
                                                         <table class="table table-bordered">
-        
+    
         
         
                                                             <tbody>
-        
+                                                               
+                                                             
                                                             <tr>
-                                                                <td width="50%">Status</td>
-                                                                <td width="50%">
+                                                                <td >Status</td>
+                                                                <td colspan="2">
         
                                                                 @if (Is_numeric($data->case_status_id))
                                                                     {{ $data->case_status_name }}
@@ -752,34 +753,59 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Fixed For</td>
                                                                 <td>
+                                                                    Note
+                                                                </td>
+                                                                <td colspan="2">
                                                                     @if (!empty($latest))
-                                                                        {{ $latest->next_date_reason_name }}
-                                                                    @endif
+                                                                    {{ $latest->updated_remarks }}
+                                                                   @endif
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Next Date</td>
-                                                                <td> {{ !empty($data->next_date) ? date('d-m-Y', strtotime($data->next_date)) : '' }}
+                                                                <td >Filing Date</td>
+                                                                <td>
+                                                                   
+                                                                        @if (!empty($data))
+                                                                            {{ $data->date_of_filing }}
+                                                                        @endif
+                                                                    </td>
+                                                                    <td >
+                                                                        Case Filed
+                                                                    </td>
+                                                                
+                                                               
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Previous Date</td>
+                                                                <td  > 
+                                                                    {{count($previouDate) === 2 && !empty($previouDate[1]->updated_next_date) ? date('d-m-Y', strtotime($previouDate[1]->updated_next_date)) : '' }}
+                                                                </td>
+                                                                <td>
+                                                                    {{-- {{data_array($previouDate)}} --}}
+                                                                    {{count($previouDate) === 2 && !empty($previouDate[1]->case->case_status_name) ? $previouDate[1]->case->case_status_name : '' }}
                                                                 </td>
                                                             </tr>
                                                             <tr>
+                                                                <td >Next Date</td>
+
+                                                                <td>
+                                                                    {{!empty($latest) && !empty($latest->updated_next_date) ? date('d-m-Y', strtotime($latest->updated_next_date)) : '' }}
+                                                                </td>
+                                                                <td>
+                                                                    {{-- {{dd($latest->case_status_name)}} --}}
+                                                                    {{!empty($latest) && !empty($latest->case_status_name) ? $latest->case_status_name : '' }}
+                                                                </td>
+                                                            </tr>
+                                                            {{-- <tr>
                                                                 <td>Next Date Fixed For</td>
                                                                 <td>
                                                                     @if (!empty($latest))
                                                                         {{ $latest->index_fixed_for_reason_name }}
                                                                     @endif
                                                                 </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Remarks</td>
-                                                                <td>
-                                                                    @if (!empty($latest))
-                                                                        {{ $latest->updated_remarks }}
-                                                                    @endif
-                                                                </td>
-                                                            </tr>
+                                                            </tr> --}}
+                                                           
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -1050,6 +1076,7 @@
                                                         </table>
                                                     </div>
                                                 </div>
+                                                {{-- {{dd($caseFileLocation)}} --}}
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h6 class="text-uppercase text-bold mt-3"><u> Case File Location </u>
@@ -1062,25 +1089,27 @@
                                                         <table class="table table-bordered">
                                                             <tbody>
                                                             <tr>
-                                                                <td width="50%">Cabinet Name</td>
-                                                                <td width="50%">
+                                                                <td>Cabinet Name</td>
+                                                                <td>Office</td>
+                                                                <td>Almirah</td>
+                                                                <td>Cabinet/Self</td>
                                                                 </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td width="50%">Office</td>
-                                                                <td width="50%">
-                                                                </td>
+                                                               
+                                                           
+                                                            @foreach($caseFileLocationView as $item)
+                                                           
+                                                            <tr> 
+                                                                <td>{{!empty($item->cabinate) ? $item->cabinate->cabinet_name : ""}}</td>
+                                                                <td>{{$item->case_file_location_new_office}}</td>
+                                                                <td>{{$item->case_file_location_new_almirah}}</td>
+                                                                <td>{{$item->case_file_location_new_self}}</td>
+                                                               
+                                                                
                                                             </tr>
-                                                            <tr>
-                                                                <td width="50%">Almirah</td>
-                                                                <td width="50%">
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td width="50%">Cabinet/Self</td>
-                                                                <td width="50%">
-                                                                </td>
-                                                            </tr>
+                                                            @endforeach
+                                                           
+                                                         
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -5134,8 +5163,8 @@
                             <div class="col-sm-12">
                                 <div class="input-group hdtuto_received_documents control-group increment_received_documents">
                                     <span class="d-flex">
-                                        <input type="hidden" name="received_documents_sections[]" class="myfrm form-control mr-2"
-                                               value="received_documents_sections">
+                                        <input type="hidden" name="case_file_location_new_sections[]" class="myfrm form-control mr-2"
+                                               value="case_file_location_new_sections">
                                         <select name="received_documents_id[]"
                                                 class="form-control mr-3">
                                             <option value="">Select</option>
@@ -5151,14 +5180,7 @@
                                                class="myfrm form-control ml-2 mr-2"
                                                value="{{ !empty($received_documents_explode[0]['received_documents_date']) ? $received_documents_explode[0]['received_documents_date'] : '' }}">
 
-                                        <select name="received_documents_type_id[]"
-                                                class="form-control mr-3 ml-2">
-                                            <option value="">Select</option>
-                                            @foreach($documents_type as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{ !empty($received_documents_explode[0]['received_documents_type_id']) && $received_documents_explode[0]['received_documents_type_id']  == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                            @endforeach
-                                        </select>
+                                      
 
 
                                         <div class="input-group-btn">
@@ -5385,19 +5407,137 @@
     </div>
 
     {{-- Case file Location edit --}}
-    <div class="modal fade" id="modal-case-file-location">
+   
+ <div class="modal fade" id="modal-case-file-location">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Update Case File Location</h3>
+                    <h3 class="card-title"> Edit Case File Location </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <form action="{{ route('update-criminal-cases', $data->id) }}" method="post">
                     @csrf
-                    <input type="hidden" value="documents_information" name="documents_information">
-                   
+                    <input type="hidden" value="case_file_location" name="case_file_location">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <div class="input-group hdtuto_case_file_location control-group increment_case_file_location">
+                                    <span class="d-flex">
+                                        <input type="hidden" name="case_file_location_new_sections[]" class="myfrm form-control mr-2"
+                                               value="case_file_location_new_sections">
+                                        <select name="case_file_location_new_id[]"
+                                                class="form-control mr-3">
+                                            <option value="">Select</option>
+                                            @foreach($cabinet as $item)
+                                                <option
+                                                    value="{{ $item->id }}" {{ !empty($caseFileLocation[0]['case_file_location_new_id']) && $caseFileLocation[0]['case_file_location_new_id']  == $item->id ? 'selected' : '' }}>{{ $item->cabinet_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <input type="text" name="case_file_location_new_office[]"
+                                               class="myfrm form-control mr-2"
+                                               value="{{ !empty($caseFileLocation[0]['case_file_location_new_office']) ? $caseFileLocation[0]['case_file_location_new_office'] : '' }}">
+       
+                                        <input type="text" name="case_file_location_new_almirah[]"
+                                               class="myfrm form-control mr-2"
+                                               value="{{ !empty($caseFileLocation[0]['case_file_location_new_almirah']) ? $caseFileLocation[0]['case_file_location_new_almirah'] : '' }}">
+       
+                                        <input type="text" name="case_file_location_new_self[]"
+                                               class="myfrm form-control mr-2"
+                                               value="{{ !empty($caseFileLocation[0]['case_file_location_new_self']) ? $caseFileLocation[0]['case_file_location_new_self'] : '' }}">
+       
+                                      
+            
+                     
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-success btn_success_case_file_location_edit"
+                                                    type="button"><i
+                                                    class="fldemo glyphicon glyphicon-plus"></i>+
+                                            </button>
+                                        </div>
+                                    </span>
+
+                                </div>
+
+                                {{-- {{dd($caseFileLocation)}} --}}
+                                <div class="clone_edit_case_file_location @if(count($caseFileLocation) <= 1) hide @endif">
+                                   
+                                    @php
+                                        
+                                        // dd($caseFileLocation);
+                                        array_shift($caseFileLocation);
+                                    @endphp
+                                   @foreach ( $caseFileLocation as $datas)
+                                        <div class="hdtuto_edit_case_file_location control-group input-group"
+                                             style="margin-top:10px">
+                                            <input type="hidden" name="case_file_location_new_sections[]" class="myfrm form-control mr-2"
+                                                   value="case_file_location_new_sections">
+
+                                            <select name="case_file_location_new_id[]"
+                                                    class="form-control mr-3">
+                                                <option value="">Select</option>
+                                                @foreach($cabinet as $item)
+                                                    <option
+                                                        value="{{ $item->id }}" {{ $datas['case_file_location_new_id'] == $item->id ? 'selected' : '' }}>{{ $item->cabinet_name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <input type="text" name="case_file_location_new_office[]"
+                                                   class="myfrm form-control mr-2" value="{{ $datas['case_file_location_new_office'] }}">
+                                            
+                                            <input type="text" name="case_file_location_new_almirah[]"
+                                                   class="myfrm form-control mr-2" value="{{ $datas['case_file_location_new_almirah'] }}">
+                                            
+                                            <input type="text" name="case_file_location_new_self[]"
+                                                   class="myfrm form-control mr-2" value="{{ $datas['case_file_location_new_self'] }}">
+                                            
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-danger btn_danger__case_file_location_edit"
+                                                        type="button"><i
+                                                        class="fldemo glyphicon glyphicon-remove"></i> -
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                     
+                               
+
+
+                            </div>
+                        </div>
+                        <div class="clone_edit_case_file_location_edit hide">
+                            <div class="hdtuto_edit_case_file_location control-group input-group"
+                                 style="margin-top:10px">
+                                 <input type="hidden" name="case_file_location_new_sections[]" class="myfrm form-control mr-2"
+                                 value="case_file_location_new_sections">
+                          <select name="case_file_location_new_id[]"
+                                  class="form-control mr-3">
+                              <option value="">Select</option>
+                              @foreach($cabinet as $item)
+                                  <option
+                                      value="{{ $item->id }}" {{ !empty($caseFileLocation[0]['case_file_location_new_id']) && $caseFileLocation[0]['case_file_location_new_id']  == $item->id ? 'selected' : '' }}>{{ $item->cabinet_name }}</option>
+                              @endforeach
+                          </select>
+                          <input type="text" name="case_file_location_new_office[]"
+                                 class="myfrm form-control mr-2">
+
+                          <input type="text" name="case_file_location_new_almirah[]"
+                                 class="myfrm form-control mr-2">
+
+                          <input type="text" name="case_file_location_new_self[]"
+                                 class="myfrm form-control mr-2">
+                                 <div class="input-group-btn">
+                                    <button class="btn btn-danger btn_danger__case_file_location_edit"
+                                            type="button"><i
+                                            class="fldemo glyphicon glyphicon-remove"></i> -
+                                    </button>
+                                </div>
+
+                               
+                            </div>
+                        </div>
+                    </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <div class="float-right">
@@ -5413,7 +5553,6 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-
     {{-- case Information --}}
 
     {{-- case Information --}}
