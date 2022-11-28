@@ -20,6 +20,8 @@ class LedgerEntry extends Model
         'paid_amount', 
         'payment_type', 
         'ledger_head_bill_id', 
+        'income_paid_amount',
+        'expense_paid_amount',
         'bill_amount', 
         'remarks',
     ];
@@ -27,6 +29,10 @@ class LedgerEntry extends Model
     public function ledger_head_bill()
     {
         return $this->belongsTo(LedgerHead::class, 'ledger_head_bill_id');
+    }
+    public function bill()
+    {
+        return $this->belongsTo(CaseBilling::class);
     }
 
 }

@@ -16,8 +16,8 @@ class LedgerEntryController extends Controller
     */
     public function index()
     {
-        $data = LedgerEntry::orderBy('id','desc')->get();
-        // dd($data);
+        $data = LedgerEntry::with('bill','ledger_head_bill')->orderBy('id','desc')->get();
+        // data_array($data);
         return view('accounts.ledger_entry.index', compact('data'));
     }
 
@@ -68,6 +68,13 @@ class LedgerEntryController extends Controller
             $data['ledger_date'] = null;
         }
 
+        if ($request->ledger_type == 'Expense') {
+            $data['expense_paid_amount'] = $request->payment_amount;
+        } else {
+            $data['income_paid_amount'] = $request->payment_amount;
+        }
+        
+
         LedgerEntry::create($data);
 
         return redirect()->route('ledger-entry.index')->with('success','Ledger Entry has been created successfully.');
@@ -114,13 +121,27 @@ class LedgerEntryController extends Controller
 
         $data = $request->post();
 
+        if ($request->ledger_date != "dd/mm/yyyy") {
+            $from_next_date_explode = explode('/', $request->ledger_date);
+            $from_next_date_implode = implode('-', $from_next_date_explode);
+            $data['ledger_date'] = date('Y-m-d', strtotime($from_next_date_implode));
+        } else if ($request->ledger_date == "dd/mm/yyyy") {
+            $data['ledger_date'] = null;
+        }
+
+        if ($request->ledger_type == 'Expense') {
+            $data['expense_paid_amount'] = $request->payment_amount;
+            $data['income_paid_amount'] = null;
+        } else {
+            $data['expense_paid_amount'] = null;
+            $data['income_paid_amount'] = $request->payment_amount;
+        }
+        
+
         if ($request->payment_against_bill != null) {
             // dd('tes asdf asdf ');
-
             $data['payment_against_bill'] = 'on';
             $data['bill_id'] = $request->bill_id;
-
-
         } else {
             // dd('No payment against bill');
             $data['payment_against_bill'] = null;

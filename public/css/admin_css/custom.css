@@ -855,3 +855,6 @@ a .btn{
 .btn-doc{
     padding-bottom: 0px !important;
 }
+.invoice .table{
+    margin-bottom: 150px;
+}

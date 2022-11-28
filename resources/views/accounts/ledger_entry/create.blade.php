@@ -144,7 +144,7 @@
                                                 <span class="date_span" style="width: 404px;">
                                                     <input type="date" class="xDateContainer date_first_input"
                                                            onchange="setCorrect(this,'xTime4');"><input type="text" id="xTime4"
-                                                                                                        name="ledger_date" value="dd-mm-yyyy"
+                                                                                                        name="ledger_date" value="{{ date('d-m-Y') }}"
                                                                                                         class="date_second_input"
                                                                                                         tabindex="-1"><span
                                                         class="date_second_span" tabindex="-1">&#9660;</span>
@@ -204,11 +204,11 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="bill_amount" class="col-sm-4 col-form-label">Payment Amount</label>
+                                            <label for="payment_amount" class="col-sm-4 col-form-label">Payment Amount</label>
                                             <div class="col-sm-8">
-                                                {!! Form::text('bill_amount', null, array('class' => 'form-control')) !!}
+                                                {!! Form::text('payment_amount', null, array('class' => 'form-control')) !!}
 
-                                                @error('bill_amount')<span
+                                                @error('payment_amount')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>

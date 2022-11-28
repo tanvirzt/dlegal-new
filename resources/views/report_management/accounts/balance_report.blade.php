@@ -8,13 +8,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Income Expense Report </h1>
+                        <h1>Balance Report </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Income Expense Report</li>
+                            <li class="breadcrumb-item active"> Balance Report</li>
                         </ol>
                     </div>
                 </div>
@@ -37,11 +37,11 @@
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> Income Expense :: Report
+                                    <h3 class="card-title"> Ledger :: Report
                                         
                                          @if (!empty($is_search))
                                              <span style="color: red;font-size:15px;">(Showing:
-                                                {{ $request_data['ledger_type'] != null ? 'Income Expense' : '' }}    
+                                                {{ $request_data['bill_id'] != null ? 'Ledger Head' : '' }}    
                                                 
                                                 )
                                                                                         
@@ -67,20 +67,23 @@
                                     <div class="card-body">
 
 
-                                        <form method="get" action="{{ route('income-expense-report-search') }}">
-                                            {{-- @csrf --}}
+                                        <form method="get" action="{{ route('balance-report-search') }}">
                                             <div class="row">
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
-                                                        <label for="ledger_type" class="col-form-label">Ledger Type</label>
-                                                        <div>
-                                                            <select name="ledger_type" class="form-control select2" id="ledger_type">
-                                                                <option value=""> Select </option>
-                                                                <option value="Income" {{ old('ledger_type') || $request_data['ledger_type'] == 'Income' ? 'selected' : '' }}> Income </option>
-                                                                <option value="Expense" {{ old('ledger_type') || $request_data['ledger_type'] == 'Expense' ? 'selected' : '' }}> Expense </option>
+                                                        <label for="bill_id" class="col-form-label">Bill No </label>
+                                                        <div class="">
+                                                            
+                                                            <select name="bill_id" class="form-control select2">
+                                                                <option value="">Select Case Type</option>
+        
+                                                                @foreach($bill_no as $item)
+                                                                    <option value="{{ $item->id }}" {{( $request_data['bill_id'] == $item->id ? 'selected':'')}}>{{ $item->billing_no }}</option>
+                                                                @endforeach
                                                             </select>
-                                                            @error('ledger_type')<span
-                                                                class="text-danger">{{$message}}</span>@enderror
+                                                            @error('bill_id')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -88,6 +91,7 @@
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
+                                                            
                                                             <span class="date_span" style="width: 404px;">
                                                                 <input type="date" class="xDateContainer date_first_input"
                                                                        onchange="setCorrect(this,'from_date');"><input type="text" id="from_date"
@@ -96,6 +100,7 @@
                                                                                                                     tabindex="-1"><span
                                                                     class="date_second_span" tabindex="-1">&#9660;</span>
                                                             </span>
+
                                                             @error('case_type_id')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
@@ -139,31 +144,24 @@
 
                     @if(!empty($data))
                         <div class="col-md-12">
-                            <div class="card" style="min-height: 480px;">
+                            <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title"> List <span style="color: red;font-size:15px;">{{ !empty($is_search) ? '(Showing Searched Item)' : '' }}</span> </h3>
                                     <div class="float-right">
 
-                                        <form method="get" action="{{ route('print-income-expense-report') }}" target="_blank">
+                                        <form method="get" action="{{ route('print-balance-report') }}" target="_blank">
                                             @csrf
 
 
-                                                <input type="hidden" name="ledger_type" value="{{ $request_data['ledger_type'] }}">
+                                                <input type="hidden" name="bill_id" value="{{ $request_data['bill_id'] }}">
                                                 <input type="hidden" name="from_date" value="{{ $request_data['from_date'] }}">
                                                 <input type="hidden" name="to_date" value="{{ $request_data['to_date'] }}">
                                                 
                                             <button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Delete"> <i class="fas fa-print"></i> Print </button>
                                         </form>
-
-
-
-
-                                        {{-- <a href="{{ route('litigation-report-print-preview',['param1'=>$from_date,'param2'=>$to_date]) }}" target="_blank"
-                                            class="btn btn-info"><i class="fas fa-print"></i> Print </a> --}}
                                     </div>
     
                                 </div>
-                                <!-- /.card-header -->
                                 <div class="card-body">
                                     @if (!empty($data))
     
@@ -201,7 +199,7 @@
                                             </div>
 
                                             <div class="col-sm-4 invoice-col">
-                                                <h3 class="text-center">Income Expense Report</h3>
+                                                <h3 class="text-center">Balance Report</h3>
                                             </div>
 
                                             <div class="col-sm-4 invoice-col">
@@ -336,42 +334,12 @@
                                     @endif
     
                                 </div>
-                                <!-- /.card-body -->
                             </div>
                         </div>
                     @endif
-                    <!-- /.col -->
                 </div>
-                <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
 
-@section('scripts')
-    <script>
-        $(function() {
-            $('#report_type').change(function() {
-                if ($('#report_type').val() == 'custom_date' || $('#report_type').val() == 'disposed') {
-                    $('.report_type_box').show();
-                } else {
-                    $('.report_type_box').hide();
-                }
-            });
-        });
-    </script>
-    <script>
-        function printDiv() {
-            var divContents = document.getElementById("divToPrint").innerHTML;
-            var a = window.open('Litigation report', 'Litigation report', '');
-            a.document.write('<html>');
-            a.document.write(divContents);
-            a.document.write('</body></html>');
-            a.document.close();
-            a.print();
-        }
-    </script>
-@endsection
 @endsection

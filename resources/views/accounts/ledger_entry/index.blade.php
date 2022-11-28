@@ -57,14 +57,18 @@
                                     <thead>
                                         <tr>
                                             <th class="text-nowrap text-center">ID</th>
-                                            <th class="text-nowrap text-center">Transaction No.</th>
-                                            <th class="text-center">Job No.</th>
+                                            <th class="text-nowrap text-center">Ledger Date</th>
+                                            <th class="text-center">Bill No</th>
                                             <th class="text-center">Payment Against Bill</th>
-                                            <th class="text-nowrap"> Ledger Date </th>
-                                            <th class="text-center"> Payment Type </th>
-                                            <th class="text-nowrap">Bill Amount</th>
-                                            <th class="text-nowrap">Remarks</th>
-                                            <th class="text-center">Status</th>
+                                            <th class="text-nowrap"> Transaction No. </th>
+                                            <th class="text-center"> Job No. </th>
+                                            <th class="text-nowrap">Ledger Type</th>
+                                            <th class="text-nowrap">Payment Type</th>
+                                            <th class="text-center">Ledger Head Bill</th>
+                                            <th class="text-center">Bill Amount</th>
+                                            <th class="text-center">Income</th>
+                                            <th class="text-center">Expense</th>
+                                            <th class="text-center">Remarks</th>
                                             <th width="13%">Action</th>
                                         </tr>
                                     </thead>
@@ -76,39 +80,43 @@
                                                 </td>
 
                                                 <td>
+                                                    {{ $datum->ledger_date != null ? date('d-m-Y', strtotime($datum->ledger_date)) : '' }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->bill_id != null ? $datum->bill->billing_no : '' }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->payment_against_bill == 'on' ? 'Yes' : 'No' }}
+                                                </td>
+                                                <td>
                                                     {{ $datum->transaction_no }}
                                                 </td>
                                                 <td>
                                                     {{ $datum->job_no }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->payment_against_bill == 'on' ? 'Yes' : 'No' }}
-                                                </td>
-                                                <td>
-                                                    {{ $datum->ledger_date != null ? date('d-m-Y', strtotime($datum->ledger_date)) : '' }}
+                                                    {{ $datum->ledger_type }}
                                                 </td>
                                                 <td>
                                                     {{ $datum->payment_type }}
                                                 </td>
                                                 <td>
+                                                    {{ $datum->ledger_head_bill_id != null ? $datum->ledger_head_bill->ledger_head_name : '' }}
+
+                                                </td>
+                                                <td>
                                                     {{ $datum->bill_amount }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->income_paid_amount }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->expense_paid_amount }}
                                                 </td>
                                                 <td>
                                                     {{ $datum->remarks }}
                                                 </td>
-                                                <td>
-                                                    @if ($datum->deleted_at == null)
-                                                        <button type="button"
-                                                            class="btn-custom btn-success-custom text-uppercase"> Active
-                                                        </button>
-                                                    @else
-                                                        <button type="button"
-                                                            class="btn-custom btn-warning-custom text-uppercase">
-                                                            Inactive
-                                                        </button>
-                                                    @endif
-                                                    </span>
-                                                </td>
+                                                
 
                                                 <td>
                                                     {{-- @can('civil-cases-view')
