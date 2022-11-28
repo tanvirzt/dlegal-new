@@ -53,10 +53,10 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table data_table table-bordered table-striped">
+                                <table id="data_table" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th class="text-nowrap text-center">ID</th>
+                                            <th class="text-nowrap text-center">SL</th>
                                             <th class="text-nowrap text-center">Ledger Date</th>
                                             <th class="text-center">Bill No</th>
                                             <th class="text-center">Payment Against Bill</th>
