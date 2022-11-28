@@ -2487,13 +2487,13 @@
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Billings Log 
 
-                                        @if (count($ledger)>0)
+                                        @if (count($billing_log_new)>0)
                                             
                                         <span
                                             class="font-italic custom_font text-capitalize">(Total: <span
-                                                style="color: darkgreen;font-size:14px;"> {{ $ledger[0]->bill_amount }} ৳</span>, Paid:
+                                                style="color: darkgreen;font-size:14px;"> {{ $bill_amt = $billing_log_new->sum('bill_amount') }} ৳</span>, Paid:
                                             {{ $ledger->sum('income_paid_amount') }} ৳, Due: <span style="color: red;font-size:14px;">
-                                                {{ $ledger[0]->bill_amount - $ledger->sum('income_paid_amount') }} ৳ </span>) </span>
+                                                {{ $bill_amt - $ledger->sum('income_paid_amount') }} ৳ </span>) </span>
                                             
                                         @endif
                                             
