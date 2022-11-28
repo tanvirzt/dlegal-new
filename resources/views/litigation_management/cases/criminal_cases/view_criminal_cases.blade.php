@@ -2355,7 +2355,7 @@
                             
 
 
-                            <div class="card" id="section4">
+                            {{-- <div class="card" id="section4">
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Billings Log <span
@@ -2405,7 +2405,6 @@
 
                                                     @php
                                                         $engaged = explode(', ', $bill_logs->bill_particulars_id);
-                                                        // dd($engaged->count())
                                                     @endphp
 
                                                     @if (count($engaged) > 1)
@@ -2458,8 +2457,6 @@
 
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
                                                              style="will-change: transform;">
-                                                            {{-- <a class="dropdown-item btn btn-outline-success" href="{{ route('view-criminal-cases-activity', $bill_logs->id) }}"><i class="fas fa-eye"></i> View</a> --}}
-
                                                             <a class="dropdown-item"
                                                                href="{{ route('edit-criminal-cases-billing', $bill_logs->id) }}"><i
                                                                     class="fas fa-edit"></i> Edit</a>
@@ -2480,6 +2477,130 @@
                                             </tr>
                                         @endforeach
                                         </tbody>
+                                    </table>
+                                </div>
+
+                            </div> --}}
+
+                            <div class="card" id="section4">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Billings Log 
+
+                                        @if (count($ledger)>0)
+                                            
+                                        <span
+                                            class="font-italic custom_font text-capitalize">(Total: <span
+                                                style="color: darkgreen;font-size:14px;"> {{ $ledger[0]->bill_amount }} ৳</span>, Paid:
+                                            {{ $ledger->sum('income_paid_amount') }} ৳, Due: <span style="color: red;font-size:14px;">
+                                                {{ $ledger[0]->bill_amount - $ledger->sum('income_paid_amount') }} ৳ </span>) </span>
+                                            
+                                        @endif
+                                            
+                                            </h3>
+                                    <div class="card-tools">
+                                        {{-- <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                                data-target="#modal-bill" data-toggle="tooltip" data-placement="top"
+                                                title="Bill Entry"><i class="fas fa-money-bill"></i></button> --}}
+                                        {{-- <a href="{{ route('billings-log-print-preview', $data->id) }}" title="Print Bill Log" target="_blank"
+                                           class="btn btn-info btn-sm"><i class="fas fa-print"></i></a> --}}
+
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center text-nowrap">ID</th>
+                                                <th class="text-center text-nowrap">Billing</th>
+                                                <th class="text-center text-nowrap">Bill Type</th>
+                                                <th class="text-center text-nowrap">Payment Type</th>
+                                                <th class="text-center text-nowrap">Case No</th>
+                                                <th class="text-center text-nowrap">Bill Amount</th>
+                                                <th class="text-center text-nowrap">Date of Billing</th>
+                                                <th class="text-center text-nowrap">Paid Amount</th>
+                                                <th class="text-center text-nowrap">Status</th>
+                                                {{-- <th class="text-center text-nowrap">Action</th> --}}
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($billing_log_new as $key=>$datum)
+        
+                                                <tr>
+                                                    <td class="text-center">
+                                                        {{ $key+1 }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->billing_no }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->bill_type_name }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->payment_type }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @php
+        
+                                                        if ($datum->class_of_cases == 'District Court') {
+                                                            $case = App\Models\CriminalCase::where('id',$datum->case_no)->first();
+                                                        }else if($datum->class_of_cases == 'Special Court'){
+                                                            $case = App\Models\LabourCase::where('id',$datum->case_no)->first();
+                                                        }else if($datum->class_of_cases == 'High Court Division'){
+                                                            $case = App\Models\HighCourtCase::where('id',$datum->case_no)->first();
+                                                        }else if($datum->class_of_cases == 'Appellate Division'){
+                                                            $case = App\Models\AppellateCourtCase::where('id',$datum->case_no)->first();
+                                                        }
+        
+                                                        @endphp
+        
+                                                        {{ !empty($case->case_no) ? $case->case_no : '' }}
+        
+        
+                                                        {{-- {{}} --}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{$datum->bill_amount}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{$datum->date_of_billing}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{$datum->payment_amount}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($datum->delete_status == 0)
+                                                            <button type="button"
+                                                                class="btn-custom btn-success-custom text-uppercase"> Active
+                                                            </button>
+                                                        @else
+                                                            <button type="button"
+                                                                class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
+                                                        @endif
+                                                        </span>
+                                                    </td>
+                                                    {{-- <td class="text-center">
+                                                            <a href="{{ route('view-billing',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                            ><i class="fas fa-eye"></i></button></a>
+                                                            <a href="{{ route('edit-billings',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                                ><i class="fas fa-edit"></i></button></a>
+                                                            <form method="POST" action="{{ route('delete-billing',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                                @csrf
+        
+                                                                <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+                                                            </form>
+                                                       
+                                                    </td> --}}
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
                                     </table>
                                 </div>
 
