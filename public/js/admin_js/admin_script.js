@@ -334,6 +334,27 @@ $(document).ready(function () {
     $("body").on("click", ".btn_danger_required_wanting_documents_edit", function () {
         $(this).parents(".hdtuto_required_wanting_documents_edit").remove();
     });
+
+
+    //add case file location
+
+    $(".btn_success_case_file_location_new").click(function () {
+        var lsthmtl_required_wanting_documents = $(".clone_case_file_location_new").html();
+        $(".increment_case_file_location_new").after(lsthmtl_required_wanting_documents);
+    });
+    $("body").on("click", ".btn_danger_case_file_location_new", function () {
+        $(this).parents(".hdtuto_case_file_location_new").remove();
+    });
+    //edit case file location
+
+    $(".btn_success_case_file_location_edit").click(function () {
+        var lsthmtl_required_wanting_documents_edit = $(".clone_edit_case_file_location_edit").html();
+        $(".clone_edit_case_file_location").after(lsthmtl_required_wanting_documents_edit);
+    });
+    $("body").on("click", ".btn_danger__case_file_location_edit", function () {
+        $(this).parents(".hdtuto_edit_case_file_location").remove();
+    });
+
     // edit
 
     $(".btn_success_court_short").click(function () {

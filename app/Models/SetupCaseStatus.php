@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SetupCaseStatus extends Model
 {
     use HasFactory;
+
+    
 }

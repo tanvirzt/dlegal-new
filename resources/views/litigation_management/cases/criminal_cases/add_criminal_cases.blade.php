@@ -365,7 +365,7 @@
                                                         class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                             </div>
-                                            <h6 class="text-uppercase text-bold"><u> Case File Location </u>
+                                            {{-- <h6 class="text-uppercase text-bold"><u> Case File Location </u>
                                             </h6>
                                             <div class="form-group row">
                                                 <label for="cabinet_id"
@@ -394,7 +394,7 @@
                                                     @error('self_number')<span
                                                         class="text-danger">{{$message}}</span>@enderror
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                         </div>
                                     </div>
@@ -1246,6 +1246,74 @@
                                                                 class="text-danger">{{$message}}</span>@enderror
                                                         </div>
                                                     </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h6 class="text-uppercase text-bold">
+                                                <u> CASE FILE LOCATION</u>
+                                            </h6>
+                                            <div class="form-group row">
+                                                
+                                                <div class="col-sm-12">
+                                                    <div class="input-group hdtuto_case_file_location_new control-group increment_case_file_location_new">
+                                                        <input type="hidden" name="case_file_location_new_sections[]"
+                                                                class="myfrm form-control mr-2" value="case_file_location_new_sections">
+                                                        <select name="case_file_location_new_id[]"
+                                                            class="form-control mr-3">
+                                                            <option value="">Select</option>
+                                                            @foreach($cabinet as $item)
+                                                            <option
+                                                                value="{{ $item->id }}" {{  old('case_file_location_new_id') == $item->id ? 'selected' : '' }}>{{ $item->cabinet_name }}</option>
+                                                             @endforeach
+                                                        </select>
+                                                        <input type="text" name="case_file_location_new_office[]"
+                                                                class="myfrm form-control mr-2">
+                                                        <input type="text" name="case_file_location_new_almirah[]"
+                                                                class="myfrm form-control mr-2">
+                                                        <input type="text" name="case_file_location_new_self[]"
+                                                                class="myfrm form-control mr-2">
+                                                       
+                                                        <div class="input-group-btn">
+                                                            <button class="btn btn-success btn_success_case_file_location_new"
+                                                                    type="button"><i
+                                                                    class="fldemo glyphicon glyphicon-plus"></i>+
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clone_case_file_location_new hide">
+                                                        <div class="hdtuto_case_file_location_new control-group lst input-group"
+                                                                style="margin-top:10px">
+                                                                <input type="hidden" name="case_file_location_new_sections[]"
+                                                                class="myfrm form-control mr-2" value="case_file_location_new_sections">
+                                                        <select name="case_file_location_new_id[]"
+                                                            class="form-control mr-3">
+                                                            <option value="">Select</option>
+                                                            @foreach($cabinet as $item)
+                                                            <option
+                                                                value="{{ $item->id }}" {{  old('case_file_location_new_id') == $item->id ? 'selected' : '' }}>{{ $item->cabinet_name }}</option>
+                                                             @endforeach
+                                                        </select>
+                                                        <input type="text" name="case_file_location_new_office[]"
+                                                                class="myfrm form-control mr-2">
+                                                        <input type="text" name="case_file_location_new_almirah[]"
+                                                                class="myfrm form-control mr-2">
+                                                        <input type="text" name="case_file_location_new_self[]"
+                                                                class="myfrm form-control mr-2">
+                                                            <div class="input-group-btn">
+                                                                <button class="btn btn-danger btn_danger_case_file_location_new"
+                                                                        type="button"><i
+                                                                        class="fldemo glyphicon glyphicon-remove"></i> -
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    @error('case_file_location_new')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
