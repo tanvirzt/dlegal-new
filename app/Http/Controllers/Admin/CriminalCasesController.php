@@ -845,7 +845,7 @@ class CriminalCasesController extends Controller
     public function update_criminal_cases(Request $request, $id)
     {
 
-// dd($request->all());
+        //    dd($request->all());
 
         $received_documents_sections = $request->received_documents_sections;
         $remove = !empty($received_documents_sections) ? array_pop($received_documents_sections) : '';
@@ -1018,6 +1018,8 @@ class CriminalCasesController extends Controller
             $data->update();
 
 
+            // request_array($request->all());
+
             $steps = CriminalCasesCaseSteps::where('criminal_case_id', $id)->first();
             $steps->case_infos_allegation_claim_id = $request->case_infos_allegation_claim_id;
             $steps->case_infos_allegation_claim_write = $request->case_infos_allegation_claim_write;
@@ -1062,7 +1064,7 @@ class CriminalCasesController extends Controller
             $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
             $steps->case_steps_summary_of_cases_type_id = $request->case_steps_summary_of_cases_type_id;
             $steps->case_steps_remarks = $request->case_steps_remarks;
-
+ 
             $steps->save();
 
             if ($request->hasfile('uploaded_document')) {
@@ -1360,6 +1362,15 @@ class CriminalCasesController extends Controller
             $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
             $steps->case_steps_summary_of_cases_type_id = $request->case_steps_summary_of_cases_type_id;
             $steps->case_steps_remarks = $request->case_steps_remarks;
+           
+            $steps->case_steps_servicr_return = $request->case_steps_servicr_return == 'dd-mm-yyyy' || $request->case_steps_servicr_return == 'NaN-NaN-NaN' ? null : $request->case_steps_servicr_return;
+            $steps->case_steps_servicr_return_note = $request->case_steps_servicr_return_note;
+            $steps->case_steps_servicr_return_type_id = $request->case_steps_servicr_return_type_id;
+ 
+            $steps->case_steps_sr_completed = $request->case_steps_sr_completed == 'dd-mm-yyyy' || $request->case_steps_sr_completed == 'NaN-NaN-NaN' ? null : $request->case_steps_sr_completed;
+            $steps->case_steps_sr_completed_note = $request->case_steps_sr_completed_note;
+            $steps->case_steps_sr_completed_type_id = $request->case_steps_sr_completed_type_id;
+           
             $steps->save();
 
         }

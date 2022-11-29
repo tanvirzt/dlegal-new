@@ -5734,6 +5734,69 @@
                             @error('case_steps_filing_copy')<span
                                 class="text-danger">{{$message}}</span>@enderror
                         </div>
+                        {{-- {{dd($edit_case_steps)}} --}}
+                        <div class="form-group row">
+                            <label for="case_steps_servicr_return" class="col-sm-3 col-form-label"> Service Return (SR)</label>
+                            <div class="col-sm-3">
+                                <input type="date" class="form-control"
+                                       id="case_steps_servicr_return"
+                                       name="case_steps_servicr_return"
+                                       value="{{ $edit_case_steps->case_steps_servicr_return }}" >
+                                @error('case_steps_servicr_return')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control"
+                                       id="case_steps_servicr_return_note"
+                                       name="case_steps_servicr_return_note"
+                                       value="{{ $edit_case_steps->case_steps_servicr_return_note }}">
+                                @error('case_steps_servicr_return_note')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                            <div class="col-sm-3">
+                                <select name="case_steps_servicr_return_type_id"
+                                        class="form-control">
+                                    <option value="">Select</option>
+                                    @foreach($documents_type as $item)
+                                        <option
+                                            value="{{ $item->id }}" {{ $edit_case_steps->case_steps_servicr_return_type_id == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error('case_steps_servicr_return_copy')<span
+                                class="text-danger">{{$message}}</span>@enderror
+                        </div>
+                        <div class="form-group row">
+                            <label for="case_steps_sr_completed" class="col-sm-3 col-form-label">S.R. Completed</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control"
+                                       id="case_steps_sr_completed"
+                                       name="case_steps_sr_completed"
+                                       value="{{ $edit_case_steps->case_steps_sr_completed }}" >
+                                @error('case_steps_sr_completed')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control"
+                                       id="case_steps_sr_completed_note"
+                                       name="case_steps_sr_completed_note"
+                                       value="{{ $edit_case_steps->case_steps_sr_completed_note }}">
+                                @error('case_steps_sr_completed_note')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                            <div class="col-sm-3">
+                                <select name="case_steps_sr_completed_type_id"
+                                        class="form-control">
+                                    <option value="">Select</option>
+                                    @foreach($documents_type as $item)
+                                        <option
+                                            value="{{ $item->id }}" {{ $edit_case_steps->case_steps_sr_completed_type_id == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error('case_steps_sr_completed_copy')<span
+                                class="text-danger">{{$message}}</span>@enderror
+                        </div>
 
                         <div class="form-group row">
                             <label for="taking_cognizance" class="col-sm-3 col-form-label"> Taking Cognizance </label>
