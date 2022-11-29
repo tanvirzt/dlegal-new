@@ -109,12 +109,12 @@
                                                 <div class="form-group row">
                                                     <label for="class_of_cases" class="col-sm-4 col-form-label"> Class of Cases </label>
                                                     <div class="col-sm-8">
-                                                        <select name="class_of_cases" class="form-control select2" id="class_of_cases" action="{{ route('find-case-no') }}">
+                                                        <select name="class_of_cases" class="form-control select2" @if (!empty($case_class)) disabled @endif id="class_of_cases" action="{{ route('find-case-no') }}">
                                                             <option value=""> Select </option>
-                                                            <option value="District Court"> District Court </option>
-                                                            <option value="Special Court"> Special Court </option>
-                                                            <option value="High Court Division"> High Court Division </option>
-                                                            <option value="Appellate Division"> Appellate Division </option>
+                                                            <option value="District Court" {{ $case_class->case_category_id == 'Criminal' || $case_class->case_category_id == 'Civil' ? 'selected' : '' }}> District Court </option>
+                                                            <option value="Special Court" {{ $case_class->case_category_id == 'Special Court' ? 'selected' : '' }}> Special Court </option>
+                                                            <option value="High Court Division" {{ $case_class->case_category_id == 'High Court Division' ? 'selected' : '' }}> High Court Division </option>
+                                                            <option value="Appellate Division" {{ $case_class->case_category_id == 'Appellate Division' ? 'selected' : '' }}> Appellate Division </option>
                                                         </select>
                                                         @error('class_of_cases')<span class="text-danger">{{$message}}</span>@enderror
                                                     </div>
@@ -122,14 +122,21 @@
                                                 <div class="form-group row">
                                                     <label for="case_id" class="col-sm-4 col-form-label"> Case No </label>
                                                     <div class="col-sm-8">
-                                                        <select name="case_no" class="form-control select2" id="case_no">
+                                                        <select name="case_no" class="form-control select2" id="case_no" @if (!empty($case_class)) disabled @endif>
                                                             <option value=""> Select </option>
+                                                            @if (!empty($case_class))
+                                                                <option value="{{ $case_class->id }}" selected> {{ $case_class->case_no }} </option>
+                                                            @endif
 
                                                         </select>
                                                         @error('case_no')<span class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
-
+                                                @if (!empty($case_class))
+                                                <input type="hidden" class="form-control" id="class_of_cases" name="class_of_cases" value="{{ $case_class->case_category_id == 'Criminal' || $case_class->case_category_id == 'Civil' ? 'District Court' : '' }}">
+                                                <input type="hidden" class="form-control" id="case_no" name="case_no" value="{{$case_class->id}}">
+                                                
+                                                @endif
                                             <div class="form-group row">
                                                 <label for="panel_lawyer_id" class="col-sm-4 col-form-label">Panel Lawyer</label>
                                                 <div class="col-sm-8">

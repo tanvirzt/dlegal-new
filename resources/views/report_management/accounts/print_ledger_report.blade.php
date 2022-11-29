@@ -59,13 +59,13 @@
                                     <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688
                                     </span>
                                     <br />
-                                    <span id="lblUnitAddress" class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
+                                    <span id="lblUnitAddress"
+                                        class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
                                     <span id="lblVoucherType" class="VoucherStyle">
                                 </div>
 
                                 <div class="col-sm-4 invoice-col">
                                     <h3 class="text-center">Ledger Report</h3>
-
                                 </div>
 
                                 <div class="col-sm-4 invoice-col">
@@ -109,7 +109,7 @@
                                                         {{ $datum->ledger_date != null ? date('d-m-Y', strtotime($datum->ledger_date)) : '' }}
                                                     </td>
                                                     <td>
-                                                        {{ $datum->bill_id != null ? $datum->bill->billing_no : '' }}
+                                                        {{ $datum->billing_no }}
                                                     </td>
                                                     <td>
                                                         {{ $datum->payment_against_bill == 'on' ? 'Yes' : 'No' }}
@@ -127,7 +127,7 @@
                                                         {{ $datum->payment_type }}
                                                     </td>
                                                     <td>
-                                                        {{ $datum->ledger_head_bill_id != null ? $datum->ledger_head_bill->ledger_head_name : '' }}
+                                                        {{ $datum->ledger_head_name }}
 
                                                     </td>
                                                     <td>
@@ -169,7 +169,7 @@
                             </div>
 
 
-                            <div class="row mt-5">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <div class="text-center">
                                         <hr width="50%">

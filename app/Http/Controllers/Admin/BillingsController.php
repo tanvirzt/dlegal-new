@@ -24,6 +24,7 @@ use App\Models\AppellateCourtCase;
 use App\Models\CaseBilling;
 use App\Models\SetupCaseTypes;
 use DB;
+use App\Models\LedgerEntry;
 
 class BillingsController extends Controller
 {
@@ -82,6 +83,19 @@ class BillingsController extends Controller
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
 
         return view('litigation_management.billings.billings.add_billing',compact('external_council','bill_type','bank','digital_payment_type','district', 'case_types'));
+    }
+
+    public function add_billing_from_district_court($id)
+    {
+        $bill_type = SetupBillType::where('delete_status',0)->get();
+        $external_council = SetupExternalCouncil::where('delete_status',0)->get();
+        $bank = SetupBank::where('delete_status',0)->get();
+        $digital_payment_type = SetupDigitalPayment::where('delete_status',0)->get();
+        $district = SetupDistrict::where('delete_status',0)->get();
+        $case_types = SetupCaseTypes::where('delete_status', 0)->get();
+        $case_class = CriminalCase::find($id);
+        // data_array($case_class);
+        return view('litigation_management.billings.billings.add_billing',compact('external_council','bill_type','bank','digital_payment_type','district', 'case_types', 'case_class'));
     }
 
     public function find_bank_branch(Request $request)
@@ -598,8 +612,24 @@ class BillingsController extends Controller
                 ->where('case_billings.id', $id)
                 ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name', 'setup_case_types.case_types_name')
                 ->first();
-                // dd($data);e
+                // dd($data);
         return view('litigation_management.billings.billings.view_billing',compact('data'));
+
+    }
+    public function view_money_receipt($id)
+    {
+        $data = LedgerEntry::with('ledger_head_bill','bill')->find($id);
+                // data_array($data);
+        return view('accounts.ledger_entry.show',compact('data'));
+
+    }
+
+    public function money_receipt_print_preview($id)
+    {
+        $data = LedgerEntry::with('ledger_head_bill','bill')->find($id);
+        // dd($data);
+
+        return view('accounts.ledger_entry.money_receipt_print_preview', compact('data'));
 
     }
 

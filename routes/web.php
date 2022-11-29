@@ -691,7 +691,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('billings',[BillingsController::class, 'billings'])->name('billings');
     Route::get('view-billing/{id}',[BillingsController::class, 'view_billing'])->name('view-billing');
     Route::get('/edit-billings/{id}',[BillingsController::class, 'edit_billings'])->name('edit-billings');
+    Route::get('view-money-receipt/{id}',[BillingsController::class, 'view_money_receipt'])->name('view-money-receipt');
+    Route::get('money-receipt-print-preview/{id}',[BillingsController::class, 'money_receipt_print_preview'])->name('money-receipt-print-preview');
     
+    Route::get('add-billing-from-district-court/{id}', [BillingsController::class, 'add_billing_from_district_court'])->name('add-billing-from-district-court');
 
 // thana setup
 

@@ -2504,7 +2504,8 @@
                                                 title="Bill Entry"><i class="fas fa-money-bill"></i></button> --}}
                                         {{-- <a href="{{ route('billings-log-print-preview', $data->id) }}" title="Print Bill Log" target="_blank"
                                            class="btn btn-info btn-sm"><i class="fas fa-print"></i></a> --}}
-
+                                           <a href="{{ route('add-billing-from-district-court',$data->id) }}"><button class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Add Billing"
+                                            ><i class="fas fa-money-bill"></i></button></a>
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
                                         </button>
@@ -2527,7 +2528,7 @@
                                                 <th class="text-center text-nowrap">Date of Billing</th>
                                                 <th class="text-center text-nowrap">Paid Amount</th>
                                                 <th class="text-center text-nowrap">Status</th>
-                                                {{-- <th class="text-center text-nowrap">Action</th> --}}
+                                                <th class="text-center text-nowrap">Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>

@@ -19,6 +19,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\CaseBilling;
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -57,6 +58,7 @@ class ReportController extends Controller
         }
 
         $date = new DateTime('now');
+        // data_array($date);
 
         $date->modify('first day of next month');
         $next_month_start = $date->format('Y-m-d');
@@ -71,8 +73,12 @@ class ReportController extends Controller
 
         $next_week_end = date('Y-m-d', strtotime("thursday 1 week"));
 
+        // $now = Carbon::now();
+        // $start = $now->startOfWeek(Carbon::TUESDAY);
+        // $end = $now->endOfWeek(Carbon::MONDAY);
+        // data_array(date('Y-m-d', strtotime($start)));
+        // data_array($now);
 
-        // dd($received_date);
         $query = DB::table('criminal_cases')
             ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', 'setup_next_date_reasons.id')
             ->leftJoin('setup_case_statuses', 'criminal_cases.case_status_id', 'setup_case_statuses.id')
@@ -259,17 +265,21 @@ class ReportController extends Controller
     {
         $request_data = [
             'ledger_head_id' => '',
-            'from_date' => '',
-            'to_date' => '',
+            'class_of_cases' => '',
+            'case_no' => '',
         ];
-        $data = LedgerEntry::with('ledger_head_bill')->orderBy('id', 'DESC')->get();
         $ledger_head = LedgerHead::all();
+        // $data = LedgerEntry::with('ledger_head_bill','bill')->orderBy('id', 'DESC')->get();
         
+        $data = DB::table('ledger_entries')
+                ->leftJoin('ledger_heads', 'ledger_entries.ledger_head_bill_id', 'ledger_heads.id')
+                ->leftJoin('case_billings', 'case_billings.id', 'ledger_entries.bill_id')
+                ->select('ledger_entries.*', 'ledger_heads.ledger_code' , 'ledger_heads.ledger_head_name', 'case_billings.billing_no', 'case_billings.payment_type', 'case_billings.class_of_cases', 'case_billings.case_no')
+                ->get();
         
         // {{ \App\Models\ModelNameHere::sum('column_name') }}
         
         // data_array($data);
-
         
         return view('report_management.accounts.ledger_report', compact('data', 'request_data','ledger_head'));
     }
@@ -296,20 +306,32 @@ class ReportController extends Controller
             $to_next_date = null;
         }
 
-        $query = LedgerEntry::with('ledger_head_bill');
+
+        $query = DB::table('ledger_entries')
+                ->leftJoin('ledger_heads', 'ledger_entries.ledger_head_bill_id', 'ledger_heads.id')
+                ->leftJoin('case_billings', 'case_billings.id', 'ledger_entries.bill_id');
+        
+        // $query = LedgerEntry::with('ledger_head_bill');
         
         switch ($request->isMethod('get')) {
             case $request->ledger_head_id != null:
-                $query2 = $query->where('ledger_head_bill_id', $request->ledger_head_id);
+                $query2 = $query->where('ledger_entries.ledger_head_bill_id', $request->ledger_head_id);
                 break;
-            case $request->from_date != null && $request->to_date != null:
-                $query2 = $query->whereBetween('ledger_date',array($from_next_date, $to_next_date));
+            // case $request->from_date != 'dd-mm-yyyy' && $request->to_date != 'dd-mm-yyyy':
+            //     $query2 = $query->whereBetween('ledger_entries.ledger_date',array($from_next_date, $to_next_date));
+            //     break;
+            case $request->class_of_cases != null && $request->case_no:
+                $query2 = $query->where(['case_billings.class_of_cases' => $request->class_of_cases, 'case_billings.case_no' => $request->case_no]);
+                break;
+            case $request->class_of_cases:
+                $query2 = $query->where(['case_billings.class_of_cases' => $request->class_of_cases]);
                 break;
             default:
                 $query2 = $query;
         }
 
-        $data = $query2->orderBy('id', 'DESC')->get();
+        $data = $query2->select('ledger_entries.*', 'ledger_heads.ledger_code' , 'ledger_heads.ledger_head_name', 'case_billings.billing_no', 'case_billings.payment_type', 'case_billings.class_of_cases', 'case_billings.case_no')
+                ->get();
         $ledger_head = LedgerHead::all();
         $is_search = 'Searched';
 
@@ -339,20 +361,34 @@ class ReportController extends Controller
             $to_next_date = null;
         }
 
-        $query = LedgerEntry::with('ledger_head_bill');
+        $query = DB::table('ledger_entries')
+                ->leftJoin('ledger_heads', 'ledger_entries.ledger_head_bill_id', 'ledger_heads.id')
+                ->leftJoin('case_billings', 'case_billings.id', 'ledger_entries.bill_id');
+        
+        // $query = LedgerEntry::with('ledger_head_bill');
         
         switch ($request->isMethod('get')) {
             case $request->ledger_head_id != null:
-                $query2 = $query->where('ledger_head_bill_id', $request->ledger_head_id);
+            // dd('asdf asdf asd f asdf asdf');
+
+                $query2 = $query->where('ledger_entries.ledger_head_bill_id', $request->ledger_head_id);
                 break;
-            case $request->from_date != null && $request->to_date != null:
-                $query2 = $query->whereBetween('ledger_date',array($from_next_date, $to_next_date));
+            // case $request->from_date != null && $request->to_date != null:
+            //     $query2 = $query->whereBetween('ledger_entries.ledger_date',array($from_next_date, $to_next_date));
+            //     break;
+            case $request->class_of_cases != null && $request->case_no:
+                $query2 = $query->where(['case_billings.class_of_cases' => $request->class_of_cases, 'case_billings.case_no' => $request->case_no]);
+                break;
+            case $request->class_of_cases:
+                $query2 = $query->where(['case_billings.class_of_cases' => $request->class_of_cases]);
                 break;
             default:
+            // dd('asdf asdf'); 
                 $query2 = $query;
         }
 
-        $data = $query2->orderBy('id', 'DESC')->get();
+        $data = $query2->select('ledger_entries.*', 'ledger_heads.ledger_code' , 'ledger_heads.ledger_head_name', 'case_billings.billing_no', 'case_billings.payment_type', 'case_billings.class_of_cases', 'case_billings.case_no')
+                ->get();
         $ledger_head = LedgerHead::all();
         $is_search = 'Searched';
 

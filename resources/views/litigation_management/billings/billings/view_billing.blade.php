@@ -59,7 +59,10 @@
                                         <span id="lblUnitAddress" class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
                                             <span id="lblVoucherType" class="VoucherStyle">
                             </div>
-
+                            <div class="col-sm-4 invoice-col">
+                                <h3 class="text-center">Bill</h3><br>
+                                
+                            </div>
                             <div class="col-sm-4 invoice-col">
                                <b>To</b>
                                
@@ -84,17 +87,14 @@
                                 </address>
                             </div>
 
-                            <div class="col-sm-4 invoice-col">
-                                <b>Invoice #{{ $data->billing_no }}</b><br>
-                                
-                            </div>
+                            
 
                         </div>
 
 
                         <div class="row">
                             <div class="col-12 table-responsive">
-                                <table class="table table-striped">
+                                <table class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Case No</th>
@@ -148,7 +148,7 @@
                             <div class="col-6">
                                 {{-- <p class="lead">Amount Due 2/22/2014</p> --}}
                                 <div class="table-responsive mt-2">
-                                    <table class="table">
+                                    <table class="table table-bordered">
                                         <tbody>
                                             <tr>
                                                 <th style="width:50%">Subtotal:</th>

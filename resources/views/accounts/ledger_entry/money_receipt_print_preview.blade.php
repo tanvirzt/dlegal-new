@@ -60,7 +60,9 @@
                                             <span id="lblVoucherType" class="VoucherStyle">
                             </div>
                             <div class="col-sm-4 invoice-col">
-                                <h3 class="text-center">Money Receipt</h3><br>
+                                <h3 class="text-center">
+                                Money Receipt    
+                                </h3><br>
                                 
                             </div>
                             <div class="col-sm-4 invoice-col">
@@ -214,10 +216,10 @@
                                     Received By
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            {{-- <div class="col-md-12">
                                 <a href="{{ route('money-receipt-print-preview', $data->id) }}" title="Print Case Info" target="_blank"
                                     class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a>
-                            </div>
+                            </div> --}}
                         </div>
 
 
@@ -361,4 +363,8 @@
 
 
     </div>
+
+    <script type="text/javascript"> 
+        window.addEventListener("load", window.print());
+      </script>
 @endsection

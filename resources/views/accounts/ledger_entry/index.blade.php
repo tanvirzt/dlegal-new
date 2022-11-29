@@ -119,16 +119,9 @@
                                                 
 
                                                 <td>
-                                                    {{-- @can('civil-cases-view')
-
-                                                    <a href="{{ route('view-civil-cases', $datum->id) }}">
-                                                        <button
-                                                            class="btn btn-primary btn-sm" data-toggle="tooltip"
-                                                            data-placement="top" title="Details"><i
-                                                                class="fas fa-eye"></i></button>
-                                                    </a>
-                                                @endcan --}}
-
+                                                    
+                                                <a href="{{ route('view-money-receipt',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Money Receipt"
+                                                    ><i class="fas fa-eye"></i></button></a>
                                                     {{-- @can('civil-cases-edit') --}}
                                                         <a href="{{ route('ledger-entry.edit', $datum->id) }}">
                                                             <button class="btn btn-info btn-sm" data-toggle="tooltip"

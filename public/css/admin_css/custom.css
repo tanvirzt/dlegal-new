@@ -857,4 +857,8 @@ a .btn{
 }
 .invoice .table{
     margin-bottom: 150px;
+    margin-top: 50px;
+}
+.invoice th{
+    background-color: #fff;
 }
