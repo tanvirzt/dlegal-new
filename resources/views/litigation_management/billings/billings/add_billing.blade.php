@@ -111,10 +111,10 @@
                                                     <div class="col-sm-8">
                                                         <select name="class_of_cases" class="form-control select2" @if (!empty($case_class)) disabled @endif id="class_of_cases" action="{{ route('find-case-no') }}">
                                                             <option value=""> Select </option>
-                                                            <option value="District Court" {{ $case_class->case_category_id == 'Criminal' || $case_class->case_category_id == 'Civil' ? 'selected' : '' }}> District Court </option>
-                                                            <option value="Special Court" {{ $case_class->case_category_id == 'Special Court' ? 'selected' : '' }}> Special Court </option>
-                                                            <option value="High Court Division" {{ $case_class->case_category_id == 'High Court Division' ? 'selected' : '' }}> High Court Division </option>
-                                                            <option value="Appellate Division" {{ $case_class->case_category_id == 'Appellate Division' ? 'selected' : '' }}> Appellate Division </option>
+                                                            <option value="District Court" @if (!empty($case_class)) {{ $case_class->case_category_id == 'Criminal' || $case_class->case_category_id == 'Civil' ? 'selected' : '' }} @endif> District Court </option>
+                                                            <option value="Special Court" @if (!empty($case_class)) {{ $case_class->case_category_id == 'Special Court' ? 'selected' : '' }} @endif> Special Court </option>
+                                                            <option value="High Court Division" @if (!empty($case_class)) {{ $case_class->case_category_id == 'High Court Division' ? 'selected' : '' }} @endif> High Court Division </option>
+                                                            <option value="Appellate Division" @if (!empty($case_class)) {{ $case_class->case_category_id == 'Appellate Division' ? 'selected' : '' }} @endif> Appellate Division </option>
                                                         </select>
                                                         @error('class_of_cases')<span class="text-danger">{{$message}}</span>@enderror
                                                     </div>
