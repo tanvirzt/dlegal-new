@@ -65,7 +65,11 @@
                                 </div>
 
                                 <div class="col-sm-4 invoice-col">
-                                    <h3 class="text-center">Ledger Report</h3>
+                                    <h3 class="text-center">Ledger Report </h3>
+                                    <h5 class="text-center">{{ $ledger_head_name->ledger_head_name }}</h5>
+                                    @if ($request_data['from_date'] != 'dd-mm-yyyy')
+                                        <h6 class="text-center">From: {{ $request_data['from_date'] }}, To: {{ $request_data['to_date'] }}</h6>
+                                    @endif
                                 </div>
 
                                 <div class="col-sm-4 invoice-col">
@@ -86,16 +90,16 @@
                                                 <th class="text-center">SL</th>
                                                 <th class="text-center">Ledger Date</th>
                                                 <th class="text-center">Bill No</th>
-                                                <th class="text-center">Payment Against Bill</th>
-                                                <th class="text-nowrap"> Transaction No. </th>
-                                                <th class="text-center"> Job No. </th>
-                                                <th class="text-nowrap">Ledger Type</th>
+                                                {{-- <th class="text-center">Payment Against Bill</th> --}}
+                                                {{-- <th class="text-nowrap"> Transaction No. </th> --}}
+                                                <th class="text-center"> Job Name </th>
+                                                <th class="text-nowrap">Ledger Category</th>
                                                 <th class="text-nowrap">Payment Type</th>
-                                                <th class="text-center">Ledger Head Bill</th>
-                                                <th class="text-center">Bill Amount</th>
-                                                <th class="text-center">Income</th>
-                                                <th class="text-center">Expense</th>
-                                                <th class="text-center">Remarks</th>
+                                                <th class="text-center">Ledger Head</th>
+                                                {{-- <th class="text-center">Bill Amount</th> --}}
+                                                <th class="text-center">Amount</th>
+                                                {{-- <th class="text-center">Expense</th> --}}
+                                                {{-- <th class="text-center">Remarks</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -111,46 +115,45 @@
                                                     <td>
                                                         {{ $datum->billing_no }}
                                                     </td>
-                                                    <td>
+                                                    {{-- <td>
                                                         {{ $datum->payment_against_bill == 'on' ? 'Yes' : 'No' }}
-                                                    </td>
-                                                    <td>
+                                                    </td> --}}
+                                                    {{-- <td>
                                                         {{ $datum->transaction_no }}
+                                                    </td> --}}
+                                                    <td>
+                                                        {{ $datum->job_name }}
                                                     </td>
                                                     <td>
-                                                        {{ $datum->job_no }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $datum->ledger_type }}
+                                                        {{ $datum->ledger_category_id }}
                                                     </td>
                                                     <td>
                                                         {{ $datum->payment_type }}
                                                     </td>
                                                     <td>
                                                         {{ $datum->ledger_head_name }}
-
                                                     </td>
-                                                    <td>
+                                                    {{-- <td>
                                                         {{ $datum->bill_amount }}
-                                                    </td>
+                                                    </td> --}}
                                                     <td>
-                                                        {{ $datum->income_paid_amount }}
+                                                        {{ $datum->paid_amount }}
                                                     </td>
-                                                    <td>
+                                                    {{-- <td>
                                                         {{ $datum->expense_paid_amount }}
-                                                    </td>
-                                                    <td>
+                                                    </td> --}}
+                                                    {{-- <td>
                                                         {{ $datum->remarks }}
-                                                    </td>
+                                                    </td> --}}
 
                                                 </tr>
                                             @endforeach
                                             <tr>
-                                                <td colspan="9">Total: </td>
-                                                <td></td>
-                                                <td>{{ $data->sum('income_paid_amount') }}</td>
-                                                <td> {{ $data->sum('expense_paid_amount') }} </td>
-                                                <td> </td>
+                                                <td colspan="7">Total: </td>
+                                                {{-- <td></td> --}}
+                                                <td>{{ $data->sum('paid_amount') }}</td>
+                                                {{-- <td> {{ $data->sum('expense_paid_amount') }} </td> --}}
+                                                {{-- <td> </td> --}}
                                             </tr>
                                         </tbody>
                                     </table>

@@ -846,6 +846,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('print-income-expense-report', [ReportController::class, 'print_income_expense_report'])->name('print-income-expense-report');
 
     Route::get('/find-bill',[BillingsController::class, 'find_bill'])->name('find-bill');
+    Route::get('/find-ledger-head',[BillingsController::class, 'find_ledger_head'])->name('find-ledger-head');
 
     Route::get('balance-report', [ReportController::class, 'balance_report'])->name('balance-report');
     Route::get('balance-report-search', [ReportController::class, 'balance_report_search'])->name('balance-report-search');

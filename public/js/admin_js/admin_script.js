@@ -1986,6 +1986,36 @@ $(document).ready(function () {
         }
     });
 
+    $('#ledger_category_id').on('change', function () {
+        var ledger_category_id = $(this).val();
+        var route = $(this).attr('action');
+        // alert(route);
+        if (ledger_category_id) {
+            $.ajax({
+                url: route,
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", ledger_category_id: ledger_category_id},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    if (data) {
+                        $('#ledger_head_id').empty();
+                        $('#ledger_head_id').focus;
+                        $('#ledger_head_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="ledger_head_id"]').append('<option value="' + value.id + '">' + value.ledger_head_name + '</option>');
+                        });
+                    } else {
+                        $('#ledger_head_id').empty();
+                    }
+                }
+            });
+        } else {
+            $('#ledger_head_id').empty();
+            $('#ledger_head_id').append('<option value="">Select</option>');
+        }
+    });
+
     $('#start_time,#end_time').on('change',function() {
         var start_time = $('#start_time').val();
         var end_time = $('#end_time').val();

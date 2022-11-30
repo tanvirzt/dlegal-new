@@ -16,7 +16,7 @@ class LedgerEntryController extends Controller
     */
     public function index()
     {
-        $data = LedgerEntry::with('bill','ledger_head_bill')->orderBy('id','desc')->get();
+        $data = LedgerEntry::with('bill','ledger_head')->orderBy('id','desc')->get();
         // data_array($data);
         return view('accounts.ledger_entry.index', compact('data'));
     }
@@ -53,10 +53,10 @@ class LedgerEntryController extends Controller
     {
         // request_array($request->all());
 
-        $request->validate([
-            'transaction_no' => 'required',
-            'payment_type' => 'required',
-        ]);
+        // $request->validate([
+        //     'transaction_no' => 'required',
+        //     'payment_type' => 'required',
+        // ]);
 
         $data = $request->all();
         
@@ -68,11 +68,20 @@ class LedgerEntryController extends Controller
             $data['ledger_date'] = null;
         }
 
-        if ($request->ledger_type == 'Expense') {
-            $data['expense_paid_amount'] = $request->payment_amount;
-        } else {
-            $data['income_paid_amount'] = $request->payment_amount;
-        }
+        // if ($request->ledger_category_id == 'Expense') {
+        //     $data['expense_paid_amount'] = $request->payment_amount;
+        // } else {
+        //     $data['income_paid_amount'] = $request->payment_amount;
+        // }
+
+        // $is_exist = LedgerEntry::where('bill_id', $request->bill_id)->count();
+
+        // if ( $is_exist > 0 ) {
+        //     $bill_amount = LedgerEntry::where('id', $is)
+        // } else {
+
+        // }
+        
         
 
         LedgerEntry::create($data);
@@ -100,7 +109,8 @@ class LedgerEntryController extends Controller
     public function edit(LedgerEntry $ledger_entry)
     {
         $bill_no = CaseBilling::where('delete_status', 0)->get();
-        $ledger_head = LedgerHead::all();
+        $ledger_head = LedgerHead::where('ledger_category_id', $ledger_entry->ledger_category_id)->get();
+        // dd($ledger_head);
         return view('accounts.ledger_entry.edit',compact('ledger_entry', 'bill_no', 'ledger_head'));
     }
 
@@ -113,11 +123,10 @@ class LedgerEntryController extends Controller
     */
     public function update(Request $request, LedgerEntry $ledger_entry)
     {
-        $request->validate([
-            'transaction_no' => 'required',
-            // 'job_no' => 'required',
-            'payment_type' => 'required',
-        ]);
+        // $request->validate([
+        //     'transaction_no' => 'required',
+        //     'payment_type' => 'required',
+        // ]);
 
         $data = $request->post();
 
@@ -129,7 +138,7 @@ class LedgerEntryController extends Controller
             $data['ledger_date'] = null;
         }
 
-        if ($request->ledger_type == 'Expense') {
+        if ($request->ledger_category_id == 'Expense') {
             $data['expense_paid_amount'] = $request->payment_amount;
             $data['income_paid_amount'] = null;
         } else {

@@ -25,6 +25,7 @@ use App\Models\CaseBilling;
 use App\Models\SetupCaseTypes;
 use DB;
 use App\Models\LedgerEntry;
+use App\Models\LedgerHead;
 
 class BillingsController extends Controller
 {
@@ -671,6 +672,13 @@ class BillingsController extends Controller
     {
         // return $request->all();
         $data = CaseBilling::where(['id' => $request->bill_id, 'delete_status' => 0])->first();
+        return response()->json($data);
+    }
+
+    public function find_ledger_head(Request $request)
+    {
+        // return $request->all();
+        $data = LedgerHead::where(['ledger_category_id' => $request->ledger_category_id])->get();
         return response()->json($data);
     }
 

@@ -61,13 +61,13 @@
                                             <th class="text-center">Bill No</th>
                                             <th class="text-center">Payment Against Bill</th>
                                             <th class="text-nowrap"> Transaction No. </th>
-                                            <th class="text-center"> Job No. </th>
-                                            <th class="text-nowrap">Ledger Type</th>
+                                            <th class="text-center"> Job Name </th>
+                                            <th class="text-nowrap">Ledger Category</th>
                                             <th class="text-nowrap">Payment Type</th>
-                                            <th class="text-center">Ledger Head Bill</th>
+                                            <th class="text-center">Ledger Head</th>
                                             <th class="text-center">Bill Amount</th>
-                                            <th class="text-center">Income</th>
-                                            <th class="text-center">Expense</th>
+                                            <th class="text-center">Amount</th>
+                                            {{-- <th class="text-center">Expense</th> --}}
                                             <th class="text-center">Remarks</th>
                                             <th width="13%">Action</th>
                                         </tr>
@@ -92,27 +92,27 @@
                                                     {{ $datum->transaction_no }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->job_no }}
+                                                    {{ $datum->job_name }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->ledger_type }}
+                                                    {{ $datum->ledger_category_id }}
                                                 </td>
                                                 <td>
                                                     {{ $datum->payment_type }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->ledger_head_bill_id != null ? $datum->ledger_head_bill->ledger_head_name : '' }}
+                                                    {{ $datum->ledger_head->ledger_head_name }}
 
                                                 </td>
                                                 <td>
                                                     {{ $datum->bill_amount }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->income_paid_amount }}
+                                                    {{ $datum->paid_amount }}
                                                 </td>
-                                                <td>
+                                                {{-- <td>
                                                     {{ $datum->expense_paid_amount }}
-                                                </td>
+                                                </td> --}}
                                                 <td>
                                                     {{ $datum->remarks }}
                                                 </td>

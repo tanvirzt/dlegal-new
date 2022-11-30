@@ -67,7 +67,7 @@
                                                 {{-- @foreach ($datum->ledger_category as $ledger_cat) --}}
 
 
-                                                    {{ !empty($datum->ledger_category) ? $datum->ledger_category->ledger_category_name : ''}}
+                                                    {{ $datum->ledger_category_id }}
                                                 
                                                 
                                                     {{-- @endforeach --}}
