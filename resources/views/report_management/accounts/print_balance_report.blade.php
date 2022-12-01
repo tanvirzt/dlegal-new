@@ -59,13 +59,37 @@
                                     <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688
                                     </span>
                                     <br />
-                                    <span id="lblUnitAddress" class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
+                                    <span id="lblUnitAddress"
+                                        class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
                                     <span id="lblVoucherType" class="VoucherStyle">
                                 </div>
 
                                 <div class="col-sm-4 invoice-col">
-                                    <h3 class="text-center">Balance Report</h3>
+                                    <h3 class="text-center">Ledger Report </h3>
+                                    <h5 class="text-center">
+                                        {{ !empty($ledger_head_name) ? $ledger_head_name->ledger_head_name : '' }}
+                                    </h5>
+                                    <h6 class="text-center">{{ !empty($request_data['class_of_cases']) ? $request_data['class_of_cases'] : '' }}</h6>
+@if (!empty($request_data['class_of_cases']) && $request_data['class_of_cases'] == 'District Court')
+<h6 class="text-center">
 
+    @php
+    $case_number = DB::table('ledger_entries')
+            ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
+            ->leftJoin('criminal_cases', 'case_billings.case_no', 'criminal_cases.id')
+            ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
+            ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no', 'criminal_cases.case_no as main_case_no')
+            ->first();
+// dd($case_number);
+    @endphp
+        
+{{ $case_number->main_case_no }}
+        </h6>
+@endif
+                                    {{-- @if ($request_data['from_date'] != 'dd-mm-yyyy')
+                                        <h6 class="text-center">From: {{ $request_data['from_date'] }},
+                                            To: {{ $request_data['to_date'] }}</h6>
+                                    @endif --}}
                                 </div>
 
                                 <div class="col-sm-4 invoice-col">
@@ -79,26 +103,24 @@
                             <br>
 
                             <div class="row">
+
                                 <div class="col-12 table-responsive">
+
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
                                                 <th class="text-center">SL</th>
-                                                <th class="text-center">Ledger Date</th>
                                                 <th class="text-center">Bill No</th>
-                                                <th class="text-center">Payment Against Bill</th>
-                                                <th class="text-nowrap"> Transaction No. </th>
-                                                <th class="text-center"> Job No. </th>
-                                                <th class="text-nowrap">Ledger Type</th>
                                                 <th class="text-nowrap">Payment Type</th>
-                                                <th class="text-center">Ledger Head Bill</th>
                                                 <th class="text-center">Bill Amount</th>
-                                                <th class="text-center">Income</th>
-                                                <th class="text-center">Expense</th>
-                                                <th class="text-center">Remarks</th>
+                                                <th class="text-center">Paid Amount</th>
+                                                <th class="text-center">Due Amount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+
+
+
                                             @foreach ($data as $key => $datum)
                                                 <tr>
                                                     <td>
@@ -106,51 +128,50 @@
                                                     </td>
 
                                                     <td>
-                                                        {{ $datum->ledger_date != null ? date('d-m-Y', strtotime($datum->ledger_date)) : '' }}
+                                                        {{ $datum->billing_no }}
                                                     </td>
-                                                    <td>
-                                                        {{ $datum->bill_id != null ? $datum->bill->billing_no : '' }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $datum->payment_against_bill == 'on' ? 'Yes' : 'No' }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $datum->transaction_no }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $datum->job_no }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $datum->ledger_type }}
-                                                    </td>
+
                                                     <td>
                                                         {{ $datum->payment_type }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $datum->ledger_head_bill_id != null ? $datum->ledger_head_bill->ledger_head_name : '' }}
-
                                                     </td>
                                                     <td>
                                                         {{ $datum->bill_amount }}
                                                     </td>
                                                     <td>
-                                                        {{ $datum->income_paid_amount }}
+                                                        @foreach ($datum->ledger as $ledger)
+                                                            {{ $ledger->paid_amount }} <br>
+                                                        @endforeach
                                                     </td>
                                                     <td>
-                                                        {{ $datum->expense_paid_amount }}
+                                                        {{ $datum->bill_amount - $datum->ledger->sum('paid_amount') }}
                                                     </td>
-                                                    <td>
-                                                        {{ $datum->remarks }}
-                                                    </td>
+
 
                                                 </tr>
                                             @endforeach
+
                                             <tr>
-                                                <td colspan="9">Total: </td>
-                                                <td></td>
-                                                <td>{{ $data->sum('income_paid_amount') }}</td>
-                                                <td> {{ $data->sum('expense_paid_amount') }} </td>
-                                                <td> </td>
+                                                <td colspan="3">Total: </td>
+                                                <td> {{ $data->sum('bill_amount') }} </td>
+
+                                                <td>
+                                                    @if (!empty($is_search))
+                                                        @php
+                                                            $pd_amnt = DB::table('ledger_entries')
+                                                                ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
+                                                                ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
+                                                                ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no')
+                                                                ->sum('ledger_entries.paid_amount');
+                                                        @endphp
+                                                        {{ $pd_amnt }}
+                                                    @else
+                                                        {{ $ledger->sum('paid_amount') }}
+                                                    @endif
+
+                                                </td>
+
+                                                <td>{{ $data->sum('bill_amount') - (!empty($is_search) ? $pd_amnt : $ledger->sum('paid_amount')) }}
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -169,7 +190,7 @@
                             </div>
 
 
-                            <div class="row mt-5">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <div class="text-center">
                                         <hr width="50%">
@@ -190,14 +211,13 @@
                                 </div>
                                 <div class="col-md-12">
                                     {{-- <a href="{{ route('billings-print-preview', $data->id) }}" title="Print Case Info" target="_blank"
-                                    class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a> --}}
+                                class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a> --}}
                                 </div>
                             </div>
 
 
 
                         </div>
-
                     </div>
                 </div>
             </div>

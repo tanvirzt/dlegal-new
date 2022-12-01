@@ -619,7 +619,13 @@ class BillingsController extends Controller
     }
     public function view_money_receipt($id)
     {
-        $data = LedgerEntry::with('ledger_head_bill','bill')->find($id);
+        $data = LedgerEntry::with('ledger_head','bill')->find($id);
+
+        if ($data->receipt_no == null) {
+            $transcation_no = explode('-', $data->transaction_no);
+            $data->receipt_no = 'RCPT-'.$transcation_no[1];
+            $data->save();
+        }
                 // data_array($data);
         return view('accounts.ledger_entry.show',compact('data'));
 
@@ -627,7 +633,7 @@ class BillingsController extends Controller
 
     public function money_receipt_print_preview($id)
     {
-        $data = LedgerEntry::with('ledger_head_bill','bill')->find($id);
+        $data = LedgerEntry::with('ledger_head','bill')->find($id);
         // dd($data);
 
         return view('accounts.ledger_entry.money_receipt_print_preview', compact('data'));

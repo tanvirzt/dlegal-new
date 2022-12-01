@@ -28,6 +28,7 @@ class CreateLedgerEntriesTable extends Migration
             $table->string('income_paid_amount')->nullable(); 
             $table->string('expense_paid_amount')->nullable(); 
             $table->string('remarks')->nullable(); 
+            $table->string('receipt_no')->nullable(); 
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->softDeletes();

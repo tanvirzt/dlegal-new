@@ -115,12 +115,16 @@
                                         <div class="form-group row">
                                             <label for="payment_against_bill" class="col-sm-4 col-form-label mt-1">Payment Against Bill</label>
                                             <div class="icheck-success d-inline col-sm-8">
-                                                <input type="checkbox" id="payment_against_bill" name="payment_against_bill">
+                                                <input type="checkbox" id="payment_against_bill" name="payment_against_bill" @if (!empty($single_case_bill))
+                                                    checked disabled
+                                                @endif>
                                                 <label for="payment_against_bill">
                                                     Yes
                                                 </label>
                                             </div>
                                         </div>
+                                        <input type="hidden" id="payment_against_bill" name="payment_against_bill" value="on">
+
                                     </div>
 
 
@@ -149,6 +153,29 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    @if (!empty($single_case_bill))
+                                        
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="bill_id" class="col-sm-4 col-form-label">Bill No</label>
+                                            <div class="col-sm-8">
+                                                <select name="bill_id" class="form-control select2" id="bill_id" disabled>
+                                                    <option value=""> Select </option>
+                                                    @foreach($bill_no as $item)
+                                                        <option value="{{ $item->id }}" {{( $single_case_bill->id == $item->id ? 'selected':'')}}>{{ $item->billing_no }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('bill_id')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" name="bill_id" value="{{ $single_case_bill->id }}">
+
+                                    @endif
+
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="ledger_date" class="col-sm-4 col-form-label">Date</label>
@@ -207,13 +234,22 @@
                                             </div>
                                         </div>
                                     </div> --}}
+                                    @if (!empty($single_case_bill))
 
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="bill_amount" class="col-sm-4 col-form-label">Bill Amount</label>
+                                            <div class="col-sm-8" >
+                                            <input type="text" class="form-control" readonly name="bill_amount" value="{{ $single_case_bill->bill_amount }}">
                                     
-
+                                            </div>
+                                        </div>
+                                    </div>
+@else
                                     <div class="col-md-6" id="bill_amount">
                                         
                                     </div>
-
+@endif
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="paid_amount" class="col-sm-4 col-form-label">Paid Amount</label>

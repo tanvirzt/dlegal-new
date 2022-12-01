@@ -60,8 +60,9 @@
                                             <span id="lblVoucherType" class="VoucherStyle">
                             </div>
                             <div class="col-sm-4 invoice-col">
-                                <h3 class="text-center">Money Receipt</h3><br>
-                                
+                                <h3 class="text-center">Money Receipt</h3>
+                                <h6 class="text-center">({{ $data->receipt_no }})</h6>
+
                             </div>
                             <div class="col-sm-4 invoice-col">
                                <b>To</b>

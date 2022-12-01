@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LedgerEntry;
 use App\Models\CaseBilling;
 use App\Models\LedgerHead;
+use App\Models\CriminalCase;
 use Illuminate\Http\Request;
 
 class LedgerEntryController extends Controller
@@ -74,13 +75,13 @@ class LedgerEntryController extends Controller
         //     $data['income_paid_amount'] = $request->payment_amount;
         // }
 
-        // $is_exist = LedgerEntry::where('bill_id', $request->bill_id)->count();
+        $is_exist = LedgerEntry::where('bill_id', $request->bill_id)->count();
 
-        // if ( $is_exist > 0 ) {
-        //     $bill_amount = LedgerEntry::where('id', $is)
-        // } else {
-
-        // }
+        if ( $is_exist > 0 ) {
+            $bill_amnt = CaseBilling::where('id', $request->bill_id)->first();
+            $amnt = LedgerEntry::where('bill_id', $request->bill_id)->sum('paid_amount');
+            $data['bill_amount'] = $bill_amnt->bill_amount - $amnt;
+        } 
         
         
 
@@ -174,6 +175,35 @@ class LedgerEntryController extends Controller
     {
         $ledger_entry->delete();
         return redirect()->route('ledger-entry.index')->with('success','Ledger Entry has been deleted successfully.');
+    }
+
+
+    public function add_ledger_entry($id)
+    {
+        $bill_no = CaseBilling::where('delete_status', 0)->get();
+        $ledger_head = LedgerHead::all();
+        $latest = LedgerEntry::orderBy('id','DESC')->first();
+        
+        if ($latest != null) {
+            $latest_no = explode('-', $latest->transaction_no);
+            $sl = $latest_no[1] + 1;
+        } else {
+            $sl = +1;
+        }
+        $txn_no = 'TXN-000' . $sl;
+// dd($txn_no);
+
+        // $bill_type = SetupBillType::where('delete_status',0)->get();
+        // $external_council = SetupExternalCouncil::where('delete_status',0)->get();
+        // $bank = SetupBank::where('delete_status',0)->get();
+        // $digital_payment_type = SetupDigitalPayment::where('delete_status',0)->get();
+        // $district = SetupDistrict::where('delete_status',0)->get();
+        // $case_types = SetupCaseTypes::where('delete_status', 0)->get();
+        
+        $case_class = CriminalCase::find($id);
+        $single_case_bill = CaseBilling::find($id);
+
+        return view('accounts.ledger_entry.create', compact('bill_no','ledger_head','txn_no', 'case_class', 'single_case_bill'));
     }
 
 

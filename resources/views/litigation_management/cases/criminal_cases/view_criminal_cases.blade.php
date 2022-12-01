@@ -2587,18 +2587,18 @@
                                                         @endif
                                                         </span>
                                                     </td>
-                                                    {{-- <td class="text-center">
-                                                            <a href="{{ route('view-billing',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
-                                                            ><i class="fas fa-eye"></i></button></a>
-                                                            <a href="{{ route('edit-billings',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
-                                                                ><i class="fas fa-edit"></i></button></a>
-                                                            <form method="POST" action="{{ route('delete-billing',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                                    <td class="text-center">
+                                                            <a href="{{ route('add-ledger-entry',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Add Ledger"
+                                                            ><i class="fas fa-money-bill"></i></button></a>
+                                                            {{-- <a href="{{ route('edit-billings',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                                ><i class="fas fa-edit"></i></button></a> --}}
+                                                            {{-- <form method="POST" action="{{ route('delete-billing',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                                 @csrf
         
                                                                 <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
-                                                            </form>
+                                                            </form> --}}
                                                        
-                                                    </td> --}}
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
