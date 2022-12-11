@@ -581,6 +581,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('edit-criminal-cases/{id}',[CriminalCasesController::class, 'edit_criminal_cases'])->name('edit-criminal-cases');
     Route::post('update-criminal-cases/{id}',[CriminalCasesController::class, 'update_criminal_cases'])->name('update-criminal-cases');
     Route::post('update-criminal-case/{id}',[CriminalCasesController::class, 'update_criminal_case'])->name('update-criminal-case');
+
+    Route::post('update-criminal-case-opp-lawyer/{id}',[CriminalCasesController::class, 'update_criminal_case_opp_lawyer'])->name('update-criminal-case_opp_lawyer');
+
     Route::post('delete-criminal-cases/{id}',[CriminalCasesController::class, 'delete_criminal_cases'])->name('delete-criminal-cases');
     Route::get('delete-criminal-cases-latest/{id}',[CriminalCasesController::class, 'delete_criminal_cases_latest'])->name('delete-criminal-cases-latest');
     Route::get('view-criminal-cases/{id}',[CriminalCasesController::class, 'view_criminal_cases'])->name('view-criminal-cases');
@@ -800,6 +803,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('view-internal-counsel/{id}', [CounselLawyerController::class, 'show_internal_counsel'])->name('view-internal-counsel');
 
     Route::get('print-report-search', [ReportController::class, 'print_report_search'])->name('print-report-search');
+
+
+    /////New Change Counser will be together (Internal & Exernal)
+   
+    Route::get('internal-counsel-new', [CounselLawyerController::class, 'index_internal_counsel_new'])->name('internal-counsel-new');
+
 
 
     ///////////////////// Report Managenent Start /////////////////////

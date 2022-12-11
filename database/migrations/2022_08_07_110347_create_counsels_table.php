@@ -15,6 +15,8 @@ class CreateCounselsTable extends Migration
     {
         Schema::create('counsels', function (Blueprint $table) {
             $table->id();
+            $table->string('counsel_type')->nullable();
+            $table->string('counsel_category')->nullable();
             $table->string('chamber_name')->nullable();
             $table->string('counsel_role_id')->nullable();
             $table->string('counsel_name')->nullable();

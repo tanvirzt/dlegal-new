@@ -1,3 +1,10 @@
+<style>
+
+.sidebar-mini.sidebar-collapse .main-sidebar, .sidebar-mini.sidebar-collapse .main-sidebar::before{
+    position: fixed !important;
+ }
+</style>
+
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
@@ -138,7 +145,7 @@
                             @endcanany
                             @can('internal-counsel-list')
                                 <li class="nav-item">
-                                    <a href="{{ route('internal-counsel') }}" class="nav-link">
+                                    <a href="{{ route('internal-counsel-new') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Internal Counsel</p>
                                     </a>

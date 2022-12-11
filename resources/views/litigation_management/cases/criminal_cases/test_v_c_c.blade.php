@@ -60,14 +60,10 @@
                 transform: translateY(0);
             }
         }
-         .logBtn{
-            margin-left: 8rem; 
-         }
-
 
         /*Start Scroll View */
-         .card.CaseInfoCard {
-            height: 69.5rem;
+        .card.CaseInfoCard {
+            height: 53.5rem;
             overflow-y: scroll;
         }
         .CaseInfoCard::-webkit-scrollbar {
@@ -84,115 +80,30 @@
         }
 
 
-         .card.caseStepCard {
-            height: 25.5rem;
+        .card.DocumentCard {
+            height: 29.5rem;
             overflow-y: scroll;
         }
-        .caseStepCard::-webkit-scrollbar {
+
+        .DocumentCard::-webkit-scrollbar {
             width: 5px;
         }
-        .caseStepCard::-webkit-scrollbar-track {
+        .DocumentCard::-webkit-scrollbar-track {
             background: #fff !important;
             border-left: 1px solid #ddd;
         }
-        .caseStepCard::-webkit-scrollbar-thumb {
+        .DocumentCard::-webkit-scrollbar-thumb {
             background: rgb(0 0 0 / 20%) !important;
             border-radius: 10px !important;
             padding: 2px;
         }
 
 
-        .card.caseEvents {
-            height: 23.5rem;
-            overflow-y: scroll;
-        }
-        .caseEvents::-webkit-scrollbar {
-            width: 5px;
-        }
-        .caseEvents::-webkit-scrollbar-track {
-            background: #fff !important;
-            border-left: 1px solid #ddd;
-        }
-        .caseEvents::-webkit-scrollbar-thumb {
-            background: rgb(0 0 0 / 20%) !important;
-            border-radius: 10px !important;
-            padding: 2px;
-        }
+         /*End Scroll View */
 
-        .card.documentCard {
-            height: 24.5rem;
-            overflow-y: scroll;
-        }
-        .documentCard::-webkit-scrollbar {
-            width: 5px;
-        }
-        .documentCard::-webkit-scrollbar-track {
-            background: #fff !important;
-            border-left: 1px solid #ddd;
-        }
-        .documentCard::-webkit-scrollbar-thumb {
-            background: rgb(0 0 0 / 20%) !important;
-            border-radius: 10px !important;
-            padding: 2px;
-        }
-
-
-
-
-        .card.caseFileLoacation {
-            height: 19.5rem;
-            overflow-y: scroll;
-        }
-        .caseFileLoacation::-webkit-scrollbar {
-            width: 5px;
-        }
-        .caseFileLoacation::-webkit-scrollbar-track {
-            background: #fff !important;
-            border-left: 1px solid #ddd;
-        }
-        .caseFileLoacation::-webkit-scrollbar-thumb {
-            background: rgb(0 0 0 / 20%) !important;
-            border-radius: 10px !important;
-            padding: 2px;
-        }
-
-
-
-        .card.clientInfoCard  {
-            height: 37rem;
-            overflow-y: scroll;
-        }
-        .clientInfoCard::-webkit-scrollbar {
-            width: 5px;
-        }
-        .clientInfoCard::-webkit-scrollbar-track {
-            background: #fff !important;
-            border-left: 1px solid #ddd;
-        }
-        .clientInfoCard::-webkit-scrollbar-thumb {
-            background: rgb(0 0 0 / 20%) !important;
-            border-radius: 10px !important;
-            padding: 2px;
-        }
-
-
-        .card-header.caseInfoHeader {
-            position: sticky;
-            top: 0px;
-        }
-
-        .card-header {
-            background-color: #f3f3f3 !important;
-        }
-
-        .caseInfoTable tbody tr td:first-child {
-            width: 26% !important;
-        }
-        .caseInfoTable2 tbody tr td:first-child {
-            width: 22% !important;
-        }
-
-
+         .logBtn{
+            margin-left: 8rem; 
+         }
 
 
     </style>
@@ -255,7 +166,7 @@
                             </button>
                         </div>
                     @endif
-                   
+                    <div class="card">
                         <div class="card">
                             <div class="card-header">
 
@@ -367,7 +278,1357 @@
                                 </div>
                             </div>
                         
-                           
+                            <div class="card-body">
+                             
+                                <div class="card CaseInfoCard">
+                                    <div class="card-body">
+                                        <div class="row">
+
+                                            <div class="col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="text-uppercase text-bold"><u> Case Information </u>
+                                                            <button type="button" class="btn btn-info btn-sm float-right"
+                                                                    data-toggle="modal" data-target="#modal-lg-case-info"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Update Primary Information"><i class="fas fa-edit"></i>
+                                                            </button>
+                                                        </h6>
+                                                        <table class="table table-bordered">
+        
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="50%">Case ID</td>
+                                                                    <td width="50%"> {{ $data->created_case_id }} </td>
+                                                                </tr>
+                                                            <tr>
+                                                                <td width="50%">Division</td>
+                                                                <td width="50%">
+                                                                    {{ $data->case_infos_division_name }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>District</td>
+                                                                <td>{{ $data->case_infos_district_name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Police Station</td>
+                                                                <td>{{ $data->case_infos_thana_name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case Category</td>
+                                                                <td>{{ $data->case_category_id }}</td>
+                                                            </tr>
+                                                            {{-- <tr>
+                                                            <td>Case Subcategory</td>
+                                                            <td>{{ $data->case_subcategory }}</td>
+                                                        </tr> --}}
+                                                            <tr>
+                                                                <td>Case Type</td>
+                                                                <td>{{ $data->case_types_name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case Prayer</td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case Nature</td>
+                                                                <td>{{$case_steps->case_nature_write}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case Matter</td>
+                                                                <td>{{ $data->matter_name }} {{ $data->matter_write }}
+                                                                </td>
+                                                            </tr>
+        
+                                                            <tr class="trHide">
+                                                                <td>Case Title</td>
+                                                                <td>{{ $data->case_infos_case_title_name }}</td>
+                                                            </tr>
+                                                            <tr >
+                                                                <td>Case Title (Short)</td>
+                                                                <td>{{ $data->case_infos_case_title_name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case No.</td>
+                                                                <td>{{ rtrim($data->case_infos_case_no, ', ') }} of
+                                                                    {{ rtrim($data->case_infos_case_year, ', ') }} </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Name of the Court</td>
+                                                                <td>
+                                                                    @php
+                                                                        $case_infos_court_id = explode(', ', $data->case_infos_court_id);
+                                                                    @endphp
+                                                                    @if ($data->case_infos_court_id)
+                                                                        @if (count($case_infos_court_id) > 1)
+                                                                            @foreach ($case_infos_court_id as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($case_infos_court_id as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Name of Court(Short)</td>
+                                                                <td>
+                                                                    @php
+                                                                        $case_infos_court_short_id = explode(', ', $data->case_infos_court_short_id);
+                                                                    @endphp
+                                                                    @if ($data->case_infos_court_short_id)
+                                                                        @if (count($case_infos_court_short_id) > 1)
+                                                                            @foreach ($case_infos_court_short_id as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($case_infos_court_short_id as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+        
+                                                                    @php
+                                                                        $court_short_write = explode(', ', $data->court_short_write);
+                                                                    @endphp
+                                                                    @if ($data->court_short_write)
+                                                                        @if (count($court_short_write) > 1)
+                                                                            @foreach ($court_short_write as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($court_short_write as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+        
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Sub Seq. Case Title</td>
+                                                                <td> {{ $data->sub_seq_case_infos_case_title_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Sub Seq. Case No.</td>
+                                                                <td>
+        
+        
+                                                                    @php
+                                                                        $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
+                                                                        $key = array_key_last($case_infos_sub_seq_case_no);
+                                                                        echo $case_infos_sub_seq_case_no[$key];
+        
+                                                                        $case_infos_sub_seq_case_year = explode(', ', trim($data->case_infos_sub_seq_case_year));
+                                                                        $key = array_key_last($case_infos_sub_seq_case_year);
+                                                                        $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                                                        if ($last_case_no != null) {
+                                                                            echo ' of ' . $last_case_no;
+                                                                        }
+                                                                    @endphp
+        
+        
+        
+                                                                    {{-- @php
+                                                                        $case_infos_sub_seq_case_no = explode(', ', $data->case_infos_sub_seq_case_no);
+                                                                    @endphp
+                                                                    @if ($data->case_infos_sub_seq_case_no)
+                                                                        @if (count($case_infos_sub_seq_case_no) > 1)
+                                                                            @foreach ($case_infos_sub_seq_case_no as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($case_infos_sub_seq_case_no as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif --}}
+        
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Sub-Seq. Court</td>
+                                                                <td>
+                                                                    @php
+                                                                        $case_infos_sub_seq_court_id = explode(', ', $data->case_infos_sub_seq_court_id);
+                                                                    @endphp
+                                                                    @if ($data->case_infos_sub_seq_court_id)
+                                                                        @if (count($case_infos_sub_seq_court_id) > 1)
+                                                                            @foreach ($case_infos_sub_seq_court_id as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($case_infos_sub_seq_court_id as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+        
+        
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Sub-Seq. Court(Short)</td>
+                                                                <td>
+                                                                    @php
+                                                                        $case_infos_sub_seq_court_short_id = explode(', ', $data->case_infos_sub_seq_court_short_id);
+                                                                    @endphp
+                                                                    @if ($data->case_infos_sub_seq_court_short_id)
+                                                                        @if (count($case_infos_sub_seq_court_short_id) > 1)
+                                                                            @foreach ($case_infos_sub_seq_court_short_id as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($case_infos_sub_seq_court_short_id as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+                                                                    @php
+                                                                        $sub_seq_court_short_write = explode(', ', $data->sub_seq_court_short_write);
+                                                                    @endphp
+                                                                    @if ($data->sub_seq_court_short_write)
+                                                                        @if (count($sub_seq_court_short_write) > 1)
+                                                                            @foreach ($sub_seq_court_short_write as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($sub_seq_court_short_write as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+        
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Law</td>
+                                                                <td>
+                                                                    @php
+                                                                        $law_id = explode('/ ', $data->law_id);
+                                                                        $law_write = explode('/ ', $data->law_write);
+                                                                        // dd(!empty($data->law_id));
+                                                                    @endphp
+        
+                                                                    @if ($data->law_id || $data->law_write)
+                                                                        @if (count($law_id) >= 1 && count($law_write) >= 1)
+                                                                            @if (!empty($data->law_id) && count($law_id) >= 1 && count($law_write) >= 1)
+                                                                                {{-- {{ dd('case info') }} --}}
+                                                                                @foreach ($law_id as $pro)
+                                                                                    <li class="text-left">
+                                                                                        {{ $pro }}</li>
+                                                                                @endforeach
+                                                                            @else
+                                                                                @foreach ($law_id as $pro)
+                                                                                    {{ $pro }}
+                                                                                @endforeach
+                                                                            @endif
+                                                                            @if (!empty($data->law_write) && count($law_write) >= 1 && count($law_id) >= 1)
+                                                                                @foreach ($law_write as $pro)
+                                                                                    <li class="text-left">
+                                                                                        {{ $pro }}</li>
+                                                                                @endforeach
+                                                                            @else
+                                                                                @foreach ($law_write as $pro)
+                                                                                    {{ $pro }}
+                                                                                @endforeach
+                                                                            @endif
+                                                                        @elseif (count($law_id) > 1 && count($law_write) == 0)
+                                                                            @foreach ($law_id as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                            @foreach ($law_write as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @elseif (count($law_id) == 0 && count($law_write) > 1)
+                                                                            @foreach ($law_id as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                            @foreach ($law_write as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($law_id as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                            @foreach ($law_write as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+        
+        
+        
+                                                                    {{-- @if ($data->law_id)
+                                                                    @if (count($law_id) > 1)
+                                                                        @foreach ($law_id as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($law_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+        
+                                                                @if ($data->law_write)
+                                                                    @if (count($law_write) > 1)
+                                                                        @foreach ($law_write as $pro)
+                                                                            <li class="text-left">{{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($law_write as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif --}}
+        
+        
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Section</td>
+                                                                <td>
+                                                                    @php
+                                                                        $section_id = explode(', ', $data->section_id);
+                                                                    @endphp
+                                                                    @if ($data->section_id)
+                                                                        @if (count($section_id) > 1)
+                                                                            @foreach ($section_id as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($section_id as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+                                                                    @php
+                                                                        $section_write = explode(', ', $data->section_write);
+                                                                    @endphp
+                                                                    @if ($data->section_write)
+                                                                        @if (count($section_write) > 1)
+                                                                            @foreach ($section_write as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($section_write as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+        
+        
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case Filing Date</td>
+                                                                <td>{{ $data->date_of_filing }}</td>
+                                                            </tr>
+                                                            {{-- <tr>
+                                                            <td>Status of the Cases</td>
+                                                            <td>{{ $data->case_status_name }}</td>
+                                                        </tr> --}}
+        
+                                                            <tr class="trHide">
+                                                                <td>Complainant/Informant Name</td>
+                                                                <td>
+                                                                    @php
+                                                                        $case_infos_complainant_informant_name = explode(', ', $data->case_infos_complainant_informant_name);
+                                                                    @endphp
+                                                                    @if ($data->case_infos_complainant_informant_name)
+                                                                        @if (count($case_infos_complainant_informant_name) > 1)
+                                                                            @foreach ($case_infos_complainant_informant_name as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($case_infos_complainant_informant_name as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+        
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Complainant/Informant's Representative</td>
+                                                                <td>
+                                                                    @php
+                                                                        $complainant_informant_representative = explode(', ', $data->complainant_informant_representative);
+                                                                    @endphp
+                                                                    @if ($data->complainant_informant_representative)
+                                                                        @if (count($complainant_informant_representative) > 1)
+                                                                            @foreach ($complainant_informant_representative as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($complainant_informant_representative as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+        
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Accused Name</td>
+                                                                <td>
+                                                                    @php
+                                                                        $case_infos_accused_name = explode(', ', $data->case_infos_accused_name);
+                                                                    @endphp
+                                                                    @if ($data->case_infos_accused_name)
+                                                                        @if (count($case_infos_accused_name) > 1)
+                                                                            @foreach ($case_infos_accused_name as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($case_infos_accused_name as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+        
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Accused's Representative</td>
+                                                                <td>
+                                                                    @php
+                                                                        $case_infos_accused_representative = explode(', ', $data->case_infos_accused_representative);
+                                                                    @endphp
+                                                                    @if ($data->case_infos_accused_representative)
+                                                                        @if (count($case_infos_accused_representative) > 1)
+                                                                            @foreach ($case_infos_accused_representative as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($case_infos_accused_representative as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+        
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Prosecution Witnesses</td>
+                                                                <td>{{ $data->prosecution_witness }}</td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Defense Witnesses</td>
+                                                                <td> {{ $data->defense_witness }} </td>
+                                                            </tr>
+                                                            <tr >
+                                                                <td>Allegation/Claim</td>
+                                                                <td> {{ $edit_case_steps->allegation_name }}
+                                                                    {{ $edit_case_steps->case_infos_allegation_claim_write }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Amount of Money</td>
+                                                                <td>{{ !empty($edit_case_steps->amount_of_money) ? number_format($edit_case_steps->amount_of_money, 0).'/-': '' }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Another Claim(if any)</td>
+                                                                <td>{{ $edit_case_steps->another_claim }}</td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Recovery/Seizure Articles</td>
+                                                                <td>{{ $edit_case_steps->recovery_seizure_articles }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Summary of Facts</td>
+                                                                <td>{{ $edit_case_steps->summary_facts }}</td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Remarks</td>
+                                                                <td>{{ $edit_case_steps->case_info_remarks }}</td>
+                                                            </tr>
+        
+        
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+        
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="text-uppercase text-bold"><u> Case Status :</u>
+                                                            @php
+                                                            $now = Carbon\Carbon::now();
+                                                            $days_count = Carbon\Carbon::parse($data->date_of_filing)->diffInDays($now);
+                                                        @endphp
+                
+                                                        <span class="font-italic text-capitalize text-muted"> (Running for {{ $days_count }} days) </span>
+                                                            <button type="button" class="btn btn-info btn-sm float-right"
+                                                                    data-toggle="modal" data-target="#modal-lg-status-of-the-case"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Update Status of the Case"><i class="fas fa-edit"></i>
+                                                            </button>
+                                                        </h6>
+                                                        <table class="table table-bordered">
+    
+        
+        
+                                                            <tbody>
+
+
+                                                            <tr>
+                                                                <td >Status</td>
+                                                                <td>
+                                                                    {{$latest->case_status_name}}
+                                                                </td>
+                                                                <td >
+        
+                                                                @if (Is_numeric($data->case_status_id))
+                                                                    {{ $data->case_status_name }}
+                                                                @else
+                                                                    {{ $data->case_status_id }}
+                                                                @endif
+        
+                                                                </td>
+                                                              
+                                                            </tr>
+                                                            
+                                                            <tr>
+                                                                <td >Filing Date</td>
+                                                                <td>
+                                                                   
+                                                                        @if (!empty($data))
+                                                                            {{ $data->date_of_filing }}
+                                                                        @endif
+                                                                    </td>
+                                                                    <td >
+                                                                        Case Filed
+                                                                    </td>
+                                                                
+                                                               
+                                                            </tr>
+                                                            {{-- <tr>
+                                                                <td>Previous Date</td>
+                                                                <td  > 
+                                                                    {{count($previouDate) === 2 && !empty($previouDate[1]->updated_next_date) ? date('d-m-Y', strtotime($previouDate[1]->updated_next_date)) : '' }}
+                                                                </td>
+                                                                <td>
+                                                                    {{count($previouDate) === 2 && !empty($previouDate[1]->case->case_status_name) ? $previouDate[1]->case->case_status_name : '' }}
+                                                                </td>
+                                                            </tr> --}}
+                                                            <tr>
+                                                                <td >Previous Date</td>
+
+                                                                <td>
+                                                                    @if(!empty($latest) && !empty($latest->updated_order_date))
+                                                                        {{date('d-m-Y', strtotime($latest->updated_order_date))}}
+                                                                    @else
+                                                                    <button type='button'
+                                                                    class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not Upd
+                                                                  </button>
+                                                                    @endif
+                                                                   
+                                                                </td>
+                                                                <td>
+                                                                    {{!empty($latest) && !empty($latest->next_date_reason_name) ? $latest->next_date_reason_name : '' }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td >Next Date</td>
+
+                                                                <td>
+                                                                    @if(!empty($latest) && !empty($latest->updated_next_date))
+                                                                       {{date('d-m-Y', strtotime($latest->updated_next_date))}}
+                                                                    @else
+                                                                    <button type='button'
+                                                                      class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not Upd
+                                                                    </button>
+                                                                    @endif 
+                                                                </td>
+                                                                <td>
+                                                                    {{!empty($latest) && !empty($latest->index_fixed_for_reason_name) ? $latest->index_fixed_for_reason_name : '' }}
+                                                                </td>
+                                                            </tr>
+                                                         
+                                                           
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="text-uppercase text-bold"><u> Case Events & Incidents </u></h6>
+        
+        
+                                                        <h6 class="text-uppercase text-bold">
+                                                            <div class="row">
+                                                                <div class="col-md-3"> Date</div>
+                                                                <div class="col-md-3 text-center">Title</div>
+                                                                <div class="col-md-3 text-center">Description</div>
+                                                                <div class="col-md-2 text-center">Evidence</div>
+                                                                <div class="col-md-1">
+                                                                    <button type="button"
+                                                                            class="btn btn-info btn-sm float-right"
+                                                                            data-toggle="modal" data-target="#modal-lg-letter-notice"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Update Case Steps"><i
+                                                                            class="fas fa-edit"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        </h6>
+        
+        
+                                                        {{-- <h6 class="text-uppercase text-bold">
+                                                            <div class="row">
+                                                                <div class="col-md-3"> Date </div>
+                                                                <div class="col-md-2"> Document Name </div>
+                                                                <div class="col-md-3"> Particulars </div>
+                                                                <div class="col-md-2"> ORG </div>
+                                                                <div class="col-md-1"> PHT
+        
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <button type="button"
+                                                                            class="btn btn-info btn-sm float-right"
+                                                                            data-toggle="modal" data-target="#modal-lg-letter-notice"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Update Case Steps"><i
+                                                                                class="fas fa-edit"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        </h6> --}}
+        
+                                                        <table class="table table-bordered">
+                                                            <tbody>
+                                                            @foreach ($letter_notice as $value)
+                                                                <tr>
+                                                                    <td width="26%">{{ !empty($value->letter_notice_date) ? date('d-m-Y', strtotime($value->letter_notice_date)) : '' }} </td>
+                                                                    <td width="26%">{{ $value->documents_name }} {{ $value->letter_notice_documents_write }}
+                                                                    </td>
+                                                                    <td width="28%">{{ $value->letter_notice_particulars_write }}
+                                                                    </td>
+                                                                    <td width="20%">
+                                                                        {{ $value->documents_type_name }}
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="card">
+                                                    <div class="card-body">
+        
+                                                        {{-- <h6 class="text-uppercase text-bold">
+                                                            <div class="row">
+                                                                <div class="col-md-3"><u> Case Steps </u></div>
+                                                                <div class="col-md-3">Date</div>
+                                                                <div class="col-md-3">Note</div>
+                                                                <div class="col-md-1">ORG</div>
+                                                                <div class="col-md-1">CC</div>
+                                                                <div class="col-md-1" style="padding-left:1px;">Copy
+                                                                    <button type="button"
+                                                                    class="btn btn-info btn-sm float-right"
+                                                                    data-toggle="modal" data-target="#modal-lg-case-steps"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Update Case Steps"><i
+                                                                        class="fas fa-edit"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        </h6> --}}
+        
+        
+                                                        <h6 class="text-uppercase text-bold">
+                                                            <div class="row">
+                                                                <div class="col-md-3"><u> Case Steps </u>
+                                                                </div>
+                                                                <div class="col-md-3 text-center">Date</div>
+                                                                <div class="col-md-3 text-center">Note</div>
+                                                                <div class="col-md-2 text-center">Evidence</div>
+                                                                <div class="col-md-1">
+                                                                    <button type="button"
+                                                                            class="btn btn-info btn-sm float-right"
+                                                                            data-toggle="modal" data-target="#modal-lg-case-steps"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Update Case Steps"><i
+                                                                            class="fas fa-edit"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        </h6>
+        
+                                                        <table class="table table-bordered">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td width="26%">Case Filed</td>
+                                                                <td width="26%">
+                                                                    {{ $case_steps->case_steps_filing }} </td>
+                                                                <td width="28%" class="letters">
+                                                                    {{ $case_steps->case_steps_filing_note }} 
+                                                                </td>
+                                                                <td width="20%">
+                                                                    {{ $case_steps->case_steps_filing_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                             <tr>
+                                                                <td width="26%">Service Return (SR)</td>
+                                                                <td width="26%">
+                                                                    {{ $case_steps->case_steps_servicr_return }} </td>
+                                                                <td width="28%" class="letters">
+                                                                    {{ $case_steps->case_steps_servicr_return_note }} 
+                                                                </td>
+                                                                <td width="20%">
+                                                                    {{ $case_steps->servicr_return_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                           <tr>
+                                                                <td width="26%">S.R. Completed</td>
+                                                                <td width="26%">
+                                                                    {{ $case_steps->case_steps_sr_completed }} </td>
+                                                                <td width="28%" class="letters">
+                                                                    {{ $case_steps->case_steps_sr_completed_note }} 
+                                                                </td>
+                                                                <td width="20%">
+                                                                    {{ $case_steps->sr_completed_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="26%">Set Off</td>
+                                                                <td width="26%">
+                                                                    {{ $case_steps->case_steps_set_off }} </td>
+                                                                <td width="28%" class="letters">
+                                                                    {{ $case_steps->case_steps_set_off_note }} 
+                                                                </td>
+                                                                <td width="20%">
+                                                                    {{ $case_steps->case_steps_set_off_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="26%">Issue Frame</td>
+                                                                <td width="26%">
+                                                                    {{ $case_steps->case_steps_issue_frame }} </td>
+                                                                <td width="28%" class="letters">
+                                                                    {{ $case_steps->case_steps_issue_frame_note }} 
+                                                                </td>
+                                                                <td width="20%">
+                                                                    {{ $case_steps->case_steps_issue_frame_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="26%">PH</td>
+                                                                <td width="26%">
+                                                                    {{ $case_steps->case_steps_ph }} </td>
+                                                                <td width="28%" class="letters">
+                                                                    {{ $case_steps->case_steps_ph_note }} 
+                                                                </td>
+                                                                <td width="20%">
+                                                                    {{ $case_steps->case_steps_ph_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="26%">F.PH</td>
+                                                                <td width="26%">
+                                                                    {{ $case_steps->case_steps_fph }} </td>
+                                                                <td width="28%" class="letters">
+                                                                    {{ $case_steps->case_steps_fph_note }} 
+                                                                </td>
+                                                                <td width="20%">
+                                                                    {{ $case_steps->case_steps_fph_type_name }}
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>Taking Cognizance</td>
+                                                                <td> {{ $case_steps->taking_cognizance }} </td>
+                                                                <td class="letters"> {{ $case_steps->taking_cognizance_note }}
+                                                                </td>
+                                                                <td>
+                                                                    {{ $case_steps->taking_cognizance_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Arrest/Surrender/C.W.</td>
+                                                                <td> {{ $case_steps->arrest_surrender_cw }} </td>
+                                                                <td class="letters"> {{ $case_steps->arrest_surrender_cw_note }}
+                                                                </td>
+                                                                <td>
+                                                                    {{ $case_steps->arrest_surrender_cw_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Bail</td>
+                                                                <td> {{ $case_steps->case_steps_bail }} </td>
+                                                                <td class="letters"> {{ $case_steps->case_steps_bail_note }} </td>
+                                                                <td>
+                                                                    {{ $case_steps->case_steps_bail_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Court Transfer</td>
+                                                                <td> {{ $case_steps->case_steps_court_transfer }}
+                                                                </td>
+                                                                <td class="letters"> {{ $case_steps->case_steps_court_transfer_note }}
+                                                                </td>
+                                                                <td>
+                                                                    {{ $case_steps->court_transfer_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Charge Framed</td>
+                                                                <td> {{ $case_steps->case_steps_charge_framed }}
+                                                                </td>
+                                                                <td class="letters"> {{ $case_steps->case_steps_charge_framed_note }}
+                                                                </td>
+                                                                <td>
+                                                                    {{ $case_steps->charge_framed_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Witness (From)</td>
+                                                                <td> {{ $case_steps->case_steps_witness_from }}
+                                                                </td>
+                                                                <td class="letters"> {{ $case_steps->case_steps_witness_from_note }}
+                                                                </td>
+                                                                <td>
+                                                                    {{ $case_steps->witness_from_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Witness (To)</td>
+                                                                <td> {{ $case_steps->case_steps_witness_to }} </td>
+                                                                <td class="letters"> {{ $case_steps->case_steps_witness_to_note }}
+                                                                </td>
+                                                                <td>
+                                                                    {{ $case_steps->witness_to_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Argument</td>
+                                                                <td> {{ $case_steps->case_steps_argument }} </td>
+                                                                <td class="letters"> {{ $case_steps->case_steps_argument_note }}
+                                                                </td>
+                                                                <td>
+                                                                    {{ $case_steps->argument_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Judgement & Order</td>
+                                                                <td> {{ $case_steps->case_steps_judgement_order }}
+                                                                </td>
+                                                                <td class="letters"> {{ $case_steps->case_steps_judgement_order_note }}
+                                                                </td>
+                                                                <td>
+                                                                    {{ $case_steps->judgement_order_type_name }}
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td width="26%">Subsequent Status</td>
+                                                                <td width="26%">
+                                                                    {{ $case_steps->case_steps_subsequent_status }} </td>
+                                                                <td width="28%" class="letters">
+                                                                    {{ $case_steps->case_steps_subsequent_status_note }} 
+                                                                </td>
+                                                                <td width="20%">
+                                                                    {{ $case_steps->case_steps_subsequent_status_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                          
+                                                            <tr>
+                                                                <td>Summary of Cases</td>
+                                                                <td> {{ $case_steps->case_steps_summary_of_cases }}
+                                                                </td>
+                                                                <td class="letters"> {{ $case_steps->case_steps_summary_of_cases_note }}
+                                                                </td>
+                                                                <td>
+                                                                    {{ $case_steps->summary_of_cases_type_name }}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Remarks</td>
+                                                                <td colspan="3"> {{ $case_steps->case_steps_remarks }} </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card DocumentCard" id="documentSection">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="text-uppercase text-bold"><u> Documents
+                                                                Received </u>
+                                                            <button type="button" class="btn btn-info btn-sm float-right"
+                                                                    data-toggle="modal" data-target="#modal-lg-documents-info"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Update Documents"><i class="fas fa-edit"></i>
+                                                            </button>
+                                                        </h6>
+
+                                                        <table class="table table-bordered">
+                                                            <tbody>
+                                                            @foreach ($received_documents as $value)
+                                                                <tr>
+                                                                    <td width="60%">{{ $value->documents_name }} {{ $value->received_documents }}</td>
+                                                                    <td width="25%">{{ !empty($value->received_documents_date) ? date('d-m-Y', strtotime($value->received_documents_date)) : '' }}</td>
+                                                                    <td width="15%">{{ $value->documents_type_name }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                        <h6 class="text-uppercase text-bold mt-4">
+                                                            <u> Documents
+                                                                Required </u>
+                                                        </h6>
+                                                        <table class="table table-bordered">
+                                                            <tbody>
+                                                            @foreach ($required_wanting_documents as $value)
+                                                                <tr>
+                                                                    <td width="60%">{{ $value->documents_name }} {{ $value->required_wanting_documents }}</td>
+                                                                    <td width="25%">{{ !empty($value->required_wanting_documents_date) ? date('d-m-Y', strtotime($value->required_wanting_documents_date)) : '' }}</td>
+                                                                    <td width="15%">{{ $value->documents_type_name }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                {{-- {{dd($caseFileLocation)}} --}}
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="text-uppercase text-bold mt-3"><u> Case File Location </u>
+                                                            <button type="button" class="btn btn-info btn-sm float-right"
+                                                                data-toggle="modal" data-target="#modal-case-file-location"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Update Documents"><i class="fas fa-edit"></i>
+                                                           </button>
+                                                        </h6>
+                                                        <table class="table table-bordered">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>Cabinet Name</td>
+                                                                <td>Office</td>
+                                                                <td>Almirah</td>
+                                                                <td>Cabinet/Self</td>
+                                                                </td>
+                                                            </tr>
+                                                               
+                                                           
+                                                            @foreach($caseFileLocationView as $item)
+                                                           
+                                                            <tr> 
+                                                                <td>{{!empty($item->cabinate) ? $item->cabinate->cabinet_name : ""}}</td>
+                                                                <td>{{$item->case_file_location_new_office}}</td>
+                                                                <td>{{$item->case_file_location_new_almirah}}</td>
+                                                                <td>{{$item->case_file_location_new_self}}</td>
+                                                               
+                                                                
+                                                            </tr>
+                                                            @endforeach
+                                                           
+                                                         
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="text-uppercase text-bold"><u> Lawyers Information </u>
+                                                            <button type="button" class="btn btn-info btn-sm float-right"
+                                                                    data-toggle="modal" data-target="#modal-lg-lawyers-info"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Update Lawyers Information"><i class="fas fa-edit"></i>
+                                                            </button>
+                                                        </h6>
+                                                        <table class="table table-bordered">
+
+                                                            <tbody>
+
+                                                            <tr>
+                                                                <td width="50%">Name of Advocate/Law Firm</td>
+                                                                <td width="50%"> {{ $data->first_name }}
+                                                                    {{ $data->middle_name }} {{ $data->last_name }}
+                                                                    {{ $data->lawyer_advocate_write }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Name of Assigned Lawyer</td>
+                                                                <td>
+                                                                    @php
+                                                                        $assigned_lawyer_id = explode(', ', $data->assigned_lawyer_id);
+                                                                    @endphp
+                                                                    @if ($data->assigned_lawyer_id)
+                                                                        @if (count($assigned_lawyer_id) > 1)
+                                                                            @foreach ($assigned_lawyer_id as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($assigned_lawyer_id as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Remarks</td>
+                                                                <td> {{ $data->lawyers_remarks }} </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="text-uppercase text-bold"><u> Lawyers Information : (Opposition Lawyer) </u>
+                                                            <button type="button" class="btn btn-info btn-sm float-right"
+                                                                    data-toggle="modal" data-target="#modal-lg-lawyers-info"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Update Lawyers Information"><i class="fas fa-edit"></i>
+                                                            </button>
+                                                        </h6>
+                                                        <table class="table table-bordered">
+
+                                                            <tbody>
+
+                                                            <tr>
+                                                                <td width="50%">Name of Advocate/Law Firm</td>
+                                                                <td width="50%"> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Name of Assigned Lawyer</td>
+                                                                <td>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Lawyer Contact</td>
+                                                                <td> </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Note</td>
+                                                                <td> </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="sectionClientInfo" class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="text-uppercase text-bold"><u> Client Information </u>
+                                                            <button type="button" class="btn btn-info btn-sm float-right"
+                                                                    data-toggle="modal" data-target="#modal-lg-client-info"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Update Primary Information"><i class="fas fa-edit"></i>
+                                                            </button>
+                                                        </h6>
+                                                        <table class="table table-bordered">
+    
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>Client(on behalf of)</td>
+                                                                <td colspan="2"> {{ $data->client_party_name }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Client Category</td>
+                                                                <td colspan="2"> {{ $data->client_category_name }} </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Client Sub-category</td>
+                                                                <td colspan="2">{{ $data->client_subcategory_name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Client Name</td>
+                                                                <td colspan="2">
+                                                                    @php
+                                                                        $client_explode = explode(', ', $data->client_id);
+                                                                    @endphp
+                                                                    @if ($data->client_id)
+                                                                        @if (count($client_explode) > 1)
+                                                                            @foreach ($client_explode as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($client_explode as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+    
+                                                                    @php
+                                                                        $client_name_write = explode(', ', $data->client_name_write);
+                                                                    @endphp
+                                                                    @if ($data->client_name_write)
+                                                                        @if (count($client_name_write) > 1)
+                                                                            @foreach ($client_name_write as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                @endforeach
+                                                                @else
+                                                                    @foreach ($client_name_write as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                                @endif
+    
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Client Business Name</td>
+                                                                <td colspan="2">{{ $data->client_business_name }}</td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Client Group Name</td>
+                                                                <td colspan="2">{{ $data->client_group_name }} {{ $data->client_group_write }}</td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Client Address</td>
+                                                                <td colspan="2">{{ $data->client_address }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Client Mobile</td>
+                                                                <td colspan="2">{{ $data->client_mobile }}</td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Client Email</td>
+                                                                <td colspan="2">{{ $data->client_email }}</td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Profession/Type</td>
+                                                                <td colspan="2">{{ $data->profession_name }}
+                                                                    {{ $data->client_profession_write }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="50%">Division/Zone</td>
+                                                                <td width="25%">{{ $data->client_division_name }} @if ($data->client_division_name && $data->client_divisoin_write) @endif
+                                                                </td>
+                                                                <td width="25%">{{ $data->client_divisoin_write }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>District/Area</td>
+                                                                <td>{{ $data->client_district_name }} @if ($data->client_district_name && $data->client_district_write) @endif
+                                                                </td>
+                                                                <td>{{ $data->client_district_write }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Thana/Branch</td>
+                                                                <td>{{ $data->client_thana_name }} @if ($data->client_thana_name && $data->client_thana_write) @endif
+                                                                </td>
+                                                                <td>{{ $data->client_thana_write }}</td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Representative Name</td>
+                                                                <td colspan="2">{{ $data->client_representative_name }} </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Representative Details</td>
+                                                                <td colspan="2">{{ $data->client_representative_details }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Coordinator/Tadbirkar</td>
+                                                                <td colspan="2">{{ $data->coordinator_name }}
+                                                                    {{ $data->coordinator_tadbirkar_write }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Coordinator Details</td>
+                                                                <td colspan="2">{{ $data->client_coordinator_details }}</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="text-uppercase text-bold"><u> OPPOSITE PARTY INFORMATION
+                                                            </u>
+                                                            <button type="button" class="btn btn-info btn-sm float-right"
+                                                                    data-toggle="modal" data-target="#modal-lg-opposition-info"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Update Opposite Party Information"><i
+                                                                    class="fas fa-edit"></i>
+                                                            </button>
+                                                        </h6>
+                                                        <table class="table table-bordered">
+    
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>Opposition(on behalf of)</td>
+                                                                <td colspan="2"> {{ $data->oppsition_party_name }}
+                                                                </td>
+    
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Opposition Category</td>
+                                                                <td colspan="2"> {{ $data->opposition_category_name }} </td>
+    
+    
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Opposition Subcategory</td>
+                                                                <td colspan="2">{{ $data->opposition_subcategory_name }}</td>
+    
+    
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Opposition Name</td>
+                                                                <td colspan="2">
+                                                                    @php
+                                                                        $opposition_id = explode(', ', $data->opposition_id);
+                                                                    @endphp
+                                                                    @if ($data->opposition_id)
+                                                                        @if (count($opposition_id) > 1)
+                                                                            @foreach ($opposition_id as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($opposition_id as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+                                                                    @php
+                                                                        $opposition_write = explode(', ', $data->opposition_write);
+                                                                    @endphp
+                                                                    @if ($data->opposition_write)
+                                                                        @if (count($opposition_write) > 1)
+                                                                            @foreach ($opposition_write as $pro)
+                                                                                <li class="text-left">{{ $pro }}
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @else
+                                                                            @foreach ($opposition_write as $pro)
+                                                                                {{ $pro }}
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endif
+    
+                                                                </td>
+    
+    
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Opposition Business Name</td>
+                                                                <td colspan="2">{{ $data->opposition_business_name }}</td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Opposition Group Name</td>
+                                                                <td colspan="2">{{ $data->opposition_group_name }} {{ $data->opposition_group_write }}</td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Opposition Address</td>
+                                                                <td colspan="2">{{ $data->opposition_address }}</td>
+    
+    
+                                                            </tr>
+                                                            <tr >
+                                                                <td>Opposition Mobile</td>
+                                                                <td colspan="2">{{ $data->opposition_mobile }}</td>
+    
+    
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Opposition Email</td>
+                                                                <td colspan="2">{{ $data->opposition_email }}</td>
+    
+    
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Profession/Type</td>
+                                                                <td colspan="2">{{ $data->opposition_profession_name }}
+                                                                    {{ $data->opposition_profession_write }}</td>
+    
+    
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="50%">Division/Zone</td>
+                                                                <td width="25%"> {{ $data->opposition_division_name }} @if ($data->opposition_division_name && $data->opposition_divisoin_write) @endif
+                                                                </td>
+                                                                <td width="25%">{{ $data->opposition_divisoin_write }}</td>
+    
+                                                            </tr>
+                                                            <tr>
+                                                                <td>District/Area</td>
+                                                                <td>{{ $data->opposition_district_name }} @if ($data->opposition_district_name && $data->opposition_district_write) @endif
+                                                                </td>
+                                                                <td>{{ $data->opposition_district_write }}</td>
+    
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Thana/Branch</td>
+                                                                <td>{{ $data->opposition_thana_name }} @if ($data->opposition_thana_name && $data->opposition_thana_write) @endif
+                                                                </td>
+                                                                <td>{{ $data->opposition_thana_write }}</td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Representative Name</td>
+                                                                <td colspan="2">{{ $data->opposition_representative_name }} </td>
+                                                            </tr>
+                                                            <tr class="trHide">
+                                                                <td>Representative Details</td>
+                                                                <td colspan="2">{{ $data->opposition_representative_details }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Coordinator/Tadbirkar</td>
+                                                                <td colspan="2">{{ $data->opposition_coordinator_name }}
+                                                                    {{ $data->opposition_coordinator_tadbirkar_write }}
+                                                                </td>
+    
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Coordinator Details</td>
+                                                                <td colspan="2">{{ $data->opposition_coordinator_details }}</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
 
                         </div>
 
@@ -408,1418 +1669,6 @@
                         </div> --}}
 
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card CaseInfoCard ">
-                                    <div class="card-header caseInfoHeader">
-                                        <h6 class="text-uppercase text-bold"> Case Information
-                                            <button type="button" class="btn btn-info btn-sm float-right"
-                                            data-toggle="modal" data-target="#modal-lg-case-info"
-                                            data-toggle="tooltip" data-placement="top"
-                                            title="Update Primary Information"><i class="fas fa-edit"></i>
-                                           </button>    
-                                        </h6>
-                                       
-                                    </div>
-                                    <div class="card-body">
-                                        <table class="table table-bordered caseInfoTable">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Case ID</td>
-                                                    <td> {{ $data->created_case_id }} </td>
-                                                </tr>
-                                            <tr>
-                                                <td>Division</td>
-                                                <td>
-                                                    {{ $data->case_infos_division_name }} </td>
-                                            </tr>
-                                            <tr>
-                                                <td>District</td>
-                                                <td>{{ $data->case_infos_district_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Police Station</td>
-                                                <td>{{ $data->case_infos_thana_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Case Category</td>
-                                                <td>{{ $data->case_category_id }}</td>
-                                            </tr>
-                                            {{-- <tr>
-                                            <td>Case Subcategory</td>
-                                            <td>{{ $data->case_subcategory }}</td>
-                                        </tr> --}}
-                                            <tr>
-                                                <td>Case Type</td>
-                                                <td>{{ $data->case_types_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Case Prayer</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Case Nature</td>
-                                                <td>{{$case_steps->case_nature_write}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Case Matter</td>
-                                                <td>{{ $data->matter_name }} {{ $data->matter_write }}
-                                                </td>
-                                            </tr>
-
-                                            <tr class="trHide">
-                                                <td>Case Title</td>
-                                                <td>{{ $data->case_infos_case_title_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Case Title (Short)</td>
-                                                <td>{{ $data->case_infos_case_title_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Case No.</td>
-                                                <td>{{ rtrim($data->case_infos_case_no, ', ') }} of
-                                                    {{ rtrim($data->case_infos_case_year, ', ') }} </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Name of the Court</td>
-                                                <td>
-                                                    @php
-                                                        $case_infos_court_id = explode(', ', $data->case_infos_court_id);
-                                                    @endphp
-                                                    @if ($data->case_infos_court_id)
-                                                        @if (count($case_infos_court_id) > 1)
-                                                            @foreach ($case_infos_court_id as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($case_infos_court_id as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Name of Court(Short)</td>
-                                                <td>
-                                                    @php
-                                                        $case_infos_court_short_id = explode(', ', $data->case_infos_court_short_id);
-                                                    @endphp
-                                                    @if ($data->case_infos_court_short_id)
-                                                        @if (count($case_infos_court_short_id) > 1)
-                                                            @foreach ($case_infos_court_short_id as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($case_infos_court_short_id as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-
-                                                    @php
-                                                        $court_short_write = explode(', ', $data->court_short_write);
-                                                    @endphp
-                                                    @if ($data->court_short_write)
-                                                        @if (count($court_short_write) > 1)
-                                                            @foreach ($court_short_write as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($court_short_write as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-
-                                                </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Sub Seq. Case Title</td>
-                                                <td> {{ $data->sub_seq_case_infos_case_title_name }}
-                                                </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Sub Seq. Case No.</td>
-                                                <td>
-
-
-                                                    @php
-                                                        $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
-                                                        $key = array_key_last($case_infos_sub_seq_case_no);
-                                                        echo $case_infos_sub_seq_case_no[$key];
-
-                                                        $case_infos_sub_seq_case_year = explode(', ', trim($data->case_infos_sub_seq_case_year));
-                                                        $key = array_key_last($case_infos_sub_seq_case_year);
-                                                        $last_case_no = $case_infos_sub_seq_case_year[$key];
-                                                        if ($last_case_no != null) {
-                                                            echo ' of ' . $last_case_no;
-                                                        }
-                                                    @endphp
-
-
-
-                                                    {{-- @php
-                                                        $case_infos_sub_seq_case_no = explode(', ', $data->case_infos_sub_seq_case_no);
-                                                    @endphp
-                                                    @if ($data->case_infos_sub_seq_case_no)
-                                                        @if (count($case_infos_sub_seq_case_no) > 1)
-                                                            @foreach ($case_infos_sub_seq_case_no as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($case_infos_sub_seq_case_no as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif --}}
-
-                                                </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Sub-Seq. Court</td>
-                                                <td>
-                                                    @php
-                                                        $case_infos_sub_seq_court_id = explode(', ', $data->case_infos_sub_seq_court_id);
-                                                    @endphp
-                                                    @if ($data->case_infos_sub_seq_court_id)
-                                                        @if (count($case_infos_sub_seq_court_id) > 1)
-                                                            @foreach ($case_infos_sub_seq_court_id as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($case_infos_sub_seq_court_id as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-
-
-                                                </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Sub-Seq. Court(Short)</td>
-                                                <td>
-                                                    @php
-                                                        $case_infos_sub_seq_court_short_id = explode(', ', $data->case_infos_sub_seq_court_short_id);
-                                                    @endphp
-                                                    @if ($data->case_infos_sub_seq_court_short_id)
-                                                        @if (count($case_infos_sub_seq_court_short_id) > 1)
-                                                            @foreach ($case_infos_sub_seq_court_short_id as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($case_infos_sub_seq_court_short_id as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-                                                    @php
-                                                        $sub_seq_court_short_write = explode(', ', $data->sub_seq_court_short_write);
-                                                    @endphp
-                                                    @if ($data->sub_seq_court_short_write)
-                                                        @if (count($sub_seq_court_short_write) > 1)
-                                                            @foreach ($sub_seq_court_short_write as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($sub_seq_court_short_write as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Law</td>
-                                                <td>
-                                                    @php
-                                                        $law_id = explode('/ ', $data->law_id);
-                                                        $law_write = explode('/ ', $data->law_write);
-                                                        // dd(!empty($data->law_id));
-                                                    @endphp
-
-                                                    @if ($data->law_id || $data->law_write)
-                                                        @if (count($law_id) >= 1 && count($law_write) >= 1)
-                                                            @if (!empty($data->law_id) && count($law_id) >= 1 && count($law_write) >= 1)
-                                                                {{-- {{ dd('case info') }} --}}
-                                                                @foreach ($law_id as $pro)
-                                                                    <li class="text-left">
-                                                                        {{ $pro }}</li>
-                                                                @endforeach
-                                                            @else
-                                                                @foreach ($law_id as $pro)
-                                                                    {{ $pro }}
-                                                                @endforeach
-                                                            @endif
-                                                            @if (!empty($data->law_write) && count($law_write) >= 1 && count($law_id) >= 1)
-                                                                @foreach ($law_write as $pro)
-                                                                    <li class="text-left">
-                                                                        {{ $pro }}</li>
-                                                                @endforeach
-                                                            @else
-                                                                @foreach ($law_write as $pro)
-                                                                    {{ $pro }}
-                                                                @endforeach
-                                                            @endif
-                                                        @elseif (count($law_id) > 1 && count($law_write) == 0)
-                                                            @foreach ($law_id as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                            @foreach ($law_write as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @elseif (count($law_id) == 0 && count($law_write) > 1)
-                                                            @foreach ($law_id as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                            @foreach ($law_write as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($law_id as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                            @foreach ($law_write as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-
-
-
-                                                    {{-- @if ($data->law_id)
-                                                    @if (count($law_id) > 1)
-                                                        @foreach ($law_id as $pro)
-                                                            <li class="text-left">{{ $pro }}</li>
-                                                        @endforeach
-                                                    @else
-                                                        @foreach ($law_id as $pro)
-                                                            {{ $pro }}
-                                                        @endforeach
-                                                    @endif
-                                                @endif
-
-                                                @if ($data->law_write)
-                                                    @if (count($law_write) > 1)
-                                                        @foreach ($law_write as $pro)
-                                                            <li class="text-left">{{ $pro }}</li>
-                                                        @endforeach
-                                                    @else
-                                                        @foreach ($law_write as $pro)
-                                                            {{ $pro }}
-                                                        @endforeach
-                                                    @endif
-                                                @endif --}}
-
-
-                                                </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Section</td>
-                                                <td>
-                                                    @php
-                                                        $section_id = explode(', ', $data->section_id);
-                                                    @endphp
-                                                    @if ($data->section_id)
-                                                        @if (count($section_id) > 1)
-                                                            @foreach ($section_id as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($section_id as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-                                                    @php
-                                                        $section_write = explode(', ', $data->section_write);
-                                                    @endphp
-                                                    @if ($data->section_write)
-                                                        @if (count($section_write) > 1)
-                                                            @foreach ($section_write as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($section_write as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Case Filing Date</td>
-                                                <td>{{ $data->date_of_filing }}</td>
-                                            </tr>
-                                            {{-- <tr>
-                                            <td>Status of the Cases</td>
-                                            <td>{{ $data->case_status_name }}</td>
-                                        </tr> --}}
-
-                                            <tr class="trHide">
-                                                <td>Complainant/Informant Name</td>
-                                                <td>
-                                                    @php
-                                                        $case_infos_complainant_informant_name = explode(', ', $data->case_infos_complainant_informant_name);
-                                                    @endphp
-                                                    @if ($data->case_infos_complainant_informant_name)
-                                                        @if (count($case_infos_complainant_informant_name) > 1)
-                                                            @foreach ($case_infos_complainant_informant_name as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($case_infos_complainant_informant_name as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-
-                                                </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Complainant/Informant's Representative</td>
-                                                <td>
-                                                    @php
-                                                        $complainant_informant_representative = explode(', ', $data->complainant_informant_representative);
-                                                    @endphp
-                                                    @if ($data->complainant_informant_representative)
-                                                        @if (count($complainant_informant_representative) > 1)
-                                                            @foreach ($complainant_informant_representative as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($complainant_informant_representative as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Accused Name</td>
-                                                <td>
-                                                    @php
-                                                        $case_infos_accused_name = explode(', ', $data->case_infos_accused_name);
-                                                    @endphp
-                                                    @if ($data->case_infos_accused_name)
-                                                        @if (count($case_infos_accused_name) > 1)
-                                                            @foreach ($case_infos_accused_name as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($case_infos_accused_name as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-
-                                                </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Accused's Representative</td>
-                                                <td>
-                                                    @php
-                                                        $case_infos_accused_representative = explode(', ', $data->case_infos_accused_representative);
-                                                    @endphp
-                                                    @if ($data->case_infos_accused_representative)
-                                                        @if (count($case_infos_accused_representative) > 1)
-                                                            @foreach ($case_infos_accused_representative as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($case_infos_accused_representative as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-
-                                                </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Prosecution Witnesses</td>
-                                                <td>{{ $data->prosecution_witness }}</td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Defense Witnesses</td>
-                                                <td> {{ $data->defense_witness }} </td>
-                                            </tr>
-                                            <tr >
-                                                <td>Allegation/Claim</td>
-                                                <td> {{ $edit_case_steps->allegation_name }}
-                                                    {{ $edit_case_steps->case_infos_allegation_claim_write }}
-                                                </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Amount of Money</td>
-                                                <td>{{ !empty($edit_case_steps->amount_of_money) ? number_format($edit_case_steps->amount_of_money, 0).'/-': '' }}
-                                                </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Another Claim(if any)</td>
-                                                <td>{{ $edit_case_steps->another_claim }}</td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Recovery/Seizure Articles</td>
-                                                <td>{{ $edit_case_steps->recovery_seizure_articles }}
-                                                </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Summary of Facts</td>
-                                                <td>{{ $edit_case_steps->summary_facts }}</td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Remarks</td>
-                                                <td>{{ $edit_case_steps->case_info_remarks }}</td>
-                                            </tr>
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                
-                                <div class="card documentCard">
-                                    <div class="card-header caseInfoHeader">
-                                        <h6 class="text-uppercase text-bold">Documents
-                                            Received 
-                                        <button type="button" class="btn btn-info btn-sm float-right"
-                                                data-toggle="modal" data-target="#modal-lg-documents-info"
-                                                data-toggle="tooltip" data-placement="top"
-                                                title="Update Documents"><i class="fas fa-edit"></i>
-                                        </button>
-                                    </h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <table class="table table-bordered">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Document Received</td>
-                                                    <td>Document Name</td>
-                                                    <td>Date</td>
-                                                    <td>CC/ORG/COPY</td>
-                                                </tr>
-                                            @foreach ($received_documents as $value)
-                                                <tr>
-                                                    <td>{{ $value->received_documents }}</td>
-                                                    <td>{{ $value->documents_name }} </td>
-                                                    <td >{{ !empty($value->received_documents_date) ? date('d-m-Y', strtotime($value->received_documents_date)) : '' }}</td>
-                                                    <td>{{ $value->documents_type_name }}</td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-
-                                        </table>
-        
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h6 class="text-uppercase text-bold"> Case Status : 
-                                            @php
-                                            $now = Carbon\Carbon::now();
-                                            $days_count = Carbon\Carbon::parse($data->date_of_filing)->diffInDays($now);
-                                        @endphp
-
-                                        <span class="font-italic text-capitalize text-muted"> (Running for {{ $days_count }} days) </span>
-                                            <button type="button" class="btn btn-info btn-sm float-right"
-                                                    data-toggle="modal" data-target="#modal-lg-status-of-the-case"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Update Status of the Case"><i class="fas fa-edit"></i>
-                                            </button>
-                                        </h6>
-                                    </div>
-                                    <div class="card-body">
-                                        
-                                        <table class="table table-bordered">
-                                            <tbody>
-                                            <tr>
-                                                <td >Status</td>
-                                                <td>
-                                                    {{$latest->case_status_name}}
-                                                </td>
-                                                <td >
-
-                                                @if (Is_numeric($data->case_status_id))
-                                                    {{ $data->case_status_name }}
-                                                @else
-                                                    {{ $data->case_status_id }}
-                                                @endif
-
-                                                </td>
-                                              
-                                            </tr>
-                                            
-                                            <tr>
-                                                <td >Filing Date</td>
-                                                <td>
-                                                   
-                                                        @if (!empty($data))
-                                                            {{ $data->date_of_filing }}
-                                                        @endif
-                                                    </td>
-                                                    <td >
-                                                        Case Filed
-                                                    </td>
-                                                
-                                               
-                                            </tr>
-                                            {{-- <tr>
-                                                <td>Previous Date</td>
-                                                <td  > 
-                                                    {{count($previouDate) === 2 && !empty($previouDate[1]->updated_next_date) ? date('d-m-Y', strtotime($previouDate[1]->updated_next_date)) : '' }}
-                                                </td>
-                                                <td>
-                                                    {{count($previouDate) === 2 && !empty($previouDate[1]->case->case_status_name) ? $previouDate[1]->case->case_status_name : '' }}
-                                                </td>
-                                            </tr> --}}
-                                            <tr>
-                                                <td >Previous Date</td>
-
-                                                <td>
-                                                    @if(!empty($latest) && !empty($latest->updated_order_date))
-                                                        {{date('d-m-Y', strtotime($latest->updated_order_date))}}
-                                                    @else
-                                                    <button type='button'
-                                                    class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not Upd
-                                                  </button>
-                                                    @endif
-                                                   
-                                                </td>
-                                                <td>
-                                                    {{!empty($latest) && !empty($latest->next_date_reason_name) ? $latest->next_date_reason_name : '' }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td >Next Date</td>
-
-                                                <td>
-                                                    @if(!empty($latest) && !empty($latest->updated_next_date))
-                                                       {{date('d-m-Y', strtotime($latest->updated_next_date))}}
-                                                    @else
-                                                    <button type='button'
-                                                      class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not Upd
-                                                    </button>
-                                                    @endif 
-                                                </td>
-                                                <td>
-                                                    {{!empty($latest) && !empty($latest->index_fixed_for_reason_name) ? $latest->index_fixed_for_reason_name : '' }}
-                                                </td>
-                                            </tr>
-                                         
-                                           
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="card caseEvents">
-                                    <div class="card-header caseInfoHeader">
-                                        <h6 class="text-uppercase text-bold">  Case Events & Incidents 
-                                            <button type="button"
-                                                            class="btn btn-info btn-sm float-right"
-                                                            data-toggle="modal" data-target="#modal-lg-letter-notice"
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Update Case Steps"><i
-                                              class="fas fa-edit"></i></button> 
-                                        </h6>
-                                    </div>
-                                    <div class="card-body">
-                                        {{-- <h6 class="text-uppercase text-bold">
-                                            <div class="row">
-                                                <div class="col-md-3"> Date</div>
-                                                <div class="col-md-3 text-center">Title</div>
-                                                <div class="col-md-3 text-center">Description</div>
-                                                <div class="col-md-3 text-center">Evidence</div>
-                                                
-                                            </div>
-                                        </h6> --}}
-
-
-                                        {{-- <h6 class="text-uppercase text-bold">
-                                            <div class="row">
-                                                <div class="col-md-3"> Date </div>
-                                                <div class="col-md-2"> Document Name </div>
-                                                <div class="col-md-3"> Particulars </div>
-                                                <div class="col-md-2"> ORG </div>
-                                                <div class="col-md-1"> PHT
-
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <button type="button"
-                                                            class="btn btn-info btn-sm float-right"
-                                                            data-toggle="modal" data-target="#modal-lg-letter-notice"
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Update Case Steps"><i
-                                                                class="fas fa-edit"></i></button>
-                                                </div>
-                                            </div>
-                                        </h6> --}}
-
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr class="text-bold">
-                                                    <td>Date</td>
-                                                    <td>Title</td>
-                                                    <td>Description</td>
-                                                    <td>Evidence</td>
-                                                </tr>
-
-                                            </thead>
-                                            <tbody>
-                                              
-                                            @foreach ($letter_notice as $value)
-                                                <tr>
-                                                    <td width="26%">{{ !empty($value->letter_notice_date) ? date('d-m-Y', strtotime($value->letter_notice_date)) : '' }} </td>
-                                                    <td width="26%">{{ $value->documents_name }} {{ $value->letter_notice_documents_write }}
-                                                    </td>
-                                                    <td width="28%">{{ $value->letter_notice_particulars_write }}
-                                                    </td>
-                                                    <td width="20%">
-                                                        {{ $value->documents_type_name }}
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="card caseStepCard">
-                                    <div class="card-header caseInfoHeader">
-                                        <h6 class="text-uppercase text-bold"> Case Steps 
-                                                    <button type="button"
-                                                            class="btn btn-info btn-sm float-right"
-                                                            data-toggle="modal" data-target="#modal-lg-case-steps"
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Update Case Steps"><i
-                                                            class="fas fa-edit"></i></button>
-                                                
-                                            
-                                        </h6>
-                                    </div>
-                                    <div class="card-body">
-        
-                                        {{-- <h6 class="text-uppercase text-bold">
-                                            <div class="row">
-                                                <div class="col-md-3"><u> Case Steps </u></div>
-                                                <div class="col-md-3">Date</div>
-                                                <div class="col-md-3">Note</div>
-                                                <div class="col-md-1">ORG</div>
-                                                <div class="col-md-1">CC</div>
-                                                <div class="col-md-1" style="padding-left:1px;">Copy
-                                                    <button type="button"
-                                                    class="btn btn-info btn-sm float-right"
-                                                    data-toggle="modal" data-target="#modal-lg-case-steps"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Update Case Steps"><i
-                                                        class="fas fa-edit"></i></button>
-                                                </div>
-                                            </div>
-                                        </h6> --}}
-
-                                        {{-- <div class="row">
-                                            <div class="col-md-3 text-center"></div>
-                                            <div class="col-md-3 text-center">Date</div>
-                                            <div class="col-md-3 text-center">Note</div>
-                                            <div class="col-md-3 text-center">Evidence</div>
-                                        </div> --}}
-
-
-                                       
-
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr class="text-bold">
-                                                    <td></td>
-                                                    <td>Date</td>
-                                                    <td>Note</td>
-                                                    <td>Evidence</td>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-                                                
-                                            <tr>
-                                                <td width="26%">Case Filed</td>
-                                                <td width="26%">
-                                                    {{ $case_steps->case_steps_filing }} </td>
-                                                <td width="28%" class="letters">
-                                                    {{ $case_steps->case_steps_filing_note }} 
-                                                </td>
-                                                <td width="20%">
-                                                    {{ $case_steps->case_steps_filing_type_name }}
-                                                </td>
-                                            </tr>
-                                             <tr>
-                                                <td width="26%">Service Return (SR)</td>
-                                                <td width="26%">
-                                                    {{ $case_steps->case_steps_servicr_return }} </td>
-                                                <td width="28%" class="letters">
-                                                    {{ $case_steps->case_steps_servicr_return_note }} 
-                                                </td>
-                                                <td width="20%">
-                                                    {{ $case_steps->servicr_return_type_name }}
-                                                </td>
-                                            </tr>
-                                           <tr>
-                                                <td width="26%">S.R. Completed</td>
-                                                <td width="26%">
-                                                    {{ $case_steps->case_steps_sr_completed }} </td>
-                                                <td width="28%" class="letters">
-                                                    {{ $case_steps->case_steps_sr_completed_note }} 
-                                                </td>
-                                                <td width="20%">
-                                                    {{ $case_steps->sr_completed_type_name }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="26%">Set Off</td>
-                                                <td width="26%">
-                                                    {{ $case_steps->case_steps_set_off }} </td>
-                                                <td width="28%" class="letters">
-                                                    {{ $case_steps->case_steps_set_off_note }} 
-                                                </td>
-                                                <td width="20%">
-                                                    {{ $case_steps->case_steps_set_off_type_name }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="26%">Issue Frame</td>
-                                                <td width="26%">
-                                                    {{ $case_steps->case_steps_issue_frame }} </td>
-                                                <td width="28%" class="letters">
-                                                    {{ $case_steps->case_steps_issue_frame_note }} 
-                                                </td>
-                                                <td width="20%">
-                                                    {{ $case_steps->case_steps_issue_frame_type_name }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="26%">PH</td>
-                                                <td width="26%">
-                                                    {{ $case_steps->case_steps_ph }} </td>
-                                                <td width="28%" class="letters">
-                                                    {{ $case_steps->case_steps_ph_note }} 
-                                                </td>
-                                                <td width="20%">
-                                                    {{ $case_steps->case_steps_ph_type_name }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="26%">F.PH</td>
-                                                <td width="26%">
-                                                    {{ $case_steps->case_steps_fph }} </td>
-                                                <td width="28%" class="letters">
-                                                    {{ $case_steps->case_steps_fph_note }} 
-                                                </td>
-                                                <td width="20%">
-                                                    {{ $case_steps->case_steps_fph_type_name }}
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>Taking Cognizance</td>
-                                                <td> {{ $case_steps->taking_cognizance }} </td>
-                                                <td class="letters"> {{ $case_steps->taking_cognizance_note }}
-                                                </td>
-                                                <td>
-                                                    {{ $case_steps->taking_cognizance_type_name }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Arrest/Surrender/C.W.</td>
-                                                <td> {{ $case_steps->arrest_surrender_cw }} </td>
-                                                <td class="letters"> {{ $case_steps->arrest_surrender_cw_note }}
-                                                </td>
-                                                <td>
-                                                    {{ $case_steps->arrest_surrender_cw_type_name }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bail</td>
-                                                <td> {{ $case_steps->case_steps_bail }} </td>
-                                                <td class="letters"> {{ $case_steps->case_steps_bail_note }} </td>
-                                                <td>
-                                                    {{ $case_steps->case_steps_bail_type_name }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Court Transfer</td>
-                                                <td> {{ $case_steps->case_steps_court_transfer }}
-                                                </td>
-                                                <td class="letters"> {{ $case_steps->case_steps_court_transfer_note }}
-                                                </td>
-                                                <td>
-                                                    {{ $case_steps->court_transfer_type_name }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Charge Framed</td>
-                                                <td> {{ $case_steps->case_steps_charge_framed }}
-                                                </td>
-                                                <td class="letters"> {{ $case_steps->case_steps_charge_framed_note }}
-                                                </td>
-                                                <td>
-                                                    {{ $case_steps->charge_framed_type_name }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Witness (From)</td>
-                                                <td> {{ $case_steps->case_steps_witness_from }}
-                                                </td>
-                                                <td class="letters"> {{ $case_steps->case_steps_witness_from_note }}
-                                                </td>
-                                                <td>
-                                                    {{ $case_steps->witness_from_type_name }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Witness (To)</td>
-                                                <td> {{ $case_steps->case_steps_witness_to }} </td>
-                                                <td class="letters"> {{ $case_steps->case_steps_witness_to_note }}
-                                                </td>
-                                                <td>
-                                                    {{ $case_steps->witness_to_type_name }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Argument</td>
-                                                <td> {{ $case_steps->case_steps_argument }} </td>
-                                                <td class="letters"> {{ $case_steps->case_steps_argument_note }}
-                                                </td>
-                                                <td>
-                                                    {{ $case_steps->argument_type_name }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Judgement & Order</td>
-                                                <td> {{ $case_steps->case_steps_judgement_order }}
-                                                </td>
-                                                <td class="letters"> {{ $case_steps->case_steps_judgement_order_note }}
-                                                </td>
-                                                <td>
-                                                    {{ $case_steps->judgement_order_type_name }}
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td width="26%">Subsequent Status</td>
-                                                <td width="26%">
-                                                    {{ $case_steps->case_steps_subsequent_status }} </td>
-                                                <td width="28%" class="letters">
-                                                    {{ $case_steps->case_steps_subsequent_status_note }} 
-                                                </td>
-                                                <td width="20%">
-                                                    {{ $case_steps->case_steps_subsequent_status_type_name }}
-                                                </td>
-                                            </tr>
-                                          
-                                            <tr>
-                                                <td>Summary of Cases</td>
-                                                <td> {{ $case_steps->case_steps_summary_of_cases }}
-                                                </td>
-                                                <td class="letters"> {{ $case_steps->case_steps_summary_of_cases_note }}
-                                                </td>
-                                                <td>
-                                                    {{ $case_steps->summary_of_cases_type_name }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Remarks</td>
-                                                <td colspan="3"> {{ $case_steps->case_steps_remarks }} </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div class="card documentCard">
-                                    <div class="card-header caseInfoHeader">
-                                        <h6 class="text-uppercase text-bold">Documents
-                                            Required
-                                        <button type="button" class="btn btn-info btn-sm float-right"
-                                                data-toggle="modal" data-target="#modal-lg-documents-info"
-                                                data-toggle="tooltip" data-placement="top"
-                                                title="Update Documents"><i class="fas fa-edit"></i>
-                                        </button>
-                                    </h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <td width="60%">Document Name</td>
-                                                    <td width="25%">Date</td>
-                                                    <td width="25%">CC/ORG/COPY</td>
-                                                </tr>
-
-                                            </thead>
-                                            <tbody>
-                                               
-                                            @foreach ($required_wanting_documents as $value)
-                                                <tr>
-                                                    <td width="60%">{{ $value->documents_name }} {{ $value->required_wanting_documents }}</td>
-                                                    <td width="25%">{{ !empty($value->required_wanting_documents_date) ? date('d-m-Y', strtotime($value->required_wanting_documents_date)) : '' }}</td>
-                                                    <td width="15%">{{ $value->documents_type_name }}</td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-
-                                        </table>
-        
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row ">
-                            <div class="col-md-12">
-                                <div class="card caseFileLoacation">
-                                    <div class="card-header caseInfoHeader">
-                                        <h6 class="text-uppercase text-bold mt-3">Case File Location
-                                            <button type="button" class="btn btn-info btn-sm float-right"
-                                                data-toggle="modal" data-target="#modal-case-file-location"
-                                                data-toggle="tooltip" data-placement="top"
-                                                title="Update Documents"><i class="fas fa-edit"></i>
-                                           </button>
-                                        </h6>
-                                    </div>
-                                    <div class="card-body">
-                                        
-                                        <table class="table table-bordered">
-                                            <tbody>
-                                            <tr>
-                                                <td>Cabinet Name</td>
-                                                <td>Office</td>
-                                                <td>Almirah</td>
-                                                <td>Cabinet/Self</td>
-                                            </tr>
-                                               
-                                           
-                                            @foreach($caseFileLocationView as $item)
-                                           
-                                            <tr> 
-                                                <td>{{!empty($item->cabinate) ? $item->cabinate->cabinet_name : ""}}</td>
-                                                <td>{{$item->case_file_location_new_office}}</td>
-                                                <td>{{$item->case_file_location_new_almirah}}</td>
-                                                <td>{{$item->case_file_location_new_self}}</td>
-                                               
-                                                
-                                            </tr>
-                                            @endforeach
-                                           
-                                         
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="row" id="sectionClientInfo">
-                            <div class="col-md-6">
-                                <div class="card clientInfoCard">
-                                    <div class="card-header caseInfoHeader">
-                                        <h6 class="text-uppercase text-bold"><u> Client Information </u>
-                                            <button type="button" class="btn btn-info btn-sm float-right"
-                                                    data-toggle="modal" data-target="#modal-lg-client-info"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Update Primary Information"><i class="fas fa-edit"></i>
-                                            </button>
-                                        </h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <table class="table table-bordered caseInfoTable2">
-
-                                            <tbody>
-                                            <tr>
-                                                <td>Client(on behalf of)</td>
-                                                <td colspan="2"> {{ $data->client_party_name }} </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Client Category</td>
-                                                <td colspan="2"> {{ $data->client_category_name }} </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Client Sub-category</td>
-                                                <td colspan="2">{{ $data->client_subcategory_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Client Name</td>
-                                                <td colspan="2">
-                                                    @php
-                                                        $client_explode = explode(', ', $data->client_id);
-                                                    @endphp
-                                                    @if ($data->client_id)
-                                                        @if (count($client_explode) > 1)
-                                                            @foreach ($client_explode as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($client_explode as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-
-                                                    @php
-                                                        $client_name_write = explode(', ', $data->client_name_write);
-                                                    @endphp
-                                                    @if ($data->client_name_write)
-                                                        @if (count($client_name_write) > 1)
-                                                            @foreach ($client_name_write as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                @endforeach
-                                                @else
-                                                    @foreach ($client_name_write as $pro)
-                                                        {{ $pro }}
-                                                    @endforeach
-                                                @endif
-                                                @endif
-
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Client Business Name</td>
-                                                <td colspan="2">{{ $data->client_business_name }}</td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Client Group Name</td>
-                                                <td colspan="2">{{ $data->client_group_name }} {{ $data->client_group_write }}</td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Client Address</td>
-                                                <td colspan="2">{{ $data->client_address }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Client Mobile</td>
-                                                <td colspan="2">{{ $data->client_mobile }}</td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Client Email</td>
-                                                <td colspan="2">{{ $data->client_email }}</td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Profession/Type</td>
-                                                <td colspan="2">{{ $data->profession_name }}
-                                                    {{ $data->client_profession_write }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="50%">Division/Zone</td>
-                                                <td width="25%">{{ $data->client_division_name }} @if ($data->client_division_name && $data->client_divisoin_write) @endif
-                                                </td>
-                                                <td width="25%">{{ $data->client_divisoin_write }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>District/Area</td>
-                                                <td>{{ $data->client_district_name }} @if ($data->client_district_name && $data->client_district_write) @endif
-                                                </td>
-                                                <td>{{ $data->client_district_write }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Thana/Branch</td>
-                                                <td>{{ $data->client_thana_name }} @if ($data->client_thana_name && $data->client_thana_write) @endif
-                                                </td>
-                                                <td>{{ $data->client_thana_write }}</td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Representative Name</td>
-                                                <td colspan="2">{{ $data->client_representative_name }} </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Representative Details</td>
-                                                <td colspan="2">{{ $data->client_representative_details }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Coordinator/Tadbirkar</td>
-                                                <td colspan="2">{{ $data->coordinator_name }}
-                                                    {{ $data->coordinator_tadbirkar_write }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Coordinator Details</td>
-                                                <td colspan="2">{{ $data->client_coordinator_details }}</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div class="card" style="height: 18.5rem">
-                                    <div class="card-header">
-                                        <h6 class="text-uppercase text-bold"> Lawyers Information
-                                            <button type="button" class="btn btn-info btn-sm float-right"
-                                                    data-toggle="modal" data-target="#modal-lg-lawyers-info"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Update Lawyers Information"><i class="fas fa-edit"></i>
-                                            </button>
-                                        </h6>
-                                    </div>
-                                    <div class="card-body">
-                                       
-                                        <table class="table table-bordered caseInfoTable2">
-
-                                            <tbody>
-
-                                            <tr>
-                                                <td width="50%">Name of Advocate/Law Firm</td>
-                                                <td width="50%"> {{ $data->first_name }}
-                                                    {{ $data->middle_name }} {{ $data->last_name }}
-                                                    {{ $data->lawyer_advocate_write }} </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Name of Assigned Lawyer</td>
-                                                <td>
-                                                    @php
-                                                        $assigned_lawyer_id = explode(', ', $data->assigned_lawyer_id);
-                                                    @endphp
-                                                    @if ($data->assigned_lawyer_id)
-                                                        @if (count($assigned_lawyer_id) > 1)
-                                                            @foreach ($assigned_lawyer_id as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($assigned_lawyer_id as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Remarks</td>
-                                                <td> {{ $data->lawyers_remarks }} </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                               
-                                
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card clientInfoCard">
-                                    <div class="card-header caseInfoHeader">
-                                        <h6 class="text-uppercase text-bold"> OPPOSITE PARTY INFORMATION
-                                        
-                                        <button type="button" class="btn btn-info btn-sm float-right"
-                                                data-toggle="modal" data-target="#modal-lg-opposition-info"
-                                                data-toggle="tooltip" data-placement="top"
-                                                title="Update Opposite Party Information"><i
-                                                class="fas fa-edit"></i>
-                                        </button>
-                                    </h6>
-                                    </div>
-                                    <div class="card-body">
-                                       
-                                        <table class="table table-bordered caseInfoTable2">
-
-                                            <tbody>
-                                            <tr>
-                                                <td>Opposition(on behalf of)</td>
-                                                <td colspan="2"> {{ $data->oppsition_party_name }}
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>Opposition Category</td>
-                                                <td colspan="2"> {{ $data->opposition_category_name }} </td>
-
-
-                                            </tr>
-                                            <tr>
-                                                <td>Opposition Subcategory</td>
-                                                <td colspan="2">{{ $data->opposition_subcategory_name }}</td>
-
-
-                                            </tr>
-                                            <tr>
-                                                <td>Opposition Name</td>
-                                                <td colspan="2">
-                                                    @php
-                                                        $opposition_id = explode(', ', $data->opposition_id);
-                                                    @endphp
-                                                    @if ($data->opposition_id)
-                                                        @if (count($opposition_id) > 1)
-                                                            @foreach ($opposition_id as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($opposition_id as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-                                                    @php
-                                                        $opposition_write = explode(', ', $data->opposition_write);
-                                                    @endphp
-                                                    @if ($data->opposition_write)
-                                                        @if (count($opposition_write) > 1)
-                                                            @foreach ($opposition_write as $pro)
-                                                                <li class="text-left">{{ $pro }}
-                                                                </li>
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($opposition_write as $pro)
-                                                                {{ $pro }}
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-
-                                                </td>
-
-
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Opposition Business Name</td>
-                                                <td colspan="2">{{ $data->opposition_business_name }}</td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Opposition Group Name</td>
-                                                <td colspan="2">{{ $data->opposition_group_name }} {{ $data->opposition_group_write }}</td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Opposition Address</td>
-                                                <td colspan="2">{{ $data->opposition_address }}</td>
-
-
-                                            </tr>
-                                            <tr >
-                                                <td>Opposition Mobile</td>
-                                                <td colspan="2">{{ $data->opposition_mobile }}</td>
-
-
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Opposition Email</td>
-                                                <td colspan="2">{{ $data->opposition_email }}</td>
-
-
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Profession/Type</td>
-                                                <td colspan="2">{{ $data->opposition_profession_name }}
-                                                    {{ $data->opposition_profession_write }}</td>
-
-
-                                            </tr>
-                                            <tr>
-                                                <td width="50%">Division/Zone</td>
-                                                <td width="25%"> {{ $data->opposition_division_name }} @if ($data->opposition_division_name && $data->opposition_divisoin_write) @endif
-                                                </td>
-                                                <td width="25%">{{ $data->opposition_divisoin_write }}</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>District/Area</td>
-                                                <td>{{ $data->opposition_district_name }} @if ($data->opposition_district_name && $data->opposition_district_write) @endif
-                                                </td>
-                                                <td>{{ $data->opposition_district_write }}</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>Thana/Branch</td>
-                                                <td>{{ $data->opposition_thana_name }} @if ($data->opposition_thana_name && $data->opposition_thana_write) @endif
-                                                </td>
-                                                <td>{{ $data->opposition_thana_write }}</td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Representative Name</td>
-                                                <td colspan="2">{{ $data->opposition_representative_name }} </td>
-                                            </tr>
-                                            <tr class="trHide">
-                                                <td>Representative Details</td>
-                                                <td colspan="2">{{ $data->opposition_representative_details }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Coordinator/Tadbirkar</td>
-                                                <td colspan="2">{{ $data->opposition_coordinator_name }}
-                                                    {{ $data->opposition_coordinator_tadbirkar_write }}
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>Coordinator Details</td>
-                                                <td colspan="2">{{ $data->opposition_coordinator_details }}</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                {{-- {{dd($oppLawyer)}} --}}
-                                <div class="card">
-                                    <div class="card-header caseInfoHeader">
-                                        <h6 class="text-uppercase text-bold">Lawyers Information : (Opposition Lawyer) 
-                                            <button type="button" class="btn btn-info btn-sm float-right"
-                                                    data-toggle="modal" data-target="#modal-lg-opp-lawyers-info"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Update Lawyers Information"><i class="fas fa-edit"></i>
-                                            </button>
-                                        </h6>
-                                    </div>
-                                    <div class="card-body">
-                                       
-                                        <table class="table table-bordered caseInfoTable2">
-
-                                            <tbody>
-
-                                            <tr>
-                                                <td width="50%">Name of Advocate/Law Firm</td>
-                                                <td width="50%">{{$oppLawyer->opp_lawyer_advocate_write}} </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Name of Assigned Lawyer</td>
-                                                <td>{{$oppLawyer->opp_lawyer_assigned_lawyer}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Lawyer Contact</td>
-                                                <td>{{$oppLawyer->opp_lawyer_contact}} </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Note</td>
-                                                <td>{{$oppLawyer->opp_lawyers_note}} </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        
-
-                        <div class="card">
                         <div>
                             <div class="card" id="section1" name="section1">
                                 <div class="card-header">
@@ -3913,7 +3762,7 @@
         <!-- /.modal-dialog -->
     </div>
     <div class="modal fade" id="modal-lg-client-info">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="card-title"> Edit District Court </h3>
@@ -4292,7 +4141,7 @@
     {{-- opposite party Information --}}
 
     <div class="modal fade" id="modal-lg-opposition-info">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="card-title"> Edit District Court </h3>
@@ -5464,7 +5313,7 @@
     {{-- case Information --}}
 
     <div class="modal fade" id="modal-lg-lawyers-info">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="card-title"> Edit District Court </h3>
@@ -5556,103 +5405,6 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <div class="modal fade" id="modal-lg-opp-lawyers-info">
-        <div class="modal-dialog modal-md">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="card-title">Edit Opposition Lawyers Information </h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('update-criminal-cases', $data->id) }}" method="post">
-                    @csrf
-                   <input type="hidden" value="opp_lawyers_information" name="opp_lawyers_information">
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label for="lawyer_advocate_id"
-                                   class="col-sm-4 col-form-label"> Advocate/Law Firm</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control"
-                                    id="opp_lawyer_advocate_write"
-                                    name="opp_lawyer_advocate_write"
-                                    placeholder="Advocate Name"
-                                    value="{{$oppLawyer->opp_lawyer_advocate_write}}">
-
-                            {{-- <select name="opp_lawyer_advocate_write"
-                                    class="form-control select2"
-                                    id="opp_lawyer_advocate_write" action="{{ route('find-associates') }}">
-                                <option value="">Select</option>
-                                @foreach($external_council as $item)
-                                    <option
-                                        value="{{$item->first_name}} {{$item->last_name}}" {{( old('opp_lawyer_advocate_write') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->last_name }}</option>
-                                @endforeach
-                            </select> --}}
-
-                                @error('client_profession_id')<span
-                                    class="text-danger">{{$message}}</span>@enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Assigned
-                                Lawyer</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control"
-                                id="opp_lawyer_assigned_lawyer"
-                                name="opp_lawyer_assigned_lawyer"
-                                placeholder="Assigned Lawyer"
-                                value="{{$oppLawyer->opp_lawyer_assigned_lawyer}}">
-                                
-                                @error('assigned_lawyer_id')<span
-                                    class="text-danger">{{$message}}</span>@enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">
-                                Lawyer Contact</label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control"
-                                id="opp_lawyer_contact"
-                                name="opp_lawyer_contact"
-                                placeholder="Lawyer Contact"
-                                value="{{$oppLawyer->opp_lawyer_contact}}">
-                                
-                                @error('assigned_lawyer_id')<span
-                                    class="text-danger">{{$message}}</span>@enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="opp_lawyers_note"
-                                   class="col-sm-4 col-form-label"> Note 1 </label>
-                            <div class="col-sm-8">
-                            <textarea  name="opp_lawyers_note" class="form-control"
-                                      rows="3"
-                                      placeholder="note">
-                                      {{$oppLawyer->opp_lawyers_note}}
-                                    </textarea>
-                                @error('opp_lawyers_note')<span
-                                    class="text-danger">{{$message}}</span>@enderror
-                            </div>
-                        </div>
-                        
-                        <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <div class="float-right">
-                                <button type="submit" class="btn btn-primary text-uppercase"><i
-                                        class="fas fa-save"></i> Update
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-                </form>
-
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
 
     {{-- case Information --}}
 
@@ -5678,8 +5430,8 @@
                             <div class="col-sm-12">
                                 <div class="input-group hdtuto_received_documents control-group increment_received_documents">
                                     <span class="d-flex">
-                                        <input type="hidden" name="received_documents_sections[]" class="myfrm form-control mr-2"
-                                               value="received_documents_sections">
+                                        <input type="hidden" name="case_file_location_new_sections[]" class="myfrm form-control mr-2"
+                                               value="case_file_location_new_sections">
                                         <select name="received_documents_id[]"
                                                 class="form-control mr-3">
                                             <option value="">Select</option>
@@ -5695,14 +5447,7 @@
                                                class="myfrm form-control ml-2 mr-2"
                                                value="{{ !empty($received_documents_explode[0]['received_documents_date']) ? $received_documents_explode[0]['received_documents_date'] : '' }}">
 
-                                         <select name="received_documents_type_id[]"
-                                               class="form-control mr-3 ml-2">
-                                           <option value="">Select</option>
-                                           @foreach($documents_type as $item)
-                                               <option
-                                               value="{{ $item->id }}" {{ !empty($received_documents_explode[0]['received_documents_type_id']) && $received_documents_explode[0]['received_documents_type_id']  == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                           @endforeach
-                                       </select>
+                                      
 
 
                                         <div class="input-group-btn">
@@ -6080,7 +5825,7 @@
     {{-- case Information --}}
 
     <div class="modal fade" id="modal-lg-case-steps">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="card-title"> Edit District Court </h3>
@@ -6092,6 +5837,8 @@
                     @csrf
                     <input type="hidden" value="case_steps" name="case_steps">
                     <div class="card-body">
+
+
                         <h6 class="text-uppercase text-bold">
                             <div class="row">
                                 <div class="col-md-3"><u> Case Steps </u></div>
@@ -6328,7 +6075,7 @@
                         <div class="form-group row">
                             <label for="taking_cognizance" class="col-sm-3 col-form-label"> Taking Cognizance </label>
                             <div class="col-sm-3">
-                                <span class="date_span_steps_edit">
+                                <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'taking_cognizance');">
                                     <input type="text" id="taking_cognizance" name="taking_cognizance"
@@ -6365,7 +6112,7 @@
                         <div class="form-group row">
                             <label for="arrest_surrender_cw" class="col-sm-3 col-form-label"> Arrest/Surrender/C.W.</label>
                             <div class="col-sm-3">
-                                <span class="date_span_steps_edit">
+                                <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'arrest_surrender_cw');">
                                     <input type="text" id="arrest_surrender_cw" name="arrest_surrender_cw"
@@ -6402,7 +6149,7 @@
                         <div class="form-group row">
                             <label for="case_steps_bail" class="col-sm-3 col-form-label"> Bail </label>
                             <div class="col-sm-3">
-                                <span class="date_span_steps_edit">
+                                <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'case_steps_bail');">
                                     <input type="text" id="case_steps_bail" name="case_steps_bail"
@@ -6438,7 +6185,7 @@
                         <div class="form-group row">
                             <label for="case_steps_court_transfer" class="col-sm-3 col-form-label"> Court Transfer </label>
                             <div class="col-sm-3">
-                                <span class="date_span_steps_edit">
+                                <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'case_steps_court_transfer');">
                                     <input type="text" id="case_steps_court_transfer" name="case_steps_court_transfer"
@@ -6475,7 +6222,7 @@
                         <div class="form-group row">
                             <label for="case_steps_charge_framed" class="col-sm-3 col-form-label"> Charge Framed </label>
                             <div class="col-sm-3">
-                                <span class="date_span_steps_edit">
+                                <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'case_steps_charge_framed');">
                                     <input type="text" id="case_steps_charge_framed" name="case_steps_charge_framed"
@@ -6512,7 +6259,7 @@
                         <div class="form-group row">
                             <label for="case_steps_witness_from" class="col-sm-3 col-form-label"> Witness (From) </label>
                             <div class="col-sm-3">
-                                <span class="date_span_steps_edit">
+                                <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'case_steps_witness_from');">
                                     <input type="text" id="case_steps_witness_from" name="case_steps_witness_from"
@@ -6549,7 +6296,7 @@
                         <div class="form-group row">
                             <label for="case_steps_witness_to" class="col-sm-3 col-form-label"> Witness (To) </label>
                             <div class="col-sm-3">
-                                <span class="date_span_steps_edit">
+                                <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'case_steps_witness_to');">
                                     <input type="text" id="case_steps_witness_to" name="case_steps_witness_to"
@@ -6586,7 +6333,7 @@
                         <div class="form-group row">
                             <label for="case_steps_argument" class="col-sm-3 col-form-label"> Argument </label>
                             <div class="col-sm-3">
-                                <span class="date_span_steps_edit">
+                                <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'case_steps_argument');">
                                     <input type="text" id="case_steps_argument" name="case_steps_argument"
@@ -6624,7 +6371,7 @@
                             <label for="case_steps_judgement_order" class="col-sm-3 col-form-label"> Judgement &
                                 Order </label>
                             <div class="col-sm-3">
-                                <span class="date_span_steps_edit">
+                                <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'case_steps_judgement_order');">
                                     <input type="text" id="case_steps_judgement_order" name="case_steps_judgement_order"
@@ -6694,7 +6441,7 @@
                         <div class="form-group row">
                             <label for="case_steps_summary_of_cases" class="col-sm-3 col-form-label"> Summary of Case </label>
                             <div class="col-sm-3">
-                                <span class="date_span_steps_edit">
+                                <span class="date_span_steps">
                                     <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'case_steps_summary_of_cases');">
                                     <input type="text" id="case_steps_summary_of_cases" name="case_steps_summary_of_cases"

@@ -440,6 +440,10 @@ class CounselLawyerController extends Controller
         $remove = array_pop($required_wanting_documents_sections);
 
         $data = new Counsel();
+
+        $data->counsel_type = $request->counsel_type;
+        $data->counsel_category = $request->counsel_category;
+
         $data->chamber_name = $request->chamber_name;
         $data->counsel_role_id = $request->counsel_role_id;
         $data->counsel_name = $request->counsel_name;
@@ -877,6 +881,12 @@ class CounselLawyerController extends Controller
     public function index_internal_counsel()
     {
         $data = InternalCounsel::get();
+        return view('counsel_lawyer.internal_counsel.internal_counsel',compact('data'));
+    }
+
+    public function index_internal_counsel_new()
+    {
+        $data = Counsel::get();
         return view('counsel_lawyer.internal_counsel.internal_counsel',compact('data'));
     }
 

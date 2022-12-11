@@ -92,13 +92,18 @@ class CreateCriminalCasesCaseStepsTable extends Migration
             $table->string('case_steps_fph_note')->nullable();
             $table->string('case_steps_fph_type_id')->nullable();
 
-          
-            // newData
             $table->integer('case_prayer_id')->nullable();
             $table->string('case_nature_write')->nullable();
             $table->integer('case_nature_id')->nullable();
             $table->integer('case_infos_case_titel_sort_id')->nullable();
             $table->integer('case_infos_sub_seq_case_title_sort_id')->nullable();
+
+
+            //new
+            $table->string('opp_lawyer_advocate_write')->nullable();
+            $table->string('opp_lawyer_assigned_lawyer')->nullable();
+            $table->string('opp_lawyer_contact')->nullable();
+            $table->string('opp_lawyers_note')->nullable();
 
 
 

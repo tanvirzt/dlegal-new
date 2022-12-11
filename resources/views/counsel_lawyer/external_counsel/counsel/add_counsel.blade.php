@@ -48,6 +48,34 @@
                                 <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-body">
+                                                <div class="form-group row">
+                                                    <label for="counsel_type" class="col-sm-4 col-form-label"> Counsel </label>
+                                                    <div class="col-sm-8">
+                                                        <select name="counsel_type" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            <option value="Internal">Internal</option>
+                                                            <option value="External">External</option>
+                                                        </select>
+                                                        @error('counsel_type')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="counsel_category" class="col-sm-4 col-form-label"> Category </label>
+                                                    <div class="col-sm-8">
+                                                        <select name="counsel_category" class="form-control select2">
+                                                            <option value="">Select</option>
+                                                            <option value="Chamber">Chamber</option>
+                                                            <option value="Company">Company</option>
+                                                        </select>
+                                                        @error('counsel_category')<span
+                                                            class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body">
                                                 <h6 class="text-uppercase text-bold"><u> Chamber Information </u>
                                                 </h6>
                                                 <div class="form-group row">

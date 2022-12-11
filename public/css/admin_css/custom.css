@@ -422,6 +422,9 @@ h3{
 .date_span_steps{
     position: relative;display: inline-block;border: 1px solid #a9a9a9;height: 26px;width: 110px;border-radius: 4px;
 }
+.date_span_steps_edit{
+    position: relative;display: inline-block;border: 1px solid #a9a9a9;height: 26px;width: 266px;border-radius: 4px;
+}
 .date_span_status{
     position: relative;display: inline-block;border: 1px solid #a9a9a9;height: 26px;width: 343px;border-radius: 4px;
 }

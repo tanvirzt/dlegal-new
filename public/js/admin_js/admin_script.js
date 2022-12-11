@@ -1,4 +1,9 @@
 $(document).ready(function () {
+
+    //For View_Criminal_Cases.blade.php basic view 
+    $('.trHide').hide()
+
+
     // check admin current password is match or not
 
     $('#current_password').keyup(function () {
