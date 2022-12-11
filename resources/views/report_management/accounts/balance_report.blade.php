@@ -1,9 +1,6 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
-
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -18,10 +15,8 @@
                         </ol>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 @if (Session::has('success'))
@@ -33,23 +28,22 @@
                     </div>
                 @endif
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
                                     <h3 class="card-title"> Ledger :: Report
-                                        
-                                         @if (!empty($is_search))
-                                             <span style="color: red;font-size:15px;">(Showing:
-                                                {{ $request_data['bill_id'] != null ? 'Ledger Head' : '' }}    
-                                                
+
+                                        @if (!empty($is_search))
+                                            <span style="color: red;font-size:15px;">(Showing:
+                                                {{ $request_data['class_of_cases'] != null ? 'Ledger Head' : '' }}
+
                                                 )
-                                                                                        
-                                                {{-- {{ !empty($is_search) ? '(Showing)' : '' }} --}}
+
                                             </span>
-                                         @endif
-                                        
-                                        </h3>
+                                        @endif
+
+                                    </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -69,7 +63,48 @@
 
                                         <form method="get" action="{{ route('balance-report-search') }}">
                                             <div class="row">
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="class_of_cases" class="col-form-label">Class of Cases
+                                                        </label>
+                                                        <div class="">
+
+                                                            <select name="class_of_cases" class="form-control select2" required
+                                                                id="class_of_cases" action="{{ route('find-case-no') }}">
+                                                                <option value=""> Select </option>
+                                                                <option value="District Court"> District Court </option>
+                                                                <option value="Special Court"> Special Court </option>
+                                                                <option value="High Court Division"> High Court Division
+                                                                </option>
+                                                                <option value="Appellate Division"> Appellate Division
+                                                                </option>
+                                                            </select>
+                                                            @error('class_of_cases')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="case_no" class="col-form-label">Case No
+                                                        </label>
+                                                        <div class="">
+
+                                                            <select name="case_no" class="form-control select2"
+                                                                id="case_no" action="{{ route('find-case-no') }}">
+                                                                <option value=""> Select </option>
+
+                                                            </select>
+                                                            @error('case_no')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                {{-- <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="bill_id" class="col-form-label">Bill No </label>
                                                         <div class="">
@@ -77,8 +112,8 @@
                                                             <select name="bill_id" class="form-control select2">
                                                                 <option value="">Select Case Type</option>
         
-                                                                @foreach($bill_no as $item)
-                                                                    <option value="{{ $item->id }}" {{( $request_data['bill_id'] == $item->id ? 'selected':'')}}>{{ $item->billing_no }}</option>
+                                                                @foreach ($bill_no as $item)
+                                                                    <option value="{{ $item->id }}" {{( $request_data['class_of_cases'] == $item->id ? 'selected':'')}}>{{ $item->billing_no }}</option>
                                                                 @endforeach
                                                             </select>
                                                             @error('bill_id')
@@ -86,19 +121,20 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-sm-4">
+                                                </div> --}}
+                                                {{-- <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
-                                                            
+
                                                             <span class="date_span" style="width: 404px;">
-                                                                <input type="date" class="xDateContainer date_first_input"
-                                                                       onchange="setCorrect(this,'from_date');"><input type="text" id="from_date"
-                                                                                                                    name="from_date" value="dd-mm-yyyy"
-                                                                                                                    class="date_second_input"
-                                                                                                                    tabindex="-1"><span
-                                                                    class="date_second_span" tabindex="-1">&#9660;</span>
+                                                                <input type="date"
+                                                                    class="xDateContainer date_first_input"
+                                                                    onchange="setCorrect(this,'from_date');"><input
+                                                                    type="text" id="from_date" name="from_date"
+                                                                    value="dd-mm-yyyy" class="date_second_input"
+                                                                    tabindex="-1"><span class="date_second_span"
+                                                                    tabindex="-1">&#9660;</span>
                                                             </span>
 
                                                             @error('case_type_id')
@@ -112,20 +148,21 @@
                                                         <label for="case_type_id" class="col-form-label"> To Date </label>
                                                         <div class="">
                                                             <span class="date_span" style="width: 404px;">
-                                                                <input type="date" class="xDateContainer date_first_input"
-                                                                       onchange="setCorrect(this,'to_date');"><input type="text" id="to_date"
-                                                                                                                    name="to_date" value="dd-mm-yyyy"
-                                                                                                                    class="date_second_input"
-                                                                                                                    tabindex="-1"><span
-                                                                    class="date_second_span" tabindex="-1">&#9660;</span>
+                                                                <input type="date"
+                                                                    class="xDateContainer date_first_input"
+                                                                    onchange="setCorrect(this,'to_date');"><input
+                                                                    type="text" id="to_date" name="to_date"
+                                                                    value="dd-mm-yyyy" class="date_second_input"
+                                                                    tabindex="-1"><span class="date_second_span"
+                                                                    tabindex="-1">&#9660;</span>
                                                             </span>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                
+                                                </div> --}}
+
                                             </div>
 
-                                            
+
 
                                             <div class="float-right">
                                                 <button type="submit" id="submit"
@@ -142,197 +179,229 @@
                         </div>
                     </div>
 
-                    @if(!empty($data))
+                    @if (!empty($data))
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title"> List <span style="color: red;font-size:15px;">{{ !empty($is_search) ? '(Showing Searched Item)' : '' }}</span> </h3>
+                                    <h3 class="card-title"> List <span
+                                            style="color: red;font-size:15px;">{{ !empty($is_search) ? '(Showing Searched Item)' : '' }}</span>
+                                    </h3>
                                     <div class="float-right">
 
                                         <form method="get" action="{{ route('print-balance-report') }}" target="_blank">
                                             @csrf
 
 
-                                                <input type="hidden" name="bill_id" value="{{ $request_data['bill_id'] }}">
-                                                <input type="hidden" name="from_date" value="{{ $request_data['from_date'] }}">
-                                                <input type="hidden" name="to_date" value="{{ $request_data['to_date'] }}">
-                                                
-                                            <button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Delete"> <i class="fas fa-print"></i> Print </button>
+                                            {{-- <input type="hidden" name="bill_id" value="{{ $request_data['class_of_cases'] }}"> --}}
+                                            {{-- <input type="hidden" name="from_date"
+                                                value="{{ $request_data['from_date'] }}">
+                                            <input type="hidden" name="to_date" value="{{ $request_data['to_date'] }}"> --}}
+                                            <input type="hidden" name="class_of_cases"
+                                                value="{{ $request_data['class_of_cases'] }}">
+                                            <input type="hidden" name="case_no" value="{{ $request_data['case_no'] }}">
+
+                                            <button type="submit" class="btn btn-info" data-toggle="tooltip"
+                                                data-placement="top" title="Delete"> <i class="fas fa-print"></i> Print
+                                            </button>
                                         </form>
                                     </div>
-    
+
                                 </div>
                                 <div class="card-body">
                                     @if (!empty($data))
-    
-                                    <div class="invoice p-3 mb-3">
+                                        <div class="invoice p-3 mb-3">
 
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h4>
-                                                    <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}"
-                                                        alt="AdminLTE Logo" class="brand-image" style="opacity:1">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h4>
+                                                        <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}"
+                                                            alt="AdminLTE Logo" class="brand-image" style="opacity:1">
 
-                                                    <small class="float-right">Date: {{ date('d-m-Y') }}</small>
-                                                </h4>
-                                            </div>
-
-                                        </div>
-                                        <br>
-                                        <br>
-                                        <div class="row invoice-info">
-                                            <div class="col-sm-4 invoice-col">
-                                                {{-- <b>From</b>  --}}
-
-                                                <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag,
-                                                    Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
-                                                <br />
-                                                <span id="lblUnitAddress" class="HeaderStyle2"> Cell:01717406688
-                                                </span>
-                                                <br />
-                                                <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688
-                                                </span>
-                                                <br />
-                                                <span id="lblUnitAddress"
-                                                    class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
-                                                <span id="lblVoucherType" class="VoucherStyle">
-                                            </div>
-
-                                            <div class="col-sm-4 invoice-col">
-                                                <h3 class="text-center">Balance Report</h3>
-                                            </div>
-
-                                            <div class="col-sm-4 invoice-col">
+                                                        <small class="float-right">Date: {{ date('d-m-Y') }}</small>
+                                                    </h4>
+                                                </div>
 
                                             </div>
+                                            <br>
+                                            <br>
+                                            <div class="row invoice-info">
+                                                <div class="col-sm-4 invoice-col">
+                                                    {{-- <b>From</b>  --}}
 
-                                        </div>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <br>
+                                                    <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag,
+                                                        Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
+                                                    <br />
+                                                    <span id="lblUnitAddress" class="HeaderStyle2"> Cell:01717406688
+                                                    </span>
+                                                    <br />
+                                                    <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688
+                                                    </span>
+                                                    <br />
+                                                    <span id="lblUnitAddress"
+                                                        class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
+                                                    <span id="lblVoucherType" class="VoucherStyle">
+                                                </div>
 
-                                        <div class="row">
-                                            <div class="col-12 table-responsive">
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="text-center">SL</th>
-                                                            <th class="text-center">Ledger Date</th>
-                                                            <th class="text-center">Bill No</th>
-                                                            <th class="text-center">Payment Against Bill</th>
-                                                            <th class="text-nowrap"> Transaction No. </th>
-                                                            <th class="text-center"> Job No. </th>
-                                                            <th class="text-nowrap">Ledger Type</th>
-                                                            <th class="text-nowrap">Payment Type</th>
-                                                            <th class="text-center">Ledger Head Bill</th>
-                                                            <th class="text-center">Bill Amount</th>
-                                                            <th class="text-center">Income</th>
-                                                            <th class="text-center">Expense</th>
-                                                            <th class="text-center">Remarks</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach ($data as $key => $datum)
+                                                <div class="col-sm-4 invoice-col">
+                                                    <h3 class="text-center">Ledger Report </h3>
+                                                    <h5 class="text-center">
+                                                        {{ !empty($ledger_head_name) ? $ledger_head_name->ledger_head_name : '' }}
+                                                    </h5>
+<h6 class="text-center">{{ !empty($request_data['class_of_cases']) ? $request_data['class_of_cases'] : '' }}</h6>
+@if (!empty($request_data['class_of_cases']) && $request_data['class_of_cases'] == 'District Court')
+<h6 class="text-center">
+
+    @php
+    $case_number = DB::table('ledger_entries')
+            ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
+            ->leftJoin('criminal_cases', 'case_billings.case_no', 'criminal_cases.id')
+            ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
+            ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no', 'criminal_cases.case_no as main_case_no')
+            ->first();
+// dd($case_number);
+    @endphp
+        
+{{ $case_number->main_case_no }}
+        </h6>
+@endif
+
+                                                    
+
+
+                                                    {{-- @if ($request_data['from_date'] != 'dd-mm-yyyy')
+                                                        <h6 class="text-center">From: {{ $request_data['from_date'] }},
+                                                            To: {{ $request_data['to_date'] }}</h6>
+                                                    @endif --}}
+                                                </div>
+
+                                                <div class="col-sm-4 invoice-col">
+
+                                                </div>
+
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+
+                                            <div class="row">
+
+                                                <div class="col-12 table-responsive">
+
+                                                    <table class="table table-bordered">
+                                                        <thead>
                                                             <tr>
-                                                                <td>
-                                                                    {{ $key + 1 }}
-                                                                </td>
-
-                                                                <td>
-                                                                    {{ $datum->ledger_date != null ? date('d-m-Y', strtotime($datum->ledger_date)) : '' }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ $datum->bill_id != null ? $datum->bill->billing_no : '' }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ $datum->payment_against_bill == 'on' ? 'Yes' : 'No' }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ $datum->transaction_no }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ $datum->job_no }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ $datum->ledger_type }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ $datum->payment_type }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ $datum->ledger_head_bill_id != null ? $datum->ledger_head_bill->ledger_head_name : '' }}
-
-                                                                </td>
-                                                                <td>
-                                                                    {{ $datum->bill_amount }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ $datum->income_paid_amount }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ $datum->expense_paid_amount }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ $datum->remarks }}
-                                                                </td>
-
+                                                                <th class="text-center">SL</th>
+                                                                <th class="text-center">Bill No</th>
+                                                                <th class="text-nowrap">Payment Type</th>
+                                                                <th class="text-center">Bill Amount</th>
+                                                                <th class="text-center">Paid Amount</th>
+                                                                <th class="text-center">Due Amount</th>
                                                             </tr>
-                                                        @endforeach
-                                                        <tr>
-                                                            <td colspan="9">Total: </td>
-                                                            <td></td>
-                                                            <td>{{ $data->sum('income_paid_amount') }}</td>
-                                                            <td> {{ $data->sum('expense_paid_amount') }} </td>
-                                                            <td> </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="row">
-
-                                            <div class="col-6">
-
-                                            </div>
+                                                        </thead>
+                                                        <tbody>
 
 
 
-                                        </div>
+                                                            @foreach ($data as $key => $datum)
+                                                                <tr>
+                                                                    <td>
+                                                                        {{ $key + 1 }}
+                                                                    </td>
+
+                                                                    <td>
+                                                                        {{ $datum->billing_no }}
+                                                                    </td>
+
+                                                                    <td>
+                                                                        {{ $datum->payment_type }}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{ $datum->bill_amount }}
+                                                                    </td>
+                                                                    <td>
+                                                                        @foreach ($datum->ledger as $ledger)
+                                                                            {{ $ledger->paid_amount }} <br>
+                                                                        @endforeach
+                                                                    </td>
+                                                                    <td>
+                                                                        {{ $datum->bill_amount - $datum->ledger->sum('paid_amount') }}
+                                                                    </td>
 
 
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="text-center">
-                                                    <hr width="50%">
-                                                    Accountant
+                                                                </tr>
+                                                            @endforeach
+
+                                                            <tr>
+                                                                <td colspan="3">Total: </td>
+                                                                <td> {{ $data->sum('bill_amount') }} </td>
+
+                                                                <td>
+                                                                    @if (!empty($is_search))
+                                                                        @php
+                                                                            $pd_amnt = DB::table('ledger_entries')
+                                                                                ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
+                                                                                ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
+                                                                                ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no')
+                                                                                ->sum('ledger_entries.paid_amount');
+                                                                        @endphp
+                                                                        {{ $pd_amnt }}
+                                                                    @else
+                                                                        {{ $ledger->sum('paid_amount') }}
+                                                                    @endif
+
+                                                                </td>
+
+                                                                <td>{{ $data->sum('bill_amount') - (!empty($is_search) ? $pd_amnt : $ledger->sum('paid_amount')) }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
+
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="text-center">
-                                                    <hr width="50%">
-                                                    Checked By
+
+                                            <div class="row">
+
+                                                <div class="col-6">
+
                                                 </div>
+
+
+
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="text-center">
-                                                    <hr width="50%">
-                                                    Received By
+
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="text-center">
+                                                        <hr width="50%">
+                                                        Accountant
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                {{-- <a href="{{ route('billings-print-preview', $data->id) }}" title="Print Case Info" target="_blank"
+                                                <div class="col-md-4">
+                                                    <div class="text-center">
+                                                        <hr width="50%">
+                                                        Checked By
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="text-center">
+                                                        <hr width="50%">
+                                                        Received By
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    {{-- <a href="{{ route('billings-print-preview', $data->id) }}" title="Print Case Info" target="_blank"
                                                 class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a> --}}
+                                                </div>
                                             </div>
+
+
+
                                         </div>
-
-
-
-                                    </div>
                                     @endif
-    
+
                                 </div>
                             </div>
                         </div>

@@ -77,7 +77,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="job_no" class="col-sm-4 col-form-label"> Job No. </label>
                                             <div class="col-sm-8">
@@ -86,17 +86,42 @@
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
+                                    </div> --}}
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="job_name" class="col-sm-4 col-form-label"> Job Name </label>
+                                            <div class="col-sm-8">
+                                                {!! Form::text('job_name', null, array('class' => 'form-control')) !!}
+                                                @error('job_name')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="ledger_type" class="col-sm-4 col-form-label">Ledger Type</label>
+                                            <label for="ledger_category_id" class="col-sm-4 col-form-label">Ledger Category</label>
                                             <div class="col-sm-8">
-                                                <select name="ledger_type" class="form-control select2" id="ledger_type">
+                                                <select name="ledger_category_id" class="form-control select2" id="ledger_category_id" action="{{ route('find-ledger-head') }}">
                                                     <option value=""> Select </option>
-                                                    <option value="Income" {{ $ledger_entry->ledger_type == 'Income' ? 'selected' : '' }}> Income </option>
-                                                    <option value="Expense" {{ $ledger_entry->ledger_type == 'Expense' ? 'selected' : '' }}> Expense </option>
+                                                    <option value="Income" {{ $ledger_entry->ledger_category_id == 'Income' ? 'selected' : '' }}> Income </option>
+                                                    <option value="Expense" {{ $ledger_entry->ledger_category_id == 'Expense' ? 'selected' : '' }}> Expense </option>
                                                 </select>
-                                                @error('ledger_type')<span
+                                                @error('ledger_category_id')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="ledger_head_id" class="col-sm-4 col-form-label">Ledger Head</label>
+                                            <div class="col-sm-8">
+                                                <select name="ledger_head_id" class="form-control select2" id="ledger_head_id">
+                                                    <option value=""> Select </option>
+                                                    @foreach($ledger_head as $item)
+                                                        <option value="{{ $item->id }}" {{( $ledger_entry->ledger_head_id == $item->id ? 'selected':'')}}>{{ $item->ledger_head_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('ledger_head_id')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
@@ -195,7 +220,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="ledger_head_bill_id" class="col-sm-4 col-form-label">Bill Name</label>
                                             <div class="col-sm-8">
@@ -209,7 +234,7 @@
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="col-md-6" id="bill_amount">
                                         @if ($ledger_entry->bill_amount != null)
@@ -223,6 +248,18 @@
                                         </div>
                                         @endif
 
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="paid_amount" class="col-sm-4 col-form-label">Paid Amount</label>
+                                            <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="paid_amount" value="{{ $ledger_entry->paid_amount }}">
+
+                                                @error('paid_amount')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="col-md-6">

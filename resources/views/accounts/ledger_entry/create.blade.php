@@ -76,24 +76,37 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="job_no" class="col-sm-4 col-form-label"> Job No. </label>
+                                            <label for="job_name" class="col-sm-4 col-form-label"> Job Name </label>
                                             <div class="col-sm-8">
-                                                {!! Form::text('job_no', null, array('class' => 'form-control')) !!}
-                                                @error('job_no')<span
+                                                {!! Form::text('job_name', null, array('class' => 'form-control')) !!}
+                                                @error('job_name')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="ledger_type" class="col-sm-4 col-form-label">Ledger Type</label>
+                                            <label for="ledger_category_id" class="col-sm-4 col-form-label">Ledger Category</label>
                                             <div class="col-sm-8">
-                                                <select name="ledger_type" class="form-control select2" id="ledger_type">
+                                                <select name="ledger_category_id" class="form-control select2" id="ledger_category_id" action="{{ route('find-ledger-head') }}">
                                                     <option value=""> Select </option>
                                                     <option value="Income"> Income </option>
                                                     <option value="Expense"> Expense </option>
                                                 </select>
-                                                @error('ledger_type')<span
+                                                @error('ledger_category_id')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="ledger_head_id" class="col-sm-4 col-form-label">Ledger Head</label>
+                                            <div class="col-sm-8">
+                                                <select name="ledger_head_id" class="form-control select2" id="ledger_head_id">
+                                                    <option value=""> Select </option>
+                                                    
+                                                </select>
+                                                @error('ledger_head_id')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
@@ -102,12 +115,16 @@
                                         <div class="form-group row">
                                             <label for="payment_against_bill" class="col-sm-4 col-form-label mt-1">Payment Against Bill</label>
                                             <div class="icheck-success d-inline col-sm-8">
-                                                <input type="checkbox" id="payment_against_bill" name="payment_against_bill">
+                                                <input type="checkbox" id="payment_against_bill" name="payment_against_bill" @if (!empty($single_case_bill))
+                                                    checked disabled
+                                                @endif>
                                                 <label for="payment_against_bill">
                                                     Yes
                                                 </label>
                                             </div>
                                         </div>
+                                        <input type="hidden" id="payment_against_bill" name="payment_against_bill" value="on">
+
                                     </div>
 
 
@@ -136,6 +153,29 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    @if (!empty($single_case_bill))
+                                        
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="bill_id" class="col-sm-4 col-form-label">Bill No</label>
+                                            <div class="col-sm-8">
+                                                <select name="bill_id" class="form-control select2" id="bill_id" disabled>
+                                                    <option value=""> Select </option>
+                                                    @foreach($bill_no as $item)
+                                                        <option value="{{ $item->id }}" {{( $single_case_bill->id == $item->id ? 'selected':'')}}>{{ $item->billing_no }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('bill_id')<span
+                                                    class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" name="bill_id" value="{{ $single_case_bill->id }}">
+
+                                    @endif
+
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="ledger_date" class="col-sm-4 col-form-label">Date</label>
@@ -179,7 +219,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="ledger_head_bill_id" class="col-sm-4 col-form-label">Bill Name</label>
                                             <div class="col-sm-8">
@@ -189,26 +229,34 @@
                                                         <option value="{{ $item->id }}" {{(old('ledger_head_bill_id') == $item->id ? 'selected':'')}}>{{ $item->ledger_head_name }}</option>
                                                     @endforeach
                                                 </select>
-                                                {{-- {!! Form::select('company_id', [null => 'Select'] + $bill_no, null, ['class' => 'form-control select2']) !!} --}}
                                                 @error('ledger_head_bill_id')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
-                                    </div>
-
-                                    
-
-                                    <div class="col-md-6" id="bill_amount">
-                                        
-                                    </div>
+                                    </div> --}}
+                                    @if (!empty($single_case_bill))
 
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="payment_amount" class="col-sm-4 col-form-label">Payment Amount</label>
+                                            <label for="bill_amount" class="col-sm-4 col-form-label">Bill Amount</label>
+                                            <div class="col-sm-8" >
+                                            <input type="text" class="form-control" readonly name="bill_amount" value="{{ $single_case_bill->bill_amount }}">
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+@else
+                                    <div class="col-md-6" id="bill_amount">
+                                        
+                                    </div>
+@endif
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="paid_amount" class="col-sm-4 col-form-label">Paid Amount</label>
                                             <div class="col-sm-8">
-                                                {!! Form::text('payment_amount', null, array('class' => 'form-control')) !!}
+                                                {!! Form::text('paid_amount', null, array('class' => 'form-control')) !!}
 
-                                                @error('payment_amount')<span
+                                                @error('paid_amount')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
@@ -244,12 +292,5 @@
                 </div>
             </div>
         </section>
-        <!-- /.content -->
-
     </div>
-    <!-- /.content-wrapper -->
-
-
-
-
 @endsection

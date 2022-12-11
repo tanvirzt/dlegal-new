@@ -63,10 +63,12 @@
                                             
                                                 <select name="ledger_category_id" class="form-control select2">
                                                     <option value="">Select</option>
-                                                    @foreach($ledger_category as $item)
+                                                    <option value="Income"> Income </option>
+                                                    <option value="Expense"> Expense </option>
+                                                    {{-- @foreach($ledger_category as $item)
                                                         <option
                                                             value="{{ $item->id }}" {{(old('ledger_category_id') == $item->id ? 'selected':'')}}> {{ $item->ledger_category_name }} </option>
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                                 @error('ledger_category_id')<span
                                                     class="text-danger">{{$message}}</span>@enderror

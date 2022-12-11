@@ -25,6 +25,7 @@ use App\Models\CaseBilling;
 use App\Models\SetupCaseTypes;
 use DB;
 use App\Models\LedgerEntry;
+use App\Models\LedgerHead;
 
 class BillingsController extends Controller
 {
@@ -618,7 +619,13 @@ class BillingsController extends Controller
     }
     public function view_money_receipt($id)
     {
-        $data = LedgerEntry::with('ledger_head_bill','bill')->find($id);
+        $data = LedgerEntry::with('ledger_head','bill')->find($id);
+
+        if ($data->receipt_no == null) {
+            $transcation_no = explode('-', $data->transaction_no);
+            $data->receipt_no = 'RCPT-'.$transcation_no[1];
+            $data->save();
+        }
                 // data_array($data);
         return view('accounts.ledger_entry.show',compact('data'));
 
@@ -626,7 +633,7 @@ class BillingsController extends Controller
 
     public function money_receipt_print_preview($id)
     {
-        $data = LedgerEntry::with('ledger_head_bill','bill')->find($id);
+        $data = LedgerEntry::with('ledger_head','bill')->find($id);
         // dd($data);
 
         return view('accounts.ledger_entry.money_receipt_print_preview', compact('data'));
@@ -671,6 +678,13 @@ class BillingsController extends Controller
     {
         // return $request->all();
         $data = CaseBilling::where(['id' => $request->bill_id, 'delete_status' => 0])->first();
+        return response()->json($data);
+    }
+
+    public function find_ledger_head(Request $request)
+    {
+        // return $request->all();
+        $data = LedgerHead::where(['ledger_category_id' => $request->ledger_category_id])->get();
         return response()->json($data);
     }
 
