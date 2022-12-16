@@ -10,13 +10,13 @@ if (empty($case_cat)) {
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> District Court Cases </h1>
+                        <h1> Special Court Cases </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> District Court Cases</li>
+                            <li class="breadcrumb-item active"> Special Court Cases</li>
                         </ol>
                     </div>
                 </div>
@@ -45,7 +45,7 @@ if (empty($case_cat)) {
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> District Court Cases :: Search </h3>
+                                    <h3 class="card-title"> Special Court Cases :: Search </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">

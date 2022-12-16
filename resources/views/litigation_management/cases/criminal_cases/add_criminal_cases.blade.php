@@ -58,8 +58,6 @@
                         <h1 class="m-0 text-dark">Add District Court Cases</h1>
 
                     </div><!-- /.col -->
-
-
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
@@ -90,6 +88,22 @@
                             </div>
                             <div class="card-body">
                             
+                                <div class="form-group row">
+                                    <label for="case_type"
+                                            class="col-sm-4 col-form-label">Case Type</label>
+                                    <div class="col-sm-8">
+                                        <select name="case_type"
+                                                class="form-control select2"
+                                                id="case_type" required>
+                                            <option value="">Select</option>
+                                                <option value="District">District</option>
+                                                <option value="Special">Special</option>
+                                           
+                                        </select>
+                                        @error('case_type')<span
+                                            class="text-danger">{{$message}}</span>@enderror
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <label for="case_infos_division_id"
                                             class="col-sm-4 col-form-label">Division</label>
@@ -2369,16 +2383,15 @@
                                     <label for="lawyer_advocate_id"
                                            class="col-sm-4 col-form-label">Name of Advocate/Law Firm</label>
                                     <div class="col-sm-8">
-
+                                        
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <select name="lawyer_advocate_id"
                                                         class="form-control select2"
-                                                        id="lawyer_advocate_id" action="{{ route('find-associates') }}">
+                                                        id="lawyer_advocate_id">
                                                     <option value="">Select</option>
-                                                    @foreach($external_council as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{( old('lawyer_advocate_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->last_name }}</option>
+                                                    @foreach($chamber as $item)
+                                                    <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -2396,16 +2409,62 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="lead_laywer_name"
+                                           class="col-sm-4 col-form-label">Name of Lead Laywer</label>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <select name="lead_laywer_name"
+                                                        class="form-control select2"
+                                                        id="lead_laywer_name">
+                                                    <option value="">Select</option>
+                                                    
+                                                    @foreach($leadLaywer as $item)
+                                                    <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
+                                                    @endforeach
+                                                   
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control"
+                                                       id="lead_laywer_name_extra"
+                                                       name="lead_laywer_name_extra"
+                                                       placeholder="Advocate Name"
+                                                       value="{{ old('lead_laywer_name_extra') }}">
+                                            </div>
+                                        </div>
+
+                                        @error('client_profession_id')<span
+                                            class="text-danger">{{$message}}</span>@enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Name of Assigned
                                         Lawyer</label>
                                     <div class="col-sm-8">
-                                        <select name="assigned_lawyer_id[]" id="assigned_lawyer_id" class="form-control select2"
-                                                data-placeholder="Select" multiple>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <select name="assigned_lawyer_id[]" class="form-control select2"
+                                                data-placeholder="Select">
                                             <option value="">Select</option>
 
+                                            @foreach($assignedlaywer as $item)
+                                                    <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
+                                            @endforeach
+
                                         </select>
-                                        @error('assigned_lawyer_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control"
+                                                       id="assigned_lawyer_extra"
+                                                       name="assigned_lawyer_extra"
+                                                       placeholder="Advocate Name"
+                                                       value="{{ old('assigned_lawyer_extra') }}">
+                                            </div>
+
+                                        </div>
+                                       
                                     </div>
                                 </div>
 

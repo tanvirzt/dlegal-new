@@ -88,16 +88,10 @@ class CreateCriminalCasesTable extends Migration
             $table->integer('opposition_coordinator_tadbirkar_id')->nullable();
             $table->string('opposition_coordinator_tadbirkar_write')->nullable();
             $table->mediumText('opposition_coordinator_details')->nullable();
-            $table->integer('lawyer_advocate_id')->nullable();
-            $table->string('lawyer_advocate_write')->nullable();
-            $table->string('assigned_lawyer_id')->nullable();
-            $table->mediumText('lawyers_remarks')->nullable();
+         
             $table->string('received_documents_id')->nullable();
-            $table->string('received_documents')->nullable();
-            $table->string('received_documents_date')->nullable();
             $table->string('required_wanting_documents_id')->nullable();
-            $table->string('required_wanting_documents')->nullable();
-            $table->string('required_wanting_documents_date')->nullable();
+          
             $table->integer('case_infos_division_id')->nullable();
             $table->integer('case_infos_district_id')->nullable();
             $table->integer('case_infos_thana_id')->nullable();
@@ -135,6 +129,26 @@ class CreateCriminalCasesTable extends Migration
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
+
+
+            $table->integer('lawyer_advocate_id')->nullable();
+            $table->string('lawyer_advocate_write')->nullable();
+            $table->string('assigned_lawyer_id')->nullable();
+            $table->mediumText('lawyers_remarks')->nullable();
+          
+
+        // `received_documents` Change to `case_type`
+        // `received_documents_date` Change to`lead_laywer_name`
+        // `required_wanting_documents`Change to `lead_laywer_name_extra`
+        // `required_wanting_documents_date` Change to`assigned_lawyer_extra`
+
+        //update colum
+
+        $table->string('case_type')->nullable();
+        $table->string('lead_laywer_name')->nullable();
+        $table->string('lead_laywer_name_extra')->nullable();
+        $table->string('assigned_lawyer_extra')->nullable();
+
 
 
 

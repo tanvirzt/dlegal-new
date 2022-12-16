@@ -29,7 +29,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LedgerCategoryController;
 use App\Http\Controllers\LedgerHeadController;
 use App\Http\Controllers\LedgerEntryController;
-
+use FontLib\Table\Type\name;
 
 /*
 |--------------------------------------------------------------------------
@@ -569,6 +569,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('/find-associates',[CivilCasesController::class, 'find_associates'])->name('find-associates');
     Route::get('/find-district',[CivilCasesController::class, 'find_district'])->name('find_district');
 
+    //district court cases
+    Route::get('special-court-cases-all',[CriminalCasesController::class, 'special_court_cases_all'])->name('special-court-cases-all');
+    Route::get('special-court-cases-civil',[CriminalCasesController::class, 'special_court_cases_civil'])->name('special-court-cases-civil');
+    Route::get('special-court-cases-criminal',[CriminalCasesController::class, 'special_court_cases_criminal'])->name('special-court-cases-criminal');
+
+
     Route::get('criminal-cases',[CriminalCasesController::class, 'criminal_cases'])->name('criminal-cases');
     Route::get('add-criminal-cases',[CriminalCasesController::class, 'add_criminal_cases'])->name('add-criminal-cases');
     Route::post('save-criminal-cases',[CriminalCasesController::class, 'save_criminal_cases'])->name('save-criminal-cases');
@@ -581,9 +587,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('edit-criminal-cases/{id}',[CriminalCasesController::class, 'edit_criminal_cases'])->name('edit-criminal-cases');
     Route::post('update-criminal-cases/{id}',[CriminalCasesController::class, 'update_criminal_cases'])->name('update-criminal-cases');
     Route::post('update-criminal-case/{id}',[CriminalCasesController::class, 'update_criminal_case'])->name('update-criminal-case');
-
     Route::post('update-criminal-case-opp-lawyer/{id}',[CriminalCasesController::class, 'update_criminal_case_opp_lawyer'])->name('update-criminal-case_opp_lawyer');
-
     Route::post('delete-criminal-cases/{id}',[CriminalCasesController::class, 'delete_criminal_cases'])->name('delete-criminal-cases');
     Route::get('delete-criminal-cases-latest/{id}',[CriminalCasesController::class, 'delete_criminal_cases_latest'])->name('delete-criminal-cases-latest');
     Route::get('view-criminal-cases/{id}',[CriminalCasesController::class, 'view_criminal_cases'])->name('view-criminal-cases');
@@ -779,6 +783,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
 
     Route::get('counsel', [CounselLawyerController::class, 'index_counsel'])->name('counsel');
+    Route::get('counsel-chamber', [CounselLawyerController::class, 'index_counsel_chamber'])->name('counsel-chamber');
+    Route::get('counsel-company', [CounselLawyerController::class, 'index_counsel_company'])->name('counsel-company');
     Route::get('add-counsel',[CounselLawyerController::class, 'create_counsel'])->name('add-counsel');
     Route::post('save-counsel',[CounselLawyerController::class, 'store_counsel'])->name('save-counsel');
     Route::get('edit-counsel/{id}',[CounselLawyerController::class, 'edit_counsel'])->name('edit-counsel');
@@ -794,8 +800,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::post('delete-chamber-staff/{id}',[CounselLawyerController::class, 'destroy_chamber_staff'])->name('delete-chamber-staff');
     Route::get('view-chamber-staff/{id}', [CounselLawyerController::class, 'show_chamber_staff'])->name('view-chamber-staff');
 
-    Route::get('internal-counsel', [CounselLawyerController::class, 'index_internal_counsel'])->name('internal-counsel');
-    Route::get('add-internal-counsel',[CounselLawyerController::class, 'create_internal_counsel'])->name('add-internal-counsel');
+    // Route::get('internal-counsel', [CounselLawyerController::class, 'index_internal_counsel'])->name('internal-counsel');
+    // Route::get('add-internal-counsel',[CounselLawyerController::class, 'create_internal_counsel'])->name('add-internal-counsel');
     Route::post('save-internal-counsel',[CounselLawyerController::class, 'store_internal_counsel'])->name('save-internal-counsel');
     Route::get('edit-internal-counsel/{id}',[CounselLawyerController::class, 'edit_internal_counsel'])->name('edit-internal-counsel');
     Route::post('update-internal-counsel/{id}',[CounselLawyerController::class, 'update_internal_counsel'])->name('update-internal-counsel');
@@ -808,6 +814,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     /////New Change Counser will be together (Internal & Exernal)
    
     Route::get('internal-counsel-new', [CounselLawyerController::class, 'index_internal_counsel_new'])->name('internal-counsel-new');
+    Route::get('internal-counsel-chamber', [CounselLawyerController::class, 'index_internal_counsel_new_chamber'])->name('internal-counsel-chamber');
+    Route::get('internal-counsel-company', [CounselLawyerController::class, 'index_internal_counsel_new_company'])->name('internal-counsel-company');
 
 
 
@@ -829,6 +837,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
     Route::get('criminal-cases-latest',[CriminalCasesController::class, 'criminal_cases_latest'])->name('criminal-cases-latest');
     Route::get('civil-cases-latest',[CriminalCasesController::class, 'civil_cases_latest'])->name('civil-cases-latest');
+   
+   
     Route::get('documents-list',[CriminalCasesController::class, 'documents_list'])->name('documents-list');
     Route::get('add-documents-list',[CriminalCasesController::class, 'add_documents_list'])->name('add-documents-list');
     Route::post('save-document-list',[CriminalCasesController::class, 'save_document_list'])->name('save-document-list');
@@ -855,13 +865,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('print-income-expense-report', [ReportController::class, 'print_income_expense_report'])->name('print-income-expense-report');
 
     Route::get('/find-bill',[BillingsController::class, 'find_bill'])->name('find-bill');
-    Route::get('/find-ledger-head',[BillingsController::class, 'find_ledger_head'])->name('find-ledger-head');
 
     Route::get('balance-report', [ReportController::class, 'balance_report'])->name('balance-report');
     Route::get('balance-report-search', [ReportController::class, 'balance_report_search'])->name('balance-report-search');
     Route::get('print-balance-report', [ReportController::class, 'print_balance_report'])->name('print-balance-report');
-
-    Route::get('add-ledger-entry/{id}', [LedgerEntryController::class, 'add_ledger_entry'])->name('add-ledger-entry');
 
     // criminal cases latest list
 

@@ -3,22 +3,22 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Counsel </h1>
+                        <h1>External Counsel</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Counsel </li>
+                            <li class="breadcrumb-item active">external Counsel </li>
                         </ol>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
 
         <!-- Main content -->
@@ -37,16 +37,24 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title"> List </h3>
-                                <div class="float-right">
-                                    @can('counsel-add')
-                                    <a href="{{ route('add-counsel') }}"><button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add Counsel </button></a>
-                                    @endcan
-                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title"> List </h3>
+                                    <div>
+                                        <a href="{{ route('counsel-chamber') }}" class="btn {{Route::currentRouteName() === 'counsel-chamber' ?'civil_active_btn':'civil_btn'}}" ><span>Chamber</span></a>   
+                                        <a href="{{ route('counsel-company') }}" class="btn {{Route::currentRouteName() === 'counsel-company' ?'civil_active_btn':'civil_btn'}}" style="margin-left: 6px;" ><span>Company</span></a>
+                                        <a href="{{ route('counsel') }}" class="btn {{Route::currentRouteName() === 'counsel' ?'civil_active_btn':'civil_btn'}}" style="margin-left: 6px;" ><span>All</span></a>
+                                    </div>
 
+                                    <div>
+                                        @can('counsel-add')
+                                        <a href="{{ route('add-counsel') }}"><button class="btn btn-success" style="padding: 3px 10px;"><i class="fas fa-plus"></i> Add</button></a>
+                                        @endcan
+                                    </div>
+                                </div>
                             </div>
-                            <!-- /.card-header -->
+                        </div>
+                        <div class="card">
+                           
                             <div class="card-body">
                                 <table id="data_table" class="table table-bordered table-striped">
                                     <thead>
@@ -70,7 +78,7 @@
                                                 {{ $key+1 }}
                                             </td>
                                             <td>
-                                                {{ $datum->counsel_name }}
+                                                {{ $datum->professional_name }}
                                             </td>
                                             <td>
                                                 {{ $datum->counsel_role_id }}
@@ -142,5 +150,11 @@
     <!-- /.content-wrapper -->
 
 @endsection
+
+{{-- <script>
+     $(document).ready(function(){
+        alert("DFAsdfsdfa")
+     })
+</script> --}}
 
 

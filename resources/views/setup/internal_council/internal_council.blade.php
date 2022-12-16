@@ -58,8 +58,10 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        
+                                        
                                     @foreach($data as $datum)
-
+                                    
                                         <tr>
                                             <td class="text-center">
                                                 {{ $datum->id }}

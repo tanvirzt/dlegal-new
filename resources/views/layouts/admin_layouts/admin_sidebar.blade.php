@@ -106,6 +106,53 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+                            @can('counsel-list')
+                                <li class="nav-item">
+                                    <a href="{{ route('counsel') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>External Counsel</p>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('counsel-list')
+                                <li class="nav-item">
+                                    <a href="{{ route('internal-counsel-new') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Internal Counsel</p>
+                                    </a>
+                                </li>
+                            @endcan
+                            {{-- @can('chamber-staff-list')
+                                <li class="nav-item">
+                                    <a href="{{ route('chamber-staff') }}" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Chamber Staff</p>
+                                    </a>
+                                </li>
+                            @endcan --}}
+                            @can('chamber-list')
+                                <li class="nav-item">
+                                    <a href="{{ route('chamber') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Chamber</p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+               
+                @endcanany
+                {{-- @canany(['counsel-list', 'chamber-staff-list', 'chamber-list', 'internal-counsel-list'])
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-circle"></i>
+                            <p>
+                                Counsel/Lawyer
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
                             @canany(['counsel-list', 'chamber-staff-list', 'chamber-list'])
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
@@ -150,11 +197,11 @@
                                         <p>Internal Counsel</p>
                                     </a>
                                 </li>
-                        </li>
-                    @endcan
-                </ul>
-                </li>
-            @endcanany
+                            @endcan
+                        </ul>
+                    </li>
+               
+                @endcanany --}}
             @canany([
                 'accused-list',
                 'allegation-claim-list',
@@ -878,11 +925,17 @@
                                     @endcan --}}
                                     @can('quassi-judicial-cases-list')
                                         <li class="nav-item">
-                                            <a href="{{ route('quassi-judicial-cases') }}" class="nav-link">
+                                            <a href="{{ route('special-court-cases-all') }}" class="nav-link">
                                                 <i class="far fa-dot-circle nav-icon"></i>
                                                 <p>Special Court</p>
                                             </a>
                                         </li>
+                                        {{-- <li class="nav-item">
+                                            <a href="{{ route('quassi-judicial-cases') }}" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Special Court</p>
+                                            </a>
+                                        </li> --}}
                                     @endcan
 
                                     @can('high-court-cases-list')

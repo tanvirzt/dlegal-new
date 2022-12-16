@@ -8,16 +8,16 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
+                <div class="row">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Counsel</h1>
+                        <h1 class="m-0 text-dark">Counsel asdf</h1>
 
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a  type="button" href="{{ route('counsel') }}" aria-disabled="false"
+                                <a  type="button" href=" {{url()->previous()}}" aria-disabled="false"
                                     role="link" tabindex="-1">Back </a>
                             </li>
                         </ol>
@@ -27,7 +27,7 @@
         </div>
 
         <section class="content" id="section1st">
-            <div class="container-fluid py-2">
+            <div class="container-fluid py-1">
                 <div class="col-md-12">
 
                 <div class="card">

@@ -19,7 +19,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a  type="button" href="{{ route('counsel') }}" aria-disabled="false"
+                                <a  type="button" href="{{ url()->previous() }}" aria-disabled="false"
                                     role="link" tabindex="-1">Back </a>
                             </li>
                         </ol>
@@ -33,7 +33,7 @@
         <!-- Main content -->
 
         <section class="content">
-            <div class="container-fluid py-2">
+            <div class="container-fluid py-1">
                 <form action="{{ route('update-counsel', $data->id) }}" method="post" enctype="multipart/form-data">
 
                     <!-- Default box -->
@@ -46,6 +46,34 @@
                         <div class="card-body">
                             <div class="row original_case">
                                 <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                <label for="counsel_type" class="col-sm-4 col-form-label"> Counsel </label>
+                                                <div class="col-sm-8">
+                                                    <select name="counsel_type" class="form-control select2">
+                                                        <option value="">Select</option>
+                                                        <option value="Internal"  {{ $data->counsel_type == "Internal" ? 'selected' : '' }}>Internal</option>
+                                                        <option value="External"  {{ $data->counsel_type == "External" ? 'selected' : '' }}>External</option>
+                                                    </select>
+                                                    @error('counsel_type')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="counsel_category" class="col-sm-4 col-form-label"> Category </label>
+                                                <div class="col-sm-8">
+                                                    <select name="counsel_category" class="form-control select2">
+                                                        <option value="">Select</option>
+                                                        <option value="Chamber"  {{ $data->counsel_category == "Chamber" ? 'selected' : '' }}>Chamber</option>
+                                                        <option value="Company"  {{ $data->counsel_category == "Company" ? 'selected' : '' }}>Company</option>
+                                                    </select>
+                                                    @error('counsel_category')<span
+                                                        class="text-danger">{{$message}}</span>@enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                         <div class="card">
                                             <div class="card-body">
                                                 <h6 class="text-uppercase text-bold"><u> Chamber Information </u>
@@ -53,9 +81,17 @@
                                                 <div class="form-group row">
                                                     <label for="chamber_name" class="col-sm-4 col-form-label">Name</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="chamber_name"
+                                                        {{-- <input type="text" class="form-control" id="chamber_name"
                                                                name="chamber_name"
-                                                               value="{{ $data->chamber_name }}">
+                                                               value="{{ $data->chamber_name }}"> --}}
+
+                                                            <select name="chamber_name" class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach($chamber as $item)
+                                                                    <option
+                                                                        value="{{ $item->chamber_name }}" {{$data->chamber_name === $item->chamber_name ? 'selected' : ''}}>{{ $item->chamber_name }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         @error('chamber_name')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>

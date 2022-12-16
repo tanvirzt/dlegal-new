@@ -37,15 +37,33 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title"> List </h3>
+                                    <div>
+                                        <a href="{{ route('internal-counsel-chamber') }}" class="btn {{Route::currentRouteName() === 'internal-counsel-chamber' ?'civil_active_btn':'civil_btn'}}" ><span>Chamber</span></a>   
+                                        <a href="{{ route('internal-counsel-company') }}" class="btn {{Route::currentRouteName() === 'internal-counsel-company' ?'civil_active_btn':'civil_btn'}}" style="margin-left: 6px;" ><span>Company</span></a>
+                                        <a href="{{ route('internal-counsel-new') }}" class="btn {{Route::currentRouteName() === 'internal-counsel-new' ?'civil_active_btn':'civil_btn'}}" style="margin-left: 6px;" ><span>All</span></a>
+                                    </div>
+
+                                    <div>
+                                        @can('counsel-add')
+                                        <a href="{{ route('add-counsel') }}"><button class="btn btn-success" style="padding: 3px 10px;"><i class="fas fa-plus"></i> Add </button></a>
+                                        @endcan
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            {{-- <div class="card-header">
                                 <h3 class="card-title"> List </h3>
                                 <div class="float-right">
                                     @can('internal-council-create')
-                                    <a href="{{ route('add-internal-counsel') }}"><button class="btn btn-sm
+                                    <a href="{{ route('add-counsel') }}"><button class="btn btn-sm
                                     btn-success add_btn"><i class="fas fa-plus"></i> Add Internal Counsel </button></a>
                                     @endcan
                                 </div>
 
-                            </div>
+                            </div> --}}
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table class="table table-bordered table-striped data_table">
@@ -64,16 +82,17 @@
                                     </tr>
                                     </thead>
                                     <tbody id="search_data">
+                                        {{-- {{dd($data)}} --}}
                                     @foreach($data as $key=>$datum)
                                         <tr>
                                             <td>
                                                 {{ $key+1 }}
                                             </td>
                                             <td>
-                                                {{ $datum->internal_counsel_name }}
+                                                {{ $datum->professional_name }}
                                             </td>
                                             <td>
-                                                {{ $datum->internal_counsel_role_id }}
+                                                {{ $datum->counsel_role_id }}
                                             </td>
                                             <td>
                                                 {{ $datum->date_of_joining }}
@@ -111,22 +130,17 @@
                                                 </span>
                                             </td>
                                             <td>
-                                            {{-- <a href="{{ route('view-internal-counsel',$datum->id) }}"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"
-                                                ><i class="fas fa-eye"></i></button></a>
-                                             --}}
-                                                @can('internal-council-edit')
-                                                <a href="{{ route('view-internal-counsel',$datum->id) }}">
+
+                                                <a href="{{ route('view-counsel',$datum->id) }}">
                                                     <button class="btn btn-outline-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Details"><i class="fas fa-eye"></i></button>
                                                 </a>
-                                                <a href="{{ route('edit-internal-counsel',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
+                                                <a href="{{ route('edit-counsel',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                 ><i class="fas fa-edit"></i></button></a>
-                                                @endcan
-                                                @can('internal-counsel-delete')
-                                                <form method="POST" action="{{ route('delete-internal-counsel',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
+                                           
+                                                <form method="POST" action="{{ route('delete-counsel',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
-                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

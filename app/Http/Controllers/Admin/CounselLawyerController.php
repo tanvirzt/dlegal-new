@@ -404,8 +404,20 @@ class CounselLawyerController extends Controller
      */
     public function index_counsel()
     {
-        $data = Counsel::get();
+        $data = Counsel::where('counsel_type','External')->get();
         // dd($data);
+        return view('counsel_lawyer.external_counsel.counsel.counsel',compact('data'));
+    }
+    public function index_counsel_chamber()
+    {
+        $data = Counsel::where('counsel_type','External')->where('counsel_category','Chamber')->get();
+       
+        return view('counsel_lawyer.external_counsel.counsel.counsel',compact('data'));
+    }
+    public function index_counsel_company()
+    {
+        $data = Counsel::where('counsel_type','External')->where('counsel_category','Company')->get();
+       
         return view('counsel_lawyer.external_counsel.counsel.counsel',compact('data'));
     }
 
@@ -416,9 +428,10 @@ class CounselLawyerController extends Controller
      */
     public function create_counsel()
     {
+        $chamber = Chamber::orderBy('id','asc')->get();
         $documents = SetupDocument::where('delete_status', 0)->orderBy('documents_name','asc')->get();
         $documents_type = SetupDocumentsType::where('delete_status',0)->orderBy('documents_type_name','asc')->get();
-        return view('counsel_lawyer.external_counsel.counsel.add_counsel',compact('documents_type','documents'));
+        return view('counsel_lawyer.external_counsel.counsel.add_counsel',compact('documents_type','documents','chamber'));
     }
 
     /**
@@ -515,6 +528,9 @@ class CounselLawyerController extends Controller
 
 
         session()->flash('success', 'Counsel Added Successfully');
+        if ($request->counsel_type === 'Internal') {
+            return redirect()->route('internal-counsel-new');
+        }
         return redirect()->route('counsel');
     }
 
@@ -539,12 +555,13 @@ class CounselLawyerController extends Controller
      */
     public function edit_counsel($id)
     {
+        $chamber = Chamber::orderBy('id','asc')->get();
         $documents = SetupDocument::where('delete_status', 0)->orderBy('documents_name','asc')->get();
         $documents_type = SetupDocumentsType::where('delete_status',0)->orderBy('documents_type_name','asc')->get();
         $data = Counsel::find($id);
         $received_documents_explode = CounselDocumentsReceived::where('counsel_id', $id)->get()->toArray();
         $required_wanting_documents_explode = CounselDocumentsRequired::where('counsel_id', $id)->get()->toArray();
-        return view('counsel_lawyer.external_counsel.counsel.edit_counsel',compact('required_wanting_documents_explode','received_documents_explode','documents_type','documents','data'));
+        return view('counsel_lawyer.external_counsel.counsel.edit_counsel',compact('required_wanting_documents_explode','chamber','received_documents_explode','documents_type','documents','data'));
     }
 
     /**
@@ -563,6 +580,8 @@ class CounselLawyerController extends Controller
         $remove = array_pop($required_wanting_documents_sections);
 
         $data = Counsel::find($id);
+        $data->counsel_type = $request->counsel_type;
+        $data->counsel_category = $request->counsel_category;
         $data->chamber_name = $request->chamber_name;
         $data->counsel_role_id = $request->counsel_role_id;
         $data->counsel_name = $request->counsel_name;
@@ -637,6 +656,9 @@ class CounselLawyerController extends Controller
 
 
         session()->flash('success', 'Counsel Updated Successfully.');
+       if ($request->counsel_type === 'Internal') {
+        return redirect()->route('internal-counsel-new');
+       }
         return redirect()->route('counsel');
 
     }
@@ -886,7 +908,17 @@ class CounselLawyerController extends Controller
 
     public function index_internal_counsel_new()
     {
-        $data = Counsel::get();
+        $data = Counsel::where('counsel_type','Internal')->get();
+        return view('counsel_lawyer.internal_counsel.internal_counsel',compact('data'));
+    }
+    public function index_internal_counsel_new_chamber()
+    {
+        $data = Counsel::where('counsel_type','Internal')->where('counsel_category','Chamber')->get();
+        return view('counsel_lawyer.internal_counsel.internal_counsel',compact('data'));
+    }
+    public function index_internal_counsel_new_company()
+    {
+        $data = Counsel::where('counsel_type','Internal')->where('counsel_category','Company')->get();
         return view('counsel_lawyer.internal_counsel.internal_counsel',compact('data'));
     }
 

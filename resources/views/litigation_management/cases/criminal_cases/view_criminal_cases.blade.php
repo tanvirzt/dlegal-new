@@ -191,6 +191,12 @@
         .caseInfoTable2 tbody tr td:first-child {
             width: 22% !important;
         }
+        .layInfoTable tbody tr td:first-child {
+            width: 30.5% !important;
+        }
+
+
+        
 
 
 
@@ -1571,7 +1577,7 @@
                                     </div>
                                 </div>
 
-                                <div class="card" style="height: 18.5rem">
+                                <div class="card caseFileLoacation" >
                                     <div class="card-header">
                                         <h6 class="text-uppercase text-bold"> Lawyers Information
                                             <button type="button" class="btn btn-info btn-sm float-right"
@@ -1583,15 +1589,21 @@
                                     </div>
                                     <div class="card-body">
                                        
-                                        <table class="table table-bordered caseInfoTable2">
+                                        <table class="table table-bordered layInfoTable">
 
                                             <tbody>
 
                                             <tr>
-                                                <td width="50%">Name of Advocate/Law Firm</td>
-                                                <td width="50%"> {{ $data->first_name }}
-                                                    {{ $data->middle_name }} {{ $data->last_name }}
-                                                    {{ $data->lawyer_advocate_write }} </td>
+                                                <td >Name of Advocate/Law Firm</td>
+                                                <td>{{$data->lawyer_advocate_id}}</td>
+                                                <td>{{$data->lawyer_advocate_write}}</td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td >Name of Lead Laywer</td>
+                                                <td>{{$data->lead_laywer_name}}</td>
+                                                <td>{{$data->lead_laywer_name_extra}}</td>
+                                                
                                             </tr>
                                             <tr>
                                                 <td>Name of Assigned Lawyer</td>
@@ -1612,10 +1624,11 @@
                                                         @endif
                                                     @endif
                                                 </td>
+                                                <td>{{$data->assigned_lawyer_extra}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Remarks</td>
-                                                <td> {{ $data->lawyers_remarks }} </td>
+                                                <td colspan="2"> {{ $data->lawyers_remarks }} </td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -1777,7 +1790,7 @@
                                 </div>
 
                                 {{-- {{dd($oppLawyer)}} --}}
-                                <div class="card">
+                                <div class="card caseFileLoacation">
                                     <div class="card-header caseInfoHeader">
                                         <h6 class="text-uppercase text-bold">Lawyers Information : (Opposition Lawyer) 
                                             <button type="button" class="btn btn-info btn-sm float-right"
@@ -5563,63 +5576,103 @@
                         <h6 class="text-uppercase text-bold"><u> Lawyers Information </u>
                         </h6>
                         <div class="form-group row">
-                            <label for="lawyer_advocate_id" class="col-sm-4 col-form-label">Name of Advocate/Law
-                                Firm</label>
+                            <label for="lawyer_advocate_id"
+                                   class="col-sm-4 col-form-label">Name of Advocate/Law Firm</label>
                             <div class="col-sm-8">
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <select name="lawyer_advocate_id" class="form-control select2"
-                                                id="lawyer_advocate_id" action="{{ route('find-associates') }}">
+                                        <select name="lawyer_advocate_id"
+                                                class="form-control select2"
+                                                id="lawyer_advocate_id">
                                             <option value="">Select</option>
-                                            @foreach ($external_council as $item)
-                                                <option value="{{ $item->id }}"
-                                                    {{ $data->lawyer_advocate_id == $item->id ? 'selected' : '' }}>
-                                                    {{ $item->first_name }} {{ $item->middle_name }}
-                                                    {{ $item->last_name }}</option>
+
+                                            @foreach($chamber as $item)
+                                            <option value="{{$item->professional_name}}" {{$data->lawyer_advocate_id === $item->professional_name ? 'selected' : '' }}>{{$item->professional_name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" id="lawyer_advocate_write"
-                                               name="lawyer_advocate_write" placeholder="Advocate Name"
-                                               value="{{ $data->lawyer_advocate_write }}">
+                                        <input type="text" class="form-control"
+                                               id="lawyer_advocate_write"
+                                               name="lawyer_advocate_write"
+                                               placeholder="Advocate Name"
+                                               value="{{$data->lawyer_advocate_write}}">
                                     </div>
                                 </div>
 
-                                @error('client_profession_id')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                @error('client_profession_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lead_laywer_name"
+                                   class="col-sm-4 col-form-label">Name of Lead Laywer</label>
+                            <div class="col-sm-8">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="lead_laywer_name"
+                                                class="form-control select2"
+                                                id="lead_laywer_name">
+                                            <option value="">Select</option>
+                                            @foreach($leadLaywer as $item)
+                                            <option value="{{$item->professional_name}}" {{$data->lead_laywer_name === $item->professional_name ? 'selected' : '' }}>{{$item->professional_name}}</option>
+                                            @endforeach
+                                           
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="lead_laywer_name_extra"
+                                               name="lead_laywer_name_extra"
+                                               placeholder="Advocate Name"
+                                               value="{{$data->lead_laywer_name_extra}}">
+                                    </div>
+                                </div>
+
+                                @error('client_profession_id')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Name of Assigned
                                 Lawyer</label>
                             <div class="col-sm-8">
-                                <select name="assigned_lawyer_id[]" id="assigned_lawyer_id"
-                                        class="form-control select2" data-placeholder="Select" multiple>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="assigned_lawyer_id[]" class="form-control select2"
+                                        data-placeholder="Select">
                                     <option value="">Select</option>
-                                    @foreach ($existing_assignend_external_council as $item)
-                                        <option
-                                            value="{{ $item->first_name . ' ' . $item->middle_name . ' ' . $item->last_name }}"
-                                            {{ in_array($item->first_name . ' ' . $item->middle_name . ' ' . $item->last_name, $assigned_lawyer_explode) ? 'selected' : '' }}>
-                                            {{ $item->first_name }} {{ $item->middle_name }}
-                                            {{ $item->last_name }}</option>
+                                    @foreach($assignedlaywer as $item)
+                                            <option value="{{$item->professional_name}}" {{$data->assigned_lawyer_id === $item->professional_name ? 'selected' : '' }}>{{$item->professional_name}}</option>
                                     @endforeach
+
                                 </select>
-                                @error('assigned_lawyer_id')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control"
+                                               id="assigned_lawyer_extra"
+                                               name="assigned_lawyer_extra"
+                                               placeholder="Advocate Name"
+                                               value="{{$data->assigned_lawyer_extra}}">
+                                    </div>
+
+                                </div>
+                               
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="lawyers_remarks" class="col-sm-4 col-form-label"> Remarks </label>
+                            <label for="lawyers_remarks"
+                                   class="col-sm-4 col-form-label"> Remarks </label>
                             <div class="col-sm-8">
-                                <textarea name="lawyers_remarks" class="form-control" rows="3" placeholder="">{{ $data->lawyers_remarks }}</textarea>
-                                @error('lawyers_remarks')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                            <textarea name="lawyers_remarks" class="form-control"
+                                      rows="3"
+                                      placeholder="">{{ $data->lawyers_remarks }}</textarea>
+                                @error('lawyers_remarks')<span
+                                    class="text-danger">{{$message}}</span>@enderror
                             </div>
                         </div>
                         <div class="modal-footer justify-content-between">

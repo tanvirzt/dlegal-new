@@ -51,10 +51,11 @@
                                                 <div class="form-group row">
                                                     <label for="counsel_type" class="col-sm-4 col-form-label"> Counsel </label>
                                                     <div class="col-sm-8">
-                                                        <select name="counsel_type" class="form-control select2">
+                                                        <select name="counsel_type" class="form-control select2" required>
                                                             <option value="">Select</option>
                                                             <option value="Internal">Internal</option>
                                                             <option value="External">External</option>
+                                                            <option value="Staff">Staff</option>
                                                         </select>
                                                         @error('counsel_type')<span
                                                             class="text-danger">{{$message}}</span>@enderror
@@ -81,9 +82,18 @@
                                                 <div class="form-group row">
                                                     <label for="chamber_name" class="col-sm-4 col-form-label">Name</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="chamber_name"
+                                                        {{-- <input type="text" class="form-control" id="chamber_name"
                                                                name="chamber_name"
-                                                               value="{{old('chamber_name')}}">
+                                                               value="{{old('chamber_name')}}"> --}}
+                                                               
+                                                            <select name="chamber_name" class="form-control select2">
+                                                                <option value="">Select</option>
+                                                                @foreach($chamber as $item)
+                                                                    <option
+                                                                        value="{{ $item->chamber_name }}">{{ $item->chamber_name }}</option>
+                                                                @endforeach
+                                                            </select>
+
                                                         @error('chamber_name')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
