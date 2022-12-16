@@ -135,7 +135,7 @@
                                                 @if (!empty($case_class))
                                                 <input type="hidden" class="form-control" id="class_of_cases" name="class_of_cases" value="{{ $case_class->case_category_id == 'Criminal' || $case_class->case_category_id == 'Civil' ? 'District Court' : '' }}">
                                                 <input type="hidden" class="form-control" id="case_no" name="case_no" value="{{$case_class->id}}">
-                                                
+
                                                 @endif
                                             <div class="form-group row">
                                                 <label for="panel_lawyer_id" class="col-sm-4 col-form-label">Panel Lawyer</label>
@@ -165,7 +165,7 @@
                                                     <span class="date_span" style="width: 404px;">
                                                         <input type="date" class="xDateContainer date_first_input"
                                                                onchange="setCorrect(this,'xTime4');"><input type="text" id="xTime4"
-                                                                                                            name="date_of_billing" value="dd-mm-yyyy"
+                                                                                                            name="date_of_billing" value="{{ date('d-m-Y') }}"
                                                                                                             class="date_second_input"
                                                                                                             tabindex="-1"><span
                                                             class="date_second_span" tabindex="-1">&#9660;</span>
