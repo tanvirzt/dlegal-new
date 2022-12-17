@@ -43,6 +43,12 @@
             padding: 2px;
         }
 
+        .card-header.positionCard {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
 
       
 </style>
@@ -55,14 +61,14 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Add District Court Cases</h1>
+                        <h1 class="m-0 text-dark">Add Court Cases</h1>
 
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a  type="button" href="{{ route('criminal-cases') }}" aria-disabled="false"
+                                <a  type="button" href="{{URL::previous() }}" aria-disabled="false"
                                     role="link" tabindex="-1">Back </a>
                             </li>
                         </ol>
@@ -83,7 +89,7 @@
                    <div class="row">
                      <div class="col-md-6">
                         <div class="card allCard">
-                            <div class="card-header">
+                            <div class="card-header positionCard">
                                 <h6 class="card-title text-uppercase"> CASE INFORMATION </h6>
                             </div>
                             <div class="card-body">
@@ -946,7 +952,7 @@
                           
                         </div>
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header positionCard">
                                 <h6 class="card-title text-uppercase"> Documents Received </h6>
                             </div>
                             <div class="card-body">
@@ -1033,7 +1039,7 @@
                         
                       
                         <div class="card ">
-                            <div class="card-header">
+                            <div class="card-header positionCard">
                                 <h6 class="card-title text-uppercase"> Case Events & Incidents </h6>
                             </div>
                             <div class="card-body">
@@ -1136,7 +1142,7 @@
                         </div>
 
                         <div class="card caseSteps">
-                            <div class="card-header">
+                            <div class="card-header positionCard">
                                 <h6 class="card-title text-uppercase"> Case Steps </h6>
                             </div>
                             <div class="card-body">
@@ -1800,7 +1806,7 @@
                         </div>
 
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header positionCard">
                                 <h6 class="card-title text-uppercase"> Documents Required </h6>
                             </div>
                             <div class="card-body">
@@ -1889,7 +1895,7 @@
                    <div class="row">
                       <div class="col-md-6">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header positionCard">
                                 <h6 class="card-title text-uppercase"> CASE FILE LOCATION </h6>
                             </div>
                             <div class="card-body">
@@ -1961,7 +1967,7 @@
                       </div>
                       <div class="col-md-6">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header positionCard">
                                 <h6 class="card-title text-uppercase"> Document Upload </h6>
                             </div>
                             <div class="card-body">
@@ -2024,7 +2030,7 @@
                    <div class="row">
                      <div class="col-md-6">
                         <div class="card allCard">
-                            <div class="card-header">
+                            <div class="card-header positionCard">
                                 <h6 class="card-title text-uppercase"> Client Information </h6>
                             </div>
                             <div class="card-body">
@@ -2375,7 +2381,7 @@
                         </div>
 
                         <div class="card" style="height: 255px">
-                            <div class="card-header">
+                            <div class="card-header positionCard">
                                 <h6 class="card-title text-uppercase"> Lawyer Information </h6>
                             </div>
                             <div class="card-body">
@@ -2485,7 +2491,7 @@
                      </div>
                      <div class="col-md-6">
                         <div class="card allCard">
-                            <div class="card-header">
+                            <div class="card-header positionCard">
                                 <h6 class="card-title text-uppercase"> Oposit party information </h6>
                             </div>
                             <div class="card-body">
@@ -2835,7 +2841,7 @@
                         </div>
 
                         <div class="card oppLowyer">
-                            <div class="card-header">
+                            <div class="card-header positionCard">
                                 <h6 class="card-title text-uppercase"> Lawyer Information ( Opposition Lawyer) </h6>
                             </div>
                             <div class="card-body">

@@ -569,11 +569,17 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('/find-associates',[CivilCasesController::class, 'find_associates'])->name('find-associates');
     Route::get('/find-district',[CivilCasesController::class, 'find_district'])->name('find_district');
 
-    //district court cases
+    //special court cases
     Route::get('special-court-cases-all',[CriminalCasesController::class, 'special_court_cases_all'])->name('special-court-cases-all');
     Route::get('special-court-cases-civil',[CriminalCasesController::class, 'special_court_cases_civil'])->name('special-court-cases-civil');
     Route::get('special-court-cases-criminal',[CriminalCasesController::class, 'special_court_cases_criminal'])->name('special-court-cases-criminal');
 
+
+    // Criminal cases latest list
+
+    Route::get('criminal-cases-latest',[CriminalCasesController::class, 'criminal_cases_latest'])->name('criminal-cases-latest');
+    Route::get('civil-cases-latest',[CriminalCasesController::class, 'civil_cases_latest'])->name('civil-cases-latest');
+    
 
     Route::get('criminal-cases',[CriminalCasesController::class, 'criminal_cases'])->name('criminal-cases');
     Route::get('add-criminal-cases',[CriminalCasesController::class, 'add_criminal_cases'])->name('add-criminal-cases');
@@ -833,11 +839,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     ///////////////////// Report Managenent End /////////////////////
 
 
-    // Criminal cases latest list
 
-    Route::get('criminal-cases-latest',[CriminalCasesController::class, 'criminal_cases_latest'])->name('criminal-cases-latest');
-    Route::get('civil-cases-latest',[CriminalCasesController::class, 'civil_cases_latest'])->name('civil-cases-latest');
-   
    
     Route::get('documents-list',[CriminalCasesController::class, 'documents_list'])->name('documents-list');
     Route::get('add-documents-list',[CriminalCasesController::class, 'add_documents_list'])->name('add-documents-list');

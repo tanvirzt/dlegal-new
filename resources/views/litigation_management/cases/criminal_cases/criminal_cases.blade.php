@@ -529,14 +529,15 @@ if (empty($case_cat)) {
                                                 </span>
                                             </h3>
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-5">
                                             <a href="{{ route('civil-cases-latest') }}" class="btn {{ $case_cat == 'Civil' ? 'civil_active_btn' : 'civil_btn' }}" ><span>Civil</span></a>   
                                             <a href="{{ route('criminal-cases-latest') }}" class="btn {{ $case_cat == 'Criminal' ? 'civil_active_btn' : 'civil_btn' }}" style="margin-left: 6px;" ><span>Criminal</span></a>
+                                            <a href="{{ route('criminal-cases') }}" class="btn {{ $case_cat == 'all' ? 'civil_active_btn' : 'civil_btn' }}" style="margin-left: 6px;" ><span>All</span></a>
 
                                         </div>
                                         {{-- <div class="col-sm-1">
                                         </div> --}}
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-2">
                                             <div class="float-right">
                                                 @can('criminal-cases-create')
                                                     <a href="{{ route('add-criminal-cases') }}">
