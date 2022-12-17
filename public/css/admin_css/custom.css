@@ -766,13 +766,13 @@ a .btn{
 }
 
 .accordion-custom .card-header-custom:after {
-    font-family: 'FontAwesome';  
+    font-family: 'FontAwesome';
     content: "\f068";
-    float: right; 
+    float: right;
 }
 .accordion-custom .card-header-custom.collapsed:after {
     /* symbol for "collapsed" panels */
-    content: "\f067"; 
+    content: "\f067";
 }
 
 #example1_wrapper .flex-wrap{
@@ -865,3 +865,287 @@ a .btn{
 .invoice th{
     background-color: #fff;
 }
+
+
+/* new css */
+
+/* invoice */
+
+/* heading */
+.main-invo h1 {
+    font-weight: bold;
+    letter-spacing: 0.5em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* table */
+
+.main-invo table {
+    font-size: 85%;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.main-invo table {
+    border-spacing: 2px;
+}
+
+.main-invo th,
+.main-invo td {
+    border-width: 1px;
+    padding: 0.5em;
+    position: relative;
+    text-align: left;
+}
+
+.main-invo th,
+.main-invo td {
+    border-style: solid;
+}
+
+.main-invo th {
+    background: #079e8d;
+    border-color: #BBB;
+    color: #fff;
+}
+
+.main-invo td {
+    border-color: #DDD;
+    text-align: center;
+}
+
+/* page */
+
+/* header */
+
+.main-invo .invoice-header {
+    margin: 0 0 3em;
+}
+
+.main-invo .invoice-header:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.main-invo .invoice-header h1 {
+    background: #079e8d;
+    border-radius: 0.25em;
+    color: #FFF;
+    margin: 0 0 1em;
+    padding: 0.5em 0;
+    font-size: 14px;
+}
+
+.main-invo .invoice-header .address {
+    float: left;
+
+}
+
+.main-invo .invoice-customer {
+    font-style: normal;
+}
+
+
+.main-invo .invoice-header .address p {
+    margin: 10px 0;
+}
+
+
+.main-invo .invoice-customer h5 {
+    font-size: 15px;
+    margin: 0;
+    background: #079e8d;
+    padding: 4px 10px;
+    color: #fff;
+    margin-bottom: 13px;
+}
+.main-invo .invoice-logo img{
+    margin-bottom: 10px;
+}
+.main-invo .invoice-customer p {
+    margin: 10px 0;
+}
+
+.main-invo .invo-total-price th,
+.main-invo .invo-total-price td {
+    background: transparent !important;
+    color: #000 !important;
+}
+
+.main-invo .invo-total-price {
+    background: #eeeeee;
+    color: #fff;
+}
+.main-invo .invoice-terms {
+    float: left;
+    width: 50%;
+    border: 1px solid #ddd;
+}
+
+.main-invo.invoice-terms ol {
+    margin: 0;
+    padding-inline-start: 20px;
+}
+
+.main-invo .invoice-terms h4 {
+    margin: 0;
+    background: #079e8d;
+    padding: 3px;
+    color: #fff;
+    font-size: 15px;
+}
+
+.main-invo .tc-ol {
+    padding: 10px;
+}
+
+.main-invo .tc-ol ol li {
+    margin-bottom: 10px;
+}
+
+/* article */
+
+.main-invo article,
+.main-invo article address,
+.main-invo table.meta,
+.main-invo table.inventory {
+    margin: 0 0 30px;
+}
+
+.main-invo article:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.main-invo article address {
+    float: left;
+}
+
+/* table meta & balance */
+
+.main-invo table.meta,
+.main-invo table.balance {
+    float: right;
+    width: 41%;
+}
+
+.main-invo table.meta:after,
+.main-invo table.balance:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+/* table meta */
+.main-invo .meta-box {
+    width: 41%;
+    float: right;
+}
+
+.main-invo .meta-box table.meta {
+    width: 100%;
+}
+
+.main-invo .meta-box p {
+    margin: 10px 0;
+    text-align: right;
+}
+
+.main-invo table.meta th {
+    width: 40%;
+    background: #eee;
+    color: black;
+}
+
+.main-invo table.meta td {
+    width: 60%;
+}
+
+/* table items */
+
+.main-invo table.inventory {
+    clear: both;
+    width: 100%;
+}
+
+.main-invo table.inventory th {
+    font-weight: bold;
+    text-align: center;
+}
+
+.main-invo .inventory select {
+    padding: 5px 7px;
+}
+
+.main-invo .inventory .in-price {
+    text-transform: uppercase;
+}
+
+/* table balance */
+
+.main-invo table.balance th {
+    background: #EEE;
+    color: #000;
+}
+
+.main-invo table.balance th,
+.main-invo table.balance td {
+    width: 50%;
+}
+
+.main-invo table.balance td {
+    text-align: right;
+}
+
+/* aside */
+
+.main-invo aside h1 {
+    border: none;
+    border-width: 0 0 1px;
+    margin: 0 0 1em;
+}
+
+.main-invo aside h1 {
+    border-color: #999;
+    border-bottom-style: solid;
+}
+
+.main-invo {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #ddd;
+}
+
+@media print {
+    * {
+        -webkit-print-color-adjust: exact;
+    }
+
+    html {
+        background: none;
+        padding: 0;
+    }
+
+    body {
+        box-shadow: none;
+        margin: 0;
+    }
+
+    span:empty {
+        display: none;
+    }
+
+    .add,
+    .cut {
+        display: none;
+    }
+}
+
+@page {
+    margin: 0;
+}
+

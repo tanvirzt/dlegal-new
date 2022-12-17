@@ -26,310 +26,140 @@
 
         </div>
 
-        <section class="content" id="section1st">
 
-            <div class="container-fluid py-2">
+        <div class="row">
+            <div class="col-md-8 mx-auto py-4">
 
-                <div class="col-12">
-
-{{-- print document  --}}
-
-                    <div class="invoice p-3 mb-3">
-
-                        <div class="row">
-                            <div class="col-12">
-                                <h4>
-                        <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="AdminLTE Logo" class="brand-image" style="opacity:1">
-
-                                    <small class="float-right">Date: {{ date('d-m-Y') }}</small>
-                                </h4>
-                            </div>
-
+                <!--start invoice area-->
+                <div class="main-invo">
+                    <div class="invoice-header">
+                        <div class="invoice-logo" style="overflow: hidden; margin-bottom: 15px;">
+                            <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="image"
+                                class="brand-image" style="opacity:1">
                         </div>
-
-                        <div class="row invoice-info">
-                            <div class="col-sm-4 invoice-col">
-                                <b>From</b> <br>
-                                <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag, Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
-                                        <br/>
-                                        <span id="lblUnitAddress" class="HeaderStyle2"> Cell:01717406688 </span>
-                                        <br/>
-                                        <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688 </span>
-                                        <br/>
-                                        <span id="lblUnitAddress" class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
-                                            <span id="lblVoucherType" class="VoucherStyle">
+                        <h1>Invoice</h1>
+                        <div class="address">
+                            <div class="invoice-self">
+                                <p><strong>From</strong></p>
+                                <p>365/B, Modhubag, Mogbazar, Hatirjheel, Dhaka
+                                    - 1217, Bangladesh</p>
+                                <p>Cell: 01717406688 </p>
+                                <p>Tel: 01717406688 </p>
+                                <p>Email: niamulkabir.adv@gmail.com</p>
                             </div>
-                            <div class="col-sm-4 invoice-col">
-                                <h3 class="text-center">Bill</h3><br>
-                                
-                            </div>
-                            <div class="col-sm-4 invoice-col">
-                               <b>To</b>
-                               
-                               @php
-
-                                if ($data->class_of_cases == 'District Court') {
-                                    $case = App\Models\CriminalCase::where('id',$data->case_no)->first();
-                                }else if($data->class_of_cases == 'Special Court'){
-                                    $case = App\Models\LabourCase::where('id',$data->case_no)->first();
-                                }else if($data->class_of_cases == 'High Court Division'){
-                                    $case = App\Models\HighCourtCase::where('id',$data->case_no)->first();
-                                }else if($data->class_of_cases == 'Appellate Division'){
-                                    $case = App\Models\AppellateCourtCase::where('id',$data->case_no)->first();
-                                }
+                        </div>
+                    </div>
+                    <article>
+                        <address>
+                            <div class="invoice-customer">
+                                <h5>Customer</h5>
+                                @php
+                                    if ($data->class_of_cases == 'District Court') {
+                                        $case = App\Models\CriminalCase::where('id', $data->case_no)->first();
+                                    } elseif ($data->class_of_cases == 'Special Court') {
+                                        $case = App\Models\LabourCase::where('id', $data->case_no)->first();
+                                    } elseif ($data->class_of_cases == 'High Court Division') {
+                                        $case = App\Models\HighCourtCase::where('id', $data->case_no)->first();
+                                    } elseif ($data->class_of_cases == 'Appellate Division') {
+                                        $case = App\Models\AppellateCourtCase::where('id', $data->case_no)->first();
+                                    }
 
                                 @endphp
 
                                 <address>
                                     <strong>{{ $case->client_name_write }}</strong><br>
                                     {{ $case->client_address }}
-                                    
+
                                 </address>
                             </div>
+                        </address>
+                        <div class="meta-box">
+                            <table class="meta">
 
-                            
-
+                                <tr>
+                                    <th>DATE</th>
+                                    <td>{{ date('d-m-Y') }}</td>
+                                </tr>
+                                <tr>
+                                    <th>INVOICE NO</th>
+                                    <td>{{ $data->billing_no }}</td>
+                                </tr>
+                                <tr>
+                                    <th>CASE NO</th>
+                                    <td>{{ $case->case_no }}</td>
+                                </tr>
+                            </table>
                         </div>
-
-
-                        <div class="row">
-                            <div class="col-12 table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Case No</th>
-                                            <th>Bill No.</th>
-                                            <th>Bill Type</th>
-                                            <th>Payment Type</th>
-                                            <th>District</th>
-                                            <th>Case Type</th>
-                                            <th>Class of Cases</th>
-                                            <th>Panel Lawyer</th>
-                                            <th>Digital Payment Type</th>
-                                            <th>Bill Amount</th>
-                                            <th>Date of Billing</th>
-                                            <th>Name of Bank</th>
-                                            <th>Branch</th>
-                                            <th>Cheque No.</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                        <tr>
-                                            <td>{{ $case->case_no }}</td>
-                                            <td>{{ $data->billing_no }}</td>
-                                            <td> {{ $data->bill_type_name }} </td>
-                                            <td>{{ $data->payment_type }}</td>
-                                            <td> {{ $data->district_name }} </td>
-                                            <td> {{ $data->case_types_name }} </td>
-                                            <td> {{ $data->class_of_cases }} </td>
-                                            <td> {{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }} </td>
-                                            <td> {{ $data->digital_payment_type_name }} </td>
-                                            <td> {{ $data->bill_amount }} </td>
-                                            <td> {{ $data->date_of_billing }} </td>
-                                            <td> {{ $data->bank_name }} </td>
-                                            <td> {{ $data->bank_branch_name }} </td>
-                                            <td> {{ $data->cheque_no }} </td>
-
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-6">
-                                
-                            </div>
-
-                            <div class="col-6">
-                                {{-- <p class="lead">Amount Due 2/22/2014</p> --}}
-                                <div class="table-responsive mt-2">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            <tr>
-                                                <th style="width:50%">Subtotal:</th>
-                                                <td>{{ $data->bill_amount }}</td>
-                                            </tr>
-                                            
-                                            <tr>
-                                                <th>Total:</th>
-                                                <td>{{ $data->bill_amount }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                        <table class="inventory">
+                            <thead>
+                                <tr>
+                                    <th width="10%"><span>S.N</span></th>
+                                    <th><span>Bill Type</span></th>
+                                    <th><span>Amount</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span>1</span></td>
+                                    <td><span> {{ $data->bill_type_name }}
+                                        </span></td>
+                                    <td><span class="in-price">{{ $data->bill_amount }}</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {{-- <article>
+                            <div class="invoice-terms">
+                                <h4>Terms and Condition</h4>
+                                <div class="tc-ol">
+                                    <ol>
+                                        <li>Write Something ...................................</li>
+                                        <li>Write Something ...................................</li>
+                                    </ol>
                                 </div>
-                            </div>
+                            </div> --}}
 
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="text-center">
-                                    <hr width="50%">
-                                    Accountant
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="text-center">
-                                    <hr width="50%">
-                                    Checked By
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="text-center">
-                                    <hr width="50%">
-                                    Received By
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <a href="{{ route('billings-print-preview', $data->id) }}" title="Print Case Info" target="_blank"
-                                    class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a>
+                            <table class="meta">
+                                <tr>
+                                    <th>Sutotal</th>
+                                    <td>{{ $data->bill_amount }}</td>
+                                </tr>
+                                <tr class="total-border"></tr>
+                                <tr class="invo-total-price">
+                                    <th>Total</th>
+                                    <td>{{ $data->bill_amount }}</td>
+                                </tr>
+                            </table>
+                        </article>
+                    </article>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <hr width="50%">
+                                Accountant
                             </div>
                         </div>
-
-
-
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <hr width="50%">
+                                Checked By
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <hr width="50%">
+                                Received By
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="{{ route('billings-print-preview', $data->id) }}" title="Print Case Info"
+                                target="_blank" class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a>
+                        </div>
                     </div>
-
-{{-- print document  --}}
-
-
-                    {{-- <div class="card">
-                    
-                    <div>
-                        <div class="card-body">
-                            
-                            <div class="row">
-
-                                <div class="col-md-6">
-
-                                    <div class="appeal_case_info">
-                                        
-                                        <div class="card">
-                                            <div class="card-body">
-                                                
-                                                <table class="table table-bordered">
-
-                                                    <tbody>
-                                                    <tr>
-                                                        <td width="50%">Bill Type</td>
-                                                        <td width="50%"> {{ $data->bill_type_name }} </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Payment Type</td>
-                                                        <td> {{ $data->payment_type }} </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>District</td>
-                                                        <td>{{ $data->district_name }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Case Type</td>
-                                                        <td>{{ $data->case_types_name }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Case No.</td>
-                                                        <td>
-                                                            @php
-
-                                                if ($data->class_of_cases == 'District Court') {
-                                                    $case = App\Models\CriminalCase::where('id',$data->case_no)->first();
-                                                }else if($data->class_of_cases == 'Special Court'){
-                                                    $case = App\Models\LabourCase::where('id',$data->case_no)->first();
-                                                }else if($data->class_of_cases == 'High Court Division'){
-                                                    $case = App\Models\HighCourtCase::where('id',$data->case_no)->first();
-                                                }else if($data->class_of_cases == 'Appellate Division'){
-                                                    $case = App\Models\AppellateCourtCase::where('id',$data->case_no)->first();
-                                                }
-
-                                                @endphp
-
-                                                {{ !empty($case->case_no) ? $case->case_no : '' }}
-                                                            
-                                                        
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Panel Lawyer</td>
-                                                        <td>{{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Bill Amount</td>
-                                                        <td>{{ $data->bill_amount }}</td>
-                                                    </tr>
-                                                    
-                                                    
-                                                    
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-
-                                        
-
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-6">
-                                    <div class="revision_case_info">
-
-                                        <div class="card">
-                                            <div class="card-body">
-                                                
-                                                <table class="table table-bordered">
-
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Date of Billing</td>
-                                                            <td>{{ $data->date_of_billing }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Bank</td>
-                                                            <td>{{ $data->bank_name }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Branch</td>
-                                                            <td>{{ $data->bank_name }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Cheque No</td>
-                                                            <td>{{ $data->cheque_no }}</td>
-                                                        </tr>
-                                                    <tr>
-                                                        <td width="50%">Digital Payment Type</td>
-                                                        <td width="50%" colspan="2"> {{ $data->digital_payment_type_name }} </td>
-                                                    </tr>
-                                                    
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-
-                                        <a href="{{ route('billings-print-preview', $data->id) }}" title="Print Case Info" target="_blank"
-                                            class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-
-   
-
-                    </div>
-                </div> --}}
-
                 </div>
+                <!--end invoice area-->
+
             </div>
-        </section>
+        </div>
 
 
     </div>
