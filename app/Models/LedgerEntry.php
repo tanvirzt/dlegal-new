@@ -11,18 +11,19 @@ class LedgerEntry extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'transaction_no', 
-        'job_name', 
-        'ledger_category_id', 
+        'transaction_no',
+        'job_name',
+        'ledger_category_id',
         'payment_against_bill',
-        'bill_id', 
-        'ledger_date', 
-        'paid_amount', 
-        'payment_type', 
-        'ledger_head_id', 
+        'bill_id',
+        'ledger_date',
+        'paid_amount',
+        'payment_type',
+        'client_id',
+        'ledger_head_id',
         // 'income_paid_amount',
         // 'expense_paid_amount',
-        'bill_amount', 
+        'bill_amount',
         'remarks',
     ];
 

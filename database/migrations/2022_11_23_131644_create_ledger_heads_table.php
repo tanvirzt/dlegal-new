@@ -15,7 +15,7 @@ class CreateLedgerHeadsTable extends Migration
     {
         Schema::create('ledger_heads', function (Blueprint $table) {
             $table->id();
-            $table->integer('ledger_category_id')->nullable();
+            $table->string('ledger_category_id')->nullable();
             $table->string('ledger_code')->nullable();
             $table->string('ledger_head_name')->nullable();
             $table->string('created_by')->nullable();

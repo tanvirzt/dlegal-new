@@ -32,7 +32,7 @@ class LedgerEntryController extends Controller
         $bill_no = CaseBilling::where('delete_status', 0)->get();
         $ledger_head = LedgerHead::all();
         $latest = LedgerEntry::orderBy('id','DESC')->first();
-        
+
         if ($latest != null) {
             $latest_no = explode('-', $latest->transaction_no);
             $sl = $latest_no[1] + 1;
@@ -60,7 +60,7 @@ class LedgerEntryController extends Controller
         // ]);
 
         $data = $request->all();
-        
+
         if ($request->ledger_date != "dd/mm/yyyy") {
             $from_next_date_explode = explode('/', $request->ledger_date);
             $from_next_date_implode = implode('-', $from_next_date_explode);
@@ -81,9 +81,13 @@ class LedgerEntryController extends Controller
             $bill_amnt = CaseBilling::where('id', $request->bill_id)->first();
             $amnt = LedgerEntry::where('bill_id', $request->bill_id)->sum('paid_amount');
             $data['bill_amount'] = $bill_amnt->bill_amount - $amnt;
-        } 
-        
-        
+        }
+
+        $bill_client = CaseBilling::findOrFail($request->bill_id);
+
+        $data['client_id'] = $bill_client->client_id;
+
+
 
         LedgerEntry::create($data);
 
@@ -146,7 +150,7 @@ class LedgerEntryController extends Controller
             $data['expense_paid_amount'] = null;
             $data['income_paid_amount'] = $request->payment_amount;
         }
-        
+
 
         if ($request->payment_against_bill != null) {
             // dd('tes asdf asdf ');
@@ -158,7 +162,7 @@ class LedgerEntryController extends Controller
             $data['bill_id'] = null;
 
         }
-        
+
 
         $ledger_entry->fill($data)->save();
 
@@ -183,7 +187,7 @@ class LedgerEntryController extends Controller
         $bill_no = CaseBilling::where('delete_status', 0)->get();
         $ledger_head = LedgerHead::all();
         $latest = LedgerEntry::orderBy('id','DESC')->first();
-        
+
         if ($latest != null) {
             $latest_no = explode('-', $latest->transaction_no);
             $sl = $latest_no[1] + 1;
@@ -199,7 +203,7 @@ class LedgerEntryController extends Controller
         // $digital_payment_type = SetupDigitalPayment::where('delete_status',0)->get();
         // $district = SetupDistrict::where('delete_status',0)->get();
         // $case_types = SetupCaseTypes::where('delete_status', 0)->get();
-        
+
         $case_class = CriminalCase::find($id);
         $single_case_bill = CaseBilling::find($id);
 

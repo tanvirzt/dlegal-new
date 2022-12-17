@@ -22,6 +22,7 @@ class CreateCaseBillingsTable extends Migration
             $table->integer('case_type_id')->nullable();
             $table->string('class_of_cases')->nullable();
             $table->string('case_no')->nullable();
+            $table->string('client_id')->nullable();
             $table->integer('panel_lawyer_id')->nullable();
             $table->string('bill_amount')->nullable();
             $table->string('date_of_billing')->nullable();
@@ -30,7 +31,7 @@ class CreateCaseBillingsTable extends Migration
             $table->string('cheque_no')->nullable();
             $table->string('payment_amount')->nullable();
             $table->integer('digital_payment_type_id')->nullable();
-            $table->string('is_approved')->nullable();  
+            $table->string('is_approved')->nullable();
             $table->integer('delete_status')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
