@@ -4781,6 +4781,21 @@
                         <h6 class="text-uppercase text-bold"><u> Case Information </u>
                         </h6>
                         <div class="form-group row">
+                            <label for="case_infos_division_id" class="col-sm-4 col-form-label">Case Type                            </label>
+                            <div class="col-sm-8">
+                                <select name="case_type"
+                                        class="form-control select2"
+                                        id="case_type" required>
+                                    <option value="">Select</option>
+                                        <option value="District" {{$data->case_type === "District" ? 'selected':''}}>District</option>
+                                        <option value="Special" {{$data->case_type === "Special" ? 'selected':''}}>Special</option>
+                                   
+                                </select>
+                                @error('case_type')<span
+                                    class="text-danger">{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="case_infos_division_id" class="col-sm-4 col-form-label">Division</label>
                             <div class="col-sm-8">
                                 <select name="case_infos_division_id" class="form-control select2"

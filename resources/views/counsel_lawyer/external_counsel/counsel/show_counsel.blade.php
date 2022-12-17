@@ -241,10 +241,12 @@
                                                         @if (count($data->documents_received)>1)
                                                             @foreach ($data->documents_received as $item)
                                                                 <tr>
-                                                                    <td>{{ $item->received_documents_name->documents_name }}</td>
+                                                    {{-- {{dd($item->received_documents_name->documents_name)}} --}}
+
+                                                                    <td>{{ is_null($item->received_documents_name) ?"":$item->received_documents_name->documents_name }}</td>
                                                                     <td>{{ $item->received_documents }}</td>
                                                                     <td>{{ $item->received_documents_date }}</td>
-                                                                    <td>{{ $item->received_documents_type_name->documents_type_name }}</td>
+                                                                    <td>{{ is_null($item->received_documents_type_name) ?"":$item->received_documents_type_name->documents_type_name }}</td>
                                                                 </tr>
                                                             @endforeach
                                                         @endif
@@ -263,10 +265,10 @@
                                                         @if (count($data->documents_required)>1)
                                                             @foreach ($data->documents_required as $item)
                                                                 <tr>
-                                                                    <td>{{ $item->required_wanting_documents_name->documents_name }}</td>
+                                                                    <td>{{ is_null($item->required_wanting_documents_name) ? "" : $item->required_wanting_documents_name->documents_name }}</td>
                                                                     <td>{{ $item->required_wanting_documents }}</td>
                                                                     <td>{{ $item->required_wanting_documents_date }}</td>
-                                                                    <td>{{ $item->required_wanting_documents_type_name->documents_type_name }}</td>
+                                                                    <td>{{ is_null($item->required_wanting_documents_type_name) ? "" : $item->required_wanting_documents_type_name->documents_type_name }}</td>
                                                                 </tr>
                                                             @endforeach
                                                         @endif
