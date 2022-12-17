@@ -101,7 +101,7 @@
                                                     {{ $datum->payment_type }}
                                                 </td>
                                                 <td>
-                                                    {{ $datum->ledger_head->ledger_head_name }}
+                                                    {{ @$datum->ledger_head->ledger_head_name }}
 
                                                 </td>
                                                 <td>
@@ -116,10 +116,10 @@
                                                 <td>
                                                     {{ $datum->remarks }}
                                                 </td>
-                                                
+
 
                                                 <td>
-                                                    
+
                                                 <a href="{{ route('view-money-receipt',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Money Receipt"
                                                     ><i class="fas fa-eye"></i></button></a>
                                                     {{-- @can('civil-cases-edit') --}}

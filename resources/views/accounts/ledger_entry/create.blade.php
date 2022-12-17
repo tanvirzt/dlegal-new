@@ -88,7 +88,7 @@
                                         <div class="form-group row">
                                             <label for="ledger_category_id" class="col-sm-4 col-form-label">Ledger Category</label>
                                             <div class="col-sm-8">
-                                                <select name="ledger_category_id" class="form-control select2" id="ledger_category_id" action="{{ route('find-ledger-head') }}">
+                                                <select name="ledger_category_id" class="form-control select2" id="ledger_category_id">
                                                     <option value=""> Select </option>
                                                     <option value="Income"> Income </option>
                                                     <option value="Expense"> Expense </option>
@@ -104,7 +104,7 @@
                                             <div class="col-sm-8">
                                                 <select name="ledger_head_id" class="form-control select2" id="ledger_head_id">
                                                     <option value=""> Select </option>
-                                                    
+
                                                 </select>
                                                 @error('ledger_head_id')<span
                                                     class="text-danger">{{$message}}</span>@enderror
@@ -155,7 +155,7 @@
                                     </div>
 
                                     @if (!empty($single_case_bill))
-                                        
+
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="bill_id" class="col-sm-4 col-form-label">Bill No</label>
@@ -201,8 +201,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="payment_type" class="col-sm-4 col-form-label">Payment Type</label>
@@ -241,13 +241,13 @@
                                             <label for="bill_amount" class="col-sm-4 col-form-label">Bill Amount</label>
                                             <div class="col-sm-8" >
                                             <input type="text" class="form-control" readonly name="bill_amount" value="{{ $single_case_bill->bill_amount }}">
-                                    
+
                                             </div>
                                         </div>
                                     </div>
 @else
                                     <div class="col-md-6" id="bill_amount">
-                                        
+
                                     </div>
 @endif
                                     <div class="col-md-6">
@@ -274,7 +274,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
 
 
                                 </div>
