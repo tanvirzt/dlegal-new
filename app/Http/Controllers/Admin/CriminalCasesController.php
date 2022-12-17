@@ -127,7 +127,7 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
             ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
-            ->where('criminal_cases.case_type', 'District')
+            // ->where('criminal_cases.case_type', 'District')
             ->where('criminal_cases.delete_status', 0)
             ->orderBy('criminal_cases.created_at', 'desc');
 
@@ -1462,13 +1462,24 @@ class CriminalCasesController extends Controller
             $data->save();
 
         }elseif($request->opp_lawyers_information){
-            // dd($request->all());
             $oopLayer = CriminalCasesOppsitionLawyer::where('criminal_case_id',$id)->first();
-            $oopLayer->opp_lawyer_advocate_write = $request->opp_lawyer_advocate_write;
-            $oopLayer->opp_lawyer_assigned_lawyer= $request->opp_lawyer_assigned_lawyer;
-            $oopLayer->opp_lawyer_contact= $request->opp_lawyer_contact;
-            $oopLayer->opp_lawyers_note= $request->opp_lawyers_note;
-            $oopLayer->update();
+           
+            if (!is_null($oopLayer)) {
+                $oopLayer->opp_lawyer_advocate_write = $request->opp_lawyer_advocate_write;
+                $oopLayer->opp_lawyer_assigned_lawyer= $request->opp_lawyer_assigned_lawyer;
+                $oopLayer->opp_lawyer_contact= $request->opp_lawyer_contact;
+                $oopLayer->opp_lawyers_note= $request->opp_lawyers_note;
+                $oopLayer->update();
+            }else{
+                $oopLayerSave = new CriminalCasesOppsitionLawyer();
+                $oopLayerSave->criminal_case_id = $id;
+                $oopLayerSave->opp_lawyer_advocate_write = $request->opp_lawyer_advocate_write;
+                $oopLayerSave->opp_lawyer_assigned_lawyer= $request->opp_lawyer_assigned_lawyer;
+                $oopLayerSave->opp_lawyer_contact= $request->opp_lawyer_contact;
+                $oopLayerSave->opp_lawyers_note= $request->opp_lawyers_note;
+                $oopLayerSave->save();
+            }
+           
 
         }else if ($request->documents_information) {
 

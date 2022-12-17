@@ -209,7 +209,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"> District Court </h1>
+                        <h1 class="m-0 text-dark"> {{$data->case_type}} Court </h1>
                     </div><!-- /.col -->
 
                     <div class="col-sm-6">
@@ -1808,20 +1808,20 @@
 
                                             <tr>
                                                 <td width="50%">Name of Advocate/Law Firm</td>
-                                                <td width="50%">{{$oppLawyer->opp_lawyer_advocate_write}} </td>
+                                                <td width="50%">{{@$oppLawyer->opp_lawyer_advocate_write}} </td>
                                             </tr>
                                             <tr>
                                                 <td>Name of Assigned Lawyer</td>
-                                                <td>{{$oppLawyer->opp_lawyer_assigned_lawyer}}
+                                                <td>{{@$oppLawyer->opp_lawyer_assigned_lawyer}}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Lawyer Contact</td>
-                                                <td>{{$oppLawyer->opp_lawyer_contact}} </td>
+                                                <td>{{@$oppLawyer->opp_lawyer_contact}} </td>
                                             </tr>
                                             <tr>
                                                 <td>Note</td>
-                                                <td>{{$oppLawyer->opp_lawyers_note}} </td>
+                                                <td>{{@$oppLawyer->opp_lawyers_note}} </td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -3645,7 +3645,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit District Court </h3>
+                    <h3 class="card-title"> Update {{$data->case_type}} Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -4012,7 +4012,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit District Court </h3>
+                    <h3 class="card-title"> Update {{$data->case_type}} Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -4391,7 +4391,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit District Court </h3>
+                    <h3 class="card-title"> Update {{$data->case_type}} Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -4767,7 +4767,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit District Court </h3>
+                    <h3 class="card-title"> Update {{$data->case_type}} Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -5578,7 +5578,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit District Court </h3>
+                    <h3 class="card-title"> Update {{$data->case_type}} Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -5728,7 +5728,7 @@
                                     id="opp_lawyer_advocate_write"
                                     name="opp_lawyer_advocate_write"
                                     placeholder="Advocate Name"
-                                    value="{{$oppLawyer->opp_lawyer_advocate_write}}">
+                                    value="{{@$oppLawyer->opp_lawyer_advocate_write}}">
 
                             {{-- <select name="opp_lawyer_advocate_write"
                                     class="form-control select2"
@@ -5752,7 +5752,7 @@
                                 id="opp_lawyer_assigned_lawyer"
                                 name="opp_lawyer_assigned_lawyer"
                                 placeholder="Assigned Lawyer"
-                                value="{{$oppLawyer->opp_lawyer_assigned_lawyer}}">
+                                value="{{@$oppLawyer->opp_lawyer_assigned_lawyer}}">
                                 
                                 @error('assigned_lawyer_id')<span
                                     class="text-danger">{{$message}}</span>@enderror
@@ -5766,7 +5766,7 @@
                                 id="opp_lawyer_contact"
                                 name="opp_lawyer_contact"
                                 placeholder="Lawyer Contact"
-                                value="{{$oppLawyer->opp_lawyer_contact}}">
+                                value="{{@$oppLawyer->opp_lawyer_contact}}">
                                 
                                 @error('assigned_lawyer_id')<span
                                     class="text-danger">{{$message}}</span>@enderror
@@ -5780,7 +5780,7 @@
                             <textarea  name="opp_lawyers_note" class="form-control"
                                       rows="3"
                                       placeholder="note">
-                                      {{$oppLawyer->opp_lawyers_note}}
+                                      {{@$oppLawyer->opp_lawyers_note}}
                                     </textarea>
                                 @error('opp_lawyers_note')<span
                                     class="text-danger">{{$message}}</span>@enderror
@@ -5813,7 +5813,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit District Court </h3>
+                    <h3 class="card-title"> Update {{$data->case_type}} Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -6234,7 +6234,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit District Court </h3>
+                    <h3 class="card-title"> Update {{$data->case_type}} Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -7343,7 +7343,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="card-title"> Edit District Court </h3>
+                    <h3 class="card-title"> Update {{$data->case_type}} Court </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
