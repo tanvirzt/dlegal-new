@@ -16,7 +16,7 @@ if (empty($case_cat)) {
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> District Court Cases</li>
+                            <li class="breadcrumb-item active"> District Court</li>
                         </ol>
                     </div>
                 </div>
