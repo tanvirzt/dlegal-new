@@ -153,7 +153,7 @@
                                         <div class="form-group row">
                                             <label for="bill_id" class="col-sm-4 col-form-label">Bill No</label>
                                             <div class="col-sm-8">
-                                                <select name="bill_id" class="form-control select2" id="bill_id" action="{{ route('find-bill') }}"> 
+                                                <select name="bill_id" class="form-control select2" id="bill_id" action="{{ route('find-bill') }}">
                                                     <option value=""> Select </option>
                                                     @foreach($bill_no as $item)
                                                         <option value="{{ $item->id }}" {{( $ledger_entry->bill_id == $item->id ? 'selected':'')}}>{{ $item->billing_no }}</option>
@@ -201,8 +201,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="payment_type" class="col-sm-4 col-form-label">Payment Type</label>
@@ -238,12 +238,12 @@
 
                                     <div class="col-md-6" id="bill_amount">
                                         @if ($ledger_entry->bill_amount != null)
-                                            
+
                                         <div class="form-group row">
                                             <label for="bill_amount" class="col-sm-4 col-form-label">Bill Amount</label>
                                             <div class="col-sm-8" >
                                             <input type="text" class="form-control" readonly name="bill_amount" value="{{ $ledger_entry->bill_amount }}">
-                                    
+
                                             </div>
                                         </div>
                                         @endif
@@ -274,7 +274,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
 
 
                                 </div>

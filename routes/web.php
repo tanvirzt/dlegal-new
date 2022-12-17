@@ -579,7 +579,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
     Route::get('criminal-cases-latest',[CriminalCasesController::class, 'criminal_cases_latest'])->name('criminal-cases-latest');
     Route::get('civil-cases-latest',[CriminalCasesController::class, 'civil_cases_latest'])->name('civil-cases-latest');
-    
+
 
     Route::get('criminal-cases',[CriminalCasesController::class, 'criminal_cases'])->name('criminal-cases');
     Route::get('add-criminal-cases',[CriminalCasesController::class, 'add_criminal_cases'])->name('add-criminal-cases');
@@ -706,7 +706,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('/edit-billings/{id}',[BillingsController::class, 'edit_billings'])->name('edit-billings');
     Route::get('view-money-receipt/{id}',[BillingsController::class, 'view_money_receipt'])->name('view-money-receipt');
     Route::get('money-receipt-print-preview/{id}',[BillingsController::class, 'money_receipt_print_preview'])->name('money-receipt-print-preview');
-    
+
     Route::get('add-billing-from-district-court/{id}', [BillingsController::class, 'add_billing_from_district_court'])->name('add-billing-from-district-court');
 
 // thana setup
@@ -818,7 +818,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
 
     /////New Change Counser will be together (Internal & Exernal)
-   
+
     Route::get('internal-counsel-new', [CounselLawyerController::class, 'index_internal_counsel_new'])->name('internal-counsel-new');
     Route::get('internal-counsel-chamber', [CounselLawyerController::class, 'index_internal_counsel_new_chamber'])->name('internal-counsel-chamber');
     Route::get('internal-counsel-company', [CounselLawyerController::class, 'index_internal_counsel_new_company'])->name('internal-counsel-company');
@@ -840,7 +840,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
 
 
-   
+
     Route::get('documents-list',[CriminalCasesController::class, 'documents_list'])->name('documents-list');
     Route::get('add-documents-list',[CriminalCasesController::class, 'add_documents_list'])->name('add-documents-list');
     Route::post('save-document-list',[CriminalCasesController::class, 'save_document_list'])->name('save-document-list');
@@ -848,7 +848,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::post('update-documents-list/{id}',[CriminalCasesController::class, 'update_documents_list'])->name('update-documents-list');
     Route::get('delete-documents-list',[CriminalCasesController::class, 'delete_documents_list'])->name('delete-documents-list');
 
-    
+
     Route::resource('employee', EmployeeController::class);
     Route::resource('ledger-category', LedgerCategoryController::class);
     Route::resource('ledger-head', LedgerHeadController::class);
@@ -867,6 +867,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('print-income-expense-report', [ReportController::class, 'print_income_expense_report'])->name('print-income-expense-report');
 
     Route::get('/find-bill',[BillingsController::class, 'find_bill'])->name('find-bill');
+    Route::get('/find-ledger-head',[BillingsController::class, 'find_ledger_head'])->name('find-ledger-head');
 
     Route::get('balance-report', [ReportController::class, 'balance_report'])->name('balance-report');
     Route::get('balance-report-search', [ReportController::class, 'balance_report_search'])->name('balance-report-search');
