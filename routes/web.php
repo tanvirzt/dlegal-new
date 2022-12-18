@@ -791,7 +791,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('counsel', [CounselLawyerController::class, 'index_counsel'])->name('counsel');
     Route::get('counsel-chamber', [CounselLawyerController::class, 'index_counsel_chamber'])->name('counsel-chamber');
     Route::get('counsel-company', [CounselLawyerController::class, 'index_counsel_company'])->name('counsel-company');
+   
     Route::get('add-counsel',[CounselLawyerController::class, 'create_counsel'])->name('add-counsel');
+    Route::get('add-counsel/employee',[CounselLawyerController::class, 'create_counsel'])->name('add-counsel-employee');
+   
     Route::post('save-counsel',[CounselLawyerController::class, 'store_counsel'])->name('save-counsel');
     Route::get('edit-counsel/{id}',[CounselLawyerController::class, 'edit_counsel'])->name('edit-counsel');
     Route::post('update-counsel/{id}',[CounselLawyerController::class, 'update_counsel'])->name('update-counsel');
@@ -850,6 +853,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
 
     Route::resource('employee', EmployeeController::class);
+    
+     Route::get('employee-new',[EmployeeController::class,'employee_new'])->name('employee-new');
+    
     Route::resource('ledger-category', LedgerCategoryController::class);
     Route::resource('ledger-head', LedgerHeadController::class);
     Route::resource('ledger-entry', LedgerEntryController::class);

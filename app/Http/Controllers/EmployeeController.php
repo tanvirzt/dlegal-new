@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Counsel;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -17,6 +18,11 @@ class EmployeeController extends Controller
     {
         $data = Employee::orderBy('id','DESC')->get();
         return view('employee.employee', compact('data'));
+    }
+    public function employee_new()
+    {
+       $data = Counsel::where('counsel_type','Staff')->get();
+        return view('employee.employee_new', compact('data'));
     }
 
     /**

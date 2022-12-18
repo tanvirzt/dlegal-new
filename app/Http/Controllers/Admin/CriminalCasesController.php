@@ -127,7 +127,7 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
             ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
-            // ->where('criminal_cases.case_type', 'District')
+            ->where('criminal_cases.case_type', 'District')
             ->where('criminal_cases.delete_status', 0)
             ->orderBy('criminal_cases.created_at', 'desc');
 
@@ -845,7 +845,7 @@ class CriminalCasesController extends Controller
 
         if ($request->case_type === 'District') {
             session()->flash('success', 'District Court Added Successfully.');
-            return redirect()->route('criminal-cases-latest');
+            return redirect()->route('criminal-cases');
         }else{
             session()->flash('success', 'Special Court Added Successfully.');
             return redirect()->route('special-court-cases-all'); 
@@ -1074,7 +1074,7 @@ class CriminalCasesController extends Controller
     public function update_criminal_cases(Request $request, $id)
     {
 
-            //  dd($request->all());
+            //   dd($request->all());
 
         $received_documents_sections = $request->received_documents_sections;
         $remove = !empty($received_documents_sections) ? array_pop($received_documents_sections) : '';
@@ -1126,8 +1126,11 @@ class CriminalCasesController extends Controller
         DB::beginTransaction();
 
         $data = CriminalCase::find($id);
+        $data->case_type = $request->case_type;
+    
 
         if ($request->client && $request->client_party_id) {
+           
             $data->client = $request->client;
             $data->legal_issue_id = $request->legal_issue_id;
             $data->legal_issue_write = $request->legal_issue_write;
@@ -1213,9 +1216,6 @@ class CriminalCasesController extends Controller
             $data->lawyer_advocate_write = $request->lawyer_advocate_write;
             $data->assigned_lawyer_id = $request->assigned_lawyer_id ? implode(', ', $request->assigned_lawyer_id) : null;
             $data->lawyers_remarks = $request->lawyers_remarks;
-
-            $data->case_type = $request->case_type;
-
             $data->case_infos_division_id = $request->case_infos_division_id;
             $data->case_infos_district_id = $request->case_infos_district_id;
             $data->case_infos_thana_id = $request->case_infos_thana_id;
@@ -1660,8 +1660,16 @@ class CriminalCasesController extends Controller
 
         DB::commit();
 
-        session()->flash('success', 'Criminal Cases Updated Successfully.');
-        return redirect()->back();
+        if ($request->case_type === 'District') {
+            session()->flash('success', 'District Court Updated Successfully.');
+            return redirect()->route('criminal-cases');
+        }else{
+            session()->flash('success', 'Special Court Updated Successfully.');
+            return redirect()->route('special-court-cases-all'); 
+        }
+
+        // session()->flash('success', 'Criminal Cases Updated Successfully.');
+        // return redirect()->back();
 
     }
 

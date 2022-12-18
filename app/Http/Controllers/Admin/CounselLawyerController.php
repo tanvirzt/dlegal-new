@@ -408,6 +408,13 @@ class CounselLawyerController extends Controller
         // dd($data);
         return view('counsel_lawyer.external_counsel.counsel.counsel',compact('data'));
     }
+
+    public function employee_new()
+    {
+        $data =   $data = Counsel::where('counsel_type','Staff')->get();
+        return view('employee.employee', compact('data'));
+    }
+    
     public function index_counsel_chamber()
     {
         $data = Counsel::where('counsel_type','External')->where('counsel_category','Chamber')->get();

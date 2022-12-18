@@ -316,7 +316,7 @@
 
             @can('quassi-judicial-cases-list')
             <div class="dropdown-divider-custom"></div>
-            <li><a href="{{ route('quassi-judicial-cases') }}">Special Court</a></li>
+            <li><a href="{{ route('special-court-cases-all') }}">Special Court</a></li>
             @endcan
             @can('high-court-cases-list')
             <div class="dropdown-divider-custom"></div>

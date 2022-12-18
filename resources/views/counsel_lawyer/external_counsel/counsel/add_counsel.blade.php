@@ -10,16 +10,21 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Counsel</h1>
+
+                        {{-- {{dd(Route::currentRouteName() === "add-counsel-employee")}} --}}
+                       
+                        <h1 class="m-0 text-dark">{{Route::currentRouteName() === "add-counsel-employee" ? "Employee":"Counsel"}} </h1>
 
                     </div><!-- /.col -->
 
+
+                    {{-- {{dd(Route::currentRouteName())}} --}}
 
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a  type="button" href="{{ route('counsel') }}" aria-disabled="false"
+                                <a  type="button" href="{{  URL::previous() }}" aria-disabled="false"
                                     role="link" tabindex="-1">Back </a>
                             </li>
                         </ol>

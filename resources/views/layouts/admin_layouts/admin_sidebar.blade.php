@@ -1169,7 +1169,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('employee.index') }}" class="nav-link">
+                        <a href="{{ route('employee-new') }}" class="nav-link">
                             <i class="ml-left"></i>
                             <p>Employee</p>
                         </a>
