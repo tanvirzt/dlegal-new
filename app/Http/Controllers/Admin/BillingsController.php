@@ -125,7 +125,6 @@ class BillingsController extends Controller
         }else if ($request->class_of_cases == "Appellate Division"){
 
             $case = AppellateCourtCase::where('delete_status',0)->get();
-
         }
 
         return response()->json($case);
@@ -171,6 +170,24 @@ class BillingsController extends Controller
         }
 
 
+        if ($request->class_of_cases == "District Court") {
+
+            $client = CriminalCase::findOrFail($request->case_no);
+
+        }else if ($request->class_of_cases == "Special Court"){
+
+            $client = LabourCase::findOrFail($request->case_no);
+
+        }else if ($request->class_of_cases == "High Court Division"){
+
+            $client = HighCourtCase::findOrFail($request->case_no);
+
+        }else if ($request->class_of_cases == "Appellate Division"){
+
+            $client = AppellateCourtCase::findOrFail($request->case_no);
+        }
+
+
         $data = new CaseBilling();
         $data->billing_no = $billing_no;
         $data->bill_type_id = $request->bill_type_id;
@@ -179,6 +196,7 @@ class BillingsController extends Controller
         $data->case_type_id = $request->case_type_id;
         $data->class_of_cases = $request->class_of_cases;
         $data->case_no = $request->case_no;
+        $data->client_id = $client->client_category_id;
         $data->panel_lawyer_id = $request->panel_lawyer_id;
         $data->bill_amount = $request->bill_amount;
         $data->date_of_billing = $date_of_billing;

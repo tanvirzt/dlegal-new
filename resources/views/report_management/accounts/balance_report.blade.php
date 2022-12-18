@@ -63,14 +63,34 @@
 
                                         <form method="get" action="{{ route('balance-report-search') }}">
                                             <div class="row">
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label for="class_of_cases" class="col-form-label">Client</label>
+                                                        <div class="">
+
+                                                            <select name="client" class="form-control select2"
+                                                                id="client">
+                                                                <option value=""> Select </option>
+                                                                @foreach ($clients as $client)
+                                                                <option value="{{ $client->id }}">{{ $client->client_name }}</option>
+                                                                @endforeach
+
+                                                            </select>
+                                                            @error('client')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="class_of_cases" class="col-form-label">Class of Cases
                                                         </label>
                                                         <div class="">
 
-                                                            <select name="class_of_cases" class="form-control select2" required
-                                                                id="class_of_cases" action="{{ route('find-case-no') }}">
+                                                            <select name="class_of_cases" class="form-control select2"
+                                                                required id="class_of_cases"
+                                                                action="{{ route('find-case-no') }}">
                                                                 <option value=""> Select </option>
                                                                 <option value="District Court"> District Court </option>
                                                                 <option value="Special Court"> Special Court </option>
@@ -85,7 +105,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="case_no" class="col-form-label">Case No
                                                         </label>
@@ -108,10 +128,10 @@
                                                     <div class="form-group">
                                                         <label for="bill_id" class="col-form-label">Bill No </label>
                                                         <div class="">
-                                                            
+
                                                             <select name="bill_id" class="form-control select2">
                                                                 <option value="">Select Case Type</option>
-        
+
                                                                 @foreach ($bill_no as $item)
                                                                     <option value="{{ $item->id }}" {{( $request_data['class_of_cases'] == $item->id ? 'selected':'')}}>{{ $item->billing_no }}</option>
                                                                 @endforeach
@@ -188,7 +208,8 @@
                                     </h3>
                                     <div class="float-right">
 
-                                        <form method="get" action="{{ route('print-balance-report') }}" target="_blank">
+                                        <form method="get" action="{{ route('print-balance-report') }}"
+                                            target="_blank">
                                             @csrf
 
 
@@ -247,25 +268,27 @@
                                                     <h5 class="text-center">
                                                         {{ !empty($ledger_head_name) ? $ledger_head_name->ledger_head_name : '' }}
                                                     </h5>
-<h6 class="text-center">{{ !empty($request_data['class_of_cases']) ? $request_data['class_of_cases'] : '' }}</h6>
-@if (!empty($request_data['class_of_cases']) && $request_data['class_of_cases'] == 'District Court')
-<h6 class="text-center">
+                                                    <h6 class="text-center">
+                                                        {{ !empty($request_data['class_of_cases']) ? $request_data['class_of_cases'] : '' }}
+                                                    </h6>
+                                                    @if (!empty($request_data['class_of_cases']) && $request_data['class_of_cases'] == 'District Court')
+                                                        <h6 class="text-center">
 
-    @php
-    $case_number = DB::table('ledger_entries')
-            ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
-            ->leftJoin('criminal_cases', 'case_billings.case_no', 'criminal_cases.id')
-            ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
-            ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no', 'criminal_cases.case_no as main_case_no')
-            ->first();
-// dd($case_number);
-    @endphp
-        
-{{ $case_number->main_case_no }}
-        </h6>
-@endif
+                                                            @php
+                                                                $case_number = DB::table('ledger_entries')
+                                                                    ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
+                                                                    ->leftJoin('criminal_cases', 'case_billings.case_no', 'criminal_cases.id')
+                                                                    ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
+                                                                    ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no', 'criminal_cases.case_no as main_case_no')
+                                                                    ->first();
+                                                                // dd($case_number);
+                                                            @endphp
 
-                                                    
+                                                            {{ $case_number->main_case_no }}
+                                                        </h6>
+                                                    @endif
+
+
 
 
                                                     {{-- @if ($request_data['from_date'] != 'dd-mm-yyyy')
@@ -396,8 +419,6 @@
                                                 class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a> --}}
                                                 </div>
                                             </div>
-
-
 
                                         </div>
                                     @endif

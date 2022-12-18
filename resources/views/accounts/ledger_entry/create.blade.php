@@ -95,7 +95,7 @@
                                                 <select name="ledger_category_id" class="form-control select2"
                                                     id="ledger_category_id" action="{{ route('find-ledger-head') }}">
                                                     <option value=""> Select </option>
-                                                    <option value="Income"> Income </option>
+                                                    <option value="Income" selected> Income </option>
                                                     <option value="Expense"> Expense </option>
                                                 </select>
                                                 @error('ledger_category_id')
@@ -225,7 +225,7 @@
                                                 <select name="payment_type" class="form-control select2"
                                                     id="payment_type">
                                                     <option value=""> Select </option>
-                                                    <option value="Cash Payment"> Cash Payment </option>
+                                                    <option value="Cash Payment" selected> Cash Payment </option>
                                                     <option value="Bank Payment"> Bank Payment </option>
                                                     <option value="Digital Payment"> Digital Payment </option>
                                                 </select>

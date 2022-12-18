@@ -117,6 +117,9 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
+                                                <a href="{{ route('add-ledger-entry',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Add Ledger"
+                                                    ><i class="fas fa-money-bill"></i></button></a>
+                                                    
                                                     <a href="{{ route('view-billing',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-eye"></i></button></a>
                                                     <a href="{{ route('edit-billings',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
@@ -127,7 +130,7 @@
 
                                                         <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                     </form>
-                                               
+
                                             </td>
                                         </tr>
                                     @endforeach

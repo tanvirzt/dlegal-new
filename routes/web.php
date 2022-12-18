@@ -878,6 +878,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('balance-report', [ReportController::class, 'balance_report'])->name('balance-report');
     Route::get('balance-report-search', [ReportController::class, 'balance_report_search'])->name('balance-report-search');
     Route::get('print-balance-report', [ReportController::class, 'print_balance_report'])->name('print-balance-report');
+    Route::get('add-ledger-entry/{id}', [LedgerEntryController::class, 'add_ledger_entry'])->name('add-ledger-entry');
 
     // criminal cases latest list
 
