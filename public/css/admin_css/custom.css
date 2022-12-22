@@ -1149,3 +1149,21 @@ a .btn{
     margin: 0;
 }
 
+
+
+.sidebar {
+    height: 48.5rem;
+    overflow-y: scroll;
+}
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+.sidebar::-webkit-scrollbar-track {
+    background: rgb(58, 58, 58) !important;
+    /* border-left: 1px solid #ddd; */
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgb(0 0 0 / 20%) !important;
+    border-radius: 10px !important;
+    padding: 2px;
+}
