@@ -17,11 +17,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
 
 class Admin extends Authenticatable
 {
-    use HasFactory;
-    use Notifiable;
+    use HasApiTokens,HasFactory,Notifiable;
     protected $guard ='admin';
     protected $fillable = [
         'name','type','mobile','email','password','iamge','created_at','updated_at','status',
