@@ -55,6 +55,7 @@
                                                         <option value="">Select</option>
                                                         <option value="Internal"  {{ $data->counsel_type == "Internal" ? 'selected' : '' }}>Internal</option>
                                                         <option value="External"  {{ $data->counsel_type == "External" ? 'selected' : '' }}>External</option>
+                                                        <option value="Staff"  {{ $data->counsel_type == "Staff" ? 'selected' : '' }}>Staff</option>
                                                     </select>
                                                     @error('counsel_type')<span
                                                         class="text-danger">{{$message}}</span>@enderror

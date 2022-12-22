@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CriminalCase;
+use App\Models\CriminalCaseStatusLog;
 use App\Models\SetupClientName;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -53,22 +54,48 @@ class LitigationCalenderController extends Controller
 
     public function litigation_calender_short()
     {
-
+       
         $redirect_url =  url('litigation-calender-list');
-        //Criminal Case
-        $criminal_cases = \App\Models\CriminalCaseStatusLog::select('updated_next_date')->where(['delete_status' => 0])->groupBy('updated_next_date')->get();
-        $criminal_events = array();
-        foreach ($criminal_cases as $case) {
-            $case_count = \App\Models\CriminalCaseStatusLog::where(['updated_next_date' => $case->updated_next_date, 'delete_status' => 0])->count();
 
+        $civilCases = CriminalCaseStatusLog::select('updated_next_date')
+        ->groupBy('updated_next_date')
+        ->get();
+        
+        foreach($civilCases as $case){
+
+            $civilCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
+            ->where('case_category_id','Civil')->where('updated_next_date',$case->updated_next_date)->count();
+           
+            $criminalCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
+            ->where('case_category_id','Criminal')->where('updated_next_date',$case->updated_next_date)->count();
+           
             $criminal_events[] = [
-                'title' => "Criminal: $case_count",
+                'title' => "Civil: $civilCount | Criminal: $criminalCount",
                 'url' => "$redirect_url#$case->updated_next_date",
                 'start' => $case->updated_next_date,
                 'display' => 'list-item',
-                'backgroundColor' => 'pink',
+                'backgroundColor' => '#e50000',
             ];
         }
+
+     
+
+        //Criminal Case
+        // $criminal_cases = \App\Models\CriminalCaseStatusLog::select('updated_next_date')->where(['delete_status' => 0])->groupBy('updated_next_date')->get();
+        // $criminal_events = array();
+        // foreach ($criminal_cases as $case) {
+        //     $case_count = \App\Models\CriminalCaseStatusLog::where(['updated_next_date' => $case->updated_next_date, 'delete_status' => 0])->count();
+
+        //     $criminal_events[] = [
+        //         'title' => "Criminal: $case_count",
+        //         'url' => "$redirect_url#$case->updated_next_date",
+        //         'start' => $case->updated_next_date,
+        //         'display' => 'list-item',
+        //         'backgroundColor' => 'pink',
+        //     ];
+        // }
+
+
 
         //Civil Case
         $civil_cases = \App\Models\CivilCases::select('next_date')->where(['delete_status' => 0])->groupBy('next_date')->get();
@@ -148,6 +175,102 @@ class LitigationCalenderController extends Controller
 
         //Marge all cases
         $events = array_merge($criminal_events, $civil_events, $labour_events, $quassi_judicial_events, $high_court_events, $appellate_court_events);
+
+
+        return view('litigation_management.litigation_calender.litigation_calender_short', ['events' => $events]);
+    }
+
+    public function litigation_calender_short_court_wise()
+    {
+       
+        $redirect_url =  url('litigation-calender-list');
+
+        $totalCaseLog = CriminalCaseStatusLog::select('updated_next_date')
+        ->groupBy('updated_next_date')
+        ->get();
+        
+        foreach($totalCaseLog as $case){
+
+            $districtCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
+            ->where('case_type','District')->where('updated_next_date',$case->updated_next_date)->count();
+           
+            $specialCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
+            ->where('case_type','Special')->where('updated_next_date',$case->updated_next_date)->count();
+           
+            $criminal_events[] = [
+                'title' => "District: $districtCount | Special: $specialCount",
+                'url' => "$redirect_url#$case->updated_next_date",
+                'start' => $case->updated_next_date,
+                'display' => 'list-item',
+                'backgroundColor' => 'darkorange',
+            ];
+        }
+
+     
+
+        //Service/LabourCase
+        $labour_cases = \App\Models\LabourCase::select('next_date')->where(['delete_status' => 0])->groupBy('next_date')->get();
+        $labour_events = array();
+        foreach ($labour_cases as $case) {
+            $case_count = \App\Models\LabourCase::where(['next_date' => $case->next_date, 'delete_status' => 0])->count();
+
+            $labour_events[] = [
+                'title' => "Service: $case_count",
+                'url' => "$redirect_url",
+                'start' => $case->next_date,
+                'display' => 'list-item',
+                'backgroundColor' => 'gray'
+            ];
+        }
+
+
+        //Others/QuassiJudicialCase
+        $quassi_judicial_cases  = \App\Models\QuassiJudicialCase::select('next_date')->where(['delete_status' => 0])->groupBy('next_date')->get();
+        $quassi_judicial_events = array();
+        foreach ($quassi_judicial_cases as $case) {
+            $case_count = \App\Models\QuassiJudicialCase::where(['next_date' => $case->next_date, 'delete_status' => 0])->count();
+
+            $quassi_judicial_events[] = [
+                'title' => "Others: $case_count",
+                'url' => "$redirect_url",
+                'start' => $case->next_date,
+                'display' => 'list-item',
+                'backgroundColor' => 'green'
+            ];
+        }
+
+        //HCD/HighCourtCase
+        $high_court_cases  = \App\Models\HighCourtCase::select('order_date')->where(['delete_status' => 0])->groupBy('order_date')->get();
+        $high_court_events = array();
+        foreach ($high_court_cases as $case) {
+            $case_count = \App\Models\HighCourtCase::where(['order_date' => $case->order_date, 'delete_status' => 0])->count();
+
+            $high_court_events[] = [
+                'title' => "HCD: $case_count",
+                'url' => "$redirect_url",
+                'start' => $case->order_date,
+                'display' => 'list-item',
+                'backgroundColor' => 'blue'
+            ];
+        }
+
+        //AD/HighCourtCase
+        $appellate_court_case  = \App\Models\AppellateCourtCase::select('order_date')->where(['delete_status' => 0])->groupBy('order_date')->get();
+        $appellate_court_events = array();
+        foreach ($appellate_court_case as $case) {
+            $case_count = \App\Models\AppellateCourtCase::where(['order_date' => $case->order_date, 'delete_status' => 0])->count();
+
+            $appellate_court_events[] = [
+                'title' => "AD: $case_count",
+                'url' => "$redirect_url",
+                'start' => $case->order_date,
+                'display' => 'list-item',
+                'backgroundColor' => 'red'
+            ];
+        }
+
+        //Marge all cases
+        $events = array_merge($criminal_events, $labour_events, $quassi_judicial_events, $high_court_events, $appellate_court_events);
 
 
         return view('litigation_management.litigation_calender.litigation_calender_short', ['events' => $events]);

@@ -86,6 +86,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('edit-designation/{id}',[AdminSetupController::class, 'edit_designation'])->name('edit-designation');
     Route::post('update-designation/{id}',[AdminSetupController::class, 'update_designation'])->name('update-designation');
     Route::post('delete-designation/{id}',[AdminSetupController::class, 'delete_designation'])->name('delete-designation');
+   
+
 
     Route::get('case-status',[AdminSetupController::class, 'case_status'])->name('case-status');
     Route::get('add-case-status',[AdminSetupController::class, 'add_case_status'])->name('add-case-status');
@@ -769,6 +771,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
     Route::get('litigation-calender-list',[LitigationCalenderController::class, 'litigation_calender_list'])->name('litigation-calender-list');
     Route::get('litigation-calender-short',[LitigationCalenderController::class, 'litigation_calender_short'])->name('litigation-calender-short');
+    Route::get('litigation-calender-short-court-wise',[LitigationCalenderController::class, 'litigation_calender_short_court_wise'])->name('litigation-calender-short-court-wise');
     Route::get('search-litigation-calendar',[LitigationCalenderController::class, 'search_litigation_calendar'])->name('search-litigation-calendar');
     Route::post('search-litigation-calendar-short',[LitigationCalenderController::class, 'search_litigation_calendar_short'])->name('search-litigation-calendar-short');
     Route::get('search-case-pages',[LitigationCalenderController::class, 'search_case_pages'])->name('search-case-pages');

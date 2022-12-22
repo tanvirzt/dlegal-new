@@ -538,6 +538,9 @@ class CounselLawyerController extends Controller
         if ($request->counsel_type === 'Internal') {
             return redirect()->route('internal-counsel-new');
         }
+        if ($request->counsel_type === 'Staff') {
+            return redirect()->route('employee-new');
+        }
         return redirect()->route('counsel');
     }
 
@@ -666,6 +669,9 @@ class CounselLawyerController extends Controller
        if ($request->counsel_type === 'Internal') {
         return redirect()->route('internal-counsel-new');
        }
+         if ($request->counsel_type === 'Staff') {
+         return redirect()->route('employee-new');
+        }
         return redirect()->route('counsel');
 
     }

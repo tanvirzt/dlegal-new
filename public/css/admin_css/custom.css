@@ -1,9 +1,9 @@
 [class*=sidebar-dark-] {
     font-size: 14px;
-    line-height: 1.5;
+    /* line-height: 1.5;
     color: rgba(255, 255, 255, 0.8);
     background-color: rgb(0, 70, 122) !important;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px !important;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px !important; */
 }
 .os-theme-light>.os-scrollbar-vertical {
     width: 15px !important;
@@ -21,11 +21,11 @@
 .os-theme-light>.os-scrollbar>.os-scrollbar-track>.os-scrollbar-handle {
     border-radius: 0px !important;
 }
-[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover, .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
+/* [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover, .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
     background-color: #003a66 !important;
     color: #fff !important;
-}
-[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:before {
+} */
+/* [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:before {
     content: "";
     position: absolute;
     display: block;
@@ -36,7 +36,7 @@
     height: 6px;
     border-radius: 50%;
     background-color: #0091E6;
-}
+} */
 .im-flex{
     display: flex !important;
 }
@@ -116,7 +116,7 @@ label{
 }
 .brand-link {
     height: 50px;
-    background: #2A6CB1;
+    /* background: #2A6CB1; */
     margin-right: 1rem;
 }
 span{

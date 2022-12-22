@@ -12,6 +12,9 @@
 
             color: #fff;
         }
+        button.fc-caseBtn-button.fc-button.fc-button-primary {
+            margin-left: 5px !important;
+        }
     </style>
 @endsection
 
@@ -61,9 +64,23 @@
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 headerToolbar: {
-                    left: "prev,next today",
+                    left: "prev,next,caseBtn,courtBtn",
                     center: "title",
-                    right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+                    right: "today,dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+                },
+                customButtons: {
+                    caseBtn: {
+                    text: 'Case',
+                    click: function() {
+                        window.location.href = "{{URL::to('litigation-calender-short')}}"
+                    }
+                    },
+                    courtBtn: {
+                    text: 'Court',
+                    click: function() {
+                        window.location.href = "{{URL::to('litigation-calender-short-court-wise')}}"
+                    }
+                    }
                 },
                 height: "auto",
                 navLinks: true, // can click day/week names to navigate views

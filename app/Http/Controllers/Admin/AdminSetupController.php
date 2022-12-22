@@ -392,10 +392,16 @@ class AdminSetupController extends Controller
 
     }
 
-    public function designation()
+    public function designation(Request $request)
     {
+
         $data = SetupDesignation::where('delete_status',0)->get();
+        // return response()->json($data);
         return view('setup.designation.designation',compact('data'));
+
+        if ($request->ajax()) {
+            return response()->json($data);
+        }
     }
 
     public function add_designation()

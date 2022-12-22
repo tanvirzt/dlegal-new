@@ -23,5 +23,10 @@ class CriminalCaseStatusLog extends Model
         return $this->belongsTo('App\Models\SetupCaseStatus','updated_case_status_id');
     }
 
+    public function caseInfo()
+    {
+        return $this->belongsTo('App\Models\CriminalCase','case_id');
+    }
+
     
 }
