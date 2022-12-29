@@ -9,6 +9,8 @@ use Auth;
 use Session;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\CriminalCase;
+use Carbon\Carbon;
 use Image;
 
 class AdminController extends Controller
@@ -16,7 +18,16 @@ class AdminController extends Controller
     public function dashboard()
     {
         Session::put('page','dashboard');
-        return view('admin.admin_dashboard');
+
+        $currentYear = Carbon::now()->format('Y');
+        $data = CriminalCase::whereRaw('YEAR(created_at) ='.$currentYear)->where('delete_status', 0)->get()->toArray();
+        $cases = array();
+        for ($x = 1; $x <= 12; $x++) {
+            $case = CriminalCase::whereRaw('YEAR(created_at) ='.$currentYear)->whereRaw('MONTH(created_at) ='.$x)->where('delete_status', 0)->count();
+            array_push($cases, $case);
+        }
+       
+        return view('admin.admin_dashboard',compact('cases','currentYear','data'));
     }
 
     public function dashboards()
