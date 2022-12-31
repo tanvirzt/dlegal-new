@@ -45,9 +45,9 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{ $total_cases }}</h3>
+                                <h3>{{ $runningCases_no }}</h3>
 
-                                <p>All Running</p>
+                                <p>Running Cases</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
@@ -62,9 +62,9 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>53<sup style="font-size: 20px"></sup></h3>
+                                <h3>{{$allCivil_no}}<sup style="font-size: 20px"></sup></h3>
 
-                                <p>All Appeal</p>
+                                <p>Civil Cases</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
@@ -73,30 +73,46 @@
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                    <!-- ./col -->
                     <div class="col-lg-2 col-6">
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>{{$allCriminal_no}}<sup style="font-size: 20px"></sup></h3>
 
-                                <p>All Revison</p>
+                                <p>Criminal Cases</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-person-add"></i>
+                                <i class="ion ion-stats-bars"></i>
                             </div>
                             <a href="#" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                    <!-- ./col -->
+              
+
                     <div class="col-lg-2 col-6">
                         <!-- small box -->
                         <div class="small-box bg-light">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>{{ $appeal_no }}</h3>
 
-                                <p>All Others</p>
+                                <p>Appeal Cases</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-6">
+                        <!-- small box -->
+                      
+                        <div class="small-box bg-dark">
+                            <div class="inner">
+                                <h3>{{$revision_no}}</h3>
+
+                                <p>Revision Cases</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
@@ -109,9 +125,9 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>{{$disposedCase_no}}</h3>
 
-                                <p>ALl Disposed</p>
+                                <p>Disposed Cases</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
@@ -120,22 +136,7 @@
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-6">
-                        <!-- small box -->
-                      
-                        <div class="small-box bg-dark">
-                            <div class="inner">
-                                <h3>Document</h3>
-
-                                <p>data</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="{{ route('documents-list') }}" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
+                   
                     <!-- ./col -->
                 </div>
 
@@ -229,24 +230,133 @@
 
     var casectx = document.getElementById('casesChart').getContext('2d');
 
-    const data = {
-        labels: [
-            'Civil',
-            'Criminal',
+    // const data = {
+    //     labels: [
+    //         'Civil',
+    //         'Criminal',
+    //     ],
+    //     datasets: [{
+    //         label: 'All Cases',
+    //         data: [300, 50],
+    //         backgroundColor: [
+    //         'rgb(255, 99, 132)',
+    //         'rgb(54, 162, 235)'
+    //         ],
+    //         hoverOffset: 4
+    //     }]
+    // };
+
+    // var chartData = {
+    //         labels: [
+    //             "Red",
+    //             "Blue",
+    //             "Yellow",
+    //         ],
+    //         datasets: [
+    //             {
+    //                 data: [300, 50, 100],
+    //                 backgroundColor: [
+    //                 "#FF6384",
+    //                 "#36A2EB",
+    //                 "#FFCE56"
+    //                 ],
+    //                 hoverBackgroundColor: [
+    //                 "#FF6384",
+    //                 "#36A2EB",
+    //                 "#FFCE56"
+    //                 ]
+    //             }, 
+    //             {
+    //                 data: [200, 100, 25, 25, 66, 34],
+    //                 backgroundColor: [
+    //                 "#FF6384",
+    //                 "#36A2EB",
+    //                 "#FFCE56",
+    //                 "#FF6384",
+    //                 "#36A2EB",
+    //                 "#FFCE56"
+    //                 ],
+    //                 hoverBackgroundColor: [
+    //                     "#FF6384",
+    //                     "#36A2EB",
+    //                     "#FFCE56",
+    //                     "#FF6384",
+    //                     "#36A2EB",
+    //                     "#FFCE56"
+    //                 ]
+    //             }
+    //         ]
+    // };
+    var chartData = {
+        datasets: [
+            {
+                backgroundColor: [
+                    "#3366CC",
+                    "#DC3912",
+                    "#FF9900",
+                    "#109618",
+                    "#990099",
+                    "#3B3EAC"
+                    ],
+                hoverBackgroundColor: [
+                    "#3366CC",
+                    "#DC3912",
+                    "#FF9900",
+                    "#109618",
+                    "#990099",
+                    "#3B3EAC"
+                ],
+                data: [
+                    30,
+                    20,
+                    40,
+                    50,
+                    60,
+                    20,
+                    30,
+                    20,
+                    40,
+                    50,
+                    60,
+                    20,
+
+                ]
+            },
+            {
+                backgroundColor: [
+                    "#3366CC",
+                    "#DC3912",
+                    "#FF9900",
+                    "#109618",
+                    "#990099",
+                    "#3B3EAC"
+                ],
+                hoverBackgroundColor: [
+                    "#3366CC",
+                    "#DC3912",
+                    "#FF9900",
+                    "#109618",
+                    "#990099",
+                    "#3B3EAC"
+                ],
+                data: [
+                    50,
+                    150
+                ]
+            }
         ],
-        datasets: [{
-            label: 'All Cases',
-            data: [300, 50],
-            backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)'
-            ],
-            hoverOffset: 4
-        }]
+		labels: [
+			"Civil",
+			"Criminal",
+			"Suit/Cases",
+			"Appeal",
+			"Revision",
+			"Misc.",
+		]
     };
     var chartCase = new Chart(casectx,{
-        type: 'doughnut',
-         data: data,
+        type: 'pie',
+         data: chartData,
     })
 });
 </script>

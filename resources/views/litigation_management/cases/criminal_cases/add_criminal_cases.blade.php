@@ -96,7 +96,7 @@
                             
                                 <div class="form-group row">
                                     <label for="case_type"
-                                            class="col-sm-4 col-form-label">Case Type</label>
+                                            class="col-sm-4 col-form-label">Case Class</label>
                                     <div class="col-sm-8">
                                         <select name="case_type"
                                                 class="form-control select2"
@@ -2397,7 +2397,7 @@
                                                         id="lawyer_advocate_id">
                                                     <option value="">Select</option>
                                                     @foreach($chamber as $item)
-                                                    <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
+                                                      <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
