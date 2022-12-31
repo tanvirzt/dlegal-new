@@ -7306,7 +7306,10 @@
                                     <option value="">Select</option>
                                     <option value="Disposed"
                                             {{ old('updated_case_status_id') == 'Disposed' ? 'selected' : '' }}>
-                                            Disposed Cases</option>
+                                            Disposed</option>
+                                    <option value="Running"
+                                            {{ old('updated_case_status_id') == 'Running' ? 'selected' : '' }}>
+                                            Running</option>
                                     @foreach ($case_status as $item)
                                         <option value="{{ $item->id }}"
                                             {{ old('updated_case_status_id') == $item->id ? 'selected' : '' }}>

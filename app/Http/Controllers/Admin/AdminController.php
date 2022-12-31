@@ -19,15 +19,32 @@ class AdminController extends Controller
     {
         Session::put('page','dashboard');
 
+        $runningCases_no = CriminalCase::where('case_status_id', 'Running')->where('delete_status', 0)->count();
+        $disposedCase_no = CriminalCase::where('case_status_id', 'Disposed')->where('delete_status', 0)->count();
+       
+        $appeal_no = CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
+        ->where('setup_case_types.case_types_name','LIKE','%'.'Appeal'.'%')
+        ->where('criminal_cases.delete_status', 0)->count();
+
+        $revision_no = CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
+        ->where('setup_case_types.case_types_name','LIKE','%'.'Revision'.'%')
+        ->where('criminal_cases.delete_status', 0)->count();
+       
+        $allCivil_no = CriminalCase::where('case_category_id', 'Civil')->where('delete_status', 0)->count();
+        $allCriminal_no = CriminalCase::where('case_category_id', 'Criminal')->where('delete_status', 0)->count();
+        
+
         $currentYear = Carbon::now()->format('Y');
-        $data = CriminalCase::whereRaw('YEAR(created_at) ='.$currentYear)->where('delete_status', 0)->get()->toArray();
         $cases = array();
         for ($x = 1; $x <= 12; $x++) {
             $case = CriminalCase::whereRaw('YEAR(created_at) ='.$currentYear)->whereRaw('MONTH(created_at) ='.$x)->where('delete_status', 0)->count();
-            array_push($cases, $case);
+            array_push($cases, $case);  
         }
-       
-        return view('admin.admin_dashboard',compact('cases','currentYear','data'));
+
+        $total_Civil_Criminal = array($allCriminal_no,$allCivil_no);
+
+
+        return view('admin.admin_dashboard',compact('cases','runningCases_no','allCivil_no','allCriminal_no','disposedCase_no','appeal_no','revision_no','total_Civil_Criminal'));
     }
 
     public function dashboards()
