@@ -10,6 +10,7 @@ use Session;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\CriminalCase;
+use App\Models\Task;
 use Carbon\Carbon;
 use Image;
 
@@ -21,7 +22,7 @@ class AdminController extends Controller
 
         $runningCases_no = CriminalCase::where('case_status_id', 'Running')->where('delete_status', 0)->count();
         $disposedCase_no = CriminalCase::where('case_status_id', 'Disposed')->where('delete_status', 0)->count();
-       
+
         $appeal_no = CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
         ->where('setup_case_types.case_types_name','LIKE','%'.'Appeal'.'%')
         ->where('criminal_cases.delete_status', 0)->count();
@@ -29,22 +30,24 @@ class AdminController extends Controller
         $revision_no = CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
         ->where('setup_case_types.case_types_name','LIKE','%'.'Revision'.'%')
         ->where('criminal_cases.delete_status', 0)->count();
-       
+
         $allCivil_no = CriminalCase::where('case_category_id', 'Civil')->where('delete_status', 0)->count();
         $allCriminal_no = CriminalCase::where('case_category_id', 'Criminal')->where('delete_status', 0)->count();
-        
+
 
         $currentYear = Carbon::now()->format('Y');
         $cases = array();
         for ($x = 1; $x <= 12; $x++) {
             $case = CriminalCase::whereRaw('YEAR(created_at) ='.$currentYear)->whereRaw('MONTH(created_at) ='.$x)->where('delete_status', 0)->count();
-            array_push($cases, $case);  
+            array_push($cases, $case);
         }
 
         $total_Civil_Criminal = array($allCriminal_no,$allCivil_no);
 
+        $tasks = Task::orderBy('id','desc')->get();
 
-        return view('admin.admin_dashboard',compact('cases','runningCases_no','allCivil_no','allCriminal_no','disposedCase_no','appeal_no','revision_no','total_Civil_Criminal'));
+
+        return view('admin.admin_dashboard',compact('tasks','cases','runningCases_no','allCivil_no','allCriminal_no','disposedCase_no','appeal_no','revision_no','total_Civil_Criminal'));
     }
 
     public function dashboards()

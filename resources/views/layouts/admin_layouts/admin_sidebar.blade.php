@@ -141,7 +141,7 @@
                             @endcan
                         </ul>
                     </li>
-               
+
                 @endcanany
                 {{-- @canany(['counsel-list', 'chamber-staff-list', 'chamber-list', 'internal-counsel-list'])
                     <li class="nav-item">
@@ -200,7 +200,7 @@
                             @endcan
                         </ul>
                     </li>
-               
+
                 @endcanany --}}
             @canany([
                 'accused-list',
@@ -1161,6 +1161,30 @@
 
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
+                    <i class="fas fa-file nav-icon"></i>
+                    <p>
+                        Task Management
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('task.category.index') }}" class="nav-link">
+                            <i class="ml-left"></i>
+                            <p>Task Category</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('task.index') }}" class="nav-link">
+                            <i class="ml-left"></i>
+                            <p>Task List</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
                     <i class="fas fa-user nav-icon"></i>
                     <p>
                         HR Managenent
@@ -1223,21 +1247,21 @@
                             <p>Balance Report</p>
                         </a>
                     </li>
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a href="{{ route('ledger-head-report-list') }}" class="nav-link">
                             <i class="ml-left"></i>
                             <p>Ledger Head Report List</p>
                         </a>
-                    </li> --}}
-                    {{-- <li class="nav-item">
+                    </li>
+                     <li class="nav-item">
                         <a href="{{ route('income-expense-report') }}" class="nav-link">
                             <i class="ml-left"></i>
                             <p>Income Expense Report</p>
                         </a>
-                    </li> --}}
+                    </li>
                 </ul>
             </li>
-            
+
 
             {{-- <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
