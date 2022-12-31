@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-sm-4 invoice-col">
                                 <h3 class="text-center">Money Receipt</h3>
-                                <h6 class="text-center">({{ $data->receipt_no }})</h6>
+                                <h6 class="text-center"></h6>
 
                             </div>
                             <div class="col-sm-4 invoice-col">
@@ -69,14 +69,14 @@
                                
                                @php
 
-                                if ($data->bill->class_of_cases == 'District Court') {
-                                    $case = App\Models\CriminalCase::where('id',$data->bill->case_no)->first();
-                                }else if($data->bill->class_of_cases == 'Special Court'){
-                                    $case = App\Models\LabourCase::where('id',$data->bill->case_no)->first();
-                                }else if($data->bill->class_of_cases == 'High Court Division'){
-                                    $case = App\Models\HighCourtCase::where('id',$data->bill->case_no)->first();
-                                }else if($data->bill->class_of_cases == 'Appellate Division'){
-                                    $case = App\Models\AppellateCourtCase::where('id',$data->bill->case_no)->first();
+                                if ($data->class_of_cases == 'District Court') {
+                                    $case = App\Models\CriminalCase::where('id',$data->case_no)->first();
+                                }else if($data->class_of_cases == 'Special Court'){
+                                    $case = App\Models\LabourCase::where('id',$data->case_no)->first();
+                                }else if($data->class_of_cases == 'High Court Division'){
+                                    $case = App\Models\HighCourtCase::where('id',$data->case_no)->first();
+                                }else if($data->class_of_cases == 'Appellate Division'){
+                                    $case = App\Models\AppellateCourtCase::where('id',$data->case_no)->first();
                                 }
 
                                 @endphp
@@ -121,10 +121,10 @@
                                                 </td>
 
                                                 <td>
-                                                    {{ $data->ledger_date != null ? date('d-m-Y', strtotime($data->ledger_date)) : '' }}
+                                                 {{ $data->ledger_date }}
                                                 </td>
                                                 <td>
-                                                    {{ $data->bill_id != null ? $data->bill->billing_no : '' }}
+                                                 {{ $data->bill_id }}
                                                 </td>
                                                 <td>
                                                     {{ $data->payment_against_bill == 'on' ? 'Yes' : 'No' }}
@@ -133,7 +133,7 @@
                                                     {{ $data->transaction_no }}
                                                 </td>
                                                 <td>
-                                                    {{ $data->job_no }}
+                                                    {{ $data->job_no  }}
                                                 </td>
                                                 <td>
                                                     {{ $data->ledger_type }}
@@ -142,17 +142,17 @@
                                                     {{ $data->payment_type }}
                                                 </td>
                                                 <td>
-                                                    {{ $data->ledger_head_bill_id != null ? $data->ledger_head_bill->ledger_head_name : '' }}
+                                                    {{ $data->ledger_head_name }}
 
                                                 </td>
                                                 <td>
                                                     {{ $data->bill_amount }}
                                                 </td>
                                                 <td>
-                                                    {{ $data->income_paid_amount }}
+                                                    {{ $data->income_paid_amount  }}
                                                 </td>
                                                 <td>
-                                                    {{ $data->expense_paid_amount }}
+                                                    {{ $data->expense_paid_amount  }}
                                                 </td>
                                                 <td>
                                                     {{ $data->remarks }}

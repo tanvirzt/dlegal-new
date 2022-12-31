@@ -2329,7 +2329,7 @@ class CriminalCasesController extends Controller
             ->orderBy('criminal_case_status_logs.updated_order_date', 'desc')
             // ->orderByRaw("DATE_FORMAT('Y-m-d',criminal_case_status_logs.updated_order_date), 'desc'")
             ->get();
-        // dd($case_logs);
+        //dd($case_logs);
         //    dd($case_logs[0]->updated_next_date);
 
         $latest = DB::table('criminal_case_status_logs')
@@ -2350,7 +2350,7 @@ class CriminalCasesController extends Controller
 
         $oppLawyer = CriminalCasesOppsitionLawyer::where('criminal_case_id',$id)->first();
 
-        // dd($previouDate);
+       // dd($previouDate);
         $bill_history = DB::table('criminal_cases_billings')
             ->leftJoin('setup_bill_types', 'criminal_cases_billings.bill_type_id', 'setup_bill_types.id')
             ->leftJoin('bill_schedules', 'criminal_cases_billings.bill_schedule_id', 'bill_schedules.id')

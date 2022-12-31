@@ -624,7 +624,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('billings-print-preview/{id}',[CriminalCasesController::class, 'billings_print_preview'])->name('billings-print-preview');
     Route::post('send-messages-for-criminal-cases/{id}',[CriminalCasesController::class, 'send_messages_for_criminal_cases'])->name('send-messages-for-criminal-cases');
     Route::post('criminal-cases-switch',[CriminalCasesController::class, 'criminal_cases_switch'])->name('criminal-cases-switch');
-
     Route::post('update-criminal-cases-status-column/{id}',[CriminalCasesController::class, 'update_criminal_cases_status_column'])->name('update-criminal-cases-status-column');
     Route::get('view-criminal-cases-read-notifications/{id}',[CriminalCasesController::class, 'view_criminal_cases_read_notifications'])->name('view-criminal-cases-read-notifications');
 
@@ -768,7 +767,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
     Route::get('find-case-subcategory',[HighCourtCasesController::class, 'find_case_subcategory'])->name('find-case-subcategory');
     Route::get('find-case-type',[HighCourtCasesController::class, 'find_case_type'])->name('find-case-type');
-
+    Route::get('litigation-calender-list-print/{date}',[LitigationCalenderController::class, 'print_litigation_calender_list'])->name('litigation-calender-print');
     Route::get('litigation-calender-list',[LitigationCalenderController::class, 'litigation_calender_list'])->name('litigation-calender-list');
     Route::get('litigation-calender-short',[LitigationCalenderController::class, 'litigation_calender_short'])->name('litigation-calender-short');
     Route::get('litigation-calender-short-court-wise',[LitigationCalenderController::class, 'litigation_calender_short_court_wise'])->name('litigation-calender-short-court-wise');
