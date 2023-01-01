@@ -4781,7 +4781,7 @@
                         <h6 class="text-uppercase text-bold"><u> Case Information </u>
                         </h6>
                         <div class="form-group row">
-                            <label for="case_infos_division_id" class="col-sm-4 col-form-label">Case Type                            </label>
+                            <label for="case_infos_division_id" class="col-sm-4 col-form-label">Case Class                            </label>
                             <div class="col-sm-8">
                                 <select name="case_type"
                                         class="form-control select2"
@@ -4851,7 +4851,7 @@
                                 Category </label>
                             <div class="col-sm-8">
                                 <select name="case_category_id" id="case_category_id" class="form-control select2"
-                                        action="{{ route('find-case-type') }}">
+                                        >
                                     <option value="">Select</option>
                                     <option value="Civil" {{ $data->case_category_id == 'Civil' ? 'selected' : '' }}>Civil</option>
                                     <option value="Criminal" {{ $data->case_category_id == 'Criminal' ? 'selected' : '' }}>Criminal</option>
@@ -4894,7 +4894,7 @@
                             <div class="col-sm-8">
                                 <select name="case_type_id" id="case_type_id" class="form-control select2">
                                     <option value="">Select</option>
-                                    @foreach ($exist_case_type as $item)
+                                    @foreach ($case_types as $item)
                                         <option value="{{ $item->id }}"
                                             {{ $data->case_type_id == $item->id ? 'selected' : '' }}>
                                             {{ $item->case_types_name }}</option>

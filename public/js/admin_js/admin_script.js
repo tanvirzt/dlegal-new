@@ -3,8 +3,56 @@ $(document).ready(function () {
     //For View_Criminal_Cases.blade.php basic view 
     $('.trHide').hide()
 
+    $('#case_category_id').on('change', function() {
+
+        var categoryID = $(this).val();
+        if (categoryID === 'Civil') {
+            $.ajax({
+                url: '/find-case-type/Civil',
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}", categoryID},
+                dataType: "json",
+                success: function (data) {
+                    if (data) {
+                        $('#case_type_id').empty();
+                        $('#case_type_id').focus;
+                        $('#case_type_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="case_type_id"]').append('<option value="' + value.id + '">' + value.case_types_name + '</option>');
+                        });
+                    } else {
+                        $('#case_type_id').empty();
+                    }
+                }
+            });
+        }else if(categoryID === 'Criminal'){
+            $.ajax({
+                url: '/find-case-type/Criminal',
+                type: "GET",
+                data: {"_token": "{{ csrf_token() }}"},
+                dataType: "json",
+                success: function (data) {
+                    if (data) {
+                        $('#case_type_id').empty();
+                        $('#case_type_id').focus;
+                        $('#case_type_id').append('<option value="">Select</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="case_type_id"]').append('<option value="' + value.id + '">' + value.case_types_name + '</option>');
+                        });
+                    } else {
+                        $('#case_type_id').empty();
+                    }
+                }
+            });
+        }else {
+            $('#case_type_id').empty();
+            $('#case_type_id').append('<option value="">Select</option>');
+        }
+    })
 
     // check admin current password is match or not
+
+
 
     $('#current_password').keyup(function () {
         var current_password = $('#current_password').val();
