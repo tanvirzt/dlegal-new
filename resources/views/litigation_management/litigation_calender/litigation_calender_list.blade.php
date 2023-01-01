@@ -739,8 +739,7 @@
                                     @foreach ($calendar_wise_data as $keys=>$value)
                                     <tr>
                                         <td class="sl_no_column">{{ $keys+1 }}</td>
-                                        <td class="court_column">
-
+                                        <td class="court_column
                                             @if (!empty($value->case_infos_sub_seq_court_short_id) || !empty($value->sub_seq_court_short_write))
 
 
