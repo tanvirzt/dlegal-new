@@ -599,6 +599,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::post('delete-criminal-cases/{id}',[CriminalCasesController::class, 'delete_criminal_cases'])->name('delete-criminal-cases');
     Route::get('delete-criminal-cases-latest/{id}',[CriminalCasesController::class, 'delete_criminal_cases_latest'])->name('delete-criminal-cases-latest');
     Route::get('view-criminal-cases/{id}',[CriminalCasesController::class, 'view_criminal_cases'])->name('view-criminal-cases');
+    Route::get('find-case-type/{type}',[CriminalCasesController::class, 'case_type'])->name('find-case-type');
     Route::get('download-criminal-cases-files/{id}',[CriminalCasesController::class, 'download_criminal_cases_file'])->name('download-criminal-cases-files');
     Route::get('download-criminal-cases-working-doc/{id}',[CriminalCasesController::class, 'download_criminal_cases_working_doc'])->name('download-criminal-cases-working-doc');
     Route::get('view-criminal-cases-files/{id}',[CriminalCasesController::class, 'view_criminal_cases_file'])->name('view-criminal-cases-files');
@@ -766,7 +767,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('external-document',[DocManagementController::class, 'external_document'])->name('external-document');
 
     Route::get('find-case-subcategory',[HighCourtCasesController::class, 'find_case_subcategory'])->name('find-case-subcategory');
-    Route::get('find-case-type',[HighCourtCasesController::class, 'find_case_type'])->name('find-case-type');
+    // Route::get('find-case-type',[HighCourtCasesController::class, 'find_case_type'])->name('find-case-type');
     Route::get('litigation-calender-list-print/{date}',[LitigationCalenderController::class, 'print_litigation_calender_list'])->name('litigation-calender-print');
     Route::get('litigation-calender-list',[LitigationCalenderController::class, 'litigation_calender_list'])->name('litigation-calender-list');
     Route::get('litigation-calender-short',[LitigationCalenderController::class, 'litigation_calender_short'])->name('litigation-calender-short');
