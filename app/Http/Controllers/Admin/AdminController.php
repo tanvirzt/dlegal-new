@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Admin;
 use App\Models\CriminalCase;
 use App\Models\CriminalCaseStatusLog;
+use App\Models\Task;
 use Carbon\Carbon;
 use Image;
 use stdClass;
@@ -23,7 +24,7 @@ class AdminController extends Controller
 
         $runningCases_no = CriminalCase::where('case_status_id', 'Running')->where('delete_status', 0)->count();
         $disposedCase_no = CriminalCase::where('case_status_id', 'Disposed')->where('delete_status', 0)->count();
-       
+
         $appeal_no = CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
         ->where('setup_case_types.case_types_name','LIKE','%'.'Appeal'.'%')
         ->where('criminal_cases.delete_status', 0)->count();
@@ -31,7 +32,7 @@ class AdminController extends Controller
         $revision_no = CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
         ->where('setup_case_types.case_types_name','LIKE','%'.'Revision'.'%')
         ->where('criminal_cases.delete_status', 0)->count();
-       
+
         $allCivil_no = CriminalCase::where('case_category_id', 'Civil')->where('delete_status', 0)->count();
 
         $allCivil_Suit =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
@@ -91,8 +92,9 @@ class AdminController extends Controller
         $criminalObj->cRevi = $allCriminal_Revision;
         $criminalObj->cMsic = $allCriminal_Misc;
 
+        $tasks = Task::orderBy('id','desc')->get();
 
-        return view('admin.admin_dashboard',compact('cases','runningCases_no','allCivil_no','allCriminal_no','disposedCase_no','appeal_no','revision_no','civilObj','criminalObj'));
+        return view('admin.admin_dashboard',compact('cases','runningCases_no','allCivil_no','allCriminal_no','disposedCase_no','appeal_no','revision_no','civilObj','criminalObj','tasks'));
     }
 
     public function dashboards()
