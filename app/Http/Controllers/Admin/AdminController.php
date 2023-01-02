@@ -56,8 +56,8 @@ class AdminController extends Controller
 
         $allCriminal_no = CriminalCase::where('case_category_id', 'Criminal')->where('delete_status', 0)->count();
         
-        $allCriminal_Suit =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
-        ->where('setup_case_types.case_types_name','LIKE','%'.'Suit'.'%')
+        $allCriminal_Cases =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
+        ->where('setup_case_types.case_types_name','LIKE','%'.'Criminal Case'.'%')
         ->where('criminal_cases.case_category_id', 'Criminal')
         ->where('criminal_cases.delete_status', 0)->count();
        $allCriminal_Appeal =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
@@ -76,10 +76,13 @@ class AdminController extends Controller
         $currentYear = Carbon::now()->format('Y');
         $cases = array();
         for ($x = 1; $x <= 12; $x++) {
-            $case = CriminalCaseStatusLog::whereRaw('YEAR(updated_order_date) ='.$currentYear)->whereRaw('MONTH(updated_order_date) ='.$x)->where('delete_status', 0)->count();
+            $case = CriminalCaseStatusLog::whereRaw('YEAR(updated_order_date) ='.$currentYear)
+            ->whereRaw('MONTH(updated_order_date) ='.$x)
+            ->where('delete_status', 0)->count();
             array_push($cases, $case);  
         }
 
+      
         $civilObj =new stdClass();
         $civilObj->cSuit = $allCivil_Suit;
         $civilObj->cApp = $allCivil_Appeal;
@@ -87,14 +90,25 @@ class AdminController extends Controller
         $civilObj->cMsic = $allCivil_Misc;
 
         $criminalObj =new stdClass();
-        $criminalObj->cSuit = $allCriminal_Suit;
+        $criminalObj->cSuit = $allCriminal_Cases;
         $criminalObj->cApp = $allCriminal_Appeal;
         $criminalObj->cRevi = $allCriminal_Revision;
         $criminalObj->cMsic = $allCriminal_Misc;
 
+        $caseFilling= array();
+
+        for ($x = 1; $x <= 12; $x++) {
+            $caseF = CriminalCase::whereRaw('YEAR(date_of_filing) ='.$currentYear)
+            ->whereRaw('MONTH(date_of_filing) ='.$x)
+            ->where('delete_status', 0)->count();
+            array_push($caseFilling, $caseF);  
+        }
+
+       
+
         $tasks = Task::orderBy('id','desc')->get();
 
-        return view('admin.admin_dashboard',compact('cases','runningCases_no','allCivil_no','allCriminal_no','disposedCase_no','appeal_no','revision_no','civilObj','criminalObj','tasks'));
+        return view('admin.admin_dashboard',compact('cases','caseFilling','runningCases_no','allCivil_no','allCriminal_no','disposedCase_no','appeal_no','revision_no','civilObj','criminalObj','tasks'));
     }
 
     public function dashboards()

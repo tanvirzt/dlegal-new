@@ -156,7 +156,7 @@
                             </div>
                             <div class="card-body">
                                 <canvas id="summaryChart"
-                                        width="487" height="300"></canvas>
+                                style="max-width: 500px;height: 370px;margin: 0px auto;"></canvas>
                             </div>
                         </div>
                     {{-- {{dd($data)}} --}}
@@ -168,7 +168,7 @@
                              
                             </div>
                             <div class="card-body">
-                                <div id="chartDiv" style="max-width: 500px;height: 370px;margin: 0px auto;"></div>
+                                <div id="case_category" style="max-width: 500px;height: 370px;margin: 0px auto;"></div>
                             </div>
                         </div>
         
@@ -179,16 +179,18 @@
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Summary</h3>
+                                <h3 class="card-title">Case File & Disposed</h3>
 
                             </div>
                             <div class="card-body">
-                                <canvas id="casesChart"
-                                        width="487" height="300"></canvas>
+                                <div id="chartDiv" style="max-width: 740px;height: 400px;margin: 0px auto">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6"></div>
+                    <div class="col-sm-6">
+                       
+                    </div>
                 </div>
             </div>
         </section>
@@ -261,8 +263,6 @@
                                                                 </div>
                                                             </div>
 
-
-                                                        
 
                                                         </td>
                                                         <td class="text-center">
@@ -346,138 +346,80 @@
 
 
 
-    var casectx = document.getElementById('casesChart').getContext('2d');
-
-    // const data = {
-    //     labels: [
-    //         'Civil',
-    //         'Criminal',
-    //     ],
-    //     datasets: [{
-    //         label: 'All Cases',
-    //         data: [300, 50],
-    //         backgroundColor: [
-    //         'rgb(255, 99, 132)',
-    //         'rgb(54, 162, 235)'
-    //         ],
-    //         hoverOffset: 4
-    //     }]
-    // };
-
+    //var casectx = document.getElementById('casesChart').getContext('2d');
     // var chartData = {
-    //         labels: [
-    //             "Red",
-    //             "Blue",
-    //             "Yellow",
-    //         ],
-    //         datasets: [
-    //             {
-    //                 data: [300, 50, 100],
-    //                 backgroundColor: [
-    //                 "#FF6384",
-    //                 "#36A2EB",
-    //                 "#FFCE56"
+    //     datasets: [
+    //         {
+    //             backgroundColor: [   
+    //                 "#FF9900",
+    //                 "#109618",
+    //                 "#990099",
+    //                 "#3B3EAC"
     //                 ],
-    //                 hoverBackgroundColor: [
-    //                 "#FF6384",
-    //                 "#36A2EB",
-    //                 "#FFCE56"
-    //                 ]
-    //             },
-    //             {
-    //                 data: [200, 100, 25, 25, 66, 34],
-    //                 backgroundColor: [
-    //                 "#FF6384",
-    //                 "#36A2EB",
-    //                 "#FFCE56",
-    //                 "#FF6384",
-    //                 "#36A2EB",
-    //                 "#FFCE56"
-    //                 ],
-    //                 hoverBackgroundColor: [
-    //                     "#FF6384",
-    //                     "#36A2EB",
-    //                     "#FFCE56",
-    //                     "#FF6384",
-    //                     "#36A2EB",
-    //                     "#FFCE56"
-    //                 ]
-    //             }
-    //         ]
+    //             hoverBackgroundColor: [
+    //                 "#FF9900",
+    //                 "#109618",
+    //                 "#990099",
+    //                 "#3B3EAC"
+    //             ],
+    //             data: [
+    //                 70,
+    //                 80,
+    //                 100,
+    //                  0,
+    //                 60,
+    //                 40,
+    //                 30,
+    //                 0,
+    //             ],
+    //             labels:[
+    //                 'test',
+    //                 'test2'
+    //             ]
+    //         },
+    //         {
+    //             backgroundColor: [
+    //                 "#3366CC",
+    //                 "#DC3912",
+    //                 "#FF9900",
+    //                 "#109618",
+    //                 "#990099",
+    //                 "#3B3EAC"
+    //             ],
+    //             hoverBackgroundColor: [
+    //                 "#3366CC",
+    //                 "#DC3912",
+    //                 "#FF9900",
+    //                 "#109618",
+    //                 "#990099",
+    //                 "#3B3EAC"
+    //             ],
+    //             data: [
+    //                 50,
+    //                 150
+    //             ],
+    //             labels:[
+    //                 'test',
+    //                 'test2'
+    //             ]
+    //         }
+    //     ],
+	// 	labels: [
+	// 		"Civil",
+	// 		"Criminal",
+	// 		"Suit/Cases",
+	// 		"Appeal",
+	// 		"Revision",
+	// 		"Misc.",
+	// 	]
     // };
-    var chartData = {
-        datasets: [
-            {
-                backgroundColor: [   
-                    "#FF9900",
-                    "#109618",
-                    "#990099",
-                    "#3B3EAC"
-                    ],
-                hoverBackgroundColor: [
-                    "#FF9900",
-                    "#109618",
-                    "#990099",
-                    "#3B3EAC"
-                ],
-                data: [
-                    70,
-                    80,
-                    100,
-                     0,
-                    60,
-                    40,
-                    30,
-                    0,
-                ],
-                labels:[
-                    'test',
-                    'test2'
-                ]
-            },
-            {
-                backgroundColor: [
-                    "#3366CC",
-                    "#DC3912",
-                    "#FF9900",
-                    "#109618",
-                    "#990099",
-                    "#3B3EAC"
-                ],
-                hoverBackgroundColor: [
-                    "#3366CC",
-                    "#DC3912",
-                    "#FF9900",
-                    "#109618",
-                    "#990099",
-                    "#3B3EAC"
-                ],
-                data: [
-                    50,
-                    150
-                ],
-                labels:[
-                    'test',
-                    'test2'
-                ]
-            }
-        ],
-		labels: [
-			"Civil",
-			"Criminal",
-			"Suit/Cases",
-			"Appeal",
-			"Revision",
-			"Misc.",
-		]
-    };
-    var chartCase = new Chart(casectx,{
-        type: 'pie',
-         data: chartData,
-    })
+    // var chartCase = new Chart(casectx,{
+    //     type: 'pie',
+    //      data: chartData,
+    // })
 
 
-    JSC.chart('chartDiv', {
+    JSC.chart('case_category', {
         debug: true,
         defaultSeries: { type: 'pieDonut', shape_center: '50%,50%' },
         // title: {
@@ -528,6 +470,30 @@
         ]
       });
 
-});
+
+
+ var chart = JSC.chart('chartDiv', { 
+         debug: true, 
+        defaultSeries_type: 'column', 
+        yAxis: { label_text: 'Cases No.' }, 
+        xAxis: { 
+            label_text: 'Month', 
+            categories: ["Jan", "Feb", "Mar", "Apr", "May","June","July","Aug","Sept","Oct","Nov","Des"],
+        }, 
+        series: [ 
+            { 
+            name: 'Case Filling', 
+            id: 's1', 
+            points: @json($caseFilling) 
+            }, 
+            { 
+            name: 'Case Disposed', 
+            points: [25, 67, 82, 71,50,70,9,20,60] 
+            }
+        ] 
+        });
+
+
+    });    
 </script>
 

@@ -619,7 +619,8 @@ class CriminalCasesController extends Controller
         $data->law_write = rtrim($law_write, ', ');
         $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
         $data->section_write = rtrim($section_write, ', ');
-        $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+        // $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+        $data->date_of_filing = $request->date_of_filing;
         // $data->case_status_id = $request->case_status_id;
         $data->case_status_id = 'Running';
         $data->matter_id = $request->matter_id;
@@ -1239,7 +1240,8 @@ class CriminalCasesController extends Controller
             $data->law_write = rtrim($law_write, ', ');
             $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
             $data->section_write = rtrim($section_write, ', ');
-            $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+            // $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+            $data->date_of_filing = $request->date_of_filing;
             
             $data->matter_id = $request->matter_id;
             $data->matter_write = $request->matter_write;
@@ -1560,7 +1562,8 @@ class CriminalCasesController extends Controller
             $data->law_write = rtrim($law_write, ', ');
             $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
             $data->section_write = rtrim($section_write, ', ');
-            $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+            // $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+            $data->date_of_filing = $request->date_of_filing;
             // $data->case_status_id = $request->case_status_id;
             $data->matter_id = $request->matter_id;
             $data->matter_write = $request->matter_write;
@@ -1884,7 +1887,8 @@ class CriminalCasesController extends Controller
         $data->law_write = rtrim($law_write, ', ');
         $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
         $data->section_write = rtrim($section_write, ', ');
-        $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+        // $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+        $data->date_of_filing = $request->date_of_filing;
         $data->case_status_id = $request->case_status_id;
         $data->matter_id = $request->matter_id;
         $data->matter_write = $request->matter_write;

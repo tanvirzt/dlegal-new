@@ -660,14 +660,15 @@
                                     <label for="date_of_filing" class="col-sm-4 col-form-label">Case Filing
                                         Date</label>
                                     <div class="col-sm-8">
-                                    <span class="date_span">
+                                    {{-- <span class="date_span">
                                         <input type="date" class="xDateContainer date_first_input"
                                                 onchange="setCorrect(this,'xTime4');"><input type="text" id="xTime4"
                                                                                             name="date_of_filing" value="dd-mm-yyyy"
                                                                                             class="date_second_input"
                                                                                             tabindex="-1"><span
                                             class="date_second_span" tabindex="-1">&#9660;</span>
-                                    </span>
+                                    </span> --}}
+                                    <input type="date" name="date_of_filing" class="form-control">
                                         @error('date_of_filing')<span
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
