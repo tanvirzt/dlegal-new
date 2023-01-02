@@ -86,7 +86,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('edit-designation/{id}',[AdminSetupController::class, 'edit_designation'])->name('edit-designation');
     Route::post('update-designation/{id}',[AdminSetupController::class, 'update_designation'])->name('update-designation');
     Route::post('delete-designation/{id}',[AdminSetupController::class, 'delete_designation'])->name('delete-designation');
-   
+
 
 
     Route::get('case-status',[AdminSetupController::class, 'case_status'])->name('case-status');
@@ -793,10 +793,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('counsel', [CounselLawyerController::class, 'index_counsel'])->name('counsel');
     Route::get('counsel-chamber', [CounselLawyerController::class, 'index_counsel_chamber'])->name('counsel-chamber');
     Route::get('counsel-company', [CounselLawyerController::class, 'index_counsel_company'])->name('counsel-company');
-   
+
     Route::get('add-counsel',[CounselLawyerController::class, 'create_counsel'])->name('add-counsel');
     Route::get('add-counsel/employee',[CounselLawyerController::class, 'create_counsel'])->name('add-counsel-employee');
-   
+
     Route::post('save-counsel',[CounselLawyerController::class, 'store_counsel'])->name('save-counsel');
     Route::get('edit-counsel/{id}',[CounselLawyerController::class, 'edit_counsel'])->name('edit-counsel');
     Route::post('update-counsel/{id}',[CounselLawyerController::class, 'update_counsel'])->name('update-counsel');
@@ -855,9 +855,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
 
     Route::resource('employee', EmployeeController::class);
-    
+
      Route::get('employee-new',[EmployeeController::class,'employee_new'])->name('employee-new');
-    
+
     Route::resource('ledger-category', LedgerCategoryController::class);
     Route::resource('ledger-head', LedgerHeadController::class);
     Route::resource('ledger-entry', LedgerEntryController::class);
@@ -883,6 +883,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('add-ledger-entry/{id}', [LedgerEntryController::class, 'add_ledger_entry'])->name('add-ledger-entry');
 
     // criminal cases latest list
+
+       //Schedule management\
+
+       Route::resource('schedule-category', scheduleCategoryController::class,  ['names' => 'schedule.category']);
+       Route::resource('schedule', ScheduleController::class);
+       Route::put('schedule/change-status/{id}', [ScheduleController::class,'changeStatus'])->name('schedule.change.status');
 
 });
 

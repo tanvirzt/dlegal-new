@@ -124,7 +124,7 @@ class LitigationCalenderController extends Controller
 
     public function litigation_calender_list()
     {
-    
+
         $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
         $criminal_cases = DB::table('criminal_case_status_logs')->distinct()->orderBy('updated_next_date', 'asc')->where(['delete_status' => 0])->where('updated_next_date', '>=', date('Y-m-d'))->get(['updated_next_date as next_date']);
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
@@ -140,7 +140,7 @@ class LitigationCalenderController extends Controller
         $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
         $mode = SetupMode::where('delete_status', 0)->orderBy('mode_name', 'asc')->get();
-     
+
 
 
         $law = SetupLaw::where(['case_type' => 'Criminal', 'delete_status' => 0])->orderBy('law_name', 'asc')->get();
@@ -203,26 +203,26 @@ class LitigationCalenderController extends Controller
         return view('litigation_management.litigation_calender.litigation_calender_list',compact('mode','matter','next_day_presence', 'client_name', 'external_council', 'criminal_cases','last_court_order','external_council',
          'criminal_cases_count','assignedlaywer','leadLaywer','chamber', 'group_name','next_date_reason','court_proceeding',
           'documents_type', 'particulars','case_status','next_date_reason','court_proceeding','day_notes'));
-       
+
     }
 
     public function litigation_calender_short()
     {
-       
+
         $redirect_url =  url('litigation-calender-list');
 
         $civilCases = CriminalCaseStatusLog::select('updated_next_date')
         ->groupBy('updated_next_date')
         ->get();
-        
+
         foreach($civilCases as $case){
 
             $civilCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
             ->where('case_category_id','Civil')->where('updated_next_date',$case->updated_next_date)->count();
-           
+
             $criminalCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
             ->where('case_category_id','Criminal')->where('updated_next_date',$case->updated_next_date)->count();
-           
+
             $criminal_events[] = [
                 'title' => "Civil: $civilCount | Criminal: $criminalCount",
                 'url' => "$redirect_url#$case->updated_next_date",
@@ -232,7 +232,7 @@ class LitigationCalenderController extends Controller
             ];
         }
 
-     
+
 
         //Criminal Case
         // $criminal_cases = \App\Models\CriminalCaseStatusLog::select('updated_next_date')->where(['delete_status' => 0])->groupBy('updated_next_date')->get();
@@ -336,21 +336,21 @@ class LitigationCalenderController extends Controller
 
     public function litigation_calender_short_court_wise()
     {
-       
+
         $redirect_url =  url('litigation-calender-list');
 
         $totalCaseLog = CriminalCaseStatusLog::select('updated_next_date')
         ->groupBy('updated_next_date')
         ->get();
-        
+
         foreach($totalCaseLog as $case){
 
             $districtCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
             ->where('case_type','District')->where('updated_next_date',$case->updated_next_date)->count();
-           
+
             $specialCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
             ->where('case_type','Special')->where('updated_next_date',$case->updated_next_date)->count();
-           
+
             $criminal_events[] = [
                 'title' => "District: $districtCount | Special: $specialCount",
                 'url' => "$redirect_url#$case->updated_next_date",
@@ -360,7 +360,7 @@ class LitigationCalenderController extends Controller
             ];
         }
 
-     
+
 
         //Service/LabourCase
         $labour_cases = \App\Models\LabourCase::select('next_date')->where(['delete_status' => 0])->groupBy('next_date')->get();
@@ -586,7 +586,7 @@ class LitigationCalenderController extends Controller
 
             // return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         }else if ($request->tomorrows_case) {
-            
+
             // $curr_date = date('Y-m-d');
 
             $from_date = date("Y-m-d", strtotime("tomorrow"));
@@ -1041,7 +1041,7 @@ class LitigationCalenderController extends Controller
     //     return view('litigation_management.litigation_calender.litigation_calender_list', compact('court_proceeding','mode','day_notes','last_court_order','next_date_reason','documents_type','matter','case_status', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date','next_day_presence'));
     // }
     public function calendar_list_arrow_up(Request $request){
-        
+
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $client_name = SetupClientName::where('delete_status', 0)->get();
         $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
@@ -1164,10 +1164,10 @@ class LitigationCalenderController extends Controller
 
         $data["criminal_cases_count"] = $criminal_cases_count;
         $data["criminal_cases"] = $criminal_cases;
-  
+
 
         $pdf = PDF::loadView('emails.myTestMail', $data);
-  
+
         Mail::send('emails.myTestMail', $data, function($message)use($data, $pdf) {
             $message->to($data["email"], "imran.zaimahtech@gmail.com")
                     ->subject($data["title"])
@@ -1176,7 +1176,7 @@ class LitigationCalenderController extends Controller
 
         session()->flash('success','Cause List sends to the user successfully.');
         return redirect()->back();
-    
+
     }
 
 }

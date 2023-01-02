@@ -141,7 +141,7 @@
                             @endcan
                         </ul>
                     </li>
-               
+
                 @endcanany
                 {{-- @canany(['counsel-list', 'chamber-staff-list', 'chamber-list', 'internal-counsel-list'])
                     <li class="nav-item">
@@ -200,7 +200,7 @@
                             @endcan
                         </ul>
                     </li>
-               
+
                 @endcanany --}}
             @canany([
                 'accused-list',
@@ -1237,7 +1237,7 @@
                     </li> --}}
                 </ul>
             </li>
-            
+
 
             {{-- <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
