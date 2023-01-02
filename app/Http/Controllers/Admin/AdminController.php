@@ -103,12 +103,22 @@ class AdminController extends Controller
             ->where('delete_status', 0)->count();
             array_push($caseFilling, $caseF);  
         }
+        $caseDisposed= array();
+
+        for ($x = 1; $x <= 12; $x++) {
+            $caseF = CriminalCase::whereRaw('YEAR(date_of_filing) ='.$currentYear)
+            ->whereRaw('MONTH(date_of_filing) ='.$x)
+            ->where('case_status_id', 'Disposed')
+            ->where('delete_status', 0)
+            ->count();
+            array_push($caseDisposed, $caseF);  
+        }
 
        
 
         $tasks = Task::orderBy('id','desc')->get();
 
-        return view('admin.admin_dashboard',compact('cases','caseFilling','runningCases_no','allCivil_no','allCriminal_no','disposedCase_no','appeal_no','revision_no','civilObj','criminalObj','tasks'));
+        return view('admin.admin_dashboard',compact('cases','caseFilling','caseDisposed','runningCases_no','allCivil_no','allCriminal_no','disposedCase_no','appeal_no','revision_no','civilObj','criminalObj','tasks'));
     }
 
     public function dashboards()

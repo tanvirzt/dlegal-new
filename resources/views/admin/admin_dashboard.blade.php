@@ -475,11 +475,12 @@
  var chart = JSC.chart('chartDiv', { 
          debug: true, 
         defaultSeries_type: 'column', 
-        yAxis: { label_text: 'Cases No.' }, 
+        yAxis: { label_text: 'No. of Cases' }, 
         xAxis: { 
             label_text: 'Month', 
             categories: ["Jan", "Feb", "Mar", "Apr", "May","June","July","Aug","Sept","Oct","Nov","Des"],
         }, 
+        legend: { template: '{%value} %icon %name', position: 'top' },
         series: [ 
             { 
             name: 'Case Filling', 
@@ -488,7 +489,7 @@
             }, 
             { 
             name: 'Case Disposed', 
-            points: [25, 67, 82, 71,50,70,9,20,60] 
+            points: @json($caseDisposed) 
             }
         ] 
         });
