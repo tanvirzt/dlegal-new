@@ -771,7 +771,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Case Filing Date</td>
-                                                <td>{{ $data->date_of_filing }}</td>
+                                                <td>{{date('d-m-Y', strtotime($data->date_of_filing))}}</td>
                                             </tr>
                                             {{-- <tr>
                                             <td>Status of the Cases</td>
@@ -5276,8 +5276,8 @@
                             <label for="date_of_filing" class="col-sm-4 col-form-label">Case Filing
                                 Date</label>
                             <div class="col-sm-8">
-                                <span class="date_span">
-                                    <input type="date" class="xDateContainer date_first_input"
+                                {{--  <span class="date_span">
+                                   <input type="date" class="xDateContainer date_first_input"
                                            onchange="setCorrect(this,'xTime4');"><input type="text" id="xTime4"
                                                                                         name="date_of_filing"
                                                                                         @if ($data->date_of_filing != null) value="{{ $data->date_of_filing }}"
@@ -5285,7 +5285,8 @@
                                                                                         class="date_second_input" tabindex="-1"><span
                                         class="date_second_span"
                                         tabindex="-1">&#9660;</span>
-                                </span>
+                                </span> --}}
+                                <input type="date" name="date_of_filing" value="{{ $data->date_of_filing }}" class="form-control">
                                 @error('date_of_filing')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror

@@ -619,8 +619,10 @@ class CriminalCasesController extends Controller
         $data->law_write = rtrim($law_write, ', ');
         $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
         $data->section_write = rtrim($section_write, ', ');
-        $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+        // $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+        // $data->date_of_filing = $request->date_of_filing;
         // $data->case_status_id = $request->case_status_id;
+        $data->case_status_id = 'Running';
         $data->case_status_id = 'Running';
         $data->matter_id = $request->matter_id;
         $data->matter_write = $request->matter_write;
@@ -1239,7 +1241,8 @@ class CriminalCasesController extends Controller
             $data->law_write = rtrim($law_write, ', ');
             $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
             $data->section_write = rtrim($section_write, ', ');
-            $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+            // $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+            $data->date_of_filing = $request->date_of_filing;
             
             $data->matter_id = $request->matter_id;
             $data->matter_write = $request->matter_write;
@@ -1560,7 +1563,8 @@ class CriminalCasesController extends Controller
             $data->law_write = rtrim($law_write, ', ');
             $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
             $data->section_write = rtrim($section_write, ', ');
-            $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+            // $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+            $data->date_of_filing = $request->date_of_filing;
             // $data->case_status_id = $request->case_status_id;
             $data->matter_id = $request->matter_id;
             $data->matter_write = $request->matter_write;
@@ -1884,7 +1888,8 @@ class CriminalCasesController extends Controller
         $data->law_write = rtrim($law_write, ', ');
         $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
         $data->section_write = rtrim($section_write, ', ');
-        $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+        // $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+        $data->date_of_filing = $request->date_of_filing;
         $data->case_status_id = $request->case_status_id;
         $data->matter_id = $request->matter_id;
         $data->matter_write = $request->matter_write;
@@ -2244,7 +2249,7 @@ class CriminalCasesController extends Controller
                 'opposition_group.group_name as opposition_group_name')
             ->where('criminal_cases.id', $id)
             ->first();
-
+//dd($data);
         $exist_case_inofs_district = SetupDistrict::where('id', $data->case_infos_district_id)->first();
         // dd($data);
 
@@ -2331,7 +2336,7 @@ class CriminalCasesController extends Controller
             ->orderBy('criminal_case_status_logs.updated_order_date', 'desc')
             // ->orderByRaw("DATE_FORMAT('Y-m-d',criminal_case_status_logs.updated_order_date), 'desc'")
             ->get();
-        //dd($case_logs);
+        // dd($case_logs);
         //    dd($case_logs[0]->updated_next_date);
 
         $latest = DB::table('criminal_case_status_logs')
@@ -2352,7 +2357,7 @@ class CriminalCasesController extends Controller
 
         $oppLawyer = CriminalCasesOppsitionLawyer::where('criminal_case_id',$id)->first();
 
-       // dd($previouDate);
+        // dd($previouDate);
         $bill_history = DB::table('criminal_cases_billings')
             ->leftJoin('setup_bill_types', 'criminal_cases_billings.bill_type_id', 'setup_bill_types.id')
             ->leftJoin('bill_schedules', 'criminal_cases_billings.bill_schedule_id', 'bill_schedules.id')
@@ -2758,7 +2763,7 @@ class CriminalCasesController extends Controller
         }
         $data->delete_status = $delete_status;
         $data->save();
-
+     
         session()->flash('success', 'Criminal Cases Status Deleted.');
         return redirect()->back();
     }
