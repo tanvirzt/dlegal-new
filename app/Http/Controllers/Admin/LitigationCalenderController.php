@@ -124,7 +124,7 @@ class LitigationCalenderController extends Controller
 
     public function litigation_calender_list()
     {
-    
+
         $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
         $criminal_cases = DB::table('criminal_case_status_logs')->distinct()->orderBy('updated_next_date', 'asc')->where(['delete_status' => 0])->where('updated_next_date', '>=', date('Y-m-d'))->get(['updated_next_date as next_date']);
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
@@ -140,7 +140,7 @@ class LitigationCalenderController extends Controller
         $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
         $mode = SetupMode::where('delete_status', 0)->orderBy('mode_name', 'asc')->get();
-     
+
 
 
         $law = SetupLaw::where(['case_type' => 'Criminal', 'delete_status' => 0])->orderBy('law_name', 'asc')->get();
@@ -200,29 +200,29 @@ class LitigationCalenderController extends Controller
         $mode = SetupMode::where('delete_status', 0)->orderBy('mode_name', 'asc')->get();
         $court_proceeding = SetupCourtProceeding::where('delete_status', 0)->orderBy('court_proceeding_name', 'asc')->get();
         $day_notes = SetupDayNote::where('delete_status', 0)->orderBy('day_notes_name', 'asc')->get();
-        return view('litigation_management.litigation_calender.litigation_calender_list',compact('matter','next_day_presence', 'client_name', 'external_council', 'criminal_cases','last_court_order','external_council',
+        return view('litigation_management.litigation_calender.litigation_calender_list',compact('mode','matter','next_day_presence', 'client_name', 'external_council', 'criminal_cases','last_court_order','external_council',
          'criminal_cases_count','assignedlaywer','leadLaywer','chamber', 'group_name','next_date_reason','court_proceeding',
           'documents_type', 'particulars','case_status','next_date_reason','court_proceeding','day_notes'));
-       
+
     }
 
     public function litigation_calender_short()
     {
-       
+
         $redirect_url =  url('litigation-calender-list');
 
         $civilCases = CriminalCaseStatusLog::select('updated_next_date')
         ->groupBy('updated_next_date')
         ->get();
-        
+
         foreach($civilCases as $case){
 
             $civilCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
             ->where('case_category_id','Civil')->where('updated_next_date',$case->updated_next_date)->count();
-           
+
             $criminalCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
             ->where('case_category_id','Criminal')->where('updated_next_date',$case->updated_next_date)->count();
-           
+
             $criminal_events[] = [
                 'title' => "Civil: $civilCount | Criminal: $criminalCount",
                 'url' => "$redirect_url#$case->updated_next_date",
@@ -232,7 +232,7 @@ class LitigationCalenderController extends Controller
             ];
         }
 
-     
+
 
         //Criminal Case
         // $criminal_cases = \App\Models\CriminalCaseStatusLog::select('updated_next_date')->where(['delete_status' => 0])->groupBy('updated_next_date')->get();
@@ -336,21 +336,21 @@ class LitigationCalenderController extends Controller
 
     public function litigation_calender_short_court_wise()
     {
-       
+
         $redirect_url =  url('litigation-calender-list');
 
         $totalCaseLog = CriminalCaseStatusLog::select('updated_next_date')
         ->groupBy('updated_next_date')
         ->get();
-        
+
         foreach($totalCaseLog as $case){
 
             $districtCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
             ->where('case_type','District')->where('updated_next_date',$case->updated_next_date)->count();
-           
+
             $specialCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
             ->where('case_type','Special')->where('updated_next_date',$case->updated_next_date)->count();
-           
+
             $criminal_events[] = [
                 'title' => "District: $districtCount | Special: $specialCount",
                 'url' => "$redirect_url#$case->updated_next_date",
@@ -360,7 +360,7 @@ class LitigationCalenderController extends Controller
             ];
         }
 
-     
+
 
         //Service/LabourCase
         $labour_cases = \App\Models\LabourCase::select('next_date')->where(['delete_status' => 0])->groupBy('next_date')->get();
@@ -586,7 +586,7 @@ class LitigationCalenderController extends Controller
 
             // return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
         }else if ($request->tomorrows_case) {
-            
+
             // $curr_date = date('Y-m-d');
 
             $from_date = date("Y-m-d", strtotime("tomorrow"));
@@ -993,51 +993,117 @@ class LitigationCalenderController extends Controller
         return view('litigation_management.litigation_calender.litigation_calendar_list_print_preview', compact('criminal_cases', 'criminal_cases_count'));
     }
 
-    public function calendar_list_arrow_up(Request $request)
-    {
-        // dd($request->all());
+    // public function calendar_list_arrow_up(Request $request)
+    // {
+    //     // dd($request->all());
+
+
+    //     $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
+    //     $client_name = SetupClientName::where('delete_status', 0)->get();
+    //     $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
+    //     $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
+    //     $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
+    //     $documents_type = SetupDocumentsType::where('delete_status', 0)->orderBy('documents_type_name', 'asc')->get();
+    //     $court_proceeding = SetupCourtProceeding::where('delete_status', 0)->get();
+    //     $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
+    //     $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->get();
+    //     $day_notes = SetupDayNote::where('delete_status', 0)->get();
+    //     $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
+    //     $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->get();
+    //     $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
+    //     $mode = SetupMode::where('delete_status', 0)->orderBy('mode_name', 'asc')->get();
+    //     $criminal_cases_search_last = DB::table('criminal_cases')
+    //         ->distinct()->orderBy('next_date', 'asc')
+    //         ->where(['delete_status' => 0])
+    //         ->where('next_date', '<', $request->from_date)
+    //         ->get(['next_date'])->last();
+
+    //     if ($criminal_cases_search_last != null) {
+    //         $criminal_cases_search = DB::table('criminal_cases')
+    //             ->distinct()->orderBy('next_date', 'asc')
+    //             ->where(['delete_status' => 0])
+    //             ->where('next_date', '<', $request->from_date)
+    //             ->get(['next_date'])->last()->next_date;
+    //     } else {
+    //         $criminal_cases_search = DB::table('criminal_cases')
+    //             ->distinct()->orderBy('next_date', 'asc')
+    //             ->where(['delete_status' => 0])
+    //             ->where('next_date', '<=', $request->from_date)
+    //             ->get(['next_date'])->last()->next_date;
+    //     }
+
+
+    //     // dd($criminal_cases_search);
+    //     $criminal_cases = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where(['delete_status' => 0])->where('next_date', '>=', date('Y-m-d'))->orWhere('next_date', $criminal_cases_search)->get(['next_date']);
+    //     $from_date = date('Y-m-d');
+    //     $to_date = date('Y-m-d');
+    //     $is_searched = 'Searched';
+    //     return view('litigation_management.litigation_calender.litigation_calender_list', compact('court_proceeding','mode','day_notes','last_court_order','next_date_reason','documents_type','matter','case_status', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date','next_day_presence'));
+    // }
+    public function calendar_list_arrow_up(Request $request){
+
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $client_name = SetupClientName::where('delete_status', 0)->get();
         $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
-
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
         $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
-
-        $criminal_cases_search_last = DB::table('criminal_cases')
-            ->distinct()->orderBy('next_date', 'asc')
-            ->where(['delete_status' => 0])
-            ->where('next_date', '<', $request->from_date)
-            ->get(['next_date'])->last();
-
-        if ($criminal_cases_search_last != null) {
-            $criminal_cases_search = DB::table('criminal_cases')
-                ->distinct()->orderBy('next_date', 'asc')
-                ->where(['delete_status' => 0])
-                ->where('next_date', '<', $request->from_date)
-                ->get(['next_date'])->last()->next_date;
-        } else {
-            $criminal_cases_search = DB::table('criminal_cases')
-                ->distinct()->orderBy('next_date', 'asc')
-                ->where(['delete_status' => 0])
-                ->where('next_date', '<=', $request->from_date)
-                ->get(['next_date'])->last()->next_date;
-        }
-
-
+        $documents_type = SetupDocumentsType::where('delete_status', 0)->orderBy('documents_type_name', 'asc')->get();
+        $court_proceeding = SetupCourtProceeding::where('delete_status', 0)->get();
+        $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
+        $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->get();
+        $day_notes = SetupDayNote::where('delete_status', 0)->get();
+        $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
+        $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->get();
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
+        $mode = SetupMode::where('delete_status', 0)->orderBy('mode_name', 'asc')->get();
+        $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
+        // $criminal_cases_search = DB::table('criminal_cases')
+        //     ->distinct()->orderBy('next_date', 'asc')
+        //     ->where(['delete_status' => 0])
+        //     ->where('next_date', '>', $request->to_date)
+        //     ->get(['next_date'])->first()->next_date;
         // dd($criminal_cases_search);
-        $criminal_cases = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where(['delete_status' => 0])->where('next_date', '>=', date('Y-m-d'))->orWhere('next_date', $criminal_cases_search)->get(['next_date']);
+
+
+
+        $criminal_cases_search_latest = DB::table('criminal_cases')->distinct()
+        ->orderBy('next_date', 'asc')->where(['delete_status' => 0])
+        ->where('next_date', '<', $request->from_date)->get(['next_date'])->last();
+         //dd($criminal_cases_search_latest);
+        if ($criminal_cases_search_latest != null)  {
+            // dd('yes');
+            $criminal_cases_search = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')
+            ->where(['delete_status' => 0])->where('next_date', '<', $request->from_date)->get(['next_date'])->last()->next_date;
+        } else {
+            // dd('no');
+            $criminal_cases_search = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')
+            ->where(['delete_status' => 0])->where('next_date', '=',$request->from_date)->get(['next_date'])->last()->next_date;
+        }
+      // dd($criminal_cases);
+       // $criminal_cases = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where(['delete_status' => 0])->where('next_date', '>=', date('Y-m-d'))->orWhere('next_date', $criminal_cases_search)->get(['next_date']);
+        $criminal_cases = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where(['delete_status' => 0])->where('next_date', '>=', $criminal_cases_search)->orWhere('next_date', $criminal_cases_search)->get(['next_date']);
         $from_date = date('Y-m-d');
         $to_date = date('Y-m-d');
         $is_searched = 'Searched';
-        return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+        return view('litigation_management.litigation_calender.litigation_calender_list', compact('court_proceeding','mode','day_notes','last_court_order','next_date_reason','documents_type','matter','case_status', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date','next_day_presence'));
     }
-
     public function calendar_list_arrow_down(Request $request)
     {
         // dd($request->all());
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $client_name = SetupClientName::where('delete_status', 0)->get();
         $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
-
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
+        $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
+        $documents_type = SetupDocumentsType::where('delete_status', 0)->orderBy('documents_type_name', 'asc')->get();
+        $court_proceeding = SetupCourtProceeding::where('delete_status', 0)->get();
+        $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
+        $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->get();
+        $day_notes = SetupDayNote::where('delete_status', 0)->get();
+        $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
+        $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->get();
+        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
+        $mode = SetupMode::where('delete_status', 0)->orderBy('mode_name', 'asc')->get();
         $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);
         // $criminal_cases_search = DB::table('criminal_cases')
         //     ->distinct()->orderBy('next_date', 'asc')
@@ -1061,7 +1127,7 @@ class LitigationCalenderController extends Controller
         $from_date = date('Y-m-d');
         $to_date = date('Y-m-d');
         $is_searched = 'Searched';
-        return view('litigation_management.litigation_calender.litigation_calender_list', compact('matter', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date'));
+        return view('litigation_management.litigation_calender.litigation_calender_list', compact('court_proceeding','mode','day_notes','last_court_order','next_date_reason','documents_type','matter','case_status', 'client_name', 'external_council', 'criminal_cases', 'criminal_cases_count', 'is_searched', 'from_date', 'to_date','next_day_presence'));
     }
 
     // public function send_cause_list_pdf_to_mail(Request $request)
@@ -1098,10 +1164,10 @@ class LitigationCalenderController extends Controller
 
         $data["criminal_cases_count"] = $criminal_cases_count;
         $data["criminal_cases"] = $criminal_cases;
-  
+
 
         $pdf = PDF::loadView('emails.myTestMail', $data);
-  
+
         Mail::send('emails.myTestMail', $data, function($message)use($data, $pdf) {
             $message->to($data["email"], "imran.zaimahtech@gmail.com")
                     ->subject($data["title"])
@@ -1110,7 +1176,7 @@ class LitigationCalenderController extends Controller
 
         session()->flash('success','Cause List sends to the user successfully.');
         return redirect()->back();
-    
+
     }
 
 }

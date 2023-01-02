@@ -894,6 +894,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::resource('task', TaskController::class);
     Route::put('task/change-status/{id}', [TaskController::class,'changeStatus'])->name('task.change.status');
 
+       //Schedule management\
+
+       Route::resource('schedule-category', scheduleCategoryController::class,  ['names' => 'schedule.category']);
+       Route::resource('schedule', ScheduleController::class);
+       Route::put('schedule/change-status/{id}', [ScheduleController::class,'changeStatus'])->name('schedule.change.status');
 
 });
 
