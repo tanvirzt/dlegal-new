@@ -673,8 +673,9 @@
                                                                             ->orderBy('criminal_cases.case_infos_court_short_id','asc')
                                                                             ->where(['criminal_case_status_logs.delete_status' => 0, 'criminal_case_status_logs.updated_next_date' => $datum->next_date])
                                                                             ->get();
-
+                                                                 //dd($calendar_wise_data);
                                                                 @endphp
+                                                                
                                                         {{ $calendar_count }}</p>
                                         </div>
                                         <div class="col-md-2 border pt-1 mr-1">
@@ -721,25 +722,130 @@
                                     <thead>
                                         <tr>
                                             <th class="sl_no_column" width="2%">SL</th>
-                                            <th class="court_column" width="10%">Court</th>
+                                            <th class="court_column" width="5%">Court</th>
                                             <th class="case_no_column" width="10%">Case No.</th>
-                                            <th class="police_station_column" width="10%">Police Station</th>
+                                            <th class="police_station_column" width="5%">Police Station</th>
                                             {{-- <th width="10%">Previous Case Date</th> --}}
                                             <th class="fixed_for_column" width="10%">Fixed For</th>
                                             <th class="party_column" width="20%">Party</th>
                                             {{-- <th width="17%">2nd Party</th> --}}
-                                            <th class="matter_column" width="15%">Matter</th>
-                                            <th class="steps_notes_column" width="15%">Steps & Note</th>
-
+                                            <th class="matter_column" width="10%">Matter</th>
+                                            <th class="matter_column" width="10%">Type</th>
+                                            <th class="matter_column" width="10%">PV.Date</th>
+                                            <th class="matter_column" width="10%">PV.D Fixed For</th>
+                                            <th class="steps_notes_column" width="15%">Next Steps</th>
+                                            <th class="steps_notes_column" width="15%">Lawyer</th>
                                             <th class="steps_notes_column" width="15%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     @if (!empty($calendar_wise_data))
                                     @foreach ($calendar_wise_data as $keys=>$value)
+                                    @php
+$letter_notice_explode = App\Models\CriminalCasesLetterNotice::where('case_id', $value->id)->get()->toArray();
+$documents = App\Models\SetupDocument::where('delete_status', 0)->orderBy('documents_name', 'asc')->get();
+$existing_assignend_external_council = App\Models\SetupExternalCouncilAssociate::where(['external_council_id' => $value->lawyer_advocate_id, 'delete_status' => 0])->orderBy('first_name', 'asc')->get();
+
+$data = DB::table('criminal_cases')
+            ->leftJoin('setup_legal_issues', 'criminal_cases.legal_issue_id', '=', 'setup_legal_issues.id')
+            ->leftJoin('setup_legal_services', 'criminal_cases.legal_service_id', '=', 'setup_legal_services.id')
+            ->leftJoin('setup_complainants', 'criminal_cases.complainant_informant_id', '=', 'setup_complainants.id')
+            ->leftJoin('setup_accuseds', 'criminal_cases.accused_id', '=', 'setup_accuseds.id')
+            ->leftJoin('setup_in_favour_ofs', 'criminal_cases.in_favour_of_id', '=', 'setup_in_favour_ofs.id')
+            ->leftJoin('setup_courts', 'criminal_cases.name_of_the_court_id', '=', 'setup_courts.id')
+            ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', '=', 'setup_next_date_reasons.id')
+            ->leftJoin('setup_modes', 'criminal_cases.mode_of_receipt_id', '=', 'setup_modes.id')
+            ->leftJoin('setup_referrers', 'criminal_cases.referrer_id', '=', 'setup_referrers.id')
+            ->leftJoin('setup_in_favour_ofs as client_party', 'criminal_cases.client_party_id', '=', 'client_party.id')
+            ->leftJoin('setup_client_categories', 'criminal_cases.client_category_id', '=', 'setup_client_categories.id')
+            ->leftJoin('setup_client_subcategories', 'criminal_cases.client_subcategory_id', '=', 'setup_client_subcategories.id')
+            ->leftJoin('setup_clients', 'criminal_cases.client_id', '=', 'setup_clients.id')
+            ->leftJoin('setup_professions', 'criminal_cases.client_profession_id', '=', 'setup_professions.id')
+            ->leftJoin('setup_divisions as client_division', 'criminal_cases.client_division_id', '=', 'client_division.id')
+            ->leftJoin('setup_districts as client_district', 'criminal_cases.client_district_id', '=', 'client_district.id')
+            ->leftJoin('setup_thanas as client_thana', 'criminal_cases.client_thana_id', '=', 'client_thana.id')
+            ->leftJoin('setup_coordinators', 'criminal_cases.client_coordinator_tadbirkar_id', '=', 'setup_coordinators.id')
+            ->leftJoin('setup_in_favour_ofs as opposition_party', 'criminal_cases.opposition_party_id', '=', 'opposition_party.id')
+            ->leftJoin('setup_client_categories as opposition_category', 'criminal_cases.opposition_category_id', '=', 'opposition_category.id')
+            ->leftJoin('setup_client_subcategories as opposition_subcategory', 'criminal_cases.opposition_subcategory_id', '=', 'opposition_subcategory.id')
+            ->leftJoin('setup_clients as opposition', 'criminal_cases.opposition_id', '=', 'opposition.id')
+            ->leftJoin('setup_professions as opposition_profession', 'criminal_cases.opposition_profession_id', '=', 'opposition_profession.id')
+            ->leftJoin('setup_divisions as opposition_division', 'criminal_cases.opposition_division_id', '=', 'opposition_division.id')
+            ->leftJoin('setup_districts as opposition_district', 'criminal_cases.opposition_district_id', '=', 'opposition_district.id')
+            ->leftJoin('setup_thanas as opposition_thana', 'criminal_cases.opposition_thana_id', '=', 'opposition_thana.id')
+            ->leftJoin('setup_coordinators as opposition_coordinator', 'criminal_cases.opposition_coordinator_tadbirkar_id', '=', 'opposition_coordinator.id')
+            ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
+            ->leftJoin('setup_divisions as case_infos_division', 'criminal_cases.case_infos_division_id', '=', 'case_infos_division.id')
+            ->leftJoin('setup_districts as case_infos_district', 'criminal_cases.case_infos_district_id', '=', 'case_infos_district.id')
+            ->leftJoin('setup_thanas as case_infos_thana', 'criminal_cases.case_infos_thana_id', '=', 'case_infos_thana.id')
+            ->leftJoin('setup_case_categories', 'criminal_cases.case_category_id', '=', 'setup_case_categories.id')
+            ->leftJoin('setup_case_subcategories', 'criminal_cases.case_subcategory_id', '=', 'setup_case_subcategories.id')
+            ->leftJoin('setup_case_titles as case_infos_case_title', 'criminal_cases.case_infos_case_title_id', '=', 'case_infos_case_title.id')
+            ->leftJoin('setup_case_titles as sub_seq_case_infos_case_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'sub_seq_case_infos_case_title.id')
+            ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
+            ->leftJoin('setup_case_statuses', 'criminal_cases.case_status_id', '=', 'setup_case_statuses.id')
+            ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
+            ->leftJoin('setup_allegations', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'setup_allegations.id')
+            ->leftJoin('admins', 'criminal_cases.received_by_id', '=', 'admins.id')
+            ->leftJoin('setup_cabinets', 'criminal_cases.cabinet_id', '=', 'setup_cabinets.id')
+            ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+            ->leftJoin('setup_groups as client_group', 'criminal_cases.client_group_id', '=', 'client_group.id')
+            ->leftJoin('setup_groups as opposition_group', 'criminal_cases.opposition_group_id', '=', 'opposition_group.id')
+            ->select('criminal_cases.*',
+                'setup_legal_issues.legal_issue_name',
+                'setup_legal_services.legal_service_name',
+                'setup_complainants.complainant_name',
+                'setup_accuseds.accused_name',
+                'setup_in_favour_ofs.in_favour_of_name',
+                'setup_courts.court_name',
+                'setup_next_date_reasons.next_date_reason_name',
+                'setup_modes.mode_name',
+                'setup_referrers.referrer_name',
+                'client_party.in_favour_of_name as client_party_name',
+                'setup_client_categories.client_category_name',
+                'setup_client_subcategories.client_subcategory_name',
+                'setup_clients.client_name',
+                'setup_professions.profession_name',
+                'client_division.division_name as client_division_name',
+                'client_district.district_name as client_district_name',
+                'client_thana.thana_name as client_thana_name',
+                'setup_coordinators.coordinator_name',
+                'opposition_party.in_favour_of_name as oppsition_party_name',
+                'opposition_category.client_category_name as opposition_category_name',
+                'opposition_subcategory.client_subcategory_name as opposition_subcategory_name',
+                'opposition.client_name as opposition_name',
+                'opposition_profession.profession_name as opposition_profession_name',
+                'opposition_division.division_name as opposition_division_name',
+                'opposition_district.district_name as opposition_district_name',
+                'opposition_thana.thana_name as opposition_thana_name',
+                'opposition_coordinator.coordinator_name as opposition_coordinator_name',
+                'setup_external_councils.first_name',
+                'setup_external_councils.middle_name',
+                'setup_external_councils.last_name',
+                'case_infos_division.division_name as case_infos_division_name',
+                'case_infos_district.district_name as case_infos_district_name',
+                'case_infos_thana.thana_name as case_infos_thana_name',
+                'setup_case_categories.case_category',
+                'setup_case_subcategories.case_subcategory',
+                'case_infos_case_title.case_title_name as case_infos_case_title_name',
+                'sub_seq_case_infos_case_title.case_title_name as sub_seq_case_infos_case_title_name',
+                'setup_matters.matter_name',
+                'setup_case_statuses.case_status_name',
+                'setup_case_types.case_types_name',
+                'setup_allegations.allegation_name',
+                'admins.name',
+                'setup_cabinets.cabinet_name',
+                'case_infos_title.case_title_name as sub_seq_case_title_name',
+                'client_group.group_name as client_group_name',
+                'opposition_group.group_name as opposition_group_name')
+            ->where('criminal_cases.id', $value->id)
+            ->first();
+//dd($data);
+@endphp
                                     <tr>
                                         <td class="sl_no_column">{{ $keys+1 }}</td>
-                                        <td class="court_column
+                                        <td class="court_column">
+
                                             @if (!empty($value->case_infos_sub_seq_court_short_id) || !empty($value->sub_seq_court_short_write))
 
 
@@ -906,6 +1012,43 @@
                                             {{ $value->matter_name }}
                                             {{ $value->matter_write }}
                                         </td>
+                                        <td class="matter_column">
+                                            {{ $value->case_types_name }}
+                                         
+                                        </td>
+                                        @php
+                                        
+                                         $case_logs = DB::table('criminal_case_status_logs')
+                                        ->leftJoin('setup_case_statuses', 'criminal_case_status_logs.updated_case_status_id', '=', 'setup_case_statuses.id')
+                                        ->leftJoin('setup_next_date_reasons', 'criminal_case_status_logs.updated_fixed_for_id', '=', 'setup_next_date_reasons.id')
+                                        ->leftJoin('setup_court_proceedings', 'criminal_case_status_logs.court_proceedings_id', '=', 'setup_court_proceedings.id')
+                                        ->leftJoin('setup_court_last_orders', 'criminal_case_status_logs.updated_court_order_id', '=', 'setup_court_last_orders.id')
+                                        ->leftJoin('setup_day_notes', 'criminal_case_status_logs.updated_day_notes_id', '=', 'setup_day_notes.id')
+                                        ->leftJoin('setup_next_date_reasons as index_reason', 'criminal_case_status_logs.updated_index_fixed_for_id', '=', 'index_reason.id')
+                                        ->leftJoin('setup_external_council_associates', 'criminal_case_status_logs.updated_engaged_advocate_id', '=', 'setup_external_council_associates.id')
+                                        ->leftJoin('setup_next_day_presences', 'criminal_case_status_logs.updated_next_day_presence_id', '=', 'setup_next_day_presences.id')
+                                        ->select('criminal_case_status_logs.*', 'setup_case_statuses.case_status_name', 'setup_next_date_reasons.next_date_reason_name', 'setup_court_proceedings.court_proceeding_name', 'setup_court_last_orders.court_last_order_name', 'setup_day_notes.day_notes_name', 'setup_external_council_associates.first_name', 'setup_external_council_associates.middle_name', 'setup_external_council_associates.last_name', 'setup_next_day_presences.next_day_presence_name', 'index_reason.next_date_reason_name as index_next_date_reason_name')
+                                        ->where(['criminal_case_status_logs.case_id' => $value->id, 'criminal_case_status_logs.delete_status' => 0])
+                                         ->orderBy('criminal_case_status_logs.updated_order_date', 'desc')
+                                        ->skip(1)
+                                        // ->orderByRaw("DATE_FORMAT('Y-m-d',criminal_case_status_logs.updated_order_date), 'desc'")
+                                        ->first();
+                                          //dd($case_logs);
+                                        @endphp
+                                        <td>
+                                         @if(@$case_logs->updated_next_date != null)   
+                                         {{@$case_logs->updated_next_date}}
+                                         @else
+
+                                        @endif
+                                        </td>
+                                       
+                                        <td>
+                                            @if(@$case_logs->next_date_reason_name != null)   
+                                            {{ @$case_logs->next_date_reason_name }}
+                                            @else
+                                            @endif
+                                        </td> 
                                         <td class="steps_notes_column">
                                             {{ $value->updated_remarks_or_steps_taken }}
                                         
@@ -927,6 +1070,14 @@
                                                 @endif
                                             @endif
                                         </td>
+                                                                              
+                                        <td class="steps_notes_column">
+                                             @if($value->lead_laywer_name)
+                                             {{$value->lead_laywer_name}}
+                                             @else
+                                            
+                                             @endif
+                                            </td>
                                         <td> 
                                             <div class="card-tools">
                                            
@@ -945,10 +1096,12 @@
                                                      style="will-change: transform;">
                                                     <a class="dropdown-item btn btn-outline-success" data-toggle="modal" data-target="#modal-lg-send-messages" data-placement="top"
                                                        href=""><i class="fas fa-bell"></i> Send SMS/Mail</a>
-
-                                                    <a class="dropdown-item" data-toggle="modal" data-target="#modal-lg" data-placement="top" title="Update Status"
-                                                       href=""><i class="fas fa-signal"></i> Update</a>
-                                                   <a class="dropdown-item" href="{{ route('add-billing-from-district-court', $value->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-money-bill"></i> CPL</a>
+                                                       
+                                                    <a class="dropdown-item" data-toggle="modal" data-target="#modal-lg-2"  data-placement="top" title="Update Status"
+                                                       href=""><i class="fas fa-signal"></i> CPL</a>
+                                                    {{-- <a class="dropdown-item" data-toggle="modal" data-target="#modal-lg" data-placement="top" title="Update Status"
+                                                       href=""><i class="fas fa-signal"></i> CPL</a> --}}
+                                                   <a class="dropdown-item" href="{{ route('add-billing-from-district-court', $value->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-money-bill"></i> Bill</a>
                                                 </div>
                                             </div>
                                             </div>
@@ -1011,107 +1164,7 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-@php
-$letter_notice_explode = App\Models\CriminalCasesLetterNotice::where('case_id', $value->id)->get()->toArray();
-$documents = App\Models\SetupDocument::where('delete_status', 0)->orderBy('documents_name', 'asc')->get();
-$existing_assignend_external_council = App\Models\SetupExternalCouncilAssociate::where(['external_council_id' => $value->lawyer_advocate_id, 'delete_status' => 0])->orderBy('first_name', 'asc')->get();
 
-$data = DB::table('criminal_cases')
-            ->leftJoin('setup_legal_issues', 'criminal_cases.legal_issue_id', '=', 'setup_legal_issues.id')
-            ->leftJoin('setup_legal_services', 'criminal_cases.legal_service_id', '=', 'setup_legal_services.id')
-            ->leftJoin('setup_complainants', 'criminal_cases.complainant_informant_id', '=', 'setup_complainants.id')
-            ->leftJoin('setup_accuseds', 'criminal_cases.accused_id', '=', 'setup_accuseds.id')
-            ->leftJoin('setup_in_favour_ofs', 'criminal_cases.in_favour_of_id', '=', 'setup_in_favour_ofs.id')
-            ->leftJoin('setup_courts', 'criminal_cases.name_of_the_court_id', '=', 'setup_courts.id')
-            ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', '=', 'setup_next_date_reasons.id')
-            ->leftJoin('setup_modes', 'criminal_cases.mode_of_receipt_id', '=', 'setup_modes.id')
-            ->leftJoin('setup_referrers', 'criminal_cases.referrer_id', '=', 'setup_referrers.id')
-            ->leftJoin('setup_in_favour_ofs as client_party', 'criminal_cases.client_party_id', '=', 'client_party.id')
-            ->leftJoin('setup_client_categories', 'criminal_cases.client_category_id', '=', 'setup_client_categories.id')
-            ->leftJoin('setup_client_subcategories', 'criminal_cases.client_subcategory_id', '=', 'setup_client_subcategories.id')
-            ->leftJoin('setup_clients', 'criminal_cases.client_id', '=', 'setup_clients.id')
-            ->leftJoin('setup_professions', 'criminal_cases.client_profession_id', '=', 'setup_professions.id')
-            ->leftJoin('setup_divisions as client_division', 'criminal_cases.client_division_id', '=', 'client_division.id')
-            ->leftJoin('setup_districts as client_district', 'criminal_cases.client_district_id', '=', 'client_district.id')
-            ->leftJoin('setup_thanas as client_thana', 'criminal_cases.client_thana_id', '=', 'client_thana.id')
-            ->leftJoin('setup_coordinators', 'criminal_cases.client_coordinator_tadbirkar_id', '=', 'setup_coordinators.id')
-            ->leftJoin('setup_in_favour_ofs as opposition_party', 'criminal_cases.opposition_party_id', '=', 'opposition_party.id')
-            ->leftJoin('setup_client_categories as opposition_category', 'criminal_cases.opposition_category_id', '=', 'opposition_category.id')
-            ->leftJoin('setup_client_subcategories as opposition_subcategory', 'criminal_cases.opposition_subcategory_id', '=', 'opposition_subcategory.id')
-            ->leftJoin('setup_clients as opposition', 'criminal_cases.opposition_id', '=', 'opposition.id')
-            ->leftJoin('setup_professions as opposition_profession', 'criminal_cases.opposition_profession_id', '=', 'opposition_profession.id')
-            ->leftJoin('setup_divisions as opposition_division', 'criminal_cases.opposition_division_id', '=', 'opposition_division.id')
-            ->leftJoin('setup_districts as opposition_district', 'criminal_cases.opposition_district_id', '=', 'opposition_district.id')
-            ->leftJoin('setup_thanas as opposition_thana', 'criminal_cases.opposition_thana_id', '=', 'opposition_thana.id')
-            ->leftJoin('setup_coordinators as opposition_coordinator', 'criminal_cases.opposition_coordinator_tadbirkar_id', '=', 'opposition_coordinator.id')
-            ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
-            ->leftJoin('setup_divisions as case_infos_division', 'criminal_cases.case_infos_division_id', '=', 'case_infos_division.id')
-            ->leftJoin('setup_districts as case_infos_district', 'criminal_cases.case_infos_district_id', '=', 'case_infos_district.id')
-            ->leftJoin('setup_thanas as case_infos_thana', 'criminal_cases.case_infos_thana_id', '=', 'case_infos_thana.id')
-            ->leftJoin('setup_case_categories', 'criminal_cases.case_category_id', '=', 'setup_case_categories.id')
-            ->leftJoin('setup_case_subcategories', 'criminal_cases.case_subcategory_id', '=', 'setup_case_subcategories.id')
-            ->leftJoin('setup_case_titles as case_infos_case_title', 'criminal_cases.case_infos_case_title_id', '=', 'case_infos_case_title.id')
-            ->leftJoin('setup_case_titles as sub_seq_case_infos_case_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'sub_seq_case_infos_case_title.id')
-            ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
-            ->leftJoin('setup_case_statuses', 'criminal_cases.case_status_id', '=', 'setup_case_statuses.id')
-            ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
-            ->leftJoin('setup_allegations', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'setup_allegations.id')
-            ->leftJoin('admins', 'criminal_cases.received_by_id', '=', 'admins.id')
-            ->leftJoin('setup_cabinets', 'criminal_cases.cabinet_id', '=', 'setup_cabinets.id')
-            ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
-            ->leftJoin('setup_groups as client_group', 'criminal_cases.client_group_id', '=', 'client_group.id')
-            ->leftJoin('setup_groups as opposition_group', 'criminal_cases.opposition_group_id', '=', 'opposition_group.id')
-            ->select('criminal_cases.*',
-                'setup_legal_issues.legal_issue_name',
-                'setup_legal_services.legal_service_name',
-                'setup_complainants.complainant_name',
-                'setup_accuseds.accused_name',
-                'setup_in_favour_ofs.in_favour_of_name',
-                'setup_courts.court_name',
-                'setup_next_date_reasons.next_date_reason_name',
-                'setup_modes.mode_name',
-                'setup_referrers.referrer_name',
-                'client_party.in_favour_of_name as client_party_name',
-                'setup_client_categories.client_category_name',
-                'setup_client_subcategories.client_subcategory_name',
-                'setup_clients.client_name',
-                'setup_professions.profession_name',
-                'client_division.division_name as client_division_name',
-                'client_district.district_name as client_district_name',
-                'client_thana.thana_name as client_thana_name',
-                'setup_coordinators.coordinator_name',
-                'opposition_party.in_favour_of_name as oppsition_party_name',
-                'opposition_category.client_category_name as opposition_category_name',
-                'opposition_subcategory.client_subcategory_name as opposition_subcategory_name',
-                'opposition.client_name as opposition_name',
-                'opposition_profession.profession_name as opposition_profession_name',
-                'opposition_division.division_name as opposition_division_name',
-                'opposition_district.district_name as opposition_district_name',
-                'opposition_thana.thana_name as opposition_thana_name',
-                'opposition_coordinator.coordinator_name as opposition_coordinator_name',
-                'setup_external_councils.first_name',
-                'setup_external_councils.middle_name',
-                'setup_external_councils.last_name',
-                'case_infos_division.division_name as case_infos_division_name',
-                'case_infos_district.district_name as case_infos_district_name',
-                'case_infos_thana.thana_name as case_infos_thana_name',
-                'setup_case_categories.case_category',
-                'setup_case_subcategories.case_subcategory',
-                'case_infos_case_title.case_title_name as case_infos_case_title_name',
-                'sub_seq_case_infos_case_title.case_title_name as sub_seq_case_infos_case_title_name',
-                'setup_matters.matter_name',
-                'setup_case_statuses.case_status_name',
-                'setup_case_types.case_types_name',
-                'setup_allegations.allegation_name',
-                'admins.name',
-                'setup_cabinets.cabinet_name',
-                'case_infos_title.case_title_name as sub_seq_case_title_name',
-                'client_group.group_name as client_group_name',
-                'opposition_group.group_name as opposition_group_name')
-            ->where('criminal_cases.id', $value->id)
-            ->first();
-
-@endphp
 <div class="modal fade" id="modal-lg-letter-notice">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -1280,6 +1333,255 @@ $data = DB::table('criminal_cases')
 
 {{-- billings log --}}
 {{-- update cases modal --}}
+
+    <!-- /.modal -->
+
+    <div class="modal fade" id="modal-lg-2">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-title"> Update Activities </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('update-criminal-cases-activity', $data->id) }}" method="post">
+                    @csrf
+                    <div class="card-body">
+                        <input type="hidden" name="case_no"
+                               value="{{ $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . ' of ' . $data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null) , @endif
+                               {{ $data->sub_seq_case_title_name }}
+                               @php
+                                   $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+                                   $key = array_key_last($case_infos_sub_seq_case_no);
+                                   echo $case_infos_sub_seq_case_no[$key];
+
+                                   $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
+                                   $key = array_key_last($case_infos_sub_seq_case_year);
+                                   $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                   if ($last_case_no != null) {
+                                       echo '/'.$last_case_no;
+                                   }
+                               @endphp">
+
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="form-group row">
+                                    <label for="activity_date" class="col-sm-4 col-form-label"> Date
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <span class="date_span_status_modal">
+                                            <input type="date" class="xDateContainer date_first_input"
+                                                   onchange="setCorrect(this,'activity_date');"><input type="text"
+                                                                                                       id="activity_date" name="activity_date"
+                                                                                                       value="dd-mm-yyyy"
+                                                                                                       class="date_second_input" tabindex="-1"><span
+                                                class="date_second_span"
+                                                tabindex="-1">&#9660;</span>
+                                        </span>
+
+                                        @error('activity_date')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="activity_action" class="col-sm-4 col-form-label"> Activity/Action </label>
+                                    <div class="col-sm-8">
+                                        <textarea name="activity_action" class="form-control" rows="2"
+                                                  placeholder="">{{old('activity_action')}}</textarea>
+                                        @error('activity_action')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="activity_progress" class="col-sm-4 col-form-label">Progress</label>
+                                    <div class="col-sm-8">
+                                        <textarea name="activity_progress" class="form-control" rows="2"
+                                                  placeholder="">{{old('activity_progress')}}</textarea>
+                                        @error('activity_progress')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="activity_mode_id" class="col-md-4 col-form-label"> Mode
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <select name="activity_mode_id" class="form-control select2">
+                                                    <option value="">Select</option>
+                                                    @foreach ($mode as $item)
+                                                        <option value="{{ $item->id }}"
+                                                            {{ old('activity_mode_id') == $item->mode_name ? 'selected' : '' }}>
+                                                            {{ $item->mode_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="activity_mode_write" placeholder="Mode"
+                                                       name="activity_mode_write">
+                                            </div>
+
+                                        </div>
+
+                                        @error('activity_mode_write')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="start_time" class="col-sm-4 col-form-label">Start Time</label>
+                                    <div class="col-sm-8">
+                                        <input type="datetime-local" class="form-control" id="start_time"
+                                               name="start_time">
+                                        @error('start_time')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="end_time" class="col-sm-4 col-form-label">End Time</label>
+                                    <div class="col-sm-8">
+                                        <input type="datetime-local" class="form-control" id="end_time"
+                                               name="end_time">
+                                        @error('end_time')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="setup_hours" class="col-sm-4 col-form-label">Time Spent</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="setup_hours" name="setup_hours"
+                                               readonly>
+                                        @error('setup_hours')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="time_spend_manual" class="col-sm-4 col-form-label">Time Spent</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="time_spend_manual" name="time_spend_manual">
+                                        @error('time_spend_manual')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <div class="form-group row">
+                                    <label for="activity_engaged_id" class="col-md-4 col-form-label"> Engaged
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <select name="activity_engaged_id[]" data-placeholder="Select"
+                                                        class="form-control select2" multiple>
+                                                    <option value="">Select</option>
+                                                    @foreach ($external_council as $item)
+                                                        <option
+                                                            value="{{ $item->first_name . ' ' . $item->last_name }}"
+                                                            {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
+                                                            {{ $item->first_name }}
+                                                            {{ $item->last_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" id="activity_engaged_write"
+                                                       placeholder="Activity Engaged" name="activity_engaged_write">
+                                            </div>
+                                        </div>
+
+                                        @error('activity_mode_write')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="activity_forwarded_to_id" class="col-md-4 col-form-label"> Forwarded To
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <select name="activity_forwarded_to_id[]" class="form-control select2" data-placeholder="Select"
+                                                        multiple>
+                                                    <option value="">Select</option>
+                                                    @foreach ($external_council as $item)
+                                                        <option value="{{ $item->id }}"
+                                                            {{ old('activity_forwarded_to_id') == $item->id ? 'selected' : '' }}>
+                                                            {{ $item->first_name }}
+                                                            {{ $item->last_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control"
+                                                       id="activity_forwarded_to_write" placeholder="Forwarded To"
+                                                       name="activity_forwarded_to_write">
+                                            </div>
+                                        </div>
+
+                                        @error('activity_forwarded_to_write')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="activity_requirements" class="col-sm-4 col-form-label">Requirements</label>
+                                    <div class="col-sm-8">
+                                        <textarea name="activity_requirements" class="form-control" rows="2"
+                                                  placeholder="">{{old('activity_requirements')}}</textarea>
+                                        @error('client')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="activity_remarks" class="col-sm-4 col-form-label">Note</label>
+                                    <div class="col-sm-8">
+                                        <textarea name="activity_remarks" class="form-control" rows="2"
+                                                  placeholder="">{{old('activity_remarks')}}</textarea>
+                                        @error('client')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i>
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
  <!-- /.modal -->
 
  <div class="modal fade" id="modal-lg">
@@ -1307,6 +1609,9 @@ $data = DB::table('criminal_cases')
                                                     <select name="updated_case_status_id" id="updated_case_status_id"
                                                             class="form-control select2">
                                                         <option value="">Select</option>
+                                                        @php
+                                                        $case_status=App\Models\SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
+                                                        @endphp
                                                         @foreach ($case_status as $item)
                                                             <option value="{{ $item->id }}"
                                                                     @if (!empty($previous_activity->updated_case_status_id) && $previous_activity->updated_case_status_id == $item->id) selected @else {{ old('updated_case_status_id') == $item->id ? 'selected' : '' }} @endif>
@@ -1339,8 +1644,8 @@ $data = DB::table('criminal_cases')
                                                        onchange="setCorrect(this,'updated_order_date');"><input
                                                     type="text" id="updated_order_date" name="updated_order_date"
 
-                                                    @if (!empty($previous_activity->updated_next_date) && $previous_activity->updated_next_date != null)
-                                                        value="{{ date('d/m/Y', strtotime($previous_activity->updated_next_date)) }}"
+                                                    @if (!empty(@$previous_activity->updated_next_date) && @$previous_activity->updated_next_date != null)
+                                                        value="{{ date('d/m/Y', strtotime(@$previous_activity->updated_next_date)) }}"
                                                     @else
                                                         value="dd-mm-yyyy"
                                                     @endif
