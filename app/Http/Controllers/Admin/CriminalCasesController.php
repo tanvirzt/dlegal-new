@@ -2748,7 +2748,7 @@ class CriminalCasesController extends Controller
         }
         $data->delete_status = $delete_status;
         $data->save();
-
+     
         session()->flash('success', 'Criminal Cases Status Deleted.');
         return redirect()->back();
     }

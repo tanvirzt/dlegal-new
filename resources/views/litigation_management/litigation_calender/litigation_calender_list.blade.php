@@ -1099,6 +1099,7 @@ $data = DB::table('criminal_cases')
                                                        
                                                     <a class="dropdown-item" data-toggle="modal" data-target="#modal-lg-2"  data-placement="top" title="Update Status"
                                                        href=""><i class="fas fa-signal"></i> CPL</a>
+                                                       {{-- Button --}}
                                                     {{-- <a class="dropdown-item" data-toggle="modal" data-target="#modal-lg" data-placement="top" title="Update Status"
                                                        href=""><i class="fas fa-signal"></i> CPL</a> --}}
                                                    <a class="dropdown-item" href="{{ route('add-billing-from-district-court', $value->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-money-bill"></i> Bill</a>
