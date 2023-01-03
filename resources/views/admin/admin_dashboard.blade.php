@@ -1,5 +1,6 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
+
     <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
@@ -10,7 +11,7 @@
                     <div class="col-sm-6">
 
 
-                        @php
+                        {{-- @php
 
                             $civil_case = App\Models\CivilCases::where('delete_status', 0)->count();
                             $criminal_case = App\Models\CriminalCase::where('delete_status', 0)->count();
@@ -21,7 +22,7 @@
 
                             $total_cases = $civil_case + $criminal_case + $quassi_case + $labour_case + $supreme_case + $high_case;
 
-                        @endphp
+                        @endphp --}}
 
 
                     </div>
@@ -168,13 +169,17 @@
                              
                             </div>
                             <div class="card-body">
-                                <div id="case_category" style="max-width: 500px;height: 370px;margin: 0px auto;"></div>
+                                <div id="case-category" style="max-width: 500px;height: 370px;margin: 0px auto;"></div>
                             </div>
                         </div>
         
                     </div>
                 </div>
+            </div>
+        </section>
 
+        <section class="content">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="card">
@@ -183,113 +188,135 @@
 
                             </div>
                             <div class="card-body">
-                                <div id="chartDiv" style="max-width: 740px;height: 400px;margin: 0px auto">
+                                <div id="case-disposed" style="max-width: 740px;height: 400px;margin: 0px auto">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                       
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h3 class="card-title">Case proceeding log</h3>
+                                    </div>
+                                    <div class="col-sm-6 d-flex flex-row-reverse">
+                                        <button id="case-but-onchange" class="btn btn-outline-dark btn-sm" value="1" >Case</button>
+                                    </div>
+                                </div>
+                               
+                             
+                            </div>
+                            <div class="card-body" id="civil-card">
+                                <div id="case-log-civil" style="max-width: 500px;height: 393px;margin: 0px auto;"></div>
+                            </div>
+
+
+                            <div class="card-body" id="civil-criminal" style="display: none">
+                                <div id="case-log-criminal" style="max-width: 500px;height: 393px;margin: 0px auto;"></div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
                 <!-- Main content -->
-                <section class="content">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                @if (Session::has('success'))
-                                    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-                                        {{ Session::get('success') }}
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                @endif
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3 class="card-title"> Task List </h3>
-
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <div class="card-body">
-                                        <table style="font-size:12px" id="data_table" class="table dataTable no-footer dtr-inline">
-                                            <thead>
-                                                <tr>
-                                                    <th class=" text-nowrap">Status</th>
-                                                    <th class="text-center text-nowrap">Title</th>
-                                                    <th class="text-center text-nowrap">Date</th>
-                                                    <th class="text-center text-nowrap">Priority</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($tasks as $datum)
-                                                    <tr>
-                                                        <td>
-                                                            <div class="row">
-                                                                <div class="col-2">
-                                                                    <i class="fa fa-circle" style="color:
-
-                                                                    {{$datum->current_status == 'To Do' ? 'grey' : ''}}
-                                                                    {{$datum->current_status == 'In Progress' ? 'yellow' : ''}}
-                                                                    {{$datum->current_status == 'Due' ? 'red' : ''}}
-                                                                    {{$datum->current_status == 'Complete' ? 'green' : ''}}
-
-                                                                    "></i>
-                                                                </div>
-                                                                <div class="col-10">
-                                                                    <form action="{{ route('task.change.status', $datum->id) }}"
-                                                                        method="post">
-                                                                        @csrf
-                                                                        @method('PUT')
-                                                                        <select class="select2 form-control-sm"
-                                                                            name="current_status" onchange="this.form.submit()">
-                                                                            <option value="In Progress"
-                                                                                {{ $datum->current_status == 'In Progress' ? 'selected' : false }}>
-                                                                                In Progress</option>
-                                                                            <option value="To Do"
-                                                                                {{ $datum->current_status == 'To Do' ? 'selected' : false }}>
-                                                                                To Do</option>
-                                                                            <option value="Due"
-                                                                                {{ $datum->current_status == 'Due' ? 'selected' : false }}>
-                                                                                Due</option>
-                                                                            <option value="Complete"
-                                                                                {{ $datum->current_status == 'Complete' ? 'selected' : false }}>
-                                                                                Complete</option>
-                                                                        </select>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-
-
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <a href="{{route('task.show',$datum->id)}}" class="text-dark text-underline"><u>{{ $datum->title }}</u></a>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            {{ $datum->date }}
-                                                        </td>
-                                                        <td class="text-center">
-                                                            {{ $datum->priority }}
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-
-                                        </table>
-                                    </div>
-                                    <!-- /.card-body -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @if (Session::has('success'))
+                                <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                                    {{ Session::get('success') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                                <!-- /.card -->
+                            @endif
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"> Task List </h3>
+
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table style="font-size:12px" id="data_table" class="table dataTable no-footer dtr-inline">
+                                        <thead>
+                                            <tr>
+                                                <th class=" text-nowrap">Status</th>
+                                                <th class="text-center text-nowrap">Title</th>
+                                                <th class="text-center text-nowrap">Date</th>
+                                                <th class="text-center text-nowrap">Priority</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($tasks as $datum)
+                                                <tr>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-2">
+                                                                <i class="fa fa-circle" style="color:
+
+                                                                {{$datum->current_status == 'To Do' ? 'grey' : ''}}
+                                                                {{$datum->current_status == 'In Progress' ? 'yellow' : ''}}
+                                                                {{$datum->current_status == 'Due' ? 'red' : ''}}
+                                                                {{$datum->current_status == 'Complete' ? 'green' : ''}}
+
+                                                                "></i>
+                                                            </div>
+                                                            <div class="col-10">
+                                                                <form action="{{ route('task.change.status', $datum->id) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <select class="select2 form-control-sm"
+                                                                        name="current_status" onchange="this.form.submit()">
+                                                                        <option value="In Progress"
+                                                                            {{ $datum->current_status == 'In Progress' ? 'selected' : false }}>
+                                                                            In Progress</option>
+                                                                        <option value="To Do"
+                                                                            {{ $datum->current_status == 'To Do' ? 'selected' : false }}>
+                                                                            To Do</option>
+                                                                        <option value="Due"
+                                                                            {{ $datum->current_status == 'Due' ? 'selected' : false }}>
+                                                                            Due</option>
+                                                                        <option value="Complete"
+                                                                            {{ $datum->current_status == 'Complete' ? 'selected' : false }}>
+                                                                            Complete</option>
+                                                                    </select>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="{{route('task.show',$datum->id)}}" class="text-dark text-underline"><u>{{ $datum->title }}</u></a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->date }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->priority }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
                             </div>
-                            <!-- /.col -->
+                            <!-- /.card -->
                         </div>
-                        <!-- /.row -->
+                        <!-- /.col -->
                     </div>
-                    <!-- /.container-fluid -->
-                </section>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
                 <!-- /.content -->
 
     </div>
@@ -419,7 +446,7 @@
     // })
 
 
-    JSC.chart('case_category', {
+    JSC.chart('case-category', {
         debug: true,
         defaultSeries: { type: 'pieDonut', shape_center: '50%,50%' },
         // title: {
@@ -468,33 +495,142 @@
             )
           }
         ]
-      });
+    });
 
 
 
- var chart = JSC.chart('chartDiv', { 
-         debug: true, 
-        defaultSeries_type: 'column', 
-        yAxis: { label_text: 'No. of Cases' }, 
-        xAxis: { 
-            label_text: 'Month', 
-            categories: ["Jan", "Feb", "Mar", "Apr", "May","June","July","Aug","Sept","Oct","Nov","Des"],
-        }, 
-        legend: { template: '{%value} %icon %name', position: 'top' },
-        series: [ 
-            { 
-            name: 'Case Filling', 
-            id: 's1', 
-            points: @json($caseFilling) 
+    JSC.chart('case-disposed', { 
+            debug: true, 
+            defaultSeries_type: 'column', 
+            yAxis: { label_text: 'No. of Cases' }, 
+            xAxis: { 
+                label_text: 'Month', 
+                categories: ["Jan", "Feb", "Mar", "Apr", "May","June","July","Aug","Sept","Oct","Nov","Des"],
             }, 
-            { 
-            name: 'Case Disposed', 
-            points: @json($caseDisposed) 
-            }
-        ] 
+            legend: { template: '{%value} %icon %name', position: 'top' },
+            series: [ 
+                { 
+                name: 'Case Filling', 
+                id: 's1', 
+                points: @json($caseFilling) 
+                }, 
+                { 
+                name: 'Case Disposed', 
+                points: @json($caseDisposed) 
+                }
+            ] 
+    });
+
+    JSC.chart('case-log-civil',{
+     debug: true,
+        defaultSeries: { type: 'pieDonut', shape_center: '50%,50%' },
+        // title: {
+        //   label: {
+        //     text: 'All Cases',
+        //     style_fontSize: 16
+        //   },
+        //   position: 'center'
+        // },
+        defaultPoint: {
+          tooltip: '<b>%name</b><br>total_cases: <b>{%yValue}</b>'
+        },
+        legend: { template: '{%value} %icon %name', position: 'right' },
+        series: [
+          {
+            name: 'Type',
+            points: [
+              { x: 'Civil', y: 60, legendEntry: { sortOrder: 1 } },
+            ],
+            shape: { innerSize: '0%', size: '40%' },
+            defaultPoint_label: {
+              text: '<b>%name</b>',
+              placement: 'inside'
+            },
+            palette: ['#179199']
+          },
+          {
+            name: 'Category',
+            points: [
+              { x: 'Filling ', y: 5, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
+              { x: 'Admission of Suit', y: 2 , legendEntry_sortOrder: 2, attributes_year: 'Civil' },
+              { x: 'Summon ', y:3, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
+              { x: 'Written Statement .', y:6, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
+              { x: 'Set Off', y:4, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
+              { x: 'Issue Frame ', y:3, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
+              { x: 'PH', y:4, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
+              { x: 'F. PH ', y:3, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
+              { x: 'Argument', y:4, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
+              { x: 'Order & Decree', y:6, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
+             
+            ],
+            defaultPoint_tooltip: '<b>%year %name</b><br>total_cases: <b>{%yValue}</b>',
+            shape: { innerSize: '55%', size: '80%' },
+            palette: JSC.colorToPalette('#179199', { lightness: 0.4 }, 4, 0)
+          }
+        ]
+    });
+
+   
+
+    $('#case-but-onchange').on('click', function(){
+      if ($(this).val() == "0") {
+        $(this).val("1")
+        $('#civil-criminal').hide();
+        $('#civil-card').show();
+     
+      }else{
+        $(this).val("0")
+        $('#civil-card').hide();
+        $('#civil-criminal').show();
+        JSC.chart('case-log-criminal',{
+            debug: false,
+                defaultSeries: { type: 'pieDonut', shape_center: '50%,50%' },
+                // title: {
+                //   label: {
+                //     text: 'All Cases',
+                //     style_fontSize: 16
+                //   },
+                //   position: 'center'
+                // },
+                defaultPoint: {
+                tooltip: '<b>%name</b><br>total_cases: <b>{%yValue}</b>'
+                },
+                legend: { template: '{%value} %icon %name', position: 'right' },
+                series: [
+                {
+                    points: [
+                     { x: 'Criminal', y: 120, legendEntry: { sortOrder: 1 } },
+                    ],
+                    shape: { innerSize: '0%', size: '45%' },
+                    defaultPoint_label: {
+                    text: '<b>%name</b>',
+                    placement: 'inside'
+                    },
+                    palette: ['#b214de']
+                },
+                {
+                    points: [
+                    { x: 'Filling ', y: 15, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
+                    { x: 'Summon', y: 5 , legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
+                    { x: 'Investigation ', y:10, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
+                    { x: 'Warrant of Arrest (W&A) ', y:20, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
+                    { x: 'WP&A', y:5, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
+                    { x: 'Paper Publication', y:30, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
+                    { x: 'Ready for Trial (RFT)', y:20, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
+                    { x: 'Charge Hearing', y:4, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
+                    { x: 'Witness', y:5, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
+                    { x: 'Argument', y:5, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
+                    { x: 'Judgment', y:10, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
+                    
+                    ],
+                    defaultPoint_tooltip: '<b>%year %name</b><br>total_cases: <b>{%yValue}</b>',
+                    shape: { innerSize: '55%', size: '90%' },
+                    palette: JSC.colorToPalette('#b214de', { lightness: 0.4 }, 4, 0)
+                }
+                ]
         });
-
-
-    });    
+      }
+    })
+});    
 </script>
 
