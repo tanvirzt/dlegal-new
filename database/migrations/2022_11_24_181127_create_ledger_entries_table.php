@@ -29,6 +29,7 @@ class CreateLedgerEntriesTable extends Migration
             $table->string('payment_type')->nullable();
             $table->string('ledger_head_bill_id')->nullable();
             $table->string('bill_amount')->nullable();
+            $table->string('paid_amount')->nullable();
             $table->string('income_paid_amount')->nullable();
             $table->string('expense_paid_amount')->nullable();
             $table->string('remarks')->nullable();

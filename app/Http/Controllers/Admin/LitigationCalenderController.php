@@ -122,7 +122,7 @@ class LitigationCalenderController extends Controller
         return view('litigation_management.litigation_calender.print', compact( 'criminal_cases','client_name','matter','criminal_cases_count','external_council','print_date'));
     }
 
-    public function litigation_calender_list()
+    public function  litigation_calender_list()
     {
 
         $criminal_cases_count = DB::table('criminal_cases')->distinct()->orderBy('next_date', 'asc')->where('delete_status', 0)->count(['next_date']);

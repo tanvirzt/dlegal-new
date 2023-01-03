@@ -330,7 +330,6 @@
 
 
                                                             @foreach ($data as $key => $datum)
-
                                                                 <tr>
                                                                     <td>
                                                                         {{ $key + 1 }}
@@ -346,22 +345,13 @@
                                                                     <td>
                                                                         {{ $datum->bill_amount }}
                                                                     </td>
-
                                                                     <td>
-
-                                                                            {{ (int)$datum->paid_amount }}
-
+                                                                        @foreach ($datum->ledger as $ledger)
+                                                                            {{ $ledger->paid_amount }} <br>
+                                                                        @endforeach
                                                                     </td>
                                                                     <td>
-
-
-                                                                        @php
-                                                                         $sum=0;
-                                                                        $paid=(int)$datum->paid_amount;
-                                                                        $sum=$sum+$paid;
-                                                                        @endphp
-                                                                        {{ $datum->bill_amount - $sum }}
-
+                                                                        {{ $datum->bill_amount - $datum->ledger->sum('paid_amount') }}
                                                                     </td>
 
 
@@ -383,20 +373,12 @@
                                                                         @endphp
                                                                         {{ $pd_amnt }}
                                                                     @else
-
-                                                                     @foreach($data as $item)
-                                                                     @php
-                                                                     $data1=0;
-                                                                     $paidamount=(int)$item->paid_amount;
-                                                                     $data1=$data1+$paidamount;
-
-                                                                    @endphp
-                                                                    @endforeach
+                                                                        {{ $ledger->sum('paid_amount') }}
                                                                     @endif
 
-
                                                                 </td>
-                                                                 <td>{{ $data->sum('bill_amount') - (!empty($is_search) ? $pd_amnt : $data1 )}}
+
+                                                                <td>{{ $data->sum('bill_amount') - (!empty($is_search) ? $pd_amnt : $ledger->sum('paid_amount')) }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>

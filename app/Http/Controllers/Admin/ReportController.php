@@ -486,12 +486,16 @@ class ReportController extends Controller
         ];
 
         $data = CaseBilling::with('ledger')->get();
-
+        // $data =DB::table('ledger_entries')
+        // ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+        // ->select('case_billings.*','ledger_entries.*')
+        // ->get();
+       // dd($data);
         $ledger_head = LedgerHead::all();
         $is_search = 'Searched';
         $clients = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();
 
-        return view('report_management.accounts.balance_report', compact('data', 'request_data', 'ledger_head', 'clients'));
+        return view('report_management.accounts.test', compact('data', 'request_data', 'ledger_head', 'clients'));
     }
 
     public function balance_report_search(Request $request)
@@ -523,7 +527,7 @@ class ReportController extends Controller
                 $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client_id]);
                 break;
             case $request->class_of_cases != null && $request->case_no == null && $request->client != null:
-                $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client_id]);  
+                $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client_id]);
                 break;
             default:
                 $query2 = $query;
@@ -536,7 +540,7 @@ class ReportController extends Controller
         $clients = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();
 
 
-        return view('report_management.accounts.balance_report', compact('data', 'request_data', 'ledger_head', 'is_search', 'bill_no', 'clients'));
+        return view('report_management.accounts.t', compact('data', 'request_data', 'ledger_head', 'is_search', 'bill_no', 'clients'));
     }
 
     public function print_balance_report(Request $request)
