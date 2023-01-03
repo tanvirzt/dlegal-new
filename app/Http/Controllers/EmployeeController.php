@@ -21,7 +21,9 @@ class EmployeeController extends Controller
     }
     public function employee_new()
     {
-       $data = Counsel::where('counsel_type','Staff')->get();
+       $data = Counsel::where('counsel_type','Staff')
+        ->orwhere('counsel_type','Internal')
+       ->get();
         return view('employee.employee_new', compact('data'));
     }
 

@@ -322,7 +322,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('edit-case-category/{id}',[AdminSetupController::class, 'edit_case_category'])->name('edit-case-category');
     Route::post('update-case-category/{id}',[AdminSetupController::class, 'update_case_category'])->name('update-case-category');
     Route::post('delete-case-category/{id}',[AdminSetupController::class, 'delete_case_category'])->name('delete-case-category');
-// supreme-case-subcategory setup
+
+    // supreme-case-subcategory setup
 
     Route::get('case-subcategory',[AdminSetupController::class, 'case_subcategory'])->name('case-subcategory');
     Route::get('add-case-subcategory',[AdminSetupController::class, 'add_case_subcategory'])->name('add-case-subcategory');
