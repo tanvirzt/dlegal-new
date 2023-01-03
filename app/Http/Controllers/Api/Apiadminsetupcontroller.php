@@ -43,6 +43,7 @@ use App\models\SetupClientSubcategory;
 use App\models\SetupNextDayPresence;
 use App\models\SetupLegalIssue;
 use App\models\SetupLegalService;
+use App\models\SetupMatter;
 use App\models\SetupCoordinator;
 use App\models\SetupMode;
 use App\models\SetupCourtProceeding;
@@ -52,6 +53,21 @@ use App\models\SetupReferrer;
 use App\models\SetupParty;
 use App\models\SetupClient;
 use App\models\SetupClientName;
+use App\models\SetupProfession;
+use App\models\SetupDocument;
+use App\models\SetupDocumentsType;
+use App\models\SetupCaseTitle;
+use App\models\SetupOpposition;
+use App\models\SetupComplainant;
+use App\models\SetupAccused;
+use App\models\SetupCourtShort;
+use App\models\SetupProgress;
+use App\models\SetupBillParticular;
+use App\models\SetupParticulars;
+use App\models\BillSchedule;
+use App\models\PaymentMode;
+use App\models\SetupGroup;
+use App\models\SetupCabinet;
 use Illuminate\Http\Request;
 
 class ApiAdminSetupController extends Controller
@@ -1966,6 +1982,8 @@ public function delete_legal_issue($id)
         "message" => " data deleted successfully"
     ]);
 }
+
+
 public function legal_service()
 {
     $data = SetupLegalService::where('delete_status',0)->get();
@@ -2008,6 +2026,60 @@ public function update_legal_service(Request $request, $id)
 public function delete_legal_service($id)
 {
     $data =  SetupLegalService::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function matter()
+{
+    $data = SetupMatter::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_matter(Request $request)
+    {
+        $data = new  SetupMatter();
+        $data->case_class_id= $request->case_class_id;
+        $data->case_category_id= $request->case_category_id;
+        $data->matter_name= $request->matter_name;
+        
+       
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_matter(Request $request, $id)
+{
+    $data =  SetupMatter::find($id);
+    $data->case_class_id= $request->case_class_id;
+    $data->case_category_id= $request->case_category_id;
+    $data->matter_name= $request->matter_name;
+    
+    
+    
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_matter($id)
+{
+    $data =  SetupMatter::find($id);
     $data->delete_status=1;
     $data->update();
     return response()->json([
@@ -2479,4 +2551,755 @@ public function delete_client_name($id)
         "message" => " data deleted successfully"
     ]);
 }
+public function profession()
+{
+    $data =SetupProfession::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
 }
+public function add_profession(Request $request)
+    {
+        $data = new  SetupProfession();
+        $data->profession_name= $request->profession_name;
+        
+        
+       
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_profession(Request $request, $id)
+{
+    $data =   SetupProfession::find($id);
+    $data->profession_name= $request->profession_name;
+    
+    
+    
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_profession($id)
+{
+    $data =    SetupProfession::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function documents()
+{
+    $data =SetupDocument::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_documents(Request $request)
+    {
+        $data = new  SetupDocument();
+        $data->documents_name= $request->documents_name;
+        
+        
+       
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_documents(Request $request, $id)
+{
+    $data =   SetupDocument::find($id);
+    $data->documents_name= $request->documents_name;
+    
+    
+    
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_documents($id)
+{
+    $data =    SetupDocument::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function documents_type()
+{
+    $data =SetupDocumentsType::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_documents_type(Request $request)
+    {
+        $data = new  SetupDocumentsType();
+        $data->documents_type_name= $request->documents_type_name;
+        
+        
+       
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_documents_type(Request $request, $id)
+{
+    $data =  SetupDocumentsType ::find($id);
+    $data->documents_type_name= $request->documents_type_name;
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_documents_type($id)
+{
+    $data =   SetupDocumentsType ::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function case_title()
+{
+    $data =SetupCaseTitle::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_case_title(Request $request)
+    {
+        $data = new  SetupCaseTitle();
+        $data->case_type= $request->case_type;
+        $data->case_title_name= $request->case_title_name;
+        
+       
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_case_title(Request $request, $id)
+{
+    $data =   SetupCaseTitle::find($id);
+    $data->case_type= $request->case_type;
+    $data->case_title_name= $request->case_title_name;
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_case_title($id)
+{
+    $data =    SetupCaseTitle::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function opposition()
+{
+    $data =SetupOpposition::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_opposition(Request $request)
+    {
+        $data = new  SetupOpposition();
+        $data->opposition_name= $request->opposition_name;
+        $data->opposition_mobile= $request->opposition_mobile;
+        $data->opposition_email= $request->opposition_email;
+        $data->opposition_address= $request->opposition_address;
+        
+       
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_opposition(Request $request, $id)
+{
+    $data =   SetupOpposition::find($id);
+    $data->opposition_name= $request->opposition_name;
+    $data->opposition_mobile= $request->opposition_mobile;
+    $data->opposition_email= $request->opposition_email;
+    $data->opposition_address= $request->opposition_address;
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_opposition($id)
+{
+    $data =   SetupOpposition ::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function complainant()
+{
+    $data =SetupComplainant::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_complainant(Request $request)
+    {
+        $data = new  SetupComplainant();
+        $data->complainant_name= $request->complainant_name;
+        $data->complainant_mobile= $request->complainant_mobile;
+        $data->complainant_email= $request->complainant_email;
+        $data->complainant_address= $request->complainant_address;
+        
+       
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_complainant(Request $request, $id)
+{
+    $data =   SetupComplainant::find($id);
+    $data->complainant_name= $request->complainant_name;
+    $data->complainant_mobile= $request->complainant_mobile;
+    $data->complainant_email= $request->complainant_email;
+    $data->complainant_address= $request->complainant_address;
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_complainant($id)
+{
+    $data =    SetupComplainant::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function accused()
+{
+    $data =SetupAccused::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_accused(Request $request)
+    {
+        $data = new  SetupAccused();
+        $data->accused_name= $request->accused_name;
+        $data->accused_mobile= $request->accused_mobile;
+        $data->accused_email= $request->accused_email;
+        $data->accused_address= $request->accused_address;
+        
+       
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_accused(Request $request, $id)
+{
+    $data =   SetupAccused::find($id);
+    $data->accused_name= $request->accused_name;
+    $data->accused_mobile= $request->accused_mobile;
+    $data->accused_email= $request->accused_email;
+    $data->accused_address= $request->accused_address;
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_accused($id)
+{
+    $data =    SetupAccused::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function court_short()
+{
+    $data =SetupCourtShort::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_court_short(Request $request)
+    {
+        $data = new  SetupCourtShort();
+        $data->case_type= $request->case_type;
+        $data->court_short_name= $request->court_short_name;
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_court_short(Request $request, $id)
+{
+    $data =   SetupCourtShort::find($id);
+    $data->case_type= $request->case_type;
+    $data->court_short_name= $request->court_short_name;
+    
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_court_short($id)
+{
+    $data =    SetupCourtShort::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function progress()
+{
+    $data =SetupProgress::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_progress(Request $request)
+    {
+        $data = new  SetupProgress();
+        $data->progress_name= $request->progress_name;
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_progress(Request $request, $id)
+{
+    $data =   SetupProgress::find($id);
+    $data->progress_name= $request->progress_name;
+    
+    
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_progress($id)
+{
+    $data =    SetupProgress::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function bill_particulars()
+{
+    $data =SetupBillParticular::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_bill_particulars(Request $request)
+    {
+        $data = new  SetupBillParticular();
+        $data->bill_particulars_name= $request->bill_particulars_name;
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_bill_particulars(Request $request, $id)
+{
+    $data =   SetupBillParticular::find($id);
+    $data->bill_particulars_name= $request->bill_particulars_name;
+    
+    
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_bill_particulars($id)
+{
+    $data =    SetupBillParticular::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function particulars()
+{
+    $data =SetupParticulars::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_particulars(Request $request)
+    {
+        $data = new  SetupParticulars();
+        $data->particulars_name= $request->particulars_name;
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_particulars(Request $request, $id)
+{
+    $data =   SetupParticulars::find($id);
+    $data->particulars_name= $request->particulars_name;
+    
+    
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_particulars($id)
+{
+    $data =    SetupParticulars::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function bill_schedule()
+{
+    $data =BillSchedule::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_bill_schedule(Request $request)
+    {
+        $data = new  BillSchedule();
+        $data->bill_schedule_name= $request->bill_schedule_name;
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_bill_schedule(Request $request, $id)
+{
+    $data =   BillSchedule::find($id);
+    $data->bill_schedule_name= $request->bill_schedule_name;
+    
+    
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_bill_schedule($id)
+{
+    $data =    BillSchedule::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function payment_mode()
+{
+    $data =PaymentMode::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_payment_mode(Request $request)
+    {
+        $data = new  PaymentMode();
+        $data->payment_mode_name= $request->payment_mode_name;
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_payment_mode(Request $request, $id)
+{
+    $data =  PaymentMode::find($id);
+    $data->payment_mode_name= $request->payment_mode_name;
+    
+    
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_payment_mode($id)
+{
+    $data =    PaymentMode::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function group()
+{
+    $data =SetupGroup::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+public function add_group(Request $request)
+    {
+        $data = new  SetupGroup();
+        $data->group_name= $request->group_name;
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_group(Request $request, $id)
+{
+    $data =  SetupGroup::find($id);
+    $data->group_name= $request->group_name;
+    
+    
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+public function delete_group($id)
+{
+    $data =    SetupGroup::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function cabinet()
+{
+    $data =SetupCabinet::where('delete_status',0)->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+
+public function add_cabinet(Request $request)
+    {
+        $data = new  SetupCabinet();
+        $data->cabinet_name= $request->cabinet_name;
+       
+        
+        $data->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => " data added successfully"
+        ]);
+}
+public function update_cabinet(Request $request, $id)
+{
+    $data =  SetupCabinet::find($id);
+    $data->cabinet_name= $request->cabinet_name;
+    
+    
+        
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data updated successfully"
+    ]);
+}
+
+public function delete_cabinet($id)
+{
+    $data =    SetupCabinet::find($id);
+    $data->delete_status=1;
+    $data->update();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => " data deleted successfully"
+    ]);
+}
+public function search($name)
+{
+    $data =SetupCabinet::where("cabinet_name","like", "%". $name. "%")->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
+}
+}
+
+
+
+
+
+

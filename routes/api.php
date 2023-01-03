@@ -3,9 +3,9 @@
 use App\Http\Controllers\Admin\AdminSetupController;
 
 
-use App\Http\Controllers\Api\ApiAdmininternalcouncilcontroller;
 
-use App\Http\Controllers\Api\ApiAdminmattercontroller;
+
+
 use App\Http\Controllers\Api\ApiAdminSetupController;
 use App\Http\Controllers\Api\ApiAuthController;
 use App\Http\Controllers\Api\PermissionTestController;
@@ -33,10 +33,7 @@ Route::get('/test',[PermissionTestController::class,'index']);
 
 
 
-route::get("matter",[ApiAdminmattercontroller::class,"index"]);
-route::post("add_matter",[ApiAdminmattercontroller::class,"add"]);
-route::put("update_matter/{id}",[ApiAdminmattercontroller::class,"update"]);
-route::delete("delete_matter/{id}",[ApiAdminmattercontroller::class,"delete"]);
+
 
 
 
@@ -241,6 +238,11 @@ route::post("add_legal_service",[ApiAdminSetupController::class,"add_legal_servi
 route::put("update_legal_service/{id}",[ApiAdminSetupController::class,"update_legal_service"]);
 route::delete("delete_legal_service/{id}",[ApiAdminSetupController::class,"delete_legal_service"]);
 
+route::get("matter",[ApiAdminSetupController::class,"matter"]);
+route::post("add_matter",[ApiAdminSetupController::class,"add_matter"]);
+route::put("update_matter/{id}",[ApiAdminSetupController::class,"update_matter"]);
+route::delete("delete_matter/{id}",[ApiAdminSetupController::class,"delete_matter"]);
+
 route::get("coordinator",[ApiAdminSetupController::class,"coordinator"]);
 route::post("add_coordinator",[ApiAdminSetupController::class,"add_coordinator"]);
 route::put("update_coordinator/{id}",[ApiAdminSetupController::class,"update_coordinator"]);
@@ -287,8 +289,80 @@ route::get("add_client_name",[ApiAdminSetupController::class,"add_client_name"])
 route::put("update_client_name/{id}",[ApiAdminSetupController::class,"update_client_name"]);
 route::delete("deletete_client_name/{id}",[ApiAdminSetupController::class,"delete_client_name"]);
 
+route::get("profession",[ApiAdminSetupController::class,"profession"]);
+route::post("add_profession",[ApiAdminSetupController::class,"add_profession"]);
+route::put("update_profession/{id}",[ApiAdminSetupController::class,"update_profession"]);
+route::delete("delete_profession/{id}",[ApiAdminSetupController::class,"delete_profession"]);
+
+route::get("documents",[ApiAdminSetupController::class,"documents"]);
+route::post("add_documents",[ApiAdminSetupController::class,"add_documents"]);
+route::put("update_documents/{id}",[ApiAdminSetupController::class,"update_documents"]);
+route::delete("delete_documents/{id}",[ApiAdminSetupController::class,"delete_documents"]);
+
+route::get("documents_type",[ApiAdminSetupController::class,"documents_type"]);
+route::post("add_documents_type",[ApiAdminSetupController::class,"add_documents_type"]);
+route::put("update_documents_type/{id}",[ApiAdminSetupController::class,"update_documents_type"]);
+route::delete("delete_documents_type/{id}",[ApiAdminSetupController::class,"delete_documents_type"]);
+
+route::get("case_title",[ApiAdminSetupController::class,"case_title"]);
+route::post("add_case_title",[ApiAdminSetupController::class,"add_case_title"]);
+route::put("update_case_title/{id}",[ApiAdminSetupController::class,"update_case_title"]);
+route::delete("delete_case_title/{id}",[ApiAdminSetupController::class,"delete_case_title"]);
+
+route::get("opposition",[ApiAdminSetupController::class,"opposition"]);
+route::post("add_opposition",[ApiAdminSetupController::class,"add_opposition"]);
+route::put("update_opposition/{id}",[ApiAdminSetupController::class,"update_opposition"]);
+route::delete("delete_opposition/{id}",[ApiAdminSetupController::class,"delete_opposition"]);
+
+route::get("complainant",[ApiAdminSetupController::class,"complainant"]);
+route::post("add_complainant",[ApiAdminSetupController::class,"add_complainant"]);
+route::put("update_complainant/{id}",[ApiAdminSetupController::class,"update_complainant"]);
+route::delete("deletete_complainant/{id}",[ApiAdminSetupController::class,"delete_complainant"]);
+
+route::get("accused",[ApiAdminSetupController::class,"accused"]);
+route::post("add_accused",[ApiAdminSetupController::class,"add_accused"]);
+route::put("update_accused/{id}",[ApiAdminSetupController::class,"update_accused"]);
+route::delete("delete_accused/{id}",[ApiAdminSetupController::class,"delete_accused"]);
+
+route::get("court_short",[ApiAdminSetupController::class,"court_short"]);
+route::post("add_court_short",[ApiAdminSetupController::class,"add_court_short"]);
+route::put("update_court_short/{id}",[ApiAdminSetupController::class,"update_court_short"]);
+route::delete("delete_court_short/{id}",[ApiAdminSetupController::class,"delete_court_short"]);
 
 
+route::get("progress",[ApiAdminSetupController::class,"progress"]);
+route::post("add_progress",[ApiAdminSetupController::class,"add_progress"]);
+route::put("update_progress/{id}",[ApiAdminSetupController::class,"update_progress"]);
+route::delete("delete_progress/{id}",[ApiAdminSetupController::class,"delete_progress"]);
 
+route::get("bill_particulars",[ApiAdminSetupController::class,"bill_particulars"]);
+route::post("add_bill_particulars",[ApiAdminSetupController::class,"add_bill_particulars"]);
+route::put("update_bill_particulars/{id}",[ApiAdminSetupController::class,"update_bill_particulars"]);
+route::delete("delete_bill_particulars/{id}",[ApiAdminSetupController::class,"delete_bill_particulars"]);
 
+route::get("particulars",[ApiAdminSetupController::class,"particulars"]);
+route::post("add_particulars",[ApiAdminSetupController::class,"add_particulars"]);
+route::put("update_particulars/{id}",[ApiAdminSetupController::class,"update_particulars"]);
+route::delete("delete_particulars/{id}",[ApiAdminSetupController::class,"delete_particulars"]);
 
+route::get("bill_schedule",[ApiAdminSetupController::class,"bill_schedule"]);
+route::post("add_bill_schedule",[ApiAdminSetupController::class,"add_bill_schedule"]);
+route::put("update_bill_schedule/{id}",[ApiAdminSetupController::class,"update_bill_schedule"]);
+route::delete("delete_bill_schedule/{id}",[ApiAdminSetupController::class,"delete_bill_schedule"]);
+
+route::get("payment_mode",[ApiAdminSetupController::class,"payment_mode"]);
+route::post("add_payment_mode",[ApiAdminSetupController::class,"add_payment_mode"]);
+route::put("update_payment_mode/{id}",[ApiAdminSetupController::class,"update_payment_mode"]);
+route::delete("delete_payment_mode/{id}",[ApiAdminSetupController::class,"delete_payment_mode"]);
+
+route::get("group",[ApiAdminSetupController::class,"group"]);
+route::post("add_group",[ApiAdminSetupController::class,"add_group"]);
+route::put("update_group/{id}",[ApiAdminSetupController::class,"update_group"]);
+route::delete("delete_group/{id}",[ApiAdminSetupController::class,"delete_group"]);
+
+route::get("cabinet",[ApiAdminSetupController::class,"cabinet"]);
+route::post("add_cabinet",[ApiAdminSetupController::class,"add_cabinet"]);
+route::put("update_cabinet/{id}",[ApiAdminSetupController::class,"update_cabinet"]);
+route::delete("delete_cabinet/{id}",[ApiAdminSetupController::class,"delete_cabinet"]);
+
+route::get("search/{name}",[ApiAdminSetupController::class,"search"]);
