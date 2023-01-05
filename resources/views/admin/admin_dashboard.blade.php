@@ -221,6 +221,33 @@
                 </div>
             </div>
         </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Income & Expenses</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="income-expense" style="max-width: 740px;height: 400px;margin: 0px auto">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Client Chart</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="client-chart" style="max-width: 500px;height: 400px;margin: 0px auto;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
                 <!-- Main content -->
             <section class="content">
@@ -631,6 +658,227 @@
         });
       }
     })
+
+    JSC.chart('income-expense', { 
+        debug: true, 
+        type: 'line', 
+        legend: { 
+            template: '%icon %name', 
+            position: 'inside top left'
+        }, 
+        defaultPoint_marker_type: 'none', 
+        xAxis_crosshair_enabled: true, 
+        yAxis_formatString: 'c', 
+        series: [ 
+            { 
+                name: 'Income', 
+                points: [ 
+                    [new Date(2023, 1, 1), 28.15], 
+                    [new Date(2023, 1, 2), 28.2], 
+                    [new Date(2023, 1, 3), 28.37], 
+                    [new Date(2023, 1, 4), 27.59], 
+                    [new Date(2023, 1, 5), 27.76], 
+                    [new Date(2023, 1, 8), 27.47], 
+                    [new Date(2023, 1, 9), 27.75], 
+                    [new Date(2023, 1, 10), 27.73], 
+                    [new Date(2023, 1, 11), 27.86], 
+                    [new Date(2023, 1, 12), 27.68], 
+                    [new Date(2023, 1, 16), 28.22], 
+                    [new Date(2023, 1, 17), 28.46], 
+                    [new Date(2023, 1, 18), 28.84], 
+                    [new Date(2023, 1, 19), 28.64], 
+                    [new Date(2023, 1, 22), 28.6], 
+                    [new Date(2023, 1, 23), 28.2], 
+                    [new Date(2023, 1, 24), 28.5], 
+                    [new Date(2023, 1, 25), 28.47], 
+                    [new Date(2023, 1, 26), 28.54], 
+                    [new Date(2023, 2, 1), 28.89], 
+                    [new Date(2023, 2, 2), 28.33], 
+                    [new Date(2023, 2, 3), 28.33], 
+                    [new Date(2023, 2, 4), 28.5], 
+                    [new Date(2023, 2, 5), 28.46], 
+                    [new Date(2023, 2, 8), 28.5], 
+                    [new Date(2023, 2, 9), 28.67], 
+                    [new Date(2023, 2, 10), 28.84], 
+                    [new Date(2023, 2, 11), 29.05], 
+                    [new Date(2023, 2, 12), 29.14], 
+                    [new Date(2023, 2, 15), 29.16], 
+                    [new Date(2023, 2, 16), 29.24], 
+                    [new Date(2023, 2, 17), 29.5], 
+                    [new Date(2023, 2, 18), 29.48], 
+                    [new Date(2023, 2, 19), 29.46], 
+                    [new Date(2023, 2, 22), 29.47], 
+                    [new Date(2023, 2, 23), 29.75], 
+                    [new Date(2023, 2, 24), 29.52], 
+                    [new Date(2023, 2, 25), 29.88], 
+                    [new Date(2023, 2, 26), 29.53], 
+                    [new Date(2023, 2, 29), 29.46], 
+                    [new Date(2023, 2, 30), 29.64], 
+                    [new Date(2023, 2, 31), 29.16], 
+                    [new Date(2023, 3, 1), 29.03], 
+                    [new Date(2023, 3, 5), 29.14], 
+                    [new Date(2023, 3, 6), 29.19], 
+                    [new Date(2023, 3, 7), 29.22], 
+                    [new Date(2023, 3, 8), 29.79], 
+                    [new Date(2023, 3, 9), 30.2], 
+                    [new Date(2023, 3, 12), 30.18], 
+                    [new Date(2023, 3, 13), 30.31], 
+                    [new Date(2023, 3, 14), 30.68], 
+                    [new Date(2023, 3, 15), 30.73], 
+                    [new Date(2023, 3, 16), 30.53], 
+                    [new Date(2023, 3, 19), 30.9], 
+                    [new Date(2023, 3, 20), 31.22], 
+                    [new Date(2023, 3, 21), 31.19], 
+                    [new Date(2023, 3, 22), 31.25], 
+                    [new Date(2023, 3, 23), 30.82], 
+                    [new Date(2023, 3, 26), 30.97], 
+                    [new Date(2023, 3, 27), 30.71], 
+                    [new Date(2023, 3, 28), 30.77], 
+                    [new Date(2023, 3, 29), 30.86], 
+                    [new Date(2023, 3, 30), 30.4], 
+                    [new Date(2023, 4, 3), 30.72], 
+                    [new Date(2023, 4, 4), 29.99], 
+                    [new Date(2023, 4, 5), 29.72], 
+                    [new Date(2023, 4, 6), 28.85], 
+                    [new Date(2023, 4, 7), 28.08], 
+                    [new Date(2023, 4, 10), 28.81], 
+                    [new Date(2023, 4, 11), 28.75], 
+                    [new Date(2023, 4, 12), 29.31], 
+                    [new Date(2023, 4, 13), 29.11], 
+                    [new Date(2023, 4, 14), 28.8], 
+                    [new Date(2023, 4, 17), 28.81], 
+                    [new Date(2023, 4, 18), 28.6], 
+                    [new Date(2023, 4, 19), 28.24], 
+                    [new Date(2023, 4, 20), 27.11], 
+                    [new Date(2023, 4, 21), 26.84], 
+                    [new Date(2023, 4, 24), 26.27] 
+                ] 
+            } ,
+            { 
+                name: 'Expense', 
+                points: [ 
+                    [new Date(2023, 1, 1), 25.95], 
+                    [new Date(2023, 1, 2), 25.25], 
+                    [new Date(2023, 1, 3), 25.57], 
+                    [new Date(2023, 1, 4), 24.99], 
+                    [new Date(2023, 1, 5), 25.76], 
+                    [new Date(2023, 1, 8), 24.97], 
+                    [new Date(2023, 1, 9), 24.75], 
+                    [new Date(2023, 1, 10), 24.23], 
+                    [new Date(2023, 1, 11), 24.26], 
+                    [new Date(2023, 1, 12), 24.28], 
+                    [new Date(2023, 1, 16), 25.22], 
+                    [new Date(2023, 1, 17), 25.46], 
+                    [new Date(2023, 1, 18), 25.84], 
+                    [new Date(2023, 1, 19), 25.64], 
+                    [new Date(2023, 1, 22), 25.6], 
+                    [new Date(2023, 1, 23), 25.2], 
+                    [new Date(2023, 1, 24), 25.5], 
+                    [new Date(2023, 1, 25), 25.47], 
+                    [new Date(2023, 1, 26), 25.54], 
+                    [new Date(2023, 2, 1), 25.89], 
+                    [new Date(2023, 2, 2), 25.33], 
+                    [new Date(2023, 2, 3), 25.33], 
+                    [new Date(2023, 2, 4), 25.5], 
+                    [new Date(2023, 2, 5), 25.46], 
+                    [new Date(2023, 2, 8), 25.5], 
+                    [new Date(2023, 2, 9), 25.67], 
+                    [new Date(2023, 2, 10), 25.84], 
+                    [new Date(2023, 2, 11), 25.05], 
+                    [new Date(2023, 2, 12), 25.14], 
+                    [new Date(2023, 2, 15), 25.16], 
+                    [new Date(2023, 2, 16), 25.24], 
+                    [new Date(2023, 2, 17), 25.5], 
+                    [new Date(2023, 2, 18), 25.48], 
+                    [new Date(2023, 2, 19), 25.46], 
+                    [new Date(2023, 2, 22), 25.47], 
+                    [new Date(2023, 2, 23), 25.75], 
+                    [new Date(2023, 2, 24), 25.52], 
+                    [new Date(2023, 2, 25), 25.88], 
+                    [new Date(2023, 2, 26), 25.53], 
+                    [new Date(2023, 2, 29), 25.46], 
+                    [new Date(2023, 2, 30), 25.64], 
+                    [new Date(2023, 2, 31), 25.16], 
+                    [new Date(2023, 3, 1), 25.03], 
+                    [new Date(2023, 3, 5), 25.14], 
+                    [new Date(2023, 3, 6), 25.19], 
+                    [new Date(2023, 3, 7), 25.22], 
+                    [new Date(2023, 3, 8), 25.59], 
+                    [new Date(2023, 3, 9), 23.29], 
+                    [new Date(2023, 3, 12), 23.78], 
+                    [new Date(2023, 3, 13), 23.71], 
+                    [new Date(2023, 3, 14), 23.78], 
+                    [new Date(2023, 3, 15), 23.73], 
+                    [new Date(2023, 3, 16), 23.63], 
+                    [new Date(2023, 3, 19), 23.29], 
+                    [new Date(2023, 3, 20), 26.52], 
+                    [new Date(2023, 3, 21), 26.59], 
+                    [new Date(2023, 3, 22), 26.75], 
+                    [new Date(2023, 3, 23), 23.72], 
+                    [new Date(2023, 3, 26), 23.57], 
+                    [new Date(2023, 3, 27), 23.71], 
+                    [new Date(2023, 3, 28), 23.77], 
+                    [new Date(2023, 3, 29), 23.76], 
+                    [new Date(2023, 3, 30), 23.54], 
+                    [new Date(2023, 4, 3), 23.82], 
+                    [new Date(2023, 4, 4), 24.29], 
+                    [new Date(2023, 4, 5), 24.72], 
+                    [new Date(2023, 4, 6), 28.55], 
+                    [new Date(2023, 4, 7), 28.58], 
+                    [new Date(2023, 4, 10), 28.71], 
+                    [new Date(2023, 4, 11), 28.95], 
+                    [new Date(2023, 4, 12), 24.71], 
+                    [new Date(2023, 4, 13), 24.41], 
+                    [new Date(2023, 4, 14), 28.88], 
+                    [new Date(2023, 4, 17), 28.61], 
+                    [new Date(2023, 4, 18), 28.86], 
+                    [new Date(2023, 4, 19), 28.84], 
+                    [new Date(2023, 4, 20), 24.81], 
+                    [new Date(2023, 4, 21), 26.34], 
+                    [new Date(2023, 4, 24), 26.97] 
+                ] 
+            } 
+        ] 
+    }); 
+
+
+    JSC.chart('client-chart',{
+            debug: false,
+                defaultSeries: { type: 'pieDonut', shape_center: '50%,50%' },
+                // title: {
+                //   label: {
+                //     text: 'All Cases',
+                //     style_fontSize: 16
+                //   },
+                //   position: 'center'
+                // },
+                defaultPoint: {
+                tooltip: '<b>%name</b><br>total_cases: <b>{%yValue}</b>'
+                },
+                legend: { template: '{%value} %icon %name', position: 'right' },
+                series: [
+                {
+                    points: [
+                     { x: 'Client', y: 120, legendEntry: { sortOrder: 1 } },
+                    ],
+                    shape: { innerSize: '0%', size: '45%' },
+                    defaultPoint_label: {
+                    text: '<b>%name</b>',
+                    placement: 'inside'
+                    },
+                    palette: ['orange']
+                },
+                {
+                    points: [
+                    { x: 'Category ', y: 15, legendEntry_sortOrder: 2, attributes_year: 'Client' },
+                    { x: 'Sub-Category', y: 5 , legendEntry_sortOrder: 2, attributes_year: 'Client' },
+                    ],
+                    defaultPoint_tooltip: '<b>%year %name</b><br>total_cases: <b>{%yValue}</b>',
+                    shape: { innerSize: '55%', size: '90%' },
+                    palette: JSC.colorToPalette('orange', { lightness: 0.4 }, 4, 0)
+                }
+                ]
+        });
 });    
 </script>
 

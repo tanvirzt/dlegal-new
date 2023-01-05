@@ -860,7 +860,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
     Route::resource('employee', EmployeeController::class);
 
-     Route::get('employee-new',[EmployeeController::class,'employee_new'])->name('employee-new');
+    Route::get('employee-new',[EmployeeController::class,'employee_new'])->name('employee-new');
 
     Route::resource('ledger-category', LedgerCategoryController::class);
     Route::resource('ledger-head', LedgerHeadController::class);
