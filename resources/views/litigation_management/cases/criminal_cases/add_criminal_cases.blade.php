@@ -164,8 +164,6 @@
                                     <div class="col-sm-8">
                                         <select name="case_category_id" id="case_category_id"
                                                 class="form-control select2"
-                                                {{-- action="{{ route('find-case-type') }}" --}}
-
                                                 >
                                             <option value="">Select</option>
                                             <option value="Civil">Civil</option>
@@ -200,12 +198,8 @@
                                     <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
                                     <div class="col-sm-8">
                                         <select name="case_type_id" id="case_type_id"
-                                                class="form-control select2">
+                                                class="form-control select2" >
                                             <option value="">Select</option>
-                                            @foreach($case_types as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
-                                            @endforeach
                                         </select>
                                         @error('case_type_id')<span
                                             class="text-danger">{{$message}}</span>@enderror
@@ -666,14 +660,15 @@
                                     <label for="date_of_filing" class="col-sm-4 col-form-label">Case Filing
                                         Date</label>
                                     <div class="col-sm-8">
-                                    <span class="date_span">
+                                    {{-- <span class="date_span">
                                         <input type="date" class="xDateContainer date_first_input"
                                                 onchange="setCorrect(this,'xTime4');"><input type="text" id="xTime4"
                                                                                             name="date_of_filing" value="dd-mm-yyyy"
                                                                                             class="date_second_input"
                                                                                             tabindex="-1"><span
                                             class="date_second_span" tabindex="-1">&#9660;</span>
-                                    </span>
+                                    </span> --}}
+                                    <input type="date" name="date_of_filing" class="form-control">
                                         @error('date_of_filing')<span
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>

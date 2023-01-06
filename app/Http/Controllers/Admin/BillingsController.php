@@ -101,7 +101,6 @@ class BillingsController extends Controller
 
     public function find_bank_branch(Request $request)
     {
-
         $bank_branch = SetupBankBranch::where('bank_id',$request->bank_id)->orderBy('bank_branch_name','asc')->get();
         return response()->json($bank_branch);
     }
@@ -125,6 +124,7 @@ class BillingsController extends Controller
         }else if ($request->class_of_cases == "Appellate Division"){
 
             $case = AppellateCourtCase::where('delete_status',0)->get();
+
         }
 
         return response()->json($case);
@@ -170,24 +170,6 @@ class BillingsController extends Controller
         }
 
 
-        if ($request->class_of_cases == "District Court") {
-
-            $client = CriminalCase::findOrFail($request->case_no);
-
-        }else if ($request->class_of_cases == "Special Court"){
-
-            $client = LabourCase::findOrFail($request->case_no);
-
-        }else if ($request->class_of_cases == "High Court Division"){
-
-            $client = HighCourtCase::findOrFail($request->case_no);
-
-        }else if ($request->class_of_cases == "Appellate Division"){
-
-            $client = AppellateCourtCase::findOrFail($request->case_no);
-        }
-
-
         $data = new CaseBilling();
         $data->billing_no = $billing_no;
         $data->bill_type_id = $request->bill_type_id;
@@ -196,7 +178,6 @@ class BillingsController extends Controller
         $data->case_type_id = $request->case_type_id;
         $data->class_of_cases = $request->class_of_cases;
         $data->case_no = $request->case_no;
-        $data->client_id = $client->client_category_id;
         $data->panel_lawyer_id = $request->panel_lawyer_id;
         $data->bill_amount = $request->bill_amount;
         $data->date_of_billing = $date_of_billing;
@@ -407,7 +388,6 @@ class BillingsController extends Controller
         }
         $data->delete_status = $delete_status;
         $data->save();
-
         session()->flash('success', 'Billing Deleted');
         return redirect()->back();
     }
@@ -637,16 +617,21 @@ class BillingsController extends Controller
     }
     public function view_money_receipt($id)
     {
-        $data = LedgerEntry::with('ledger_head','bill')->find($id);
+        // $data = LedgerEntry::with('ledger_head','bill')->find($id);
 
-        if ($data->receipt_no == null) {
-            $transcation_no = explode('-', $data->transaction_no);
-            $data->receipt_no = 'RCPT-'.$transcation_no[1];
-            $data->save();
-        }
-                // data_array($data);
+        $data =DB::table('ledger_entries')
+        ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+        ->join('ledger_heads','ledger_entries.ledger_head_id','ledger_heads.id')
+        ->select('ledger_entries.*','ledger_heads.*','case_billings.*')
+        ->where('ledger_entries.id',$id)->first();
+        // dd($data);
+        // if ($data->receipt_no == null) {
+        //     $transcation_no = explode('-', $data->transaction_no);
+        //     $data->receipt_no = 'RCPT-'.$transcation_no[1];
+        //     $data->save();
+        // }
+             // data_array($data);
         return view('accounts.ledger_entry.show',compact('data'));
-
     }
 
     public function money_receipt_print_preview($id)

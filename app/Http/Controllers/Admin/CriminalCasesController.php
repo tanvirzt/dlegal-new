@@ -619,8 +619,10 @@ class CriminalCasesController extends Controller
         $data->law_write = rtrim($law_write, ', ');
         $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
         $data->section_write = rtrim($section_write, ', ');
-        $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+        // $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+        // $data->date_of_filing = $request->date_of_filing;
         // $data->case_status_id = $request->case_status_id;
+        $data->case_status_id = 'Running';
         $data->case_status_id = 'Running';
         $data->matter_id = $request->matter_id;
         $data->matter_write = $request->matter_write;
@@ -1075,7 +1077,7 @@ class CriminalCasesController extends Controller
     public function update_criminal_cases(Request $request, $id)
     {
 
-            //   dd($request->all());
+            //    dd($request->all());
 
         $received_documents_sections = $request->received_documents_sections;
         $remove = !empty($received_documents_sections) ? array_pop($received_documents_sections) : '';
@@ -1128,6 +1130,7 @@ class CriminalCasesController extends Controller
 
         $data = CriminalCase::find($id);
         $data->case_type = $request->case_type;
+        // $data->case_status_id = $request->case_status_id;
     
 
         if ($request->client && $request->client_party_id) {
@@ -1238,8 +1241,9 @@ class CriminalCasesController extends Controller
             $data->law_write = rtrim($law_write, ', ');
             $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
             $data->section_write = rtrim($section_write, ', ');
-            $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
-            $data->case_status_id = $request->case_status_id;
+            // $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+            $data->date_of_filing = $request->date_of_filing;
+            
             $data->matter_id = $request->matter_id;
             $data->matter_write = $request->matter_write;
             $data->case_type_id = $request->case_type_id;
@@ -1559,8 +1563,9 @@ class CriminalCasesController extends Controller
             $data->law_write = rtrim($law_write, ', ');
             $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
             $data->section_write = rtrim($section_write, ', ');
-            $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
-            $data->case_status_id = $request->case_status_id;
+            // $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+            $data->date_of_filing = $request->date_of_filing;
+            // $data->case_status_id = $request->case_status_id;
             $data->matter_id = $request->matter_id;
             $data->matter_write = $request->matter_write;
             $data->case_type_id = $request->case_type_id;
@@ -1883,7 +1888,8 @@ class CriminalCasesController extends Controller
         $data->law_write = rtrim($law_write, ', ');
         $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
         $data->section_write = rtrim($section_write, ', ');
-        $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+        // $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
+        $data->date_of_filing = $request->date_of_filing;
         $data->case_status_id = $request->case_status_id;
         $data->matter_id = $request->matter_id;
         $data->matter_write = $request->matter_write;
@@ -2243,7 +2249,7 @@ class CriminalCasesController extends Controller
                 'opposition_group.group_name as opposition_group_name')
             ->where('criminal_cases.id', $id)
             ->first();
-
+//dd($data);
         $exist_case_inofs_district = SetupDistrict::where('id', $data->case_infos_district_id)->first();
         // dd($data);
 
@@ -2466,6 +2472,15 @@ class CriminalCasesController extends Controller
         return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('assignedlaywer','leadLaywer','chamber','switch_records', 'group_name', 'case_steps', 'documents_type', 'letter_notice','oppLawyer', 'required_wanting_documents', 'received_documents', 'particulars', 'required_wanting_documents_explode', 'exist_court_short', 'data', 'criminal_cases_files','caseFileLocation','caseFileLocationView', 'case_logs', 'bill_history','previouDate', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order', 'day_notes', 'external_council', 'next_day_presence', 'case_status', 'mode', 'edit_case_steps', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana', 'existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'user', 'complainant', 'accused', 'court_short', 'edit_case_steps', 'exist_engaged_advocate', 'exist_engaged_advocate_associates', 'court_short_explode', 'sub_seq_court_short_explode', 'received_documents_explode', 'required_documents_explode', 'previous_activity', 'payment_mode', 'bill_schedule', 'bill_particulars', 'bill_type', 'bill_amount', 'payment_amount', 'due_amount', 'cabinet', 'exist_case_type', 'letter_notice_explode', 'criminal_cases_working_docs', 'billing_log_new', 'ledger'));
     }
 
+    public function case_type($type)
+    {
+        $case_types = SetupCaseTypes::where('case_types_name','like','%'.$type.'%')
+                      ->where('delete_status', 0)
+                      ->get();
+                      
+         return response()->json($case_types);
+    }
+   
     public function download_criminal_cases_file($id)
     {
         $file = CriminalCasesFile::where('id', $id)->firstOrFail();
@@ -2748,7 +2763,7 @@ class CriminalCasesController extends Controller
         }
         $data->delete_status = $delete_status;
         $data->save();
-
+     
         session()->flash('success', 'Criminal Cases Status Deleted.');
         return redirect()->back();
     }

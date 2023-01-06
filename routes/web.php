@@ -322,7 +322,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('edit-case-category/{id}',[AdminSetupController::class, 'edit_case_category'])->name('edit-case-category');
     Route::post('update-case-category/{id}',[AdminSetupController::class, 'update_case_category'])->name('update-case-category');
     Route::post('delete-case-category/{id}',[AdminSetupController::class, 'delete_case_category'])->name('delete-case-category');
-// supreme-case-subcategory setup
+
+    // supreme-case-subcategory setup
 
     Route::get('case-subcategory',[AdminSetupController::class, 'case_subcategory'])->name('case-subcategory');
     Route::get('add-case-subcategory',[AdminSetupController::class, 'add_case_subcategory'])->name('add-case-subcategory');
@@ -601,6 +602,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::post('delete-criminal-cases/{id}',[CriminalCasesController::class, 'delete_criminal_cases'])->name('delete-criminal-cases');
     Route::get('delete-criminal-cases-latest/{id}',[CriminalCasesController::class, 'delete_criminal_cases_latest'])->name('delete-criminal-cases-latest');
     Route::get('view-criminal-cases/{id}',[CriminalCasesController::class, 'view_criminal_cases'])->name('view-criminal-cases');
+    Route::get('find-case-type/{type}',[CriminalCasesController::class, 'case_type'])->name('find-case-type');
     Route::get('download-criminal-cases-files/{id}',[CriminalCasesController::class, 'download_criminal_cases_file'])->name('download-criminal-cases-files');
     Route::get('download-criminal-cases-working-doc/{id}',[CriminalCasesController::class, 'download_criminal_cases_working_doc'])->name('download-criminal-cases-working-doc');
     Route::get('view-criminal-cases-files/{id}',[CriminalCasesController::class, 'view_criminal_cases_file'])->name('view-criminal-cases-files');
@@ -626,7 +628,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('billings-print-preview/{id}',[CriminalCasesController::class, 'billings_print_preview'])->name('billings-print-preview');
     Route::post('send-messages-for-criminal-cases/{id}',[CriminalCasesController::class, 'send_messages_for_criminal_cases'])->name('send-messages-for-criminal-cases');
     Route::post('criminal-cases-switch',[CriminalCasesController::class, 'criminal_cases_switch'])->name('criminal-cases-switch');
-
     Route::post('update-criminal-cases-status-column/{id}',[CriminalCasesController::class, 'update_criminal_cases_status_column'])->name('update-criminal-cases-status-column');
     Route::get('view-criminal-cases-read-notifications/{id}',[CriminalCasesController::class, 'view_criminal_cases_read_notifications'])->name('view-criminal-cases-read-notifications');
 
@@ -769,8 +770,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('external-document',[DocManagementController::class, 'external_document'])->name('external-document');
 
     Route::get('find-case-subcategory',[HighCourtCasesController::class, 'find_case_subcategory'])->name('find-case-subcategory');
-    Route::get('find-case-type',[HighCourtCasesController::class, 'find_case_type'])->name('find-case-type');
-
+    // Route::get('find-case-type',[HighCourtCasesController::class, 'find_case_type'])->name('find-case-type');
+    Route::get('litigation-calender-list-print/{date}',[LitigationCalenderController::class, 'print_litigation_calender_list'])->name('litigation-calender-print');
     Route::get('litigation-calender-list',[LitigationCalenderController::class, 'litigation_calender_list'])->name('litigation-calender-list');
     Route::get('litigation-calender-short',[LitigationCalenderController::class, 'litigation_calender_short'])->name('litigation-calender-short');
     Route::get('litigation-calender-short-court-wise',[LitigationCalenderController::class, 'litigation_calender_short_court_wise'])->name('litigation-calender-short-court-wise');
@@ -859,7 +860,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
     Route::resource('employee', EmployeeController::class);
 
-     Route::get('employee-new',[EmployeeController::class,'employee_new'])->name('employee-new');
+    Route::get('employee-new',[EmployeeController::class,'employee_new'])->name('employee-new');
 
     Route::resource('ledger-category', LedgerCategoryController::class);
     Route::resource('ledger-head', LedgerHeadController::class);
@@ -894,6 +895,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::resource('task', TaskController::class);
     Route::put('task/change-status/{id}', [TaskController::class,'changeStatus'])->name('task.change.status');
 
+       //Schedule management\
+
+       Route::resource('schedule-category', scheduleCategoryController::class,  ['names' => 'schedule.category']);
+       Route::resource('schedule', ScheduleController::class);
+       Route::put('schedule/change-status/{id}', [ScheduleController::class,'changeStatus'])->name('schedule.change.status');
 
 });
 

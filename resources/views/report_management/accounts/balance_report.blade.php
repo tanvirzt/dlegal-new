@@ -281,10 +281,13 @@
                                                                     ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
                                                                     ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no', 'criminal_cases.case_no as main_case_no')
                                                                     ->first();
-                                                                // dd($case_number);
+
                                                             @endphp
 
+                                                            @if (!empty($case_number->main_case_no))
                                                             {{ $case_number->main_case_no }}
+                                                            @endif
+
                                                         </h6>
                                                     @endif
 
@@ -370,12 +373,12 @@
                                                                         @endphp
                                                                         {{ $pd_amnt }}
                                                                     @else
+
                                                                         {{ $ledger->sum('paid_amount') }}
                                                                     @endif
 
                                                                 </td>
-
-                                                                <td>{{ $data->sum('bill_amount') - (!empty($is_search) ? $pd_amnt : $ledger->sum('paid_amount')) }}
+                                                                 <td>{{ $data->sum('bill_amount') - (!empty($is_search) ? $pd_amnt : $ledger->sum('paid_amount')) }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>

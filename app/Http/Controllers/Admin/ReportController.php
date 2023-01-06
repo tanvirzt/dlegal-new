@@ -496,7 +496,7 @@ class ReportController extends Controller
 
     public function balance_report_search(Request $request)
     {
-
+        //dd($request);
         $request_data = $request->all();
 
         if ($request->from_date != "dd/mm/yyyy") {
@@ -521,6 +521,9 @@ class ReportController extends Controller
         switch ($request->isMethod('get')) {
             case $request->class_of_cases != null && $request->case_no != null && $request->client != null:
                 $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client_id]);
+                break;
+            case $request->class_of_cases != null && $request->case_no == null && $request->client != null:
+                $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client_id]);  
                 break;
             default:
                 $query2 = $query;
