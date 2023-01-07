@@ -685,6 +685,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::post('search-appellate-court-cases',[AppellateCourtCasesController::class, 'search_appellate_court_cases'])->name('search-appellate-court-cases');
 
     Route::get('billing',[BillingsController::class, 'billing'])->name('billing');
+    Route::get('billing-report',[BillingsController::class, 'billing_report'])->name('billing-report');
+    Route::get('billing-report-search', [BillingsController::class, 'billing_report_search'])->name('billing-report-search');
     Route::get('add-billing',[BillingsController::class, 'add_billing'])->name('add-billing');
     Route::get('/find-bank-branch',[BillingsController::class, 'find_bank_branch'])->name('find-bank-branch');
     Route::get('/find-case-no',[BillingsController::class, 'find_case_no'])->name('find-case-no');
@@ -712,7 +714,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('money-receipt-print-preview/{id}',[BillingsController::class, 'money_receipt_print_preview'])->name('money-receipt-print-preview');
 
     Route::get('add-billing-from-district-court/{id}', [BillingsController::class, 'add_billing_from_district_court'])->name('add-billing-from-district-court');
-
+    
 // thana setup
 
     Route::get('land-information',[LandInfoController::class, 'land_information'])->name('land-information');

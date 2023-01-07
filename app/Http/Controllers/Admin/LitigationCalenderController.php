@@ -330,7 +330,7 @@ class LitigationCalenderController extends Controller
         //Marge all cases
         $events = array_merge($criminal_events, $civil_events, $labour_events, $quassi_judicial_events, $high_court_events, $appellate_court_events);
 
-
+//dd($events);
         return view('litigation_management.litigation_calender.litigation_calender_short', ['events' => $events]);
     }
 
@@ -1063,8 +1063,6 @@ class LitigationCalenderController extends Controller
         //     ->where('next_date', '>', $request->to_date)
         //     ->get(['next_date'])->first()->next_date;
         // dd($criminal_cases_search);
-
-
 
         $criminal_cases_search_latest = DB::table('criminal_cases')->distinct()
         ->orderBy('next_date', 'asc')->where(['delete_status' => 0])

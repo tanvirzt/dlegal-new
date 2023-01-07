@@ -24,6 +24,7 @@ use App\Models\AppellateCourtCase;
 use App\Models\CaseBilling;
 use App\Models\SetupCaseTypes;
 use DB;
+use App\Models\SetupClient;
 use App\Models\LedgerEntry;
 use App\Models\LedgerHead;
 
@@ -66,10 +67,11 @@ class BillingsController extends Controller
                 ->leftJoin('setup_digital_payments','case_billings.digital_payment_type_id','=','setup_digital_payments.id')
                 ->where('case_billings.delete_status',0)
                 ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
+                ->orderBy('id', 'DESC')
                 ->get();
         $external_council = SetupExternalCouncil::where('delete_status',0)->get();
 
-        // data_array($data);
+         //dd($data);
 
         return view('litigation_management.billings.billings.billings',compact('data','external_council'));
     }
@@ -96,7 +98,102 @@ class BillingsController extends Controller
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
         $case_class = CriminalCase::find($id);
         // data_array($case_class);
-        return view('litigation_management.billings.billings.add_billing',compact('external_council','bill_type','bank','digital_payment_type','district', 'case_types', 'case_class'));
+        $billing_log_new = DB::table('case_billings')
+        ->leftJoin('setup_bill_types','case_billings.bill_type_id','=','setup_bill_types.id')
+        ->leftJoin('setup_districts','case_billings.district_id','=','setup_districts.id')
+        ->leftJoin('setup_external_councils','case_billings.panel_lawyer_id','=','setup_external_councils.id')
+        ->leftJoin('setup_banks','case_billings.bank_id','=','setup_banks.id')
+        ->leftJoin('setup_bank_branches','case_billings.branch_id','=','setup_bank_branches.id')
+        ->leftJoin('setup_digital_payments','case_billings.digital_payment_type_id','=','setup_digital_payments.id')
+        ->where(['case_billings.delete_status' => 0, 'case_billings.class_of_cases' => 'District Court', 'case_no' => $id])
+        ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
+        ->first();
+        $data = DB::table('criminal_cases')
+            ->leftJoin('setup_legal_issues', 'criminal_cases.legal_issue_id', '=', 'setup_legal_issues.id')
+            ->leftJoin('setup_legal_services', 'criminal_cases.legal_service_id', '=', 'setup_legal_services.id')
+            ->leftJoin('setup_complainants', 'criminal_cases.complainant_informant_id', '=', 'setup_complainants.id')
+            ->leftJoin('setup_accuseds', 'criminal_cases.accused_id', '=', 'setup_accuseds.id')
+            ->leftJoin('setup_in_favour_ofs', 'criminal_cases.in_favour_of_id', '=', 'setup_in_favour_ofs.id')
+            ->leftJoin('setup_courts', 'criminal_cases.name_of_the_court_id', '=', 'setup_courts.id')
+            ->leftJoin('setup_next_date_reasons', 'criminal_cases.next_date_fixed_id', '=', 'setup_next_date_reasons.id')
+            ->leftJoin('setup_modes', 'criminal_cases.mode_of_receipt_id', '=', 'setup_modes.id')
+            ->leftJoin('setup_referrers', 'criminal_cases.referrer_id', '=', 'setup_referrers.id')
+            ->leftJoin('setup_in_favour_ofs as client_party', 'criminal_cases.client_party_id', '=', 'client_party.id')
+            ->leftJoin('setup_client_categories', 'criminal_cases.client_category_id', '=', 'setup_client_categories.id')
+            ->leftJoin('setup_client_subcategories', 'criminal_cases.client_subcategory_id', '=', 'setup_client_subcategories.id')
+            ->leftJoin('setup_clients', 'criminal_cases.client_id', '=', 'setup_clients.id')
+            ->leftJoin('setup_professions', 'criminal_cases.client_profession_id', '=', 'setup_professions.id')
+            ->leftJoin('setup_divisions as client_division', 'criminal_cases.client_division_id', '=', 'client_division.id')
+            ->leftJoin('setup_districts as client_district', 'criminal_cases.client_district_id', '=', 'client_district.id')
+            ->leftJoin('setup_thanas as client_thana', 'criminal_cases.client_thana_id', '=', 'client_thana.id')
+            ->leftJoin('setup_coordinators', 'criminal_cases.client_coordinator_tadbirkar_id', '=', 'setup_coordinators.id')
+            ->leftJoin('setup_in_favour_ofs as opposition_party', 'criminal_cases.opposition_party_id', '=', 'opposition_party.id')
+            ->leftJoin('setup_client_categories as opposition_category', 'criminal_cases.opposition_category_id', '=', 'opposition_category.id')
+            ->leftJoin('setup_client_subcategories as opposition_subcategory', 'criminal_cases.opposition_subcategory_id', '=', 'opposition_subcategory.id')
+            ->leftJoin('setup_clients as opposition', 'criminal_cases.opposition_id', '=', 'opposition.id')
+            ->leftJoin('setup_professions as opposition_profession', 'criminal_cases.opposition_profession_id', '=', 'opposition_profession.id')
+            ->leftJoin('setup_divisions as opposition_division', 'criminal_cases.opposition_division_id', '=', 'opposition_division.id')
+            ->leftJoin('setup_districts as opposition_district', 'criminal_cases.opposition_district_id', '=', 'opposition_district.id')
+            ->leftJoin('setup_thanas as opposition_thana', 'criminal_cases.opposition_thana_id', '=', 'opposition_thana.id')
+            ->leftJoin('setup_coordinators as opposition_coordinator', 'criminal_cases.opposition_coordinator_tadbirkar_id', '=', 'opposition_coordinator.id')
+            ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
+            ->leftJoin('setup_divisions as case_infos_division', 'criminal_cases.case_infos_division_id', '=', 'case_infos_division.id')
+            ->leftJoin('setup_districts as case_infos_district', 'criminal_cases.case_infos_district_id', '=', 'case_infos_district.id')
+            ->leftJoin('setup_thanas as case_infos_thana', 'criminal_cases.case_infos_thana_id', '=', 'case_infos_thana.id')
+            ->leftJoin('setup_case_categories', 'criminal_cases.case_category_id', '=', 'setup_case_categories.id')
+            ->leftJoin('setup_case_subcategories', 'criminal_cases.case_subcategory_id', '=', 'setup_case_subcategories.id')
+            ->leftJoin('setup_case_titles as case_infos_case_title', 'criminal_cases.case_infos_case_title_id', '=', 'case_infos_case_title.id')
+            ->leftJoin('setup_case_titles as sub_seq_case_infos_case_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'sub_seq_case_infos_case_title.id')
+            ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
+            ->leftJoin('setup_case_statuses', 'criminal_cases.case_status_id', '=', 'setup_case_statuses.id')
+            ->leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
+            ->leftJoin('setup_allegations', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'setup_allegations.id')
+            ->leftJoin('admins', 'criminal_cases.received_by_id', '=', 'admins.id')
+            ->leftJoin('setup_cabinets', 'criminal_cases.cabinet_id', '=', 'setup_cabinets.id')
+            ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
+            ->leftJoin('setup_groups as client_group', 'criminal_cases.client_group_id', '=', 'client_group.id')
+            ->leftJoin('setup_groups as opposition_group', 'criminal_cases.opposition_group_id', '=', 'opposition_group.id')
+            ->select('criminal_cases.*',
+                'setup_referrers.referrer_name',
+                'setup_client_categories.client_category_name',
+                'setup_client_subcategories.client_subcategory_name',
+                'setup_clients.client_name',
+                'setup_professions.profession_name',
+                'client_division.division_name as client_division_name',
+                'client_district.district_name as client_district_name',
+                'client_thana.thana_name as client_thana_name',
+                'setup_coordinators.coordinator_name',
+                'opposition_party.in_favour_of_name as oppsition_party_name',
+                'opposition_category.client_category_name as opposition_category_name',
+                'opposition_subcategory.client_subcategory_name as opposition_subcategory_name',
+                'opposition.client_name as opposition_name',
+                'opposition_profession.profession_name as opposition_profession_name',
+                'opposition_division.division_name as opposition_division_name',
+                'opposition_district.district_name as opposition_district_name',
+                'opposition_thana.thana_name as opposition_thana_name',
+                'opposition_coordinator.coordinator_name as opposition_coordinator_name',
+                'setup_external_councils.first_name',
+                'setup_external_councils.middle_name',
+                'setup_external_councils.last_name',
+                'case_infos_division.division_name as case_infos_division_name',
+                'case_infos_district.district_name as case_infos_district_name',
+                'case_infos_thana.thana_name as case_infos_thana_name',
+                'setup_case_categories.case_category',
+                'setup_case_subcategories.case_subcategory',
+                'case_infos_case_title.case_title_name as case_infos_case_title_name',
+                'sub_seq_case_infos_case_title.case_title_name as sub_seq_case_infos_case_title_name',
+                'setup_matters.matter_name',
+                'setup_case_statuses.case_status_name',
+                'setup_case_types.case_types_name',
+                'setup_cabinets.cabinet_name',
+                'case_infos_title.case_title_name as sub_seq_case_title_name',
+                'client_group.group_name as client_group_name',
+                'opposition_group.group_name as opposition_group_name')
+            ->where('criminal_cases.id', $id)
+            ->first();
+           // dd($billing_log_new);
+            $bill_id=$id;
+        return view('litigation_management.billings.billings.test',compact('bill_id','billing_log_new','data','external_council','bill_type','bank','digital_payment_type','district', 'case_types', 'case_class'));
     }
 
     public function find_bank_branch(Request $request)
@@ -690,6 +787,94 @@ class BillingsController extends Controller
         $data = LedgerHead::where(['ledger_category_id' => $request->ledger_category_id])->get();
         return response()->json($data);
     }
+    public function billing_report(){
+
+        $request_data = [
+            'class_of_cases' => '',
+            'case_no' => '',
+            'from_date' => '',
+            'to_date' => '',
+        ];
+
+        $data =DB::table('ledger_entries')
+        ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+        ->select('case_billings.*','ledger_entries.*')
+        ->get();
+        $ledger_head = LedgerHead::all();
+        $is_search = 'Searched';
+        $clients = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();
+
+        return view('litigation_management.billings.billings.billing_report' ,compact('data', 'request_data', 'ledger_head', 'clients'));
+    }
+    public function billing_report_search(Request $request)
+    {
+        //dd($request);
+        $request_data = $request->all();
+
+        if ($request->from_date != "dd/mm/yyyy") {
+            $from_next_date_explode = explode('/', $request->from_date);
+            $from_next_date_implode = implode('-', $from_next_date_explode);
+            $from_next_date = date('Y-m-d', strtotime($from_next_date_implode));
+        } else if ($request->from_next_date == "dd/mm/yyyy") {
+            $from_next_date = null;
+        }
+
+        if ($request->to_date != "dd/mm/yyyy") {
+            $to_next_date_explode = explode('/', $request->to_date);
+            $to_next_date_implode = implode('-', $to_next_date_explode);
+            $to_next_date = date('Y-m-d', strtotime($to_next_date_implode));
+        } else if ($request->to_next_date == "dd/mm/yyyy") {
+            $to_next_date = null;
+        }
+
+        $bill_no = CaseBilling::where('delete_status', 0)->get();
+        $query = CaseBilling::with('ledger');
+
+        switch ($request->isMethod('get')) {
+            case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $$request->from_date != null && $request->to_date != null:
+                 $query2 =DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
+                ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])->get();
+                break;
+            case $request->class_of_cases != null && $request->case_no != null && $request->client != null :
+                $query2 =DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
+                ->get();
+                break;
+            case $request->from_date != null && $request->to_date != null :
+                $query2 =DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*') ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])->get();
+          
+                break;
+            case $request->class_of_cases != null && $request->case_no == null && $request->client == null:
+                // $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client_id]);
+                $query2 =DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no])->get();
+                break;
+                case $request->client != null :
+                    // $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client_id]);
+                    $query2 =DB::table('ledger_entries')
+                    ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                    ->select('case_billings.*','ledger_entries.*')->where(['client_id' => $request->client])->get();
+                    break;
+            default:
+                $query2 = DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*')
+                ->get();
+        }
+
+        $data =$query2;
+        $ledger_head = LedgerHead::all();
+        $is_search = 'Searched';
+        $ledger_head_name = LedgerHead::where('id', $request->ledger_head_id)->first();
+        $clients = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();
 
 
+        return view('litigation_management.billings.billings.billing_report', compact('data', 'request_data', 'ledger_head', 'is_search', 'bill_no', 'clients'));
+    }
 }

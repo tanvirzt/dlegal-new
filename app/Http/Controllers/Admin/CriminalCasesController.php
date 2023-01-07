@@ -2249,7 +2249,7 @@ class CriminalCasesController extends Controller
                 'opposition_group.group_name as opposition_group_name')
             ->where('criminal_cases.id', $id)
             ->first();
-//dd($data);
+         //dd($data);
         $exist_case_inofs_district = SetupDistrict::where('id', $data->case_infos_district_id)->first();
         // dd($data);
 
@@ -2456,7 +2456,7 @@ class CriminalCasesController extends Controller
                             ->where(['case_billings.delete_status' => 0, 'case_billings.class_of_cases' => 'District Court', 'case_no' => $id])
                             ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
                             ->get();
-
+       // dd($billing_log_new);
         $ledger = DB::table('ledger_entries')
                     ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
                     ->where(['case_billings.class_of_cases' => 'District Court', 'case_billings.case_no' => $id])
