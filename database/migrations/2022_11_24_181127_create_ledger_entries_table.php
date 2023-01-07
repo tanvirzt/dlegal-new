@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateLedgerEntriesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+  
     public function up()
     {
         Schema::create('ledger_entries', function (Blueprint $table) {
@@ -29,6 +25,7 @@ class CreateLedgerEntriesTable extends Migration
             $table->string('payment_type')->nullable();
             $table->string('ledger_head_bill_id')->nullable();
             $table->string('bill_amount')->nullable();
+            $table->string('client_id')->nullable();
             $table->string('paid_amount')->nullable();
             $table->string('income_paid_amount')->nullable();
             $table->string('expense_paid_amount')->nullable();

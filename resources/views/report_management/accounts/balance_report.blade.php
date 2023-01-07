@@ -394,6 +394,7 @@
                                                                 </td>
                                                                  <td>{{ $data->sum('bill_amount') -  $data->sum('paid_amount')  }}
                                                                 </td>
+                                                                <td colspan="1"> </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

@@ -45,7 +45,7 @@
                         <a href="#" class="nav-link">
                             <i class="fas fa-users"></i>
                             <p>
-                                User Management
+                                User 
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -884,7 +884,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-circle"></i>
                             <p>
-                                Litigation Management
+                                Litigation 
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -1042,7 +1042,7 @@
                         <a href="#" class="nav-link">
                             <i class="fas fa-couch nav-icon"></i>
                             <p>
-                                Property Management
+                                Property 
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -1071,7 +1071,7 @@
                         <a href="#" class="nav-link">
                             <i class="fas fa-print nav-icon"></i>
                             <p>
-                                Compliance Management
+                                Compliance 
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -1109,7 +1109,7 @@
                         <a href="#" class="nav-link">
                             <i class="fas fa-file-archive nav-icon"></i>
                             <p>
-                                Document Management
+                                Document 
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -1118,7 +1118,7 @@
                                 <li class="nav-item">
                                     <a href="{{ route('document-management') }}" class="nav-link">
                                         <i class="ml-left"></i>
-                                        <p> Document Management </p>
+                                        <p> Document </p>
                                     </a>
                                 </li>
                             @endcan
@@ -1146,7 +1146,7 @@
                     <a href="#" class="nav-link">
                         <i class="fas fa-file nav-icon"></i>
                         <p>
-                            Report Managenent
+                            Report
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -1165,7 +1165,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tasks"></i>
                         <p>
-                            Task Management
+                            Task 
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -1249,7 +1249,7 @@
                     <a href="#" class="nav-link">
                         <i class="fas fa-user nav-icon"></i>
                         <p>
-                            HR Managenent
+                            HR 
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -1268,7 +1268,7 @@
                     <a href="#" class="nav-link">
                         <i class="fas fa-user nav-icon"></i>
                         <p>
-                            Accounts Managenent
+                            Accounts 
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>

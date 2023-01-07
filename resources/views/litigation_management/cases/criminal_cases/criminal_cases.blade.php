@@ -1,10 +1,10 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
-@php
-if (empty($case_cat)) {
-    $case_cat = '';
-}
-@endphp
+    @php
+        if (empty($case_cat)) {
+            $case_cat = '';
+        }
+    @endphp
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -482,221 +482,128 @@ if (empty($case_cat)) {
                     </div>
 
                     <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="row ">
-                                        <div class="col-sm-5">
-                                            <h3 class="card-title"> List <span
-                                                    style="color: red;font-size:15px;">
-                                                    {{-- {{ !empty($is_search) ? '(Showing Searched Item)' : '' }} --}}
-                                                
-                                                    @if (!empty($is_search))
-                                                        
-                                                        (Showing Searched Item : 
-                                                        
-                                                        {{ $request_data['created_case_id'] != null ? 'Case ID' : '' }}
-                                                        {{ $request_data['case_infos_case_no'] != null ? 'Case No' : '' }}
-                                                        {{ $request_data['case_infos_case_year'] != null ? 'Year' : '' }}
-                                                        {{ $request_data['name_of_the_court_id'] != null ? 'Name of the Court' : '' }}
-                                                        {{ $request_data['case_infos_complainant_informant_name'] != null ? '1st Party/Complainant/Petitioner/Plaintiff' : '' }}
-                                                        {{ $request_data['case_infos_accused_name'] != null ? '2nd Party/Accused/Opposition/Defendent' : '' }}
-                                                        {{ $request_data['client_id'] != null ? 'Client/Party' : '' }}
-                                                        {{ $request_data['client_name_write'] != null ? 'Client/Party' : '' }}
-                                                        {{ $request_data['client_category_id'] != null ? 'Client/Party Category' : '' }}
-                                                        {{ $request_data['client_subcategory_id'] != null ? 'Client/Party Subcategory' : '' }}
-                                                        {{ $request_data['client_group_id'] != null ? 'Client Group Name' : '' }}
-                                                        {{ $request_data['client_group_write'] != null ? 'Client Group Name' : '' }}
-                                                        {{ $request_data['case_category_id'] != null ? 'Case Category ' : '' }}
-                                                        {{ $request_data['case_type_id'] != null ? 'Case Type' : '' }}
-                                                        {{ $request_data['matter_id'] != null ? 'Case Matter' : '' }}
-                                                        {{ $request_data['client_division_id'] != null ? 'Division/Zone' : '' }}
-                                                        {{ $request_data['client_divisoin_write'] != null ? 'Division/Zone' : '' }}
-                                                        {{ $request_data['client_district_id'] != null ? 'District/Area' : '' }}
-                                                        {{ $request_data['client_district_write'] != null ? 'District/Area' : '' }}
-                                                        {{ $request_data['client_thana_id'] != null ? 'Thana/Branch' : '' }}
-                                                        {{ $request_data['client_thana_write'] != null ? 'Thana/Branch' : '' }}
-                                                        {{ $request_data['case_status_id'] != null ? 'Status of the Case' : '' }}
-                                                        {{ $request_data['from_next_date'] != null ? 'Next Date From' : '' }}
-                                                        {{ $request_data['to_next_date'] != null ? 'Next Date To' : '' }}
-                                                        {{ $request_data['next_date_fixed_id'] != null ? 'Next Date Fixed For' : '' }}
-                                                        {{ $request_data['lawyer_advocate_id'] != null ? 'Panel Lawyer' : '' }})
-                                                    @else
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row ">
 
+                                    <div class="col-sm-11 pl-0">
+                                        <a href="{{ route('civil-cases-latest') }}"
+                                            class="btn {{ $case_cat == 'Civil' ? 'civil_active_btn' : 'civil_btn' }}"><span>Civil</span></a>
+                                        <a href="{{ route('criminal-cases-latest') }}"
+                                            class="btn {{ $case_cat == 'Criminal' ? 'civil_active_btn' : 'civil_btn' }}"
+                                            style="margin-left: 6px;"><span>Criminal</span></a>
+                                        <a href="{{ route('criminal-cases') }}"
+                                            class="btn {{ $case_cat == 'all' ? 'civil_active_btn' : 'civil_btn' }}"
+                                            style="margin-left: 6px;"><span>All</span></a>
 
-                                                    @endif
-                                                
-                                                
-                                                </span>
-                                            </h3>
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <a href="{{ route('civil-cases-latest') }}" class="btn {{ $case_cat == 'Civil' ? 'civil_active_btn' : 'civil_btn' }}" ><span>Civil</span></a>   
-                                            <a href="{{ route('criminal-cases-latest') }}" class="btn {{ $case_cat == 'Criminal' ? 'civil_active_btn' : 'civil_btn' }}" style="margin-left: 6px;" ><span>Criminal</span></a>
-                                            <a href="{{ route('criminal-cases') }}" class="btn {{ $case_cat == 'all' ? 'civil_active_btn' : 'civil_btn' }}" style="margin-left: 6px;" ><span>All</span></a>
-
-                                        </div>
-                                        {{-- <div class="col-sm-1">
+                                    </div>
+                                    {{-- <div class="col-sm-1">
                                         </div> --}}
-                                        <div class="col-sm-2">
-                                            <div class="float-right">
-                                                @can('criminal-cases-create')
-                                                    <a href="{{ route('add-criminal-cases') }}">
-                                                        <button type="button" class="btn btn-success" style="padding: 4px 10px;"><i
-                                                                class="fas fa-plus"></i> Add Case
-                                                        </button>
-                                                    </a>
-                                                @endcan
-                                            </div>
+                                    <div class="col-sm-1 pl-0">
+                                        <div class="float-right">
+                                            @can('criminal-cases-create')
+                                                <a href="{{ route('add-criminal-cases') }}">
+                                                    <button type="button" class="btn btn-success"
+                                                        style="padding: 4px 10px;"><i class="fas fa-plus"></i> Add Case
+                                                    </button>
+                                                </a>
+                                            @endcan
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
+                            </div>
+                            <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
 
-                                        <thead>
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center"> Sl</th>
+                                            <th class="text-center"> ID</th>
+                                            <th class="text-center"> Type</th>
+                                            <th class="text-center"> Status</th>
+                                            <th class="text-center"> Next Date</th>
+                                            <th class="text-center"> Fixed for</th>
+                                            <th class="text-center"> Case No.</th>
+                                            <th class="text-center"> Sub. Case </th>
+                                            <th class="text-center"> Court </th>
+                                            <th class="text-center"> Police Station </th>
+                                            <th class="text-center"> District (P-1)</th>
+                                            <th class="text-center"> 1st Party</th>
+                                            <th class="text-center"> 2nd Party</th>
+                                            <th class="text-center"> District (P-2)</th>
+                                            <th class="text-center"> Nature</th>
+                                            <th class="text-center"> Matter</th>
+                                            <th class="text-center"> Law</th>
+                                            <th class="text-center"> Lawyer</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="search_data">
+                                        @foreach ($data as $key => $datum)
                                             <tr>
-                                                <th class="text-center"> Sl</th>
-                                                <th class="text-center"> ID</th>
-                                                <th class="text-center"> Status</th>
-                                                <th class="text-center"> Next Date</th>
-                                                <th class="text-center"> Fixed for</th>
-                                                <th class="text-center"> Case No.</th>
-                                                <th class="text-center"> Sub. Case </th>
-                                                <th class="text-center"> Court </th>
-                                                <th class="text-center"> District (P-1)</th>
-                                                <th class="text-center"> 1st Party</th>
-                                                <th class="text-center"> 2nd Party</th>
-                                                <th class="text-center"> District (P-2)</th>
-                                                <th class="text-center"> Matter</th>
-                                                <th class="text-center"> Lawyer</th>
-                                                <th class="text-center">Status</th>
-                                                <th class="text-center">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="search_data">
-                                            @foreach ($data as $key => $datum)
-                                                <tr>
-                                                    <td>
-                                                        {{ $key + 1 }}
-                                                    </td>
-                                                   
-                                                    <td>
-                                                        {{ $datum->created_case_id }}
-                                                    </td>
-                                                    <td>
-                                                        @if (Is_numeric($datum->case_status_id))
-                                                            {{ $datum->case_status_name }}
-                                                        @else
-                                                            {{ $datum->case_status_id }}
-                                                        @endif
-                                                    </td>
-                                                    <td width="8%">
-                                                        @if (!empty($datum->next_date) && $datum->next_date < date('Y-m-d'))
-                                                            <span
-                                                                style="color: rgba(255, 0, 0, 1);font-size:11.5px;">{{ date('d-m-Y', strtotime($datum->next_date)) }}</span>
-                                                        @elseif(!empty($datum->next_date))
-                                                            {{ date('d-m-Y', strtotime($datum->next_date)) }}
-                                                        @else
-                                                            <button type='button'
-                                                                class='btn-custom btn-danger-custom-next-date text-uppercase'
-                                                                style="padding:2px;line-height: 10px;">Not Upd
-                                                            </button>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        {{ $datum->next_date_reason_name }}
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{ route('view-criminal-cases', $datum->id) }}">
-                                                            {{ $datum->case_infos_case_no ? $datum->case_title_name . ' ' . $datum->case_infos_case_no . '/' . $datum->case_infos_case_year : '' }}
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        {{ $datum->sub_seq_case_title_name }}
+                                                <td>
+                                                    {{ $key + 1 }}
+                                                </td>
+
+                                                <td>
+                                                    {{ $datum->created_case_id }}
+                                                </td>
+
+                                                <td>
+                                                    {{ $datum->case_category_id }}
+                                                </td>
+                                                <td>
+                                                    @if (Is_numeric($datum->case_status_id))
+                                                        {{ $datum->case_status_name }}
+                                                    @else
+                                                        {{ $datum->case_status_id }}
+                                                    @endif
+                                                </td>
+                                                <td width="8%">
+                                                    @if (!empty($datum->next_date) && $datum->next_date < date('Y-m-d'))
+                                                        <span
+                                                            style="color: rgba(255, 0, 0, 1);font-size:11.5px;">{{ date('d-m-Y', strtotime($datum->next_date)) }}</span>
+                                                    @elseif(!empty($datum->next_date))
+                                                        {{ date('d-m-Y', strtotime($datum->next_date)) }}
+                                                    @else
+                                                        <button type='button'
+                                                            class='btn-custom btn-danger-custom-next-date text-uppercase'
+                                                            style="padding:2px;line-height: 10px;">Not Upd
+                                                        </button>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    {{ $datum->next_date_reason_name }}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('view-criminal-cases', $datum->id) }}">
+                                                        {{ $datum->case_infos_case_no ? $datum->case_title_name . ' ' . $datum->case_infos_case_no . '/' . $datum->case_infos_case_year : '' }}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    {{ $datum->sub_seq_case_title_name }}
+                                                    @php
+                                                        $case_infos_sub_seq_case_no = explode(', ', trim($datum->case_infos_sub_seq_case_no));
+                                                        $key = array_key_last($case_infos_sub_seq_case_no);
+                                                        echo $case_infos_sub_seq_case_no[$key];
+                                                        
+                                                        $case_infos_sub_seq_case_year = explode(', ', trim($datum->case_infos_sub_seq_case_year));
+                                                        $key = array_key_last($case_infos_sub_seq_case_year);
+                                                        $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                                        if ($last_case_no != null) {
+                                                            echo '/' . $last_case_no;
+                                                        }
+                                                    @endphp
+                                                </td>
+                                                <td>
+
+
+                                                    @if (!empty($datum->case_infos_sub_seq_court_short_id) || !empty($datum->sub_seq_court_short_write))
                                                         @php
-                                                            $case_infos_sub_seq_case_no = explode(', ', trim($datum->case_infos_sub_seq_case_no));
-                                                            $key = array_key_last($case_infos_sub_seq_case_no);
-                                                            echo $case_infos_sub_seq_case_no[$key];
-
-                                                            $case_infos_sub_seq_case_year = explode(', ', trim($datum->case_infos_sub_seq_case_year));
-                                                            $key = array_key_last($case_infos_sub_seq_case_year);
-                                                            $last_case_no = $case_infos_sub_seq_case_year[$key];
-                                                            if ($last_case_no != null) {
-                                                                echo '/' . $last_case_no;
-                                                            }
+                                                            $notes = explode(', ', $datum->case_infos_sub_seq_court_short_id);
                                                         @endphp
-                                                    </td>
-                                                    <td>
-
-
-                                                        @if (!empty($datum->case_infos_sub_seq_court_short_id) || !empty($datum->sub_seq_court_short_write))
-                                                            @php
-                                                                $notes = explode(', ', $datum->case_infos_sub_seq_court_short_id);
-                                                            @endphp
-                                                            @if ($datum->case_infos_sub_seq_court_short_id)
-                                                                @if (count($notes) > 1)
-                                                                    @foreach ($notes as $pro)
-                                                                        <li class="text-left">{{ $pro }}</li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($notes as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-                                                            @php
-                                                                $notes = explode(', ', $datum->sub_seq_court_short_write);
-                                                            @endphp
-                                                            @if ($datum->sub_seq_court_short_write)
-                                                                @if (count($notes) > 1)
-                                                                    @foreach ($notes as $pro)
-                                                                        <li class="text-left">{{ $pro }}</li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($notes as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-                                                        @else
-                                                            @php
-                                                                $notes = explode(', ', $datum->case_infos_court_short_id);
-                                                            @endphp
-                                                            @if ($datum->case_infos_court_short_id)
-                                                                @if (count($notes) > 1)
-                                                                    @foreach ($notes as $pro)
-                                                                        <li class="text-left">{{ $pro }}</li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($notes as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-                                                            @php
-                                                                $notes = explode(', ', $datum->court_short_write);
-                                                            @endphp
-                                                            @if ($datum->court_short_write)
-                                                                @if (count($notes) > 1)
-                                                                    @foreach ($notes as $pro)
-                                                                        <li class="text-left">{{ $pro }}</li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($notes as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        {{ $datum->district_name }}
-                                                    </td>
-                                                    <td>
-                                                        @php
-                                                            $notes = explode(', ', $datum->case_infos_complainant_informant_name);
-                                                        @endphp
-                                                        @if ($datum->case_infos_complainant_informant_name)
+                                                        @if ($datum->case_infos_sub_seq_court_short_id)
                                                             @if (count($notes) > 1)
                                                                 @foreach ($notes as $pro)
                                                                     <li class="text-left">{{ $pro }}</li>
@@ -707,61 +614,133 @@ if (empty($case_cat)) {
                                                                 @endforeach
                                                             @endif
                                                         @endif
-                                                    </td>
-                                                    <td>
                                                         @php
-                                                            $accused = explode(', ', $datum->case_infos_accused_name);
+                                                            $notes = explode(', ', $datum->sub_seq_court_short_write);
                                                         @endphp
-                                                        @if ($datum->case_infos_accused_name)
-                                                            @if (count($accused) > 1)
-                                                                @foreach ($accused as $item)
-                                                                    <li class="text-left">{{ $item }}</li>
+                                                        @if ($datum->sub_seq_court_short_write)
+                                                            @if (count($notes) > 1)
+                                                                @foreach ($notes as $pro)
+                                                                    <li class="text-left">{{ $pro }}</li>
                                                                 @endforeach
                                                             @else
-                                                                @foreach ($accused as $item)
-                                                                    {{ $item }}
+                                                                @foreach ($notes as $pro)
+                                                                    {{ $pro }}
                                                                 @endforeach
                                                             @endif
                                                         @endif
-                                                    </td>
-                                                    <td>
-                                                        {{ $datum->accused_district_name }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $datum->matter_name }} {{ $datum->matter_write }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $datum->first_name }} {{ $datum->last_name }}
-                                                        {{ $datum->lawyer_advocate_write }}
-                                                    </td>
-                                                    <td>
-                                                        @if ($datum->delete_status == 0)
-                                                            <button type="button"
-                                                                class="btn-custom btn-success-custom text-uppercase">
-                                                                Active
-                                                            </button>
-                                                        @else
-                                                            <button type="button"
-                                                                class="btn-custom btn-warning-custom text-uppercase">Inactive
-                                                            </button>
+                                                    @else
+                                                        @php
+                                                            $notes = explode(', ', $datum->case_infos_court_short_id);
+                                                        @endphp
+                                                        @if ($datum->case_infos_court_short_id)
+                                                            @if (count($notes) > 1)
+                                                                @foreach ($notes as $pro)
+                                                                    <li class="text-left">{{ $pro }}</li>
+                                                                @endforeach
+                                                            @else
+                                                                @foreach ($notes as $pro)
+                                                                    {{ $pro }}
+                                                                @endforeach
+                                                            @endif
                                                         @endif
-                                                    </td>
-                                                    <td>
-                                                        @can('criminal-cases-edit')
-                                                            <a href="{{ route('view-criminal-cases', $datum->id) }}">
-                                                                <button class="btn btn-outline-info btn-sm" type="button"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Details"><i class="fas fa-eye"></i></button>
-                                                            </a>
-                                                        @endcan
-                                                        @can('criminal-cases-edit')
-                                                            <a href="{{ route('view-criminal-cases', $datum->id) }}#section1">
-                                                                <button class="btn btn-outline-primary btn-sm" type="button"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Proceedings"><i class="fas fa-signal"></i></button>
-                                                            </a>
-                                                        @endcan
-                                                        {{-- @can('criminal-cases-add-billing')
+                                                        @php
+                                                            $notes = explode(', ', $datum->court_short_write);
+                                                        @endphp
+                                                        @if ($datum->court_short_write)
+                                                            @if (count($notes) > 1)
+                                                                @foreach ($notes as $pro)
+                                                                    <li class="text-left">{{ $pro }}</li>
+                                                                @endforeach
+                                                            @else
+                                                                @foreach ($notes as $pro)
+                                                                    {{ $pro }}
+                                                                @endforeach
+                                                            @endif
+                                                        @endif
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    {{ $datum->thana_name }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->district_name }}
+                                                </td>
+                                                <td>
+                                                    @php
+                                                        $notes = explode(', ', $datum->case_infos_complainant_informant_name);
+                                                    @endphp
+                                                    @if ($datum->case_infos_complainant_informant_name)
+                                                        @if (count($notes) > 1)
+                                                            @foreach ($notes as $pro)
+                                                                <li class="text-left">{{ $pro }}</li>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($notes as $pro)
+                                                                {{ $pro }}
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @php
+                                                        $accused = explode(', ', $datum->case_infos_accused_name);
+                                                    @endphp
+                                                    @if ($datum->case_infos_accused_name)
+                                                        @if (count($accused) > 1)
+                                                            @foreach ($accused as $item)
+                                                                <li class="text-left">{{ $item }}</li>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($accused as $item)
+                                                                {{ $item }}
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    {{ $datum->accused_district_name }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->nature }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->matter_name }} {{ $datum->matter_write }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->law_name }}
+                                                </td>
+                                                <td>
+                                                    {{ $datum->first_name }} {{ $datum->last_name }}
+                                                    {{ $datum->lawyer_advocate_write }}
+                                                </td>
+                                                <td>
+                                                    @if ($datum->delete_status == 0)
+                                                        <button type="button"
+                                                            class="btn-custom btn-success-custom text-uppercase">
+                                                            Active
+                                                        </button>
+                                                    @else
+                                                        <button type="button"
+                                                            class="btn-custom btn-warning-custom text-uppercase">Inactive
+                                                        </button>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @can('criminal-cases-edit')
+                                                        <a href="{{ route('view-criminal-cases', $datum->id) }}">
+                                                            <button class="btn btn-outline-info btn-sm" type="button"
+                                                                data-toggle="tooltip" data-placement="top" title="Details"><i
+                                                                    class="fas fa-eye"></i></button>
+                                                        </a>
+                                                    @endcan
+                                                    @can('criminal-cases-edit')
+                                                        <a href="{{ route('view-criminal-cases', $datum->id) }}#section1">
+                                                            <button class="btn btn-outline-primary btn-sm" type="button"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Proceedings"><i class="fas fa-signal"></i></button>
+                                                        </a>
+                                                    @endcan
+                                                    {{-- @can('criminal-cases-add-billing')
                                                             <a href="{{ route('add-criminal-cases-billling', $datum->id) }}">
                                                                 <button type="button" class="btn btn-outline-warning btn-sm"
                                                                     data-toggle="tooltip" data-placement="top"
@@ -769,40 +748,43 @@ if (empty($case_cat)) {
                                                                         class="fas fa-money-bill"></i></button>
                                                             </a>
                                                         @endcan --}}
-                                                        {{-- @can('criminal-cases-edit')
+                                                    {{-- @can('criminal-cases-edit')
                                                             <a href="{{ route('edit-criminal-cases', $datum->id) }}">
                                                                 <button type="button" class="btn btn-outline-info btn-sm"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Edit"><i class="fas fa-edit"></i></button>
                                                             </a>
                                                         @endcan --}}
-                                                        @can('criminal-cases-delete')
-                                                            {{-- <a href="{{ route('delete-criminal-cases-latest', $datum->id) }}">
+                                                    @can('criminal-cases-delete')
+                                                        {{-- <a href="{{ route('delete-criminal-cases-latest', $datum->id) }}">
                                                                 <button type="button" class="btn btn-outline-danger btn-sm"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Edit"><i class="fas fa-trash"></i></button>
                                                             </a> --}}
 
-                                                            {{-- {{ Form::open(array('method' => 'post', 'route' => array('delete-criminal-cases', $datum->id), 'class' => 'delete-form')) }}
+                                                        {{-- {{ Form::open(array('method' => 'post', 'route' => array('delete-criminal-cases', $datum->id), 'class' => 'delete-form')) }}
                                                     {{ Form::submit('Delete', array('class' => 'btn btn-danger', 'role' => 'button')) }}
                                                 {{ Form::close() }} --}}
 
-                                                            <form method="POST" action="{{ route('delete-criminal-cases',$datum->id) }}" class="delete-user btn btn-outline-danger btn-xs">
-                                                                @csrf
-                                                                <button type="submit" class="btn btn-outline-danger btn-sm" style="line-height: 1.4"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        title="Delete"><i class="fas fa-trash"></i></button>
-                                                            </form>
-                                                        @endcan
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
+                                                        <form method="POST"
+                                                            action="{{ route('delete-criminal-cases', $datum->id) }}"
+                                                            class="delete-user btn btn-outline-danger btn-xs">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-outline-danger btn-sm"
+                                                                style="line-height: 1.4" data-toggle="tooltip"
+                                                                data-placement="top" title="Delete"><i
+                                                                    class="fas fa-trash"></i></button>
+                                                        </form>
+                                                    @endcan
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
 
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
+                                </table>
                             </div>
+                            <!-- /.card-body -->
+                        </div>
                         <!-- /.card -->
                     </div>
                     <!-- /.col -->

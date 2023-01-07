@@ -5,13 +5,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Balance Report </h1>
+                        <h1>Billing Report </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Balance Report</li>
+                            <li class="breadcrumb-item active"> Billing Report</li>
                         </ol>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
 
                                         <form method="get" action="{{ route('billing-report-search') }}">
                                             <div class="row">
-                                                
+
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="class_of_cases" class="col-form-label">Client</label>
@@ -73,7 +73,8 @@
                                                                 id="client">
                                                                 <option value=""> Select </option>
                                                                 @foreach ($clients as $client)
-                                                                <option value="{{ $client->id }}">{{ $client->client_name }}</option>
+                                                                    <option value="{{ $client->id }}">
+                                                                        {{ $client->client_name }}</option>
                                                                 @endforeach
 
                                                             </select>
@@ -90,8 +91,7 @@
                                                         <div class="">
 
                                                             <select name="class_of_cases" class="form-control select2"
-                                                                 id="class_of_cases"
-                                                                action="{{ route('find-case-no') }}">
+                                                                id="class_of_cases" action="{{ route('find-case-no') }}">
                                                                 <option value=""> Select </option>
                                                                 <option value="District Court"> District Court </option>
                                                                 <option value="Special Court"> Special Court </option>
@@ -131,7 +131,7 @@
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
 
-                                                            <span class="date_span" style="width: 404px;">
+                                                            <span class="date_span" style="width: 304px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'from_date');"><input
@@ -152,7 +152,7 @@
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label"> To Date </label>
                                                         <div class="">
-                                                            <span class="date_span" style="width: 404px;">
+                                                            <span class="date_span" style="width: 304px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'to_date');"><input
@@ -166,8 +166,6 @@
                                                 </div>
 
                                             </div>
-
-
 
                                             <div class="float-right">
                                                 <button type="submit" id="submit"
@@ -223,7 +221,9 @@
                                                         <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}"
                                                             alt="AdminLTE Logo" class="brand-image" style="opacity:1">
 
-                                                        <small class="float-right" style="font-weight: 600!important;font-size:90%!important">Date: {{ date('d-m-Y') }}</small>
+                                                        <small class="float-right"
+                                                            style="font-weight: 600!important;font-size:90%!important">Date:
+                                                            {{ date('d-m-Y') }}</small>
                                                     </h4>
                                                 </div>
 
@@ -266,11 +266,11 @@
                                                                     ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
                                                                     ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no', 'criminal_cases.case_no as main_case_no')
                                                                     ->first();
-
+                                                                
                                                             @endphp
 
                                                             @if (!empty($case_number->main_case_no))
-                                                            {{ $case_number->main_case_no }}
+                                                                {{ $case_number->main_case_no }}
                                                             @endif
 
                                                         </h6>
@@ -313,12 +313,11 @@
                                                         </thead>
                                                         <tbody>
 
-@php
- $due=0;
-@endphp
+                                                            @php
+                                                                $due = 0;
+                                                            @endphp
 
                                                             @foreach ($data as $key => $datum)
-
                                                                 <tr>
                                                                     <td>
                                                                         {{ $key + 1 }}
@@ -328,12 +327,12 @@
                                                                         {{ $datum->billing_no }}
                                                                     </td>
                                                                     <td>
-                                                                        {{   date('d-m-Y', strtotime($datum->date_of_billing))   }}
+                                                                        {{ date('d-m-Y', strtotime($datum->date_of_billing)) }}
                                                                     </td>
-                                                                   
+
                                                                     <td>
-                                                                    
-                                                                        {{   date('d-m-Y', strtotime($datum->ledger_date))   }}
+
+                                                                        {{ date('d-m-Y', strtotime($datum->ledger_date)) }}
                                                                     </td>
                                                                     <td>
                                                                         {{ $datum->payment_type }}
@@ -354,7 +353,7 @@
                                                                 <td> {{ $data->sum('bill_amount') }} </td>
                                                                 <td colspan="1"> </td>
                                                             </tr>
-                                                          
+
                                                         </tbody>
                                                     </table>
                                                 </div>
