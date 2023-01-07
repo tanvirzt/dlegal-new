@@ -61,6 +61,16 @@
                                             </div>
 
                                             <div class="form-group">
+                                                <label class="form-label">Meeting Type</label>
+                                                <select name="meeting_type" class="select2 form-control" disabled>
+                                                    <option value="Call" {{$data->meeting_type == 'Call' ? 'selected' : ''}}>Call</option>
+                                                    <option value="Meeting" {{$data->meeting_type == 'Meeting' ? 'selected' : ''}}>Meeting</option>
+                                                    <option value="Visit" {{$data->meeting_type == 'Visit' ? 'selected' : ''}}>Visit</option>
+                                                </select>
+                                                @error('meeting_type')<span class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+
+                                            <div class="form-group">
                                                 <label class="form-label">Schedule Title</label>
                                                 <input type="text" class="form-control" placeholder="Enter title" name="title" value="{{old('title',$data->title)}}" readonly>
                                                 @error('title')<span class="text-danger">{{$message}}</span>@enderror
@@ -79,14 +89,43 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Priority</label>
-                                                <select name="priority" class="select2 form-control" disabled>
-                                                    <option value="">Select Priority</option>
-                                                    <option value="Law" {{$data->priority == 'Law' ? 'selected' : false}}>Law</option>
-                                                    <option value="Medium" {{$data->priority == 'Medium' ? 'selected' : false}}>Medium</option>
-                                                    <option value="High" {{$data->priority == 'High' ? 'selected' : false}}>High</option>
+                                                <label class="form-label">Place</label>
+                                                <input type="text" class="form-control" placeholder="Place" name="place" value="{{old('place',$data->place)}}" readonly>
+                                                @error('place')<span class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="form-label">Assign</label>
+                                                <select name="assign_id" class="select2 form-control" disabled>
+                                                    <option value="">Select</option>
+                                                    @foreach ($counsels as $counsel)
+
+                                                    <option value="{{$counsel->id}}"
+                                                     {{ $counsel->id == $data->assign_id ? 'selected' : false
+                                                     }} >{{$counsel->counsel_name}}</option>
+
+                                                    @endforeach
                                                 </select>
-                                                @error('priority')<span class="text-danger">{{$message}}</span>@enderror
+                                                @error('assign_id')<span class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="form-label">Service Type</label>
+                                                <select name="service_type" class="select2 form-control" disabled>
+                                                    <option value="Litigation" selected>Litigation</option>
+                                                </select>
+                                                @error('service_type')<span class="text-danger">{{$message}}</span>@enderror
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="form-label">Service</label>
+                                                <select name="service_id" class="select2 form-control" disabled>
+                                                    <option value="">Select</option>
+                                                    @foreach ($services as $service)
+                                                    <option value="{{$service->id}}" {{$service->id == $data->service_id ? 'selected' : false}}> {{$service->case_no}} </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('service_id')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Counsel;
+use App\Models\CriminalCase;
 use App\Models\Schedule;
 use App\Models\ScheduleCategory;
 use Illuminate\Http\Request;
@@ -17,7 +19,9 @@ class ScheduleController extends Controller
     public function create()
     {
         $categories = ScheduleCategory::all();
-        return view('schedule.create',compact('categories'));
+        $counsels = Counsel::all();
+        $services = CriminalCase::all();
+        return view('schedule.create',compact('categories','counsels','services'));
     }
     public function store(Request $request)
     {
@@ -33,13 +37,17 @@ class ScheduleController extends Controller
     {
         $data = Schedule::findOrFail($id);
         $categories = ScheduleCategory::all();
-        return view('schedule.show',compact('data','categories'));
+        $counsels = Counsel::all();
+        $services = CriminalCase::all();
+        return view('schedule.show',compact('data','categories','counsels','services'));
     }
     public function edit ($id)
     {
         $data = Schedule::findOrFail($id);
         $categories = ScheduleCategory::all();
-        return view('schedule.edit',compact('data','categories'));
+        $counsels = Counsel::all();
+        $services = CriminalCase::all();
+        return view('schedule.edit',compact('data','categories','counsels','services'));
     }
     public function update(Request $request, $id)
     {

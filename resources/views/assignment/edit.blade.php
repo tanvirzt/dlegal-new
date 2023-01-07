@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Edit Schedule</h1>
+                        <h1 class="m-0 text-dark">Edit Assignment</h1>
 
                     </div><!-- /.col -->
 
@@ -18,7 +18,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
-                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('schedule.index') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
+                                <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md" type="button" href="{{ route('assignment.index') }}" aria-disabled="false" role="link" tabindex="-1">Back</a>
                             </li>
                         </ol>
                     </div>
@@ -45,38 +45,28 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Edit Schedule</h3>
+                                <h3 class="card-title" id="heading">Edit Assignment</h3>
                             </div>
 
-                            <form action="{{ route('schedule.update',$data->id) }}" method="post">
+                            <form action="{{ route('assignment.update',$data->id) }}" method="post">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-10 mx-auto">
                                             <div class="form-group">
-                                                <label class="form-label">Schedule Category</label>
-                                                <select name="schedule_category_id" class="select2 form-control">
-                                                    <option value="">Select Schedule Category</option>
+                                                <label class="form-label">Assignment Category</label>
+                                                <select name="assignment_category_id" class="select2 form-control">
+                                                    <option value="">Select Assignment Category</option>
                                                     @foreach ($categories as $category)
-                                                    <option value="{{$category->id}}" {{$data->schedule_category_id == $category->id ? 'selected' : false}}>{{$category->category_name}}</option>
+                                                    <option value="{{$category->id}}" {{$data->assignment_category_id == $category->id ? 'selected' : false}}>{{$category->category_name}}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('schedule_category_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                @error('assignment_category_id')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Meeting Type</label>
-                                                <select name="meeting_type" class="select2 form-control">
-                                                    <option value="Call" {{$data->meeting_type == 'Call' ? 'selected' : ''}}>Call</option>
-                                                    <option value="Meeting" {{$data->meeting_type == 'Meeting' ? 'selected' : ''}}>Meeting</option>
-                                                    <option value="Visit" {{$data->meeting_type == 'Visit' ? 'selected' : ''}}>Visit</option>
-                                                </select>
-                                                @error('meeting_type')<span class="text-danger">{{$message}}</span>@enderror
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="form-label">Schedule Title</label>
+                                                <label class="form-label">Assignment Title</label>
                                                 <input type="text" class="form-control" placeholder="Enter title" name="title" value="{{old('title',$data->title)}}">
                                                 @error('title')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
@@ -91,12 +81,6 @@
                                                 <label class="form-label">Date</label>
                                                 <input type="datetime-local" class="form-control" name="date" value="{{old('date',$data->date)}}">
                                                 @error('date')<span class="text-danger">{{$message}}</span>@enderror
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="form-label">Place</label>
-                                                <input type="text" class="form-control" placeholder="Place" name="place" value="{{old('place',$data->place)}}">
-                                                @error('place')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
