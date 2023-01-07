@@ -23,6 +23,8 @@ use App\Http\Controllers\Admin\DocManagementController;
 use App\Http\Controllers\Admin\LitigationCalenderController;
 use App\Http\Controllers\Admin\CounselLawyerController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\ScheduleCategoryController;
+use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\TaskCategoryController;
 use App\Http\Controllers\Admin\TaskController;
 use Illuminate\Support\Facades\Artisan;
@@ -897,7 +899,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 
        //Schedule management\
 
-       Route::resource('schedule-category', scheduleCategoryController::class,  ['names' => 'schedule.category']);
+       Route::resource('schedule-category', ScheduleCategoryController::class,  ['names' => 'schedule.category']);
        Route::resource('schedule', ScheduleController::class);
        Route::put('schedule/change-status/{id}', [ScheduleController::class,'changeStatus'])->name('schedule.change.status');
 
