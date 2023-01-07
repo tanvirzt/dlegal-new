@@ -64,9 +64,9 @@
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 headerToolbar: {
-                    left: "prev,next,caseBtn,courtBtn",
+                    left: "caseBtn,courtBtn",
                     center: "title",
-                    right: "today,dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+                    right: "prev,next,today,dayGridMonth,timeGridWeek,timeGridDay,listWeek",
                 },
                 customButtons: {
                     caseBtn: {

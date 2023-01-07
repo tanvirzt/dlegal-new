@@ -70,7 +70,26 @@
                                         <form method="get" action="{{ route('income-expense-report-search') }}">
                                             {{-- @csrf --}}
                                             <div class="row">
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label for="class_of_cases" class="col-form-label">Client</label>
+                                                        <div class="">
+
+                                                            <select name="client" class="form-control select2"
+                                                                id="client">
+                                                                <option value=""> Select </option>
+                                                                @foreach ($clients as $client)
+                                                                <option value="{{ $client->id }}">{{ $client->client_name }}</option>
+                                                                @endforeach
+
+                                                            </select>
+                                                            @error('client')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label for="ledger_type" class="col-form-label">Ledger Type</label>
                                                         <div>
@@ -84,11 +103,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-2">
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
-                                                            <span class="date_span" style="width: 404px;">
+                                                            <span class="date_span" style="width: 204px;">
                                                                 <input type="date" class="xDateContainer date_first_input"
                                                                        onchange="setCorrect(this,'from_date');"><input type="text" id="from_date"
                                                                                                                     name="from_date" value="dd-mm-yyyy"
@@ -102,11 +121,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-2">
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label"> To Date </label>
                                                         <div class="">
-                                                            <span class="date_span" style="width: 404px;">
+                                                            <span class="date_span" style="width: 204px;">
                                                                 <input type="date" class="xDateContainer date_first_input"
                                                                        onchange="setCorrect(this,'to_date');"><input type="text" id="to_date"
                                                                                                                     name="to_date" value="dd-mm-yyyy"
@@ -117,6 +136,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                           
                                                 
                                             </div>
 
@@ -220,9 +240,9 @@
                                                     <thead>
                                                         <tr>
                                                             <th class="text-center">SL</th>
-                                                            <th class="text-center">Ledger Date</th>
+                                                            <th class="text-center">Paid Date</th>
                                                             <th class="text-center">Bill No</th>
-                                                            <th class="text-center">Payment Against Bill</th>
+                                                            <th class="text-center"> Bill Date</th>
                                                             <th class="text-nowrap"> Transaction No. </th>
                                                             <th class="text-center"> Job No. </th>
                                                             <th class="text-nowrap">Ledger Type</th>
@@ -247,9 +267,11 @@
                                                                 <td>
                                                                     {{ $datum->bill_id != null ? $datum->bill->billing_no : '' }}
                                                                 </td>
+                                                              
                                                                 <td>
-                                                                    {{ $datum->payment_against_bill == 'on' ? 'Yes' : 'No' }}
+                                                                    {{   date('d-m-Y', strtotime($datum->date_of_billing))   }}
                                                                 </td>
+                                                              
                                                                 <td>
                                                                     {{ $datum->transaction_no }}
                                                                 </td>
@@ -263,7 +285,7 @@
                                                                     {{ $datum->payment_type }}
                                                                 </td>
                                                                 <td>
-                                                                    {{ $datum->ledger_head_bill_id != null ? $datum->ledger_head_bill->ledger_head_name : '' }}
+                                                                    {{ $datum->ledger_head_id != null ? $datum->ledger_head->ledger_head_name : '' }}
 
                                                                 </td>
                                                                 <td>

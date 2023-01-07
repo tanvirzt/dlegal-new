@@ -63,7 +63,6 @@
 
                                         <form method="get" action="{{ route('balance-report-search') }}">
                                             <div class="row">
-                                                
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="class_of_cases" class="col-form-label">Client</label>
@@ -90,7 +89,7 @@
                                                         <div class="">
 
                                                             <select name="class_of_cases" class="form-control select2"
-                                                                 id="class_of_cases"
+                                                                required id="class_of_cases"
                                                                 action="{{ route('find-case-no') }}">
                                                                 <option value=""> Select </option>
                                                                 <option value="District Court"> District Court </option>
@@ -125,13 +124,30 @@
                                                 </div>
 
 
+                                                {{-- <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label for="bill_id" class="col-form-label">Bill No </label>
+                                                        <div class="">
 
-                                                <div class="col-sm-4 mr-3">
+                                                            <select name="bill_id" class="form-control select2">
+                                                                <option value="">Select Case Type</option>
+
+                                                                @foreach ($bill_no as $item)
+                                                                    <option value="{{ $item->id }}" {{( $request_data['class_of_cases'] == $item->id ? 'selected':'')}}>{{ $item->billing_no }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('bill_id')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div> --}}
+                                                {{-- <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
 
-                                                            <span class="date_span" style="width: 304px;">
+                                                            <span class="date_span" style="width: 404px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'from_date');"><input
@@ -147,12 +163,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <br>
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label"> To Date </label>
                                                         <div class="">
-                                                            <span class="date_span" style="width: 304px;">
+                                                            <span class="date_span" style="width: 404px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'to_date');"><input
@@ -163,7 +178,7 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
                                             </div>
 
@@ -223,7 +238,7 @@
                                                         <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}"
                                                             alt="AdminLTE Logo" class="brand-image" style="opacity:1">
 
-                                                        <small class="float-right" style="font-weight: 600!important;font-size:90%!important">Date: {{ date('d-m-Y') }}</small>
+                                                        <small class="float-right">Date: {{ date('d-m-Y') }}</small>
                                                     </h4>
                                                 </div>
 
@@ -249,7 +264,7 @@
                                                 </div>
 
                                                 <div class="col-sm-4 invoice-col">
-                                                    <h2 class="text-center ">Ledger Report </h2>
+                                                    <h3 class="text-center">Ledger Report </h3>
                                                     <h5 class="text-center">
                                                         {{ !empty($ledger_head_name) ? $ledger_head_name->ledger_head_name : '' }}
                                                     </h5>
@@ -305,23 +320,18 @@
                                                                 <th class="text-center">SL</th>
                                                                 <th class="text-center">Bill No</th>
                                                                 <th class="text-center">Billing Date</th>
-                                                                <th class="text-center">Paid Date</th>
                                                                 <th class="text-nowrap">Payment Type</th>
                                                                 <th class="text-center">Bill Amount</th>
                                                                 <th class="text-center">Paid Amount</th>
-                                                              
+                                                                <th class="text-center">Paid Date</th>
                                                                 <th class="text-center">Due Amount</th>
-                                                                <th class="text-center">Remarks</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
 
-@php
- $due=0;
-@endphp
+
 
                                                             @foreach ($data as $key => $datum)
-
                                                                 <tr>
                                                                     <td>
                                                                         {{ $key + 1 }}
@@ -331,48 +341,32 @@
                                                                         {{ $datum->billing_no }}
                                                                     </td>
                                                                     <td>
-                                                                        {{   date('d-m-Y', strtotime($datum->date_of_billing))   }}
+                                                                        {{ $datum->date_of_billing }}
                                                                     </td>
                                                                     <td>
                                                                         {{ $datum->payment_type }}
                                                                     </td>
                                                                     <td>
-                                                                    
-                                                                        {{   date('d-m-Y', strtotime($datum->ledger_date))   }}
-                                                                    </td>
-                                                                    <td>
                                                                         {{ $datum->bill_amount }}
                                                                     </td>
-
                                                                     <td>
-
-                                                                            {{ (int)$datum->paid_amount }}
-
-                                                                    </td>
-                                                                   
-                                                                    <td>
-
-
-                                                                        @php
-                                                                         $sum_paid=0;
-                                                                        
-                                                                        $paid=(int)$datum->paid_amount;
-                                                                        $sum_paid=$sum_paid+$paid;
-                                                                        $newdue=$datum->bill_amount - $sum_paid ;
-                                                                        $due=$due+$newdue;
-                                                                        @endphp
-                                                                        {{ $due}}
-                                                                         
+                                                                        @foreach ($datum->ledger as $ledger)
+                                                                            {{ $ledger->paid_amount }} <br>
+                                                                        @endforeach
                                                                     </td>
                                                                     <td>
-                                                                        {{ $datum->remarks }}
+                                                                        {{  @$datum->ledger->ledger_date }}
                                                                     </td>
+                                                                    <td>
+                                                                        {{ $datum->bill_amount - $datum->ledger->sum('paid_amount') }}
+                                                                    </td>
+
 
                                                                 </tr>
                                                             @endforeach
 
                                                             <tr>
-                                                                <td colspan="5">Total: </td>
+                                                                <td colspan="3">Total: </td>
                                                                 <td> {{ $data->sum('bill_amount') }} </td>
 
                                                                 <td>
@@ -386,13 +380,12 @@
                                                                         @endphp
                                                                         {{ $pd_amnt }}
                                                                     @else
-
-                                                                    {{ $data->sum('paid_amount') }}
+                                                                        {{ $ledger->sum('paid_amount') }}
                                                                     @endif
 
-
                                                                 </td>
-                                                                 <td>{{ $data->sum('bill_amount') -  $data->sum('paid_amount')  }}
+
+                                                                <td>{{ $data->sum('bill_amount') - (!empty($is_search) ? $pd_amnt : $ledger->sum('paid_amount')) }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>

@@ -195,12 +195,6 @@
             width: 30.5% !important;
         }
 
-
-        
-
-
-
-
     </style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -225,13 +219,7 @@
 
                             {{-- {{ $request_data['today'] != null ? 'Today' : '' }} --}}
                             {{-- {{ $request_data['to_date'] != null ? 'Tomorrow' : '' }} --}}
-                        
-                        
                         </span></h1>
-
-
-
-
                     </div>
                     <div class="col-sm-3">
 
@@ -563,7 +551,7 @@
         <label for="case_no" class="case_no"> Case No. </label>
       </a>
       <a class="dropdown-item" href="#">
-        <input type="checkbox" checked class="police_station" name="police_station">            
+        <input type="checkbox"  class="police_station" name="police_station">            
         <label for="police_station" class="police_station"> Police Station </label>
       </a>
       <a class="dropdown-item" href="#">
@@ -581,7 +569,16 @@
       </a>
       <a class="dropdown-item" href="#">
         <input type="checkbox" checked class="steps_notes" name="steps_notes">            
-        <label for="steps_notes" class="steps_notes"> Steps & Notes </label>
+        <label for="steps_notes" class="steps_notes"> Nexts Steps</label>
+      </a>
+      <a class="dropdown-item" href="#">
+        <input type="checkbox"  class="previous_date" name="previous_date">            
+        <label for="previous_date" class="previous_date"> PV. Date </label>
+      </a>
+  
+      <a class="dropdown-item" href="#">
+        <input type="checkbox"  class="pv_fix_for" name="PV_date_fix_for">            
+        <label for="PV_date_fix_for" class="pv_fix_for"> PV. Date Fixed for</label>
       </a>
     </div>
   </div>
@@ -700,20 +697,29 @@
                                             <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">Revision</h6>
                                             <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">0</p>
                                         </div>
-                                        <div class="col-md-1 p-3 mr-1">
-                                         <a href="{{ route('litigation-calender-print',$datum->next_date) }}" title="Print Case Info" target="_blank" class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
+                                        <div class="col-md-1 border pt-1 mr-1">
+                                            <h6 class="info-box-text text-center text-muted text-bold" style="font-size:11px;">others</h6>
+                                            <p class="info-box-number text-center text-muted mb-0 text-bold" style="font-size:15px;">0</p>
                                         </div>
+                                        
+                                        
                                     </div>
 
                                     
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
+                              
+                                    <div class="card-tools">
+                                        <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-lg-send-messages" data-placement="top"
+                                                           href=""><i class="fas fa-bell"></i> </a>
+                                                           <a href="{{ route('litigation-calender-print',$datum->next_date) }}" title="Print Case Info" target="_blank" class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                
+               
 
                             </div>
 
@@ -724,15 +730,15 @@
                                             <th class="sl_no_column" width="2%">SL</th>
                                             <th class="court_column" width="5%">Court</th>
                                             <th class="case_no_column" width="10%">Case No.</th>
-                                            <th class="police_station_column" width="5%">Police Station</th>
+                                            <th class="police_station_column" width="5%" style="display: none">Police Station</th>
                                             {{-- <th width="10%">Previous Case Date</th> --}}
                                             <th class="fixed_for_column" width="10%">Fixed For</th>
                                             <th class="party_column" width="20%">Party</th>
                                             {{-- <th width="17%">2nd Party</th> --}}
                                             <th class="matter_column" width="10%">Matter</th>
                                             <th class="matter_column" width="10%">Type</th>
-                                            <th class="matter_column" width="10%">PV.Date</th>
-                                            <th class="matter_column" width="10%">PV.D Fixed For</th>
+                                            <th class="previous_date_column" width="10%" style="display: none">PV.Date</th>
+                                            <th class="pv_date_fix_column" width="10%" style="display: none">PV.D Fixed For</th>
                                             <th class="steps_notes_column" width="15%">Next Steps</th>
                                             <th class="steps_notes_column" width="15%">Lawyer</th>
                                             <th class="steps_notes_column" width="15%">Action</th>
@@ -956,7 +962,7 @@ $data = DB::table('criminal_cases')
                                             {{ last($case_infos_sub_seq_case_year) }}
 
                                         </td> --}}
-                                        <td class="police_station_column">{{ $value->thana_name }}</td>
+                                        <td class="police_station_column" style="display: none">{{ $value->thana_name }}</td>
 {{-- @php
     $proceedings = \App\Models\CriminalCaseStatusLog::select('updated_next_date')->where(['case_id' => $value->id ,'delete_status' => 0])->groupBy('updated_next_date')->first();
 
@@ -1035,7 +1041,7 @@ $data = DB::table('criminal_cases')
                                         ->first();
                                           //dd($case_logs);
                                         @endphp
-                                        <td>
+                                        <td class="previous_date_column" style="display: none">
                                          @if(@$case_logs->updated_next_date != null)   
                                          {{@$case_logs->updated_next_date}}
                                          @else
@@ -1043,7 +1049,7 @@ $data = DB::table('criminal_cases')
                                         @endif
                                         </td>
                                        
-                                        <td>
+                                        <td class="pv_date_fix_column" style="display: none">
                                             @if(@$case_logs->next_date_reason_name != null)   
                                             {{ @$case_logs->next_date_reason_name }}
                                             @else
@@ -2042,6 +2048,14 @@ $data = DB::table('criminal_cases')
     });
     $(".steps_notes").on('click', function () {
         $(".steps_notes_column").toggle();
+    });
+    $(".previous_date").on('click', function () {
+        $(".previous_date_column").toggle();
+    });
+    
+    $(".pv_fix_for").on('click', function () {
+        $(".pv_date_fix_column").toggle();
+ 
     });
 
 </script>

@@ -61,7 +61,7 @@
                                     <div class="card-body">
 
 
-                                        <form method="get" action="{{ route('balance-report-search') }}">
+                                        <form method="get" action="{{ route('billing-report-search') }}">
                                             <div class="row">
                                                 
                                                 <div class="col-sm-4">
@@ -131,7 +131,7 @@
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
 
-                                                            <span class="date_span" style="width: 304px;">
+                                                            <span class="date_span" style="width: 404px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'from_date');"><input
@@ -152,7 +152,7 @@
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label"> To Date </label>
                                                         <div class="">
-                                                            <span class="date_span" style="width: 304px;">
+                                                            <span class="date_span" style="width: 404px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'to_date');"><input
@@ -308,9 +308,6 @@
                                                                 <th class="text-center">Paid Date</th>
                                                                 <th class="text-nowrap">Payment Type</th>
                                                                 <th class="text-center">Bill Amount</th>
-                                                                <th class="text-center">Paid Amount</th>
-                                                              
-                                                                <th class="text-center">Due Amount</th>
                                                                 <th class="text-center">Remarks</th>
                                                             </tr>
                                                         </thead>
@@ -333,37 +330,18 @@
                                                                     <td>
                                                                         {{   date('d-m-Y', strtotime($datum->date_of_billing))   }}
                                                                     </td>
-                                                                    <td>
-                                                                        {{ $datum->payment_type }}
-                                                                    </td>
+                                                                   
                                                                     <td>
                                                                     
                                                                         {{   date('d-m-Y', strtotime($datum->ledger_date))   }}
                                                                     </td>
                                                                     <td>
+                                                                        {{ $datum->payment_type }}
+                                                                    </td>
+                                                                    <td>
                                                                         {{ $datum->bill_amount }}
                                                                     </td>
 
-                                                                    <td>
-
-                                                                            {{ (int)$datum->paid_amount }}
-
-                                                                    </td>
-                                                                   
-                                                                    <td>
-
-
-                                                                        @php
-                                                                         $sum_paid=0;
-                                                                        
-                                                                        $paid=(int)$datum->paid_amount;
-                                                                        $sum_paid=$sum_paid+$paid;
-                                                                        $newdue=$datum->bill_amount - $sum_paid ;
-                                                                        $due=$due+$newdue;
-                                                                        @endphp
-                                                                        {{ $due}}
-                                                                         
-                                                                    </td>
                                                                     <td>
                                                                         {{ $datum->remarks }}
                                                                     </td>
@@ -374,27 +352,9 @@
                                                             <tr>
                                                                 <td colspan="5">Total: </td>
                                                                 <td> {{ $data->sum('bill_amount') }} </td>
-
-                                                                <td>
-                                                                    @if (!empty($is_search))
-                                                                        @php
-                                                                            $pd_amnt = DB::table('ledger_entries')
-                                                                                ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
-                                                                                ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
-                                                                                ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no')
-                                                                                ->sum('ledger_entries.paid_amount');
-                                                                        @endphp
-                                                                        {{ $pd_amnt }}
-                                                                    @else
-
-                                                                    {{ $data->sum('paid_amount') }}
-                                                                    @endif
-
-
-                                                                </td>
-                                                                 <td>{{ $data->sum('bill_amount') -  $data->sum('paid_amount')  }}
-                                                                </td>
+                                                                <td colspan="1"> </td>
                                                             </tr>
+                                                          
                                                         </tbody>
                                                     </table>
                                                 </div>
