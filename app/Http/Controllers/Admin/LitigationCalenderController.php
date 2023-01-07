@@ -215,39 +215,39 @@ class LitigationCalenderController extends Controller
         ->groupBy('updated_next_date')
         ->get();
 
-        foreach($civilCases as $case){
+        // foreach($civilCases as $case){
 
-            $civilCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
-            ->where('case_category_id','Civil')->where('updated_next_date',$case->updated_next_date)->count();
+        //     $civilCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
+        //     ->where('case_category_id','Civil')->where('updated_next_date',$case->updated_next_date)->count();
 
-            $criminalCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
-            ->where('case_category_id','Criminal')->where('updated_next_date',$case->updated_next_date)->count();
-
-            $criminal_events[] = [
-                'title' => "Civil: $civilCount | Criminal: $criminalCount",
-                'url' => "$redirect_url#$case->updated_next_date",
-                'start' => $case->updated_next_date,
-                'display' => 'list-item',
-                'backgroundColor' => '#e50000',
-            ];
-        }
-
-
-
-        //Criminal Case
-        // $criminal_cases = \App\Models\CriminalCaseStatusLog::select('updated_next_date')->where(['delete_status' => 0])->groupBy('updated_next_date')->get();
-        // $criminal_events = array();
-        // foreach ($criminal_cases as $case) {
-        //     $case_count = \App\Models\CriminalCaseStatusLog::where(['updated_next_date' => $case->updated_next_date, 'delete_status' => 0])->count();
+        //     $criminalCount= CriminalCaseStatusLog::join('criminal_cases','criminal_cases.id','=','criminal_case_status_logs.case_id')
+        //     ->where('case_category_id','Criminal')->where('updated_next_date',$case->updated_next_date)->count();
 
         //     $criminal_events[] = [
-        //         'title' => "Criminal: $case_count",
+        //         'title' => "Civil: $civilCount | Criminal: $criminalCount",
         //         'url' => "$redirect_url#$case->updated_next_date",
         //         'start' => $case->updated_next_date,
         //         'display' => 'list-item',
-        //         'backgroundColor' => 'pink',
+        //         'backgroundColor' => '#e50000',
         //     ];
         // }
+
+
+
+        // Criminal Case
+        $criminal_cases = \App\Models\CriminalCaseStatusLog::select('updated_next_date')->where(['delete_status' => 0])->groupBy('updated_next_date')->get();
+        $criminal_events = array();
+        foreach ($criminal_cases as $case) {
+            $case_count = \App\Models\CriminalCaseStatusLog::where(['updated_next_date' => $case->updated_next_date, 'delete_status' => 0])->count();
+
+            $criminal_events[] = [
+                'title' => "Criminal: $case_count",
+                'url' => "$redirect_url#$case->updated_next_date",
+                'start' => $case->updated_next_date,
+                'display' => 'list-item',
+                'backgroundColor' => 'pink',
+            ];
+        }
 
 
 
