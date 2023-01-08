@@ -101,7 +101,7 @@ class CriminalCasesController extends Controller
     }
 
     public function criminal_cases()
-    {   
+    {
         $user = User::all();
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
@@ -134,7 +134,7 @@ class CriminalCasesController extends Controller
             ->where('criminal_cases.case_type', 'District')
             ->where('criminal_cases.delete_status', 0)
             ->orderBy('criminal_cases.created_at', 'desc');
-      
+
         if (Auth::user()->is_companies_superadmin == '1' || Auth::user()->is_owner_admin == '1') {
 
             $query2 = $query;
@@ -167,7 +167,7 @@ class CriminalCasesController extends Controller
             'setup_laws.law_name')
             ->get();
 
-       
+
      // dd($data);
         return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter', 'case_cat'));
     }
@@ -231,8 +231,8 @@ class CriminalCasesController extends Controller
             'setup_matters.matter_name')
             ->get();
 
-       
-       
+
+
         return view('litigation_management.cases.criminal_cases.special_court_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter', 'case_cat'));
     }
     public function special_court_cases_civil()
@@ -296,8 +296,8 @@ class CriminalCasesController extends Controller
             'setup_matters.matter_name')
             ->get();
 
-       
-       
+
+
         return view('litigation_management.cases.criminal_cases.special_court_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter', 'case_cat'));
     }
     public function special_court_cases_criminal()
@@ -361,8 +361,8 @@ class CriminalCasesController extends Controller
             'setup_matters.matter_name')
             ->get();
 
-       
-       
+
+
         return view('litigation_management.cases.criminal_cases.special_court_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter', 'case_cat'));
     }
 
@@ -577,10 +577,10 @@ class CriminalCasesController extends Controller
         $data->opposition_coordinator_tadbirkar_id = $request->opposition_coordinator_tadbirkar_id;
         $data->opposition_coordinator_tadbirkar_write = $request->opposition_coordinator_tadbirkar_write;
         $data->opposition_coordinator_details = $request->opposition_coordinator_details;
-       
+
         $data->lawyer_advocate_id = $request->lawyer_advocate_id;
         $data->lawyer_advocate_write = $request->lawyer_advocate_write;
-       
+
         $data->assigned_lawyer_id = $request->assigned_lawyer_id ? implode(', ', $request->assigned_lawyer_id) : null;
         $data->lawyers_remarks = $request->lawyers_remarks;
 
@@ -597,12 +597,12 @@ class CriminalCasesController extends Controller
         // `received_documents_date` Change to`lead_laywer_name`
         // `required_wanting_documents`Change to `lead_laywer_name_extra`
         // `required_wanting_documents_date` Change to`assigned_lawyer_extra`
-       
+
         $data->case_type = $request->case_type;
         $data->lead_laywer_name = $request->lead_laywer_name;
         $data->lead_laywer_name_extra = $request->lead_laywer_name_extra;
         $data->assigned_lawyer_extra = $request->assigned_lawyer_extra;
-        
+
 
 
         $data->case_infos_division_id = $request->case_infos_division_id;
@@ -640,7 +640,7 @@ class CriminalCasesController extends Controller
         $data->case_infos_accused_representative = rtrim($case_infos_accused_representative, ', ');
         $data->prosecution_witness = $request->prosecution_witness;
         $data->defense_witness = $request->defense_witness;
-        $data->created_by = auth_id(); 
+        $data->created_by = auth_id();
         $data->save();
 
         $steps = new CriminalCasesCaseSteps();
@@ -690,7 +690,7 @@ class CriminalCasesController extends Controller
         $steps->case_steps_argument = $request->case_steps_argument == 'dd-mm-yyyy' || $request->case_steps_argument == 'NaN-NaN-NaN' ? null : $request->case_steps_argument;
         $steps->case_steps_argument_note = $request->case_steps_argument_note;
         $steps->case_steps_argument_type_id = $request->case_steps_argument_type_id;
-       
+
 
         $steps->case_steps_summary_of_cases = $request->case_steps_summary_of_cases == 'dd-mm-yyyy' || $request->case_steps_summary_of_cases == 'NaN-NaN-NaN' ? null : $request->case_steps_summary_of_cases;
         $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
@@ -702,34 +702,34 @@ class CriminalCasesController extends Controller
         $steps->case_steps_subsequent_status = $request->case_steps_subsequent_status == 'dd-mm-yyyy' || $request->case_steps_subsequent_status == 'NaN-NaN-NaN' ? null : $request->case_steps_subsequent_status;
         $steps->case_steps_subsequent_status_note = $request->case_steps_subsequent_status_note;
         $steps->case_steps_subsequent_status_type_id = $request->case_steps_subsequent_status_type_id;
-       
+
         $steps->case_steps_servicr_return = $request->case_steps_servicr_return == 'dd-mm-yyyy' || $request->case_steps_servicr_return == 'NaN-NaN-NaN' ? null : $request->case_steps_servicr_return;
         $steps->case_steps_servicr_return_note = $request->case_steps_servicr_return_note;
         $steps->case_steps_servicr_return_type_id = $request->case_steps_servicr_return_type_id;
-       
-       
+
+
         $steps->case_steps_sr_completed = $request->case_steps_sr_completed == 'dd-mm-yyyy' || $request->case_steps_sr_completed == 'NaN-NaN-NaN' ? null : $request->case_steps_sr_completed;
         $steps->case_steps_sr_completed_note = $request->case_steps_sr_completed_note;
         $steps->case_steps_sr_completed_type_id = $request->case_steps_sr_completed_type_id;
-       
-       
+
+
         $steps->case_steps_set_off = $request->case_steps_set_off == 'dd-mm-yyyy' || $request->case_steps_set_off == 'NaN-NaN-NaN' ? null : $request->case_steps_set_off;
         $steps->case_steps_set_off_note = $request->case_steps_set_off_note;
         $steps->case_steps_set_off_type_id = $request->case_steps_set_off_type_id;
-       
+
         $steps->case_steps_issue_frame = $request->case_steps_issue_frame == 'dd-mm-yyyy' || $request->case_steps_issue_frame == 'NaN-NaN-NaN' ? null : $request->case_steps_issue_frame;
         $steps->case_steps_issue_frame_note = $request->case_steps_issue_frame_note;
         $steps->case_steps_issue_frame_type_id = $request->case_steps_issue_frame_type_id;
-       
-       
+
+
         $steps->case_steps_ph = $request->case_steps_ph == 'dd-mm-yyyy' || $request->case_steps_ph == 'NaN-NaN-NaN' ? null : $request->case_steps_ph;
         $steps->case_steps_ph_note = $request->case_steps_ph_note;
         $steps->case_steps_ph_type_id = $request->case_steps_ph_type_id;
-   
+
         $steps->case_steps_fph = $request->case_steps_fph == 'dd-mm-yyyy' || $request->case_steps_fph == 'NaN-NaN-NaN' ? null : $request->case_steps_fph;
         $steps->case_steps_fph_note = $request->case_steps_fph_note;
         $steps->case_steps_fph_type_id = $request->case_steps_fph_type_id;
-       
+
 
 
         // $steps->case_steps_filing = $request->case_steps_filing == 'dd-mm-yyyy' || $request->case_steps_filing == 'NaN-NaN-NaN' ? null : $request->case_steps_filing;
@@ -778,7 +778,7 @@ class CriminalCasesController extends Controller
           $oopLayer->opp_lawyer_contact= $request->opp_lawyer_contact;
           $oopLayer->opp_lawyers_note= $request->opp_lawyers_note;
           $oopLayer->save();
-        
+
 
         if ($request->hasfile('uploaded_document')) {
             foreach ($request->file('uploaded_document') as $key => $file) {
@@ -824,7 +824,7 @@ class CriminalCasesController extends Controller
 
         $case_file_location_new_sections = $request->case_file_location_new_sections;
         array_pop($case_file_location_new_sections);
-        
+
         foreach (array_filter($case_file_location_new_sections) as $key => $value) {
             $required = new CriminalCasesCaseFileLocation();
             $required->case_id = $data->id;
@@ -858,9 +858,9 @@ class CriminalCasesController extends Controller
             return redirect()->route('criminal-cases');
         }else{
             session()->flash('success', 'Special Court Added Successfully.');
-            return redirect()->route('special-court-cases-all'); 
+            return redirect()->route('special-court-cases-all');
         }
-        
+
     }
 
     public function edit_criminal_cases($id)
@@ -1138,10 +1138,10 @@ class CriminalCasesController extends Controller
         $data = CriminalCase::find($id);
         $data->case_type = $request->case_type;
         // $data->case_status_id = $request->case_status_id;
-    
+
 
         if ($request->client && $request->client_party_id) {
-           
+
             $data->client = $request->client;
             $data->legal_issue_id = $request->legal_issue_id;
             $data->legal_issue_write = $request->legal_issue_write;
@@ -1214,7 +1214,7 @@ class CriminalCasesController extends Controller
             $data->opposition_coordinator_tadbirkar_id = $request->opposition_coordinator_tadbirkar_id;
             $data->opposition_coordinator_tadbirkar_write = $request->opposition_coordinator_tadbirkar_write;
             $data->opposition_coordinator_details = $request->opposition_coordinator_details;
-           
+
 
             // $data->received_documents_id = rtrim($received_documents_id,', ');
             // $data->received_documents = $received_documents;
@@ -1250,7 +1250,7 @@ class CriminalCasesController extends Controller
             $data->section_write = rtrim($section_write, ', ');
             // $data->date_of_filing = $request->date_of_filing == 'dd-mm-yyyy' || $request->date_of_filing == 'NaN-NaN-NaN' ? null : $request->date_of_filing;
             $data->date_of_filing = $request->date_of_filing;
-            
+
             $data->matter_id = $request->matter_id;
             $data->matter_write = $request->matter_write;
             $data->case_type_id = $request->case_type_id;
@@ -1309,10 +1309,10 @@ class CriminalCasesController extends Controller
             $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
             $steps->case_steps_summary_of_cases_type_id = $request->case_steps_summary_of_cases_type_id;
             $steps->case_steps_remarks = $request->case_steps_remarks;
- 
+
             $steps->save();
 
-          
+
 
             // dd($oopLayer);
 
@@ -1470,12 +1470,12 @@ class CriminalCasesController extends Controller
             $data->lead_laywer_name = $request->lead_laywer_name;
             $data->lead_laywer_name_extra = $request->lead_laywer_name_extra;
             $data->assigned_lawyer_extra = $request->assigned_lawyer_extra;
-        
+
             $data->save();
 
         }elseif($request->opp_lawyers_information){
             $oopLayer = CriminalCasesOppsitionLawyer::where('criminal_case_id',$id)->first();
-           
+
             if (!is_null($oopLayer)) {
                 $oopLayer->opp_lawyer_advocate_write = $request->opp_lawyer_advocate_write;
                 $oopLayer->opp_lawyer_assigned_lawyer= $request->opp_lawyer_assigned_lawyer;
@@ -1491,7 +1491,7 @@ class CriminalCasesController extends Controller
                 $oopLayerSave->opp_lawyers_note= $request->opp_lawyers_note;
                 $oopLayerSave->save();
             }
-           
+
 
         }else if ($request->documents_information) {
 
@@ -1524,7 +1524,7 @@ class CriminalCasesController extends Controller
                     CriminalCasesCaseFileLocation::where('case_id', $id)->delete();
 
                     $case_file_location_new_sections = $request->case_file_location_new_sections;
-                    array_pop($case_file_location_new_sections);            
+                    array_pop($case_file_location_new_sections);
                     foreach (array_filter($case_file_location_new_sections) as $key => $value) {
                         $required = new CriminalCasesCaseFileLocation();
                         $required->case_id = $data->id;
@@ -1548,7 +1548,7 @@ class CriminalCasesController extends Controller
                 $required->save();
             }
         } else if ($request->case_information) {
-        
+
             $data->case_infos_division_id = $request->case_infos_division_id;
             $data->case_infos_district_id = $request->case_infos_district_id;
             $data->case_infos_thana_id = $request->case_infos_thana_id;
@@ -1636,28 +1636,28 @@ class CriminalCasesController extends Controller
             $steps->case_steps_summary_of_cases_note = $request->case_steps_summary_of_cases_note;
             $steps->case_steps_summary_of_cases_type_id = $request->case_steps_summary_of_cases_type_id;
             $steps->case_steps_remarks = $request->case_steps_remarks;
-           
+
             $steps->case_steps_servicr_return = $request->case_steps_servicr_return == 'dd-mm-yyyy' || $request->case_steps_servicr_return == 'NaN-NaN-NaN' ? null : $request->case_steps_servicr_return;
             $steps->case_steps_servicr_return_note = $request->case_steps_servicr_return_note;
             $steps->case_steps_servicr_return_type_id = $request->case_steps_servicr_return_type_id;
- 
+
             $steps->case_steps_sr_completed = $request->case_steps_sr_completed == 'dd-mm-yyyy' || $request->case_steps_sr_completed == 'NaN-NaN-NaN' ? null : $request->case_steps_sr_completed;
             $steps->case_steps_sr_completed_note = $request->case_steps_sr_completed_note;
             $steps->case_steps_sr_completed_type_id = $request->case_steps_sr_completed_type_id;
-           
+
             $steps->case_steps_set_off = $request->case_steps_set_off == 'dd-mm-yyyy' || $request->case_steps_set_off == 'NaN-NaN-NaN' ? null : $request->case_steps_set_off;
             $steps->case_steps_set_off_note = $request->case_steps_set_off_note;
             $steps->case_steps_set_off_type_id = $request->case_steps_set_off_type_id;
-           
+
             $steps->case_steps_issue_frame = $request->case_steps_issue_frame == 'dd-mm-yyyy' || $request->case_steps_issue_frame == 'NaN-NaN-NaN' ? null : $request->case_steps_issue_frame;
             $steps->case_steps_issue_frame_note = $request->case_steps_issue_frame_note;
             $steps->case_steps_issue_frame_type_id = $request->case_steps_issue_frame_type_id;
-           
-           
+
+
             $steps->case_steps_ph = $request->case_steps_ph == 'dd-mm-yyyy' || $request->case_steps_ph == 'NaN-NaN-NaN' ? null : $request->case_steps_ph;
             $steps->case_steps_ph_note = $request->case_steps_ph_note;
             $steps->case_steps_ph_type_id = $request->case_steps_ph_type_id;
-       
+
             $steps->case_steps_fph = $request->case_steps_fph == 'dd-mm-yyyy' || $request->case_steps_fph == 'NaN-NaN-NaN' ? null : $request->case_steps_fph;
             $steps->case_steps_fph_note = $request->case_steps_fph_note;
             $steps->case_steps_fph_type_id = $request->case_steps_fph_type_id;
@@ -1665,7 +1665,7 @@ class CriminalCasesController extends Controller
             $steps->case_steps_subsequent_status = $request->case_steps_subsequent_status == 'dd-mm-yyyy' || $request->case_steps_subsequent_status == 'NaN-NaN-NaN' ? null : $request->case_steps_subsequent_status;
             $steps->case_steps_subsequent_status_note = $request->case_steps_subsequent_status_note;
             $steps->case_steps_subsequent_status_type_id = $request->case_steps_subsequent_status_type_id;
-        
+
 
             $steps->save();
 
@@ -1681,7 +1681,7 @@ class CriminalCasesController extends Controller
         //     return redirect()->route('criminal-cases');
         // }else{
         //     session()->flash('success', 'Special Court Updated Successfully.');
-        //     return redirect()->route('special-court-cases-all'); 
+        //     return redirect()->route('special-court-cases-all');
         // }
 
         // session()->flash('success', 'Criminal Cases Updated Successfully.');
@@ -1958,7 +1958,7 @@ class CriminalCasesController extends Controller
         $steps->case_steps_remarks = $request->case_steps_remarks;
 
         $steps->save();
-        
+
         $oopLayer = CriminalCasesOppsitionLawyer::where('criminal_case_id',$id)->first();
         $oopLayer->opp_lawyer_advocate_write = $request->opp_lawyer_advocate_write;
         $oopLayer->opp_lawyer_assigned_lawyer= $request->opp_lawyer_assigned_lawyer;
@@ -2070,7 +2070,7 @@ class CriminalCasesController extends Controller
 
         session()->flash('success', 'Criminal Cases Deleted');
         return redirect()->back();
-    }   
+    }
 
     public function view_criminal_cases($id)
     {
@@ -2113,7 +2113,7 @@ class CriminalCasesController extends Controller
         $find_case_category = CriminalCase::where('criminal_cases.id', $id)->select('case_category_id')->first();
 
         $case_status = SetupCaseStatus::where('case_category', $find_case_category->case_category_id)->where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
-        
+
 
         $court_proceeding = SetupCourtProceeding::where('delete_status', 0)->get();
         $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
@@ -2130,7 +2130,7 @@ class CriminalCasesController extends Controller
         $designation = SetupDesignation::where('delete_status', 0)->orderBy('designation_name', 'asc')->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->orderBy('first_name', 'asc')->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->orderBy('case_category', 'asc')->get();
-       
+
 
         $property_type = SetupPropertyType::where('delete_status', 0)->orderBy('property_type_name', 'asc')->get();
         $division = DB::table("setup_divisions")->orderBy('division_name', 'asc')->get();
@@ -2422,9 +2422,9 @@ class CriminalCasesController extends Controller
         $case_steps = DB::table('criminal_cases_case_steps')
             ->leftJoin('setup_documents_types', 'criminal_cases_case_steps.case_steps_filing_type_id', 'setup_documents_types.id')
             ->leftJoin('setup_documents_types as taking_cognizance', 'criminal_cases_case_steps.taking_cognizance_type_id', 'taking_cognizance.id')
-            ->leftJoin('setup_documents_types as servicr_return', 'criminal_cases_case_steps.case_steps_servicr_return_type_id', 'servicr_return.id') 
+            ->leftJoin('setup_documents_types as servicr_return', 'criminal_cases_case_steps.case_steps_servicr_return_type_id', 'servicr_return.id')
             ->leftJoin('setup_documents_types as sr_completed', 'criminal_cases_case_steps.case_steps_sr_completed_type_id', 'sr_completed.id')
-           
+
             ->leftJoin('setup_documents_types as case_steps_set_off', 'criminal_cases_case_steps.case_steps_set_off_type_id', 'case_steps_set_off.id')
             ->leftJoin('setup_documents_types as case_steps_issue_frame', 'criminal_cases_case_steps.case_steps_issue_frame_type_id', 'case_steps_issue_frame.id')
             ->leftJoin('setup_documents_types as case_steps_ph', 'criminal_cases_case_steps.case_steps_ph_type_id', 'case_steps_ph.id')
@@ -2443,9 +2443,9 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_documents_types as judgement_order', 'criminal_cases_case_steps.case_steps_judgement_order_type_id', 'judgement_order.id')
             ->leftJoin('setup_documents_types as summary_of_cases', 'criminal_cases_case_steps.case_steps_summary_of_cases_type_id', 'summary_of_cases.id')
             ->where('criminal_case_id', $id)
-            ->select('criminal_cases_case_steps.*', 
-            'setup_documents_types.documents_type_name as case_steps_filing_type_name', 
-            'servicr_return.documents_type_name as servicr_return_type_name',  
+            ->select('criminal_cases_case_steps.*',
+            'setup_documents_types.documents_type_name as case_steps_filing_type_name',
+            'servicr_return.documents_type_name as servicr_return_type_name',
             'sr_completed.documents_type_name as sr_completed_type_name',
 
             'case_steps_set_off.documents_type_name as case_steps_set_off_type_name',
@@ -2455,7 +2455,7 @@ class CriminalCasesController extends Controller
             'case_steps_subsequent_status.documents_type_name as case_steps_subsequent_status_type_name',
 
 
-            'taking_cognizance.documents_type_name as taking_cognizance_type_name', 
+            'taking_cognizance.documents_type_name as taking_cognizance_type_name',
             'arrest_surrender_cw.documents_type_name as arrest_surrender_cw_type_name',
              'case_steps_bail.documents_type_name as case_steps_bail_type_name', 'court_transfer.documents_type_name as court_transfer_type_name', 'charge_framed.documents_type_name as charge_framed_type_name', 'witness_from.documents_type_name as witness_from_type_name', 'witness_to.documents_type_name as witness_to_type_name', 'argument.documents_type_name as argument_type_name', 'judgement_order.documents_type_name as judgement_order_type_name', 'summary_of_cases.documents_type_name as summary_of_cases_type_name')
             ->first();
@@ -2481,7 +2481,7 @@ class CriminalCasesController extends Controller
                     $chamber = Counsel::where('counsel_category','Chamber')->get();
                     $leadLaywer = Counsel::where('counsel_type','Internal')->get();
                     $assignedlaywer = Counsel::get();
-                        
+
         //    dd($ledger);
 
         return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('find_case_category','assignedlaywer','leadLaywer','chamber','switch_records', 'group_name', 'case_steps', 'documents_type', 'letter_notice','oppLawyer', 'required_wanting_documents', 'received_documents', 'particulars', 'required_wanting_documents_explode', 'exist_court_short', 'data', 'criminal_cases_files','caseFileLocation','caseFileLocationView', 'case_logs', 'bill_history','previouDate', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order', 'day_notes', 'external_council', 'next_day_presence', 'case_status', 'mode', 'edit_case_steps', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana', 'existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'user', 'complainant', 'accused', 'court_short', 'edit_case_steps', 'exist_engaged_advocate', 'exist_engaged_advocate_associates', 'court_short_explode', 'sub_seq_court_short_explode', 'received_documents_explode', 'required_documents_explode', 'previous_activity', 'payment_mode', 'bill_schedule', 'bill_particulars', 'bill_type', 'bill_amount', 'payment_amount', 'due_amount', 'cabinet', 'exist_case_type', 'letter_notice_explode', 'criminal_cases_working_docs', 'billing_log_new', 'ledger'));
@@ -2492,10 +2492,10 @@ class CriminalCasesController extends Controller
         $case_types = SetupCaseTypes::where('case_types_name','like','%'.$type.'%')
                       ->where('delete_status', 0)
                       ->get();
-                      
+
          return response()->json($case_types);
     }
-   
+
     public function download_criminal_cases_file($id)
     {
         $file = CriminalCasesFile::where('id', $id)->firstOrFail();
@@ -2778,7 +2778,7 @@ class CriminalCasesController extends Controller
         }
         $data->delete_status = $delete_status;
         $data->save();
-     
+
         session()->flash('success', 'Criminal Cases Status Deleted.');
         return redirect()->back();
     }
@@ -3945,6 +3945,9 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
             ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
+            ->join('criminal_cases_case_steps','criminal_cases.id','criminal_cases_case_steps.criminal_case_id')
+            ->leftJoin('setup_thanas','criminal_cases.case_infos_thana_id', '=', 'setup_thanas.id')
+            ->leftJoin('setup_laws','criminal_cases.law_id', '=', 'setup_laws.id')
             ->where('criminal_cases.case_type', 'District')
             ->where(['criminal_cases.delete_status' => 0, 'criminal_cases.case_category_id' => 'Civil'])
             ->orderBy('criminal_cases.created_at', 'desc');
@@ -3975,8 +3978,11 @@ class CriminalCasesController extends Controller
             'setup_external_councils.middle_name',
             'setup_external_councils.last_name',
             'case_infos_title.case_title_name as sub_seq_case_title_name',
-            'setup_matters.matter_name')
+            'setup_matters.matter_name', 'criminal_cases_case_steps.case_nature_write AS nature',
+            'setup_thanas.thana_name',
+            'setup_laws.law_name')
             ->get();
+
 
         return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter', 'case_cat'));
     }
@@ -4010,6 +4016,9 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
             ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
+            ->join('criminal_cases_case_steps','criminal_cases.id','criminal_cases_case_steps.criminal_case_id')
+            ->leftJoin('setup_thanas','criminal_cases.case_infos_thana_id', '=', 'setup_thanas.id')
+            ->leftJoin('setup_laws','criminal_cases.law_id', '=', 'setup_laws.id')
             ->where('criminal_cases.case_type', 'District')
             ->where(['criminal_cases.delete_status' => 0, 'criminal_cases.case_category_id' => 'Criminal'])
             ->orderBy('criminal_cases.created_at', 'desc');
@@ -4040,8 +4049,11 @@ class CriminalCasesController extends Controller
             'setup_external_councils.middle_name',
             'setup_external_councils.last_name',
             'case_infos_title.case_title_name as sub_seq_case_title_name',
-            'setup_matters.matter_name')
+            'setup_matters.matter_name','criminal_cases_case_steps.case_nature_write AS nature',
+            'setup_thanas.thana_name',
+            'setup_laws.law_name')
             ->get();
+
 
         return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter', 'case_cat'));
     }
@@ -4050,7 +4062,7 @@ class CriminalCasesController extends Controller
     {
         $data = DocumentLatest::get();
         return view('document_management.documents.documents_list', compact('data'));
-        
+
     }
 
     public function add_documents_list()
@@ -4100,7 +4112,7 @@ class CriminalCasesController extends Controller
                     unlink($file_path);
                 }
             }
-    
+
             $file = $request->file('file_document_name');
             $original_name = $file->getClientOriginalName();
             $file_name = time().rand(1,0).$original_name;
