@@ -1,8 +1,5 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
-
-
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -11,11 +8,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark">Billing</h1>
-
                     </div><!-- /.col -->
-
-
-
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
@@ -26,8 +19,6 @@
                             </li>
                         </ol>
                     </div>
-
-
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
@@ -61,10 +52,10 @@
                                             <div class="form-group row">
                                                 <label for="case_no" class="col-sm-4 col-form-label">Bill Type</label>
                                                 <div class="col-sm-8">
-                                                    <select name="bill_type_id" class="form-control select2" id="bill_type_id" disabled>
+                                                    <select name="bill_type_id" class="form-control select2" id="bill_type_id" >
                                                         <option value=""> Select </option>
                                                             @foreach($bill_type as $item)
-                                                                <option value="{{ $item->id }}" {{(old('bill_type_id') == $item->id ? 'selected':'')}} <?php if ($item->id == $billing_log_new->bill_type_id) {
+                                                                <option value="{{ $item->id }}" {{(old('bill_type_id') == $item->id ? 'selected':'')}} <?php if ($item->id == @$billing_log_new->bill_type_id) {
                                                                     echo "selected";
                                                                 } ?> >{{ $item->bill_type_name }}</option>
                                                             @endforeach
@@ -75,10 +66,12 @@
                                             <div class="form-group row">
                                                 <label for="payment_type" class="col-sm-4 col-form-label"> Payment Type </label>
                                                 <div class="col-sm-8">
-                                                    <select name="payment_type" class="form-control select2" id="payment_type" disabled>
+                                                    <select name="payment_type" class="form-control select2" id="payment_type" >
                                                         <option value=""> Select </option>
-                                                        <option selected={{$billing_log_new->payment_type}}>{{$billing_log_new->payment_type}}</option>
-                                                        
+                                                        <option selected={{@$billing_log_new->payment_type}}>{{@$billing_log_new->payment_type}}</option>
+                                                        <option value="Cash Payment"> Cash Payment </option>
+                                                        <option value="Bank Payment"> Bank Payment </option>
+                                                        <option value="Digital Payment"> Digital Payment </option>
                                                     </select>
                                                     @error('payment_type')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
@@ -86,7 +79,7 @@
                                             <div class="form-group row">
                                                 <label for="district_id" class="col-sm-4 col-form-label">District</label>
                                                 <div class="col-sm-8">
-                                                    <select name="district_id" class="form-control select2" id="district_id" disabled>
+                                                    <select name="district_id" class="form-control select2" id="district_id" >
                                                         <option value=""> Select </option>
                                                         @foreach($district as $item)
                                                             <option value="{{ $item->id }}" {{(old('district_id') == $item->id ? 'selected':'')}}  <?php if ($item->id == $data->case_infos_district_id) {
@@ -101,7 +94,7 @@
                                                 <div class="form-group row">
                                                     <label for="case_type_id" class="col-sm-4 col-form-label"> Case Type </label>
                                                     <div class="col-sm-8">
-                                                        <select name="case_type_id" class="form-control select2" id="case_type_id" action="{{ route('find-case-no') }}" disabled>
+                                                        <select name="case_type_id" class="form-control select2" id="case_type_id" action="{{ route('find-case-no') }}" >
                                                             <option value="">  </option>
                                                             @foreach($case_types as $item)
                                                                 <option
@@ -116,7 +109,7 @@
                                                 <div class="form-group row">
                                                     <label for="class_of_cases" class="col-sm-4 col-form-label"> Class of Cases </label>
                                                     <div class="col-sm-8">
-                                                        <select name="class_of_cases" class="form-control select2" @if (!empty($case_class)) disabled @endif id="class_of_cases" action="{{ route('find-case-no') }}">
+                                                        <select name="class_of_cases" class="form-control select2" @if (!empty($case_class))  @endif id="class_of_cases" action="{{ route('find-case-no') }}">
                                                             <option value=""> Select </option>
                                                             <option value="District Court" @if (!empty($case_class)) {{ $case_class->case_category_id == 'Criminal' || $case_class->case_category_id == 'Civil' ? 'selected' : '' }} @endif> District Court </option>
                                                             <option value="Special Court" @if (!empty($case_class)) {{ $case_class->case_category_id == 'Special Court' ? 'selected' : '' }} @endif> Special Court </option>
@@ -129,7 +122,7 @@
                                                 <div class="form-group row">
                                                     <label for="case_id" class="col-sm-4 col-form-label"> Case No </label>
                                                     <div class="col-sm-8">
-                                                        <select name="case_no" class="form-control select2" id="case_no" @if (!empty($case_class)) disabled @endif>
+                                                        <select name="case_no" class="form-control select2" id="case_no" @if (!empty($case_class))  @endif>
                                                             <option value=""> Select </option>
                                                             @if (!empty($case_class))
                                                                 <option value="{{ $case_class->id }}" selected> {{ $case_class->case_no }} </option>
@@ -147,16 +140,16 @@
                                             <div class="form-group row">
                                                 <label for="panel_lawyer_id" class="col-sm-4 col-form-label">Panel Lawyer</label>
                                                 <div class="col-sm-8">
-                                                        <select name="panel_lawyer_id" class="form-control select2" disabled>
+                                                        <select name="panel_lawyer_id" class="form-control select2" >
                                                             <option value="">Select</option>
                                                             @foreach($external_council as $item)
-                                                                <option value="{{ $item->id }}" {{(old('panel_lawyer_id') == $item->id ? 'selected':'')}} <?php if ($item->id == $billing_log_new->panel_lawyer_id) {
+                                                                <option value="{{ $item->id }}" {{(old('panel_lawyer_id') == $item->id ? 'selected':'')}} <?php if ($item->id == @$billing_log_new->panel_lawyer_id) {
                                                                     echo "selected";
                                                                 } ?>>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('panel_lawyer_id')<span class="text-danger">{{$message}}</span>@enderror
-                                                </div>panel_lawyer_id
+                                                </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="bill_amount" class="col-sm-4 col-form-label">Bill Amount</label>
@@ -239,7 +232,7 @@
                                     <div class="float-right mt-4">
                                         <button type="submit" class="btn btn-primary text-uppercase"><a href="{{ URL::to('add-ledger-entry/' . $bill_id) }}"><i class="fas fa-save"></i></a> Save</button>
                                     </div>
-                                   
+
                                 </div>
                             </form>
 

@@ -618,7 +618,7 @@ h3{
     font-family: "parisplus-std", sans-serif;
     transition: all 0.9s ease !important;
     /* display: none; */
-    opacity: 0;
+    opacity: 1;
   }
   .links_custom:hover{
       opacity: 1;

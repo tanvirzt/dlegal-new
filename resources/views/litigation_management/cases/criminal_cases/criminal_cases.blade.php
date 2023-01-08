@@ -540,6 +540,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="search_data">
+                                        {{-- {{dd($data)}} --}}
                                         @foreach ($data as $key => $datum)
                                             <tr>
                                                 <td>
@@ -587,7 +588,7 @@
                                                         $case_infos_sub_seq_case_no = explode(', ', trim($datum->case_infos_sub_seq_case_no));
                                                         $key = array_key_last($case_infos_sub_seq_case_no);
                                                         echo $case_infos_sub_seq_case_no[$key];
-                                                        
+
                                                         $case_infos_sub_seq_case_year = explode(', ', trim($datum->case_infos_sub_seq_case_year));
                                                         $key = array_key_last($case_infos_sub_seq_case_year);
                                                         $last_case_no = $case_infos_sub_seq_case_year[$key];

@@ -366,3 +366,4 @@ route::put("update_cabinet/{id}",[ApiAdminSetupController::class,"update_cabinet
 route::delete("delete_cabinet/{id}",[ApiAdminSetupController::class,"delete_cabinet"]);
 
 route::get("search/{name}",[ApiAdminSetupController::class,"search"]);
+

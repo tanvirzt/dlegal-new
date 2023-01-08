@@ -10,13 +10,13 @@ if (empty($case_cat)) {
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Special Court </h1>
+                        <h1> All Cases </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Special Court Cases</li>
+                            <li class="breadcrumb-item active"> All Cases</li>
                         </ol>
                     </div>
                 </div>
@@ -45,7 +45,7 @@ if (empty($case_cat)) {
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> Special Court Cases :: Search </h3>
+                                    <h3 class="card-title"> All Cases :: Search </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -487,9 +487,9 @@ if (empty($case_cat)) {
                                     <div class="row ">
 
                                         <div class="col-sm-10">
-                                            <a href="{{ route('special-court-cases-civil') }}" class="btn {{ $case_cat == 'Civil' ? 'civil_active_btn' : 'civil_btn' }}" ><span>Civil</span></a>
-                                            <a href="{{ route('special-court-cases-criminal') }}" class="btn {{ $case_cat == 'Criminal' ? 'civil_active_btn' : 'civil_btn' }}" style="margin-left: 6px;" ><span>Criminal</span></a>
-                                            <a href="{{ route('special-court-cases-all') }}" class="btn {{ $case_cat == 'all' ? 'civil_active_btn' : 'civil_btn' }}" style="margin-left: 6px;" ><span>All</span></a>
+                                            <a href="{{ route('all-civil-cases') }}" class="btn {{ $case_cat == 'Civil' ? 'civil_active_btn' : 'civil_btn' }}" ><span>Civil</span></a>
+                                            <a href="{{ route('all-criminal-cases') }}" class="btn {{ $case_cat == 'Criminal' ? 'civil_active_btn' : 'civil_btn' }}" style="margin-left: 6px;" ><span>Criminal</span></a>
+                                            <a href="{{ route('all-cases') }}" class="btn {{ $case_cat == 'all' ? 'civil_active_btn' : 'civil_btn' }}" style="margin-left: 6px;" ><span>All</span></a>
 
                                         </div>
                                         {{-- <div class="col-sm-1">

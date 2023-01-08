@@ -28,7 +28,7 @@
                     </div>
                 @endif
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
@@ -63,7 +63,7 @@
 
                                         <form method="get" action="{{ route('balance-report-search') }}">
                                             <div class="row">
-                                                
+
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="class_of_cases" class="col-form-label">Client</label>
@@ -131,7 +131,7 @@
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
 
-                                                            <span class="date_span" style="width: 304px;">
+                                                            <span class="date_span" style="width: 404px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'from_date');"><input
@@ -152,7 +152,7 @@
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label"> To Date </label>
                                                         <div class="">
-                                                            <span class="date_span" style="width: 304px;">
+                                                            <span class="date_span" style="width: 404px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'to_date');"><input
@@ -305,11 +305,12 @@
                                                                 <th class="text-center">SL</th>
                                                                 <th class="text-center">Bill No</th>
                                                                 <th class="text-center">Billing Date</th>
-                                                                <th class="text-center">Paid Date</th>
+
                                                                 <th class="text-nowrap">Payment Type</th>
+                                                                <th class="text-center">Paid Date</th>
                                                                 <th class="text-center">Bill Amount</th>
                                                                 <th class="text-center">Paid Amount</th>
-                                                              
+
                                                                 <th class="text-center">Due Amount</th>
                                                                 <th class="text-center">Remarks</th>
                                                             </tr>
@@ -337,7 +338,7 @@
                                                                         {{ $datum->payment_type }}
                                                                     </td>
                                                                     <td>
-                                                                    
+
                                                                         {{   date('d-m-Y', strtotime($datum->ledger_date))   }}
                                                                     </td>
                                                                     <td>
@@ -349,20 +350,20 @@
                                                                             {{ (int)$datum->paid_amount }}
 
                                                                     </td>
-                                                                   
+
                                                                     <td>
 
 
                                                                         @php
                                                                          $sum_paid=0;
-                                                                        
+
                                                                         $paid=(int)$datum->paid_amount;
                                                                         $sum_paid=$sum_paid+$paid;
                                                                         $newdue=$datum->bill_amount - $sum_paid ;
                                                                         $due=$due+$newdue;
                                                                         @endphp
                                                                         {{ $due}}
-                                                                         
+
                                                                     </td>
                                                                     <td>
                                                                         {{ $datum->remarks }}

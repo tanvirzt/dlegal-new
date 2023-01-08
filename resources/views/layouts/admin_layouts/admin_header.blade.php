@@ -113,7 +113,7 @@
 
 @if (url()->current() == 'http://localhost/dlegal-software/public/admin/dashboard')
 
-<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="padding: 0px;background: #2A6CB1;position:relative;padding-right:89px;z-index:1020;">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="padding: 0px;background: #2A6CB1;position:relative;padding-right:89px;z-index:1020; position:fixed">
 
     <style>
         .custom_ul{
@@ -144,7 +144,7 @@
             background: #2A6CB1;
         }
         .custom_ul li ul.dropdown{
-            min-width: 100%; 
+            min-width: 100%;
             background: #f2f2f2;
             display: none;
             position: absolute;
@@ -153,7 +153,7 @@
             padding-left: 0px;
         }
         .custom_ul li:hover ul.dropdown{
-            display: block;	
+            display: block;
         }
         .custom_ul li ul.dropdown li{
             display: block;
@@ -234,12 +234,12 @@
 
 @endif
 
-<nav class="main-header navbar navbar-expand navbar-white navbar-light links_custom @if (url()->current() != 'http://localhost/dlegal-software/public/dashboard') links_custom @endif" style="padding: 0px;background: #2A6CB1;position:fixed;z-index:1020;@if (url()->current() == 'http://localhost/dlegal-software/public/dashboard') margin-top:0px; @endif">
- 
+<nav class="main-header navbar navbar-expand navbar-white navbar-light links_custom @if (url()->current() != 'http://localhost/dlegal-software/public/dashboard') links_custom @endif" style="padding: 0px;background: #2A6CB1;position:fixed;z-index:1020;width: 1297px;@if (url()->current() == 'http://localhost/dlegal-software/public/dashboard') margin-top:0px; @endif">
+
     <style>
         .custom_ul{
             padding: 0;
-            list-style: none;
+            /* list-style: none; */
             margin-bottom: 0px;
             background: #2A6CB1;
         }
@@ -264,7 +264,7 @@
             background: #2A6CB1;
         }
         .custom_ul li ul.dropdown{
-            min-width: 100%; 
+            min-width: 100%;
             background: #f2f2f2;
             display: none;
             position: absolute;
@@ -273,7 +273,7 @@
             padding-left: 0px;
         }
         .custom_ul li:hover ul.dropdown{
-            display: block;	
+            display: block;
         }
         .custom_ul li ul.dropdown li{
             display: block;
@@ -309,11 +309,13 @@
     <li>
         <a href="#">Case Database &#9662;</a>
         <ul class="dropdown" style="background:#c3c9cf;">
+
+            <div class="dropdown-divider-custom"></div>
+            <li><a href="{{ route('all-cases') }}">All cases</a></li>
             @can('criminal-cases-list')
             <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('criminal-cases') }}">District Court</a></li>
             @endcan
-
             @can('quassi-judicial-cases-list')
             <div class="dropdown-divider-custom"></div>
             <li><a href="{{ route('special-court-cases-all') }}">Special Court</a></li>
