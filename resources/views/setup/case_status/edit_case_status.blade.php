@@ -58,6 +58,16 @@
                                     <div class="col-md-12">
 
                                         <div class="form-group">
+                                            <label for="case_category">Case Category</label>
+                                            <select class="form-control" name="case_category" id="case_category">
+                                                <option value="Civil" {{$data->case_category === "Civil" ? 'selected' : ""}}>Civil</option>
+                                                <option value="Criminal" {{$data->case_category === "Criminal" ? 'selected' : ""}}>Criminal</option>
+                                            </select>
+                                          
+                                            @error('case_category')<span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+
+                                        <div class="form-group">
                                             <label for="case_status_name"> Case Status </label>
                                             <input type="text" class="form-control" name="case_status_name"
                                                    id="case_status_name" value="{{ $data->case_status_name }}">

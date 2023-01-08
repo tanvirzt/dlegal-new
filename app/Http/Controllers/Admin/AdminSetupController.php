@@ -561,16 +561,19 @@ class AdminSetupController extends Controller
     public function save_case_status(Request $request)
     {
         $rules = [
+            'case_category' => 'required',
             'case_status_name' => 'required'
         ];
 
         $validMsg = [
+            'case_category.required' => 'Case Category Name field is required',
             'case_status_name.required' => 'Case Status Name field is required'
         ];
 
         $this->validate($request, $rules, $validMsg);
 
         $data = new SetupCaseStatus();
+        $data->case_category = $request->case_category;
         $data->case_status_name = $request->case_status_name;
         $data->save();
 
@@ -588,16 +591,19 @@ class AdminSetupController extends Controller
     public function update_case_status(Request $request, $id)
     {
         $rules = [
+            'case_category' => 'required',
             'case_status_name' => 'required'
         ];
 
         $validMsg = [
+            'case_category.required' => 'Case Category Name field is required',
             'case_status_name.required' => 'Case Status Name field is required'
         ];
 
         $this->validate($request, $rules, $validMsg);
 
         $data = SetupCaseStatus::find($id);
+        $data->case_category = $request->case_category;
         $data->case_status_name = $request->case_status_name;
         $data->save();
 

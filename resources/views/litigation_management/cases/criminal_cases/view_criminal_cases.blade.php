@@ -2878,8 +2878,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Billings Log 
-
-                                        @if (count($billing_log_new)>0)
+                                        @if (count($billing_log_new)>0 && is_numeric($billing_log_new))
                                             
                                         <span
                                             class="font-italic custom_font text-capitalize">(Total: <span
@@ -3074,6 +3073,9 @@
                                     <div class="form-group row">
                                         <label for="updated_case_status_id" class="col-md-4 col-form-label"> Status
                                         </label>
+
+                                        {{-- {{dd($case_status)}} --}}
+
                                         <div class="col-md-8">
                                             <div class="row">
                                                 <div class="col-md-6">

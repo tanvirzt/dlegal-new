@@ -1666,13 +1666,16 @@ class CriminalCasesController extends Controller
 
         DB::commit();
 
-        if ($request->case_type === 'District') {
-            session()->flash('success', 'District Court Updated Successfully.');
-            return redirect()->route('criminal-cases');
-        }else{
-            session()->flash('success', 'Special Court Updated Successfully.');
-            return redirect()->route('special-court-cases-all'); 
-        }
+        session()->flash('success', 'District Court Updated Successfully.');
+        return redirect()->route('view-criminal-cases',$id);
+
+        // if ($request->case_type === 'District') {
+        //     session()->flash('success', 'District Court Updated Successfully.');
+        //     return redirect()->route('criminal-cases');
+        // }else{
+        //     session()->flash('success', 'Special Court Updated Successfully.');
+        //     return redirect()->route('special-court-cases-all'); 
+        // }
 
         // session()->flash('success', 'Criminal Cases Updated Successfully.');
         // return redirect()->back();
@@ -2100,13 +2103,17 @@ class CriminalCasesController extends Controller
         }
 
 
+        $find_case_category = CriminalCase::where('criminal_cases.id', $id)->select('case_category_id')->first();
+
+        $case_status = SetupCaseStatus::where('case_category', $find_case_category->case_category_id)->where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
+        
+
         $court_proceeding = SetupCourtProceeding::where('delete_status', 0)->get();
         $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
         $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->get();
         $day_notes = SetupDayNote::where('delete_status', 0)->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->get();
         $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->get();
-        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
         $mode = SetupMode::where('delete_status', 0)->orderBy('mode_name', 'asc')->get();
         $edit_case_steps = CriminalCasesCaseSteps::where('criminal_case_id', $id)->first();
 
@@ -2116,7 +2123,8 @@ class CriminalCasesController extends Controller
         $designation = SetupDesignation::where('delete_status', 0)->orderBy('designation_name', 'asc')->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->orderBy('first_name', 'asc')->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->orderBy('case_category', 'asc')->get();
-        $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
+       
+
         $property_type = SetupPropertyType::where('delete_status', 0)->orderBy('property_type_name', 'asc')->get();
         $division = DB::table("setup_divisions")->orderBy('division_name', 'asc')->get();
         $person_title = SetupPersonTitle::where('delete_status', 0)->orderBy('person_title_name', 'asc')->get();
@@ -2469,7 +2477,7 @@ class CriminalCasesController extends Controller
                         
         //    dd($ledger);
 
-        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('assignedlaywer','leadLaywer','chamber','switch_records', 'group_name', 'case_steps', 'documents_type', 'letter_notice','oppLawyer', 'required_wanting_documents', 'received_documents', 'particulars', 'required_wanting_documents_explode', 'exist_court_short', 'data', 'criminal_cases_files','caseFileLocation','caseFileLocationView', 'case_logs', 'bill_history','previouDate', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order', 'day_notes', 'external_council', 'next_day_presence', 'case_status', 'mode', 'edit_case_steps', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana', 'existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'user', 'complainant', 'accused', 'court_short', 'edit_case_steps', 'exist_engaged_advocate', 'exist_engaged_advocate_associates', 'court_short_explode', 'sub_seq_court_short_explode', 'received_documents_explode', 'required_documents_explode', 'previous_activity', 'payment_mode', 'bill_schedule', 'bill_particulars', 'bill_type', 'bill_amount', 'payment_amount', 'due_amount', 'cabinet', 'exist_case_type', 'letter_notice_explode', 'criminal_cases_working_docs', 'billing_log_new', 'ledger'));
+        return view('litigation_management.cases.criminal_cases.view_criminal_cases', compact('find_case_category','assignedlaywer','leadLaywer','chamber','switch_records', 'group_name', 'case_steps', 'documents_type', 'letter_notice','oppLawyer', 'required_wanting_documents', 'received_documents', 'particulars', 'required_wanting_documents_explode', 'exist_court_short', 'data', 'criminal_cases_files','caseFileLocation','caseFileLocationView', 'case_logs', 'bill_history','previouDate', 'case_activity_log', 'latest', 'court_proceeding', 'next_date_reason', 'last_court_order', 'day_notes', 'external_council', 'next_day_presence', 'case_status', 'mode', 'edit_case_steps', 'existing_district', 'person_title', 'division', 'case_status', 'case_category', 'external_council', 'designation', 'court', 'law', 'next_date_reason', 'next_date_reason', 'last_court_order', 'zone', 'area', 'branch', 'program', 'property_type', 'case_types', 'company', 'internal_council', 'section', 'client_category', 'existing_client_subcategory', 'existing_case_subcategory', 'existing_district', 'existing_thana', 'existing_assignend_external_council', 'assigned_lawyer_explode', 'next_day_presence', 'legal_issue', 'legal_service', 'matter', 'coordinator', 'allegation', 'case_infos_existing_district', 'case_infos_existing_thana', 'mode', 'court_proceeding', 'day_notes', 'in_favour_of', 'referrer', 'party', 'client', 'profession', 'opposition', 'documents', 'case_title', 'existing_opposition_subcategory', 'client_explode', 'court_explode', 'law_explode', 'section_explode', 'opposition_explode', 'sub_seq_court_explode', 'user', 'complainant', 'accused', 'court_short', 'edit_case_steps', 'exist_engaged_advocate', 'exist_engaged_advocate_associates', 'court_short_explode', 'sub_seq_court_short_explode', 'received_documents_explode', 'required_documents_explode', 'previous_activity', 'payment_mode', 'bill_schedule', 'bill_particulars', 'bill_type', 'bill_amount', 'payment_amount', 'due_amount', 'cabinet', 'exist_case_type', 'letter_notice_explode', 'criminal_cases_working_docs', 'billing_log_new', 'ledger'));
     }
 
     public function case_type($type)
