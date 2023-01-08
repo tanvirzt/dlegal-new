@@ -230,7 +230,7 @@
                                                                     {{ $datum->payment_type }}
                                                                 </td>
                                                                 <td>
-                                                                    {{ $datum->ledger_head_bill_id != null ? $datum->ledger_head_bill->ledger_head_name : '' }}
+                                                                    {{ $datum->ledger_head_id != null ? $datum->ledger_head->ledger_head_name : '' }}
 
                                                                 </td>
                                                                 <td>

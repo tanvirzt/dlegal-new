@@ -101,7 +101,8 @@ class CriminalCasesController extends Controller
     }
 
     public function criminal_cases()
-    {   $user = User::all();
+    {   
+        $user = User::all();
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
         $court = SetupCourt::where(['case_class_id' => 'Criminal', 'delete_status' => 0])->get();
@@ -127,10 +128,13 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
             ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
+            ->join('criminal_cases_case_steps','criminal_cases.id','criminal_cases_case_steps.criminal_case_id')
+            ->leftJoin('setup_thanas','criminal_cases.case_infos_thana_id', '=', 'setup_thanas.id')
+            ->leftJoin('setup_laws','criminal_cases.law_id', '=', 'setup_laws.id')
             ->where('criminal_cases.case_type', 'District')
             ->where('criminal_cases.delete_status', 0)
             ->orderBy('criminal_cases.created_at', 'desc');
-
+      
         if (Auth::user()->is_companies_superadmin == '1' || Auth::user()->is_owner_admin == '1') {
 
             $query2 = $query;
@@ -157,11 +161,14 @@ class CriminalCasesController extends Controller
             'setup_external_councils.middle_name',
             'setup_external_councils.last_name',
             'case_infos_title.case_title_name as sub_seq_case_title_name',
-            'setup_matters.matter_name')
+            'setup_matters.matter_name',
+            'criminal_cases_case_steps.case_nature_write AS nature',
+            'setup_thanas.thana_name',
+            'setup_laws.law_name')
             ->get();
 
        
-       
+     // dd($data);
         return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter', 'case_cat'));
     }
     public function special_court_cases_all()
@@ -1666,7 +1673,7 @@ class CriminalCasesController extends Controller
 
         DB::commit();
 
-        session()->flash('success', 'District Court Updated Successfully.');
+        session()->flash('success', 'Court Updated Successfully.');
         return redirect()->route('view-criminal-cases',$id);
 
         // if ($request->case_type === 'District') {
@@ -2257,7 +2264,7 @@ class CriminalCasesController extends Controller
                 'opposition_group.group_name as opposition_group_name')
             ->where('criminal_cases.id', $id)
             ->first();
-//dd($data);
+         //dd($data);
         $exist_case_inofs_district = SetupDistrict::where('id', $data->case_infos_district_id)->first();
         // dd($data);
 
@@ -2464,7 +2471,7 @@ class CriminalCasesController extends Controller
                             ->where(['case_billings.delete_status' => 0, 'case_billings.class_of_cases' => 'District Court', 'case_no' => $id])
                             ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
                             ->get();
-
+       // dd($billing_log_new);
         $ledger = DB::table('ledger_entries')
                     ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
                     ->where(['case_billings.class_of_cases' => 'District Court', 'case_billings.case_no' => $id])
@@ -3978,7 +3985,6 @@ class CriminalCasesController extends Controller
     {
         //   $data = CriminalCase::all();
         $case_cat = 'Criminal';
-// dd($data);
         $user = User::all();
         $division = DB::table("setup_divisions")->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();

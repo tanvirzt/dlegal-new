@@ -1857,14 +1857,14 @@ pre code {
   border-color: #ffdf7e;
 }
 
-.table-hover .table-warning:hover {
+/* .table-hover .table-warning:hover {
   background-color: #ffe8a1;
-}
+} */
 
-.table-hover .table-warning:hover > td,
+/* .table-hover .table-warning:hover > td,
 .table-hover .table-warning:hover > th {
   background-color: #ffe8a1;
-}
+} */
 
 .table-danger,
 .table-danger > th,
@@ -1901,14 +1901,14 @@ pre code {
   border-color: #fbfcfc;
 }
 
-.table-hover .table-light:hover {
+/* .table-hover .table-light:hover {
   background-color: #ececf6;
 }
 
 .table-hover .table-light:hover > td,
 .table-hover .table-light:hover > th {
   background-color: #ececf6;
-}
+} */
 
 .table-dark,
 .table-dark > th,

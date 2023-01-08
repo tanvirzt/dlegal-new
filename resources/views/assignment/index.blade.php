@@ -7,13 +7,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1> Schedule </h1>
+                        <h1> Assignment </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Schedule </li>
+                            <li class="breadcrumb-item active"> Assignment </li>
                         </ol>
                     </div>
                 </div>
@@ -35,9 +35,9 @@
                         @endif
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title"> Schedule List </h3>
+                                <h3 class="card-title"> Assignment List </h3>
                                 <div class="float-right">
-                                    <a href="{{ route('schedule.create') }}"><button
+                                    <a href="{{ route('assignment.create') }}"><button
                                             class="btn btn-sm
                                     btn-success add_btn"><i
                                                 class="fas fa-plus"></i> Add New </button></a>
@@ -71,7 +71,7 @@
                                                             "></i>
                                                         </div>
                                                         <div class="col-11">
-                                                            <form action="{{ route('schedule.change.status', $datum->id) }}"
+                                                            <form action="{{ route('assignment.change.status', $datum->id) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('PUT')
@@ -105,17 +105,17 @@
                                                 </td>
 
                                                 <td class="text-center">
-                                                    <a href="{{ route('schedule.show', $datum->id) }}"><button
+                                                    <a href="{{ route('assignment.show', $datum->id) }}"><button
                                                             class="btn btn-primary btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"><i
                                                                 class="fas fa-eye"></i></button></a>
 
-                                                    <a href="{{ route('schedule.edit', $datum->id) }}"><button
+                                                    <a href="{{ route('assignment.edit', $datum->id) }}"><button
                                                             class="btn btn-info btn-sm" data-toggle="tooltip"
                                                             data-placement="top" title="Edit"><i
                                                                 class="fas fa-edit"></i></button></a>
 
-                                                    <form method="POST" action="{{ route('schedule.destroy', $datum->id) }}"
+                                                    <form method="POST" action="{{ route('assignment.destroy', $datum->id) }}"
                                                         class="delete-user btn btn-danger btn-xs">
                                                         @csrf
                                                         @method('DELETE')

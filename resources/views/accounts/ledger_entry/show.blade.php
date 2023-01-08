@@ -32,14 +32,15 @@
 
                 <div class="col-12">
 
-{{-- print document  --}}
+                    {{-- print document  --}}
 
                     <div class="invoice p-3 mb-3">
 
                         <div class="row">
                             <div class="col-12">
                                 <h4>
-                        <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="AdminLTE Logo" class="brand-image" style="opacity:1">
+                                    <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="AdminLTE Logo"
+                                        class="brand-image" style="opacity:1">
 
                                     <small class="float-right">Date: {{ date('d-m-Y') }}</small>
                                 </h4>
@@ -50,45 +51,47 @@
                         <div class="row invoice-info">
                             <div class="col-sm-4 invoice-col">
                                 <b>From</b> <br>
-                                <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag, Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
-                                        <br/>
-                                        <span id="lblUnitAddress" class="HeaderStyle2"> Cell:01717406688 </span>
-                                        <br/>
-                                        <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688 </span>
-                                        <br/>
-                                        <span id="lblUnitAddress" class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
-                                            <span id="lblVoucherType" class="VoucherStyle">
+                                <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag, Mogbazar, Hatirjheel, Dhaka
+                                    - 1217, Bangladesh</span>
+                                <br />
+                                <span id="lblUnitAddress" class="HeaderStyle2"> Cell:01717406688 </span>
+                                <br />
+                                <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688 </span>
+                                <br />
+                                <span id="lblUnitAddress" class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
+                                <span id="lblVoucherType" class="VoucherStyle">
                             </div>
                             <div class="col-sm-4 invoice-col">
                                 <h3 class="text-center">Money Receipt</h3>
                                 <h6 class="text-center"></h6>
 
                             </div>
-                            <div class="col-sm-4 invoice-col">
-                               <b>To</b>
-                               
-                               @php
+                            @if ($data != null)
+                                <div class="col-sm-4 invoice-col">
+                                    <b>To</b>
 
-                                if ($data->class_of_cases == 'District Court') {
-                                    $case = App\Models\CriminalCase::where('id',$data->case_no)->first();
-                                }else if($data->class_of_cases == 'Special Court'){
-                                    $case = App\Models\LabourCase::where('id',$data->case_no)->first();
-                                }else if($data->class_of_cases == 'High Court Division'){
-                                    $case = App\Models\HighCourtCase::where('id',$data->case_no)->first();
-                                }else if($data->class_of_cases == 'Appellate Division'){
-                                    $case = App\Models\AppellateCourtCase::where('id',$data->case_no)->first();
-                                }
+                                    @php
+                                        
+                                        if ($data->class_of_cases == 'District Court') {
+                                            $case = App\Models\CriminalCase::where('id', $data->case_no)->first();
+                                        } elseif ($data->class_of_cases == 'Special Court') {
+                                            $case = App\Models\LabourCase::where('id', $data->case_no)->first();
+                                        } elseif ($data->class_of_cases == 'High Court Division') {
+                                            $case = App\Models\HighCourtCase::where('id', $data->case_no)->first();
+                                        } elseif ($data->class_of_cases == 'Appellate Division') {
+                                            $case = App\Models\AppellateCourtCase::where('id', $data->case_no)->first();
+                                        }
+                                        
+                                    @endphp
 
-                                @endphp
+                                    <address>
+                                        <strong>{{ $case->client_name_write }}</strong><br>
+                                        {{ $case->client_address }}
 
-                                <address>
-                                    <strong>{{ $case->client_name_write }}</strong><br>
-                                    {{ $case->client_address }}
-                                    
-                                </address>
-                            </div>
+                                    </address>
+                                </div>
+                            @endif
 
-                            
 
                         </div>
 
@@ -113,18 +116,19 @@
                                             <th class="text-center">Remarks</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="search_data">
-                                        {{-- @foreach ($data as $key => $datum) --}}
+                                    @if ($data != null)
+                                        <tbody id="search_data">
+                                            {{-- @foreach ($data as $key => $datum) --}}
                                             <tr>
                                                 <td>
                                                     1
                                                 </td>
 
                                                 <td>
-                                                 {{ $data->ledger_date }}
+                                                    {{ $data->ledger_date }}
                                                 </td>
                                                 <td>
-                                                 {{ $data->bill_id }}
+                                                    {{ $data->bill_id }}
                                                 </td>
                                                 <td>
                                                     {{ $data->payment_against_bill == 'on' ? 'Yes' : 'No' }}
@@ -133,7 +137,7 @@
                                                     {{ $data->transaction_no }}
                                                 </td>
                                                 <td>
-                                                    {{ $data->job_no  }}
+                                                    {{ $data->job_no }}
                                                 </td>
                                                 <td>
                                                     {{ $data->ledger_type }}
@@ -149,20 +153,21 @@
                                                     {{ $data->bill_amount }}
                                                 </td>
                                                 <td>
-                                                    {{ $data->income_paid_amount  }}
+                                                    {{ $data->income_paid_amount }}
                                                 </td>
                                                 <td>
-                                                    {{ $data->expense_paid_amount  }}
+                                                    {{ $data->expense_paid_amount }}
                                                 </td>
                                                 <td>
                                                     {{ $data->remarks }}
                                                 </td>
-                                                
 
-                                                
+
+
                                             </tr>
-                                        {{-- @endforeach --}}
-                                    </tbody>
+                                            {{-- @endforeach --}}
+                                        </tbody>
+                                    @endif
                                 </table>
                             </div>
 
@@ -171,7 +176,7 @@
                         <div class="row">
 
                             <div class="col-6">
-                                
+
                             </div>
 
                             <div class="col-6">
@@ -181,12 +186,12 @@
                                         <tbody>
                                             <tr>
                                                 <th style="width:50%">Subtotal:</th>
-                                                <td>{{ $data->bill_amount }}</td>
+                                                <td>{{ @$data->bill_amount }}</td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <th>Total:</th>
-                                                <td>{{ $data->bill_amount }}</td>
+                                                <td>{{ @$data->bill_amount }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -215,17 +220,20 @@
                                     Received By
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <a href="{{ route('money-receipt-print-preview', $data->id) }}" title="Print Case Info" target="_blank"
-                                    class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a>
-                            </div>
+                            @if ($data != null)
+                                <div class="col-md-12">
+                                    <a href="{{ route('money-receipt-print-preview', $data->id) }}" title="Print Case Info"
+                                        target="_blank" class="btn btn-info float-right"><i class="fas fa-print"></i>
+                                        Print</a>
+                                </div>
+                            @endif
                         </div>
 
 
 
                     </div>
 
-{{-- print document  --}}
+                    {{-- print document  --}}
 
 
                     {{-- <div class="card">
