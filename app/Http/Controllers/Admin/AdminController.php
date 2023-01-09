@@ -114,11 +114,21 @@ class AdminController extends Controller
             array_push($caseDisposed, $caseF);  
         }
 
+
+
+        $caseProcedingLog = CriminalCaseStatusLog::Join('criminal_cases', 'criminal_case_status_logs.case_id', 'criminal_cases.id')
+            ->where('case_category_id','Civil')
+            ->get();
+
        
 
         $tasks = Task::orderBy('id','desc')->get();
 
-        return view('admin.admin_dashboard',compact('cases','caseFilling','caseDisposed','runningCases_no','allCivil_no','allCriminal_no','disposedCase_no','appeal_no','revision_no','civilObj','criminalObj','tasks'));
+        return view('admin.admin_dashboard',compact('cases',
+        'caseFilling','caseDisposed',
+        'runningCases_no','allCivil_no','allCriminal_no','disposedCase_no','appeal_no','revision_no','civilObj','criminalObj',
+        'caseProcedingLog',
+        'tasks'));
     }
 
     public function dashboards()

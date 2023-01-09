@@ -37,6 +37,7 @@
         </div>
         <!-- /.content-header -->
 
+        {{-- {{dd($caseProcedingLog)}} --}}
 
         <section class="content">
             <div class="container-fluid">
