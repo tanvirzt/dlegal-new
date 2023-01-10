@@ -588,7 +588,7 @@
                                                         $case_infos_sub_seq_case_no = explode(', ', trim($datum->case_infos_sub_seq_case_no));
                                                         $key = array_key_last($case_infos_sub_seq_case_no);
                                                         echo $case_infos_sub_seq_case_no[$key];
-
+                                                        
                                                         $case_infos_sub_seq_case_year = explode(', ', trim($datum->case_infos_sub_seq_case_year));
                                                         $key = array_key_last($case_infos_sub_seq_case_year);
                                                         $last_case_no = $case_infos_sub_seq_case_year[$key];
@@ -701,8 +701,14 @@
                                                 <td>
                                                     {{ $datum->accused_district_name }}
                                                 </td>
+                                                @php
+                                                    $nature = DB::table('criminal_cases_case_steps')
+                                                        ->where('criminal_case_id', $datum->id)
+                                                        ->first();
+                                                    
+                                                @endphp
                                                 <td>
-                                                    {{ $datum->nature }}
+                                                    {{ $nature->case_nature_write }}
                                                 </td>
                                                 <td>
                                                     {{ $datum->matter_name }} {{ $datum->matter_write }}
