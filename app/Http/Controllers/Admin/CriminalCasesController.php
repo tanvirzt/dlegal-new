@@ -128,7 +128,7 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
             ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
-            ->join('criminal_cases_case_steps','criminal_cases.id','criminal_cases_case_steps.criminal_case_id')
+            // ->join('criminal_cases_case_steps','criminal_cases.id','criminal_cases_case_steps.criminal_case_id')
             ->leftJoin('setup_thanas','criminal_cases.case_infos_thana_id', '=', 'setup_thanas.id')
             ->leftJoin('setup_laws','criminal_cases.law_id', '=', 'setup_laws.id')
             ->where('criminal_cases.case_type', 'District')
@@ -162,7 +162,6 @@ class CriminalCasesController extends Controller
             'setup_external_councils.last_name',
             'case_infos_title.case_title_name as sub_seq_case_title_name',
             'setup_matters.matter_name',
-            'criminal_cases_case_steps.case_nature_write AS nature',
             'setup_thanas.thana_name',
             'setup_laws.law_name')
             ->get();
