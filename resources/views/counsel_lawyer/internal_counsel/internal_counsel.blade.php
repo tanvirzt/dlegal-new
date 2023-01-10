@@ -75,7 +75,7 @@
                                         <th class="text-center"> Chamber Joined </th>
                                         <th class="text-nowrap" colspan="2"> Bar Council Enrollment </th>
                                         <th class="text-nowrap" colspan="2"> High Court Enrollment </th>
-                                        <th class="text-nowrap" colspan="2"> Professional Contact Number </th>
+                                        <th class="text-nowrap" > Professional Contact Number </th>
                                         <th class="text-center"> Professional E-mail </th>
                                         <th class="text-center"> Status </th>
                                         <th width="13%">Action</th>
@@ -112,9 +112,9 @@
                                             <td>
                                                 {{ $datum->professional_contact_number }}
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 {{ $datum->professional_contact_number_write }}
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 {{ $datum->professional_email }} {{ $datum->professional_email_write }}
                                             </td>

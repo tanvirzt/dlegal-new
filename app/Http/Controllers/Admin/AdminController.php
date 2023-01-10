@@ -41,6 +41,7 @@ class AdminController extends Controller
 
         $case_type_setup_Civil = SetupCaseTypes::leftJoin('setup_case_categories','setup_case_types.case_category_id','setup_case_categories.id')
                          ->where('setup_case_categories.case_category','Civil')
+                         ->where('setup_case_types.delete_status', 0)
                          ->get();
 
         $civil_case_type_array=array();
@@ -50,6 +51,7 @@ class AdminController extends Controller
           $allCivil_Suit =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
             ->where('setup_case_types.case_types_name',$d['case_types_name'])
             ->where('criminal_cases.case_category_id', 'Civil')
+            ->where('criminal_cases.case_status_id', 'Running')
             ->where('criminal_cases.delete_status', 0)->count();
            
             $civilObj =new stdClass();
@@ -63,6 +65,7 @@ class AdminController extends Controller
 
         $case_type_setup_Criminal = SetupCaseTypes::leftJoin('setup_case_categories','setup_case_types.case_category_id','setup_case_categories.id')
                          ->where('setup_case_categories.case_category','Criminal')
+                         ->where('setup_case_types.delete_status', 0)
                          ->get();
 
         $criminal_case_type_array=array();
@@ -71,6 +74,7 @@ class AdminController extends Controller
             $allcriminal_Suit =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
                 ->where('setup_case_types.case_types_name',$d['case_types_name'])
                 ->where('criminal_cases.case_category_id', 'Criminal')
+                ->where('criminal_cases.case_status_id', 'Running')
                 ->where('criminal_cases.delete_status', 0)->count();
             
                 $criminalObj =new stdClass();

@@ -1,3 +1,4 @@
+
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
 
@@ -76,15 +77,17 @@
                                         <th class="text-center"> Chamber Joined </th>
                                         <th class="text-nowrap" colspan="2"> Bar Council Enrollment </th>
                                         <th class="text-nowrap" colspan="2"> High Court Enrollment </th>
-                                        <th class="text-nowrap" colspan="2"> Professional Contact Number </th>
+                                        <th class="text-center"> Professional Contact Number </th>
                                         <th class="text-center"> Professional E-mail </th>
                                         <th class="text-center"> Status </th>
                                         <th width="13%">Action</th>
                                     </tr>
+                                   
                                     </thead>
                                     <tbody id="search_data">
                                         {{-- {{dd($data)}} --}}
                                     @foreach($data as $key=>$datum)
+
                                         <tr>
                                             <td>
                                                 {{ $key+1 }}
@@ -96,26 +99,35 @@
                                                 {{ $datum->counsel_role_id }}
                                             </td>
                                             <td>
-                                                {{ $datum->date_of_joining }}
+                                                {{$datum->date_of_joining === null ?"":date('dS M Y', strtotime($datum->date_of_joining)) }}
                                             </td>
+
+                                            
                                             <td>
-                                                {{ $datum->bar_council_enrollment_date }}
+                                                {{$datum->bar_council_enrollment_date=== null ?"": date('dS M Y', strtotime($datum->bar_council_enrollment_date)) }} 
                                             </td>
                                             <td>
                                                 {{ $datum->bar_council_enrollment_sanad_no }}
                                             </td>
+                                           
                                             <td>
-                                                {{ $datum->high_court_enrollment_date }}
+                                                {{ $datum->high_court_enrollment_date === null ?"": date('dS M Y', strtotime($datum->high_court_enrollment_date))}}
                                             </td>
                                             <td>
                                                 {{ $datum->high_court_enrollment_membership_number }}
                                             </td>
+
+
                                             <td>
                                                 {{ $datum->professional_contact_number }}
                                             </td>
-                                            <td>
+
+
+
+
+                                            {{-- <td>
                                                 {{ $datum->professional_contact_number_write }}
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 {{ $datum->professional_email }} {{ $datum->professional_email_write }}
                                             </td>
