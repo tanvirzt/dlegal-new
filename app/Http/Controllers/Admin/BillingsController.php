@@ -97,7 +97,7 @@ class BillingsController extends Controller
         $district = SetupDistrict::where('delete_status',0)->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
         $case_class = CriminalCase::find($id);
-        // data_array($case_class);
+       // dd($case_class);
         $billing_log_new = DB::table('case_billings')
         ->leftJoin('setup_bill_types','case_billings.bill_type_id','=','setup_bill_types.id')
         ->leftJoin('setup_districts','case_billings.district_id','=','setup_districts.id')
@@ -831,7 +831,7 @@ class BillingsController extends Controller
         $query = CaseBilling::with('ledger');
 
         switch ($request->isMethod('get')) {
-            case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $$request->from_date != null && $request->to_date != null:
+            case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $request->from_date != null && $request->to_date != null:
                  $query2 =DB::table('ledger_entries')
                 ->join('case_billings','ledger_entries.bill_id','case_billings.id')
                 ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
@@ -843,11 +843,17 @@ class BillingsController extends Controller
                 ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
                 ->get();
                 break;
+            case $request->class_of_cases != null :
+                $query2 =DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases])
+                ->get();
+                break;
             case $request->from_date != null && $request->to_date != null :
                 $query2 =DB::table('ledger_entries')
                 ->join('case_billings','ledger_entries.bill_id','case_billings.id')
                 ->select('case_billings.*','ledger_entries.*') ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])->get();
-          
+
                 break;
             case $request->class_of_cases != null && $request->case_no == null && $request->client == null:
                 // $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client_id]);

@@ -582,7 +582,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('special-court-cases-all', [CriminalCasesController::class, 'special_court_cases_all'])->name('special-court-cases-all');
     Route::get('special-court-cases-civil', [CriminalCasesController::class, 'special_court_cases_civil'])->name('special-court-cases-civil');
     Route::get('special-court-cases-criminal', [CriminalCasesController::class, 'special_court_cases_criminal'])->name('special-court-cases-criminal');
-
+    //all court cases
+    Route::get('all-cases', [CriminalCasesController::class, 'all_cases'])->name('all-cases');
+    Route::get('all-civil-cases', [CriminalCasesController::class, 'all_civil_cases'])->name('all-civil-cases');
+    Route::get('all-criminal-cases', [CriminalCasesController::class, 'all_criminal_cases'])->name('all-criminal-cases');
 
     // Criminal cases latest list
 

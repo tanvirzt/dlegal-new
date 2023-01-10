@@ -402,7 +402,7 @@ class ReportController extends Controller
 
        // dd($request);
         $request_data = $request->all();
-      
+
         if ($request->from_date != "dd/mm/yyyy") {
             $from_next_date_explode = explode('/', $request->from_date);
             $from_next_date_implode = implode('-', $from_next_date_explode);
@@ -433,7 +433,7 @@ class ReportController extends Controller
             case $request->client != null :
                 $query2 = $query->where(['client_id' => $request->client]);
                 break;
-          
+
             default:
                 $query2 = $query;
         }
@@ -539,6 +539,12 @@ class ReportController extends Controller
                 ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
                 ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])->get();
                 break;
+            case $request->class_of_cases != null :
+                $query2 =DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases])
+                ->get();
+            break;
             case $request->class_of_cases != null && $request->case_no != null && $request->client != null :
                 $query2 =DB::table('ledger_entries')
                 ->join('case_billings','ledger_entries.bill_id','case_billings.id')
@@ -549,7 +555,7 @@ class ReportController extends Controller
                 $query2 =DB::table('ledger_entries')
                 ->join('case_billings','ledger_entries.bill_id','case_billings.id')
                 ->select('case_billings.*','ledger_entries.*') ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])->get();
-          
+
                 break;
             case $request->class_of_cases != null && $request->case_no == null && $request->client == null:
                 // $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client_id]);
@@ -627,5 +633,5 @@ class ReportController extends Controller
         }
     }
 
-    
+
 }
