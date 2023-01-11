@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\Admin;
 use App\Models\CriminalCase;
 use App\Models\CriminalCaseStatusLog;
+use App\Models\SetupCaseStatus;
+use App\Models\SetupCaseTypes;
 use App\Models\Task;
 use Carbon\Carbon;
 use Image;
@@ -33,46 +35,61 @@ class AdminController extends Controller
         ->where('setup_case_types.case_types_name','LIKE','%'.'Revision'.'%')
         ->where('criminal_cases.delete_status', 0)->count();
 
-        $allCivil_no = CriminalCase::where('case_category_id', 'Civil')->where('delete_status', 0)->count();
-
-        $allCivil_Suit =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
-            ->where('setup_case_types.case_types_name','LIKE','%'.'Suit'.'%')
-            ->where('criminal_cases.case_category_id', 'Civil')
-            ->where('criminal_cases.delete_status', 0)->count();
-        $allCivil_Appeal =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
-            ->where('setup_case_types.case_types_name','LIKE','%'.'Appeal'.'%')
-            ->where('criminal_cases.case_category_id', 'Civil')
-            ->where('criminal_cases.delete_status', 0)->count();
-        $allCivil_Revision =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
-            ->where('setup_case_types.case_types_name','LIKE','%'.'Revision'.'%')
-            ->where('criminal_cases.case_category_id', 'Civil')
-            ->where('criminal_cases.delete_status', 0)->count();
-        $allCivil_Misc =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
-            ->where('setup_case_types.case_types_name','LIKE','%'.'Misc'.'%')
-            ->where('criminal_cases.case_category_id', 'Civil')
-            ->where('criminal_cases.delete_status', 0)->count();
+        $allCivil_no = CriminalCase::where('case_category_id', 'Civil')->where('case_status_id', 'Running')->where('delete_status', 0)->count();
+        $allCriminal_no = CriminalCase::where('case_category_id', 'Criminal')->where('case_status_id', 'Running')->where('delete_status', 0)->count();
 
 
+        $case_type_setup_Civil = SetupCaseTypes::leftJoin('setup_case_categories','setup_case_types.case_category_id','setup_case_categories.id')
+                         ->where('setup_case_categories.case_category','Civil')
+                         ->where('setup_case_types.delete_status', 0)
+                         ->get();
 
-        $allCriminal_no = CriminalCase::where('case_category_id', 'Criminal')->where('delete_status', 0)->count();
+        $civil_case_type_array=array();
+
+        foreach($case_type_setup_Civil as $d){
+
+          $allCivil_Suit =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
+            ->where('setup_case_types.case_types_name',$d['case_types_name'])
+            ->where('criminal_cases.case_category_id', 'Civil')
+            ->where('criminal_cases.case_status_id', 'Running')
+            ->where('criminal_cases.delete_status', 0)->count();
+           
+            $civilObj =new stdClass();
+            $civilObj->x = $d['case_types_name'];
+            $civilObj->y = $allCivil_Suit;
+            $civilObj->legendEntry_sortOrder = 2;
+            $civilObj->attributes_year = 'Civil';
+
+            array_push($civil_case_type_array,$civilObj);
+        }
+
+        $case_type_setup_Criminal = SetupCaseTypes::leftJoin('setup_case_categories','setup_case_types.case_category_id','setup_case_categories.id')
+                         ->where('setup_case_categories.case_category','Criminal')
+                         ->where('setup_case_types.delete_status', 0)
+                         ->get();
+
+        $criminal_case_type_array=array();
+
+        foreach($case_type_setup_Criminal as $d){
+            $allcriminal_Suit =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
+                ->where('setup_case_types.case_types_name',$d['case_types_name'])
+                ->where('criminal_cases.case_category_id', 'Criminal')
+                ->where('criminal_cases.case_status_id', 'Running')
+                ->where('criminal_cases.delete_status', 0)->count();
+            
+                $criminalObj =new stdClass();
+                $criminalObj->x = $d['case_types_name'];
+                $criminalObj->y = $allcriminal_Suit;
+                $criminalObj->legendEntry_sortOrder = 4;
+                $criminalObj->attributes_year = 'Criminal';
+
+                array_push($criminal_case_type_array,$criminalObj);
+        }
+
+        $Civil_Criminal_Case_type_Array = array_merge($civil_case_type_array,$criminal_case_type_array);
+
+
         
-        $allCriminal_Cases =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
-        ->where('setup_case_types.case_types_name','LIKE','%'.'Criminal Case'.'%')
-        ->where('criminal_cases.case_category_id', 'Criminal')
-        ->where('criminal_cases.delete_status', 0)->count();
-       $allCriminal_Appeal =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
-        ->where('setup_case_types.case_types_name','LIKE','%'.'Appeal'.'%')
-        ->where('criminal_cases.case_category_id', 'Criminal')
-        ->where('criminal_cases.delete_status', 0)->count();
-       $allCriminal_Revision =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
-        ->where('setup_case_types.case_types_name','LIKE','%'.'Revision'.'%')
-        ->where('criminal_cases.case_category_id', 'Criminal')
-        ->where('criminal_cases.delete_status', 0)->count();
-      $allCriminal_Misc =CriminalCase::leftJoin('setup_case_types', 'criminal_cases.case_type_id', '=', 'setup_case_types.id')
-        ->where('setup_case_types.case_types_name','LIKE','%'.'Misc'.'%')
-        ->where('criminal_cases.case_category_id', 'Criminal')
-        ->where('criminal_cases.delete_status', 0)->count();
-
         $currentYear = Carbon::now()->format('Y');
         $cases = array();
         for ($x = 1; $x <= 12; $x++) {
@@ -81,19 +98,6 @@ class AdminController extends Controller
             ->where('delete_status', 0)->count();
             array_push($cases, $case);  
         }
-
-      
-        $civilObj =new stdClass();
-        $civilObj->cSuit = $allCivil_Suit;
-        $civilObj->cApp = $allCivil_Appeal;
-        $civilObj->cRevi = $allCivil_Revision;
-        $civilObj->cMsic = $allCivil_Misc;
-
-        $criminalObj =new stdClass();
-        $criminalObj->cSuit = $allCriminal_Cases;
-        $criminalObj->cApp = $allCriminal_Appeal;
-        $criminalObj->cRevi = $allCriminal_Revision;
-        $criminalObj->cMsic = $allCriminal_Misc;
 
         $caseFilling= array();
 
@@ -114,11 +118,63 @@ class AdminController extends Controller
             array_push($caseDisposed, $caseF);  
         }
 
+
+       $case_status_setup_civil = SetupCaseStatus::where('delete_status',0)
+                         ->where('case_category','Civil')
+                          ->get()->toArray();
+
+        $caselogCountArray_civil = array();
+        foreach ($case_status_setup_civil as $d) {
+            $caseProcedingLog = CriminalCaseStatusLog::leftJoin('setup_case_statuses', 'criminal_case_status_logs.updated_case_status_id', '=', 'setup_case_statuses.id')
+                ->leftJoin('criminal_cases', 'criminal_case_status_logs.case_id', 'criminal_cases.id')
+                ->where('case_category_id','Civil')
+                ->where('case_status_name',$d['case_status_name'])
+                ->get()->count();
+
+            // $name =$d['case_status_name'];
+            $objectData = new stdClass();
+            $objectData->x = $d['case_status_name'];
+            $objectData->y = $caseProcedingLog;
+            $objectData->legendEntry_sortOrder = 2;
+            $objectData->attributes_year = 'Civil';
+            array_push($caselogCountArray_civil,$objectData);     
+        }
+       $case_status_setup_criminal = SetupCaseStatus::where('delete_status',0)
+                         ->where('case_category','Criminal')
+                          ->get()->toArray();
+
+        $caselogCountArray_Criminal = array();
+        foreach ($case_status_setup_criminal as $d) {
+            $caseProcedingLog = CriminalCaseStatusLog::leftJoin('setup_case_statuses', 'criminal_case_status_logs.updated_case_status_id', '=', 'setup_case_statuses.id')
+                ->leftJoin('criminal_cases', 'criminal_case_status_logs.case_id', 'criminal_cases.id')
+                ->where('case_category_id','Criminal')
+                ->where('case_status_name',$d['case_status_name'])
+                ->get()->count();
+
+            // $name =$d['case_status_name'];
+
+            $objectData = new stdClass();
+            $objectData->x = $d['case_status_name'];
+            $objectData->y = $caseProcedingLog;
+            $objectData->legendEntry_sortOrder = 2;
+            $objectData->attributes_year = 'Criminal';
+            array_push($caselogCountArray_Criminal,$objectData);     
+        }
+
+       
+
        
 
         $tasks = Task::orderBy('id','desc')->get();
 
-        return view('admin.admin_dashboard',compact('cases','caseFilling','caseDisposed','runningCases_no','allCivil_no','allCriminal_no','disposedCase_no','appeal_no','revision_no','civilObj','criminalObj','tasks'));
+        return view('admin.admin_dashboard',compact('cases',
+        'caseFilling','caseDisposed',
+        'runningCases_no','allCivil_no','allCriminal_no','disposedCase_no','appeal_no','revision_no',
+        'caselogCountArray_civil',
+        'caselogCountArray_Criminal',
+        'Civil_Criminal_Case_type_Array',
+
+        'tasks'));
     }
 
     public function dashboards()

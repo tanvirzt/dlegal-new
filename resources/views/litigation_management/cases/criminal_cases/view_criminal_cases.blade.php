@@ -1961,23 +1961,6 @@
                                                             </td>
                                                             <td>
 
-
-                                                                {{-- @php
-                                    $not_updated = App\Models\CriminalCaseStatusLog::where(['case_id' => $data->id, 'delete_status' => 0])->latest()->first();
-                                    // dd($not_updated);
-                                    // if (!empty($not_updated->updated_next_date) && $not_updated->updated_next_date < date('Y-m-d')) {
-                                    //     // dd($not_updated->updated_next_date);
-                                    // }
-                                    @endphp --}}
-
-                                                                {{-- @if (!empty($case_logs[0]->updated_next_date))
-                                        {{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}
-                                    @elseif(!empty($not_updated->updated_next_date) && $not_updated->updated_next_date < date('Y-m-d'))
-                                        <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>Missed</button>
-                                    @else
-                                        <button type='button' class='btn-custom btn-danger-custom-next-date text-uppercase'>Not Updated</button>
-                                    @endif --}}
-
                                                                 @if (!empty($case_logs[0]->updated_next_date) && $case_logs[0]->updated_next_date < date('Y-m-d'))
                                                                     <span
                                                                         style="color: rgba(255, 0, 0, 1);font-size:11.5px;">{{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}</span>
@@ -2011,10 +1994,6 @@
                                                                         @endforeach
                                                                     </details>
 
-
-                                                                    {{-- @foreach ($notes as $pro)
-                                            <li class="text-left">{{ $pro }}</li>
-                                        @endforeach --}}
                                                                 @endif
                                                                 {{ $case_logs[0]->updated_day_notes_write }}
                                                             </td>
@@ -2353,25 +2332,20 @@
                                                             <td>
                                                                 @php
                                                                     $forwarded = explode(', ', $activity_log->activity_forwarded_to_id);
-                                                                    // dd($forwarded);
+                                                                  
                                                                     $name = App\Models\SetupExternalCouncil::whereIn('id', $forwarded)->get();
-                                                                    // dd($name);
+                                                                 
                                                                 @endphp
 
                                                                 @if (count($forwarded) > 1)
                                                                     @foreach ($name as $item)
-                                                                        {{-- @php
-                                                $name = App\Models\SetupExternalCouncil::where('id',$item)->first();
-                                            @endphp --}}
                                                                         <li class="text-left">
                                                                             {{ $item->first_name . ' ' . $item->last_name }}
                                                                         </li>
                                                                     @endforeach
                                                                 @else
                                                                     @foreach ($name as $item)
-                                                                        {{-- @php
-                                                $name = App\Models\SetupExternalCouncil::where('id',$item)->first();
-                                            @endphp --}}
+                                                                    
                                                                         {{ $item->first_name . ' ' . $item->last_name }}
                                                                     @endforeach
                                                                 @endif
@@ -2464,26 +2438,7 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                                {{-- <a
-                                        href="{{ route('view-criminal-cases-activity', $activity_log->id) }}">
-                                        <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
-                                            data-placement="top" title="View"><i class="fas fa-eye"></i></button>
-                                    </a>
-                                    <a
-                                        href="{{ route('edit-criminal-cases-activity', $activity_log->id) }}">
-                                        <button class="btn btn-outline-success btn-sm" data-toggle="tooltip"
-                                            data-placement="top" title="Edit"><i
-                                                class="fas fa-edit"></i></button>
-                                    </a>
-
-                                    <form method="POST"
-                                        action="{{ route('delete-criminal-cases-activity', $activity_log->id) }}"
-                                        class="delete-user btn btn-outline-danger btn-xs">
-                                        @csrf
-                                        <button type="submit" class="btn btn-sm"
-                                            data-toggle="tooltip" data-placement="top"
-                                            title="Delete"><i class="fas fa-trash"></i></button>
-                                    </form> --}}
+                                                               
                                                             </td>
                                                             <td> {{ date('d-m-Y H:i:s', strtotime($activity_log->created_at)) }}
                                                             </td>
@@ -3025,7 +2980,7 @@
                                             <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                                 id="heading">Billings Log
 
-                                                @if (count($billing_log_new) > 0)
+                                                @if (count($billing_log_new) > 0 && Is_numeric($billing_log_new))
                                                     <span class="font-italic custom_font text-capitalize">(Total: <span
                                                             style="color: darkgreen;font-size:14px;">
                                                             {{ $bill_amt = $billing_log_new->sum('bill_amount') }}

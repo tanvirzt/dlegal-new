@@ -799,8 +799,9 @@ class BillingsController extends Controller
         $data =DB::table('ledger_entries')
         ->join('case_billings','ledger_entries.bill_id','case_billings.id')
         ->select('case_billings.*','ledger_entries.*')
+        ->where('delete_status', 0)
         ->get();
-        $ledger_head = LedgerHead::all();
+        $ledger_head = LedgerHead::all()->where('delete_status', 0);
         $is_search = 'Searched';
         $clients = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();
 

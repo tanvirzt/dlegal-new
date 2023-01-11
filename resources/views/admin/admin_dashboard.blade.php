@@ -37,7 +37,6 @@
         </div>
         <!-- /.content-header -->
 
-
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
@@ -53,7 +52,7 @@
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i
+                            <a target="_blank" href="all-cases" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -70,7 +69,7 @@
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i
+                            <a target="_blank" href="all-civil-cases" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -85,7 +84,7 @@
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i
+                            <a target="_blank" href="all-criminal-cases" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -345,7 +344,6 @@
                 <!-- /.container-fluid -->
             </section>
                 <!-- /.content -->
-
     </div>
 @endsection
 
@@ -398,81 +396,6 @@
         }
     });
 
-
-
-    //var casectx = document.getElementById('casesChart').getContext('2d');
-    // var chartData = {
-    //     datasets: [
-    //         {
-    //             backgroundColor: [   
-    //                 "#FF9900",
-    //                 "#109618",
-    //                 "#990099",
-    //                 "#3B3EAC"
-    //                 ],
-    //             hoverBackgroundColor: [
-    //                 "#FF9900",
-    //                 "#109618",
-    //                 "#990099",
-    //                 "#3B3EAC"
-    //             ],
-    //             data: [
-    //                 70,
-    //                 80,
-    //                 100,
-    //                  0,
-    //                 60,
-    //                 40,
-    //                 30,
-    //                 0,
-    //             ],
-    //             labels:[
-    //                 'test',
-    //                 'test2'
-    //             ]
-    //         },
-    //         {
-    //             backgroundColor: [
-    //                 "#3366CC",
-    //                 "#DC3912",
-    //                 "#FF9900",
-    //                 "#109618",
-    //                 "#990099",
-    //                 "#3B3EAC"
-    //             ],
-    //             hoverBackgroundColor: [
-    //                 "#3366CC",
-    //                 "#DC3912",
-    //                 "#FF9900",
-    //                 "#109618",
-    //                 "#990099",
-    //                 "#3B3EAC"
-    //             ],
-    //             data: [
-    //                 50,
-    //                 150
-    //             ],
-    //             labels:[
-    //                 'test',
-    //                 'test2'
-    //             ]
-    //         }
-    //     ],
-	// 	labels: [
-	// 		"Civil",
-	// 		"Criminal",
-	// 		"Suit/Cases",
-	// 		"Appeal",
-	// 		"Revision",
-	// 		"Misc.",
-	// 	]
-    // };
-    // var chartCase = new Chart(casectx,{
-    //     type: 'pie',
-    //      data: chartData,
-    // })
-
-
     JSC.chart('case-category', {
         debug: true,
         defaultSeries: { type: 'pieDonut', shape_center: '50%,50%' },
@@ -503,17 +426,7 @@
           },
           {
             name: 'Category',
-            points: [
-              { x: 'Suit', y: {{ $civilObj->cSuit}}, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-              { x: 'Appeal', y: {{ $civilObj->cApp}} , legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-              { x: 'Revision', y:{{ $civilObj->cRevi}}, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-              { x: 'Misc.', y:{{ $civilObj->cMsic}}, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-             
-              { x: 'Cases', y: {{ $criminalObj->cSuit}}, legendEntry_sortOrder: 4, attributes_year: 'Criminal' },
-              { x: 'Appeal', y: {{ $criminalObj->cApp}}, legendEntry_sortOrder: 4, attributes_year: 'Criminal' },
-              { x: 'Revision', y: {{ $criminalObj->cRevi}}, legendEntry_sortOrder: 4, attributes_year: 'Criminal' },
-              { x: 'Misc.', y: {{ $criminalObj->cMsic}}, legendEntry_sortOrder: 4, attributes_year: 'Criminal' },
-            ],
+            points: @json($Civil_Criminal_Case_type_Array),
             defaultPoint_tooltip: '<b>%year %name</b><br>total_cases: <b>{%yValue}</b>',
             shape: { innerSize: '55%', size: '80%' },
             palette: JSC.colorToPalette('#66bb6a', { lightness: 0.4 }, 4, 0).concat(
@@ -566,7 +479,7 @@
           {
             name: 'Type',
             points: [
-              { x: 'Civil', y: 60, legendEntry: { sortOrder: 1 } },
+              { x: 'Civil', y:  {{$allCivil_no}}, legendEntry: { sortOrder: 1 } },
             ],
             shape: { innerSize: '0%', size: '40%' },
             defaultPoint_label: {
@@ -577,19 +490,7 @@
           },
           {
             name: 'Category',
-            points: [
-              { x: 'Filling ', y: 5, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-              { x: 'Admission of Suit', y: 2 , legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-              { x: 'Summon ', y:3, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-              { x: 'Written Statement .', y:6, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-              { x: 'Set Off', y:4, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-              { x: 'Issue Frame ', y:3, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-              { x: 'PH', y:4, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-              { x: 'F. PH ', y:3, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-              { x: 'Argument', y:4, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-              { x: 'Order & Decree', y:6, legendEntry_sortOrder: 2, attributes_year: 'Civil' },
-             
-            ],
+            points:@json($caselogCountArray_civil),
             defaultPoint_tooltip: '<b>%year %name</b><br>total_cases: <b>{%yValue}</b>',
             shape: { innerSize: '55%', size: '80%' },
             palette: JSC.colorToPalette('#179199', { lightness: 0.4 }, 4, 0)
@@ -626,7 +527,7 @@
                 series: [
                 {
                     points: [
-                     { x: 'Criminal', y: 120, legendEntry: { sortOrder: 1 } },
+                     { x: 'Criminal', y: {{$allCriminal_no}}, legendEntry: { sortOrder: 1 } },
                     ],
                     shape: { innerSize: '0%', size: '45%' },
                     defaultPoint_label: {
@@ -636,20 +537,7 @@
                     palette: ['#b214de']
                 },
                 {
-                    points: [
-                    { x: 'Filling ', y: 15, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
-                    { x: 'Summon', y: 5 , legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
-                    { x: 'Investigation ', y:10, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
-                    { x: 'Warrant of Arrest (W&A) ', y:20, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
-                    { x: 'WP&A', y:5, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
-                    { x: 'Paper Publication', y:30, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
-                    { x: 'Ready for Trial (RFT)', y:20, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
-                    { x: 'Charge Hearing', y:4, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
-                    { x: 'Witness', y:5, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
-                    { x: 'Argument', y:5, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
-                    { x: 'Judgment', y:10, legendEntry_sortOrder: 2, attributes_year: 'Criminal' },
-                    
-                    ],
+                    points: @json($caselogCountArray_Criminal),
                     defaultPoint_tooltip: '<b>%year %name</b><br>total_cases: <b>{%yValue}</b>',
                     shape: { innerSize: '55%', size: '90%' },
                     palette: JSC.colorToPalette('#b214de', { lightness: 0.4 }, 4, 0)
