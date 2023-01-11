@@ -504,6 +504,7 @@ class ReportController extends Controller
         ->select('case_billings.*','ledger_entries.*')
         ->where('delete_status', 0)
         ->get();
+        
         // dd($data);
         $ledger_head = LedgerHead::all()  ->where('delete_status', 0);
         $is_search = 'Searched';
