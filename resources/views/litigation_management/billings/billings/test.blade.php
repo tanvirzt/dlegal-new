@@ -125,7 +125,7 @@
                                                         <select name="case_no" class="form-control select2" id="case_no" @if (!empty($case_class))  @endif>
                                                             <option value=""> Select </option>
                                                             @if (!empty($case_class))
-                                                                <option value="{{ $case_class->id }}" selected> {{ $case_class->case_no }} </option>
+                                                                <option value="{{ $case_class->id }}" selected>  {{  $case_class->case_title_name . ' ' . $case_class->case_infos_case_no . '/' . $case_class->case_infos_case_year  }}</option>
                                                             @endif
 
                                                         </select>

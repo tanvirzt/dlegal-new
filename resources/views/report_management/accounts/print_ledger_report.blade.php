@@ -122,7 +122,7 @@
                                                         {{ $datum->transaction_no }}
                                                     </td> --}}
                                                     <td>
-                                                        {{ $datum->job_name }}
+                                                        {{ $datum->job_no }}
                                                     </td>
                                                     <td>
                                                         {{ $datum->ledger_category_id }}

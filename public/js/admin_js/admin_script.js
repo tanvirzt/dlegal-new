@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    //For View_Criminal_Cases.blade.php basic view 
+    //For View_Criminal_Cases.blade.php basic view
     $('.trHide').hide()
 
     $('#case_category_id').on('change', function() {
@@ -670,13 +670,13 @@ $(document).ready(function () {
                 data: {"_token": "{{ csrf_token() }}", class_of_cases: class_of_cases},
                 dataType: "json",
                 success: function (data) {
-                    // console.log(data);
+                     console.log(data);
                     if (data) {
                         $('#case_no').empty();
                         $('#case_no').append('<option value="">Select</option>');
                         $('#case_no').focus;
                         $.each(data, function (key, value) {
-                            $('select[name="case_no"]').append('<option value="' + value.id + '">' + value.case_no + '</option>');
+                            $('select[name="case_no"]').append('<option value="' + value.id + '">' + value.case_infos_case_no .concat(" /",value.case_infos_case_year) + '</option>');
                         });
                     } else {
                         $('#case_no').empty();
@@ -1364,10 +1364,10 @@ $(document).ready(function () {
                             <label for="bill_amount" class="col-sm-4 col-form-label">Bill Amount</label>
                             <div class="col-sm-8" >
                             <input type="text" class="form-control" readonly name="bill_amount" value="`+data.bill_amount+`">
-                    
+
                             </div>
                         </div>`
-                        
+
                         );
 
 
