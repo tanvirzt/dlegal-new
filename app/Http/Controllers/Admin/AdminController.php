@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Admin;
 use App\Models\CriminalCase;
 use App\Models\CriminalCaseStatusLog;
+use App\Models\LedgerEntry;
 use App\Models\SetupCaseStatus;
 use App\Models\SetupCaseTypes;
 use App\Models\Task;
@@ -130,8 +131,6 @@ class AdminController extends Controller
                 ->where('case_category_id','Civil')
                 ->where('case_status_name',$d['case_status_name'])
                 ->get()->count();
-
-            // $name =$d['case_status_name'];
             $objectData = new stdClass();
             $objectData->x = $d['case_status_name'];
             $objectData->y = $caseProcedingLog;
@@ -150,9 +149,6 @@ class AdminController extends Controller
                 ->where('case_category_id','Criminal')
                 ->where('case_status_name',$d['case_status_name'])
                 ->get()->count();
-
-            // $name =$d['case_status_name'];
-
             $objectData = new stdClass();
             $objectData->x = $d['case_status_name'];
             $objectData->y = $caseProcedingLog;
@@ -160,8 +156,32 @@ class AdminController extends Controller
             $objectData->attributes_year = 'Criminal';
             array_push($caselogCountArray_Criminal,$objectData);     
         }
+ 
 
-       
+        $expenseArray = array();
+        for ($x = 1; $x <= 12; $x++) {
+            $le=  LedgerEntry::where('ledger_type','Expense')->whereRaw('YEAR(ledger_date) ='.$currentYear)
+            ->whereRaw('MONTH(ledger_date) ='.$x)
+            ->get()->toArray();
+
+ 
+            array_push($expenseArray,$le);
+
+        }
+
+
+        $lExpes=  LedgerEntry::where('ledger_type','Expense')
+        ->get()->toArray();
+
+        $ExpArray = array();
+
+        foreach ($lExpes as $item) {
+            array_push($ExpArray,[date("D M Y h:i:s",mktime((int)$item['ledger_date'])),(int)$item['expense_paid_amount']]);
+        }
+      
+      
+
+    //   $li=  LedgerEntry::where('ledger_type','Income')->get();
 
        
 
@@ -173,6 +193,8 @@ class AdminController extends Controller
         'caselogCountArray_civil',
         'caselogCountArray_Criminal',
         'Civil_Criminal_Case_type_Array',
+
+        'ExpArray',
 
         'tasks'));
     }
