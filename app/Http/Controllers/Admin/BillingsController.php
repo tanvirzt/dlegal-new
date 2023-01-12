@@ -234,7 +234,7 @@ class BillingsController extends Controller
 
     public function save_billing(Request $request)
     {
-        
+
 //        $rules = [
 //            'bill_type_id' => 'required',
 //            'payment_type' => 'required',
@@ -726,9 +726,9 @@ class BillingsController extends Controller
         // $data = LedgerEntry::with('ledger_head','bill')->find($id);
 
         $data =DB::table('ledger_entries')
-        ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+
         ->join('ledger_heads','ledger_entries.ledger_head_id','ledger_heads.id')
-        ->select('ledger_entries.*','ledger_heads.*','case_billings.*')
+        ->select('ledger_entries.*','ledger_heads.*')
         ->where('ledger_entries.id',$id)->first();
          //dd($data);
         // if ($data->receipt_no == null) {

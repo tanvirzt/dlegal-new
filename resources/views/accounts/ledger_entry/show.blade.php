@@ -66,22 +66,25 @@
                                 <h6 class="text-center"></h6>
 
                             </div>
-                            @if ($data != null)
+                            @php
+                            $case=DB::table('case_billings')->where('case_no',$data->id)->first();
+                            @endphp
+                            @if ($case != null)
                                 <div class="col-sm-4 invoice-col">
                                     <b>To</b>
 
                                     @php
-                                        
-                                        if ($data->class_of_cases == 'District Court') {
-                                            $case = App\Models\CriminalCase::where('id', $data->case_no)->first();
-                                        } elseif ($data->class_of_cases == 'Special Court') {
-                                            $case = App\Models\LabourCase::where('id', $data->case_no)->first();
-                                        } elseif ($data->class_of_cases == 'High Court Division') {
-                                            $case = App\Models\HighCourtCase::where('id', $data->case_no)->first();
-                                        } elseif ($data->class_of_cases == 'Appellate Division') {
-                                            $case = App\Models\AppellateCourtCase::where('id', $data->case_no)->first();
+
+                                        if ($case->class_of_cases == 'District Court') {
+                                            $case = App\Models\CriminalCase::where('id', $case->case_no)->first();
+                                        } elseif ($case->class_of_cases == 'Special Court') {
+                                            $case = App\Models\CriminalCase::where('id', $case->case_no)->first();
+                                        } elseif ($case->class_of_cases == 'High Court Division') {
+                                            $case = App\Models\HighCourtCase::where('id', $case->case_no)->first();
+                                        } elseif ($case->class_of_cases == 'Appellate Division') {
+                                            $case = App\Models\AppellateCourtCase::where('id', $case->case_no)->first();
                                         }
-                                        
+
                                     @endphp
 
                                     <address>
@@ -140,7 +143,7 @@
                                                     {{ $data->job_no }}
                                                 </td>
                                                 <td>
-                                                    {{ $data->ledger_type }}
+                                                    {{ $data->ledger_category_id }}
                                                 </td>
                                                 <td>
                                                     {{ $data->payment_type }}
@@ -237,19 +240,19 @@
 
 
                     {{-- <div class="card">
-                    
+
                     <div>
                         <div class="card-body">
-                            
+
                             <div class="row">
 
                                 <div class="col-md-6">
 
                                     <div class="appeal_case_info">
-                                        
+
                                         <div class="card">
                                             <div class="card-body">
-                                                
+
                                                 <table class="table table-bordered">
 
                                                     <tbody>
@@ -287,8 +290,8 @@
                                                 @endphp
 
                                                 {{ !empty($case->case_no) ? $case->case_no : '' }}
-                                                            
-                                                        
+
+
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -299,15 +302,15 @@
                                                         <td>Bill Amount</td>
                                                         <td>{{ $data->bill_amount }}</td>
                                                     </tr>
-                                                    
-                                                    
-                                                    
+
+
+
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
 
-                                        
+
 
                                     </div>
                                 </div>
@@ -318,7 +321,7 @@
 
                                         <div class="card">
                                             <div class="card-body">
-                                                
+
                                                 <table class="table table-bordered">
 
                                                     <tbody>
@@ -342,7 +345,7 @@
                                                         <td width="50%">Digital Payment Type</td>
                                                         <td width="50%" colspan="2"> {{ $data->digital_payment_type_name }} </td>
                                                     </tr>
-                                                    
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -359,7 +362,7 @@
 
 
 
-   
+
 
                     </div>
                 </div> --}}
