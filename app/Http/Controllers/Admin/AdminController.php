@@ -193,7 +193,7 @@ class AdminController extends Controller
         'caselogCountArray_civil',
         'caselogCountArray_Criminal',
         'Civil_Criminal_Case_type_Array',
-
+        'lExpes',
         'ExpArray',
 
         'tasks'));
