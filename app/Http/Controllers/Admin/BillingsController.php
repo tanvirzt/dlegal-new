@@ -87,8 +87,10 @@ class BillingsController extends Controller
         $digital_payment_type = SetupDigitalPayment::where('delete_status',0)->get();
         $district = SetupDistrict::where('delete_status',0)->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
+        $client = SetupClient::where('delete_status', 0)->get();
         $ledgerHeads = LedgerHead::all();
-        return view('litigation_management.billings.billings.add_billing',compact('external_council','bill_type','bank','digital_payment_type','district', 'case_types'));
+
+        return view('litigation_management.billings.billings.add_billing',compact('external_council','bill_type','bank','digital_payment_type','district', 'case_types','client'));
     }
 
     public function add_billing_from_district_court($id)
@@ -277,6 +279,7 @@ class BillingsController extends Controller
         $data->case_type_id = $request->case_type_id;
         $data->class_of_cases = $request->class_of_cases;
         $data->case_no = $request->case_no;
+
         $data->panel_lawyer_id = $request->panel_lawyer_id;
         $data->bill_amount = $request->bill_amount;
         $data->date_of_billing = $date_of_billing;
@@ -807,6 +810,7 @@ class BillingsController extends Controller
         ->select('case_billings.*','ledger_entries.*')
         ->where('delete_status', 0)
         ->get();
+
         $ledger_head = LedgerHead::all()->where('delete_status', 0);
         $is_search = 'Searched';
         $clients = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();

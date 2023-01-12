@@ -1499,16 +1499,17 @@
                                                         <td colspan="2">
                                                             @php
                                                                 $client_explode = explode(', ', $data->client_id);
+                                                                $clientName=DB::table('setup_clients')->where('id',$client_explode)->get();
                                                             @endphp
                                                             @if ($data->client_id)
                                                                 @if (count($client_explode) > 1)
-                                                                    @foreach ($client_explode as $pro)
-                                                                        <li class="text-left">{{ $pro }}
+                                                                    @foreach ($clientName as $pro)
+                                                                        <li class="text-left">{{ $pro->client_name }}
                                                                         </li>
                                                                     @endforeach
                                                                 @else
-                                                                    @foreach ($client_explode as $pro)
-                                                                        {{ $pro }}
+                                                                    @foreach ($clientName as $pro)
+                                                                        {{ $pro->client_name }}
                                                                     @endforeach
                                                                 @endif
                                                             @endif
