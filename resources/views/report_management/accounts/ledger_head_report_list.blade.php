@@ -38,17 +38,17 @@
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
                                     <h3 class="card-title"> Ledger :: Report
-                                        
+
                                          @if (!empty($is_search))
                                              <span style="color: red;font-size:15px;">(Showing:
-                                                {{ $request_data['ledger_type'] != null ? 'Ledger Type' : '' }}    
-                                                
+                                                {{ $request_data['ledger_type'] != null ? 'Ledger Type' : '' }}
+
                                                 )
-                                                                                        
+
                                                 {{-- {{ !empty($is_search) ? '(Showing)' : '' }} --}}
                                             </span>
                                          @endif
-                                        
+
                                         </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
@@ -70,7 +70,7 @@
                                         <form method="get" action="{{ route('ledger-head-report-list-search') }}">
                                             {{-- @csrf --}}
                                             <div class="row">
-                                                
+
                                                 <div class="col-md-12">
                                                     <div class="form-group row">
                                                         <label for="ledger_type" class="col-sm-4 col-form-label">Ledger Type</label>
@@ -85,11 +85,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
-                                                
+
+
                                             </div>
 
-                                            
+
 
                                             <div class="float-right">
                                                 <button type="submit" id="submit"
@@ -118,7 +118,7 @@
 
 
                                                 <input type="hidden" name="ledger_type" value="{{ $request_data['ledger_type'] }}">
-                                                
+
                                             <button type="submit" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Delete"> <i class="fas fa-print"></i> Print </button>
                                         </form>
 
@@ -128,12 +128,12 @@
                                         {{-- <a href="{{ route('litigation-report-print-preview',['param1'=>$from_date,'param2'=>$to_date]) }}" target="_blank"
                                             class="btn btn-info"><i class="fas fa-print"></i> Print </a> --}}
                                     </div>
-    
+
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     @if (!empty($data))
-    
+
                                     <div class="invoice p-3 mb-3">
 
                                         <div class="row">
@@ -230,7 +230,7 @@
                                                                     {{ $datum->payment_type }}
                                                                 </td>
                                                                 <td>
-                                                                    {{ $datum->ledger_head_id != null ? $datum->ledger_head->ledger_head_name : '' }}
+                                                                    {{ @$datum->ledger_head_id != null ? @$datum->ledger_head->ledger_head_name : '' }}
 
                                                                 </td>
                                                                 <td>
@@ -301,7 +301,7 @@
 
                                     </div>
                                     @endif
-    
+
                                 </div>
                                 <!-- /.card-body -->
                             </div>
