@@ -392,7 +392,8 @@ class ReportController extends Controller
             'to_date' => '',
         ];
         $data = LedgerEntry::with('ledger_head')->orderBy('id', 'DESC')->get();
-        $ledger_head = LedgerHead::all();
+        $ledger_head = DB::table('ledger_heads')->get();
+        //dd($data);
         $clients = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();
         return view('report_management.accounts.income_expense_report', compact('data', 'request_data', 'ledger_head','clients'));
     }

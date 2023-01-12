@@ -379,6 +379,7 @@
                                                                 <td>
                                                                     @if (!empty($is_search))
                                                                         @php
+
                                                                             $pd_amnt = DB::table('ledger_entries')
                                                                                 ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
                                                                                 ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])

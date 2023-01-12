@@ -855,6 +855,14 @@ class BillingsController extends Controller
                 ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
                 ->where('case_billings.delete_status', 0)->get();
                 break;
+            case $request->client != null:
+                $query2 =DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*')
+                ->where(['client_id' => $request->client])
+                ->where('case_billings.delete_status', 0)->get();
+                // dd($query2);
+                break;
             case $request->class_of_cases != null :
                 $query2 =DB::table('ledger_entries')
                 ->join('case_billings','ledger_entries.bill_id','case_billings.id')
@@ -875,13 +883,7 @@ class BillingsController extends Controller
                 ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no])
                 ->where('case_billings.delete_status', 0)->get();
                 break;
-                case $request->client != null :
-                    // $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client_id]);
-                    $query2 =DB::table('ledger_entries')
-                    ->join('case_billings','ledger_entries.bill_id','case_billings.id')
-                    ->select('case_billings.*','ledger_entries.*')->where(['client_id' => $request->client])
-                    ->where('case_billings.delete_status', 0)->get();
-                    break;
+
             default:
                 $query2 = DB::table('ledger_entries')
                 ->join('case_billings','ledger_entries.bill_id','case_billings.id')
