@@ -377,20 +377,21 @@
                                                                 <td> {{ $data->sum('bill_amount') }} </td>
 
                                                                 <td>
-                                                                    @if (!empty($is_search))
-                                                                        @php
 
-                                                                            $pd_amnt = DB::table('ledger_entries')
-                                                                                ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
-                                                                                ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
-                                                                                ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no')
-                                                                                ->sum('ledger_entries.paid_amount');
-                                                                        @endphp
-                                                                        {{ $pd_amnt }}
-                                                                    @else
+                                                                {{-- @if (!empty($is_search))
+                                                                @php
 
+                                                                    $pd_amnt = DB::table('ledger_entries')
+                                                                        ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
+                                                                        ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
+                                                                        ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no')
+                                                                        ->sum('ledger_entries.paid_amount');
+                                                                @endphp
+                                                                {{ $pd_amnt }}
+                                                                @else
+                                                                @endif --}}
                                                                     {{ $data->sum('paid_amount') }}
-                                                                    @endif
+
 
 
                                                                 </td>
