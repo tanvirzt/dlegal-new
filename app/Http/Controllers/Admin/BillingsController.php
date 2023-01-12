@@ -70,6 +70,8 @@ class BillingsController extends Controller
                 ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
                 ->orderBy('id', 'DESC')
                 ->get();
+
+                //dd($data);
         $external_council = SetupExternalCouncil::where('delete_status',0)->get();
 
          //dd($data);
@@ -192,7 +194,7 @@ class BillingsController extends Controller
                 'opposition_group.group_name as opposition_group_name')
             ->where('criminal_cases.id', $id)
             ->first();
-           // dd($billing_log_new);
+           // dd($data);
             $bill_id=$id;
         return view('litigation_management.billings.billings.test',compact('bill_id','billing_log_new','data','external_council','bill_type','bank','digital_payment_type','district', 'case_types', 'case_class'));
     }

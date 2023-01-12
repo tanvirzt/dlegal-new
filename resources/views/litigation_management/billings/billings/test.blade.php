@@ -44,9 +44,7 @@
                             <form action="{{ route('save-billing') }}" method="post">
                                 @csrf
                                 <div class="card-body">
-                                    {{-- @php
-                                    dd($billing_log_new);
-                                    @endphp --}}
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
@@ -66,8 +64,7 @@
                                             <div class="form-group row">
                                                 <label for="payment_type" class="col-sm-4 col-form-label"> Payment Type </label>
                                                 <div class="col-sm-8">
-                                                    <select name="payment_type" class="form-control select2" id="payment_type" >
-                                                        <option value=""> Select </option>
+                                                    <select name="payment_type" class="form-control select2" id="payment_type">
                                                         <option selected={{@$billing_log_new->payment_type}}>{{@$billing_log_new->payment_type}}</option>
                                                         <option value="Cash Payment"> Cash Payment </option>
                                                         <option value="Bank Payment"> Bank Payment </option>
@@ -80,7 +77,7 @@
                                                 <label for="district_id" class="col-sm-4 col-form-label">District</label>
                                                 <div class="col-sm-8">
                                                     <select name="district_id" class="form-control select2" id="district_id" >
-                                                        <option value=""> Select </option>
+                                                       
                                                         @foreach($district as $item)
                                                             <option value="{{ $item->id }}" {{(old('district_id') == $item->id ? 'selected':'')}}  <?php if ($item->id == $data->case_infos_district_id) {
                                                                 echo "selected";
@@ -95,7 +92,7 @@
                                                     <label for="case_type_id" class="col-sm-4 col-form-label"> Case Type </label>
                                                     <div class="col-sm-8">
                                                         <select name="case_type_id" class="form-control select2" id="case_type_id" action="{{ route('find-case-no') }}" >
-                                                            <option value="">  </option>
+
                                                             @foreach($case_types as $item)
                                                                 <option
                                                                     value="{{ $item->id }}" {{(old('case_type_id') == $item->id ? 'selected':'')}} <?php if ($item->id == $data->case_types_name) {

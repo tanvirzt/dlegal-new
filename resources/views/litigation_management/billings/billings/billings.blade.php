@@ -82,7 +82,7 @@
                                                 if ($datum->class_of_cases == 'District Court') {
                                                     $case = App\Models\CriminalCase::where('id',$datum->case_no)->first();
                                                 }else if($datum->class_of_cases == 'Special Court'){
-                                                    $case = App\Models\LabourCase::where('id',$datum->case_no)->first();
+                                                    $case = App\Models\CriminalCase::where('id',$datum->case_no)->first();
                                                 }else if($datum->class_of_cases == 'High Court Division'){
                                                     $case = App\Models\HighCourtCase::where('id',$datum->case_no)->first();
                                                 }else if($datum->class_of_cases == 'Appellate Division'){
@@ -94,7 +94,7 @@
                                                 {{ !empty($case->case_no) ? $case->case_no : '' }}
 
 
-                                                {{-- {{}} --}}
+                                                {{-- {{$datum->case_no}} --}}
                                             </td>
                                             <td class="text-center">
                                                 {{$datum->bill_amount}}
@@ -119,7 +119,7 @@
                                             <td class="text-center">
                                                 <a href="{{ route('add-ledger-entry',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Add Ledger"
                                                     ><i class="fas fa-money-bill"></i></button></a>
-                                                    
+
                                                     <a href="{{ route('view-billing',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
                                                     ><i class="fas fa-eye"></i></button></a>
                                                     <a href="{{ route('edit-billings',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
