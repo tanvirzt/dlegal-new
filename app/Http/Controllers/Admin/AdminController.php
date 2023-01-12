@@ -170,18 +170,10 @@ class AdminController extends Controller
         }
 
 
+        $lInco=  LedgerEntry::where('ledger_type','Income')
+        ->get()->toArray();
         $lExpes=  LedgerEntry::where('ledger_type','Expense')
         ->get()->toArray();
-
-        $ExpArray = array();
-
-        foreach ($lExpes as $item) {
-            array_push($ExpArray,[date("D M Y h:i:s",mktime((int)$item['ledger_date'])),(int)$item['expense_paid_amount']]);
-        }
-      
-      
-
-    //   $li=  LedgerEntry::where('ledger_type','Income')->get();
 
        
 
@@ -193,8 +185,8 @@ class AdminController extends Controller
         'caselogCountArray_civil',
         'caselogCountArray_Criminal',
         'Civil_Criminal_Case_type_Array',
+        'lInco',
         'lExpes',
-        'ExpArray',
 
         'tasks'));
     }

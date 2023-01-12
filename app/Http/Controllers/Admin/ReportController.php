@@ -515,7 +515,7 @@ class ReportController extends Controller
 
     public function balance_report_search(Request $request)
     {
-        //dd($request);
+        // dd($request->all());
         $request_data = $request->all();
 
         if ($request->from_date != "dd/mm/yyyy") {

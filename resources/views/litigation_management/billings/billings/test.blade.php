@@ -43,6 +43,9 @@
 
                             <form action="{{ route('save-billing') }}" method="post">
                                 @csrf
+
+                                <input type="hidden" class="form-control" id="save_and_rt_payment" name="save_and_return" value="save">
+
                                 <div class="card-body">
 
                                     <div class="row">
@@ -224,7 +227,7 @@
                                         </div>
                                     </div>
                                     <div class="float-right mt-4 pl-3">
-                                        <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save And Take Payment</button>
+                                        <button id="save_and_take_payment_btn" type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save And Take Payment</button>
                                     </div>
                                     <div class="float-right mt-4">
                                         <button type="submit" class="btn btn-primary text-uppercase"><a href="{{ URL::to('add-ledger-entry/' . $bill_id) }}"><i class="fas fa-save"></i></a> Save</button>
@@ -242,6 +245,19 @@
 
     </div>
     <!-- /.content-wrapper -->
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+       
+            $("#save_and_take_payment_btn").click(function () {
+                var inputString = $('#save_and_rt_payment').val("save_and_rt_payment");
+            });
+
+
+        })
+    </script>
 
 
 
