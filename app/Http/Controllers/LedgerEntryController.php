@@ -75,17 +75,22 @@ class LedgerEntryController extends Controller
         //     $data['income_paid_amount'] = $request->payment_amount;
         // }
         //dd($request);
-        $is_exist = LedgerEntry::where('bill_id', $request->bill_id)->count();
+        if($request->bill_id != null)
+        {
+            $is_exist = LedgerEntry::where('bill_id', $request->bill_id)->count();
 
-        if ( $is_exist > 0 ) {
-            $bill_amnt = CaseBilling::where('id', $request->bill_id)->first();
-            $amnt = LedgerEntry::where('bill_id', $request->bill_id)->sum('paid_amount');
-            $data['bill_amount'] = $bill_amnt->bill_amount - $amnt;
+            if ( $is_exist > 0 ) {
+                $bill_amnt = CaseBilling::where('id', $request->bill_id)->first();
+                $amnt = LedgerEntry::where('bill_id', $request->bill_id)->sum('paid_amount');
+                $data['bill_amount'] = $bill_amnt->bill_amount - $amnt;
+            }
+
+            $bill_client = CaseBilling::findOrFail($request->bill_id);
+            $data['client_id'] = $bill_client->client_id;
         }
 
-        $bill_client = CaseBilling::findOrFail($request->bill_id);
 
-        $data['client_id'] = $bill_client->client_id;
+
 
 
 

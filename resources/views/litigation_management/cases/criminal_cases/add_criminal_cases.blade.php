@@ -50,7 +50,7 @@
         }
 
 
-      
+
 </style>
 
 
@@ -93,7 +93,7 @@
                                 <h6 class="card-title text-uppercase"> CASE INFORMATION </h6>
                             </div>
                             <div class="card-body">
-                            
+
                                 <div class="form-group row">
                                     <label for="case_type"
                                             class="col-sm-4 col-form-label">Case Class</label>
@@ -104,7 +104,7 @@
                                             <option value="">Select</option>
                                                 <option value="District">District</option>
                                                 <option value="Special">Special</option>
-                                           
+
                                         </select>
                                         @error('case_type')<span
                                             class="text-danger">{{$message}}</span>@enderror
@@ -278,7 +278,7 @@
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group row">
                                     <label for="case_infos_case_title_id"
                                             class="col-sm-4 col-form-label">Case Title</label>
@@ -688,7 +688,7 @@
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                 </div> --}}
-                                
+
                                 <div class="form-group row">
                                     <label for="case_infos_complainant_informant_name"
                                             class="col-sm-4 col-form-label complainant_informant_name">
@@ -944,7 +944,7 @@
                                 </div>
                             </div>
 
-                          
+
                         </div>
                         <div class="card">
                             <div class="card-header positionCard">
@@ -952,10 +952,10 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group row">
-                                                        
+
                                     <div class="col-sm-12">
                                             <div class="input-group hdtuto_received_documents control-group increment_received_documents">
-                                            
+
                                             <input type="hidden" name="received_documents_sections[]"
                                                     class="myfrm form-control mr-2" value="received_documents_sections">
                                             <select name="received_documents_id[]"
@@ -1023,16 +1023,16 @@
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                 </div>
-                                
+
 
                             </div>
                         </div>
-                   
-                
+
+
                      </div>
                      <div class="col-md-6">
-                        
-                      
+
+
                         <div class="card ">
                             <div class="card-header positionCard">
                                 <h6 class="card-title text-uppercase"> Case Events & Incidents </h6>
@@ -1073,7 +1073,7 @@
                                                     </select>
                                                     <input type="text" name="letter_notice_documents_write[]"
                                                            class="myfrm form-control mr-2 col-md-4" placeholder="Document">
-                                                    
+
                                                     <input type="text" name="letter_notice_particulars_write[]"
                                                            class="myfrm form-control mr-2 col-md-4" placeholder="Particulars">
                                                     <select name="letter_notice_type_id[]"
@@ -1108,7 +1108,7 @@
                                                     </select>
                                                     <input type="text" name="letter_notice_documents_write[]"
                                                            class="myfrm form-control mr-2 col-md-4" placeholder="Document">
-                                                    
+
                                                     <input type="text" name="letter_notice_particulars_write[]"
                                                            class="myfrm form-control mr-2 col-md-4" placeholder="Particulars">
                                                     <select name="letter_notice_type_id[]"
@@ -1132,7 +1132,7 @@
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
-                                        
+
                             </div>
                         </div>
 
@@ -1162,7 +1162,7 @@
                                                    tabindex="-1">
                                             <span class="date_second_span" tabindex="-1">&#9660;</span>
                                         </span>
-                                        
+
                                         @error('case_steps_filing')<span
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
@@ -1471,7 +1471,7 @@
                                     </div>
                                         @error('arrest_surrender_cw_yes_no')<span
                                             class="text-danger">{{$message}}</span>@enderror
-                                    
+
                                 </div>
                                 <div class="form-group row case_step_criminal">
                                     <label for="case_steps_bail" class="col-sm-3 col-form-label"> Bail </label>
@@ -1542,7 +1542,7 @@
                                     </div>
                                         @error('case_steps_court_transfer_yes_no')<span
                                             class="text-danger">{{$message}}</span>@enderror
-                                   
+
                                 </div>
                                 <div class="form-group row case_step_criminal">
                                     <label for="case_steps_charge_framed" class="col-sm-3 col-form-label"> Charge Framed </label>
@@ -1578,7 +1578,7 @@
                                     </div>
                                         @error('case_steps_charge_framed_yes_no')<span
                                             class="text-danger">{{$message}}</span>@enderror
-                                    
+
                                 </div>
                                 <div class="form-group row">
                                     <label for="case_steps_witness_from" class="col-sm-3 col-form-label"> Witness (From) </label>
@@ -1614,7 +1614,7 @@
                                     </div>
                                         @error('case_steps_witness_from_yes_no')<span
                                             class="text-danger">{{$message}}</span>@enderror
-                                    
+
                                 </div>
                                 <div class="form-group row">
                                     <label for="case_steps_witness_to" class="col-sm-3 col-form-label"> Witness (To) </label>
@@ -1650,7 +1650,7 @@
                                     </div>
                                         @error('case_steps_witness_to_yes_no')<span
                                             class="text-danger">{{$message}}</span>@enderror
-                                    
+
                                 </div>
                                 <div class="form-group row">
                                     <label for="case_steps_argument" class="col-sm-3 col-form-label"> Argument </label>
@@ -1686,7 +1686,7 @@
                                     </div>
                                         @error('case_steps_argument_yes_no')<span
                                             class="text-danger">{{$message}}</span>@enderror
-                                    
+
                                 </div>
                                 <div class="form-group row">
                                     <label for="case_steps_judgement_order" class="col-sm-3 col-form-label"> Judgement &
@@ -1723,7 +1723,7 @@
                                     </div>
                                         @error('case_steps_judgement_order_yes_no')<span
                                             class="text-danger">{{$message}}</span>@enderror
-                                    
+
                                 </div>
 
                                 <div class="form-group row">
@@ -1760,7 +1760,7 @@
                                     </div>
                                         @error('case_steps_subsequent_status_yes_no')<span
                                             class="text-danger">{{$message}}</span>@enderror
-                                    
+
                                 </div>
                                 {{-- <div class="form-group row">
                                     <label for="case_steps_summary_judgement_order"
@@ -1806,7 +1806,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group row">
-                                                        
+
                                     <div class="col-sm-12">
                                         <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
                                             <input type="hidden" name="required_wanting_documents_sections[]"
@@ -1853,7 +1853,7 @@
                                                 </select>
                                                 <input type="text" name="required_wanting_documents[]"
                                                         class="myfrm form-control mr-2">
-                                                
+
                                                 <input type="date" name="required_wanting_documents_date[]"
                                                     class="myfrm form-control ml-2 mr-2" value="dd/mm/yyyy">
                                             <select name="required_wanting_documents_type_id[]"
@@ -1877,13 +1877,13 @@
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                 </div>
-                                
+
 
                             </div>
                         </div>
 
 
-                       
+
                      </div>
                    </div>
 
@@ -1895,7 +1895,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group row">
-                                                
+
                                     <div class="col-sm-12">
                                         <div class="input-group hdtuto_case_file_location_new control-group increment_case_file_location_new">
                                             <input type="hidden" name="case_file_location_new_sections[]"
@@ -1914,7 +1914,7 @@
                                                     class="myfrm form-control mr-2">
                                             <input type="text" name="case_file_location_new_self[]"
                                                     class="myfrm form-control mr-2">
-                                           
+
                                             <div class="input-group-btn">
                                                 <button class="btn btn-success btn_success_case_file_location_new"
                                                         type="button"><i
@@ -1954,11 +1954,11 @@
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                 </div>
-                                
+
 
                             </div>
                         </div>
-                        
+
                       </div>
                       <div class="col-md-6">
                         <div class="card">
@@ -2013,12 +2013,12 @@
                                     </div>
                                 </div>
                             </div>
-                              
-                                
+
+
 
                             </div>
                         </div>
-                        
+
                       </div>
                    </div>
 
@@ -2093,7 +2093,7 @@
                                                     <option value="">Select</option>
                                                     @foreach($client as $item)
                                                         <option
-                                                            value="{{ $item->client_name }}" {{  old('client_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
+                                                            value="{{ $item->id }}" {{  old('client_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -2384,7 +2384,7 @@
                                     <label for="lawyer_advocate_id"
                                            class="col-sm-4 col-form-label">Name of Advocate/Law Firm</label>
                                     <div class="col-sm-8">
-                                        
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <select name="lawyer_advocate_id"
@@ -2419,11 +2419,11 @@
                                                         class="form-control select2"
                                                         id="lead_laywer_name">
                                                     <option value="">Select</option>
-                                                    
+
                                                     @foreach($leadLaywer as $item)
                                                     <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
                                                     @endforeach
-                                                   
+
                                                 </select>
                                             </div>
                                             <div class="col-md-6">
@@ -2465,7 +2465,7 @@
                                             </div>
 
                                         </div>
-                                       
+
                                     </div>
                                 </div>
 
@@ -2482,7 +2482,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                      </div>
                      <div class="col-md-6">
                         <div class="card allCard">
@@ -2873,7 +2873,7 @@
                                         name="opp_lawyer_assigned_lawyer"
                                         placeholder="Assigned Lawyer"
                                         value="{{ old('opp_lawyer_assigned_lawyer') }}">
-                                        
+
                                         @error('assigned_lawyer_id')<span
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
@@ -2887,7 +2887,7 @@
                                         name="opp_lawyer_contact"
                                         placeholder="Lawyer Contact"
                                         value="{{ old('opp_lawyer_contact') }}">
-                                        
+
                                         @error('assigned_lawyer_id')<span
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
@@ -2909,7 +2909,7 @@
                      </div>
                    </div>
 
-                  
+
 
 
                    <div class="row">
@@ -2922,17 +2922,17 @@
                       </div>
                    </div>
 
-                  
 
 
-                  
+
+
 
                 </form>
 
                 <!-- /.card -->
             </div>
         </section>
-     
+
 
 
         <!-- /.content -->
@@ -2984,7 +2984,7 @@
 
 
 
-       } 
+       }
     });
     });
 </script>
