@@ -386,11 +386,6 @@
 
                                 </h3> --}}
                             <div class="card-tools">
-
-
-                                <a href="{{ route('criminal-case-print-preview', $data->id) }}" title="Print Case Info"
-                                    target="_blank" class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
-                                {{-- <i class="far fa-bell"></i> --}}
                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                     data-target="#modal-lg-send-messages" data-toggle="tooltip" data-placement="top"
                                     title="Send Messages"><i class="fas fa-bell"></i></button>
