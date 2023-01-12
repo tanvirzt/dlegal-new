@@ -96,7 +96,7 @@ class BillingsController extends Controller
     public function add_billing_from_district_court($id)
     {
         $bill_type = SetupBillType::where('delete_status',0)->get();
-        $external_council = SetupExternalCouncil::where('delete_status',0)->get();
+        $external_council = DB::table('counsels')->where('counsel_type','Internal')->get();
         $bank = SetupBank::where('delete_status',0)->get();
         $digital_payment_type = SetupDigitalPayment::where('delete_status',0)->get();
         $district = SetupDistrict::where('delete_status',0)->get();
