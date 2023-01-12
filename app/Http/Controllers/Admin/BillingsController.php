@@ -232,8 +232,7 @@ class BillingsController extends Controller
 
     public function save_billing(Request $request)
     {
-        // dd($request->all());
-
+        
 //        $rules = [
 //            'bill_type_id' => 'required',
 //            'payment_type' => 'required',
@@ -323,6 +322,10 @@ class BillingsController extends Controller
         //     return redirect()->route('billing');
 
         // }
+
+        if ($request['save_and_return'] === "save_and_rt_payment") {
+            return redirect()->route('ledger-entry.create');
+        }
 
             return redirect()->route('billings');
 
