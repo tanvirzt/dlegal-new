@@ -87,7 +87,7 @@ class BillingsController extends Controller
         $digital_payment_type = SetupDigitalPayment::where('delete_status',0)->get();
         $district = SetupDistrict::where('delete_status',0)->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
-        $ledgerHeads = LedgerHead::where('delete_status', 0)->get();
+        $ledgerHeads = LedgerHead::all();
         return view('litigation_management.billings.billings.add_billing',compact('external_council','bill_type','bank','digital_payment_type','district', 'case_types'));
     }
 

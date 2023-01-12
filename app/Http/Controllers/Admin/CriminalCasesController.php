@@ -633,22 +633,6 @@ class CriminalCasesController extends Controller
         $letter_notice_sections = $request->letter_notice_sections;
         $remove = array_pop($letter_notice_sections);
 
-// dd($letter_notice_sections);
-
-//        $rules = [
-//            'case_no' => 'required|unique:criminal_cases',
-//        ];
-//
-//        $validMsg = [
-//            'case_no.required' => 'Case No. field is required.',
-//        ];
-//
-//        $this->validate($request, $rules, $validMsg);
-
-
-// dd($letter_notice_particulars_id_explode);
-
-
         $latest = CriminalCase::latest()->first();
 
         if ($latest != null) {
@@ -2271,23 +2255,6 @@ class CriminalCasesController extends Controller
     {
 
         $query = DB::table('criminal_cases');
-
-
-        // if (Auth::user()->is_companies_superadmin == '1' || Auth::user()->is_owner_admin == '1') {
-
-        //     $query2 = $query;
-
-        // } else if (Auth::user()->is_companies_admin == '1') {
-
-        //     $query2 = $query->whereIn('criminal_cases.created_by', companies_all_users());
-
-        // } else {
-
-        //     $query2 = $query->where(['criminal_cases.created_by' => auth_id()]);
-
-        // }
-
-
         if (Auth::user()->is_companies_superadmin == '1' || Auth::user()->is_owner_admin == '1') {
             $query2 = $query;
         } else if (Auth::user()->is_companies_admin == '1') {
@@ -2303,13 +2270,9 @@ class CriminalCasesController extends Controller
         } else {
             return view('errors.403');
         }
-
-
         $find_case_category = CriminalCase::where('criminal_cases.id', $id)->select('case_category_id')->first();
 
         $case_status = SetupCaseStatus::where('case_category', $find_case_category->case_category_id)->where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
-
-
         $court_proceeding = SetupCourtProceeding::where('delete_status', 0)->get();
         $next_date_reason = SetupNextDateReason::where('delete_status', 0)->get();
         $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->get();
@@ -2318,14 +2281,11 @@ class CriminalCasesController extends Controller
         $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->get();
         $mode = SetupMode::where('delete_status', 0)->orderBy('mode_name', 'asc')->get();
         $edit_case_steps = CriminalCasesCaseSteps::where('criminal_case_id', $id)->first();
-
-
         $law = SetupLaw::where(['case_type' => 'Criminal', 'delete_status' => 0])->orderBy('law_name', 'asc')->get();
         $court = SetupCourt::where(['case_class_id' => 'Criminal', 'delete_status' => 0])->orderBy('court_name', 'asc')->get();
         $designation = SetupDesignation::where('delete_status', 0)->orderBy('designation_name', 'asc')->get();
         $external_council = SetupExternalCouncil::where('delete_status', 0)->orderBy('first_name', 'asc')->get();
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->orderBy('case_category', 'asc')->get();
-
 
         $property_type = SetupPropertyType::where('delete_status', 0)->orderBy('property_type_name', 'asc')->get();
         $division = DB::table("setup_divisions")->orderBy('division_name', 'asc')->get();
@@ -2468,12 +2428,9 @@ class CriminalCasesController extends Controller
         } else {
             $exist_court_short = [];
         }
-
-
 // dd($data);
-
         $existing_district = SetupDistrict::where('division_id', $data->client_division_id)->orderBy('district_name', 'asc')->get();
-//        $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_name_id)->orderBy('first_name','asc')->get();
+//      $existing_ext_coun_associates = SetupExternalCouncilAssociate::where('external_council_id', $data->external_council_name_id)->orderBy('first_name','asc')->get();
         $existing_client_subcategory = SetupClientSubcategory::where(['client_category_id' => $data->client_category_id, 'delete_status' => 0])->orderBy('client_subcategory_name', 'asc')->get();
         $existing_case_subcategory = SetupCaseSubcategory::where(['case_category_id' => $data->case_category_id, 'delete_status' => 0])->orderBy('case_subcategory', 'asc')->get();
         $existing_thana = SetupThana::where(['district_id' => $data->client_district_id, 'delete_status' => 0])->orderBy('thana_name', 'asc')->get();
@@ -2512,10 +2469,6 @@ class CriminalCasesController extends Controller
         $bill_particulars = SetupBillParticular::where('delete_status', 0)->get();
         $bill_schedule = BillSchedule::where('delete_status', 0)->get();
         $payment_mode = PaymentMode::where('delete_status', 0)->get();
-
-        //    $edit_case_steps = json_decode(json_encode($edit_case_steps));
-        //    echo "<pre>";print_r($edit_case_steps);die();
-        //   dd($data);
         $criminal_cases_files = DB::table('criminal_cases_files')
             ->leftJoin('setup_documents_types', 'criminal_cases_files.documents_type_id', 'setup_documents_types.id')
             ->where(['criminal_cases_files.case_id' => $id, 'criminal_cases_files.delete_status' => 0])
@@ -2528,9 +2481,6 @@ class CriminalCasesController extends Controller
             ->whereNull('criminal_cases_working_docs.deleted_at')
             ->select('criminal_cases_working_docs.*', 'setup_documents_types.documents_type_name')
             ->get();
-
-//         dd($criminal_cases_working_docs);
-        // CriminalCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
 
         $case_logs = DB::table('criminal_case_status_logs')
             ->leftJoin('setup_case_statuses', 'criminal_case_status_logs.updated_case_status_id', '=', 'setup_case_statuses.id')
@@ -2666,7 +2616,6 @@ class CriminalCasesController extends Controller
                             ->where(['case_billings.delete_status' => 0, 'case_billings.class_of_cases' => 'District Court', 'case_no' => $id])
                             ->select('case_billings.*','setup_bill_types.bill_type_name','setup_districts.district_name','setup_external_councils.first_name','setup_external_councils.middle_name','setup_external_councils.last_name','setup_banks.bank_name','setup_bank_branches.bank_branch_name','setup_digital_payments.digital_payment_type_name')
                             ->get();
-       // dd($billing_log_new);
         $ledger = DB::table('ledger_entries')
                     ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
                     ->where(['case_billings.class_of_cases' => 'District Court', 'case_billings.case_no' => $id])

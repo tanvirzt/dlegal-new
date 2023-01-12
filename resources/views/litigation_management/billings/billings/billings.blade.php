@@ -88,12 +88,12 @@
                                                 }else if($datum->class_of_cases == 'Appellate Division'){
                                                     $case = App\Models\AppellateCourtCase::where('id',$datum->case_no)->first();
                                                 }
-
+                                                // dd($case);
                                                 @endphp
 
                                                 {{ !empty($case->case_no) ? $case->case_no : '' }}
 
-
+                                                {{ !empty($case->case_infos_case_no) ? $case->case_title_name . ' ' . $case->case_infos_case_no . '/' . $case->case_infos_case_year : '' }}
                                                 {{-- {{$datum->case_no}} --}}
                                             </td>
                                             <td class="text-center">
