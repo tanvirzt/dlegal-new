@@ -110,6 +110,7 @@
                                                         @error('class_of_cases')<span class="text-danger">{{$message}}</span>@enderror
                                                     </div>
                                                 </div>
+                                          
                                                 <div class="form-group row">
                                                     <label for="case_id" class="col-sm-4 col-form-label"> Case No </label>
                                                     <div class="col-sm-8">

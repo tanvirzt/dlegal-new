@@ -7,7 +7,7 @@ use App\Models\CaseBilling;
 use App\Models\LedgerHead;
 use App\Models\CriminalCase;
 use Illuminate\Http\Request;
-
+use App\Models\SetupClient;
 class LedgerEntryController extends Controller
 {
         /**
@@ -40,8 +40,8 @@ class LedgerEntryController extends Controller
             $sl = +1;
         }
         $txn_no = 'TXN-000' . $sl;
-
-        return view('accounts.ledger_entry.create', compact('bill_no','ledger_head','txn_no'));
+        $client = SetupClient::where('delete_status', 0)->get();
+        return view('accounts.ledger_entry.create', compact('bill_no','ledger_head','txn_no','client'));
     }
 
     /**
@@ -52,13 +52,6 @@ class LedgerEntryController extends Controller
     */
     public function store(Request $request)
     {
-        // request_array($request->all());
-
-        // $request->validate([
-        //     'transaction_no' => 'required',
-        //     'payment_type' => 'required',
-        // ]);
-
         $data = $request->all();
 
         if ($request->ledger_date != "dd/mm/yyyy") {
@@ -68,13 +61,6 @@ class LedgerEntryController extends Controller
         } else if ($request->ledger_date == "dd/mm/yyyy") {
             $data['ledger_date'] = null;
         }
-
-        // if ($request->ledger_category_id == 'Expense') {
-        //     $data['expense_paid_amount'] = $request->payment_amount;
-        // } else {
-        //     $data['income_paid_amount'] = $request->payment_amount;
-        // }
-        //dd($request);
         if($request->bill_id != null)
         {
             $is_exist = LedgerEntry::where('bill_id', $request->bill_id)->count();
@@ -88,11 +74,9 @@ class LedgerEntryController extends Controller
             $bill_client = CaseBilling::findOrFail($request->bill_id);
             $data['client_id'] = $bill_client->client_id;
         }
-
-
-
-
-
+        if($request->bill_id == null){
+            $data['client_id'] = $request->client_id;
+        }
 
         LedgerEntry::create($data);
 

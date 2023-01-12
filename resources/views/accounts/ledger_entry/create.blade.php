@@ -104,6 +104,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="ledger_head_id" class="col-sm-4 col-form-label">Ledger Head</label>
@@ -140,16 +141,21 @@
                                     </div>
 
 
-                                    {{-- <div class="col-md-6">
+                                    <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="trial_court" class="col-sm-4 col-form-label">Payment Against Bill</label>
+                                            <label for="case_id" class="col-sm-4 col-form-label"> Client Name </label>
                                             <div class="col-sm-8">
-                                                {!! Form::text('email', null, array('class' => 'form-control')) !!}
-                                                @error('trial_court')<span
-                                                    class="text-danger">{{$message}}</span>@enderror
+                                                <select name="client_id" class="form-control select2">
+                                                    <option value=""> Select </option>
+                                                     @foreach ( $client as $clients)
+                                                        <option value="{{ $clients->id }}" selected> {{ $clients->client_name }} </option>
+                                                     @endforeach
+
+                                                </select>
+                                                @error('client_id')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                     <div class="col-md-6" id="bill_no" style="display: none;">
                                         <div class="form-group row">
                                             <label for="bill_id" class="col-sm-4 col-form-label">Bill No</label>
