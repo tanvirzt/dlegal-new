@@ -54,7 +54,7 @@
                                                 <label for="case_no" class="col-sm-4 col-form-label">Bill Type</label>
                                                 <div class="col-sm-8">
                                                     <select name="bill_type_id" class="form-control select2" id="bill_type_id" >
-                                                        <option value=""> Select </option>
+
                                                             @foreach($bill_type as $item)
                                                                 <option value="{{ $item->id }}" {{(old('bill_type_id') == $item->id ? 'selected':'')}} <?php if ($item->id == @$billing_log_new->bill_type_id) {
                                                                     echo "selected";
@@ -68,7 +68,7 @@
                                                 <label for="payment_type" class="col-sm-4 col-form-label"> Payment Type </label>
                                                 <div class="col-sm-8">
                                                     <select name="payment_type" class="form-control select2" id="payment_type">
-                                                        <option selected={{@$billing_log_new->payment_type}}>{{@$billing_log_new->payment_type}}</option>
+                                                        {{-- <option selected={{@$billing_log_new->payment_type}}>{{@$billing_log_new->payment_type}}</option> --}}
                                                         <option value="Cash Payment"> Cash Payment </option>
                                                         <option value="Bank Payment"> Bank Payment </option>
                                                         <option value="Digital Payment"> Digital Payment </option>
@@ -80,7 +80,7 @@
                                                 <label for="district_id" class="col-sm-4 col-form-label">District</label>
                                                 <div class="col-sm-8">
                                                     <select name="district_id" class="form-control select2" id="district_id" >
-                                                       
+
                                                         @foreach($district as $item)
                                                             <option value="{{ $item->id }}" {{(old('district_id') == $item->id ? 'selected':'')}}  <?php if ($item->id == $data->case_infos_district_id) {
                                                                 echo "selected";
@@ -137,20 +137,18 @@
                                                 <input type="hidden" class="form-control" id="case_no" name="case_no" value="{{$case_class->id}}">
 
                                                 @endif
-                                            <div class="form-group row">
-                                                <label for="panel_lawyer_id" class="col-sm-4 col-form-label">Panel Lawyer</label>
-                                                <div class="col-sm-8">
-                                                        <select name="panel_lawyer_id" class="form-control select2" >
-                                                            <option value="">Select</option>
-                                                            @foreach($external_council as $item)
-                                                                <option value="{{ $item->id }}" {{(old('panel_lawyer_id') == $item->id ? 'selected':'')}} <?php if ($item->id == @$billing_log_new->panel_lawyer_id) {
-                                                                    echo "selected";
-                                                                } ?>>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        @error('panel_lawyer_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                <div class="form-group row">
+                                                    <label for="panel_lawyer_id" class="col-sm-4 col-form-label"> Lawyer</label>
+                                                    <div class="col-sm-8">
+                                                            <select name="panel_lawyer_id" class="form-control select2">
+                                                       
+                                                                @foreach($external_council as $item)
+                                                                    <option value="{{ $item->id }}" {{(old('panel_lawyer_id') == $item->id ? 'selected':'')}}>{{ $item->professional_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('panel_lawyer_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                    </div>
                                                 </div>
-                                            </div>
                                             <div class="form-group row">
                                                 <label for="bill_amount" class="col-sm-4 col-form-label">Bill Amount</label>
                                                 <div class="col-sm-8">
@@ -250,7 +248,7 @@
 
     <script>
         $(document).ready(function(){
-       
+
             $("#save_and_take_payment_btn").click(function () {
                 var inputString = $('#save_and_rt_payment').val("save_and_rt_payment");
             });
