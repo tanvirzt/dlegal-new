@@ -67,8 +67,8 @@
                                 @endphp
 
                                 <address>
-                                    <strong>{{ $case->client_name_write }}</strong><br>
-                                    {{ $case->client_address }}
+                                    {{-- <strong>{{ $case->client_name_write }}</strong><br>
+                                    {{ $case->client_address }} --}}
 
                                 </address>
                             </div>
@@ -86,7 +86,7 @@
                                 </tr>
                                 <tr>
                                     <th>CASE NO</th>
-                                    <td>{{ $case->case_no }}</td>
+                                    {{-- <td>{{ $case->case_no }}</td> --}}
                                 </tr>
                             </table>
                         </div>
