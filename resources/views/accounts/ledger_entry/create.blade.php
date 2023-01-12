@@ -78,10 +78,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="job_name" class="col-sm-4 col-form-label"> Job Name </label>
+                                            <label for="job_no" class="col-sm-4 col-form-label"> Job Name</label>
                                             <div class="col-sm-8">
-                                                {!! Form::text('job_name', null, ['class' => 'form-control']) !!}
-                                                @error('job_name')
+                                                {!! Form::text('job_no', null, ['class' => 'form-control']) !!}
+                                                @error('job_no')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -111,6 +111,9 @@
                                                 <select name="ledger_head_id" class="form-control select2"
                                                     id="ledger_head_id">
                                                     <option value=""> Select </option>
+                                                    @foreach ($ledger_head as $item)
+                                                    <option value="{{$item->id}}" selected> {{$item->ledger_head_name}} </option>
+                                                    @endforeach
 
                                                 </select>
                                                 @error('ledger_head_id')

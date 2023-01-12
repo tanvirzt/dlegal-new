@@ -414,17 +414,17 @@ class CounselLawyerController extends Controller
         $data =   $data = Counsel::where('counsel_type','Staff')->get();
         return view('employee.employee', compact('data'));
     }
-    
+
     public function index_counsel_chamber()
     {
         $data = Counsel::where('counsel_type','External')->where('counsel_category','Chamber')->get();
-       
+
         return view('counsel_lawyer.external_counsel.counsel.counsel',compact('data'));
     }
     public function index_counsel_company()
     {
         $data = Counsel::where('counsel_type','External')->where('counsel_category','Company')->get();
-       
+
         return view('counsel_lawyer.external_counsel.counsel.counsel',compact('data'));
     }
 
@@ -922,6 +922,7 @@ class CounselLawyerController extends Controller
     public function index_internal_counsel_new()
     {
         $data = Counsel::where('counsel_type','Internal')->get();
+       
         return view('counsel_lawyer.internal_counsel.internal_counsel',compact('data'));
     }
     public function index_internal_counsel_new_chamber()
@@ -1178,6 +1179,6 @@ class CounselLawyerController extends Controller
         return redirect()->back();
     }
 
-    
+
 
 }

@@ -272,7 +272,7 @@
                                                                         {{ $datum->transaction_no }}
                                                                     </td> --}}
                                                                     <td>
-                                                                        {{ $datum->job_name }}
+                                                                        {{ $datum->job_no }}
                                                                     </td>
                                                                     <td>
                                                                         {{ $datum->ledger_category_id }}
@@ -393,7 +393,7 @@
                                                     <td>
                                                         {{ $key + 1 }}
                                                     </td>
-    
+
                                                     <td>
                                                         {{ $datum->ledger_date != null ? date('d-m-Y', strtotime($datum->ledger_date)) : '' }}
                                                     </td>
@@ -417,7 +417,7 @@
                                                     </td>
                                                     <td>
                                                         {{ $datum->ledger_head_bill_id != null ? $datum->ledger_head_bill->ledger_head_name : '' }}
-    
+
                                                     </td>
                                                     <td>
                                                         {{ $datum->bill_amount }}
@@ -431,11 +431,11 @@
                                                     <td>
                                                         {{ $datum->remarks }}
                                                     </td>
-                                                    
+
                                                 </tr>
                                             @endforeach
                                         </tbody>
-    
+
                                     </table> --}}
                                     @endif
 

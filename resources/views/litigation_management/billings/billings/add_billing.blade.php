@@ -138,12 +138,12 @@
 
                                                 @endif
                                             <div class="form-group row">
-                                                <label for="panel_lawyer_id" class="col-sm-4 col-form-label">Panel Lawyer</label>
+                                                <label for="panel_lawyer_id" class="col-sm-4 col-form-label"> Lawyer</label>
                                                 <div class="col-sm-8">
                                                         <select name="panel_lawyer_id" class="form-control select2">
                                                             <option value="">Select</option>
                                                             @foreach($external_council as $item)
-                                                                <option value="{{ $item->id }}" {{(old('panel_lawyer_id') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->middle_name }} {{ $item->last_name }}</option>
+                                                                <option value="{{ $item->id }}" {{(old('panel_lawyer_id') == $item->id ? 'selected':'')}}>{{ $item->professional_name }}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('panel_lawyer_id')<span class="text-danger">{{$message}}</span>@enderror

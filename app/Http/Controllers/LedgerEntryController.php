@@ -74,7 +74,7 @@ class LedgerEntryController extends Controller
         // } else {
         //     $data['income_paid_amount'] = $request->payment_amount;
         // }
-
+        //dd($request);
         $is_exist = LedgerEntry::where('bill_id', $request->bill_id)->count();
 
         if ( $is_exist > 0 ) {
