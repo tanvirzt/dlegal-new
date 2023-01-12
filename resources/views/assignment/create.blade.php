@@ -107,7 +107,7 @@
                                                 <select name="service_id" class="select2 form-control">
                                                     <option value="">Select</option>
                                                     @foreach ($services as $service)
-                                                    <option value="{{$service->id}}">{{$service->case_no}}</option>
+                                                    <option value="{{$service->id}}">{{$service->case_infos_case_no}} / {{$service->case_infos_case_year}}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('service_id')<span class="text-danger">{{$message}}</span>@enderror
