@@ -117,48 +117,48 @@
 
 
                         </div> --}}
+                        <div class="container-fluid">
+                            <div class="card p-5 m-5">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputEmail4">Client Name</label>
+                                            <input type="text" class="form-control" id="inputEmail4"
+                                                value="{{ $client->client_name }}" disabled>
+                                        </div>
 
-                        <div class="card p-3 m-3">
-                            <form>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Client Name</label>
-                                        <input type="text" class="form-control" id="inputEmail4"
-                                            value="{{ $client->client_name }}" disabled>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputPassword4">Paid Amount</label>
+                                            <input type="text" class="form-control" value="{{ $data->paid_amount }}"
+                                                placeholder="Password" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputAddress">Bill Amount</label>
+                                            <input type="text" class="form-control" value="{{ $data->bill_amount }}"
+                                                disabled>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputAddress2">Payment Type</label>
+                                            <input type="text" class="form-control" value="{{ $data->payment_type }}"
+                                                disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputAddress">Invoice Number</label>
+                                            <input type="text" class="form-control" value="{{ $data->transaction_no }}"
+                                                disabled>
+                                        </div>
+
                                     </div>
 
-                                    <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Paid Amount</label>
-                                        <input type="text" class="form-control" value="{{ $data->paid_amount }}"
-                                            placeholder="Password" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="inputAddress">Bill Amount</label>
-                                        <input type="text" class="form-control" value="{{ $data->bill_amount }}"
-                                            disabled>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputAddress2">Payment Type</label>
-                                        <input type="text" class="form-control" value="{{ $data->payment_type }}"
-                                            disabled>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="inputAddress">Invoice Number</label>
-                                        <input type="text" class="form-control" value="{{ $data->transaction_no }}"
-                                            disabled>
-                                    </div>
 
-                                </div>
+                                </form>
 
-
-                            </form>
-
+                            </div>
                         </div>
-
                         <div class="row">
 
                             <div class="col-6">
