@@ -73,7 +73,8 @@
                                                                 id="client">
                                                                 <option value=""> Select </option>
                                                                 @foreach ($clients as $client)
-                                                                <option value="{{ $client->id }}">{{ $client->client_name }}</option>
+                                                                    <option value="{{ $client->id }}">
+                                                                        {{ $client->client_name }}</option>
                                                                 @endforeach
 
                                                             </select>
@@ -90,8 +91,7 @@
                                                         <div class="">
 
                                                             <select name="class_of_cases" class="form-control select2"
-                                                                 id="class_of_cases"
-                                                                action="{{ route('find-case-no') }}">
+                                                                id="class_of_cases" action="{{ route('find-case-no') }}">
                                                                 <option value=""> Select </option>
                                                                 <option value="District Court"> District Court </option>
                                                                 <option value="Special Court"> Special Court </option>
@@ -223,7 +223,9 @@
                                                         <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}"
                                                             alt="AdminLTE Logo" class="brand-image" style="opacity:1">
 
-                                                        <small class="float-right" style="font-weight: 600!important;font-size:90%!important">Date: {{ date('d-m-Y') }}</small>
+                                                        <small class="float-right"
+                                                            style="font-weight: 600!important;font-size:90%!important">Date:
+                                                            {{ date('d-m-Y') }}</small>
                                                     </h4>
                                                 </div>
 
@@ -245,7 +247,29 @@
                                                     <br />
                                                     <span id="lblUnitAddress"
                                                         class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
-                                                    <span id="lblVoucherType" class="VoucherStyle">
+
+                                                    <span id="lblUnitAddress" style="padding: 0px">
+
+                                                        @if (!empty($request_data['client']))
+                                                            @php
+                                                                $clientName = DB::table('setup_clients')
+                                                                    ->where('id', $request_data['client'])
+                                                                    ->first();
+                                                            @endphp
+                                                            <h6>Client Name:
+                                                                {{ $clientName->client_name }}
+                                                            </h6>
+                                                        @endif
+                                                    </span>
+                                                    <span id="lblUnitAddress" style="padding: 0px">
+                                                        @if (!empty($request_data['from_date']))
+                                                            @if ($request_data['from_date'] != 'dd-mm-yyyy')
+                                                                <h6>From:
+                                                                    {{ $request_data['from_date'] }},
+                                                                    To: {{ $request_data['to_date'] }}</h6>
+                                                            @endif
+                                                        @endif
+                                                    </span>
                                                 </div>
 
                                                 <div class="col-sm-4 invoice-col">
@@ -266,11 +290,11 @@
                                                                     ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
                                                                     ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no', 'criminal_cases.case_no as main_case_no')
                                                                     ->first();
-
+                                                                
                                                             @endphp
 
                                                             @if (!empty($case_number->main_case_no))
-                                                            {{ $case_number->main_case_no }}
+                                                                {{ $case_number->main_case_no }}
                                                             @endif
 
                                                         </h6>
@@ -279,10 +303,6 @@
 
 
 
-                                                    {{-- @if ($request_data['from_date'] != 'dd-mm-yyyy')
-                                                        <h6 class="text-center">From: {{ $request_data['from_date'] }},
-                                                            To: {{ $request_data['to_date'] }}</h6>
-                                                    @endif --}}
                                                 </div>
 
                                                 <div class="col-sm-4 invoice-col">
@@ -317,29 +337,30 @@
                                                         </thead>
                                                         <tbody>
 
-@php
- $due=0;
-@endphp
+                                                            @php
+                                                                $due = 0;
+                                                            @endphp
 
                                                             @foreach ($data as $key => $datum)
-
                                                                 <tr>
                                                                     <td>
                                                                         {{ $key + 1 }}
                                                                     </td>
-
                                                                     <td>
                                                                         {{ $datum->billing_no }}
                                                                     </td>
                                                                     <td>
-                                                                        {{   date('d-m-Y', strtotime($datum->date_of_billing))   }}
+                                                                        {{ $datum->billing_no }}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{ date('d-m-Y', strtotime($datum->date_of_billing)) }}
                                                                     </td>
                                                                     <td>
                                                                         {{ $datum->payment_type }}
                                                                     </td>
                                                                     <td>
 
-                                                                        {{   date('d-m-Y', strtotime($datum->ledger_date))   }}
+                                                                        {{ date('d-m-Y', strtotime($datum->ledger_date)) }}
                                                                     </td>
                                                                     <td>
                                                                         {{ $datum->bill_amount }}
@@ -347,7 +368,7 @@
 
                                                                     <td>
 
-                                                                            {{ (int)$datum->paid_amount }}
+                                                                        {{ (int) $datum->paid_amount }}
 
                                                                     </td>
 
@@ -355,14 +376,14 @@
 
 
                                                                         @php
-                                                                         $sum_paid=0;
-
-                                                                        $paid=(int)$datum->paid_amount;
-                                                                        $sum_paid=$sum_paid+$paid;
-                                                                        $newdue=$datum->bill_amount - $sum_paid ;
-                                                                        $due=$due+$newdue;
+                                                                            $sum_paid = 0;
+                                                                            
+                                                                            $paid = (int) $datum->paid_amount;
+                                                                            $sum_paid = $sum_paid + $paid;
+                                                                            $newdue = $datum->bill_amount - $sum_paid;
+                                                                            $due = $due + $newdue;
                                                                         @endphp
-                                                                        {{ $due}}
+                                                                        {{ $due }}
 
                                                                     </td>
                                                                     <td>
@@ -387,13 +408,12 @@
                                                                         @endphp
                                                                         {{ $pd_amnt }}
                                                                     @else
-
-                                                                    {{ $data->sum('paid_amount') }}
+                                                                        {{ $data->sum('paid_amount') }}
                                                                     @endif
 
 
                                                                 </td>
-                                                                 <td>{{ $data->sum('bill_amount') -  $data->sum('paid_amount')  }}
+                                                                <td>{{ $data->sum('bill_amount') - $data->sum('paid_amount') }}
                                                                 </td>
                                                                 <td colspan="1"> </td>
                                                             </tr>

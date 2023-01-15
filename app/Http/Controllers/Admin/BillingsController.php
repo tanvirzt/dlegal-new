@@ -730,14 +730,14 @@ class BillingsController extends Controller
         ->join('ledger_heads','ledger_entries.ledger_head_id','ledger_heads.id')
         ->select('ledger_entries.*','ledger_heads.*')
         ->where('ledger_entries.id',$id)->first();
-         //dd($data);
+        //dd($data);
         // if ($data->receipt_no == null) {
         //     $transcation_no = explode('-', $data->transaction_no);
         //     $data->receipt_no = 'RCPT-'.$transcation_no[1];
         //     $data->save();
         // }
              // data_array($data);
-        return view('accounts.ledger_entry.show',compact('data'));
+        return view('accounts.ledger_entry.test',compact('data'));
     }
 
     public function money_receipt_print_preview($id)

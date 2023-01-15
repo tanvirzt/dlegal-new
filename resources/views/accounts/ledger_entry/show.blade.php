@@ -37,44 +37,77 @@
                     <div class="invoice p-3 mb-3">
 
                         <div class="row">
-                            <div class="col-12">
-                                <h4>
+                            <div class="col-10">
+                                <h4 style="text-align: center">
                                     <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="AdminLTE Logo"
                                         class="brand-image" style="opacity:1">
 
-                                    <small class="float-right">Date: {{ date('d-m-Y') }}</small>
+                                    {{-- <b>From</b>  --}}
+
+                                    <br><br>
+                                    <span id="lblUnitAddress" class="HeaderStyle2 m-1"
+                                        style="font-weight: bold;font-size:18px">
+                                        Cell:01717406688
+                                    </span>
+                                    <br />
+                                    <span id="lblUnitAddress" class="HeaderStyle2 mt-3"
+                                        style="font-weight: bold;font-size:18px;  margin-top: 15px!important;">
+                                        Tel:01717406688
+                                    </span>
+                                    <br />
+
+
+
                                 </h4>
                             </div>
+                            <div class="col-2">
 
+                                <h3 class="float-right" style="font-weight: bold">Date: {{ date('d-m-Y') }}</h3>
+                            </div>
                         </div>
 
                         <div class="row invoice-info">
                             <div class="col-sm-4 invoice-col">
-                                <b>From</b> <br>
-                                <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag, Mogbazar, Hatirjheel, Dhaka
-                                    - 1217, Bangladesh</span>
-                                <br />
-                                <span id="lblUnitAddress" class="HeaderStyle2"> Cell:01717406688 </span>
-                                <br />
-                                <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688 </span>
-                                <br />
-                                <span id="lblUnitAddress" class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
-                                <span id="lblVoucherType" class="VoucherStyle">
-                            </div>
-                            <div class="col-sm-4 invoice-col">
-                                <h3 class="text-center">Money Receipt</h3>
-                                <h6 class="text-center"></h6>
+
+                                @php
+                                    if ($data->client_id != null) {
+                                        $client = App\Models\SetupClient::where('id', $data->client_id)->first();
+                                    }
+                                    
+                                @endphp
+
+                                <address>
+                                    <h2 style="font-weight: bold;font-size:25px;color: #079e8d;">Money Receipt</h2>
+                                    <b style="font-weight: bold;font-size:15px">Invoice No :</b>
+                                    <strong
+                                        style="font-weight: bold;font-size:15px">{{ $data->transaction_no }}</strong><br>
+                                    <b style="font-weight: bold;font-size:15px">Client :</b>
+                                    <strong style="font-weight: bold;font-size:15px">{{ $client->client_name }}</strong><br>
+
+                                    <b style="font-weight: bold;font-size:15px">Address :</b> <strong id="lblUnitAddress"
+                                        class="HeaderStyle2" style="font-weight: bold;font-size:15px">
+                                        {{ $client->client_address }}</strong><br>
+                                    <b style="font-weight: bold;font-size:15px">Email :</b><strong id="lblUnitAddress"
+                                        class="HeaderStyle2" style="font-weight: bold;font-size:18px">
+                                        {{ $client->client_email }}</strong><br>
+                                    <b style="font-weight: bold;font-size:15px">Phone :</b><strong id="lblVoucherType"
+                                        class="VoucherStyle"
+                                        style="font-weight: bold;font-size:15px">{{ $client->client_mobile }}</strong>
+                                </address>
 
                             </div>
+
                             @php
-                            $case=DB::table('case_billings')->where('case_no',$data->id)->first();
+                                $case = DB::table('case_billings')
+                                    ->where('case_no', $data->id)
+                                    ->first();
                             @endphp
                             @if ($case != null)
                                 <div class="col-sm-4 invoice-col">
                                     <b>To</b>
 
                                     @php
-
+                                        
                                         if ($case->class_of_cases == 'District Court') {
                                             $case = App\Models\CriminalCase::where('id', $case->case_no)->first();
                                         } elseif ($case->class_of_cases == 'Special Court') {
@@ -84,84 +117,61 @@
                                         } elseif ($case->class_of_cases == 'Appellate Division') {
                                             $case = App\Models\AppellateCourtCase::where('id', $case->case_no)->first();
                                         }
-
+                                        
                                     @endphp
 
-                                    <address>
-                                        <strong>{{ $case->client_name_write }}</strong><br>
-                                        {{ $case->client_address }}
 
-                                    </address>
                                 </div>
                             @endif
 
 
                         </div>
 
-
                         <div class="row">
                             <div class="col-12 table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-nowrap text-center">SL</th>
-                                            <th class="text-nowrap text-center">Ledger Date</th>
-                                            <th class="text-center">Bill No</th>
-                                            <th class="text-center">Payment Against Bill</th>
-                                            <th class="text-nowrap"> Transaction No. </th>
-                                            <th class="text-center"> Job No. </th>
-                                            <th class="text-nowrap">Ledger Type</th>
-                                            <th class="text-nowrap">Payment Type</th>
-                                            <th class="text-center">Ledger Head Bill</th>
-                                            <th class="text-center">Bill Amount</th>
-                                            <th class="text-center">Income</th>
-                                            <th class="text-center">Expense</th>
-                                            <th class="text-center">Remarks</th>
+                                <table class="table ">
+
+                                    <thead class="tableHeader">
+                                        <tr class="tableHeader" style="background: #006DCC">
+
+                                            <th class="text-nowrap text-center"
+                                                style="background: #079e8d; color:aliceblue">Ledger Date</th>
+                                            <th class="text-center" style="background: #079e8d; color:aliceblue">Bill No
+                                            </th>
+                                            <th class="text-center" style="background: #079e8d; color:aliceblue">Ledger Head
+                                                Bill</th>
+                                            <th class="text-center" style="background: #079e8d; color:aliceblue">Bill Amount
+                                            </th>
+
+                                            <th class="text-center" style="background: #079e8d; color:aliceblue">Remarks
+                                            </th>
                                         </tr>
                                     </thead>
                                     @if ($data != null)
                                         <tbody id="search_data">
                                             {{-- @foreach ($data as $key => $datum) --}}
                                             <tr>
-                                                <td>
-                                                    1
-                                                </td>
 
-                                                <td>
+
+                                                <td class="text-center">
                                                     {{ $data->ledger_date }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $data->bill_id }}
                                                 </td>
-                                                <td>
-                                                    {{ $data->payment_against_bill == 'on' ? 'Yes' : 'No' }}
-                                                </td>
-                                                <td>
-                                                    {{ $data->transaction_no }}
-                                                </td>
-                                                <td>
-                                                    {{ $data->job_no }}
-                                                </td>
-                                                <td>
-                                                    {{ $data->ledger_category_id }}
-                                                </td>
-                                                <td>
-                                                    {{ $data->payment_type }}
-                                                </td>
-                                                <td>
+
+
+
+
+                                                <td class="text-center">
                                                     {{ $data->ledger_head_name }}
 
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $data->bill_amount }}
                                                 </td>
-                                                <td>
-                                                    {{ $data->income_paid_amount }}
-                                                </td>
-                                                <td>
-                                                    {{ $data->expense_paid_amount }}
-                                                </td>
-                                                <td>
+
+                                                <td class="text-center">
                                                     {{ $data->remarks }}
                                                 </td>
 
