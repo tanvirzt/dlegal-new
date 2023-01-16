@@ -5,13 +5,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Billing Report </h1>
+                        <h1>Balance Report </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                            <li class="breadcrumb-item active"> Billing Report</li>
+                            <li class="breadcrumb-item active"> Balance Report</li>
                         </ol>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                                     <div class="card-body">
 
 
-                                        <form method="get" action="{{ route('billing-report-search') }}">
+                                        <form method="get" action="{{ route('balance-report-search') }}">
                                             <div class="row">
 
                                                 <div class="col-sm-4">
@@ -131,7 +131,7 @@
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
 
-                                                            <span class="date_span" style="width: 404px;">
+                                                            <span class="date_span" style="width: 454px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'from_date');"><input
@@ -152,7 +152,7 @@
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label"> To Date </label>
                                                         <div class="">
-                                                            <span class="date_span" style="width: 404px;">
+                                                            <span class="date_span" style="width: 454px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'to_date');"><input
@@ -166,6 +166,8 @@
                                                 </div>
 
                                             </div>
+
+
 
                                             <div class="float-right">
                                                 <button type="submit" id="submit"
@@ -191,7 +193,7 @@
                                     </h3>
                                     <div class="float-right">
 
-                                        <form method="get" action="{{ route('print-billing-report') }}"
+                                        <form method="get" action="{{ route('print-balance-report') }}"
                                             target="_blank">
                                             @csrf
 
@@ -245,7 +247,29 @@
                                                     <br />
                                                     <span id="lblUnitAddress"
                                                         class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
-                                                    <span id="lblVoucherType" class="VoucherStyle">
+
+                                                    <span id="lblUnitAddress" style="padding: 0px">
+
+                                                        @if (!empty($request_data['client']))
+                                                            @php
+                                                                $clientName = DB::table('setup_clients')
+                                                                    ->where('id', $request_data['client'])
+                                                                    ->first();
+                                                            @endphp
+                                                            <h6>Client Name:
+                                                                {{ $clientName->client_name }}
+                                                            </h6>
+                                                        @endif
+                                                    </span>
+                                                    <span id="lblUnitAddress" style="padding: 0px">
+                                                        @if (!empty($request_data['from_date']))
+                                                            @if ($request_data['from_date'] != 'dd-mm-yyyy')
+                                                                <h6>From:
+                                                                    {{ $request_data['from_date'] }},
+                                                                    To: {{ $request_data['to_date'] }}</h6>
+                                                            @endif
+                                                        @endif
+                                                    </span>
                                                 </div>
 
                                                 <div class="col-sm-4 invoice-col">
@@ -279,10 +303,6 @@
 
 
 
-                                                    {{-- @if ($request_data['from_date'] != 'dd-mm-yyyy')
-                                                        <h6 class="text-center">From: {{ $request_data['from_date'] }},
-                                                            To: {{ $request_data['to_date'] }}</h6>
-                                                    @endif --}}
                                                 </div>
 
                                                 <div class="col-sm-4 invoice-col">
@@ -306,7 +326,12 @@
                                                                 <th class="text-center">Bill No</th>
                                                                 <th class="text-center">Billing Date</th>
 
+                                                                <th class="text-nowrap">Payment Type</th>
+                                                                <th class="text-center">Paid Date</th>
                                                                 <th class="text-center">Bill Amount</th>
+                                                                <th class="text-center">Paid Amount</th>
+
+                                                                <th class="text-center">Due Amount</th>
                                                                 <th class="text-center">Remarks</th>
                                                             </tr>
                                                         </thead>
@@ -325,27 +350,57 @@
                                                                     <td>
                                                                         {{ $datum->billing_no }}
                                                                     </td>
+
                                                                     <td>
                                                                         {{ date('d-m-Y', strtotime($datum->date_of_billing)) }}
                                                                     </td>
+                                                                    <td>
+                                                                        {{ $datum->payment_type }}
+                                                                    </td>
+                                                                    <td>
 
+                                                                        {{ date('d-m-Y', strtotime($datum->ledger_date)) }}
+                                                                    </td>
                                                                     <td>
                                                                         {{ $datum->bill_amount }}
                                                                     </td>
-
+                                                                    @php
+                                                                        $ledger = DB::table('ledger_entries')
+                                                                            ->where('bill_id', $datum->id)
+                                                                            ->get();
+                                                                    @endphp
                                                                     <td>
-                                                                        {{ $datum->remarks }}
-                                                                    </td>
+                                                                        @foreach ($ledger as $item)
+                                                                            <p>
 
+                                                                                {{ $item->paid_amount }}
+                                                                            </p>
+                                                                        @endforeach
+                                                                    </td>
+                                                                    <td>
+                                                                        @foreach ($ledger as $item)
+                                                                            <p>
+
+                                                                                {{ $item->bill_amount - $item->paid_amount }}
+                                                                            </p>
+                                                                        @endforeach
+                                                                    </td>
+                                                                    <td>
+                                                                        @foreach ($ledger as $item)
+                                                                            <p>
+
+                                                                                {{ $item->remarks }}
+                                                                            </p>
+                                                                        @endforeach
+                                                                    </td>
                                                                 </tr>
                                                             @endforeach
 
                                                             <tr>
-                                                                <td colspan="3">Total: </td>
-                                                                <td> {{ $data->sum('bill_amount') }} </td>
+                                                                <td colspan="5">Total: </td>
+
                                                                 <td colspan="1"> </td>
                                                             </tr>
-
                                                         </tbody>
                                                     </table>
                                                 </div>

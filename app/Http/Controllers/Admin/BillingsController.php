@@ -723,27 +723,32 @@ class BillingsController extends Controller
     }
     public function view_money_receipt($id)
     {
-        // $data = LedgerEntry::with('ledger_head','bill')->find($id);
+         $data = LedgerEntry::with('ledger_head','bill')->find($id);
+// dd($data);
+//         $data =DB::table('ledger_entries')
 
-        $data =DB::table('ledger_entries')
-
-        ->join('ledger_heads','ledger_entries.ledger_head_id','ledger_heads.id')
-        ->select('ledger_entries.*','ledger_heads.*')
-        ->where('ledger_entries.id',$id)->first();
-         //dd($data);
+//         ->join('ledger_heads','ledger_entries.ledger_head_id','ledger_heads.id')
+//         ->select('ledger_entries.*','ledger_heads.*')
+//         ->where('ledger_entries.id',$id)->first();
+//         dd($data);
         // if ($data->receipt_no == null) {
         //     $transcation_no = explode('-', $data->transaction_no);
         //     $data->receipt_no = 'RCPT-'.$transcation_no[1];
         //     $data->save();
         // }
              // data_array($data);
-        return view('accounts.ledger_entry.show',compact('data'));
+        return view('accounts.ledger_entry.test',compact('data'));
     }
 
     public function money_receipt_print_preview($id)
     {
         $data = LedgerEntry::with('ledger_head','bill')->find($id);
-        // dd($data);
+        // $data =DB::table('ledger_entries')
+
+        // ->join('ledger_heads','ledger_entries.ledger_head_id','ledger_heads.id')
+        // ->select('ledger_entries.*','ledger_heads.*')
+        // ->where('ledger_entries.id',$id)->first();
+         //dd($data);
 
         return view('accounts.ledger_entry.money_receipt_print_preview', compact('data'));
 

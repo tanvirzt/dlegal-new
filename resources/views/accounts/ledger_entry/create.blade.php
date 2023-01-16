@@ -113,7 +113,8 @@
                                                     id="ledger_head_id">
                                                     <option value=""> Select </option>
                                                     @foreach ($ledger_head as $item)
-                                                    <option value="{{$item->id}}" selected> {{$item->ledger_head_name}} </option>
+                                                        <option value="{{ $item->id }}" selected>
+                                                            {{ $item->ledger_head_name }} </option>
                                                     @endforeach
 
                                                 </select>
@@ -147,12 +148,15 @@
                                             <div class="col-sm-8">
                                                 <select name="client_id" class="form-control select2">
                                                     <option value=""> Select </option>
-                                                     {{-- @foreach ( $client as $clients)
-                                                        <option value="{{ $clients->id }}" selected> {{ $clients->client_name }} </option>
-                                                     @endforeach --}}
+                                                    @foreach ($client as $clients)
+                                                        <option value="{{ $clients->id }}" selected>
+                                                            {{ $clients->client_name }} </option>
+                                                    @endforeach
 
                                                 </select>
-                                                @error('client_id')<span class="text-danger">{{$message}}</span>@enderror
+                                                @error('client_id')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>

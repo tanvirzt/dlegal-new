@@ -75,11 +75,11 @@
         .card {
             padding-left: 0px;
             margin-top: 30px;
-            margin-left: 100px;
+            margin-left: 260px;
             width: 960px;
         }
     </style>
-    <div class="content-wrapper pb-5">
+    <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
@@ -104,8 +104,8 @@
 
         </div>
         @php
-            if (@$data->client_id != null) {
-                @$client = App\Models\SetupClient::where('id', $data->client_id)->first();
+            if ($data->client_id != null) {
+                $client = App\Models\SetupClient::where('id', $data->client_id)->first();
             }
             
         @endphp
@@ -207,12 +207,18 @@
                             Received By
                         </div>
                     </div>
-
+                    {{-- @php
+                        dd($data);
+                    @endphp --}}
+                    @if ($data != null)
+                        <div class="col-md-12 m-5 p-0">
+                            <a href="{{ route('money-receipt-print-preview', $data->id) }}" title="Print Case Info"
+                                target="_blank" class="btn btn-info float-right"><i class="fas fa-print"></i>
+                                Print</a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        window.addEventListener("load", window.print());
-    </script>
 @endsection
