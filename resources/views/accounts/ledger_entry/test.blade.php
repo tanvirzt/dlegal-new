@@ -1,6 +1,5 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
-<<<<<<< HEAD
     <style>
         .invoice-head td {
             padding: 0 8px;
@@ -80,8 +79,7 @@
             width: 960px;
         }
     </style>
-=======
->>>>>>> 95bd4ad1629f66cda006c2a57b1b88ab20e9dcf5
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -106,14 +104,13 @@
             </div>
 
         </div>
-<<<<<<< HEAD
         @php
             if ($data->client_id != null) {
                 $client = App\Models\SetupClient::where('id', $data->client_id)->first();
             }
             
         @endphp
-        <div class="card">
+        <div class="card pb-5">
             <div class="container">
 
                 <div class="row" style="align-items: center">
@@ -160,7 +157,7 @@
                         <h2>Money Receipt</h2>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row ">
                     <div class="span8 well invoice-body">
                         <table class="table table-bordered">
                             <thead>
@@ -186,7 +183,7 @@
                                 <tr>
                                     <td colspan="3">&nbsp;</td>
                                     <td><strong>Total</strong></td>
-                                    <td><strong>{{ @$data->bill_amount }}</strong></td>
+                                    <td><strong>{{ @$data->bill_amount - @$data->paid_amount }}</strong></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -224,208 +221,6 @@
                 </div>
             </div>
         </div>
-=======
-        <section class="content" id="section1st">
 
-            <div class="container-fluid py-2">
-
-                <div class="col-12">
-
-                    {{-- print document  --}}
-
-                    <div class="invoice p-3 mb-3">
-
-                        <div class="row">
-                            <div class="col-10">
-                                <h4 style="text-align: center">
-                                    <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="AdminLTE Logo"
-                                        class="brand-image" style="opacity:1">
-
-                                    {{-- <b>From</b>  --}}
-
-
-
-
-                                </h4>
-                                <h2
-                                    style="font-weight: bold; text-aling:center;font-size:25px;color: #079e8d; padding-left:500px">
-                                    Money
-                                    Receipt</h2>
-                            </div>
-                            <div class="col-2">
-
-                                <h3 class="float-right" style="font-weight: bold">Date: {{ date('d-m-Y') }}</h3>
-                            </div>
-                        </div>
-                        @php
-                            if ($data->client_id != null) {
-                                $client = App\Models\SetupClient::where('id', $data->client_id)->first();
-                            }
-                            
-                        @endphp
-                        {{-- <div class="row invoice-info">
-                            <div class="col-sm-4 invoice-col">
-
-                           
-
-                                <address>
-                                    <h2 style="font-weight: bold;font-size:25px;color: #079e8d;">Money Receipt</h2>
-                                    <b style="font-weight: bold;font-size:15px">Invoice No :</b>
-                                    <strong
-                                        style="font-weight: bold;font-size:15px">{{ $data->transaction_no }}</strong><br>
-                                    <b style="font-weight: bold;font-size:15px">Client :</b>
-                                    <strong style="font-weight: bold;font-size:15px">{{ $client->client_name }}</strong><br>
-
-                                    <b style="font-weight: bold;font-size:15px">Address :</b> <strong id="lblUnitAddress"
-                                        class="HeaderStyle2" style="font-weight: bold;font-size:15px">
-                                        {{ $client->client_address }}</strong><br>
-                                    <b style="font-weight: bold;font-size:15px">Email :</b><strong id="lblUnitAddress"
-                                        class="HeaderStyle2" style="font-weight: bold;font-size:18px">
-                                        {{ $client->client_email }}</strong><br>
-                                    <b style="font-weight: bold;font-size:15px">Phone :</b><strong id="lblVoucherType"
-                                        class="VoucherStyle"
-                                        style="font-weight: bold;font-size:15px">{{ $client->client_mobile }}</strong>
-                                </address>
-
-                            </div>
-
-                            @php
-                                $case = DB::table('case_billings')
-                                    ->where('case_no', $data->id)
-                                    ->first();
-                            @endphp
-                            @if ($case != null)
-                                <div class="col-sm-4 invoice-col">
-                                    <b>To</b>
-
-                                    @php
-                                        
-                                        if ($case->class_of_cases == 'District Court') {
-                                            $case = App\Models\CriminalCase::where('id', $case->case_no)->first();
-                                        } elseif ($case->class_of_cases == 'Special Court') {
-                                            $case = App\Models\CriminalCase::where('id', $case->case_no)->first();
-                                        } elseif ($case->class_of_cases == 'High Court Division') {
-                                            $case = App\Models\HighCourtCase::where('id', $case->case_no)->first();
-                                        } elseif ($case->class_of_cases == 'Appellate Division') {
-                                            $case = App\Models\AppellateCourtCase::where('id', $case->case_no)->first();
-                                        }
-                                        
-                                    @endphp
-
-
-                                </div>
-                            @endif
-
-
-                        </div> --}}
-                        <div class="container-fluid">
-                            <div class="card p-5 m-5">
-                                <form>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Client Name</label>
-                                            <input type="text" class="form-control" id="inputEmail4"
-                                                value="{{ $client->client_name }}" disabled>
-                                        </div>
-
-                                        <div class="form-group col-md-6">
-                                            <label for="inputPassword4">Paid Amount</label>
-                                            <input type="text" class="form-control" value="{{ $data->paid_amount }}"
-                                                placeholder="Password" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="inputAddress">Bill Amount</label>
-                                            <input type="text" class="form-control" value="{{ $data->bill_amount }}"
-                                                disabled>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputAddress2">Payment Type</label>
-                                            <input type="text" class="form-control" value="{{ $data->payment_type }}"
-                                                disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="inputAddress">Invoice Number</label>
-                                            <input type="text" class="form-control" value="{{ $data->transaction_no }}"
-                                                disabled>
-                                        </div>
-
-                                    </div>
-
-
-                                </form>
-
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-6">
-
-                            </div>
-
-                            <div class="col-6">
-                                {{-- <p class="lead">Amount Due 2/22/2014</p> --}}
-                                <div class="table-responsive mt-2">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            <tr>
-                                                <th style="width:50%">Subtotal:</th>
-                                                <td>{{ @$data->bill_amount }}</td>
-                                            </tr>
-
-                                            <tr>
-                                                <th>Total:</th>
-                                                <td>{{ @$data->bill_amount }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="text-center">
-                                    <hr width="50%">
-                                    Accountant
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="text-center">
-                                    <hr width="50%">
-                                    Checked By
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="text-center">
-                                    <hr width="50%">
-                                    Received By
-                                </div>
-                            </div>
-                            @if ($data != null)
-                                <div class="col-md-12">
-                                    <a href="{{ route('money-receipt-print-preview', $data->id) }}" title="Print Case Info"
-                                        target="_blank" class="btn btn-info float-right"><i class="fas fa-print"></i>
-                                        Print</a>
-                                </div>
-                            @endif
-                        </div>
-
-
-
-                    </div>
-
-
-
-                </div>
-            </div>
-        </section>
-
->>>>>>> 95bd4ad1629f66cda006c2a57b1b88ab20e9dcf5
     </div>
 @endsection
