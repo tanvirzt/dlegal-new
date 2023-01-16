@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\models\SetupCaseTypes;
+use App\models\SetupCourt;
+use App\models\SetupCaseCategory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ApilabourCaseController extends Controller
@@ -12,9 +16,22 @@ class ApilabourCaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function labour_cases()
     {
-        //
+        $division = DB::table("setup_divisions")->get();
+        $case_types = SetupCaseTypes::where('delete_status', 0)->get();
+        $court = SetupCourt::where('delete_status', 0)->get();
+        $case_category = SetupCaseCategory::where(['case_type' => 'Labour Cases', 'delete_status' => 0])->get();
+
+        return response()->json([
+
+            "status"=>200,
+            "division"=>$division,
+            "case_types"=>$case_types,
+            "case_category"=>$case_category,
+
+            "message"=> "data added succesfully"
+        ]);
     }
 
     /**
