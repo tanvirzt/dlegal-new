@@ -93,10 +93,12 @@ class AdminController extends Controller
         
         $currentYear = Carbon::now()->format('Y');
         $cases = array();
+
         for ($x = 1; $x <= 12; $x++) {
             $case = CriminalCaseStatusLog::whereRaw('YEAR(updated_order_date) ='.$currentYear)
             ->whereRaw('MONTH(updated_order_date) ='.$x)
             ->where('delete_status', 0)->count();
+            
             array_push($cases, $case);  
         }
 
@@ -108,6 +110,8 @@ class AdminController extends Controller
             ->where('delete_status', 0)->count();
             array_push($caseFilling, $caseF);  
         }
+
+        // dd($caseFilling);
         $caseDisposed= array();
 
         for ($x = 1; $x <= 12; $x++) {

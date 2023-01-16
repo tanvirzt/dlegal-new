@@ -459,6 +459,7 @@ class CriminalCasesController extends Controller
             ->where('criminal_cases.case_category_id','Civil')
             ->where('criminal_cases.delete_status', 0)
             ->orderBy('criminal_cases.created_at', 'desc');
+            
 
         if (Auth::user()->is_companies_superadmin == '1' || Auth::user()->is_owner_admin == '1') {
 
