@@ -503,19 +503,19 @@ class ReportController extends Controller
             'to_date' => '',
         ];
 
-        //$data = CaseBilling::with('ledger')->get();
-        $data =DB::table('ledger_entries')
-        ->join('case_billings','ledger_entries.bill_id','case_billings.id')
-        ->select('case_billings.*','ledger_entries.*')
-        ->where('delete_status', 0)
-        ->get();
+        $data = CaseBilling::all();
+        // $data =DB::table('ledger_entries')
+        // ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+        // ->select('case_billings.*','ledger_entries.*')
+        // ->where('delete_status', 0)
+        // ->get();
 
         //dd($data);
         $ledger_head = LedgerHead::all()  ->where('delete_status', 0);
         $is_search = 'Searched';
         $clients = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();
 
-        return view('report_management.accounts.balance_report', compact('data', 'request_data', 'ledger_head', 'clients'));
+        return view('report_management.accounts.balance_report_test2', compact('data', 'request_data', 'ledger_head', 'clients'));
     }
 
     public function balance_report_search(Request $request)
@@ -619,6 +619,52 @@ class ReportController extends Controller
     }
 
     public function print_balance_report(Request $request)
+    {
+
+        $request_data = $request->all();
+
+        if ($request->from_date != "dd/mm/yyyy") {
+            $from_next_date_explode = explode('/', $request->from_date);
+            $from_next_date_implode = implode('-', $from_next_date_explode);
+            $from_next_date = date('Y-m-d', strtotime($from_next_date_implode));
+        } else if ($request->from_next_date == "dd/mm/yyyy") {
+            $from_next_date = null;
+        }
+
+        if ($request->to_date != "dd/mm/yyyy") {
+            $to_next_date_explode = explode('/', $request->to_date);
+            $to_next_date_implode = implode('-', $to_next_date_explode);
+            $to_next_date = date('Y-m-d', strtotime($to_next_date_implode));
+        } else if ($request->to_next_date == "dd/mm/yyyy") {
+            $to_next_date = null;
+        }
+
+        $bill_no = CaseBilling::where('delete_status', 0)->get();
+        $query = CaseBilling::with('ledger');
+
+        switch ($request->isMethod('get')) {
+            case $request->class_of_cases != null && $request->case_no != null:
+                $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no]);
+                break;
+            default:
+                $query2 = $query;
+        }
+
+
+        $data = $query2->get();
+
+
+        $ledger_head = LedgerHead::all();
+        $is_search = 'Searched';
+        $ledger_head_name = LedgerHead::where('id', $request->ledger_head_id)->first();
+
+        if (!empty($request->class_of_cases) && !empty($request->case_no)) {
+            return view('report_management.accounts.print_balance_report', compact('data', 'request_data', 'ledger_head', 'is_search', 'bill_no'));
+        } else {
+            return view('report_management.accounts.print_balance_report', compact('data', 'request_data', 'ledger_head', 'bill_no'));
+        }
+    }
+    public function print_billing_report(Request $request)
     {
 
         $request_data = $request->all();

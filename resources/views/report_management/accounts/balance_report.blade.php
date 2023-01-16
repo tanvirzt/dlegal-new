@@ -131,7 +131,7 @@
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
 
-                                                            <span class="date_span" style="width: 404px;">
+                                                            <span class="date_span" style="width: 454px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'from_date');"><input
@@ -152,7 +152,7 @@
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label"> To Date </label>
                                                         <div class="">
-                                                            <span class="date_span" style="width: 404px;">
+                                                            <span class="date_span" style="width: 454px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'to_date');"><input
@@ -233,44 +233,40 @@
                                             <br>
                                             <br>
                                             <div class="row invoice-info">
+
+                                                {{-- <b>From</b>  --}}
+
+
+
                                                 <div class="col-sm-4 invoice-col">
                                                     {{-- <b>From</b>  --}}
 
-                                                    <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag,
-                                                        Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
-                                                    <br />
-                                                    <span id="lblUnitAddress" class="HeaderStyle2"> Cell:01717406688
-                                                    </span>
-                                                    <br />
-                                                    <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688
-                                                    </span>
-                                                    <br />
-                                                    <span id="lblUnitAddress"
-                                                        class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
 
-                                                    <span id="lblUnitAddress" style="padding: 0px">
+                                                    <span id="lblVoucherType" class="VoucherStyle">
+                                                        <span id="lblUnitAddress" style="padding: 0px">
 
-                                                        @if (!empty($request_data['client']))
-                                                            @php
-                                                                $clientName = DB::table('setup_clients')
-                                                                    ->where('id', $request_data['client'])
-                                                                    ->first();
-                                                            @endphp
-                                                            <h6>Client Name:
-                                                                {{ $clientName->client_name }}
-                                                            </h6>
-                                                        @endif
-                                                    </span>
-                                                    <span id="lblUnitAddress" style="padding: 0px">
-                                                        @if (!empty($request_data['from_date']))
-                                                            @if ($request_data['from_date'] != 'dd-mm-yyyy')
-                                                                <h6>From:
-                                                                    {{ $request_data['from_date'] }},
-                                                                    To: {{ $request_data['to_date'] }}</h6>
+                                                            @if (!empty($request_data['client']))
+                                                                @php
+                                                                    $clientName = DB::table('setup_clients')
+                                                                        ->where('id', $request_data['client'])
+                                                                        ->first();
+                                                                @endphp
+                                                                <h2 style="font-weight: bold;">Client Name:
+                                                                    {{ $clientName->client_name }}
+                                                                </h2>
                                                             @endif
-                                                        @endif
-                                                    </span>
+                                                        </span>
+                                                        <span id="lblUnitAddress" style="padding: 0px">
+                                                            @if (!empty($request_data['from_date']))
+                                                                @if ($request_data['from_date'] != 'dd-mm-yyyy')
+                                                                    <h2 style="font-weight: bold;">From:
+                                                                        {{ $request_data['from_date'] }},
+                                                                        To: {{ $request_data['to_date'] }}</h2>
+                                                                @endif
+                                                            @endif
+                                                        </span>
                                                 </div>
+
 
                                                 <div class="col-sm-4 invoice-col">
                                                     <h2 class="text-center ">Ledger Report </h2>
@@ -339,6 +335,7 @@
 
                                                             @php
                                                                 $due = 0;
+                                                                $pd_amnt = 0;
                                                             @endphp
 
                                                             @foreach ($data as $key => $datum)
@@ -349,9 +346,7 @@
                                                                     <td>
                                                                         {{ $datum->billing_no }}
                                                                     </td>
-                                                                    <td>
-                                                                        {{ $datum->billing_no }}
-                                                                    </td>
+
                                                                     <td>
                                                                         {{ date('d-m-Y', strtotime($datum->date_of_billing)) }}
                                                                     </td>
@@ -365,6 +360,9 @@
                                                                     <td>
                                                                         {{ $datum->bill_amount }}
                                                                     </td>
+                                                                    @php
+                                                                        $pd_amnt = $pd_amnt + $datum->paid_amount;
+                                                                    @endphp
 
                                                                     <td>
 
@@ -381,9 +379,9 @@
                                                                             $paid = (int) $datum->paid_amount;
                                                                             $sum_paid = $sum_paid + $paid;
                                                                             $newdue = $datum->bill_amount - $sum_paid;
-                                                                            $due = $due + $newdue;
+                                                                            
                                                                         @endphp
-                                                                        {{ $due }}
+                                                                        {{ $newdue }}
 
                                                                     </td>
                                                                     <td>
@@ -395,25 +393,16 @@
 
                                                             <tr>
                                                                 <td colspan="5">Total: </td>
-                                                                <td> {{ $data->sum('bill_amount') }} </td>
+                                                                <td> {{ (int) $data->sum('bill_amount') }} </td>
 
                                                                 <td>
-                                                                    @if (!empty($is_search))
-                                                                        @php
-                                                                            $pd_amnt = DB::table('ledger_entries')
-                                                                                ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
-                                                                                ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
-                                                                                ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no')
-                                                                                ->sum('ledger_entries.paid_amount');
-                                                                        @endphp
-                                                                        {{ $pd_amnt }}
-                                                                    @else
-                                                                        {{ $data->sum('paid_amount') }}
-                                                                    @endif
+
+                                                                    {{ $pd_amnt }}
+
 
 
                                                                 </td>
-                                                                <td>{{ $data->sum('bill_amount') - $data->sum('paid_amount') }}
+                                                                <td>{{ (int) $data->sum('bill_amount') - (int) $data->sum('paid_amount') }}
                                                                 </td>
                                                                 <td colspan="1"> </td>
                                                             </tr>

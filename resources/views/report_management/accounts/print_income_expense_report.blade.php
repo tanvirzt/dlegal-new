@@ -30,70 +30,52 @@
 
                 <!--start invoice area-->
                 <div class="main-invo">
-                    <div class="invoice-header">
-                        <div class="invoice-logo" style="overflow: hidden; margin-bottom: 15px;">
-                            <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="image"
-                                class="brand-image" style="opacity:1">
+
+                    <div class="row">
+                        <div class="col-10 ">
+                            <h4 style="text-align: center; padding-left:100px">
+                                <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="AdminLTE Logo"
+                                    class="brand-image" style="opacity:1">
+
+                                {{-- <b>From</b>  --}}
+                            </h4>
+                            <h2
+                                style="font-weight: bold; text-aling:center;font-size:25px; padding-left:280px;padding-top:30px">
+                                INCOME EXPENSE REPORT
+                            </h2>
                         </div>
-                        <h1>Income Expense Report</h1>
-                        <div class="address">
-                            <div class="invoice-self">
-                                <p><strong>From</strong></p>
-                                <p>365/B, Modhubag, Mogbazar, Hatirjheel, Dhaka
-                                    - 1217, Bangladesh</p>
-                                <p>Cell: 01717406688 </p>
-                                <p>Tel: 01717406688 </p>
-                                <p>Email: niamulkabir.adv@gmail.com</p>
-                            </div>
+                        <div class="col-2">
+
+                            <h3 class="float-right" style="font-weight: bold">Date: {{ date('d-m-Y') }}</h3>
                         </div>
                     </div>
                     <article>
                         <address>
                             <div class="invoice-customer">
-                                <h5>Customer</h5>
-                                {{-- @php
-                                    if ($data->client_id != null) {
-                                        $client = App\Models\SetupClient::where('id', $data->client_id)->first();
-                                    }
-                                    
-                                @endphp
 
-                                <address>
-                                    <strong>{{ $case->client_name }}</strong><br>
-                                    {{ $client->client_address }}
+                                <div class="address">
+                                    <div class="invoice-self">
 
-                                </address> --}}
+                                        <span id="lblUnitAddress" style="padding: 0px">
+                                            @if (!empty($request_data['from_date']))
+                                                @if ($request_data['from_date'] != 'dd-mm-yyyy')
+                                                    <h2 style="font-weight: bold;">From:
+                                                        {{ $request_data['from_date'] }},
+                                                        To: {{ $request_data['to_date'] }}</h2>
+                                                @endif
+                                            @endif
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </address>
 
-                        <div class="meta-box">
-                            <table class="meta">
-
-                                <tr>
-                                    <th>DATE</th>
-                                    <td>{{ date('d-m-Y') }}</td>
-                                </tr>
-                                <tr>
-                                    <th>INVOICE NO</th>
-                                    {{-- <td>{{ $data->billing_no }}</td> --}}
-                                </tr>
-                                <tr>
-                                    <th>CASE NO</th>
-                                    {{-- <td>{{ $case->case_no }}</td> --}}
-                                </tr>
-                            </table>
-                        </div>
 
                         <table class="inventory">
                             <thead>
                                 <tr>
                                     <th class="text-center">SL</th>
                                     <th class="text-center">Transaction Date</th>
-
-
-
-
-
 
                                     <th class="text-center">Ledger Head Bill</th>
 
@@ -133,11 +115,13 @@
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="2">Total: </td>
-                                    <td></td>
-                                    <td>{{ $data->sum('income_paid_amount') }}</td>
-                                    <td> {{ $data->sum('expense_paid_amount') }} </td>
-                                    <td> </td>
+                                    <td colspan="3" style="font-weight: bold">Total: </td>
+
+                                    <td style="font-weight: bold">
+                                        {{ $data->sum('income_paid_amount') }}</td>
+                                    <td style="font-weight: bold">
+                                        {{ $data->sum('expense_paid_amount') }} </td>
+                                    <td style="font-weight: bold"> </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -151,17 +135,6 @@
                                     </ol>
                                 </div>
                             </div> --}}
-                        <table class="meta">
-                            <tr>
-                                <th>Total Income</th>
-                                <td>{{ $data->sum('income_paid_amount') }}</td>
-                            </tr>
-                            <tr class="total-border"></tr>
-                            <tr class="invo-total-price">
-                                <th>Total Expense</th>
-                                <td> {{ $data->sum('expense_paid_amount') }}</td>
-                            </tr>
-                        </table>
 
 
                     </article>

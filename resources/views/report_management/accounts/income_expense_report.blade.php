@@ -306,11 +306,13 @@
                                                                 </tr>
                                                             @endforeach
                                                             <tr>
-                                                                <td colspan="2">Total: </td>
-                                                                <td></td>
-                                                                <td>{{ $data->sum('income_paid_amount') }}</td>
-                                                                <td> {{ $data->sum('expense_paid_amount') }} </td>
-                                                                <td> </td>
+                                                                <td colspan="3" style="font-weight: bold">Total: </td>
+
+                                                                <td style="font-weight: bold">
+                                                                    {{ $data->sum('income_paid_amount') }}</td>
+                                                                <td style="font-weight: bold">
+                                                                    {{ $data->sum('expense_paid_amount') }} </td>
+                                                                <td style="font-weight: bold"> </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -330,24 +332,7 @@
 
 
                                             <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="text-center">
-                                                        <hr width="50%">
-                                                        Accountant
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="text-center">
-                                                        <hr width="50%">
-                                                        Checked By
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="text-center">
-                                                        <hr width="50%">
-                                                        Received By
-                                                    </div>
-                                                </div>
+
                                                 <div class="col-md-12">
                                                     {{-- <a href="{{ route('billings-print-preview', $data->id) }}" title="Print Case Info" target="_blank"
                                                 class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a> --}}
