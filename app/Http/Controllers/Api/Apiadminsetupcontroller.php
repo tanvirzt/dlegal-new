@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\models\SetupDesignation;
 use App\models\SetupCaseStatus;
 use App\Models\SetupCaseTypes;
 use App\Models\SetupPropertyType;
@@ -68,6 +67,7 @@ use App\models\BillSchedule;
 use App\models\PaymentMode;
 use App\models\SetupGroup;
 use App\models\SetupCabinet;
+use App\Models\SetupDesignation;
 use Illuminate\Http\Request;
 
 class ApiAdminSetupController extends Controller
