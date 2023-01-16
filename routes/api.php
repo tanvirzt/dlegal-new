@@ -1,11 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminSetupController;
-
-
-
-
-
 use App\Http\Controllers\Api\ApiAdminSetupController;
 use App\Http\Controllers\Api\ApiAuthController;
 use App\Http\Controllers\Api\ApiBillingsController;
