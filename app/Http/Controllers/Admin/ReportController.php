@@ -741,26 +741,65 @@ class ReportController extends Controller
         $query = CaseBilling::with('ledger');
 
         switch ($request->isMethod('get')) {
-            case $request->class_of_cases != null && $request->case_no != null:
-                $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no]);
+            case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $request->from_date != null && $request->to_date != null:
+                 $query2 =DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
+                ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
+                ->get();
                 break;
+            case $request->class_of_cases != null && $request->case_no != null && $request->client != null :
+                $query2 =DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
+                ->where('case_billings.delete_status', 0)->get();
+                break;
+            case $request->client != null:
+                $query2 =DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*')
+                ->where(['client_id' => $request->client])
+                ->where('case_billings.delete_status', 0)->get();
+                // dd($query2);
+                break;
+            case $request->class_of_cases != null :
+                $query2 =DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases])
+                  ->where('case_billings.delete_status', 0)->get();
+                break;
+            case $request->from_date != null && $request->to_date != null :
+                $query2 =DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*') ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
+                ->where('case_billings.delete_status', 0)->get();
+
+                break;
+            case $request->class_of_cases != null && $request->case_no == null && $request->client == null:
+                // $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client_id]);
+                $query2 =DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no])
+                ->where('case_billings.delete_status', 0)->get();
+                break;
+
             default:
-                $query2 = $query;
+                $query2 = DB::table('ledger_entries')
+                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
+                ->select('case_billings.*','ledger_entries.*')
+                ->where('case_billings.delete_status', 0)->get();
         }
 
-
-        $data = $query2->get();
-
-
+        $data =$query2;
         $ledger_head = LedgerHead::all();
         $is_search = 'Searched';
         $ledger_head_name = LedgerHead::where('id', $request->ledger_head_id)->first();
+        $clients = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();
 
-        if (!empty($request->class_of_cases) && !empty($request->case_no)) {
-            return view('report_management.accounts.print_balance_report', compact('data', 'request_data', 'ledger_head', 'is_search', 'bill_no'));
-        } else {
-            return view('report_management.accounts.print_balance_report', compact('data', 'request_data', 'ledger_head', 'bill_no'));
-        }
+
+        return view('report_management.accounts.print_billing_report', compact('data', 'request_data', 'ledger_head', 'is_search', 'bill_no', 'clients'));
+
+    
     }
 
 

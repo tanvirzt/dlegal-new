@@ -32,7 +32,7 @@
                         <div class="card">
                             <div id="accordion">
                                 <div class="card-header" id="headingTwo">
-                                    <h3 class="card-title"> Ledger :: Report
+                                    <h3 class="card-title"> Billing Report
 
                                         @if (!empty($is_search))
                                             <span style="color: red;font-size:15px;">(Showing:
@@ -196,10 +196,10 @@
                                             @csrf
 
 
-                                            {{-- <input type="hidden" name="bill_id" value="{{ $request_data['class_of_cases'] }}"> --}}
-                                            {{-- <input type="hidden" name="from_date"
+                                            <input type="hidden" name="client" value="{{ @$request_data['client'] }}">
+                                            <input type="hidden" name="from_date"
                                                 value="{{ $request_data['from_date'] }}">
-                                            <input type="hidden" name="to_date" value="{{ $request_data['to_date'] }}"> --}}
+                                            <input type="hidden" name="to_date" value="{{ $request_data['to_date'] }}">
                                             <input type="hidden" name="class_of_cases"
                                                 value="{{ $request_data['class_of_cases'] }}">
                                             <input type="hidden" name="case_no" value="{{ $request_data['case_no'] }}">
@@ -218,14 +218,18 @@
                                             <div class="row">
                                                 <div class="col-12">
                                                     <h4>
-                                                        <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}"
-                                                            alt="AdminLTE Logo" class="brand-image" style="opacity:1">
+                                                        <img src="http://127.0.0.1:8000/login_assets/img/rsz_11d_legal_logo.png"
+                                                            alt="AdminLTE Logo" class="brand-image"
+                                                            style="opacity:1; padding-left:0px">
 
                                                         <small class="float-right"
-                                                            style="font-weight: 600!important;font-size:90%!important">Date:
-                                                            {{ date('d-m-Y') }}</small>
+                                                            style="font-weight: 600!important;font-size:100%!important;">Date:
+                                                            16-01-2023</small>
                                                     </h4>
+                                                    <h2 style="font-weight: bold;padding-left:570px;padding-top:20px;">
+                                                        BILLING REPORT</h2>
                                                 </div>
+
 
                                             </div>
                                             <br>
@@ -234,59 +238,30 @@
                                                 <div class="col-sm-4 invoice-col">
                                                     {{-- <b>From</b>  --}}
 
-                                                    <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag,
-                                                        Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
-                                                    <br />
-                                                    <span id="lblUnitAddress" class="HeaderStyle2"> Cell:01717406688
-                                                    </span>
-                                                    <br />
-                                                    <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688
-                                                    </span>
-                                                    <br />
-                                                    <span id="lblUnitAddress"
-                                                        class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
-                                                    <span id="lblVoucherType" class="VoucherStyle">
-                                                </div>
 
-                                                <div class="col-sm-4 invoice-col">
-                                                    <h2 class="text-center ">Ledger Report </h2>
-                                                    <h5 class="text-center">
-                                                        {{ !empty($ledger_head_name) ? $ledger_head_name->ledger_head_name : '' }}
-                                                    </h5>
-                                                    <h6 class="text-center">
-                                                        {{ !empty($request_data['class_of_cases']) ? $request_data['class_of_cases'] : '' }}
-                                                    </h6>
-                                                    @if (!empty($request_data['class_of_cases']) && $request_data['class_of_cases'] == 'District Court')
-                                                        <h6 class="text-center">
 
+                                                    <span id="lblUnitAddress" style="padding: 0px">
+
+                                                        @if (!empty($request_data['client']))
                                                             @php
-                                                                $case_number = DB::table('ledger_entries')
-                                                                    ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
-                                                                    ->leftJoin('criminal_cases', 'case_billings.case_no', 'criminal_cases.id')
-                                                                    ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
-                                                                    ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no', 'criminal_cases.case_no as main_case_no')
+                                                                $clientName = DB::table('setup_clients')
+                                                                    ->where('id', $request_data['client'])
                                                                     ->first();
-                                                                
                                                             @endphp
-
-                                                            @if (!empty($case_number->main_case_no))
-                                                                {{ $case_number->main_case_no }}
+                                                            <h4 style="font-weight: bold">Client Name:
+                                                                {{ $clientName->client_name }}
+                                                            </h4>
+                                                        @endif
+                                                    </span>
+                                                    <span id="lblUnitAddress" style="padding: 0px">
+                                                        @if (!empty($request_data['from_date']))
+                                                            @if ($request_data['from_date'] != 'dd-mm-yyyy')
+                                                                <h4 style="font-weight: bold">From:
+                                                                    {{ $request_data['from_date'] }},
+                                                                    To: {{ $request_data['to_date'] }}</h4>
                                                             @endif
-
-                                                        </h6>
-                                                    @endif
-
-
-
-
-                                                    {{-- @if ($request_data['from_date'] != 'dd-mm-yyyy')
-                                                        <h6 class="text-center">From: {{ $request_data['from_date'] }},
-                                                            To: {{ $request_data['to_date'] }}</h6>
-                                                    @endif --}}
-                                                </div>
-
-                                                <div class="col-sm-4 invoice-col">
-
+                                                        @endif
+                                                    </span>
                                                 </div>
 
                                             </div>
@@ -363,30 +338,7 @@
                                             </div>
 
 
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="text-center">
-                                                        <hr width="50%">
-                                                        Accountant
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="text-center">
-                                                        <hr width="50%">
-                                                        Checked By
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="text-center">
-                                                        <hr width="50%">
-                                                        Received By
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    {{-- <a href="{{ route('billings-print-preview', $data->id) }}" title="Print Case Info" target="_blank"
-                                                class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a> --}}
-                                                </div>
-                                            </div>
+
 
                                         </div>
                                     @endif
