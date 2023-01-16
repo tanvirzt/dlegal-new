@@ -112,43 +112,71 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $due = 0;
+                                    $pd_amnt = 0;
+                                @endphp
+
                                 @foreach ($data as $key => $datum)
                                     <tr>
                                         <td>
                                             {{ $key + 1 }}
                                         </td>
-
                                         <td>
-                                            {{ $datum->ledger_date != null ? date('d-m-Y', strtotime($datum->ledger_date)) : '' }}
+                                            {{ $datum->billing_no }}
                                         </td>
 
 
+                                        <td>
+
+                                            {{ date('d-m-Y', strtotime($datum->ledger_date)) }}
+                                        </td>
+                                        <td>
+                                            {{ $datum->bill_amount }}
+                                        </td>
+                                        @php
+                                            $pd_amnt = $pd_amnt + $datum->paid_amount;
+                                        @endphp
 
                                         <td>
-                                            {{ @$datum->ledger_head_id != null ? @$datum->ledger_head->ledger_head_name : '' }}
+
+                                            {{ (int) $datum->paid_amount }}
 
                                         </td>
 
                                         <td>
-                                            {{ $datum->income_paid_amount }}
+
+
+                                            @php
+                                                $sum_paid = 0;
+                                                
+                                                $paid = (int) $datum->paid_amount;
+                                                $sum_paid = $sum_paid + $paid;
+                                                $newdue = $datum->bill_amount - $sum_paid;
+                                                
+                                            @endphp
+                                            {{ $newdue }}
+
                                         </td>
-                                        <td>
-                                            {{ $datum->expense_paid_amount }}
-                                        </td>
-                                        <td>
-                                            {{ $datum->remarks }}
-                                        </td>
+
 
                                     </tr>
                                 @endforeach
-                                <tr>
-                                    <td colspan="3" style="font-weight: bold">Total: </td>
 
-                                    <td style="font-weight: bold">
-                                        {{ $data->sum('income_paid_amount') }}</td>
-                                    <td style="font-weight: bold">
-                                        {{ $data->sum('expense_paid_amount') }} </td>
-                                    <td style="font-weight: bold"> </td>
+                                <tr>
+                                    <td colspan="3">Total: </td>
+                                    <td> {{ (int) $data->sum('bill_amount') }} </td>
+
+                                    <td>
+
+                                        {{ $pd_amnt }}
+
+
+
+                                    </td>
+                                    <td>{{ (int) $data->sum('bill_amount') - (int) $data->sum('paid_amount') }}
+                                    </td>
+
                                 </tr>
                             </tbody>
                         </table>
