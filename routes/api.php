@@ -8,6 +8,17 @@ use App\Http\Controllers\Admin\AdminSetupController;
 
 use App\Http\Controllers\Api\ApiAdminSetupController;
 use App\Http\Controllers\Api\ApiAuthController;
+use App\Http\Controllers\Api\ApiBillingsController;
+use App\Http\Controllers\Api\ApiCivilCaseController;
+use App\Http\Controllers\Api\ApiCounselLawyerController;
+use App\Http\Controllers\Api\ApiCriminalCaseController;
+use App\Http\Controllers\Api\ApiDocManagementController;
+use App\Http\Controllers\Api\ApiFlatInfoController;
+use App\Http\Controllers\Api\ApiHighCourtCaseController;
+use App\Http\Controllers\Api\ApiLandInfoController;
+use App\Http\Controllers\Api\ApiLitigationCalenderController;
+use App\Http\Controllers\Api\ApiRegulatoryComplianceController;
+use App\Http\Controllers\Api\ApiSupremeCourtCaseController;
 use App\Http\Controllers\Api\PermissionTestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -366,3 +377,64 @@ route::put("update_cabinet/{id}",[ApiAdminSetupController::class,"update_cabinet
 route::delete("delete_cabinet/{id}",[ApiAdminSetupController::class,"delete_cabinet"]);
 
 route::get("search/{name}",[ApiAdminSetupController::class,"search"]);
+route::get("search_matter/{name}",[ApiAdminSetupController::class,"search_matter"]);
+
+route::get("index_counsel",[ApiCounselLawyerController::class,"index_counsel"]);
+route::post("add_counsel",[ApiCounselLawyerController::class,"add_counsel"]);
+route::put("update_counsel/{id}",[ApiCounselLawyerController::class,"update_counsel"]);
+route::delete("delete_counsel/{id}",[ApiCounselLawyerController::class,"delete_counsel"]);
+
+route::get("internal_consel_new",[ApiCounselLawyerController::class,"internal_consel_new"]);
+
+route::get("chamber",[ApiCounselLawyerController::class,"chamber"]);
+route::post("add_chamber",[ApiCounselLawyerController::class,"add_chamber"]);
+route::put("update_chamber/{id}",[ApiCounselLawyerController::class,"update_chamber"]);
+route::delete("delete_chamber/{id}",[ApiCounselLawyerController::class,"delete_chamber"]);
+
+route::get("litigation_calander_list",[ApiLitigationCalenderController::class,"litigation_calander_list"]);
+route::get("search_litigation_calendar",[ApiLitigationCalenderController::class,"search_litigation_calendar"]);
+route::get("litigation-calender-list-print/{date}",[ApiLitigationCalenderController::class,"print_litigation_calender_list"]);
+route::get("litigation_calender_short",[ApiLitigationCalenderController::class,"litigation_calender_short"]);
+route::get("litigation_calender_short_court_wise",[ApiLitigationCalenderController::class,"litigation_calender_short_court_wise"]);
+// route::get("calendar_short_next",[ApiLitigationCalenderController::class,"calendar_short_next"]);
+route::get("litigation_calendar_list_print_preview",[ApiLitigationCalenderController::class,"litigation_calendar_list_print_preview"]);
+
+route::get("document_management",[ApiDocManagementController::class,"document_management"]);
+
+
+route::get("billing",[ApiBillingsController::class,"billing"]);
+route::get("add_billing",[ApiBillingsController::class,"add_billing"]);
+route::get("add-billing-from-district-court/{id}",[ApiBillingsController::class,"add_billing_from_district_court"]);
+// route::get("edit_billing/{id}",[ApiBillingsController::class,"edit_billing"]);
+route::get("add_billing_civil_cases/{id}",[ApiBillingsController::class,"add_billing_civil_cases"]);
+route::get("add_billing_criminal_cases/{id}",[ApiBillingsController::class,"add_billing_criminal_cases"]);
+route::get("add_criminal_cases_billling/{id}",[ApiBillingsController::class,"add_criminal_cases_billling"]);
+route::get("add_billing_labour_cases/{id}",[ApiBillingsController::class,"add_billing_labour_cases"]);
+route::get("add_billing_quassi_judicial_cases/{id}",[ApiBillingsController::class,"add_billing_quassi_judicial_cases"]);
+route::get("add_billing_supreme_court_cases/{id}",[ApiBillingsController::class,"add_billing_supreme_court_cases"]);
+route::get("add_billing_high_court_cases/{id}",[ApiBillingsController::class,"add_billing_high_court_cases"]);
+route::get("add_billing_appellate_court_cases/{id}",[ApiBillingsController::class,"add_billing_appellate_court_cases"]);
+
+
+route::get("civil_cases",[ApiCivilCaseController::class,"civil_cases"]);
+route::get("add_civil_cases",[ApiCivilCaseController::class,"add_civil_cases"]);
+
+
+
+
+
+
+route::get("flat_information",[ApiFlatInfoController::class,"flat_information"]);
+route::get("add_flat_information",[ApiFlatInfoController::class,"add_flat_information"]);
+
+route::get("land_information",[ApiLandInfoController::class,"land_information"]);
+route::get("add_land_information",[ApiLandInfoController::class,"add_land_information"]);
+// route::get("edit_land_information/{id}",[ApiLandInfoController::class,"edit_land_information"]);
+
+
+route::get("regulatory_compliance",[ApiRegulatoryComplianceController::class,"regulatory_compliance"]);
+route::get("edit_regulatory_compliance/{id}",[ApiRegulatoryComplianceController::class,"edit_regulatory_compliance"]);
+
+
+route::get("high_court_cases",[ApiHighCourtCaseController::class,"high_court_cases"]);
+route::get("add_high_court_cases",[ApiHighCourtCaseController::class,"add_high_court_cases"]);
