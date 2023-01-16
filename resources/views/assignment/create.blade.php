@@ -119,6 +119,7 @@
                                                 @error('details')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
+                                            
                                             <div class="float-right form-group">
                                                 <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save</button>
                                             </div>
