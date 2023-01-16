@@ -186,6 +186,7 @@ public function add_case_status(Request $request)
     {
         $data = new  SetupCaseStatus();
         $data->case_status_name= $request->case_status_name;
+         $data->case_category= $request->case_category;
       
         $data->save();
         return response()->json([
@@ -198,6 +199,7 @@ public function update_case_status(Request $request, $id)
 {
     $data = SetupCaseStatus::find($id);
     $data->case_status_name = $request->case_status_name;
+    $data->case_category= $request->case_category;
     $data->update();
     return response()->json([
         "status" => 200,
@@ -3296,10 +3298,15 @@ public function search($name)
         "message" => "data get successfully"
     ]);
 }
+public function search_matter($name)
+{
+    $data =SetupMatter::where("matter_name","like", "%". $name. "%")
+    ->orWhere("id","like", "%". $name. "%")
+    ->get();
+    return response()->json([
+        "status" => 200,
+        "data" => $data,
+        "message" => "data get successfully"
+    ]);
 }
-
-
-
-
-
-
+}
