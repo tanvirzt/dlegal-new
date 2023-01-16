@@ -2224,11 +2224,18 @@ class CriminalCasesController extends Controller
     public function delete_criminal_cases($id)
     {
         $data = CriminalCase::find($id);
+        $case_log = DB::table('criminal_case_status_logs')->where('case_id',$id)->get()->toArray();
+      
         if ($data['delete_status'] == 1) {
             $delete_status = 0;
         } else {
             $delete_status = 1;
         }
+        foreach($case_log as $item){
+            
+         $caselog=DB::table('criminal_case_status_logs')->where('id',$item->id)->delete();
+        }
+
         $data->delete_status = $delete_status;
         $data->save();
 
