@@ -1,6 +1,5 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -9,7 +8,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark">Ledger Report</h1>
-
+                        {{-- test --}}
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -59,8 +58,7 @@
                                     <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688
                                     </span>
                                     <br />
-                                    <span id="lblUnitAddress"
-                                        class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
+                                    <span id="lblUnitAddress" class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
                                     <span id="lblVoucherType" class="VoucherStyle">
                                 </div>
 
@@ -69,23 +67,25 @@
                                     <h5 class="text-center">
                                         {{ !empty($ledger_head_name) ? $ledger_head_name->ledger_head_name : '' }}
                                     </h5>
-                                    <h6 class="text-center">{{ !empty($request_data['class_of_cases']) ? $request_data['class_of_cases'] : '' }}</h6>
-@if (!empty($request_data['class_of_cases']) && $request_data['class_of_cases'] == 'District Court')
-<h6 class="text-center">
+                                    <h6 class="text-center">
+                                        {{ !empty($request_data['class_of_cases']) ? $request_data['class_of_cases'] : '' }}
+                                    </h6>
+                                    @if (!empty($request_data['class_of_cases']) && $request_data['class_of_cases'] == 'District Court')
+                                        <h6 class="text-center">
 
-    @php
-    $case_number = DB::table('ledger_entries')
-            ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
-            ->leftJoin('criminal_cases', 'case_billings.case_no', 'criminal_cases.id')
-            ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
-            ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no', 'criminal_cases.case_no as main_case_no')
-            ->first();
-// dd($case_number);
-    @endphp
-        
-{{ $case_number->main_case_no }}
-        </h6>
-@endif
+                                            @php
+                                                $case_number = DB::table('ledger_entries')
+                                                    ->leftJoin('case_billings', 'ledger_entries.bill_id', 'case_billings.id')
+                                                    ->leftJoin('criminal_cases', 'case_billings.case_no', 'criminal_cases.id')
+                                                    ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
+                                                    ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no', 'criminal_cases.case_no as main_case_no')
+                                                    ->first();
+                                                // dd($case_number);
+                                            @endphp
+
+                                            {{ $case_number->main_case_no }}
+                                        </h6>
+                                    @endif
                                     {{-- @if ($request_data['from_date'] != 'dd-mm-yyyy')
                                         <h6 class="text-center">From: {{ $request_data['from_date'] }},
                                             To: {{ $request_data['to_date'] }}</h6>
@@ -229,5 +229,4 @@
     <script type="text/javascript">
         window.addEventListener("load", window.print());
     </script>
-
 @endsection
