@@ -192,16 +192,15 @@
                                             style="color: red;font-size:15px;">{{ !empty($is_search) ? '(Showing Searched Item)' : '' }}</span>
                                     </h3>
                                     <div class="float-right">
-
                                         <form method="get" action="{{ route('print-balance-report') }}"
                                             target="_blank">
                                             @csrf
 
 
-                                            {{-- <input type="hidden" name="bill_id" value="{{ $request_data['class_of_cases'] }}"> --}}
-                                            {{-- <input type="hidden" name="from_date"
+                                            <input type="hidden" name="client" value="{{ $request_data['client'] }}">
+                                            <input type="hidden" name="from_date"
                                                 value="{{ $request_data['from_date'] }}">
-                                            <input type="hidden" name="to_date" value="{{ $request_data['to_date'] }}"> --}}
+                                            <input type="hidden" name="to_date" value="{{ $request_data['to_date'] }}">
                                             <input type="hidden" name="class_of_cases"
                                                 value="{{ $request_data['class_of_cases'] }}">
                                             <input type="hidden" name="case_no" value="{{ $request_data['case_no'] }}">
@@ -224,9 +223,11 @@
                                                             alt="AdminLTE Logo" class="brand-image" style="opacity:1">
 
                                                         <small class="float-right"
-                                                            style="font-weight: 600!important;font-size:90%!important">Date:
+                                                            style="font-weight: 600!important;font-size:100%!important">Date:
                                                             {{ date('d-m-Y') }}</small>
                                                     </h4>
+                                                    <h2 style="font-weight: bold;padding-left:570px;">
+                                                        LEDGER REPORT</h2>
                                                 </div>
 
                                             </div>
@@ -251,25 +252,25 @@
                                                                         ->where('id', $request_data['client'])
                                                                         ->first();
                                                                 @endphp
-                                                                <h2 style="font-weight: bold;">Client Name:
+                                                                <h4 style="font-weight: bold;">Client Name:
                                                                     {{ $clientName->client_name }}
-                                                                </h2>
+                                                                </h4>
                                                             @endif
                                                         </span>
                                                         <span id="lblUnitAddress" style="padding: 0px">
                                                             @if (!empty($request_data['from_date']))
                                                                 @if ($request_data['from_date'] != 'dd-mm-yyyy')
-                                                                    <h2 style="font-weight: bold;">From:
+                                                                    <h4 style="font-weight: bold;">From:
                                                                         {{ $request_data['from_date'] }},
-                                                                        To: {{ $request_data['to_date'] }}</h2>
+                                                                        To: {{ $request_data['to_date'] }}</h4>
                                                                 @endif
                                                             @endif
                                                         </span>
                                                 </div>
 
 
-                                                <div class="col-sm-4 invoice-col">
-                                                    <h2 class="text-center ">Ledger Report </h2>
+                                                {{-- <div class="col-sm-4 invoice-col">
+
                                                     <h5 class="text-center">
                                                         {{ !empty($ledger_head_name) ? $ledger_head_name->ledger_head_name : '' }}
                                                     </h5>
@@ -277,7 +278,7 @@
                                                         {{ !empty($request_data['class_of_cases']) ? $request_data['class_of_cases'] : '' }}
                                                     </h6>
                                                     @if (!empty($request_data['class_of_cases']) && $request_data['class_of_cases'] == 'District Court')
-                                                        <h6 class="text-center">
+                                                        <h2 class="text-center" style="padding-top: ">
 
                                                             @php
                                                                 $case_number = DB::table('ledger_entries')
@@ -293,13 +294,13 @@
                                                                 {{ $case_number->main_case_no }}
                                                             @endif
 
-                                                        </h6>
+                                                        </h2>
                                                     @endif
 
 
 
 
-                                                </div>
+                                                </div> --}}
 
                                                 <div class="col-sm-4 invoice-col">
 
