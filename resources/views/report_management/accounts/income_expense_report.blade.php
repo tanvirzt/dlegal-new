@@ -114,7 +114,7 @@
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
-                                                            <span class="date_span">
+                                                            <span class="date_span" style="width: 204px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'from_date');"><input
@@ -133,7 +133,7 @@
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label"> To Date </label>
                                                         <div class="">
-                                                            <span class="date_span">
+                                                            <span class="date_span" style="width: 204px;">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'to_date');"><input
@@ -206,12 +206,12 @@
 
                                             <div class="row">
                                                 <div class="col-12">
+                                                    <h4>
+                                                        <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}"
+                                                            alt="AdminLTE Logo" class="brand-image" style="opacity:1">
 
-
-
-                                                    <h3 class="float-right" style="font-weight: bold;">Date:
-                                                        {{ date('d-m-Y') }}</h3>
-
+                                                        <small class="float-right">Date: {{ date('d-m-Y') }}</small>
+                                                    </h4>
                                                 </div>
 
                                             </div>
@@ -221,35 +221,22 @@
                                                 <div class="col-sm-4 invoice-col">
                                                     {{-- <b>From</b>  --}}
 
-
+                                                    <span id="lblUnitAddress" class="HeaderStyle2">365/B, Modhubag,
+                                                        Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
+                                                    <br />
+                                                    <span id="lblUnitAddress" class="HeaderStyle2"> Cell:01717406688
+                                                    </span>
+                                                    <br />
+                                                    <span id="lblUnitAddress" class="HeaderStyle2"> Tel:01717406688
+                                                    </span>
+                                                    <br />
+                                                    <span id="lblUnitAddress"
+                                                        class="HeaderStyle2">Email:niamulkabir.adv@gmail.com</span>
                                                     <span id="lblVoucherType" class="VoucherStyle">
-                                                        <span id="lblUnitAddress" style="padding: 0px">
-
-                                                            @if (!empty($request_data['client']))
-                                                                @php
-                                                                    $clientName = DB::table('setup_clients')
-                                                                        ->where('id', $request_data['client'])
-                                                                        ->first();
-                                                                @endphp
-                                                                <h2 style="font-weight: bold;">Client Name:
-                                                                    {{ $clientName->client_name }}
-                                                                </h2>
-                                                            @endif
-                                                        </span>
-                                                        <span id="lblUnitAddress" style="padding: 0px">
-                                                            @if (!empty($request_data['from_date']))
-                                                                @if ($request_data['from_date'] != 'dd-mm-yyyy')
-                                                                    <h2 style="font-weight: bold;">From:
-                                                                        {{ $request_data['from_date'] }},
-                                                                        To: {{ $request_data['to_date'] }}</h2>
-                                                                @endif
-                                                            @endif
-                                                        </span>
                                                 </div>
 
                                                 <div class="col-sm-4 invoice-col">
-                                                    <h1 class="text-center" style=" font-weight: bold;">Income Expense
-                                                        Report</h1>
+                                                    <h3 class="text-center">Income Expense Report</h3>
                                                 </div>
 
                                                 <div class="col-sm-4 invoice-col">
@@ -268,10 +255,15 @@
                                                         <thead>
                                                             <tr>
                                                                 <th class="text-center">SL</th>
-                                                                <th class="text-center">Transaction Date</th>
-
+                                                                <th class="text-center">Paid Date</th>
+                                                                <th class="text-center">Bill No</th>
+                                                                <th class="text-center"> Bill Date</th>
+                                                                <th class="text-nowrap"> Transaction No. </th>
+                                                                <th class="text-center"> Job No. </th>
+                                                                <th class="text-nowrap">Ledger Type</th>
+                                                                <th class="text-nowrap">Payment Type</th>
                                                                 <th class="text-center">Ledger Head Bill</th>
-
+                                                                <th class="text-center">Bill Amount</th>
                                                                 <th class="text-center">Income</th>
                                                                 <th class="text-center">Expense</th>
                                                                 <th class="text-center">Remarks</th>
@@ -287,12 +279,33 @@
                                                                     <td>
                                                                         {{ $datum->ledger_date != null ? date('d-m-Y', strtotime($datum->ledger_date)) : '' }}
                                                                     </td>
+                                                                    <td>
+                                                                        {{ $datum->bill_id != null ? $datum->bill->billing_no : '' }}
+                                                                    </td>
 
+                                                                    <td>
+                                                                        {{ date('d-m-Y', strtotime($datum->date_of_billing)) }}
+                                                                    </td>
+
+                                                                    <td>
+                                                                        {{ $datum->transaction_no }}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{ $datum->job_no }}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{ $datum->ledger_type }}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{ $datum->payment_type }}
+                                                                    </td>
                                                                     <td>
                                                                         {{ @$datum->ledger_head_id != null ? @$datum->ledger_head->ledger_head_name : '' }}
 
                                                                     </td>
-
+                                                                    <td>
+                                                                        {{ $datum->bill_amount }}
+                                                                    </td>
                                                                     <td>
                                                                         {{ $datum->income_paid_amount }}
                                                                     </td>
@@ -306,13 +319,11 @@
                                                                 </tr>
                                                             @endforeach
                                                             <tr>
-                                                                <td colspan="3" style="font-weight: bold">Total: </td>
-
-                                                                <td style="font-weight: bold">
-                                                                    {{ $data->sum('income_paid_amount') }}</td>
-                                                                <td style="font-weight: bold">
-                                                                    {{ $data->sum('expense_paid_amount') }} </td>
-                                                                <td style="font-weight: bold"> </td>
+                                                                <td colspan="9">Total: </td>
+                                                                <td></td>
+                                                                <td>{{ $data->sum('income_paid_amount') }}</td>
+                                                                <td> {{ $data->sum('expense_paid_amount') }} </td>
+                                                                <td> </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -332,7 +343,24 @@
 
 
                                             <div class="row">
-
+                                                <div class="col-md-4">
+                                                    <div class="text-center">
+                                                        <hr width="50%">
+                                                        Accountant
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="text-center">
+                                                        <hr width="50%">
+                                                        Checked By
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="text-center">
+                                                        <hr width="50%">
+                                                        Received By
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-12">
                                                     {{-- <a href="{{ route('billings-print-preview', $data->id) }}" title="Print Case Info" target="_blank"
                                                 class="btn btn-info float-right"><i class="fas fa-print"></i> Print</a> --}}
