@@ -21,8 +21,8 @@ class LedgerEntry extends Model
         'payment_type',
         'client_id',
         'ledger_head_id',
-        // 'income_paid_amount',
-        // 'expense_paid_amount',
+        'income_paid_amount',
+        'expense_paid_amount',
         'bill_amount',
         'remarks',
     ];
