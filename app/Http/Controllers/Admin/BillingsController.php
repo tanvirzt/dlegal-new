@@ -480,7 +480,7 @@ class BillingsController extends Controller
         $bill_schedule = BillSchedule::where('delete_status',0)->get();
         $payment_mode = PaymentMode::where('delete_status',0)->get();
         $data = CriminalCase::find($id);
-//dd($payment_mode);
+
         return view('litigation_management.cases.criminal_cases.add_criminal_cases_billing',compact('payment_mode','bill_schedule','bill_particulars','external_council','bill_type','bank','digital_payment_type','district','data'));
     }
 
