@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminSetupController;
+
+
+
+
+
 use App\Http\Controllers\Api\ApiAdminSetupController;
 use App\Http\Controllers\Api\ApiAuthController;
 use App\Http\Controllers\Api\ApiBillingsController;
@@ -9,9 +15,11 @@ use App\Http\Controllers\Api\ApiCriminalCaseController;
 use App\Http\Controllers\Api\ApiDocManagementController;
 use App\Http\Controllers\Api\ApiFlatInfoController;
 use App\Http\Controllers\Api\ApiHighCourtCaseController;
+use App\Http\Controllers\Api\ApilabourCaseController;
 use App\Http\Controllers\Api\ApiLandInfoController;
 use App\Http\Controllers\Api\ApiLitigationCalenderController;
 use App\Http\Controllers\Api\ApiRegulatoryComplianceController;
+use App\Http\Controllers\Api\ApiReportController;
 use App\Http\Controllers\Api\ApiSupremeCourtCaseController;
 use App\Http\Controllers\Api\PermissionTestController;
 use Illuminate\Http\Request;
@@ -381,9 +389,9 @@ route::delete("delete_counsel/{id}",[ApiCounselLawyerController::class,"delete_c
 route::get("internal_consel_new",[ApiCounselLawyerController::class,"internal_consel_new"]);
 
 route::get("chamber",[ApiCounselLawyerController::class,"chamber"]);
-route::post("add_chamber",[ApiCounselLawyerController::class,"add_chamber"]);
-route::put("update_chamber/{id}",[ApiCounselLawyerController::class,"update_chamber"]);
-route::delete("delete_chamber/{id}",[ApiCounselLawyerController::class,"delete_chamber"]);
+// route::post("add_chamber",[ApiCounselLawyerController::class,"add_chamber"]);
+// route::put("update_chamber/{id}",[ApiCounselLawyerController::class,"update_chamber"]);
+// route::delete("delete_chamber/{id}",[ApiCounselLawyerController::class,"delete_chamber"]);
 
 route::get("litigation_calander_list",[ApiLitigationCalenderController::class,"litigation_calander_list"]);
 route::get("search_litigation_calendar",[ApiLitigationCalenderController::class,"search_litigation_calendar"]);
@@ -432,3 +440,24 @@ route::get("edit_regulatory_compliance/{id}",[ApiRegulatoryComplianceController:
 
 route::get("high_court_cases",[ApiHighCourtCaseController::class,"high_court_cases"]);
 route::get("add_high_court_cases",[ApiHighCourtCaseController::class,"add_high_court_cases"]);
+
+route::get("labour_cases",[ApilabourCaseController::class,"labour_cases"]);
+route::get("add_labour_cases",[ApilabourCaseController::class,"add_labour_cases"]);
+route::get("edit_labour_cases/{id}",[ApilabourCaseController::class,"edit_labour_cases"]);
+route::post("update_labour_cases/{id}",[ApilabourCaseController::class,"update_labour_cases"]);
+route::get("view_labour_cases/{id}",[ApilabourCaseController::class,"view_labour_cases"]);
+route::get("update_labour_cases_status/{id}",[ApilabourCaseController::class,"update_labour_cases_status"]);
+
+
+route::get("ledger-report",[ApiReportController::class,"ledger_report"]);
+route::get("ledger-report-search",[ApiReportController::class,"ledger_report_search"]);
+route::get("print-ledger-report",[ApiReportController::class,"print_ledger_report"]);
+route::get("ledger-head-report-list",[ApiReportController::class,"ledger_head_report_list"]);
+route::get("ledger-head-report-list-search",[ApiReportController::class,"ledger_head_report_list_search"]);
+route::get("print-ledger-head-report-list",[ApiReportController::class,"print_ledger_head_report_list"]);
+route::get("income-expense-report",[ApiReportController::class,"income_expense_report"]);
+route::get("print-income-expense-report",[ApiReportController::class,"print_income_expense_report"]);
+route::get("income-expense-report-search",[ApiReportController::class,"income_expense_report_search"]);
+route::get("balance-report",[ApiReportController::class,"balance_report"]);
+route::get("balance-report-search",[ApiReportController::class,"balance_report_search"]);
+
