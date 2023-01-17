@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\models\SetupPropertyType;
-use App\models\SetupDistrict;
-use App\models\SetupSellerBuyer;
-use App\models\LandInformation;
-use App\models\SetupThana;
+use App\Models\LandInformation;
+use App\Models\SetupDistrict;
+use App\Models\SetupPropertyType;
+use App\Models\SetupSellerBuyer;
+use App\Models\SetupThana;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 

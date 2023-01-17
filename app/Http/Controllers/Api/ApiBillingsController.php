@@ -3,27 +3,27 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\models\SetupExternalCouncil;
-USE App\models\SetupBillType;
-use App\models\SetupBank;
-use App\models\SetupDigitalPayment;
-use App\models\SetupDistrict;
-use App\models\SetupCaseTypes;
-use App\models\SetupBankBranch;
-use App\models\CriminalCase;
-use App\models\LabourCase;
-use App\models\HighCourtCase;
-use App\models\AppellateCourtCase;
-use App\models\CaseBilling;
-use App\models\CivilCases;
-use App\models\QuassiJudicialCase;
-use App\models\SupremeCourtCase;
-use App\models\BillSchedule;
-use App\models\SetupBillParticular;
-use App\models\PaymentMode;
-use App\models\CriminalCasesBilling;
+use App\Models\AppellateCourtCase;
+use App\Models\BillSchedule;
+use App\Models\CaseBilling;
+use App\Models\CivilCases;
+use App\Models\CriminalCase;
+use App\Models\HighCourtCase;
+use App\Models\LabourCase;
+use App\Models\PaymentMode;
+use App\Models\QuassiJudicialCase;
+use App\Models\SetupBank;
+use App\Models\SetupBankBranch;
+use App\Models\SetupBillParticular;
+use App\Models\SetupBillType;
+use App\Models\SetupCaseTypes;
+use App\Models\SetupDigitalPayment;
+use App\Models\SetupDistrict;
+use App\Models\SetupExternalCouncil;
+use App\Models\SupremeCourtCase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+
 
 class ApiBillingsController extends Controller
 {
@@ -371,6 +371,7 @@ public function add_billing_quassi_judicial_cases($id)
             "message"=>"data get successfully"
         ]);
     }
+   
    
 
 }

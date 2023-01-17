@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\models\SetupComplianceCategory;
-use App\models\RegulatoryCompliance;
+use App\Models\RegulatoryCompliance;
+use App\Models\SetupComplianceCategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 

@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\models\SetupPropertyType;
-use App\models\SetupDistrict;
-use App\models\SetupSellerBuyer;
-use App\models\SetupFloor;
-use App\models\FlatInformation;
-use App\models\SetupThana;
-use App\models\SetupFlatNumber;
+use App\Models\SetupDistrict;
+use App\Models\SetupFloor;
+use App\Models\SetupPropertyType;
+use App\Models\SetupSellerBuyer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 

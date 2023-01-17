@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\models\CivilCases;
-use App\models\CriminalCase;
-use App\models\LabourCase;
-use App\models\QuassiJudicialCase;
-use App\models\SupremeCourtCase;
-use App\models\HighCourtCase;
-use App\models\AppellateCourtCase;
-use App\models\LandInformation;
-use App\models\FlatInformation;
-use App\models\SetupExternalCouncil;
-use App\models\SetupInternalCouncil;
-use App\models\SetupExternalCouncilAssociate;
-use App\models\ExternalFile;
+use App\Models\AppellateCourtCase;
+use App\Models\CivilCases;
+use App\Models\CriminalCase;
+use App\Models\ExternalFile;
+use App\Models\FlatInformation;
+use App\Models\HighCourtCase;
+use App\Models\LabourCase;
+use App\Models\LandInformation;
+use App\Models\QuassiJudicialCase;
+use App\Models\SetupExternalCouncil;
+use App\Models\SetupExternalCouncilAssociate;
+use App\Models\SetupInternalCouncil;
+use App\Models\SupremeCourtCase;
 use Illuminate\Http\Request;
 
 class ApiDocManagementController extends Controller

@@ -4,19 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Chamber;
-use App\models\Counsel;
-use App\models\SetupDocument;
-use App\models\SetupDocumentsType;
-use App\models\CounselDocumentsReceived;
-use App\models\ChamberPartner;
-use App\models\ChamberAssociate;
-use App\models\ChamberClerk;
-use App\models\ChamberAccounts;
-use App\models\ChamberSupportStaff;
+use App\Models\ChamberAccounts;
+use App\Models\ChamberAssociate;
+use App\Models\ChamberClerk;
+use App\Models\ChamberPartner;
+use App\Models\ChamberSupportStaff;
+use App\Models\Counsel;
+use App\Models\CounselDocumentsReceived;
 use Illuminate\Support\Facades\DB;
 use str;
 use App\models\CounselDocumentsRequired;
-
+use App\Models\SetupDocument;
+use App\Models\SetupDocumentsType;
 use Illuminate\Http\Request;
 
 class ApiCounselLawyerController extends Controller
