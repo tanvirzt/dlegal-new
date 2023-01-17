@@ -72,10 +72,11 @@ class LedgerEntryController extends Controller
                 $amnt = LedgerEntry::where('bill_id', $request->bill_id)->sum('paid_amount');
                 $data['bill_amount'] = $bill_amnt->bill_amount - $amnt;
             }
-
+       
             $bill_client = CaseBilling::findOrFail($request->bill_id);
             $data['client_id'] = $bill_client->client_id;
         }
+
         if($request->bill_id == null){
             $data['client_id'] = $request->client_id;
         }
