@@ -197,7 +197,9 @@ class LedgerEntryController extends Controller
         $case_class = CriminalCase::find($id);
         $single_case_bill = CaseBilling::find($id);
 
-        return view('accounts.ledger_entry.create', compact('bill_no','ledger_head','txn_no', 'case_class', 'single_case_bill'));
+        $client = SetupClient::where('delete_status', 0)->get();
+
+        return view('accounts.ledger_entry.create', compact('client','bill_no','ledger_head','txn_no', 'case_class', 'single_case_bill'));
     }
 
 
