@@ -13,10 +13,13 @@ use App\Http\Controllers\Api\ApiCivilCaseController;
 use App\Http\Controllers\Api\ApiCounselLawyerController;
 use App\Http\Controllers\Api\ApiCriminalCaseController;
 use App\Http\Controllers\Api\ApiDocManagementController;
+use App\Http\Controllers\Api\ApiEmployeeController;
 use App\Http\Controllers\Api\ApiFlatInfoController;
 use App\Http\Controllers\Api\ApiHighCourtCaseController;
 use App\Http\Controllers\Api\ApilabourCaseController;
 use App\Http\Controllers\Api\ApiLandInfoController;
+use App\Http\Controllers\Api\ApiLedgerCategoryController;
+use App\Http\Controllers\Api\ApiLedgerEntryController;
 use App\Http\Controllers\Api\ApiLitigationCalenderController;
 use App\Http\Controllers\Api\ApiRegulatoryComplianceController;
 use App\Http\Controllers\Api\ApiReportController;
@@ -398,7 +401,7 @@ route::get("search_litigation_calendar",[ApiLitigationCalenderController::class,
 route::get("litigation-calender-list-print/{date}",[ApiLitigationCalenderController::class,"print_litigation_calender_list"]);
 route::get("litigation_calender_short",[ApiLitigationCalenderController::class,"litigation_calender_short"]);
 route::get("litigation_calender_short_court_wise",[ApiLitigationCalenderController::class,"litigation_calender_short_court_wise"]);
-// route::get("calendar_short_next",[ApiLitigationCalenderController::class,"calendar_short_next"]);
+route::get("calendar_short_next",[ApiLitigationCalenderController::class,"calendar_short_next"]);
 route::get("litigation_calendar_list_print_preview",[ApiLitigationCalenderController::class,"litigation_calendar_list_print_preview"]);
 
 route::get("document_management",[ApiDocManagementController::class,"document_management"]);
@@ -460,4 +463,16 @@ route::get("print-income-expense-report",[ApiReportController::class,"print_inco
 route::get("income-expense-report-search",[ApiReportController::class,"income_expense_report_search"]);
 route::get("balance-report",[ApiReportController::class,"balance_report"]);
 route::get("balance-report-search",[ApiReportController::class,"balance_report_search"]);
+route::get("print-balance-report",[ApiReportController::class,"print_balance_report"]);
+
+
+route::get("ledger-category",[ApiLedgerCategoryController::class,"index"]);
+
+
+route::get("ledger-head",[ApiLedgerCategoryController::class,"index"]);
+
+route::get("ledger-entry",[ApiLedgerEntryController::class,"index"]);
+route::get("add-ledger-entry/{id}",[ApiLedgerEntryController::class,"add_ledger_entry"]);
+
+route::get("employee",[ApiEmployeeController::class,"index"]);
 
