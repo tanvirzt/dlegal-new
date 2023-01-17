@@ -209,7 +209,7 @@ class BillingsController extends Controller
 
     public function find_case_no(Request $request)
     {
-        // return $request->all();
+
 
         if ($request->class_of_cases == "District Court") {
 
