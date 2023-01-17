@@ -171,7 +171,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{ $data->ledger_head->ledger_head_name }}</td>
+                                    <td>{{ @$data->ledger_head->ledger_head_name }}</td>
                                     <td></td>
                                     <td>{{ $data->payment_type }}</td>
                                     <td>{{ $data->bill_amount }}</td>
