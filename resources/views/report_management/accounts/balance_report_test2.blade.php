@@ -382,10 +382,10 @@
 
                                                             <tr>
                                                                 <td colspan="5">Total: </td>
-                                                                <td> {{ (int) $item->sum('bill_amount') }} </td>
+                                                                <td> {{ (int) $data->sum('bill_amount') }} </td>
                                                                 <td> {{ $sum_paid_amount }} </td>
                                                                 @php
-                                                                    $bill = $item->sum('bill_amount') - $sum_paid_amount;
+                                                                    $bill = $data->sum('bill_amount') - $sum_paid_amount;
                                                                 @endphp
                                                                 <td> {{ $bill }} </td>
                                                                 <td colspan="1"> </td>

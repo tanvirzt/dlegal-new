@@ -52,6 +52,7 @@ class LedgerEntryController extends Controller
     */
     public function store(Request $request)
     {
+        //dd($request);
         $data = $request->all();
 
         if ($request->ledger_date != "dd/mm/yyyy") {
@@ -64,7 +65,7 @@ class LedgerEntryController extends Controller
         if($request->bill_id != null)
         {
             $is_exist = LedgerEntry::where('bill_id', $request->bill_id)->count();
-            dd($request->bill_id);
+           // dd($request->bill_id);
             if ( $is_exist > 0 ) {
                 $bill_amnt = CaseBilling::where('id', $request->bill_id)->first();
                 $amnt = LedgerEntry::where('bill_id', $request->bill_id)->sum('paid_amount');
