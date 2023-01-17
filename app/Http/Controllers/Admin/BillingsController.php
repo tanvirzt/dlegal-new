@@ -487,10 +487,14 @@ class BillingsController extends Controller
     public function delete_billing($id)
     {
         $data = CaseBilling::find($id);
+        $ledger_entries=DB::table('ledger_entries')->where('bill_id',$id)->get();
         if ($data['delete_status'] == 1){
             $delete_status = 0;
         }else{
             $delete_status = 1;
+        }
+        foreach($ledger_entries as $item){
+            $ledger_entries=DB::table('ledger_entries')->where('id',$item->id)->delete();
         }
         $data->delete_status = $delete_status;
         $data->save();
