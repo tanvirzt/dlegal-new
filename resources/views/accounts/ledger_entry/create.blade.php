@@ -148,10 +148,10 @@
                                             <div class="col-sm-8">
                                                 <select name="client_id" class="form-control select2">
                                                     <option value=""> Select </option>
-                                                    {{-- @foreach ($client as $clients)
+                                                    @foreach ($client as $clients)
                                                         <option value="{{ $clients->id }}" selected>
                                                             {{ $clients->client_name }} </option>
-                                                    @endforeach --}}
+                                                    @endforeach
 
                                                 </select>
                                                 @error('client_id')
