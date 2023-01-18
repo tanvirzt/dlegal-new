@@ -3557,7 +3557,7 @@
                             value="{{ $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . ' of ' . $data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null) , @endif
                                {{ $data->sub_seq_case_title_name }}
                                @php
-$case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+                                  $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
                                    $key = array_key_last($case_infos_sub_seq_case_no);
                                    echo $case_infos_sub_seq_case_no[$key];
 
