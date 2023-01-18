@@ -72,21 +72,9 @@ class LedgerEntryController extends Controller
                 $amnt = LedgerEntry::where('bill_id', $request->bill_id)->sum('paid_amount');
                 $data['bill_amount'] = $bill_amnt->bill_amount - $amnt;
             }
-       
-            $bill_client = CaseBilling::findOrFail($request->bill_id);
-            $data['client_id'] = $bill_client->client_id;
+          
         }
 
-        if($request->bill_id == null){
-            $data['client_id'] = $request->client_id;
-        }
-
-
-        if ($request->ledger_category_id == 'Expense') {
-            $data['expense_paid_amount'] = $request->paid_amount;
-        } else {
-            $data['income_paid_amount'] = $request->paid_amount;
-        }
         // dd($data);
         // LedgerEntry::create($data);
 
