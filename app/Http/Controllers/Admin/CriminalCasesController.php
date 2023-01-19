@@ -1316,7 +1316,7 @@ class CriminalCasesController extends Controller
         DB::beginTransaction();
 
         $data = CriminalCase::find($id);
-        $data->case_type = $request->case_type;
+       
         // $data->case_status_id = $request->case_status_id;
 
 
@@ -1585,7 +1585,7 @@ class CriminalCasesController extends Controller
             $data->save();
 
         } else if ($request->client_information) {
-
+            // dd($request->all());
             $data->client_party_id = $request->client_party_id;
             $data->client_category_id = $request->client_category_id;
             $data->client_subcategory_id = $request->client_subcategory_id;
@@ -1728,7 +1728,7 @@ class CriminalCasesController extends Controller
                 $required->save();
             }
         } else if ($request->case_information) {
-
+            $data->case_type = $request->case_type;
             $data->case_infos_division_id = $request->case_infos_division_id;
             $data->case_infos_district_id = $request->case_infos_district_id;
             $data->case_infos_thana_id = $request->case_infos_thana_id;

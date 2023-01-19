@@ -52,7 +52,8 @@ class LedgerEntryController extends Controller
     */
     public function store(Request $request)
     {
-        //dd($request);
+        // dd($request->all());
+
         $data = $request->all();
 
         if ($request->ledger_date != "dd/mm/yyyy") {
@@ -65,21 +66,43 @@ class LedgerEntryController extends Controller
         if($request->bill_id != null)
         {
             $is_exist = LedgerEntry::where('bill_id', $request->bill_id)->count();
-           // dd($request->bill_id);
+        //    dd($request->bill_id);
             if ( $is_exist > 0 ) {
                 $bill_amnt = CaseBilling::where('id', $request->bill_id)->first();
                 $amnt = LedgerEntry::where('bill_id', $request->bill_id)->sum('paid_amount');
                 $data['bill_amount'] = $bill_amnt->bill_amount - $amnt;
             }
-
-            $bill_client = CaseBilling::findOrFail($request->bill_id);
-            $data['client_id'] = $bill_client->client_id;
-        }
-        if($request->bill_id == null){
-            $data['client_id'] = $request->client_id;
+          
+        }else{
+            $data['bill_amount']='';
         }
 
-        LedgerEntry::create($data);
+        // dd($data);
+        // LedgerEntry::create($data);
+
+        $saveData = new LedgerEntry();
+
+        $saveData->transaction_no = $request->transaction_no;
+        $saveData->job_no = $request->job_no;
+        $saveData->ledger_category_id = $request->ledger_category_id;
+        $saveData->ledger_head_id = $request->ledger_head_id;
+        $saveData->payment_against_bill = $request->payment_against_bill;
+        $saveData->client_id = $data['client_id'];
+        $saveData->bill_id = $request->bill_id;
+        $saveData->ledger_date = $data['ledger_date'];
+        $saveData->payment_type = $request->payment_type;
+        $saveData->bill_amount = $data['bill_amount'];
+        $saveData->paid_amount = $request->paid_amount;
+        $saveData->remarks = $request->remarks;
+
+        if ($request->ledger_category_id == 'Expense') {
+            $saveData->expense_paid_amount = $request->paid_amount;
+        } else {
+            $saveData->income_paid_amount = $request->paid_amount;
+        }
+
+        $saveData->save();
+     
 
         return redirect()->route('ledger-entry.index')->with('success','Ledger Entry has been created successfully.');
     }
@@ -123,6 +146,8 @@ class LedgerEntryController extends Controller
         //     'payment_type' => 'required',
         // ]);
 
+        // dd($request->all());
+
         $data = $request->post();
 
         if ($request->ledger_date != "dd/mm/yyyy") {
@@ -134,11 +159,11 @@ class LedgerEntryController extends Controller
         }
 
         if ($request->ledger_category_id == 'Expense') {
-            $data['expense_paid_amount'] = $request->payment_amount;
+            $data['expense_paid_amount'] = $request->paid_amount;
             $data['income_paid_amount'] = null;
         } else {
             $data['expense_paid_amount'] = null;
-            $data['income_paid_amount'] = $request->payment_amount;
+            $data['income_paid_amount'] = $request->paid_amount;
         }
 
 
