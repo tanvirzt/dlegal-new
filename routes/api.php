@@ -24,8 +24,6 @@ use App\Http\Controllers\Api\ApiLitigationCalenderController;
 use App\Http\Controllers\Api\ApiRegulatoryComplianceController;
 use App\Http\Controllers\Api\ApiReportController;
 use App\Http\Controllers\Api\ApiSupremeCourtCaseController;
-use App\Http\Controllers\Api\ApiTaskCategoryController;
-use App\Http\Controllers\Api\ApiTaskController;
 use App\Http\Controllers\Api\PermissionTestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -394,7 +392,7 @@ route::delete("delete_counsel/{id}",[ApiCounselLawyerController::class,"delete_c
 route::get("internal_consel_new",[ApiCounselLawyerController::class,"internal_consel_new"]);
 
 route::get("chamber",[ApiCounselLawyerController::class,"chamber"]);
-route::post("save-chamber",[ApiCounselLawyerController::class,"store"]);
+// route::post("add_chamber",[ApiCounselLawyerController::class,"add_chamber"]);
 // route::put("update_chamber/{id}",[ApiCounselLawyerController::class,"update_chamber"]);
 // route::delete("delete_chamber/{id}",[ApiCounselLawyerController::class,"delete_chamber"]);
 
@@ -405,7 +403,6 @@ route::get("litigation_calender_short",[ApiLitigationCalenderController::class,"
 route::get("litigation_calender_short_court_wise",[ApiLitigationCalenderController::class,"litigation_calender_short_court_wise"]);
 // route::get("calendar_short_next",[ApiLitigationCalenderController::class,"calendar_short_next"]);
 route::get("litigation_calendar_list_print_preview",[ApiLitigationCalenderController::class,"litigation_calendar_list_print_preview"]);
-route::get("search-litigation-calendar-short",[ApiLitigationCalenderController::class,"search_litigation_calendar_short"]);
 
 route::get("document_management",[ApiDocManagementController::class,"document_management"]);
 
@@ -449,10 +446,10 @@ route::get("add_high_court_cases",[ApiHighCourtCaseController::class,"add_high_c
 
 route::get("labour_cases",[ApilabourCaseController::class,"labour_cases"]);
 route::get("add_labour_cases",[ApilabourCaseController::class,"add_labour_cases"]);
-// route::get("edit_labour_cases/{id}",[ApilabourCaseController::class,"edit_labour_cases"]);
-// route::post("update_labour_cases/{id}",[ApilabourCaseController::class,"update_labour_cases"]);
-// route::get("view_labour_cases/{id}",[ApilabourCaseController::class,"view_labour_cases"]);
-// route::get("update_labour_cases_status/{id}",[ApilabourCaseController::class,"update_labour_cases_status"]);
+route::get("edit_labour_cases/{id}",[ApilabourCaseController::class,"edit_labour_cases"]);
+route::post("update_labour_cases/{id}",[ApilabourCaseController::class,"update_labour_cases"]);
+route::get("view_labour_cases/{id}",[ApilabourCaseController::class,"view_labour_cases"]);
+route::get("update_labour_cases_status/{id}",[ApilabourCaseController::class,"update_labour_cases_status"]);
 
 
 route::get("ledger-report",[ApiReportController::class,"ledger_report"]);
@@ -467,8 +464,6 @@ route::get("income-expense-report-search",[ApiReportController::class,"income_ex
 route::get("balance-report",[ApiReportController::class,"balance_report"]);
 route::get("balance-report-search",[ApiReportController::class,"balance_report_search"]);
 route::get("print-balance-report",[ApiReportController::class,"print_balance_report"]);
-route::get("litigation/report",[ApiReportController::class,"litigation_report"]);
-route::get("litigation/report/result",[ApiReportController::class,"litigation_report_result"]);
 
 
 route::get("ledger-category",[ApiLedgerCategoryController::class,"index"]);
@@ -480,8 +475,10 @@ route::get("ledger-entry",[ApiLedgerEntryController::class,"index"]);
 route::get("add-ledger-entry/{id}",[ApiLedgerEntryController::class,"add_ledger_entry"]);
 
 // route::get("employee",[ApiEmployeeController::class,"index"]);
+route::get("all-cases",[ApiCriminalCaseController::class,"all_cases"]);
+route::get("add-criminal-cases",[ApiCriminalCaseController::class,"add_criminal_cases"]);
 
-route::get("task-category",[ApiTaskCategoryController::class,"index"]);
+route::post("save-criminal-cases",[ApiCriminalCaseController::class,"save_criminal_cases"]);
 
-route::get("task",[ApiTaskController::class,"index"]);
+
 
