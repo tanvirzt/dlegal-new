@@ -164,25 +164,25 @@ class ApiCriminalCaseController extends Controller
         $law = SetupLaw::where(['case_type' => 'Criminal Cases', 'delete_status' => 0])->orderBy('law_name', 'asc')->get();
         $court = SetupCourt::where(['case_class_id' => 'Criminal', 'delete_status' => 0])->orderBy('court_name', 'asc')->get();
         $designation = SetupDesignation::where('delete_status', 0)->orderBy('designation_name', 'asc')->get();
-        $external_council = SetupExternalCouncil::where('is_associate', '!=', 'on')->where(['delete_status' => 0])->orderBy('first_name', 'asc')->get();
+       
        
         $case_category = SetupCaseCategory::where(['case_type' => 'Criminal', 'delete_status' => 0])->orderBy('case_category', 'asc')->get();
         $case_status = SetupCaseStatus::where('delete_status', 0)->orderBy('case_status_name', 'asc')->get();
-        $property_type = SetupPropertyType::where('delete_status', 0)->orderBy('property_type_name', 'asc')->get();
+       
         $division = DB::table("setup_divisions")->orderBy('division_name', 'asc')->get();
         $person_title = SetupPersonTitle::where('delete_status', 0)->orderBy('person_title_name', 'asc')->get();
         $next_date_reason = SetupNextDateReason::where('delete_status', 0)->orderBy('next_date_reason_name', 'asc')->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->orderBy('case_types_name', 'asc')->get();
-        $company = SetupCompany::where('delete_status', 0)->orderBy('company_name', 'asc')->get();
+      
         $zone = SetupRegion::where('delete_status', 0)->orderBy('region_name', 'asc')->get();
-        $last_court_order = SetupCourtLastOrder::where('delete_status', 0)->orderBy('court_last_order_name', 'asc')->get();
+        
         $area = SetupArea::where('delete_status', 0)->orderBy('area_name', 'asc')->get();
         $internal_council = SetupInternalCouncil::where('delete_status', 0)->orderBy('first_name', 'asc')->get();
         $client_category = SetupClientCategory::where('delete_status', 0)->orderBy('client_category_name', 'asc')->get();
         $branch = SetupBranch::where('delete_status', 0)->orderBy('branch_name', 'asc')->get();
         $program = SetupProgram::where('delete_status', 0)->orderBy('program_name', 'asc')->get();
         $section = SetupSection::where('delete_status', 0)->orderBy('section_name', 'asc')->get();
-        $next_day_presence = SetupNextDayPresence::where('delete_status', 0)->orderBy('next_day_presence_name', 'asc')->get();
+        
         $legal_issue = SetupLegalIssue::where('delete_status', 0)->orderBy('legal_issue_name', 'asc')->get();
         $legal_service = SetupLegalService::where('delete_status', 0)->orderBy('legal_service_name', 'asc')->get();
         $matter = SetupMatter::where('delete_status', 0)->orderBy('matter_name', 'asc')->get();
@@ -214,7 +214,6 @@ class ApiCriminalCaseController extends Controller
             "law"=>$law,
             "court"=>$court,
             "designation"=>$designation,
-            "external_council"=>$external_council,
             "case_category"=>$case_category,
             "case_status"=>$case_status,
             "property_type"=>$zone,
@@ -246,6 +245,13 @@ class ApiCriminalCaseController extends Controller
             "chamber"=>$chamber,
             "leadLaywer"=>$leadLaywer,
             "assignedlaywer"=>$assignedlaywer,
+            "case_types"=>$case_types,
+            "internal_council"=>$internal_council,
+            "client_category"=>$client_category,
+            "branch"=>$branch,
+            "program"=>$program,
+            "section"=>$section,
+            
 
             "message"=>"data added successfully"
         ]);
@@ -262,7 +268,7 @@ class ApiCriminalCaseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function save_criminal_cases(Request $request)
-    {
+    {  
        
 
         
@@ -333,7 +339,7 @@ class ApiCriminalCaseController extends Controller
         $data->opposition_district_id = $request->opposition_district_id;
         $data->opposition_district_write = $request->opposition_district_write;
         $data->opposition_thana_id = $request->opposition_thana_id; 
-        
+
         $data->opposition_thana_write = $request->opposition_thana_write;
         $data->opposition_representative_name = $request->opposition_representative_name;
         $data->opposition_representative_details = $request->opposition_representative_details;
