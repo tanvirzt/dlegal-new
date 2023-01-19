@@ -211,12 +211,13 @@ class ApiCriminalCaseController extends Controller
         $assignedlaywer = Counsel::get();
         return response()->json([
             "status"=>200,
+            "case_info"=>[
             "law"=>$law,
             "court"=>$court,
             "designation"=>$designation,
             "case_category"=>$case_category,
             "case_status"=>$case_status,
-            "property_type"=>$zone,
+            
             "area"=>$area,
             "division"=>$division,
             "person_title"=>$person_title,
@@ -228,12 +229,16 @@ class ApiCriminalCaseController extends Controller
             "allegation"=>$allegation,
             "in_favour_of"=>$in_favour_of,
             "mode"=>$mode,
-            "referrer"=>$referrer,
+            "referrer"=>$referrer],
+            "client_info"=>[
             "party"=>$party,
             "client"=>$client,
-            "profession"=>$profession,
-            "opposition"=>$opposition,
-            "documents"=>$documents,
+            "profession"=>$profession],
+            "opposition_info"=>[
+            "opposition"=>$opposition],
+            "documents_info"=>[
+            "documents"=>$documents],
+            "case_status"=>[
             "case_title"=>$case_title,
             "complainant"=>$complainant,
             "accused"=>$accused,
@@ -241,7 +246,8 @@ class ApiCriminalCaseController extends Controller
             "cabinet"=>$cabinet,
             "particulars"=>$particulars,
             "documents_type"=>$documents_type,
-            "group_name"=>$group_name,
+            "group_name"=>$group_name],
+            "lawyear_info"=>[
             "chamber"=>$chamber,
             "leadLaywer"=>$leadLaywer,
             "assignedlaywer"=>$assignedlaywer,
@@ -250,7 +256,7 @@ class ApiCriminalCaseController extends Controller
             "client_category"=>$client_category,
             "branch"=>$branch,
             "program"=>$program,
-            "section"=>$section,
+            "section"=>$section],
             
 
             "message"=>"data added successfully"
