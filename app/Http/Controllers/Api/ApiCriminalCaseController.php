@@ -217,50 +217,65 @@ class ApiCriminalCaseController extends Controller
             "designation"=>$designation,
             "case_category"=>$case_category,
             "case_status"=>$case_status,
+            "branch"=>$branch,
+            
+            "section"=>$section,
+            "zone"=>$zone,
+            "complainant"=>$complainant,
             
             "area"=>$area,
             "division"=>$division,
-            "person_title"=>$person_title,
-            "next_date_reason"=>$next_date_reason,
-            "legal_issue"=>$legal_issue,
-            "legal_service"=>$legal_service,
+            "accused"=>$accused,
+            
             "matter"=>$matter,
-            "coordinator"=>$coordinator,
+            
             "allegation"=>$allegation,
-            "in_favour_of"=>$in_favour_of,
-            "mode"=>$mode,
+            
+            
             "referrer"=>$referrer],
             "client_info"=>[
             "party"=>$party,
             "client"=>$client,
-            "profession"=>$profession],
+            "profession"=>$profession,
+             "division"=>$division,
+             "area"=>$area,
+             "branch"=>$branch,
+             "coordinator"=>$coordinator,
+             "referrer"=>$referrer],
             "opposition_info"=>[
-            "opposition"=>$opposition],
+            "opposition"=>$opposition,
+            "profession"=>$profession,
+             "division"=>$division,
+             "area"=>$area,
+             "branch"=>$branch,
+             "coordinator"=>$coordinator,
+             "referrer"=>$referrer],
             "documents_info"=>[
             "documents"=>$documents],
-            "case_status"=>[
-            "case_title"=>$case_title,
+            "case_events"=>[
+            "case_title"=>$case_title],
             "complainant"=>$complainant,
             "accused"=>$accused,
             "court_short"=>$court_short,
             "cabinet"=>$cabinet,
             "particulars"=>$particulars,
             "documents_type"=>$documents_type,
-            "group_name"=>$group_name],
+            "group_name"=>$group_name,
             "lawyear_info"=>[
             "chamber"=>$chamber,
             "leadLaywer"=>$leadLaywer,
-            "assignedlaywer"=>$assignedlaywer,
+            "assignedlaywer"=>$assignedlaywer],
+            "lawyear_info_opposite"=>[
+            "chamber"=>$chamber,
+            "leadLaywer"=>$leadLaywer,
+            "assignedlaywer"=>$assignedlaywer],
             "case_types"=>$case_types,
             "internal_council"=>$internal_council,
             "client_category"=>$client_category,
-            "branch"=>$branch,
-            "program"=>$program,
-            "section"=>$section],
-            
-
+           
             "message"=>"data added successfully"
-        ]);
+
+            ]);
             
 
        
