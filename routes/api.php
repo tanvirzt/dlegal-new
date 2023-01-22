@@ -482,3 +482,4 @@ route::post("save-criminal-cases",[ApiCriminalCaseController::class,"save_crimin
 
 
 
+
