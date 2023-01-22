@@ -457,14 +457,7 @@ class ApiCriminalCaseController extends Controller
         $data->required_wanting_documents_sections=$request->required_wanting_documents_sections;
         $data->required_wanting_documents_date=$request->required_wanting_documents_date;
         $data->required_wanting_documents_type_id=$request->required_wanting_documents_type_id;
-        $data->client_business_name=$request->client_business_name;
-        $data->client_business_name=$request->client_business_name;
-        $data->client_business_name=$request->client_business_name;
-        $data->client_business_name=$request->client_business_name;
-        $data->client_business_name=$request->client_business_name;
-        $data->client_business_name=$request->client_business_name;
-        $data->client_business_name=$request->client_business_name;
-        $data->client_business_name=$request->client_business_name;
+       
 
         
 
