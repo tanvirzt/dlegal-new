@@ -192,87 +192,100 @@ class ApiCriminalCaseController extends Controller
         $mode = SetupMode::where('delete_status', 0)->orderBy('mode_name', 'asc')->get();
         $referrer = SetupReferrer::where('delete_status', 0)->orderBy('referrer_name', 'asc')->get();
         $party = SetupParty::where('delete_status', 0)->orderBy('party_name', 'asc')->get();
-        $client = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();
         $profession = SetupProfession::where('delete_status', 0)->orderBy('profession_name', 'asc')->get();
         $opposition = SetupOpposition::where('delete_status', 0)->orderBy('opposition_name', 'asc')->get();
         $documents = SetupDocument::where('delete_status', 0)->orderBy('documents_name', 'asc')->get();
         $case_title = SetupCaseTitle::where(['case_type' => 'Criminal', 'delete_status' => 0])->orderBy('case_title_name', 'asc')->get();
-        
+        $client = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();
         $complainant = SetupComplainant::where('delete_status', 0)->orderBy('complainant_name', 'asc')->get();
         $accused = SetupAccused::where('delete_status', 0)->orderBy('accused_name', 'asc')->get();
         $court_short = SetupCourt::where('delete_status', 0)->orderBy('court_short_name', 'asc')->get();
         $cabinet = SetupCabinet::where('delete_status', 0)->orderBy('cabinet_name', 'asc')->get();
-        $particulars = SetupParticulars::where('delete_status', 0)->orderBy('particulars_name', 'asc')->get();
         $documents_type = SetupDocumentsType::where('delete_status', 0)->orderBy('documents_type_name', 'asc')->get();
         $group_name = SetupGroup::get();
-
+        $case_types = SetupCaseTypes::where('delete_status', 0)->orderBy('case_types_name', 'asc')->get();
         $chamber = Counsel::where('counsel_category','Chamber')->get();
         $leadLaywer = Counsel::where('counsel_type','Internal')->get();
         $assignedlaywer = Counsel::get();
         return response()->json([
             "status"=>200,
-            "case_info"=>[
-            "law"=>$law,
-            "court"=>$court,
-            "designation"=>$designation,
-            "case_category"=>$case_category,
-            "case_status"=>$case_status,
-            "branch"=>$branch,
+            "case_info"=>
+                        [
+                        "law"=>$law,
+                        "court"=>$court,
+                        "case_title"=>$case_title,
+                        "designation"=>$designation,
+                        "case_category"=>$case_category,
+                        "case_status"=>$case_status,
+                        "branch"=>$branch,
+                        "section"=>$section,
+                        "zone"=>$zone,
+                        "area"=>$area,
+                        "division"=>$division,
+                        "matter"=>$matter,
+                        "allegation"=>$allegation,
+                        "court_short"=>$court_short,
+                        "case_types"=>$case_types,
+                        
+                        
+                        
+                     ],
+
+         "case_events"=>    
+                     ["documents_type"=>$documents_type,
+                     "documents"=>$documents
+                    ],
+        "case_steps"=>[
+                        "documents_type"=>$documents_type
+                     ],
+        "documents_received"=>[
+                            "documents"=>$documents,
+                            "documents_type"=>$documents_type
+                             ],
+        "documents_required"=>[
+                                "documents"=>$documents,
+                                "documents_type"=>$documents_type
+                              ],
+        "case_file_location"=>[
+                                "cabinet"=>$cabinet
+                              ],
+        "documents_upload"=>[
+                                "documents_type"=>$documents_type
+                            ],
+
+        "client_info"=>[
+                        "in_favour_of"=>$in_favour_of,
+                         "client"=>$client,
+                         "profession"=>$profession,
+                         "division"=>$division,
+                         "area"=>$area,
+                         "group_name"=>$group_name,
+                         "branch"=>$branch,
+                         "coordinator"=>$coordinator,
+                         "client_category"=>$client_category
+             ],
+       "opposition_info"=>[
+                            "opposition"=>$opposition,
+                             "profession"=>$profession,
+                             "division"=>$division,
+                            "area"=>$area,
+                            "branch"=>$branch,
+                            "coordinator"=>$coordinator,
+                            "group_name"=>$group_name,
+                            "client_category"=>$client_category,
+                            "in_favour_of"=>$in_favour_of,
             
-            "section"=>$section,
-            "zone"=>$zone,
-            "complainant"=>$complainant,
-            
-            "area"=>$area,
-            "division"=>$division,
-            "accused"=>$accused,
-            
-            "matter"=>$matter,
-            
-            "allegation"=>$allegation,
-            
-            
-            "referrer"=>$referrer],
-            "client_info"=>[
-            "party"=>$party,
-            "client"=>$client,
-            "profession"=>$profession,
-             "division"=>$division,
-             "area"=>$area,
-             "branch"=>$branch,
-             "coordinator"=>$coordinator,
-             "referrer"=>$referrer],
-            "opposition_info"=>[
-            "opposition"=>$opposition,
-            "profession"=>$profession,
-             "division"=>$division,
-             "area"=>$area,
-             "branch"=>$branch,
-             "coordinator"=>$coordinator,
-             "referrer"=>$referrer],
-            "documents_info"=>[
-            "documents"=>$documents],
-            "case_events"=>[
-            "case_title"=>$case_title],
-            "complainant"=>$complainant,
-            "accused"=>$accused,
-            "court_short"=>$court_short,
-            "cabinet"=>$cabinet,
-            "particulars"=>$particulars,
-            "documents_type"=>$documents_type,
-            "group_name"=>$group_name,
-            "lawyear_info"=>[
-            "chamber"=>$chamber,
-            "leadLaywer"=>$leadLaywer,
-            "assignedlaywer"=>$assignedlaywer],
-            "lawyear_info_opposite"=>[
-            "chamber"=>$chamber,
-            "leadLaywer"=>$leadLaywer,
-            "assignedlaywer"=>$assignedlaywer],
-            "case_types"=>$case_types,
-            "internal_council"=>$internal_council,
-            "client_category"=>$client_category,
+            ],
+
+            "lawyear_information"=>[
+                            "chamber"=>$chamber,
+                            "assignedlaywer"=>$assignedlaywer,
+                            "leadLaywer"=>$leadLaywer,
+                            
+
+            ],
            
+            
             "message"=>"data added successfully"
 
             ]);
@@ -290,141 +303,157 @@ class ApiCriminalCaseController extends Controller
      */
     public function save_criminal_cases(Request $request)
     {  
-       
-
-        
-        
         $data = new CriminalCase();
-        $data->created_case_id = $request->created_case_id;
-        $data->client = $request->client;
-        $data->legal_issue_id = $request->legal_issue_id;
-        $data->legal_issue_write = $request->legal_issue_write;
-        $data->legal_service_id = $request->legal_service_id;
-        $data->legal_service_write = $request->legal_service_write;
-        $data->complainant_informant_id = $request->complainant_informant_id;
-        $data->complainant_informant_write = $request->complainant_informant_write;
-        $data->accused_id = $request->accused_id;
-        $data->accused_write = $request->accused_write;
-        $data->in_favour_of_id = $request->in_favour_of_id;
-        $data->case_no = $request->case_no;
-        $data->name_of_the_court_id = $request->name_of_the_court_id;
-        $data->next_date = $request->next_date;
-        $data->next_date_fixed_id = $request->next_date_fixed_id;
-        $data->received_date = $request->received_date;
-        $data->mode_of_receipt_id = $request->mode_of_receipt_id;
-        $data->referrer_id = $request->referrer_id;
-        $data->referrer_write = $request->referrer_write;
-        $data->referrer_details = $request->referrer_details;
-        $data->received_by_id = $request->received_by_id;
-        $data->received_by_write = $request->received_by_write;
-        $data->cabinet_id = $request->cabinet_id;
-        $data->self_number = $request->self_number;
-        $data->client_party_id = $request->client_party_id;
-        $data->client_category_id = $request->client_category_id;
-        $data->client_subcategory_id = $request->client_subcategory_id;
-        $data->client_id = $request->client_id ? implode(', ', $request->client_id) : null;
-        $data->client_business_name = $request->client_business_name;
-        $data->client_group_id = $request->client_group_id;
-        $data->client_group_write = $request->client_group_write;
-      
-        $data->client_address = $request->client_address;
-        $data->client_mobile = $request->client_mobile;
-        $data->client_email = $request->client_email;
-        $data->client_profession_id = $request->client_profession_id;
-        $data->client_profession_write = $request->client_profession_write;
-        $data->client_division_id = $request->client_division_id;
-        $data->client_divisoin_write = $request->client_divisoin_write;
-        $data->client_district_id = $request->client_district_id;
-        $data->client_district_write = $request->client_district_write;
-        $data->client_thana_id = $request->client_thana_id;
-        $data->client_thana_write = $request->client_thana_write;
-        $data->client_representative_name = $request->client_representative_name;
-        $data->client_representative_details = $request->client_representative_details;
-        $data->client_coordinator_tadbirkar_id = $request->client_coordinator_tadbirkar_id;
-        $data->coordinator_tadbirkar_write = $request->coordinator_tadbirkar_write;
-        $data->client_coordinator_details = $request->client_coordinator_details;
-        $data->opposition_party_id = $request->opposition_party_id;
-        $data->opposition_category_id = $request->opposition_category_id;
-        $data->opposition_subcategory_id = $request->opposition_subcategory_id;
-        $data->opposition_id = $request->opposition_id ? implode(', ', $request->opposition_id) : null;
-     
-        $data->opposition_group_id = $request->opposition_group_id;
-        $data->opposition_group_write = $request->opposition_group_write;
-        $data->opposition_address = $request->opposition_address;
-        $data->opposition_mobile = $request->opposition_mobile;
-        $data->opposition_email = $request->opposition_email;
-        $data->opposition_profession_id = $request->opposition_profession_id;
-        $data->opposition_profession_write = $request->opposition_profession_write;
-        $data->opposition_division_id = $request->opposition_division_id;
-        $data->opposition_divisoin_write = $request->opposition_divisoin_write;
-        $data->opposition_district_id = $request->opposition_district_id;
-        $data->opposition_district_write = $request->opposition_district_write;
-        $data->opposition_thana_id = $request->opposition_thana_id; 
-
-        $data->opposition_thana_write = $request->opposition_thana_write;
-        $data->opposition_representative_name = $request->opposition_representative_name;
-        $data->opposition_representative_details = $request->opposition_representative_details;
-        $data->opposition_coordinator_tadbirkar_id = $request->opposition_coordinator_tadbirkar_id;
-        $data->opposition_coordinator_tadbirkar_write = $request->opposition_coordinator_tadbirkar_write;
-        $data->opposition_coordinator_details = $request->opposition_coordinator_details;
-
-        $data->lawyer_advocate_id = $request->lawyer_advocate_id;
-        $data->lawyer_advocate_write = $request->lawyer_advocate_write;
-
-        $data->assigned_lawyer_id = $request->assigned_lawyer_id ? implode(', ', $request->assigned_lawyer_id) : null;
-        $data->lawyers_remarks = $request->lawyers_remarks;
-
-
-        
-
         $data->case_type = $request->case_type;
-        $data->lead_laywer_name = $request->lead_laywer_name;
-        $data->lead_laywer_name_extra = $request->lead_laywer_name_extra;
-        $data->assigned_lawyer_extra = $request->assigned_lawyer_extra;
-
-
-
         $data->case_infos_division_id = $request->case_infos_division_id;
         $data->case_infos_district_id = $request->case_infos_district_id;
         $data->case_infos_thana_id = $request->case_infos_thana_id;
         $data->case_category_id = $request->case_category_id;
         $data->case_subcategory_id = $request->case_subcategory_id;
-        $data->case_infos_case_title_id = $request->case_infos_case_title_id;
-        $data->case_infos_case_no = $request->case_infos_case_no;
-        $data->case_infos_case_year = $request->case_infos_case_year;
-        $data->case_infos_court_id = $request->case_infos_court_id ? implode(', ', $request->case_infos_court_id) : null;
-        $data->case_infos_court_short_id = $request->case_infos_court_short_id ? implode(', ', $request->case_infos_court_short_id) : null;
-        $data->court_short_write = rtrim($request->court_short_write, ', ');
-        $data->case_infos_sub_seq_case_title_id = $request->case_infos_sub_seq_case_title_id;
-        $data->case_infos_sub_seq_case_no = rtrim($request->case_infos_sub_seq_case_no, ', ');
-        $data->case_infos_sub_seq_case_year = rtrim($request->case_infos_sub_seq_case_year, ', ');
-        $data->case_infos_sub_seq_court_id = $request->case_infos_sub_seq_court_id ? implode(', ', $request->case_infos_sub_seq_court_id) : null;
-        $data->case_infos_sub_seq_court_short_id = rtrim($request->case_infos_sub_seq_court_short_id, ', ');
-        $data->sub_seq_court_short_write = rtrim($request->sub_seq_court_short_write, ', ');
-        $data->law_id = $request->law_id ? implode('/ ', $request->law_id) : null;
-        $data->law_write = rtrim($request->law_write, ', ');
-        $data->section_id = $request->section_id ? implode(', ', $request->section_id) : null;
-        $data->section_write = rtrim($request->section_write, ', ');
-       
-        $data->case_status_id = 'Running';
-        $data->case_status_id = 'Running';
+        $data->case_type_id = $request->case_type_id;
+        $data->case_prayer_id = $request->case_prayer_id;
+        $data->case_nature_id = $request->case_nature_id;
+        $data->case_nature_write = $request->case_nature_write;
         $data->matter_id = $request->matter_id;
         $data->matter_write = $request->matter_write;
-        $data->case_type_id = $request->case_type_id;
-        $data->case_infos_complainant_informant_name = rtrim($request->complainant, ', ');
-        $data->complainant_informant_representative = rtrim($request->complainant_informant_representative, ', ');
-        $data->case_infos_accused_name = rtrim($request->accused, ', ');
-        $data->case_infos_accused_representative = rtrim($request->case_infos_accused_representative, ', ');
+        $data->case_infos_case_title_id=$request->name_of_the_court_id;
+        $data->case_infos_case_titel_sort_id = $request->case_infos_case_titel_sort_id;
+        $data->case_infos_case_no = $request->case_infos_case_no;
+        $data->case_infos_case_year = $request->case_infos_case_year;
+        $data->court_name = $request->court_name;
+        $data->court_short_name = $request->court_short_name;
+        $data->court_short_write = $request->court_short_write;
+        $data->case_infos_sub_seq_case_title_id = $request->case_infos_sub_seq_case_title_id;
+        $data->case_infos_sub_seq_case_title_sort_id = $request->case_infos_sub_seq_case_title_sort_id;
+        $data->case_infos_sub_seq_case_no = $request->case_infos_sub_seq_case_no;
+        $data->case_infos_sub_seq_court_id = $request->case_infos_sub_seq_court_id;
+        $data->case_infos_sub_seq_court_short_id = $request->case_infos_sub_seq_court_short_id;
+        $data->sub_seq_court_short_write = $request->sub_seq_court_short_write;
+        $data->law_id = $request->law_id;
+        $data->law_write = $request->law_write;
+        $data->section_id = $request->section_id;
+        $data->section_write = $request->section_write;
+        $data->date_of_filing = $request->date_of_filing;
+        $data->case_status_id = $request->case_status_id;
+        $data->case_infos_complainant_informant_name =$request->case_infos_complainant_informant_name;
+        $data->complainant_informant_representative = $request->complainant_informant_representative;
+        $data->case_infos_accused_name = $request->case_infos_accused_name;
+        $data->case_infos_accused_representative = $request->case_infos_accused_representative;
         $data->prosecution_witness = $request->prosecution_witness;
         $data->defense_witness = $request->defense_witness;
-       
-        $data->save();
+        $data->case_infos_allegation_claim_id = $request->case_infos_allegation_claim_id;
+        $data->case_infos_allegation_claim_write = $request->case_infos_allegation_claim_write;
+        $data->amount_of_money = $request->amount_of_money;
+        $data->another_claim = $request->another_claim;
+        $data->recovery_seizure_articles = $request->recovery_seizure_articles;
+        $data->summary_facts = $request->summary_facts;
+        $data->case_info_remarks = $request->case_info_remarks;
+        $data->received_documents_sections = $request->received_documents_sections;
+        $data->received_documents = $request->received_documents;
+        $data->letter_notice_date = $request->letter_notice_date;
+        $data->letter_notice_documents_id = $request->letter_notice_documents_id;
+        $data->letter_notice_documents_write = $request->letter_notice_documents_write;
+        $data->letter_notice_particulars_write = $request->letter_notice_particulars_write;
+        $data->letter_notice_type_id = $request->letter_notice_type_id;
+        $data->letter_notice_sections = $request->letter_notice_sections;
+        $data->letter_notice_date =$request->letter_notice_date;
+        $data->letter_notice_documents_id = $request->letter_notice_documents_id;
+        $data->letter_notice_documents_write = $request->letter_notice_documents_write;
+        $data->letter_notice_particulars_write = $request->letter_notice_particulars_write;
+        $data->letter_notice_type_id = $request->letter_notice_type_id;
+        $data->case_steps_filing = $request->case_steps_filing;
+        $data->case_steps_filing_note = $request->case_steps_filing_note;
+        $data->case_steps_filing_type_id = $request->case_steps_filing_type_id;
+        $data->case_steps_servicr_return = $request->case_steps_servicr_return;
+        $data->case_steps_servicr_return_note = $request->case_steps_servicr_return_note;
+        $data->case_steps_servicr_return_type_id = $request->case_steps_servicr_return_type_id;
+        $data->case_steps_sr_completed = $request->case_steps_sr_completed;
+        $data->case_steps_sr_completed_note = $request->case_steps_sr_completed_note;
+        $data->case_steps_sr_completed_type_id = $request->case_steps_sr_completed_type_id;
+        $data->case_steps_set_off = $request->case_steps_set_off;
+        $data->case_steps_set_off_note = $request->case_steps_set_off_note;
+        $data->case_steps_set_off_type_id = $request->case_steps_set_off_type_id;
+        $data->case_steps_issue_frame = $request->case_steps_issue_frame;
+        $data->case_steps_issue_frame_note = $request->case_steps_issue_frame_note;
+
+        $data->case_steps_issue_frame_type_id = $request->case_steps_issue_frame_type_id;
+        $data->case_steps_ph = $request->case_steps_ph;
+
+        $data->case_steps_ph_note = $request->case_steps_ph_note;
+        $data->case_steps_fph = $request->case_steps_fph;
+        $data->case_steps_fph_note = $request->case_steps_fph_note;
+        $data->case_steps_fph_type_id = $request->case_steps_fph_type_id;
+        $data->received_documents_sections = $request->received_documents_sections;
+        $data->received_documents_id = $request->received_documents_id;
+        $data->received_documents = $request->received_documents;
+        $data->lawyer_advocate_id = $request->lawyer_advocate_id;
+        $data->lawyer_advocate_write=$request->lawyer_advocate_write;
+        $data->lead_laywer_name=$request->lead_laywer_name;
+        $data->lead_laywer_name_extra=$request->lead_laywer_name_extra;
+        $data->assigned_lawyer_id=$request->assigned_lawyer_id;
+        $data->assigned_lawyer_extra=$request->assigned_lawyer_extra;
+        $data->lawyers_remarks=$request->lawyers_remarks;
+        $data->opposition_party_id=$request->opposition_party_id;
+        $data->opposition_category_id=$request->opposition_category_id;
+        $data->opposition_subcategory_id=$request->opposition_subcategory_id;
+        $data->opposition_id=$request->opposition_id;
+        $data->opposition_write=$request->opposition_write;
+        $data->opposition_business_name=$request->opposition_business_name;
+        $data->opposition_group_id=$request->opposition_group_id;
+        $data->opposition_group_write=$request->opposition_group_write;
+        $data->opposition_address=$request->opposition_address;
+        $data->opposition_mobile=$request->opposition_mobile;
+        $data->opposition_email=$request->opposition_email;
+        $data->opposition_profession_id=$request->opposition_profession_id;
+        $data->opposition_profession_write=$request->opposition_profession_write;
+        $data->opposition_division_id=$request->opposition_division_id;
+        $data->opposition_divisoin_write=$request->opposition_divisoin_write;
+        $data->opposition_district_id=$request->opposition_district_id;
+        $data->opposition_district_write=$request->opposition_district_write;
+        $data->opposition_thana_id=$request->opposition_thana_id;
+        $data->opposition_thana_write=$request->opposition_thana_write;
+        $data->opposition_representative_name=$request->opposition_representative_name;
+        $data->opposition_representative_details=$request->opposition_representative_details;
+        $data->opposition_coordinator_tadbirkar_id=$request->opposition_coordinator_tadbirkar_id;
+        $data->opposition_coordinator_details=$request->opposition_coordinator_details;
+        $data->opp_lawyer_advocate_write=$request->opp_lawyer_advocate_write;
+        $data->opp_lawyer_assigned_lawyer=$request->opp_lawyer_assigned_lawyer;
+        $data->opp_lawyer_contact=$request->opp_lawyer_contact;
+        $data->opp_lawyers_note=$request->opp_lawyers_note;
+        $data->client_email=$request->client_email;
+        $data->client_party_id=$request->client_party_id;
+        $data->client_category_id=$request->client_category_id;
+        $data->client_subcategory_id=$request->client_subcategory_id;
+        $data->client_id=$request->client_id;
+        $data->client_name_write=$request->client_name_write;
+        $data->client_business_name=$request->client_business_name;
+        $data->client_group_id=$request->client_group_id;
+        $data->client_group_write=$request->client_group_write;
+        $data->client_address=$request->client_address;
+        $data->client_mobile=$request->client_mobile;
+        $data->client_profession_id=$request->client_profession_id;
+        $data->client_profession_write=$request->client_profession_write;
+        $data->client_division_id=$request->client_division_id;
+        $data->client_divisoin_write=$request->client_divisoin_write;
+        $data->client_district_id=$request->client_district_id;
+        $data->client_district_write=$request->client_district_write;
+        $data->client_thana_id=$request->client_thana_id;
+        $data->client_thana_write=$request->client_thana_write;
+        $data->client_representative_name=$request->client_representative_name;
+        $data->client_representative_details=$request->client_representative_details;
+        $data->client_coordinator_tadbirkar_id=$request->client_coordinator_tadbirkar_id;
+        $data->coordinator_tadbirkar_write=$request->coordinator_tadbirkar_write;
+        $data->client_coordinator_details=$request->client_coordinator_details;
+        $data->client_business_name=$request->client_business_name;
+        $data->client_business_name=$request->client_business_name;
+        $data->client_business_name=$request->client_business_name;
 
         
 
        return response()->json([
         "status"=>200,
         "data"=>$data,
+       
      
         "message"=>"data added successfully"
        ]);
