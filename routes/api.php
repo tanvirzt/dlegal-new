@@ -400,6 +400,7 @@ route::get("litigation_calander_list",[ApiLitigationCalenderController::class,"l
 route::get("search_litigation_calendar",[ApiLitigationCalenderController::class,"search_litigation_calendar"]);
 route::get("litigation-calender-list-print/{date}",[ApiLitigationCalenderController::class,"print_litigation_calender_list"]);
 route::get("litigation_calender_short",[ApiLitigationCalenderController::class,"litigation_calender_short"]);
+route::post("search-litigation-calendar-short",[ApiLitigationCalenderController::class,"search_litigation_calendar_short"]);
 route::get("litigation_calender_short_court_wise",[ApiLitigationCalenderController::class,"litigation_calender_short_court_wise"]);
 // route::get("calendar_short_next",[ApiLitigationCalenderController::class,"calendar_short_next"]);
 route::get("litigation_calendar_list_print_preview",[ApiLitigationCalenderController::class,"litigation_calendar_list_print_preview"]);
@@ -479,6 +480,8 @@ route::get("all-cases",[ApiCriminalCaseController::class,"all_cases"]);
 route::get("add-criminal-cases",[ApiCriminalCaseController::class,"add_criminal_cases"]);
 
 route::post("save-criminal-cases",[ApiCriminalCaseController::class,"save_criminal_cases"]);
+route::get("edit-criminal-cases/{id}",[ApiCriminalCaseController::class,"edit_criminal_cases"]);
+route::post("update-criminal-cases/{id}",[ApiCriminalCaseController::class,"update_criminal_cases"]);
 
 
 
