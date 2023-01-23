@@ -573,7 +573,6 @@ class CivilCasesController extends Controller
 
     public function delete_civil_cases($id)
     {
-        // dd($id);
         $data = CivilCases::find($id);
         if ($data['delete_status'] == 1) {
             $delete_status = 0;
@@ -589,12 +588,6 @@ class CivilCasesController extends Controller
 
     public function view_civil_cases($id)
     {
-        //   dd($id);
-
-//        $data = CivilCases::find($id);
-//        $data = json_decode(json_encode($data));
-//        echo "<pre>";print_r($data);die();
-
         $data = DB::table('civil_cases')
             ->leftJoin('setup_courts', 'civil_cases.name_of_the_court_id', '=', 'setup_courts.id')
             ->leftJoin('setup_next_date_reasons', 'civil_cases.next_date_fixed_id', '=', 'setup_next_date_reasons.id')
@@ -653,10 +646,6 @@ class CivilCasesController extends Controller
 
             ->where('civil_cases.id', $id)
             ->first();
-        // dd($data);
-
-//        $data = json_decode(json_encode($data));
-//        echo "<pre>";print_r($data);die();
 
         $civil_cases_files = CivilCasesFile::where(['case_id' => $id, 'delete_status' => 0])->get();
 
@@ -670,7 +659,6 @@ class CivilCasesController extends Controller
             ->where('civil_case_status_logs.case_id', $id)
             ->orderBy('civil_case_status_logs.id', 'desc')
             ->get();
-        // dd($case_logs);
 
         $bill_history = DB::table('case_billings')
             ->leftJoin('setup_bill_types', 'case_billings.bill_type_id', '=', 'setup_bill_types.id')
@@ -684,9 +672,7 @@ class CivilCasesController extends Controller
             ->orderBy('case_billings.id', 'desc')
             ->get();
 
-        // $bill_history = json_decode(json_encode($bill_history));
-        // echo "<pre>";print_r($bill_history);die;
-        // dd($bill_history);
+
         return view('litigation_management.cases.civil_cases.view_civil_cases', compact('data', 'civil_cases_files', 'case_logs', 'bill_history'));
 
     }
@@ -727,52 +713,34 @@ class CivilCasesController extends Controller
 
     public function search_civil_cases(Request $request)
     {
-//dd($request->all());
+
         $query = DB::table('civil_cases');
 
         if ($request->case_no && $request->date_of_filing && $request->name_of_the_court_id) {
-// dd('case no, dof, court name ');
-
             $query2 = $query->where(['civil_cases.case_no' => $request->case_no, 'civil_cases.date_of_filing' => $request->date_of_filing, 'civil_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
 
         } else if ($request->case_no && $request->date_of_filing && $request->name_of_the_court_id == null) {
-// dd('case no, dof');
-
             $query2 = $query->where(['civil_cases.case_no' => $request->case_no, 'civil_cases.date_of_filing' => $request->date_of_filing]);
 
         } else if ($request->case_no && $request->date_of_filing == null && $request->name_of_the_court_id) {
-            // dd('case no, court name ');
-
             $query2 = $query->where(['civil_cases.case_no' => $request->case_no, 'civil_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
 
         } else if ($request->case_no == null && $request->date_of_filing && $request->name_of_the_court_id) {
-            // dd('dof, court name');
-
             $query2 = $query->where(['civil_cases.date_of_filing' => $request->date_of_filing, 'civil_cases.name_of_the_court_id' => $request->name_of_the_court_id]);
 
         } else if ($request->case_no && $request->date_of_filing == null && $request->name_of_the_court_id == null) {
-            // dd('case no');
-
             $query2 = $query->where(['civil_cases.case_no' => $request->case_no]);
 
         } else if ($request->case_no == null && $request->date_of_filing && $request->name_of_the_court_id == null) {
-            // dd('dof');
-
             $query2 = $query->where('civil_cases.date_of_filing', $request->date_of_filing);
 
         } else if ($request->case_no == null && $request->date_of_filing == null && $request->name_of_the_court_id) {
-
-            // dd('court name');
             $query2 = $query->where('civil_cases.name_of_the_court_id', $request->name_of_the_court_id);
 
         } else if ($request->case_no == null && $request->date_of_filing == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id) {
-
-            // dd('court name');
             $query2 = $query->where(['civil_cases.case_category_id' => $request->case_category_id, 'civil_cases.case_subcategory_id' => $request->case_subcategory_id]);
 
         } else if ($request->case_no == null && $request->date_of_filing == null && $request->name_of_the_court_id == null && $request->case_category_id && $request->case_subcategory_id == null) {
-
-            // dd('court name');
             $query2 = $query->where('civil_cases.case_category_id', $request->case_category_id);
 
         } else {

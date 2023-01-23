@@ -10,23 +10,14 @@ use Illuminate\Http\Request;
 use App\Models\SetupClient;
 class LedgerEntryController extends Controller
 {
-        /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+   
     public function index()
     {
         $data = LedgerEntry::with('bill','ledger_head')->orderBy('id','desc')->get();
-        // data_array($data);
         return view('accounts.ledger_entry.index', compact('data'));
     }
 
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+
     public function create()
     {
         $bill_no = CaseBilling::where('delete_status', 0)->get();
@@ -44,18 +35,10 @@ class LedgerEntryController extends Controller
         return view('accounts.ledger_entry.create', compact('bill_no','ledger_head','txn_no','client'));
     }
 
-    /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+
     public function store(Request $request)
     {
-        // dd($request->all());
-
         $data = $request->all();
-
         if ($request->ledger_date != "dd/mm/yyyy") {
             $from_next_date_explode = explode('/', $request->ledger_date);
             $from_next_date_implode = implode('-', $from_next_date_explode);
@@ -76,9 +59,6 @@ class LedgerEntryController extends Controller
         }else{
             $data['bill_amount']='';
         }
-
-        // dd($data);
-        // LedgerEntry::create($data);
 
         $saveData = new LedgerEntry();
 

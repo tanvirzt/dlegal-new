@@ -28,6 +28,8 @@ use App\Models\Counsel;
 use App\Models\SetupClient;
 use App\Models\LedgerEntry;
 use App\Models\LedgerHead;
+use App\Models\SetupCaseCategory;
+use PHPUnit\Framework\Constraint\LessThan;
 
 class BillingsController extends Controller
 {
@@ -95,14 +97,14 @@ class BillingsController extends Controller
 
     public function add_billing_from_district_court($id)
     {
-        $bill_type = SetupBillType::where('delete_status',0)->get();
+        $bill_type = LedgerHead::all();
         $external_council = DB::table('counsels')->where('counsel_type','Internal')->get();
         $bank = SetupBank::where('delete_status',0)->get();
         $digital_payment_type = SetupDigitalPayment::where('delete_status',0)->get();
         $district = SetupDistrict::where('delete_status',0)->get();
-        $case_types = SetupCaseTypes::where('delete_status', 0)->get();
+        $case_types = SetupCaseCategory::where('delete_status', 0)->get();
         $case_class = CriminalCase::find($id);
-       // dd($case_class);
+       // dd($case_types);
         $billing_log_new = DB::table('case_billings')
         ->leftJoin('setup_bill_types','case_billings.bill_type_id','=','setup_bill_types.id')
         ->leftJoin('setup_districts','case_billings.district_id','=','setup_districts.id')
@@ -234,26 +236,17 @@ class BillingsController extends Controller
 
     public function save_billing(Request $request)
     {
+      //dd($request);
+       $rules = [
+           'bill_amount' => 'required'
+       ];
 
-//        $rules = [
-//            'bill_type_id' => 'required',
-//            'payment_type' => 'required',
-//            'district_id' => 'required',
-//            'case_type' => 'required',
-//            'case_no' => 'required',
-//        ];
-//
-//        $validMsg = [
-//            'bill_type_id.required' => 'Bill type field is required',
-//            'payment_type.required' => 'Payment type field is required',
-//            'district_id.required' => 'District field is required',
-//            'case_type.required' => 'Case Type field is required',
-//            'case_no.required' => 'Case No field is required',
-//        ];
-//
-//        $this->validate($request, $rules, $validMsg);
+       $validMsg = [
+           'case_type.required' => 'Case Type field is required'
+       ];
+
+        $this->validate($request, $rules, $validMsg);
         $latest = CaseBilling::latest()->first();
-// data_array($latest);
         if ($latest != null) {
             $latest_no = explode('-', $latest->billing_no);
             $sl = $latest_no[1] + 1;
@@ -327,7 +320,7 @@ class BillingsController extends Controller
         // }
 
         if ($request['save_and_return'] === "save_and_rt_payment") {
-            return redirect()->route('ledger-entry.create');
+            return redirect()->route('add-ledger-entry', ['id' => $data->id]);
         }
 
             return redirect()->route('billings');

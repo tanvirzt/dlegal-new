@@ -90,6 +90,9 @@
                                                         {{ $request_data['from_date'] }} -
                                                         To: {{ $request_data['to_date'] }}</h4>
                                                 @endif
+                                            @else
+                                                <h4 style="font-weight: bold;">Date:
+                                                    As of Today
                                             @endif
                                         </span>
                                     </div>

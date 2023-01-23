@@ -123,15 +123,15 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row">
 
-
-
-                                                <div class="col-sm-4 mr-3">
+                                                <div class="col-sm-4 ">
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
 
-                                                            <span class="date_span" style="width: 404px;">
+                                                            <span class="date_span">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'from_date');"><input
@@ -147,12 +147,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <br>
+
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label"> To Date </label>
                                                         <div class="">
-                                                            <span class="date_span" style="width: 404px;">
+                                                            <span class="date_span">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'to_date');"><input
@@ -226,21 +226,18 @@
                                                             style="font-weight: 600!important;font-size:100%!important;">Date:
                                                             16-01-2023</small>
                                                     </h4>
-                                                    <h2 style="font-weight: bold;padding-left:570px;padding-top:20px;">
-                                                        BILLING REPORT</h2>
                                                 </div>
-
-
                                             </div>
-                                            <br>
-                                            <br>
-                                            <div class="row invoice-info">
+
+                                            <div class="row invoice-info pl-5">
+                                                <div class="col-sm-4 invoice-col"></div>
                                                 <div class="col-sm-4 invoice-col">
                                                     {{-- <b>From</b>  --}}
 
 
-
-                                                    <span id="lblUnitAddress" style="padding: 0px">
+                                                    <h2 style="font-weight: bold; text-aling:center">
+                                                        BILLING </h2>
+                                                    <span id="lblUnitAddress" style="padding-left: -20px">
 
                                                         @if (!empty($request_data['client']))
                                                             @php
@@ -259,11 +256,14 @@
                                                                 <h4 style="font-weight: bold">From:
                                                                     {{ $request_data['from_date'] }},
                                                                     To: {{ $request_data['to_date'] }}</h4>
+                                                            @elseif ($request_data['from_date'] == 'dd-mm-yyyy')
+                                                                <h4 style="font-weight: bold;">Date:
+                                                                    As of Today
                                                             @endif
                                                         @endif
                                                     </span>
                                                 </div>
-
+                                                <div class="col-sm-4 invoice-col"></div>
                                             </div>
                                             <br>
                                             <br>

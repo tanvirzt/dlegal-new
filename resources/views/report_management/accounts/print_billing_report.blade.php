@@ -43,59 +43,76 @@
         <div class="row">
             <div class="col-md-8 mx-auto py-4">
 
-                <!--start invoice area-->
                 <div class="main-invo">
-
-                    <div class="row">
-                        <div class="col-9 ">
-                            <h4 style="text-align: center; padding-left:180px">
-                                <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="AdminLTE Logo"
-                                    class="brand-image" style="opacity:1">
-
-                                {{-- <b>From</b>  --}}
-                            </h4>
-                            <h2>
-                                BILLING REPORT
-                            </h2>
-
+                    <div class="invoice-header">
+                        <div class="invoice-logo" style="overflow: hidden; margin-bottom: 15px;">
+                            <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="image"
+                                class="brand-image" style="opacity:1">
                         </div>
-                        <div class="col-3">
-
-                            <h3>Date: {{ date('d-m-Y') }}</h3>
+                        <h1>Billing</h1>
+                        <div class="address">
+                            <div class="invoice-self">
+                                <p><strong>From</strong></p>
+                                <p>365/B, Modhubag, Mogbazar, Hatirjheel, Dhaka
+                                    - 1217, Bangladesh</p>
+                                <p>Cell: 01717406688 </p>
+                                <p>Tel: 01717406688 </p>
+                                <p>Email: niamulkabir.adv@gmail.com</p>
+                            </div>
                         </div>
                     </div>
                     <article>
                         <address>
                             <div class="invoice-customer">
+                                <h5>Customer</h5>
 
-                                <div class="address">
-                                    <div class="invoice-self">
-                                        <span id="lblUnitAddress">
 
-                                            @if (!empty($request_data['client']))
-                                                @php
-                                                    $clientName = DB::table('setup_clients')
-                                                        ->where('id', $request_data['client'])
-                                                        ->first();
-                                                @endphp
-                                                <h4 style="font-weight:bold">Client :
-                                                    {{ $clientName->client_name }}
-                                                </h4>
-                                            @endif
-                                        </span>
-                                        <span id="lblUnitAddress">
-                                            @if (!empty($request_data['from_date']))
-                                                @if ($request_data['from_date'] != 'dd-mm-yyyy')
-                                                    <h4 style="font-weight: bold;">From:
-                                                        {{ $request_data['from_date'] }} -
-                                                        To: {{ $request_data['to_date'] }}</h4>
-                                                @endif
-                                            @endif
-                                        </span>
-                                    </div>
-                                </div>
+                                <address>
+                                    <address>
+                                        <div class="invoice-customer">
+
+                                            <div class="address">
+                                                <div class="invoice-self">
+                                                    <span id="lblUnitAddress">
+
+                                                        @if (!empty($request_data['client']))
+                                                            @php
+                                                                $clientName = DB::table('setup_clients')
+                                                                    ->where('id', $request_data['client'])
+                                                                    ->first();
+                                                            @endphp
+                                                            <h6>Client :
+                                                                {{ $clientName->client_name }}
+                                                            </h6>
+                                                        @endif
+                                                    </span>
+                                                    <span id="lblUnitAddress">
+                                                        @if (!empty($request_data['from_date']))
+                                                            @if ($request_data['from_date'] != 'dd-mm-yyyy')
+                                                                <h6>From:
+                                                                    {{ $request_data['from_date'] }} -
+                                                                    To: {{ $request_data['to_date'] }}</h6>
+                                                            @endif
+                                                        @endif
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </address>
+
+                                </address>
                             </div>
                         </address>
+                        <div class="meta-box">
+                            <table class="meta">
+
+                                <tr>
+                                    <th>DATE</th>
+                                    <td>{{ date('d-m-Y') }}</td>
+                                </tr>
+
+                            </table>
+                        </div>
 
 
                         <table class="inventory">
@@ -147,26 +164,20 @@
                                     </tr>
                                 @endforeach
 
-                                <tr>
-                                    <td colspan="2">Total: </td>
-                                    <td> {{ (int) $data->sum('bill_amount') }} </td>
 
-                                    <td>{{ (int) $data->sum('bill_amount') - (int) $data->sum('paid_amount') }}
-                                    </td>
-                                    <td colspan="1"></td>
-                                </tr>
                             </tbody>
                         </table>
-                        {{-- <article>
-                            <div class="invoice-terms">
-                                <h4>Terms and Condition</h4>
-                                <div class="tc-ol">
-                                    <ol>
-                                        <li>Write Something ...................................</li>
-                                        <li>Write Something ...................................</li>
-                                    </ol>
-                                </div>
-                            </div> --}}
+                        <table class="meta">
+                            <tr>
+                                <th>Sutotal</th>
+                                <td>{{ (int) $data->sum('bill_amount') }}</td>
+                            </tr>
+                            <tr class="total-border"></tr>
+                            <tr class="invo-total-price">
+                                <th>Total</th>
+                                <td>{{ (int) $data->sum('bill_amount') }}</td>
+                            </tr>
+                        </table>
 
 
                     </article>
