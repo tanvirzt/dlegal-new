@@ -206,7 +206,7 @@
                                                         the Billing</label>
                                                     <div class="col-sm-8">
 
-                                                        <span class="date_span" style="width: 480px;">
+                                                        <span class="date_span">
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                 onchange="setCorrect(this,'xTime4');"><input
                                                                 type="text" id="xTime4" name="date_of_billing"
