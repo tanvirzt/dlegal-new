@@ -351,7 +351,6 @@
     </div>
 @endsection
 
-
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 <script src="https://code.jscharting.com/latest/jscharting.js"></script>
