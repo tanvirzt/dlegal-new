@@ -1,8 +1,5 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
-
-
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -11,10 +8,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="m-0 text-dark">Ledger Entry</h1>
-
                     </div><!-- /.col -->
-
-
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
@@ -63,134 +57,117 @@
                             {!! Form::open(['route' => 'ledger-entry.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="transaction_no" class="col-sm-4 col-form-label">Transaction
-                                                No.</label>
-                                            <div class="col-sm-8">
-                                                {!! Form::text('transaction_no', $txn_no, ['class' => 'form-control', 'readonly' => 'readonly']) !!}
-                                                @error('transaction_no')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
+                                <div class="row" style="padding-left:300px">
+                                    <div class="col-md-12">
+                                        <div class="col-md-8">
+                                            <div class="form-group row">
+                                                <label for="transaction_no" class="col-sm-4 col-form-label">Transaction
+                                                    No.</label>
+                                                <div class="col-sm-8">
+                                                    {!! Form::text('transaction_no', $txn_no, ['class' => 'form-control', 'readonly' => 'readonly']) !!}
+                                                    @error('transaction_no')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="job_no" class="col-sm-4 col-form-label"> Job Name</label>
-                                            <div class="col-sm-8">
-                                                {!! Form::text('job_no', null, ['class' => 'form-control']) !!}
-                                                @error('job_no')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
+                                        <div class="col-md-8">
+                                            <div class="form-group row">
+                                                <label for="job_no" class="col-sm-4 col-form-label"> Job Name</label>
+                                                <div class="col-sm-8">
+                                                    {!! Form::text('job_no', null, ['class' => 'form-control']) !!}
+                                                    @error('job_no')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="ledger_category_id" class="col-sm-4 col-form-label">Ledger
-                                                Category</label>
-                                            <div class="col-sm-8">
-                                                <select name="ledger_category_id" class="form-control select2"
-                                                    id="ledger_category_id" action="{{ route('find-ledger-head') }}">
-                                                    <option value=""> Select </option>
-                                                    <option value="Income" selected> Income </option>
-                                                    <option value="Expense"> Expense </option>
-                                                </select>
-                                                @error('ledger_category_id')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
+                                        <div class="col-md-8">
+                                            <div class="form-group row">
+                                                <label for="ledger_category_id" class="col-sm-4 col-form-label">Ledger
+                                                    Category</label>
+                                                <div class="col-sm-8">
+                                                    <select name="ledger_category_id" class="form-control select2"
+                                                        id="myselection" action="{{ route('find-ledger-head') }}">
+                                                        <option value=""> Select </option>
+                                                        <option value="Income" selected> Income </option>
+                                                        <option value="Expense"> Expense </option>
+                                                    </select>
+                                                    @error('ledger_category_id')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="ledger_head_id" class="col-sm-4 col-form-label">Ledger Head</label>
-                                            <div class="col-sm-8">
-                                                <select name="ledger_head_id" class="form-control select2"
-                                                    id="ledger_head_id">
-                                                    <option value=""> Select </option>
-                                                    @foreach ($ledger_head as $item)
-                                                        <option value="{{ $item->id }}" selected>
-                                                            {{ $item->ledger_head_name }} </option>
-                                                    @endforeach
+                                        <div class="col-md-8">
+                                            <div class="form-group row">
+                                                <label for="ledger_head_id" class="col-sm-4 col-form-label">Ledger
+                                                    Head</label>
+                                                <div class="col-sm-8">
+                                                    <select name="ledger_head_id" class="form-control select2"
+                                                        id="ledger_head_id">
+                                                        <option value=""> Select </option>
+                                                        @foreach ($ledger_head as $item)
+                                                            <option value="{{ $item->id }}">
+                                                                {{ $item->ledger_head_name }} </option>
+                                                        @endforeach
 
-                                                </select>
-                                                @error('ledger_head_id')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
+                                                    </select>
+                                                    @error('ledger_head_id')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="payment_against_bill" class="col-sm-4 col-form-label mt-1">Payment
-                                                Against Bill</label>
-                                            <div class="icheck-success d-inline col-sm-8">
-                                                <input type="checkbox" id="payment_against_bill" name="payment_against_bill"
-                                                    @if (!empty($single_case_bill)) checked disabled @endif>
-                                                <label for="payment_against_bill">
-                                                    Yes
-                                                </label>
+                                        <div class="col-md-8" id="myDiv">
+                                            <div class="form-group row">
+                                                <label for="payment_against_bill"
+                                                    class="col-sm-4 col-form-label mt-1">Payment
+                                                    Against Bill</label>
+                                                <div class="icheck-success d-inline col-sm-8">
+                                                    <input type="checkbox" id="payment_against_bill"
+                                                        name="payment_against_bill"
+                                                        @if (!empty($single_case_bill)) checked disabled @endif>
+                                                    <label for="payment_against_bill">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="payment_against_bill" name="payment_against_bill"
+                                                value="on">
+
+                                        </div>
+
+
+                                        <div class="col-md-8">
+                                            <div class="form-group row">
+                                                <label for="case_id" class="col-sm-4 col-form-label"> Client Name </label>
+                                                <div class="col-sm-8">
+                                                    <select name="client_id" class="form-control select2">
+                                                        <option value=""> Select </option>
+                                                        @foreach ($client as $clients)
+                                                            <option value="{{ $clients->id }}">
+                                                                {{ $clients->client_name }} </option>
+                                                        @endforeach
+
+                                                    </select>
+                                                    @error('client_id')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                        <input type="hidden" id="payment_against_bill" name="payment_against_bill"
-                                            value="on">
-
-                                    </div>
-
-
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="case_id" class="col-sm-4 col-form-label"> Client Name </label>
-                                            <div class="col-sm-8">
-                                                <select name="client_id" class="form-control select2">
-                                                    <option value=""> Select </option>
-                                                    @foreach ($client as $clients)
-                                                        <option value="{{ $clients->id }}" selected>
-                                                            {{ $clients->client_name }} </option>
-                                                    @endforeach
-
-                                                </select>
-                                                @error('client_id')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6" id="bill_no" style="display: none;">
-                                        <div class="form-group row">
-                                            <label for="bill_id" class="col-sm-4 col-form-label">Bill No</label>
-                                            <div class="col-sm-8">
-                                                <select name="bill_id" class="form-control select2" id="bill_id"
-                                                    action="{{ route('find-bill') }}">
-                                                    <option value=""> Select </option>
-                                                    @foreach ($bill_no as $item)
-                                                        <option value="{{ $item->id }}"
-                                                            {{ old('bill_id') == $item->id ? 'selected' : '' }}>
-                                                            {{ $item->billing_no }}</option>
-                                                    @endforeach
-                                                </select>
-                                                @error('bill_id')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    @if (!empty($single_case_bill))
-                                        <div class="col-md-6">
+                                        <div class="col-md-8" id="bill_no" style="display: none;">
                                             <div class="form-group row">
                                                 <label for="bill_id" class="col-sm-4 col-form-label">Bill No</label>
                                                 <div class="col-sm-8">
                                                     <select name="bill_id" class="form-control select2" id="bill_id"
-                                                        disabled>
+                                                        action="{{ route('find-bill') }}">
                                                         <option value=""> Select </option>
                                                         @foreach ($bill_no as $item)
                                                             <option value="{{ $item->id }}"
-                                                                {{ $single_case_bill->id == $item->id ? 'selected' : '' }}>
+                                                                {{ old('bill_id') == $item->id ? 'selected' : '' }}>
                                                                 {{ $item->billing_no }}</option>
                                                         @endforeach
                                                     </select>
@@ -201,55 +178,72 @@
                                             </div>
                                         </div>
 
-                                        <input type="hidden" name="bill_id" value="{{ $single_case_bill->id }}">
-                                    @endif
+                                        @if (!empty($single_case_bill))
+                                            <div class="col-md-8">
+                                                <div class="form-group row">
+                                                    <label for="bill_id" class="col-sm-4 col-form-label">Bill No</label>
+                                                    <div class="col-sm-8">
+                                                        <select name="bill_id" class="form-control select2"
+                                                            id="bill_id" disabled>
+                                                            <option value=""> Select </option>
+                                                            @foreach ($bill_no as $item)
+                                                                <option value="{{ $item->id }}"
+                                                                    {{ $single_case_bill->id == $item->id ? 'selected' : '' }}>
+                                                                    {{ $item->billing_no }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('bill_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="ledger_date" class="col-sm-4 col-form-label">Date</label>
-                                            <div class="col-sm-8">
+                                            <input type="hidden" name="bill_id" value="{{ $single_case_bill->id }}">
+                                        @endif
 
-                                                <span class="date_span" style="width: 404px;">
-                                                    <input type="date" class="xDateContainer date_first_input"
-                                                        onchange="setCorrect(this,'xTime4');"><input type="text"
-                                                        id="xTime4" name="ledger_date" value="{{ date('d-m-Y') }}"
-                                                        class="date_second_input" tabindex="-1"><span
-                                                        class="date_second_span" tabindex="-1">&#9660;</span>
-                                                </span>
+                                        <div class="col-md-8">
+                                            <div class="form-group row">
+                                                <label for="ledger_date" class="col-sm-4 col-form-label">Date</label>
+                                                <div class="col-sm-8">
 
+                                                    <span class="date_span" style="width: 474px;">
+                                                        <input type="date" class="xDateContainer date_first_input"
+                                                            onchange="setCorrect(this,'xTime4');"><input type="text"
+                                                            id="xTime4" name="ledger_date"
+                                                            value="{{ date('d-m-Y') }}" class="date_second_input"
+                                                            tabindex="-1"><span class="date_second_span"
+                                                            tabindex="-1">&#9660;</span>
+                                                    </span>
 
-
-
-                                                {{-- {!! Form::date('ledger_date', null, array('class' => 'form-control')) !!} --}}
-
-                                                {{-- {!! Form::text('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!} --}}
-                                                @error('ledger_date')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
+                                                    @error('ledger_date')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
 
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="payment_type" class="col-sm-4 col-form-label">Payment Type</label>
-                                            <div class="col-sm-8">
-                                                <select name="payment_type" class="form-control select2"
-                                                    id="payment_type">
-                                                    <option value=""> Select </option>
-                                                    <option value="Cash Payment" selected> Cash Payment </option>
-                                                    <option value="Bank Payment"> Bank Payment </option>
-                                                    <option value="Digital Payment"> Digital Payment </option>
-                                                </select>
-                                                @error('payment_type')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
+                                        <div class="col-md-8">
+                                            <div class="form-group row">
+                                                <label for="payment_type" class="col-sm-4 col-form-label">Payment
+                                                    Type</label>
+                                                <div class="col-sm-8">
+                                                    <select name="payment_type" class="form-control select2"
+                                                        id="payment_type">
+                                                        <option value=""> Select </option>
+                                                        <option value="Cash Payment" selected> Cash Payment </option>
+                                                        <option value="Bank Payment"> Bank Payment </option>
+                                                        <option value="Digital Payment"> Digital Payment </option>
+                                                    </select>
+                                                    @error('payment_type')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    {{-- <div class="col-md-6">
+                                        {{-- <div class="col-md-8">
                                         <div class="form-group row">
                                             <label for="ledger_head_bill_id" class="col-sm-4 col-form-label">Bill Name</label>
                                             <div class="col-sm-8">
@@ -264,66 +258,82 @@
                                             </div>
                                         </div>
                                     </div> --}}
-                                    @if (!empty($single_case_bill))
-                                        <div class="col-md-6">
+                                        @if (!empty($single_case_bill))
+                                            <div class="col-md-8">
+                                                <div class="form-group row">
+                                                    <label for="bill_amount" class="col-sm-4 col-form-label">Bill
+                                                        Amount</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" readonly
+                                                            name="bill_amount"
+                                                            value="{{ $single_case_bill->bill_amount }}">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="col-md-8" id="bill_amount">
+
+                                            </div>
+                                        @endif
+                                        <div class="col-md-8">
                                             <div class="form-group row">
-                                                <label for="bill_amount" class="col-sm-4 col-form-label">Bill
+                                                <label for="paid_amount" class="col-sm-4 col-form-label">Paid
                                                     Amount</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" readonly
-                                                        name="bill_amount" value="{{ $single_case_bill->bill_amount }}">
+                                                    {!! Form::text('paid_amount', null, ['class' => 'form-control']) !!}
 
+                                                    @error('paid_amount')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                    @else
-                                        <div class="col-md-6" id="bill_amount">
 
-                                        </div>
-                                    @endif
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="paid_amount" class="col-sm-4 col-form-label">Paid Amount</label>
-                                            <div class="col-sm-8">
-                                                {!! Form::text('paid_amount', null, ['class' => 'form-control']) !!}
+                                        <div class="col-md-8">
+                                            <div class="form-group row">
+                                                <label for="remarks" class="col-sm-4 col-form-label">Remarks</label>
+                                                <div class="col-sm-8">
+                                                    {!! Form::textarea('remarks', null, ['class' => 'form-control']) !!}
 
-                                                @error('paid_amount')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
+                                                    @error('remarks')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
+
+
+
                                     </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="remarks" class="col-sm-4 col-form-label">Remarks</label>
-                                            <div class="col-sm-8">
-                                                {!! Form::textarea('remarks', null, ['class' => 'form-control']) !!}
-
-                                                {{-- {!! Form::text('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!} --}}
-                                                @error('remarks')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
+                                    <div class="float-right mt-4" style="padding-left:20px ">
+                                        <button type="submit" class="btn btn-primary text-uppercase"><i
+                                                class="fas fa-save"></i> Save
+                                        </button>
                                     </div>
-
-
-
                                 </div>
-                                <div class="float-right mt-4">
-                                    <button type="submit" class="btn btn-primary text-uppercase"><i
-                                            class="fas fa-save"></i> Save
-                                    </button>
-                                </div>
+                                {!! Form::close() !!}
+
                             </div>
-                            {!! Form::close() !!}
-
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
         </section>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myselection').on('change', function() {
+                var demovalue = $(this).val();
+                if (demovalue === 'Expense') {
+                    $("#myDiv").hide();
+                }
+
+
+            });
+        });
+    </script>
 @endsection

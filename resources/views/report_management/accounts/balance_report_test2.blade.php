@@ -228,9 +228,9 @@
                                                             style="font-weight: 600!important;font-size:100%!important;">Date:
                                                             16-01-2023</small>
                                                     </h4>
-                                                    <h2 style="font-weight: bold;padding-left:570px;padding-top:20px;">
-                                                        LEDGER REPORT</h2>
                                                 </div>
+                                                <h2 style="font-weight: bold;padding-left:570px;padding-top:20px;">
+                                                    LEDGER REPORT</h2>
 
 
                                             </div>
@@ -238,11 +238,7 @@
                                             <br>
                                             <div class="row invoice-info">
                                                 <div class="col-sm-4 invoice-col">
-                                                    {{-- <b>From</b>  --}}
-
-
-
-                                                    <span id="lblUnitAddress" style="padding: 0px">
+                                                    {{-- <span id="lblUnitAddress" style="padding: 0px">
 
                                                         @if (!empty($request_data['client']))
                                                             @php
@@ -263,11 +259,34 @@
                                                                     To: {{ $request_data['to_date'] }}</h4>
                                                             @endif
                                                         @endif
-                                                    </span>
+                                                    </span> --}}
                                                 </div>
 
                                                 <div class="col-sm-4 invoice-col">
+                                                    <div class="col-sm-4 invoice-col">
+                                                        <span id="lblUnitAddress" style="padding: 0px">
 
+                                                            @if (!empty($request_data['client']))
+                                                                @php
+                                                                    $clientName = DB::table('setup_clients')
+                                                                        ->where('id', $request_data['client'])
+                                                                        ->first();
+                                                                @endphp
+                                                                <h4>Client Name:
+                                                                    {{ $clientName->client_name }}
+                                                                </h4>
+                                                            @endif
+                                                        </span>
+                                                        <span id="lblUnitAddress" style="padding: 0px">
+                                                            @if (!empty($request_data['from_date']))
+                                                                @if ($request_data['from_date'] != 'dd-mm-yyyy')
+                                                                    <h4>From:
+                                                                        {{ $request_data['from_date'] }},
+                                                                        To: {{ $request_data['to_date'] }}</h4>
+                                                                @endif
+                                                            @endif
+                                                        </span>
+                                                    </div>
                                                     <h5 class="text-center">
                                                         {{ !empty($ledger_head_name) ? $ledger_head_name->ledger_head_name : '' }}
                                                     </h5>
@@ -360,7 +379,7 @@
                                                                             {{ date('d-m-Y', strtotime($datum->ledger_date)) }}
                                                                         </td>
                                                                         <td>
-                                                                            {{ $datum->bill_amount }}
+                                                                            {{ $item->bill_amount }}
                                                                         </td>
 
                                                                         <td>
@@ -382,10 +401,10 @@
 
                                                             <tr>
                                                                 <td colspan="5">Total: </td>
-                                                                <td> {{ (int) $data->sum('bill_amount') }} </td>
+                                                                <td> {{ $data->sum('bill_amount') }} </td>
                                                                 <td> {{ $sum_paid_amount }} </td>
                                                                 @php
-                                                                    $bill = $data->sum('bill_amount') - $sum_paid_amount;
+                                                                    $bill = (int) $data->sum('bill_amount') - (int) $sum_paid_amount;
                                                                 @endphp
                                                                 <td> {{ $bill }} </td>
                                                                 <td colspan="1"> </td>
