@@ -858,45 +858,37 @@ class ApiLitigationCalenderController extends Controller
                     "message"=> "data get succesfully"
                 ]);
     }
+    public function search_litigation_calendar_short(Request $request)
+    {
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    
-    
-        public function search_litigation_calendar_short(Request $request)
-        {
-    
-            
-    
-            $date = date('F, Y', strtotime($request->from_date));
-          
-    
-    
-            $search_month = explode('-', $request->from_date);
-    
-    
-    
-          
-    
-            $month = $search_month[0] . '-' . $search_month[1];
-           
-            $start = Carbon::parse($month)->startOfMonth();
-            $end = Carbon::parse($month)->endOfMonth();
         
-            $dates = [];
-            while ($start->lte($end)) {
-                $dates[] = $start->copy();
-                $start->addDay();
-            }
-            return response()->json([
-                "status"=>200,
-                "dates"=>$dates,
-                "date"=>$date,
-                
-            ]);
-    }
+
+        $date = date('F, Y', strtotime($request->from_date));
+        
+
+
+        $search_month = explode('-', $request->from_date);
+
+
+
+        
+
+        $month = $search_month[0] . '-' . $search_month[1];
+        
+        $start = Carbon::parse($month)->startOfMonth();
+        $end = Carbon::parse($month)->endOfMonth();
+        
+        $dates = [];
+        while ($start->lte($end)) {
+            $dates[] = $start->copy();
+            $start->addDay();
+        }
+        return response()->json([
+            "status"=>200,
+            "dates"=>$dates,
+            "date"=>$date,
+            "message"=>"data get successfully"
+        ]);
 }
+    
+}    
