@@ -54,21 +54,15 @@
                             <div class="invoice-customer">
                                 <h5>Customer</h5>
                                 @php
-                                    if ($data->class_of_cases == 'District Court') {
-                                        $case = App\Models\CriminalCase::where('id', $data->case_no)->first();
-                                    } elseif ($data->class_of_cases == 'Special Court') {
-                                        $case = App\Models\LabourCase::where('id', $data->case_no)->first();
-                                    } elseif ($data->class_of_cases == 'High Court Division') {
-                                        $case = App\Models\HighCourtCase::where('id', $data->case_no)->first();
-                                    } elseif ($data->class_of_cases == 'Appellate Division') {
-                                        $case = App\Models\AppellateCourtCase::where('id', $data->case_no)->first();
-                                    }
-
+                                    $client = DB::table('setup_clients')
+                                        ->where('id', $data->client_id)
+                                        ->first();
+                                    
                                 @endphp
 
                                 <address>
-                                    {{-- <strong>{{ $case->client_name_write }}</strong><br>
-                                    {{ $case->client_address }} --}}
+                                    <strong>{{ $client->client_name }}</strong><br>
+                                    {{ $client->client_address }}
 
                                 </address>
                             </div>
@@ -86,7 +80,7 @@
                                 </tr>
                                 <tr>
                                     <th>CASE NO</th>
-                                    {{-- <td>{{ $case->case_no }}</td> --}}
+                                    <td>{{ $data->case_no }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -118,18 +112,18 @@
                                 </div>
                             </div> --}}
 
-                            <table class="meta">
-                                <tr>
-                                    <th>Sutotal</th>
-                                    <td>{{ $data->bill_amount }}</td>
-                                </tr>
-                                <tr class="total-border"></tr>
-                                <tr class="invo-total-price">
-                                    <th>Total</th>
-                                    <td>{{ $data->bill_amount }}</td>
-                                </tr>
-                            </table>
-                        </article>
+                        <table class="meta">
+                            <tr>
+                                <th>Sutotal</th>
+                                <td>{{ $data->bill_amount }}</td>
+                            </tr>
+                            <tr class="total-border"></tr>
+                            <tr class="invo-total-price">
+                                <th>Total</th>
+                                <td>{{ $data->bill_amount }}</td>
+                            </tr>
+                        </table>
+                    </article>
                     </article>
                     <div class="row">
                         <div class="col-md-4">

@@ -8,6 +8,7 @@ use App\Models\LedgerHead;
 use App\Models\CriminalCase;
 use Illuminate\Http\Request;
 use App\Models\SetupClient;
+use DB;
 class LedgerEntryController extends Controller
 {
    
@@ -49,7 +50,7 @@ class LedgerEntryController extends Controller
         if($request->bill_id != null)
         {
             $is_exist = LedgerEntry::where('bill_id', $request->bill_id)->count();
-           dd($request->bill_id);
+          // dd($request->bill_id);
             if ( $is_exist > 0 ) {
                 $bill_amnt = CaseBilling::where('id', $request->bill_id)->first();
                 $amnt = LedgerEntry::where('bill_id', $request->bill_id)->sum('paid_amount');
@@ -190,21 +191,19 @@ class LedgerEntryController extends Controller
             $sl = +1;
         }
         $txn_no = 'TXN-000' . $sl;
-// dd($txn_no);
-
-        // $bill_type = SetupBillType::where('delete_status',0)->get();
-        // $external_council = SetupExternalCouncil::where('delete_status',0)->get();
-        // $bank = SetupBank::where('delete_status',0)->get();
-        // $digital_payment_type = SetupDigitalPayment::where('delete_status',0)->get();
-        // $district = SetupDistrict::where('delete_status',0)->get();
-        // $case_types = SetupCaseTypes::where('delete_status', 0)->get();
-
+        $case_client =DB::table('case_billings')
+        ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
+        ->select('case_billings.*','criminal_cases.client_id')
+        ->where('case_billings.id',$id)
+        ->first();
+        // dd($case_client);
         $case_class = CriminalCase::find($id);
+     
         $single_case_bill = CaseBilling::find($id);
 
         $client = SetupClient::where('delete_status', 0)->get();
 
-        return view('accounts.ledger_entry.create', compact('client','bill_no','ledger_head','txn_no', 'case_class', 'single_case_bill'));
+        return view('accounts.ledger_entry.create_by_bill', compact('client','bill_no','ledger_head','txn_no', 'case_class', 'single_case_bill','case_client'));
     }
 
 
