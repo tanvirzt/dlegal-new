@@ -742,22 +742,22 @@ class ReportController extends Controller
 
         switch ($request->isMethod('get')) {
             case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $request->from_date != null && $request->to_date != null:
-                 $query2 =DB::table('ledger_entries')
-                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
-                ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
+                 $query2 =DB::table('case_billings')
+                 ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
+                 ->select('case_billings.*','criminal_cases.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
                 ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
                 ->get();
                 break;
             case $request->class_of_cases != null && $request->case_no != null && $request->client != null :
-                $query2 =DB::table('ledger_entries')
-                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
-                ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
+                $query2 =DB::table('case_billings')
+                ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
+                ->select('case_billings.*','criminal_cases.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
                 ->where('case_billings.delete_status', 0)->get();
                 break;
             case $request->client != null:
-                $query2 =DB::table('ledger_entries')
-                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
-                ->select('case_billings.*','ledger_entries.*')
+                $query2 =DB::table('case_billings')
+                ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
+                ->select('case_billings.*','criminal_cases.*')
                 ->where(['client_id' => $request->client])
                 ->where('case_billings.delete_status', 0)->get();
                 // dd($query2);
@@ -769,24 +769,24 @@ class ReportController extends Controller
                   ->where('case_billings.delete_status', 0)->get();
                 break;
             case $request->from_date != null && $request->to_date != null :
-                $query2 =DB::table('ledger_entries')
-                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
-                ->select('case_billings.*','ledger_entries.*') ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
+                $query2 =DB::table('case_billings')
+                ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
+                ->select('case_billings.*','criminal_cases.*') ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
                 ->where('case_billings.delete_status', 0)->get();
 
                 break;
             case $request->class_of_cases != null && $request->case_no == null && $request->client == null:
                 // $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client_id]);
-                $query2 =DB::table('ledger_entries')
-                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
-                ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no])
+                $query2 =DB::table('case_billings')
+                ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
+                ->select('case_billings.*','criminal_cases.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no])
                 ->where('case_billings.delete_status', 0)->get();
                 break;
 
             default:
-                $query2 = DB::table('ledger_entries')
-                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
-                ->select('case_billings.*','ledger_entries.*')
+                $query2 = DB::table('case_billings')
+                ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
+                ->select('case_billings.*','criminal_cases.*')
                 ->where('case_billings.delete_status', 0)->get();
         }
 
@@ -798,6 +798,7 @@ class ReportController extends Controller
 
 
         return view('report_management.accounts.print_billing_report', compact('data', 'request_data', 'ledger_head', 'is_search', 'bill_no', 'clients'));
+
 
     
     }

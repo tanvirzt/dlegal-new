@@ -125,7 +125,7 @@
 
                                     <th class="text-center">Bill Amount</th>
 
-                                    <th class="text-center">Remarks</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -145,20 +145,12 @@
 
 
                                         <td>
-
-                                            {{ date('d-m-Y', strtotime($datum->ledger_date)) }}
+                                            {{ date('d-m-Y', strtotime($datum->date_of_billing)) }}
                                         </td>
                                         <td>
                                             {{ $datum->bill_amount }}
                                         </td>
 
-
-                                        <td>
-
-
-                                            {{ $datum->remarks }}
-
-                                        </td>
 
 
                                     </tr>

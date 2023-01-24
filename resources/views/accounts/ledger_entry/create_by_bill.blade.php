@@ -109,7 +109,9 @@
                                                         id="ledger_head_id">
                                                         <option value=""> Select </option>
                                                         @foreach ($ledger_head as $item)
-                                                            <option value="{{ $item->id }}">
+                                                            <option value="{{ $item->id }}" <?php if ($item->id == 9) {
+                                                                echo 'selected';
+                                                            } ?>>
                                                                 {{ $item->ledger_head_name }} </option>
                                                         @endforeach
 
@@ -147,7 +149,9 @@
                                                     <select name="client_id" class="form-control select2">
                                                         <option value=""> Select </option>
                                                         @foreach ($client as $clients)
-                                                            <option value="{{ $clients->id }}">
+                                                            <option value="{{ $clients->id }}" <?php if ($clients->id == $case_client->client_id) {
+                                                                echo 'selected';
+                                                            } ?>>
                                                                 {{ $clients->client_name }} </option>
                                                         @endforeach
 
