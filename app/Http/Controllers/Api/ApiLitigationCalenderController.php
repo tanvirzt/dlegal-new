@@ -862,6 +862,7 @@ class ApiLitigationCalenderController extends Controller
     {
 
         
+        
 
         $date = date('F, Y', strtotime($request->from_date));
         
