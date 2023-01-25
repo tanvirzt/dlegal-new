@@ -197,14 +197,14 @@
                                             target="_blank">
                                             @csrf
 
-                                            {{-- 
+
                                             <input type="hidden" name="client" value="{{ $request_data['client'] }}">
                                             <input type="hidden" name="from_date"
                                                 value="{{ $request_data['from_date'] }}">
                                             <input type="hidden" name="to_date" value="{{ $request_data['to_date'] }}">
                                             <input type="hidden" name="class_of_cases"
                                                 value="{{ $request_data['class_of_cases'] }}">
-                                            <input type="hidden" name="case_no" value="{{ $request_data['case_no'] }}"> --}}
+                                            <input type="hidden" name="case_no" value="{{ $request_data['case_no'] }}">
 
                                             <button type="submit" class="btn btn-info" data-toggle="tooltip"
                                                 data-placement="top" title="Delete"> <i class="fas fa-print"></i> Print
@@ -262,7 +262,7 @@
                                                     </span> --}}
                                                 </div>
 
-                                                <div class="col-sm-4 invoice-col">
+                                                <div class="col-sm-12 invoice-col">
                                                     <div class="col-sm-4 invoice-col">
                                                         <span id="lblUnitAddress" style="padding: 0px">
 
@@ -350,6 +350,7 @@
                                                                 $due = 0;
                                                                 $sum_paid_amount = 0;
                                                                 $sum_bill_amount = 0;
+                                                                //dd($data);
                                                             @endphp
 
                                                             @foreach ($data as $key => $item)
@@ -358,11 +359,11 @@
                                                                         ->where('bill_id', $item->id)
                                                                     
                                                                         ->get();
-                                                                    // dd($data);
                                                                     $ledger_count = DB::table('ledger_entries')
                                                                         ->where('bill_id', $item->id)
                                                                     
                                                                         ->count();
+                                                                    //dd($item);
                                                                 @endphp
 
                                                                 @foreach ($ledger as $datum)
@@ -371,7 +372,7 @@
                                                                             $i = $loop->index;
                                                                         @endphp
                                                                         <td>
-                                                                            {{ $loop->iteration }}
+                                                                            {{ $loop->index }}
                                                                         </td>
 
                                                                         <td>
@@ -396,6 +397,7 @@
                                                                             <td>
                                                                             </td>
                                                                         @endif
+
                                                                         <td>
                                                                             {{ $datum->paid_amount }}
                                                                         </td>
@@ -427,11 +429,13 @@
                                                                 <td> {{ $bill }} </td>
                                                                 <td colspan="1"> </td>
                                                             </tr>
+
                                                         </tbody>
                                                     </table>
                                                 </div>
 
                                             </div>
+
 
                                             <div class="row">
 
@@ -457,5 +461,4 @@
             </div>
         </section>
     </div>
-
 @endsection

@@ -136,8 +136,8 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            {{-- <input type="hidden" id="payment_against_bill" name="payment_against_bill"
-                                                value="on"> --}}
+                                            <input type="hidden" id="payment_against_bill" name="payment_against_bill"
+                                                value="on">
 
                                         </div>
 

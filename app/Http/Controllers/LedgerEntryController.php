@@ -38,7 +38,7 @@ class LedgerEntryController extends Controller
 
 
     public function store(Request $request)
-    {
+    {    // dd($request);
         $data = $request->all();
         if ($request->ledger_date != "dd/mm/yyyy") {
             $from_next_date_explode = explode('/', $request->ledger_date);
