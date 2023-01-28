@@ -174,7 +174,7 @@ class UserController extends Controller
 
     public function save_users_permissions(Request $request, $id)
     {
-
+        dd($request);
         $user = User::where('id', $id)->first(); // uses the \App\User model
         $user->givePermissionTo($request->input('permission')); // stores the relationship
         return redirect()->route('users.index')

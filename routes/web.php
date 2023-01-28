@@ -37,17 +37,6 @@ use App\Http\Controllers\LedgerHeadController;
 use App\Http\Controllers\LedgerEntryController;
 use FontLib\Table\Type\name;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 
 
 // Clear cache
@@ -65,14 +54,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//    return view('dashboard');
-//})->name('dashboard');
-
-
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    //    Route::get('/dashboard','App\Http\Controllers\Admin\AdminController@dashboards')->name('dashboard');
 
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 

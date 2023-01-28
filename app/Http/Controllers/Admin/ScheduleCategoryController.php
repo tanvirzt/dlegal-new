@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\models\ScheduleCategory;
+use App\Models\ScheduleCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
