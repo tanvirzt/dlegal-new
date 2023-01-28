@@ -15,11 +15,6 @@ use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         if (Auth::user()->is_owner_admin == '1') {
@@ -30,12 +25,6 @@ class UserController extends Controller
         return view('user_management.users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
@@ -43,21 +32,12 @@ class UserController extends Controller
         return view('user_management.users.create',compact('roles','company'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-//        request_array($request->all());
-
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-//            'roles' => 'required'
         ]);
 
         $input = $request->all();
@@ -83,24 +63,12 @@ class UserController extends Controller
             ->with('success','User created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $user = User::find($id);
         return view('users.show',compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
 
@@ -126,13 +94,6 @@ class UserController extends Controller
         return view('user_management.users.edit',compact('user','roles','userRole', 'company'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -181,12 +142,6 @@ class UserController extends Controller
             ->with('success','User updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         User::find($id)->delete();
@@ -210,11 +165,8 @@ class UserController extends Controller
         }else{
             return view('errors.403');
         }
-
-
         $all_permissions = Permission::get();
         $permission = Permission::get();
-//        $user = User::find($id);
         $permission_groups = User::getPermissionGroups();
         return view('user_management.users.user_permissions',compact('permission_groups','all_permissions','permission','user'));
 

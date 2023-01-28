@@ -855,10 +855,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('send-cause-list-pdf-to-mail', [LitigationCalenderController::class, 'send_cause_list_pdf_to_mail'])->name('send-cause-list-pdf-to-mail');
 
     ///////////////////// Report Management End /////////////////////
-
-
-
-
     Route::get('documents-list', [CriminalCasesController::class, 'documents_list'])->name('documents-list');
     Route::get('add-documents-list', [CriminalCasesController::class, 'add_documents_list'])->name('add-documents-list');
     Route::post('save-document-list', [CriminalCasesController::class, 'save_document_list'])->name('save-document-list');
