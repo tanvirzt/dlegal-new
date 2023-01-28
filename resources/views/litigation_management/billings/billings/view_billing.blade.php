@@ -61,8 +61,8 @@
                                 @endphp
 
                                 <address>
-                                    <strong>{{ $client->client_name }}</strong><br>
-                                    {{ $client->client_address }}
+                                    <strong>{{ @$client->client_name }}</strong><br>
+                                    {{ @$client->client_address }}
 
                                 </address>
                             </div>

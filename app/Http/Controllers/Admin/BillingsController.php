@@ -722,19 +722,7 @@ class BillingsController extends Controller
     public function view_money_receipt($id)
     {
          $data = LedgerEntry::with('ledger_head','bill')->find($id);
-// dd($data);
-//         $data =DB::table('ledger_entries')
 
-//         ->join('ledger_heads','ledger_entries.ledger_head_id','ledger_heads.id')
-//         ->select('ledger_entries.*','ledger_heads.*')
-//         ->where('ledger_entries.id',$id)->first();
-//         dd($data);
-        // if ($data->receipt_no == null) {
-        //     $transcation_no = explode('-', $data->transaction_no);
-        //     $data->receipt_no = 'RCPT-'.$transcation_no[1];
-        //     $data->save();
-        // }
-             // data_array($data);
         return view('accounts.ledger_entry.test',compact('data'));
     }
 
@@ -756,14 +744,15 @@ class BillingsController extends Controller
     public function edit_billings($id)
     {
         $bill_type = SetupBillType::where('delete_status',0)->get();
-        $external_council = SetupExternalCouncil::where('delete_status',0)->get();
+        $external_council = DB::table('counsels')->where('counsel_type','Internal')->get();
+       // dd($external_council);
         $bank = SetupBank::where('delete_status',0)->get();
         $digital_payment_type = SetupDigitalPayment::where('delete_status',0)->get();
         $district = SetupDistrict::where('delete_status',0)->get();
         $bank_branch = SetupBankBranch::where('delete_status',0)->get();
         $case_types = SetupCaseTypes::where('delete_status', 0)->get();
         $data = CaseBilling::find($id);
-
+        // dd($data);
 
         if ($data->class_of_cases == "District Court") {
 

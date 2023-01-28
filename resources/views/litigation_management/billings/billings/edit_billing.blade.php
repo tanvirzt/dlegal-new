@@ -161,8 +161,10 @@
                                                         @foreach ($case as $item)
                                                             <option value="{{ $item->id }}"
                                                                 {{ $data->case_no == $item->id ? 'selected' : '' }}>
-                                                                {{ $item->case_no }}</option>
+                                                                {{ $item->case_title_name . ' ' . $item->case_infos_case_no . '/' . $item->case_infos_case_year }}
+                                                            </option>
                                                         @endforeach
+
                                                     </select>
                                                     @error('case_no')
                                                         <span class="text-danger">{{ $message }}</span>
@@ -179,8 +181,7 @@
                                                         @foreach ($external_council as $item)
                                                             <option value="{{ $item->id }}"
                                                                 {{ $data->panel_lawyer_id == $item->id ? 'selected' : '' }}>
-                                                                {{ $item->first_name }} {{ $item->middle_name }}
-                                                                {{ $item->last_name }}</option>
+                                                                {{ $item->professional_name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('panel_lawyer_id')
