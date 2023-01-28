@@ -722,8 +722,7 @@ class ReportController extends Controller
         $is_search = 'Searched';
         $ledger_head_name = LedgerHead::where('id', $request->ledger_head_id)->first();
         $clients = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();
-
-      // dd($data);
+        
         return view('report_management.accounts.print_balance_report', compact('data', 'request_data', 'ledger_head', 'is_search', 'bill_no', 'clients'));
     }
     public function print_billing_report(Request $request)

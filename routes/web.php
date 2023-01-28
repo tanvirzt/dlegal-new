@@ -943,9 +943,5 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         //        Route::post('update-case-category/{id}','AdminSetupController@update_case_category')->name('update-case-category');
         //        Route::post('delete-case-category/{id}','AdminSetupController@delete_case_category')->name('delete-case-category');
 
-
-
-
-
     });
 });
