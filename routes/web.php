@@ -428,8 +428,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('delete-party/{id}', [AdminSetupController::class, 'delete_party'])->name('delete-party');
 
     Route::get('client', [AdminSetupController::class, 'client'])->name('client');
+    Route::get('client-data', [AdminSetupController::class, 'ClientData'])->name('client-data');
     Route::get('add-client', [AdminSetupController::class, 'add_client'])->name('add-client');
     Route::post('save-client', [AdminSetupController::class, 'save_client'])->name('save-client');
+    Route::post('store-client', [AdminSetupController::class, 'store_client'])->name('store-client');
     Route::get('edit-client/{id}', [AdminSetupController::class, 'edit_client'])->name('edit-client');
     Route::post('update-client/{id}', [AdminSetupController::class, 'update_client'])->name('update-client');
     Route::post('delete-client/{id}', [AdminSetupController::class, 'delete_client'])->name('delete-client');

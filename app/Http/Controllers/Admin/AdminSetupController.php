@@ -4705,6 +4705,13 @@ public function find_case_category(Request $request)
         return view('setup.client.client',compact('data'));
     }
 
+    public function ClientData()
+    {
+        $data = SetupClient::where('delete_status',0)->get();
+        return response()->json([
+            'data'=>$data,
+        ]);
+    }
     public function add_client()
     {
         return view('setup.client.add_client');
@@ -4732,7 +4739,29 @@ public function find_case_category(Request $request)
         session()->flash('success','Client Added Successfully.');
         return redirect()->route('client');
     }
+    public function store_client(Request $request)
+    {
+        $rules = [
+            'client_name' => 'required'
+        ];
 
+        $validMsg = [
+            'client_name.required' => 'Client field is required'
+        ];
+
+        $this->validate($request, $rules, $validMsg);
+
+        $client = new SetupClient();
+        $client->client_name = $request->client_name;
+        $client->client_mobile = $request->client_mobile;
+        $client->client_email = $request->client_email;
+        $client->client_address = $request->client_address;
+        $client->save();
+
+        return json_encode(array(
+            "statusCode"=>200
+        ));
+    }
     public function edit_client($id)
     {
         $data = SetupClient::find($id);
