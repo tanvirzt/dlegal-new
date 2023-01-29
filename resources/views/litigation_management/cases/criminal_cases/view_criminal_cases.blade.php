@@ -7849,12 +7849,12 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                         dataType: "json",
                         success: function(response) {
                             console.log(response);
-                            //  $('#client_id_select').html("");
-                            // $.each(response.data,function(key,item){
-                            // $('#client_id_select').append(`
-                            //     <option  value="'+item.id+'">'+item.client_name+'</option>
-                            // `);
-                            // });
+                             $('#client_id_select').html("");
+                            $.each(response.data,function(key,item){
+                            $('#client_id_select').append(`
+                                <option  value="${item.id}">${item.client_name}</option>
+                            `);
+                            });
                         }
                     });
                 }
