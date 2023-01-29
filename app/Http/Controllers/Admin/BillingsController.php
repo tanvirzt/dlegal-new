@@ -324,7 +324,10 @@ class BillingsController extends Controller
             return redirect()->route('add-ledger-entry', ['id' => $data->id]);
         }
 
-        return redirect()->back();
+        elseif ($request['from_case'] === "true") {
+            return redirect()->route('view-criminal-cases', ['id' => $request->case_no]);
+        }
+        return redirect()->route('billings');
 
     }
 

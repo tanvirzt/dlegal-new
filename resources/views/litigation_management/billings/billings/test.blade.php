@@ -42,7 +42,8 @@
 
                                 <input type="hidden" class="form-control" id="save_and_rt_payment" name="save_and_return"
                                     value="save">
-
+                                    <input type="hidden" class="form-control" id="save_and_rt_payment" name="from_case"
+                                    value="true">
                                 <div class="card-body">
 
                                     <div class="row mr-5 ml-5" style="padding-left: 200px">
