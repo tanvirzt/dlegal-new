@@ -1264,7 +1264,7 @@ class CriminalCasesController extends Controller
     public function update_criminal_cases(Request $request, $id)
     {
 
-            //    dd($request->all());
+                //dd($request->all());
 
         $received_documents_sections = $request->received_documents_sections;
         $remove = !empty($received_documents_sections) ? array_pop($received_documents_sections) : '';

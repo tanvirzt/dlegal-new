@@ -350,7 +350,7 @@
                                                                 $due = 0;
                                                                 $sum_paid_amount = 0;
                                                                 $sum_bill_amount = 0;
-                                                                //dd($data);
+                                                                // dd($data);
                                                             @endphp
 
                                                             @foreach ($data as $key => $item)
@@ -363,7 +363,7 @@
                                                                         ->where('bill_id', $item->id)
                                                                     
                                                                         ->count();
-                                                                    //dd($item);
+                                                                    // dd($item->id);
                                                                 @endphp
 
                                                                 @foreach ($ledger as $datum)

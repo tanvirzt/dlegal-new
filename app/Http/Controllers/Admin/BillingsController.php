@@ -200,7 +200,8 @@ class BillingsController extends Controller
             ->first();
             //dd($case_class);
             $bill_id=$id;
-        return view('litigation_management.billings.billings.test',compact('bill_id','billing_log_new','data','external_council','bill_type','bank','digital_payment_type','district', 'case_types', 'case_class'));
+         return view('litigation_management.billings.billings.test',compact('bill_id','billing_log_new','data','external_council','bill_type','bank','digital_payment_type','district', 'case_types', 'case_class'));
+        
     }
 
     public function find_bank_branch(Request $request)
@@ -323,7 +324,7 @@ class BillingsController extends Controller
             return redirect()->route('add-ledger-entry', ['id' => $data->id]);
         }
 
-            return redirect()->route('billings');
+        return redirect()->back();
 
     }
 
@@ -798,23 +799,15 @@ class BillingsController extends Controller
         ];
 
         $data = CaseBilling::where('delete_status',0)->get();
-        // $data =DB::table('ledger_entries')
-        // ->join('case_billings','ledger_entries.bill_id','case_billings.id')
-        // ->select('case_billings.*','ledger_entries.*')
-        // ->where('delete_status', 0)
-        // ->get();
-
         $ledger_head = LedgerHead::all()->where('delete_status', 0);
         $is_search = 'Searched';
         $clients = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();
-
         return view('litigation_management.billings.billings.billing_report' ,compact('data', 'request_data', 'ledger_head', 'clients'));
     }
     public function billing_report_search(Request $request)
     {
-        //dd($request);
+           //dd($request);
         $request_data = $request->all();
-
         if ($request->from_date != "dd/mm/yyyy") {
             $from_next_date_explode = explode('/', $request->from_date);
             $from_next_date_implode = implode('-', $from_next_date_explode);
@@ -822,7 +815,6 @@ class BillingsController extends Controller
         } else if ($request->from_next_date == "dd/mm/yyyy") {
             $from_next_date = null;
         }
-
         if ($request->to_date != "dd/mm/yyyy") {
             $to_next_date_explode = explode('/', $request->to_date);
             $to_next_date_implode = implode('-', $to_next_date_explode);
@@ -830,7 +822,6 @@ class BillingsController extends Controller
         } else if ($request->to_next_date == "dd/mm/yyyy") {
             $to_next_date = null;
         }
-
         $bill_no = CaseBilling::where('delete_status', 0)->get();
         $query = CaseBilling::with('ledger');
 
@@ -838,15 +829,18 @@ class BillingsController extends Controller
             case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $request->from_date != null && $request->to_date != null:
                  $query2 =DB::table('case_billings')
                  ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
-                 ->select('case_billings.*','criminal_cases.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
-                ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
-                ->get();
+                 ->select('case_billings.*','criminal_cases.*')
+                 ->where(['class_of_cases' => $request->class_of_cases, 'case_billings.case_no' => $request->case_no, 'client_id' => $request->client])
+                    ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
+                    ->where('case_billings.delete_status', 0)->get();
+               
                 break;
             case $request->class_of_cases != null && $request->case_no != null && $request->client != null :
                 $query2 =DB::table('case_billings')
                 ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
-                ->select('case_billings.*','criminal_cases.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no, 'client_id' => $request->client])
+                ->select('case_billings.*','criminal_cases.*')->where(['class_of_cases' => $request->class_of_cases, 'case_billings.case_no' => $request->case_no, 'client_id' => $request->client])
                 ->where('case_billings.delete_status', 0)->get();
+                
                 break;
             case $request->client != null:
                 $query2 =DB::table('case_billings')
@@ -873,7 +867,7 @@ class BillingsController extends Controller
                 // $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client_id]);
                 $query2 =DB::table('case_billings')
                 ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
-                ->select('case_billings.*','criminal_cases.*')->where(['class_of_cases' => $request->class_of_cases, 'case_no' => $request->case_no])
+                ->select('case_billings.*','criminal_cases.*')->where(['class_of_cases' => $request->class_of_cases, 'case_billings.case_no' => $request->case_no])
                 ->where('case_billings.delete_status', 0)->get();
                 break;
 
@@ -885,6 +879,7 @@ class BillingsController extends Controller
         }
 
         $data =$query2;
+        //dd($query2);
         $ledger_head = LedgerHead::all();
         $is_search = 'Searched';
         $ledger_head_name = LedgerHead::where('id', $request->ledger_head_id)->first();

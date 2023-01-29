@@ -332,7 +332,7 @@
                                     $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
                                     $key = array_key_last($case_infos_sub_seq_case_no);
                                     echo $case_infos_sub_seq_case_no[$key];
-
+                                    
                                     $case_infos_sub_seq_case_year = explode(', ', trim($data->case_infos_sub_seq_case_year));
                                     $key = array_key_last($case_infos_sub_seq_case_year);
                                     $last_case_no = $case_infos_sub_seq_case_year[$key];
@@ -346,9 +346,8 @@
                                     data-placement="top" title="Client Info">Doc Info</a>
                                 <a href="#sectionClientInfo" class="btn btn-info btn-sm" data-toggle="tooltip"
                                     data-placement="top" title="Client Info">Clinet Info</a>
-                                <a class="btn btn-info btn-sm" style="color:white;" id="basic-view"
-                                    data-toggle="tooltip" data-placement="top" title="Detalis"
-                                    onclick="$('.trHide').hide()">Basic View</a>
+                                <a class="btn btn-info btn-sm" style="color:white;" id="basic-view" data-toggle="tooltip"
+                                    data-placement="top" title="Detalis" onclick="$('.trHide').hide()">Basic View</a>
 
                                 <a class="btn btn-info btn-sm" style="color:white" data-toggle="tooltip" id="active-button"
                                     data-placement="top" title="Detalis" onclick="$('.trHide').show()">Detalis</a>
@@ -557,7 +556,7 @@
                                                                 $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
                                                                 $key = array_key_last($case_infos_sub_seq_case_no);
                                                                 echo $case_infos_sub_seq_case_no[$key];
-
+                                                                
                                                                 $case_infos_sub_seq_case_year = explode(', ', trim($data->case_infos_sub_seq_case_year));
                                                                 $key = array_key_last($case_infos_sub_seq_case_year);
                                                                 $last_case_no = $case_infos_sub_seq_case_year[$key];
@@ -1056,7 +1055,7 @@
                                             </h6>
                                         </div>
                                         <div class="card-body">
-                                                                            {{-- <h6 class="text-uppercase text-bold">
+                                            {{-- <h6 class="text-uppercase text-bold">
                                                                             <div class="row">
                                                                                 <div class="col-md-3"> Date</div>
                                                                                 <div class="col-md-3 text-center">Title</div>
@@ -1067,7 +1066,7 @@
                                                                         </h6> --}}
 
 
-                                                                        {{-- <h6 class="text-uppercase text-bold">
+                                            {{-- <h6 class="text-uppercase text-bold">
                                                         <div class="row">
                                                             <div class="col-md-3"> Date </div>
                                                             <div class="col-md-2"> Document Name </div>
@@ -1150,7 +1149,7 @@
                                                 </div>
                                             </h6> --}}
 
-                                                                {{-- <div class="row">
+                                            {{-- <div class="row">
                                                 <div class="col-md-3 text-center"></div>
                                                 <div class="col-md-3 text-center">Date</div>
                                                 <div class="col-md-3 text-center">Note</div>
@@ -1494,7 +1493,9 @@
                                                         <td colspan="2">
                                                             @php
                                                                 $client_explode = explode(', ', $data->client_id);
-                                                                $clientName=DB::table('setup_clients')->where('id',$client_explode)->get();
+                                                                $clientName = DB::table('setup_clients')
+                                                                    ->where('id', $client_explode)
+                                                                    ->get();
                                                             @endphp
                                                             @if ($data->client_id)
                                                                 @if (count($client_explode) > 1)
@@ -1901,251 +1902,242 @@
                         </div> --}}
 
 
-                        <div class="card">
-                            <div>
-                                <div class="card" id="section1" name="section1">
-                                    <div class="card-header">
-                                        <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
-                                            id="heading">Case Proceedings Log
+                    <div class="card">
+                        <div>
+                            <div class="card" id="section1" name="section1">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Case Proceedings Log
+                                        @php
+                                            $now = Carbon\Carbon::now();
+                                            $days_count = Carbon\Carbon::parse($data->date_of_filing)->diffInDays($now);
+                                        @endphp
+
+                                        <span class="font-italic custom_font text-capitalize"> (Total Elapsed Time:
+
+                                            {{ $days_count }} Days) </span>
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                            data-target="#modal-lg" data-toggle="tooltip" data-placement="top"
+                                            title="Update Status"><i class="fas fa-signal"></i></button>
+                                        <a href="{{ route('case-porceedings-print-preview', $data->id) }}"
+                                            title="Print CPL" target="_blank" class="btn btn-info btn-sm"><i
+                                                class="fas fa-print"></i></a>
+
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped data_table">
+                                        <thead>
+                                            <tr>
+                                                <th width="8%">Case Date</th>
+                                                <th width="10%">Fixed For</th>
+                                                <th width="12%">Court Proceeding</th>
+                                                <th width="12%">Court Order</th>
+                                                <th width="10%">Next Date</th>
+                                                <th width="10%">N.D. Fixed For</th>
+                                                <th width="10%">Day Note</th>
+                                                <th width="10%">Engaged Advocate</th>
+                                                <th width="6%">Action</th>
+                                                <th width="10%">Update</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (!empty($case_logs[0]->updated_order_date))
+
+                                                <tr>
+                                                    <td> {{ date('d-m-Y', strtotime($case_logs[0]->updated_order_date)) }}
+                                                    </td>
+                                                    <td width="10%">
+                                                        {{ $case_logs[0]->next_date_reason_name }}
+                                                        {{ $case_logs[0]->updated_fixed_for_write }} </td>
+                                                    <td>
+                                                        @php
+                                                            $proceedings = explode(', ', $case_logs[0]->court_proceedings_id);
+                                                        @endphp
+
+                                                        @if ($case_logs[0]->court_proceedings_id)
+                                                            @if (count($proceedings) > 1)
+                                                                <details>
+                                                                    <summary>
+                                                                        <p id="main_more">{{ $proceedings[0] }}
+                                                                        </p>
+                                                                        <span id="open">read more</span>
+                                                                        <span id="close">read less</span>
+                                                                    </summary>
+                                                                    @foreach ($proceedings as $pro)
+                                                                        <li class="text-left">
+                                                                            {{ $pro }} </li>
+                                                                    @endforeach
+                                                                </details>
+                                                            @else
+                                                                @foreach ($proceedings as $pro)
+                                                                    {{ $pro }}
+                                                                @endforeach
+                                                            @endif
+                                                        @endif
+                                                        {{ $case_logs[0]->court_proceedings_write }}
+
+                                                    </td>
+                                                    <td>
+                                                        @php
+                                                            $order = explode(', ', $case_logs[0]->updated_court_order_id);
+                                                        @endphp
+                                                        @if ($case_logs[0]->updated_court_order_id)
+                                                            @foreach ($order as $pro)
+                                                                <li class="text-left">{{ $pro }}</li>
+                                                            @endforeach
+                                                        @endif
+                                                        {{ $case_logs[0]->updated_court_order_write }}
+                                                    </td>
+                                                    <td>
+
+                                                        @if (!empty($case_logs[0]->updated_next_date) && $case_logs[0]->updated_next_date < date('Y-m-d'))
+                                                            <span
+                                                                style="color: rgba(255, 0, 0, 1);font-size:11.5px;">{{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}</span>
+                                                        @elseif(!empty($case_logs[0]->updated_next_date))
+                                                            {{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}
+                                                        @else
+                                                            <button type='button'
+                                                                class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not
+                                                                Upd
+                                                            </button>
+                                                        @endif
+                                                    </td>
+                                                    <td width="8%">
+                                                        {{ $case_logs[0]->index_next_date_reason_name }}
+                                                        {{ $case_logs[0]->updated_index_fixed_for_write }}</td>
+
+                                                    <td>
+                                                        @php
+                                                            $notes = explode(', ', $case_logs[0]->updated_day_notes_id);
+                                                        @endphp
+                                                        @if ($case_logs[0]->updated_day_notes_id)
+                                                            <details>
+                                                                <summary>
+                                                                    <p id="main_more">{{ $notes[0] }}</p>
+                                                                    <span id="open">read more</span>
+                                                                    <span id="close">read less</span>
+                                                                </summary>
+                                                                @foreach ($notes as $pro)
+                                                                    <li class="text-left"> {{ $pro }}
+                                                                    </li>
+                                                                @endforeach
+                                                            </details>
+                                                        @endif
+                                                        {{ $case_logs[0]->updated_day_notes_write }}
+                                                    </td>
+                                                    <td> {{ $case_logs[0]->updated_engaged_advocate_id }}
+                                                        {{ $case_logs[0]->updated_engaged_advocate_write }} </td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <svg class="dropdown-toggle" href="#" role="button"
+                                                                id="dropdownMenuLink6" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-more-horizontal">
+                                                                <circle cx="12" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="19" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="5" cy="12" r="1">
+                                                                </circle>
+                                                            </svg>
+
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success"
+                                                                    href="{{ route('view-criminal-cases-proceedings', $case_logs[0]->id) }}"><i
+                                                                        class="fas fa-eye"></i> View</a>
+
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('edit-criminal-cases-status', $case_logs[0]->id) }}"><i
+                                                                        class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <form class="delete-user-dropdown" method="POST"
+                                                                        action="{{ route('delete-criminal-cases-status', $case_logs[0]->id) }}"
+                                                                        class="delete-user btn btn-outline-danger">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn"
+                                                                            style="padding: 0px 1px 0px 0px;"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i>
+                                                                            Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </td>
+                                                    <td> {{ date('d-m-Y H:i:s', strtotime($case_logs[0]->created_at)) }}
+                                                    </td>
+                                                </tr>
+                                            @endif
+
                                             @php
-                                                $now = Carbon\Carbon::now();
-                                                $days_count = Carbon\Carbon::parse($data->date_of_filing)->diffInDays($now);
+                                                // $removed = array_shift($case_logs);
+                                                // array_shift($case_logs);
+                                                $case_logs->shift();
                                             @endphp
 
-                                            <span class="font-italic custom_font text-capitalize"> (Total Elapsed Time:
-
-                                                {{ $days_count }} Days) </span>
-                                        </h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#modal-lg" data-toggle="tooltip" data-placement="top"
-                                                title="Update Status"><i class="fas fa-signal"></i></button>
-                                            <a href="{{ route('case-porceedings-print-preview', $data->id) }}"
-                                                title="Print CPL" target="_blank" class="btn btn-info btn-sm"><i
-                                                    class="fas fa-print"></i></a>
-
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div class="card-body">
-                                        <table class="table view_table table-bordered table-striped data_table">
-                                            <thead>
-                                                <tr>
-                                                    <th width="8%">Case Date</th>
-                                                    <th width="10%">Fixed For</th>
-                                                    <th width="12%">Court Proceeding</th>
-                                                    <th width="12%">Court Order</th>
-                                                    <th width="10%">Next Date</th>
-                                                    <th width="10%">N.D. Fixed For</th>
-                                                    <th width="10%">Day Note</th>
-                                                    <th width="10%">Engaged Advocate</th>
-                                                    <th width="6%">Action</th>
-                                                    <th width="10%">Update</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @if (!empty($case_logs[0]->updated_order_date))
-
+                                            @if (!empty($case_logs))
+                                                @foreach ($case_logs as $logs)
                                                     <tr>
-                                                        <td> {{ date('d-m-Y', strtotime($case_logs[0]->updated_order_date)) }}
+                                                        <td> {{ date('d-m-Y', strtotime($logs->updated_order_date)) }}
                                                         </td>
-                                                        <td width="10%">
-                                                            {{ $case_logs[0]->next_date_reason_name }}
-                                                            {{ $case_logs[0]->updated_fixed_for_write }} </td>
+                                                        <td width="10%"> {{ $logs->next_date_reason_name }}
+                                                            {{ $logs->updated_fixed_for_write }} </td>
                                                         <td>
                                                             @php
-                                                                $proceedings = explode(', ', $case_logs[0]->court_proceedings_id);
+                                                                $proceedings = explode(', ', $logs->court_proceedings_id);
                                                             @endphp
 
-                                                            @if ($case_logs[0]->court_proceedings_id)
+                                                            @if ($logs->court_proceedings_id)
                                                                 @if (count($proceedings) > 1)
                                                                     <details>
                                                                         <summary>
-                                                                            <p id="main_more">{{ $proceedings[0] }}
-                                                                            </p>
+                                                                            <p id="main_more">
+                                                                                {{ $proceedings[0] }}</p>
                                                                             <span id="open">read more</span>
                                                                             <span id="close">read less</span>
                                                                         </summary>
                                                                         @foreach ($proceedings as $pro)
                                                                             <li class="text-left">
-                                                                                {{ $pro }} </li>
+                                                                                {{ $pro }}
+                                                                            </li>
                                                                         @endforeach
                                                                     </details>
+                                                                    {{-- <li class="text-left">{{ $pro }}</li> --}}
                                                                 @else
-                                                                    @foreach ($proceedings as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-                                                            {{ $case_logs[0]->court_proceedings_write }}
-
-                                                        </td>
-                                                        <td>
-                                                            @php
-                                                                $order = explode(', ', $case_logs[0]->updated_court_order_id);
-                                                            @endphp
-                                                            @if ($case_logs[0]->updated_court_order_id)
-                                                                @foreach ($order as $pro)
-                                                                    <li class="text-left">{{ $pro }}</li>
-                                                                @endforeach
-                                                            @endif
-                                                            {{ $case_logs[0]->updated_court_order_write }}
-                                                        </td>
-                                                        <td>
-
-                                                            @if (!empty($case_logs[0]->updated_next_date) && $case_logs[0]->updated_next_date < date('Y-m-d'))
-                                                                <span
-                                                                    style="color: rgba(255, 0, 0, 1);font-size:11.5px;">{{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}</span>
-                                                            @elseif(!empty($case_logs[0]->updated_next_date))
-                                                                {{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}
-                                                            @else
-                                                                <button type='button'
-                                                                    class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not
-                                                                    Upd
-                                                                </button>
-                                                            @endif
-                                                        </td>
-                                                        <td width="8%">
-                                                            {{ $case_logs[0]->index_next_date_reason_name }}
-                                                            {{ $case_logs[0]->updated_index_fixed_for_write }}</td>
-
-                                                        <td>
-                                                            @php
-                                                                $notes = explode(', ', $case_logs[0]->updated_day_notes_id);
-                                                            @endphp
-                                                            @if ($case_logs[0]->updated_day_notes_id)
-                                                                <details>
-                                                                    <summary>
-                                                                        <p id="main_more">{{ $notes[0] }}</p>
-                                                                        <span id="open">read more</span>
-                                                                        <span id="close">read less</span>
-                                                                    </summary>
-                                                                    @foreach ($notes as $pro)
-                                                                        <li class="text-left"> {{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                </details>
-
-                                                            @endif
-                                                            {{ $case_logs[0]->updated_day_notes_write }}
-                                                        </td>
-                                                        <td> {{ $case_logs[0]->updated_engaged_advocate_id }}
-                                                            {{ $case_logs[0]->updated_engaged_advocate_write }} </td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <svg class="dropdown-toggle" href="#"
-                                                                    role="button" id="dropdownMenuLink6"
-                                                                    data-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false"
-                                                                    xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                    height="24" viewBox="0 0 24 24" fill="none"
-                                                                    stroke="currentColor" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                                    class="feather feather-more-horizontal">
-                                                                    <circle cx="12" cy="12"
-                                                                        r="1">
-                                                                    </circle>
-                                                                    <circle cx="19" cy="12"
-                                                                        r="1">
-                                                                    </circle>
-                                                                    <circle cx="5" cy="12"
-                                                                        r="1">
-                                                                    </circle>
-                                                                </svg>
-
-                                                                <div class="dropdown-menu"
-                                                                    aria-labelledby="dropdownMenuLink6"
-                                                                    style="will-change: transform;">
-                                                                    <a class="dropdown-item btn btn-outline-success"
-                                                                        href="{{ route('view-criminal-cases-proceedings', $case_logs[0]->id) }}"><i
-                                                                            class="fas fa-eye"></i> View</a>
-
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ route('edit-criminal-cases-status', $case_logs[0]->id) }}"><i
-                                                                            class="fas fa-edit"></i> Edit</a>
-                                                                    <a class="dropdown-item"
-                                                                        href="javascript:void(0);">
-                                                                        <form class="delete-user-dropdown"
-                                                                            method="POST"
-                                                                            action="{{ route('delete-criminal-cases-status', $case_logs[0]->id) }}"
-                                                                            class="delete-user btn btn-outline-danger">
-                                                                            @csrf
-                                                                            <button type="submit" class="btn"
-                                                                                style="padding: 0px 1px 0px 0px;"
-                                                                                data-toggle="tooltip"
-                                                                                data-placement="top" title="Delete"><i
-                                                                                    class="fas fa-trash"></i>
-                                                                                Delete
-                                                                            </button>
-                                                                        </form>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-
-                                                        </td>
-                                                        <td> {{ date('d-m-Y H:i:s', strtotime($case_logs[0]->created_at)) }}
-                                                        </td>
-                                                    </tr>
-                                                @endif
-
-                                                @php
-                                                    // $removed = array_shift($case_logs);
-                                                    // array_shift($case_logs);
-                                                    $case_logs->shift();
-                                                @endphp
-
-                                                @if (!empty($case_logs))
-                                                    @foreach ($case_logs as $logs)
-                                                        <tr>
-                                                            <td> {{ date('d-m-Y', strtotime($logs->updated_order_date)) }}
-                                                            </td>
-                                                            <td width="10%"> {{ $logs->next_date_reason_name }}
-                                                                {{ $logs->updated_fixed_for_write }} </td>
-                                                            <td>
-                                                                @php
-                                                                    $proceedings = explode(', ', $logs->court_proceedings_id);
-                                                                @endphp
-
-                                                                @if ($logs->court_proceedings_id)
-                                                                    @if (count($proceedings) > 1)
-                                                                        <details>
-                                                                            <summary>
-                                                                                <p id="main_more">
-                                                                                    {{ $proceedings[0] }}</p>
-                                                                                <span id="open">read more</span>
-                                                                                <span id="close">read less</span>
-                                                                            </summary>
-                                                                            @foreach ($proceedings as $pro)
-                                                                                <li class="text-left">
-                                                                                    {{ $pro }}
-                                                                                </li>
-                                                                            @endforeach
-                                                                        </details>
-                                                                        {{-- <li class="text-left">{{ $pro }}</li> --}}
-                                                                    @else
-                                                                        {{-- <details>
+                                                                    {{-- <details>
                                                     <summary>
                                                         <p id="main_more">{{ $proceedings[0] }}</p>
                                                         <span id="open">read more</span>
                                                         <span id="close">read less</span>
                                                     </summary> --}}
 
-                                                                        @foreach ($proceedings as $pro)
-                                                                            {{ $pro }}
-                                                                        @endforeach
+                                                                    @foreach ($proceedings as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
 
 
-                                                                        {{-- </details> --}}
-                                                                    @endif
+                                                                    {{-- </details> --}}
                                                                 @endif
-                                                                {{ $logs->court_proceedings_write }}
-                                                                {{-- <details>
+                                                            @endif
+                                                            {{ $logs->court_proceedings_write }}
+                                                            {{-- <details>
                                         <summary>
                                             <p id="main_more">{{ $logs->court_proceedings_write }}</p>
                                             <span id="open">read more</span>
@@ -2156,542 +2148,508 @@
                                         </p>
                                     </details> --}}
 
-                                                            </td>
-                                                            <td>
-                                                                @php
-                                                                    $order = explode(', ', $logs->updated_court_order_id);
-                                                                @endphp
-                                                                @if ($logs->updated_court_order_id)
-                                                                    <details>
-                                                                        <summary>
-                                                                            <p id="main_more">{{ $order[0] }}</p>
-                                                                            <span id="open">read more</span>
-                                                                            <span id="close">read less</span>
-                                                                        </summary>
-                                                                        @foreach ($order as $pro)
-                                                                            <li class="text-left">
-                                                                                {{ $pro }} </li>
-                                                                        @endforeach
-                                                                    </details>
-                                                                @endif
-                                                                {{ $logs->updated_court_order_write }}
-                                                            </td>
-                                                            <td>
-                                                                {{ !empty($logs->updated_next_date) ? date('d-m-Y', strtotime($logs->updated_next_date)) : '' }}
+                                                        </td>
+                                                        <td>
+                                                            @php
+                                                                $order = explode(', ', $logs->updated_court_order_id);
+                                                            @endphp
+                                                            @if ($logs->updated_court_order_id)
+                                                                <details>
+                                                                    <summary>
+                                                                        <p id="main_more">{{ $order[0] }}</p>
+                                                                        <span id="open">read more</span>
+                                                                        <span id="close">read less</span>
+                                                                    </summary>
+                                                                    @foreach ($order as $pro)
+                                                                        <li class="text-left">
+                                                                            {{ $pro }} </li>
+                                                                    @endforeach
+                                                                </details>
+                                                            @endif
+                                                            {{ $logs->updated_court_order_write }}
+                                                        </td>
+                                                        <td>
+                                                            {{ !empty($logs->updated_next_date) ? date('d-m-Y', strtotime($logs->updated_next_date)) : '' }}
 
-                                                            </td>
-                                                            <td width="8%">
-                                                                {{ $logs->index_next_date_reason_name }}
-                                                                {{ $logs->updated_index_fixed_for_write }}</td>
+                                                        </td>
+                                                        <td width="8%">
+                                                            {{ $logs->index_next_date_reason_name }}
+                                                            {{ $logs->updated_index_fixed_for_write }}</td>
 
-                                                            <td>
-                                                                @php
-                                                                    $notes = explode(', ', $logs->updated_day_notes_id);
-                                                                @endphp
-                                                                @if ($logs->updated_day_notes_id)
-                                                                    <details>
-                                                                        <summary>
-                                                                            <p id="main_more">{{ $notes[0] }}</p>
-                                                                            <span id="open">read more</span>
-                                                                            <span id="close">read less</span>
-                                                                        </summary>
-                                                                        @foreach ($notes as $pro)
-                                                                            <li class="text-left">
-                                                                                {{ $pro }} </li>
-                                                                        @endforeach
-                                                                    </details>
-                                                                @endif
-                                                                {{ $logs->updated_day_notes_write }}
-                                                            </td>
-                                                            <td> {{ $logs->updated_engaged_advocate_id }}
-                                                                {{ $logs->updated_engaged_advocate_write }} </td>
-                                                            <td>
-                                                                <div class="dropdown">
-                                                                    <svg class="dropdown-toggle" href="#"
-                                                                        role="button" id="dropdownMenuLink6"
-                                                                        data-toggle="dropdown" aria-haspopup="true"
-                                                                        aria-expanded="false"
-                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                        width="24" height="24"
-                                                                        viewBox="0 0 24 24" fill="none"
-                                                                        stroke="currentColor" stroke-width="2"
-                                                                        stroke-linecap="round" stroke-linejoin="round"
-                                                                        class="feather feather-more-horizontal">
-                                                                        <circle cx="12" cy="12"
-                                                                            r="1">
-                                                                        </circle>
-                                                                        <circle cx="19" cy="12"
-                                                                            r="1">
-                                                                        </circle>
-                                                                        <circle cx="5" cy="12"
-                                                                            r="1">
-                                                                        </circle>
-                                                                    </svg>
+                                                        <td>
+                                                            @php
+                                                                $notes = explode(', ', $logs->updated_day_notes_id);
+                                                            @endphp
+                                                            @if ($logs->updated_day_notes_id)
+                                                                <details>
+                                                                    <summary>
+                                                                        <p id="main_more">{{ $notes[0] }}</p>
+                                                                        <span id="open">read more</span>
+                                                                        <span id="close">read less</span>
+                                                                    </summary>
+                                                                    @foreach ($notes as $pro)
+                                                                        <li class="text-left">
+                                                                            {{ $pro }} </li>
+                                                                    @endforeach
+                                                                </details>
+                                                            @endif
+                                                            {{ $logs->updated_day_notes_write }}
+                                                        </td>
+                                                        <td> {{ $logs->updated_engaged_advocate_id }}
+                                                            {{ $logs->updated_engaged_advocate_write }} </td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <svg class="dropdown-toggle" href="#"
+                                                                    role="button" id="dropdownMenuLink6"
+                                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false"
+                                                                    xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-more-horizontal">
+                                                                    <circle cx="12" cy="12" r="1">
+                                                                    </circle>
+                                                                    <circle cx="19" cy="12" r="1">
+                                                                    </circle>
+                                                                    <circle cx="5" cy="12" r="1">
+                                                                    </circle>
+                                                                </svg>
 
-                                                                    <div class="dropdown-menu"
-                                                                        aria-labelledby="dropdownMenuLink6"
-                                                                        style="will-change: transform;">
-                                                                        <a class="dropdown-item btn btn-outline-success"
-                                                                            href="{{ route('view-criminal-cases-proceedings', $logs->id) }}"><i
-                                                                                class="fas fa-eye"></i> View</a>
+                                                                <div class="dropdown-menu"
+                                                                    aria-labelledby="dropdownMenuLink6"
+                                                                    style="will-change: transform;">
+                                                                    <a class="dropdown-item btn btn-outline-success"
+                                                                        href="{{ route('view-criminal-cases-proceedings', $logs->id) }}"><i
+                                                                            class="fas fa-eye"></i> View</a>
 
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ route('edit-criminal-cases-status', $logs->id) }}"><i
-                                                                                class="fas fa-edit"></i> Edit</a>
-                                                                        <a class="dropdown-item"
-                                                                            href="javascript:void(0);">
-                                                                            <form class="delete-user-dropdown"
-                                                                                method="POST"
-                                                                                action="{{ route('delete-criminal-cases-status', $logs->id) }}"
-                                                                                class="delete-user btn btn-outline-danger">
-                                                                                @csrf
-                                                                                <button type="submit" class="btn"
-                                                                                    style="padding: 0px 1px 0px 0px;"
-                                                                                    data-toggle="tooltip"
-                                                                                    data-placement="top"
-                                                                                    title="Delete"><i
-                                                                                        class="fas fa-trash"></i>
-                                                                                    Delete
-                                                                                </button>
-                                                                            </form>
-                                                                        </a>
-                                                                    </div>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('edit-criminal-cases-status', $logs->id) }}"><i
+                                                                            class="fas fa-edit"></i> Edit</a>
+                                                                    <a class="dropdown-item" href="javascript:void(0);">
+                                                                        <form class="delete-user-dropdown" method="POST"
+                                                                            action="{{ route('delete-criminal-cases-status', $logs->id) }}"
+                                                                            class="delete-user btn btn-outline-danger">
+                                                                            @csrf
+                                                                            <button type="submit" class="btn"
+                                                                                style="padding: 0px 1px 0px 0px;"
+                                                                                data-toggle="tooltip" data-placement="top"
+                                                                                title="Delete"><i
+                                                                                    class="fas fa-trash"></i>
+                                                                                Delete
+                                                                            </button>
+                                                                        </form>
+                                                                    </a>
                                                                 </div>
-                                                            </td>
-                                                            <td> {{ date('d-m-Y H:i:s', strtotime($logs->created_at)) }}
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @endif
+                                                            </div>
+                                                        </td>
+                                                        <td> {{ date('d-m-Y H:i:s', strtotime($logs->created_at)) }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-
+                                        </tbody>
+                                    </table>
                                 </div>
 
-                                <div class="card" id="section2">
-                                    <div class="card-header">
-                                        <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
-                                            id="heading">Case Activities Log</h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-secondary btn-sm"
-                                                data-toggle="modal" data-target="#modal-lg-2" data-toggle="tooltip"
-                                                data-placement="top" title="Update Activities"><i
-                                                    class="fas fa-chart-line"></i></button>
+                            </div>
 
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
+                            <div class="card" id="section2">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Case Activities Log</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
+                                            data-target="#modal-lg-2" data-toggle="tooltip" data-placement="top"
+                                            title="Update Activities"><i class="fas fa-chart-line"></i></button>
+
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
                                     </div>
+                                </div>
 
-                                    <div class="card-body">
-                                        <table class="table view_table table-bordered table-striped data_table">
-                                            <thead>
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped data_table">
+                                        <thead>
+                                            <tr>
+                                                <th width="10%"> Date</th>
+                                                <th width="9%">Activity/Action</th>
+                                                <th width="9%">Progress</th>
+                                                <th width="9%">Mode</th>
+                                                <th width="12%">Time Spent</th>
+                                                <th width="9%">Engaged Lawyer</th>
+                                                <th width="9%">Forwarded To</th>
+                                                <th width="9%">Requirements</th>
+                                                <th width="9%">Note</th>
+                                                <th width="6%">Action</th>
+                                                <th width="9%">Update</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($case_activity_log as $activity_log)
                                                 <tr>
-                                                    <th width="10%"> Date</th>
-                                                    <th width="9%">Activity/Action</th>
-                                                    <th width="9%">Progress</th>
-                                                    <th width="9%">Mode</th>
-                                                    <th width="12%">Time Spent</th>
-                                                    <th width="9%">Engaged Lawyer</th>
-                                                    <th width="9%">Forwarded To</th>
-                                                    <th width="9%">Requirements</th>
-                                                    <th width="9%">Note</th>
-                                                    <th width="6%">Action</th>
-                                                    <th width="9%">Update</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($case_activity_log as $activity_log)
-                                                    <tr>
-                                                        <td style="width: 90px;">
-                                                            {{ date('d-m-Y', strtotime($activity_log->activity_date)) }}
-                                                        </td>
-                                                        <td>
-                                                            @if (!empty($activity_log->activity_action))
-                                                                <details>
-                                                                    <summary>
-                                                                        <p id="main_more">
-                                                                            {{ \Illuminate\Support\Str::limit($activity_log->activity_action, 15) }}
-                                                                        </p>
-                                                                        <span id="open">read more</span>
-                                                                        <span id="close">read less</span>
-                                                                    </summary>
-                                                                    {{ $activity_log->activity_action }}
-                                                                </details>
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            @if (!empty($activity_log->activity_progress))
-                                                                <details>
-                                                                    <summary>
-                                                                        <p id="main_more">
-                                                                            {{ \Illuminate\Support\Str::limit($activity_log->activity_progress, 15, $end = '...') }}
-                                                                        </p>
-                                                                        <span id="open">read more</span>
-                                                                        <span id="close">read less</span>
-                                                                    </summary>
-                                                                    {{ $activity_log->activity_progress }}
-                                                                </details>
-                                                            @endif
-                                                        </td>
-                                                        <td> {{ $activity_log->mode_name }} </td>
-                                                        <td> {{ $activity_log->total_time }} @if (!empty($activity_log->time_spend_manual))
-                                                                / {{ $activity_log->time_spend_manual }}
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            @php
-                                                                $engaged = explode(', ', $activity_log->activity_engaged_id);
-                                                                // dd($engaged);
-                                                            @endphp
+                                                    <td style="width: 90px;">
+                                                        {{ date('d-m-Y', strtotime($activity_log->activity_date)) }}
+                                                    </td>
+                                                    <td>
+                                                        @if (!empty($activity_log->activity_action))
+                                                            <details>
+                                                                <summary>
+                                                                    <p id="main_more">
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_action, 15) }}
+                                                                    </p>
+                                                                    <span id="open">read more</span>
+                                                                    <span id="close">read less</span>
+                                                                </summary>
+                                                                {{ $activity_log->activity_action }}
+                                                            </details>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if (!empty($activity_log->activity_progress))
+                                                            <details>
+                                                                <summary>
+                                                                    <p id="main_more">
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_progress, 15, $end = '...') }}
+                                                                    </p>
+                                                                    <span id="open">read more</span>
+                                                                    <span id="close">read less</span>
+                                                                </summary>
+                                                                {{ $activity_log->activity_progress }}
+                                                            </details>
+                                                        @endif
+                                                    </td>
+                                                    <td> {{ $activity_log->mode_name }} </td>
+                                                    <td> {{ $activity_log->total_time }} @if (!empty($activity_log->time_spend_manual))
+                                                            / {{ $activity_log->time_spend_manual }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @php
+                                                            $engaged = explode(', ', $activity_log->activity_engaged_id);
+                                                            // dd($engaged);
+                                                        @endphp
 
-                                                            @if (count($engaged) > 1)
-                                                                @foreach ($engaged as $item)
-                                                                    <li class="text-left">{{ $item }}</li>
-                                                                @endforeach
-                                                            @else
-                                                                @foreach ($engaged as $item)
-                                                                    {{ $item }}
-                                                                @endforeach
-                                                            @endif
-                                                            @if (!empty($engaged) && count($engaged) > 1)
+                                                        @if (count($engaged) > 1)
+                                                            @foreach ($engaged as $item)
+                                                                <li class="text-left">{{ $item }}</li>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($engaged as $item)
+                                                                {{ $item }}
+                                                            @endforeach
+                                                        @endif
+                                                        @if (!empty($engaged) && count($engaged) > 1)
+                                                            <li class="text-left">
+                                                                {{ $activity_log->activity_engaged_write }}</li>
+                                                        @else
+                                                            {{ $activity_log->activity_engaged_write }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @php
+                                                            $forwarded = explode(', ', $activity_log->activity_forwarded_to_id);
+                                                            
+                                                            $name = App\Models\SetupExternalCouncil::whereIn('id', $forwarded)->get();
+                                                            
+                                                        @endphp
+
+                                                        @if (count($forwarded) > 1)
+                                                            @foreach ($name as $item)
                                                                 <li class="text-left">
-                                                                    {{ $activity_log->activity_engaged_write }}</li>
-                                                            @else
-                                                                {{ $activity_log->activity_engaged_write }}
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            @php
-                                                                $forwarded = explode(', ', $activity_log->activity_forwarded_to_id);
-
-                                                                $name = App\Models\SetupExternalCouncil::whereIn('id', $forwarded)->get();
-
-                                                            @endphp
-
-                                                            @if (count($forwarded) > 1)
-                                                                @foreach ($name as $item)
-                                                                    <li class="text-left">
-                                                                        {{ $item->first_name . ' ' . $item->last_name }}
-                                                                    </li>
-                                                                @endforeach
-                                                            @else
-                                                                @foreach ($name as $item)
-
                                                                     {{ $item->first_name . ' ' . $item->last_name }}
-                                                                @endforeach
-                                                            @endif
-                                                            @if (!empty($forwarded) && count($forwarded) > 1)
-                                                                <li class="text-left">
-                                                                    {{ $activity_log->activity_forwarded_to_write }}
                                                                 </li>
-                                                            @else
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($name as $item)
+                                                                {{ $item->first_name . ' ' . $item->last_name }}
+                                                            @endforeach
+                                                        @endif
+                                                        @if (!empty($forwarded) && count($forwarded) > 1)
+                                                            <li class="text-left">
                                                                 {{ $activity_log->activity_forwarded_to_write }}
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            @if (!empty($activity_log->activity_requirements))
-                                                                <details>
-                                                                    <summary>
-                                                                        <p id="main_more">
-                                                                            {{ \Illuminate\Support\Str::limit($activity_log->activity_requirements, 15) }}
-                                                                        </p>
-                                                                        <span id="open">read more</span>
-                                                                        <span id="close">read less</span>
-                                                                    </summary>
-                                                                    {{ $activity_log->activity_requirements }}
-                                                                </details>
-                                                            @endif
-                                                        </td>
+                                                            </li>
+                                                        @else
+                                                            {{ $activity_log->activity_forwarded_to_write }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if (!empty($activity_log->activity_requirements))
+                                                            <details>
+                                                                <summary>
+                                                                    <p id="main_more">
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_requirements, 15) }}
+                                                                    </p>
+                                                                    <span id="open">read more</span>
+                                                                    <span id="close">read less</span>
+                                                                </summary>
+                                                                {{ $activity_log->activity_requirements }}
+                                                            </details>
+                                                        @endif
+                                                    </td>
 
-                                                        <td>
-                                                            @if (!empty($activity_log->activity_remarks))
-                                                                <details>
-                                                                    <summary>
-                                                                        <p id="main_more">
-                                                                            {{ \Illuminate\Support\Str::limit($activity_log->activity_remarks, 15) }}
-                                                                        </p>
-                                                                        <span id="open">read more</span>
-                                                                        <span id="close">read less</span>
-                                                                    </summary>
-                                                                    {{ $activity_log->activity_remarks }}
-                                                                </details>
-                                                            @endif
+                                                    <td>
+                                                        @if (!empty($activity_log->activity_remarks))
+                                                            <details>
+                                                                <summary>
+                                                                    <p id="main_more">
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_remarks, 15) }}
+                                                                    </p>
+                                                                    <span id="open">read more</span>
+                                                                    <span id="close">read less</span>
+                                                                </summary>
+                                                                {{ $activity_log->activity_remarks }}
+                                                            </details>
+                                                        @endif
 
-                                                        </td>
-                                                        <td>
+                                                    </td>
+                                                    <td>
 
-                                                            <div class="dropdown">
-                                                                <svg class="dropdown-toggle" href="#"
-                                                                    role="button" id="dropdownMenuLink6"
-                                                                    data-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false"
-                                                                    xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                    height="24" viewBox="0 0 24 24" fill="none"
-                                                                    stroke="currentColor" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                                    class="feather feather-more-horizontal">
-                                                                    <circle cx="12" cy="12"
-                                                                        r="1">
-                                                                    </circle>
-                                                                    <circle cx="19" cy="12"
-                                                                        r="1">
-                                                                    </circle>
-                                                                    <circle cx="5" cy="12"
-                                                                        r="1">
-                                                                    </circle>
-                                                                </svg>
+                                                        <div class="dropdown">
+                                                            <svg class="dropdown-toggle" href="#" role="button"
+                                                                id="dropdownMenuLink6" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-more-horizontal">
+                                                                <circle cx="12" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="19" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="5" cy="12" r="1">
+                                                                </circle>
+                                                            </svg>
 
-                                                                <div class="dropdown-menu"
-                                                                    aria-labelledby="dropdownMenuLink6"
-                                                                    style="will-change: transform;">
-                                                                    <a class="dropdown-item btn btn-outline-success"
-                                                                        href="{{ route('view-criminal-cases-activity', $activity_log->id) }}"><i
-                                                                            class="fas fa-eye"></i> View</a>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success"
+                                                                    href="{{ route('view-criminal-cases-activity', $activity_log->id) }}"><i
+                                                                        class="fas fa-eye"></i> View</a>
 
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ route('edit-criminal-cases-activity', $activity_log->id) }}"><i
-                                                                            class="fas fa-edit"></i> Edit</a>
-                                                                    <a class="dropdown-item"
-                                                                        href="javascript:void(0);">
-                                                                        <form class="delete-user-dropdown"
-                                                                            method="POST"
-                                                                            action="{{ route('delete-criminal-cases-activity', $activity_log->id) }}"
-                                                                            class="delete-user btn btn-outline-danger">
-                                                                            @csrf
-                                                                            <button type="submit" class="btn"
-                                                                                style="padding: 0px 1px 0px 0px;"
-                                                                                data-toggle="tooltip"
-                                                                                data-placement="top" title="Delete"><i
-                                                                                    class="fas fa-trash"></i>
-                                                                                Delete
-                                                                            </button>
-                                                                        </form>
-                                                                    </a>
-                                                                </div>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('edit-criminal-cases-activity', $activity_log->id) }}"><i
+                                                                        class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <form class="delete-user-dropdown" method="POST"
+                                                                        action="{{ route('delete-criminal-cases-activity', $activity_log->id) }}"
+                                                                        class="delete-user btn btn-outline-danger">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn"
+                                                                            style="padding: 0px 1px 0px 0px;"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i>
+                                                                            Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </a>
                                                             </div>
+                                                        </div>
 
-                                                        </td>
-                                                        <td> {{ date('d-m-Y H:i:s', strtotime($activity_log->created_at)) }}
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                </div>
-
-                                <div class="card" id="section3">
-                                    <div class="card-header">
-                                        <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
-                                            id="heading">Case Documents Log
-
-                                        </h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
-                                                data-target="#exampleModal" data-toggle="tooltip"
-                                                data-placement="top" title="Add Documents"><i
-                                                    class="fas fa-file-archive nav-icon"></i></button>
-                                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div class="card-body">
-                                        <table class="table view_table table-bordered table-striped data_table">
-                                            <thead>
-                                                <tr>
-                                                    <th class="hide" width="2%">SL</th>
-                                                    <th width="30%">Document Uploaded</th>
-                                                    <th width="13%">Document Date</th>
-                                                    <th width="6%">Type</th>
-                                                    <th width="21%">Uploaded By</th>
-                                                    <th width="15%">Action</th>
-                                                    <th width="15%">Date & Time</th>
+                                                    </td>
+                                                    <td> {{ date('d-m-Y H:i:s', strtotime($activity_log->created_at)) }}
+                                                    </td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($criminal_cases_files as $files)
-                                                    <tr>
-                                                        <td class="hide"> {{ $files->id }} </td>
-                                                        <td>{{ $files->uploaded_document }} </td>
-                                                        <td>{{ $files->uploaded_date }} </td>
-                                                        <td>{{ $files->documents_type_name }} </td>
-                                                        <td>{{ $files->created_by }} </td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <svg class="dropdown-toggle" href="#"
-                                                                    role="button" id="dropdownMenuLink6"
-                                                                    data-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false"
-                                                                    xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                    height="24" viewBox="0 0 24 24" fill="none"
-                                                                    stroke="currentColor" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                                    class="feather feather-more-horizontal">
-                                                                    <circle cx="12" cy="12"
-                                                                        r="1">
-                                                                    </circle>
-                                                                    <circle cx="19" cy="12"
-                                                                        r="1">
-                                                                    </circle>
-                                                                    <circle cx="5" cy="12"
-                                                                        r="1">
-                                                                    </circle>
-                                                                </svg>
-                                                                <div class="dropdown-menu"
-                                                                    aria-labelledby="dropdownMenuLink6"
-                                                                    style="will-change: transform;">
-                                                                    <a class="dropdown-item btn btn-outline-success"
-                                                                        target="_blank"
-                                                                        href="{{ route('view-criminal-cases-files', $files->id) }}"><i
-                                                                            class="fas fa-eye"></i>
-                                                                        View</a>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ route('edit-criminal-cases-files', $files->id) }}"><i
-                                                                            class="fas fa-edit"></i> Edit</a>
-                                                                    <a class="dropdown-item"
-                                                                        href="javascript:void(0);">
-                                                                        <form class="delete-user-dropdown"
-                                                                            method="post"
-                                                                            action="{{ route('delete-criminal-cases-files', $files->id) }}"
-                                                                            class="delete-user btn btn-outline-danger">
-                                                                            @csrf
-                                                                            <button type="submit" class="btn"
-                                                                                style="padding: 0px 1px 0px 0px;"
-                                                                                data-toggle="tooltip"
-                                                                                data-placement="top" title="Delete"><i
-                                                                                    class="fas fa-trash"></i>
-                                                                                Delete
-                                                                            </button>
-                                                                        </form>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>{{ $files->created_at }} </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                            </div>
+
+                            <div class="card" id="section3">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Case Documents Log
+
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                            data-target="#exampleModal" data-toggle="tooltip" data-placement="top"
+                                            title="Add Documents"><i class="fas fa-file-archive nav-icon"></i></button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
                                     </div>
                                 </div>
 
-
-
-
-                                <div class="card collapsed-card">
-                                    <div class="card-header">
-                                        <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
-                                            id="heading">Working Documents Log
-                                        </h3>
-                                        <div class="card-tools">
-                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                                data-target="#working_documents_modal" data-toggle="tooltip"
-                                                data-placement="top" title="Add Case Documents"><i
-                                                    class="fas fa-file-word nav-icon"></i></button>
-
-                                            <button type="button" class="btn btn-tool"
-                                                data-card-widget="collapse"><i class="fas fa-plus"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <table class="table view_table table-bordered table-striped data_table">
-                                            <thead>
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped data_table">
+                                        <thead>
+                                            <tr>
+                                                <th class="hide" width="2%">SL</th>
+                                                <th width="30%">Document Uploaded</th>
+                                                <th width="13%">Document Date</th>
+                                                <th width="6%">Type</th>
+                                                <th width="21%">Uploaded By</th>
+                                                <th width="15%">Action</th>
+                                                <th width="15%">Date & Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($criminal_cases_files as $files)
                                                 <tr>
-                                                    <th class="hide" width="2%">SL</th>
-                                                    <th width="24%">Document Uploaded</th>
-                                                    <th width="13%">Document Date</th>
-                                                    <th width="11%">Version</th>
-                                                    <th width="6%">Type</th>
-                                                    <th width="21%">Uploaded By</th>
-                                                    <th width="10%">Action</th>
-                                                    <th width="15%">Date & Time</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($criminal_cases_working_docs as $files)
-                                                    <tr>
-                                                        <td class="hide"> {{ $files->id }} </td>
-                                                        <td>{{ $files->uploaded_document }} </td>
-                                                        <td>{{ $files->uploaded_date }} </td>
-                                                        <td>{{ $files->doc_version }} </td>
-                                                        <td>{{ $files->documents_type_name }} </td>
-                                                        <td>{{ $files->created_by }} </td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <svg class="dropdown-toggle" href="#"
-                                                                    role="button" id="dropdownMenuLink6"
-                                                                    data-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false"
-                                                                    xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                    height="24" viewBox="0 0 24 24" fill="none"
-                                                                    stroke="currentColor" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                                    class="feather feather-more-horizontal">
-                                                                    <circle cx="12" cy="12"
-                                                                        r="1">
-                                                                    </circle>
-                                                                    <circle cx="19" cy="12"
-                                                                        r="1">
-                                                                    </circle>
-                                                                    <circle cx="5" cy="12"
-                                                                        r="1">
-                                                                    </circle>
-                                                                </svg>
-                                                                <div class="dropdown-menu"
-                                                                    aria-labelledby="dropdownMenuLink6"
-                                                                    style="will-change: transform;">
-                                                                    <a class="dropdown-item btn btn-outline-success"
-                                                                        target="_blank"
-                                                                        href="{{ route('view-criminal-cases-working-docs', $files->id) }}"><i
-                                                                            class="fas fa-eye"></i> View</a>
+                                                    <td class="hide"> {{ $files->id }} </td>
+                                                    <td>{{ $files->uploaded_document }} </td>
+                                                    <td>{{ $files->uploaded_date }} </td>
+                                                    <td>{{ $files->documents_type_name }} </td>
+                                                    <td>{{ $files->created_by }} </td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <svg class="dropdown-toggle" href="#" role="button"
+                                                                id="dropdownMenuLink6" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-more-horizontal">
+                                                                <circle cx="12" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="19" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="5" cy="12" r="1">
+                                                                </circle>
+                                                            </svg>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success"
+                                                                    target="_blank"
+                                                                    href="{{ route('view-criminal-cases-files', $files->id) }}"><i
+                                                                        class="fas fa-eye"></i>
+                                                                    View</a>
 
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ route('edit-criminal-cases-working-docs', $files->id) }}"><i
-                                                                            class="fas fa-edit"></i> Edit</a>
-                                                                    <a class="dropdown-item"
-                                                                        href="javascript:void(0);">
-                                                                        <form class="delete-user-dropdown"
-                                                                            method="post"
-                                                                            action="{{ route('delete-criminal-cases-working-docs', $files->id) }}"
-                                                                            class="delete-user btn btn-outline-danger">
-                                                                            @csrf
-                                                                            <button type="submit" class="btn"
-                                                                                style="padding: 0px 1px 0px 0px;"
-                                                                                data-toggle="tooltip"
-                                                                                data-placement="top" title="Delete"><i
-                                                                                    class="fas fa-trash"></i>
-                                                                                Delete
-                                                                            </button>
-                                                                        </form>
-                                                                    </a>
-                                                                </div>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('edit-criminal-cases-files', $files->id) }}"><i
+                                                                        class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <form class="delete-user-dropdown" method="post"
+                                                                        action="{{ route('delete-criminal-cases-files', $files->id) }}"
+                                                                        class="delete-user btn btn-outline-danger">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn"
+                                                                            style="padding: 0px 1px 0px 0px;"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i>
+                                                                            Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </a>
                                                             </div>
-                                                        </td>
-                                                        <td>{{ $files->created_at }} </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ $files->created_at }} </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="card collapsed-card">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Working Documents Log
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                            data-target="#working_documents_modal" data-toggle="tooltip"
+                                            data-placement="top" title="Add Case Documents"><i
+                                                class="fas fa-file-word nav-icon"></i></button>
+
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-plus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
                                     </div>
                                 </div>
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped data_table">
+                                        <thead>
+                                            <tr>
+                                                <th class="hide" width="2%">SL</th>
+                                                <th width="24%">Document Uploaded</th>
+                                                <th width="13%">Document Date</th>
+                                                <th width="11%">Version</th>
+                                                <th width="6%">Type</th>
+                                                <th width="21%">Uploaded By</th>
+                                                <th width="10%">Action</th>
+                                                <th width="15%">Date & Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($criminal_cases_working_docs as $files)
+                                                <tr>
+                                                    <td class="hide"> {{ $files->id }} </td>
+                                                    <td>{{ $files->uploaded_document }} </td>
+                                                    <td>{{ $files->uploaded_date }} </td>
+                                                    <td>{{ $files->doc_version }} </td>
+                                                    <td>{{ $files->documents_type_name }} </td>
+                                                    <td>{{ $files->created_by }} </td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <svg class="dropdown-toggle" href="#" role="button"
+                                                                id="dropdownMenuLink6" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-more-horizontal">
+                                                                <circle cx="12" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="19" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="5" cy="12" r="1">
+                                                                </circle>
+                                                            </svg>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success"
+                                                                    target="_blank"
+                                                                    href="{{ route('view-criminal-cases-working-docs', $files->id) }}"><i
+                                                                        class="fas fa-eye"></i> View</a>
+
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('edit-criminal-cases-working-docs', $files->id) }}"><i
+                                                                        class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <form class="delete-user-dropdown" method="post"
+                                                                        action="{{ route('delete-criminal-cases-working-docs', $files->id) }}"
+                                                                        class="delete-user btn btn-outline-danger">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn"
+                                                                            style="padding: 0px 1px 0px 0px;"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i>
+                                                                            Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ $files->created_at }} </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
 
 
@@ -2704,7 +2662,7 @@
 
 
 
-                                {{-- <div class="card" id="section3">
+                            {{-- <div class="card" id="section3">
                                 <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Working Documents Log
@@ -2791,7 +2749,7 @@
                                     </div> --}}
 
 
-                                                            {{-- <div class="card">
+                            {{-- <div class="card">
                                         <div id="accordion">
                                             <div class="card-header" id="headingTwo">
                                                 <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
@@ -2886,7 +2844,7 @@
 
 
 
-                                                            {{-- <div class="card" id="section4">
+                            {{-- <div class="card" id="section4">
                                         <div class="card-header">
                                             <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                                 id="heading">Billings Log <span
@@ -3013,34 +2971,154 @@
 
                                     </div> --}}
 
+                            <div class="card" id="section4">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Billings Log
+
+                                        @if (count($billing_log_new) > 0 && Is_numeric($billing_log_new))
+                                            <span class="font-italic custom_font text-capitalize">(Total: <span
+                                                    style="color: darkgreen;font-size:14px;">
+                                                    {{ $bill_amt = $billing_log_new->sum('bill_amount') }}
+                                                    ৳</span>, Paid:
+                                                {{ $ledger->sum('income_paid_amount') }} ৳, Due: <span
+                                                    style="color: red;font-size:14px;">
+                                                    {{ $bill_amt - $ledger->sum('income_paid_amount') }} ৳
+                                                </span>)
+                                            </span>
+                                        @endif
+
+                                    </h3>
+                                    <div class="card-tools">
+                                        {{-- <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                            data-target="#modal-bill" data-toggle="tooltip" data-placement="top"
+                            title="Bill Entry"><i class="fas fa-money-bill"></i></button> --}}
+                                        {{-- <a href="{{ route('billings-log-print-preview', $data->id) }}" title="Print Bill Log" target="_blank"
+                              class="btn btn-info btn-sm"><i class="fas fa-print"></i></a> --}}
+                                        <a href="{{ route('add-billing-from-district-court', $data->id) }}"><button
+                                                class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top"
+                                                title="Add Billing"><i class="fas fa-money-bill"></i></button></a>
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center text-nowrap">ID</th>
+                                                <th class="text-center text-nowrap">Billing</th>
+                                                <th class="text-center text-nowrap">Bill Type</th>
+                                                <th class="text-center text-nowrap">Payment Type</th>
+                                                <th class="text-center text-nowrap">Case No</th>
+                                                <th class="text-center text-nowrap">Bill Amount</th>
+                                                <th class="text-center text-nowrap">Date of Billing</th>
+                                                <th class="text-center text-nowrap">Paid Amount</th>
+                                                <th class="text-center text-nowrap">Status</th>
+                                                <th class="text-center text-nowrap">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($billing_log_new as $key => $datum)
+                                                <tr>
+                                                    <td class="text-center">
+                                                        {{ $key + 1 }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->billing_no }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->bill_type_name }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->payment_type }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @php
+                                                            
+                                                            if ($datum->class_of_cases == 'District Court') {
+                                                                $case = App\Models\CriminalCase::where('id', $datum->case_no)->first();
+                                                            } elseif ($datum->class_of_cases == 'Special Court') {
+                                                                $case = App\Models\LabourCase::where('id', $datum->case_no)->first();
+                                                            } elseif ($datum->class_of_cases == 'High Court Division') {
+                                                                $case = App\Models\HighCourtCase::where('id', $datum->case_no)->first();
+                                                            } elseif ($datum->class_of_cases == 'Appellate Division') {
+                                                                $case = App\Models\AppellateCourtCase::where('id', $datum->case_no)->first();
+                                                            }
+                                                            
+                                                        @endphp
+
+                                                        {{ !empty($case->case_no) ? $case->case_no : '' }}
+
+
+                                                        {{-- {{}} --}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->bill_amount }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->date_of_billing }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->payment_amount }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($datum->delete_status == 0)
+                                                            <button type="button"
+                                                                class="btn-custom btn-success-custom text-uppercase">
+                                                                Active
+                                                            </button>
+                                                        @else
+                                                            <button type="button"
+                                                                class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
+                                                        @endif
+                                                        </span>
+                                                    </td>
+                                                 
+                                                    <td class="text-center">
+                                                        <a href="{{ route('add-ledger-entry', $datum->id) }}"><button
+                                                                class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                                data-placement="top" title="Add Ledger"><i
+                                                                    class="fas fa-money-bill"></i></button></a>
+
+                                                        <a href="{{ route('edit-billings', $datum->id) }}"><button
+                                                                class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                                data-placement="top" title="Edit"><i
+                                                                    class="fas fa-edit"></i></button></a>
+                                                        <form method="POST"
+                                                            action="{{ route('delete-billing', $datum->id) }}"
+                                                            class="delete-user btn btn-danger btn-xs">
+                                                            @csrf
+                                                            {{-- @method('DELETE') --}}
+
+                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Delete"><i class="fas fa-trash"></i> </button>
+                                                        </form>
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            @can('criminal-cases-switch-cases')
                                 <div class="card" id="section4">
                                     <div class="card-header">
                                         <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
-                                            id="heading">Billings Log
-
-                                            @if (count($billing_log_new) > 0 && Is_numeric($billing_log_new))
-                                                <span class="font-italic custom_font text-capitalize">(Total: <span
-                                                        style="color: darkgreen;font-size:14px;">
-                                                        {{ $bill_amt = $billing_log_new->sum('bill_amount') }}
-                                                        ৳</span>, Paid:
-                                                    {{ $ledger->sum('income_paid_amount') }} ৳, Due: <span
-                                                        style="color: red;font-size:14px;">
-                                                        {{ $bill_amt - $ledger->sum('income_paid_amount') }} ৳
-                                                    </span>)
-                                                </span>
-                                            @endif
-
-                                        </h3>
+                                            id="heading">Switch Log</h3>
                                         <div class="card-tools">
-                                            {{-- <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                            data-target="#modal-bill" data-toggle="tooltip" data-placement="top"
-                            title="Bill Entry"><i class="fas fa-money-bill"></i></button> --}}
-                                            {{-- <a href="{{ route('billings-log-print-preview', $data->id) }}" title="Print Bill Log" target="_blank"
-                              class="btn btn-info btn-sm"><i class="fas fa-print"></i></a> --}}
-                                            <a href="{{ route('add-billing-from-district-court', $data->id) }}"><button
-                                                    class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                                    data-placement="top" title="Add Billing"><i
-                                                        class="fas fa-money-bill"></i></button></a>
+                                            <a href="{{ route('switch-log-print-preview', $data->id) }}"
+                                                title="Print Switch Log" target="_blank" class="btn btn-info btn-sm"><i
+                                                    class="fas fa-print"></i></a>
                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                 <i class="fas fa-minus"></i>
                                             </button>
@@ -3049,151 +3127,39 @@
                                             </button>
                                         </div>
                                     </div>
-
                                     <div class="card-body">
                                         <table class="table view_table table-bordered table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center text-nowrap">ID</th>
-                                                    <th class="text-center text-nowrap">Billing</th>
-                                                    <th class="text-center text-nowrap">Bill Type</th>
-                                                    <th class="text-center text-nowrap">Payment Type</th>
-                                                    <th class="text-center text-nowrap">Case No</th>
-                                                    <th class="text-center text-nowrap">Bill Amount</th>
-                                                    <th class="text-center text-nowrap">Date of Billing</th>
-                                                    <th class="text-center text-nowrap">Paid Amount</th>
-                                                    <th class="text-center text-nowrap">Status</th>
-                                                    <th class="text-center text-nowrap">Action</th>
+                                                    <th>Switched By</th>
+                                                    <th>Switched To</th>
+                                                    <th>Switched Time</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($billing_log_new as $key => $datum)
-                                                    <tr>
-                                                        <td class="text-center">
-                                                            {{ $key + 1 }}
-                                                        </td>
-                                                        <td class="text-center">
-                                                            {{ $datum->billing_no }}
-                                                        </td>
-                                                        <td class="text-center">
-                                                            {{ $datum->bill_type_name }}
-                                                        </td>
-                                                        <td class="text-center">
-                                                            {{ $datum->payment_type }}
-                                                        </td>
-                                                        <td class="text-center">
-                                                            @php
+                                                @if (!empty($switch_records))
+                                                    @foreach ($switch_records as $switch)
+                                                        <tr>
+                                                            <td> {{ user_details($switch->switched_by_id)->name }}
+                                                                ({{ user_details($switch->switched_by_id)->email }})
+                                                            </td>
+                                                            <td> {{ user_details($switch->switched_to_id)->name }}
+                                                                ({{ user_details($switch->switched_to_id)->email }})
+                                                            </td>
+                                                            <td> {{ $switch->created_at }} </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
 
-                                                                if ($datum->class_of_cases == 'District Court') {
-                                                                    $case = App\Models\CriminalCase::where('id', $datum->case_no)->first();
-                                                                } elseif ($datum->class_of_cases == 'Special Court') {
-                                                                    $case = App\Models\LabourCase::where('id', $datum->case_no)->first();
-                                                                } elseif ($datum->class_of_cases == 'High Court Division') {
-                                                                    $case = App\Models\HighCourtCase::where('id', $datum->case_no)->first();
-                                                                } elseif ($datum->class_of_cases == 'Appellate Division') {
-                                                                    $case = App\Models\AppellateCourtCase::where('id', $datum->case_no)->first();
-                                                                }
-
-                                                            @endphp
-
-                                                            {{ !empty($case->case_no) ? $case->case_no : '' }}
-
-
-                                                            {{-- {{}} --}}
-                                                        </td>
-                                                        <td class="text-center">
-                                                            {{ $datum->bill_amount }}
-                                                        </td>
-                                                        <td class="text-center">
-                                                            {{ $datum->date_of_billing }}
-                                                        </td>
-                                                        <td class="text-center">
-                                                            {{ $datum->payment_amount }}
-                                                        </td>
-                                                        <td class="text-center">
-                                                            @if ($datum->delete_status == 0)
-                                                                <button type="button"
-                                                                    class="btn-custom btn-success-custom text-uppercase">
-                                                                    Active
-                                                                </button>
-                                                            @else
-                                                                <button type="button"
-                                                                    class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
-                                                            @endif
-                                                            </span>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <a href="{{ route('add-ledger-entry', $datum->id) }}"><button
-                                                                    class="btn btn-info btn-sm" data-toggle="tooltip"
-                                                                    data-placement="top" title="Add Ledger"><i
-                                                                        class="fas fa-money-bill"></i></button></a>
-                                                            {{-- <a href="{{ route('edit-billings',$datum->id) }}"><button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"
-                                            ><i class="fas fa-edit"></i></button></a> --}}
-                                                            {{-- <form method="POST" action="{{ route('delete-billing',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
-                                            @csrf
-
-                                            <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
-                                        </form> --}}
-
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
-
                                 </div>
-
-                                @can('criminal-cases-switch-cases')
-                                    <div class="card" id="section4">
-                                        <div class="card-header">
-                                            <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
-                                                id="heading">Switch Log</h3>
-                                            <div class="card-tools">
-                                                <a href="{{ route('switch-log-print-preview', $data->id) }}"
-                                                    title="Print Switch Log" target="_blank"
-                                                    class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
-                                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                                    <i class="fas fa-minus"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                                    <i class="fas fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <table class="table view_table table-bordered table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Switched By</th>
-                                                        <th>Switched To</th>
-                                                        <th>Switched Time</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @if (!empty($switch_records))
-                                                        @foreach ($switch_records as $switch)
-                                                            <tr>
-                                                                <td> {{ user_details($switch->switched_by_id)->name }}
-                                                                    ({{ user_details($switch->switched_by_id)->email }})
-                                                                </td>
-                                                                <td> {{ user_details($switch->switched_to_id)->name }}
-                                                                    ({{ user_details($switch->switched_to_id)->email }})
-                                                                </td>
-                                                                <td> {{ $switch->created_at }} </td>
-                                                            </tr>
-                                                        @endforeach
-                                                    @endif
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                @endcan
+                            @endcan
 
 
-                            </div>
                         </div>
+                    </div>
 
                 </div>
             </div>
@@ -3235,8 +3201,7 @@
                                                         <option value="">Select</option>
                                                         @foreach ($case_status as $item)
                                                             <option value="{{ $item->id }}"
-                                                                @if (!empty($previous_activity->updated_case_status_id) &&
-                                                                    $previous_activity->updated_case_status_id == $item->id) selected @else {{ old('updated_case_status_id') == $item->id ? 'selected' : '' }} @endif>
+                                                                @if (!empty($previous_activity->updated_case_status_id) && $previous_activity->updated_case_status_id == $item->id) selected @else {{ old('updated_case_status_id') == $item->id ? 'selected' : '' }} @endif>
                                                                 {{ $item->case_status_name }}</option>
                                                         @endforeach
                                                     </select>
@@ -3286,8 +3251,9 @@
                                                         <option value="">Select</option>
                                                         @foreach ($next_date_reason as $item)
                                                             <option value="{{ $item->id }}"
-                                                                @if (!empty($previous_activity->updated_index_fixed_for_id) &&
-                                                                    $previous_activity->updated_index_fixed_for_id == $item->id) selected @else {{ old('updated_fixed_for_id') == $item->id ? 'selected' : '' }} @endif>
+                                                                @if (
+                                                                    !empty($previous_activity->updated_index_fixed_for_id) &&
+                                                                        $previous_activity->updated_index_fixed_for_id == $item->id) selected @else {{ old('updated_fixed_for_id') == $item->id ? 'selected' : '' }} @endif>
                                                                 {{ $item->next_date_reason_name }}</option>
                                                         @endforeach
                                                     </select>
@@ -3557,7 +3523,7 @@
                             value="{{ $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . ' of ' . $data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null) , @endif
                                {{ $data->sub_seq_case_title_name }}
                                @php
-                                  $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
+$case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
                                    $key = array_key_last($case_infos_sub_seq_case_no);
                                    echo $case_infos_sub_seq_case_no[$key];
 
@@ -4225,43 +4191,35 @@
                             <div class="col-sm-8">
 
                                 <div class="row">
-                                    <div class="col-md-6">
+
+                                    <div class="col-md-10">
                                         <select name="client_id[]" id="client_id" class="form-control select2"
                                             data-placeholder="Select" multiple>
                                             <option value="">Select</option>
                                             @foreach ($client as $item)
-                                                <option value="{{ $item->client_name }}"
-                                                    {{ in_array($item->client_name, $client_explode) ? 'selected' : '' }}>
+                                                <option value="{{ $item->id }}"
+                                                    {{ in_array($item->id, $client_explode) ? 'selected' : '' }}>
                                                     {{ $item->client_name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="input-group hdtuto_client control-group increment_client">
-                                            <input type="text" name="client_name_write[]"
-                                                class="myfrm form-control col-12" placeholder="Client Name"
-                                                value="{{ rtrim($data->client_name_write, ', ') }}">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-success btn_success_client" type="button"><i
-                                                        class="fldemo glyphicon glyphicon-plus"></i>+
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="clone_client hide">
-                                            <div class="hdtuto_client control-group lst input-group"
-                                                style="margin-top:10px">
-                                                <input type="text" name="client_name_write[]"
-                                                    class="myfrm form-control col-12">
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-danger btn_danger_client" type="button"><i
-                                                            class="fldemo glyphicon glyphicon-remove"></i> -
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                    <div class="col-md-2">
+                                        <button class="btn btn-success btn_success_client" type="button"
+                                            data-toggle="modal" data-target="#modal-client-info" data-toggle="tooltip"
+                                            data-placement="top" title="Add Client"><i
+                                                class="fldemo glyphicon glyphicon-plus"></i>+
+                                        </button>
 
                                     </div>
+
+
+
+
+
+
+
+
+
                                 </div>
 
                                 @error('client_name')
@@ -4510,6 +4468,74 @@
                             <div class="float-right">
                                 <button type="submit" class="btn btn-primary text-uppercase"><i
                                         class="fas fa-save"></i> Update
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="modal-client-info">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-title">Add Client </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="add-client">
+
+
+                    <div class="card-body">
+
+                        <h6 class="text-uppercase text-bold"><u> Client Information </u>
+                        </h6>
+                        <div class="form-group row">
+                            <label for="client_business_name" class="col-sm-4 col-form-label">Client Name
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="client_name">
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="client_business_name" class="col-sm-4 col-form-label">Client Mobile
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="client_mobile">
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_business_name" class="col-sm-4 col-form-label">Client Email
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" name="client_email">
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_business_name" class="col-sm-4 col-form-label">Client Address
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="client_address">
+
+                            </div>
+                        </div>
+
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <div class="float-right">
+                                <button type="submit" id="save_client" class="btn btn-primary text-uppercase"><i
+                                        class="fas fa-save"></i> Add
                                 </button>
                             </div>
                         </div>
@@ -6271,7 +6297,7 @@
                                     class="clone_edit_case_file_location @if (count($caseFileLocation) <= 1) hide @endif">
 
                                     @php
-
+                                        
                                         // dd($caseFileLocation);
                                         array_shift($caseFileLocation);
                                     @endphp
@@ -7759,41 +7785,82 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
         <!-- /.modal-dialog -->
     </div>
     @section('scripts')
-    <script src="{{ asset('custom/celendar/main.js') }}"></script>
-    <script>
-   $(document).ready(function(){
-
-    const element = document.querySelector('#basic-view');
-    element.style.backgroundColor = 'Teal';
-         $("#active-button").click(function(){
-               // document.getElementById('#active-button').style.background-color = 'background-color:rgb(56, 139, 139)';
-                //document.getElementById("#basic-view").style.backgroundColor = "red";
-                const element = document.querySelector('#active-button');
-                element.style.backgroundColor = 'Teal';
-                const element2 = document.querySelector('#basic-view');
-                element2.style.backgroundColor= "#17a2b8";
-            });
-
-                  $("#basic-view").click(function(){
+        <script src="{{ asset('custom/celendar/main.js') }}"></script>
+        <script>
+            $(document).ready(function() {
 
                 const element = document.querySelector('#basic-view');
                 element.style.backgroundColor = 'Teal';
-                const element2 = document.querySelector('#active-button');
-                element2.style.backgroundColor= "#17a2b8";
+                $("#active-button").click(function() {
+                    // document.getElementById('#active-button').style.background-color = 'background-color:rgb(56, 139, 139)';
+                    //document.getElementById("#basic-view").style.backgroundColor = "red";
+                    const element = document.querySelector('#active-button');
+                    element.style.backgroundColor = 'Teal';
+                    const element2 = document.querySelector('#basic-view');
+                    element2.style.backgroundColor = "#17a2b8";
+                });
+
+                $("#basic-view").click(function() {
+
+                    const element = document.querySelector('#basic-view');
+                    element.style.backgroundColor = 'Teal';
+                    const element2 = document.querySelector('#active-button');
+                    element2.style.backgroundColor = "#17a2b8";
+                });
+                // if (active.clicked == true) {
+                //     const element = document.querySelector('#active-button');
+                //     element.style.backgroundColor = 'Teal';
+                //     const element2 = document.querySelector('#basic-view');
+                //     element2.style.backgroundColor='dark blue';
+
+                // } else {
+
+                //     const element = document.querySelector('#basic-view');
+                //     element.style.backgroundColor = 'Teal';
+                // };
+
             });
-            // if (active.clicked == true) {
-            //     const element = document.querySelector('#active-button');
-            //     element.style.backgroundColor = 'Teal';
-            //     const element2 = document.querySelector('#basic-view');
-            //     element2.style.backgroundColor='dark blue';
+        </script>
+        <script>
+            $(document).ready(function() {
 
-            // } else {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $('#save_client').on('click', function(e) {
+                    console.log('anamika');
+                    e.preventDefault();
+                    $(this).html('Sending..');
 
-            //     const element = document.querySelector('#basic-view');
-            //     element.style.backgroundColor = 'Teal';
-            // };
+                    $.ajax({
 
-        });
-    </script>
-@endsection
+                        data: $('#add-client').serialize(),
+                        url: '{{ url('store-client') }}',
+                        type: "POST",
+                        datatype: 'json',
+                        cache: false,
+                        success: function(data) {
+                            alert(data);
+                            $('#add-client').trigger("reset");
+                            $('#modal-client-info').modal('hide');
+
+
+                        }
+                        success: function(data) {
+                            console.log(data);
+
+
+
+
+                        }
+
+                    });
+
+
+                });
+            });
+        </script>
+    @endsection
 @endsection
