@@ -13,5 +13,7 @@ class CriminalCase extends Model
     {
         return $this->hasMany(CriminalCasesFile::class, 'case_id','id');
     }
-
+    public function case_billing(){
+        return $this->hasMany(CaseBilling::class, 'id');
+    }
 }

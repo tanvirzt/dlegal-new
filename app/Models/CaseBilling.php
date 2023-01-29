@@ -12,5 +12,9 @@ class CaseBilling extends Model
     public function ledger(){
         return $this->hasMany(LedgerEntry::class, 'bill_id');
     }
+    public function case()
+    {
+        return $this->belongsTo(CriminalCase::class,'case_no');
+    }
 
 }
