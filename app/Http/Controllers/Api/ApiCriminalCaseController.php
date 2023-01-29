@@ -353,20 +353,20 @@ class ApiCriminalCaseController extends Controller
      */
     public function save_criminal_cases(Request $request)
    {
-    $latest = CriminalCase::latest()->first();
-//    dd($latest);
+        $latest = CriminalCase::latest()->first();
+    //    dd($latest);
 
-    if ($latest != null) {
-        $latest_no = explode('-', $latest->created_case_id);
-        $sl = $latest_no[1] + 1;
-    } else {
-        $sl = +1;
-    }
+        if ($latest != null) {
+            $latest_no = explode('-', $latest->created_case_id);
+            $sl = $latest_no[1] + 1;
+        } else {
+            $sl = +1;
+        }
 
-    $created_case_id = 'LCR-000' . $sl;
+        $created_case_id = 'LCR-000' . $sl;
        
         $data = new CriminalCase();
-        // $data->created_case_id = $created_case_id;
+        $data->created_case_id = $created_case_id;
         $data->case_infos_division_id = $request->case_infos_division_id;
         $data->case_infos_district_id = $request->case_infos_district_id;
         $data->case_infos_thana_id = $request->case_infos_thana_id;
@@ -534,17 +534,19 @@ class ApiCriminalCaseController extends Controller
         $oopLawyer->opp_lawyer_contact= $request->opp_lawyer_contact;
         $oopLawyer->opp_lawyers_note= $request->opp_lawyers_note;
         $oopLawyer->save();
+
+      
         $received_documents_sections = $request->received_documents_sections;
         $remove = array_pop($received_documents_sections);
         
 
         foreach (array_filter($received_documents_sections) as $key => $value) {
             $datum = new CriminalCasesDocumentsReceived();
-            // $datum->case_id = $data->id;
+             $datum->case_id = $data->id;
             $datum->received_documents_id = $value['received_documents_id'];
             $datum->received_documents = $value['received_documents'];
-            // $datum->received_documents_date = $value['received_documents_date'];
-            // $datum->received_documents_type_id = $value['received_documents_type_id'];
+             $datum->received_documents_date = $value['received_documents_date'];
+             $datum->received_documents_type_id = $value['received_documents_type_id'];
             $datum->save();
         }
           
@@ -553,11 +555,11 @@ class ApiCriminalCaseController extends Controller
        
         foreach (array_filter($request->required_wanting_documents_sections) as $key => $value) {
             $required = new CriminalCasesDocumentsRequired();
-            // $required->case_id = $data->id;
+            $required->case_id = $data->id;
             $datum->required_wanting_documents_id = $value['required_wanting_documents_id'];
             $required->required_wanting_documents = $value['required_wanting_documents'];
-            // $required->required_wanting_documents_date = $value['required_wanting_documents_date'];
-            // $required->required_wanting_documents_type_id = $value['required_wanting_documents_type_id'];
+            $required->required_wanting_documents_date = $value['required_wanting_documents_date'];
+            $required->required_wanting_documents_type_id = $value['required_wanting_documents_type_id'];
             $required->save();
         }
 
@@ -567,12 +569,12 @@ class ApiCriminalCaseController extends Controller
 
         foreach (array_filter($request->case_file_location_new_sections) as $key => $value) {
             $required = new CriminalCasesCaseFileLocation();
-        // //     // $required->case_id = $data->id;
+           $required->case_id = $data->id;
             $required->case_file_location_new_id = $value['case_file_location_new_id'];
             $required->case_file_location_new_office = $value['case_file_location_new_office'];
-        //     // $required->case_file_location_new_almirah = $value['case_file_location_new_almirah'];
-        //     // $required->case_file_location_new_self = $value['case_file_location_new_self'];
-        //     $required->save();
+                $required->case_file_location_new_almirah = $value['case_file_location_new_almirah'];
+                $required->case_file_location_new_self = $value['case_file_location_new_self'];
+            $required->save();
         }
 
         
