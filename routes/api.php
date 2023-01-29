@@ -484,6 +484,7 @@ route::post("save-criminal-cases",[ApiCriminalCaseController::class,"save_crimin
 route::get("edit-criminal-cases/{id}",[ApiCriminalCaseController::class,"edit_criminal_cases"]);
 route::post("update-criminal-cases/{id}",[ApiCriminalCaseController::class,"update_criminal_cases"]);
 route::get("find-district/{id}",[ApiCriminalCaseController::class,"find_district"]);
+route::get("view-criminal-cases/{id}",[ApiCriminalCaseController::class,"view_criminal_cases"]);
 
 
 
