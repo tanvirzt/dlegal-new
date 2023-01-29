@@ -3025,7 +3025,6 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($billing_log_new as $key => $datum)
-                                           
                                                 <tr>
                                                     <td class="text-center">
                                                         {{ $key + 1 }}
@@ -3034,7 +3033,9 @@
                                                         {{ $datum->billing_no }}
                                                     </td>
                                                     @php
-                                                    $ledger= DB::table('ledger_heads')->where('id', $datum->bill_type_id)->first();
+                                                        $ledger = DB::table('ledger_heads')
+                                                            ->where('id', $datum->bill_type_id)
+                                                            ->first();
                                                     @endphp
                                                     <td class="text-center">
                                                         {{ $ledger->ledger_head_name }}
@@ -3070,13 +3071,13 @@
                                                     </td>
 
                                                     @php
-                                                     $sum_paid_amount =0;
+                                                        $sum_paid_amount = 0;
                                                         $ledger = DB::table('ledger_entries')
-                                                                        ->where('bill_id', $datum->id)
-                                                                        ->get();
-                                                            foreach ($ledger as $row) {
-                                                                $sum_paid_amount = $sum_paid_amount + $row->paid_amount;
-                                                            }
+                                                            ->where('bill_id', $datum->id)
+                                                            ->get();
+                                                        foreach ($ledger as $row) {
+                                                            $sum_paid_amount = $sum_paid_amount + $row->paid_amount;
+                                                        }
                                                     @endphp
                                                     <td class="text-center">
                                                         {{ $sum_paid_amount }}
@@ -3093,7 +3094,7 @@
                                                         @endif
                                                         </span>
                                                     </td>
-                                                 
+
                                                     <td class="text-center">
                                                         <a href="{{ route('add-ledger-entry', $datum->id) }}"><button
                                                                 class="btn btn-info btn-sm" data-toggle="tooltip"
@@ -4207,7 +4208,7 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                                 <div class="row">
 
                                     <div class="col-md-10">
-                                        <select name="client_id[]" id="client_id" class="form-control select2"
+                                        <select name="client_id[]" id="client_id_select" class="form-control select2"
                                             data-placeholder="Select" multiple>
                                             <option value="">Select</option>
                                             @foreach ($client as $item)
@@ -7837,7 +7838,26 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
         </script>
         <script>
             $(document).ready(function() {
+                fatchdata()
 
+                function fatchdata() {
+
+                    $.ajax({
+                        type: "GET",
+                        
+                        url: '{{ url('client-data') }}',
+                        dataType: "json",
+                        success: function(response) {
+                            console.log(response);
+                            //  $('#client_id_select').html("");
+                            // $.each(response.data,function(key,item){
+                            // $('#client_id_select').append(`
+                            //     <option  value="'+item.id+'">'+item.client_name+'</option>
+                            // `);
+                            // });
+                        }
+                    });
+                }
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -7856,16 +7876,9 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                         datatype: 'json',
                         cache: false,
                         success: function(data) {
-                            alert(data);
+
                             $('#add-client').trigger("reset");
                             $('#modal-client-info').modal('hide');
-
-
-                        }
-                        success: function(data) {
-                            console.log(data);
-
-
 
 
                         }
