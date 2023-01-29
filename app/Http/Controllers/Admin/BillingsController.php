@@ -826,6 +826,14 @@ class BillingsController extends Controller
         $query = CaseBilling::with('ledger');
 
         switch ($request->isMethod('get')) {
+
+            case $request->class_of_cases != null && $request->case_no != null && $request->client != null :
+                $query2 =DB::table('case_billings')
+                ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
+                ->select('case_billings.*','criminal_cases.*')->where(['class_of_cases' => $request->class_of_cases, 'case_billings.case_no' => $request->case_no, 'client_id' => $request->client])
+                ->where('case_billings.delete_status', 0)->get();
+                
+                break;
             case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $request->from_date != null && $request->to_date != null:
                  $query2 =DB::table('case_billings')
                  ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
@@ -835,13 +843,7 @@ class BillingsController extends Controller
                     ->where('case_billings.delete_status', 0)->get();
                
                 break;
-            case $request->class_of_cases != null && $request->case_no != null && $request->client != null :
-                $query2 =DB::table('case_billings')
-                ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
-                ->select('case_billings.*','criminal_cases.*')->where(['class_of_cases' => $request->class_of_cases, 'case_billings.case_no' => $request->case_no, 'client_id' => $request->client])
-                ->where('case_billings.delete_status', 0)->get();
-                
-                break;
+          
             case $request->client != null:
                 $query2 =DB::table('case_billings')
                 ->join('criminal_cases','case_billings.case_no','criminal_cases.id')

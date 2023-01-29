@@ -3025,6 +3025,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($billing_log_new as $key => $datum)
+                                           
                                                 <tr>
                                                     <td class="text-center">
                                                         {{ $key + 1 }}
@@ -3032,8 +3033,11 @@
                                                     <td class="text-center">
                                                         {{ $datum->billing_no }}
                                                     </td>
+                                                    @php
+                                                    $ledger= DB::table('ledger_heads')->where('id', $datum->bill_type_id)->first();
+                                                    @endphp
                                                     <td class="text-center">
-                                                        {{ $datum->bill_type_name }}
+                                                        {{ $ledger->ledger_head_name }}
                                                     </td>
                                                     <td class="text-center">
                                                         {{ $datum->payment_type }}
@@ -3056,7 +3060,7 @@
                                                         {{ !empty($case->case_no) ? $case->case_no : '' }}
 
 
-                                                        {{-- {{}} --}}
+                                                        {{ $case->case_title_name . ' ' . $case->case_infos_case_no . '/' . $case->case_infos_case_year }}
                                                     </td>
                                                     <td class="text-center">
                                                         {{ $datum->bill_amount }}
@@ -3064,8 +3068,18 @@
                                                     <td class="text-center">
                                                         {{ $datum->date_of_billing }}
                                                     </td>
+
+                                                    @php
+                                                     $sum_paid_amount =0;
+                                                        $ledger = DB::table('ledger_entries')
+                                                                        ->where('bill_id', $datum->id)
+                                                                        ->get();
+                                                            foreach ($ledger as $row) {
+                                                                $sum_paid_amount = $sum_paid_amount + $row->paid_amount;
+                                                            }
+                                                    @endphp
                                                     <td class="text-center">
-                                                        {{ $datum->payment_amount }}
+                                                        {{ $sum_paid_amount }}
                                                     </td>
                                                     <td class="text-center">
                                                         @if ($datum->delete_status == 0)
