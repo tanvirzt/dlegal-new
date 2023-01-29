@@ -2085,47 +2085,30 @@
                                         Name</label>
                                     <div class="col-sm-8">
 
+                                      
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="client_id[]"
-                                                        id="client_id"
-                                                        class="form-control select2" data-placeholder="Select" multiple>
+
+                                            <div class="col-md-10">
+                                                <select name="client_id[]" id="client_id_select" class="form-control select2"
+                                                    data-placeholder="Select" multiple>
                                                     <option value="">Select</option>
-                                                    @foreach($client as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{  old('client_id') == $item->id ? 'selected' : '' }}>{{ $item->client_name }}</option>
+                                                    @foreach ($client as $item)
+                                                        <option value="{{ $item->id }}"
+                                                          >
+                                                            {{ $item->client_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="input-group hdtuto_client control-group increment_client">
-                                                    <input type="text" name="client_name_write[]"
-                                                            class="myfrm form-control col-12" placeholder="Client Name">
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-success btn_success_client"
-                                                                type="button"><i
-                                                                class="fldemo glyphicon glyphicon-plus"></i>+
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="clone_client hide">
-                                                    <div class="hdtuto_client control-group lst input-group"
-                                                            style="margin-top:10px">
-                                                        <input type="text" name="client_name_write[]"
-                                                                class="myfrm form-control col-12">
-                                                        <div class="input-group-btn">
-                                                            <button class="btn btn-danger btn_danger_client"
-                                                                    type="button"><i
-                                                                    class="fldemo glyphicon glyphicon-remove"></i> -
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
+                                            <div class="col-md-2">
+                                                <button class="btn btn-success btn_success_client" type="button"
+                                                    data-toggle="modal" data-target="#modal-client-info" data-toggle="tooltip"
+                                                    data-placement="top" title="Add Client"><i
+                                                        class="fldemo glyphicon glyphicon-plus"></i>+
+                                                </button>
+        
                                             </div>
+        
                                         </div>
-
                                         @error('client_name')<span
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
@@ -2938,8 +2921,132 @@
         <!-- /.content -->
 
     </div>
-    <!-- /.content-wrapper -->
+    
+    <div class="modal fade" id="modal-client-info">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-title">Add Client </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="add-client">
 
+
+                    <div class="card-body">
+
+                        <h6 class="text-uppercase text-bold"><u> Client Information </u>
+                        </h6>
+                        <div class="form-group row">
+                            <label for="client_business_name" class="col-sm-4 col-form-label">Client Name
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="client_name">
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="client_business_name" class="col-sm-4 col-form-label">Client Mobile
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="client_mobile">
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_business_name" class="col-sm-4 col-form-label">Client Email
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" name="client_email">
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="client_business_name" class="col-sm-4 col-form-label">Client Address
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="client_address">
+
+                            </div>
+                        </div>
+
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <div class="float-right">
+                                <button type="submit" id="save_client" class="btn btn-primary text-uppercase"><i
+                                        class="fas fa-save"></i> Add
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.content-wrapper -->
+    @section('scripts')
+       
+        <script>
+            $(document).ready(function() {
+                fatchdata()
+
+                function fatchdata() {
+
+                    $.ajax({
+                        type: "GET",
+                        
+                        url: '{{ url('client-data') }}',
+                        dataType: "json",
+                        success: function(response) {
+                            console.log(response);
+                             $('#client_id_select').html("");
+                            $.each(response.data,function(key,item){
+                            $('#client_id_select').append(`
+                                <option  value="${item.id}">${item.client_name}</option>
+                            `);
+                            });
+                        }
+                    });
+                }
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $('#save_client').on('click', function(e) {
+                    console.log('anamika');
+                    e.preventDefault();
+                    $(this).html('Sending..');
+
+                    $.ajax({
+
+                        data: $('#add-client').serialize(),
+                        url: '{{ url('store-client') }}',
+                        type: "POST",
+                        datatype: 'json',
+                        cache: false,
+                        success: function(data) {
+
+                            $('#add-client').trigger("reset");
+                            $('#modal-client-info').modal('hide');
+
+                            fatchdata()
+                        }
+
+                    });
+
+
+                });
+            });
+        </script>
+    @endsection
 @endsection
 
 {{-- <script type="text/javascript">

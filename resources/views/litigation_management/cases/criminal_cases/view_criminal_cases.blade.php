@@ -4227,14 +4227,6 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
 
                                     </div>
 
-
-
-
-
-
-
-
-
                                 </div>
 
                                 @error('client_name')
@@ -7880,7 +7872,7 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                             $('#add-client').trigger("reset");
                             $('#modal-client-info').modal('hide');
 
-
+                            fatchdata()
                         }
 
                     });
