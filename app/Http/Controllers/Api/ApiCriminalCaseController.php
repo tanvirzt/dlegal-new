@@ -353,20 +353,20 @@ class ApiCriminalCaseController extends Controller
      */
     public function save_criminal_cases(Request $request)
    {
-    $latest = CriminalCase::latest()->first();
-//    dd($latest);
+//     $latest = CriminalCase::latest()->first();
+// //    dd($latest);
 
-    if ($latest != null) {
-        $latest_no = explode('-', $latest->created_case_id);
-        $sl = $latest_no[1] + 1;
-    } else {
-        $sl = +1;
-    }
+//     if ($latest != null) {
+//         $latest_no = explode('-', $latest->created_case_id);
+//         $sl = $latest_no[1] + 1;
+//     } else {
+//         $sl = +1;
+//     }
 
-    $created_case_id = 'LCR-000' . $sl;
+//     $created_case_id = 'LCR-000' . $sl;
        
         $data = new CriminalCase();
-        // $data->created_case_id = $created_case_id;
+        // $data->created_case_id = $request->created_case_id;
         $data->case_infos_division_id = $request->case_infos_division_id;
         $data->case_infos_district_id = $request->case_infos_district_id;
         $data->case_infos_thana_id = $request->case_infos_thana_id;
