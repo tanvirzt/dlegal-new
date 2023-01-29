@@ -4557,7 +4557,7 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
     </div>
 
 
-    {{-- opposite party Information --}}
+
 
     <div class="modal fade" id="modal-lg-opposition-info">
         <div class="modal-dialog modal-lg">
@@ -4928,7 +4928,6 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
         <!-- /.modal-dialog -->
     </div>
 
-    {{-- opposite party Information --}}
 
     {{-- case Information --}}
 
@@ -7836,14 +7835,14 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
 
                     $.ajax({
                         type: "GET",
-                        
+
                         url: '{{ url('client-data') }}',
                         dataType: "json",
                         success: function(response) {
                             console.log(response);
-                             $('#client_id_select').html("");
-                            $.each(response.data,function(key,item){
-                            $('#client_id_select').append(`
+                            $('#client_id_select').html("");
+                            $.each(response.data, function(key, item) {
+                                $('#client_id_select').append(`
                                 <option  value="${item.id}">${item.client_name}</option>
                             `);
                             });
