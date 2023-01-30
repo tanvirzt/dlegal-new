@@ -263,8 +263,11 @@ class BillingsController extends Controller
         } else {
             $date_of_billing = date('Y-m-d');
         }
+        if($request->case_no){
+            $client=DB::table('criminal_cases')->where('id',$request->case_no)->first();
 
-
+        }
+    
         $data = new CaseBilling();
         $data->billing_no = $billing_no;
         $data->bill_type_id = $request->bill_type_id;
@@ -273,7 +276,7 @@ class BillingsController extends Controller
         $data->case_type_id = $request->case_type_id;
         $data->class_of_cases = $request->class_of_cases;
         $data->case_no = $request->case_no;
-
+        $data->client_id = $client->client_id;
         $data->panel_lawyer_id = $request->panel_lawyer_id;
         $data->bill_amount = $request->bill_amount;
         $data->date_of_billing = $date_of_billing;
@@ -811,6 +814,7 @@ class BillingsController extends Controller
     {
            //dd($request);
         $request_data = $request->all();
+        $case= $request->case_no;
         if ($request->from_date != "dd/mm/yyyy") {
             $from_next_date_explode = explode('/', $request->from_date);
             $from_next_date_implode = implode('-', $from_next_date_explode);
@@ -829,59 +833,54 @@ class BillingsController extends Controller
         $query = CaseBilling::with('ledger');
 
         switch ($request->isMethod('get')) {
-
-            case $request->class_of_cases != null && $request->case_no != null && $request->client != null :
+            case $request->class_of_cases != null && $request->case_no != null && $request->client != null:
                 $query2 =DB::table('case_billings')
-                ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
-                ->select('case_billings.*','criminal_cases.*')->where(['class_of_cases' => $request->class_of_cases, 'case_billings.case_no' => $request->case_no, 'client_id' => $request->client])
-                ->where('case_billings.delete_status', 0)->get();
-                
+                ->where(['class_of_cases' => $request->class_of_cases,  'case_no' => $case, 'client_id' => $request->client])
+                ->where('delete_status', 0)
+                ->get();
+               // dd($query2);
                 break;
-            case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $request->from_date != null && $request->to_date != null:
-                 $query2 =DB::table('case_billings')
-                 ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
-                 ->select('case_billings.*','criminal_cases.*')
-                 ->where(['class_of_cases' => $request->class_of_cases, 'case_billings.case_no' => $request->case_no, 'client_id' => $request->client])
-                    ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
-                    ->where('case_billings.delete_status', 0)->get();
-               
-                break;
-          
-            case $request->client != null:
+            case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $from_next_date != null && $to_next_date != null:
                 $query2 =DB::table('case_billings')
-                ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
-                ->select('case_billings.*','criminal_cases.*')
-                ->where(['client_id' => $request->client])
-                ->where('case_billings.delete_status', 0)->get();
-                // dd($query2);
-                break;
-            case $request->class_of_cases != null :
-                $query2 =DB::table('ledger_entries')
-                ->join('case_billings','ledger_entries.bill_id','case_billings.id')
-                ->select('case_billings.*','ledger_entries.*')->where(['class_of_cases' => $request->class_of_cases])
-                  ->where('case_billings.delete_status', 0)->get();
-                break;
+                ->where([ 'class_of_cases' => $request->class_of_cases,'case_no' => $case, 'client_id' => $request->client])
+                ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
+                ->where('delete_status', 0)->get();
+              // dd($query2);
+                 break;
+         
+           case $request->client != null:
+                    $query2 =DB::table('case_billings')
+                    ->where(['client_id' => $request->client])
+                    ->where('delete_status', 0)->get();
+                  //  dd($query2);
+                    break;
+           
+                    case $request->class_of_cases != null && $from_next_date == null && $to_next_date == null:
+                        $query2 =DB::table('case_billings')
+                        ->where(['class_of_cases' => $request->class_of_cases])
+                        ->where('delete_status', 0)
+                        ->get();
+                      // dd($query2);
+                    break;
             case $request->from_date != null && $request->to_date != null :
                 $query2 =DB::table('case_billings')
-                ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
-                ->select('case_billings.*','criminal_cases.*') ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
-                ->where('case_billings.delete_status', 0)->get();
-
+                ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
+                ->where('delete_status', 0)->get();
+               // dd($query2);
                 break;
-            case $request->class_of_cases != null && $request->case_no == null && $request->client == null:
-                // $query2 = $query->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client_id]);
+            case $request->class_of_cases != null && $request->case_no != null :
                 $query2 =DB::table('case_billings')
-                ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
-                ->select('case_billings.*','criminal_cases.*')->where(['class_of_cases' => $request->class_of_cases, 'case_billings.case_no' => $request->case_no])
+               ->where(['class_of_cases' => $request->class_of_cases,  'case_no' => $case])
                 ->where('case_billings.delete_status', 0)->get();
+               // dd($query2);
                 break;
-
+    
             default:
-                $query2 = DB::table('case_billings')
-                ->join('criminal_cases','case_billings.case_no','criminal_cases.id')
-                ->select('case_billings.*','criminal_cases.*')
-                ->where('case_billings.delete_status', 0)->get();
+                $query2 =DB::table('case_billings')
+                ->where('delete_status', 0)->get();
+               // dd($query2);
         }
+
 
         $data =$query2;
         //dd($query2);
