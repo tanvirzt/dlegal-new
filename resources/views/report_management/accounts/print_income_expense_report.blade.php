@@ -34,7 +34,7 @@
 
 
                         <h4>
-                            <img src="http://127.0.0.1:8000/login_assets/img/rsz_11d_legal_logo.png" alt="AdminLTE Logo"
+                            <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="AdminLTE Logo"
                                 class="brand-image" style="opacity:1; padding-left:380px">
 
                             <small class="float-right" style="font-weight: 600!important;font-size:100%!important;">Date:
