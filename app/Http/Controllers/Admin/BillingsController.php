@@ -833,6 +833,20 @@ class BillingsController extends Controller
         $query = CaseBilling::with('ledger');
 
         switch ($request->isMethod('get')) {
+            case $request->class_of_cases != null :
+                $query2 =DB::table('case_billings')
+                ->where(['class_of_cases' => $request->class_of_cases])
+                ->where('delete_status', 0)
+                ->get();
+              // dd($query2);
+            break;
+            case $request->class_of_cases != null && $request->client != null:
+                $query2 =DB::table('case_billings')
+                ->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client])
+                ->where('delete_status', 0)
+                ->get();
+               // dd($query2);
+                break;
             case $request->class_of_cases != null && $request->case_no != null && $request->client != null:
                 $query2 =DB::table('case_billings')
                 ->where(['class_of_cases' => $request->class_of_cases,  'case_no' => $case, 'client_id' => $request->client])
@@ -855,13 +869,7 @@ class BillingsController extends Controller
                   //  dd($query2);
                     break;
            
-                    case $request->class_of_cases != null && $from_next_date == null && $to_next_date == null:
-                        $query2 =DB::table('case_billings')
-                        ->where(['class_of_cases' => $request->class_of_cases])
-                        ->where('delete_status', 0)
-                        ->get();
-                      // dd($query2);
-                    break;
+
             case $request->from_date != null && $request->to_date != null :
                 $query2 =DB::table('case_billings')
                 ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
