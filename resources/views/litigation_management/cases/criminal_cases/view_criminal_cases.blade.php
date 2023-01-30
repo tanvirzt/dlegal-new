@@ -3518,6 +3518,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+    
     <!-- /.modal -->
 
     <!-- /.modal -->
@@ -4088,7 +4089,7 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                                 @enderror
                             </div>
                         </div>
-                        <h6 class="text-uppercase text-bold"><u> Case File Location </u>
+                        <h6 class="text-uppercase text-bold"><u> Case File Management </u>
                         </h6>
                         <div class="form-group row">
                             <label for="cabinet_id" class="col-sm-4 col-form-label"> Cabinet Name </label>

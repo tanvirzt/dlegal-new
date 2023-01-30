@@ -428,11 +428,7 @@ class CounselLawyerController extends Controller
         return view('counsel_lawyer.external_counsel.counsel.counsel',compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create_counsel()
     {
         $chamber = Chamber::orderBy('id','asc')->get();
@@ -441,18 +437,9 @@ class CounselLawyerController extends Controller
         return view('counsel_lawyer.external_counsel.counsel.add_counsel',compact('documents_type','documents','chamber'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store_counsel(Request $request)
     {
-        // $data = json_decode(json_encode($request->all()));
-        // echo "<pre>";print_r($data);die;
-
-
         $received_documents_sections = $request->received_documents_sections;
         $remove = array_pop($received_documents_sections);
 
@@ -544,25 +531,14 @@ class CounselLawyerController extends Controller
         return redirect()->route('counsel');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show_counsel($id)
     {
         $data = Counsel::with('documents_received.received_documents_name','documents_received.received_documents_type_name','documents_required.required_wanting_documents_name','documents_required.required_wanting_documents_type_name')->find($id);
-        // data_array($data);
         return view('counsel_lawyer.external_counsel.counsel.show_counsel',compact('data'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit_counsel($id)
     {
         $chamber = Chamber::orderBy('id','asc')->get();

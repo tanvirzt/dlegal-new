@@ -325,14 +325,14 @@
                                                         id="case_infos_case_no"
                                                         name="case_infos_case_no"
                                                         placeholder="Case No"
-                                                        value="{{ old('case_infos_case_no') }}">
+                                                        value="{{ old('case_infos_case_no') }}" required>
                                             </div>
                                             <div class="col-md-6">
                                                 <input type="text" class="form-control"
                                                         id="case_infos_case_year"
                                                         name="case_infos_case_year"
                                                         placeholder="Case Year"
-                                                        value="{{ old('case_infos_case_year') }}">
+                                                        value="{{ old('case_infos_case_year') }}" required>
                                             </div>
                                         </div>
 

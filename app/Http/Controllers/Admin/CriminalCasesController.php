@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\CriminalCasesSwitchRecord;
 use App\Models\CriminalCasesWorkingDoc;
@@ -609,7 +608,7 @@ class CriminalCasesController extends Controller
         $documents_type = SetupDocumentsType::where('delete_status', 0)->orderBy('documents_type_name', 'asc')->get();
         $group_name = SetupGroup::get();
 
-        $chamber = Counsel::where('counsel_category','Chamber')->get();
+        $chamber = DB::table('counsels')->where('counsel_type','Internal')->get();
         $leadLaywer = Counsel::where('counsel_type','Internal')->get();
         $assignedlaywer = Counsel::get();
 
@@ -622,12 +621,9 @@ class CriminalCasesController extends Controller
         // $element = $request->case_infos_complainant_informant_name;
         // $key = array_key_last(($request->case_infos_complainant_informant_name));
         // $element[$key-1];
-
-        // request_array($request->all());
-
+        //dd($request->all());
         $received_documents_sections = $request->received_documents_sections;
         $remove = array_pop($received_documents_sections);
-
         $required_wanting_documents_sections = $request->required_wanting_documents_sections;
         $remove = array_pop($required_wanting_documents_sections);
 
@@ -4097,7 +4093,7 @@ class CriminalCasesController extends Controller
             ->leftJoin('setup_external_councils', 'criminal_cases.lawyer_advocate_id', '=', 'setup_external_councils.id')
             ->leftJoin('setup_case_titles as case_infos_title', 'criminal_cases.case_infos_sub_seq_case_title_id', '=', 'case_infos_title.id')
             ->leftJoin('setup_matters', 'criminal_cases.matter_id', '=', 'setup_matters.id')
-            ->join('criminal_cases_case_steps','criminal_cases.id','criminal_cases_case_steps.criminal_case_id')
+         
             ->leftJoin('setup_thanas','criminal_cases.case_infos_thana_id', '=', 'setup_thanas.id')
             ->leftJoin('setup_laws','criminal_cases.law_id', '=', 'setup_laws.id')
             ->where('criminal_cases.case_type', 'District')
@@ -4130,11 +4126,11 @@ class CriminalCasesController extends Controller
             'setup_external_councils.middle_name',
             'setup_external_councils.last_name',
             'case_infos_title.case_title_name as sub_seq_case_title_name',
-            'setup_matters.matter_name', 'criminal_cases_case_steps.case_nature_write AS nature',
+            'setup_matters.matter_name',
             'setup_thanas.thana_name',
             'setup_laws.law_name')
             ->get();
-
+           // dd($data);
 
         return view('litigation_management.cases.criminal_cases.criminal_cases', compact('user', 'group_name', 'client_category', 'client_name', 'next_date_reason', 'case_status', 'external_council', 'data', 'division', 'case_types', 'court', 'case_category', 'matter', 'case_cat'));
     }

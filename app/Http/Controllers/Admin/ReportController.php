@@ -423,18 +423,18 @@ class ReportController extends Controller
 
         switch ($request->isMethod('get')) {
             case $request->client != null && $request->ledger_type != null :
-                $query2 = $query->where(['client_id' => $request->client,'ledger_type' => $request->ledger_type]);
+                $query2 = $query->where(['client_id' => $request->client,'ledger_category_id' => $request->ledger_type]);
                 break;
             case $request->client != null :
                 $query2 = $query->where(['client_id' => $request->client]);
                 //dd($query2);
                 break;
             case $request->client != null && $request->ledger_type != null && $request->from_date != null && $request->to_date != null:
-                $query2 = $query->where(['client_id' => $request->client,'ledger_type' => $request->ledger_type])->whereBetween('ledger_date', array($from_next_date, $to_next_date));
+                $query2 = $query->where(['client_id' => $request->client,'ledger_category_id' => $request->ledger_type])->whereBetween('ledger_date', array($from_next_date, $to_next_date));
                 break;
             
             case $request->ledger_type != null:
-                $query2 = $query->where('ledger_type', $request->ledger_type);
+                $query2 = $query->where('ledger_category_id', $request->ledger_type);
                 break;
             case $request->from_date != null && $request->to_date != null:
                 $query2 = $query->whereBetween('ledger_date', array($from_next_date, $to_next_date));
@@ -446,7 +446,7 @@ class ReportController extends Controller
         }
 
         $data = $query2->orderBy('id', 'DESC')->get();
-    
+    //dd($data);
         $ledger_head = LedgerHead::all();
         $is_search = 'Searched';
         $clients = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();

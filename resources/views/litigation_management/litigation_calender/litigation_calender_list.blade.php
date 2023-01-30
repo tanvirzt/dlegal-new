@@ -670,7 +670,7 @@
                                                                             ->orderBy('criminal_cases.case_infos_court_short_id','asc')
                                                                             ->where(['criminal_case_status_logs.delete_status' => 0, 'criminal_case_status_logs.updated_next_date' => $datum->next_date])
                                                                             ->get();
-                                                                 //dd($calendar_wise_data);
+                                                               //  dd($calendar_count);
                                                                 @endphp
                                                                 
                                                         {{ $calendar_count }}</p>
@@ -733,15 +733,15 @@
                                             <th class="police_station_column" width="5%" style="display: none">Police Station</th>
                                             {{-- <th width="10%">Previous Case Date</th> --}}
                                             <th class="fixed_for_column" width="10%">Fixed For</th>
-                                            <th class="party_column" width="20%">Party</th>
+                                            <th class="party_column" width="15%">Party</th>
                                             {{-- <th width="17%">2nd Party</th> --}}
                                             <th class="matter_column" width="10%">Matter</th>
                                             <th class="matter_column" width="10%">Type</th>
                                             <th class="previous_date_column" width="10%" style="display: none">PV.Date</th>
                                             <th class="pv_date_fix_column" width="10%" style="display: none">PV.D Fixed For</th>
                                             <th class="steps_notes_column" width="15%">Next Steps</th>
-                                            <th class="steps_notes_column" width="15%">Lawyer</th>
-                                            <th class="steps_notes_column" width="15%">Action</th>
+                                            <th class="steps_notes_column" width="10%">Lawyer</th>
+                                            <th class="steps_notes_column" width="25%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -1103,7 +1103,7 @@ $data = DB::table('criminal_cases')
                                                     <a class="dropdown-item btn btn-outline-success" data-toggle="modal" data-target="#modal-lg-send-messages" data-placement="top"
                                                        href=""><i class="fas fa-bell"></i> Send SMS/Mail</a>
                                                        
-                                                    <a class="dropdown-item" data-toggle="modal" data-target="#modal-lg-2"  data-placement="top" title="Update Status"
+                                                    <a class="dropdown-item" data-toggle="modal" data-target="#modal-lg"  data-placement="top" title="Update Status"
                                                        href=""><i class="fas fa-signal"></i> CPL</a>
                                                        {{-- Button --}}
                                                     {{-- <a class="dropdown-item" data-toggle="modal" data-target="#modal-lg" data-placement="top" title="Update Status"
@@ -1119,58 +1119,7 @@ $data = DB::table('criminal_cases')
                                     
                                     {{-- update status fo the case --}}
 
-<div class="modal fade" id="modal-lg-status-of-the-case">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="card-title"> Edit Status of the Case </h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('update-criminal-cases-status-column', $value->id) }}" method="post">
-                @csrf
-                <div class="card-body">
-                    <div class="form-group row">
-                        <label for="updated_case_status_id" class="col-sm-4 col-form-label">Status</label>
-                        <div class="col-sm-8">
-                            <select name="updated_case_status_id" id="updated_case_status_id"
-                                    class="form-control select2">
-                                <option value="">Select</option>
-                                <option value="Disposed"
-                                        {{ old('updated_case_status_id') == 'Disposed' ? 'selected' : '' }}>
-                                        Disposed Cases</option>
-                                @foreach ($case_status as $item)
-                                    <option value="{{ $item->id }}"
-                                        {{ old('updated_case_status_id') == $item->id ? 'selected' : '' }}>
-                                        {{ $item->case_status_name }}</option>
-                                @endforeach
 
-                            </select>
-                            @error('updated_case_status_id')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-
-
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <div class="float-right">
-                            <button type="submit" class="btn btn-primary text-uppercase"><i
-                                    class="fas fa-save"></i> Update
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-            </form>
-
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
 
 <div class="modal fade" id="modal-lg-letter-notice">
     <div class="modal-dialog modal-xl">
@@ -1262,6 +1211,9 @@ $data = DB::table('criminal_cases')
                                         <select name="letter_notice_type_id[]"
                                                 class="form-control mr-2">
                                             <option value="">Select</option>
+                                            {{-- @php
+                                            dd($documents_type );
+                                            @endphp --}}
                                             @foreach($documents_type as $item)
                                                 <option
                                                     value="{{ $item->id }}" {{ !empty($values['letter_notice_type_id']) && $values['letter_notice_type_id']  == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
@@ -1343,252 +1295,8 @@ $data = DB::table('criminal_cases')
 
     <!-- /.modal -->
 
-    <div class="modal fade" id="modal-lg-2">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="card-title"> Update Activities </h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('update-criminal-cases-activity', $data->id) }}" method="post">
-                    @csrf
-                    <div class="card-body">
-                        <input type="hidden" name="case_no"
-                               value="{{ $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . ' of ' . $data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null) , @endif
-                               {{ $data->sub_seq_case_title_name }}
-                               @php
-                                   $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
-                                   $key = array_key_last($case_infos_sub_seq_case_no);
-                                   echo $case_infos_sub_seq_case_no[$key];
-
-                                   $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
-                                   $key = array_key_last($case_infos_sub_seq_case_year);
-                                   $last_case_no = $case_infos_sub_seq_case_year[$key];
-                                   if ($last_case_no != null) {
-                                       echo '/'.$last_case_no;
-                                   }
-                               @endphp">
-
-                        <div class="row">
-                            <div class="col-md-6">
-
-                                <div class="form-group row">
-                                    <label for="activity_date" class="col-sm-4 col-form-label"> Date
-                                    </label>
-                                    <div class="col-sm-8">
-                                        <span class="date_span_status_modal">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'activity_date');"><input type="text"
-                                                                                                       id="activity_date" name="activity_date"
-                                                                                                       value="dd-mm-yyyy"
-                                                                                                       class="date_second_input" tabindex="-1"><span
-                                                class="date_second_span"
-                                                tabindex="-1">&#9660;</span>
-                                        </span>
-
-                                        @error('activity_date')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="activity_action" class="col-sm-4 col-form-label"> Activity/Action </label>
-                                    <div class="col-sm-8">
-                                        <textarea name="activity_action" class="form-control" rows="2"
-                                                  placeholder="">{{old('activity_action')}}</textarea>
-                                        @error('activity_action')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="activity_progress" class="col-sm-4 col-form-label">Progress</label>
-                                    <div class="col-sm-8">
-                                        <textarea name="activity_progress" class="form-control" rows="2"
-                                                  placeholder="">{{old('activity_progress')}}</textarea>
-                                        @error('activity_progress')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="activity_mode_id" class="col-md-4 col-form-label"> Mode
-                                    </label>
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="activity_mode_id" class="form-control select2">
-                                                    <option value="">Select</option>
-                                                    @foreach ($mode as $item)
-                                                        <option value="{{ $item->id }}"
-                                                            {{ old('activity_mode_id') == $item->mode_name ? 'selected' : '' }}>
-                                                            {{ $item->mode_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" id="activity_mode_write" placeholder="Mode"
-                                                       name="activity_mode_write">
-                                            </div>
-
-                                        </div>
-
-                                        @error('activity_mode_write')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="start_time" class="col-sm-4 col-form-label">Start Time</label>
-                                    <div class="col-sm-8">
-                                        <input type="datetime-local" class="form-control" id="start_time"
-                                               name="start_time">
-                                        @error('start_time')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="end_time" class="col-sm-4 col-form-label">End Time</label>
-                                    <div class="col-sm-8">
-                                        <input type="datetime-local" class="form-control" id="end_time"
-                                               name="end_time">
-                                        @error('end_time')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="setup_hours" class="col-sm-4 col-form-label">Time Spent</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="setup_hours" name="setup_hours"
-                                               readonly>
-                                        @error('setup_hours')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="time_spend_manual" class="col-sm-4 col-form-label">Time Spent</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="time_spend_manual" name="time_spend_manual">
-                                        @error('time_spend_manual')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
 
 
-                            <div class="col-md-6">
-
-                                <div class="form-group row">
-                                    <label for="activity_engaged_id" class="col-md-4 col-form-label"> Engaged
-                                    </label>
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="activity_engaged_id[]" data-placeholder="Select"
-                                                        class="form-control select2" multiple>
-                                                    <option value="">Select</option>
-                                                    @foreach ($external_council as $item)
-                                                        <option
-                                                            value="{{ $item->first_name . ' ' . $item->last_name }}"
-                                                            {{ old('updated_engaged_advocate_id') == $item->id ? 'selected' : '' }}>
-                                                            {{ $item->first_name }}
-                                                            {{ $item->last_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" id="activity_engaged_write"
-                                                       placeholder="Activity Engaged" name="activity_engaged_write">
-                                            </div>
-                                        </div>
-
-                                        @error('activity_mode_write')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="activity_forwarded_to_id" class="col-md-4 col-form-label"> Forwarded To
-                                    </label>
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="activity_forwarded_to_id[]" class="form-control select2" data-placeholder="Select"
-                                                        multiple>
-                                                    <option value="">Select</option>
-                                                    @foreach ($external_council as $item)
-                                                        <option value="{{ $item->id }}"
-                                                            {{ old('activity_forwarded_to_id') == $item->id ? 'selected' : '' }}>
-                                                            {{ $item->first_name }}
-                                                            {{ $item->last_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                       id="activity_forwarded_to_write" placeholder="Forwarded To"
-                                                       name="activity_forwarded_to_write">
-                                            </div>
-                                        </div>
-
-                                        @error('activity_forwarded_to_write')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="activity_requirements" class="col-sm-4 col-form-label">Requirements</label>
-                                    <div class="col-sm-8">
-                                        <textarea name="activity_requirements" class="form-control" rows="2"
-                                                  placeholder="">{{old('activity_requirements')}}</textarea>
-                                        @error('client')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="activity_remarks" class="col-sm-4 col-form-label">Note</label>
-                                    <div class="col-sm-8">
-                                        <textarea name="activity_remarks" class="form-control" rows="2"
-                                                  placeholder="">{{old('activity_remarks')}}</textarea>
-                                        @error('client')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <div class="float-right">
-                                <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i>
-                                    Update
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-                </form>
-
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
  <!-- /.modal -->
 
  <div class="modal fade" id="modal-lg">
