@@ -229,7 +229,7 @@
                                                             16-01-2023</small>
                                                     </h4>
                                                 </div>
-                                                <h2 style="font-weight: bold;padding-left:570px;padding-top:20px;">
+                                                <h2 style="font-weight: bold;padding-left:600px;padding-top:20px;">
                                                     LEDGER REPORT</h2>
 
 
@@ -287,14 +287,27 @@
                                                             @endif
                                                         </span>
                                                     </div>
-                                                    <h5 class="text-center">
+                                                  
+                                                    <h5 class="text-center " >
                                                         {{ !empty($ledger_head_name) ? $ledger_head_name->ledger_head_name : '' }}
                                                     </h5>
-                                                    <h6 class="text-center">
+                                                    <h2 class="text-center" style="padding-left:-60px!important; ">
                                                         {{ !empty($request_data['class_of_cases']) ? $request_data['class_of_cases'] : '' }}
-                                                    </h6>
+                                                    </h2>
+                                                    <h2 class="text-center">
+                                                        
+                                                      
+                                                        @php
+                                                        if (!empty($request_data['case_no'])){
+                                                            $case=DB::table('criminal_cases')->where('id',$request_data['case_no'])->first();
+                                                       
+                                                        }
+                                                     
+                                                        @endphp
+                                                           {{ $case->case_infos_case_no}} / {{$case->case_infos_case_year}}
+                                                    </h2>
                                                     @if (!empty($request_data['class_of_cases']) && $request_data['class_of_cases'] == 'District Court')
-                                                        <h6 class="text-center">
+                                                        <h3 class="text-center">
 
                                                             @php
                                                                 $case_number = DB::table('ledger_entries')
@@ -310,9 +323,9 @@
                                                                 {{ $case_number->main_case_no }}
                                                             @endif
 
-                                                        </h6>
+                                                        </h3>
                                                     @endif
-
+                                                
 
 
 
