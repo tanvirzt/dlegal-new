@@ -58,7 +58,6 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-
     Route::get('add-role', [RoleController::class, 'add_role'])->name('roles.add-role');
 
     Route::resource('roles', RoleController::class);
