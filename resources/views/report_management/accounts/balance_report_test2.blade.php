@@ -131,7 +131,7 @@
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
 
-                                                            <span class="date_span" style="width: 454px;">
+                                                            <span class="date_span">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'from_date');"><input
@@ -152,7 +152,7 @@
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label"> To Date </label>
                                                         <div class="">
-                                                            <span class="date_span" style="width: 454px;">
+                                                            <span class="date_span">
                                                                 <input type="date"
                                                                     class="xDateContainer date_first_input"
                                                                     onchange="setCorrect(this,'to_date');"><input
@@ -197,7 +197,7 @@
                                             target="_blank">
                                             @csrf
 
-                                            {{-- 
+                                            {{--
                                             <input type="hidden" name="client" value="{{ $request_data['client'] }}">
                                             <input type="hidden" name="from_date"
                                                 value="{{ $request_data['from_date'] }}">
@@ -302,7 +302,7 @@
                                                                     ->where(['case_billings.class_of_cases' => $request_data['class_of_cases'], 'case_billings.case_no' => $request_data['case_no']])
                                                                     ->select('ledger_entries.*', 'case_billings.class_of_cases', 'case_billings.case_no', 'criminal_cases.case_no as main_case_no')
                                                                     ->first();
-                                                                
+
                                                             @endphp
 
                                                             @if (!empty($case_number->main_case_no))
@@ -355,12 +355,12 @@
                                                                 @php
                                                                     $ledger = DB::table('ledger_entries')
                                                                         ->where('bill_id', $item->id)
-                                                                    
+
                                                                         ->get();
                                                                     // dd($data);
                                                                     $ledger_count = DB::table('ledger_entries')
                                                                         ->where('bill_id', $item->id)
-                                                                    
+
                                                                         ->count();
                                                                 @endphp
 

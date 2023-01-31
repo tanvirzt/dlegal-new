@@ -432,14 +432,14 @@ class ReportController extends Controller
             case $request->client != null && $request->ledger_type != null && $request->from_date != null && $request->to_date != null:
                 $query2 = $query->where(['client_id' => $request->client,'ledger_category_id' => $request->ledger_type])->whereBetween('ledger_date', array($from_next_date, $to_next_date));
                 break;
-            
+
             case $request->ledger_type != null:
                 $query2 = $query->where('ledger_category_id', $request->ledger_type);
                 break;
             case $request->from_date != null && $request->to_date != null:
                 $query2 = $query->whereBetween('ledger_date', array($from_next_date, $to_next_date));
                 break;
-      
+
 
             default:
                 $query2 = $query;
@@ -525,46 +525,40 @@ class ReportController extends Controller
     }
 
     public function balance_report_search(Request $request)
-    {
-         //dd($request->all());
+    {    //dd($request);
         $request_data = $request->all();
         $case= $request->case_no;
         if ($request->from_date != "dd/mm/yyyy") {
             $from_next_date_explode = explode('/', $request->from_date);
             $from_next_date_implode = implode('-', $from_next_date_explode);
             $from_next_date = date('Y-m-d', strtotime($from_next_date_implode));
-               
         } else if ($request->from_date == "dd/mm/yyyy") {
             $from_next_date = null;
-           // dd($from_next_date);
         }
-
         if ($request->to_date != "dd/mm/yyyy") {
             $to_next_date_explode = explode('/', $request->to_date);
             $to_next_date_implode = implode('-', $to_next_date_explode);
             $to_next_date = date('Y-m-d', strtotime($to_next_date_implode));
         } else if ($request->to_date == "dd/mm/yyyy") {
-          
             $to_next_date = null;
-           // dd($from_next_date);
         }
-       
         $bill_no = CaseBilling::where('delete_status', 0)->get();
         $query = CaseBilling::with('ledger');
 
         switch ($request->isMethod('get')) {
-            case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $request->to_next_date =="dd/mm/yyyy" && $request->from_next_date == "dd/mm/yyyy":
+
+            case $request->class_of_cases != null && $request->case_no != null && $request->client != null :
+                 //dd('case1');
                 $query2 =DB::table('case_billings')
                 ->where([ 'class_of_cases' => $request->class_of_cases,'case_no' => $case, 'client_id' => $request->client])
                 ->where('delete_status', 0)->get();
-               dd($query2);
                  break;
             case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $from_next_date != null && $to_next_date != null:
                 $query2 =DB::table('case_billings')
                 ->where([ 'class_of_cases' => $request->class_of_cases,'case_no' => $case, 'client_id' => $request->client])
                 ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
                 ->where('delete_status', 0)->get();
-              // dd($query2);
+                //dd($query2);
                  break;
 
             case $request->class_of_cases != null && $request->client != null :
@@ -572,71 +566,74 @@ class ReportController extends Controller
                 ->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client])
                 ->where('delete_status', 0)
                 ->get();
-               // dd($query2);
+                //dd('case3');
                 break;
+
             case $request->class_of_cases != null :
                 $query2 =DB::table('case_billings')
                 ->where(['class_of_cases' => $request->class_of_cases])
                 ->where('delete_status', 0)
                 ->get();
-               // dd($query2);
+              //  dd('case4');
                 break;
+
             case $request->class_of_cases != null && $request->case_no != null && $request->client != null:
                 $query2 =DB::table('case_billings')
                 ->where(['class_of_cases' => $request->class_of_cases,  'case_no' => $case, 'client_id' => $request->client])
                 ->where('delete_status', 0)
                 ->get();
-               // dd($query2);
+               // dd('case5');
                 break;
+
             case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $from_next_date != null && $to_next_date != null:
                 $query2 =DB::table('case_billings')
                 ->where([ 'class_of_cases' => $request->class_of_cases,'case_no' => $case, 'client_id' => $request->client])
                 ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
                 ->where('delete_status', 0)->get();
-              // dd($query2);
+              //  dd('case6');
                  break;
-         
+
            case $request->client != null:
                 $query2 =DB::table('case_billings')
                 ->where(['client_id' => $request->client])
                 ->where('delete_status', 0)->get();
-                  //  dd($query2);
-                    break;
-           
-                    case $request->class_of_cases != null && $from_next_date == null && $to_next_date == null:
-                        $query2 =DB::table('case_billings')
-                        ->where(['class_of_cases' => $request->class_of_cases])
-                        ->where('delete_status', 0)
-                        ->get();
-                      // dd($query2);
-                    break;
+               // dd('case7');
+                break;
+
+            case $request->class_of_cases != null && $from_next_date == null && $to_next_date == null:
+                $query2 =DB::table('case_billings')
+                ->where(['class_of_cases' => $request->class_of_cases])
+                ->where('delete_status', 0)
+                ->get();
+               // dd('case8');
+            break;
+
             case $request->from_date != null && $request->to_date != null :
                 $query2 =DB::table('case_billings')
                 ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
                 ->where('delete_status', 0)->get();
-               // dd($query2);
+               // dd('case9');
                 break;
+
             case $request->class_of_cases != null && $request->case_no != null :
                 $query2 =DB::table('case_billings')
-               ->where(['class_of_cases' => $request->class_of_cases,  'case_no' => $case])
+                ->where(['class_of_cases' => $request->class_of_cases,  'case_no' => $case])
                 ->where('case_billings.delete_status', 0)->get();
-               // dd($query2);
+              //  dd('case10');
                 break;
-    
+
             default:
                 $query2 =DB::table('case_billings')
                 ->where('delete_status', 0)->get();
-               // dd($query2);
+               // dd('case11');
         }
 
-        $data_count =$query2->count();
-        $data =$query2;
+
+        $data =$query2 ;
         $ledger_head = LedgerHead::all();
         $is_search = 'Searched';
         $ledger_head_name = LedgerHead::where('id', $request->ledger_head_id)->first();
         $clients = SetupClient::where('delete_status', 0)->orderBy('client_name', 'asc')->get();
-
-        //dd($data);
         return view('report_management.accounts.balance_report_test3', compact('data', 'request_data', 'ledger_head', 'is_search', 'bill_no', 'clients'));
     }
 
@@ -680,14 +677,14 @@ class ReportController extends Controller
                 ->where('delete_status', 0)->get();
               // dd($query2);
                  break;
-         
+
            case $request->client != null:
                     $query2 =DB::table('case_billings')
                     ->where(['client_id' => $request->client])
                     ->where('delete_status', 0)->get();
                   //  dd($query2);
                     break;
-           
+
                     case $request->class_of_cases != null && $from_next_date == null && $to_next_date == null:
                         $query2 =DB::table('case_billings')
                         ->where(['class_of_cases' => $request->class_of_cases])
@@ -707,7 +704,7 @@ class ReportController extends Controller
                 ->where('case_billings.delete_status', 0)->get();
                // dd($query2);
                 break;
-    
+
             default:
                 $query2 =DB::table('case_billings')
                 ->where('delete_status', 0)->get();
@@ -763,14 +760,14 @@ class ReportController extends Controller
                 ->where('delete_status', 0)->get();
               // dd($query2);
                  break;
-         
+
            case $request->client != null:
                     $query2 =DB::table('case_billings')
                     ->where(['client_id' => $request->client])
                     ->where('delete_status', 0)->get();
                   //  dd($query2);
                     break;
-           
+
                     case $request->class_of_cases != null && $from_next_date == null && $to_next_date == null:
                         $query2 =DB::table('case_billings')
                         ->where(['class_of_cases' => $request->class_of_cases])
@@ -790,7 +787,7 @@ class ReportController extends Controller
                 ->where('case_billings.delete_status', 0)->get();
                // dd($query2);
                 break;
-    
+
             default:
                 $query2 =DB::table('case_billings')
                 ->where('delete_status', 0)->get();
@@ -807,7 +804,7 @@ class ReportController extends Controller
         return view('report_management.accounts.print_billing_report', compact('data', 'request_data', 'ledger_head', 'is_search', 'bill_no', 'clients'));
 
 
-    
+
     }
 
 
