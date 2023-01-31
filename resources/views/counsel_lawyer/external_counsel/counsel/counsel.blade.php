@@ -61,6 +61,7 @@
                                     <tr>
                                         <th class="text-center"> Sl </th>
                                         <th class="text-center"> Name </th>
+                                        <th class="text-center"> Image </th>
                                         <th class="text-center"> Role </th>
                                         <th class="text-center"> Chamber Joined </th>
                                         <th colspan="2"> Bar Council Enrollment </th>
@@ -79,6 +80,10 @@
                                             </td>
                                             <td>
                                                 {{ $datum->professional_name }}
+                                            </td>
+                                            <td>
+                                                <img src="{{ asset('files/profile/' . $datum->profile_image) }}" style=" height:50px; weidth:80px; border-radius: 50%;"
+                                                >
                                             </td>
                                             <td>
                                                 {{ $datum->counsel_role_id }}

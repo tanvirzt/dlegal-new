@@ -439,7 +439,8 @@ class CounselLawyerController extends Controller
 
 
     public function store_counsel(Request $request)
-    {
+    {    //dd($request);
+
         $received_documents_sections = $request->received_documents_sections;
         $remove = array_pop($received_documents_sections);
 
@@ -447,10 +448,14 @@ class CounselLawyerController extends Controller
         $remove = array_pop($required_wanting_documents_sections);
 
         $data = new Counsel();
-
+        if ($image = $request->file('profile_image')) {
+                $destinationPath = 'files/profile/';
+                $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+                $image->move($destinationPath, $profileImage);
+                $data->profile_image= "$profileImage";
+        }
         $data->counsel_type = $request->counsel_type;
         $data->counsel_category = $request->counsel_category;
-
         $data->chamber_name = $request->chamber_name;
         $data->counsel_role_id = $request->counsel_role_id;
         $data->counsel_name = $request->counsel_name;
@@ -558,7 +563,9 @@ class CounselLawyerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update_counsel(Request $request, $id)
-    {
+    {   //dd($request);
+
+       
         $received_documents_sections = $request->received_documents_sections;
         $remove = array_pop($received_documents_sections);
 
@@ -614,6 +621,17 @@ class CounselLawyerController extends Controller
         $data->professional_experience_one = $request->professional_experience_one;
         $data->professional_experience_two = $request->professional_experience_two;
         $data->date_of_joining = $request->date_of_joining == 'dd-mm-yyyy' || $request->date_of_joining == 'NaN-NaN-NaN' ? null : $request->date_of_joining;
+       
+       if ($image = $request->file('new_profile_image')) {
+
+            $file_old = 'files/profile/'.$request->old_profile_image;
+            unlink($file_old);
+        
+        $destinationPath = 'files/profile/';
+        $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+        $image->move($destinationPath, $profileImage);
+        $data->profile_image= "$profileImage";
+         }
         $data->save();
 
         CounselDocumentsReceived::where('counsel_id', $id)->delete();

@@ -35,7 +35,7 @@
                         
                         <div class="card-body">
                             <div class="row">
-
+                          
                                 <div class="col-md-6">
 
                                     <div class="appeal_case_info">
@@ -53,6 +53,11 @@
                                                     <tr>
                                                         <td>Role</td>
                                                         <td>{{ $data->counsel_role_id }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Image</td><td>
+                                                        <img src="{{ asset('files/profile/' . $data->profile_image) }}" style=" height:150px; weidth:150px;  border-radius: 50%;"
+                                                ></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>                               

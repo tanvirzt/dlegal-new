@@ -248,6 +248,24 @@
                                                 
                                             </div>
                                         </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="text-uppercase text-bold pb-5"><u> Profile
+                                                        Image </u></h6>
+                                                        <div class="form-group row">
+                                                            <label for="profile_image" class="col-sm-4 col-form-label">Image</label>
+                                                                <div class="col-sm-8">
+                                                                    <input type="file" class="form-control"
+                                                                           id="profile_image"
+                                                                           name="profile_image"
+                                                                          style="padding-bottom: 27px;" >
+                                                                    @error('profile_image')<span
+                                                                        class="text-danger">{{$message}}</span>@enderror
+                                                                </div>
+                                                        </div>
+                                                       
+                                            </div>
+                                        </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card">
