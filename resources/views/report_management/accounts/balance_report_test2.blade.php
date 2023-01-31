@@ -225,8 +225,7 @@
                                                             style="opacity:1; padding-left:0px">
 
                                                         <small class="float-right"
-                                                            style="font-weight: 600!important;font-size:100%!important;">Date:
-                                                            16-01-2023</small>
+                                                            style="font-weight: 600!important;font-size:100%!important;">Date: {{ date('d-m-Y') }}</small>
                                                     </h4>
                                                 </div>
                                                 <h2 style="font-weight: bold;padding-left:570px;padding-top:20px;">
@@ -338,7 +337,7 @@
                                                                 <th class="text-nowrap">Payment Type</th>
                                                                 <th class="text-center">Paid Date</th>
                                                                 <th class="text-center">Bill Amount</th>
-                                                                <th class="text-center">Paid Amount</th>
+                                                                <th class="text-center">Received Amount</th>
 
                                                                 <th class="text-center">Due Amount</th>
                                                                 <th class="text-center">Remarks</th>

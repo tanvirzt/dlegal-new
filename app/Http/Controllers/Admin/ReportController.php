@@ -533,22 +533,40 @@ class ReportController extends Controller
             $from_next_date_explode = explode('/', $request->from_date);
             $from_next_date_implode = implode('-', $from_next_date_explode);
             $from_next_date = date('Y-m-d', strtotime($from_next_date_implode));
-        } else if ($request->from_next_date == "dd/mm/yyyy") {
+               
+        } else if ($request->from_date == "dd/mm/yyyy") {
             $from_next_date = null;
+           // dd($from_next_date);
         }
 
         if ($request->to_date != "dd/mm/yyyy") {
             $to_next_date_explode = explode('/', $request->to_date);
             $to_next_date_implode = implode('-', $to_next_date_explode);
             $to_next_date = date('Y-m-d', strtotime($to_next_date_implode));
-        } else if ($request->to_next_date == "dd/mm/yyyy") {
+        } else if ($request->to_date == "dd/mm/yyyy") {
+          
             $to_next_date = null;
+           // dd($from_next_date);
         }
-
+       
         $bill_no = CaseBilling::where('delete_status', 0)->get();
         $query = CaseBilling::with('ledger');
 
         switch ($request->isMethod('get')) {
+            case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $request->to_next_date =="dd/mm/yyyy" && $request->from_next_date == "dd/mm/yyyy":
+                $query2 =DB::table('case_billings')
+                ->where([ 'class_of_cases' => $request->class_of_cases,'case_no' => $case, 'client_id' => $request->client])
+                ->where('delete_status', 0)->get();
+               dd($query2);
+                 break;
+            case $request->class_of_cases != null && $request->case_no != null && $request->client != null && $from_next_date != null && $to_next_date != null:
+                $query2 =DB::table('case_billings')
+                ->where([ 'class_of_cases' => $request->class_of_cases,'case_no' => $case, 'client_id' => $request->client])
+                ->whereBetween('case_billings.date_of_billing', [$from_next_date, $to_next_date])
+                ->where('delete_status', 0)->get();
+              // dd($query2);
+                 break;
+
             case $request->class_of_cases != null && $request->client != null :
                 $query2 =DB::table('case_billings')
                 ->where(['class_of_cases' => $request->class_of_cases, 'client_id' => $request->client])

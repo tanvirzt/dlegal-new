@@ -224,8 +224,8 @@
                                                             alt="AdminLTE Logo" class="brand-image" style="opacity:1">
 
                                                         <small class="float-right"
-                                                            style="font-weight: 600!important;font-size:90%!important">Date:
-                                                            {{ date('d-m-Y') }}</small>
+                                                            style="font-weight: 600!important;font-size:90%!important">
+                                                            Date: {{ date('d-m-Y') }}</small>
                                                     </h4>
                                                 </div>
 

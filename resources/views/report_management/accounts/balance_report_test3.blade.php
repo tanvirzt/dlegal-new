@@ -225,8 +225,8 @@
                                                             style="opacity:1; padding-left:0px">
 
                                                         <small class="float-right"
-                                                            style="font-weight: 600!important;font-size:100%!important;">Date:
-                                                            16-01-2023</small>
+                                                            style="font-weight: 600!important;font-size:100%!important;">
+                                                            Date: {{ date('d-m-Y') }}</small>
                                                     </h4>
                                                 </div>
                                                 <h2 style="font-weight: bold;padding-left:600px;padding-top:20px;">
@@ -287,25 +287,29 @@
                                                             @endif
                                                         </span>
                                                     </div>
-                                                  
-                                                    <h5 class="text-center " >
+
+                                                    <h5 class="text-center ">
                                                         {{ !empty($ledger_head_name) ? $ledger_head_name->ledger_head_name : '' }}
                                                     </h5>
-                                                    <h2 class="text-center" style="padding-left:-60px!important; ">
+                                                    <h4 class="text-center" style="padding-left:-60px!important; ">
                                                         {{ !empty($request_data['class_of_cases']) ? $request_data['class_of_cases'] : '' }}
-                                                    </h2>
-                                                    <h2 class="text-center">
-                                                        
-                                                      
+                                                    </h4>
+                                                    <h4 class="text-center">
+
+
                                                         @php
-                                                        if (!empty($request_data['case_no'])){
-                                                            $case=DB::table('criminal_cases')->where('id',$request_data['case_no'])->first();
-                                                       
-                                                        }
-                                                     
+                                                            if (!empty($request_data['case_no'])) {
+                                                                $case = DB::table('criminal_cases')
+                                                                    ->where('id', $request_data['case_no'])
+                                                                    ->first();
+                                                            }
+                                                            
                                                         @endphp
-                                                           {{ $case->case_infos_case_no}} / {{$case->case_infos_case_year}}
-                                                    </h2>
+                                                        @if (!empty($case))
+                                                            {{ @$case->case_infos_case_no }} /
+                                                            {{ @$case->case_infos_case_year }}
+                                                        @endif
+                                                    </h4>
                                                     @if (!empty($request_data['class_of_cases']) && $request_data['class_of_cases'] == 'District Court')
                                                         <h3 class="text-center">
 
@@ -325,7 +329,7 @@
 
                                                         </h3>
                                                     @endif
-                                                
+
 
 
 
