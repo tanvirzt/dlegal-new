@@ -223,8 +223,7 @@
                                                             style="opacity:1; padding-left:0px">
 
                                                         <small class="float-right"
-                                                            style="font-weight: 600!important;font-size:100%!important;">Date:
-                                                            16-01-2023</small>
+                                                            style="font-weight: 600!important;font-size:100%!important;">Date: {{ date('d-m-Y') }}</small>
                                                     </h4>
                                                 </div>
                                             </div>
