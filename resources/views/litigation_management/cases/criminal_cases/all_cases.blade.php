@@ -49,10 +49,10 @@ if (empty($case_cat)) {
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            <i class="fas fa-plus"></i>
+                                            <i class="fas fa-plus-circle" style="font-size: 23px;color: #0CA2A3;"></i>
                                         </button>
                                         <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                            <i class="fas fa-times"></i>
+                                            <i class="far fa-times-circle" style="font-size: 23px;color: red;"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -485,11 +485,14 @@ if (empty($case_cat)) {
                             <div class="card">
                                 <div class="card-header">
                                     <div class="row ">
-
-                                        <div class="col-sm-10">
+                                        <div class="col-md-12 list-title">
+                                            <img src="{{ asset('login_assets/img/all-cases-icon.png') }}" width="40px" style="display:block !important; float:left; margin-right: 15px; margin-top: 5px;" />List of Criminal Cases
+                                        </div>
+                                        <div class="col-sm-10 tab-btn">
+                                            <a href="{{ route('all-cases') }}" class="btn {{ $case_cat == 'all' ? 'civil_active_btn' : 'civil_btn' }}" style="margin-left: 6px;" ><span>All</span></a>
                                             <a href="{{ route('all-civil-cases') }}" class="btn {{ $case_cat == 'Civil' ? 'civil_active_btn' : 'civil_btn' }}" ><span>Civil</span></a>
                                             <a href="{{ route('all-criminal-cases') }}" class="btn {{ $case_cat == 'Criminal' ? 'civil_active_btn' : 'civil_btn' }}" style="margin-left: 6px;" ><span>Criminal</span></a>
-                                            <a href="{{ route('all-cases') }}" class="btn {{ $case_cat == 'all' ? 'civil_active_btn' : 'civil_btn' }}" style="margin-left: 6px;" ><span>All</span></a>
+                                            
 
                                         </div>
                                         {{-- <div class="col-sm-1">
@@ -498,9 +501,7 @@ if (empty($case_cat)) {
                                             <div class="float-right">
                                                 @can('criminal-cases-create')
                                                     <a href="{{ route('add-criminal-cases') }}">
-                                                        <button type="button" class="btn btn-success" style="padding: 4px 10px;"><i
-                                                                class="fas fa-plus"></i> Add Case
-                                                        </button>
+                                                        <button type="button" class="btn btn-success" style="padding: 5px 70px; font-size:18px; background: #0CA2A3; border: 1px solid #0CA2A3;">ADD</button>
                                                     </a>
                                                 @endcan
                                             </div>
@@ -508,17 +509,17 @@ if (empty($case_cat)) {
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="all-cases-dt" class="all-cases-dt table table-bordered table-striped">
 
                                         <thead>
                                             <tr>
                                                 <th class="text-center"> Sl</th>
                                                 <th class="text-center"> ID</th>
-                                                <th class="text-center"> Status</th>
+                                                <!--<th class="text-center"> Status</th>-->
                                                 <th class="text-center"> Next Date</th>
                                                 <th class="text-center"> Fixed for</th>
                                                 <th class="text-center"> Case No.</th>
-                                                <th class="text-center"> Sub. Case </th>
+                                                <th class="text-center widthCust"> Sub. Case </th>
                                                 <th class="text-center"> Court </th>
                                                 <th class="text-center"> District (P-1)</th>
                                                 <th class="text-center"> 1st Party</th>
@@ -527,7 +528,7 @@ if (empty($case_cat)) {
                                                 <th class="text-center"> Matter</th>
                                                 <th class="text-center"> Lawyer</th>
                                                 <th class="text-center">Status</th>
-                                                <th class="text-center">Action</th>
+                                                <th class="text-center" style="width: 15%;">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="search_data">
@@ -540,24 +541,22 @@ if (empty($case_cat)) {
                                                     <td>
                                                         {{ $datum->created_case_id }}
                                                     </td>
-                                                    <td>
+                                                    <!--<td>
                                                         @if (Is_numeric($datum->case_status_id))
                                                             {{ $datum->case_status_name }}
                                                         @else
                                                             {{ $datum->case_status_id }}
                                                         @endif
-                                                    </td>
+                                                    </td>-->
                                                     <td width="8%">
                                                         @if (!empty($datum->next_date) && $datum->next_date < date('Y-m-d'))
                                                             <span
-                                                                style="color: rgba(255, 0, 0, 1);font-size:11.5px;">{{ date('d-m-Y', strtotime($datum->next_date)) }}</span>
+                                                                style="font-size:11.5px;">{{ date('d-m-Y', strtotime($datum->next_date)) }}</span>
                                                         @elseif(!empty($datum->next_date))
                                                             {{ date('d-m-Y', strtotime($datum->next_date)) }}
                                                         @else
                                                             <button type='button'
-                                                                class='btn-custom btn-danger-custom-next-date text-uppercase'
-                                                                style="padding:2px;line-height: 10px;">Not Upd
-                                                            </button>
+                                                                class='btn-custom btn-danger-custom-next-date text-uppercase'>Not Upd</button>
                                                         @endif
                                                     </td>
                                                     <td>
@@ -695,27 +694,27 @@ if (empty($case_cat)) {
                                                         @if ($datum->delete_status == 0)
                                                             <button type="button"
                                                                 class="btn-custom btn-success-custom text-uppercase">
-                                                                Active
+                                                                ACTIVE
                                                             </button>
                                                         @else
                                                             <button type="button"
-                                                                class="btn-custom btn-warning-custom text-uppercase">Inactive
+                                                                class="btn-custom btn-warning-custom text-uppercase">INACTIVE
                                                             </button>
                                                         @endif
                                                     </td>
-                                                    <td>
+                                                    <td class="actionBtn">
                                                         @can('criminal-cases-edit')
                                                             <a href="{{ route('view-criminal-cases', $datum->id) }}">
                                                                 <button class="btn btn-outline-info btn-sm" type="button"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Details"><i class="fas fa-eye"></i></button>
+                                                                    title="Details">View</button>
                                                             </a>
                                                         @endcan
                                                         @can('criminal-cases-edit')
                                                             <a href="{{ route('view-criminal-cases', $datum->id) }}#section1">
                                                                 <button class="btn btn-outline-primary btn-sm" type="button"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Proceedings"><i class="fas fa-signal"></i></button>
+                                                                    title="Proceedings">Log</button>
                                                             </a>
                                                         @endcan
                                                         {{-- @can('criminal-cases-add-billing')
@@ -748,7 +747,7 @@ if (empty($case_cat)) {
                                                                 @csrf
                                                                 <button type="submit" class="btn btn-outline-danger btn-sm" style="line-height: 1.4"
                                                                         data-toggle="tooltip" data-placement="top"
-                                                                        title="Delete"><i class="fas fa-trash"></i></button>
+                                                                        title="Delete">Remove</button>
                                                             </form>
                                                         @endcan
                                                     </td>
@@ -772,5 +771,4 @@ if (empty($case_cat)) {
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-
 @endsection

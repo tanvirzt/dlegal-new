@@ -241,6 +241,8 @@
     <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('dist/js/pages/dashboard3.js') }}"></script>
 
+    <script src="{{ asset('dist/js/treemenu.js') }}"></script>
+
     <!-- AdminLTE App -->
     {{-- <script src="{{ asset('dist/js/adminlte.min.js') }}"></script> --}}
     <!-- AdminLTE for demo purposes -->

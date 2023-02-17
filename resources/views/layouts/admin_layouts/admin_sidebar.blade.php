@@ -3,6 +3,45 @@
     .sidebar-mini.sidebar-collapse .main-sidebar::before {
         position: fixed !important;
     }
+
+    .sidebar-dark-primary {
+        background: #fff !important;
+     }
+
+    .info{
+        width: 100%;
+    }
+
+    .btnSiteColor{
+        width: 244px;
+        height: 45px !important;
+        left: 16px;
+        top: 148px;
+        background: #0CA2A3;
+        color: #fff !important;
+    }
+
+    .btnDashboard{
+        position: absolute;
+        width: 100%;
+        height: 44px !important;
+        clear: both;
+    }
+
+    .sidebar-dark-primary a {
+      color: #fff !important;
+      padding: 12px !important;
+      color: #017EFA !important;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+
+    .sidebar .mb-3{
+        padding-bottom: 4rem !important;
+    }
+
+
+
 </style>
 
 <!-- Main Sidebar Container -->
@@ -17,878 +56,284 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-
-
-            </div>
-
+            <div class="image"></div>
             <div class="info">
-                <a href="{{ route('dashboard') }}" class="d-block">{{ ucfirst(Auth::user()->name) }}</a>
+                Main Menu<!---->
+                <br>
+                <div class="btnDashboard"><a href="{{ route('dashboard') }}" class="nav-link d-block btnSiteColor" style="color: #fff !important;"><i class="nav-icon fas fa-tachometer-alt"></i> <p>Dashboard</p></a></div>
             </div>
+            <!--{{ ucfirst(Auth::user()->name) }}-->
+            
         </div>
+
+<style type="text/css">
+.tree, .tree ul {
+    margin:0;
+    padding:0;
+    list-style:none
+}
+.tree ul {
+    margin-left:1em;
+    position:relative
+}
+.tree ul ul {
+    margin-left:.5em
+}
+.tree ul:before {
+    content:"";
+    display:block;
+    width:0;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    border-left:1px solid
+}
+.tree li {
+    margin:0;
+    padding:0;
+    line-height:2em;
+    color:#0CA2A3;
+    font-weight:700;
+    position:relative;
+    padding-top: 10px;
+    padding-bottom:10px;
+}
+
+
+.tree ul li:before {
+    content:"";
+    display:block;
+    width:10px;
+    height:0;
+    border-top:1px solid;
+    margin-top:10px;
+    position:absolute;
+    top:1em;
+    left:0;
+    color:#0CA2A3;
+}
+.tree ul li:last-child:before {
+    background:#fff;
+    height:auto;
+    top:1em;
+    bottom:0
+}
+.indicator {
+    margin-right:5px;
+    display: none;
+}
+.tree li a {
+    text-decoration: none;
+    color:#0CA2A3;
+}
+.tree li button, .tree li button:active, .tree li button:focus {
+    text-decoration: none;
+    color:#369;
+    border:none;
+    background:transparent;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    outline: 0;
+}
+
+.tree li.branch a{
+    color: #fff !important;
+    background-color: #0CA2A3;
+    margin-top: 15px;
+    width: 100%;
+    display: block;
+}
+
+.tree li.branch li a {
+    color: #0CA2A3 !important;
+    background-color: #fff;
+    margin-top: 0;
+    width: 100%;
+    display: block;
+    padding: 0 !important;
+}
+
+.tree li.branch .fa-users{
+    display: block !important;
+}
+
+.tree li.branch .fa-users::before {
+  padding-top: 7px !important;
+  display: block;
+  margin-right: 10px;
+}
+
+.tree li.branch ul li{
+    padding-left: 12px;
+}
+.fa-tachometer-alt{
+    float: left;
+    margin-right: 8px;
+    display: block;
+    padding-top: 3px;
+}
+
+.nav-link{
+    margin-top:0 !important;
+}
+
+[class*="sidebar-dark-"] .nav-sidebar > .nav-item:hover > .nav-link{
+    color: #fff !important;
+    background-color: #0CA2A3;
+}
+
+.menuLabel{
+    display: block !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+    background-color: transparent !important;
+}
+
+nav.mt-2 a.nav-link{
+     color: #000 !important;
+     background-color: none transparent;
+}
+
+.mt-2 [class*="sidebar-dark-"] .nav-sidebar > .nav-item:hover > .nav-link {
+  color: #000 !important;
+}
+
+.nav-pills li a:hover{
+  color: #000;
+}
+
+
+.nav-pills > .nav-item > .nav-link> p {
+  color: #000 !important;
+  background-color: #fff;
+}
+
+.nav-pills > .nav-item > .nav-link> p:hover {
+  color: #000 !important;
+  background-color: #fff;
+}
+
+[class*="sidebar-dark-"] .nav-sidebar > .nav-item > .nav-link.active {
+  color: #fff;
+  box-shadow: none !important;
+}
+
+.nav-pills > .nav-item:hover > .nav-link:hover {
+  color: #000 !important;
+  background-color: #fff;
+}
+
+.allDisplay{
+    display: block !important;
+    float: left;
+    margin-right: 10px;
+}
+
+
+.tree ul li.beforeNull::before{
+    display: none !important;
+}
+
+.tree ul.beforeNull::before{
+    display: none !important;
+}
+
+</style>
+
+
+<div class="col-md-12" style="padding: 0;">
+      
+      <ul id="tree3" class="tree nav nav-sidebar flex-column">
+         
+        <li class="nav-item"><a class="nav-link"> <i class="fas fa-users" style="display:block !important; float: left;"></i> <p class="menuLabel">Admin</p></a>
+              <ul>
+                <li>User</li>
+                <li><a href="{{ route('client-name') }}">Client</a></li>
+                <li><a href="{{ route('all-cases') }}">Case</a></li>
+                <li>Counsel</li>
+                <li>Case Proceedings</li>
+                <li>Documents</li>
+                <li><a href="{{ route('billing') }}">Billings</a></li>
+                <li>Opposition</li>
+                <li>Area</li>
+                <li><a href="{{ route('legal-service') }}">Legal Service</a></li>
+                <!--<li>
+                  <ul>
+                    <li>Reports
+                      <ul>
+                        <li>Report1</li>
+                        <li>Report2</li>
+                        <li>Report3</li>
+                      </ul>
+                    </li>
+                    <li>Employee Maint.</li>
+                  </ul>
+                </li>
+                <li>Human Resources</li>-->
+              </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link"> <img class="allDisplay" src="{{ asset('login_assets/img/litigation.jpg') }}" width="23px" style="display:block !important; float:left; margin-right: 5px;" /> <p class="menuLabel">Litigation</p></a>
+              <ul class="beforeNull">
+                <li class="beforeNull"> <img class="allDisplay" src="{{ asset('login_assets/img/all-cases.png') }}" width="20px" style="display:block !important; float:left; margin-right: 5px; margin-top: 5px;" /> Cases
+                    <ul>
+                    <li><a href="{{ route('all-cases') }}">All</a></li>
+                    <li><a href="{{ route('criminal-cases') }}">District</a></li>
+                    <li><a href="{{ route('special-court-cases-all') }}">Special</a></li>
+                    <li><a href="{{ route('high-court-cases') }}">High Court</a></li>
+                    <li><a href="{{ route('appellate-court-cases') }}">Appellate Court</a></li>
+                  </ul>
+                </li>
+                <li class="beforeNull"> <img src="{{ asset('login_assets/img/reports.png') }}" width="17px" style="display:block !important; float:left; margin-right: 5px; margin-top: 5px;" />Reports
+                  <ul>
+                    <li>Report1</li>
+                    <li>Report2</li>
+                    <li>Report3</li>
+                  </ul>
+                </li>
+              </ul>
+        </li>
+        <!--<li style="margin-top:10px;">XRP
+          <ul>
+            <li>Company Maintenance</li>
+            <li>Employees
+              <ul>
+                <li>Reports
+                  <ul>
+                    <li>Report1</li>
+                    <li>Report2</li>
+                    <li>Report3</li>
+                  </ul>
+                </li>
+                <li>Employee Maint.</li>
+              </ul>
+            </li>
+            <li>Human Resources</li>
+          </ul>
+        </li>-->
+            
+      </ul>
+    </div>
+
+
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-
-                <li class="nav-item">
-                    <a href="{{ route('dashboard') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                @canany(['role-list', 'user-list', 'domain-setup-list', 'company-type-list', 'company-list'])
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-users"></i>
-                            <p>
-                                User Management
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @if (Auth::user()->is_owner_admin == '1')
-                                @can('domain-setup-list')
-                                    <li class="nav-item">
-                                        <a href="{{ route('domain-setup.index') }}" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Domain Setup</p>
-                                        </a>
-                                    </li>
-                                @endcan
-                            @endif
-                            @if (Auth::user()->is_owner_admin == '1' || Auth::user()->is_companies_superadmin == '1')
-                                @can('company-type-list')
-                                    <li class="nav-item">
-                                        <a href="{{ route('company-type') }}" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Company Type</p>
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('company-list')
-                                    <li class="nav-item">
-                                        <a href="{{ route('company') }}" class="nav-link">
-                                            <i class="far fa-dot-circle nav-icon"></i>
-                                            <p>Company</p>
-                                        </a>
-                                    </li>
-                                @endcan
-                            @endif
-                            @can('role-list')
-                                <li class="nav-item">
-                                    <a href="{{ route('roles.index') }}" class="nav-link">
-                                        <i class="fas fa-user-tag nav-icon"></i>
-                                        <p>Role</p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('user-list')
-                                <li class="nav-item">
-                                    <a href="{{ route('users.index') }}" class="nav-link">
-                                        <i class="fas fa-user nav-icon"></i>
-                                        <p>User</p>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endcanany
-                @canany(['counsel-list', 'chamber-staff-list', 'chamber-list', 'internal-counsel-list'])
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-circle"></i>
-                            <p>
-                                Counsel/Lawyer
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @can('counsel-list')
-                                <li class="nav-item">
-                                    <a href="{{ route('counsel') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>External Counsel</p>
-                                    </a>
-                                </li>
-                            @endcan
-
-                            @can('counsel-list')
-                                <li class="nav-item">
-                                    <a href="{{ route('internal-counsel-new') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Internal Counsel</p>
-                                    </a>
-                                </li>
-                            @endcan
-                            {{-- @can('chamber-staff-list')
-                                <li class="nav-item">
-                                    <a href="{{ route('chamber-staff') }}" class="nav-link">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>Chamber Staff</p>
-                        </a>
-                </li>
-                @endcan --}}
-                            @can('chamber-list')
-                                <li class="nav-item">
-                                    <a href="{{ route('chamber') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Chamber</p>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-
-                @endcanany
-                {{-- @canany(['counsel-list', 'chamber-staff-list', 'chamber-list', 'internal-counsel-list'])
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-circle"></i>
-                            <p>
-                                Counsel/Lawyer
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @canany(['counsel-list', 'chamber-staff-list', 'chamber-list'])
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            External Counsel
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        @can('counsel-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('counsel') }}" class="nav-link">
-            <i class="far fa-dot-circle nav-icon"></i>
-            <p>Counsel</p>
-            </a>
-            </li>
-            @endcan
-            @can('chamber-staff-list')
-            <li class="nav-item">
-                <a href="{{ route('chamber-staff') }}" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Chamber Staff</p>
-                </a>
-            </li>
-            @endcan
-            @can('chamber-list')
-            <li class="nav-item">
-                <a href="{{ route('chamber') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Chamber</p>
-                </a>
-            </li>
-            @endcan
-            </ul>
-            </li>
-            @endcanany
-            @can('internal-counsel-list')
-            <li class="nav-item">
-                <a href="{{ route('internal-counsel-new') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Internal Counsel</p>
-                </a>
-            </li>
-            @endcan
-            </ul>
-            </li>
-
-            @endcanany --}}
-                @canany([
-                    'accused-list',
-                    'allegation-claim-list',
-                    'area-list',
-                    'area-list',
-                    'bank-list',
-                    'bank-branch-list',
-                    'bill-type-list',
-                    'bill-particulars-list',
-                    'bill-schedule-list',
-                    'branch-list',
-                    'cabinet-list',
-                    'case-status-list',
-                    'case-title-list',
-                    'case-category-list',
-                    'case-matter-list',
-                    'case-type-list',
-                    'client-group-list',
-                    'client-name-list',
-                    'client-which-party-list',
-                    'complainant-list',
-                    'coordinator-or-tadbirkar-list',
-                    'court-name-list',
-                    'court-order-list',
-                    'court-proceeding-list',
-                    'day-notes-list',
-                    'designation-list',
-                    'documents-list',
-                    'documents-type-list',
-                    'external-council-list',
-                    'internal-council-list',
-                    'in-favour-of-list',
-                    'law-list',
-                    'legal-issue-list',
-                    'legal-service-list',
-                    'mode-of-received-list',
-                    'next-date-fixed-for-list',
-                    'next-day-presence-list',
-                    'opposition-which-party-list',
-                    'particulars-list',
-                    'party-category-list',
-                    'party-subcategory-list',
-                    'payment-type-list',
-                    'payment-mode-list',
-                    'profession-list',
-                    'program-list',
-                    'progress-list',
-                    'referrer-list',
-                    'section-list',
-                    'title-list',
-                    'zone-list',
-                    'floor-list',
-                    'flat-number-list',
-                    'property-type-list',
-                    'seller-or-buyer-list',
-                    'compliance-category-list',
-                    'compliance-type-list',
-                    'company-type-list',
-                    'company-list',
-                    ])
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-circle"></i>
-                            <p>
-                                Admin Setup
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                @canany([
-                                    'accused-list',
-                                    'allegation-claim-list',
-                                    'area-list',
-                                    'area-list',
-                                    'bank-list',
-                                    'bank-branch-list',
-                                    'bill-type-list',
-                                    'bill-particulars-list',
-                                    'bill-schedule-list',
-                                    'branch-list',
-                                    'cabinet-list',
-                                    'case-status-list',
-                                    'case-title-list',
-                                    'case-category-list',
-                                    'case-matter-list',
-                                    'case-type-list',
-                                    'client-group-list',
-                                    'client-name-list',
-                                    'client-which-party-list',
-                                    'complainant-list',
-                                    'coordinator-or-tadbirkar-list',
-                                    'court-name-list',
-                                    'court-order-list',
-                                    'court-proceeding-list',
-                                    'day-notes-list',
-                                    'designation-list',
-                                    'documents-list',
-                                    'documents-type-list',
-                                    'external-council-list',
-                                    'internal-council-list',
-                                    'in-favour-of-list',
-                                    'law-list',
-                                    'legal-issue-list',
-                                    'legal-service-list',
-                                    'mode-of-received-list',
-                                    'next-date-fixed-for-list',
-                                    'next-day-presence-list',
-                                    'opposition-which-party-list',
-                                    'particulars-list',
-                                    'party-category-list',
-                                    'party-subcategory-list',
-                                    'payment-type-list',
-                                    'payment-mode-list',
-                                    'profession-list',
-                                    'program-list',
-                                    'progress-list',
-                                    'referrer-list',
-                                    'section-list',
-                                    'title-list',
-                                    'zone-list',
-                                    ])
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Litigation Setup
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        @can('accused-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('accused') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Accused</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('allegation-claim-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('allegation') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Allegation/Claim</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('area-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('area') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Area</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('bank-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('bank') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Bank</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('bank-branch-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('bank-branch') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Bank Branch</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('bill-type-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('bill-type') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Bill Type</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('bill-particulars-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('bill-particulars') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Bill Particulars</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('bill-schedule-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('bill-schedule') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Bill Schedule</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('branch-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('branch') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Branch</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('cabinet-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('cabinet') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Cabinet </p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('case-status-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('case-status') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Case Status </p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('case-title-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('case-title') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Case Title</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('case-category-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('case-category') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Case Category</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('case-matter-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('matter') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Case Matter</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('case-type-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('case-types') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Case Type</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('client-group-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('group') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Client Group</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('client-name-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('client-name') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Client Name</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('client-which-party-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('client') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Client(Which Party)</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('complainant-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('complainant') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Complainant</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('coordinator-or-tadbirkar-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('coordinator') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Coordinator/Tadbirkar</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('court-name-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('court') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Court Name</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('court-order-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('court-last-order') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Court Order</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('court-proceeding-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('court-proceeding') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Court Proceeding</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('day-notes-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('day-notes') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Day Notes</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('designation-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('designation') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Designation</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('documents-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('documents-setup') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Documents</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('documents-type-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('documents-type') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Documents Type</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('external-council-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('external-council') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>External Counsel</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('internal-council-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('internal-council') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Internal Counsel</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('in-favour-of-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('in-favour-of') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>In favour of</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('law-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('law') }}" class="nav-link">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>Law</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('legal-issue-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('legal-issue') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Legal Issue</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('legal-service-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('legal-service') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Legal Service</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('mode-of-received-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('mode') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Mode of received</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('next-date-fixed-for-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('next-date-reason') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Next date fixed for</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('next-day-presence-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('next-day-presence') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Next Day Presence</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('opposition-which-party-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('opposition') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Opposition(Which Party)</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('particulars-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('particulars') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Particulars</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('party-category-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('client-category') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Party Category</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('party-subcategory-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('client-subcategory') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Party Subcategory</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('payment-type-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('digital-payment-type') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Payment Type</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('payment-mode-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('payment-mode') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Payment Mode</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('profession-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('profession') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Profession</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('program-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('program') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Program</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('progress-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('progress') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Progress</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('referrer-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('referrer') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Referrer</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('section-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('section') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Section</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('title-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('person-title') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Title</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('zone-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('region') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Zone</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @canany(['division-list', 'district-list', 'thana-list'])
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>
-                                                        Map Info
-                                                        <i class="right fas fa-angle-left"></i>
-                                                    </p>
-                                                </a>
-                                                <ul class="nav nav-treeview">
-                                                    @can('division-list')
-                                                        <li class="nav-item">
-                                                            <a href="{{ route('division') }}" class="nav-link">
-                                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                                <p>Division</p>
-                                                            </a>
-                                                        </li>
-                                                    @endcan
-                                                    @can('district-list')
-                                                        <li class="nav-item">
-                                                            <a href="{{ route('district') }}" class="nav-link">
-                                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                                <p>District</p>
-                                                            </a>
-                                                        </li>
-                                                    @endcan
-                                                    @can('thana-list')
-                                                        <li class="nav-item">
-                                                            <a href="{{ route('thana') }}" class="nav-link">
-                                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                                <p>Thana</p>
-                                                            </a>
-                                                        </li>
-                                                    @endcan
-                                                </ul>
-                                            </li>
-                                        @endcanany
-                                    </ul>
-                                @endcanany
-                            </li>
-                            @canany(['floor-list', 'flat-number-list', 'property-type-list', 'seller-or-buyer-list'])
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Property Setup
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        @can('floor-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('floor') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Floor</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('flat-number-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('flat-number') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Flat Number</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('property-type-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('property-type') }}" class="nav-link">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>Property Type</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('seller-or-buyer-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('seller-buyer') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Seller/Buyer</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-
-                                    </ul>
-                                </li>
-                            @endcanany
-
-                            @canany(['compliance-category-list', 'compliance-type-list'])
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Compliance Setup
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-
-
-                                        @can('compliance-category-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('compliance-category') }}" class="nav-link">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>Compliance Category</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-                                        @can('compliance-type-list')
-                                            <li class="nav-item">
-                                                <a href="{{ route('compliance-type') }}" class="nav-link">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>Compliance Type</p>
-                                                </a>
-                                            </li>
-                                        @endcan
-
-                                    </ul>
-                                </li>
-                            @endcanany
-
-                            {{-- @canany(['company-type-list', 'company-list']) --}}
-                            {{-- <li class="nav-item"> --}}
-                            {{-- <a href="#" class="nav-link"> --}}
-                            {{-- <i class="far fa-circle nav-icon"></i> --}}
-                            {{-- <p> --}}
-                            {{-- User Profile --}}
-                            {{-- <i class="right fas fa-angle-left"></i> --}}
-                            {{-- </p> --}}
-                            {{-- </a> --}}
-                            {{-- <ul class="nav nav-treeview"> --}}
-                            {{-- @can('company-type-list') --}}
-                            {{-- <li class="nav-item"> --}}
-                            {{-- <a href="{{ route('company-type') }}" class="nav-link"> --}}
-                            {{-- <i class="far fa-dot-circle nav-icon"></i> --}}
-                            {{-- <p>Company Type</p> --}}
-                            {{-- </a> --}}
-                            {{-- </li> --}}
-                            {{-- @endcan --}}
-                            {{-- @can('company-list') --}}
-                            {{-- <li class="nav-item"> --}}
-                            {{-- <a href="{{ route('company') }}" class="nav-link"> --}}
-                            {{-- <i class="far fa-dot-circle nav-icon"></i> --}}
-                            {{-- <p>Company</p> --}}
-                            {{-- </a> --}}
-                            {{-- </li> --}}
-                            {{-- @endcan --}}
-                            {{-- </ul> --}}
-                            {{-- </li> --}}
-                            {{-- @endcanany --}}
-                        </ul>
-                    </li>
-                @endcanany
-
                 @canany(['civil-cases-list', 'criminal-cases-list', 'service-matter-list', 'quassi-judicial-cases-list',
                     'high-court-cases-list', 'appellate-court-cases-list', 'search-wizard-list', 'billing-list'])
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-circle"></i>
+                            <!--<i class="nav-icon fas fa-circle"></i>-->
+                            <img src="{{ asset('login_assets/img/litigation.jpg') }}" width="23px" />
                             <p>
-                                Litigation Management
-                                <i class="right fas fa-angle-left"></i>
+                                Litigation
+                                <!--<i class="right fas fa-angle-left"></i>-->
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
+                        <!--<ul class="nav nav-treeview">
                             @canany(['civil-cases-list', 'criminal-cases-list', 'service-matter-list',
                                 'quassi-judicial-cases-list', 'high-court-cases-list', 'appellate-court-cases-list'])
                                 <li class="nav-item">
@@ -902,12 +347,15 @@
                                     <ul class="nav nav-treeview">
                                         {{-- @can('civil-cases-list')
                                         <li class="nav-item">
-                                            <a href="{{ route('civil-cases') }}" class="nav-link">
-                            <i class="far fa-dot-circle nav-icon"></i>
-                            <p>Civil</p>
-                            </a>
-                    </li>
-                    @endcan --}}
+                                                                <a href="{{ route('civil-cases') }}" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Civil</p>
+                                                </a>
+                                        </li>
+                                        @endcan --}}
+                    
+
+
                                         @can('criminal-cases-list')
                                             <li class="nav-item">
                                                 <a href="{{ route('criminal-cases') }}" class="nav-link">
@@ -919,11 +367,11 @@
                                         {{-- @can('service-matter-list')
                                         <li class="nav-item">
                                             <a href="{{ route('labour-cases') }}" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Employee Case</p>
-                    </a>
-            </li>
-            @endcan --}}
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Employee Case</p>
+                                                </a>
+                                        </li>
+                                        @endcan --}}
                                         @can('quassi-judicial-cases-list')
                                             <li class="nav-item">
                                                 <a href="{{ route('special-court-cases-all') }}" class="nav-link">
@@ -932,12 +380,13 @@
                                                 </a>
                                             </li>
                                             {{-- <li class="nav-item">
-                                            <a href="{{ route('quassi-judicial-cases') }}" class="nav-link">
-            <i class="far fa-dot-circle nav-icon"></i>
-            <p>Special Court</p>
-            </a>
-            </li> --}}
-                                        @endcan
+                                                                                    <a href="{{ route('quassi-judicial-cases') }}" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon"></i>
+                                                    <p>Special Court</p>
+                                                    </a>
+                                                </li> --}}
+                                                                                
+                                            @endcan
 
                                         @can('high-court-cases-list')
                                             <li class="nav-item">
@@ -972,422 +421,81 @@
                                                 @can('high-court-cases-list')
                                                     <li class="nav-item">
                                                         <a href="{{ route('high-court-cases') }}" class="nav-link">
-            <i class="far fa-dot-circle nav-icon"></i>
-            <p>High Court Division</p>
-            </a>
-            </li>
-            @endcan
-            @can('appellate-court-cases-list')
-            <li class="nav-item">
-                <a href="{{ route('appellate-court-cases') }}" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Appellate Court Division</p>
-                </a>
-            </li>
-            @endcan
-            </ul>
-            </li>
-            @endcanany --}}
-                                    </ul>
-                                </li>
-                            @endcanany
-                            @canany(['search-wizard-list'])
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Search Wizard
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    @can('search-wizard-list')
-                                        <ul class="nav nav-treeview">
-                                            <li class="nav-item">
-                                                <a href="{{ route('search-case-pages') }}" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Search Cases</p>
-                                                </a>
+                                                        <i class="far fa-dot-circle nav-icon"></i>
+                                                        <p>High Court Division</p>
+                                                        </a>
+                                                        </li>
+                                                        @endcan
+                                                        @can('appellate-court-cases-list')
+                                                        <li class="nav-item">
+                                                            <a href="{{ route('appellate-court-cases') }}" class="nav-link">
+                                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                                <p>Appellate Court Division</p>
+                                                            </a>
+                                                        </li>
+                                                        @endcan
+                                            </ul>
                                             </li>
-                                        </ul>
-                                    @endcan
-                                </li>
-                            @endcanany
-                            {{-- @canany(['billing-list'])
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>
-                                        Billing
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                @can('billing-list')
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="{{ route('billing') }}" class="nav-link">
-            <i class="far fa-dot-circle nav-icon"></i>
-            <p>Billing</p>
-            </a>
-            </li>
-            </ul>
-            @endcan
-            </li>
-            @endcanany --}}
+                                            @endcanany --}}
+                                        </ul>-->
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('legal-service') }}" class="nav-link">
+                                            <!--<i class="nav-icon fas fa-circle"></i>-->
+                                            <img src="{{ asset('login_assets/img/legal-services.jpg') }}" width="23px" />
+                                            <p>
+                                                Legal Services
+                                                <!--<i class="right fas fa-angle-left"></i>-->
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('task.index') }}" class="nav-link">
+                                            <!--<i class="nav-icon fas fa-circle"></i>-->
+                                            <img src="{{ asset('login_assets/img/task.jpg') }}" width="23px" />
+                                            <p>
+                                                Task
+                                                <!--<i class="right fas fa-angle-left"></i>-->
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <!--<i class="nav-icon fas fa-circle"></i>-->
+                                            <img src="{{ asset('login_assets/img/hr.jpg') }}" width="23px" />
+                                            <p>
+                                                HR
+                                                <!--<i class="right fas fa-angle-left"></i>-->
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <!--<i class="nav-icon fas fa-circle"></i>-->
+                                            <img src="{{ asset('login_assets/img/account.jpg') }}" width="23px" />
+                                            <p>
+                                                Account
+                                                <!--<i class="right fas fa-angle-left"></i>-->
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <!--<i class="nav-icon fas fa-circle"></i>-->
+                                            <img src="{{ asset('login_assets/img/settings.jpg') }}" width="23px" />
+                                            <p>
+                                                Settings
+                                                <!--<i class="right fas fa-angle-left"></i>-->
+                                            </p>
+                                        </a>
+                                    </li>
+
+                                    @endcanany
 
                         </ul>
                     </li>
                 @endcanany
-                @canany(['land-information-list', 'flat-information-list'])
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-couch nav-icon"></i>
-                            <p>
-                                Property Management
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @can('land-information-list')
-                                <li class="nav-item">
-                                    <a href="{{ route('land-information') }}" class="nav-link">
-                                        <i class="ml-left"></i>
-                                        <p>Land Information</p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('flat-information-list')
-                                <li class="nav-item">
-                                    <a href="{{ route('flat-information') }}" class="nav-link">
-                                        <i class="ml-left"></i>
-                                        <p>Flat Information</p>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endcanany
-                @canany(['regulatory-compliance-info-list', 'social-compliance-info-list'])
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-print nav-icon"></i>
-                            <p>
-                                Compliance Management
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @can('regulatory-compliance-info-list')
-                                <li class="nav-item">
-                                    <a href="{{ route('regulatory-compliance') }}" class="nav-link">
-                                        <i class="ml-left"></i>
-                                        <p> Regulatory Compliance Info </p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('social-compliance-info-list')
-                                <li class="nav-item">
-                                    <a href="{{ route('social-compliance') }}" class="nav-link">
-                                        <i class="ml-left"></i>
-                                        <p>Social Compliance</p>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endcanany
-                {{-- <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-hammer nav-icon"></i>
-                        <p>
-                            Legal Services Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                </li> --}}
-                @canany(['document-management-list', 'external-document-list'])
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-file-archive nav-icon"></i>
-                            <p>
-                                Document Management
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @can('document-management-list')
-                                <li class="nav-item">
-                                    <a href="{{ route('document-management') }}" class="nav-link">
-                                        <i class="ml-left"></i>
-                                        <p> Document Management </p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('external-document-list')
-                                <li class="nav-item">
-                                    <a href="{{ route('external-document') }}" class="nav-link">
-                                        <i class="ml-left"></i>
-                                        <p>External Document</p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('external-document-list')
-                                <li class="nav-item">
-                                    <a href="{{ route('documents-list') }}" class="nav-link">
-                                        <i class="ml-left"></i>
-                                        <p>Documents</p>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endcanany
 
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-file nav-icon"></i>
-                        <p>
-                            Report Managenent
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('litigation.report') }}" class="nav-link">
-                                <i class="ml-left"></i>
-                                <p>Litigation Summary & Report</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tasks"></i>
-                        <p>
-                            Task Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    Manage Task
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('task.category.index') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Task Category</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('task.index') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Task List</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    Manage Schedule
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('schedule.category.index') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Schedule Category</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('schedule.index') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Schedule List</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    Manage Assignment
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('assignment.category.index') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Assignment Category</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('assignment.index') }}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Assignment List</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </li>
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-user nav-icon"></i>
-                        <p>
-                            HR Managenent
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('employee-new') }}" class="nav-link">
-                                <i class="ml-left"></i>
-                                <p>Employee</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-user nav-icon"></i>
-                        <p>
-                            Accounts Managenent
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('billings') }}" class="nav-link">
-                                <i class="ml-left"></i>
-                                <p>Billings</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('ledger-category.index') }}" class="nav-link">
-                                <i class="ml-left"></i>
-                                <p>Ledger Category</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('ledger-head.index') }}" class="nav-link">
-                                <i class="ml-left"></i>
-                                <p>Ledger Head</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('ledger-entry.index') }}" class="nav-link">
-                                <i class="ml-left"></i>
-                                <p>Ledger Entry</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('ledger-report') }}" class="nav-link">
-                                <i class="ml-left"></i>
-                                <p>Ledger Report</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('balance-report') }}" class="nav-link">
-                                <i class="ml-left"></i>
-                                <p>Balance Report</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('billing-report') }}" class="nav-link">
-                                <i class="ml-left"></i>
-                                <p>Billing Report</p>
-                            </a>
-                        </li>
-                        {{-- <li class="nav-item">
-                            <a href="{{ route('ledger-head-report-list') }}" class="nav-link">
-                                <i class="ml-left"></i>
-                                <p>Ledger Head Report List</p>
-                            </a>
-                        </li> --}}
-                        <li class="nav-item">
-                            <a href="{{ route('income-expense-report') }}" class="nav-link">
-                                <i class="ml-left"></i>
-                                <p>Income Expense Report</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                {{-- <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-balance-scale nav-icon"></i>
-                    <p>
-                        Accounts Managenent
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="#!" class="nav-link">
-                            <i class="ml-left"></i>
-                            <p>Accounts Managenent</p>
-                        </a>
-                    </li>
-                </ul>
-            </li> --}}
-
-
-                {{-- <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-hammer nav-icon"></i>
-                        <p>
-                            Legal Services Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                </li>
-
-                  <li class="nav-item has-treeview">
-                      <a href="#" class="nav-link">
-                          <i class="fa fa-gavel nav-icon"></i>
-                          <p>
-                              HR Management
-                              <i class="right fas fa-angle-left"></i>
-                          </p>
-                      </a>
-                  </li>
-
-                  <li class="nav-item has-treeview">
-                      <a href="#" class="nav-link">
-                          <i class="fas fa-hammer nav-icon"></i>
-                          <p>
-                              Account Management
-                              <i class="right fas fa-angle-left"></i>
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item has-treeview">
-                      <a href="#" class="nav-link">
-                          <i class="fas fa-hammer nav-icon"></i>
-                          <p>
-                              MIS
-                              <i class="right fas fa-angle-left"></i>
-                          </p>
-                      </a>
-                  </li> --}}
 
             </ul>
         </nav>

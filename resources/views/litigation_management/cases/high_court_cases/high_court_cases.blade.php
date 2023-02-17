@@ -34,7 +34,7 @@
                     </div>
                 @endif
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <div class="card">
 
 
@@ -46,10 +46,10 @@
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                                 data-target="#collapseTwo" aria-expanded="false"
                                                 aria-controls="collapseTwo">
-                                            <i class="fas fa-plus"></i>
+                                            <i class="fas fa-plus-circle" style="font-size: 23px;color: #0CA2A3;"></i>
                                         </button>
                                         <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                            <i class="fas fa-times"></i>
+                                            <i class="far fa-times-circle" style="font-size: 23px;color: red;"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -170,7 +170,7 @@
                                     @can('high-court-cases-create')
                                     <a href="{{ route('add-high-court-cases') }}">
                                         <button class="btn btn-sm
-                                    btn-success add_btn"><i class="fas fa-plus"></i> Add High Court of Bangladesh
+                                    btn-success add_btn" style="padding: 5px 70px; font-size:18px; background: #0CA2A3 !important; border: 1px solid #0CA2A3;"><!--<i class="fas fa-plus"></i>--> Add High Court of Bangladesh
                                         </button>
                                     </a>
                                     @endcan
@@ -179,7 +179,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="data_table" class="table dataTable no-footer dtr-inline">
+                                <table id="all-cases-dt" class="all-cases-dt table dataTable no-footer dtr-inline">
                                     <thead>
                                     <tr>
                                         <th class="text-center">Case No</th>

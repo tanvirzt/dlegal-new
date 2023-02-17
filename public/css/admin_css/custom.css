@@ -313,32 +313,15 @@ h3{
 
  .btn-success-custom {
     font-family: Raleway-SemiBold;
-    font-size: 11px;
-    color: rgba(103, 192, 103, 0.75);
-    letter-spacing: 1px;
-    line-height: 15px;
-    border: 2px solid rgba(103, 192, 103, 0.75);
-    border-radius: 40px;
-    background: transparent;
-    transition: all 0.3s ease 0s;
-    padding: 0px 2px 0px 2px;
-}
-  /* .btn-success:hover {
-    color: #FFF;
-    background: rgb(103, 192, 103, 0.75);
-    border: 2px solid rgb(103, 192, 103, 0.75);
-  } */
-
-  .btn-info-custom {
-    font-family: Raleway-SemiBold;
-    font-size: 13px;
-    color: rgba(91, 192, 222, 0.75);
-    letter-spacing: 1px;
-    line-height: 15px;
-    border: 2px solid rgba(91, 192, 222, 0.75);
-    border-radius: 40px;
-    background: transparent;
-    transition: all 0.3s ease 0s;
+font-size: 11px;
+color: rgba(103, 192, 103, 0.75);
+letter-spacing: 1px;
+line-height: 15px;
+border: 2px solid rgba(103, 192, 103, 0.75);
+border-radius: 2px;
+background: transparent;
+transition: all 0.3s ease 0s;
+padding: 
   }
 
   /* .btn-info:hover {
@@ -674,7 +657,7 @@ sup{
 }
 
 th{
-    background: #3AAFA9;
+    background: #0CA2A3;
 }
 
 /* .dropdown-menu{
@@ -709,13 +692,13 @@ th{
 }
 
 .btn-danger-custom-next-date {
-    font-family: Raleway-SemiBold;
+    font-family: inherit;
     font-size: 9.5px;
-    color: rgba(255, 0, 0, 1);
-    /* letter-spacing: 1px; */
+    color: #3AAFA9;
+    letter-spacing: 1px;
     line-height: 20px;
-    border: 2px solid rgba(255, 0, 0, 1);
-    border-radius: 40px;
+    border: 1px solid #3AAFA9;
+    border-radius: 2px;
     background: transparent;
     transition: all 0.3s ease 0s;
 }
@@ -844,10 +827,11 @@ a .btn{
     background-color: #545b625e !important;
     border: none;
     min-width: 65px;
+    margin-left: 5px;
 }
 .civil_active_btn {
     color: #fff;
-    background-color: #17a2b8;
+    background-color: #0CA2A3;
     border: none;
     min-width: 65px;
 }
@@ -1166,4 +1150,58 @@ a .btn{
     background: rgb(0 0 0 / 20%) !important;
     border-radius: 10px !important;
     padding: 2px;
+}
+
+
+.list-title{
+    font-size: 28px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #000;
+}
+
+.tab-btn span{
+    font-size: 18px;
+}
+
+.tab-btn .civil_active_btn {
+  min-width: 80px;
+  padding: 4px 10px;
+}
+
+.actionBtn .btn-sm, .actionBtn .btn-outline-danger{
+    border: none;
+    font-size: 14px;
+    color: #0CA2A3;
+}
+
+.widthCust{
+    width: 70px !important;
+}
+
+table.table-bordered.dataTable th{
+    color: #fff;
+}
+
+.page-item.active .page-link {
+  color: white;
+  background-color: #0CA2A3;
+  border-color: #0CA2A3;
+}
+
+.navbar-expand{
+ color: #fff !important;
+  background-color: #0CA2A3 !important;
+}
+
+.navbar-expand .custom_ul{
+ color: #fff !important;
+  background-color: #0CA2A3 !important; 
+}
+
+.navbar-expand .custom_ul a, .navbar-expand .custom_ul a:hover{
+    color: #fff;
+}
+
+.all-cases-dt th{
+   color:#fff;
 }

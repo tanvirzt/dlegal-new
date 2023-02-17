@@ -41,109 +41,64 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-lg-2 col-6">
+                    <div class="col-sm-3" >
                         <!-- small box -->
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>{{ $runningCases_no }}</h3>
-
-                                <p>Running Cases</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-bag"></i>
-                            </div>
-                            <a target="_blank" href="all-cases" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                        <div class="small-box bg-info" style="background-color:#fff !important; color: #ccc;   ">
+                            <a target="_blank" href="all-cases" class="small-box-footer" style="background:none;">
+                                <div class="inner" style="padding: 30px;">
+                                    <img src="{{ asset('login_assets/img/clients.png') }}">
+                                    <h3 style="margin-top: 10px;" >{{ $runningCases_no }}</h3>
+                                    <p>Clients</p>
+                                </div>
+                            </a>
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <!-- small box -->
+                        <div class="small-box bg-info" style="background-color:#fff !important; color: #ccc;   ">
+                            <a target="_blank" href="all-cases" class="small-box-footer" style="background:none;">
+                                <div class="inner" style="padding: 24px;">
+                                    <img src="{{ asset('login_assets/img/hand-lock.png') }}">
+                                    <h3 style="margin-top: 10px;" >{{ $runningCases_no }}</h3>
+                                    <p>Number of Cases</p>
+                                </div>
+                            </a>
+                            
+                        </div>
+                    </div><div class="col-sm-3">
+                        <!-- small box -->
+                        <div class="small-box bg-info" style="background-color:#fff !important; color: #ccc;   ">
+                            <a target="_blank" href="all-cases" class="small-box-footer" style="background:none;">
+                                <div class="inner" style="padding: 23px;">
+                                    <img src="{{ asset('login_assets/img/criminal-cases.png') }}">
+                                    <h3 style="margin-top: 10px;" >{{$allCriminal_no}}</h3>
+                                    <p>Criminal Cases</p>
+                                </div>
+                            </a>
+                            
+                        </div>
+                    </div><div class="col-sm-3">
+                        <!-- small box -->
+                        <div class="small-box bg-info" style="background-color:#fff !important; color: #ccc;   ">
+                            <a target="_blank" href="all-cases" class="small-box-footer" style="background:none;">
+                                <div class="inner" style="padding: 23px;">
+                                    <img src="{{ asset('login_assets/img/ask.png') }}">
+                                    <h3 style="margin-top: 5px;" >{{$allCivil_no}}</h3>
+                                    <p>Civil Cases</p>
+                                </div>
+                            </a>
+                            
                         </div>
                     </div>
 
-                    <!-- ./col -->
-                    <div class="col-lg-2 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>{{$allCivil_no}}<sup style="font-size: 20px"></sup></h3>
 
-                                <p>Civil Cases</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
-                            </div>
-                            <a target="_blank" href="all-civil-cases" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-2 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>{{$allCriminal_no}}<sup style="font-size: 20px"></sup></h3>
-
-                                <p>Criminal Cases</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
-                            </div>
-                            <a target="_blank" href="all-criminal-cases" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-2 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-light">
-                            <div class="inner">
-                                <h3>{{ $appeal_no }}</h3>
-
-                                <p>Appeal Cases</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-6">
-                        <!-- small box -->
-
-                        <div class="small-box bg-dark">
-                            <div class="inner">
-                                <h3>{{$revision_no}}</h3>
-
-                                <p>Revision Cases</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>{{$disposedCase_no}}</h3>
-
-                                <p>Disposed Cases</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
 
                     <!-- ./col -->
                 </div>
 
             </div>
-
+            <div style="height: 20px;"></div>
         </section>
 
         <section class="content">
@@ -706,3 +661,34 @@
 });    
 </script>
 
+<style>
+.bg-info{    
+    width: 290px; 
+    height: 170px; 
+    margin-bottom: 0 !important;
+}
+
+.bg-info h3, .bg-info p{
+    color: #ccc;
+}
+
+.bg-info:hover{
+   color:#fff !important
+   background-color:#0CA2A3 !important    
+}
+
+.small-box > .small-box-footer{
+    padding: 0px !!important;
+}
+
+
+.small-box-footer .inner:hover{
+    background-color: #0CA2A3;
+}
+
+.small-box-footer .inner:hover h3, .small-box-footer .inner:hover p{
+    color: #fff;
+}
+
+
+</style>

@@ -49,10 +49,10 @@
                                     <div class="card-tools">
                                         <button type="button" class="btn collapsed" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            <i class="fas fa-plus"></i>
+                                            <i class="fas fa-plus-circle" style="font-size: 23px;color: #0CA2A3;"></i>
                                         </button>
                                         <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                            <i class="fas fa-times"></i>
+                                            <i class="far fa-times-circle" style="font-size: 23px;color: red;"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -486,25 +486,25 @@
                             <div class="card-header">
                                 <div class="row ">
 
-                                    <div class="col-sm-11 pl-0">
+                                    <div class="col-sm-10 pl-0 tab-btn">
+                                        <a href="{{ route('criminal-cases') }}"
+                                            class="btn {{ $case_cat == 'all' ? 'civil_active_btn' : 'civil_btn' }}"
+                                            style="margin-left: 6px;"><span>All</span></a>
                                         <a href="{{ route('civil-cases-latest') }}"
                                             class="btn {{ $case_cat == 'Civil' ? 'civil_active_btn' : 'civil_btn' }}"><span>Civil</span></a>
                                         <a href="{{ route('criminal-cases-latest') }}"
                                             class="btn {{ $case_cat == 'Criminal' ? 'civil_active_btn' : 'civil_btn' }}"
                                             style="margin-left: 6px;"><span>Criminal</span></a>
-                                        <a href="{{ route('criminal-cases') }}"
-                                            class="btn {{ $case_cat == 'all' ? 'civil_active_btn' : 'civil_btn' }}"
-                                            style="margin-left: 6px;"><span>All</span></a>
 
                                     </div>
                                     {{-- <div class="col-sm-1">
                                         </div> --}}
-                                    <div class="col-sm-1 pl-0">
+                                    <div class="col-sm-2 pl-0">
                                         <div class="float-right">
                                             @can('criminal-cases-create')
                                                 <a href="{{ route('add-criminal-cases') }}">
                                                     <button type="button" class="btn btn-success"
-                                                        style="padding: 4px 10px;"><i class="fas fa-plus"></i> Add Case
+                                                         style="padding: 5px 40px; font-size:18px; background: #0CA2A3; border: 1px solid #0CA2A3;"><!--<i class="fas fa-plus"></i>--> Add Case
                                                     </button>
                                                 </a>
                                             @endcan
@@ -513,14 +513,14 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="all-cases-dt" class="all-cases-dt table table-bordered table-striped">
 
                                     <thead>
                                         <tr>
                                             <th class="text-center"> Sl</th>
                                             <th class="text-center"> ID</th>
                                             <th class="text-center"> Type</th>
-                                            <th class="text-center"> Status</th>
+                                            <!--<th class="text-center"> Status</th>-->
                                             <th class="text-center"> Next Date</th>
                                             <th class="text-center"> Fixed for</th>
                                             <th class="text-center"> Case No.</th>
@@ -554,17 +554,17 @@
                                                 <td>
                                                     {{ $datum->case_category_id }}
                                                 </td>
-                                                <td>
+                                                <!--<td>
                                                     @if (Is_numeric($datum->case_status_id))
                                                         {{ $datum->case_status_name }}
                                                     @else
                                                         {{ $datum->case_status_id }}
                                                     @endif
-                                                </td>
+                                                </td>-->
                                                 <td width="8%">
                                                     @if (!empty($datum->next_date) && $datum->next_date < date('Y-m-d'))
                                                         <span
-                                                            style="color: rgba(255, 0, 0, 1);font-size:11.5px;">{{ date('d-m-Y', strtotime($datum->next_date)) }}</span>
+                                                            style="font-size:11.5px;">{{ date('d-m-Y', strtotime($datum->next_date)) }}</span>
                                                     @elseif(!empty($datum->next_date))
                                                         {{ date('d-m-Y', strtotime($datum->next_date)) }}
                                                     @else

@@ -234,14 +234,14 @@
 
 @endif
 
-<nav class="main-header navbar navbar-expand navbar-white navbar-light links_custom @if (url()->current() != 'http://localhost/dlegal-software/public/dashboard') links_custom @endif" style="padding: 0px;background: #2A6CB1;position:fixed;z-index:1020;width: 1297px;@if (url()->current() == 'http://localhost/dlegal-software/public/dashboard') margin-top:0px; @endif">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light links_custom @if (url()->current() != 'http://localhost/dlegal-software/public/dashboard') links_custom @endif" style="padding: 0px;background: #aad7d8;position:fixed;z-index:1020;width: 1297px;@if (url()->current() == 'http://localhost/dlegal-software/public/dashboard') margin-top:0px; @endif">
 
     <style>
         .custom_ul{
             padding: 0;
             /* list-style: none; */
             margin-bottom: 0px;
-            background: #2A6CB1;
+            background: #aad7d8;
         }
         .custom_ul li{
             display: inline-block;
@@ -252,7 +252,7 @@
         .custom_ul li a{
             display: block;
             padding: 8px 20px;
-            color: white;
+            color: #000;
             text-decoration: none;
         }
         .custom_ul li a:hover{
@@ -292,7 +292,7 @@
     <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
     @canany(['litigation-calendar-list', 'litigation-calendar-short'])
     <li>
-        <a href="#" style="width: 144px;">Litigation Tracker &#9662;</a>
+        <a href="#" style="width: 148px;">Litigation Tracker &#9662;</a>
         <ul class="dropdown" style="background:#c3c9cf;">
             @can('litigation-calendar-list')
                 <li><a href="{{ route('litigation-calender-list') }}">Litigation Cause List</a></li>
@@ -331,10 +331,10 @@
         </ul>
     </li>
     @endcanany
-    <li><a href="#">Legal Service</a></li>
+    <!--<li><a href="#">Legal Service</a></li>
     <li><a href="#">Compliance MGT</a></li>
     <li><a href="#">Documents MGT</a></li>
-    <li><a href="#">Property MGT</a></li>
+    <li><a href="#">Property MGT</a></li>-->
 
 
 </ul>
