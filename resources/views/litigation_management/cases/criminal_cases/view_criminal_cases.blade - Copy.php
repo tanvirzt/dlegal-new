@@ -261,36 +261,13 @@
           border: 1px solid #0CA2A3 !important;
         }
 
-        .themeColor, .themeColor:hover{
+        .themeColor{
             background: #0CA2A3 !important;
             color: #fff !important;
         }
 
         tr:hover {
           background-color: rgba(219, 238, 231, 0.45) !important;
-        }
-
-        .themeHeading{
-            color: #0CA2A3;
-        }
-
-        .card-body thead tr td{
-          font-weight:bold;
-        }
-
-        .dropdown-item{
-            clear: none !important;
-        }
-
-        .btn-danger-custom-next-date-proceedings {
-          border: 2px solid #0CA2A3;
-          border-radius: 3px;
-          background: transparent;
-          color:#0CA2A3 !important;
-        }
-
-        details summary{
-          color:#0CA2A3 !important;
         }
 
     </style>
@@ -429,15 +406,15 @@
                                     @endif
                                 @endif
                                 <br>
-                                <b>Case Status:</b><b style="color:#0CA2A3">
+                                <b>Case Status:</b>
                                 @php
                                     $now = Carbon\Carbon::now();
                                     $days_count = Carbon\Carbon::parse($data->date_of_filing)->diffInDays($now);
                                 @endphp
-                                </b><br>
-                                <b>Fixed for:</b><b style="color:#0CA2A3"> {{ $data->date_of_filing }}</b>
                                 <br>
-                                <b>Next Date Fixed for:</b><b style="color:#0CA2A3"> {{ date('d-m-Y', strtotime($latest->updated_next_date)) }}</b>
+                                <b>Fixed for:</b> {{ $data->date_of_filing }}
+                                <br>
+                                <b>Next Date Fixed for:</b> {{ date('d-m-Y', strtotime($latest->updated_next_date)) }}
 
                             </div>
 
@@ -959,7 +936,36 @@
                                 </div>
                                 <div class="tab-pane fade" id="pills-product" role="tabpanel" aria-labelledby="pills-product-tab">
                                   <div class="container-fluid">
-                                
+                                    {{-- <h6 class="text-uppercase text-bold">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3"> Date</div>
+                                                                                <div class="col-md-3 text-center">Title</div>
+                                                                                <div class="col-md-3 text-center">Description</div>
+                                                                                <div class="col-md-3 text-center">Evidence</div>
+
+                                                                            </div>
+                                                                        </h6> --}}
+
+
+                                            {{-- <h6 class="text-uppercase text-bold">
+                                                        <div class="row">
+                                                            <div class="col-md-3"> Date </div>
+                                                            <div class="col-md-2"> Document Name </div>
+                                                            <div class="col-md-3"> Particulars </div>
+                                                            <div class="col-md-2"> ORG </div>
+                                                            <div class="col-md-1"> PHT
+
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <button type="button"
+                                                                        class="btn btn-info btn-sm float-right"
+                                                                        data-toggle="modal" data-target="#modal-lg-letter-notice"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="Update Case Steps"><i
+                                                                            class="fas fa-edit"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </h6> --}}
 
                                             <table class="table table-bordered">
                                                 <thead>
@@ -990,8 +996,7 @@
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
-                                            </table>
-                                            <table class="table table-bordered caseInfoTable2">
+                                            </table><table class="table table-bordered caseInfoTable2">
 
                                                 <tbody>
                                                     <tr>
@@ -1544,127 +1549,39 @@
                                 </div>
                                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                                   <div class="container-fluid">
-                                    <div class="card-header caseInfoHeader">
-                                            <h6 class="text-uppercase text-bold themeHeading">Documents
-                                                Received
-                                                <button type="button" class="btn btn-info btn-sm float-right"
-                                                    data-toggle="modal" data-target="#modal-lg-documents-info"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Update Documents"><i class="fas fa-edit"></i>
-                                                </button>
-                                            </h6>
-                                    </div>
-                                    <div class="card-body">
                                     <table class="table table-bordered">
-                                                <thead>                                                
-                                                    <tr class="themeColor">
-                                                        <td width="60%">Document Name</td>
-                                                        <td width="20%">Date</td>
-                                                        <td width="20%">Document Type</td>
-                                                    </tr>
-                                                </thead>
                                                 <tbody>
+                                                    <tr>
+                                                        <td>Document Received</td>
+                                                        <td>Document Name</td>
+                                                        <td>Date</td>
+                                                        <td>CC/ORG/COPY</td>
+                                                    </tr>
                                                     @foreach ($received_documents as $value)
                                                         <tr>
-                                                            <td width="60%">{{ $value->documents_name }} </td>
-                                                            <td width="25%">{{ !empty($value->received_documents_date) ? date('d-m-Y', strtotime($value->received_documents_date)) : '' }}
+                                                            <td>{{ $value->received_documents }}</td>
+                                                            <td>{{ $value->documents_name }} </td>
+                                                            <td>{{ !empty($value->received_documents_date) ? date('d-m-Y', strtotime($value->received_documents_date)) : '' }}
                                                             </td>
-                                                            <td width="15%">{{ $value->documents_type_name }}</td>
+                                                            <td>{{ $value->documents_type_name }}</td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
 
                                             </table>
-                                        </div>
-                                  
-                                        <div class="card-header caseInfoHeader">
-                                            <h6 class="text-uppercase text-bold themeHeading">Documents
-                                                Required
-                                                <button type="button" class="btn btn-info btn-sm float-right"
-                                                    data-toggle="modal" data-target="#modal-lg-documents-info"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Update Documents"><i class="fas fa-edit"></i>
-                                                </button>
-                                            </h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr class="themeColor">
-                                                        <td width="60%">Document Name</td>
-                                                        <td width="20%">Date</td>
-                                                        <td width="20%">Document Type</td>
-                                                    </tr>
-
-                                                </thead>
-                                                <tbody>
-
-                                                    @foreach ($required_wanting_documents as $value)
-                                                        <tr>
-                                                            <td width="60%">{{ $value->documents_name }}
-                                                                {{ $value->required_wanting_documents }}</td>
-                                                            <td width="25%">
-                                                                {{ !empty($value->required_wanting_documents_date) ? date('d-m-Y', strtotime($value->required_wanting_documents_date)) : '' }}
-                                                            </td>
-                                                            <td width="15%">{{ $value->documents_type_name }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-
-                                            </table>
-
-                                        </div>
-
-
-                                        <div class="card-header caseInfoHeader">
-                                            <h6 class="text-uppercase text-bold themeHeading">Document
-                                                Upload
-                                                <button type="button" class="btn btn-info btn-sm float-right"
-                                                    data-toggle="modal" data-target="#modal-lg-documents-info"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Update Documents"><i class="fas fa-edit"></i>
-                                                </button>
-                                            </h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr class="themeColor">
-                                                        <td width="60%">Document Name</td>
-                                                        <td width="20%">Date</td>
-                                                        <td width="20%">Document Type</td>
-                                                    </tr>
-
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($uploadedFileList as $value)
-                                                        <tr>
-                                                            <td width="60%">{{ $value->uploaded_document }}</td>
-                                                            <td width="25%">
-                                                                {{ !empty($value->uploaded_date) ? date('d-m-Y', strtotime($value->uploaded_date)) : '' }}
-                                                            </td>
-                                                            <td width="15%">{{ $value->documents_type_name }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-
-                                            </table>
-
-                                        </div>
-                                    </div>    
+                                  </div>
                                 </div>
                                 <div class="tab-pane fade" id="pills-filelocation" role="tabpanel" aria-labelledby="pills-filelocation-tab">
                                   <div class="container-fluid">
                                     <table class="table table-bordered">
-                                                <thead>
+                                                <tbody>
                                                     <tr class="themeColor">
                                                         <td>Cabinet Name</td>
                                                         <td>Office</td>
                                                         <td>Almirah</td>
                                                         <td>Cabinet/Self</td>
                                                     </tr>
-                                                </thead>
-                                                <tbody>        
+
 
                                                     @foreach ($caseFileLocationView as $item)
                                                         <tr>
@@ -1686,7 +1603,7 @@
                                 <div class="tab-pane fade" id="pills-cproceedinglog" role="tabpanel" aria-labelledby="pills-cproceedinglog-tab">
                                   <div class="container-fluid">
                                     <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font_weight themeHeading"
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Case Proceedings Log
                                         @php
                                             $now = Carbon\Carbon::now();
@@ -1720,13 +1637,13 @@
                                             <tr>
                                                 <th width="8%">Case Date</th>
                                                 <th width="10%">Fixed For</th>
-                                                <th width="18%">Court Proceeding</th>
+                                                <th width="12%">Court Proceeding</th>
                                                 <th width="12%">Court Order</th>
                                                 <th width="10%">Next Date</th>
                                                 <th width="10%">N.D. Fixed For</th>
                                                 <th width="10%">Day Note</th>
-                                                <!--<th width="10%">Engaged Advocate</th>-->
-                                                <th width="10%">Action</th>
+                                                <th width="10%">Engaged Advocate</th>
+                                                <th width="6%">Action</th>
                                                 <th width="10%">Update</th>
                                             </tr>
                                         </thead>
@@ -1815,11 +1732,11 @@
                                                         @endif
                                                         {{ $case_logs[0]->updated_day_notes_write }}
                                                     </td>
-                                                    <!--<td> {{ $case_logs[0]->updated_engaged_advocate_id }}
-                                                        {{ $case_logs[0]->updated_engaged_advocate_write }} </td>-->
+                                                    <td> {{ $case_logs[0]->updated_engaged_advocate_id }}
+                                                        {{ $case_logs[0]->updated_engaged_advocate_write }} </td>
                                                     <td>
                                                         <div class="dropdown">
-                                                            <!--<svg class="dropdown-toggle" href="#" role="button"
+                                                            <svg class="dropdown-toggle" href="#" role="button"
                                                                 id="dropdownMenuLink6" data-toggle="dropdown"
                                                                 aria-haspopup="true" aria-expanded="false"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
@@ -1836,28 +1753,28 @@
                                                             </svg>
 
                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
-                                                                style="will-change: transform;">-->
-                                                                <a style="float:left; width: auto; font-size: 16px; padding: 4px 8px 0 8px;" class="dropdown-item btn btn-outline-success"
+                                                                style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success"
                                                                     href="{{ route('view-criminal-cases-proceedings', $case_logs[0]->id) }}"><i
-                                                                        class="fas fa-eye"></i> </a>
+                                                                        class="fas fa-eye"></i> View</a>
 
-                                                                <a style="float:left; width: auto; font-size: 14px; padding: 4px 8px 0 8px;" class="dropdown-item"
+                                                                <a class="dropdown-item"
                                                                     href="{{ route('edit-criminal-cases-status', $case_logs[0]->id) }}"><i
-                                                                        class="fas fa-edit"></i> </a>
-                                                                <a style="width: auto;" class="dropdown-item" href="javascript:void(0);">
+                                                                        class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
                                                                     <form class="delete-user-dropdown" method="POST"
                                                                         action="{{ route('delete-criminal-cases-status', $case_logs[0]->id) }}"
                                                                         class="delete-user btn btn-outline-danger">
                                                                         @csrf
                                                                         <button type="submit" class="btn"
-                                                                            style="width: auto; font-size: 13px; padding: 0 8px;"
+                                                                            style="padding: 0px 1px 0px 0px;"
                                                                             data-toggle="tooltip" data-placement="top"
                                                                             title="Delete"><i class="fas fa-trash"></i>
-                                                                            
+                                                                            Delete
                                                                         </button>
                                                                     </form>
                                                                 </a>
-                                                            <!--</div>-->
+                                                            </div>
                                                         </div>
 
                                                     </td>
@@ -1975,11 +1892,11 @@
                                                             @endif
                                                             {{ $logs->updated_day_notes_write }}
                                                         </td>
-                                                        <!--<td> {{ $logs->updated_engaged_advocate_id }}
-                                                            {{ $logs->updated_engaged_advocate_write }} </td>-->
+                                                        <td> {{ $logs->updated_engaged_advocate_id }}
+                                                            {{ $logs->updated_engaged_advocate_write }} </td>
                                                         <td>
                                                             <div class="dropdown">
-                                                                <!--<svg class="dropdown-toggle" href="#"
+                                                                <svg class="dropdown-toggle" href="#"
                                                                     role="button" id="dropdownMenuLink6"
                                                                     data-toggle="dropdown" aria-haspopup="true"
                                                                     aria-expanded="false"
@@ -1994,33 +1911,33 @@
                                                                     </circle>
                                                                     <circle cx="5" cy="12" r="1">
                                                                     </circle>
-                                                                </svg>-->
+                                                                </svg>
 
-                                                                <!--<div class="dropdown-menu"
+                                                                <div class="dropdown-menu"
                                                                     aria-labelledby="dropdownMenuLink6"
-                                                                    style="will-change: transform;">-->
-                                                                    <a style="float:left; width: auto; font-size: 16px; padding: 4px 8px 0 8px;"  class="dropdown-item btn btn-outline-success"
+                                                                    style="will-change: transform;">
+                                                                    <a class="dropdown-item btn btn-outline-success"
                                                                         href="{{ route('view-criminal-cases-proceedings', $logs->id) }}"><i
-                                                                            class="fas fa-eye"></i> </a>
+                                                                            class="fas fa-eye"></i> View</a>
 
-                                                                    <a style="float:left; width: auto; font-size: 14px; padding: 4px 8px 0 8px;"  class="dropdown-item"
+                                                                    <a class="dropdown-item"
                                                                         href="{{ route('edit-criminal-cases-status', $logs->id) }}"><i
-                                                                            class="fas fa-edit"></i> </a>
+                                                                            class="fas fa-edit"></i> Edit</a>
                                                                     <a class="dropdown-item" href="javascript:void(0);">
                                                                         <form class="delete-user-dropdown" method="POST"
                                                                             action="{{ route('delete-criminal-cases-status', $logs->id) }}"
                                                                             class="delete-user btn btn-outline-danger">
                                                                             @csrf
                                                                             <button type="submit" class="btn"
-                                                                                 style="width: auto; font-size: 13px; padding: 0 8px;"
+                                                                                style="padding: 0px 1px 0px 0px;"
                                                                                 data-toggle="tooltip" data-placement="top"
                                                                                 title="Delete"><i
                                                                                     class="fas fa-trash"></i>
-                                                                                
+                                                                                Delete
                                                                             </button>
                                                                         </form>
                                                                     </a>
-                                                                <!--</div>-->
+                                                                </div>
                                                             </div>
                                                         </td>
                                                         <td> {{ date('d-m-Y H:i:s', strtotime($logs->created_at)) }}
@@ -2037,7 +1954,7 @@
                                 <div class="tab-pane fade" id="pills-cactivitylog" role="tabpanel" aria-labelledby="pills-cactivitylog-tab">
                                   <div class="container-fluid">
                                     <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font_weight themeHeading"
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Case Activities Log</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
@@ -2081,7 +1998,7 @@
                                                             <details>
                                                                 <summary>
                                                                     <p id="main_more">
-                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_action, 30) }}
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_action, 15) }}
                                                                     </p>
                                                                     <span id="open">read more</span>
                                                                     <span id="close">read less</span>
@@ -2095,7 +2012,7 @@
                                                             <details>
                                                                 <summary>
                                                                     <p id="main_more">
-                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_progress, 30, $end = '...') }}
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_progress, 15, $end = '...') }}
                                                                     </p>
                                                                     <span id="open">read more</span>
                                                                     <span id="close">read less</span>
@@ -2163,7 +2080,7 @@
                                                             <details>
                                                                 <summary>
                                                                     <p id="main_more">
-                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_requirements, 30) }}
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_requirements, 15) }}
                                                                     </p>
                                                                     <span id="open">read more</span>
                                                                     <span id="close">read less</span>
@@ -2178,7 +2095,7 @@
                                                             <details>
                                                                 <summary>
                                                                     <p id="main_more">
-                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_remarks, 30) }}
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_remarks, 15) }}
                                                                     </p>
                                                                     <span id="open">read more</span>
                                                                     <span id="close">read less</span>
@@ -2241,7 +2158,7 @@
                                     </table>
                                 </div>
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font_weight themeHeading"
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Case Documents Log
 
                                     </h3>
@@ -2330,7 +2247,7 @@
                                     </table>
                                 </div>
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase themeHeading font_weight"
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Working Documents Log
                                     </h3>
                                     <div class="card-tools">
@@ -2621,13 +2538,2820 @@
                                 </div>
                               </div>
                             </div>
-                    
-                           
-                        </div>                        
+
+
+                            {{-- <h3 class="card-title custom_h3 font-italic text-uppercase font_weight header_links">
+                                    District Court
+                                    No.
+                                    {{ $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . ' of ' . $data->case_infos_case_year : '' }}
+                                    @if ($data->sub_seq_case_title_name != null)
+                                        ,
+                                    @endif
+                                    {{ $data->sub_seq_case_title_name }}
+                                    @php
+                                        $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
+                                        $key = array_key_last($case_infos_sub_seq_case_no);
+                                        echo $case_infos_sub_seq_case_no[$key];
+
+                                        $case_infos_sub_seq_case_year = explode(', ', trim($data->case_infos_sub_seq_case_year));
+                                        $key = array_key_last($case_infos_sub_seq_case_year);
+                                        $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                        if ($last_case_no != null) {
+                                            echo ' of ' . $last_case_no;
+                                        }
+                                    @endphp
+
+                                </h3> --}}
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    data-target="#modal-lg-send-messages" data-toggle="tooltip" data-placement="top"
+                                    title="Send Messages"><i class="fas fa-bell"></i></button>
+
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    data-target="#modal-lg" data-toggle="tooltip" data-placement="top"
+                                    title="Update Status"><i class="fas fa-signal"></i></button>
+
+
+                                <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
+                                    data-target="#modal-lg-2" data-toggle="tooltip" data-placement="top"
+                                    title="Update Activities"><i class="fas fa-chart-line"></i></button>
+
+
+
+                                </a>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                    title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card CaseInfoCard ">
+                                        <div class="card-header caseInfoHeader">
+                                            <h6 class="text-uppercase text-bold"> Case Information
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-lg-case-info"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Primary Information"><i class="fas fa-edit"></i>
+                                                </button>
+                                            </h6>
+
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-bordered caseInfoTable">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Case ID</td>
+                                                        <td> {{ $data->created_case_id }} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Division</td>
+                                                        <td>
+                                                            {{ $data->case_infos_division_name }} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>District</td>
+                                                        <td>{{ $data->case_infos_district_name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Police Station</td>
+                                                        <td>{{ $data->case_infos_thana_name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Case Category</td>
+                                                        <td>{{ $data->case_category_id }}</td>
+                                                    </tr>
+                                                    {{-- <tr>
+                                                        <td>Case Subcategory</td>
+                                                        <td>{{ $data->case_subcategory }}</td>
+                                                    </tr> --}}
+                                                    <tr>
+                                                        <td>Case Type</td>
+                                                        <td>{{ $data->case_types_name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Case Prayer</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Case Nature</td>
+                                                        <td>{{ $case_steps->case_nature_write }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Case Matter</td>
+                                                        <td>{{ $data->matter_name }} {{ $data->matter_write }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr class="trHide">
+                                                        <td>Case Title</td>
+                                                        <td>{{ $data->case_infos_case_title_name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Case Title (Short)</td>
+                                                        <td>{{ $data->case_infos_case_title_name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Case No.</td>
+                                                        <td>{{ rtrim($data->case_infos_case_no, ', ') }} of
+                                                            {{ rtrim($data->case_infos_case_year, ', ') }} </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Name of the Court</td>
+                                                        <td>
+                                                            @php
+                                                                $case_infos_court_id = explode(', ', $data->case_infos_court_id);
+                                                            @endphp
+                                                            @if ($data->case_infos_court_id)
+                                                                @if (count($case_infos_court_id) > 1)
+                                                                    @foreach ($case_infos_court_id as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($case_infos_court_id as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Name of Court(Short)</td>
+                                                        <td>
+                                                            @php
+                                                                $case_infos_court_short_id = explode(', ', $data->case_infos_court_short_id);
+                                                            @endphp
+                                                            @if ($data->case_infos_court_short_id)
+                                                                @if (count($case_infos_court_short_id) > 1)
+                                                                    @foreach ($case_infos_court_short_id as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($case_infos_court_short_id as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+
+                                                            @php
+                                                                $court_short_write = explode(', ', $data->court_short_write);
+                                                            @endphp
+                                                            @if ($data->court_short_write)
+                                                                @if (count($court_short_write) > 1)
+                                                                    @foreach ($court_short_write as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($court_short_write as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Sub Seq. Case Title</td>
+                                                        <td> {{ $data->sub_seq_case_infos_case_title_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Sub Seq. Case No.</td>
+                                                        <td>
+
+
+                                                            @php
+                                                                $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
+                                                                $key = array_key_last($case_infos_sub_seq_case_no);
+                                                                echo $case_infos_sub_seq_case_no[$key];
+                                                                
+                                                                $case_infos_sub_seq_case_year = explode(', ', trim($data->case_infos_sub_seq_case_year));
+                                                                $key = array_key_last($case_infos_sub_seq_case_year);
+                                                                $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                                                if ($last_case_no != null) {
+                                                                    echo ' of ' . $last_case_no;
+                                                                }
+                                                            @endphp
+
+
+
+                                                            {{-- @php
+                                        $case_infos_sub_seq_case_no = explode(', ', $data->case_infos_sub_seq_case_no);
+                                    @endphp
+                                    @if ($data->case_infos_sub_seq_case_no)
+                                        @if (count($case_infos_sub_seq_case_no) > 1)
+                                            @foreach ($case_infos_sub_seq_case_no as $pro)
+                                                <li class="text-left">{{ $pro }}
+                                                </li>
+                                            @endforeach
+                                        @else
+                                            @foreach ($case_infos_sub_seq_case_no as $pro)
+                                                {{ $pro }}
+                                            @endforeach
+                                        @endif
+                                    @endif --}}
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Sub-Seq. Court</td>
+                                                        <td>
+                                                            @php
+                                                                $case_infos_sub_seq_court_id = explode(', ', $data->case_infos_sub_seq_court_id);
+                                                            @endphp
+                                                            @if ($data->case_infos_sub_seq_court_id)
+                                                                @if (count($case_infos_sub_seq_court_id) > 1)
+                                                                    @foreach ($case_infos_sub_seq_court_id as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($case_infos_sub_seq_court_id as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Sub-Seq. Court(Short)</td>
+                                                        <td>
+                                                            @php
+                                                                $case_infos_sub_seq_court_short_id = explode(', ', $data->case_infos_sub_seq_court_short_id);
+                                                            @endphp
+                                                            @if ($data->case_infos_sub_seq_court_short_id)
+                                                                @if (count($case_infos_sub_seq_court_short_id) > 1)
+                                                                    @foreach ($case_infos_sub_seq_court_short_id as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($case_infos_sub_seq_court_short_id as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+                                                            @php
+                                                                $sub_seq_court_short_write = explode(', ', $data->sub_seq_court_short_write);
+                                                            @endphp
+                                                            @if ($data->sub_seq_court_short_write)
+                                                                @if (count($sub_seq_court_short_write) > 1)
+                                                                    @foreach ($sub_seq_court_short_write as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($sub_seq_court_short_write as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Law</td>
+                                                        <td>
+                                                            @php
+                                                                $law_id = explode('/ ', $data->law_id);
+                                                                $law_write = explode('/ ', $data->law_write);
+                                                                // dd(!empty($data->law_id));
+                                                            @endphp
+
+                                                            @if ($data->law_id || $data->law_write)
+                                                                @if (count($law_id) >= 1 && count($law_write) >= 1)
+                                                                    @if (!empty($data->law_id) && count($law_id) >= 1 && count($law_write) >= 1)
+                                                                        {{-- {{ dd('case info') }} --}}
+                                                                        @foreach ($law_id as $pro)
+                                                                            <li class="text-left">
+                                                                                {{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($law_id as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                    @if (!empty($data->law_write) && count($law_write) >= 1 && count($law_id) >= 1)
+                                                                        @foreach ($law_write as $pro)
+                                                                            <li class="text-left">
+                                                                                {{ $pro }}</li>
+                                                                        @endforeach
+                                                                    @else
+                                                                        @foreach ($law_write as $pro)
+                                                                            {{ $pro }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                @elseif (count($law_id) > 1 && count($law_write) == 0)
+                                                                    @foreach ($law_id as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                    @foreach ($law_write as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @elseif (count($law_id) == 0 && count($law_write) > 1)
+                                                                    @foreach ($law_id as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                    @foreach ($law_write as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($law_id as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                    @foreach ($law_write as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+
+
+
+                                                            {{-- @if ($data->law_id)
+                                    @if (count($law_id) > 1)
+                                        @foreach ($law_id as $pro)
+                                            <li class="text-left">{{ $pro }}</li>
+                                        @endforeach
+                                    @else
+                                        @foreach ($law_id as $pro)
+                                            {{ $pro }}
+                                        @endforeach
+                                    @endif
+                                @endif
+
+                                @if ($data->law_write)
+                                    @if (count($law_write) > 1)
+                                        @foreach ($law_write as $pro)
+                                            <li class="text-left">{{ $pro }}</li>
+                                        @endforeach
+                                    @else
+                                        @foreach ($law_write as $pro)
+                                            {{ $pro }}
+                                        @endforeach
+                                    @endif
+                                @endif --}}
+
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Section</td>
+                                                        <td>
+                                                            @php
+                                                                $section_id = explode(', ', $data->section_id);
+                                                            @endphp
+                                                            @if ($data->section_id)
+                                                                @if (count($section_id) > 1)
+                                                                    @foreach ($section_id as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($section_id as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+                                                            @php
+                                                                $section_write = explode(', ', $data->section_write);
+                                                            @endphp
+                                                            @if ($data->section_write)
+                                                                @if (count($section_write) > 1)
+                                                                    @foreach ($section_write as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($section_write as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Case Filing Date</td>
+                                                        <td>{{ date('d-m-Y', strtotime($data->date_of_filing)) }}</td>
+                                                    </tr>
+                                                    {{-- <tr>
+                            <td>Status of the Cases</td>
+                            <td>{{ $data->case_status_name }}</td>
+                        </tr> --}}
+
+                                                    <tr class="trHide">
+                                                        <td>Complainant/Informant Name</td>
+                                                        <td>
+                                                            @php
+                                                                $case_infos_complainant_informant_name = explode(', ', $data->case_infos_complainant_informant_name);
+                                                            @endphp
+                                                            @if ($data->case_infos_complainant_informant_name)
+                                                                @if (count($case_infos_complainant_informant_name) > 1)
+                                                                    @foreach ($case_infos_complainant_informant_name as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($case_infos_complainant_informant_name as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Complainant/Informant's Representative</td>
+                                                        <td>
+                                                            @php
+                                                                $complainant_informant_representative = explode(', ', $data->complainant_informant_representative);
+                                                            @endphp
+                                                            @if ($data->complainant_informant_representative)
+                                                                @if (count($complainant_informant_representative) > 1)
+                                                                    @foreach ($complainant_informant_representative as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($complainant_informant_representative as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Accused Name</td>
+                                                        <td>
+                                                            @php
+                                                                $case_infos_accused_name = explode(', ', $data->case_infos_accused_name);
+                                                            @endphp
+                                                            @if ($data->case_infos_accused_name)
+                                                                @if (count($case_infos_accused_name) > 1)
+                                                                    @foreach ($case_infos_accused_name as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($case_infos_accused_name as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Accused's Representative</td>
+                                                        <td>
+                                                            @php
+                                                                $case_infos_accused_representative = explode(', ', $data->case_infos_accused_representative);
+                                                            @endphp
+                                                            @if ($data->case_infos_accused_representative)
+                                                                @if (count($case_infos_accused_representative) > 1)
+                                                                    @foreach ($case_infos_accused_representative as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($case_infos_accused_representative as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Prosecution Witnesses</td>
+                                                        <td>{{ $data->prosecution_witness }}</td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Defense Witnesses</td>
+                                                        <td> {{ $data->defense_witness }} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Allegation/Claim</td>
+                                                        <td> {{ $edit_case_steps->allegation_name }}
+                                                            {{ $edit_case_steps->case_infos_allegation_claim_write }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Amount of Money</td>
+                                                        <td>{{ !empty($edit_case_steps->amount_of_money) ? number_format($edit_case_steps->amount_of_money, 0) . '/-' : '' }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Another Claim(if any)</td>
+                                                        <td>{{ $edit_case_steps->another_claim }}</td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Recovery/Seizure Articles</td>
+                                                        <td>{{ $edit_case_steps->recovery_seizure_articles }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Summary of Facts</td>
+                                                        <td>{{ $edit_case_steps->summary_facts }}</td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Remarks</td>
+                                                        <td>{{ $edit_case_steps->case_info_remarks }}</td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="card documentCard">
+                                        <div class="card-header caseInfoHeader">
+                                            <h6 class="text-uppercase text-bold">Documents
+                                                Received
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-lg-documents-info"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Documents"><i class="fas fa-edit"></i>
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Document Received</td>
+                                                        <td>Document Name</td>
+                                                        <td>Date</td>
+                                                        <td>CC/ORG/COPY</td>
+                                                    </tr>
+                                                    @foreach ($received_documents as $value)
+                                                        <tr>
+                                                            <td>{{ $value->received_documents }}</td>
+                                                            <td>{{ $value->documents_name }} </td>
+                                                            <td>{{ !empty($value->received_documents_date) ? date('d-m-Y', strtotime($value->received_documents_date)) : '' }}
+                                                            </td>
+                                                            <td>{{ $value->documents_type_name }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6 class="text-uppercase text-bold"> Case Status :
+                                                @php
+                                                    $now = Carbon\Carbon::now();
+                                                    $days_count = Carbon\Carbon::parse($data->date_of_filing)->diffInDays($now);
+                                                @endphp
+
+                                                <span class="font-italic text-capitalize text-muted"> (Running for
+                                                    {{ $days_count }} days) </span>
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-lg-status-of-the-case"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Status of the Case"><i class="fas fa-edit"></i>
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Status</td>
+                                                        <td>
+                                                            {{ $latest->case_status_name }}
+                                                        </td>
+                                                        <td>
+
+                                                            @if (Is_numeric($data->case_status_id))
+                                                                {{ $data->case_status_name }}
+                                                            @else
+                                                                {{ $data->case_status_id }}
+                                                            @endif
+
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Filing Date</td>
+                                                        <td>
+
+                                                            @if (!empty($data))
+                                                                {{ $data->date_of_filing }}
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            Case Filed
+                                                        </td>
+
+
+                                                    </tr>
+                                                    {{-- <tr>
+                                            <td>Previous Date</td>
+                                            <td  >
+                                                {{count($previouDate) === 2 && !empty($previouDate[1]->updated_next_date) ? date('d-m-Y', strtotime($previouDate[1]->updated_next_date)) : '' }}
+                                            </td>
+                                            <td>
+                                                {{count($previouDate) === 2 && !empty($previouDate[1]->case->case_status_name) ? $previouDate[1]->case->case_status_name : '' }}
+                                            </td>
+                                        </tr> --}}
+                                                    <tr>
+                                                        <td>Previous Date</td>
+
+                                                        <td>
+                                                            @if (!empty($latest) && !empty($latest->updated_order_date))
+                                                                {{ date('d-m-Y', strtotime($latest->updated_order_date)) }}
+                                                            @else
+                                                                <button type='button'
+                                                                    class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not
+                                                                    Upd
+                                                                </button>
+                                                            @endif
+
+                                                        </td>
+                                                        <td>
+                                                            {{ !empty($latest) && !empty($latest->next_date_reason_name) ? $latest->next_date_reason_name : '' }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Next Date</td>
+
+                                                        <td>
+                                                            @if (!empty($latest) && !empty($latest->updated_next_date))
+                                                                {{ date('d-m-Y', strtotime($latest->updated_next_date)) }}
+                                                            @else
+                                                                <button type='button'
+                                                                    class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not
+                                                                    Upd
+                                                                </button>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            {{ !empty($latest) && !empty($latest->index_fixed_for_reason_name) ? $latest->index_fixed_for_reason_name : '' }}
+                                                        </td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="card caseEvents">
+                                        <div class="card-header caseInfoHeader">
+                                            <h6 class="text-uppercase text-bold"> Case Events & Incidents
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-lg-letter-notice"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Case Steps"><i class="fas fa-edit"></i></button>
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            {{-- <h6 class="text-uppercase text-bold">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3"> Date</div>
+                                                                                <div class="col-md-3 text-center">Title</div>
+                                                                                <div class="col-md-3 text-center">Description</div>
+                                                                                <div class="col-md-3 text-center">Evidence</div>
+
+                                                                            </div>
+                                                                        </h6> --}}
+
+
+                                            {{-- <h6 class="text-uppercase text-bold">
+                                                        <div class="row">
+                                                            <div class="col-md-3"> Date </div>
+                                                            <div class="col-md-2"> Document Name </div>
+                                                            <div class="col-md-3"> Particulars </div>
+                                                            <div class="col-md-2"> ORG </div>
+                                                            <div class="col-md-1"> PHT
+
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <button type="button"
+                                                                        class="btn btn-info btn-sm float-right"
+                                                                        data-toggle="modal" data-target="#modal-lg-letter-notice"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="Update Case Steps"><i
+                                                                            class="fas fa-edit"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </h6> --}}
+
+                                            <table class="table table-bordered">
+                                                <thead style="background: #0CA2A3; color:#fff;">
+                                                    <tr class="text-bold">
+                                                        <td>Date</td>
+                                                        <td>Title</td>
+                                                        <td>Description</td>
+                                                        <td>Evidence</td>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach ($letter_notice as $value)
+                                                        <tr>
+                                                            <td width="26%">
+                                                                {{ !empty($value->letter_notice_date) ? date('d-m-Y', strtotime($value->letter_notice_date)) : '' }}
+                                                            </td>
+                                                            <td width="26%">{{ $value->documents_name }}
+                                                                {{ $value->letter_notice_documents_write }}
+                                                            </td>
+                                                            <td width="28%">
+                                                                {{ $value->letter_notice_particulars_write }}
+                                                            </td>
+                                                            <td width="20%">
+                                                                {{ $value->documents_type_name }}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="card caseStepCard">
+                                        <div class="card-header caseInfoHeader">
+                                            <h6 class="text-uppercase text-bold"> Case Steps
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-lg-case-steps"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Case Steps"><i class="fas fa-edit"></i></button>
+
+
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+
+                                            {{-- <h6 class="text-uppercase text-bold">
+                                                <div class="row">
+                                                    <div class="col-md-3"><u> Case Steps </u></div>
+                                                    <div class="col-md-3">Date</div>
+                                                    <div class="col-md-3">Note</div>
+                                                    <div class="col-md-1">ORG</div>
+                                                    <div class="col-md-1">CC</div>
+                                                    <div class="col-md-1" style="padding-left:1px;">Copy
+                                                        <button type="button"
+                                                        class="btn btn-info btn-sm float-right"
+                                                        data-toggle="modal" data-target="#modal-lg-case-steps"
+                                                        data-toggle="tooltip" data-placement="top"
+                                                        title="Update Case Steps"><i
+                                                            class="fas fa-edit"></i></button>
+                                                    </div>
+                                                </div>
+                                            </h6> --}}
+
+                                            {{-- <div class="row">
+                                                <div class="col-md-3 text-center"></div>
+                                                <div class="col-md-3 text-center">Date</div>
+                                                <div class="col-md-3 text-center">Note</div>
+                                                <div class="col-md-3 text-center">Evidence</div>
+                                            </div> --}}
+
+
+
+
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr class="text-bold">
+                                                        <td></td>
+                                                        <td>Date</td>
+                                                        <td>Note</td>
+                                                        <td>Evidence</td>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td width="26%">Case Filed</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_filing }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_filing_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->case_steps_filing_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26%">Service Return (SR)</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_servicr_return }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_servicr_return_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->servicr_return_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26%">S.R. Completed</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_sr_completed }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_sr_completed_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->sr_completed_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26%">Set Off</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_set_off }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_set_off_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->case_steps_set_off_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26%">Issue Frame</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_issue_frame }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_issue_frame_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->case_steps_issue_frame_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26%">PH</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_ph }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_ph_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->case_steps_ph_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26%">F.PH</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_fph }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_fph_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->case_steps_fph_type_name }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Taking Cognizance</td>
+                                                        <td> {{ $case_steps->taking_cognizance }} </td>
+                                                        <td class="letters"> {{ $case_steps->taking_cognizance_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->taking_cognizance_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Arrest/Surrender/C.W.</td>
+                                                        <td> {{ $case_steps->arrest_surrender_cw }} </td>
+                                                        <td class="letters"> {{ $case_steps->arrest_surrender_cw_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->arrest_surrender_cw_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Bail</td>
+                                                        <td> {{ $case_steps->case_steps_bail }} </td>
+                                                        <td class="letters"> {{ $case_steps->case_steps_bail_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->case_steps_bail_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Court Transfer</td>
+                                                        <td> {{ $case_steps->case_steps_court_transfer }}
+                                                        </td>
+                                                        <td class="letters">
+                                                            {{ $case_steps->case_steps_court_transfer_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->court_transfer_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Charge Framed</td>
+                                                        <td> {{ $case_steps->case_steps_charge_framed }}
+                                                        </td>
+                                                        <td class="letters">
+                                                            {{ $case_steps->case_steps_charge_framed_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->charge_framed_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Witness (From)</td>
+                                                        <td> {{ $case_steps->case_steps_witness_from }}
+                                                        </td>
+                                                        <td class="letters">
+                                                            {{ $case_steps->case_steps_witness_from_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->witness_from_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Witness (To)</td>
+                                                        <td> {{ $case_steps->case_steps_witness_to }} </td>
+                                                        <td class="letters">
+                                                            {{ $case_steps->case_steps_witness_to_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->witness_to_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Argument</td>
+                                                        <td> {{ $case_steps->case_steps_argument }} </td>
+                                                        <td class="letters"> {{ $case_steps->case_steps_argument_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->argument_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Judgement & Order</td>
+                                                        <td> {{ $case_steps->case_steps_judgement_order }}
+                                                        </td>
+                                                        <td class="letters">
+                                                            {{ $case_steps->case_steps_judgement_order_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->judgement_order_type_name }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td width="26%">Subsequent Status</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_subsequent_status }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_subsequent_status_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->case_steps_subsequent_status_type_name }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Summary of Cases</td>
+                                                        <td> {{ $case_steps->case_steps_summary_of_cases }}
+                                                        </td>
+                                                        <td class="letters">
+                                                            {{ $case_steps->case_steps_summary_of_cases_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->summary_of_cases_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Remarks</td>
+                                                        <td colspan="3"> {{ $case_steps->case_steps_remarks }} </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="card documentCard">
+                                        <div class="card-header caseInfoHeader">
+                                            <h6 class="text-uppercase text-bold">Documents
+                                                Required
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-lg-documents-info"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Documents"><i class="fas fa-edit"></i>
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <td width="60%">Document Name</td>
+                                                        <td width="25%">Date</td>
+                                                        <td width="25%">CC/ORG/COPY</td>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach ($required_wanting_documents as $value)
+                                                        <tr>
+                                                            <td width="60%">{{ $value->documents_name }}
+                                                                {{ $value->required_wanting_documents }}</td>
+                                                            <td width="25%">
+                                                                {{ !empty($value->required_wanting_documents_date) ? date('d-m-Y', strtotime($value->required_wanting_documents_date)) : '' }}
+                                                            </td>
+                                                            <td width="15%">{{ $value->documents_type_name }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row ">
+                                <div class="col-md-12">
+                                    <div class="card caseFileLoacation">
+                                        <div class="card-header caseInfoHeader">
+                                            <h6 class="text-uppercase text-bold mt-3">Case File Location
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-case-file-location"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Documents"><i class="fas fa-edit"></i>
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Cabinet Name</td>
+                                                        <td>Office</td>
+                                                        <td>Almirah</td>
+                                                        <td>Cabinet/Self</td>
+                                                    </tr>
+
+
+                                                    @foreach ($caseFileLocationView as $item)
+                                                        <tr>
+                                                            <td>{{ !empty($item->cabinate) ? $item->cabinate->cabinet_name : '' }}
+                                                            </td>
+                                                            <td>{{ $item->case_file_location_new_office }}</td>
+                                                            <td>{{ $item->case_file_location_new_almirah }}</td>
+                                                            <td>{{ $item->case_file_location_new_self }}</td>
+
+
+                                                        </tr>
+                                                    @endforeach
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row" id="sectionClientInfo">
+                                <div class="col-md-6">
+                                    <div class="card clientInfoCard">
+                                        <div class="card-header caseInfoHeader">
+                                            <h6 class="text-uppercase text-bold"><u> Client Information </u>
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-lg-client-info"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Primary Information"><i class="fas fa-edit"></i>
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-bordered caseInfoTable2">
+
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Client(on behalf of)</td>
+                                                        <td colspan="2"> {{ $data->client_party_name }} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Client Category</td>
+                                                        <td colspan="2"> {{ $data->client_category_name }} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Client Sub-category</td>
+                                                        <td colspan="2">{{ $data->client_subcategory_name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Client Name</td>
+                                                        <td colspan="2">
+                                                            @php
+                                                                $client_explode = explode(', ', $data->client_id);
+                                                                $clientName = DB::table('setup_clients')
+                                                                    ->where('id', $client_explode)
+                                                                    ->get();
+                                                            @endphp
+                                                            @if ($data->client_id)
+                                                                @if (count($client_explode) > 1)
+                                                                    @foreach ($clientName as $pro)
+                                                                        <li class="text-left">{{ $pro->client_name }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($clientName as $pro)
+                                                                        {{ $pro->client_name }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+
+                                                            @php
+                                                                $client_name_write = explode(', ', $data->client_name_write);
+                                                            @endphp
+                                                            @if ($data->client_name_write)
+                                                                @if (count($client_name_write) > 1)
+                                                                    @foreach ($client_name_write as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($client_name_write as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Client Business Name</td>
+                                                        <td colspan="2">{{ $data->client_business_name }}</td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Client Group Name</td>
+                                                        <td colspan="2">{{ $data->client_group_name }}
+                                                            {{ $data->client_group_write }}</td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Client Address</td>
+                                                        <td colspan="2">{{ $data->client_address }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Client Mobile</td>
+                                                        <td colspan="2">{{ $data->client_mobile }}</td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Client Email</td>
+                                                        <td colspan="2">{{ $data->client_email }}</td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Profession/Type</td>
+                                                        <td colspan="2">{{ $data->profession_name }}
+                                                            {{ $data->client_profession_write }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="50%">Division/Zone</td>
+                                                        <td width="25%">{{ $data->client_division_name }} @if ($data->client_division_name && $data->client_divisoin_write)
+                                                            @endif
+                                                        </td>
+                                                        <td width="25%">{{ $data->client_divisoin_write }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>District/Area</td>
+                                                        <td>{{ $data->client_district_name }} @if ($data->client_district_name && $data->client_district_write)
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $data->client_district_write }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Thana/Branch</td>
+                                                        <td>{{ $data->client_thana_name }} @if ($data->client_thana_name && $data->client_thana_write)
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $data->client_thana_write }}</td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Representative Name</td>
+                                                        <td colspan="2">{{ $data->client_representative_name }} </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Representative Details</td>
+                                                        <td colspan="2">{{ $data->client_representative_details }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Coordinator/Tadbirkar</td>
+                                                        <td colspan="2">{{ $data->coordinator_name }}
+                                                            {{ $data->coordinator_tadbirkar_write }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Coordinator Details</td>
+                                                        <td colspan="2">{{ $data->client_coordinator_details }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="card caseFileLoacation">
+                                        <div class="card-header">
+                                            <h6 class="text-uppercase text-bold"> Lawyers Information
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-lg-lawyers-info"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Lawyers Information"><i class="fas fa-edit"></i>
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <table class="table table-bordered layInfoTable">
+
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td>Name of Advocate/Law Firm</td>
+                                                        <td>{{ $data->lawyer_advocate_id }}</td>
+                                                        <td>{{ $data->lawyer_advocate_write }}</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Name of Lead Laywer</td>
+                                                        <td>{{ $data->lead_laywer_name }}</td>
+                                                        <td>{{ $data->lead_laywer_name_extra }}</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Name of Assigned Lawyer</td>
+                                                        <td>
+                                                            @php
+                                                                $assigned_lawyer_id = explode(', ', $data->assigned_lawyer_id);
+                                                            @endphp
+                                                            @if ($data->assigned_lawyer_id)
+                                                                @if (count($assigned_lawyer_id) > 1)
+                                                                    @foreach ($assigned_lawyer_id as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($assigned_lawyer_id as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $data->assigned_lawyer_extra }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Remarks</td>
+                                                        <td colspan="2"> {{ $data->lawyers_remarks }} </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card clientInfoCard">
+                                        <div class="card-header caseInfoHeader">
+                                            <h6 class="text-uppercase text-bold"> OPPOSITE PARTY INFORMATION
+
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-lg-opposition-info"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Opposite Party Information"><i class="fas fa-edit"></i>
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <table class="table table-bordered caseInfoTable2">
+
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Opposition(on behalf of)</td>
+                                                        <td colspan="2"> {{ $data->oppsition_party_name }}
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Opposition Category</td>
+                                                        <td colspan="2"> {{ $data->opposition_category_name }} </td>
+
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Opposition Subcategory</td>
+                                                        <td colspan="2">{{ $data->opposition_subcategory_name }}</td>
+
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Opposition Name</td>
+                                                        <td colspan="2">
+                                                            @php
+                                                                $opposition_id = explode(', ', $data->opposition_id);
+                                                            @endphp
+                                                            @if ($data->opposition_id)
+                                                                @if (count($opposition_id) > 1)
+                                                                    @foreach ($opposition_id as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($opposition_id as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+                                                            @php
+                                                                $opposition_write = explode(', ', $data->opposition_write);
+                                                            @endphp
+                                                            @if ($data->opposition_write)
+                                                                @if (count($opposition_write) > 1)
+                                                                    @foreach ($opposition_write as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($opposition_write as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+
+                                                        </td>
+
+
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Opposition Business Name</td>
+                                                        <td colspan="2">{{ $data->opposition_business_name }}</td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Opposition Group Name</td>
+                                                        <td colspan="2">{{ $data->opposition_group_name }}
+                                                            {{ $data->opposition_group_write }}</td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Opposition Address</td>
+                                                        <td colspan="2">{{ $data->opposition_address }}</td>
+
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Opposition Mobile</td>
+                                                        <td colspan="2">{{ $data->opposition_mobile }}</td>
+
+
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Opposition Email</td>
+                                                        <td colspan="2">{{ $data->opposition_email }}</td>
+
+
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Profession/Type</td>
+                                                        <td colspan="2">{{ $data->opposition_profession_name }}
+                                                            {{ $data->opposition_profession_write }}</td>
+
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="50%">Division/Zone</td>
+                                                        <td width="25%"> {{ $data->opposition_division_name }}
+                                                            @if ($data->opposition_division_name && $data->opposition_divisoin_write)
+                                                            @endif
+                                                        </td>
+                                                        <td width="25%">{{ $data->opposition_divisoin_write }}</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>District/Area</td>
+                                                        <td>{{ $data->opposition_district_name }} @if ($data->opposition_district_name && $data->opposition_district_write)
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $data->opposition_district_write }}</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Thana/Branch</td>
+                                                        <td>{{ $data->opposition_thana_name }} @if ($data->opposition_thana_name && $data->opposition_thana_write)
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $data->opposition_thana_write }}</td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Representative Name</td>
+                                                        <td colspan="2">{{ $data->opposition_representative_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trHide">
+                                                        <td>Representative Details</td>
+                                                        <td colspan="2">{{ $data->opposition_representative_details }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Coordinator/Tadbirkar</td>
+                                                        <td colspan="2">{{ $data->opposition_coordinator_name }}
+                                                            {{ $data->opposition_coordinator_tadbirkar_write }}
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Coordinator Details</td>
+                                                        <td colspan="2">{{ $data->opposition_coordinator_details }}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    {{-- {{dd($oppLawyer)}} --}}
+                                    <div class="card caseFileLoacation">
+                                        <div class="card-header caseInfoHeader">
+                                            <h6 class="text-uppercase text-bold">Lawyers Information : (Opposition Lawyer)
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-lg-opp-lawyers-info"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Lawyers Information"><i class="fas fa-edit"></i>
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <table class="table table-bordered caseInfoTable2">
+
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td width="50%">Name of Advocate/Law Firm</td>
+                                                        <td width="50%">{{ @$oppLawyer->opp_lawyer_advocate_write }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Name of Assigned Lawyer</td>
+                                                        <td>{{ @$oppLawyer->opp_lawyer_assigned_lawyer }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Lawyer Contact</td>
+                                                        <td>{{ @$oppLawyer->opp_lawyer_contact }} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Note</td>
+                                                        <td>{{ @$oppLawyer->opp_lawyers_note }} </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
 
                     </div>
 
-                  
+                    {{-- <style>
+                            .accordion .card-header:after {
+                                font-family: 'FontAwesome';
+                                content: "+";
+                                float: right;
+                            }
+                            .accordion .card-header.collapsed:after {
+                                content: "-";
+                            }
+                        </style>
+
+                        <div class="container">
+                            <div id="accordion" class="accordion">
+                                <div class="card mb-0">
+                                    <div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">
+                                        <a class="card-title"> Item 1 </a>
+                                    </div>
+                                    <div id="collapseOne" class="card-body collapse" data-parent="#accordion">
+                                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. </p>
+                                    </div>
+                                    <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                        <a class="card-title"> Item 2 </a>
+                                    </div>
+                                    <div id="collapseTwo" class="card-body collapse" data-parent="#accordion">
+                                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. </p>
+                                    </div>
+                                    <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                        <a class="card-title"> Item 3 </a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. samus labore sustainable VHS. </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+
+
+                    <div class="card">
+                        <div>
+                            <div class="card" id="section1" name="section1">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Case Proceedings Log
+                                        @php
+                                            $now = Carbon\Carbon::now();
+                                            $days_count = Carbon\Carbon::parse($data->date_of_filing)->diffInDays($now);
+                                        @endphp
+
+                                        <span class="font-italic custom_font text-capitalize"> (Total Elapsed Time:
+
+                                            {{ $days_count }} Days) </span>
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                            data-target="#modal-lg" data-toggle="tooltip" data-placement="top"
+                                            title="Update Status"><i class="fas fa-signal"></i></button>
+                                        <a href="{{ route('case-porceedings-print-preview', $data->id) }}"
+                                            title="Print CPL" target="_blank" class="btn btn-info btn-sm"><i
+                                                class="fas fa-print"></i></a>
+
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped data_table">
+                                        <thead>
+                                            <tr>
+                                                <th width="8%">Case Date</th>
+                                                <th width="10%">Fixed For</th>
+                                                <th width="12%">Court Proceeding</th>
+                                                <th width="12%">Court Order</th>
+                                                <th width="10%">Next Date</th>
+                                                <th width="10%">N.D. Fixed For</th>
+                                                <th width="10%">Day Note</th>
+                                                <th width="10%">Engaged Advocate</th>
+                                                <th width="6%">Action</th>
+                                                <th width="10%">Update</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (!empty($case_logs[0]->updated_order_date))
+
+                                                <tr>
+                                                    <td> {{ date('d-m-Y', strtotime($case_logs[0]->updated_order_date)) }}
+                                                    </td>
+                                                    <td width="10%">
+                                                        {{ $case_logs[0]->next_date_reason_name }}
+                                                        {{ $case_logs[0]->updated_fixed_for_write }} </td>
+                                                    <td>
+                                                        @php
+                                                            $proceedings = explode(', ', $case_logs[0]->court_proceedings_id);
+                                                        @endphp
+
+                                                        @if ($case_logs[0]->court_proceedings_id)
+                                                            @if (count($proceedings) > 1)
+                                                                <details>
+                                                                    <summary>
+                                                                        <p id="main_more">{{ $proceedings[0] }}
+                                                                        </p>
+                                                                        <span id="open">read more</span>
+                                                                        <span id="close">read less</span>
+                                                                    </summary>
+                                                                    @foreach ($proceedings as $pro)
+                                                                        <li class="text-left">
+                                                                            {{ $pro }} </li>
+                                                                    @endforeach
+                                                                </details>
+                                                            @else
+                                                                @foreach ($proceedings as $pro)
+                                                                    {{ $pro }}
+                                                                @endforeach
+                                                            @endif
+                                                        @endif
+                                                        {{ $case_logs[0]->court_proceedings_write }}
+
+                                                    </td>
+                                                    <td>
+                                                        @php
+                                                            $order = explode(', ', $case_logs[0]->updated_court_order_id);
+                                                        @endphp
+                                                        @if ($case_logs[0]->updated_court_order_id)
+                                                            @foreach ($order as $pro)
+                                                                <li class="text-left">{{ $pro }}</li>
+                                                            @endforeach
+                                                        @endif
+                                                        {{ $case_logs[0]->updated_court_order_write }}
+                                                    </td>
+                                                    <td>
+
+                                                        @if (!empty($case_logs[0]->updated_next_date) && $case_logs[0]->updated_next_date < date('Y-m-d'))
+                                                            <span
+                                                                style="color: rgba(255, 0, 0, 1);font-size:11.5px;">{{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}</span>
+                                                        @elseif(!empty($case_logs[0]->updated_next_date))
+                                                            {{ date('d-m-Y', strtotime($case_logs[0]->updated_next_date)) }}
+                                                        @else
+                                                            <button type='button'
+                                                                class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not
+                                                                Upd
+                                                            </button>
+                                                        @endif
+                                                    </td>
+                                                    <td width="8%">
+                                                        {{ $case_logs[0]->index_next_date_reason_name }}
+                                                        {{ $case_logs[0]->updated_index_fixed_for_write }}</td>
+
+                                                    <td>
+                                                        @php
+                                                            $notes = explode(', ', $case_logs[0]->updated_day_notes_id);
+                                                        @endphp
+                                                        @if ($case_logs[0]->updated_day_notes_id)
+                                                            <details>
+                                                                <summary>
+                                                                    <p id="main_more">{{ $notes[0] }}</p>
+                                                                    <span id="open">read more</span>
+                                                                    <span id="close">read less</span>
+                                                                </summary>
+                                                                @foreach ($notes as $pro)
+                                                                    <li class="text-left"> {{ $pro }}
+                                                                    </li>
+                                                                @endforeach
+                                                            </details>
+                                                        @endif
+                                                        {{ $case_logs[0]->updated_day_notes_write }}
+                                                    </td>
+                                                    <td> {{ $case_logs[0]->updated_engaged_advocate_id }}
+                                                        {{ $case_logs[0]->updated_engaged_advocate_write }} </td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <svg class="dropdown-toggle" href="#" role="button"
+                                                                id="dropdownMenuLink6" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-more-horizontal">
+                                                                <circle cx="12" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="19" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="5" cy="12" r="1">
+                                                                </circle>
+                                                            </svg>
+
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success"
+                                                                    href="{{ route('view-criminal-cases-proceedings', $case_logs[0]->id) }}"><i
+                                                                        class="fas fa-eye"></i> View</a>
+
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('edit-criminal-cases-status', $case_logs[0]->id) }}"><i
+                                                                        class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <form class="delete-user-dropdown" method="POST"
+                                                                        action="{{ route('delete-criminal-cases-status', $case_logs[0]->id) }}"
+                                                                        class="delete-user btn btn-outline-danger">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn"
+                                                                            style="padding: 0px 1px 0px 0px;"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i>
+                                                                            Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </td>
+                                                    <td> {{ date('d-m-Y H:i:s', strtotime($case_logs[0]->created_at)) }}
+                                                    </td>
+                                                </tr>
+                                            @endif
+
+                                            @php
+                                                // $removed = array_shift($case_logs);
+                                                // array_shift($case_logs);
+                                                $case_logs->shift();
+                                            @endphp
+
+                                            @if (!empty($case_logs))
+                                                @foreach ($case_logs as $logs)
+                                                    <tr>
+                                                        <td> {{ date('d-m-Y', strtotime($logs->updated_order_date)) }}
+                                                        </td>
+                                                        <td width="10%"> {{ $logs->next_date_reason_name }}
+                                                            {{ $logs->updated_fixed_for_write }} </td>
+                                                        <td>
+                                                            @php
+                                                                $proceedings = explode(', ', $logs->court_proceedings_id);
+                                                            @endphp
+
+                                                            @if ($logs->court_proceedings_id)
+                                                                @if (count($proceedings) > 1)
+                                                                    <details>
+                                                                        <summary>
+                                                                            <p id="main_more">
+                                                                                {{ $proceedings[0] }}</p>
+                                                                            <span id="open">read more</span>
+                                                                            <span id="close">read less</span>
+                                                                        </summary>
+                                                                        @foreach ($proceedings as $pro)
+                                                                            <li class="text-left">
+                                                                                {{ $pro }}
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </details>
+                                                                    {{-- <li class="text-left">{{ $pro }}</li> --}}
+                                                                @else
+                                                                    {{-- <details>
+                                                    <summary>
+                                                        <p id="main_more">{{ $proceedings[0] }}</p>
+                                                        <span id="open">read more</span>
+                                                        <span id="close">read less</span>
+                                                    </summary> --}}
+
+                                                                    @foreach ($proceedings as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+
+
+                                                                    {{-- </details> --}}
+                                                                @endif
+                                                            @endif
+                                                            {{ $logs->court_proceedings_write }}
+                                                            {{-- <details>
+                                        <summary>
+                                            <p id="main_more">{{ $logs->court_proceedings_write }}</p>
+                                            <span id="open">read more</span>
+                                            <span id="close">close</span>
+                                        </summary>
+                                        <p>
+                                            Lorem {{ $logs->court_proceedings_write }} .
+                                        </p>
+                                    </details> --}}
+
+                                                        </td>
+                                                        <td>
+                                                            @php
+                                                                $order = explode(', ', $logs->updated_court_order_id);
+                                                            @endphp
+                                                            @if ($logs->updated_court_order_id)
+                                                                <details>
+                                                                    <summary>
+                                                                        <p id="main_more">{{ $order[0] }}</p>
+                                                                        <span id="open">read more</span>
+                                                                        <span id="close">read less</span>
+                                                                    </summary>
+                                                                    @foreach ($order as $pro)
+                                                                        <li class="text-left">
+                                                                            {{ $pro }} </li>
+                                                                    @endforeach
+                                                                </details>
+                                                            @endif
+                                                            {{ $logs->updated_court_order_write }}
+                                                        </td>
+                                                        <td>
+                                                            {{ !empty($logs->updated_next_date) ? date('d-m-Y', strtotime($logs->updated_next_date)) : '' }}
+
+                                                        </td>
+                                                        <td width="8%">
+                                                            {{ $logs->index_next_date_reason_name }}
+                                                            {{ $logs->updated_index_fixed_for_write }}</td>
+
+                                                        <td>
+                                                            @php
+                                                                $notes = explode(', ', $logs->updated_day_notes_id);
+                                                            @endphp
+                                                            @if ($logs->updated_day_notes_id)
+                                                                <details>
+                                                                    <summary>
+                                                                        <p id="main_more">{{ $notes[0] }}</p>
+                                                                        <span id="open">read more</span>
+                                                                        <span id="close">read less</span>
+                                                                    </summary>
+                                                                    @foreach ($notes as $pro)
+                                                                        <li class="text-left">
+                                                                            {{ $pro }} </li>
+                                                                    @endforeach
+                                                                </details>
+                                                            @endif
+                                                            {{ $logs->updated_day_notes_write }}
+                                                        </td>
+                                                        <td> {{ $logs->updated_engaged_advocate_id }}
+                                                            {{ $logs->updated_engaged_advocate_write }} </td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <svg class="dropdown-toggle" href="#"
+                                                                    role="button" id="dropdownMenuLink6"
+                                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false"
+                                                                    xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-more-horizontal">
+                                                                    <circle cx="12" cy="12" r="1">
+                                                                    </circle>
+                                                                    <circle cx="19" cy="12" r="1">
+                                                                    </circle>
+                                                                    <circle cx="5" cy="12" r="1">
+                                                                    </circle>
+                                                                </svg>
+
+                                                                <div class="dropdown-menu"
+                                                                    aria-labelledby="dropdownMenuLink6"
+                                                                    style="will-change: transform;">
+                                                                    <a class="dropdown-item btn btn-outline-success"
+                                                                        href="{{ route('view-criminal-cases-proceedings', $logs->id) }}"><i
+                                                                            class="fas fa-eye"></i> View</a>
+
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('edit-criminal-cases-status', $logs->id) }}"><i
+                                                                            class="fas fa-edit"></i> Edit</a>
+                                                                    <a class="dropdown-item" href="javascript:void(0);">
+                                                                        <form class="delete-user-dropdown" method="POST"
+                                                                            action="{{ route('delete-criminal-cases-status', $logs->id) }}"
+                                                                            class="delete-user btn btn-outline-danger">
+                                                                            @csrf
+                                                                            <button type="submit" class="btn"
+                                                                                style="padding: 0px 1px 0px 0px;"
+                                                                                data-toggle="tooltip" data-placement="top"
+                                                                                title="Delete"><i
+                                                                                    class="fas fa-trash"></i>
+                                                                                Delete
+                                                                            </button>
+                                                                        </form>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td> {{ date('d-m-Y H:i:s', strtotime($logs->created_at)) }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <div class="card" id="section2">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Case Activities Log</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
+                                            data-target="#modal-lg-2" data-toggle="tooltip" data-placement="top"
+                                            title="Update Activities"><i class="fas fa-chart-line"></i></button>
+
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped data_table">
+                                        <thead>
+                                            <tr>
+                                                <th width="10%"> Date</th>
+                                                <th width="9%">Activity/Action</th>
+                                                <th width="9%">Progress</th>
+                                                <th width="9%">Mode</th>
+                                                <th width="12%">Time Spent</th>
+                                                <th width="9%">Engaged Lawyer</th>
+                                                <th width="9%">Forwarded To</th>
+                                                <th width="9%">Requirements</th>
+                                                <th width="9%">Note</th>
+                                                <th width="6%">Action</th>
+                                                <th width="9%">Update</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($case_activity_log as $activity_log)
+                                                <tr>
+                                                    <td style="width: 90px;">
+                                                        {{ date('d-m-Y', strtotime($activity_log->activity_date)) }}
+                                                    </td>
+                                                    <td>
+                                                        @if (!empty($activity_log->activity_action))
+                                                            <details>
+                                                                <summary>
+                                                                    <p id="main_more">
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_action, 15) }}
+                                                                    </p>
+                                                                    <span id="open">read more</span>
+                                                                    <span id="close">read less</span>
+                                                                </summary>
+                                                                {{ $activity_log->activity_action }}
+                                                            </details>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if (!empty($activity_log->activity_progress))
+                                                            <details>
+                                                                <summary>
+                                                                    <p id="main_more">
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_progress, 15, $end = '...') }}
+                                                                    </p>
+                                                                    <span id="open">read more</span>
+                                                                    <span id="close">read less</span>
+                                                                </summary>
+                                                                {{ $activity_log->activity_progress }}
+                                                            </details>
+                                                        @endif
+                                                    </td>
+                                                    <td> {{ $activity_log->mode_name }} </td>
+                                                    <td> {{ $activity_log->total_time }} @if (!empty($activity_log->time_spend_manual))
+                                                            / {{ $activity_log->time_spend_manual }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @php
+                                                            $engaged = explode(', ', $activity_log->activity_engaged_id);
+                                                            // dd($engaged);
+                                                        @endphp
+
+                                                        @if (count($engaged) > 1)
+                                                            @foreach ($engaged as $item)
+                                                                <li class="text-left">{{ $item }}</li>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($engaged as $item)
+                                                                {{ $item }}
+                                                            @endforeach
+                                                        @endif
+                                                        @if (!empty($engaged) && count($engaged) > 1)
+                                                            <li class="text-left">
+                                                                {{ $activity_log->activity_engaged_write }}</li>
+                                                        @else
+                                                            {{ $activity_log->activity_engaged_write }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @php
+                                                            $forwarded = explode(', ', $activity_log->activity_forwarded_to_id);
+                                                            
+                                                            $name = App\Models\SetupExternalCouncil::whereIn('id', $forwarded)->get();
+                                                            
+                                                        @endphp
+
+                                                        @if (count($forwarded) > 1)
+                                                            @foreach ($name as $item)
+                                                                <li class="text-left">
+                                                                    {{ $item->first_name . ' ' . $item->last_name }}
+                                                                </li>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($name as $item)
+                                                                {{ $item->first_name . ' ' . $item->last_name }}
+                                                            @endforeach
+                                                        @endif
+                                                        @if (!empty($forwarded) && count($forwarded) > 1)
+                                                            <li class="text-left">
+                                                                {{ $activity_log->activity_forwarded_to_write }}
+                                                            </li>
+                                                        @else
+                                                            {{ $activity_log->activity_forwarded_to_write }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if (!empty($activity_log->activity_requirements))
+                                                            <details>
+                                                                <summary>
+                                                                    <p id="main_more">
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_requirements, 15) }}
+                                                                    </p>
+                                                                    <span id="open">read more</span>
+                                                                    <span id="close">read less</span>
+                                                                </summary>
+                                                                {{ $activity_log->activity_requirements }}
+                                                            </details>
+                                                        @endif
+                                                    </td>
+
+                                                    <td>
+                                                        @if (!empty($activity_log->activity_remarks))
+                                                            <details>
+                                                                <summary>
+                                                                    <p id="main_more">
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_remarks, 15) }}
+                                                                    </p>
+                                                                    <span id="open">read more</span>
+                                                                    <span id="close">read less</span>
+                                                                </summary>
+                                                                {{ $activity_log->activity_remarks }}
+                                                            </details>
+                                                        @endif
+
+                                                    </td>
+                                                    <td>
+
+                                                        <div class="dropdown">
+                                                            <svg class="dropdown-toggle" href="#" role="button"
+                                                                id="dropdownMenuLink6" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-more-horizontal">
+                                                                <circle cx="12" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="19" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="5" cy="12" r="1">
+                                                                </circle>
+                                                            </svg>
+
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success"
+                                                                    href="{{ route('view-criminal-cases-activity', $activity_log->id) }}"><i
+                                                                        class="fas fa-eye"></i> View</a>
+
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('edit-criminal-cases-activity', $activity_log->id) }}"><i
+                                                                        class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <form class="delete-user-dropdown" method="POST"
+                                                                        action="{{ route('delete-criminal-cases-activity', $activity_log->id) }}"
+                                                                        class="delete-user btn btn-outline-danger">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn"
+                                                                            style="padding: 0px 1px 0px 0px;"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i>
+                                                                            Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </td>
+                                                    <td> {{ date('d-m-Y H:i:s', strtotime($activity_log->created_at)) }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <div class="card" id="section3">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Case Documents Log
+
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                            data-target="#exampleModal" data-toggle="tooltip" data-placement="top"
+                                            title="Add Documents"><i class="fas fa-file-archive nav-icon"></i></button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped data_table">
+                                        <thead>
+                                            <tr>
+                                                <th class="hide" width="2%">SL</th>
+                                                <th width="30%">Document Uploaded</th>
+                                                <th width="13%">Document Date</th>
+                                                <th width="6%">Type</th>
+                                                <th width="21%">Uploaded By</th>
+                                                <th width="15%">Action</th>
+                                                <th width="15%">Date & Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($criminal_cases_files as $files)
+                                                <tr>
+                                                    <td class="hide"> {{ $files->id }} </td>
+                                                    <td>{{ $files->uploaded_document }} </td>
+                                                    <td>{{ $files->uploaded_date }} </td>
+                                                    <td>{{ $files->documents_type_name }} </td>
+                                                    <td>{{ $files->created_by }} </td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <svg class="dropdown-toggle" href="#" role="button"
+                                                                id="dropdownMenuLink6" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-more-horizontal">
+                                                                <circle cx="12" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="19" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="5" cy="12" r="1">
+                                                                </circle>
+                                                            </svg>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success"
+                                                                    target="_blank"
+                                                                    href="{{ route('view-criminal-cases-files', $files->id) }}"><i
+                                                                        class="fas fa-eye"></i>
+                                                                    View</a>
+
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('edit-criminal-cases-files', $files->id) }}"><i
+                                                                        class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <form class="delete-user-dropdown" method="post"
+                                                                        action="{{ route('delete-criminal-cases-files', $files->id) }}"
+                                                                        class="delete-user btn btn-outline-danger">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn"
+                                                                            style="padding: 0px 1px 0px 0px;"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i>
+                                                                            Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ $files->created_at }} </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="card collapsed-card">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Working Documents Log
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                            data-target="#working_documents_modal" data-toggle="tooltip"
+                                            data-placement="top" title="Add Case Documents"><i
+                                                class="fas fa-file-word nav-icon"></i></button>
+
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-plus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped data_table">
+                                        <thead>
+                                            <tr>
+                                                <th class="hide" width="2%">SL</th>
+                                                <th width="24%">Document Uploaded</th>
+                                                <th width="13%">Document Date</th>
+                                                <th width="11%">Version</th>
+                                                <th width="6%">Type</th>
+                                                <th width="21%">Uploaded By</th>
+                                                <th width="10%">Action</th>
+                                                <th width="15%">Date & Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($criminal_cases_working_docs as $files)
+                                                <tr>
+                                                    <td class="hide"> {{ $files->id }} </td>
+                                                    <td>{{ $files->uploaded_document }} </td>
+                                                    <td>{{ $files->uploaded_date }} </td>
+                                                    <td>{{ $files->doc_version }} </td>
+                                                    <td>{{ $files->documents_type_name }} </td>
+                                                    <td>{{ $files->created_by }} </td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <svg class="dropdown-toggle" href="#" role="button"
+                                                                id="dropdownMenuLink6" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="feather feather-more-horizontal">
+                                                                <circle cx="12" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="19" cy="12" r="1">
+                                                                </circle>
+                                                                <circle cx="5" cy="12" r="1">
+                                                                </circle>
+                                                            </svg>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success"
+                                                                    target="_blank"
+                                                                    href="{{ route('view-criminal-cases-working-docs', $files->id) }}"><i
+                                                                        class="fas fa-eye"></i> View</a>
+
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('edit-criminal-cases-working-docs', $files->id) }}"><i
+                                                                        class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                                    <form class="delete-user-dropdown" method="post"
+                                                                        action="{{ route('delete-criminal-cases-working-docs', $files->id) }}"
+                                                                        class="delete-user btn btn-outline-danger">
+                                                                        @csrf
+                                                                        <button type="submit" class="btn"
+                                                                            style="padding: 0px 1px 0px 0px;"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Delete"><i class="fas fa-trash"></i>
+                                                                            Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ $files->created_at }} </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                            {{-- <div class="card" id="section3">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Working Documents Log
+
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                                    data-target="#working_documents_modal" data-toggle="tooltip" data-placement="top"
+                                                    title="Add Case Documents"><i class="fas fa-file-word nav-icon"></i></button>
+
+
+                                                    <button type="button" class="btn btn-tool collapsed" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                        <div class="card-body">
+                                            <table class="table view_table table-bordered table-striped data_table">
+                                                <thead>
+                                                <tr>
+                                                    <th class="hide" width="2%">SL</th>
+                                                    <th width="24%">Document Uploaded</th>
+                                                    <th width="13%">Document Date</th>
+                                                    <th width="11%">Version</th>
+                                                    <th width="6%">Type</th>
+                                                    <th width="21%">Uploaded By</th>
+                                                    <th width="10%">Action</th>
+                                                    <th width="15%">Date & Time</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach ($criminal_cases_working_docs as $files)
+                                                    <tr>
+                                                        <td class="hide"> {{ $files->id }} </td>
+                                                        <td>{{ $files->uploaded_document }} </td>
+                                                        <td>{{ $files->uploaded_date }} </td>
+                                                        <td>{{ $files->doc_version }} </td>
+                                                        <td>{{ $files->documents_type_name }} </td>
+                                                        <td>{{ $files->created_by }} </td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6"
+                                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                                        stroke-linejoin="round" class="feather feather-more-horizontal">
+                                                                    <circle cx="12" cy="12" r="1"></circle>
+                                                                    <circle cx="19" cy="12" r="1"></circle>
+                                                                    <circle cx="5" cy="12" r="1"></circle>
+                                                                </svg>
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                        style="will-change: transform;">
+                                                                    <a class="dropdown-item btn btn-outline-success" target="_blank"
+                                                                        href="{{ route('view-criminal-cases-working-docs', $files->id) }}"><i
+                                                                            class="fas fa-eye"></i> View</a>
+
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('edit-criminal-cases-working-docs', $files->id) }}"><i
+                                                                            class="fas fa-edit"></i> Edit</a>
+                                                                    <a class="dropdown-item" href="javascript:void(0);">
+                                                                        <form class="delete-user-dropdown" method="post"
+                                                                                action="{{ route('delete-criminal-cases-working-docs', $files->id) }}"
+                                                                                class="delete-user btn btn-outline-danger">
+                                                                            @csrf
+                                                                            <button type="submit" class="btn" style="padding: 0px 1px 0px 0px;"
+                                                                                    data-toggle="tooltip" data-placement="top"
+                                                                                    title="Delete"><i class="fas fa-trash"></i> Delete
+                                                                            </button>
+                                                                        </form>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>{{ $files->created_at }} </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div> --}}
+
+
+                            {{-- <div class="card">
+                                        <div id="accordion">
+                                            <div class="card-header" id="headingTwo">
+                                                <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                                    id="heading">Working Documents Log
+                                                </h3>
+                                                <div class="card-tools">
+                                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                                            data-target="#working_documents_modal" data-toggle="tooltip" data-placement="top"
+                                                            title="Add Case Documents"><i class="fas fa-file-word nav-icon"></i></button>
+
+                                                    <button type="button" class="btn collapsed" data-toggle="collapse"
+                                                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>
+
+                                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                                    data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <table class="table view_table table-bordered table-striped data_table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="hide" width="2%">SL</th>
+                                                            <th width="24%">Document Uploaded</th>
+                                                            <th width="13%">Document Date</th>
+                                                            <th width="11%">Version</th>
+                                                            <th width="6%">Type</th>
+                                                            <th width="21%">Uploaded By</th>
+                                                            <th width="10%">Action</th>
+                                                            <th width="15%">Date & Time</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @foreach ($criminal_cases_working_docs as $files)
+                                                            <tr>
+                                                                <td class="hide"> {{ $files->id }} </td>
+                                                                <td>{{ $files->uploaded_document }} </td>
+                                                                <td>{{ $files->uploaded_date }} </td>
+                                                                <td>{{ $files->doc_version }} </td>
+                                                                <td>{{ $files->documents_type_name }} </td>
+                                                                <td>{{ $files->created_by }} </td>
+                                                                <td>
+                                                                    <div class="dropdown">
+                                                                        <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6"
+                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                                                stroke-linejoin="round" class="feather feather-more-horizontal">
+                                                                            <circle cx="12" cy="12" r="1"></circle>
+                                                                            <circle cx="19" cy="12" r="1"></circle>
+                                                                            <circle cx="5" cy="12" r="1"></circle>
+                                                                        </svg>
+                                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                                style="will-change: transform;">
+                                                                            <a class="dropdown-item btn btn-outline-success" target="_blank"
+                                                                                href="{{ route('view-criminal-cases-working-docs', $files->id) }}"><i
+                                                                                    class="fas fa-eye"></i> View</a>
+
+                                                                            <a class="dropdown-item"
+                                                                                href="{{ route('edit-criminal-cases-working-docs', $files->id) }}"><i
+                                                                                    class="fas fa-edit"></i> Edit</a>
+                                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                                                <form class="delete-user-dropdown" method="post"
+                                                                                        action="{{ route('delete-criminal-cases-working-docs', $files->id) }}"
+                                                                                        class="delete-user btn btn-outline-danger">
+                                                                                    @csrf
+                                                                                    <button type="submit" class="btn" style="padding: 0px 1px 0px 0px;"
+                                                                                            data-toggle="tooltip" data-placement="top"
+                                                                                            title="Delete"><i class="fas fa-trash"></i> Delete
+                                                                                    </button>
+                                                                                </form>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>{{ $files->created_at }} </td>
+                                                            </tr>
+                                                        @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+
+
+
+
+
+
+                            {{-- <div class="card" id="section4">
+                                        <div class="card-header">
+                                            <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                                id="heading">Billings Log <span
+                                                    class="font-italic custom_font text-capitalize">(Total: <span
+                                                        style="color: darkgreen;font-size:14px;"> {{ $bill_amount }} ৳</span>, Paid:
+                                                    {{ $payment_amount }} ৳, Due: <span style="color: red;font-size:14px;">
+                                                        {{ $due_amount }} ৳ </span>) </span></h3>
+                                            <div class="card-tools">
+                                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                                        data-target="#modal-bill" data-toggle="tooltip" data-placement="top"
+                                                        title="Bill Entry"><i class="fas fa-money-bill"></i></button>
+                                                <a href="{{ route('billings-log-print-preview', $data->id) }}" title="Print Bill Log" target="_blank"
+                                                    class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
+
+                                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <table class="table view_table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th width="150px;">Bill for the Date</th>
+                                                    <th>Bill Particulars</th>
+                                                    <th width="80px;">Bill Type</th>
+                                                    <th>Bill Schedule</th>
+                                                    <th>Bill Amount</th>
+                                                    <th>Bill Submitted</th>
+                                                    <th>Payment Amount</th>
+                                                    <th>Payment Received</th>
+                                                    <th>Payment Mode</th>
+                                                    <th>Balance Amount</th>
+                                                    <th>Paid/Due</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach ($bill_history as $bill_logs)
+                                                    <tr>
+                                                        <td> {{ $bill_logs->bill_for_the_date }} </td>
+                                                        <td>
+
+                                                            @php
+                                                                $engaged = explode(', ', $bill_logs->bill_particulars_id);
+                                                            @endphp
+
+                                                            @if (count($engaged) > 1)
+                                                                @foreach ($engaged as $item)
+                                                                    <li class="text-left">{{ $item }}</li>
+                                                                @endforeach
+                                                                <li class="text-left">{{ $bill_logs->bill_particulars }}
+                                                                </li>
+                                                            @else
+                                                                @foreach ($engaged as $item)
+                                                                    {{ $item }}
+                                                                @endforeach
+                                                                {{ $bill_logs->bill_particulars }}
+                                                            @endif
+
+                                                        </td>
+                                                        <td> {{ $bill_logs->bill_type_name }} </td>
+                                                        <td> {{ $bill_logs->bill_schedule_name }} </td>
+                                                        <td> {{ $bill_logs->bill_amount }} </td>
+                                                        <td> {{ $bill_logs->bill_submitted }} </td>
+                                                        <td> {{ $bill_logs->payment_amount }} </td>
+                                                        <td> {{ $bill_logs->payment_received }} </td>
+                                                        <td> {{ $bill_logs->payment_mode_name }} </td>
+                                                        <td> {{ $bill_logs->due_amount }} </td>
+                                                        <td>
+
+                                                            @if ($bill_logs->paid_due == 'Paid')
+                                                                <button type="button"
+                                                                        class="btn-custom btn-success-custom text-uppercase">
+                                                                    {{ $bill_logs->paid_due }}
+                                                                </button>
+                                                            @else
+                                                                <button type="button"
+                                                                        class="btn-custom btn-danger-custom text-uppercase">{{ $bill_logs->paid_due }}</button>
+                                                            @endif
+
+                                                        </td>
+                                                        <td>
+
+                                                            <div class="dropdown">
+                                                                <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6"
+                                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                        class="feather feather-more-horizontal">
+                                                                    <circle cx="12" cy="12" r="1"></circle>
+                                                                    <circle cx="19" cy="12" r="1"></circle>
+                                                                    <circle cx="5" cy="12" r="1"></circle>
+                                                                </svg>
+
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                        style="will-change: transform;">
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('edit-criminal-cases-billing', $bill_logs->id) }}"><i
+                                                                            class="fas fa-edit"></i> Edit</a>
+                                                                    <a class="dropdown-item" href="javascript:void(0);">
+                                                                        <form class="delete-user-dropdown" method="POST"
+                                                                                action="{{ route('delete-criminal-cases-billing', $bill_logs->id) }}"
+                                                                                class="delete-user btn btn-outline-danger">
+                                                                            @csrf
+                                                                            <button type="submit" class="btn" style="padding: 0px 1px 0px 0px;"
+                                                                                    data-toggle="tooltip" data-placement="top"
+                                                                                    title="Delete"><i class="fas fa-trash"></i> Delete
+                                                                            </button>
+                                                                        </form>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div> --}}
+
+                            <div class="card" id="section4">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Billings Log
+
+                                        @if (count($billing_log_new) > 0 && Is_numeric($billing_log_new))
+                                            <span class="font-italic custom_font text-capitalize">(Total: <span
+                                                    style="color: darkgreen;font-size:14px;">
+                                                    {{ $bill_amt = $billing_log_new->sum('bill_amount') }}
+                                                    ৳</span>, Paid:
+                                                {{ $ledger->sum('income_paid_amount') }} ৳, Due: <span
+                                                    style="color: red;font-size:14px;">
+                                                    {{ $bill_amt - $ledger->sum('income_paid_amount') }} ৳
+                                                </span>)
+                                            </span>
+                                        @endif
+
+                                    </h3>
+                                    <div class="card-tools">
+                                        {{-- <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                            data-target="#modal-bill" data-toggle="tooltip" data-placement="top"
+                            title="Bill Entry"><i class="fas fa-money-bill"></i></button> --}}
+                                        {{-- <a href="{{ route('billings-log-print-preview', $data->id) }}" title="Print Bill Log" target="_blank"
+                              class="btn btn-info btn-sm"><i class="fas fa-print"></i></a> --}}
+                                        <a href="{{ route('add-billing-from-district-court', $data->id) }}"><button
+                                                class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top"
+                                                title="Add Billing"><i class="fas fa-money-bill"></i></button></a>
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="table view_table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center text-nowrap">ID</th>
+                                                <th class="text-center text-nowrap">Billing</th>
+                                                <th class="text-center text-nowrap">Bill Type</th>
+                                                <th class="text-center text-nowrap">Payment Type</th>
+                                                <th class="text-center text-nowrap">Case No</th>
+                                                <th class="text-center text-nowrap">Bill Amount</th>
+                                                <th class="text-center text-nowrap">Date of Billing</th>
+                                                <th class="text-center text-nowrap">Paid Amount</th>
+                                                <th class="text-center text-nowrap">Status</th>
+                                                <th class="text-center text-nowrap">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($billing_log_new as $key => $datum)
+                                                <tr>
+                                                    <td class="text-center">
+                                                        {{ $key + 1 }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->billing_no }}
+                                                    </td>
+                                                    @php
+                                                        $ledger = DB::table('ledger_heads')
+                                                            ->where('id', $datum->bill_type_id)
+                                                            ->first();
+                                                    @endphp
+                                                    <td class="text-center">
+                                                        {{ $ledger->ledger_head_name }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->payment_type }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @php
+                                                            
+                                                            if ($datum->class_of_cases == 'District Court') {
+                                                                $case = App\Models\CriminalCase::where('id', $datum->case_no)->first();
+                                                            } elseif ($datum->class_of_cases == 'Special Court') {
+                                                                $case = App\Models\LabourCase::where('id', $datum->case_no)->first();
+                                                            } elseif ($datum->class_of_cases == 'High Court Division') {
+                                                                $case = App\Models\HighCourtCase::where('id', $datum->case_no)->first();
+                                                            } elseif ($datum->class_of_cases == 'Appellate Division') {
+                                                                $case = App\Models\AppellateCourtCase::where('id', $datum->case_no)->first();
+                                                            }
+                                                            
+                                                        @endphp
+
+                                                        {{ !empty($case->case_no) ? $case->case_no : '' }}
+
+
+                                                        {{ $case->case_title_name . ' ' . $case->case_infos_case_no . '/' . $case->case_infos_case_year }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->bill_amount }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $datum->date_of_billing }}
+                                                    </td>
+
+                                                    @php
+                                                        $sum_paid_amount = 0;
+                                                        $ledger = DB::table('ledger_entries')
+                                                            ->where('bill_id', $datum->id)
+                                                            ->get();
+                                                        foreach ($ledger as $row) {
+                                                            $sum_paid_amount = $sum_paid_amount + $row->paid_amount;
+                                                        }
+                                                    @endphp
+                                                    <td class="text-center">
+                                                        {{ $sum_paid_amount }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($datum->delete_status == 0)
+                                                            <button type="button"
+                                                                class="btn-custom btn-success-custom text-uppercase">
+                                                                Active
+                                                            </button>
+                                                        @else
+                                                            <button type="button"
+                                                                class="btn-custom btn-warning-custom text-uppercase">Inactive</button>
+                                                        @endif
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <a href="{{ route('add-ledger-entry', $datum->id) }}"><button
+                                                                class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                                data-placement="top" title="Add Ledger"><i
+                                                                    class="fas fa-money-bill"></i></button></a>
+
+                                                        <a href="{{ route('edit-billings', $datum->id) }}"><button
+                                                                class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                                data-placement="top" title="Edit"><i
+                                                                    class="fas fa-edit"></i></button></a>
+                                                        <form method="POST"
+                                                            action="{{ route('delete-billing', $datum->id) }}"
+                                                            class="delete-user btn btn-danger btn-xs">
+                                                            @csrf
+                                                            {{-- @method('DELETE') --}}
+
+                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Delete"><i class="fas fa-trash"></i> </button>
+                                                        </form>
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            @can('criminal-cases-switch-cases')
+                                <div class="card" id="section4">
+                                    <div class="card-header">
+                                        <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                            id="heading">Switch Log</h3>
+                                        <div class="card-tools">
+                                            <a href="{{ route('switch-log-print-preview', $data->id) }}"
+                                                title="Print Switch Log" target="_blank" class="btn btn-info btn-sm"><i
+                                                    class="fas fa-print"></i></a>
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table view_table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Switched By</th>
+                                                    <th>Switched To</th>
+                                                    <th>Switched Time</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (!empty($switch_records))
+                                                    @foreach ($switch_records as $switch)
+                                                        <tr>
+                                                            <td> {{ user_details($switch->switched_by_id)->name }}
+                                                                ({{ user_details($switch->switched_by_id)->email }})
+                                                            </td>
+                                                            <td> {{ user_details($switch->switched_to_id)->name }}
+                                                                ({{ user_details($switch->switched_to_id)->email }})
+                                                            </td>
+                                                            <td> {{ $switch->created_at }} </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            @endcan
+
+
+                        </div>
                     </div>
 
                 </div>
@@ -5436,7 +8160,8 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                     @csrf
                     <input type="hidden" value="documents_information" name="documents_information">
                     <div class="card-body">
-                        <h6 class="text-uppercase text-bold themeHeading"><u> Documents Received </u></h6>
+                        <h6 class="text-uppercase text-bold"><u> Documents
+                                Received </u></h6>
 
                         <div class="form-group row">
                             <div class="col-sm-12">
@@ -5559,7 +8284,8 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                             </div>
                         </div>
                         <h6 class="text-uppercase text-bold">
-                            <u> Documents Required </u>
+                            <u> Documents
+                                Required </u>
                         </h6>
                         <div class="form-group row">
                             <div class="col-sm-12">

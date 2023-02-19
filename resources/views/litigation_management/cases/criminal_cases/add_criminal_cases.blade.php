@@ -71,6 +71,67 @@
   border-color: #0CA2A3 !important;
 }
 
+
+.col-form-label{
+    color: #0CA2A3 !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+}
+
+.select2-container--default .select2-selection--single {
+  background-color: #fff !important;
+  border: 1px solid #0CA2A3 !important;
+}
+.select2-container .select2-selection--single {
+  height: 40px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 33px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #0CA2A3 !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 8px !important;
+  color: #0CA2A3 !important;
+
+}
+
+.form-control {
+  padding: 1.6em .75rem !important;
+  color: #0CA2A3 !important;
+  border: 1px solid #0CA2A3 !important;
+  }
+
+  .select2-container--default .select2-selection--multiple {
+  border: 1px solid #0CA2A3 !important;
+}
+
+.select2-container .select2-selection--multiple {
+  min-height: 40px !important;
+  color: #0CA2A3 !important;
+}
+.form-control::placeholder {
+  color: #0CA2A3 !important;
+  opacity: 1 !important;
+}
+
+.row{
+    color: #0CA2A3 !important;
+}
+
+.date_span_steps {
+  border: 1px solid #0CA2A3 !important;
+  height: 40px !important;
+  color: #0CA2A3 !important;
+}
+
+.date_second_span {
+  padding-top: 12px !important;
+}
 </style>
 
 
@@ -122,16 +183,17 @@
                                                 </ul>
 
                                             </div>
-                                            <hr>  
+                                            <hr style="margin-bottom:50px; color: #000;">  
 
-                                      <form action="{{ route('save-criminal-cases') }}" method="post" enctype="multipart/form-data">            
+                                      <form id="addcaseform" action="{{ route('save-criminal-cases') }}" method="post" enctype="multipart/form-data" name="addcaseform">            
                                             <div class="tab-content" id="pills-tabContent">
                                                 <div class="tab-pane fade show active" id="pills-company" role="tabpanel" aria-labelledby="pills-company-tab">
                                                   <div class="container-fluid">
                                                     <div class="form-group row">
+                                <div class="col-md-6">
                                     <label for="case_type"
-                                            class="col-sm-4 col-form-label">Case Class</label>
-                                    <div class="col-sm-8">
+                                            class="col-sm-12 col-form-label">Case Class</label>
+                                    <div class="col-sm-12">
                                         <select name="case_type"
                                                 class="form-control select2"
                                                 id="case_type" required>
@@ -143,11 +205,12 @@
                                         @error('case_type')<span
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
-                                </div>
-                                <div class="form-group row">
+
+                                </div>                        
+                                <div class="col-md-6">
                                     <label for="case_infos_division_id"
-                                            class="col-sm-4 col-form-label">Division</label>
-                                    <div class="col-sm-8">
+                                            class="col-sm-12 col-form-label">Division</label>
+                                    <div class="col-sm-12">
                                         <select name="case_infos_division_id"
                                                 class="form-control select2"
                                                 id="case_infos_division_id"
@@ -161,11 +224,16 @@
                                         @error('case_infos_division_id')<span
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
+
+                                </div>    
+                                
+                                    
                                 </div>
                                 <div class="form-group row">
+                                    <div class="col-md-6">
                                     <label for="case_infos_district_id"
-                                            class="col-sm-4 col-form-label">District</label>
-                                    <div class="col-sm-8">
+                                            class="col-sm-12 col-form-label">District</label>
+                                    <div class="col-sm-12">
                                         <select name="case_infos_district_id"
                                                 class="form-control select2"
                                                 id="case_infos_district_id"
@@ -177,10 +245,11 @@
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                
+                                    <div class="col-md-6">
                                     <label for="case_infos_thana_id"
-                                            class="col-sm-4 col-form-label">Thana</label>
-                                    <div class="col-sm-8">
+                                            class="col-sm-12 col-form-label">Thana</label>
+                                    <div class="col-sm-12">
                                         <select name="case_infos_thana_id"
                                                 id="case_infos_thana_id"
                                                 class="form-control select2">
@@ -191,11 +260,13 @@
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
                                     <label for="case_category_id"
-                                            class="col-sm-4 col-form-label">Case
+                                            class="col-sm-12 col-form-label">Case
                                         Category </label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-12">
                                         <select name="case_category_id" id="case_category_id"
                                                 class="form-control select2"
                                                 >
@@ -211,11 +282,12 @@
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                 </div>
-                                {{-- <div class="form-group row">
+                                
+                                {{-- 
                                     <label for="case_subcategory_id"
-                                            class="col-sm-4 col-form-label">Case
+                                            class="col-sm-6 col-form-label">Case
                                         Subcategory </label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
 
                                         <select name="case_subcategory_id"
                                                 id="case_subcategory_id"
@@ -228,9 +300,9 @@
 
                                     </div>
                                 </div> --}}
-                                <div class="form-group row">
-                                    <label for="case_type_id" class="col-sm-4 col-form-label">Case Type </label>
-                                    <div class="col-sm-8">
+                                <div class="col-sm-6">
+                                    <label for="case_type_id" class="col-sm-12 col-form-label">Case Type </label>
+                                    <div class="col-sm-12">
                                         <select name="case_type_id" id="case_type_id"
                                                 class="form-control select2" >
                                             <option value="">Select</option>
@@ -239,9 +311,10 @@
                                             class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                 </div>
+                            </div>
                                 <div class="form-group row">
-                                    <label for="case_prayer_id" class="col-sm-4 col-form-label">Case Prayer </label>
-                                    <div class="col-sm-8">
+                                    <label for="case_prayer_id" class="col-sm-12 col-form-label">Case Prayer </label>
+                                    <div class="col-sm-12">
                                         <select name="case_prayer_id" id="case_prayer_id"
                                                 class="form-control select2">
                                             <option value="">Select</option>
@@ -255,8 +328,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="case_nature_id" class="col-sm-4 col-form-label">Case Nature</label>
-                                    <div class="col-sm-8">
+                                    <label for="case_nature_id" class="col-sm-12 col-form-label">Case Nature</label>
+                                    <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <select name="case_nature_id"
@@ -283,8 +356,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="matter_id" class="col-sm-4 col-form-label">Case Matter</label>
-                                    <div class="col-sm-8">
+                                    <label for="matter_id" class="col-sm-12 col-form-label">Case Matter</label>
+                                    <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <select name="matter_id"
@@ -314,8 +387,8 @@
 
                                 <div class="form-group row">
                                     <label for="case_infos_case_title_id"
-                                            class="col-sm-4 col-form-label">Case Title</label>
-                                    <div class="col-sm-8">
+                                            class="col-sm-12 col-form-label">Case Title</label>
+                                    <div class="col-sm-12">
                                         <select name="case_infos_case_title_id"
                                                 id="case_infos_case_title_id"
                                                 class="form-control select2">
@@ -332,8 +405,8 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="case_infos_case_titel_sort_id"
-                                            class="col-sm-4 col-form-label">Case Title (Short)</label>
-                                    <div class="col-sm-8">
+                                            class="col-sm-12 col-form-label">Case Title (Short)</label>
+                                    <div class="col-sm-12">
                                         <select name="case_infos_case_titel_sort_id"
                                                 id="case_infos_case_titel_sort_id"
                                                 class="form-control select2">
@@ -350,8 +423,8 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="case_infos_case_no" class="col-sm-4 col-form-label">Case No</label>
-                                    <div class="col-sm-8">
+                                    <label for="case_infos_case_no" class="col-sm-12 col-form-label">Case No</label>
+                                    <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <input type="text" class="form-control"
@@ -377,9 +450,9 @@
 
                                 <div class="form-group row">
                                     <label for="case_infos_court_id"
-                                            class="col-sm-4 col-form-label"> Name
+                                            class="col-sm-12 col-form-label"> Name
                                         of the Court </label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-12">
                                         <select name="case_infos_court_id[]" id="case_infos_court_id"
                                                 class="form-control select2" data-placeholder="Select" multiple>
                                             <option value="">Select</option>
@@ -393,9 +466,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="case_infos_court_short_id" class="col-sm-4 col-form-label">Name of
+                                    <label for="case_infos_court_short_id" class="col-sm-12 col-form-label">Name of
                                         Court(Short)</label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-12">
 
                                         <div class="row">
                                             <div class="col-md-6">
@@ -2356,17 +2429,19 @@
                             </div>
                         </div>
                         <div class="row">
-                      <div class="col-md-12">
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary text-uppercase"><i
-                                    class="fas fa-save"></i> Save
-                            </button>
-                        </div>
+                      
                       </div>
                    </div>
                                                    
                                                   </div>
                                                 </div>
+                                                <div class="col-md-12">
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary text-uppercase submitForm"><i
+                                    class="fas fa-save"></i> Save
+                            </button>
+                        </div>
+                        
 </form>
                                             </div>
                                         </div>
@@ -2453,6 +2528,9 @@
 
 
                 });
+
+
+
             });
         </script>
     @endsection
