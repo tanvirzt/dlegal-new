@@ -2426,7 +2426,6 @@
                                     <div class="card-header">
                                     <h3 class="card-title custom_h3 text-uppercase themeHeading font_weight"
                                         id="heading">Billings Log
-
                                         @if (count($billing_log_new) > 0 && Is_numeric($billing_log_new))
                                             <span class="font-italic custom_font text-capitalize">(Total: <span
                                                     style="color: darkgreen;font-size:14px;">
