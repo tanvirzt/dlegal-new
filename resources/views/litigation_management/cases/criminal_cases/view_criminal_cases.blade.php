@@ -2424,7 +2424,7 @@
                                 <div class="tab-pane fade" id="pills-billlog" role="tabpanel" aria-labelledby="pills-billlog-tab">
                                   <div class="container-fluid">
                                     <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                    <h3 class="card-title custom_h3 text-uppercase themeHeading font_weight"
                                         id="heading">Billings Log
 
                                         @if (count($billing_log_new) > 0 && Is_numeric($billing_log_new))
@@ -2575,7 +2575,7 @@
                                 </div>
                                 @can('criminal-cases-switch-cases')
 <div class="card-header">
-                                        <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        <h3 class="card-title custom_h3 text-uppercase themeHeading font_weight"
                                             id="heading">Switch Log</h3>
                                         <div class="card-tools">
                                             <a href="{{ route('switch-log-print-preview', $data->id) }}"
