@@ -1,7 +1,22 @@
 
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
+<style type="text/css">
+    .btn-success, .btn-success:hover {
+      background-color: #0CA2A3;
+      border-color: #0CA2A3;
+    }
 
+    .btn-primary, .btn-primary:hover {
+      color: #fff;
+      background-color: #0CA2A3;
+      border-color: #0CA2A3;
+    }
+    
+    .saveBtn{
+        padding: .675rem 1.75rem;
+    }
+</style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -49,7 +64,7 @@
 
                                     <div>
                                         @can('counsel-add')
-                                        <a href="{{ route('add-counsel-employee') }}"><button class="btn btn-success" style="padding: 3px 10px;"><i class="fas fa-plus"></i> Add </button></a>
+                                        <a href="{{ route('add-counsel-employee') }}"><button class="btn btn-success" style="padding: 10px 30px;"><i class="fas fa-plus"></i> Add </button></a>
                                         @endcan
                                     </div>
                                 </div>
@@ -73,6 +88,7 @@
                                     <tr>
                                         <th class="text-center"> Sl </th>
                                         <th class="text-center"> Name </th>
+                                        <th class="text-center"> Image </th>
                                         <th class="text-center"> Role </th>
                                         <th class="text-center"> Chamber Joined </th>
                                         <th class="text-nowrap" colspan="2"> Bar Council Enrollment </th>
@@ -94,6 +110,9 @@
                                             </td>
                                             <td>
                                                 {{ $datum->professional_name }}
+                                            </td>
+                                            <td>
+                                                <img class="img-fluid" @if ($datum->employee_image) src="{{ asset('files/employee_image/'.$datum->employee_image) }}" @endif id="preview-image" style="padding:10px;width:120px;">
                                             </td>
                                             <td>
                                                 {{ $datum->counsel_role_id }}
@@ -152,7 +171,7 @@
                                            
                                                 <form method="POST" action="{{ route('delete-counsel',$datum->id) }}" class="delete-user btn btn-danger btn-xs">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
+                                                    <button type="submit" class="btn btn-danger btn-sm " data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i> </button>
                                                 </form>
                                             </td>
                                         </tr>

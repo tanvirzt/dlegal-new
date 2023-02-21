@@ -460,7 +460,7 @@ nav.mt-2 a.nav-link{
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="{{ route('employee-new') }}" class="nav-link">
                                             <!--<i class="nav-icon fas fa-circle"></i>-->
                                             <img src="{{ asset('login_assets/img/hr.jpg') }}" width="23px" />
                                             <p>

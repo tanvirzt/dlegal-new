@@ -1,6 +1,68 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
+<style type="text/css">
+    .list-title{
+        width: 100%;
+    }
+    .titleName{
+        display: block;
+        padding-top: 12px;
+        font-size: 18px;
+        color: #1e2e42;
+        margin-bottom: 6px;
+    }
 
+    .col-form-label {
+      color: #0CA2A3 !important;
+      font-weight: bold !important;
+      font-size: 14px !important;
+    }
+    .form-control {
+      padding: 1.6em .75rem !important;
+      color: #0CA2A3 !important;
+      border: 1px solid #0CA2A3 !important;
+    }
+    .select2-container .select2-selection--single {
+      height: 40px !important;
+    }
+    .select2-container--default .select2-selection--single {
+      background-color: #fff !important;
+      border: 1px solid #0CA2A3 !important;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+      line-height: 32px;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+      top: 8px;
+    }
+    .date_span, .date_span_counsel {
+      height: 40px !important;
+    }
+
+    .date_span_counsel {
+      width: 100% !important;
+      border: 1px solid #0CA2A3 !important;
+    }
+
+    .date_second_span {
+      padding-top: 10px !important;
+    }
+
+    .btn-success, .btn-success:hover {
+      background-color: #0CA2A3;
+      border-color: #0CA2A3;
+    }
+
+    .btn-primary, .btn-primary:hover {
+      color: #fff;
+      background-color: #0CA2A3;
+      border-color: #0CA2A3;
+    }
+    
+    .saveBtn{
+        padding: .675rem 1.75rem;
+    }
+</style>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -38,20 +100,21 @@
                     <div class="card">
 
                         <div class="card-header">
-                            <h3 class="card-title"> Add Counsel </h3>
+                            <h3 class="card-title list-title"><img src="{{ asset('login_assets/img/all-cases-icon.png') }}" width="40px" style="display:block !important; float:left; margin-right: 15px; margin-top: 5px;" /><span class="titleName"> Add Internal Counsel </span></h3>
                         </div>
 
                         <div class="card-body">
                             <div class="row original_case">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="form-group row">
-                                                    <label for="counsel_type" class="col-sm-4 col-form-label"> Counsel </label>
-                                                    <div class="col-sm-8">
+                                                    <label for="counsel_type" class="col-sm-12 col-form-label"> Counsel </label>
+                                                            
+                                                   <div class="col-sm-12">
                                                         <select name="counsel_type" class="form-control select2" required>
                                                             <option value="">Select</option>
-                                                            <option value="Internal">Internal</option>
+                                                             <option value="Internal">Internal</option>
                                                             <option value="External">External</option>
                                                             <option value="Staff">Staff</option>
                                                         </select>
@@ -60,8 +123,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="counsel_category" class="col-sm-4 col-form-label"> Category </label>
-                                                    <div class="col-sm-8">
+                                                    <label for="counsel_category" class="col-sm-12 col-form-label"> Category </label>
+                                                    <div class="col-sm-12">
                                                         <select name="counsel_category" class="form-control select2">
                                                             <option value="">Select</option>
                                                             <option value="Chamber">Chamber</option>
@@ -73,13 +136,35 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="text-uppercase text-bold"><u> Profile
+                                                        Image </u></h6>
+                                                        <div class="form-group row">
+                                                            <label for="profile_image" class="col-sm-12 col-form-label">Image</label>
+                                                                <div class="col-sm-12">
+                                                                    <input style="height: 60px;" type="file" class="form-control"
+                                                                           id="profile_image"
+                                                                           name="profile_image"
+                                                                          style="padding-bottom: 27px;" >
+                                                                    @error('profile_image')<span
+                                                                        class="text-danger">{{$message}}</span>@enderror
+                                                                </div>
+                                                        </div>
+                                                       
+                                            </div>
+                                        </div>    
+
+
                                         <div class="card">
                                             <div class="card-body">
                                                 <h6 class="text-uppercase text-bold"><u> Chamber Information </u>
                                                 </h6>
                                                 <div class="form-group row">
-                                                    <label for="chamber_name" class="col-sm-4 col-form-label">Name</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="chamber_name" class="col-sm-12 col-form-label">Name</label>
+                                                    <div class="col-sm-12">
                                                         {{-- <input type="text" class="form-control" id="chamber_name"
                                                                name="chamber_name"
                                                                value="{{old('chamber_name')}}"> --}}
@@ -97,8 +182,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="counsel_role_id" class="col-sm-4 col-form-label"> Role </label>
-                                                    <div class="col-sm-8">
+                                                    <label for="counsel_role_id" class="col-sm-12 col-form-label"> Role </label>
+                                                    <div class="col-sm-12">
                                                         <select name="counsel_role_id" class="form-control select2">
                                                             <option value="">Select</option>
                                                             <option value="Head of Chamber">Head of Chamber</option>
@@ -121,8 +206,8 @@
                                                 <h6 class="text-uppercase text-bold"><u> Personal Information </u>
                                                 </h6>
                                                 <div class="form-group row">
-                                                    <label for="counsel_name" class="col-sm-4 col-form-label">Name</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="counsel_name" class="col-sm-12 col-form-label">Name</label>
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="counsel_name"
                                                                name="counsel_name"
                                                                value="{{old('counsel_name')}}">
@@ -131,8 +216,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="father_name" class="col-sm-4 col-form-label">Father Name</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="father_name" class="col-sm-12 col-form-label">Father Name</label>
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="father_name"
                                                                name="father_name"
                                                                value="{{old('father_name')}}">
@@ -141,8 +226,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="mother_name" class="col-sm-4 col-form-label">Mother Name</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="mother_name" class="col-sm-12 col-form-label">Mother Name</label>
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="mother_name"
                                                                name="mother_name"
                                                                value="{{old('mother_name')}}">
@@ -151,8 +236,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="spouse_name" class="col-sm-4 col-form-label">Spouse Name</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="spouse_name" class="col-sm-12 col-form-label">Spouse Name</label>
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="spouse_name"
                                                                name="spouse_name"
                                                                value="{{old('spouse_name')}}">
@@ -161,8 +246,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="present_address" class="col-sm-4 col-form-label">Present Address</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="present_address" class="col-sm-12 col-form-label">Present Address</label>
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="present_address"
                                                                name="present_address"
                                                                value="{{old('present_address')}}">
@@ -171,8 +256,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="permanent_address" class="col-sm-4 col-form-label">Permanent Address</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="permanent_address" class="col-sm-12 col-form-label">Permanent Address</label>
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="permanent_address"
                                                                name="permanent_address"
                                                                value="{{old('permanent_address')}}">
@@ -181,8 +266,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="date_of_birth" class="col-sm-4 col-form-label">Date of Birth</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="date_of_birth" class="col-sm-12 col-form-label">Date of Birth</label>
+                                                    <div class="col-sm-12">
                                                         <span class="date_span">
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'date_of_birth');"><input type="text" id="date_of_birth"
@@ -196,8 +281,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="nid_number" class="col-sm-4 col-form-label">NID Number</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="nid_number" class="col-sm-12 col-form-label">NID Number</label>
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="nid_number"
                                                                name="nid_number"
                                                                value="{{old('nid_number')}}">
@@ -206,8 +291,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="mobile_number" class="col-sm-4 col-form-label">Mobile Number</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="mobile_number" class="col-sm-12 col-form-label">Mobile Number</label>
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="mobile_number"
                                                                name="mobile_number"
                                                                value="{{old('mobile_number')}}">
@@ -216,8 +301,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="email" class="col-sm-4 col-form-label">Email</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="email" class="col-sm-12 col-form-label">Email</label>
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="email"
                                                                name="email"
                                                                value="{{old('email')}}">
@@ -226,8 +311,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="emergency_contact" class="col-sm-4 col-form-label">Emergency Contact</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="emergency_contact" class="col-sm-12 col-form-label">Emergency Contact</label>
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="emergency_contact"
                                                                name="emergency_contact"
                                                                value="{{old('emergency_contact')}}">
@@ -236,8 +321,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="relation" class="col-sm-4 col-form-label">Relation</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="relation" class="col-sm-12 col-form-label">Relation</label>
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="relation"
                                                                name="relation"
                                                                value="{{old('relation')}}">
@@ -248,26 +333,9 @@
                                                 
                                             </div>
                                         </div>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h6 class="text-uppercase text-bold pb-5"><u> Profile
-                                                        Image </u></h6>
-                                                        <div class="form-group row">
-                                                            <label for="profile_image" class="col-sm-4 col-form-label">Image</label>
-                                                                <div class="col-sm-8">
-                                                                    <input type="file" class="form-control"
-                                                                           id="profile_image"
-                                                                           name="profile_image"
-                                                                          style="padding-bottom: 27px;" >
-                                                                    @error('profile_image')<span
-                                                                        class="text-danger">{{$message}}</span>@enderror
-                                                                </div>
-                                                        </div>
-                                                       
-                                            </div>
-                                        </div>
+                                        
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
                                             <h6 class="text-uppercase text-bold">
@@ -275,8 +343,8 @@
                                             </h6>
 
                                             <div class="form-group row">
-                                                <label for="professional_name" class="col-sm-4 col-form-label">Name</label>
-                                                    <div class="col-sm-8">
+                                                <label for="professional_name" class="col-sm-12 col-form-label">Name</label>
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control"
                                                                id="professional_name"
                                                                name="professional_name"
@@ -286,8 +354,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">S.S.C</label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label">S.S.C</label>
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="ssc_year"
                                                                name="ssc_year" placeholder="Year"
@@ -295,7 +363,7 @@
                                                         @error('ssc_year')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="ssc_institution"
                                                                name="ssc_institution" placeholder="Institution"
@@ -305,8 +373,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">H.S.C</label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label">H.S.C</label>
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="hsc_year"
                                                                name="hsc_year" placeholder="Year"
@@ -314,7 +382,7 @@
                                                         @error('hsc_year')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="hsc_institution"
                                                                name="hsc_institution" placeholder="Institution"
@@ -324,8 +392,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">LL.B (Hons)</label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label">LL.B (Hons)</label>
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="llb_year"
                                                                name="llb_year" placeholder="Year"
@@ -333,7 +401,7 @@
                                                         @error('llb_year')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="llb_institution"
                                                                name="llb_institution" placeholder="Institution"
@@ -343,8 +411,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">LL.M</label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label">LL.M</label>
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="llm_year"
                                                                name="llm_year" placeholder="Year"
@@ -352,7 +420,7 @@
                                                         @error('llm_year')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="llm_instution"
                                                                name="llm_instution" placeholder="Institution"
@@ -362,8 +430,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">Bar Council Enrollment</label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label">Bar Council Enrollment</label>
+                                                    <div class="col-sm-6">
                                                         <span class="date_span_counsel">
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'bar_council_enrollment_date');"><input type="text" id="bar_council_enrollment_date"
@@ -375,7 +443,7 @@
                                                         @error('bar_council_enrollment_date')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="bar_council_enrollment_sanad_no"
                                                                name="bar_council_enrollment_sanad_no" placeholder="Sanad No"
@@ -385,8 +453,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">Mother Bar</label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label">Mother Bar</label>
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="mother_bar_name"
                                                                name="mother_bar_name" placeholder="Name"
@@ -394,7 +462,7 @@
                                                         @error('mother_bar_name')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="mother_bar_membership_number"
                                                                name="mother_bar_membership_number" placeholder="Membership No."
@@ -404,8 +472,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label">Practicing Bar</label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label">Practicing Bar</label>
+                                                    <div class="col-sm-6">
                                                         <span class="date_span_counsel">
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'practicing_bar_date');"><input type="text" id="practicing_bar_date"
@@ -417,7 +485,7 @@
                                                         @error('practicing_bar_date')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="practicing_bar_membership_number"
                                                                name="practicing_bar_membership_number" placeholder="Membership No."
@@ -427,8 +495,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label"> High Court Enrollment </label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label"> High Court Enrollment </label>
+                                                    <div class="col-sm-6">
                                                         <span class="date_span_counsel">
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'high_court_enrollment_date');"><input type="text" id="high_court_enrollment_date"
@@ -440,7 +508,7 @@
                                                         @error('high_court_enrollment_date')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="high_court_enrollment_membership_number"
                                                                name="high_court_enrollment_membership_number" placeholder="Membership No."
@@ -450,8 +518,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label"> Bar Council Fees (Latest) </label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label"> Bar Council Fees (Latest) </label>
+                                                    <div class="col-sm-6">
                                                         <span class="date_span_counsel">
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'bar_council_fees');"><input type="text" id="bar_council_fees"
@@ -464,7 +532,7 @@
                                                         @error('bar_council_fees')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="bar_council_fees_write"
                                                                name="bar_council_fees_write"
@@ -474,8 +542,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label"> District Bar Mem. Fee (Update) </label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label"> District Bar Mem. Fee (Update) </label>
+                                                    <div class="col-sm-6">
                                                         <span class="date_span_counsel">
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'district_bar_mem_fee');"><input type="text" id="district_bar_mem_fee"
@@ -492,7 +560,7 @@
                                                         @error('district_bar_mem_fee')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="district_bar_mem_write"
                                                                name="district_bar_mem_write"
@@ -502,8 +570,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label"> SCBA Memb. Fee (Update) </label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label"> SCBA Memb. Fee (Update) </label>
+                                                    <div class="col-sm-6">
                                                         <span class="date_span_counsel">
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'scba_memb_fee');"><input type="text" id="scba_memb_fee"
@@ -520,7 +588,7 @@
                                                         @error('scba_memb_fee')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="scba_memb_fee_write"
                                                                name="scba_memb_fee_write"
@@ -530,8 +598,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label"> Professional Contact Number </label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label"> Professional Contact Number </label>
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="professional_contact_number"
                                                                name="professional_contact_number"
@@ -539,7 +607,7 @@
                                                         @error('professional_contact_number')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="professional_contact_number_write"
                                                                name="professional_contact_number_write"
@@ -549,8 +617,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label"> Professional Email </label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label"> Professional Email </label>
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="professional_email"
                                                                name="professional_email"
@@ -558,7 +626,7 @@
                                                         @error('professional_email')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="professional_email_write"
                                                                name="professional_email_write"
@@ -568,8 +636,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label"> Name of Associates </label>
-                                                    <div class="col-sm-4">
+                                                <label for="case_no" class="col-sm-12 col-form-label"> Name of Associates </label>
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="name_of_associates"
                                                                name="name_of_associates"
@@ -577,7 +645,7 @@
                                                         @error('name_of_associates')<span
                                                             class="text-danger">{{$message}}</span>@enderror
                                                     </div>
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-6">
                                                         <input type="text" class="form-control"
                                                                id="name_of_associates_write"
                                                                name="name_of_associates_write"
@@ -587,8 +655,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label"> Professoinal Experience - 1 </label>
-                                                    <div class="col-sm-8">
+                                                <label for="case_no" class="col-sm-12 col-form-label"> Professoinal Experience - 1 </label>
+                                                    <div class="col-sm-12">
                                                         <textarea name="professional_experience_one" class="form-control"
                                                           rows="3"
                                                           placeholder="">{{old('professional_experience_one')}}</textarea>
@@ -597,8 +665,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label"> Professoinal Experience - 2 </label>
-                                                    <div class="col-sm-8">
+                                                <label for="case_no" class="col-sm-12 col-form-label"> Professoinal Experience - 2 </label>
+                                                    <div class="col-sm-12">
                                                         <textarea name="professional_experience_two" class="form-control"
                                                           rows="3"
                                                           placeholder="">{{old('professional_experience_two')}}</textarea>
@@ -607,8 +675,8 @@
                                                     </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="case_no" class="col-sm-4 col-form-label"> Date of Joining (Chamber) </label>
-                                                    <div class="col-sm-8">
+                                                <label for="case_no" class="col-sm-12 col-form-label"> Date of Joining (Chamber) </label>
+                                                    <div class="col-sm-12">
                                                         <span class="date_span">
                                                             <input type="date" class="xDateContainer date_first_input"
                                                                    onchange="setCorrect(this,'xTime4');"><input type="text" id="xTime4"
@@ -788,7 +856,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="float-right mt-4">
-                                    <button type="submit" class="btn btn-primary text-uppercase"><i
+                                    <button type="submit" class="btn btn-primary text-uppercase saveBtn"><i
                                             class="fas fa-save"></i> Save
                                     </button>
                                 </div>

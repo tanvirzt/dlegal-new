@@ -1,6 +1,24 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
+<style type="text/css">
+    .btn-success, .btn-success:hover {
+      background-color: #0CA2A3;
+      border-color: #0CA2A3;
+    }
+
+    .btn-primary, .btn-primary:hover {
+      color: #fff;
+      background-color: #0CA2A3;
+      border-color: #0CA2A3;
+    }
+    
+    .saveBtn{
+        padding: .675rem 1.75rem;
+    }
+</style>
+
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
