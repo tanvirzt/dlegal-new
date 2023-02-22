@@ -823,14 +823,14 @@ a .btn{
 }
 
 .civil_btn {
-    color: #fff;
+    color: #fff !important;
     background-color: #545b625e !important;
     border: none;
     min-width: 65px;
     margin-left: 5px;
 }
 .civil_active_btn {
-    color: #fff;
+    color: #fff !important;
     background-color: #0CA2A3;
     border: none;
     min-width: 65px;
