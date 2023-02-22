@@ -458,6 +458,9 @@
                                         <a class="nav-link" id="pills-news-tab" data-toggle="pill" href="#pills-news" role="tab" aria-controls="pills-news" aria-selected="false">Party Info</a>
                                     </li>
                                     <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="pills-lawyer-tab" data-toggle="pill" href="#pills-lawyer" role="tab" aria-controls="pills-lawyer" aria-selected="false">Lawyer Info</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
                                         <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Document Info</a>
                                     </li>
                                     <li class="nav-item" role="presentation">
@@ -1273,67 +1276,6 @@
                                             </table>
                                         </div>
                                     </div>
-
-                                    <div class="card caseFileLoacation">
-                                        <div class="card-header">
-                                            <h6 class="text-uppercase text-bold"> Lawyers Information
-                                                <button type="button" class="btn btn-info btn-sm float-right"
-                                                    data-toggle="modal" data-target="#modal-lg-lawyers-info"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Update Lawyers Information"><i class="fas fa-edit"></i>
-                                                </button>
-                                            </h6>
-                                        </div>
-                                        <div class="card-body">
-
-                                            <table class="table table-bordered layInfoTable">
-
-                                                <tbody>
-
-                                                    <tr>
-                                                        <td>Name of Advocate/Law Firm</td>
-                                                        <td>{{ $data->lawyer_advocate_id }}</td>
-                                                        <td>{{ $data->lawyer_advocate_write }}</td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Name of Lead Laywer</td>
-                                                        <td>{{ $data->lead_laywer_name }}</td>
-                                                        <td>{{ $data->lead_laywer_name_extra }}</td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Name of Assigned Lawyer</td>
-                                                        <td>
-                                                            @php
-                                                                $assigned_lawyer_id = explode(', ', $data->assigned_lawyer_id);
-                                                            @endphp
-                                                            @if ($data->assigned_lawyer_id)
-                                                                @if (count($assigned_lawyer_id) > 1)
-                                                                    @foreach ($assigned_lawyer_id as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($assigned_lawyer_id as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-                                                        </td>
-                                                        <td>{{ $data->assigned_lawyer_extra }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Remarks</td>
-                                                        <td colspan="2"> {{ $data->lawyers_remarks }} </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-
-
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card clientInfoCard">
@@ -1492,6 +1434,85 @@
                                             </table>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                                  </div>
+                                </div>
+
+
+
+<div class="tab-pane fade" id="pills-lawyer" role="tabpanel" aria-labelledby="pills-lawyer-tab">
+                                  <div class="container-fluid">
+                                    
+                                      <div class="row" id="sectionClientInfo">
+                                <div class="col-md-6">
+                                    <div class="card caseFileLoacation">
+                                        <div class="card-header">
+                                            <h6 class="text-uppercase text-bold"> Lawyers Information
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-lg-lawyers-info"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Lawyers Information"><i class="fas fa-edit"></i>
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <table class="table table-bordered layInfoTable">
+
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td>Name of Advocate/Law Firm</td>
+                                                        <td>{{ $data->lawyer_advocate_id }}</td>
+                                                        <td>{{ $data->lawyer_advocate_write }}</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Name of Lead Laywer</td>
+                                                        <td>{{ $data->lead_laywer_name }}</td>
+                                                        <td>{{ $data->lead_laywer_name_extra }}</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Name of Assigned Lawyer</td>
+                                                        <td>
+                                                            @php
+                                                                $assigned_lawyer_id = explode(', ', $data->assigned_lawyer_id);
+                                                            @endphp
+                                                            @if ($data->assigned_lawyer_id)
+                                                                @if (count($assigned_lawyer_id) > 1)
+                                                                    @foreach ($assigned_lawyer_id as $pro)
+                                                                        <li class="text-left">{{ $pro }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($assigned_lawyer_id as $pro)
+                                                                        {{ $pro }}
+                                                                    @endforeach
+                                                                @endif
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $data->assigned_lawyer_extra }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Remarks</td>
+                                                        <td colspan="2"> {{ $data->lawyers_remarks }} </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="col-md-6">
 
                                     {{-- {{dd($oppLawyer)}} --}}
                                     <div class="card caseFileLoacation">
@@ -1542,6 +1563,7 @@
 
                                   </div>
                                 </div>
+
                                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                                   <div class="container-fluid">
                                     <div class="card-header caseInfoHeader">

@@ -1205,3 +1205,17 @@ table.table-bordered.dataTable th{
 .all-cases-dt th{
    color:#fff;
 }
+
+.table-bordered td, .table-bordered th {
+  border: none !important;
+}
+
+a {
+  color: #0CA2A3 !important;
+ }
+
+.submitForm{
+    background: #0CA2A3 !important;
+    padding: 10px 20px !important;
+    border: 0 !important;
+}
