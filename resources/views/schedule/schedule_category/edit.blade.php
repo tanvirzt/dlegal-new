@@ -32,9 +32,8 @@
         <!-- Main content -->
         <section class="content">
             <div class="row im-flex">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-10">
+                
+                <div class="col-md-12">
                     @if (Session::has('success'))
                         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                             {{ Session::get('success') }}
@@ -45,9 +44,9 @@
                     @endif
                     <div class="card">
                         <div class="">
-                            <div class="card-header">
+                            <!--<div class="card-header">
                                 <h3 class="card-title" id="heading">Edit Schedule Category</h3>
-                            </div>
+                            </div>-->
 
                             <form action="{{ route('schedule.category.update', $data->id) }}" method="post"
                                 enctype="multipart/form-data">
@@ -55,18 +54,18 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-10 mx-auto">
+                                        <div class="col-md-12 mx-auto" style="padding: 0 20px;">
                                             <div class="form-group">
-                                                <label class="form-label">Category Name</label>
-                                                <input type="text" class="form-control" name="category_name"
+                                                <label class="form-label col-form-label">Category Name</label>
+                                                <input type="text" class="form-control theme-input-style" name="category_name"
                                                     placeholder="Enter name" value="{{ $data->category_name }}">
                                                 @error('category_name')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label class=" form-label">Category Color</label>
-                                                <input type="color" class="form-control"
+                                                <label class=" form-label col-form-label">Category Color</label>
+                                                <input type="color" class="form-control theme-input-style"
                                                     name="color" value="{{ old('color',$data->color) }}">
                                                 @error('color')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -74,7 +73,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="float-right mt-4">
-                                                    <button type="submit" class="btn btn-primary text-uppercase"><i
+                                                    <button type="submit" class="btn btn-primary text-uppercase submitForm"><i
                                                             class="fas fa-save"></i> Update </button>
                                                 </div>
                                             </div>

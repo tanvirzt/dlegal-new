@@ -83,7 +83,7 @@
                             </div> --}}
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-bordered table-striped data_table">
+                                <table class="all-cases-dt table table-bordered table-striped ">
                                     <thead>
                                     <tr>
                                         <th class="text-center"> Sl </th>

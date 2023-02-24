@@ -1,6 +1,15 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
+
+<style type="text/css">
+    .card-title{
+        color: #0CA2A3 !important;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -41,12 +50,16 @@
                                             class="btn btn-sm
                                     btn-success add_btn"><i
                                                 class="fas fa-plus"></i> Add New </button></a>
+                                    <a href="{{ route('schedule.category.index') }}"><button
+                                            class="btn btn-sm
+                                    btn-success add_btn"><i
+                                                class="fas fa-plus"></i> Add Category </button></a>
                                 </div>
 
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="data_table" class="table dataTable no-footer dtr-inline">
+                                <table id="" class="all-cases-dt    table dataTable no-footer dtr-inline">
                                     <thead>
                                         <tr>
                                             <th class=" text-nowrap">Current Status</th>

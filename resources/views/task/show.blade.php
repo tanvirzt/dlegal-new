@@ -30,9 +30,8 @@
         <!-- Main content -->
         <section class="content">
             <div class="row im-flex">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-10">
+                
+                <div class="col-md-12">
                     @if(Session::has('success'))
                         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                             {{Session::get('success')}}
@@ -44,14 +43,14 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h3 class="card-title" id="heading">Task Details</h3>
+                                <h3 class="card-title" id="heading" style="color: #0CA2A3; font-weight: bold; font-size: 18px;text-decoration: underline;" >Task Details</h3>
                             </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-10 mx-auto">
+                                        <div class="col-md-12 mx-auto" style="padding: 0 20px;">
                                             <div class="form-group">
-                                                <label class="form-label">Task Category</label>
-                                                <select name="task_category_id" class="select2 form-control" disabled>
+                                                <label class="form-label col-form-label">Task Category</label>
+                                                <select name="task_category_id" class="select2 form-control theme-input-style" disabled>
                                                     <option value="">Select Task Category</option>
                                                     @foreach ($categories as $category)
                                                     <option value="{{$category->id}}" {{$data->task_category_id == $category->id ? 'selected' : false}}>{{$category->category_name}}</option>
@@ -61,26 +60,26 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Task Title</label>
-                                                <input type="text" class="form-control" placeholder="Enter title" name="title" value="{{old('title',$data->title)}}" readonly>
+                                                <label class="form-label col-form-label">Task Title</label>
+                                                <input type="text" class="form-control theme-input-style" placeholder="Enter title" name="title" value="{{old('title',$data->title)}}" readonly>
                                                 @error('title')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Note</label>
-                                                <textarea name="note" rows="2" class="form-control" placeholder="Enter note" readonly>{{old('note',$data->note)}}</textarea>
+                                                <label class="form-label col-form-label">Note</label>
+                                                <textarea name="note" rows="2" class="form-control theme-input-style" placeholder="Enter note" readonly>{{old('note',$data->note)}}</textarea>
                                                 @error('note')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Date</label>
-                                                <input type="datetime-local" class="form-control" name="date" value="{{old('date',$data->date)}}" readonly>
+                                                <label class="form-label col-form-label">Date</label>
+                                                <input type="datetime-local" class="form-control theme-input-style" name="date" value="{{old('date',$data->date)}}" readonly>
                                                 @error('date')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Priority</label>
-                                                <select name="priority" class="select2 form-control" disabled>
+                                                <label class="form-label col-form-label">Priority</label>
+                                                <select name="priority" class="select2 form-control theme-input-style" disabled>
                                                     <option value="">Select Priority</option>
                                                     <option value="Law" {{$data->priority == 'Law' ? 'selected' : false}}>Law</option>
                                                     <option value="Medium" {{$data->priority == 'Medium' ? 'selected' : false}}>Medium</option>
@@ -90,8 +89,8 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Details</label>
-                                                <textarea name="details" rows="4" class="form-control" placeholder="Enter details" readonly>{{old('details',$data->details)}}</textarea>
+                                                <label class="form-label col-form-label">Details</label>
+                                                <textarea name="details" rows="4" class="form-control theme-input-style" placeholder="Enter details" readonly>{{old('details',$data->details)}}</textarea>
                                                 @error('details')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>

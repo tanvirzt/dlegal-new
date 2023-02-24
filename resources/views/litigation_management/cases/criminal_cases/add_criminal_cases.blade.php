@@ -192,8 +192,8 @@
                                                     <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="case_type"
-                                            class="col-sm-12 col-form-label">Case Class</label>
-                                    <div class="col-sm-12">
+                                            class="col-sm-12 col-form-label padding-null">Case Class</label>
+                                    <div class="col-sm-12 padding-null">
                                         <select name="case_type"
                                                 class="form-control select2"
                                                 id="case_type" required>
@@ -209,8 +209,8 @@
                                 </div>                        
                                 <div class="col-md-6">
                                     <label for="case_infos_division_id"
-                                            class="col-sm-12 col-form-label">Division</label>
-                                    <div class="col-sm-12">
+                                            class="col-sm-12 col-form-label padding-null">Division</label>
+                                    <div class="col-sm-12 padding-null">
                                         <select name="case_infos_division_id"
                                                 class="form-control select2"
                                                 id="case_infos_division_id"
@@ -232,8 +232,8 @@
                                 <div class="form-group row">
                                     <div class="col-md-6">
                                     <label for="case_infos_district_id"
-                                            class="col-sm-12 col-form-label">District</label>
-                                    <div class="col-sm-12">
+                                            class="col-sm-12 col-form-label padding-null">District</label>
+                                    <div class="col-sm-12 padding-null">
                                         <select name="case_infos_district_id"
                                                 class="form-control select2"
                                                 id="case_infos_district_id"
@@ -248,8 +248,8 @@
                                 
                                     <div class="col-md-6">
                                     <label for="case_infos_thana_id"
-                                            class="col-sm-12 col-form-label">Thana</label>
-                                    <div class="col-sm-12">
+                                            class="col-sm-12 col-form-label padding-null">Thana</label>
+                                    <div class="col-sm-12 padding-null">
                                         <select name="case_infos_thana_id"
                                                 id="case_infos_thana_id"
                                                 class="form-control select2">
@@ -264,9 +264,9 @@
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label for="case_category_id"
-                                            class="col-sm-12 col-form-label">Case
+                                            class="col-sm-12 col-form-label padding-null">Case
                                         Category </label>
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12 padding-null">
                                         <select name="case_category_id" id="case_category_id"
                                                 class="form-control select2"
                                                 >
@@ -301,8 +301,9 @@
                                     </div>
                                 </div> --}}
                                 <div class="col-sm-6">
-                                    <label for="case_type_id" class="col-sm-12 col-form-label">Case Type </label>
-                                    <div class="col-sm-12">
+                                    <label for="case_type_id" style="color: #0CA2A3 !important; font-weight: bold !important; font-size: 14px; line-height: 25px; !important;
+padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case Type </label>
+                                    <div class="col-sm-12 padding-null">
                                         <select name="case_type_id" id="case_type_id"
                                                 class="form-control select2" >
                                             <option value="">Select</option>

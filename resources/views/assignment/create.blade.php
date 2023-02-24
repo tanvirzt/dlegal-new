@@ -1,7 +1,13 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
 
-
+ <style type="text/css">
+    .card-title, .content-header h1{
+        color: #0CA2A3 !important;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -32,9 +38,8 @@
         <!-- Main content -->
         <section class="content">
             <div class="row im-flex">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-10">
+                
+                <div class="col-md-12" style="padding: 0 20px;">
                     @if(Session::has('success'))
                         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                             {{Session::get('success')}}
@@ -53,10 +58,10 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-10 mx-auto">
+                                        <div class="col-md-12 mx-auto">
                                             <div class="form-group">
-                                                <label class="form-label">Assignment Category</label>
-                                                <select name="assignment_category_id" class="select2 form-control">
+                                                <label class="form-label col-form-label">Assignment Category</label>
+                                                <select name="assignment_category_id" class="select2 form-control theme-input-style">
                                                     <option value="">Select Assignment Category</option>
                                                     @foreach ($categories as $category)
                                                     <option value="{{$category->id}}">{{$category->category_name}}</option>
@@ -66,26 +71,26 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Assignment Title</label>
-                                                <input type="text" class="form-control" placeholder="Enter title" name="title" value="{{old('title')}}">
+                                                <label class="form-label col-form-label">Assignment Title</label>
+                                                <input type="text" class="form-control theme-input-style" placeholder="Enter title" name="title" value="{{old('title')}}">
                                                 @error('title')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Note</label>
-                                                <textarea name="note" rows="2" class="form-control" placeholder="Enter note">{{old('note')}}</textarea>
+                                                <label class="form-label col-form-label">Note</label>
+                                                <textarea name="note" rows="2" class="form-control theme-input-style" placeholder="Enter note">{{old('note')}}</textarea>
                                                 @error('note')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Date</label>
-                                                <input type="datetime-local" class="form-control" name="date" value="{{old('date')}}">
+                                                <label class="form-label col-form-label">Date</label>
+                                                <input type="datetime-local" class="form-control theme-input-style" name="date" value="{{old('date')}}">
                                                 @error('date')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Assign</label>
-                                                <select name="assign_id" class="select2 form-control">
+                                                <label class="form-label col-form-label">Assign</label>
+                                                <select name="assign_id" class="select2 form-control theme-input-style">
                                                     <option value="">Select</option>
                                                     @foreach ($counsels as $counsel)
                                                     <option value="{{$counsel->id}}">{{$counsel->counsel_name}}</option>
@@ -95,16 +100,16 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Service Type</label>
-                                                <select name="service_type" class="select2 form-control">
+                                                <label class="form-label col-form-label">Service Type</label>
+                                                <select name="service_type" class="select2 form-control theme-input-style">
                                                     <option value="Litigation" selected>Litigation</option>
                                                 </select>
                                                 @error('service_type')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Service</label>
-                                                <select name="service_id" class="select2 form-control">
+                                                <label class="form-label col-form-label">Service</label>
+                                                <select name="service_id" class="select2 form-control theme-input-style">
                                                     <option value="">Select</option>
                                                     @foreach ($services as $service)
                                                     <option value="{{$service->id}}">{{$service->case_infos_case_no}} / {{$service->case_infos_case_year}}</option>
@@ -114,14 +119,14 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Details</label>
-                                                <textarea name="details" rows="4" class="form-control" placeholder="Enter details">{{old('note')}}</textarea>
+                                                <label class="form-label col-form-label">Details</label>
+                                                <textarea name="details" rows="4" class="form-control theme-input-style" placeholder="Enter details">{{old('note')}}</textarea>
                                                 @error('details')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             
                                             <div class="float-right form-group">
-                                                <button type="submit" class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save</button>
+                                                <button type="submit" class="btn btn-primary text-uppercase submitForm"><i class="fas fa-save"></i> Save</button>
                                             </div>
                                         </div>
                                     </div>

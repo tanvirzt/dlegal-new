@@ -266,9 +266,7 @@
             color: #fff !important;
         }
 
-        tr:hover {
-          background-color: rgba(219, 238, 231, 0.45) !important;
-        }
+ 
 
         .themeHeading{
             color: #0CA2A3;

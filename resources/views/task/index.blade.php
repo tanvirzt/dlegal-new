@@ -41,12 +41,16 @@
                                             class="btn btn-sm
                                     btn-success add_btn"><i
                                                 class="fas fa-plus"></i> Add New </button></a>
+                                    <a href="{{ route('task.category.index') }}"><button
+                                            class="btn btn-sm
+                                    btn-success add_btn"><i
+                                                class="fas fa-plus"></i> Add Category </button></a>            
                                 </div>
 
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="data_table" class="table dataTable no-footer dtr-inline">
+                                <table id="" class="table all-cases-dt dataTable no-footer dtr-inline">
                                     <thead>
                                         <tr>
                                             <th class=" text-nowrap">Current Status</th>

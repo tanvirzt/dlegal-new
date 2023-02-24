@@ -2,7 +2,17 @@
 @section('content')
 
 
-
+<style type="text/css">
+.card-title{
+    color: #0CA2A3 !important;
+    font-weight: bold;
+    font-size: 24px;
+    text-decoration: underline;
+}
+.select2-container{
+    width: 100% !important;
+}
+</style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -30,9 +40,8 @@
         <!-- Main content -->
         <section class="content">
             <div class="row im-flex">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-10">
+                
+                <div class="col-md-12">
                     @if(Session::has('success'))
                         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                             {{Session::get('success')}}
@@ -48,10 +57,10 @@
                             </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-10 mx-auto">
+                                        <div class="col-md-12 mx-auto" style="padding:0 20px;">
                                             <div class="form-group">
-                                                <label class="form-label">Schedule Category</label>
-                                                <select name="schedule_category_id" class="select2 form-control" disabled>
+                                                <label class="form-label col-form-label">Schedule Category</label>
+                                                <select name="schedule_category_id" class="select2 form-control theme-input-style" disabled>
                                                     <option value="">Select Schedule Category</option>
                                                     @foreach ($categories as $category)
                                                     <option value="{{$category->id}}" {{$data->schedule_category_id == $category->id ? 'selected' : false}}>{{$category->category_name}}</option>
@@ -61,8 +70,8 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Meeting Type</label>
-                                                <select name="meeting_type" class="select2 form-control" disabled>
+                                                <label class="form-label col-form-label">Meeting Type</label>
+                                                <select name="meeting_type" class="select2 form-control theme-input-style" disabled>
                                                     <option value="Call" {{$data->meeting_type == 'Call' ? 'selected' : ''}}>Call</option>
                                                     <option value="Meeting" {{$data->meeting_type == 'Meeting' ? 'selected' : ''}}>Meeting</option>
                                                     <option value="Visit" {{$data->meeting_type == 'Visit' ? 'selected' : ''}}>Visit</option>
@@ -72,31 +81,31 @@
 
                                             <div class="form-group">
                                                 <label class="form-label">Schedule Title</label>
-                                                <input type="text" class="form-control" placeholder="Enter title" name="title" value="{{old('title',$data->title)}}" readonly>
+                                                <input type="text" class="form-control theme-input-style" placeholder="Enter title" name="title" value="{{old('title',$data->title)}}" readonly>
                                                 @error('title')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Note</label>
-                                                <textarea name="note" rows="2" class="form-control" placeholder="Enter note" readonly>{{old('note',$data->note)}}</textarea>
+                                                <label class="form-label col-form-label">Note</label>
+                                                <textarea name="note" rows="2" class="form-control theme-input-style" placeholder="Enter note" readonly>{{old('note',$data->note)}}</textarea>
                                                 @error('note')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Date</label>
-                                                <input type="datetime-local" class="form-control" name="date" value="{{old('date',$data->date)}}" readonly>
+                                                <label class="form-label col-form-label">Date</label>
+                                                <input type="datetime-local" class="form-control theme-input-style" name="date" value="{{old('date',$data->date)}}" readonly>
                                                 @error('date')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Place</label>
-                                                <input type="text" class="form-control" placeholder="Place" name="place" value="{{old('place',$data->place)}}" readonly>
+                                                <label class="form-label col-form-label">Place</label>
+                                                <input type="text" class="form-control theme-input-style" placeholder="Place" name="place" value="{{old('place',$data->place)}}" readonly>
                                                 @error('place')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Assign</label>
-                                                <select name="assign_id" class="select2 form-control" disabled>
+                                                <label class="form-label col-form-label">Assign</label>
+                                                <select name="assign_id" class="select2 form-control theme-input-style" disabled>
                                                     <option value="">Select</option>
                                                     @foreach ($counsels as $counsel)
 
@@ -110,16 +119,16 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Service Type</label>
-                                                <select name="service_type" class="select2 form-control" disabled>
+                                                <label class="form-label col-form-label">Service Type</label>
+                                                <select name="service_type" class="select2 form-control theme-input-style" disabled>
                                                     <option value="Litigation" selected>Litigation</option>
                                                 </select>
                                                 @error('service_type')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Service</label>
-                                                <select name="service_id" class="select2 form-control" disabled>
+                                                <label class="form-label col-form-label">Service</label>
+                                                <select name="service_id" class="select2 form-control theme-input-style" disabled>
                                                     <option value="">Select</option>
                                                     @foreach ($services as $service)
                                                     <option value="{{$service->id}}" {{$service->id == $data->service_id ? 'selected' : false}}> {{$service->case_no}} </option>
@@ -129,8 +138,8 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="form-label">Details</label>
-                                                <textarea name="details" rows="4" class="form-control" placeholder="Enter details" readonly>{{old('details',$data->details)}}</textarea>
+                                                <label class="form-label col-form-label">Details</label>
+                                                <textarea name="details" rows="4" class="form-control theme-input-style" placeholder="Enter details" readonly>{{old('details',$data->details)}}</textarea>
                                                 @error('details')<span class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>

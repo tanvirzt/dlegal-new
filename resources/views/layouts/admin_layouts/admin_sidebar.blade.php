@@ -312,7 +312,23 @@ nav.mt-2 a.nav-link{
             <li>Human Resources</li>
           </ul>
         </li>-->
-            
+        <li class="nav-item"><a class="nav-link"> <img class="allDisplay" src="{{ asset('login_assets/img/task.jpg') }}" width="23px" style="display: none; float: left; margin-right: 5px;s" /> <p class="menuLabel">Task</p></a>
+              <ul>
+                <li><a href="{{ route('task.index') }}">Task</a></li>
+                <li><a href="{{ route('schedule.index') }}">Schedule</a></li>
+                <li><a href="{{ route('assignment.index') }}">Assignment</a></li>                
+              </ul>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('employee-new') }}" class="nav-link">
+                <!--<i class="nav-icon fas fa-circle"></i>-->
+                <img src="{{ asset('login_assets/img/hr.jpg') }}" width="23px" />
+                <p>
+                    HR
+                    <!--<i class="right fas fa-angle-left"></i>-->
+                </p>
+            </a>
+        </li>
       </ul>
     </div>
 
@@ -450,14 +466,14 @@ nav.mt-2 a.nav-link{
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ route('task.index') }}" class="nav-link">
-                                            <!--<i class="nav-icon fas fa-circle"></i>-->
-                                            <img src="{{ asset('login_assets/img/task.jpg') }}" width="23px" />
-                                            <p>
-                                                Task
+                                        <a class="nav-link"> <img src="{{ asset('login_assets/img/task.jpg') }}" width="23px" /> <p class="menuLabel">Task</p></a>        
+
                                                 <!--<i class="right fas fa-angle-left"></i>-->
-                                            </p>
-                                        </a>
+                                               <ul>
+                                                    <li>User</li>
+                                                    <li><a href="{{ route('client-name') }}">Client</a></li>
+                                                    <li><a href="{{ route('all-cases') }}">Case</a></li>
+                                                </ul>                                   
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('employee-new') }}" class="nav-link">

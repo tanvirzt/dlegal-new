@@ -71,7 +71,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-bordered table-striped">
+                                <table class="all-cases-dt table table-bordered table-striped">
                                     <thead>
                                     <tr>
                                         <th class="text-nowrap text-center">ID</th>

@@ -1,6 +1,13 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
+    <style type="text/css">
+    .card-title, .content-header h1{
+        color: #0CA2A3 !important;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
