@@ -10,7 +10,7 @@
         padding-top: 10px;
     }   
 
-    .date_span{
+    .date_span, .select2-container{
         width: 100% !important;
     }
 </style>

@@ -96,8 +96,6 @@
     color:#0CA2A3;
     font-weight:700;
     position:relative;
-    padding-top: 10px;
-    padding-bottom:10px;
 }
 
 
@@ -137,12 +135,18 @@
     outline: 0;
 }
 
+.tree li.branch .fa-users::before{
+    padding-left: 5px;
+    color: #0CA2A3;
+}
+
 .tree li.branch a{
-    color: #fff !important;
-    background-color: #0CA2A3;
+    color: #000 !important;
+    background-color: transparent;
     margin-top: 15px;
     width: 100%;
     display: block;
+    font-weight: normal;
 }
 
 .tree li.branch li a {
@@ -240,6 +244,11 @@ nav.mt-2 a.nav-link{
     display: none !important;
 }
 
+#tree3 li li a{
+  padding-top:10px !important;
+  padding-bottom:10px !important;
+}
+
 </style>
 
 
@@ -252,12 +261,12 @@ nav.mt-2 a.nav-link{
                 <li><a href="{{ route('users.index') }}">User</a></li>
                 <li><a href="{{ route('client-name') }}">Client</a></li>
                 <li><a href="{{ route('all-cases') }}">Case</a></li>
-                <li>Counsel</li>
-                <li>Case Proceedings</li>
-                <li>Documents</li>
+                <li><a href="#">Counsel</a></li>
+                <li><a href="#">Case Proceedings</a></li>
+                <li><a href="#">Documents</a></li>
                 <li><a href="{{ route('billing') }}">Billings</a></li>
-                <li>Opposition</li>
-                <li>Area</li>
+                <li><a href="#">Opposition</a></li>
+                <li><a href="#">Area</a></li>
                 <li><a href="{{ route('legal-service') }}">Legal Service</a></li>
                 <!--<li>
                   <ul>
