@@ -2,7 +2,13 @@
 @section('content')
 
 
-
+<style type="text/css">
+    .card-title, .content-header h1{
+        color: #0CA2A3 !important;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -67,41 +73,41 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="transaction_no" class="col-sm-4 col-form-label">Transaction No.</label>
-                                            <div class="col-sm-8">
-                                                {!! Form::text('transaction_no', $ledger_entry->transaction_no , array('class' => 'form-control', 'readonly'=>'readonly')) !!}
+                                            <label for="transaction_no" class="col-sm-12 col-form-label">Transaction No.</label>
+                                            <div class="col-sm-12">
+                                                {!! Form::text('transaction_no', $ledger_entry->transaction_no , array('class' => 'form-control theme-input-style', 'readonly'=>'readonly')) !!}
                                                 @error('transaction_no')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <div class="col-md-6">
+                                    {{-- <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="job_no" class="col-sm-4 col-form-label"> Job No. </label>
-                                            <div class="col-sm-8">
-                                                {!! Form::text('job_no', null, array('class' => 'form-control')) !!}
+                                            <label for="job_no" class="col-sm-12 col-form-label"> Job No. </label>
+                                            <div class="col-sm-12">
+                                                {!! Form::text('job_no', null, array('class' => 'form-control theme-input-style')) !!}
                                                 @error('job_no')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
                                     </div> --}}
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="job_name" class="col-sm-4 col-form-label"> Job Name </label>
-                                            <div class="col-sm-8">
-                                                {!! Form::text('job_name', null, array('class' => 'form-control')) !!}
+                                            <label for="job_name" class="col-sm-12 col-form-label"> Job Name </label>
+                                            <div class="col-sm-12">
+                                                {!! Form::text('job_name', null, array('class' => 'form-control theme-input-style')) !!}
                                                 @error('job_name')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="ledger_category_id" class="col-sm-4 col-form-label">Ledger Category</label>
-                                            <div class="col-sm-8">
-                                                <select name="ledger_category_id" class="form-control select2" id="ledger_category_id" action="{{ route('find-ledger-head') }}">
+                                            <label for="ledger_category_id" class="col-sm-12 col-form-label">Ledger Category</label>
+                                            <div class="col-sm-12">
+                                                <select name="ledger_category_id" class="form-control select2 theme-input-style" id="ledger_category_id" action="{{ route('find-ledger-head') }}">
                                                     <option value=""> Select </option>
                                                     <option value="Income" {{ $ledger_entry->ledger_category_id == 'Income' ? 'selected' : '' }}> Income </option>
                                                     <option value="Expense" {{ $ledger_entry->ledger_category_id == 'Expense' ? 'selected' : '' }}> Expense </option>
@@ -111,11 +117,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="ledger_head_id" class="col-sm-4 col-form-label">Ledger Head</label>
-                                            <div class="col-sm-8">
-                                                <select name="ledger_head_id" class="form-control select2" id="ledger_head_id">
+                                            <label for="ledger_head_id" class="col-sm-12 col-form-label">Ledger Head</label>
+                                            <div class="col-sm-12">
+                                                <select name="ledger_head_id" class="form-control select2 theme-input-style" id="ledger_head_id">
                                                     <option value=""> Select </option>
                                                     @foreach($ledger_head as $item)
                                                         <option value="{{ $item->id }}" {{( $ledger_entry->ledger_head_id == $item->id ? 'selected':'')}}>{{ $item->ledger_head_name }}</option>
@@ -126,10 +132,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="payment_against_bill" class="col-sm-4 col-form-label mt-1">Payment Against Bill</label>
-                                            <div class="icheck-success d-inline col-sm-8">
+                                            <label for="payment_against_bill" class="col-sm-12 col-form-label mt-1">Payment Against Bill</label>
+                                            <div class="icheck-success d-inline col-sm-12">
                                                 <input type="checkbox" id="payment_against_bill" name="payment_against_bill" {{ $ledger_entry->payment_against_bill != null ? 'checked' : '' }}>
                                                 <label for="payment_against_bill">
                                                     Yes
@@ -139,21 +145,21 @@
                                     </div>
 
 
-                                    {{-- <div class="col-md-6">
+                                    {{-- <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="trial_court" class="col-sm-4 col-form-label">Payment Against Bill</label>
-                                            <div class="col-sm-8">
-                                                {!! Form::text('email', null, array('class' => 'form-control')) !!}
+                                            <label for="trial_court" class="col-sm-12 col-form-label">Payment Against Bill</label>
+                                            <div class="col-sm-12">
+                                                {!! Form::text('email', null, array('class' => 'form-control theme-input-style')) !!}
                                                 @error('trial_court')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
                                     </div> --}}
-                                    <div class="col-md-6" id="bill_no" @if ($ledger_entry->payment_against_bill != null) @else style="display: none;" @endif  >
+                                    <div class="col-md-12" id="bill_no" @if ($ledger_entry->payment_against_bill != null) @else style="display: none;" @endif  >
                                         <div class="form-group row">
-                                            <label for="bill_id" class="col-sm-4 col-form-label">Bill No</label>
-                                            <div class="col-sm-8">
-                                                <select name="bill_id" class="form-control select2" id="bill_id" action="{{ route('find-bill') }}">
+                                            <label for="bill_id" class="col-sm-12 col-form-label">Bill No</label>
+                                            <div class="col-sm-12">
+                                                <select name="bill_id" class="form-control select2 theme-input-style" id="bill_id" action="{{ route('find-bill') }}">
                                                     <option value=""> Select </option>
                                                     @foreach($bill_no as $item)
                                                         <option value="{{ $item->id }}" {{( $ledger_entry->bill_id == $item->id ? 'selected':'')}}>{{ $item->billing_no }}</option>
@@ -164,10 +170,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="ledger_date" class="col-sm-4 col-form-label">Date</label>
-                                            <div class="col-sm-8">
+                                            <label for="ledger_date" class="col-sm-12 col-form-label">Date</label>
+                                            <div class="col-sm-12">
 
 
                                                 <span class="date_span" style="width: 404px;">
@@ -203,11 +209,11 @@
                                     </div>
 
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="payment_type" class="col-sm-4 col-form-label">Payment Type</label>
-                                            <div class="col-sm-8">
-                                                <select name="payment_type" class="form-control select2" id="payment_type">
+                                            <label for="payment_type" class="col-sm-12 col-form-label">Payment Type</label>
+                                            <div class="col-sm-12">
+                                                <select name="payment_type" class="form-control select2 theme-input-style" id="payment_type">
                                                     <option value=""> Select </option>
                                                     <option value="Cash Payment" {{ $ledger_entry->payment_type == 'Cash Payment' ? 'selected' : '' }}> Cash Payment </option>
                                                     <option value="Bank Payment" {{ $ledger_entry->payment_type == 'Bank Payment' ? 'selected' : '' }}> Bank Payment </option>
@@ -220,11 +226,11 @@
                                         </div>
                                     </div>
 
-                                    {{-- <div class="col-md-6">
+                                    {{-- <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="ledger_head_bill_id" class="col-sm-4 col-form-label">Bill Name</label>
-                                            <div class="col-sm-8">
-                                                <select name="ledger_head_bill_id" class="form-control select2" id="ledger_head_bill_id">
+                                            <label for="ledger_head_bill_id" class="col-sm-12 col-form-label">Bill Name</label>
+                                            <div class="col-sm-12">
+                                                <select name="ledger_head_bill_id" class="form-control select2 theme-input-style" id="ledger_head_bill_id">
                                                     <option value=""> Select </option>
                                                     @foreach($ledger_head as $item)
                                                         <option value="{{ $item->id }}" {{( $ledger_entry->ledger_head_bill_id == $item->id ? 'selected':'')}}>{{ $item->ledger_head_name }}</option>
@@ -236,13 +242,13 @@
                                         </div>
                                     </div> --}}
 
-                                    <div class="col-md-6" id="bill_amount">
+                                    <div class="col-md-12" id="bill_amount">
                                         @if ($ledger_entry->bill_amount != null)
 
                                         <div class="form-group row">
-                                            <label for="bill_amount" class="col-sm-4 col-form-label">Bill Amount</label>
-                                            <div class="col-sm-8" >
-                                            <input type="text" class="form-control" readonly name="bill_amount" value="{{ $ledger_entry->bill_amount }}">
+                                            <label for="bill_amount" class="col-sm-12 col-form-label">Bill Amount</label>
+                                            <div class="col-sm-12" >
+                                            <input type="text" class="form-control theme-input-style" readonly name="bill_amount" value="{{ $ledger_entry->bill_amount }}">
 
                                             </div>
                                         </div>
@@ -250,11 +256,11 @@
 
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="paid_amount" class="col-sm-4 col-form-label">Paid Amount</label>
-                                            <div class="col-sm-8">
-                                            <input type="text" class="form-control" name="paid_amount" value="{{ $ledger_entry->paid_amount }}">
+                                            <label for="paid_amount" class="col-sm-12 col-form-label">Paid Amount</label>
+                                            <div class="col-sm-12">
+                                            <input type="text" class="form-control theme-input-style" name="paid_amount" value="{{ $ledger_entry->paid_amount }}">
 
                                                 @error('paid_amount')<span
                                                     class="text-danger">{{$message}}</span>@enderror
@@ -262,13 +268,13 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="remarks" class="col-sm-4 col-form-label">Remarks</label>
-                                            <div class="col-sm-8">
+                                            <label for="remarks" class="col-sm-12 col-form-label">Remarks</label>
+                                            <div class="col-sm-12">
                                                 {!! Form::textarea('remarks', null, array('class' => 'form-control')) !!}
 
-                                                {{-- {!! Form::text('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!} --}}
+                                                {{-- {!! Form::text('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control theme-input-style')) !!} --}}
                                                 @error('remarks')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
@@ -278,8 +284,8 @@
 
 
                                 </div>
-                                <div class="float-right mt-4">
-                                    <button type="submit" class="btn btn-primary text-uppercase"><i
+                                <div class="float-right mt-4 col-md-12" style="text-align: right;">
+                                    <button type="submit" class="btn btn-primary text-uppercase submitForm"><i
                                             class="fas fa-save"></i> Update
                                     </button>
                                 </div>

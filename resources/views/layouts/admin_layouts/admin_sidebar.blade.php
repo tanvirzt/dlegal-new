@@ -249,7 +249,7 @@ nav.mt-2 a.nav-link{
          
         <li class="nav-item"><a class="nav-link"> <i class="fas fa-users" style="display:block !important; float: left;"></i> <p class="menuLabel">Admin</p></a>
               <ul>
-                <li>User</li>
+                <li><a href="{{ route('users.index') }}">User</a></li>
                 <li><a href="{{ route('client-name') }}">Client</a></li>
                 <li><a href="{{ route('all-cases') }}">Case</a></li>
                 <li>Counsel</li>
@@ -329,6 +329,16 @@ nav.mt-2 a.nav-link{
                 </p>
             </a>
         </li>
+        <li class="nav-item"><a class="nav-link"> <img class="allDisplay" src="{{ asset('login_assets/img/account.jpg') }}" width="23px" style="display: none; float: left; margin-right: 5px;s" /> <p class="menuLabel">Account</p></a>
+              <ul>
+                <li><a href="{{ route('billing') }}">Billings</a></li>
+                <li><a href="{{ route('ledger-entry.index') }}">Ledger-Entry</a></li>
+                <li><a href="{{ route('ledger-report') }}">Ledger-Report</a></li>
+                <li><a href="{{ route('balance-report') }}">Balance-Report</a></li>
+                <li><a href="{{ route('billing-report') }}">Billing-Report</a></li>                
+                <li><a href="{{ route('income-expense-report') }}">Income Expense-Report</a></li>
+              </ul>
+        </li>
       </ul>
     </div>
 
@@ -340,14 +350,14 @@ nav.mt-2 a.nav-link{
                 data-accordion="false">
                 @canany(['civil-cases-list', 'criminal-cases-list', 'service-matter-list', 'quassi-judicial-cases-list',
                     'high-court-cases-list', 'appellate-court-cases-list', 'search-wizard-list', 'billing-list'])
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a href="#" class="nav-link">
                             <!--<i class="nav-icon fas fa-circle"></i>-->
-                            <img src="{{ asset('login_assets/img/litigation.jpg') }}" width="23px" />
+                        <!--    <img src="{{ asset('login_assets/img/litigation.jpg') }}" width="23px" />
                             <p>
                                 Litigation
                                 <!--<i class="right fas fa-angle-left"></i>-->
-                            </p>
+                       <!--     </p>
                         </a>
                         <!--<ul class="nav nav-treeview">
                             @canany(['civil-cases-list', 'criminal-cases-list', 'service-matter-list',
@@ -454,7 +464,7 @@ nav.mt-2 a.nav-link{
                                             </li>
                                             @endcanany --}}
                                         </ul>-->
-                                    </li>
+                                <!--    </li>-->
                                     <li class="nav-item">
                                         <a href="{{ route('legal-service') }}" class="nav-link">
                                             <!--<i class="nav-icon fas fa-circle"></i>-->
@@ -465,36 +475,26 @@ nav.mt-2 a.nav-link{
                                             </p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link"> <img src="{{ asset('login_assets/img/task.jpg') }}" width="23px" /> <p class="menuLabel">Task</p></a>        
-
-                                                <!--<i class="right fas fa-angle-left"></i>-->
-                                               <ul>
-                                                    <li>User</li>
-                                                    <li><a href="{{ route('client-name') }}">Client</a></li>
-                                                    <li><a href="{{ route('all-cases') }}">Case</a></li>
-                                                </ul>                                   
-                                    </li>
-                                    <li class="nav-item">
+                                   <!-- <li class="nav-item">
                                         <a href="{{ route('employee-new') }}" class="nav-link">
                                             <!--<i class="nav-icon fas fa-circle"></i>-->
-                                            <img src="{{ asset('login_assets/img/hr.jpg') }}" width="23px" />
+                                            <!--<img src="{{ asset('login_assets/img/hr.jpg') }}" width="23px" />
                                             <p>
                                                 HR
                                                 <!--<i class="right fas fa-angle-left"></i>-->
-                                            </p>
+                                            <!--</p>
                                         </a>
-                                    </li>
-                                    <li class="nav-item">
+                                    </li>-->
+                                    <!--<li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <!--<i class="nav-icon fas fa-circle"></i>-->
-                                            <img src="{{ asset('login_assets/img/account.jpg') }}" width="23px" />
+                                         <!--   <img src="{{ asset('login_assets/img/account.jpg') }}" width="23px" />
                                             <p>
                                                 Account
                                                 <!--<i class="right fas fa-angle-left"></i>-->
-                                            </p>
+                                            <!--</p>
                                         </a>
-                                    </li>
+                                    </li>-->
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <!--<i class="nav-icon fas fa-circle"></i>-->

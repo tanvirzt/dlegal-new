@@ -1,6 +1,12 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
-
+<style type="text/css">
+    .card-title, .content-header h1{
+        color: #0CA2A3 !important;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -139,7 +145,7 @@
 
                                             <div class="float-right">
                                                 <button type="submit" id="submit"
-                                                    class="btn btn-primary text-uppercase"><i class="fas fa-search"></i>
+                                                    class="btn btn-primary text-uppercase submitForm"><i class="fas fa-search"></i>
                                                     Search
                                                 </button>
                                             </div>

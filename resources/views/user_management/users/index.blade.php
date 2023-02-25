@@ -55,11 +55,11 @@
                                     <thead>
                                     <tr>
 
-                                        <th class="text-center text-nowrap">No</th>
-                                        <th class="text-center text-nowrap">Name</th>
-                                        <th class="text-center text-nowrap">Email</th>
-                                        <th class="text-center text-nowrap">Roles</th>
-                                        <th class="text-center text-nowrap">Action</th>
+                                        <th class="text-left text-nowrap">No</th>
+                                        <th class="text-left text-nowrap">Name</th>
+                                        <th class="text-left text-nowrap">Email</th>
+                                        <th class="text-left text-nowrap">Roles</th>
+                                        <th class="text-left text-nowrap">Action</th>
 
                                     </tr>
                                     </thead>
@@ -67,16 +67,16 @@
                                     @foreach ($data as $key => $user)
 
                                         <tr>
-                                            <td class="text-center">
+                                            <td class="text-left">
                                                 {{ ++$i }}
                                             </td>
-                                            <td class="text-center">
+                                            <td class="text-left">
                                                 {{ $user->name }}
                                             </td>
-                                            <td class="text-center">
+                                            <td class="text-left">
                                                 {{ $user->email }}
                                             </td>
-                                            <td class="text-center">
+                                            <td class="text-left">
                                                 @if(!empty($user->getRoleNames()))
                                                     @foreach($user->getRoleNames() as $v)
                                                         <button type="button" class="btn-custom btn-success-custom text-uppercase"> {{ $v }}
@@ -86,7 +86,7 @@
                                             </td>
 
 
-                                            <td class="text-center">
+                                            <td class="text-left">
                                                 @can('user-edit')
                                                     <a href="{{ route('users.edit',$user->id) }}">
                                                         <button class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"

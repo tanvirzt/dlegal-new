@@ -1,5 +1,19 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
+<style type="text/css">
+    .card-title, .content-header h1{
+        color: #0CA2A3 !important;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .date_second_span {
+        padding-top: 10px;
+    }   
+
+    .date_span{
+        width: 100% !important;
+    }
+</style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -60,7 +74,7 @@
                                         <form method="get" action="{{ route('income-expense-report-search') }}">
                                             {{-- @csrf --}}
                                             <div class="row">
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="class_of_cases" class="col-form-label">Client</label>
                                                         <div class="">
@@ -80,7 +94,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="ledger_type" class="col-form-label">Ledger Type</label>
                                                         <div>
@@ -100,7 +114,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label">From Date </label>
                                                         <div class="">
@@ -119,7 +133,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="case_type_id" class="col-form-label"> To Date </label>
                                                         <div class="">
@@ -137,9 +151,9 @@
                                                 </div>
                                             </div>
 
-                                            <div class="float-right">
+                                            <div class="float-right" style="width:100%;text-align: right;">
                                                 <button type="submit" id="submit"
-                                                    class="btn btn-primary text-uppercase"><i class="fas fa-search"></i>
+                                                    class="btn btn-primary text-uppercase submitForm"><i class="fas fa-search"></i>
                                                     Search
                                                 </button>
                                             </div>
@@ -234,16 +248,16 @@
 
                                             <div class="row">
                                                 <div class="col-12 table-responsive">
-                                                    <table class="table table-bordered">
+                                                    <table class="table table-bordered reportSearch">
 
                                                         <thead>
                                                             <tr>
-                                                                <th class="text-center">SL</th>
-                                                                <th class="text-center">Transaction Date</th>
-                                                                <th class="text-center">Ledger Head Bill</th>
-                                                                <th class="text-center">Income</th>
-                                                                <th class="text-center">Expense</th>
-                                                                <th class="text-center">Remarks</th>
+                                                                <th class="text-left">SL</th>
+                                                                <th class="text-left">Transaction Date</th>
+                                                                <th class="text-left">Ledger Head Bill</th>
+                                                                <th class="text-left">Income</th>
+                                                                <th class="text-left">Expense</th>
+                                                                <th class="text-left">Remarks</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>

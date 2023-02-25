@@ -1,5 +1,12 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
+<style type="text/css">
+.card-title{
+    color: #0CA2A3 !important;
+    font-weight: bold;
+    font-size: 22px;
+}
+</style>
     <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
@@ -58,50 +65,50 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="case_no" class="col-sm-4 col-form-label">Name</label>
-                                            <div class="col-sm-8">
+                                            <label for="case_no" class="col-sm-12 col-form-label">Name</label>
+                                            <div class="col-sm-12">
                                                 {!! Form::text('name', null, array('class' => 'form-control')) !!}
                                                 @error('case_no')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="case_notes" class="col-sm-4 col-form-label"> Email </label>
-                                            <div class="col-sm-8">
+                                            <label for="case_notes" class="col-sm-12 col-form-label"> Email </label>
+                                            <div class="col-sm-12">
                                                 {!! Form::text('email', null, array('class' => 'form-control')) !!}
                                                 @error('case_notes')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="trial_court" class="col-sm-4 col-form-label">Password</label>
-                                            <div class="col-sm-8">
+                                            <label for="trial_court" class="col-sm-12 col-form-label">Password</label>
+                                            <div class="col-sm-12">
                                                 {!! Form::password('password', array('class' => 'form-control')) !!}
                                                 @error('trial_court')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="total_legal_bill_amount" class="col-sm-4 col-form-label">Confirm Password</label>
-                                            <div class="col-sm-8">
+                                            <label for="total_legal_bill_amount" class="col-sm-12 col-form-label">Confirm Password</label>
+                                            <div class="col-sm-12">
                                                 {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
                                                 @error('total_legal_bill_amount')<span
                                                     class="text-danger">{{$message}}</span>@enderror
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="case_subcategory_id" class="col-sm-4 col-form-label">Role</label>
-                                            <div class="col-sm-8">
+                                            <label for="case_subcategory_id" class="col-sm-12 col-form-label">Role</label>
+                                            <div class="col-sm-12">
                                                 {!! Form::select('roles[]', $roles,$userRole, array('data-placeholder' => 'Select','class' => 'form-control select2','multiple')) !!}
 
                                                 @error('case_subcategory_id')<span

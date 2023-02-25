@@ -415,7 +415,7 @@ padding:
 }
 
 .date_span{
-    position: relative;display: inline-block;border: 1px solid #a9a9a9;height: 26px;width: 318px;border-radius: 4px;
+    position: relative;display: inline-block;border: 1px solid #0CA2A3;height: 40px;width: 318px;border-radius: 4px;
 }
 .date_span_steps{
     position: relative;display: inline-block;border: 1px solid #a9a9a9;height: 26px;width: 110px;border-radius: 4px;
@@ -1301,4 +1301,54 @@ tbody tr:hover {
     color: #0CA2A3 !important;
     font-size: 22px;
     font-weight: bold;
+}
+
+.sidebar-dark-primary a{
+    color: #0CA2A3 !important;
+}
+
+.btn-success-custom {
+  font-family: inherit !important;
+  /*font-size: 11px !important;*/
+  letter-spacing: 1px !important;
+  line-height: 15px !important;
+  border: none !important;
+  color: #000;
+}
+
+.btn-info{
+    color: black;
+    background: none;
+    border: none;
+    font-size: 15px;
+}
+.btn-danger {
+  color: #000;
+  background-color: #fff;
+  border-color: none;
+  box-shadow: none;
+  font-size: 13px !important;
+  border: 0px;
+}
+
+.icheck-success > input:first-child:checked + input[type="hidden"] + label::before, .icheck-success > input:first-child:checked + label::before {
+  background-color: #0CA2A3 !important; 
+  border-color: #0CA2A3 !important;
+}
+
+[class*="icheck-"] > input:first-child + input[type="hidden"] + label::before, [class*="icheck-"] > input:first-child + label::before {
+  border: 1px solid #0CA2A3 !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+  border: 1px solid #0CA2A3;
+}
+
+.reportSearch thead tr th{
+  background-color: #0CA2A3;
+  color: #fff;   
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 6px;
 }

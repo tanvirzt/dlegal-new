@@ -1,5 +1,13 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
+
+<style type="text/css">
+    .card-title, .content-header h1{
+        color: #0CA2A3 !important;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -171,7 +179,7 @@
 
                                             <div class="float-right">
                                                 <button type="submit" id="submit"
-                                                    class="btn btn-primary text-uppercase"><i class="fas fa-search"></i>
+                                                    class="btn btn-primary text-uppercase submitForm"><i class="fas fa-search"></i>
                                                     Search
                                                 </button>
                                             </div>
@@ -327,20 +335,20 @@
 
                                                 <div class="col-12 table-responsive">
 
-                                                    <table class="table table-bordered">
+                                                    <table class="table table-bordered reportSearch">
                                                         <thead>
                                                             <tr>
-                                                                <th class="text-center">SL</th>
-                                                                <th class="text-center">Bill No</th>
-                                                                <th class="text-center">Billing Date</th>
+                                                                <th class="text-left">SL</th>
+                                                                <th class="text-left">Bill No</th>
+                                                                <th class="text-left">Billing Date</th>
 
-                                                                <th class="text-nowrap">Payment Type</th>
-                                                                <th class="text-center">Paid Date</th>
-                                                                <th class="text-center">Bill Amount</th>
-                                                                <th class="text-center">Received Amount</th>
+                                                                <th class="text-left">Payment Type</th>
+                                                                <th class="text-left">Paid Date</th>
+                                                                <th class="text-left">Bill Amount</th>
+                                                                <th class="text-left">Received Amount</th>
 
-                                                                <th class="text-center">Due Amount</th>
-                                                                <th class="text-center">Remarks</th>
+                                                                <th class="text-left">Due Amount</th>
+                                                                <th class="text-left">Remarks</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>

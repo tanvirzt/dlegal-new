@@ -1,5 +1,12 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
+<style type="text/css">
+    .card-title, .content-header h1{
+        color: #0CA2A3 !important;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -171,7 +178,7 @@
 
                                             <div class="float-right">
                                                 <button type="submit" id="submit"
-                                                    class="btn btn-primary text-uppercase"><i class="fas fa-search"></i>
+                                                    class="btn btn-primary text-uppercase submitForm"><i class="fas fa-search"></i>
                                                     Search
                                                 </button>
                                             </div>
@@ -230,7 +237,17 @@
                                                     </h4>
                                                 </div>
                                                 <h2 style="font-weight: bold;padding-left:600px;padding-top:20px;">
-                                                    LEDGER REPORT</h2>
+                                                    LEDGER REPORT
+                                                    <p style="font-size: 14px; text-align: center;">Lawyer Payment</p>
+                                                    <p style="font-size: 14px; text-align: center;">@if (!empty($request_data['from_date']))
+                                                            @if ($request_data['from_date'] != 'dd-mm-yyyy')
+                                                                From:
+                                                                    {{ $request_data['from_date'] }},
+                                                                    To: {{ $request_data['to_date'] }}
+                                                            @endif
+                                                        @endif</p>
+                                                </h2><br>
+                                                    
 
 
                                             </div>
@@ -248,6 +265,7 @@
                                                             @endphp
                                                             <h4>Client Name:
                                                                 {{ $clientName->client_name }}
+
                                                             </h4>
                                                         @endif
                                                     </span>
@@ -348,17 +366,17 @@
                                                     <table class="table table-bordered">
                                                         <thead>
                                                             <tr>
-                                                                <th class="text-center">SL</th>
-                                                                <th class="text-center">Bill No</th>
-                                                                <th class="text-center">Billing Date</th>
+                                                                <th class="text-left">SL</th>
+                                                                <th class="text-left">Bill No</th>
+                                                                <th class="text-left">Billing Date</th>
 
-                                                                <th class="text-nowrap">Payment Type</th>
-                                                                <th class="text-center">Paid Date</th>
-                                                                <th class="text-center">Bill Amount</th>
-                                                                <th class="text-center">Paid Amount</th>
+                                                                <th class="text-left">Payment Type</th>
+                                                                <th class="text-left">Paid Date</th>
+                                                                <th class="text-left">Bill Amount</th>
+                                                                <th class="text-left">Paid Amount</th>
 
-                                                                <th class="text-center">Due Amount</th>
-                                                                <th class="text-center">Remarks</th>
+                                                                <th class="text-left">Due Amount</th>
+                                                                <th class="text-left">Remarks</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -389,7 +407,7 @@
                                                                             $i = $loop->index;
                                                                         @endphp
                                                                         <td>
-                                                                            {{ $loop->index }}
+                                                                            {{ $loop->index+1 }}
                                                                         </td>
 
                                                                         <td>
