@@ -261,12 +261,12 @@ nav.mt-2 a.nav-link{
                 <li><a href="{{ route('users.index') }}">User</a></li>
                 <li><a href="{{ route('client-name') }}">Client</a></li>
                 <li><a href="{{ route('all-cases') }}">Case</a></li>
-                <li><a href="#">Counsel</a></li>
+                <li><a href="{{ route('counsel') }}">Counsel</a></li>
                 <li><a href="#">Case Proceedings</a></li>
-                <li><a href="#">Documents</a></li>
+                <li><a href="{{ route('documents-setup') }}">Documents</a></li>
                 <li><a href="{{ route('billing') }}">Billings</a></li>
-                <li><a href="#">Opposition</a></li>
-                <li><a href="#">Area</a></li>
+                <li><a href="{{ route('opposition') }}">Opposition</a></li>
+                <li><a href="{{ route('area') }}">Area</a></li>
                 <li><a href="{{ route('legal-service') }}">Legal Service</a></li>
                 <!--<li>
                   <ul>
