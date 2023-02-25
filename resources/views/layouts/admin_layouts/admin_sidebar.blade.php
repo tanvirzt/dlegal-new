@@ -31,7 +31,7 @@
     .sidebar-dark-primary a {
       color: #fff !important;
       padding: 12px !important;
-      color: #017EFA !important;
+      color: #000 !important;
       border-top-left-radius: 3px;
       border-bottom-left-radius: 3px;
     }
@@ -94,7 +94,7 @@
     padding:0;
     line-height:2em;
     color:#0CA2A3;
-    font-weight:700;
+    font-weight:400;
     position:relative;
 }
 

@@ -1,11 +1,15 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
-    <style type="text/css">
+<style type="text/css">
     .card-title, .content-header h1{
         color: #0CA2A3 !important;
         font-weight: bold;
         font-size: 18px;
+    }
+
+    .colorColl .col-sm-3{
+        float: left;
     }
 </style>
     <div class="content-wrapper">
@@ -51,8 +55,185 @@
                                 </div>
 
                             </div>
+
+
+
+<!-- /.card-header -->
+                            <div class="card-body colorColl">
+                                <div class="col-sm-3"><span style="color: grey; font-weight: bold; font-size: 16px;">To Do</span></div>
+                                <div class="col-sm-3"><span style="color: yellow; font-weight: bold; font-size: 16px">In Progress</span></div>
+                                <div class="col-sm-3"><span style="color: red; font-weight: bold; font-size: 16px">Due</span></div>
+                                <div class="col-sm-3"><span style="color: green; font-weight: bold; font-size: 16px">Completed</span></div>
+                            </div>
+                            <hr style="height:1px; background: 1px solid rgba(0,0,0,.125);">
+                            @php
+
+                                $greenArray = array();
+                                $redArray=array();
+                                $yellowArray=array();
+                                $greyArray=array();
+
+                                foreach ($data as $datum){
+
+                                    //echo $datum->title;
+
+                                            if ($datum->current_status == 'To Do')  
+                                                $greyArray[] = array($datum->current_status, $datum->title, $datum->date, $datum->priority);
+                                            else if ($datum->current_status == 'In Progress')
+                                                  $yellowArray[] = array($datum->current_status, $datum->title, $datum->date, $datum->priority);    
+                                            else if ($datum->current_status == 'Due')
+                                                  $redArray[] = array($datum->current_status, $datum->title,  $datum->date, $datum->priority);  
+                                            else
+                                                  $greenArray[] = array($datum->current_status, $datum->title, $datum->date, $datum->priority);  
+
+                                }   
+
+                                
+                                    $arrayCountMax = 0;
+
+                                    if (count($greenArray) > $arrayCountMax){
+                                        $arrayCountMax = count($greenArray);
+                                    }if (count($redArray) > $arrayCountMax){
+                                        $arrayCountMax = count($redArray);
+                                    }if (count($yellowArray) > $arrayCountMax){
+                                        $arrayCountMax = count($yellowArray);
+                                    }if (count($greyArray) > $arrayCountMax){
+                                        $arrayCountMax = count($greyArray);
+                                    }
+                                    //echo $arrayCountMax;
+//print_r($redArray);
+
+                    echo '<div class="card-body colorColl">';            
+
+                        echo '<div class="col-sm-3"><table width="100%"><thead>';
+                            for ($i=0; $i<$arrayCountMax;$i++){
+                                if (count($greyArray)>0 && $greyArray[$i][1]!=''){    
+                                    echo '<tr class="nobackground"><td><p style="width:100%; margin-bottom: 40px;"><span class="todoName">'.$greyArray[$i][1].'</span><span class="todoDate">'.date("d-m-Y", strtotime($greyArray[$i][2])).'</span></p><p style="text-align: right;">
+                                        <a href="{{ route(\'task.show\', $greenArray[$i][0]) }}"><button
+                                                            class="btn btn-primary btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"><i
+                                                                class="fas fa-eye"></i></button></a>
+
+                                        <a href="{{ route(\'task.edit\', $greenArray[$i][0]) }}"><button
+                                                            class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"><i
+                                                                class="fas fa-edit"></i></button></a>';
+
+                                    echo '</p><p style="width: 100%; background: grey; height: 6px;"></p></td></tr>';
+                                }else{
+                                    echo '<tr class="nobackground"><td><p style="width:100%; margin-bottom: 40px;"><span class="todoName"></span><span class="todoDate"></span></p><p style="width: 100%; height: 6px;"></p></td></tr>';
+                                }
+                            }        
+                        echo '</thead></table></div>';
+                        echo '<div class="col-sm-3"><table width="100%"><thead>';
+                            for ($j=0; $j<$arrayCountMax;$j++){
+                                if (count($yellowArray)>0 && $yellowArray[$j][1]!=''){
+                                    echo '<tr class="nobackground"><td><p style="width:100%; margin-bottom: 40px;"><span class="todoName">'.$yellowArray[$j][1].'</span><span class="todoDate">'.date("d-m-Y", strtotime($yellowArray[$j][2])).'</span></p><p style="text-align: right;">
+                                        <a href="{{ route(\'task.show\', $greenArray[$j][0]) }}"><button
+                                                            class="btn btn-primary btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"><i
+                                                                class="fas fa-eye"></i></button></a>
+
+                                        <a href="{{ route(\'task.edit\', $greenArray[$j][0]) }}"><button
+                                                            class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"><i
+                                                                class="fas fa-edit"></i></button></a>';
+
+                                                   
+
+                                    echo '</p><p style="width: 100%; background: yellow; height: 6px;"></p></td></tr>';
+                                }else{
+                                    echo '<tr class="nobackground"><td><p style="width:100%; margin-bottom: 40px;"><span class="todoName"></span><span class="todoDate"></span></p><p style="width: 100%; height: 6px;"></p></td></tr>';
+                                }
+                            }        
+                        echo '</thead></table></div>';
+                        echo '<div class="col-sm-3"><table width="100%"><thead>';
+                            for ($k=0; $k<$arrayCountMax;$k++){
+                                if (count($redArray)>0 && $redArray[$k][1]!=''){
+                                    echo '<tr class="nobackground"><td><p style="width:100%; margin-bottom: 40px;"><span class="todoName">'.$redArray[$k][1].'</span><span class="todoDate">'.date("d-m-Y", strtotime($redArray[$k][2])).'</span></p>
+                                        <p style="text-align: right;">
+
+                                        <a href="{{ route(\'task.show\', $greenArray[$k][0]) }}"><button
+                                                            class="btn btn-primary btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"><i
+                                                                class="fas fa-eye"></i></button></a>
+
+                                        <a href="{{ route(\'task.edit\', $greenArray[$k][0]) }}"><button
+                                                            class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"><i
+                                                                class="fas fa-edit"></i></button></a>';
+
+                                                 
+
+                                    echo '</p><p style="width: 100%; background: red; height: 6px;"></p></td></tr>';
+                                }else{
+                                    echo '<tr class="nobackground"><td><p style="width:100%; margin-bottom: 40px;"><span class="todoName"></span><span class="todoDate"></span></p><p style="width: 100%; height: 6px;"></p></td></tr>';
+                                }
+                            }        
+                        echo '</thead></table></div>';
+                        echo '<div class="col-sm-3"><table width="100%"><thead>';
+                            for ($l=0; $l<$arrayCountMax;$l++){
+                                if (count($greenArray)>0 && $greenArray[$l][1]!=''){
+                                    echo '<tr class="nobackground"><td><p style="width:100%; margin-bottom: 40px;"><span class="todoName">'.$greenArray[$l][1].'</span><span class="todoDate">'.date("d-m-Y", strtotime($greenArray[$l][2])).'</span></p><p style="text-align: right;">
+
+                                        <a href="{{ route(\'task.show\', $greenArray[$l][0]) }}"><button
+                                                            class="btn btn-primary btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"><i
+                                                                class="fas fa-eye"></i></button></a>
+
+                                        <a href="{{ route(\'task.edit\', $greenArray[$l][0]) }}"><button
+                                                            class="btn btn-info btn-sm" data-toggle="tooltip"
+                                                            data-placement="top" title="Edit"><i
+                                                                class="fas fa-edit"></i></button></a>';
+
+                                              
+                                    echo '</p><p style="width: 100%; background: green; height: 6px;"></p></td></tr>';
+                                }else{
+                                    echo '<tr class="nobackground"><td><p style="width:100%; margin-bottom: 40px;"><span class="todoName"></span><span class="todoDate"></span></p><p style="width: 100%; height: 6px;"></p></td></tr>';
+                                }
+                            }        
+                        echo '</thead></table></div>';
+
+
+
+
+                    echo '</div>';
+
+
+ @endphp
+
+<style>
+
+    .nobackground{
+        background: #fff !important;
+        padding: 0 10px !important;
+    }
+
+    .todoName{
+        text-align: left;
+        display: block;
+        width: 50%;
+        float: left;
+        font-size: 12px;
+    }
+    .todoDate{
+        text-align: right;
+        display: block;
+        width: 50%;
+        float:left;
+        font-size: 12px;
+    }
+
+</style>
+
+
+
+
+
+
+
                             <!-- /.card-header -->
-                            <div class="card-body">
+                       <!--     <div class="card-body">
                                 <table id="data_table" class="table dataTable no-footer dtr-inline">
                                     <thead>
                                         <tr>
@@ -136,7 +317,7 @@
                                     </tbody>
 
                                 </table>
-                            </div>
+                            </div>-->
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->

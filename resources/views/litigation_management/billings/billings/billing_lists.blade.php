@@ -48,17 +48,11 @@
                                         </button>
                                     </div>
                                 </div>
-
-
                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                     data-parent="#accordion">
                                     <div class="card-body">
-
-
                                         <form id="form_data" method="post" action="{{ route('search-case-billings') }}">
                                             @csrf
-
-
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
