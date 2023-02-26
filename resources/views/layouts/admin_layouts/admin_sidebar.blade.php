@@ -292,6 +292,8 @@ nav.mt-2 a.nav-link{
                     <li><a href="{{ route('special-court-cases-all') }}">Special</a></li>
                     <li><a href="{{ route('high-court-cases') }}">High Court</a></li>
                     <li><a href="{{ route('appellate-court-cases') }}">Appellate Court</a></li>
+                    <li><a href="{{ route('litigation-calender-short') }}">Litigation Caleder</a></li>
+                    <li><a href="{{ route('litigation-calender-list') }}">Litigation Causelist</a></li>
                   </ul>
                 </li>
                 <li class="beforeNull"> <img src="{{ asset('login_assets/img/reports.png') }}" width="17px" style="display:block !important; float:left; margin-right: 5px; margin-top: 5px;" />Reports

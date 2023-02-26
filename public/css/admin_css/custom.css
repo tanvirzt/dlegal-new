@@ -1352,3 +1352,12 @@ tbody tr:hover {
 .select2-container--default .select2-selection--single .select2-selection__arrow {
   top: 6px;
 }
+
+
+.fc .fc-button-primary {
+  color: #fff;
+  background-color: #0CA2A3 !important;
+  background-color: var(--fc-button-bg-color, #0CA2A3) !important;
+  border-color: #2c3e50 !important;
+  border-color: var(--fc-button-border-color, #0CA2A3) !important;
+}

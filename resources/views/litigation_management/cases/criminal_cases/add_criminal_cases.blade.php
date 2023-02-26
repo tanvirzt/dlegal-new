@@ -175,6 +175,9 @@
                                                     <a class="nav-link" id="pills-news-tab" data-toggle="pill" href="#pills-news" role="tab" aria-controls="pills-news" aria-selected="false">Party Info</a>
                                                   </li>
                                                   <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="pills-lawyer-tab" data-toggle="pill" href="#pills-lawyer" role="tab" aria-controls="pills-lawyer" aria-selected="false">Lawyer Info</a>
+                                                  </li>
+                                                  <li class="nav-item" role="presentation">
                                                     <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Document Info</a>
                                                   </li>
                                                   <li class="nav-item" role="presentation">
@@ -1264,7 +1267,7 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                     
                                                   </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="pills-news" role="tabpanel" aria-labelledby="pills-news-tab">
+<div class="tab-pane fade" id="pills-news" role="tabpanel" aria-labelledby="pills-news-tab">
                                                   <div class="container-fluid">
 <div class="card allCard" style="width:100%">
                             <div class="card-header positionCard">
@@ -1600,113 +1603,7 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                             </div>
                         </div>
 
-                        <div class="card" style="height: 255px; width: 100%;">
-                            <div class="card-header positionCard">
-                                <h6 class="card-title text-uppercase"> Lawyer Information </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group row">
-                                    <label for="lawyer_advocate_id"
-                                           class="col-sm-4 col-form-label">Name of Advocate/Law Firm</label>
-                                    <div class="col-sm-8">
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="lawyer_advocate_id"
-                                                        class="form-control select2"
-                                                        id="lawyer_advocate_id">
-                                                    <option value="">Select</option>
-                                                    @foreach($chamber as $item)
-                                                      <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                       id="lawyer_advocate_write"
-                                                       name="lawyer_advocate_write"
-                                                       placeholder="Advocate Name"
-                                                       value="{{ old('lawyer_advocate_write') }}">
-                                            </div>
-                                        </div>
-
-                                        @error('client_profession_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="lead_laywer_name"
-                                           class="col-sm-4 col-form-label">Name of Lead Laywer</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="lead_laywer_name"
-                                                        class="form-control select2"
-                                                        id="lead_laywer_name">
-                                                    <option value="">Select</option>
-
-                                                    @foreach($leadLaywer as $item)
-                                                    <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
-                                                    @endforeach
-
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                       id="lead_laywer_name_extra"
-                                                       name="lead_laywer_name_extra"
-                                                       placeholder="Advocate Name"
-                                                       value="{{ old('lead_laywer_name_extra') }}">
-                                            </div>
-                                        </div>
-
-                                        @error('client_profession_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Name of Assigned
-                                        Lawyer</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="assigned_lawyer_id[]" class="form-control select2"
-                                                data-placeholder="Select">
-                                            <option value="">Select</option>
-
-                                            @foreach($assignedlaywer as $item)
-                                                    <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
-                                            @endforeach
-
-                                        </select>
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                       id="assigned_lawyer_extra"
-                                                       name="assigned_lawyer_extra"
-                                                       placeholder="Advocate Name"
-                                                       value="{{ old('assigned_lawyer_extra') }}">
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="lawyers_remarks"
-                                           class="col-sm-4 col-form-label"> Remarks </label>
-                                    <div class="col-sm-8">
-                                    <textarea name="lawyers_remarks" class="form-control"
-                                              rows="3"
-                                              placeholder="">{{old('lawyers_remarks')}}</textarea>
-                                        @error('lawyers_remarks')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      
 
                         <div class="card allCard" style="width:100%">
                             <div class="card-header positionCard">
@@ -2058,6 +1955,132 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                             </div>
                         </div>
 
+                        
+
+
+                                                  </div>
+                                                </div>
+
+
+
+
+
+
+<div class="tab-pane fade" id="pills-lawyer" role="tabpanel" aria-labelledby="pills-lawyer-tab">
+    <div class="container-fluid">
+        <div class="card allCard" style="width:100%">
+
+
+
+
+                        <div class="card" style="height: 355px; width: 100%;">
+                            <div class="card-header positionCard">
+                                <h6 class="card-title text-uppercase"> Lawyer Information </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="lawyer_advocate_id"
+                                           class="col-sm-4 col-form-label">Name of Advocate/Law Firm</label>
+                                    <div class="col-sm-8">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <select name="lawyer_advocate_id"
+                                                        class="form-control select2"
+                                                        id="lawyer_advocate_id">
+                                                    <option value="">Select</option>
+                                                    @foreach($chamber as $item)
+                                                      <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control"
+                                                       id="lawyer_advocate_write"
+                                                       name="lawyer_advocate_write"
+                                                       placeholder="Advocate Name"
+                                                       value="{{ old('lawyer_advocate_write') }}">
+                                            </div>
+                                        </div>
+
+                                        @error('client_profession_id')<span
+                                            class="text-danger">{{$message}}</span>@enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="lead_laywer_name"
+                                           class="col-sm-4 col-form-label">Name of Lead Laywer</label>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <select name="lead_laywer_name"
+                                                        class="form-control select2"
+                                                        id="lead_laywer_name">
+                                                    <option value="">Select</option>
+
+                                                    @foreach($leadLaywer as $item)
+                                                    <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
+                                                    @endforeach
+
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control"
+                                                       id="lead_laywer_name_extra"
+                                                       name="lead_laywer_name_extra"
+                                                       placeholder="Advocate Name"
+                                                       value="{{ old('lead_laywer_name_extra') }}">
+                                            </div>
+                                        </div>
+
+                                        @error('client_profession_id')<span
+                                            class="text-danger">{{$message}}</span>@enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Name of Assigned
+                                        Lawyer</label>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <select name="assigned_lawyer_id[]" class="form-control select2"
+                                                data-placeholder="Select">
+                                            <option value="">Select</option>
+
+                                            @foreach($assignedlaywer as $item)
+                                                    <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
+                                            @endforeach
+
+                                        </select>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control"
+                                                       id="assigned_lawyer_extra"
+                                                       name="assigned_lawyer_extra"
+                                                       placeholder="Advocate Name"
+                                                       value="{{ old('assigned_lawyer_extra') }}">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="lawyers_remarks"
+                                           class="col-sm-4 col-form-label"> Remarks </label>
+                                    <div class="col-sm-8">
+                                    <textarea name="lawyers_remarks" class="form-control"
+                                              rows="3"
+                                              placeholder="">{{old('lawyers_remarks')}}</textarea>
+                                        @error('lawyers_remarks')<span
+                                            class="text-danger">{{$message}}</span>@enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="card oppLowyer" style="width:100%">
                             <div class="card-header positionCard">
                                 <h6 class="card-title text-uppercase"> Lawyer Information ( Opposition Lawyer) </h6>
@@ -2131,8 +2154,30 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                         </div>
 
 
-                                                  </div>
-                                                </div>
+
+
+        </div> 
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                                                   <div class="container-fluid">
                                                     <div class="card" style="width:100%">
