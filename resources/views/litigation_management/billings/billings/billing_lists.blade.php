@@ -1,6 +1,13 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
+    <style type="text/css">
+    .card-title, .content-header h1{
+        color: #0CA2A3 !important;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -32,7 +39,7 @@
                         </div>
                     @endif
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card">
                             <div id="accordion">
 
@@ -164,7 +171,7 @@
                                                         <p class="text-muted text-sm"><b>Bill Type: </b> {{ $datum->bill_type_name }}  </p>
                                                         <p class="text-muted text-sm"><b>Payment Type: </b> {{ $datum->payment_type }}  </p>
                                                         <p class="text-muted text-sm"><b>District: </b> {{ $datum->district_name }}  </p>
-                                                        <p class="text-muted text-sm"><b>Case Type: </b> {{  $datum->case_type }}  </p>
+                                                        <p class="text-muted text-sm"><b>Case Type: </b> {{  @$datum->case_type }}  </p>
                                                         <p class="text-muted text-sm"><b>Case No: </b> {{ $datum->case_no }}  </p>
                                                         <p class="text-muted text-sm"><b>Panel Lawyer: </b> {{ $datum->first_name }} {{ $datum->middle_name }} {{ $datum->last_name }} </p>
                                                         <p class="text-muted text-sm"><b>Bill Amount: </b> {{ $datum->bill_amount }}  </p>

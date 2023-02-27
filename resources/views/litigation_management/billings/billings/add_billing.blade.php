@@ -1,6 +1,13 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
+    <style type="text/css">
+    .card-title, .content-header h1{
+        color: #0CA2A3 !important;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -45,13 +52,13 @@
                                 @csrf
                                 <div class="card-body">
 
-                                    <div class="row" style="padding-left:300px">
+                                    <div class="row">
                                         <div class="col-md-12">
 
-                                            <div class="col-md-8">
+                                            <div class="col-md-12">
                                                 <div class="form-group row">
-                                                    <label for="case_no" class="col-sm-4 col-form-label">Bill Type</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="case_no" class="col-sm-12 col-form-label">Bill Type</label>
+                                                    <div class="col-sm-12">
                                                         <select name="bill_type_id" class="form-control select2"
                                                             id="bill_type_id">
                                                             <option value=""> Select </option>
@@ -67,9 +74,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="payment_type" class="col-sm-4 col-form-label"> Payment Type
+                                                    <label for="payment_type" class="col-sm-12 col-form-label"> Payment Type
                                                     </label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-12">
                                                         <select name="payment_type" class="form-control select2"
                                                             id="payment_type">
                                                             <option value=""> Select </option>
@@ -84,8 +91,8 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="district_id"
-                                                        class="col-sm-4 col-form-label">District</label>
-                                                    <div class="col-sm-8">
+                                                        class="col-sm-12 col-form-label">District</label>
+                                                    <div class="col-sm-12">
                                                         <select name="district_id" class="form-control select2"
                                                             id="district_id">
                                                             <option value=""> Select </option>
@@ -102,9 +109,9 @@
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label for="case_type_id" class="col-sm-4 col-form-label"> Case Type
+                                                    <label for="case_type_id" class="col-sm-12 col-form-label"> Case Type
                                                     </label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-12">
                                                         <select name="case_type_id" class="form-control select2"
                                                             id="case_type_id" action="{{ route('find-case-no') }}">
                                                             <option value=""> Select </option>
@@ -120,9 +127,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="class_of_cases" class="col-sm-4 col-form-label"> Class of
+                                                    <label for="class_of_cases" class="col-sm-12 col-form-label"> Class of
                                                         Cases </label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-12">
                                                         <select name="class_of_cases" class="form-control select2"
                                                             @if (!empty($case_class)) disabled @endif
                                                             id="class_of_cases" action="{{ route('find-case-no') }}">
@@ -147,8 +154,8 @@
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label for="case_id" class="col-sm-4 col-form-label"> Case No </label>
-                                                    <div class="col-sm-8">
+                                                    <label for="case_id" class="col-sm-12 col-form-label"> Case No </label>
+                                                    <div class="col-sm-12">
                                                         <select name="case_no" class="form-control select2"
                                                             id="case_no"
                                                             @if (!empty($case_class)) disabled @endif>
@@ -172,9 +179,9 @@
                                                         name="case_no" value="{{ $case_class->id }}">
                                                 @endif
                                                 <div class="form-group row">
-                                                    <label for="panel_lawyer_id" class="col-sm-4 col-form-label">
+                                                    <label for="panel_lawyer_id" class="col-sm-12 col-form-label">
                                                         Lawyer</label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-12">
                                                         <select name="panel_lawyer_id" class="form-control select2">
                                                             <option value="">Select</option>
                                                             @foreach ($external_council as $item)
@@ -189,9 +196,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="bill_amount" class="col-sm-4 col-form-label">Bill
+                                                    <label for="bill_amount" class="col-sm-12 col-form-label">Bill
                                                         Amount</label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="bill_amount"
                                                             name="bill_amount" value="{{ old('bill_amount') }}">
                                                         @error('bill_amount')
@@ -200,11 +207,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-sm-12">
                                                 <div class="form-group row">
-                                                    <label for="date_of_billing" class="col-sm-4 col-form-label">Date of
+                                                    <label for="date_of_billing" class="col-sm-12 col-form-label">Date of
                                                         the Billing</label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-12">
 
                                                         <span class="date_span">
                                                             <input type="date" class="xDateContainer date_first_input"
@@ -221,9 +228,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row" id="bank" style="display: none;">
-                                                    <label for="bank_id" class="col-sm-4 col-form-label"> Name of Bank
+                                                    <label for="bank_id" class="col-sm-12 col-form-label"> Name of Bank
                                                     </label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-12">
                                                         <select name="bank_id" class="form-control select2"
                                                             id="bank_id" action="{{ route('find-bank-branch') }}">
                                                             <option value=""> Select </option>
@@ -239,9 +246,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row" id="branch" style="display: none;">
-                                                    <label for="branch_id" class="col-sm-4 col-form-label"> Branch
+                                                    <label for="branch_id" class="col-sm-12 col-form-label"> Branch
                                                     </label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-12">
                                                         <select name="branch_id" class="form-control select2"
                                                             id="branch_id">
                                                             <option value=""> Select </option>
@@ -253,9 +260,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row" id="cheque" style="display: none;">
-                                                    <label for="cheque_no" class="col-sm-4 col-form-label">Checque
+                                                    <label for="cheque_no" class="col-sm-12 col-form-label">Checque
                                                         No.</label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="cheque_no"
                                                             name="cheque_no" value="{{ old('cheque_no') }}">
                                                         @error('cheque_no')
@@ -264,17 +271,17 @@
                                                     </div>
                                                 </div>
                                                 {{-- <div class="form-group row" id="payment_amounts">
-                                                <label for="payment_amount" class="col-sm-4 col-form-label">Payment Amount</label>
-                                                <div class="col-sm-8">
+                                                <label for="payment_amount" class="col-sm-12 col-form-label">Payment Amount</label>
+                                                <div class="col-sm-12">
                                                     <input type="text" class="form-control" id="payment_amount" name="payment_amount" value="{{old('payment_amount')}}">
                                                     @error('payment_amount')<span class="text-danger">{{$message}}</span>@enderror
                                                 </div>
                                               </div> --}}
                                                 <div class="form-group row" id="digital_payment_type"
                                                     style="display: none;">
-                                                    <label for="digital_payment_type_id" class="col-sm-4 col-form-label">
+                                                    <label for="digital_payment_type_id" class="col-sm-12 col-form-label">
                                                         Digital Payment Type </label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-12">
                                                         <select name="digital_payment_type_id"
                                                             class="form-control select2" id="digital_payment_type_id">
                                                             <option value=""> Select </option>
@@ -289,8 +296,8 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <div class=" mt-4" style="paddind-left:120px">
-                                                    <button type="submit" class="btn btn-primary text-uppercase"><i
+                                                <div class="col-sm-12" style="text-align: right;">
+                                                    <button type="submit" class="btn btn-primary text-uppercase submitForm"><i
                                                             class="fas fa-save"></i> Save</button>
                                                 </div>
                                             </div>
