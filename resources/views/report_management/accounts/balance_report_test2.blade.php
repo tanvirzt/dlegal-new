@@ -239,7 +239,20 @@
 
                                                         <small class="float-right"
                                                             style="font-weight: 600!important;font-size:100%!important;">
+                                                            <form method="get" action="{{ route('print-balance-report') }}"
+                                            target="_blank">
+                                            @csrf
+
+                                            {{--
+                                            <input type="hidden" name="client" value="{{ $request_data['client'] }}">
+                                            <input type="hidden" name="from_date"
+                                                value="{{ $request_data['from_date'] }}">
+                                            <input type="hidden" name="to_date" value="{{ $request_data['to_date'] }}">
+                                            <input type="hidden" name="class_of_cases"
+                                                value="{{ $request_data['class_of_cases'] }}">
+                                            <input type="hidden" name="case_no" value="{{ $request_data['case_no'] }}">
                                                             <button type="submit" class="btn btn-info btnPrint" data-toggle="tooltip" data-placement="top" title="Delete"> <i class="fas fa-print"></i> Print</button>
+                                                        </form>
                                                         </small>
                                                     </h4>
                                                 </div>

@@ -185,8 +185,7 @@
                                                 value="{{ $request_data['from_date'] }}">
                                             <input type="hidden" name="to_date" value="{{ $request_data['to_date'] }}">
 
-                                            <button type="submit" class="btn btn-info" data-toggle="tooltip"
-                                                data-placement="top" title="Delete"> <i class="fas fa-print"></i> Print
+                                            <button type="submit" class="btn btn-info submitForm" data-toggle="tooltip" data-placement="top" title="Delete" style="color: #fff;"> <i class="fas fa-print"></i> Print
                                             </button>
                                         </form>
 
@@ -205,12 +204,12 @@
                                                             alt="AdminLTE Logo" class="brand-image" style="opacity:1">
 
                                                         <small
-                                                            class="float-right"style="font-weight: bold;font-size:20px;">Date:
+                                                            class="float-right"style="margin-top: 30px;">Date:
                                                             {{ date('d-m-Y') }}</small>
                                                     </h4>
                                                 </div>
-                                                <h2 style="font-weight: bold;padding-left:500px;padding-top:20px;">INCOME
-                                                    EXPENSE REPORT</h2>
+                                                <h2 style="font-weight: bold;padding-left:500px;padding-top:20px;">Income
+Expense Report</h2>
                                             </div>
                                             <br>
                                             <br>

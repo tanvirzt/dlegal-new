@@ -1,5 +1,11 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
+<style type="text/css">
+    .reportSearch thead tr th {
+  background-color: #0CA2A3;
+  color: #fff;
+}
+</style>
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -169,7 +175,7 @@
 
                                             <div class="float-right">
                                                 <button type="submit" id="submit"
-                                                    class="btn btn-primary text-uppercase"><i class="fas fa-search"></i>
+                                                    class="btn btn-primary text-uppercase submitForm"><i class="fas fa-search"></i>
                                                     Search
                                                 </button>
                                             </div>
@@ -204,8 +210,8 @@
                                                 value="{{ $request_data['class_of_cases'] }}">
                                             <input type="hidden" name="case_no" value="{{ $request_data['case_no'] }}">
 
-                                            <button type="submit" class="btn btn-info" data-toggle="tooltip"
-                                                data-placement="top" title="Delete"> <i class="fas fa-print"></i> Print
+                                            <button type="submit" class="btn btn-info submitForm" data-toggle="tooltip"
+                                                data-placement="top" title="Delete" style="color:#fff;"> <i class="fas fa-print" style="color:#fff"></i> Print
                                             </button>
                                         </form>
                                     </div>
@@ -230,7 +236,7 @@
 
                                             <div class="row invoice-info pl-5">
                                                 <div class="col-sm-4 invoice-col"></div>
-                                                <div class="col-sm-4 invoice-col">
+                                                <div class="col-sm-4 invoice-col" style="text-align: center;">
                                                     {{-- <b>From</b>  --}}
 
 
@@ -273,14 +279,14 @@
 
                                                 <div class="col-12 table-responsive">
 
-                                                    <table class="table table-bordered">
+                                                    <table class="reportSearch table table-bordered">
                                                         <thead>
                                                             <tr>
-                                                                <th class="text-center">SL</th>
-                                                                <th class="text-center">Bill No</th>
-                                                                <th class="text-center">Billing Date</th>
+                                                                <th class="text-left">SL</th>
+                                                                <th class="text-left">Bill No</th>
+                                                                <th class="text-left">Billing Date</th>
 
-                                                                <th class="text-center">Bill Amount</th>
+                                                                <th class="text-left">Bill Amount</th>
 
                                                             </tr>
                                                         </thead>

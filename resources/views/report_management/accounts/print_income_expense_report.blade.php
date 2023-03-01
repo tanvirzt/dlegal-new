@@ -35,12 +35,12 @@
 
                         <h4>
                             <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="AdminLTE Logo"
-                                class="brand-image" style="opacity:1; padding-left:380px">
+                                class="brand-image" style="">
 
                             <small class="float-right" style="font-weight: 600!important;font-size:100%!important;">Date:
                                 16-01-2023</small>
                         </h4>
-                        <h2 style="font-weight: bold;padding-left:290px;padding-top:20px;">INCOME EXPENSE REPORT</h2>
+                        <h2 style="font-weight: bold;padding-left:290px;padding-top:20px;">Income Expense Report</h2>
 
                     </div>
                     <div class="row invoice-info">
@@ -59,7 +59,7 @@
                     </div>
 
 
-                    <table class="inventory">
+                    <table class="inventory reportSearch">
                         <thead>
                             <tr>
                                 <th class="text-center">SL</th>
