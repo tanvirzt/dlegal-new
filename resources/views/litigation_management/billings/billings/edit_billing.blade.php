@@ -50,7 +50,7 @@
                             <form action="{{ route('update-billing', $data->id) }}" method="post">
                                 @csrf
                                 <div class="card-body">
-
+                                 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
@@ -59,12 +59,13 @@
                                                     <select name="bill_type_id" class="form-control select2"
                                                         id="bill_type_id">
                                                         <option value=""> Select </option>
+                                                
                                                         @foreach ($bill_type as $item)
-                                                            <option value="{{ $item->id }}"
-                                                                {{ $data->bill_type_id == $item->id ? 'selected' : '' }}>
-                                                                {{ $item->bill_type_name }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                        <option value="{{ $item->id }}"   {{ $data->bill_type_id == $item->id ? 'selected' : '' }} >{{ $item->ledger_head_name }}</option>
+                                               
+                                                    @endforeach
+                                             
+                                                </select>
                                                     @error('bill_type_id')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror

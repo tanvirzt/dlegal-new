@@ -71,7 +71,7 @@
                                                     {{ $datum->billing_no }}
                                                 </td>
                                                 <td class="text-center">
-                                                    {{ $datum->ledger_head_name }}
+                                                    {{ $datum->bill_type_name }}
                                                 </td>
                                                 <td class="text-center">
                                                     {{ $datum->payment_type }}

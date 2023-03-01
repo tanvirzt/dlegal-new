@@ -264,7 +264,7 @@ nav.mt-2 a.nav-link{
                 <li><a href="{{ route('counsel') }}">Counsel</a></li>
                 <li><a href="#">Case Proceedings</a></li>
                 <li><a href="{{ route('documents-setup') }}">Documents</a></li>
-                <li><a href="{{ route('billing') }}">Billings</a></li>
+                <li><a href="{{ route('billings') }}">Billings</a></li>
                 <li><a href="{{ route('opposition') }}">Opposition</a></li>
                 <li><a href="{{ route('area') }}">Area</a></li>
                 <li><a href="{{ route('legal-service') }}">Legal Service</a></li>
@@ -342,7 +342,7 @@ nav.mt-2 a.nav-link{
         </li>
         <li class="nav-item"><a class="nav-link"> <img class="allDisplay" src="{{ asset('login_assets/img/account.jpg') }}" width="23px" style="display: none; float: left; margin-right: 5px;s" /> <p class="menuLabel">Account</p></a>
               <ul>
-                <li><a href="{{ route('billing') }}">Billings</a></li>
+                <li><a href="{{ route('billings') }}">Billings</a></li>
                 <li><a href="{{ route('ledger-entry.index') }}">Ledger-Entry</a></li>
                 <li><a href="{{ route('ledger-report') }}">Ledger-Report</a></li>
                 <li><a href="{{ route('balance-report') }}">Balance-Report</a></li>

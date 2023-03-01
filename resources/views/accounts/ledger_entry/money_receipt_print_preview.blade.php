@@ -78,6 +78,24 @@
             margin-left: 100px;
             width: 960px;
         }
+        .container {
+          width: 100%;
+          padding-right: 20px;
+          padding-left: 20px;
+          margin-right: auto;
+          margin-left: auto;
+          max-width: 100%;
+        }
+
+        
+        h3.headingBar{
+            color: #fff !important;
+            background-color: #0CA2A3;    
+            text-align: center;
+            font-weight: bold;
+            padding: 15px 0;
+            margin-top: 20px;
+        }
     </style>
     <div class="content-wrapper pb-5">
         <!-- Content Header (Page header) -->
@@ -112,10 +130,27 @@
         <div class="card">
             <div class="container">
 
-                <div class="row" style="align-items: center">
-                    <div class="span4">
-                        <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="AdminLTE Logo"
-                            class="brand-image" style="opacity:1">
+                <div class="row">
+                                        
+                        
+                    <div class="col-md-12">
+                        <div class="col-sm-8" style="float:left;">
+                            <img src="{{ asset('login_assets/img/rsz_11d_legal_logo.png') }}" alt="AdminLTE Logo" class="brand-image" style="opacity:1">
+                        </div>
+                        <div class="col-sm-4" style="float:left;">
+                            @if ($data != null)                                
+                                    <a href="{{ route('money-receipt-print-preview', $data->id) }}" title="Print Case Info"
+                                        target="_blank" class="btn btn-info float-right"><i class="fas fa-print"></i>
+                                        Print</a>                                
+                            @endif
+                        </div>
+                    </div>
+                        
+
+                    <div class="col-sm-12"><h3 class="headingBar">Invoice</h3></div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-8" style="float: left;">   
+
                         <address>
                             <span id="lblUnitAddress" class="HeaderStyle2" style="font-size: 15px">365/B, Modhubag,
                                 Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
@@ -128,39 +163,38 @@
                             <br />
                             <span id="lblUnitAddress" class="HeaderStyle2"
                                 style="font-size: 15px">Email:niamulkabir.adv@gmail.com</span>
-                            <span id="lblVoucherType" class="VoucherStyle">
+                            
                         </address>
-                    </div>
-                    <div class="span4 well">
-                        <table class="invoice-head">
-                            <tbody>
-                                <tr>
-                                    <td class="pull-right"><strong>CLient #</strong></td>
-                                    <td>{{ @$client->client_name }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="pull-right"><strong>Transaction No #</strong></td>
-                                    <td>{{ $data->transaction_no }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="pull-right"><strong>Date #</strong></td>
-                                    <td> {{ date('d-m-Y') }}</td>
-                                </tr>
+                        </div>   
+                        <div class="col-sm-4" style="float:left;">
+                    
+                            <table class="invoice-head">
+                                <tbody>
+                                    <tr>
+                                        <td class="pull-right"><strong>CLient #</strong></td>
+                                        <td>{{ @$client->client_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pull-right"><strong>Transaction No #</strong></td>
+                                        <td>{{ $data->transaction_no }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pull-right"><strong>Date #</strong></td>
+                                        <td> {{ date('d-m-Y') }}</td>
+                                    </tr>
 
-                            </tbody>
-                        </table>
-                    </div>
+                                </tbody>
+                            </table>
+                        </div>
                 </div>
-                <div class="row pt-5 pb-2">
-                    <div class="span8" style="  text-transform: uppercase; Font-weight:bold;color: #079e8d;">
-                        <h2>Money Receipt</h2>
-                    </div>
-                </div>
+                
+                <div class="col-sm-12"><h3 class="headingBar">Money Receipt</h3></div>
+            </div>    
                 <div class="row">
-                    <div class="span8 well invoice-body">
-                        <table class="table table-bordered">
+                    
+                        <table class="table table-bordered" style="width: 98.7%; margin: 0 auto;">
                             <thead>
-                                <tr>
+                                <tr style="color: #fff;">
                                     <th>Service</th>
                                     <th>Description</th>
                                     <th>Payment Type</th>
@@ -186,7 +220,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
+                
                 </div>
                 <div class="row p-5 m-5">
                     <div class="col-md-4">

@@ -12,7 +12,7 @@
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
                                 <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md"
-                                    type="button" href="{{ route('billings') }}" aria-readonly="false" role="link"
+                                    type="button" href="{{ route('billings') }}" aria-disabled="false" role="link"
                                     tabindex="-1">Back</a>
                             </li>
                         </ol>
@@ -34,16 +34,15 @@
                     <div class="card">
                         <div class="">
                             <div class="card-header">
-                                <h1 class="card-title" id="heading" style="font-weight: bold"> Add Billing </h1>
+                                <h1 class="card-title" id="heading" style="font-weight: bold"> Edit Billing </h1>
                             </div>
 
-                            <form action="{{ route('save-billing') }}" method="post">
+                            <form action="{{ route('update-billing', $bill_id) }}" method="post">
                                 @csrf
 
-                                <input type="hidden" class="form-control" id="save_and_rt_payment" name="save_and_return"
-                                    value="save">
-                                    <input type="hidden" class="form-control" id="save_and_rt_payment" name="from_case"
+                                <input type="hidden" class="form-control" name="edit_bill_form_case"
                                     value="true">
+
                                 <div class="card-body">
 
                                     <div class="row mr-5 ml-5" style="padding-left: 200px">
@@ -85,7 +84,7 @@
                                                 <label for="district_id" class="col-sm-4 col-form-label">District</label>
                                                 <div class="col-sm-8">
                                                     <select name="district_id" class="form-control select2" id="district_id"
-                                                        readonly>
+                                                        disabled>
 
                                                         @foreach ($district as $item)
                                                             <option value="{{ $item->id }}"
@@ -107,7 +106,7 @@
                                                 </label>
                                                 <div class="col-sm-8">
                                                     <select name="case_type_id" class="form-control select2"
-                                                        id="case_type_id" action="{{ route('find-case-no') }}" readonly>
+                                                        id="case_type_id"  disabled>
 
                                                         @foreach ($case_types as $item)
                                                             <option value="{{ $item->id }}"
@@ -129,19 +128,19 @@
                                                 <div class="col-sm-8">
                                                     <select name="class_of_cases" class="form-control select2"
                                                         @if (!empty($case_class))  @endif id="class_of_cases"
-                                                        action="{{ route('find-case-no') }}" readonly>
+                                                        action="{{ route('find-case-no') }}" disabled>
                                                         <option value=""> Select </option>
                                                         <option value="District Court"
-                                                            @if (!empty($case_class)) {{ $case_class->case_category_id == 'Criminal' || $case_class->case_category_id == 'Civil' ? 'selected' : '' }} @endif>
+                                                            @if (!empty($bill->class_of_cases)) {{ $bill->class_of_cases == 'District Court' ? 'selected' : '' }} @endif>
                                                             District Court </option>
                                                         <option value="Special Court"
-                                                            @if (!empty($case_class)) {{ $case_class->case_category_id == 'Special Court' ? 'selected' : '' }} @endif>
+                                                            @if (!empty($bill->class_of_cases)) {{ $bill->class_of_case == 'Special Court' ? 'selected' : '' }} @endif>
                                                             Special Court </option>
                                                         <option value="High Court Division"
-                                                            @if (!empty($case_class)) {{ $case_class->case_category_id == 'High Court Division' ? 'selected' : '' }} @endif>
+                                                        @if (!empty($bill->class_of_cases)) {{ $bill->class_of_case == 'High Court Division' ? 'selected' : '' }} @endif>
                                                             High Court Division </option>
                                                         <option value="Appellate Division"
-                                                            @if (!empty($case_class)) {{ $case_class->case_category_id == 'Appellate Division' ? 'selected' : '' }} @endif>
+                                                        @if (!empty($bill->class_of_cases)) {{ $bill->class_of_case == 'Appellate Division' ? 'selected' : '' }} @endif>
                                                             Appellate Division </option>
                                                     </select>
                                                     @error('class_of_cases')
@@ -154,11 +153,14 @@
                                                 </label>
                                                 <div class="col-sm-8">
                                                     <select name="case_no" class="form-control select2" id="case_no"
-                                                        @if (!empty($case_class))  @endif readonly>
+                                                    @php
+                                                   $case= DB::table('criminal_cases')->where('id',$bill->case_no)->first();
+                                                    @endphp
+                                                        @if (!empty($bill->case_no))  @endif >
                                                         <option value=""> Select </option>
-                                                        @if (!empty($case_class))
-                                                            <option value="{{ $case_class->id }}" selected>
-                                                                {{ $case_class->case_title_name . ' ' . $case_class->case_infos_case_no . '/' . $case_class->case_infos_case_year }}
+                                                        @if (!empty($bill->case_no))
+                                                            <option value="{{$bill->case_no}}" selected>
+                                                                {{ $case->case_infos_case_no . '/' . $case->case_infos_case_year }}
                                                             </option>
                                                         @endif
 
@@ -179,7 +181,7 @@
                                                 <label for="panel_lawyer_id" class="col-sm-4 col-form-label">
                                                     Lawyer</label>
                                                 <div class="col-sm-8">
-                                                    <select name="panel_lawyer_id" class="form-control select2" readonly>
+                                                    <select name="panel_lawyer_id" class="form-control select2" disabled>
 
                                                         @foreach ($external_council as $item)
                                                             <option value="{{ $item->id }}"
@@ -289,15 +291,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="float-right mt-4 pl-3">
-                                        <button id="save_and_take_payment_btn" type="submit"
-                                            class="btn btn-primary text-uppercase"><i class="fas fa-save"></i> Save And
-                                            Take Payment</button>
-                                    </div>
+
                                     <div class="float-right mt-4">
                                         <button type="submit" class="btn btn-primary text-uppercase"><a
-                                                href="{{ URL::to('add-ledger-entry/' . $bill_id) }}"><i
-                                                    class="fas fa-save"></i></a> Save</button>
+                                              ><i
+                                                    class="fas fa-save"></i></a> Update</button>
                                     </div>
 
                                 </div>

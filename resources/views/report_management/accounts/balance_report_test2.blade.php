@@ -7,6 +7,12 @@
         font-weight: bold;
         font-size: 18px;
     }
+
+    .btnPrint{
+        color: #fff;
+        background-color: #0CA2A3;
+        border-color: #0CA2A3;        
+    }
 </style>
     <div class="content-wrapper">
         <section class="content-header">
@@ -214,14 +220,13 @@
                                                 value="{{ $request_data['class_of_cases'] }}">
                                             <input type="hidden" name="case_no" value="{{ $request_data['case_no'] }}"> --}}
 
-                                            <button type="submit" class="btn btn-info" data-toggle="tooltip"
-                                                data-placement="top" title="Delete"> <i class="fas fa-print"></i> Print
-                                            </button>
+                                            
                                         </form>
                                     </div>
 
                                 </div>
                                 <div class="card-body">
+
                                     @if (!empty($data))
                                         <div class="invoice p-3 mb-3">
 
@@ -233,11 +238,54 @@
                                                             style="opacity:1; padding-left:0px">
 
                                                         <small class="float-right"
-                                                            style="font-weight: 600!important;font-size:100%!important;">Date: {{ date('d-m-Y') }}</small>
+                                                            style="font-weight: 600!important;font-size:100%!important;">
+                                                            <button type="submit" class="btn btn-info btnPrint" data-toggle="tooltip" data-placement="top" title="Delete"> <i class="fas fa-print"></i> Print</button>
+                                                        </small>
                                                     </h4>
                                                 </div>
-                                                <h2 style="font-weight: bold;padding-left:570px;padding-top:20px;">
-                                                    LEDGER REPORT</h2>
+
+
+   <div class="col-sm-12" style="margin-top: 40px;">
+                        <div class="col-sm-4" style="float: left;">   
+
+                        <address>
+                            <span id="lblUnitAddress" class="HeaderStyle2" style="font-size: 15px">365/B, Modhubag,
+                                Mogbazar, Hatirjheel, Dhaka - 1217, Bangladesh</span>
+                            <br />
+                            <span id="lblUnitAddress" class="HeaderStyle2" style="font-size: 15px"> Cell:01717406688
+                            </span>
+                            <br />
+                            <span id="lblUnitAddress" class="HeaderStyle2" style="font-size: 15px"> Tel:01717406688
+                            </span>
+                            <br />
+                            <span id="lblUnitAddress" class="HeaderStyle2"
+                                style="font-size: 15px">Email:niamulkabir.adv@gmail.com</span>
+                            
+                        </address>
+                        </div>   
+                        <div class="col-sm-4" style="float:left;">
+                            <h2 style="font-weight: bold; width: 100%; text-align: center;">Ledger Report</h2>
+                            <p style="text-align:center;">Lawyer Payment</p>
+                            <p style="text-align:center;">
+                                @if (!empty($request_data['from_date']))
+                                    @if ($request_data['from_date'] != 'dd-mm-yyyy')
+                                        <h4>From:
+                                            {{ $request_data['from_date'] }},
+                                            To: {{ $request_data['to_date'] }}</h4>
+                                    @endif
+                                @endif
+
+                            </p>
+                        </div>
+                        <div class="col-sm-4" style="float:left; text-align: right;">
+                            <strong>Date:  </strong> {{ date('d-m-Y') }}                            
+                        </div>
+                </div>      
+
+
+
+
+
                                                     
 
 

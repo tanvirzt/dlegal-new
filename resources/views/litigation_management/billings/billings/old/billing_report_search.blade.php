@@ -171,7 +171,7 @@
 
                                             <div class="float-right">
                                                 <button type="submit" id="submit"
-                                                    class="btn btn-primary text-uppercase"><i class="fas fa-search"></i>
+                                                    class="btn btn-primary text-uppercase submitForm"><i class="fas fa-search"></i>
                                                     Search
                                                 </button>
                                             </div>

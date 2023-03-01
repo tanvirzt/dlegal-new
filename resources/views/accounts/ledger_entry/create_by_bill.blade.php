@@ -1,6 +1,22 @@
 @extends('layouts.admin_layouts.admin_layout')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
+
+<style type="text/css">
+.card-title{
+    color: #0CA2A3 !important;
+    font-weight: bold;
+    font-size: 22px;
+    text-decoration: underline;
+}
+
+.select2-container--default .select2-selection--single, input.form-control {
+  background-color: #fff;
+  border: 1px solid #0CA2A3;
+  border-radius: 4px;
+  min-height: 40px;
+}
+</style>    
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -57,13 +73,13 @@
                             {!! Form::open(['route' => 'ledger-entry.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
                             <div class="card-body">
-                                <div class="row" style="padding-left:300px">
+                                <div class="row" style="">
                                     <div class="col-md-12">
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <div class="form-group row">
                                                 <label for="transaction_no" class="col-sm-4 col-form-label">Transaction
                                                     No.</label>
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-12">
                                                     {!! Form::text('transaction_no', $txn_no, ['class' => 'form-control', 'readonly' => 'readonly']) !!}
                                                     @error('transaction_no')
                                                         <span class="text-danger">{{ $message }}</span>
@@ -71,10 +87,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <div class="form-group row">
-                                                <label for="job_no" class="col-sm-4 col-form-label"> Job Name</label>
-                                                <div class="col-sm-8">
+                                                <label for="job_no" class="col-sm-12 col-form-label"> Job Name</label>
+                                                <div class="col-sm-12">
                                                     {!! Form::text('job_no', null, ['class' => 'form-control']) !!}
                                                     @error('job_no')
                                                         <span class="text-danger">{{ $message }}</span>
@@ -82,11 +98,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <div class="form-group row">
-                                                <label for="ledger_category_id" class="col-sm-4 col-form-label">Ledger
+                                                <label for="ledger_category_id" class="col-sm-12 col-form-label">Ledger
                                                     Category</label>
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-12">
                                                     <select name="ledger_category_id" class="form-control select2"
                                                         id="myselection" action="{{ route('find-ledger-head') }}">
                                                         <option value=""> Select </option>
@@ -100,11 +116,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <div class="form-group row">
-                                                <label for="ledger_head_id" class="col-sm-4 col-form-label">Ledger
+                                                <label for="ledger_head_id" class="col-sm-12 col-form-label">Ledger
                                                     Head</label>
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-12">
                                                     <select name="ledger_head_id" class="form-control select2"
                                                         id="ledger_head_id">
                                                         <option value=""> Select </option>
@@ -122,12 +138,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-8" id="myDiv">
+                                        <div class="col-md-12" id="myDiv">
                                             <div class="form-group row">
                                                 <label for="payment_against_bill"
-                                                    class="col-sm-4 col-form-label mt-1">Payment
+                                                    class="col-sm-12 col-form-label mt-1">Payment
                                                     Against Bill</label>
-                                                <div class="icheck-success d-inline col-sm-8">
+                                                <div class="icheck-success d-inline col-sm-12">
                                                     <input type="checkbox" id="payment_against_bill"
                                                         name="payment_against_bill"
                                                         @if (!empty($single_case_bill)) checked disabled @endif>
@@ -142,10 +158,10 @@
                                         </div>
 
 
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <div class="form-group row">
-                                                <label for="case_id" class="col-sm-4 col-form-label"> Client Name </label>
-                                                <div class="col-sm-8">
+                                                <label for="case_id" class="col-sm-12 col-form-label"> Client Name </label>
+                                                <div class="col-sm-12">
                                                     <select name="client_id" class="form-control select2">
                                                         <option value=""> Select </option>
                                                         @foreach ($client as $clients)
@@ -163,10 +179,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-8" id="bill_no" style="display: none;">
+                                        <div class="col-md-12" id="bill_no" style="display: none;">
                                             <div class="form-group row">
-                                                <label for="bill_id" class="col-sm-4 col-form-label">Bill No</label>
-                                                <div class="col-sm-8">
+                                                <label for="bill_id" class="col-sm-12 col-form-label">Bill No</label>
+                                                <div class="col-sm-12">
                                                     <select name="bill_id" class="form-control select2" id="bill_id"
                                                         action="{{ route('find-bill') }}">
                                                         <option value=""> Select </option>
@@ -184,10 +200,10 @@
                                         </div>
 
                                         @if (!empty($single_case_bill))
-                                            <div class="col-md-8">
+                                            <div class="col-md-12">
                                                 <div class="form-group row">
-                                                    <label for="bill_id" class="col-sm-4 col-form-label">Bill No</label>
-                                                    <div class="col-sm-8">
+                                                    <label for="bill_id" class="col-sm-12 col-form-label">Bill No</label>
+                                                    <div class="col-sm-12">
                                                         <select name="bill_id" class="form-control select2"
                                                             id="bill_id" disabled>
                                                             <option value=""> Select </option>
@@ -207,10 +223,10 @@
                                             <input type="hidden" name="bill_id" value="{{ $single_case_bill->id }}">
                                         @endif
 
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <div class="form-group row">
-                                                <label for="ledger_date" class="col-sm-4 col-form-label">Date</label>
-                                                <div class="col-sm-8">
+                                                <label for="ledger_date" class="col-sm-12 col-form-label">Date</label>
+                                                <div class="col-sm-12">
 
                                                     <span class="date_span" style="width: 474px;">
                                                         <input type="date" class="xDateContainer date_first_input"
@@ -229,11 +245,11 @@
                                         </div>
 
 
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <div class="form-group row">
-                                                <label for="payment_type" class="col-sm-4 col-form-label">Payment
+                                                <label for="payment_type" class="col-sm-12 col-form-label">Payment
                                                     Type</label>
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-12">
                                                     <select name="payment_type" class="form-control select2"
                                                         id="payment_type">
                                                         <option value=""> Select </option>
@@ -248,10 +264,10 @@
                                             </div>
                                         </div>
 
-                                        {{-- <div class="col-md-8">
+                                        {{-- <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="ledger_head_bill_id" class="col-sm-4 col-form-label">Bill Name</label>
-                                            <div class="col-sm-8">
+                                            <label for="ledger_head_bill_id" class="col-sm-12 col-form-label">Bill Name</label>
+                                            <div class="col-sm-12">
                                                 <select name="ledger_head_bill_id" class="form-control select2" id="ledger_head_bill_id">
                                                     <option value=""> Select </option>
                                                     @foreach ($ledger_head as $item)
@@ -264,11 +280,11 @@
                                         </div>
                                     </div> --}}
                                         @if (!empty($single_case_bill))
-                                            <div class="col-md-8">
+                                            <div class="col-md-12">
                                                 <div class="form-group row">
-                                                    <label for="bill_amount" class="col-sm-4 col-form-label">Bill
+                                                    <label for="bill_amount" class="col-sm-12 col-form-label">Bill
                                                         Amount</label>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-12">
                                                         <input type="text" class="form-control" readonly
                                                             name="bill_amount"
                                                             value="{{ $single_case_bill->bill_amount }}">
@@ -281,11 +297,11 @@
 
                                             </div>
                                         @endif
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <div class="form-group row">
-                                                <label for="paid_amount" class="col-sm-4 col-form-label">Paid
+                                                <label for="paid_amount" class="col-sm-12 col-form-label">Paid
                                                     Amount</label>
-                                                <div class="col-sm-8">
+                                                <div class="col-sm-12">
                                                     {!! Form::text('paid_amount', null, ['class' => 'form-control']) !!}
 
                                                     @error('paid_amount')
@@ -295,10 +311,10 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <div class="form-group row">
-                                                <label for="remarks" class="col-sm-4 col-form-label">Remarks</label>
-                                                <div class="col-sm-8">
+                                                <label for="remarks" class="col-sm-12 col-form-label">Remarks</label>
+                                                <div class="col-sm-12">
                                                     {!! Form::textarea('remarks', null, ['class' => 'form-control']) !!}
 
                                                     @error('remarks')
@@ -311,7 +327,7 @@
 
 
                                     </div>
-                                    <div class="float-right mt-4" style="padding-left:20px ">
+                                    <div class="float-right col-sm-12" style="text-align: right; padding-right: 15px;">
                                         <button type="submit" class="btn btn-primary text-uppercase"><i
                                                 class="fas fa-save"></i> Save
                                         </button>

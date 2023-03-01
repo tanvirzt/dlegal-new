@@ -12,7 +12,7 @@
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
                                 <a class="leading-normal inline-flex items-center font-normal spark-button-focus h-8 text-md px-4 bg-transparent border-0 border-solid text-blue-700 hover:text-blue-800 active:text-blue-700 rounded-md"
-                                    type="button" href="{{ route('billings') }}" aria-readonly="false" role="link"
+                                    type="button" href="{{ route('billings') }}" aria-disabled="false" role="link"
                                     tabindex="-1">Back</a>
                             </li>
                         </ol>
@@ -85,7 +85,7 @@
                                                 <label for="district_id" class="col-sm-4 col-form-label">District</label>
                                                 <div class="col-sm-8">
                                                     <select name="district_id" class="form-control select2" id="district_id"
-                                                        readonly>
+                                                        disabled>
 
                                                         @foreach ($district as $item)
                                                             <option value="{{ $item->id }}"
@@ -107,7 +107,7 @@
                                                 </label>
                                                 <div class="col-sm-8">
                                                     <select name="case_type_id" class="form-control select2"
-                                                        id="case_type_id" action="{{ route('find-case-no') }}" readonly>
+                                                        id="case_type_id" action="{{ route('find-case-no') }}" disabled>
 
                                                         @foreach ($case_types as $item)
                                                             <option value="{{ $item->id }}"
@@ -129,7 +129,7 @@
                                                 <div class="col-sm-8">
                                                     <select name="class_of_cases" class="form-control select2"
                                                         @if (!empty($case_class))  @endif id="class_of_cases"
-                                                        action="{{ route('find-case-no') }}" readonly>
+                                                        action="{{ route('find-case-no') }}" disabled>
                                                         <option value=""> Select </option>
                                                         <option value="District Court"
                                                             @if (!empty($case_class)) {{ $case_class->case_category_id == 'Criminal' || $case_class->case_category_id == 'Civil' ? 'selected' : '' }} @endif>
@@ -154,7 +154,7 @@
                                                 </label>
                                                 <div class="col-sm-8">
                                                     <select name="case_no" class="form-control select2" id="case_no"
-                                                        @if (!empty($case_class))  @endif readonly>
+                                                        @if (!empty($case_class))  @endif disabled>
                                                         <option value=""> Select </option>
                                                         @if (!empty($case_class))
                                                             <option value="{{ $case_class->id }}" selected>
@@ -179,7 +179,7 @@
                                                 <label for="panel_lawyer_id" class="col-sm-4 col-form-label">
                                                     Lawyer</label>
                                                 <div class="col-sm-8">
-                                                    <select name="panel_lawyer_id" class="form-control select2" readonly>
+                                                    <select name="panel_lawyer_id" class="form-control select2" disabled>
 
                                                         @foreach ($external_council as $item)
                                                             <option value="{{ $item->id }}"
