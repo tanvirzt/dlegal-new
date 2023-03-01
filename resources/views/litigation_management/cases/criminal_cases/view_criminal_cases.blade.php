@@ -92,10 +92,6 @@
 
 
         /*Start Scroll View */
-        .card.CaseInfoCard {
-            height: 69.5rem;
-            overflow-y: scroll;
-        }
 
         .CaseInfoCard::-webkit-scrollbar {
             width: 5px;
@@ -113,10 +109,7 @@
         }
 
 
-        .card.caseStepCard {
-            height: 25.5rem;
-            overflow-y: scroll;
-        }
+        
 
         .caseStepCard::-webkit-scrollbar {
             width: 5px;
@@ -291,6 +284,18 @@
           color:#0CA2A3 !important;
         }
 
+        .inputDiv{
+            background: #e9ecef;
+        }
+
+        th{
+            color: #fff;
+        }
+
+        .card.caseStepCard {
+          height: 100%;
+          
+        }
     </style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -318,66 +323,15 @@
         </div>
         <!-- /.content-header -->
 
-        <div class="links">
-            <a href="#section1st" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top"
-                title="Case Info"><i class="fas fa-info-circle"></i></a>
-            <a href="#section1" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top"
-                title="Case Proceedings Log"> <i class="fas fa-signal"></i> </a>
-            <a href="#section2" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="top"
-                title="Activity Log"><i class="fas fa-chart-line"></i></a>
-            <a href="#section3" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top"
-                title="Case Documents Log"><i class="fas fa-file-archive nav-icon"></i></a>
-            <a href="#section4" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top"
-                title="Billings Log"><i class="fas fa-money-bill"></i></a>
-        </div>
+<div class="col-12">
 
-        <section class="content" id="section1st">
-            <div class="container-fluid py-2">
-                <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
 
-                    @if (Session::has('success'))
-                        <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-                            {{ Session::get('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
-                    @if (Session::has('warning'))
-                        <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
-                            {{ Session::get('warning') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
-
-                    <div class="card">
-                        <div class="card-header">
-
-                            <style>
-                                .stick {
-                                    position: fixed;
-                                    top: 50px;
-                                }
-                            </style>
+                                <div class="row" style="background: #fff;padding: 20px; margin-top: 15px;">
 
 
-                            <div id="mainMenuBarAnchor"></div>
-                            {{-- <div id="mainMenuBar" style="width: 100%; height: 30px; background: #999; margin: 0;">Sticky Panel</div> --}}
-
-                                @php
-                                    $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
-                                    $key = array_key_last($case_infos_sub_seq_case_no);
-                                    //echo $case_infos_sub_seq_case_no[$key];
-                                    
-                                    $case_infos_sub_seq_case_year = explode(', ', trim($data->case_infos_sub_seq_case_year));
-                                    $key = array_key_last($case_infos_sub_seq_case_year);
-                                    $last_case_no = $case_infos_sub_seq_case_year[$key];
-                                    
-                                @endphp
-                                
-                            <div class="caseIntroInfo">
+                                    <div class="caseIntroInfo" style="width:100%;">
                                 <b>Case No.:</b> {{ $data->case_infos_case_no }} <br>
                                 <b>Name of Parties:</b> @php
                                     $client_explode = explode(', ', $data->client_id);
@@ -438,22 +392,10 @@
                                 <b>Next Date Fixed for:</b><b style="color:#0CA2A3"> {{ date('d-m-Y', strtotime($latest->updated_next_date)) }}</b>
 
                             </div>
+<div style="height:20px; clear: both;">
+</div>
 
-
-<!--- Tanvir Start --->
-
-
-
-
-
-<!-- partial:index.partial.html -->
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="row" style="background: #fff;padding: 20px; margin-top: 15px;">
-                                        <div class="tabs-to-dropdown" style="width: 100%;">
-                                            <div class="nav-wrapper d-flex align-items-center justify-content-between" class="margin-bottom:20px;">
-                                                <ul class="nav nav-pills d-none d-md-flex" id="pills-tab" role="tablist" style="margin: 0 auto;">
+                                    <ul class="nav nav-pills d-none d-md-flex" id="pills-tab" role="tablist" style="margin: 0 auto;">
                                                   <li class="nav-item" role="presentation">
                                                     <a class="nav-link active" id="pills-company-tab" data-toggle="pill" href="#pills-company" role="tab" aria-controls="pills-company" aria-selected="true">Case Info</a>
                                                   </li>
@@ -472,2458 +414,242 @@
                                                   <li class="nav-item" role="presentation">
                                                     <a class="nav-link" id="pills-casefile-tab" data-toggle="pill" href="#pills-casefile" role="tab" aria-controls="pills-casefile" aria-selected="false">Case File Location</a>
                                                   </li>
+
+                                                  <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="pills-caseproceeding-tab" data-toggle="pill" href="#pills-caseproceeding" role="tab" aria-controls="pills-caseproceeding" aria-selected="false">Case Proceeding Log</a>
+                                                  </li>
+
+                                                  <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="pills-caseactivity-tab" data-toggle="pill" href="#pills-caseactivity" role="tab" aria-controls="pills-caseactivity" aria-selected="false">Case Activity Log</a>
+                                                  </li>
+
+                                                  <li class="nav-item" role="presentation">
+                                                    <a class="nav-link" id="pills-billlog-tab" data-toggle="pill" href="#pills-billlog" role="tab" aria-controls="pills-billlog" aria-selected="false">Bill Log</a>
+                                                  </li>
+
+
                                                 </ul>
 
                                             </div>
                                             <hr style="margin-bottom:50px; color: #000;">  
 
-                                      <form id="addcaseform" action="{{ route('save-criminal-cases') }}" method="post" enctype="multipart/form-data" name="addcaseform">            
-                                            <div class="tab-content" id="pills-tabContent">
+<div class="tab-content" id="pills-tabContent">
                                                 <div class="tab-pane fade show active" id="pills-company" role="tabpanel" aria-labelledby="pills-company-tab">
                                                   <div class="container-fluid">
-                                                    <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label for="case_type"
-                                            class="col-sm-12 col-form-label padding-null">Case Class</label>
-                                    <div class="col-sm-12 padding-null">
-                                        <select name="case_type"
-                                                class="form-control select2"
-                                                id="case_type" required readonly>
-                                            <option value="">Select</option>
-                                                <option value="District" {{ $data->case_type === 'District' ? 'selected' : '' }}>District</option>
-                                                <option value="Special" {{ $data->case_type === 'Special' ? 'selected' : '' }}>Special</option>
+                                                    
+<div class="card CaseInfoCard ">
+                                        
+                                        <div class="card-body col-sm-12">
 
-                                        </select>
-                                        @error('case_type')<span
-                                            class="text-danger">{{$message}}</span>@enderror
+
+
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Case ID</label>
+                                    <div class="col-sm-12 padding-null">
+                                      <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $data->created_case_id }} " disabled>
+
+
                                     </div>
 
                                 </div>                        
                                 <div class="col-md-6">
-                                    <label for="case_infos_division_id"
-                                            class="col-sm-12 col-form-label padding-null">Division</label>
+                                    <label for="case_infos_division_id" class="col-sm-12 col-form-label padding-null">Division</label>
                                     <div class="col-sm-12 padding-null">
-                                        <select name="case_infos_division_id"
-                                                class="form-control select2"
-                                                id="case_infos_division_id"
-                                                action="{{ route('find_district') }}" disabled>
-                                            <option value="">Select</option>
-                                            @foreach ($division as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{(old('case_infos_division_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->division_name) }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('case_infos_division_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
+                                    
+                                    <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $data->case_infos_division_name }} " disabled>
                                     </div>
 
                                 </div>    
-                                
                                     
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                    <label for="case_infos_district_id"
-                                            class="col-sm-12 col-form-label padding-null">District</label>
-                                    <div class="col-sm-12 padding-null">
-                                        <select name="case_infos_district_id"
-                                                class="form-control select2"
-                                                id="case_infos_district_id"
-                                                action="{{ route('find-case-infos-thana') }}" disabled>
-                                            <option value=""> Select</option>
+                            </div>
 
-                                        </select>
-                                        @error('case_infos_district_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                
-                                    <div class="col-md-6">
-                                    <label for="case_infos_thana_id"
-                                            class="col-sm-12 col-form-label padding-null">Thana</label>
-                                    <div class="col-sm-12 padding-null">
-                                        <select name="case_infos_thana_id"
-                                                id="case_infos_thana_id"
-                                                class="form-control select2" disabled>
-                                            <option value="">Select</option>
 
-                                        </select>
-                                        @error('case_infos_thana_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
+<div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">District</label>
+                                    <div class="col-sm-12 padding-null">
+                                      <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $data->case_infos_district_name }} " disabled>
+
+                                       
                                     </div>
-                                </div>
+
+                                </div>                        
+                                <div class="col-md-6">
+                                    <label for="case_infos_division_id" class="col-sm-12 col-form-label padding-null">Police Station</label>
+                                    <div class="col-sm-12 padding-null">
+                              
+                                    <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $data->case_infos_thana_name }} " disabled>
+                                    </div>
+
+                                </div>    
+                                    
+                            </div>
+
+<div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Case ID</label>
+                                    <div class="col-sm-12 padding-null">
+                                      <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $data->created_case_id }} " disabled>
+
+                                       
+                                    </div>
+
+                                </div>                        
+                                <div class="col-md-6">
+                                    <label for="case_infos_division_id" class="col-sm-12 col-form-label padding-null">Division</label>
+                                    <div class="col-sm-12 padding-null">
+                                    
+                                    <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $data->case_infos_division_name }} " disabled>
+                                    </div>
+
+                                </div>    
+                                    
+                            </div>
+
+<div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Case Category</label>
+                                  <div class="col-sm-12 padding-null">
+                                      <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $data->case_category_id }} " disabled>
+
+                                       
+                                    </div>
+
+                                </div>                        
+                                <div class="col-md-6">
+                                    <label for="case_infos_division_id" class="col-sm-12 col-form-label padding-null">Case Type</label>
+                                    <div class="col-sm-12 padding-null">
+                                   
+                                    <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $data->case_types_name }} " disabled>
+                                    </div>
+
+                                </div>    
+                                    
+                            </div>
+
+<div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Case Prayer</label>
+                                    <div class="col-sm-12 padding-null">
+                                      <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value=" " disabled>
+
+                                       
+                                    </div>
+
+                                </div>                        
+                                <div class="col-md-6">
+                                    <label for="case_infos_division_id" class="col-sm-12 col-form-label padding-null">Case Nature</label>
+                                    <div class="col-sm-12 padding-null">
+                                    
+                                        <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value=" " disabled>
+                                    </div>
+
+                                </div>    
+                                    
+                            </div>
+
+
+                        <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Case Matter</label>
+                                    <div class="col-sm-12 padding-null">
+                                      <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $data->matter_name }} {{ $data->matter_write }} " disabled>
+
+                                       
+                                    </div>
+
+                                </div>                        
+                                <div class="col-md-6">
+                                    <label for="case_infos_division_id" class="col-sm-12 col-form-label padding-null">Case Title</label>
+                                    <div class="col-sm-12 padding-null">
+                                    
+                                    <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $data->case_infos_case_title_name }} " disabled>
+                                    </div>
+
+                                </div>    
+                                    
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-6">
-                                    <label for="case_category_id"
-                                            class="col-sm-12 col-form-label padding-null">Case
-                                        Category </label>
+                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Case Title (Short)</label>
                                     <div class="col-sm-12 padding-null">
-                                        <select name="case_category_id" id="case_category_id"
-                                                class="form-control select2"
-                                                >
-                                            <option value="">Select</option>
-                                            <option value="Civil">Civil</option>
-                                            <option value="Criminal">Criminal</option>
-                                            {{-- @foreach($case_category as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{(old('case_category_id') == $item->id ? 'selected':'')}}>{{ $item->case_category }}</option>
-                                            @endforeach --}}
-                                        </select>
-                                        @error('case_category_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
+                                      <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $data->case_infos_case_title_name }} " disabled>
+
+                                       
                                     </div>
-                                </div>
-                                
-                                {{-- 
-                                    <label for="case_subcategory_id"
-                                            class="col-sm-6 col-form-label">Case
-                                        Subcategory </label>
-                                    <div class="col-sm-6">
 
-                                        <select name="case_subcategory_id"
-                                                id="case_subcategory_id"
-                                                class="form-control select2" disabled>
-                                            <option value="">Select</option>
+                                </div>                        
+                                <div class="col-md-6">
+                                    <label for="case_infos_division_id" class="col-sm-12 col-form-label padding-null">Case No.</label>
 
-                                        </select>
-                                        @error('case_subcategory_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-
-                                    </div>
-                                </div> --}}
-                                <div class="col-sm-6">
-                                    <label for="case_type_id" style="color: #0CA2A3 !important; font-weight: bold !important; font-size: 14px; line-height: 25px; !important;
-padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case Type </label>
                                     <div class="col-sm-12 padding-null">
-                                        <select name="case_type_id" id="case_type_id"
-                                                class="form-control select2" disabled >
-                                            <option value="">Select</option>
-                                        </select>
-                                        @error('case_type_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
+                                    
+                                    <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ rtrim($data->case_infos_case_no, ', ') }} of
+                                                            {{ rtrim($data->case_infos_case_year, ', ') }}" disabled>
                                     </div>
-                                </div>
+
+                                </div>    
+                                    
                             </div>
-                                <div class="form-group row">
-                                    <label for="case_prayer_id" class="col-sm-12 col-form-label">Case Prayer </label>
-                                    <div class="col-sm-12">
-                                        <select name="case_prayer_id" id="case_prayer_id"
-                                                class="form-control select2" disabled>
-                                            <option value="">Select</option>
-                                            {{-- @foreach($case_types as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{(old('case_prayer_id') == $item->id ? 'selected':'')}}>{{ $item->case_types_name }}</option>
-                                            @endforeach --}}
-                                        </select>
-                                        @error('case_prayer_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="case_nature_id" class="col-sm-12 col-form-label">Case Nature</label>
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="case_nature_id"
-                                                        id="case_nature_id"
-                                                        class="form-control select2" disabled>
-                                                    <option value="">Select</option>
-                                                    {{-- @foreach($matter as $item)
-                                                        <option value="{{ $item->id }}" {{( old('case_nature_id') == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
-                                                    @endforeach --}}
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="case_nature_write"
-                                                        name="case_nature_write"
-                                                        placeholder="Nature"
-                                                        value="{{ old('case_nature_write') }}">
-                                            </div>
-                                        </div>
-
-
-                                        @error('matter_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="matter_id" class="col-sm-12 col-form-label">Case Matter</label>
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="matter_id"
-                                                        id="matter_id"
-                                                        class="form-control select2" disabled>
-                                                    <option value="">Select</option>
-                                                    {{-- @foreach($matter as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{( old('matter_id') == $item->id ? 'selected':'')}}>{{ $item->matter_name }}</option>
-                                                    @endforeach --}}
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="matter_write"
-                                                        name="matter_write"
-                                                        placeholder="Matter"
-                                                        value="{{ old('matter_write') }}">
-                                            </div>
-                                        </div>
-
-
-                                        @error('matter_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="case_infos_case_title_id"
-                                            class="col-sm-12 col-form-label">Case Title</label>
-                                    <div class="col-sm-12">
-                                        <select name="case_infos_case_title_id"
-                                                id="case_infos_case_title_id"
-                                                class="form-control select2" disabled>
-                                            <option value="">Select</option>
-                                            @foreach($case_title as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{(old('case_infos_case_title_id') == $item->id ? 'selected':'')}}>{{ $item->case_title_name }}</option>
-                                            @endforeach
-
-                                        </select>
-                                        @error('case_infos_case_title_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="case_infos_case_titel_sort_id"
-                                            class="col-sm-12 col-form-label">Case Title (Short)</label>
-                                    <div class="col-sm-12">
-                                        <select name="case_infos_case_titel_sort_id"
-                                                id="case_infos_case_titel_sort_id"
-                                                class="form-control select2" disabled>
-                                            <option value="">Select</option>
-                                            @foreach($case_title as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{(old('case_infos_case_titel_sort_id') == $item->id ? 'selected':'')}}>{{ $item->case_title_name }}</option>
-                                            @endforeach
-
-                                        </select>
-                                        @error('case_infos_case_titel_sort_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="case_infos_case_no" class="col-sm-12 col-form-label">Case No</label>
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="case_infos_case_no"
-                                                        name="case_infos_case_no"
-                                                        placeholder="Case No"
-                                                        value="{{ old('case_infos_case_no') }}" readonly>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="case_infos_case_year"
-                                                        name="case_infos_case_year"
-                                                        placeholder="Case Year"
-                                                        value="{{ old('case_infos_case_year') }}" readonly>
-                                            </div>
-                                        </div>
-
-                                        @error('legal_issue_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row">
-                                    <label for="case_infos_court_id"
-                                            class="col-sm-12 col-form-label"> Name
-                                        of the Court </label>
-                                    <div class="col-sm-12">
-                                        <select name="case_infos_court_id[]" id="case_infos_court_id"
-                                                class="form-control select2" data-placeholder="Select" multiple disabled>
-                                            <option value="">Select</option>
-                                            {{-- @foreach($court as $item)
-                                                <option
-                                                    value="{{ $item->court_name }}" {{(old('case_infos_court_id') == $item->id ? 'selected':'')}}>{{ $item->court_name }}</option>
-                                            @endforeach --}}
-                                        </select>
-                                        @error('case_infos_court_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="case_infos_court_short_id" class="col-sm-12 col-form-label">Name of
-                                        Court(Short)</label>
-                                    <div class="col-sm-12">
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="case_infos_court_short_id[]"
-                                                        id="case_infos_court_short_id"
-                                                        class="form-control select2" data-placeholder="Select" multiple disabled>
-                                                    <option value="">Select</option>
-                                                    {{-- @foreach($court_short as $item)
-                                                        <option
-                                                            value="{{ $item->court_short_name }}" {{  old('case_infos_court_short_id') == $item->id ? 'selected' : '' }}>{{ $item->court_short_name }}</option>
-                                                    @endforeach --}}
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="input-group hdtuto_court_short control-group increment_court_short">
-                                                    <input type="text" name="court_short_write[]"
-                                                            class="myfrm form-control col-12" placeholder="Court Name(Short)" readonly>
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-success btn_success_court_short"
-                                                                type="button"><i
-                                                                class="fldemo glyphicon glyphicon-plus"></i>+
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="clone_court_short hide">
-                                                    <div class="hdtuto_court_short control-group lst input-group"
-                                                            style="margin-top:10px">
-                                                        <input type="text" name="court_short_write[]"
-                                                                class="myfrm form-control col-12">
-                                                        <div class="input-group-btn">
-                                                            <button class="btn btn-danger btn_danger_court_short"
-                                                                    type="button"><i
-                                                                    class="fldemo glyphicon glyphicon-remove"></i> -
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-
-                                        @error('client_name')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                                  </div>
-                                                </div>
-                                                <div class="tab-pane fade" id="pills-product" role="tabpanel" aria-labelledby="pills-product-tab">
-                                                  <div class="container-fluid">
-                                                    <h6 class="text-uppercase text-bold">
-                                    <div class="row">
-                                        <div class="col-md-2"> Date </div>
-                                        <div class="col-md-4 text-center ml-3">Title</div>
-                                        <div class="col-md-3 text-center">Description</div>
-                                        <div class="col-md-2">Type</div>
-                                    </div>
-                                </h6>
-                                {{-- <h6 class="text-uppercase text-bold">
-                                    <div class="row">
-                                        <div class="col-md-3"> Date </div>
-                                        <div class="col-md-3"> Document Name </div>
-                                        <div class="col-md-3"> Particulars </div>
-                                        <div class="col-md-1"> ORG </div>
-                                        <div class="col-md-1"> CC </div>
-                                        <div class="col-md-1"> COPY </div>
-                                    </div>
-                                </h6> --}}
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
-                                                <div class="input-group hdtuto_letter_notice control-group increment_letter_notice">
-                                                    <input type="hidden" name="letter_notice_sections[]"
-                                                           class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections">
-                                                    <input type="date" name="letter_notice_date[]"
-                                                           class="myfrm form-control mr-2 col-md-4">
-                                                    <select name="letter_notice_documents_id[]"
-                                                        class="form-control mr-2 col-md-3" disabled>
-                                                        <option value="">Select</option>
-                                                        @foreach($documents as $item)
-                                                            <option
-                                                                value="{{ $item->id }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    <input type="text" name="letter_notice_documents_write[]"
-                                                           class="myfrm form-control mr-2 col-md-4" placeholder="Document" readonly>
-
-                                                    <input type="text" name="letter_notice_particulars_write[]"
-                                                           class="myfrm form-control mr-2 col-md-4" placeholder="Particulars" readonly>
-                                                    <select name="letter_notice_type_id[]"
-                                                           class="form-control mr-2" disabled>
-                                                           <option value="">Select</option>
-                                                           @foreach($documents_type as $item)
-                                                               <option
-                                                                   value="{{ $item->id }}" {{ old('letter_notice_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                           @endforeach
-                                                    </select>
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-success btn_success_letter_notice"
-                                                                type="button"><i
-                                                                class="fldemo glyphicon glyphicon-plus"></i>+
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="clone_letter_notice hide">
-                                                    <div class="hdtuto_letter_notice control-group lst input-group"
-                                                         style="margin-top:10px">
-                                                         <input type="hidden" name="letter_notice_sections[]"
-                                                           class="myfrm form-control mr-2 col-md-4" value="letter_notice_sections" readonly>
-                                                         <input type="date" name="letter_notice_date[]"
-                                                           class="myfrm form-control mr-2 col-md-4">
-                                                    <select name="letter_notice_documents_id[]"
-                                                        class="form-control mr-2 col-md-3" disabled>
-                                                        <option value="">Select</option>
-                                                        @foreach($documents as $item)
-                                                            <option
-                                                                value="{{ $item->id }}" {{ old('letter_notice_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    <input type="text" name="letter_notice_documents_write[]"
-                                                           class="myfrm form-control mr-2 col-md-4" placeholder="Document" readonly>
-
-                                                    <input type="text" name="letter_notice_particulars_write[]"
-                                                           class="myfrm form-control mr-2 col-md-4" placeholder="Particulars" readonly>
-                                                    <select name="letter_notice_type_id[]"
-                                                           class="form-control mr-2" disabled>
-                                                           <option value="">Select</option>
-                                                           @foreach($documents_type as $item)
-                                                               <option
-                                                                   value="{{ $item->id }}" {{ old('letter_notice_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                           @endforeach
-                                                    </select>
-                                                        <div class="input-group-btn">
-                                                            <button class="btn btn-danger btn_danger_letter_notice"
-                                                                    type="button"><i
-                                                                    class="fldemo glyphicon glyphicon-remove"></i> -
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                @error('case_infos_letter_notice_informant_name')<span
-                                                    class="text-danger">{{$message}}</span>@enderror
-                                                 <br><br>
-                                                 <div class="form-group row">
-                                    <label for="case_steps_filing" class="col-sm-3 col-form-label"> Case Filed </label>
-                                    {{-- <label for="case_steps_filing" class="col-sm-3 col-form-label"> Filing
-                                        Date </label> --}}
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_filing12');" readonly>
-                                            <input type="text" id="case_steps_filing12" name="case_steps_filing"
-                                                value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-
-                                        @error('case_steps_filing')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_filing_note"
-                                               name="case_steps_filing_note"
-                                               value="{{old('case_steps_filing_note')}}" readonly>
-                                        @error('case_steps_filing_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_filing_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_filing_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Name of the Court</label>
+                                    <div class="col-sm-12  form-control inputDiv">
+                                    
+                                         @php
+                                            $case_infos_court_short_id = explode(', ', $data->case_infos_court_short_id);
+                                        @endphp
+                                        @if ($data->case_infos_court_short_id)
+                                            @if (count($case_infos_court_short_id) > 1)
+                                                @foreach ($case_infos_court_short_id as $pro)
+                                                    <li class="text-left">{{ $pro }}
+                                                    </li>
                                                 @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_filing_copy')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                </div>
-
-                                <div class="form-group row case_step_civil">
-                                    <label for="case_steps_servicr_return" class="col-sm-3 col-form-label"> Service Return </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_servicr_return');" readonly>
-                                            <input type="text" id="case_steps_servicr_return" name="case_steps_servicr_return"
-                                                    value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_servicr_return')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_servicr_return_note"
-                                               name="case_steps_servicr_return_note"
-                                               value="{{old('case_steps_servicr_return_note')}}" readonly>
-                                        @error('case_steps_servicr_return_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_servicr_return_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_servicr_return_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                            @else
+                                                @foreach ($case_infos_court_short_id as $pro)
+                                                    {{ $pro }}
                                                 @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_servicr_return_copy')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                </div>
-                                <div class="form-group row case_step_civil">
-                                    <label for="case_steps_sr_completed" class="col-sm-3 col-form-label"> S.R. Completed </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_sr_completed');" readonly>
-                                            <input type="text" id="case_steps_sr_completed" name="case_steps_sr_completed"
-                                                    value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_sr_completed')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_sr_completed_note"
-                                               name="case_steps_sr_completed_note"
-                                               value="{{old('case_steps_sr_completed_note')}}" readonly>
-                                        @error('case_steps_sr_completed_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_sr_completed_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_sr_completed_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                            @endif
+                                        @endif
+
+                                        @php
+                                            $court_short_write = explode(', ', $data->court_short_write);
+                                        @endphp
+                                        @if ($data->court_short_write)
+                                            @if (count($court_short_write) > 1)
+                                                @foreach ($court_short_write as $pro)
+                                                    <li class="text-left">{{ $pro }}
+                                                    </li>
                                                 @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_sr_completed_copy')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                </div>
-                                <div class="form-group row case_step_civil">
-                                    <label for="case_steps_set_off" class="col-sm-3 col-form-label"> Set Off </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_set_off');" readonly>
-                                            <input type="text" id="case_steps_set_off" name="case_steps_set_off"
-                                                    value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_set_off')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_set_off_note"
-                                               name="case_steps_set_off_note"
-                                               value="{{old('case_steps_set_off_note')}}" readonly>
-                                        @error('case_steps_set_off_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_set_off_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-<option value="{{ $item->id }}" {{ old('case_steps_set_off_type_id')== $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
+                                            @else
+                                                @foreach ($court_short_write as $pro)
+                                                    {{ $pro }}
                                                 @endforeach
-                                        </select>
+                                            @endif
+                                        @endif                                  
+                                       
                                     </div>
-                                        @error('case_steps_set_off_copy')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                </div>
 
-                                <div class="form-group row case_step_civil">
-                                    <label for="case_steps_issue_frame" class="col-sm-3 col-form-label"> Issue Frame </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_issue_frame');" readonly>
-                                            <input type="text" id="case_steps_issue_frame" name="case_steps_issue_frame"
-                                                    value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_issue_frame')<span
-                                            class="text-danger">{{$message}}</span>@enderror
+                                </div>                        
+                                <div class="col-md-6">
+                                    <label for="case_infos_division_id" class="col-sm-12 col-form-label padding-null">Sub Seq. Case Title</label>
+                                    <div class="col-sm-12 padding-null">
+                                    
+                                    <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $data->sub_seq_case_infos_case_title_name }} " disabled>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_issue_frame_note"
-                                               name="case_steps_issue_frame_note"
-                                               value="{{old('case_steps_issue_frame_note')}}" readonly>
-                                        @error('case_steps_issue_frame_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_issue_frame_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_issue_frame_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_issue_frame_copy')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                </div>
-                                <div class="form-group row case_step_civil">
-                                    <label for="case_steps_ph" class="col-sm-3 col-form-label"> PH </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_ph');" readonly>
-                                            <input type="text" id="case_steps_ph" name="case_steps_ph"
-                                                    value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_ph')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_ph_note"
-                                               name="case_steps_ph_note"
-                                               value="{{old('case_steps_ph_note')}}" readonly>
-                                        @error('case_steps_ph_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_ph_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_ph_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_ph_copy')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                </div>
-                                <div class="form-group row case_step_civil">
-                                    <label for="case_steps_fph" class="col-sm-3 col-form-label"> F.PH </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_fph');" readonly>
-                                            <input type="text" id="case_steps_fph" name="case_steps_fph"
-                                                    value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_fph')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_fph_note"
-                                               name="case_steps_fph_note"
-                                               value="{{old('case_steps_fph_note')}}" readonly>
-                                        @error('case_steps_fph_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_fph_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_fph_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_fph_copy')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                </div>
-
-
-                                <div class="form-group row case_step_criminal">
-                                    <label for="taking_cognizance" class="col-sm-3 col-form-label"> Taking Cognizance </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'taking_cognizance');" readonly>
-                                            <input type="text" id="taking_cognizance" name="taking_cognizance"
-                                                value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('taking_cognizance')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="taking_cognizance_note"
-                                               name="taking_cognizance_note"
-                                               value="{{old('taking_cognizance_note')}}" readonly>
-                                        @error('taking_cognizance_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="taking_cognizance_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('taking_cognizance_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-
-                                        @error('taking_cognizance_yes_no')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                <div class="form-group row case_step_criminal">
-                                    <label for="arrest_surrender_cw" class="col-sm-3 col-form-label"> Arrest/Surrender/C.W.</label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'arrest_surrender_cw');" readonly>
-                                            <input type="text" id="arrest_surrender_cw" name="arrest_surrender_cw"
-                                                value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('arrest_surrender_cw')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="arrest_surrender_cw_note"
-                                               name="arrest_surrender_cw_note"
-                                               value="{{old('arrest_surrender_cw_note')}}" readonly>
-                                        @error('arrest_surrender_cw_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="arrest_surrender_cw_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('arrest_surrender_cw_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-                                        @error('arrest_surrender_cw_yes_no')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-
-                                </div>
-                                <div class="form-group row case_step_criminal">
-                                    <label for="case_steps_bail" class="col-sm-3 col-form-label"> Bail </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_bail');" readonly>
-                                            <input type="text" id="case_steps_bail" name="case_steps_bail"
-                                                    value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_bail')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_bail_note"
-                                               name="case_steps_bail_note"
-                                               value="{{old('case_steps_bail_note')}}" readonly>
-                                        @error('case_steps_bail_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_bail_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_bail_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_bail_copy')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                </div>
-                                <div class="form-group row case_step_criminal">
-                                    <label for="case_steps_court_transfer" class="col-sm-3 col-form-label"> Court Transfer </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_court_transfer');" readonly>
-                                            <input type="text" id="case_steps_court_transfer" name="case_steps_court_transfer"
-                                                   value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_court_transfer')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_court_transfer_note"
-                                               name="case_steps_court_transfer_note"
-                                               value="{{old('case_steps_court_transfer_note')}}" readonly>
-                                        @error('case_steps_court_transfer_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_court_transfer_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_court_transfer_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_court_transfer_yes_no')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-
-                                </div>
-                                <div class="form-group row case_step_criminal">
-                                    <label for="case_steps_charge_framed" class="col-sm-3 col-form-label"> Charge Framed </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_charge_framed');" readonly>
-                                            <input type="text" id="case_steps_charge_framed" name="case_steps_charge_framed"
-                                                    value="dd-mm-yyyy"  class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_charge_framed')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_charge_framed_note"
-                                               name="case_steps_charge_framed_note"
-                                               value="{{old('case_steps_charge_framed_note')}}" readonly>
-                                        @error('case_steps_charge_framed_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_charge_framed_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_charge_framed_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_charge_framed_yes_no')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-
-                                </div>
-                                <div class="form-group row">
-                                    <label for="case_steps_witness_from" class="col-sm-3 col-form-label"> Witness (From) </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_witness_from');" readonly>
-                                            <input type="text" id="case_steps_witness_from" name="case_steps_witness_from"
-                                                    value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_witness_from')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_witness_from_note"
-                                               name="case_steps_witness_from_note"
-                                               value="{{old('case_steps_witness_from_note')}}" readonly>
-                                        @error('case_steps_witness_from_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_witness_from_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_witness_from_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_witness_from_yes_no')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-
-                                </div>
-                                <div class="form-group row">
-                                    <label for="case_steps_witness_to" class="col-sm-3 col-form-label"> Witness (To) </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_witness_to');" readonly>
-                                            <input type="text" id="case_steps_witness_to" name="case_steps_witness_to"
-                                                   value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_witness_to')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_witness_to_note"
-                                               name="case_steps_witness_to_note"
-                                               value="{{old('case_steps_witness_to_note')}}" readonly>
-                                        @error('case_steps_witness_to_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_witness_to_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_witness_to_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_witness_to_yes_no')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-
-                                </div>
-                                <div class="form-group row">
-                                    <label for="case_steps_argument" class="col-sm-3 col-form-label"> Argument </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_argument');" readonly>
-                                            <input type="text" id="case_steps_argument" name="case_steps_argument"
-                                                    value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_argument')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_argument_note"
-                                               name="case_steps_argument_note"
-                                               value="{{old('case_steps_argument_note')}}" readonly>
-                                        @error('case_steps_argument_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_argument_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_argument_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_argument_yes_no')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-
-                                </div>
-                                <div class="form-group row">
-                                    <label for="case_steps_judgement_order" class="col-sm-3 col-form-label"> Judgement &
-                                        Order </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_judgement_order');" readonly>
-                                            <input type="text" id="case_steps_judgement_order" name="case_steps_judgement_order"
-                                                   value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_judgement_order')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_judgement_order_note"
-                                               name="case_steps_judgement_order_note"
-                                               value="{{old('case_steps_judgement_order_note')}}" readonly>
-                                        @error('case_steps_judgement_order_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_judgement_order_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_judgement_order_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_judgement_order_yes_no')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="case_steps_subsequent_status" class="col-sm-3 col-form-label"> Subsequent Status </label>
-                                    <div class="col-sm-3">
-                                        <span class="date_span_steps">
-                                            <input type="date" class="xDateContainer date_first_input"
-                                                   onchange="setCorrect(this,'case_steps_subsequent_status');" readonly>
-                                            <input type="text" id="case_steps_subsequent_status" name="case_steps_subsequent_status"
-                                                   value="dd-mm-yyyy" class="date_second_input_steps"
-                                                   tabindex="-1" readonly>
-                                            <span class="date_second_span" tabindex="-1">&#9660;</span>
-                                        </span>
-                                        @error('case_steps_subsequent_status')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control"
-                                               id="case_steps_subsequent_status_note"
-                                               name="case_steps_subsequent_status_note"
-                                               value="{{old('case_steps_subsequent_status_note')}}" readonly>
-                                        @error('case_steps_subsequent_status_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <select name="case_steps_subsequent_status_type_id"
-                                                class="form-control" disabled>
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('case_steps_subsequent_status_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                        </select>
-                                    </div>
-                                        @error('case_steps_subsequent_status_yes_no')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-
-                                </div>
-                                {{-- <div class="form-group row">
-                                    <label for="case_steps_summary_judgement_order"
-                                           class="col-sm-4 col-form-label"> Summary of Case </label>
-                                    <div class="col-sm-8">
-                                    <textarea name="case_steps_summary_judgement_order" class="form-control"
-                                              rows="3"
-                                              placeholder="" readonly>{{old('case_steps_summary_judgement_order')}}</textarea>
-                                        @error('case_steps_summary_judgement_order')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div> --}}
-                                <div class="form-group row">
-                                    <label for="case_steps_summary_of_cases_note"
-                                           class="col-sm-3 col-form-label"> Sumery of the Case </label>
-                                    <div class="col-sm-9">
-                                    <textarea name="case_steps_summary_of_cases_note" class="form-control"
-                                              rows="3"
-                                              placeholder="" readonly>{{old('case_steps_summary_of_cases_note')}}</textarea>
-                                        @error('case_steps_summary_of_cases_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="case_steps_remarks"
-                                           class="col-sm-3 col-form-label"> Note </label>
-                                    <div class="col-sm-9">
-                                    <textarea name="case_steps_remarks" class="form-control"
-                                              rows="3"
-                                              placeholder="" readonly>{{old('case_steps_remarks')}}</textarea>
-                                        @error('case_steps_remarks')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>   
-
-                                            </div>
-                                        </div>
-                                                    
-                                                  </div>
-                                                </div>
-<div class="tab-pane fade" id="pills-news" role="tabpanel" aria-labelledby="pills-news-tab">
-                                                  <div class="container-fluid">
-<div class="card allCard" style="width:100%">
-                            <div class="card-header positionCard">
-                                <h6 class="card-title text-uppercase"> Client Information </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group row">
-                                    <label for="client_party_id"
-                                            class="col-sm-4 col-form-label">Client(Which Party)</label>
-                                    <div class="col-sm-8">
-                                        <select name="client_party_id"
-                                                class="form-control select2"
-                                                id="client_party_id" disabled>
-                                            <option value="">Select</option>
-                                            @foreach($in_favour_of as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{(old('client_party_id') == $item->id ? 'selected':'')}}> {{ $item->in_favour_of_name }} </option>
-                                            @endforeach
-                                        </select>
-                                        @error('client_party_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_category_id"
-                                            class="col-sm-4 col-form-label">Client
-                                        Category</label>
-                                    <div class="col-sm-8">
-                                        <select name="client_category_id"
-                                                class="form-control select2"
-                                                id="client_category_id"
-                                                action="{{ route('find-client-subcategory') }}" disabled>
-                                            <option value="">Select</option>
-                                            @foreach ($client_category as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{(old('client_category_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->client_category_name) }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('client_category_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_subcategory_id"
-                                            class="col-sm-4 col-form-label">Client
-                                        Subcategory</label>
-                                    <div class="col-sm-8">
-                                        <select name="client_subcategory_id"
-                                                class="form-control select2"
-                                                id="client_subcategory_id" disabled>
-                                            <option value="">Select</option>
-
-                                        </select>
-                                        @error('client_subcategory_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_id" class="col-sm-4 col-form-label">Client
-                                        Name</label>
-                                    <div class="col-sm-8">
-
-                                      
-                                        <div class="row">
-
-                                            <div class="col-md-10">
-                                                <select name="client_id[]" id="client_id_select" class="form-control select2"
-                                                    data-placeholder="Select" multiple disabled>
-                                                    <option value="">Select</option>
-                                                    @foreach ($client as $item)
-                                                        <option value="{{ $item->id }}"
-                                                          >
-                                                            {{ $item->client_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button class="btn btn-success btn_success_client" type="button"
-                                                    data-toggle="modal" data-target="#modal-client-info" data-toggle="tooltip"
-                                                    data-placement="top" title="Add Client"><i
-                                                        class="fldemo glyphicon glyphicon-plus"></i>+
-                                                </button>
-        
-                                            </div>
-        
-                                        </div>
-                                        @error('client_name')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_business_name" class="col-sm-4 col-form-label">Client Business Name</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="client_business_name"
-                                                name="client_business_name"
-                                                value="{{ old('client_business_name') }}" readonly>
-                                        @error('client_business_name')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_group_id" class="col-sm-4 col-form-label">Client Group Name</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="client_group_id"
-                                                        id="client_group_id"
-                                                        class="form-control select2" disabled>
-                                                    <option value="">Select</option>
-                                                    @foreach($group_name as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{  old('client_group_id') == $item->id ? 'selected' : '' }}>{{ $item->group_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="client_group_write"
-                                                        name="client_group_write"
-                                                        placeholder="Client Group"
-                                                        value="{{ old('client_group_write') }}" readonly>
-                                            </div>
-                                        </div>
-                                        @error('client_name')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_address" class="col-sm-4 col-form-label">
-                                        Client
-                                        Address </label>
-                                    <div class="col-sm-8">
-                                    <textarea name="client_address" class="form-control" rows="3"
-                                                placeholder="" readonly>{{old('client_address')}}</textarea>
-                                        @error('client_address')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_mobile" class="col-sm-4 col-form-label">Client
-                                        Mobile</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="client_mobile"
-                                                name="client_mobile"
-                                                value="{{old('client_mobile')}}" readonly>
-                                        @error('client_mobile')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_email" class="col-sm-4 col-form-label">Client
-                                        Email</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="client_email"
-                                                name="client_email"
-                                                value="{{old('client_email')}}" readonly>
-                                        @error('client_email')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_profession_id"
-                                            class="col-sm-4 col-form-label">Profession/Type</label>
-                                    <div class="col-sm-8">
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="client_profession_id"
-                                                        class="form-control select2"
-                                                        id="client_profession_id" disabled>
-                                                    <option value="">Select</option>
-                                                    @foreach ($profession as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{(old('client_profession_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->profession_name) }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="client_profession_write"
-                                                        name="client_profession_write"
-                                                        placeholder="Profession Name"
-                                                        value="{{ old('client_profession_write') }}">
-                                            </div>
-                                        </div>
-
-                                        @error('client_profession_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_division_id"
-                                            class="col-sm-4 col-form-label">Division/Zone</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="client_division_id"
-                                                        id="client_division_id"
-                                                        class="form-control select2" action="{{ route('find_district') }}" disabled
-                                                        >
-                                                    <option value="">Select</option>
-                                                    @foreach ($division as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{(old('client_division_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->division_name) }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="client_divisoin_write"
-                                                        name="client_divisoin_write"
-                                                        placeholder="Client Zone"
-                                                        value="{{ old('client_divisoin_write') }}" readonly>
-                                            </div>
-                                        </div>
-                                        @error('client_division_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="client_district_id"
-                                            class="col-sm-4 col-form-label">District/Area</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="client_district_id"
-                                                        id="client_district_id"
-                                                        class="form-control select2" action="{{ route('find-thana') }}" disabled>
-                                                    <option value="">Select</option>
-
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="client_district_write"
-                                                        name="client_district_write"
-                                                        placeholder="Client Area"
-                                                        value="{{ old('client_district_write') }}" readonly>
-                                            </div>
-                                        </div>
-
-                                        @error('client_district_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_thana_id"
-                                            class="col-sm-4 col-form-label">Thana/Branch</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="client_thana_id"
-                                                        id="client_thana_id"
-                                                        class="form-control select2" disabled>
-                                                    <option value="">Select</option>
-
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="client_thana_write"
-                                                        name="client_thana_write"
-                                                        placeholder="Client Branch"
-                                                        value="{{ old('client_thana_write') }}" readonly>
-                                            </div>
-                                        </div>
-                                        @error('client_thana_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_representative_name" class="col-sm-4 col-form-label">Representative
-                                        Name</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="client_representative_name"
-                                                name="client_representative_name"
-                                                value="{{old('client_representative_name')}}" readonly>
-                                        @error('client_representative_name')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_representative_details"
-                                            class="col-sm-4 col-form-label"> Representative Details </label>
-                                    <div class="col-sm-8">
-                                    <textarea name="client_representative_details" class="form-control"
-                                                rows="3"
-                                                placeholder="" readonly>{{old('client_representative_details')}}</textarea>
-                                        @error('client_representative_details')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_coordinator_tadbirkar_id"
-                                            class="col-sm-4 col-form-label"> Coordinator/Tadbirkar </label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="client_coordinator_tadbirkar_id"
-                                                        id="client_coordinator_tadbirkar_id"
-                                                        class="form-control select2" disabled>
-                                                    <option value="">Select</option>
-                                                    @foreach($coordinator as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{ old('client_coordinator_tadbirkar_id') == $item->id ? 'selected' : '' }}>{{ $item->coordinator_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="coordinator_tadbirkar_write"
-                                                        name="coordinator_tadbirkar_write"
-                                                        placeholder="Tadbirkar Name"
-                                                        value="{{old('coordinator_tadbirkar_write')}}" readonly>
-                                            </div>
-                                        </div>
-                                        @error('coordinator_tadbirkar_write')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="client_coordinator_details"
-                                            class="col-sm-4 col-form-label"> Coordinator Details </label>
-                                    <div class="col-sm-8">
-                                    <textarea name="client_coordinator_details" class="form-control"
-                                                rows="3"
-                                                placeholder="" readonly>{{old('client_coordinator_details')}}</textarea>
-                                        @error('client_coordinator_details')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                      
-
-                        <div class="card allCard" style="width:100%">
-                            <div class="card-header positionCard">
-                                <h6 class="card-title text-uppercase"> Oposit party information </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group row">
-                                    <label for="opposition_party_id"
-                                            class="col-sm-4 col-form-label">Opposition(Which Party)</label>
-                                    <div class="col-sm-8">
-                                        <select name="opposition_party_id"
-                                                class="form-control select2"
-                                                id="opposition_party_id" disabled>
-                                            <option value="">Select</option>
-                                            @foreach($in_favour_of as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{(old('opposition_party_id') == $item->id ? 'selected':'')}}> {{ $item->in_favour_of_name }} </option>
-                                            @endforeach
-                                        </select>
-                                        @error('opposition_party_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_category_id"
-                                            class="col-sm-4 col-form-label">Opposition
-                                        Category</label>
-                                    <div class="col-sm-8">
-                                        <select name="opposition_category_id"
-                                                class="form-control select2"
-                                                id="opposition_category_id"
-                                                action="{{ route('find-client-subcategory') }}" disabled>
-                                            <option value="">Select</option>
-                                            @foreach ($client_category as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{(old('opposition_category_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->client_category_name) }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('opposition_category_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_subcategory_id"
-                                            class="col-sm-4 col-form-label">Opposition
-                                        Subcategory</label>
-                                    <div class="col-sm-8">
-                                        <select name="opposition_subcategory_id"
-                                                class="form-control select2"
-                                                id="opposition_subcategory_id" disabled>
-                                            <option value="">Select</option>
-
-                                        </select>
-                                        @error('opposition_subcategory_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_id" class="col-sm-4 col-form-label">Opposition
-                                        Name</label>
-                                    <div class="col-sm-8">
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="opposition_id[]"
-                                                        id="opposition_id"
-                                                        class="form-control select2" data-placeholder="Select" multiple disabled>
-                                                    <option value="">Select</option>
-                                                    @foreach($opposition as $item)
-                                                        <option
-                                                            value="{{ $item->opposition_name }}" {{  old('opposition_id') == $item->id ? 'selected' : '' }}>{{ $item->opposition_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="input-group hdtuto_opposition control-group increment_opposition">
-                                                    <input type="text" name="opposition_write[]"
-                                                            class="myfrm form-control col-12" placeholder="Opposition" readonly>
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-success btn_success_opposition"
-                                                                type="button"><i
-                                                                class="fldemo glyphicon glyphicon-plus"></i>+
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="clone_opposition hide">
-                                                    <div class="hdtuto_opposition control-group lst input-group"
-                                                            style="margin-top:10px">
-                                                        <input type="text" name="opposition_write[]"
-                                                                class="myfrm form-control col-12" readonly>
-                                                        <div class="input-group-btn">
-                                                            <button class="btn btn-danger btn_danger_opposition"
-                                                                    type="button"><i
-                                                                    class="fldemo glyphicon glyphicon-remove"></i> -
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-
-                                        @error('client_name')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_business_name" class="col-sm-4 col-form-label">Opposition Business
-                                        Name</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="opposition_business_name"
-                                                name="opposition_business_name"
-                                                value="{{ old('opposition_business_name') }}" readonly>
-                                        @error('opposition_business_name')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_group_id" class="col-sm-4 col-form-label">Opposition Group Name</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="opposition_group_id"
-                                                        id="opposition_group_id"
-                                                        class="form-control select2" disabled>
-                                                    <option value="">Select</option>
-                                                    @foreach($group_name as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{  old('opposition_group_id') == $item->id ? 'selected' : '' }}>{{ $item->group_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="opposition_group_write"
-                                                        name="opposition_group_write"
-                                                        placeholder="Opposition Group"
-                                                        value="{{ old('opposition_group_write') }}" readonly4>
-                                            </div>
-                                        </div>
-                                        @error('opposition_group_write')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_address" class="col-sm-4 col-form-label">
-                                        Opposition
-                                        Address </label>
-                                    <div class="col-sm-8">
-                                    <textarea name="opposition_address" class="form-control" rows="3"
-                                                placeholder="">{{old('opposition_address')}}</textarea>
-                                        @error('opposition_address')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_mobile" class="col-sm-4 col-form-label">Opposition
-                                        Mobile</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="opposition_mobile"
-                                                name="opposition_mobile"
-                                                value="{{old('opposition_mobile')}}">
-                                        @error('opposition_mobile')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_email" class="col-sm-4 col-form-label">Opposition
-                                        Email</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="opposition_email"
-                                                name="opposition_email"
-                                                value="{{old('opposition_email')}}">
-                                        @error('opposition_email')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_profession_id"
-                                            class="col-sm-4 col-form-label">Profession/Type</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="opposition_profession_id"
-                                                        class="form-control select2"
-                                                        id="opposition_profession_id">
-                                                    <option value="">Select</option>
-                                                    @foreach ($profession as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{(old('opposition_profession_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->profession_name) }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="opposition_profession_write"
-                                                        name="opposition_profession_write"
-                                                        placeholder="Profession Name"
-                                                        value="{{ old('opposition_profession_write') }}">
-                                            </div>
-                                        </div>
-                                        @error('opposition_profession_write')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_division_id"
-                                            class="col-sm-4 col-form-label">Division/Zone</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="opposition_division_id"
-                                                        id="opposition_division_id"
-                                                        class="form-control select2" action="{{ route('find_district') }}">
-                                                    <option value="">Select</option>
-                                                    @foreach ($division as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{(old('opposition_division_id') == $item->id ? 'selected':'')}}>{{ ucfirst($item->division_name) }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="opposition_divisoin_write"
-                                                        name="opposition_divisoin_write"
-                                                        placeholder="Opposition Zone"
-                                                        value="{{ old('opposition_divisoin_write') }}">
-                                            </div>
-                                        </div>
-                                        @error('opposition_divisoin_write')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="opposition_district_id"
-                                            class="col-sm-4 col-form-label">District/Area</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="opposition_district_id"
-                                                        id="opposition_district_id"
-                                                        class="form-control select2" action="{{ route('find-thana') }}">
-                                                    <option value="">Select</option>
-
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="opposition_district_write"
-                                                        name="opposition_district_write"
-                                                        placeholder="Opposition Area"
-                                                        value="{{ old('opposition_district_write') }}">
-                                            </div>
-                                        </div>
-
-                                        @error('opposition_district_write')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_thana_id"
-                                            class="col-sm-4 col-form-label">Thana/Branch</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="opposition_thana_id"
-                                                        id="opposition_thana_id"
-                                                        class="form-control select2">
-                                                    <option value="">Select</option>
-
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="opposition_thana_write"
-                                                        name="opposition_thana_write"
-                                                        placeholder="Opposition Branch"
-                                                        value="{{ old('opposition_thana_write') }}">
-                                            </div>
-                                        </div>
-                                        @error('opposition_thana_write')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_representative_name" class="col-sm-4 col-form-label">Representative
-                                        Name</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="opposition_representative_name"
-                                                name="opposition_representative_name"
-                                                value="{{old('opposition_representative_name')}}">
-                                        @error('opposition_representative_name')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_representative_details"
-                                            class="col-sm-4 col-form-label"> Representative Details </label>
-                                    <div class="col-sm-8">
-                                    <textarea name="opposition_representative_details" class="form-control"
-                                                rows="3"
-                                                placeholder="">{{old('opposition_representative_details')}}</textarea>
-                                        @error('opposition_representative_details')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_coordinator_tadbirkar_id"
-                                            class="col-sm-4 col-form-label"> Coordinator/Tadbirkar </label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="opposition_coordinator_tadbirkar_id"
-                                                        id="opposition_coordinator_tadbirkar_id"
-                                                        class="form-control select2">
-                                                    <option value="">Select</option>
-                                                    @foreach($coordinator as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{ old('opposition_coordinator_tadbirkar_id') == $item->id ? 'selected' : '' }}>{{ $item->coordinator_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                        id="opposition_coordinator_tadbirkar_write"
-                                                        name="opposition_coordinator_tadbirkar_write"
-                                                        placeholder="Tadbirkar Name"
-                                                        value="{{old('opposition_coordinator_tadbirkar_write')}}">
-                                            </div>
-                                        </div>
-                                        @error('coordinator_tadbirkar_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="opposition_coordinator_details"
-                                            class="col-sm-4 col-form-label"> Coordinator Details </label>
-                                    <div class="col-sm-8">
-                                    <textarea name="opposition_coordinator_details" class="form-control"
-                                                rows="3"
-                                                placeholder="">{{old('opposition_coordinator_details')}}</textarea>
-                                        @error('opposition_coordinator_details')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        
-
-
-                                                  </div>
-                                                </div>
-
-
-
-
-
-
-<div class="tab-pane fade" id="pills-lawyer" role="tabpanel" aria-labelledby="pills-lawyer-tab">
-    <div class="container-fluid">
-        <div class="card allCard" style="width:100%">
-
-
-
-
-                        <div class="card" style="height: 355px; width: 100%;">
-                            <div class="card-header positionCard">
-                                <h6 class="card-title text-uppercase"> Lawyer Information </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group row">
-                                    <label for="lawyer_advocate_id"
-                                           class="col-sm-4 col-form-label">Name of Advocate/Law Firm</label>
-                                    <div class="col-sm-8">
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="lawyer_advocate_id"
-                                                        class="form-control select2"
-                                                        id="lawyer_advocate_id">
-                                                    <option value="">Select</option>
-                                                    @foreach($chamber as $item)
-                                                      <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                       id="lawyer_advocate_write"
-                                                       name="lawyer_advocate_write"
-                                                       placeholder="Advocate Name"
-                                                       value="{{ old('lawyer_advocate_write') }}">
-                                            </div>
-                                        </div>
-
-                                        @error('client_profession_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="lead_laywer_name"
-                                           class="col-sm-4 col-form-label">Name of Lead Laywer</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="lead_laywer_name"
-                                                        class="form-control select2"
-                                                        id="lead_laywer_name">
-                                                    <option value="">Select</option>
-
-                                                    @foreach($leadLaywer as $item)
-                                                    <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
-                                                    @endforeach
-
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                       id="lead_laywer_name_extra"
-                                                       name="lead_laywer_name_extra"
-                                                       placeholder="Advocate Name"
-                                                       value="{{ old('lead_laywer_name_extra') }}">
-                                            </div>
-                                        </div>
-
-                                        @error('client_profession_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Name of Assigned
-                                        Lawyer</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <select name="assigned_lawyer_id[]" class="form-control select2"
-                                                data-placeholder="Select">
-                                            <option value="">Select</option>
-
-                                            @foreach($assignedlaywer as $item)
-                                                    <option value="{{$item->professional_name}}">{{$item->professional_name}}</option>
-                                            @endforeach
-
-                                        </select>
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control"
-                                                       id="assigned_lawyer_extra"
-                                                       name="assigned_lawyer_extra"
-                                                       placeholder="Advocate Name"
-                                                       value="{{ old('assigned_lawyer_extra') }}">
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="lawyers_remarks"
-                                           class="col-sm-4 col-form-label"> Remarks </label>
-                                    <div class="col-sm-8">
-                                    <textarea name="lawyers_remarks" class="form-control"
-                                              rows="3"
-                                              placeholder="">{{old('lawyers_remarks')}}</textarea>
-                                        @error('lawyers_remarks')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="card oppLowyer" style="width:100%">
-                            <div class="card-header positionCard">
-                                <h6 class="card-title text-uppercase"> Lawyer Information ( Opposition Lawyer) </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group row">
-                                    <label for="lawyer_advocate_id"
-                                           class="col-sm-4 col-form-label"> Advocate/Law Firm</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control"
-                                            id="opp_lawyer_advocate_write"
-                                            name="opp_lawyer_advocate_write"
-                                            placeholder="Advocate Name"
-                                            value="{{ old('opp_lawyer_advocate_write') }}">
-
-                                    {{-- <select name="opp_lawyer_advocate_write"
-                                            class="form-control select2"
-                                            id="opp_lawyer_advocate_write" action="{{ route('find-associates') }}">
-                                        <option value="">Select</option>
-                                        @foreach($external_council as $item)
-                                            <option
-                                                value="{{$item->first_name}} {{$item->last_name}}" {{( old('opp_lawyer_advocate_write') == $item->id ? 'selected':'')}}>{{ $item->first_name }} {{ $item->last_name }}</option>
-                                        @endforeach
-                                    </select> --}}
-
-                                        @error('client_profession_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">Assigned
-                                        Lawyer</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control"
-                                        id="opp_lawyer_assigned_lawyer"
-                                        name="opp_lawyer_assigned_lawyer"
-                                        placeholder="Assigned Lawyer"
-                                        value="{{ old('opp_lawyer_assigned_lawyer') }}">
-
-                                        @error('assigned_lawyer_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="assigned_lawyer_id" class="col-sm-4 col-form-label">
-                                        Lawyer Contact</label>
-                                    <div class="col-sm-8">
-                                        <input type="number" class="form-control"
-                                        id="opp_lawyer_contact"
-                                        name="opp_lawyer_contact"
-                                        placeholder="Lawyer Contact"
-                                        value="{{ old('opp_lawyer_contact') }}">
-
-                                        @error('assigned_lawyer_id')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="opp_lawyers_note"
-                                           class="col-sm-4 col-form-label"> Note </label>
-                                    <div class="col-sm-8">
-                                    <textarea name="opp_lawyers_note" class="form-control"
-                                              rows="3"
-                                              placeholder="">{{old('opp_lawyers_note')}}</textarea>
-                                        @error('opp_lawyers_note')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-        </div> 
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                                  <div class="container-fluid">
-                                                    <div class="card" style="width:100%">
-                            <div class="card-header positionCard">
-                                <h6 class="card-title text-uppercase"> Documents Received </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group row">
-
-                                    <div class="col-sm-12">
-                                            <div class="input-group hdtuto_received_documents control-group increment_received_documents">
-
-                                            <input type="hidden" name="received_documents_sections[]"
-                                                    class="myfrm form-control mr-2" value="received_documents_sections">
-                                            <select name="received_documents_id[]"
-                                                class="form-control mr-3">
-                                                <option value="">Select</option>
-                                                @foreach($documents as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('received_documents_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <input type="text" name="received_documents[]"
-                                                    class="myfrm form-control mr-2">
-                                            <input type="date" name="received_documents_date[]"
-                                                    class="myfrm form-control ml-2 mr-2" value="dd/mm/yyyy">
-                                            <select name="received_documents_type_id[]"
-                                                class="form-control mr-3 ml-2">
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option value="{{ $item->id }}" {{ old('received_documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-success btn_success_received_documents"
-                                                        type="button"><i
-                                                        class="fldemo glyphicon glyphicon-plus"></i>+
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="clone_received_documents hide">
-                                            <div class="hdtuto_received_documents control-group lst input-group"
-                                                    style="margin-top:10px">
-                                                    <input type="hidden" name="received_documents_sections[]"
-                                                    class="myfrm form-control mr-2" value="received_documents_sections">
-                                                    <select name="received_documents_id[]"
-                                                    class="form-control mr-3" >
-                                                    <option value="">Select</option>
-                                                    @foreach($documents as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{ old('received_documents_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                <input type="text" name="received_documents[]"
-                                                        class="myfrm form-control mr-2">
-                                                <input type="date" name="received_documents_date[]"
-                                                        class="myfrm form-control ml-2 mr-2" value="dd/mm/yyyy">
-                                                <select name="received_documents_type_id[]"
-                                                    class="form-control mr-3 ml-2">
-                                                    <option value="">Select</option>
-                                                    @foreach($documents_type as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{ old('received_documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-danger btn_danger_received_documents"
-                                                            type="button"><i
-                                                            class="fldemo glyphicon glyphicon-remove"></i> -
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        @error('case_infos_received_documents_informant_name')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-
-<div class="card" style="width:100%">
-                            <div class="card-header positionCard">
-                                <h6 class="card-title text-uppercase"> Documents Required </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group row">
-
-                                    <div class="col-sm-12">
-                                        <div class="input-group hdtuto_required_wanting_documents control-group increment_required_wanting_documents">
-                                            <input type="hidden" name="required_wanting_documents_sections[]"
-                                                    class="myfrm form-control mr-2" value="required_wanting_documents_sections">
-                                            <select name="required_wanting_documents_id[]"
-                                                class="form-control mr-3">
-                                                <option value="">Select</option>
-                                                @foreach($documents as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('required_wanting_documents_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <input type="text" name="required_wanting_documents[]"
-                                                    class="myfrm form-control mr-2">
-                                            <input type="date" name="required_wanting_documents_date[]"
-                                                    class="myfrm form-control ml-2 mr-2" value="dd/mm/yyyy">
-                                            <select name="required_wanting_documents_type_id[]"
-                                                    class="form-control mr-3 ml-2">
-                                                    <option value="">Select</option>
-                                                    @foreach($documents_type as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{ old('required_wanting_documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                    @endforeach
-                                            </select>
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-success btn_success_required_wanting_documents"
-                                                        type="button"><i
-                                                        class="fldemo glyphicon glyphicon-plus"></i>+
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="clone_required_wanting_documents hide">
-                                            <div class="hdtuto_required_wanting_documents control-group lst input-group"
-                                                    style="margin-top:10px">
-                                                    <input type="hidden" name="required_wanting_documents_sections[]"
-                                                    class="myfrm form-control mr-2" value="required_wanting_documents_sections">
-                                                    <select name="required_wanting_documents_id[]"
-                                                    class="form-control mr-3">
-                                                    <option value="">Select</option>
-                                                    @foreach($documents as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{ old('required_wanting_documents_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                <input type="text" name="required_wanting_documents[]"
-                                                        class="myfrm form-control mr-2">
-
-                                                <input type="date" name="required_wanting_documents_date[]"
-                                                    class="myfrm form-control ml-2 mr-2" value="dd/mm/yyyy">
-                                            <select name="required_wanting_documents_type_id[]"
-                                                    class="form-control mr-3 ml-2">
-                                                    <option value="">Select</option>
-                                                    @foreach($documents_type as $item)
-                                                        <option
-                                                            value="{{ $item->id }}" {{ old('required_wanting_documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                    @endforeach
-                                            </select>
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-danger btn_danger_required_wanting_documents"
-                                                            type="button"><i
-                                                            class="fldemo glyphicon glyphicon-remove"></i> -
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        @error('required_wanting_documents')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-<div class="card" style="width:100%">
-                            <div class="card-header positionCard">
-                                <h6 class="card-title text-uppercase"> Document Upload </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <div class="input-group hdtuto_files control-group increment_files">
-                                        <input type="file" name="uploaded_document[]"
-                                               class="myfrm form-control col-md-4 mr-2">
-                                        <input type="date" name="uploaded_date[]"
-                                            class="myfrm form-control mr-2 col-md-4" value="{{ old('uploaded_date') }}">
-                                        <select name="documents_type_id[]"
-                                            class="form-control col-md-4">
-                                            <option value="">Select</option>
-                                            @foreach($documents_type as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{ old('documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-success btn_success_files"
-                                                    type="button"><i
-                                                    class="fldemo glyphicon glyphicon-plus"></i>+
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="clone_files hide">
-                                        <div class="hdtuto_files control-group lst input-group"
-                                             style="margin-top:10px">
-                                            <input type="file" name="uploaded_document[]"
-                                                   class="myfrm form-control col-md-4 mr-2">
-                                            <input type="date" name="uploaded_date[]"
-                                                class="myfrm form-control mr-2 col-md-4" value="{{ old('uploaded_date') }}">
-                                            <select name="documents_type_id[]"
-                                                class="form-control col-md-4">
-                                                <option value="">Select</option>
-                                                @foreach($documents_type as $item)
-                                                    <option
-                                                        value="{{ $item->id }}" {{ old('documents_type_id') == $item->id ? 'selected' : '' }}>{{ $item->documents_type_name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="input-group-btn">
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-danger btn_danger_files"
-                                                            type="button"><i
-                                                            class="fldemo glyphicon glyphicon-remove"></i> -
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                </div>    
+                                    
                             </div>
 
 
 
-                            </div>
-                        </div>
-
-
-                                                  </div>
-                                                </div>
-                                                <div class="tab-pane fade" id="pills-casefile" role="tabpanel" aria-labelledby="pills-casefile-tab">
-                                                  <div class="container-fluid">
-                                                     <div class="card" style="width:100%;">
-                            <div class="card-header positionCard">
-                                <h6 class="card-title text-uppercase"> CASE FILE LOCATION </h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group row">
-
-                                    <div class="col-sm-12">
-                                        <div class="input-group hdtuto_case_file_location_new control-group increment_case_file_location_new">
-                                            <input type="hidden" name="case_file_location_new_sections[]"
-                                                    class="myfrm form-control mr-2" value="case_file_location_new_sections">
-                                            <select name="case_file_location_new_id[]"
-                                                class="form-control mr-3">
-                                                <option value="">Select</option>
-                                                @foreach($cabinet as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{  old('case_file_location_new_id') == $item->id ? 'selected' : '' }}>{{ $item->cabinet_name }}</option>
-                                                 @endforeach
-                                            </select>
-                                            <input type="text" name="case_file_location_new_office[]"
-                                                    class="myfrm form-control mr-2">
-                                            <input type="text" name="case_file_location_new_almirah[]"
-                                                    class="myfrm form-control mr-2">
-                                            <input type="text" name="case_file_location_new_self[]"
-                                                    class="myfrm form-control mr-2">
-
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-success btn_success_case_file_location_new"
-                                                        type="button"><i
-                                                        class="fldemo glyphicon glyphicon-plus"></i>+
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="clone_case_file_location_new hide">
-                                            <div class="hdtuto_case_file_location_new control-group lst input-group"
-                                                    style="margin-top:10px">
-                                                    <input type="hidden" name="case_file_location_new_sections[]"
-                                                    class="myfrm form-control mr-2" value="case_file_location_new_sections">
-                                            <select name="case_file_location_new_id[]"
-                                                class="form-control mr-3">
-                                                <option value="">Select</option>
-                                                @foreach($cabinet as $item)
-                                                <option
-                                                    value="{{ $item->id }}" {{  old('case_file_location_new_id') == $item->id ? 'selected' : '' }}>{{ $item->cabinet_name }}</option>
-                                                 @endforeach
-                                            </select>
-                                            <input type="text" name="case_file_location_new_office[]"
-                                                    class="myfrm form-control mr-2">
-                                            <input type="text" name="case_file_location_new_almirah[]"
-                                                    class="myfrm form-control mr-2">
-                                            <input type="text" name="case_file_location_new_self[]"
-                                                    class="myfrm form-control mr-2">
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-danger btn_danger_case_file_location_new"
-                                                            type="button"><i
-                                                            class="fldemo glyphicon glyphicon-remove"></i> -
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        @error('case_file_location_new')<span
-                                            class="text-danger">{{$message}}</span>@enderror
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                        <div class="row">
-                      
-                      </div>
-                   </div>
-                                                   
-                                                  </div>
-                                                </div>
-                                                <div class="col-md-12">
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary text-uppercase submitForm"><i
-                                    class="fas fa-save"></i> Save
-                            </button>
-                        </div>
-                        
-</form>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
-
-<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css'>
-  <script src='https://code.jquery.com/jquery-3.5.1.slim.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js'></script>
-
-
-
-
-
-
-
-
-<!--- Tanvir End ---->
-                            <br><br>
-                            <h3>Case Information</h3>
-                            <br><br>
-                            <!-- partial:index.partial.html -->
-                            <div class="tabs-to-dropdown">
-                              <div class="nav-wrapper d-flex align-items-center justify-content-between">
-                                <ul class="nav nav-pills d-none d-md-flex" id="pills-tab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link active" id="pills-company-tab" data-toggle="pill" href="#pills-company" role="tab" aria-controls="pills-company" aria-selected="true">Case Info</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="pills-product-tab" data-toggle="pill" href="#pills-product" role="tab" aria-controls="pills-product" aria-selected="false">Events & Stages</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="pills-news-tab" data-toggle="pill" href="#pills-news" role="tab" aria-controls="pills-news" aria-selected="false">Party Info</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="pills-lawyer-tab" data-toggle="pill" href="#pills-lawyer" role="tab" aria-controls="pills-lawyer" aria-selected="false">Lawyer Info</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Document Info</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="pills-filelocation-tab" data-toggle="pill" href="#pills-filelocation" role="tab" aria-controls="pills-filelocation" aria-selected="false">Case File Location</a>
-                                    </li>
-
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="pills-cproceedinglog-tab" data-toggle="pill" href="#pills-cproceedinglog" role="tab" aria-controls="pills-cproceedinglog" aria-selected="false">Case Proceeding Log</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="pills-cactivitylog-tab" data-toggle="pill" href="#pills-cactivitylog" role="tab" aria-controls="pills-cactivitylog" aria-selected="false">Case Activity Log</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="pills-billlog-tab" data-toggle="pill" href="#pills-billlog" role="tab" aria-controls="pills-billlog" aria-selected="false">Bill Log</a>
-                                    </li>
-                                </ul>
-
-                              </div>
-                              <hr style="margin-bottom:20px; border:1px solid #000;">
-
-                              <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="pills-company" role="tabpanel" aria-labelledby="pills-company-tab">
-                                  <div class="container-fluid">
-                                    <table class="table table-bordered caseInfoTable">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Case ID</td>
-                                                        <td> {{ $data->created_case_id }} </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Division</td>
-                                                        <td>
-                                                            {{ $data->case_infos_division_name }} </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>District</td>
-                                                        <td>{{ $data->case_infos_district_name }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Police Station</td>
-                                                        <td>{{ $data->case_infos_thana_name }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Case Category</td>
-                                                        <td>{{ $data->case_category_id }}</td>
-                                                    </tr>
-                                                    {{-- <tr>
-                                                        <td>Case Subcategory</td>
-                                                        <td>{{ $data->case_subcategory }}</td>
-                                                    </tr> --}}
-                                                    <tr>
-                                                        <td>Case Type</td>
-                                                        <td>{{ $data->case_types_name }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Case Prayer</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Case Nature</td>
-                                                        <td>{{ $case_steps->case_nature_write }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Case Matter</td>
-                                                        <td>{{ $data->matter_name }} {{ $data->matter_write }}
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr class="trHide">
-                                                        <td>Case Title</td>
-                                                        <td>{{ $data->case_infos_case_title_name }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Case Title (Short)</td>
-                                                        <td>{{ $data->case_infos_case_title_name }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Case No.</td>
-                                                        <td>{{ rtrim($data->case_infos_case_no, ', ') }} of
-                                                            {{ rtrim($data->case_infos_case_year, ', ') }} </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Name of the Court</td>
-                                                        <td>
-                                                            @php
-                                                                $case_infos_court_id = explode(', ', $data->case_infos_court_id);
-                                                            @endphp
-                                                            @if ($data->case_infos_court_id)
-                                                                @if (count($case_infos_court_id) > 1)
-                                                                    @foreach ($case_infos_court_id as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($case_infos_court_id as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Name of Court(Short)</td>
-                                                        <td>
-                                                            @php
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Name of Court(Short)</label>
+                                    <div class="col-sm-12 form-control inputDiv">
+                                  @php
                                                                 $case_infos_court_short_id = explode(', ', $data->case_infos_court_short_id);
                                                             @endphp
                                                             @if ($data->case_infos_court_short_id)
@@ -2954,114 +680,111 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                                     @endforeach
                                                                 @endif
                                                             @endif
+                                    </div>
 
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Sub Seq. Case Title</td>
-                                                        <td> {{ $data->sub_seq_case_infos_case_title_name }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Sub Seq. Case No.</td>
-                                                        <td>
+                                </div>                        
+                                <div class="col-md-6">
+                                    <label for="case_infos_division_id" class="col-sm-12 col-form-label padding-null">Sub Seq. Case Title</label>
+                                    <div class="col-sm-12 padding-null">
+                                    
+                                    <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $data->sub_seq_case_infos_case_title_name }} " disabled>
+                                    </div>
 
-
-                                                            @php
-                                                                $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
-                                                                $key = array_key_last($case_infos_sub_seq_case_no);
-                                                                echo $case_infos_sub_seq_case_no[$key];
-                                                                
-                                                                $case_infos_sub_seq_case_year = explode(', ', trim($data->case_infos_sub_seq_case_year));
-                                                                $key = array_key_last($case_infos_sub_seq_case_year);
-                                                                $last_case_no = $case_infos_sub_seq_case_year[$key];
-                                                                if ($last_case_no != null) {
-                                                                    echo ' of ' . $last_case_no;
-                                                                }
-                                                            @endphp
+                                </div>    
+                                    
+                            </div>
 
 
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Sub Seq. Case No.</label>
+                                    <div class="col-sm-12 form-control inputDiv">
+                                        @php
+                                            $case_infos_sub_seq_case_no = explode(', ', trim($data->case_infos_sub_seq_case_no));
+                                            $key = array_key_last($case_infos_sub_seq_case_no);
+                                            echo $case_infos_sub_seq_case_no[$key];
+                                            
+                                            $case_infos_sub_seq_case_year = explode(', ', trim($data->case_infos_sub_seq_case_year));
+                                            $key = array_key_last($case_infos_sub_seq_case_year);
+                                            $last_case_no = $case_infos_sub_seq_case_year[$key];
+                                            if ($last_case_no != null) {
+                                                echo ' of ' . $last_case_no;
+                                            }
+                                        @endphp                 
+                                       
+                                    </div>
 
-                                                            {{-- @php
-                                        $case_infos_sub_seq_case_no = explode(', ', $data->case_infos_sub_seq_case_no);
-                                    @endphp
-                                    @if ($data->case_infos_sub_seq_case_no)
-                                        @if (count($case_infos_sub_seq_case_no) > 1)
-                                            @foreach ($case_infos_sub_seq_case_no as $pro)
-                                                <li class="text-left">{{ $pro }}
-                                                </li>
-                                            @endforeach
-                                        @else
-                                            @foreach ($case_infos_sub_seq_case_no as $pro)
-                                                {{ $pro }}
-                                            @endforeach
+                                </div>                        
+                                <div class="col-md-6">
+                                    <label for="case_infos_division_id" class="col-sm-12 col-form-label padding-null">Sub-Seq. Court</label>
+                                    <div class="col-sm-12 form-control inputDiv">
+                                    
+                                        @php
+                                            $case_infos_sub_seq_court_id = explode(', ', $data->case_infos_sub_seq_court_id);
+                                        @endphp
+                                        @if ($data->case_infos_sub_seq_court_id)
+                                            @if (count($case_infos_sub_seq_court_id) > 1)
+                                                @foreach ($case_infos_sub_seq_court_id as $pro)
+                                                    <li class="text-left">{{ $pro }}
+                                                    </li>
+                                                @endforeach
+                                            @else
+                                                @foreach ($case_infos_sub_seq_court_id as $pro)
+                                                    {{ $pro }}
+                                                @endforeach
+                                            @endif
                                         @endif
-                                    @endif --}}
+                                    </div>
 
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Sub-Seq. Court</td>
-                                                        <td>
-                                                            @php
-                                                                $case_infos_sub_seq_court_id = explode(', ', $data->case_infos_sub_seq_court_id);
-                                                            @endphp
-                                                            @if ($data->case_infos_sub_seq_court_id)
-                                                                @if (count($case_infos_sub_seq_court_id) > 1)
-                                                                    @foreach ($case_infos_sub_seq_court_id as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($case_infos_sub_seq_court_id as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
+                                </div>    
+                                    
+                            </div>
 
 
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Sub-Seq. Court(Short)</td>
-                                                        <td>
-                                                            @php
-                                                                $case_infos_sub_seq_court_short_id = explode(', ', $data->case_infos_sub_seq_court_short_id);
-                                                            @endphp
-                                                            @if ($data->case_infos_sub_seq_court_short_id)
-                                                                @if (count($case_infos_sub_seq_court_short_id) > 1)
-                                                                    @foreach ($case_infos_sub_seq_court_short_id as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($case_infos_sub_seq_court_short_id as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-                                                            @php
-                                                                $sub_seq_court_short_write = explode(', ', $data->sub_seq_court_short_write);
-                                                            @endphp
-                                                            @if ($data->sub_seq_court_short_write)
-                                                                @if (count($sub_seq_court_short_write) > 1)
-                                                                    @foreach ($sub_seq_court_short_write as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($sub_seq_court_short_write as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Sub-Seq. Court(Short)</label>
+                                    <div class="col-sm-12 form-control inputDiv">
+                  
+                                        @php
+                                            $case_infos_sub_seq_court_short_id = explode(', ', $data->case_infos_sub_seq_court_short_id);
+                                        @endphp
+                                        @if ($data->case_infos_sub_seq_court_short_id)
+                                            @if (count($case_infos_sub_seq_court_short_id) > 1)
+                                                @foreach ($case_infos_sub_seq_court_short_id as $pro)
+                                                    <li class="text-left">{{ $pro }}
+                                                    </li>
+                                                @endforeach
+                                            @else
+                                                @foreach ($case_infos_sub_seq_court_short_id as $pro)
+                                                    {{ $pro }}
+                                                @endforeach
+                                            @endif
+                                        @endif
+                                        @php
+                                            $sub_seq_court_short_write = explode(', ', $data->sub_seq_court_short_write);
+                                        @endphp
+                                        @if ($data->sub_seq_court_short_write)
+                                            @if (count($sub_seq_court_short_write) > 1)
+                                                @foreach ($sub_seq_court_short_write as $pro)
+                                                    <li class="text-left">{{ $pro }}
+                                                    </li>
+                                                @endforeach
+                                            @else
+                                                @foreach ($sub_seq_court_short_write as $pro)
+                                                    {{ $pro }}
+                                                @endforeach
+                                            @endif
+                                        @endif                             
+                                       
+                                    </div>
 
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Law</td>
-                                                        <td>
-                                                            @php
+                                </div>                        
+                                <div class="col-md-6">
+                                    <label for="case_infos_division_id" class="col-sm-12 col-form-label padding-null">LAW</label>
+                                    <div class="col-sm-12 form-control inputDiv">
+                                    
+                                    @php
                                                                 $law_id = explode('/ ', $data->law_id);
                                                                 $law_write = explode('/ ', $data->law_write);
                                                                 // dd(!empty($data->law_id));
@@ -3115,128 +838,27 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                                     @endforeach
                                                                 @endif
                                                             @endif
+                                    </div>
+
+                                </div>    
+                                    
+                            </div>
 
 
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Case Filing Date</label>
+                                    <div class="col-sm-12 padding-null">
+                                     <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ date('d-m-Y', strtotime($data->date_of_filing)) }} " disabled>                                
+                                       
+                                    </div>
 
-                                                            {{-- @if ($data->law_id)
-                                    @if (count($law_id) > 1)
-                                        @foreach ($law_id as $pro)
-                                            <li class="text-left">{{ $pro }}</li>
-                                        @endforeach
-                                    @else
-                                        @foreach ($law_id as $pro)
-                                            {{ $pro }}
-                                        @endforeach
-                                    @endif
-                                @endif
-
-                                @if ($data->law_write)
-                                    @if (count($law_write) > 1)
-                                        @foreach ($law_write as $pro)
-                                            <li class="text-left">{{ $pro }}</li>
-                                        @endforeach
-                                    @else
-                                        @foreach ($law_write as $pro)
-                                            {{ $pro }}
-                                        @endforeach
-                                    @endif
-                                @endif --}}
-
-
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Section</td>
-                                                        <td>
-                                                            @php
-                                                                $section_id = explode(', ', $data->section_id);
-                                                            @endphp
-                                                            @if ($data->section_id)
-                                                                @if (count($section_id) > 1)
-                                                                    @foreach ($section_id as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($section_id as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-                                                            @php
-                                                                $section_write = explode(', ', $data->section_write);
-                                                            @endphp
-                                                            @if ($data->section_write)
-                                                                @if (count($section_write) > 1)
-                                                                    @foreach ($section_write as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($section_write as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-
-
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Case Filing Date</td>
-                                                        <td>{{ date('d-m-Y', strtotime($data->date_of_filing)) }}</td>
-                                                    </tr>
-                                                    {{-- <tr>
-                            <td>Status of the Cases</td>
-                            <td>{{ $data->case_status_name }}</td>
-                        </tr> --}}
-
-                                                    <tr class="trHide">
-                                                        <td>Complainant/Informant Name</td>
-                                                        <td>
-                                                            @php
-                                                                $case_infos_complainant_informant_name = explode(', ', $data->case_infos_complainant_informant_name);
-                                                            @endphp
-                                                            @if ($data->case_infos_complainant_informant_name)
-                                                                @if (count($case_infos_complainant_informant_name) > 1)
-                                                                    @foreach ($case_infos_complainant_informant_name as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($case_infos_complainant_informant_name as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Complainant/Informant's Representative</td>
-                                                        <td>
-                                                            @php
-                                                                $complainant_informant_representative = explode(', ', $data->complainant_informant_representative);
-                                                            @endphp
-                                                            @if ($data->complainant_informant_representative)
-                                                                @if (count($complainant_informant_representative) > 1)
-                                                                    @foreach ($complainant_informant_representative as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($complainant_informant_representative as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Accused Name</td>
-                                                        <td>
-                                                            @php
+                                </div>                        
+                                <div class="col-md-6">
+                                    <label for="case_infos_division_id" class="col-sm-12 col-form-label padding-null">Accused Name</label>
+                                    <div class="col-sm-12 padding-null">
+                                    
+                                   @php
                                                                 $case_infos_accused_name = explode(', ', $data->case_infos_accused_name);
                                                             @endphp
                                                             @if ($data->case_infos_accused_name)
@@ -3250,84 +872,168 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                                         {{ $pro }}
                                                                     @endforeach
                                                                 @endif
-                                                            @endif
+                                                            @endif  
+                                    </div>
 
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Accused's Representative</td>
-                                                        <td>
-                                                            @php
-                                                                $case_infos_accused_representative = explode(', ', $data->case_infos_accused_representative);
-                                                            @endphp
-                                                            @if ($data->case_infos_accused_representative)
-                                                                @if (count($case_infos_accused_representative) > 1)
-                                                                    @foreach ($case_infos_accused_representative as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($case_infos_accused_representative as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
+                                </div>    
+                                    
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Allegation/Claim</label>
+                                    <div class="col-sm-12 padding-null">
+                                     <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $edit_case_steps->allegation_name }} {{ $edit_case_steps->case_infos_allegation_claim_write }}" disabled>                                       
+                                    </div>
 
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Prosecution Witnesses</td>
-                                                        <td>{{ $data->prosecution_witness }}</td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Defense Witnesses</td>
-                                                        <td> {{ $data->defense_witness }} </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Allegation/Claim</td>
-                                                        <td> {{ $edit_case_steps->allegation_name }}
-                                                            {{ $edit_case_steps->case_infos_allegation_claim_write }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Amount of Money</td>
-                                                        <td>{{ !empty($edit_case_steps->amount_of_money) ? number_format($edit_case_steps->amount_of_money, 0) . '/-' : '' }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Another Claim(if any)</td>
-                                                        <td>{{ $edit_case_steps->another_claim }}</td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Recovery/Seizure Articles</td>
-                                                        <td>{{ $edit_case_steps->recovery_seizure_articles }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Summary of Facts</td>
-                                                        <td>{{ $edit_case_steps->summary_facts }}</td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Remarks</td>
-                                                        <td>{{ $edit_case_steps->case_info_remarks }}</td>
-                                                    </tr>
+                                </div>                        
+                                <div class="col-md-6">
+                                    <label for="case_infos_division_id" class="col-sm-12 col-form-label padding-null"></label>
+                                    <div class="col-sm-12 padding-null">
+                                    
+                                   
+                                    </div>
 
+                                </div>    
+                                    
+                            </div>                                        
+                                        </div>
+                                    </div>
 
-                                                </tbody>
-                                            </table>
-                                  </div>
-                                </div>
-                                <div class="tab-pane fade" id="pills-product" role="tabpanel" aria-labelledby="pills-product-tab">
-                                  <div class="container-fluid">
-                                
+                                                  </div>
+                                                </div>
 
-                                            <table class="table table-bordered">
+                            <div class="tab-pane fade" id="pills-product" role="tabpanel" aria-labelledby="pills-product-tab">
+                                                  <div class="container-fluid">
+
+<div class="card">
+                                        <div class="card-header">
+                                            <h6 class="text-uppercase text-bold"> Case Status :
+                                                @php
+                                                    $now = Carbon\Carbon::now();
+                                                    $days_count = Carbon\Carbon::parse($data->date_of_filing)->diffInDays($now);
+                                                @endphp
+
+                                                <span class="font-italic text-capitalize text-muted"> (Running for
+                                                    {{ $days_count }} days) </span>
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-lg-status-of-the-case"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Status of the Case"><i class="fas fa-edit"></i>
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-4">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Status</label>
+                                                </div>                        
+                                                <div class="col-sm-4">
+                                                    <div class="col-sm-12 padding-null">
+                                                    
+                                                    <input type="text" class="form-control" id="matter_write" name="matter_write" placeholder="Matter" value="{{ $latest->case_status_name }} " disabled>
+                                                    </div>
+
+                                                </div> 
+
+                                                <div class="col-sm-4">
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    
+                                                    @if (Is_numeric($data->case_status_id))
+                                                        {{ $data->case_status_name }}
+                                                    @else
+                                                        {{ $data->case_status_id }}
+                                                    @endif
+
+                                                </div>    
+                                                    
+                                            </div>
+</div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Filing Date</label>
+                                                </div>                        
+                                                <div class="col-sm-4">
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    @if (!empty($data))
+                                                        {{ $data->date_of_filing }}
+                                                    @endif
+
+                                                </div> 
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                Case Filed
+                                                </div>    
+                                                    
+                                            </div>
+</div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Previous Date</label>
+                                                </div>                        
+                                                <div class="col-sm-4">
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    
+                                                    @if (!empty($latest) && !empty($latest->updated_order_date))
+                                                        {{ date('d-m-Y', strtotime($latest->updated_order_date)) }}
+                                                    @else
+                                                        <button type='button'
+                                                            class='btn-custom btn-danger-custom-next-date-proceedings text-uppercase'>Not
+                                                            Upd
+                                                        </button>
+                                                    @endif
+                                                    </div>
+
+                                                </div> 
+
+                                                <div class="col-sm-4">
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    
+                                                   {{ !empty($latest) && !empty($latest->next_date_reason_name) ? $latest->next_date_reason_name : '' }}
+
+                                                </div>    
+                                                    
+                                            </div>
+</div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Next Date</label>
+                                                </div>                        
+                                                <div class="col-sm-4">
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    
+                                                     {{ !empty($latest) && !empty($latest->next_date_reason_name) ? $latest->next_date_reason_name : '' }}
+                                                    </div>
+
+                                                </div> 
+
+                                                <div class="col-sm-4">
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                     {{ !empty($latest) && !empty($latest->index_fixed_for_reason_name) ? $latest->index_fixed_for_reason_name : '' }}
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div>                                            
+                                        </div>
+                                    </div>
+</div>
+<div class="card caseEvents">
+                                        <div class="card-header caseInfoHeader">
+                                            <h6 class="text-uppercase text-bold"> Case Events & Incidents
+                                                
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <table class="table table-bordered themeTable">
                                                 <thead>
-                                                    <tr class="text-bold themeColor">
-                                                        <td>Date</td>
-                                                        <td>Title</td>
-                                                        <td>Description</td>
-                                                        <td>Evidence</td>
+                                                    <tr class="text-bold">
+                                                        <th>Date</td>
+                                                        <th>Title</td>
+                                                        <th>Description</td>
+                                                        <th>Evidence</td>
                                                     </tr>
 
                                                 </thead>
@@ -3351,246 +1057,387 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            <table class="table table-bordered caseInfoTable2">
-
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Opposition(on behalf of)</td>
-                                                        <td colspan="2"> {{ $data->oppsition_party_name }}
-                                                        </td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Opposition Category</td>
-                                                        <td colspan="2"> {{ $data->opposition_category_name }} </td>
-
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Opposition Subcategory</td>
-                                                        <td colspan="2">{{ $data->opposition_subcategory_name }}</td>
-
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Opposition Name</td>
-                                                        <td colspan="2">
-                                                            @php
-                                                                $opposition_id = explode(', ', $data->opposition_id);
-                                                            @endphp
-                                                            @if ($data->opposition_id)
-                                                                @if (count($opposition_id) > 1)
-                                                                    @foreach ($opposition_id as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($opposition_id as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-                                                            @php
-                                                                $opposition_write = explode(', ', $data->opposition_write);
-                                                            @endphp
-                                                            @if ($data->opposition_write)
-                                                                @if (count($opposition_write) > 1)
-                                                                    @foreach ($opposition_write as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($opposition_write as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-
-                                                        </td>
-
-
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Opposition Business Name</td>
-                                                        <td colspan="2">{{ $data->opposition_business_name }}</td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Opposition Group Name</td>
-                                                        <td colspan="2">{{ $data->opposition_group_name }}
-                                                            {{ $data->opposition_group_write }}</td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Opposition Address</td>
-                                                        <td colspan="2">{{ $data->opposition_address }}</td>
-
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Opposition Mobile</td>
-                                                        <td colspan="2">{{ $data->opposition_mobile }}</td>
-
-
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Opposition Email</td>
-                                                        <td colspan="2">{{ $data->opposition_email }}</td>
-
-
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Profession/Type</td>
-                                                        <td colspan="2">{{ $data->opposition_profession_name }}
-                                                            {{ $data->opposition_profession_write }}</td>
-
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="50%">Division/Zone</td>
-                                                        <td width="25%"> {{ $data->opposition_division_name }}
-                                                            @if ($data->opposition_division_name && $data->opposition_divisoin_write)
-                                                            @endif
-                                                        </td>
-                                                        <td width="25%">{{ $data->opposition_divisoin_write }}</td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>District/Area</td>
-                                                        <td>{{ $data->opposition_district_name }} @if ($data->opposition_district_name && $data->opposition_district_write)
-                                                            @endif
-                                                        </td>
-                                                        <td>{{ $data->opposition_district_write }}</td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Thana/Branch</td>
-                                                        <td>{{ $data->opposition_thana_name }} @if ($data->opposition_thana_name && $data->opposition_thana_write)
-                                                            @endif
-                                                        </td>
-                                                        <td>{{ $data->opposition_thana_write }}</td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Representative Name</td>
-                                                        <td colspan="2">{{ $data->opposition_representative_name }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Representative Details</td>
-                                                        <td colspan="2">{{ $data->opposition_representative_details }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Coordinator/Tadbirkar</td>
-                                                        <td colspan="2">{{ $data->opposition_coordinator_name }}
-                                                            {{ $data->opposition_coordinator_tadbirkar_write }}
-                                                        </td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Coordinator Details</td>
-                                                        <td colspan="2">{{ $data->opposition_coordinator_details }}
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                  </div>
-                                </div>
-                                <div class="tab-pane fade" id="pills-news" role="tabpanel" aria-labelledby="pills-news-tab">
-                                  <div class="container-fluid">
-                                    
-                                      <div class="row" id="sectionClientInfo">
-                                <div class="col-md-6">
-                                    <div class="card clientInfoCard">
+                                        </div>
+                                    </div>
+                                    <div class="card caseStepCard">
                                         <div class="card-header caseInfoHeader">
-                                            <h6 class="text-uppercase text-bold"><u> Client Information </u>
-                                                <button type="button" class="btn btn-info btn-sm float-right"
-                                                    data-toggle="modal" data-target="#modal-lg-client-info"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Update Primary Information"><i class="fas fa-edit"></i>
-                                                </button>
+                                            <h6 class="text-uppercase text-bold"> Case Steps
+                                               
+
+
                                             </h6>
                                         </div>
                                         <div class="card-body">
-                                            <table class="table table-bordered caseInfoTable2">
+                                            <table class="table ">
+                                                <thead>
+                                                    <tr class="text-bold">
+                                                        <th></td>
+                                                        <th>Date</td>
+                                                        <th>Note</td>
+                                                        <th>Evidence</td>
+                                                    </tr>
+                                                </thead>
 
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Client(on behalf of)</td>
-                                                        <td colspan="2"> {{ $data->client_party_name }} </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Client Category</td>
-                                                        <td colspan="2"> {{ $data->client_category_name }} </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Client Sub-category</td>
-                                                        <td colspan="2">{{ $data->client_subcategory_name }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Client Name</td>
-                                                        <td colspan="2">
-                                                            @php
-                                                                $client_explode = explode(', ', $data->client_id);
-                                                                $clientName = DB::table('setup_clients')
-                                                                    ->where('id', $client_explode)
-                                                                    ->get();
-                                                            @endphp
-                                                            @if ($data->client_id)
-                                                                @if (count($client_explode) > 1)
-                                                                    @foreach ($clientName as $pro)
-                                                                        <li class="text-left">{{ $pro->client_name }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($clientName as $pro)
-                                                                        {{ $pro->client_name }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
 
-                                                            @php
-                                                                $client_name_write = explode(', ', $data->client_name_write);
-                                                            @endphp
-                                                            @if ($data->client_name_write)
-                                                                @if (count($client_name_write) > 1)
-                                                                    @foreach ($client_name_write as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($client_name_write as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
+                                                    <tr>
+                                                        <td width="26%">Case Filed</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_filing }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_filing_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->case_steps_filing_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26%">Service Return (SR)</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_servicr_return }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_servicr_return_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->servicr_return_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26%">S.R. Completed</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_sr_completed }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_sr_completed_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->sr_completed_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26%">Set Off</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_set_off }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_set_off_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->case_steps_set_off_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26%">Issue Frame</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_issue_frame }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_issue_frame_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->case_steps_issue_frame_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26%">PH</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_ph }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_ph_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->case_steps_ph_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="26%">F.PH</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_fph }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_fph_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->case_steps_fph_type_name }}
+                                                        </td>
+                                                    </tr>
 
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Client Business Name</td>
-                                                        <td colspan="2">{{ $data->client_business_name }}</td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Client Group Name</td>
-                                                        <td colspan="2">{{ $data->client_group_name }}
-                                                            {{ $data->client_group_write }}</td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Client Address</td>
-                                                        <td colspan="2">{{ $data->client_address }}</td>
+                                                    <tr>
+                                                        <td>Taking Cognizance</td>
+                                                        <td> {{ $case_steps->taking_cognizance }} </td>
+                                                        <td class="letters"> {{ $case_steps->taking_cognizance_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->taking_cognizance_type_name }}
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Client Mobile</td>
-                                                        <td colspan="2">{{ $data->client_mobile }}</td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Client Email</td>
-                                                        <td colspan="2">{{ $data->client_email }}</td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Profession/Type</td>
-                                                        <td colspan="2">{{ $data->profession_name }}
-                                                            {{ $data->client_profession_write }}</td>
+                                                        <td>Arrest/Surrender/C.W.</td>
+                                                        <td> {{ $case_steps->arrest_surrender_cw }} </td>
+                                                        <td class="letters"> {{ $case_steps->arrest_surrender_cw_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->arrest_surrender_cw_type_name }}
+                                                        </td>
                                                     </tr>
                                                     <tr>
+                                                        <td>Bail</td>
+                                                        <td> {{ $case_steps->case_steps_bail }} </td>
+                                                        <td class="letters"> {{ $case_steps->case_steps_bail_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->case_steps_bail_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Court Transfer</td>
+                                                        <td> {{ $case_steps->case_steps_court_transfer }}
+                                                        </td>
+                                                        <td class="letters">
+                                                            {{ $case_steps->case_steps_court_transfer_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->court_transfer_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Charge Framed</td>
+                                                        <td> {{ $case_steps->case_steps_charge_framed }}
+                                                        </td>
+                                                        <td class="letters">
+                                                            {{ $case_steps->case_steps_charge_framed_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->charge_framed_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Witness (From)</td>
+                                                        <td> {{ $case_steps->case_steps_witness_from }}
+                                                        </td>
+                                                        <td class="letters">
+                                                            {{ $case_steps->case_steps_witness_from_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->witness_from_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Witness (To)</td>
+                                                        <td> {{ $case_steps->case_steps_witness_to }} </td>
+                                                        <td class="letters">
+                                                            {{ $case_steps->case_steps_witness_to_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->witness_to_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Argument</td>
+                                                        <td> {{ $case_steps->case_steps_argument }} </td>
+                                                        <td class="letters"> {{ $case_steps->case_steps_argument_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->argument_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Judgement & Order</td>
+                                                        <td> {{ $case_steps->case_steps_judgement_order }}
+                                                        </td>
+                                                        <td class="letters">
+                                                            {{ $case_steps->case_steps_judgement_order_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->judgement_order_type_name }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td width="26%">Subsequent Status</td>
+                                                        <td width="26%">
+                                                            {{ $case_steps->case_steps_subsequent_status }} </td>
+                                                        <td width="28%" class="letters">
+                                                            {{ $case_steps->case_steps_subsequent_status_note }}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {{ $case_steps->case_steps_subsequent_status_type_name }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Summary of Cases</td>
+                                                        <td> {{ $case_steps->case_steps_summary_of_cases }}
+                                                        </td>
+                                                        <td class="letters">
+                                                            {{ $case_steps->case_steps_summary_of_cases_note }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $case_steps->summary_of_cases_type_name }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Remarks</td>
+                                                        <td colspan="3"> {{ $case_steps->case_steps_remarks }} </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                                  </div>
+
+                <div class="tab-pane fade" id="pills-news" role="tabpanel" aria-labelledby="pills-news-tab">
+                                                  <div class="container-fluid">
+
+<div class="card clientInfoCard">
+                                        <div class="card-header caseInfoHeader">
+                                            <h6 class="text-uppercase text-bold"><u> Client Information </u>
+                                              
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                           
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Client(on behalf of)</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                     {{ $data->client_party_name }}
+                                                    </div>
+                                                </div>                        
+                                                <div class="col-sm-6">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Client Category</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                     {{ $data->client_category_name }} 
+                                                    </div>
+
+                                                </div> 
+                                                    
+                                            </div>
+
+                                             <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Client Sub-category</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                     {{ $data->client_subcategory_name }}
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Client Name</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                     @php
+                                                            $client_explode = explode(', ', $data->client_id);
+                                                            $clientName = DB::table('setup_clients')
+                                                                ->where('id', $client_explode)
+                                                                ->get();
+                                                        @endphp
+                                                        @if ($data->client_id)
+                                                            @if (count($client_explode) > 1)
+                                                                @foreach ($clientName as $pro)
+                                                                    <li class="text-left">{{ $pro->client_name }}
+                                                                    </li>
+                                                                @endforeach
+                                                            @else
+                                                                @foreach ($clientName as $pro)
+                                                                    {{ $pro->client_name }}
+                                                                @endforeach
+                                                            @endif
+                                                        @endif
+
+                                                        @php
+                                                            $client_name_write = explode(', ', $data->client_name_write);
+                                                        @endphp
+                                                        @if ($data->client_name_write)
+                                                            @if (count($client_name_write) > 1)
+                                                                @foreach ($client_name_write as $pro)
+                                                                    <li class="text-left">{{ $pro }}
+                                                                    </li>
+                                                                @endforeach
+                                                            @else
+                                                                @foreach ($client_name_write as $pro)
+                                                                    {{ $pro }}
+                                                                @endforeach
+                                                            @endif
+                                                        @endif
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Client Business Name</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ $data->client_business_name }}
+                                                    </div>
+
+                                                </div> 
+
+                                                <div class="col-sm-6">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Client Group Name</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ $data->client_group_name }} {{ $data->client_group_write }}
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Client Address</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ $data->client_address }}
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div>
+
+                                       <!--     <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Client Mobile</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ $data->client_mobile }}
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Client Email</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ $data->client_email }}
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Profession/Type</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ $data->profession_name }} {{ $data->client_profession_write }}
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div>-->
+
+
+
+                                            <!-- <table class="table caseInfoTable2">
+
+                                                <tbody>
+                                                  
+                                                   <tr>
                                                         <td width="50%">Division/Zone</td>
                                                         <td width="25%">{{ $data->client_division_name }} @if ($data->client_division_name && $data->client_divisoin_write)
                                                             @endif
@@ -3630,12 +1477,12 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                         <td colspan="2">{{ $data->client_coordinator_details }}</td>
                                                     </tr>
                                                 </tbody>
-                                            </table>
+                                            </table>-->
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card clientInfoCard">
+
+
+<div class="card clientInfoCard">
                                         <div class="card-header caseInfoHeader">
                                             <h6 class="text-uppercase text-bold"> OPPOSITE PARTY INFORMATION
 
@@ -3648,31 +1495,41 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                         </div>
                                         <div class="card-body">
 
-                                            <table class="table table-bordered caseInfoTable2">
-
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Opposition(on behalf of)</td>
-                                                        <td colspan="2"> {{ $data->oppsition_party_name }}
-                                                        </td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Opposition Category</td>
-                                                        <td colspan="2"> {{ $data->opposition_category_name }} </td>
 
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Opposition Subcategory</td>
-                                                        <td colspan="2">{{ $data->opposition_subcategory_name }}</td>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Opposition(on behalf of)</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                     {{ $data->oppsition_party_name }}
+                                                    </div>
+                                                </div>                        
+                                                <div class="col-sm-6">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Opposition Category</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                     {{ $data->opposition_category_name }} 
+                                                    </div>
 
+                                                </div> 
+                                                    
+                                            </div>
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Opposition Name</td>
-                                                        <td colspan="2">
-                                                            @php
+                                             <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Opposition Sub-category</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                     {{ $data->opposition_subcategory_name }}
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Opposition Name</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                     @php
                                                                 $opposition_id = explode(', ', $data->opposition_id);
                                                             @endphp
                                                             @if ($data->opposition_id)
@@ -3702,24 +1559,48 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                                     @endforeach
                                                                 @endif
                                                             @endif
+                                                    </div>
 
-                                                        </td>
+                                                </div>    
+                                                    
+                                            </div>
 
 
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Opposition Business Name</td>
-                                                        <td colspan="2">{{ $data->opposition_business_name }}</td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Opposition Group Name</td>
-                                                        <td colspan="2">{{ $data->opposition_group_name }}
-                                                            {{ $data->opposition_group_write }}</td>
-                                                    </tr>
-                                                    <tr class="trHide">
-                                                        <td>Opposition Address</td>
-                                                        <td colspan="2">{{ $data->opposition_address }}</td>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Opposition Business Name</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ $data->opposition_business_name }}
+                                                    </div>
 
+                                                </div> 
+
+                                                <div class="col-sm-6">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Opposition Group Name</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ $data->opposition_group_name }} {{ $data->opposition_group_write }}
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Opposition Address</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ $data->opposition_address }}
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div>
+
+                                           <!-- <table class="table table-bordered caseInfoTable2">
+
+                                                <tbody>
+                                                                         
 
                                                     </tr>
                                                     <tr>
@@ -3788,143 +1669,150 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                         </td>
                                                     </tr>
                                                 </tbody>
-                                            </table>
+                                            </table>-->
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
 
 
 
-
-                                  </div>
-                                </div>
+                                                    </div></div>
 
 
-
-<div class="tab-pane fade" id="pills-lawyer" role="tabpanel" aria-labelledby="pills-lawyer-tab">
-                                  <div class="container-fluid">
-                                    
-                                      <div class="row" id="sectionClientInfo">
-                                <div class="col-md-6">
-                                    <div class="card caseFileLoacation">
+                                                    <div class="tab-pane fade" id="pills-lawyer" role="tabpanel" aria-labelledby="pills-lawyer-tab">
+                                                    <div class="container-fluid">
+                                                        <div class="card allCard" style="width:100%">
+<div class="card caseFileLoacation">
                                         <div class="card-header">
                                             <h6 class="text-uppercase text-bold"> Lawyers Information
-                                                <button type="button" class="btn btn-info btn-sm float-right"
-                                                    data-toggle="modal" data-target="#modal-lg-lawyers-info"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Update Lawyers Information"><i class="fas fa-edit"></i>
-                                                </button>
+                                                
                                             </h6>
                                         </div>
                                         <div class="card-body">
 
-                                            <table class="table table-bordered layInfoTable">
 
-                                                <tbody>
+                                             <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Name of Advocate/Law Firm</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ $data->lawyer_advocate_id }} {{ $data->lawyer_advocate_write }}
+                                                    </div>
 
-                                                    <tr>
-                                                        <td>Name of Advocate/Law Firm</td>
-                                                        <td>{{ $data->lawyer_advocate_id }}</td>
-                                                        <td>{{ $data->lawyer_advocate_write }}</td>
+                                                </div>    
+                                                    
+                                            </div> <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Name of Lead Laywer</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ $data->lead_laywer_name }} {{ $data->lead_laywer_name_extra }}
+                                                    </div>
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Name of Lead Laywer</td>
-                                                        <td>{{ $data->lead_laywer_name }}</td>
-                                                        <td>{{ $data->lead_laywer_name_extra }}</td>
+                                                </div>    
+                                                    
+                                            </div> <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Name of Assigned Lawyer</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    @php
+                                                        $assigned_lawyer_id = explode(', ', $data->assigned_lawyer_id);
+                                                    @endphp
+                                                    @if ($data->assigned_lawyer_id)
+                                                        @if (count($assigned_lawyer_id) > 1)
+                                                            @foreach ($assigned_lawyer_id as $pro)
+                                                                <li class="text-left">{{ $pro }}
+                                                                </li>
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($assigned_lawyer_id as $pro)
+                                                                {{ $pro }}
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Name of Assigned Lawyer</td>
-                                                        <td>
-                                                            @php
-                                                                $assigned_lawyer_id = explode(', ', $data->assigned_lawyer_id);
-                                                            @endphp
-                                                            @if ($data->assigned_lawyer_id)
-                                                                @if (count($assigned_lawyer_id) > 1)
-                                                                    @foreach ($assigned_lawyer_id as $pro)
-                                                                        <li class="text-left">{{ $pro }}
-                                                                        </li>
-                                                                    @endforeach
-                                                                @else
-                                                                    @foreach ($assigned_lawyer_id as $pro)
-                                                                        {{ $pro }}
-                                                                    @endforeach
-                                                                @endif
-                                                            @endif
-                                                        </td>
-                                                        <td>{{ $data->assigned_lawyer_extra }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Remarks</td>
-                                                        <td colspan="2"> {{ $data->lawyers_remarks }} </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                                     {{ $data->assigned_lawyer_extra }}
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div> <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Remarks</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ $data->lawyers_remarks }}
+                                                    </div>
+
+                                                </div>    
+                                        
                                         </div>
-                                    </div>
+                                    </div>    
+</div>
 
-
-
-                                </div>
-                                <div class="col-md-6">
-
-                                    {{-- {{dd($oppLawyer)}} --}}
-                                    <div class="card caseFileLoacation">
+<div class="card caseFileLoacation">
                                         <div class="card-header caseInfoHeader">
                                             <h6 class="text-uppercase text-bold">Lawyers Information : (Opposition Lawyer)
-                                                <button type="button" class="btn btn-info btn-sm float-right"
-                                                    data-toggle="modal" data-target="#modal-lg-opp-lawyers-info"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Update Lawyers Information"><i class="fas fa-edit"></i>
-                                                </button>
+                                              
                                             </h6>
                                         </div>
                                         <div class="card-body">
 
-                                            <table class="table table-bordered caseInfoTable2">
+                                              <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Name of Advocate/Law Firm</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ @$oppLawyer->opp_lawyer_advocate_write }}
+                                                    </div>
 
-                                                <tbody>
+                                                </div>    
+                                                    
+                                            </div> 
 
-                                                    <tr>
-                                                        <td width="50%">Name of Advocate/Law Firm</td>
-                                                        <td width="50%">{{ @$oppLawyer->opp_lawyer_advocate_write }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Name of Assigned Lawyer</td>
-                                                        <td>{{ @$oppLawyer->opp_lawyer_assigned_lawyer }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Lawyer Contact</td>
-                                                        <td>{{ @$oppLawyer->opp_lawyer_contact }} </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Note</td>
-                                                        <td>{{ @$oppLawyer->opp_lawyers_note }} </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Name of Assigned Lawyer</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ @$oppLawyer->opp_lawyer_assigned_lawyer }}
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div> 
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Lawyer Contact</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ @$oppLawyer->opp_lawyer_contact }}
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div> 
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label for="case_type" class="col-sm-12 col-form-label padding-null">Note</label>
+                                                    <div class="col-sm-12 form-control inputDiv">
+                                                    {{ @$oppLawyer->opp_lawyers_note }} 
+                                                    </div>
+
+                                                </div>    
+                                                    
+                                            </div>  
+
+
+                                        
                                         </div>
-                                    </div>
+                                    </div>                                                        
+                                                        </div>    
+                                                    </div>
+                                                </div>
 
-                                </div>
-                            </div>
-
-
-
-
-
-                                  </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                  <div class="container-fluid">
-                                    <div class="card-header caseInfoHeader">
-                                            <h6 class="text-uppercase text-bold themeHeading">Documents
+                                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                                  <div class="container-fluid">
+                                                    <div class="card" style="width:100%">
+<div class="card documentCard">
+                                        <div class="card-header caseInfoHeader">
+                                            <h6 class="text-uppercase text-bold">Documents
                                                 Received
                                                 <button type="button" class="btn btn-info btn-sm float-right"
                                                     data-toggle="modal" data-target="#modal-lg-documents-info"
@@ -3932,32 +1820,36 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                     title="Update Documents"><i class="fas fa-edit"></i>
                                                 </button>
                                             </h6>
-                                    </div>
-                                    <div class="card-body">
-                                    <table class="table table-bordered">
-                                                <thead>                                                
-                                                    <tr class="themeColor">
-                                                        <td width="60%">Document Name</td>
-                                                        <td width="20%">Date</td>
-                                                        <td width="20%">Document Type</td>
-                                                    </tr>
-                                                </thead>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-bordered">
                                                 <tbody>
+                                                    <tr>
+                                                        <th>Document Received</th>
+                                                        <th>Document Name</th>
+                                                        <th>Date</th>
+                                                        <th>CC/ORG/COPY</th>
+                                                    </tr>
                                                     @foreach ($received_documents as $value)
                                                         <tr>
-                                                            <td width="60%">{{ $value->documents_name }} </td>
-                                                            <td width="25%">{{ !empty($value->received_documents_date) ? date('d-m-Y', strtotime($value->received_documents_date)) : '' }}
+                                                            <td>{{ $value->received_documents }}</td>
+                                                            <td>{{ $value->documents_name }} </td>
+                                                            <td>{{ !empty($value->received_documents_date) ? date('d-m-Y', strtotime($value->received_documents_date)) : '' }}
                                                             </td>
-                                                            <td width="15%">{{ $value->documents_type_name }}</td>
+                                                            <td>{{ $value->documents_type_name }}</td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
 
                                             </table>
+
                                         </div>
-                                  
+                                    </div>
+
+
+<div class="card documentCard">
                                         <div class="card-header caseInfoHeader">
-                                            <h6 class="text-uppercase text-bold themeHeading">Documents
+                                            <h6 class="text-uppercase text-bold">Documents
                                                 Required
                                                 <button type="button" class="btn btn-info btn-sm float-right"
                                                     data-toggle="modal" data-target="#modal-lg-documents-info"
@@ -3969,10 +1861,10 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                         <div class="card-body">
                                             <table class="table table-bordered">
                                                 <thead>
-                                                    <tr class="themeColor">
-                                                        <td width="60%">Document Name</td>
-                                                        <td width="20%">Date</td>
-                                                        <td width="20%">Document Type</td>
+                                                    <tr>
+                                                        <th width="60%">Document Name</th>
+                                                        <th width="25%">Date</th>
+                                                        <th width="25%">CC/ORG/COPY</th>
                                                     </tr>
 
                                                 </thead>
@@ -3993,57 +1885,38 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                             </table>
 
                                         </div>
+                                    </div>
 
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane fade" id="pills-casefile" role="tabpanel" aria-labelledby="pills-casefile-tab">
+                                                  <div class="container-fluid">
+                                                     <div class="card" style="width:100%;">
 
                                         <div class="card-header caseInfoHeader">
-                                            <h6 class="text-uppercase text-bold themeHeading">Document
-                                                Upload
+                                            <h6 class="text-uppercase text-bold mt-3">Case File Management
                                                 <button type="button" class="btn btn-info btn-sm float-right"
-                                                    data-toggle="modal" data-target="#modal-lg-documents-info"
+                                                    data-toggle="modal" data-target="#modal-case-file-location"
                                                     data-toggle="tooltip" data-placement="top"
                                                     title="Update Documents"><i class="fas fa-edit"></i>
                                                 </button>
                                             </h6>
                                         </div>
                                         <div class="card-body">
+
                                             <table class="table table-bordered">
-                                                <thead>
-                                                    <tr class="themeColor">
-                                                        <td width="60%">Document Name</td>
-                                                        <td width="20%">Date</td>
-                                                        <td width="20%">Document Type</td>
-                                                    </tr>
-
-                                                </thead>
                                                 <tbody>
-                                                    @foreach ($uploadedFileList as $value)
-                                                        <tr>
-                                                            <td width="60%">{{ $value->uploaded_document }}</td>
-                                                            <td width="25%">
-                                                                {{ !empty($value->uploaded_date) ? date('d-m-Y', strtotime($value->uploaded_date)) : '' }}
-                                                            </td>
-                                                            <td width="15%">{{ $value->documents_type_name }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-
-                                            </table>
-
-                                        </div>
-                                    </div>    
-                                </div>
-                                <div class="tab-pane fade" id="pills-filelocation" role="tabpanel" aria-labelledby="pills-filelocation-tab">
-                                  <div class="container-fluid">
-                                    <table class="table table-bordered">
-                                                <thead>
-                                                    <tr class="themeColor">
-                                                        <td>Cabinet Name</td>
-                                                        <td>Office</td>
-                                                        <td>Almirah</td>
-                                                        <td>Cabinet/Self</td>
+                                                    <tr>
+                                                        <th>Cabinet Name</th>
+                                                        <th>Office</th>
+                                                        <th>Almirah</th>
+                                                        <th>Cabinet/Self</th>
                                                     </tr>
-                                                </thead>
-                                                <tbody>        
+
 
                                                     @foreach ($caseFileLocationView as $item)
                                                         <tr>
@@ -4060,12 +1933,19 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
 
                                                 </tbody>
                                             </table>
-                                  </div>
-                                </div>
-                                <div class="tab-pane fade" id="pills-cproceedinglog" role="tabpanel" aria-labelledby="pills-cproceedinglog-tab">
-                                  <div class="container-fluid">
-                                    <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font_weight themeHeading"
+                                        </div>
+                                    </div>
+
+
+                                                 </div>
+                                                </div>
+
+
+                                                <div class="tab-pane fade " id="pills-caseproceeding" role="tabpanel" aria-labelledby="pills-caseproceeding-tab">
+                                                  <div class="container-fluid">  
+<div class="card" id="section1" name="section1">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Case Proceedings Log
                                         @php
                                             $now = Carbon\Carbon::now();
@@ -4099,13 +1979,13 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                             <tr>
                                                 <th width="8%">Case Date</th>
                                                 <th width="10%">Fixed For</th>
-                                                <th width="18%">Court Proceeding</th>
+                                                <th width="12%">Court Proceeding</th>
                                                 <th width="12%">Court Order</th>
                                                 <th width="10%">Next Date</th>
                                                 <th width="10%">N.D. Fixed For</th>
                                                 <th width="10%">Day Note</th>
-                                                <!--<th width="10%">Engaged Advocate</th>-->
-                                                <th width="10%">Action</th>
+                                                <th width="10%">Engaged Advocate</th>
+                                                <th width="6%">Action</th>
                                                 <th width="10%">Update</th>
                                             </tr>
                                         </thead>
@@ -4194,11 +2074,11 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                         @endif
                                                         {{ $case_logs[0]->updated_day_notes_write }}
                                                     </td>
-                                                    <!--<td> {{ $case_logs[0]->updated_engaged_advocate_id }}
-                                                        {{ $case_logs[0]->updated_engaged_advocate_write }} </td>-->
+                                                    <td> {{ $case_logs[0]->updated_engaged_advocate_id }}
+                                                        {{ $case_logs[0]->updated_engaged_advocate_write }} </td>
                                                     <td>
                                                         <div class="dropdown">
-                                                            <!--<svg class="dropdown-toggle" href="#" role="button"
+                                                            <svg class="dropdown-toggle" href="#" role="button"
                                                                 id="dropdownMenuLink6" data-toggle="dropdown"
                                                                 aria-haspopup="true" aria-expanded="false"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
@@ -4215,28 +2095,28 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                             </svg>
 
                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
-                                                                style="will-change: transform;">-->
-                                                                <a style="float:left; width: auto; font-size: 16px; padding: 4px 8px 0 8px;" class="dropdown-item btn btn-outline-success"
+                                                                style="will-change: transform;">
+                                                                <a class="dropdown-item btn btn-outline-success"
                                                                     href="{{ route('view-criminal-cases-proceedings', $case_logs[0]->id) }}"><i
-                                                                        class="fas fa-eye"></i> </a>
+                                                                        class="fas fa-eye"></i> View</a>
 
-                                                                <a style="float:left; width: auto; font-size: 14px; padding: 4px 8px 0 8px;" class="dropdown-item"
+                                                                <a class="dropdown-item"
                                                                     href="{{ route('edit-criminal-cases-status', $case_logs[0]->id) }}"><i
-                                                                        class="fas fa-edit"></i> </a>
-                                                                <a style="width: auto;" class="dropdown-item" href="javascript:void(0);">
+                                                                        class="fas fa-edit"></i> Edit</a>
+                                                                <a class="dropdown-item" href="javascript:void(0);">
                                                                     <form class="delete-user-dropdown" method="POST"
                                                                         action="{{ route('delete-criminal-cases-status', $case_logs[0]->id) }}"
                                                                         class="delete-user btn btn-outline-danger">
                                                                         @csrf
                                                                         <button type="submit" class="btn"
-                                                                            style="width: auto; font-size: 13px; padding: 0 8px;"
+                                                                            style="padding: 0px 1px 0px 0px;"
                                                                             data-toggle="tooltip" data-placement="top"
                                                                             title="Delete"><i class="fas fa-trash"></i>
-                                                                            
+                                                                            Delete
                                                                         </button>
                                                                     </form>
                                                                 </a>
-                                                            <!--</div>-->
+                                                            </div>
                                                         </div>
 
                                                     </td>
@@ -4354,11 +2234,11 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                             @endif
                                                             {{ $logs->updated_day_notes_write }}
                                                         </td>
-                                                        <!--<td> {{ $logs->updated_engaged_advocate_id }}
-                                                            {{ $logs->updated_engaged_advocate_write }} </td>-->
+                                                        <td> {{ $logs->updated_engaged_advocate_id }}
+                                                            {{ $logs->updated_engaged_advocate_write }} </td>
                                                         <td>
                                                             <div class="dropdown">
-                                                                <!--<svg class="dropdown-toggle" href="#"
+                                                                <svg class="dropdown-toggle" href="#"
                                                                     role="button" id="dropdownMenuLink6"
                                                                     data-toggle="dropdown" aria-haspopup="true"
                                                                     aria-expanded="false"
@@ -4373,33 +2253,33 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                                     </circle>
                                                                     <circle cx="5" cy="12" r="1">
                                                                     </circle>
-                                                                </svg>-->
+                                                                </svg>
 
-                                                                <!--<div class="dropdown-menu"
+                                                                <div class="dropdown-menu"
                                                                     aria-labelledby="dropdownMenuLink6"
-                                                                    style="will-change: transform;">-->
-                                                                    <a style="float:left; width: auto; font-size: 16px; padding: 4px 8px 0 8px;"  class="dropdown-item btn btn-outline-success"
+                                                                    style="will-change: transform;">
+                                                                    <a class="dropdown-item btn btn-outline-success"
                                                                         href="{{ route('view-criminal-cases-proceedings', $logs->id) }}"><i
-                                                                            class="fas fa-eye"></i> </a>
+                                                                            class="fas fa-eye"></i> View</a>
 
-                                                                    <a style="float:left; width: auto; font-size: 14px; padding: 4px 8px 0 8px;"  class="dropdown-item"
+                                                                    <a class="dropdown-item"
                                                                         href="{{ route('edit-criminal-cases-status', $logs->id) }}"><i
-                                                                            class="fas fa-edit"></i> </a>
+                                                                            class="fas fa-edit"></i> Edit</a>
                                                                     <a class="dropdown-item" href="javascript:void(0);">
                                                                         <form class="delete-user-dropdown" method="POST"
                                                                             action="{{ route('delete-criminal-cases-status', $logs->id) }}"
                                                                             class="delete-user btn btn-outline-danger">
                                                                             @csrf
                                                                             <button type="submit" class="btn"
-                                                                                 style="width: auto; font-size: 13px; padding: 0 8px;"
+                                                                                style="padding: 0px 1px 0px 0px;"
                                                                                 data-toggle="tooltip" data-placement="top"
                                                                                 title="Delete"><i
                                                                                     class="fas fa-trash"></i>
-                                                                                
+                                                                                Delete
                                                                             </button>
                                                                         </form>
                                                                     </a>
-                                                                <!--</div>-->
+                                                                </div>
                                                             </div>
                                                         </td>
                                                         <td> {{ date('d-m-Y H:i:s', strtotime($logs->created_at)) }}
@@ -4411,12 +2291,16 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                         </tbody>
                                     </table>
                                 </div>
-                                  </div>
-                                </div>
-                                <div class="tab-pane fade" id="pills-cactivitylog" role="tabpanel" aria-labelledby="pills-cactivitylog-tab">
-                                  <div class="container-fluid">
-                                    <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font_weight themeHeading"
+
+                            </div>
+                                                  </div>
+                                                </div>
+
+                                                <div class="tab-pane fade " id="pills-caseactivity" role="tabpanel" aria-labelledby="pills-caseactivity-tab">
+                                                  <div class="container-fluid">  
+<div class="card" id="section2">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Case Activities Log</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
@@ -4460,7 +2344,7 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                             <details>
                                                                 <summary>
                                                                     <p id="main_more">
-                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_action, 30) }}
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_action, 15) }}
                                                                     </p>
                                                                     <span id="open">read more</span>
                                                                     <span id="close">read less</span>
@@ -4474,7 +2358,7 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                             <details>
                                                                 <summary>
                                                                     <p id="main_more">
-                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_progress, 30, $end = '...') }}
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_progress, 15, $end = '...') }}
                                                                     </p>
                                                                     <span id="open">read more</span>
                                                                     <span id="close">read less</span>
@@ -4542,7 +2426,7 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                             <details>
                                                                 <summary>
                                                                     <p id="main_more">
-                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_requirements, 30) }}
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_requirements, 15) }}
                                                                     </p>
                                                                     <span id="open">read more</span>
                                                                     <span id="close">read less</span>
@@ -4557,7 +2441,7 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                             <details>
                                                                 <summary>
                                                                     <p id="main_more">
-                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_remarks, 30) }}
+                                                                        {{ \Illuminate\Support\Str::limit($activity_log->activity_remarks, 15) }}
                                                                     </p>
                                                                     <span id="open">read more</span>
                                                                     <span id="close">read less</span>
@@ -4619,8 +2503,11 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                         </tbody>
                                     </table>
                                 </div>
+
+                            </div>
+<div class="card" id="section3">
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase font_weight themeHeading"
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Case Documents Log
 
                                     </h3>
@@ -4708,8 +2595,10 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
+                            <div class="card collapsed-card">
                                 <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase themeHeading font_weight"
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Working Documents Log
                                     </h3>
                                     <div class="card-tools">
@@ -4798,13 +2687,18 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                         </tbody>
                                     </table>
                                 </div>
-                                  </div>
-                                </div>
-                                <div class="tab-pane fade" id="pills-billlog" role="tabpanel" aria-labelledby="pills-billlog-tab">
-                                  <div class="container-fluid">
-                                    <div class="card-header">
-                                    <h3 class="card-title custom_h3 text-uppercase themeHeading font_weight"
+                            </div>
+
+                                                  </div>
+                                            </div>
+
+                                                <div class="tab-pane fade " id="pills-billlog" role="tabpanel" aria-labelledby="pills-billlog-tab">
+                                                  <div class="container-fluid">  
+<div class="card" id="section4">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                         id="heading">Billings Log
+
                                         @if (count($billing_log_new) > 0 && Is_numeric($billing_log_new))
                                             <span class="font-italic custom_font text-capitalize">(Total: <span
                                                     style="color: darkgreen;font-size:14px;">
@@ -4867,7 +2761,7 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                                             ->first();
                                                     @endphp
                                                     <td class="text-center">
-                                                        {{ $ledger->ledger_head_name }}
+                                                        {{ @$ledger->ledger_head_name }}
                                                     </td>
                                                     <td class="text-center">
                                                         {{ $datum->payment_type }}
@@ -4951,9 +2845,13 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                         </tbody>
                                     </table>
                                 </div>
-                                @can('criminal-cases-switch-cases')
-<div class="card-header">
-                                        <h3 class="card-title custom_h3 text-uppercase themeHeading font_weight"
+
+                            </div>
+
+                            @can('criminal-cases-switch-cases')
+                                <div class="card" id="section4">
+                                    <div class="card-header">
+                                        <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
                                             id="heading">Switch Log</h3>
                                         <div class="card-tools">
                                             <a href="{{ route('switch-log-print-preview', $data->id) }}"
@@ -4994,18 +2892,454 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                                             </tbody>
                                         </table>
                                     </div>
-@endcan
-                                  </div>
                                 </div>
-                              </div>
+                            @endcan
+                                                  </div>
+                                            </div>
+
+
+
+
+
+                                            </div> 
+
+
+                                
+</div></div></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    
+
+
+                                    
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                    
+
+                                    
+                                </div>
+
                             </div>
-                    
-                           
-                        </div>                        
+
+                            <div class="row ">
+                                <div class="col-md-12">
+                                    
+
+                                </div>
+                            </div>
+
+                            <div class="row" id="sectionClientInfo">
+                                <div class="col-md-6">
+                                    
+
+                                    
+
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    
+
+                                    {{-- {{dd($oppLawyer)}} --}}
+                                    
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
 
                     </div>
 
-                  
+                    {{-- <style>
+                            .accordion .card-header:after {
+                                font-family: 'FontAwesome';
+                                content: "+";
+                                float: right;
+                            }
+                            .accordion .card-header.collapsed:after {
+                                content: "-";
+                            }
+                        </style>
+
+                        <div class="container">
+                            <div id="accordion" class="accordion">
+                                <div class="card mb-0">
+                                    <div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">
+                                        <a class="card-title"> Item 1 </a>
+                                    </div>
+                                    <div id="collapseOne" class="card-body collapse" data-parent="#accordion">
+                                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. </p>
+                                    </div>
+                                    <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                        <a class="card-title"> Item 2 </a>
+                                    </div>
+                                    <div id="collapseTwo" class="card-body collapse" data-parent="#accordion">
+                                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. </p>
+                                    </div>
+                                    <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                        <a class="card-title"> Item 3 </a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. samus labore sustainable VHS. </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+
+
+                    <div class="card">
+                        <div>
+                            
+
+                            
+
+                            
+
+
+
+
+                            
+
+
+
+
+
+
+
+
+
+
+
+                            {{-- <div class="card" id="section3">
+                                <div class="card-header">
+                                    <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                        id="heading">Working Documents Log
+
+                                    </h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                                    data-target="#working_documents_modal" data-toggle="tooltip" data-placement="top"
+                                                    title="Add Case Documents"><i class="fas fa-file-word nav-icon"></i></button>
+
+
+                                                    <button type="button" class="btn btn-tool collapsed" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                        <div class="card-body">
+                                            <table class="table view_table table-bordered table-striped data_table themeTable">
+                                                <thead>
+                                                <tr>
+                                                    <th class="hide" width="2%">SL</th>
+                                                    <th width="24%">Document Uploaded</th>
+                                                    <th width="13%">Document Date</th>
+                                                    <th width="11%">Version</th>
+                                                    <th width="6%">Type</th>
+                                                    <th width="21%">Uploaded By</th>
+                                                    <th width="10%">Action</th>
+                                                    <th width="15%">Date & Time</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach ($criminal_cases_working_docs as $files)
+                                                    <tr>
+                                                        <td class="hide"> {{ $files->id }} </td>
+                                                        <td>{{ $files->uploaded_document }} </td>
+                                                        <td>{{ $files->uploaded_date }} </td>
+                                                        <td>{{ $files->doc_version }} </td>
+                                                        <td>{{ $files->documents_type_name }} </td>
+                                                        <td>{{ $files->created_by }} </td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6"
+                                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                                        stroke-linejoin="round" class="feather feather-more-horizontal">
+                                                                    <circle cx="12" cy="12" r="1"></circle>
+                                                                    <circle cx="19" cy="12" r="1"></circle>
+                                                                    <circle cx="5" cy="12" r="1"></circle>
+                                                                </svg>
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                        style="will-change: transform;">
+                                                                    <a class="dropdown-item btn btn-outline-success" target="_blank"
+                                                                        href="{{ route('view-criminal-cases-working-docs', $files->id) }}"><i
+                                                                            class="fas fa-eye"></i> View</a>
+
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('edit-criminal-cases-working-docs', $files->id) }}"><i
+                                                                            class="fas fa-edit"></i> Edit</a>
+                                                                    <a class="dropdown-item" href="javascript:void(0);">
+                                                                        <form class="delete-user-dropdown" method="post"
+                                                                                action="{{ route('delete-criminal-cases-working-docs', $files->id) }}"
+                                                                                class="delete-user btn btn-outline-danger">
+                                                                            @csrf
+                                                                            <button type="submit" class="btn" style="padding: 0px 1px 0px 0px;"
+                                                                                    data-toggle="tooltip" data-placement="top"
+                                                                                    title="Delete"><i class="fas fa-trash"></i> Delete
+                                                                            </button>
+                                                                        </form>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>{{ $files->created_at }} </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div> --}}
+
+
+                            {{-- <div class="card">
+                                        <div id="accordion">
+                                            <div class="card-header" id="headingTwo">
+                                                <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                                    id="heading">Working Documents Log
+                                                </h3>
+                                                <div class="card-tools">
+                                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                                            data-target="#working_documents_modal" data-toggle="tooltip" data-placement="top"
+                                                            title="Add Case Documents"><i class="fas fa-file-word nav-icon"></i></button>
+
+                                                    <button type="button" class="btn collapsed" data-toggle="collapse"
+                                                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>
+
+                                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                                    data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <table class="table view_table table-bordered table-striped data_table themeTable">
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="hide" width="2%">SL</th>
+                                                            <th width="24%">Document Uploaded</th>
+                                                            <th width="13%">Document Date</th>
+                                                            <th width="11%">Version</th>
+                                                            <th width="6%">Type</th>
+                                                            <th width="21%">Uploaded By</th>
+                                                            <th width="10%">Action</th>
+                                                            <th width="15%">Date & Time</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @foreach ($criminal_cases_working_docs as $files)
+                                                            <tr>
+                                                                <td class="hide"> {{ $files->id }} </td>
+                                                                <td>{{ $files->uploaded_document }} </td>
+                                                                <td>{{ $files->uploaded_date }} </td>
+                                                                <td>{{ $files->doc_version }} </td>
+                                                                <td>{{ $files->documents_type_name }} </td>
+                                                                <td>{{ $files->created_by }} </td>
+                                                                <td>
+                                                                    <div class="dropdown">
+                                                                        <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6"
+                                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                                                stroke-linejoin="round" class="feather feather-more-horizontal">
+                                                                            <circle cx="12" cy="12" r="1"></circle>
+                                                                            <circle cx="19" cy="12" r="1"></circle>
+                                                                            <circle cx="5" cy="12" r="1"></circle>
+                                                                        </svg>
+                                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                                style="will-change: transform;">
+                                                                            <a class="dropdown-item btn btn-outline-success" target="_blank"
+                                                                                href="{{ route('view-criminal-cases-working-docs', $files->id) }}"><i
+                                                                                    class="fas fa-eye"></i> View</a>
+
+                                                                            <a class="dropdown-item"
+                                                                                href="{{ route('edit-criminal-cases-working-docs', $files->id) }}"><i
+                                                                                    class="fas fa-edit"></i> Edit</a>
+                                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                                                <form class="delete-user-dropdown" method="post"
+                                                                                        action="{{ route('delete-criminal-cases-working-docs', $files->id) }}"
+                                                                                        class="delete-user btn btn-outline-danger">
+                                                                                    @csrf
+                                                                                    <button type="submit" class="btn" style="padding: 0px 1px 0px 0px;"
+                                                                                            data-toggle="tooltip" data-placement="top"
+                                                                                            title="Delete"><i class="fas fa-trash"></i> Delete
+                                                                                    </button>
+                                                                                </form>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>{{ $files->created_at }} </td>
+                                                            </tr>
+                                                        @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+
+
+
+
+
+
+                            {{-- <div class="card" id="section4">
+                                        <div class="card-header">
+                                            <h3 class="card-title custom_h3 text-uppercase font-italic font_weight"
+                                                id="heading">Billings Log <span
+                                                    class="font-italic custom_font text-capitalize">(Total: <span
+                                                        style="color: darkgreen;font-size:14px;"> {{ $bill_amount }} ৳</span>, Paid:
+                                                    {{ $payment_amount }} ৳, Due: <span style="color: red;font-size:14px;">
+                                                        {{ $due_amount }} ৳ </span>) </span></h3>
+                                            <div class="card-tools">
+                                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                                        data-target="#modal-bill" data-toggle="tooltip" data-placement="top"
+                                                        title="Bill Entry"><i class="fas fa-money-bill"></i></button>
+                                                <a href="{{ route('billings-log-print-preview', $data->id) }}" title="Print Bill Log" target="_blank"
+                                                    class="btn btn-info btn-sm"><i class="fas fa-print"></i></a>
+
+                                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <table class="table view_table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th width="150px;">Bill for the Date</th>
+                                                    <th>Bill Particulars</th>
+                                                    <th width="80px;">Bill Type</th>
+                                                    <th>Bill Schedule</th>
+                                                    <th>Bill Amount</th>
+                                                    <th>Bill Submitted</th>
+                                                    <th>Payment Amount</th>
+                                                    <th>Payment Received</th>
+                                                    <th>Payment Mode</th>
+                                                    <th>Balance Amount</th>
+                                                    <th>Paid/Due</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach ($bill_history as $bill_logs)
+                                                    <tr>
+                                                        <td> {{ $bill_logs->bill_for_the_date }} </td>
+                                                        <td>
+
+                                                            @php
+                                                                $engaged = explode(', ', $bill_logs->bill_particulars_id);
+                                                            @endphp
+
+                                                            @if (count($engaged) > 1)
+                                                                @foreach ($engaged as $item)
+                                                                    <li class="text-left">{{ $item }}</li>
+                                                                @endforeach
+                                                                <li class="text-left">{{ $bill_logs->bill_particulars }}
+                                                                </li>
+                                                            @else
+                                                                @foreach ($engaged as $item)
+                                                                    {{ $item }}
+                                                                @endforeach
+                                                                {{ $bill_logs->bill_particulars }}
+                                                            @endif
+
+                                                        </td>
+                                                        <td> {{ $bill_logs->bill_type_name }} </td>
+                                                        <td> {{ $bill_logs->bill_schedule_name }} </td>
+                                                        <td> {{ $bill_logs->bill_amount }} </td>
+                                                        <td> {{ $bill_logs->bill_submitted }} </td>
+                                                        <td> {{ $bill_logs->payment_amount }} </td>
+                                                        <td> {{ $bill_logs->payment_received }} </td>
+                                                        <td> {{ $bill_logs->payment_mode_name }} </td>
+                                                        <td> {{ $bill_logs->due_amount }} </td>
+                                                        <td>
+
+                                                            @if ($bill_logs->paid_due == 'Paid')
+                                                                <button type="button"
+                                                                        class="btn-custom btn-success-custom text-uppercase">
+                                                                    {{ $bill_logs->paid_due }}
+                                                                </button>
+                                                            @else
+                                                                <button type="button"
+                                                                        class="btn-custom btn-danger-custom text-uppercase">{{ $bill_logs->paid_due }}</button>
+                                                            @endif
+
+                                                        </td>
+                                                        <td>
+
+                                                            <div class="dropdown">
+                                                                <svg class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6"
+                                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                        class="feather feather-more-horizontal">
+                                                                    <circle cx="12" cy="12" r="1"></circle>
+                                                                    <circle cx="19" cy="12" r="1"></circle>
+                                                                    <circle cx="5" cy="12" r="1"></circle>
+                                                                </svg>
+
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6"
+                                                                        style="will-change: transform;">
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('edit-criminal-cases-billing', $bill_logs->id) }}"><i
+                                                                            class="fas fa-edit"></i> Edit</a>
+                                                                    <a class="dropdown-item" href="javascript:void(0);">
+                                                                        <form class="delete-user-dropdown" method="POST"
+                                                                                action="{{ route('delete-criminal-cases-billing', $bill_logs->id) }}"
+                                                                                class="delete-user btn btn-outline-danger">
+                                                                            @csrf
+                                                                            <button type="submit" class="btn" style="padding: 0px 1px 0px 0px;"
+                                                                                    data-toggle="tooltip" data-placement="top"
+                                                                                    title="Delete"><i class="fas fa-trash"></i> Delete
+                                                                            </button>
+                                                                        </form>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div> --}}
+
+                            
+
+
+                        </div>
                     </div>
 
                 </div>
@@ -5350,7 +3684,7 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
         </div>
         <!-- /.modal-dialog -->
     </div>
-    
+
     <!-- /.modal -->
 
     <!-- /.modal -->
@@ -6855,10 +5189,10 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                             <div class="col-sm-8">
                                 <select name="case_category_id" id="case_category_id" class="form-control select2">
                                     <option value="">Select</option>
-                                    <option value="Civil" {{ $data->case_category_id == 'Civil' ? 'selected' : '' }}>
+                                    <option value="Civil" {{ @$data->case_category_id == 'Civil' ? 'selected' : '' }}>
                                         Civil</option>
                                     <option value="Criminal"
-                                        {{ $data->case_category_id == 'Criminal' ? 'selected' : '' }}>Criminal</option>
+                                        {{ @$data->case_category_id == 'Criminal' ? 'selected' : '' }}>Criminal</option>
 
 
 
@@ -7814,7 +6148,8 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                     @csrf
                     <input type="hidden" value="documents_information" name="documents_information">
                     <div class="card-body">
-                        <h6 class="text-uppercase text-bold themeHeading"><u> Documents Received </u></h6>
+                        <h6 class="text-uppercase text-bold"><u> Documents
+                                Received </u></h6>
 
                         <div class="form-group row">
                             <div class="col-sm-12">
@@ -7937,7 +6272,8 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                             </div>
                         </div>
                         <h6 class="text-uppercase text-bold">
-                            <u> Documents Required </u>
+                            <u> Documents
+                                Required </u>
                         </h6>
                         <div class="form-group row">
                             <div class="col-sm-12">
@@ -9530,10 +7866,8 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
 
     {{-- billings log --}}
     {{-- update cases modal --}}
-
-
     <div class="modal fade" id="modal-lg-send-messages">
-        <div class="modal-dialog modal-md">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="card-title"> Send Messages </h3>
@@ -9542,22 +7876,23 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                     </button>
                 </div>
                 <form action="{{ route('send-messages-for-criminal-cases', $data->id) }}" method="post">
+                    {{-- {{dd($data);}} --}}
                     @csrf
                     <div class="card-body">
                         <input type="hidden" name="case_no"
                             value="{{ $data->case_infos_case_no ? $data->case_infos_case_title_name . ' ' . $data->case_infos_case_no . ' of ' . $data->case_infos_case_year : '' }}@if ($data->sub_seq_case_title_name != null) , @endif
-                               {{ $data->sub_seq_case_title_name }}
-                               @php
+                           {{ $data->sub_seq_case_title_name }}
+                           @php
 $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_no));
-                                   $key = array_key_last($case_infos_sub_seq_case_no);
-                                   echo $case_infos_sub_seq_case_no[$key];
+                               $key = array_key_last($case_infos_sub_seq_case_no);
+                               echo $case_infos_sub_seq_case_no[$key];
 
-                                   $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
-                                   $key = array_key_last($case_infos_sub_seq_case_year);
-                                   $last_case_no = $case_infos_sub_seq_case_year[$key];
-                                   if ($last_case_no != null) {
-                                       echo '/'.$last_case_no;
-                                   } @endphp">
+                               $case_infos_sub_seq_case_year = explode(', ',trim($data->case_infos_sub_seq_case_year));
+                               $key = array_key_last($case_infos_sub_seq_case_year);
+                               $last_case_no = $case_infos_sub_seq_case_year[$key];
+                               if ($last_case_no != null) {
+                                   echo '/'.$last_case_no;
+                               } @endphp">
                         <input type="hidden" name="client_name" value="{{ $data->client_name }}">
                         <div class="form-group row">
                             <div class="form-check ml-2">
@@ -9567,14 +7902,16 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                                 </label>
                             </div>
                             <div class="form-check ml-2">
-                                <input class="form-check-input" type="checkbox" name="send_mail" id="send_mail">
+                                <input class="form-check-input" type="checkbox" name="send_mail"
+                                    id="send_mail_unique">
                                 <label class="form-check-label mt-1" for="send_mail">
                                     Send Mail
                                 </label>
                             </div>
                         </div>
                         <div class="form-group row" id="mobile" style="display: none;">
-                            <label for="client_mobile" class="col-sm-4 col-form-label">Client Mobile</label>
+                            <label for="client_mobile" class="col-sm-4 col-form-label">Client
+                                Mobile</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="client_mobile" name="client_mobile"
                                     value="{{ $data->client_mobile }}" readonly>
@@ -9583,8 +7920,9 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group row" id="mail" style="display: none;">
-                            <label for="client_email" class="col-sm-4 col-form-label">Client Email</label>
+                        <div class="form-group row" id="mail_unique" style="display: none;">
+                            <label for="client_email" class="col-sm-4 col-form-label">Client
+                                Email</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="client_email" name="client_email"
                                     value="{{ $data->client_email }}" readonly>
@@ -9593,8 +7931,39 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row" id="subject_unique" style="display: none;">
+                            <label for="client_email" class="col-sm-4 col-form-label">Subject
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="subject" name="subject">
+                                @error('client_email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row" id="cc_unique" style="display: none;">
+                            <label for="client_email" class="col-sm-4 col-form-label">CC
+                                Email</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="client_email" name="cc">
+                                @error('client_email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row" id="bcc_unique" style="display: none;">
+                            <label for="client_email" class="col-sm-4 col-form-label">BCC
+                                Email</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="client_email" name="bcc">
+                                @error('client_email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-group row">
-                            <label for="messages" class="col-sm-4 col-form-label"> Messages </label>
+                            <label for="messages" class="col-sm-4 col-form-label"> Messages
+                            </label>
                             <div class="col-sm-8">
                                 <textarea name="messages" id="messages" class="form-control" rows="5" placeholder="">{{ old('messages') }}</textarea>
                                 @error('messages')
@@ -9621,6 +7990,8 @@ $case_infos_sub_seq_case_no = explode(', ',trim($data->case_infos_sub_seq_case_n
         </div>
         <!-- /.modal-dialog -->
     </div>
+
+
     @section('scripts')
         <script src="{{ asset('custom/celendar/main.js') }}"></script>
         <script>

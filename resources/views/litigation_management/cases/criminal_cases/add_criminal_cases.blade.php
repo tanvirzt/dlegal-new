@@ -1955,7 +1955,44 @@ padding-left: 0 !important;" class="col-sm-12 col-form-labe padding-nulll">Case 
                             </div>
                         </div>
 
-                        
+  <div class="card caseFileLoacation">
+                                        <div class="card-header caseInfoHeader">
+                                            <h6 class="text-uppercase text-bold">Lawyers Information : (Opposition Lawyer)
+                                                <button type="button" class="btn btn-info btn-sm float-right"
+                                                    data-toggle="modal" data-target="#modal-lg-opp-lawyers-info"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Update Lawyers Information"><i class="fas fa-edit"></i>
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <table class="table table-bordered caseInfoTable2">
+
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td width="50%">Name of Advocate/Law Firm</td>
+                                                        <td width="50%">{{ @$oppLawyer->opp_lawyer_advocate_write }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Name of Assigned Lawyer</td>
+                                                        <td>{{ @$oppLawyer->opp_lawyer_assigned_lawyer }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Lawyer Contact</td>
+                                                        <td>{{ @$oppLawyer->opp_lawyer_contact }} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Note</td>
+                                                        <td>{{ @$oppLawyer->opp_lawyers_note }} </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>                      
 
 
                                                   </div>
