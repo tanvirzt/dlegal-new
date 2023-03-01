@@ -29,6 +29,8 @@ use App\Http\Controllers\Admin\ScheduleCategoryController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\TaskCategoryController;
 use App\Http\Controllers\Admin\TaskController;
+use App\Http\Controllers\Admin\LegalServiceCategoryController;
+use App\Http\Controllers\Admin\LegalServiceController
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\DomainSetupController;
 use App\Http\Controllers\EmployeeController;
@@ -621,6 +623,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('criminal-cases-switch', [CriminalCasesController::class, 'criminal_cases_switch'])->name('criminal-cases-switch');
     Route::post('update-criminal-cases-status-column/{id}', [CriminalCasesController::class, 'update_criminal_cases_status_column'])->name('update-criminal-cases-status-column');
     Route::get('view-criminal-cases-read-notifications/{id}', [CriminalCasesController::class, 'view_criminal_cases_read_notifications'])->name('view-criminal-cases-read-notifications');
+
+Route::get('legal-service', [LegalServiceController::class, 'legal_service'])->name('legal.service');
+    Route::get('legal-service-index', [LegalServiceController::class, 'index'])->name('index.legal.service');
+    Route::get('legal-service-show', [LegalServiceController::class, 'show_legal_service'])->name('show-legal-service');
+    Route::post('store-legal-service',[LegalServiceController::class,'store_legal_service'])->name('store-legal-service');
+    Route::post('save-legal-services', [LegalServiceController::class, 'save_legal_service'])->name('save-legal-services');
+
 
     Route::get('labour-cases', [LabourCasesController::class, 'labour_cases'])->name('labour-cases');
     Route::get('add-labour-cases', [LabourCasesController::class, 'add_labour_cases'])->name('add-labour-cases');
